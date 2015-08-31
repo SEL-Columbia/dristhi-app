@@ -31,7 +31,8 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.formData;
 public abstract class DoctorPatientDetailSuperActivity extends Activity implements View.OnClickListener {
     private ProgressDialog progressDialog;
     private Bundle bundle;
-    private String formInfo, documentId;
+    private String formInfo, documentId, phoneNumber;
+    private String[] details;
     ProgressDialog playProgressDialog;
 
     @Override
@@ -43,13 +44,14 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
 
             formInfo = bundle.getString(DoctorFormDataConstants.formData);
             setupViews();
-            documentId = setDatatoViews(formInfo);
-
+            details = setDatatoViews(formInfo);
+            documentId = details[0] != null ? details[0] : "";
+            phoneNumber = details[1] != null ? details[1] : "";
 
         }
     }
 
-    protected abstract String setDatatoViews(String formInfo);
+    protected abstract String[] setDatatoViews(String formInfo);
 
     protected abstract void setupViews();
 
@@ -123,6 +125,16 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         });
     }
 
+    public void referAnotherDoctor(String doctorId, String visitId, String entityId) {
+        getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId, new Listener<String>() {
+            @Override
+            public void onEvent(String data) {
+                finish();
+            }
+        });
+
+    }
+
 
     public void getDrugData() {
         getData(AllConstants.DRUG_INFO_URL_PATH, new Listener<String>() {
@@ -136,6 +148,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
                     intent.putExtra(AllConstants.DRUG_INFO_RESULT, resultData);
                     intent.putExtra(DoctorFormDataConstants.formData, formInfo);
                     intent.putExtra(DoctorFormDataConstants.documentId, documentId);
+                    intent.putExtra(DoctorFormDataConstants.phoneNumber, phoneNumber);
                     startActivity(intent);
                 } else {
                     Toast.makeText(DoctorPatientDetailSuperActivity.this, "No Data getting from server", Toast.LENGTH_SHORT).show();
@@ -150,7 +163,9 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
             @Override
             protected String doInBackground(Void... params) {
                 Context context = Context.getInstance();
+                Log.e("URL", context.configuration().dristhiDjangoBaseURL() + url);
                 String result = context.userService().gettingFromRemoteURL(context.configuration().dristhiDjangoBaseURL() + url);
+
                 return result;
             }
 

@@ -1,37 +1,38 @@
 package org.ei.telemedicine.doctor;
 
 import android.app.ProgressDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
-    Button bt_poc;
+    Button bt_poc, bt_doc_refer;
     ProgressDialog progressDialog;
     static String resultData;
     private String TAG = "DoctorANCSCreenActivity";
+    TextView tv_stehoscope_title;
     ImageButton ib_bp_graph, ib_fetal_graph, ib_bgm_graph, ib_temp_graph;
     EditText et_anc_num, et_woman_name, et_anc_visit_date, et_other_risks, et_bp_sys, et_bp_dia, et_temp, et_bloodGlucose, et_fetal;
     LinearLayout ll_woman_risks;
-    String documentId = null, visitId = null;
+    String documentId = null, visitId = null, phoneNumber = null, entityId = null;
     ImageButton ib_play_stehoscope;
     String formData = null;
     org.ei.telemedicine.view.customControls.CustomFontTextView tv_risks;
 
     @Override
-    protected String setDatatoViews(String formInfo) {
+    protected String[] setDatatoViews(String formInfo) {
         documentId = getDatafromJson(formInfo, DoctorFormDataConstants.documentId);
-        visitId = getDatafromJson(formInfo, "entityid");
+        phoneNumber = getDatafromJson(formInfo, DoctorFormDataConstants.phoneNumber);
+        visitId = getDatafromJson(formInfo, DoctorFormDataConstants.anc_entityId);
+        entityId = getDatafromJson(formInfo, DoctorFormDataConstants.entityId);
         et_anc_num.setText("Visit No " + getDatafromJson(formInfo, DoctorFormDataConstants.anc_visit_number));
         et_woman_name.setText(getDatafromJson(formInfo, DoctorFormDataConstants.wife_name));
         et_anc_visit_date.setText(getDatafromJson(formInfo, DoctorFormDataConstants.anc_visit_date));
@@ -40,9 +41,12 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
         et_temp.setText(getDatafromJson(formInfo, DoctorFormDataConstants.temp_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.temp_data));
         et_bloodGlucose.setText(getDatafromJson(formInfo, DoctorFormDataConstants.blood_glucose).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.blood_glucose));
         et_fetal.setText(getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data));
+        ib_play_stehoscope.setVisibility(!getDatafromJson(formInfo, DoctorFormDataConstants.stethoscope_data).equals("") ? View.VISIBLE : View.GONE);
+        tv_stehoscope_title.setVisibility(!getDatafromJson(formInfo, DoctorFormDataConstants.stethoscope_data).equals("") ? View.VISIBLE : View.GONE);
+        
         String risks = getDatafromJson(formInfo, DoctorFormDataConstants.risk_symptoms);
         tv_risks.setText(risks.replace(" ", ", "));
-        return documentId;
+        return new String[]{documentId, phoneNumber};
 
     }
 
@@ -67,7 +71,11 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
         tv_risks = (CustomFontTextView) findViewById(R.id.tv_risks);
         bt_poc = (Button) findViewById(R.id.bt_plan_of_care);
         ll_woman_risks = (LinearLayout) findViewById(R.id.ll_risks);
+        bt_doc_refer = (Button) findViewById(R.id.bt_refer);
+        tv_stehoscope_title = (TextView) findViewById(R.id.tv_stehoscope_title);
+        bt_doc_refer.setOnClickListener(this);
         bt_poc.setOnClickListener(this);
+
         ib_play_stehoscope.setOnClickListener(this);
 
         ib_bp_graph.setOnClickListener(this);
@@ -96,6 +104,9 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
                 break;
             case R.id.ib_fetal_graph:
                 getVitalsData(AllConstants.GraphFields.FETALDATA, visitId);
+                break;
+            case R.id.bt_refer:
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId);
                 break;
         }
     }

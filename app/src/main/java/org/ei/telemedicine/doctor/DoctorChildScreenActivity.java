@@ -3,9 +3,8 @@ package org.ei.telemedicine.doctor;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
 
@@ -15,12 +14,17 @@ import org.ei.telemedicine.view.customControls.CustomFontTextView;
 public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity implements View.OnClickListener {
     EditText et_mother_name, et_child_name, et_reporting_date;
     CustomFontTextView tv_child_disease_report, tv_breathing_problems, tv_child_dob, tv_referral, tv_referral_reason;
-    Button bt_poc;
-    String documentId = null;
+    Button bt_poc, bt_doc_refer;
+    String documentId = null, phoneNumber = null, visitId = null, entityId = null;
 
     @Override
-    protected String setDatatoViews(String formInfo) {
+    protected String[] setDatatoViews(String formInfo) {
         documentId = getDatafromJson(formInfo, DoctorFormDataConstants.documentId);
+        phoneNumber = getDatafromJson(formInfo, DoctorFormDataConstants.phoneNumber);
+
+        visitId = getDatafromJson(formInfo, DoctorFormDataConstants.pnc_entityId);
+        entityId = getDatafromJson(formInfo, DoctorFormDataConstants.entityId);
+
         et_mother_name.setText(getDatafromJson(formInfo, DoctorFormDataConstants.wife_name));
         et_child_name.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_name));
         et_reporting_date.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_report_child_disease_date));
@@ -30,7 +34,7 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
         tv_referral.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_immediateReferral));
         tv_referral_reason.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_immediateReferral_reason));
 
-        return documentId;
+        return new String[]{documentId, phoneNumber};
     }
 
     private String childSigns(String formInfo) {
@@ -51,6 +55,8 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
         tv_child_dob = (CustomFontTextView) findViewById(R.id.tv_child_dob);
         bt_poc = (Button) findViewById(R.id.bt_plan_of_care);
         bt_poc.setOnClickListener(this);
+        bt_doc_refer = (Button) findViewById(R.id.bt_refer);
+        bt_doc_refer.setOnClickListener(this);
         tv_referral = (CustomFontTextView) findViewById(R.id.tv_referral);
         tv_referral_reason = (CustomFontTextView) findViewById(R.id.tv_referral_reason);
     }
@@ -60,6 +66,9 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
         switch (v.getId()) {
             case R.id.bt_plan_of_care:
                 getDrugData();
+                break;
+            case R.id.bt_refer:
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId);
                 break;
         }
     }

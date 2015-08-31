@@ -12,12 +12,26 @@
         android:layout_marginRight="10dp"
         android:layout_weight="2">
 
-        <ImageView
-            android:id="@+id/iv_profile"
+        <FrameLayout
             android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:padding="3dp"
-            android:src="@drawable/ic_launcher" />
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:padding="3dp"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/iv_hr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/flag_hr"
+                android:padding="3dp"
+                android:visibility="gone" />
+
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

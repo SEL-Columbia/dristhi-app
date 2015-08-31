@@ -148,6 +148,7 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
     }
 
     private void goBack() {
-        super.onBackPressed();
+//        super.onBackPressed();
+        finish();
     }
 }

@@ -1,7 +1,6 @@
 package org.ei.telemedicine.doctor;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,21 +8,20 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.ei.telemedicine.AllConstants;
+import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by naveen on 6/18/15.
  */
 public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
     EditText et_pnc_num, et_woman_name, et_pnc_date, et_bp_sys, et_bp_dia, et_temp, et_blood_glucose, et_hb_level;
-    TextView tv_difficuties, tv_vaginal_difficulties, tv_breast_difficulties, tv_kop_feel_hot, tv_urinating_problems, tv_abdominal_problems;
-    Button bt_plan_of_care;
+    TextView tv_difficuties, tv_vaginal_difficulties, tv_breast_difficulties, tv_kop_feel_hot, tv_urinating_problems, tv_abdominal_problems, tv_stehoscope_title;
+    Button bt_plan_of_care, bt_doc_refer;
     ImageButton ib_bp_graph, ib_fetal_graph, ib_bgm_graph, ib_temp_graph;
     Bundle bundle;
     ImageButton ib_play_stehoscope;
-    private String documentId, visitId;
+    private String documentId, visitId, phoneNumber, entityId = null;
 
 
     @Override
@@ -38,6 +36,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         et_blood_glucose = (EditText) findViewById(R.id.et_pnc_blood_glucose);
         et_hb_level = (EditText) findViewById(R.id.et_pnc_hb_level);
 
+        tv_stehoscope_title = (TextView) findViewById(R.id.tv_stehoscope_title);
         tv_difficuties = (TextView) findViewById(R.id.tv_difficulties);
         tv_vaginal_difficulties = (TextView) findViewById(R.id.tv_vaginal_problems);
         tv_breast_difficulties = (TextView) findViewById(R.id.tv_breast_problems);
@@ -52,6 +51,8 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
 
         bt_plan_of_care = (Button) findViewById(R.id.bt_plan_of_care);
         bt_plan_of_care.setOnClickListener(this);
+        bt_doc_refer = (Button) findViewById(R.id.bt_refer);
+        bt_doc_refer.setOnClickListener(this);
 
         ib_play_stehoscope.setOnClickListener(this);
         ib_bp_graph.setOnClickListener(this);
@@ -61,9 +62,13 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
     }
 
     @Override
-    protected String setDatatoViews(String formInfo) {
-        visitId = getDatafromJson(formInfo, "entityid");
+    protected String[] setDatatoViews(String formInfo) {
         documentId = getDatafromJson(formInfo, DoctorFormDataConstants.documentId);
+        phoneNumber = getDatafromJson(formInfo, DoctorFormDataConstants.phoneNumber);
+
+        visitId = getDatafromJson(formInfo, DoctorFormDataConstants.pnc_entityId);
+        entityId = getDatafromJson(formInfo, DoctorFormDataConstants.entityId);
+
         et_pnc_num.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_number));
         et_woman_name.setText(getDatafromJson(formInfo, DoctorFormDataConstants.wife_name));
         et_pnc_date.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_visit_date));
@@ -75,6 +80,9 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         et_blood_glucose.setText(getDatafromJson(formInfo, DoctorFormDataConstants.blood_glucose).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.blood_glucose));
         et_hb_level.setText(getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data));
 
+        ib_play_stehoscope.setVisibility(!getDatafromJson(formInfo, DoctorFormDataConstants.stethoscope_data).equals("") ? View.VISIBLE : View.GONE);
+        tv_stehoscope_title.setVisibility(!getDatafromJson(formInfo, DoctorFormDataConstants.stethoscope_data).equals("") ? View.VISIBLE : View.GONE);
+
         tv_difficuties.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_difficulties));
         tv_abdominal_problems.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_abdominal_problems));
         tv_breast_difficulties.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_breast_problems));
@@ -82,7 +90,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         tv_kop_feel_hot.setText(getDatafromJson(formInfo, DoctorFormDataConstants.kopfeel_heat_or_chills));
         tv_urinating_problems.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_urinating_problems));
 
-        return documentId;
+        return new String[]{documentId, phoneNumber};
     }
 
     @Override
@@ -102,6 +110,9 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
                 break;
             case R.id.ib_bgm_graph:
                 getVitalsData(AllConstants.GraphFields.BLOODGLUCOSEDATA, visitId);
+                break;
+            case R.id.bt_refer:
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId);
                 break;
         }
 

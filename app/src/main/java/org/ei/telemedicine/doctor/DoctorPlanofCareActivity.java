@@ -80,7 +80,7 @@ public class DoctorPlanofCareActivity extends Activity {
     Context context;
     private String TAG = "DoctorPlanOfCareActivity";
     String visitType, visitNumber;
-    String documentId, formData;
+    String documentId, formData, phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +89,7 @@ public class DoctorPlanofCareActivity extends Activity {
         if (bundle != null && bundle.getString(AllConstants.DRUG_INFO_RESULT) != null && bundle.getString(DoctorFormDataConstants.documentId) != null && bundle.getString("formData") != null) {
             String resultData = bundle.getString(AllConstants.DRUG_INFO_RESULT);
             documentId = bundle.getString(DoctorFormDataConstants.documentId);
+            phoneNumber = bundle.getString(DoctorFormDataConstants.phoneNumber);
             formData = bundle.getString("formData");
             try {
                 setContentView(R.layout.doc_plan_of_care);
@@ -138,13 +139,13 @@ public class DoctorPlanofCareActivity extends Activity {
                 pocDrugDirectionsList.add(getString(R.string.please_select_direction));
                 pocDrugDosagesList.add(getString(R.string.please_select_dosage));
 
-                String pocInfoCaseId = context.allDoctorRepository().getPocInfoCaseId(documentId);
-                if (pocInfoCaseId != null) {
-                    JSONObject pocInfo = new JSONObject(pocInfoCaseId);
+                String existPocInfo = context.allDoctorRepository().getPocInfoCaseId(documentId);
+                if (existPocInfo != null && !existPocInfo.equals("")) {
+                    JSONObject pocInfo = new JSONObject(existPocInfo);
                     JSONArray diagnosisArray = pocInfo.has("diagnosis") ? pocInfo.getJSONArray("diagnosis") : new JSONArray();
                     JSONArray investigationsArray = pocInfo.has("investigations") ? pocInfo.getJSONArray("investigations") : new JSONArray();
                     JSONArray drugsArray = pocInfo.has("drugs") ? pocInfo.getJSONArray("drugs") : new JSONArray();
-                    Log.e(TAG, "PocInfoCaseId " + diagnosisArray.length() + "--" + drugsArray.length() + "---" + investigationsArray.length() + "----" + pocInfoCaseId);
+                    Log.e(TAG, "PocInfoCaseId " + diagnosisArray.length() + "--" + drugsArray.length() + "---" + investigationsArray.length() + "----" + existPocInfo);
                     for (int i = 0; i < diagnosisArray.length(); i++) {
                         lv_selected_icd10.setVisibility(View.VISIBLE);
                         selectICD10Diagnosis.add(diagnosisArray.get(i).toString());
@@ -554,9 +555,9 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     Log.e(TAG, "selected Json" + resultJson.toString());
                                                                     if (swich_poc_pending.isChecked() && et_reason.getText().toString().trim().length() != 0) {
                                                                         saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString());
-                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString());
+                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
                                                                     } else if (!swich_poc_pending.isChecked() && (diagnosisArray.length() != 0 || drugsArray.length() != 0 || testsArray.length() != 0 || resultJson.getString("advice").length() != 0)) {
-                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString());
+                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
                                                                     } else {
                                                                         Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care / Reason for Pending must be given", Toast.LENGTH_SHORT).show();
                                                                     }
@@ -642,13 +643,13 @@ public class DoctorPlanofCareActivity extends Activity {
             gotoHome();
     }
 
-    private void saveData(final String docId, String pocJsonData, JSONObject formDataJson, final String pocPendingReason) {
-        savePocData(docId, pocJsonData, formDataJson, pocPendingReason, new Listener<String>() {
+    private void saveData(final String documentID, String pocJsonData, JSONObject formDataJson, final String pocPendingReason, final String phoneNumber) {
+        savePocData(documentID, pocJsonData, formDataJson, pocPendingReason, phoneNumber, new Listener<String>() {
                     //        getDataFromServer(new Listener<String>() {
                     public void onEvent(String resultData) {
                         if (resultData != null) {
                             if (pocPendingReason.length() == 0) {
-                                context.allDoctorRepository().deleteUseCaseId(docId);
+                                context.allDoctorRepository().deleteUseCaseId(documentID);
                             }
                             Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care is submitted", Toast.LENGTH_SHORT).show();
                             gotoHome();
@@ -666,7 +667,7 @@ public class DoctorPlanofCareActivity extends Activity {
     }
 
     public void savePocData(final String docId, final String pocJsonData,
-                            final JSONObject formDataJson, final String pendingReason, final Listener<String> afterResult) {
+                            final JSONObject formDataJson, final String pendingReason, final String phoneNumber, final Listener<String> afterResult) {
         new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... params) {
@@ -679,6 +680,7 @@ public class DoctorPlanofCareActivity extends Activity {
                     _params.add(new BasicNameValuePair("pocinfo", pocJsonData));
                     _params.add(new BasicNameValuePair("pending", pendingReason));
                     _params.add(new BasicNameValuePair("entityid", formDataJson.getString(DoctorFormDataConstants.entityId)));
+                    _params.add(new BasicNameValuePair("patientph", phoneNumber));
 
                     switch (formDataJson.getString(DoctorFormDataConstants.visit_type)) {
                         case DoctorFormDataConstants.ancvisit:

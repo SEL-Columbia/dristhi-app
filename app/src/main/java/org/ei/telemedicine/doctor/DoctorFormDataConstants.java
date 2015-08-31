@@ -25,8 +25,10 @@ public interface DoctorFormDataConstants {
     public static String poc_pending = "pocPending";
     public static String status = "status";
     public static String documentId = "documentId";
+    public static String phoneNumber = "phoneNumber";
     public static String entityId = "entityId";
-
+    public static String visitId = "visitId";
+    public static String isHighRisk = "isHighRisk";
     public static String bp_sys = "bpSys";
     public static String bp_dia = "bpDia";
     public static String temp_data = "temp";
@@ -34,17 +36,17 @@ public interface DoctorFormDataConstants {
     public static String blood_glucose = "bloodGlucoseData";
     public static String fhr = "FHR";
     public static String fetal_data = "fetal";
-
+    public static String stethoscope_data = "stethoscopeData";
 
     public static String anc_number = "ancNumber";
     public static String anc_visit_number = "ancVisitNumber";
     public static String anc_visit_date = "ancVisitDate";
     public static String risk_symptoms = "riskObservedDuringANC";
-    public static String anc_entityId = "entityid";
-    public static String lmp="lmp";
-    public static String edd="edd";
+    public static String anc_entityId = "visitId";
+    public static String lmp = "lmp";
+    public static String edd = "edd";
 
-    public static String pnc_entityId = "entityid";
+    public static String pnc_entityId = "visitId";
     public static String pnc_number = "pncNumber";
     public static String pnc_visit_date = "pncVisitDate";
     public static String pnc_visit_place = "pncVisitPlace";
@@ -65,7 +67,7 @@ public interface DoctorFormDataConstants {
     public static String child_dob = "childDob";
 
 
-    public static String child_entityId = "childEntityId";
+    public static String child_entityId = "visitId";
     public static String child_age = "childAge";
     public static String child_no_of_osrs = "childNoOfOsrs";
     public static String child_immediateReferral = "childImmediateReferral";
@@ -73,7 +75,7 @@ public interface DoctorFormDataConstants {
 
     public static String child_submission_date = "childSubmissionDate";
     public static String child_referral = "childReferral";
-    public static String child_report_child_disease_place= "childReportdiseasePlace";
+    public static String child_report_child_disease_place = "childReportdiseasePlace";
     public static String child_report_child_disease_date = "childReportdiseaseDate";
     public static String child_report_child_disease_other = "childReportdiseaseOther";
     public static String child_report_child_disease = "childReportChildDisease";
