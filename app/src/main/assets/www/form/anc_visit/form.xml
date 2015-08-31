@@ -474,8 +474,8 @@
         </span>
         <span class="required">*</span>
         <input name="/ANC_Visit_EngKan/is_consult_doctor_no_reason" autocomplete="off"
-            data-relevant=" /ANC_Visit_EngKan/is_consult_doctor  = 'no'" data-type-xml="int"
-            required="required" type="number" />
+            data-relevant=" /ANC_Visit_EngKan/is_consult_doctor  = 'no'" data-type-xml="string"
+            required="required" type="text" />
     </label>
 
 

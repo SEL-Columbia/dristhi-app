@@ -32,6 +32,7 @@
             <case_would_be_high_risk />
             <case_would_be_high_risk_reason />
             <weight_risk />
+            <risk_value />
             <height_risk />
             <is_high_risk_till_delivery />
             <is_high_risk_till_delivery_reason />

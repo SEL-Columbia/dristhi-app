@@ -17,882 +17,146 @@
         <input name="/ANC_Registration_OA_EngKan/anc_number" autocomplete="off"
             data-type-xml="string" disabled="disabled" type="text" />
     </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Household address:</span>
+        <input name="/ANC_Registration_OA_EngKan/hh_address" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">District:
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/district" autocomplete="off" data-type-xml="string"
+        <span class="question-label active" lang="">Woman Name:</span>
+        <input name="/ANC_Registration_OA_EngKan/woman_name" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman ID :</span>
+        <input name="/ANC_Registration_OA_EngKan/woman_id_type" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">ID Number:</span>
+        <input name="/ANC_Registration_OA_EngKan/aadhaar_number" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman Date of Birth:</span>
+        <input name="/ANC_Registration_OA_EngKan/wife_dob" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
     </label>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">PHC:
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/phc" autocomplete="off" data-type-xml="string"
-            disabled="disabled" type="text" />
-    </label>
-
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Sub Center:
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/sub_center" autocomplete="off"
+        <span class="question-label active" lang="">Husband Name:</span>
+        <input name="/ANC_Registration_OA_EngKan/husband_name" autocomplete="off"
             data-type-xml="string" disabled="disabled" type="text" />
     </label>
     <label class="question non-select ">
-        <span class="question-label active" lang="">Village:
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/village" autocomplete="off" data-type-xml="string"
+        <span class="question-label active" lang="">Husband Age:</span>
+        <input name="/ANC_Registration_OA_EngKan/husband_age" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Phone No:</span>
+        <input name="/ANC_Registration_OA_EngKan/phone_no" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Phone Owner:</span>
+        <input name="/ANC_Registration_OA_EngKan/phone_owner" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Another Phone No:</span>
+        <input name="/ANC_Registration_OA_EngKan/phone_no2" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Another Phone Owner:</span>
+        <input name="/ANC_Registration_OA_EngKan/phone_owner2" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of previous pregnancies:</span>
+        <input name="/ANC_Registration_OA_EngKan/num_pregnancies1" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of abortions/Miscarriages:</span>
+        <input name="/ANC_Registration_OA_EngKan/num_abortions" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of live births:</span>
+        <input name="/ANC_Registration_OA_EngKan/num_livebirths" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of still births:</span>
+        <input name="/ANC_Registration_OA_EngKan/num_stillbirths1" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of living children:</span>
+        <input name="/ANC_Registration_OA_EngKan/num_livingchildren" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Complications in any previous pregnancy:</span>
+        <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/complication "></span>
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Other problem in previous pregnancy:</span>
+        <input name="/ANC_Registration_OA_EngKan/other_complication" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman medical conditions:</span>
+        <input name="/ANC_Registration_OA_EngKan/medical_histories" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman's blood group:</span>
+        <input name="/ANC_Registration_OA_EngKan/w_blood_group" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Height (in cms):</span>
+        <input name="/ANC_Registration_OA_EngKan/height" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Weight at start of pregnancy (in kgs):</span>
+        <input name="/ANC_Registration_OA_EngKan/weight_startofpregnancy" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">EDD:</span>
+        <input name="/ANC_Registration_OA_EngKan/edd" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
     </label>
 
 
-
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Name of original village?
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/out_of_area_village" data-type-xml="string"
-            type="text" />
-    </label>
-
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Household address</span>
-        <input name="/ANC_Registration_OA_EngKan/hh_address" data-type-xml="string" type="text" />
-    </label>
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Woman's name,</span>
-        <span class="required">*</span>
-        <input name="/ANC_Registration_OA_EngKan/woman_name" data-type-xml="string"
-            required="required" type="text" />
-    </label>
-
-    <label class="question or-appearance-minimal ">
-        <span class="question-label active" lang="">Woman's ID Type?</span>
-        <select name="/ANC_Registration_OA_EngKan/woman_id_type"
-            data-name="/ANC_Registration_OA_EngKan/woman_id_type" data-type-xml="select1">
-            <option value="">...</option>
-            <option value="national_id">National ID</option>
-            <option value="passport">Passport</option>
-            <option value="others">Others</option>
-        </select>
-        <span style="display:none;" class="or-option-translations"></span>
-    </label>
-
-    <label class="question non-select ">
-        <span class="question-label active" lang="">ID Number:
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/aadhaar_number" autocomplete="off"
-            data-type-xml="text" type="text" />
-
-    </label>
-
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Date of Birth?
-        </span>
-        <span class="required">*</span>
-        <input name="/ANC_Registration_OA_EngKan/wife_dob" autocomplete="off"
-            data-constraint=".&lt;= ( /ANC_Registration_OA_EngKan/today  - 18 * 365) and .&gt;= ( /ANC_Registration_OA_EngKan/today  - 50* 365)"
-            data-type-xml="date" required="required" type="date" />
-    </label>
-
-    <label class="note or-branch pre-init non-select ">
-        <span class="question-label active" lang="">Woman's age is
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/wife_age ">Years</span>
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/wife_age_note" autocomplete="off"
-            data-relevant=" /ANC_Registration_OA_EngKan/wife_dob  &gt; 0" data-type-xml="string"
-            readonly="readonly" type="text" />
-    </label>
-
-
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Husband's name,</span>
-        <input name="/ANC_Registration_OA_EngKan/husband_name" data-type-xml="string" type="text" />
-    </label>
-
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Husband's age,</span>
-
-        <input name="/ANC_Registration_OA_EngKan/husband_age"
-            data-constraint=".&gt;=15 and .&lt;=49" data-type-xml="int" type="number" />
-    </label>
-
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Contact phone number
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/phone_no"
-            data-constraint=".&gt; 99999999 and .&lt; 10000000000000 " data-type-xml="int"
-            type="number" />
-    </label>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span class="question-label active" lang="">Who owns this phone?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/phone_owner"
-                        data-name="/ANC_Registration_OA_EngKan/phone_owner"
-                        data-relevant=" /ANC_Registration_OA_EngKan/phone_no  != ''"
-                        data-type-xml="select1" type="radio" value="woman" />
-                    <span class="option-label active" lang="">Woman</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/phone_owner"
-                        data-name="/ANC_Registration_OA_EngKan/phone_owner"
-                        data-relevant=" /ANC_Registration_OA_EngKan/phone_no  != ''"
-                        data-type-xml="select1" type="radio" value="husband" />
-                    <span class="option-label active" lang="">Husband</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/phone_owner"
-                        data-name="/ANC_Registration_OA_EngKan/phone_owner"
-                        data-relevant=" /ANC_Registration_OA_EngKan/phone_no  != ''"
-                        data-type-xml="select1" type="radio" value="relative" />
-                    <span class="option-label active" lang="">Relative</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/phone_owner"
-                        data-name="/ANC_Registration_OA_EngKan/phone_owner"
-                        data-relevant=" /ANC_Registration_OA_EngKan/phone_no  != ''"
-                        data-type-xml="select1" type="radio" value="neighbor" />
-                    <span class="option-label active" lang="">Neighbor</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/phone_owner"
-                        data-name="/ANC_Registration_OA_EngKan/phone_owner"
-                        data-relevant=" /ANC_Registration_OA_EngKan/phone_no  != ''"
-                        data-type-xml="select1" type="radio" value="others" />
-                    <span class="option-label active" lang="">Others</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">Alternative phone number,
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/phone_no2"
-            data-constraint=".&gt; 99999999 and .&lt; 10000000000000"
-            data-relevant=" /ANC_Registration_OA_EngKan/phone_no  != ''" data-type-xml="int"
-            type="number" />
-    </label>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span class="question-label active" lang="">Who owns this phone?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/phone_owner2"
-                        data-name="/ANC_Registration_OA_EngKan/phone_owner2"
-                        data-relevant=" /ANC_Registration_OA_EngKan/phone_no2  != ''"
-                        data-type-xml="select1" type="radio" value="woman" />
-                    <span class="option-label active" lang="">Woman</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/phone_owner2"
-                        data-name="/ANC_Registration_OA_EngKan/phone_owner2"
-                        data-relevant=" /ANC_Registration_OA_EngKan/phone_no2  != ''"
-                        data-type-xml="select1" type="radio" value="husband" />
-                    <span class="option-label active" lang="">Husband</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/phone_owner2"
-                        data-name="/ANC_Registration_OA_EngKan/phone_owner2"
-                        data-relevant=" /ANC_Registration_OA_EngKan/phone_no2  != ''"
-                        data-type-xml="select1" type="radio" value="relative" />
-                    <span class="option-label active" lang="">Relative</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/phone_owner2"
-                        data-name="/ANC_Registration_OA_EngKan/phone_owner2"
-                        data-relevant=" /ANC_Registration_OA_EngKan/phone_no2  != ''"
-                        data-type-xml="select1" type="radio" value="neighbor" />
-                    <span class="option-label active" lang="">Neighbor</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/phone_owner2"
-                        data-name="/ANC_Registration_OA_EngKan/phone_owner2"
-                        data-relevant=" /ANC_Registration_OA_EngKan/phone_no2  != ''"
-                        data-type-xml="select1" type="radio" value="others" />
-                    <span class="option-label active" lang="">Others</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <!--<fieldset class="question ">-->
-    <!--<fieldset>-->
-    <!--<legend>-->
-    <!--<span lang="" class="question-label active">Economic status, -->
-    <!--</span>-->
-    <!--</legend>-->
-    <!--<div class="option-wrapper">-->
-    <!--<label class="">-->
-    <!--<input type="radio" name="/ANC_Registration_OA_EngKan/economic_status"-->
-    <!--data-name="/ANC_Registration_OA_EngKan/economic_status" value="apl" data-type-xml="select1"/>-->
-    <!--<span lang="" class="option-label active">APL </span>-->
-    <!--</label>-->
-    <!--<label class="">-->
-    <!--<input type="radio" name="/ANC_Registration_OA_EngKan/economic_status"-->
-    <!--data-name="/ANC_Registration_OA_EngKan/economic_status" value="bpl" data-type-xml="select1"/>-->
-    <!--<span lang="" class="option-label active">BPL-->
-    <!--</span>-->
-    <!--</label>-->
-    <!--</div>-->
-    <!--</fieldset>-->
-    <!--</fieldset>-->
-    <!--<label class="question or-branch pre-init non-select ">-->
-    <!--<span lang="" class="question-label active">BPL card number, -->
-    <!--</span>-->
-    <!--<input type="text" name="/ANC_Registration_OA_EngKan/bpl_card_number"-->
-    <!--data-relevant=" /ANC_Registration_OA_EngKan/economic_status  = 'bpl'" data-type-xml="string"/>-->
-    <!--</label>-->
-    <!--<fieldset class="question ">-->
-    <!--<fieldset>-->
-    <!--<legend>-->
-    <!--<span lang="" class="question-label active">Caste, </span>-->
-    <!--</legend>-->
-    <!--<div class="option-wrapper">-->
-    <!--<label class="">-->
-    <!--<input type="radio" name="/ANC_Registration_OA_EngKan/caste"-->
-    <!--data-name="/ANC_Registration_OA_EngKan/caste" value="sc" data-type-xml="select1"/>-->
-    <!--<span lang="" class="option-label active">SC </span>-->
-    <!--</label>-->
-    <!--<label class="">-->
-    <!--<input type="radio" name="/ANC_Registration_OA_EngKan/caste"-->
-    <!--data-name="/ANC_Registration_OA_EngKan/caste" value="st" data-type-xml="select1"/>-->
-    <!--<span lang="" class="option-label active">ST </span>-->
-    <!--</label>-->
-    <!--<label class="">-->
-    <!--<input type="radio" name="/ANC_Registration_OA_EngKan/caste"-->
-    <!--data-name="/ANC_Registration_OA_EngKan/caste" value="c_others" data-type-xml="select1"/>-->
-    <!--<span lang="" class="option-label active">Others </span>-->
-    <!--</label>-->
-    <!--</div>-->
-    <!--</fieldset>-->
-    <!--</fieldset>-->
-    <!--<label class="question non-select ">-->
-    <!--<span lang="" class="question-label active">Thayi card number, -->
-    <!--</span>-->
-    <!--<span class="required">*</span>-->
-    <!--<input type="number" name="/ANC_Registration_OA_EngKan/thayi_no" required="required"-->
-    <!--data-constraint=".&gt; 999999 and .&lt; 10000000" data-type-xml="int"/>-->
-    <!--</label>-->
-    <fieldset class="question ">
-        <fieldset>
-            <legend>
-                <span class="question-label active" lang="">Religion:
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/religion" autocomplete="off"
-                        data-name="/ANC_Registration_OA_EngKan/religion" data-type-xml="select1"
-                        type="radio" value="hindu" />
-                    <span class="option-label active" lang="">Hindu</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/religion" autocomplete="off"
-                        data-name="/ANC_Registration_OA_EngKan/religion" data-type-xml="select1"
-                        type="radio" value="muslim" />
-                    <span class="option-label active" lang="">Muslim
-                    </span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/religion" autocomplete="off"
-                        data-name="/ANC_Registration_OA_EngKan/religion" data-type-xml="select1"
-                        type="radio" value="christian" />
-                    <span class="option-label active" lang="">Christian</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/religion" autocomplete="off"
-                        data-name="/ANC_Registration_OA_EngKan/religion" data-type-xml="select1"
-                        type="radio" value="r_others" />
-                    <span class="option-label active" lang="">Others
-                    </span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-
-
-    <!--<label class="question non-select ">-->
-        <!--<span class="question-label active" lang="">ANC number</span>-->
-        <!--<span class="required">*</span>-->
-        <!--<input name="/ANC_Registration_OA_EngKan/anc_number" data-constraint=".&gt; 0"-->
-            <!--data-type-xml="int" required="required" type="number" />-->
-    <!--</label>-->
-    <!--<fieldset class="question ">-->
-    <!--<fieldset>-->
-    <!--<legend>-->
-    <!--<span lang="" class="question-label active">JSY beneficiary? -->
-    <!--</span>-->
-    <!--</legend>-->
-    <!--<div class="option-wrapper">-->
-    <!--<label class="">-->
-    <!--<input type="radio" name="/ANC_Registration_OA_EngKan/jsy_beneficiary"-->
-    <!--data-name="/ANC_Registration_OA_EngKan/jsy_beneficiary" value="yes" data-type-xml="select1"/>-->
-    <!--<span lang="" class="option-label active">Yes </span>-->
-    <!--</label>-->
-    <!--<label class="">-->
-    <!--<input type="radio" name="/ANC_Registration_OA_EngKan/jsy_beneficiary"-->
-    <!--data-name="/ANC_Registration_OA_EngKan/jsy_beneficiary" value="no" data-type-xml="select1"/>-->
-    <!--<span lang="" class="option-label active">No </span>-->
-    <!--</label>-->
-    <!--</div>-->
-    <!--</fieldset>-->
-    <!--</fieldset>-->
-    <!--<label class="question non-select ">-->
-    <!--<span lang="" class="question-label active">Asha name, </span>-->
-    <!--<input type="text" name="/ANC_Registration_OA_EngKan/asha_name" data-type-xml="string"/>-->
-    <!--</label>-->
-    <!--<label class="question non-select ">-->
-    <!--<span lang="" class="question-label active">Asha phone number, -->
-    <!--</span>-->
-    <!--<input type="number" name="/ANC_Registration_OA_EngKan/asha_phone_number"-->
-    <!--data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-type-xml="int"/>-->
-    <!--</label>-->
-    <fieldset class="question ">
-        <fieldset>
-            <legend>
-                <span class="question-label active" lang="">LMP is in weeks/Days?
-                </span>
-                <span class="required">*</span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/is_lmp_week_days"
-                        data-name="/ANC_Registration_OA_EngKan/is_lmp_week_days"
-                        data-type-xml="select1" required="required" type="radio" value="week" />
-                    <span class="option-label active" lang="">Week</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/is_lmp_week_days"
-                        data-name="/ANC_Registration_OA_EngKan/is_lmp_week_days"
-                        data-type-xml="select1" required="required" type="radio" value="days" />
-                    <span class="option-label active" lang="">Date</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-
-
-    <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">LMP Date:
-        </span>
-        <span class="required">*</span>
-        <input name="/ANC_Registration_OA_EngKan/lmp_date" autocomplete="off"
-            data-relevant=" /ANC_Registration_OA_EngKan/is_lmp_week_days  = 'days'"
-            data-type-xml="date" required="required" type="date" />
-    </label>
-
-    <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">LMP in weeks:
-        </span>
-        <span class="required">*</span>
-        <input name="/ANC_Registration_OA_EngKan/is_lmp_weeks" autocomplete="off"
-            data-relevant=" /ANC_Registration_OA_EngKan/is_lmp_week_days  = 'week'"
-            data-type-xml="int" required="required" type="number" />
-    </label>
-
-
-    <!--<label class="question or-branch pre-init non-select">-->
-    <!--<span class="question-label active" lang="">LMP-->
-    <!--</span>-->
-    <!--<span class="required">*</span>-->
-    <!--<input name="/ANC_Registration_OA_EngKan/lmp_date"-->
-    <!--data-constraint=".&lt;= /ANC_Registration_OA_EngKan/today "-->
-    <!--data-relevant="/ANC_Registration_OA_EngKan/is_lmp_week_days='yes'" data-type-xml="date"-->
-    <!--required="required" type="date" />-->
-    <!--</label>-->
-
-
-    <label class="note non-select ">
-        <span class="question-label active" lang="">EDD
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/edd_formatted"></span>
-            <span class="or-output"
-                data-value=" /ANC_Registration_OA_EngKan/edd_date_formatted "></span>
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/edd_note" data-type-xml="string"
-            readonly="readonly" type="text" />
-    </label>
-    <label class="question or-appearance-minimal ">
-        <span class="question-label active" lang="">Number of previous pregnancies?
-        </span>
-        <span class="required">*</span>
-        <select name="/ANC_Registration_OA_EngKan/num_pregnancies1"
-            data-name="/ANC_Registration_OA_EngKan/num_pregnancies1" data-type-xml="select1"
-            required="required">
-            <option value="">...</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="999">More than 8
-            </option>
-        </select>
-        <span style="display:none;" class="or-option-translations"></span>
-    </label>
-    <label class="question or-appearance-minimal  or-branch pre-init ">
-        <span class="question-label active" lang="">Number of abortions/Miscarriages?
-        </span>
-        <span class="required">*</span>
-        <select name="/ANC_Registration_OA_EngKan/num_abortions"
-            data-constraint=".&lt;=  /ANC_Registration_OA_EngKan/num_pregnancies1 "
-            data-name="/ANC_Registration_OA_EngKan/num_abortions"
-            data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-            data-type-xml="select1" required="required">
-            <option value="">...</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="999">More than 8
-            </option>
-        </select>
-        <span style="display:none;" class="or-option-translations"></span>
-    </label>
-    <label class="question or-appearance-minimal  or-branch pre-init ">
-        <span class="question-label active" lang="">Number of live births?
-        </span>
-        <span class="required">*</span>
-        <select name="/ANC_Registration_OA_EngKan/num_livebirths"
-            data-constraint=".&lt;=( /ANC_Registration_OA_EngKan/num_pregnancies1  -  /ANC_Registration_OA_EngKan/num_abortions )"
-            data-name="/ANC_Registration_OA_EngKan/num_livebirths"
-            data-relevant="( /ANC_Registration_OA_EngKan/num_pregnancies1  -  /ANC_Registration_OA_EngKan/num_abortions ) &gt; 0"
-            data-type-xml="select1" required="required">
-            <option value="">...</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="999">More than 8
-            </option>
-        </select>
-        <span style="display:none;" class="or-option-translations"></span>
-    </label>
-    <label class="question or-appearance-minimal  or-branch pre-init ">
-        <span class="question-label active" lang="">Number of still births?
-        </span>
-        <span class="required">*</span>
-        <select name="/ANC_Registration_OA_EngKan/num_stillbirths1"
-            data-constraint=".&lt;=( /ANC_Registration_OA_EngKan/num_pregnancies1  -  /ANC_Registration_OA_EngKan/num_livebirths  -  /ANC_Registration_OA_EngKan/num_abortions )"
-            data-name="/ANC_Registration_OA_EngKan/num_stillbirths1"
-            data-relevant="( /ANC_Registration_OA_EngKan/num_pregnancies1  -  /ANC_Registration_OA_EngKan/num_livebirths  -  /ANC_Registration_OA_EngKan/num_abortions ) &gt; 0"
-            data-type-xml="select1" required="required">
-            <option value="">...</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="999">More than 8
-            </option>
-        </select>
-        <span style="display:none;" class="or-option-translations"></span>
-    </label>
-    <label class="question or-appearance-minimal  or-branch pre-init ">
-        <span class="question-label active" lang="">Number of living children?
-        </span>
-        <span class="required">*</span>
-        <select name="/ANC_Registration_OA_EngKan/num_livingchildren"
-            data-name="/ANC_Registration_OA_EngKan/num_livingchildren"
-            data-relevant=" /ANC_Registration_OA_EngKan/num_livebirths  &gt; 0"
-            data-type-xml="select1" required="required">
-            <option value="">...</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="999">More than 8
-            </option>
-        </select>
-        <span style="display:none;" class="or-option-translations"></span>
-    </label>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span class="question-label active" lang="">Does the woman have a child under 2
-                    years of age?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/youngestchild_under2"
-                        data-name="/ANC_Registration_OA_EngKan/youngestchild_under2"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_livingchildren  &gt; 0"
-                        data-type-xml="select1" type="radio" value="yes" />
-                    <span class="option-label active" lang="">Yes</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/youngestchild_under2"
-                        data-name="/ANC_Registration_OA_EngKan/youngestchild_under2"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_livingchildren  &gt; 0"
-                        data-type-xml="select1" type="radio" value="no" />
-                    <span class="option-label active" lang="">No</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span class="question-label active" lang="">Had complications in any previous
-                    pregnancy?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/complication"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_APH" />
-                    <span class="option-label active" lang="">APH</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/complication"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_PIH" />
-                    <span class="option-label active" lang="">PIH</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/complication"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Preeclampsia_Eclampsia" />
-                    <span class="option-label active" lang="">Pre-eclampsia / Eclampsia</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/complication"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Pregnancy_with_Tumors" />
-                    <span class="option-label active" lang="">Pregnancy with tumors</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/complication"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Prolonged_Obstructed_Labor" />
-                    <span class="option-label active" lang="">Prolonged / Obstructed labor</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/complication"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Intrauterine_Growth_Retardation" />
-                    <span class="option-label active" lang="">Intrauterine Growth Retardation</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/complication"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_PPH" />
-                    <span class="option-label active" lang="">PPH</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/complication"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Cesarean" />
-                    <span class="option-label active" lang="">Cesarean</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/complication"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Still_Birth" />
-                    <span class="option-label active" lang="">Still birth
-                    </span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/complication"
-                        data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Spontaneous_Abortion" />
-                    <span class="option-label active" lang="">Spontaneous abortion</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">Any other problem in previous pregnancy?
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/other_complication"
-            data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-            data-type-xml="string" type="text" />
-    </label>
-    <fieldset class="question ">
-        <fieldset>
-            <legend>
-                <span class="question-label active" lang="">Does the woman have any of the following
-                    medical conditions?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/medical_histories"
-                        data-type-xml="select" type="checkbox" value="Medical History:TB" />
-                    <span class="option-label active" lang="">TB</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/medical_histories"
-                        data-type-xml="select" type="checkbox"
-                        value="Medical History:Hypertension" />
-                    <span class="option-label active" lang="">Hypertension</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/medical_histories"
-                        data-type-xml="select" type="checkbox"
-                        value="Medical History:Heart Related Diseases" />
-                    <span class="option-label active" lang="">Heart-related diseases</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/medical_histories"
-                        data-type-xml="select" type="checkbox" value="Medical History:Diabetes" />
-                    <span class="option-label active" lang="">Diabetes</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <label class="question or-appearance-minimal ">
-        <span class="question-label active" lang="">Woman's blood group?
-        </span>
-        <select name="/ANC_Registration_OA_EngKan/w_blood_group"
-            data-name="/ANC_Registration_OA_EngKan/w_blood_group" data-type-xml="select1">
-            <option value="">...</option>
-            <option value="a_positive">A+</option>
-            <option value="a_negative">A-</option>
-            <option value="b_positive">B+</option>
-            <option value="b_negative">B-</option>
-            <option value="ab_positive">AB+</option>
-            <option value="ab_negative">AB-</option>
-            <option value="o_positive">O+</option>
-            <option value="o_negative">O-</option>
-        </select>
-        <span style="display:none;" class="or-option-translations"></span>
-    </label>
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Height (in cms)
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/height" data-constraint=".&gt;=50 and .&lt;=200"
-            data-type-xml="decimal" step="any" type="number" />
-    </label>
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Weight at start of pregnancy (in kgs)
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/weight_startofpregnancy"
-            data-constraint=".&gt;=20 and .&lt;150" data-type-xml="decimal" step="any"
-            type="number" />
-    </label>
-    <label class="note or-branch pre-init non-select ">
-        <span class="question-label active" lang="">
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/woman_name "></span>is
-            at risk because of,
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/woman_name "></span>
-
-            <span class="or-output"
-                data-value=" /ANC_Registration_OA_EngKan/high_risk_reason "></span>
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/high_risk_note"
-            data-relevant=" /ANC_Registration_OA_EngKan/is_high_risk1  = 'yes'"
-            data-type-xml="string" readonly="readonly" type="text" />
-    </label>
-    <fieldset class="question ">
-        <fieldset>
-            <legend>
-                <span class="question-label active" lang="">Do you want to mark as HRP?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/is_high_risk"
-                        data-name="/ANC_Registration_OA_EngKan/is_high_risk" data-type-xml="select1"
-                        type="radio" value="yes" />
-                    <span class="option-label active" lang="">Yes</span>
-                </label>
-                <label class="">
-                    <input name="/ANC_Registration_OA_EngKan/is_high_risk"
-                        data-name="/ANC_Registration_OA_EngKan/is_high_risk" data-type-xml="select1"
-                        type="radio" value="no" />
-                    <span class="option-label active" lang="">No</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <label class="note or-branch pre-init non-select ">
-        <span class="question-label active" lang="">
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/woman_name "></span>is
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/num_weeks "></span>
-            weeks pregnant. Complete Delivery Plan form now.
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/woman_name "></span>
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/num_weeks "></span>
-
-        </span>
-        <input name="/ANC_Registration_OA_EngKan/birth_plan_message"
-            data-relevant=" /ANC_Registration_OA_EngKan/num_weeks  &gt;= 34" data-type-xml="string"
-            readonly="readonly" type="text" />
-    </label>
-
-    <fieldset style="display:none;" id="or-preload-items">
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/today" data-preload="date"
-                data-preload-params="today" data-type-xml="date" type="hidden" />
-        </label>
-    </fieldset>
     <fieldset style="display:none;" id="or-calculated-items">
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/wife_age" autocomplete="off"
-                data-calculate="if( /ANC_Registration_OA_EngKan/wife_dob  = '', '', int(( /ANC_Registration_OA_EngKan/today  -  /ANC_Registration_OA_EngKan/wife_dob) div 365))"
-                data-type-xml="string" type="hidden" />
-        </label>
 
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/woman_name2"
-                data-calculate="concat( /ANC_Registration_OA_EngKan/woman_name , ' ')"
-                data-type-xml="string" type="hidden" />
-        </label>
-
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/edd_date_formatted"
-                data-calculate="format-date( /ANC_Registration_OA_EngKan/_lmp_date , '%Y-%n-%e')"
-                data-type-xml="string" type="hidden" />
-        </label>
-
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/_lmp_date"
-                data-calculate="if( /ANC_Registration_OA_EngKan/is_lmp_weeks  = '', '', date( /ANC_Registration_OA_EngKan/today+280-/ANC_Registration_OA_EngKan/is_lmp_weeks))"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/edd"
-                data-calculate="if( /ANC_Registration_OA_EngKan/lmp_date  = '', '', date( /ANC_Registration_OA_EngKan/lmp_date +280)) "
-                data-type-xml="string" type="hidden" />
-        </label>
         <label class="calculation non-select ">
             <input name="/ANC_Registration_OA_EngKan/edd_formatted"
                 data-calculate="format-date( /ANC_Registration_OA_EngKan/edd , '%Y-%n-%e')"
                 data-type-xml="string" type="hidden" />
         </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/num_pregnancies"
-                data-calculate=" /ANC_Registration_OA_EngKan/num_pregnancies1  + 1"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/num_stillbirths"
-                data-calculate="if( /ANC_Registration_OA_EngKan/num_stillbirths1  = '', 0,  /ANC_Registration_OA_EngKan/num_stillbirths1 )"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/parity"
-                data-calculate=" /ANC_Registration_OA_EngKan/num_livebirths  +  /ANC_Registration_OA_EngKan/num_stillbirths "
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/parity_risk"
-                data-calculate="if( /ANC_Registration_OA_EngKan/parity  &gt;= 3, 'Parity_3_or_more', '')"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/age_risk"
-                data-calculate="if( /ANC_Registration_OA_EngKan/woman_age  &lt; 18 or  /ANC_Registration_OA_EngKan/woman_age  &gt;=35, 'Age', '')"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/youngchild_risk"
-                data-calculate="if( /ANC_Registration_OA_EngKan/youngestchild_under2  = 'yes', 'Child_under_2', '')"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/abortion_risk"
-                data-calculate="if( /ANC_Registration_OA_EngKan/num_abortions  &gt;= 3, 'Abortion_history','')"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/weight_risk"
-                data-calculate="if( /ANC_Registration_OA_EngKan/weight_startofpregnancy  &lt; 45 or  /ANC_Registration_OA_EngKan/weight_startofpregnancy  &gt;= 90, 'Weight', '')"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/height_risk"
-                data-calculate="if( /ANC_Registration_OA_EngKan/height  &lt;= 145, 'Height', '')"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/is_high_risk_till_delivery"
-                data-calculate="if( /ANC_Registration_OA_EngKan/parity_risk  != '' or  /ANC_Registration_OA_EngKan/age_risk  != '' or  /ANC_Registration_OA_EngKan/youngchild_risk  != '' or  /ANC_Registration_OA_EngKan/abortion_risk  != '' or  /ANC_Registration_OA_EngKan/weight_risk  != '' or  /ANC_Registration_OA_EngKan/height_risk  != '' or  /ANC_Registration_OA_EngKan/complication  != '', 'yes', 'no')"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/is_high_risk_till_delivery_reason"
-                data-calculate="concat( /ANC_Registration_OA_EngKan/parity_risk , ' ',  /ANC_Registration_OA_EngKan/age_risk , ' ',  /ANC_Registration_OA_EngKan/youngchild_risk , ' ',  /ANC_Registration_OA_EngKan/abortion_risk , ' ',  /ANC_Registration_OA_EngKan/weight_risk , ' ',  /ANC_Registration_OA_EngKan/height_risk , ' ', string( /ANC_Registration_OA_EngKan/complication ))"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/is_high_risk_till_pnc_close"
-                data-calculate="if( /ANC_Registration_OA_EngKan/medical_histories  != '', 'yes', 'no')"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/is_high_risk_till_pnc_close_reason"
-                data-calculate="string( /ANC_Registration_OA_EngKan/medical_histories )"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/is_high_risk1"
-                data-calculate="if( /ANC_Registration_OA_EngKan/is_high_risk_till_delivery  = 'yes' or  /ANC_Registration_OA_EngKan/is_high_risk_till_pnc_close  = 'yes', 'yes', 'no')"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/high_risk_reason"
-                data-calculate="concat( /ANC_Registration_OA_EngKan/is_high_risk_till_delivery_reason , ' ',  /ANC_Registration_OA_EngKan/is_high_risk_till_pnc_close_reason )"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/num_days_since_lmp"
-                data-calculate="int(date( /ANC_Registration_OA_EngKan/today ) - date( /ANC_Registration_OA_EngKan/lmp_date ))"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/num_weeks"
-                data-calculate="int( /ANC_Registration_OA_EngKan/num_days_since_lmp  div 7)"
-                data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/meta/instanceID"
-                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Registration_OA_EngKan/formhub/uuid"
-                data-calculate="'1f4338b3198c4ac281d224c22b2e5c50'" data-type-xml="string"
-                type="hidden" />
-        </label>
+
     </fieldset>
 </form>

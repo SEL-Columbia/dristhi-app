@@ -9,85 +9,76 @@
         "shouldLoadValue": true
       },
       {
-        "name": "originalVillage",
-        "shouldLoadValue": true,
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/out_of_area_village",
-        "source": "eligible_couple.originalVillage"
-      },
-      {
-        "name": "district",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/district"
-      },
-      {
-        "name": "phc",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/phc"
-      },
-      {
-        "name": "subCenter",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/sub_center"
-      },
-      {
-        "name": "village",
-        "shouldLoadValue": true,
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/village"
-      },
-      {
         "name": "householdAddress",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.householdAddress",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/hh_address"
       },
       {
         "name": "wifeName",
         "shouldLoadValue": true,
+        "source": "mother.eligible_couple.wifeName",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/woman_name"
       },
       {
         "name": "wifeIdType",
         "shouldLoadValue": true,
+        "source": "mother.eligible_couple.wifeIdType",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/woman_id_type"
       },
       {
         "name": "husbandAge",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.husbandAge",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/husband_age"
       },
       {
         "name": "aadharNumber",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.aadharNumber",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/aadhar_number"
       },
       {
         "name": "wifeDOB",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.wifeDOB",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/wife_dob"
       },
       {
         "name": "wifeAge",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.wifeAge",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/wife_age"
       },
       {
         "name": "husbandName",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.husbandName",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/husband_name"
       },
       {
         "name": "phoneNumber",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.phoneNumber",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/phone_no"
       },
       {
         "name": "phoneOwner",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.phoneOwner",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/phone_owner"
       },
       {
         "name": "alternatePhoneNumber",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.alternatePhoneNumber",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/phone_no2"
       },
       {
         "name": "alternatePhoneOwner",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.alternatePhoneOwner",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/phone_owner2"
-      },
-      {
-        "name": "economicStatus",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/economic_status"
-      },
-      {
-        "name": "bplCardNumber",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/bpl_card_number"
       },
       {
         "name": "religion"
@@ -95,18 +86,13 @@
       {
         "name": "motherId",
         "shouldLoadValue": true,
-        "source": "eligible_couple.mother.id"
+        "source": "mother.eligible_couple.id"
       },
       {
         "name": "registrationDate",
         "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/out_of_area_reg_date",
-        "source": "eligible_couple.mother.registrationDate"
-      },
-      {
-        "name": "thayiCardNumber",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/thayi_no",
-        "source": "eligible_couple.mother.thayiCardNumber"
+        "source": "mother.registrationDate"
       },
       {
         "name": "ancNumber",
@@ -116,133 +102,126 @@
       },
       {
         "name": "isJSYBeneficiary",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/jsy_beneficiary",
-        "source": "eligible_couple.mother.isJSYBeneficiary"
-      },
-      {
-        "name": "ashaName",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/asha_name",
-        "source": "eligible_couple.mother.ashaName"
-      },
-      {
-        "name": "ashaPhoneNumber",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/asha_phone_number",
-        "source": "eligible_couple.mother.ashaPhoneNumber"
+        "source": "mother.eligible_couple.isJSYBeneficiary"
       },
       {
         "name": "referenceDate",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/lmp_date",
-        "source": "eligible_couple.mother.referenceDate"
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/referenceDate",
+        "source": "mother.eligible_couple.referenceDate"
       },
       {
         "name": "edd",
-        "source": "eligible_couple.mother.edd"
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.edd"
       },
       {
         "name": "numberOfPregnancies",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.numberOfPregnancies",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/num_pregnancies1"
       },
       {
         "name": "numberOfPregnancies",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.numberOfPregnancies",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/num_pregnancies"
       },
       {
         "name": "numberOfAbortions",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.numberOfAbortions",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/num_abortions"
       },
       {
         "name": "numberOfLiveBirths",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.numberOfLiveBirths",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/num_livebirths"
       },
       {
         "name": "numberOfStillBirths",
         "shouldLoadValue": true,
+        "source": "mother.eligible_couple.numberOfStillBirths",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/num_stillbirths"
       },
       {
-        "name": "parity",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/parity"
-      },
-      {
-        "name": "parity",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/num_livingchilren"
-      },
-      {
-        "name": "isYoungestChildUnderTwo",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/youngestchild_under2"
-      },
-      {
         "name": "complications",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/complication",
-        "source": "eligible_couple.mother.complications"
+        "source": "mother.complications"
       },
       {
         "name": "otherComplications",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/other_complication",
-        "source": "eligible_couple.mother.otherComplication"
+        "source": "mother.otherComplication"
       },
       {
         "name": "medicalHistories",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/medical_histories",
-        "source": "eligible_couple.mother.medicalHistories"
+        "source": "mother.medicalHistories"
       },
       {
         "name": "bloodGroup",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/w_blood_group",
-        "source": "eligible_couple.mother.bloodGroup"
+        "source": "mother.bloodGroup"
       },
       {
         "name": "height",
-        "source": "eligible_couple.mother.height"
+        "shouldLoadValue": true,
+        "source": "mother.height"
       },
       {
         "name": "weight",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/weight_startofpregnancy",
-        "source": "eligible_couple.mother.weight"
+        "source": "mother.weight"
       },
       {
         "name": "isHighRiskTillDelivery",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/is_high_risk_till_delivery",
-        "source": "eligible_couple.mother.isHighRiskTillDelivery"
+        "source": "mother.isHighRiskTillDelivery"
       },
       {
         "name": "highRiskTillDeliveryReason",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/is_high_risk_till_delivery_reason",
-        "source": "eligible_couple.mother.highRiskTillDeliveryReason"
+        "source": "mother.highRiskTillDeliveryReason"
       },
       {
         "name": "isHighRiskTillPNCClose",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/is_high_risk_till_pnc_close",
-        "source": "eligible_couple.mother.isHighRiskTillPNCClose"
+        "source": "mother.isHighRiskTillPNCClose"
       },
       {
         "name": "highRiskTillPNCCloseReason",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/is_high_risk_till_pnc_close_reason",
-        "source": "eligible_couple.mother.highRiskTillPNCCloseReason"
+        "source": "mother.highRiskTillPNCCloseReason"
       },
       {
         "name": "highRiskReason",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/high_risk_reason",
-        "source": "eligible_couple.mother.highRiskReason"
-      },
-      {
-        "name": "isHighRisk",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/is_high_risk",
-        "source": "eligible_couple.mother.isHighRisk"
-      },
-      {
-        "name": "isLMP",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/is_lmp_week_days"
+        "source": "mother.highRiskReason"
       },
       {
         "name": "submissionDate",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/today",
-        "source": "eligible_couple.mother.submissionDate"
+        "source": "mother.submissionDate"
       },
       {
         "name": "type",
         "value": "ANC",
-        "source": "eligible_couple.mother.type"
+        "source": "mother.type"
       },
       {
         "name": "isClosed",
@@ -251,7 +230,7 @@
       {
         "name": "isClosed",
         "value": "false",
-        "source": "eligible_couple.mother.isClosed"
+        "source": "mother.eligible_couple.isClosed"
       },
       {
         "name": "isOutOfArea",

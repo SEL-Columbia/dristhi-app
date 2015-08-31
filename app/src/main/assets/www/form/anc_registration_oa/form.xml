@@ -6,6 +6,7 @@
     <select style="display:none;" data-default-lang="" id="form-languages">
         <option value="">default</option>
     </select>
+
     <label class="question non-select ">
         <span class="question-label active" lang="">District:
         </span>
@@ -576,72 +577,64 @@
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/complication"
                         data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_APH" />
+                        data-type-xml="select" type="checkbox" value="APH;" />
                     <span class="option-label active" lang="">APH</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/complication"
                         data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_PIH" />
+                        data-type-xml="select" type="checkbox" value="PIH;" />
                     <span class="option-label active" lang="">PIH</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/complication"
                         data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Preeclampsia_Eclampsia" />
+                        data-type-xml="select" type="checkbox" value="Preeclampsia Eclampsia; " />
                     <span class="option-label active" lang="">Pre-eclampsia / Eclampsia</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/complication"
                         data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Pregnancy_with_Tumors" />
+                        data-type-xml="select" type="checkbox" value="Pregnancy with Tumors; " />
                     <span class="option-label active" lang="">Pregnancy with tumors</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/complication"
                         data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
                         data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Prolonged_Obstructed_Labor" />
+                        value="Prolonged Obstructed Labor; " />
                     <span class="option-label active" lang="">Prolonged / Obstructed labor</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/complication"
                         data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
                         data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Intrauterine_Growth_Retardation" />
+                        value="Intrauterine Growth Retardation; " />
                     <span class="option-label active" lang="">Intrauterine Growth Retardation</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/complication"
                         data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_PPH" />
+                        data-type-xml="select" type="checkbox" value="PPH; " />
                     <span class="option-label active" lang="">PPH</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/complication"
                         data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Cesarean" />
+                        data-type-xml="select" type="checkbox" value="Cesarean; " />
                     <span class="option-label active" lang="">Cesarean</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/complication"
                         data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Still_Birth" />
+                        data-type-xml="select" type="checkbox" value="Still Birth; " />
                     <span class="option-label active" lang="">Still birth
                     </span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/complication"
                         data-relevant=" /ANC_Registration_OA_EngKan/num_pregnancies1  &gt; 0"
-                        data-type-xml="select" type="checkbox"
-                        value="Prev_Preg_Complication:_Spontaneous_Abortion" />
+                        data-type-xml="select" type="checkbox" value="Spontaneous Abortion; " />
                     <span class="option-label active" lang="">Spontaneous abortion</span>
                 </label>
             </div>
@@ -664,24 +657,22 @@
             <div class="option-wrapper">
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/medical_histories"
-                        data-type-xml="select" type="checkbox" value="Medical History:TB" />
+                        data-type-xml="select" type="checkbox" value="TB; " />
                     <span class="option-label active" lang="">TB</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/medical_histories"
-                        data-type-xml="select" type="checkbox"
-                        value="Medical History:Hypertension" />
+                        data-type-xml="select" type="checkbox" value="Hypertension; " />
                     <span class="option-label active" lang="">Hypertension</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/medical_histories"
-                        data-type-xml="select" type="checkbox"
-                        value="Medical History:Heart Related Diseases" />
+                        data-type-xml="select" type="checkbox" value="Heart Related Diseases; " />
                     <span class="option-label active" lang="">Heart-related diseases</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/medical_histories"
-                        data-type-xml="select" type="checkbox" value="Medical History:Diabetes" />
+                        data-type-xml="select" type="checkbox" value="Diabetes; " />
                     <span class="option-label active" lang="">Diabetes</span>
                 </label>
             </div>
@@ -718,14 +709,7 @@
             type="number" />
     </label>
     <label class="note or-branch pre-init non-select ">
-        <span class="question-label active" lang="">
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/woman_name "></span>is
-            at risk because of,
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/woman_name "></span>
-
-            <span class="or-output"
-                data-value=" /ANC_Registration_OA_EngKan/high_risk_reason "></span>
-        </span>
+        <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/risk_value "></span>
         <input name="/ANC_Registration_OA_EngKan/high_risk_note"
             data-relevant=" /ANC_Registration_OA_EngKan/is_high_risk1  = 'yes'"
             data-type-xml="string" readonly="readonly" type="text" />
@@ -776,6 +760,12 @@
         <label class="calculation non-select ">
             <input name="/ANC_Registration_OA_EngKan/wife_age" autocomplete="off"
                 data-calculate="if( /ANC_Registration_OA_EngKan/wife_dob  = '', '', int(( /ANC_Registration_OA_EngKan/today  -  /ANC_Registration_OA_EngKan/wife_dob) div 365))"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_OA_EngKan/risk_value" autocomplete="off"
+                data-calculate="concat( /ANC_Registration_OA_EngKan/woman_name , ' is at risk because of ',/ANC_Registration_OA_EngKan/high_risk_reason)"
                 data-type-xml="string" type="hidden" />
         </label>
 

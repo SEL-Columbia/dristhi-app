@@ -24,6 +24,8 @@
             <pstechoscope_data />
             <anm_poc />
 
+            <doctor_consultation />
+
             <pulse_rate />
             <weight_group>
                 <weight />
