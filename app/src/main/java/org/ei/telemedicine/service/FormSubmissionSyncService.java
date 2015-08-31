@@ -257,6 +257,7 @@ public class FormSubmissionSyncService {
         {
             int downloadBatchSize = configuration.syncDownloadBatchSize();
             String baseURL = configuration.dristhiBaseURL();
+            Log.e("Base Url", baseURL);
             while (true) {
                 String uri = format("{0}/{1}?anm-id={2}&timestamp={3}&batch-size={4}",
                         baseURL,

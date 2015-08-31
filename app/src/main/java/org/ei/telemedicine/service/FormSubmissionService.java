@@ -55,8 +55,10 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.entityId;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.fetal_data;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.husband_name;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.id_no;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.isHighRisk;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.kopfeel_heat_or_chills;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.lmp;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.phoneNumber;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pncVisit;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_abdominal_problems;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_breast_problems;
@@ -69,6 +71,7 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_visit_date;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_visit_place;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.poc_pending;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.risk_symptoms;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.stethoscope_data;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.temp_data;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visit_type;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.weight_data;
@@ -141,12 +144,15 @@ public class FormSubmissionService {
                         formData.put(husband_name, getDataFromJson("husbandName", datajsonObject));
                         formData.put(DoctorFormDataConstants.village_name, getDataFromJson("village", datajsonObject));
                         formData.put(age, getDataFromJson("wifeAge", datajsonObject));
-
-                        formData.put(poc_pending, getDataFromJson("pocPending", riskJson));
+                        formData.put(phoneNumber, getDataFromJson("phoneNumber", datajsonObject));
                         formData.put(entityId, getDataFromJson("entityidec", datajsonObject));
+
+                        formData.put(poc_pending, getDataFromJson("pending", datajsonObject));
                         formData.put(anmId, getDataFromJson("anmId", datajsonObject));
                         formData.put(visit_type, getDataFromJson("visit_type", riskJson));
                         formData.put(documentId, getDataFromJson("id", riskJson));
+                        formData.put(isHighRisk, getDataFromJson("isHighRisk", riskJson));
+
                         String visit_typ2e = getDataFromJson("visit_type", riskJson);
                         if (getDataFromJson(visit_type, riskJson).equals(ancvisit)) {
                             formData.put(id_no, getDataFromJson("ancNumber", riskJson));
@@ -167,7 +173,7 @@ public class FormSubmissionService {
                             formData.put(weight_data, getDataFromJson("weight", riskJson));
                             formData.put(blood_glucose, getDataFromJson("bloodGlucoseData", riskJson));
                             formData.put(fetal_data, getDataFromJson("fetalData", riskJson));
-
+                            formData.put(stethoscope_data, getDataFromJson("stethoscopeData", riskJson));
                         } else if (getDataFromJson(visit_type, riskJson).equals(pncVisit)) {
 //                                            formData.put(status, "Place: " + getData("pncVisitPlace", riskJson) + "Date: " + getData("pncVisitDate", riskJson));
                             formData.put(id_no, getDataFromJson("pncNumber", riskJson));
@@ -189,6 +195,7 @@ public class FormSubmissionService {
                             formData.put(weight_data, getDataFromJson("weight", riskJson));
                             formData.put(blood_glucose, getDataFromJson("bloodGlucoseData", riskJson));
                             formData.put(fetal_data, getDataFromJson("fetalData", riskJson));
+                            formData.put(stethoscope_data, getDataFromJson("stethoscopeData", riskJson));
                         } else {
 
                             formData.put(child_report_child_disease_place, getDataFromJson("reportChildDiseasePlace", riskJson));
@@ -216,8 +223,8 @@ public class FormSubmissionService {
                         doctorData.setAnmId(getDataFromJson("anmId", datajsonObject));
                         doctorData.setCaseId(getDataFromJson("id", riskJson));
                         doctorData.setSyncStatus("pending");
-                        String vl = getDataFromJson("village", datajsonObject);
-                        doctorData.setVillageName(vl);
+                        String village = getDataFromJson("village", datajsonObject);
+                        doctorData.setVillageName(village);
                         doctorData.setVisitType(getDataFromJson(visit_type, riskJson));
                         Log.e(TAG, "record" + doctorData.getFormInformation());
                         allDoctorRepository.addData(doctorData);

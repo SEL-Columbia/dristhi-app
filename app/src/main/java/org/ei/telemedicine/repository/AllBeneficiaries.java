@@ -21,7 +21,7 @@ public class AllBeneficiaries {
 //    private ConsultantRepostitory consultantRepostitory;
 
     public AllBeneficiaries(MotherRepository motherRepository, ChildRepository childRepository,
-                            AlertRepository alertRepository, TimelineEventRepository timelineEventRepository, TestRepository testRepository,  DoctorRepository doctorRepository) {
+                            AlertRepository alertRepository, TimelineEventRepository timelineEventRepository, TestRepository testRepository, DoctorRepository doctorRepository) {
         this.childRepository = childRepository;
         this.motherRepository = motherRepository;
         this.alertRepository = alertRepository;
@@ -41,6 +41,7 @@ public class AllBeneficiaries {
             return null;
         return mothers.get(0);
     }
+
 
     public Child findChild(String caseId) {
         return childRepository.find(caseId);

@@ -32,6 +32,7 @@ import org.ei.telemedicine.view.controller.ChildDetailController;
 import org.ei.telemedicine.view.controller.EligibleCoupleDetailController;
 import org.ei.telemedicine.view.controller.PNCDetailController;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
+import org.joda.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,6 +61,8 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     View ecSummaryLayout, ancSummaryLayout, pncSummaryLayout, childSummaryLayout;
     Context context;
     LinearLayout ec_summary, anc_summary, pnc_summary, child_summary;
+    static Boolean isANCOA = false, isFromEC = false;
+
 
     private void setupViews() {
 
@@ -117,10 +120,13 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                 context = Context.getInstance();
                 setupViews();
                 timelineEvents = context.allTimelineEvents().forCase(caseId);
+                android.util.Log.e("CaseId", caseId);
 
                 switch (visitType.toLowerCase()) {
                     case "ec":
                         ec_summary.setVisibility(View.VISIBLE);
+                        isFromEC = true;
+
                         String ecData = new EligibleCoupleDetailController(this, caseId, context.allEligibleCouples(), context.allTimelineEvents()).get();
                         String coupleDetails = getDataFromJson(ecData, "coupleDetails");
                         String details = getDataFromJson(ecData, "details");
@@ -142,7 +148,25 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         break;
                     case "anc":
                         anc_summary.setVisibility(View.VISIBLE);
-//                    ll_fp.setVisibility(GONE);
+
+                        Mother mother = context.allBeneficiaries().findMother(caseId);
+                        if (mother != null) {
+                            String pocInfo = mother.getDetail("docPocInfo") != null ? mother.getDetail("docPocInfo") : "";
+                            android.util.Log.e("Poc", pocInfo);
+//                            if (!pocInfo.equals("")) {
+//                                try {
+//                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
+//                                    for (int i = 0; i < pocJsonArray.length(); i++) {
+//                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
+//                                        String title = "Plan of care for" + getDataFromJson(pocData, "visitType") + "Visit - " + getDataFromJson(pocData, "visitNumber");
+//                                        String visitDate = getDataFromJson(pocData, "planofCareDate");
+//                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care", LocalDate.parse(visitDate), title, "", ""));
+//                                    }
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+                        }
                         String ancData = new ANCDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
                         String anccoupleDetails = getDataFromJson(ancData, "coupleDetails");
                         String ancDetails = getDataFromJson(ancData, "details");
@@ -154,6 +178,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(anccoupleDetails, "wifeName")));
                         tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(anccoupleDetails, "wifeName")));
                         tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(anccoupleDetails, "husbandName")));
+                        isANCOA = getDataFromJson(ancDetails, "ancNumber").toLowerCase().contains("oa");
                         tv_id_no.setText("ANC No: " + WordUtils.capitalize(getDataFromJson(ancDetails, "ancNumber")));
                         tv_village_name.setText(WordUtils.capitalize(getDataFromJson(locationDetails, "villageName")));
 
@@ -223,7 +248,6 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         break;
                 }
 
-
                 lv_timeline_events.setAdapter(new OverviewTimelineAdapter(this, timelineEvents));
                 lv_timeline_events.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -233,7 +257,14 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                                 startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
                                 break;
                             case "PREGNANCY":
-                                startFormActivity(AllConstants.FormNames.VIEW_ANC_REGISTRATION, caseId, null, true);
+                                if (isANCOA)
+                                    startFormActivity(VIEW_ANC_REGISTRATION, caseId, null, true);
+                                else {
+                                    if (!isFromEC) {
+                                        startFormActivity(AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC, context.allBeneficiaries().findMother(caseId).ecCaseId(), null, true);
+                                    } else
+                                        startFormActivity(AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC, caseId, null, true);
+                                }
                                 break;
                             case "CHILD-BIRTH":
                                 startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);

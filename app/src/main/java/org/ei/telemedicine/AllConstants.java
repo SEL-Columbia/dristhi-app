@@ -42,7 +42,7 @@ public class AllConstants {
 
     public static final String LOGIN_URL_PATH = "/auth/?userid=";
     public static final String VILLAGES_USER_URL_PATH = "/anm-villages?anm-id=";
-
+    public static final String DOCTOR_REFER_URL_PATH = "/doctor_refer/?docid=";
     public static final String DRUG_INFO_URL_PATH = "/druginfo/";
     //    public static final String VITALS_INFO_URL_PATH = "/vitalsdata/";
     public static final String VITALS_INFO_URL_PATH = "/vitalsdata/?visit=";
@@ -247,6 +247,10 @@ public class AllConstants {
         public static final String BP_SYSTOLIC = "bpSystolic";
         public static final String BP_DIASTOLIC = "bpDiastolic";
         public static final String TEMPERATURE = "temperature";
+        public static final String HBLEVEL = "hbLevel";
+        public static final String BLOODGLUCOSEDATA = "bloodGlucoseData";
+        public static final String ISCONSULTDOCTOR = "isConsultDoctor";
+        public static final String FETALDATA = "fetalData";
         public static final String WEIGHT = "weight";
         public static final String POC_INFO = "docPocInfo";
     }
@@ -259,6 +263,9 @@ public class AllConstants {
         public static final String TEMPERATURE = "temperature";
         public static final String WEIGHT = "weight";
         public static final String HB_LEVEL = "hbLevel";
+        public static final String BLOODGLUCOSEDATA = "bloodGlucoseData";
+        public static final String ISCONSULTDOCTOR = "isConsultDoctor";
+
         public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
         public static final String CHILD_PNC_VISIT_SUB_FORM_NAME = "child_pnc_visit";
     }

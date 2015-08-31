@@ -13,9 +13,11 @@ import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.telemedicine.AllConstants.ANCVisitFields.POC_INFO;
+import static org.ei.telemedicine.AllConstants.PNCVisitFields.BLOODGLUCOSEDATA;
 import static org.ei.telemedicine.AllConstants.PNCVisitFields.BP_DIASTOLIC;
 import static org.ei.telemedicine.AllConstants.PNCVisitFields.BP_SYSTOLIC;
 import static org.ei.telemedicine.AllConstants.PNCVisitFields.HB_LEVEL;
+import static org.ei.telemedicine.AllConstants.PNCVisitFields.ISCONSULTDOCTOR;
 import static org.ei.telemedicine.AllConstants.PNCVisitFields.TEMPERATURE;
 import static org.ei.telemedicine.util.EasyMap.create;
 import static org.ei.telemedicine.util.EasyMap.mapOf;
@@ -90,7 +92,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
-        String detailsString = new DetailBuilder(details).withBP("bpSystolic", "bpDiastolic").withTemperature("temperature").withWeight("riskObservedDuringANC").withHbLevel("hbLevel").value();
+        String detailsString = new DetailBuilder(details).withBP("bpSystolic", "bpDiastolic").withTemperature("temperature").withHbLevel("hbLevel").withBloodGlucose("bloodGlucoseData").withDCReq("isConsultDoctor").withFetal("fetalData").value();
         String pocData = new DetailBuilder(details).withPOC(POC_INFO).value();
         Log.e("Details String", detailsString);
         Log.e("PocInfo", pocData);
@@ -110,9 +112,9 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "ECREGISTERED", registrationDate1, "EC Registered", null, null);
     }
 
-    public static TimelineEvent forMotherPNCVisit(String caseId, String visitNumber, String visitDate, String bpSystolic, String bpDiastolic, String temperature, String hbLevel) {
-        Map<String, String> details = create(BP_SYSTOLIC, bpSystolic).put(BP_DIASTOLIC, bpDiastolic).put(TEMPERATURE, temperature).put(HB_LEVEL, hbLevel).map();
-        String detailsString = new DetailBuilder(details).withBP(BP_SYSTOLIC, BP_DIASTOLIC).withTemperature(TEMPERATURE).withHbLevel(HB_LEVEL).value();
+    public static TimelineEvent forMotherPNCVisit(String caseId, String visitNumber, String visitDate, String bpSystolic, String bpDiastolic, String temperature, String hbLevel, String bgmData, String isConsultDoctor) {
+        Map<String, String> details = create(BP_SYSTOLIC, bpSystolic).put(BP_DIASTOLIC, bpDiastolic).put(TEMPERATURE, temperature).put(HB_LEVEL, hbLevel).put(BLOODGLUCOSEDATA, bgmData).put(ISCONSULTDOCTOR, isConsultDoctor).map();
+        String detailsString = new DetailBuilder(details).withBP(BP_SYSTOLIC, BP_DIASTOLIC).withTemperature(TEMPERATURE).withHbLevel(HB_LEVEL).withBloodGlucose(BLOODGLUCOSEDATA).withDCReq(ISCONSULTDOCTOR).value();
         return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, detailsString, null);
     }
 
@@ -187,8 +189,27 @@ public class TimelineEvent {
         }
 
         private DetailBuilder withTemperature(String temperature) {
-            String temp = "Temp: " + details.get(temperature) + " °F\n";
-            this.stringBuilder.append(checkEmptyField(temp, details.get(temperature)));
+            String bgm = "Temp: " + details.get(temperature) + " °F\n";
+            this.stringBuilder.append(checkEmptyField(bgm, details.get(temperature)));
+            return this;
+        }
+
+
+        private DetailBuilder withBloodGlucose(String bloodGlucoseData) {
+            String bgm = "BGM: " + details.get(bloodGlucoseData) + " mmoI/L\n";
+            this.stringBuilder.append(checkEmptyField(bgm, details.get(bloodGlucoseData)));
+            return this;
+        }
+
+        private DetailBuilder withFetal(String fetalData) {
+            String fetal = "Fetal Data : " + details.get(fetalData) + " °F\n";
+            this.stringBuilder.append(checkEmptyField(fetal, details.get(fetalData)));
+            return this;
+        }
+
+        private DetailBuilder withDCReq(String isConsultDoctor) {
+            String dcReq = "Doctor Consultation: " + details.get(isConsultDoctor) + "\n";
+            this.stringBuilder.append(checkEmptyField(dcReq, details.get(isConsultDoctor)));
             return this;
         }
 

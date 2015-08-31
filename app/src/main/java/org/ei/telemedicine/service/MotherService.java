@@ -65,9 +65,10 @@ public class MotherService {
                         create(BP_SYSTOLIC, submission.getFieldValue(BP_SYSTOLIC))
                                 .put(BP_DIASTOLIC, submission.getFieldValue(BP_DIASTOLIC))
                                 .put(TEMPERATURE, submission.getFieldValue(TEMPERATURE))
-                                .put(WEIGHT, submission.getFieldValue(WEIGHT))
-                                .put("riskObservedDuringANC", submission.getFieldValue("riskObservedDuringANC"))
-                                .put(AllConstants.ANCVisitFields.POC_INFO,submission.getFieldValue(AllConstants.ANCVisitFields.POC_INFO))
+                                .put(HB_LEVEL, submission.getFieldValue(HB_LEVEL))
+                                .put(BLOODGLUCOSEDATA, submission.getFieldValue(BLOODGLUCOSEDATA))
+                                .put(ISCONSULTDOCTOR, submission.getFieldValue(ISCONSULTDOCTOR))
+                                .put(FETALDATA, submission.getFieldValue(FETALDATA))
                                 .map()));
         serviceProvidedService.add(
                 ServiceProvided.forANCCareProvided(
@@ -149,7 +150,7 @@ public class MotherService {
                         submission.getFieldValue(AllConstants.PNCVisitFields.BP_SYSTOLIC),
                         submission.getFieldValue(AllConstants.PNCVisitFields.BP_DIASTOLIC),
                         submission.getFieldValue(AllConstants.PNCVisitFields.TEMPERATURE),
-                        submission.getFieldValue(AllConstants.PNCVisitFields.HB_LEVEL)));
+                        submission.getFieldValue(AllConstants.PNCVisitFields.HB_LEVEL), submission.getFieldValue(AllConstants.PNCVisitFields.BLOODGLUCOSEDATA), submission.getFieldValue(AllConstants.PNCVisitFields.ISCONSULTDOCTOR)));
         serviceProvidedService.add(
                 ServiceProvided.forMotherPNCVisit(
                         submission.entityId(),
