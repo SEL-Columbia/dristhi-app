@@ -9,6 +9,12 @@
         "shouldLoadValue": true
       },
       {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Delivery_Plan_EngKan/village",
+        "source": "mother.eligible_couple.village"
+      },
+      {
         "name": "ancNumber",
         "shouldLoadValue": true,
         "bind": "/model/instance/Delivery_Plan_EngKan/anc_reg_num",

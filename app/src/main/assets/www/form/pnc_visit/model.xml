@@ -6,6 +6,8 @@
             </formhub>
             <today/>
             <pnc_num/>
+            <village />
+
             <case_woman_name/>
             <woman_name/>
             <case_delivery_outcome/>

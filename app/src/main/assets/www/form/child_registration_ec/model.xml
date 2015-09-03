@@ -6,6 +6,7 @@
             </formhub>
             <today/>
             <case_phc/>
+            <village />
             <case_sub_center/>
             <case_village/>
             <case_hh_number/>

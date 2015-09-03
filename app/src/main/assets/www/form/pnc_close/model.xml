@@ -5,6 +5,7 @@
                 <uuid/>
             </formhub>
             <today/>
+            <village />
             <pnc_num/>
             <pnc_close_reason/>
             <death_mother_group>

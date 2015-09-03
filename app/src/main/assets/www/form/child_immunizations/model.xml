@@ -5,6 +5,7 @@
                 <uuid/>
             </formhub>
             <today/>
+            <village />
             <case_child_birth_date/>
             <three_weeks/>
             <seven_weeks/>

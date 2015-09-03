@@ -8,12 +8,16 @@
         <input name="/Delivery_Plan_EngKan/anc_reg_num" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="text" />
     </label>
+    <label class="question non-select ">
+        <input name="/Delivery_Plan_EngKan/village" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="hidden" />
+    </label>
 
     <fieldset class="question ">
         <fieldset>
             <legend>
                 <span lang="" class="question-label active">Is there a family member who can join this discussion?
-                    
+
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -34,7 +38,7 @@
         <fieldset>
             <legend>
                 <span lang="" class="question-label active">The family plays an important role in preparing for a safe
-                    delivery. Is there a family member who can join this discussion? 
+                    delivery. Is there a family member who can join this discussion?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -78,14 +82,14 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">What is the new phone number? 
+        <span lang="" class="question-label active">What is the new phone number?
         </span>
         <input autocomplete="off" type="number" name="/Delivery_Plan_EngKan/new_phone_no"
                data-constraint=".&gt; 999999999 and .&lt; 10000000000"
                data-relevant=" /Delivery_Plan_EngKan/same_phone_no  = 'no'" data-type-xml="int"/>
     </label>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Contact phone number? 
+        <span lang="" class="question-label active">Contact phone number?
         </span>
         <input autocomplete="off" type="number" name="/Delivery_Plan_EngKan/phone_no1"
                data-constraint=".&gt; 999999999 and .&lt; 10000000000"
@@ -94,7 +98,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Is ASHA phone number still, 
+                <span lang="" class="question-label active">Is ASHA phone number still,
                     <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_asha_phone_number ">
                     </span>?
                 </span>
@@ -118,21 +122,21 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">What is new ASHA phone number? 
+        <span lang="" class="question-label active">What is new ASHA phone number?
         </span>
         <input autocomplete="off" type="number" name="/Delivery_Plan_EngKan/new_asha_phone_number"
                data-constraint=".&gt; 999999999 and .&lt; 10000000000"
                data-relevant=" /Delivery_Plan_EngKan/same_asha_phone_number  = 'no'" data-type-xml="int"/>
     </label>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">ASHA phone number? 
+        <span lang="" class="question-label active">ASHA phone number?
         </span>
         <input autocomplete="off" type="number" name="/Delivery_Plan_EngKan/asha_phone_number1"
                data-constraint=".&gt; 999999999 and .&lt; 10000000000"
                data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  = ''" data-type-xml="int"/>
     </label>
     <label class="question or-appearance-minimal  or-branch pre-init ">
-        <span lang="" class="question-label active">Woman's blood group? 
+        <span lang="" class="question-label active">Woman's blood group?
         </span>
         <select name="/Delivery_Plan_EngKan/w_blood_group" data-name="/Delivery_Plan_EngKan/w_blood_group"
                 data-relevant=" /Delivery_Plan_EngKan/entity_w_blood_group  = ''" data-type-xml="select1">
@@ -151,7 +155,7 @@
     </label>
     <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">Have blood group tested. She may need a blood transfusion during or
-            after delivery. 
+            after delivery.
         </span>
         <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/blood_group_message"
                data-relevant=" /Delivery_Plan_EngKan/w_blood_group  = '' and  /Delivery_Plan_EngKan/entity_w_blood_group  = ''"
@@ -163,10 +167,10 @@
                 <span lang="" class="question-label active">Is there a family member who can donate blood in case
                     <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
                     </span>
-                    requires a transfusion at the hospital? 
+                    requires a transfusion at the hospital?
                     <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
                     </span>
-                    
+
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -186,15 +190,15 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">This pregnancy is high risk because of, 
+                <span lang="" class="question-label active">This pregnancy is high risk because of,
                     <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_high_risk_reason ">
                     </span>. Did you review the high risk reasons with
                     <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
                     </span>
-                    and her family? . 
+                    and her family? .
                     <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
                     </span>
-                    
+
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -218,7 +222,7 @@
             <legend>
                 <span lang="" class="question-label active">It is very important for the family to understand reasons
                     for high risk pregnancy, so they can be ready for delivery complications. Did you review high risk
-                    reasons with them? 
+                    reasons with them?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -248,7 +252,7 @@
                     planning to deliver at?
                     <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
                     </span>
-                    
+
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -299,7 +303,7 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of delivery place? 
+        <span lang="" class="question-label active">Name of delivery place?
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/name_delivery_facility" required="required"
@@ -311,7 +315,7 @@
             </span>has high risk pregnancy. Tell her to deliver at SDH or DH for her safety and safety of child!
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/woman_name ">
             </span>
-            
+
         </span>
         <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/hrp_delivery_facility_message"
                data-relevant="( /Delivery_Plan_EngKan/entity_is_high_risk  = 'yes' and  /Delivery_Plan_EngKan/entity_anaemic_status  != 'Severe_Anaemia') and ( /Delivery_Plan_EngKan/delivery_facility  != 'dh' and  /Delivery_Plan_EngKan/delivery_facility  != 'sdh')"
@@ -324,7 +328,7 @@
             blood transfusion before labor starts.
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/woman_name ">
             </span>
-            
+
         </span>
         <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/severe_anaemia_delivery_facility_message"
                data-relevant=" /Delivery_Plan_EngKan/entity_anaemic_status  = 'Severe_Anaemia' and ( /Delivery_Plan_EngKan/delivery_facility  != 'dh' and  /Delivery_Plan_EngKan/delivery_facility  != 'sdh')"
@@ -335,10 +339,10 @@
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
             </span>
             to deliver at PHC. Tell her that complications can happen in any delivery, even if she is not high risk.
-            
+
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
             </span>
-            
+
         </span>
         <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/normal_delivery_facility_message"
                data-relevant="( /Delivery_Plan_EngKan/delivery_facility  = 'home' or  /Delivery_Plan_EngKan/delivery_facility  = 'sub_center') and ( /Delivery_Plan_EngKan/entity_is_high_risk  = 'no' and  /Delivery_Plan_EngKan/entity_anaemic_status  != 'Severe_Anaemia')"
@@ -355,13 +359,13 @@
                         know the five 'cleans' for home delivery?
                         <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
                         </span>
-                        
+
                     </span>
-                    <span lang="" class="or-hint active">1. Clean surface 
-                        2. Clean hands with soap 
-                        
-                        3. New blade 
-                        4. New thread for tying umbilical cord and do not apply anything to umbilical cord 
+                    <span lang="" class="or-hint active">1. Clean surface
+                        2. Clean hands with soap
+
+                        3. New blade
+                        4. New thread for tying umbilical cord and do not apply anything to umbilical cord
                         5. Clean cloth for newborn </span>
                 </legend>
                 <div class="option-wrapper">
@@ -384,7 +388,7 @@
         </fieldset>
         <label class="note non-select ">
             <span lang="" class="question-label active">Provide family with contact information and instructions for
-                24/7 facility in case of delivery complications. 
+                24/7 facility in case of delivery complications.
             </span>
             <input autocomplete="off" type="text"
                    name="/Delivery_Plan_EngKan/home_delivery_group/nearest_24_7_facility_message" data-type-xml="string"
@@ -401,7 +405,7 @@
                     have a transportation plan?
                     <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
                     </span>
-                    
+
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -421,7 +425,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Transportation plan? 
+                <span lang="" class="question-label active">Transportation plan?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -468,7 +472,7 @@
         <fieldset>
             <legend>
                 <span lang="" class="question-label active">Does the family have money set aside for the delivery?
-                    
+
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -488,7 +492,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Does the woman have a birth companion? 
+                <span lang="" class="question-label active">Does the woman have a birth companion?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -509,10 +513,10 @@
         <span lang="" class="question-label active">Tell
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
             </span>
-            her options for family planning after delivery, including sterilization and IUCD insertion. 
+            her options for family planning after delivery, including sterilization and IUCD insertion.
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
             </span>
-            
+
         </span>
         <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/pp_fp_message" data-type-xml="string"
                readonly="readonly"/>
@@ -526,7 +530,7 @@
                     ready to select a postpartum FP method?
                     <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
                     </span>
-                    
+
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -552,7 +556,7 @@
                     use after delivery?
                     <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
                     </span>
-                    
+
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -569,7 +573,7 @@
                            data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
                            data-type-xml="select1"/>
                     <span lang="" class="option-label active">IUCD
-                        
+
                     </span>
                 </label>
                 <label class="">

@@ -9,6 +9,12 @@
         "shouldLoadValue": true
       },
       {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/TT_EngKan/village",
+        "source": "mother.eligible_couple.village"
+      },
+      {
         "name": "ancNumber",
         "shouldLoadValue": true,
         "bind": "/model/instance/TT_EngKan/anc_reg_num",
@@ -17,6 +23,11 @@
       {
         "name": "ttDose",
         "bind": "/model/instance/TT_EngKan/tt_dose"
+      },
+      {
+        "name": "ecId",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.id"
       },
       {
         "name": "ttInjectionPlace",

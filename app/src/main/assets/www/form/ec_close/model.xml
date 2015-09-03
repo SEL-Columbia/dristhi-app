@@ -2,24 +2,25 @@
     <instance>
         <EC_Close_EngKan id="EC_Close_EngKan">
             <formhub>
-                <uuid/>
+                <uuid />
             </formhub>
-            <today/>
+            <today />
+            <village />
 
-            <case_ec_number/>
-            <case_woman_name/>
+            <case_ec_number />
+            <case_woman_name />
 
-            <close_reason/>
-            <close_reason_other/>
-            <sterilization_death/>
-            <sterilization_death_date/>
-            <maternal_death/>
-            <maternal_death_date/>
-            <maternal_death_cause/>
-            <other_maternal_death_cause/>
-            <confirm_ec_close/>
+            <close_reason />
+            <close_reason_other />
+            <sterilization_death />
+            <sterilization_death_date />
+            <maternal_death />
+            <maternal_death_date />
+            <maternal_death_cause />
+            <other_maternal_death_cause />
+            <confirm_ec_close />
             <meta>
-                <instanceID/>
+                <instanceID />
             </meta>
         </EC_Close_EngKan>
     </instance>

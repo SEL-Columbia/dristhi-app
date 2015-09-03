@@ -6,6 +6,7 @@
             </formhub>
             <past_anc_visit />
             <today />
+            <village />
             <case_woman_name />
             <anc_reg_num />
             <woman_name />

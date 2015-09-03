@@ -2,22 +2,23 @@
     <instance>
         <Family_Planning_Referral_Followup_EngKan id="Family_Planning_Referral_Followup_EngKan">
             <formhub>
-                <uuid/>
+                <uuid />
             </formhub>
-            <ec_num/>
-            <woman_name/>
-            <today/>
-            <referral_followup_date/>
-            <couple_went_for_referral/>
-            <referral_result/>
-            <couple_didnt_go_referral_reason/>
-            <new_treatment_plan/>
-            <referral_place/>
-            <needs_referral_followup/>
-            <needs_followup/>
-            <instructions/>
+            <ec_num />
+            <village />
+            <woman_name />
+            <today />
+            <referral_followup_date />
+            <couple_went_for_referral />
+            <referral_result />
+            <couple_didnt_go_referral_reason />
+            <new_treatment_plan />
+            <referral_place />
+            <needs_referral_followup />
+            <needs_followup />
+            <instructions />
             <meta>
-                <instanceID/>
+                <instanceID />
             </meta>
         </Family_Planning_Referral_Followup_EngKan>
     </instance>

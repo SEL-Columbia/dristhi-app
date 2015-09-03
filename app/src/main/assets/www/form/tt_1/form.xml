@@ -8,7 +8,11 @@
         <input name="/TT1_EngKan/anc_reg_num" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="text" />
     </label>
+    <label class="question non-select ">
 
+        <input name="/TT1_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
     <label class="question or-appearance-minimal ">
         <span lang="" class="question-label active">Place of TT1 injection? </span>
         <span class="required">*</span>

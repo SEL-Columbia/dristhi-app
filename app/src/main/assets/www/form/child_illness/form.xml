@@ -3,6 +3,12 @@
     <section class="form-logo"></section>
     <h3 id="form-title">Child Illness</h3>
 
+    <label class="question non-select ">
+
+        <input name="/Child_Sick_Visit_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+
 
     <label class="question non-select ">
         <span class="question-label active" lang="">Mother Name:</span>
@@ -586,7 +592,6 @@
                 data-calculate=" /Child_Sick_Visit_EngKan/is_consult_doctor" data-type-xml="string"
                 type="hidden" />
         </label>
-
 
 
         <label class="calculation non-select ">

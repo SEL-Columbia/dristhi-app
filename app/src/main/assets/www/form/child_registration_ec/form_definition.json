@@ -9,6 +9,12 @@
         "shouldLoadValue": true
       },
       {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Child_Registration_EC_EngKan/village",
+        "source": "eligible_couple.village"
+      },
+      {
         "name": "motherId",
         "source": "eligible_couple.mother.id"
       },

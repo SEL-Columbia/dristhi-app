@@ -6,6 +6,9 @@
             </formhub>
             <today />
             <ec_num />
+
+            <village />
+
             <case_woman_name />
             <woman_name />
             <husband_name />

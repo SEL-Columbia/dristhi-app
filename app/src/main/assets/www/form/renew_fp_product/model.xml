@@ -5,6 +5,8 @@
                 <uuid/>
             </formhub>
             <today/>
+            <village />
+
             <ec_num/>
             <woman_name/>
             <case_familyplanning_method/>

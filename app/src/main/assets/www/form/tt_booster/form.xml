@@ -1,4 +1,4 @@
-<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="TTBooster_EngKan">
+<form autocomplete="off" class="or clearfix" id="TTBooster_EngKan" novalidate="novalidate">
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">TT Booster</h3>
@@ -8,46 +8,52 @@
         <input name="/TTBooster_EngKan/anc_reg_num" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="text" />
     </label>
+    <label class="question non-select ">
 
+        <input name="/TTBooster_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
     <label class="question or-appearance-minimal ">
-        <span lang="" class="question-label active">Place of TT Booster injection? 
+        <span class="question-label active" lang="">Place of TT Booster injection?
         </span>
         <span class="required">*</span>
         <select name="/TTBooster_EngKan/ttbooster_injection_place"
-                data-name="/TTBooster_EngKan/ttbooster_injection_place" required="required" data-type-xml="select1">
+            data-name="/TTBooster_EngKan/ttbooster_injection_place" data-type-xml="select1"
+            required="required">
             <option value="">...</option>
-            <option value="sub_center">My Sub Center </option>
-            <option value="phc">My PHC </option>
+            <option value="sub_center">My Sub Center</option>
+            <option value="phc">My PHC</option>
         </select>
-        <span class="or-option-translations" style="display:none;">
-        </span>
+        <span style="display:none;" class="or-option-translations"></span>
     </label>
     <label class="question non-select ">
-        <span lang="" class="question-label active">Date of TT Booster injection?
+        <span class="question-label active" lang="">Date of TT Booster injection?
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/TTBooster_EngKan/ttbooster_date" required="required"
-               data-constraint=".&lt;= /TTBooster_EngKan/today " data-type-xml="date"/>
+        <input name="/TTBooster_EngKan/ttbooster_date" autocomplete="off"
+            data-constraint=".&lt;= /TTBooster_EngKan/today " data-type-xml="date"
+            required="required" type="date" />
     </label>
 
-    <fieldset id="or-preload-items" style="display:none;">
+    <fieldset style="display:none;" id="or-preload-items">
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/TTBooster_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
+            <input name="/TTBooster_EngKan/today" autocomplete="off" data-preload="date"
+                data-preload-params="today" data-type-xml="date" type="hidden" />
         </label>
     </fieldset>
-    <fieldset id="or-calculated-items" style="display:none;">
+    <fieldset style="display:none;" id="or-calculated-items">
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/TTBooster_EngKan/tt_dose"
-                   data-calculate="&quot;ttbooster&quot;" data-type-xml="string"/>
+            <input name="/TTBooster_EngKan/tt_dose" autocomplete="off"
+                data-calculate="&quot;ttbooster&quot;" data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/TTBooster_EngKan/meta/instanceID"
-                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+            <input name="/TTBooster_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/TTBooster_EngKan/formhub/uuid"
-                   data-calculate="'8dfe397120454bf0a93c27538269549e'" data-type-xml="string"/>
+            <input name="/TTBooster_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'8dfe397120454bf0a93c27538269549e'" data-type-xml="string"
+                type="hidden" />
         </label>
     </fieldset>
 </form>

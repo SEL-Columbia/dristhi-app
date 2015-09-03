@@ -1,53 +1,64 @@
-<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="Family_Planning_ECPs">
+<form autocomplete="off" class="or clearfix" id="Family_Planning_ECPs" novalidate="novalidate">
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Record ECPs</h3>
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">EC Number: </span>
-        <input autocomplete="off" type="text" name="/Family_Planning_ECPs_EngKan/ec_num" data-type-xml="int" disabled="disabled"/>
+        <span class="question-label active" lang="">EC Number:</span>
+        <input name="/Family_Planning_ECPs_EngKan/ec_num" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+
+        <input name="/Family_Planning_ECPs_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
     </label>
 
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">Women Name: </span>
-        <input autocomplete="off" type="text" name="/Family_Planning_ECPs_EngKan/woman_name" data-type-xml="string" disabled="disabled"/>
+        <span class="question-label active" lang="">Women Name:</span>
+        <input name="/Family_Planning_ECPs_EngKan/woman_name" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
     </label>
 
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">Number of ECPs given? </span>
+        <span class="question-label active" lang="">Number of ECPs given?</span>
         <span class="required">*</span>
-        <input autocomplete="off" type="number" name="/Family_Planning_ECPs_EngKan/ecp_given" required="required"
-               data-type-xml="int"/>
+        <input name="/Family_Planning_ECPs_EngKan/ecp_given" autocomplete="off" data-type-xml="int"
+            required="required" type="number" />
     </label>
     <label class="question non-select ">
-        <span lang="" class="question-label active">ECP date? ECP </span>
+        <span class="question-label active" lang="">ECP date? ECP</span>
         <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/Family_Planning_ECPs_EngKan/ecp_date" required="required"
-               data-constraint=".&lt;= /Family_Planning_ECPs_EngKan/today " data-type-xml="date"/>
+        <input name="/Family_Planning_ECPs_EngKan/ecp_date" autocomplete="off" data-constraint=".&lt;= /Family_Planning_ECPs_EngKan/today "
+            data-type-xml="date" required="required"
+            type="date" />
     </label>
     <label class="note non-select ">
-        <span lang="" class="question-label active">Encourage the couple to select a spacing or permanent FP method.
-            When couple is ready, open the Change FP Method form. </span>
-        <input autocomplete="off" type="text" name="/Family_Planning_ECPs_EngKan/ecp_message" data-type-xml="string"
-               readonly="readonly"/>
+        <span class="question-label active" lang="">Encourage the couple to select a spacing or
+            permanent FP method.
+            When couple is ready, open the Change FP Method form.
+        </span>
+        <input name="/Family_Planning_ECPs_EngKan/ecp_message" autocomplete="off" data-type-xml="string"
+            readonly="readonly" type="text" />
     </label>
 
-    <fieldset id="or-preload-items" style="display:none;">
+    <fieldset style="display:none;" id="or-preload-items">
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_ECPs_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
+            <input name="/Family_Planning_ECPs_EngKan/today" autocomplete="off" data-preload="date"
+                data-preload-params="today" data-type-xml="date" type="hidden" />
         </label>
     </fieldset>
-    <fieldset id="or-calculated-items" style="display:none;">
+    <fieldset style="display:none;" id="or-calculated-items">
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_ECPs_EngKan/meta/instanceID"
-                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+            <input name="/Family_Planning_ECPs_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_ECPs_EngKan/formhub/uuid"
-                   data-calculate="'565876ee41274a91902cf5a2aa59de01'" data-type-xml="string"/>
+            <input name="/Family_Planning_ECPs_EngKan/formhub/uuid" autocomplete="off" data-calculate="'565876ee41274a91902cf5a2aa59de01'"
+                data-type-xml="string" type="hidden" />
         </label>
     </fieldset>
 </form>

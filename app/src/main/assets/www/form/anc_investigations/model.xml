@@ -6,6 +6,7 @@
             </formhub>
             <today />
             <anc_reg_num />
+            <village />
             <test_date />
             <test_results_to_enter />
             <w_blood_group />

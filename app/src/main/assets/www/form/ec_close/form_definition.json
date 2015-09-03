@@ -9,6 +9,12 @@
                 "shouldLoadValue": true
             },
             {
+                "name": "village",
+                "shouldLoadValue": true,
+                "bind": "/model/instance/EC_Close_EngKan/village",
+                "source": "eligible_couple.village"
+            },
+            {
                 "shouldLoadValue": true,
                 "bind": "/model/instance/EC_Close_EngKan/case_ec_number",
                 "source": "eligible_couple.ecNumber"

@@ -8,7 +8,17 @@
         "name": "id",
         "shouldLoadValue": true
       },
-
+      {
+        "name": "ecId",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.id"
+      },
+      {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/IFA_EngKan/village",
+        "source": "mother.eligible_couple.village"
+      },
       {
         "name": "ancNumber",
         "shouldLoadValue": true,

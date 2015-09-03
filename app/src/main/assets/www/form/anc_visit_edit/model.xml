@@ -8,6 +8,7 @@
             <today />
             <case_woman_name />
             <anc_reg_num />
+            <village />
             <woman_name />
             <this_anc_number />
             <anc_visit_date />

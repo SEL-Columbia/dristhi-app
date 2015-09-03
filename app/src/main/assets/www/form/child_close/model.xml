@@ -2,21 +2,22 @@
     <instance>
         <Child_Close_EngKan id="Child_Close_EngKan">
             <formhub>
-                <uuid/>
+                <uuid />
             </formhub>
-            <today/>
-            <close_reason/>
+            <today />
+            <village />
+            <close_reason />
             <death_child_group>
-                <case_num_livingchildren/>
-                <num_livingchildren/>
-                <child_death_immunization/>
-                <child_death_cause/>
-                <child_death_cause_other/>
-                <child_death_date/>
+                <case_num_livingchildren />
+                <num_livingchildren />
+                <child_death_immunization />
+                <child_death_cause />
+                <child_death_cause_other />
+                <child_death_date />
             </death_child_group>
-            <confirm_child_close/>
+            <confirm_child_close />
             <meta>
-                <instanceID/>
+                <instanceID />
             </meta>
         </Child_Close_EngKan>
     </instance>

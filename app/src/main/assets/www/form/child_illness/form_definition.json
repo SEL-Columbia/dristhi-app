@@ -13,6 +13,12 @@
         "bind": "/model/instance/Child_Sick_Visit_EngKan/child_sickness_management_group/sick_visit_date"
       },
       {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/village",
+        "source": "child.mother.eligible_couple.village"
+      },
+      {
         "name": "ecId",
         "shouldLoadValue": true,
         "source": "child.mother.eligible_couple.id"

@@ -8,6 +8,11 @@
         <input autocomplete="off" type="text" name="/Family_Planning_Complications_EngKan/ec_num" data-type-xml="int" disabled="disabled"/>
     </label>
 
+    <label class="question non-select ">
+
+        <input name="/Family_Planning_Complications_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
 
     <label class="question non-select ">
         <span lang="" class="question-label active">Women Name: </span>

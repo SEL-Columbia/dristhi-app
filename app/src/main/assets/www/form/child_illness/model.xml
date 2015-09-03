@@ -5,6 +5,7 @@
                 <uuid />
             </formhub>
             <today />
+            <village />
             <mother_name />
             <sick_visit_option />
             <child_sickness_management_group>

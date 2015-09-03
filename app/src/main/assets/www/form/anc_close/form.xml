@@ -1,4 +1,4 @@
- <form autocomplete="off" class="or clearfix" id="ANC_Close_EngKan" novalidate="novalidate">
+<form autocomplete="off" class="or clearfix" id="ANC_Close_EngKan" novalidate="novalidate">
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">ANC Close</h3>
@@ -7,6 +7,12 @@
         <span class="question-label active" lang="">ANC Number:</span>
         <input name="/ANC_Close_EngKan/anc_reg_num" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+
+        <input name="/ANC_Registration_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
     </label>
 
 
@@ -19,33 +25,33 @@
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input name="/ANC_Close_EngKan/close_reason" autocomplete="off" data-name="/ANC_Close_EngKan/close_reason"
-                        data-type-xml="select1" required="required"
-                        type="radio" value="spontaneous_abortion" />
+                    <input name="/ANC_Close_EngKan/close_reason" autocomplete="off"
+                        data-name="/ANC_Close_EngKan/close_reason" data-type-xml="select1"
+                        required="required" type="radio" value="spontaneous_abortion" />
                     <span class="option-label active" lang="">Spontaneous abortion</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Close_EngKan/close_reason" autocomplete="off" data-name="/ANC_Close_EngKan/close_reason"
-                        data-type-xml="select1" required="required"
-                        type="radio" value="induced_abortion" />
+                    <input name="/ANC_Close_EngKan/close_reason" autocomplete="off"
+                        data-name="/ANC_Close_EngKan/close_reason" data-type-xml="select1"
+                        required="required" type="radio" value="induced_abortion" />
                     <span class="option-label active" lang="">Induced abortion</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Close_EngKan/close_reason" autocomplete="off" data-name="/ANC_Close_EngKan/close_reason"
-                        data-type-xml="select1" required="required"
-                        type="radio" value="relocation_permanent" />
+                    <input name="/ANC_Close_EngKan/close_reason" autocomplete="off"
+                        data-name="/ANC_Close_EngKan/close_reason" data-type-xml="select1"
+                        required="required" type="radio" value="relocation_permanent" />
                     <span class="option-label active" lang="">Relocation</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Close_EngKan/close_reason" autocomplete="off" data-name="/ANC_Close_EngKan/close_reason"
-                        data-type-xml="select1" required="required"
-                        type="radio" value="death_of_woman" />
+                    <input name="/ANC_Close_EngKan/close_reason" autocomplete="off"
+                        data-name="/ANC_Close_EngKan/close_reason" data-type-xml="select1"
+                        required="required" type="radio" value="death_of_woman" />
                     <span class="option-label active" lang="">Woman died</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Close_EngKan/close_reason" autocomplete="off" data-name="/ANC_Close_EngKan/close_reason"
-                        data-type-xml="select1" required="required"
-                        type="radio" value="wrong_entry" />
+                    <input name="/ANC_Close_EngKan/close_reason" autocomplete="off"
+                        data-name="/ANC_Close_EngKan/close_reason" data-type-xml="select1"
+                        required="required" type="radio" value="wrong_entry" />
                     <span class="option-label active" lang="">Wrong entry
                     </span>
                 </label>
@@ -61,24 +67,24 @@
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input name="/ANC_Close_EngKan/maternal_death" autocomplete="off" data-name="/ANC_Close_EngKan/maternal_death"
-                        data-relevant=" /ANC_Close_EngKan/close_reason  = 'death_of_woman'" data-type-xml="select1" required="required"
-                        type="radio"
-                        value="yes" />
+                    <input name="/ANC_Close_EngKan/maternal_death" autocomplete="off"
+                        data-name="/ANC_Close_EngKan/maternal_death"
+                        data-relevant=" /ANC_Close_EngKan/close_reason  = 'death_of_woman'"
+                        data-type-xml="select1" required="required" type="radio" value="yes" />
                     <span class="option-label active" lang="">Yes</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Close_EngKan/maternal_death" autocomplete="off" data-name="/ANC_Close_EngKan/maternal_death"
-                        data-relevant=" /ANC_Close_EngKan/close_reason  = 'death_of_woman'" data-type-xml="select1" required="required"
-                        type="radio"
-                        value="no" />
+                    <input name="/ANC_Close_EngKan/maternal_death" autocomplete="off"
+                        data-name="/ANC_Close_EngKan/maternal_death"
+                        data-relevant=" /ANC_Close_EngKan/close_reason  = 'death_of_woman'"
+                        data-type-xml="select1" required="required" type="radio" value="no" />
                     <span class="option-label active" lang="">No</span>
                 </label>
                 <label class="">
-                    <input name="/ANC_Close_EngKan/maternal_death" autocomplete="off" data-name="/ANC_Close_EngKan/maternal_death"
-                        data-relevant=" /ANC_Close_EngKan/close_reason  = 'death_of_woman'" data-type-xml="select1"
-                        required="required"
-                        type="radio"
+                    <input name="/ANC_Close_EngKan/maternal_death" autocomplete="off"
+                        data-name="/ANC_Close_EngKan/maternal_death"
+                        data-relevant=" /ANC_Close_EngKan/close_reason  = 'death_of_woman'"
+                        data-type-xml="select1" required="required" type="radio"
                         value="dont_know" />
                     <span class="option-label active" lang="">Don't know</span>
                 </label>
@@ -91,8 +97,8 @@
         <label class="question non-select ">
             <span class="question-label active" lang="">Date of spontaneous abortion?
             </span>
-            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/date_spontaneous" autocomplete="off"
-                data-constraint=".&lt;= /ANC_Close_EngKan/today "
+            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/date_spontaneous"
+                autocomplete="off" data-constraint=".&lt;= /ANC_Close_EngKan/today "
                 data-type-xml="date" type="date" />
         </label>
         <fieldset class="question ">
@@ -103,46 +109,52 @@
                 </legend>
                 <div class="option-wrapper">
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
-                            data-type-xml="select1"
-                            type="radio" value="rh_incompatibility" />
+                            data-type-xml="select1" type="radio" value="rh_incompatibility" />
                         <span class="option-label active" lang="">Rh incompatibility, Rh</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
-                            data-type-xml="select1"
-                            type="radio" value="uterine_abnormality" />
+                            data-type-xml="select1" type="radio" value="uterine_abnormality" />
                         <span class="option-label active" lang="">Uterine abnormality</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
-                            data-type-xml="select1"
-                            type="radio" value="diabetes" />
+                            data-type-xml="select1" type="radio" value="diabetes" />
                         <span class="option-label active" lang="">Diabetes
                         </span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
-                            data-type-xml="select1"
-                            type="radio" value="infection" />
+                            data-type-xml="select1" type="radio" value="infection" />
                         <span class="option-label active" lang="">Infection</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
-                            data-type-xml="select1"
-                            type="radio" value="cause_not_identified" />
+                            data-type-xml="select1" type="radio" value="cause_not_identified" />
                         <span class="option-label active" lang="">Cause not identified</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
-                            data-type-xml="select1"
-                            type="radio" value="others" />
+                            data-type-xml="select1" type="radio" value="others" />
                         <span class="option-label active" lang="">Others</span>
                     </label>
                 </div>
@@ -150,10 +162,10 @@
         </fieldset>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Others</span>
-            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause_other" autocomplete="off"
+            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause_other"
+                autocomplete="off"
                 data-relevant=" /ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause  = 'others'"
-                data-type-xml="string"
-                type="text" />
+                data-type-xml="string" type="text" />
         </label>
         <fieldset class="question ">
             <fieldset>
@@ -163,31 +175,35 @@
                 </legend>
                 <div class="option-wrapper">
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place"
-                            data-type-xml="select1"
-                            type="radio" value="home" />
+                            data-type-xml="select1" type="radio" value="home" />
                         <span class="option-label active" lang="">Home</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place"
-                            data-type-xml="select1"
-                            type="radio" value="sub_center" />
+                            data-type-xml="select1" type="radio" value="sub_center" />
                         <span class="option-label active" lang="">My Sub Center</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place"
-                            data-type-xml="select1"
-                            type="radio" value="phc" />
+                            data-type-xml="select1" type="radio" value="phc" />
                         <span class="option-label active" lang="">My PHC</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_place"
-                            data-type-xml="select1"
-                            type="radio" value="elsewhere" />
+                            data-type-xml="select1" type="radio" value="elsewhere" />
                         <span class="option-label active" lang="">Elsewhere
                         </span>
                     </label>
@@ -202,21 +218,21 @@
                 </legend>
                 <div class="option-wrapper">
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/rh_injection_given1" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/rh_injection_given1"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/rh_injection_given1"
                             data-relevant=" /ANC_Close_EngKan/spontaneous_abortion_group/case_w_rh_negative  != ''"
-                            data-type-xml="select1"
-                            type="radio"
-                            value="yes" />
+                            data-type-xml="select1" type="radio" value="yes" />
                         <span class="option-label active" lang="">Yes</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/spontaneous_abortion_group/rh_injection_given1" autocomplete="off"
+                        <input
+                            name="/ANC_Close_EngKan/spontaneous_abortion_group/rh_injection_given1"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/rh_injection_given1"
                             data-relevant=" /ANC_Close_EngKan/spontaneous_abortion_group/case_w_rh_negative  != ''"
-                            data-type-xml="select1"
-                            type="radio"
-                            value="no" />
+                            data-type-xml="select1" type="radio" value="no" />
                         <span class="option-label active" lang="">No</span>
                     </label>
                 </div>
@@ -232,9 +248,8 @@
                     data-value=" /ANC_Close_EngKan/spontaneous_abortion_group/threemonths_from_spont_abortion_date_formatted "></span>
             </span>
 
-            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_message" autocomplete="off"
-                data-type-xml="string"
-                readonly="readonly" type="text" />
+            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_message"
+                autocomplete="off" data-type-xml="string" readonly="readonly" type="text" />
         </label>
     </section>
     <!--end of group -->
@@ -249,26 +264,26 @@
                 </legend>
                 <div class="option-wrapper">
                     <label class="">
-                        <input name="/ANC_Close_EngKan/induced_abortion_group/time_induced" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/induced_abortion_group/time_induced"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/induced_abortion_group/time_induced"
-                            data-type-xml="select1"
-                            type="radio" value="less_12wks" />
+                            data-type-xml="select1" type="radio" value="less_12wks" />
                         <span class="option-label active" lang="">MTP &#x2264; 12 weeks, &#xC8E;&#xC82;&#xC9F;&#xCBF;&#xCAA;&#xCBF;
                             &#x2264; 12 &#xCB5;&#xCBE;&#xCB0;</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/induced_abortion_group/time_induced" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/induced_abortion_group/time_induced"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/induced_abortion_group/time_induced"
-                            data-type-xml="select1"
-                            type="radio" value="greater_12wks" />
+                            data-type-xml="select1" type="radio" value="greater_12wks" />
                         <span class="option-label active" lang="">MTP &gt; 12 weeks, &#xC8E;&#xC82;&#xC9F;&#xCBF;&#xCAA;&#xCBF;
                             &gt; 12 &#xCB5;&#xCBE;&#xCB0;</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/induced_abortion_group/time_induced" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/induced_abortion_group/time_induced"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/induced_abortion_group/time_induced"
-                            data-type-xml="select1"
-                            type="radio" value="not_mtp" />
+                            data-type-xml="select1" type="radio" value="not_mtp" />
                         <span class="option-label active" lang="">Not MTP</span>
                     </label>
                 </div>
@@ -278,8 +293,8 @@
             <span class="question-label active" lang="">Date of abortion?
             </span>
             <input name="/ANC_Close_EngKan/induced_abortion_group/date_induced" autocomplete="off"
-                data-constraint=".&lt;= /ANC_Close_EngKan/today "
-                data-type-xml="date" type="date" />
+                data-constraint=".&lt;= /ANC_Close_EngKan/today " data-type-xml="date"
+                type="date" />
         </label>
         <fieldset class="question or-branch pre-init ">
             <fieldset>
@@ -289,21 +304,19 @@
                 </legend>
                 <div class="option-wrapper">
                     <label class="">
-                        <input name="/ANC_Close_EngKan/induced_abortion_group/rh_injection_given2" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/induced_abortion_group/rh_injection_given2"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/induced_abortion_group/rh_injection_given2"
                             data-relevant=" /ANC_Close_EngKan/spontaneous_abortion_group/case_w_rh_negative  != ''"
-                            data-type-xml="select1"
-                            type="radio"
-                            value="yes" />
+                            data-type-xml="select1" type="radio" value="yes" />
                         <span class="option-label active" lang="">Yes</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/induced_abortion_group/rh_injection_given2" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/induced_abortion_group/rh_injection_given2"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/induced_abortion_group/rh_injection_given2"
                             data-relevant=" /ANC_Close_EngKan/spontaneous_abortion_group/case_w_rh_negative  != ''"
-                            data-type-xml="select1"
-                            type="radio"
-                            value="no" />
+                            data-type-xml="select1" type="radio" value="no" />
                         <span class="option-label active" lang="">No</span>
                     </label>
                 </div>
@@ -314,9 +327,8 @@
                 methods to the couple.
 
             </span>
-            <input name="/ANC_Close_EngKan/induced_abortion_group/induced_fp_message" autocomplete="off"
-                data-type-xml="string"
-                readonly="readonly" type="text" />
+            <input name="/ANC_Close_EngKan/induced_abortion_group/induced_fp_message"
+                autocomplete="off" data-type-xml="string" readonly="readonly" type="text" />
         </label>
     </section>
     <!--end of group -->
@@ -326,10 +338,9 @@
             <span class="question-label active" lang="">Date of maternal death?
             </span>
             <span class="required">*</span>
-            <input name="/ANC_Close_EngKan/maternal_death_group/date_maternal_death" autocomplete="off"
-                data-constraint=".&lt;= /ANC_Close_EngKan/today "
-                data-type-xml="date" required="required"
-                type="date" />
+            <input name="/ANC_Close_EngKan/maternal_death_group/date_maternal_death"
+                autocomplete="off" data-constraint=".&lt;= /ANC_Close_EngKan/today "
+                data-type-xml="date" required="required" type="date" />
         </label>
         <fieldset class="question ">
             <fieldset>
@@ -339,45 +350,45 @@
                 </legend>
                 <div class="option-wrapper">
                     <label class="">
-                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
-                            data-type-xml="select1"
-                            type="radio" value="abortion" />
+                            data-type-xml="select1" type="radio" value="abortion" />
                         <span class="option-label active" lang="">Abortion</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
-                            data-type-xml="select1"
-                            type="radio" value="hypertension_fits" />
+                            data-type-xml="select1" type="radio" value="hypertension_fits" />
                         <span class="option-label active" lang="">Severe hypertension / Fits</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
-                            data-type-xml="select1"
-                            type="radio" value="bleeding_hemorrhage" />
+                            data-type-xml="select1" type="radio" value="bleeding_hemorrhage" />
                         <span class="option-label active" lang="">Bleeding / Hemorrhage</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
-                            data-type-xml="select1"
-                            type="radio" value="fever_infection" />
+                            data-type-xml="select1" type="radio" value="fever_infection" />
                         <span class="option-label active" lang="">High fever / Infection</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
-                            data-type-xml="select1"
-                            type="radio" value="cause_not_identified" />
+                            data-type-xml="select1" type="radio" value="cause_not_identified" />
                         <span class="option-label active" lang="">Cause not identified</span>
                     </label>
                     <label class="">
-                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause" autocomplete="off"
+                        <input name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
+                            autocomplete="off"
                             data-name="/ANC_Close_EngKan/maternal_death_group/maternal_death_cause"
-                            data-type-xml="select1"
-                            type="radio" value="others" />
+                            data-type-xml="select1" type="radio" value="others" />
                         <span class="option-label active" lang="">Others</span>
                     </label>
                 </div>
@@ -385,10 +396,10 @@
         </fieldset>
         <label class="question or-branch pre-init non-select ">
             <span class="question-label active" lang="">Others :</span>
-            <input name="/ANC_Close_EngKan/maternal_death_group/other_maternal_death_cause" autocomplete="off"
+            <input name="/ANC_Close_EngKan/maternal_death_group/other_maternal_death_cause"
+                autocomplete="off"
                 data-relevant=" /ANC_Close_EngKan/maternal_death_group/maternal_death_cause  = 'others'"
-                data-type-xml="string"
-                type="text" />
+                data-type-xml="string" type="text" />
         </label>
     </section>
     <!--end of group -->
@@ -402,9 +413,8 @@
             <div class="option-wrapper">
                 <label class="">
                     <input name="/ANC_Close_EngKan/confirm_anc_close" autocomplete="off"
-                        data-name="/ANC_Close_EngKan/confirm_anc_close"
-                        data-type-xml="select1" required="required"
-                        type="radio" value="yes" />
+                        data-name="/ANC_Close_EngKan/confirm_anc_close" data-type-xml="select1"
+                        required="required" type="radio" value="yes" />
                     <span class="option-label active" lang="">Yes</span>
                 </label>
             </div>
@@ -419,53 +429,56 @@
     </fieldset>
     <fieldset style="display:none;" id="or-calculated-items">
         <label class="calculation non-select ">
-            <input name="/ANC_Close_EngKan/num_abortions" autocomplete="off" data-calculate=" /ANC_Close_EngKan/case_num_abortions  + 1"
+            <input name="/ANC_Close_EngKan/num_abortions" autocomplete="off"
+                data-calculate=" /ANC_Close_EngKan/case_num_abortions  + 1"
                 data-relevant=" /ANC_Close_EngKan/close_reason  = 'induced_abortion' or  /ANC_Close_EngKan/close_reason  = 'spontaneous_abortion'"
-                data-type-xml="string"
-                type="hidden" />
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/num_abortions_spontaneous" autocomplete="off"
+            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/num_abortions_spontaneous"
+                autocomplete="off"
                 data-calculate=" /ANC_Close_EngKan/spontaneous_abortion_group/case_num_abortions_spontaneous  + 1"
-                data-type-xml="string"
-                type="hidden" />
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/num_weeks_spontaneous" autocomplete="off"
+            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/num_weeks_spontaneous"
+                autocomplete="off"
                 data-calculate="int(( /ANC_Close_EngKan/spontaneous_abortion_group/date_spontaneous  -  /ANC_Close_EngKan/spontaneous_abortion_group/case_lmp ) div 7)"
-                data-type-xml="string"
-                type="hidden" />
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/threemonths_from_spont_abortion_date" autocomplete="off"
+            <input
+                name="/ANC_Close_EngKan/spontaneous_abortion_group/threemonths_from_spont_abortion_date"
+                autocomplete="off"
                 data-calculate="date( /ANC_Close_EngKan/spontaneous_abortion_group/date_spontaneous  + 90)"
-                data-type-xml="string"
-                type="hidden" />
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input name="/ANC_Close_EngKan/spontaneous_abortion_group/threemonths_from_spont_abortion_date_formatted" autocomplete="off"
+            <input
+                name="/ANC_Close_EngKan/spontaneous_abortion_group/threemonths_from_spont_abortion_date_formatted"
+                autocomplete="off"
                 data-calculate="format-date( /ANC_Close_EngKan/spontaneous_abortion_group/threemonths_from_spont_abortion_date , '%Y-%n-%e')"
-                data-type-xml="string"
-                type="hidden" />
+                data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input name="/ANC_Close_EngKan/induced_abortion_group/num_abortions_induced" autocomplete="off"
+            <input name="/ANC_Close_EngKan/induced_abortion_group/num_abortions_induced"
+                autocomplete="off"
                 data-calculate=" /ANC_Close_EngKan/induced_abortion_group/case_num_abortions_induced  + 1"
-                data-type-xml="string"
-                type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Close_EngKan/rh_injection_given" autocomplete="off" data-calculate="if( /ANC_Close_EngKan/close_reason  = 'spontaneous_abortion',  /ANC_Close_EngKan/spontaneous_abortion_group/rh_injection_given1 ,  /ANC_Close_EngKan/induced_abortion_group/rh_injection_given2 )"
-                data-type-xml="string"
-                type="hidden" />
-        </label>
-        <label class="calculation non-select ">
-            <input name="/ANC_Close_EngKan/meta/instanceID" autocomplete="off" data-calculate="concat('uuid:', uuid())"
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input name="/ANC_Close_EngKan/formhub/uuid" autocomplete="off" data-calculate="'45a56446fd9942c9af566586ac8211c9'"
+            <input name="/ANC_Close_EngKan/rh_injection_given" autocomplete="off"
+                data-calculate="if( /ANC_Close_EngKan/close_reason  = 'spontaneous_abortion',  /ANC_Close_EngKan/spontaneous_abortion_group/rh_injection_given1 ,  /ANC_Close_EngKan/induced_abortion_group/rh_injection_given2 )"
                 data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Close_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Close_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'45a56446fd9942c9af566586ac8211c9'" data-type-xml="string"
+                type="hidden" />
         </label>
     </fieldset>
 </form>

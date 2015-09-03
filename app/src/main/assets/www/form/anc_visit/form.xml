@@ -10,6 +10,11 @@
             disabled="disabled" type="text" />
     </label>
 
+    <label class="question non-select ">
+        <input name="/ANC_Visit_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+
 
     <label class="question non-select ">
         <span class="question-label active" lang="">Women Name:</span>

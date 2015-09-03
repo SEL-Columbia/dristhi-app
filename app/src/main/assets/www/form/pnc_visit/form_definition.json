@@ -9,6 +9,12 @@
         "shouldLoadValue": true
       },
       {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Visit_EngKan/village",
+        "source": "mother.eligible_couple.village"
+      },
+      {
         "name": "pncNumber",
         "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Visit_EngKan/pnc_num",
@@ -25,7 +31,6 @@
         "bind": "/model/instance/PNC_Visit_EngKan/case_woman_name",
         "source": "mother.eligible_couple.wifeName"
       },
-
       {
         "name": "deliveryOutcome",
         "shouldLoadValue": true,

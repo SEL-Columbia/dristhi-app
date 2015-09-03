@@ -9,6 +9,12 @@
         "shouldLoadValue": true
       },
       {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Close_EngKan/village",
+        "source": "mother.eligible_couple.village"
+      },
+      {
         "name": "pncNumber",
         "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Close_EngKan/pnc_num",

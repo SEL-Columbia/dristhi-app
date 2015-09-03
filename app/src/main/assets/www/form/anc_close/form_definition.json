@@ -9,6 +9,12 @@
         "shouldLoadValue": true
       },
       {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Close_EngKan/village",
+        "source": "mother.eligible_couple.village"
+      },
+      {
         "name": "ecId",
         "shouldLoadValue": true,
         "source": "mother.eligible_couple.id"

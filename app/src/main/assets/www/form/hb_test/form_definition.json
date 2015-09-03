@@ -9,6 +9,17 @@
         "shouldLoadValue": true
       },
       {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Hb_Test_EngKan/village",
+        "source": "mother.eligible_couple.village"
+      },
+      {
+        "name": "ecId",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.id"
+      },
+      {
         "name": "hbTestDate",
         "bind": "/model/instance/Hb_Test_EngKan/hb_test_date"
       },

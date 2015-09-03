@@ -2,15 +2,16 @@
     <instance>
         <TT1_EngKan id="TT1_EngKan">
             <formhub>
-                <uuid/>
+                <uuid />
             </formhub>
-            <anc_reg_num/>
-            <today/>
-            <tt_dose/>
-            <tt1_injection_place/>
-            <tt1_date/>
+            <anc_reg_num />
+            <village />
+            <today />
+            <tt_dose />
+            <tt1_injection_place />
+            <tt1_date />
             <meta>
-                <instanceID/>
+                <instanceID />
             </meta>
         </TT1_EngKan>
     </instance>
