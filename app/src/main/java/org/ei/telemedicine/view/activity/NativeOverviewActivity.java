@@ -39,6 +39,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -152,20 +153,21 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         Mother mother = context.allBeneficiaries().findMother(caseId);
                         if (mother != null) {
                             String pocInfo = mother.getDetail("docPocInfo") != null ? mother.getDetail("docPocInfo") : "";
-                            android.util.Log.e("Poc", pocInfo);
-//                            if (!pocInfo.equals("")) {
-//                                try {
-//                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
-//                                    for (int i = 0; i < pocJsonArray.length(); i++) {
-//                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
-//                                        String title = "Plan of care for" + getDataFromJson(pocData, "visitType") + "Visit - " + getDataFromJson(pocData, "visitNumber");
-//                                        String visitDate = getDataFromJson(pocData, "planofCareDate");
-//                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care", LocalDate.parse(visitDate), title, "", ""));
-//                                    }
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
+
+                            if (!pocInfo.equals("")) {
+                                try {
+                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
+                                    int val = pocJsonArray.length();
+                                    android.util.Log.e("size", val + "");
+                                    for (int i = 0; i < pocJsonArray.length(); i++) {
+                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
+                                        String title = "Plan of care for " + getDataFromJson(pocData, "visitType") + "Visit - " + getDataFromJson(pocData, "visitNumber");
+                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care ", LocalDate.parse(changeDateFormat(getDataFromJson(pocData, "planofCareDate"))), title, "", ""));
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
                         String ancData = new ANCDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
                         String anccoupleDetails = getDataFromJson(ancData, "coupleDetails");
@@ -193,6 +195,22 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         break;
                     case "pnc":
                         pnc_summary.setVisibility(View.VISIBLE);
+                        Mother pncMother = context.allBeneficiaries().findMother(caseId);
+                        if (pncMother != null) {
+                            String pocInfo = pncMother.getDetail("docPocInfo") != null ? pncMother.getDetail("docPocInfo") : "";
+                            if (!pocInfo.equals("")) {
+                                try {
+                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
+                                    for (int i = 0; i < pocJsonArray.length(); i++) {
+                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
+                                        String title = "Plan of care for " + getDataFromJson(pocData, "visitType");
+                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care", LocalDate.parse(changeDateFormat(getDataFromJson(pocData, "planofCareDate"))), title, "", ""));
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
                         String pncData = new PNCDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
                         String pnccoupleDetails = getDataFromJson(pncData, "coupleDetails");
                         String pncDetails = getDataFromJson(pncData, "details");
@@ -303,6 +321,11 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         }
     }
 
+    public String changeDateFormat(String date) {
+        String vdate[] = date.split("-");
+        return vdate[2] + "-" + vdate[1] + "-" + vdate[0];
+    }
+
     @Override
     protected void onResumption() {
     }
@@ -341,6 +364,9 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
             case R.id.hb_test:
                 startFormActivity(HB_TEST, caseId, null);
                 return true;
+            case R.id.view_poc_anc:
+                viewPOCActivity(AllConstants.VisitTypes.ANC_VISIT, caseId);
+                return true;
             case R.id.ifa:
                 startFormActivity(IFA, caseId, null);
                 return true;
@@ -364,6 +390,10 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
             case R.id.pnc_visit:
                 startFormActivity(PNC_VISIT, caseId, null);
                 return true;
+            case R.id.view_poc_pnc:
+                viewPOCActivity(AllConstants.VisitTypes.PNC_VISIT, caseId);
+                return true;
+
             case R.id.postpartum_family_planning:
                 startFormActivity(PNC_POSTPARTUM_FAMILY_PLANNING, caseId, null);
                 return true;
@@ -374,6 +404,9 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
             //Overview CHILD Menu
             case R.id.child_immunizations:
                 startFormActivity(CHILD_IMMUNIZATIONS, caseId, null);
+                return true;
+            case R.id.view_poc_child:
+                viewPOCActivity(AllConstants.VisitTypes.CHILD_VISIT, caseId);
                 return true;
             case R.id.child_illness:
                 startFormActivity(CHILD_ILLNESS, caseId, null);

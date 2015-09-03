@@ -6,7 +6,9 @@
     <item
         android:id="@+id/child_illness"
         android:title="Child Illness" />
-
+    <item
+        android:id="@+id/view_poc_child"
+        android:title="View Plan Of Care" />
     <item
         android:id="@+id/vitamin_a"
         android:title="Vitamin A" />

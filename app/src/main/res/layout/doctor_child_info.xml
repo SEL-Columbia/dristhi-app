@@ -515,20 +515,6 @@
                 android:weightSum="2">
 
                 <Button
-
-                    android:id="@+id/bt_plan_of_care"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="#669900"
-                    android:ems="10"
-                    android:text="@string/plan_of_care"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <Button
                     android:id="@+id/bt_refer"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
@@ -541,6 +527,21 @@
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/bt_plan_of_care"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="#669900"
+                    android:ems="10"
+                    android:text="@string/plan_of_care"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
             </LinearLayout>
 
 

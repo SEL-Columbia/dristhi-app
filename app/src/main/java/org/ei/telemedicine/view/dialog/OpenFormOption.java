@@ -54,30 +54,11 @@ public class OpenFormOption implements EditOption {
     public void doEdit(SmartRegisterClient client) {
         if (!isFormView) {
             if (formName.equals(VIEW_PLAN_OF_CARE)) {
-                Intent intent = new Intent(context, ViewPlanOfCareActivity.class);
-                intent.putExtra(ENTITY_ID, client.entityId());
-                intent.putExtra(VISIT_TYPE, "ANC");
-                context.startActivity(intent);
+                formController.viewPOCActivity(AllConstants.VisitTypes.ANC_VISIT, client.entityId());
             } else if (formName.equals(VIEW_PNC_PLAN_OF_CARE)) {
-                Intent intent = new Intent(context, ViewPlanOfCareActivity.class);
-                intent.putExtra(ENTITY_ID, client.entityId());
-                intent.putExtra(VISIT_TYPE, "PNC");
-                context.startActivity(intent);
+                formController.viewPOCActivity(AllConstants.VisitTypes.PNC_VISIT, client.entityId());
             } else if (formName.equals(VIEW_CHILD_PLAN_OF_CARE)) {
-                Intent intent = new Intent(context, ViewPlanOfCareActivity.class);
-                intent.putExtra(ENTITY_ID, client.entityId());
-                intent.putExtra(VISIT_TYPE, "Child");
-                context.startActivity(intent);
-//            } else if (formName.equals(ANC_VISIT)) {
-//                try {
-//                    JSONObject visitJson = new JSONObject();
-//                    Mother mother = Context.getInstance().allBeneficiaries().findMother(client.entityId());
-////                    Log.e("Lmp", mother.getDetail(""));
-//                    visitJson.put("ancVisitNumber", mother.getDetail("ancVisitNumber") != null ? Integer.parseInt(mother.getDetail("ancVisitNumber")) + 1 : 1);
-//                    formController.startFormActivity(formName, client.entityId(), new FieldOverrides(visitJson.toString()).getJSONString());
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                formController.viewPOCActivity(AllConstants.VisitTypes.CHILD_VISIT, client.entityId());
             } else {
                 formController.startFormActivity(formName, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
             }

@@ -25,6 +25,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.MediaPlayer;
@@ -33,6 +34,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -60,6 +62,7 @@ import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.activity.FormActivity;
 import org.ei.telemedicine.view.activity.NativeANMPlanofCareActivity;
+import org.ei.telemedicine.view.activity.SecuredActivity;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.dialog.EditOption;
 import org.ei.telemedicine.view.dialog.OpenFormOption;
@@ -70,7 +73,7 @@ import org.json.JSONObject;
 import static org.ei.telemedicine.AllConstants.DRUGS;
 import static org.ei.telemedicine.AllConstants.DRUGS_INFO_RESULT_CODE;
 
-public class BlueToothInfoActivity extends Activity implements OnClickListener,
+public class BlueToothInfoActivity extends SecuredActivity implements OnClickListener,
         ICallBack, OnBluetoothResult, org.ei.telemedicine.bluetooth.bp.ICallBack,
         org.ei.telemedicine.bluetooth.eet.ICallBack, org.ei.telemedicine.bluetooth.fetal.ICallBack, org.ei.telemedicine.bluetooth.blood.ICallBack {
 
@@ -120,6 +123,9 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
     @Override
     protected void onStart() {
         super.onStart();
+        if (!bluetoothAdapter.isEnabled()) {
+            bluetoothAdapter.enable();
+        }
         if (pulseService == null) {
             pulsecall = new CallBack(new PulseBuf(), this);
             pulseService = new BluetoothService(BlueToothInfoActivity.this, pulsecall);
@@ -147,170 +153,123 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
 
-        if (bluetoothAdapter != null && bluetoothAdapter.getState() == BluetoothAdapter.STATE_OFF) {
-            Toast.makeText(BlueToothInfoActivity.this, "Please Enable the bluetooth",
-                    Toast.LENGTH_SHORT).show();
-            iv_eet.setAlpha(opacity);
-            iv_steh.setAlpha(opacity);
-            iv_bp.setAlpha(opacity);
-            iv_fetal.setAlpha(opacity);
-            iv_bgm.setAlpha(opacity);
+    @Override
+    protected void onCreation() {
+        {
+            setContentView(R.layout.bluetooth_info_layout);
+            if (getActionBar() != null) {
+                getActionBar().setTitle("Vital Information");
+            }
+            Bundle extras = getIntent().getExtras();
+            if (extras != null && extras.containsKey(AllConstants.ENTITY_ID) && extras.containsKey(AllConstants.INSTANCE_ID_PARAM)) {
+                entityId = extras.getString(AllConstants.ENTITY_ID, "");
+                instanceId = extras.getString(AllConstants.INSTANCE_ID_PARAM, "");
+                formName = extras.getString(AllConstants.FORM_NAME_PARAM, "");
 
-            iv_bgm.setEnabled(false);
-            iv_fetal.setEnabled(false);
-            iv_eet.setEnabled(false);
-            iv_steh.setEnabled(false);
-            iv_bp.setEnabled(false);
-        } else {
-            iv_bgm.setEnabled(true);
-            iv_fetal.setEnabled(true);
-            iv_eet.setEnabled(true);
-            iv_steh.setEnabled(true);
-            iv_bp.setEnabled(true);
+                iv_eet = (ImageView) findViewById(R.id.iv_eet);
+                iv_bgm = (ImageView) findViewById(R.id.iv_bgm);
+                iv_fetal = (ImageView) findViewById(R.id.iv_fetal);
+                iv_bp = (ImageView) findViewById(R.id.iv_bp);
+                iv_steh = (ImageView) findViewById(R.id.iv_steh);
+                ib_play = (ImageButton) findViewById(R.id.ib_play);
+                ib_record = (ImageButton) findViewById(R.id.ib_record);
+                tv_fetal = (TextView) findViewById(R.id.tv_fetal);
+                ll_fetal_data = (LinearLayout) findViewById(R.id.ll_fetal_data);
+                iv_poc = (ImageView) findViewById(R.id.iv_poc);
+
+                et_bp_heart = (EditText) findViewById(R.id.et_bp_heart);
+                et_bgm = (EditText) findViewById(R.id.et_bgm);
+                et_bp_sys = (EditText) findViewById(R.id.et_bp_sys);
+                et_bp_dia = (EditText) findViewById(R.id.et_bp_dia);
+                et_fetal = (EditText) findViewById(R.id.et_fetal);
+//            et_steh = (EditText) findViewById(R.id.et_steh);
+                et_eet = (EditText) findViewById(R.id.et_eet);
+                tv_eet_cen = (TextView) findViewById(R.id.tv_eet_cen);
+
+                bt_save = (org.ei.telemedicine.view.customControls.CustomFontTextView) findViewById(R.id.bt_info_save);
+                if (formName.equals(AllConstants.FormNames.PNC_VISIT)) {
+                    iv_fetal.setVisibility(View.GONE);
+                    et_fetal.setVisibility(View.GONE);
+                    ll_fetal_data.setVisibility(View.GONE);
+                    tv_fetal.setVisibility(View.GONE);
+                }
+
+                iv_eet.setOnClickListener(this);
+                iv_fetal.setOnClickListener(this);
+                iv_steh.setOnClickListener(this);
+                iv_bgm.setOnClickListener(this);
+                iv_bp.setOnClickListener(this);
+                bt_save.setOnClickListener(this);
+                ib_play.setOnClickListener(this);
+                ib_record.setOnClickListener(this);
+                iv_poc.setOnClickListener(this);
+                File file = new File(getFilePath());
+                if (file.exists()) {
+                    ib_play.setVisibility(View.VISIBLE);
+                }
+
+                progressDialog = new ProgressDialog(BlueToothInfoActivity.this);
+                progressDialog.setTitle("Device Connecting");
+                bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+                if (bluetoothAdapter != null) {
+                    IntentFilter intent = new IntentFilter();
+                    intent.addAction(BluetoothDevice.ACTION_FOUND);
+                    intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+                    intent.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
+                    intent.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+                    registerReceiver(searchDevices, intent);
+
+                }
+
+            }
+
         }
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.bluetooth_info_layout);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null && extras.containsKey(AllConstants.ENTITY_ID) && extras.containsKey(AllConstants.INSTANCE_ID_PARAM)) {
-            entityId = extras.getString(AllConstants.ENTITY_ID, "");
-            instanceId = extras.getString(AllConstants.INSTANCE_ID_PARAM, "");
-            formName = extras.getString(AllConstants.FORM_NAME_PARAM, "");
-
-            iv_eet = (ImageView) findViewById(R.id.iv_eet);
-            iv_bgm = (ImageView) findViewById(R.id.iv_bgm);
-            iv_fetal = (ImageView) findViewById(R.id.iv_fetal);
-            iv_bp = (ImageView) findViewById(R.id.iv_bp);
-            iv_steh = (ImageView) findViewById(R.id.iv_steh);
-            ib_play = (ImageButton) findViewById(R.id.ib_play);
-            ib_record = (ImageButton) findViewById(R.id.ib_record);
-            tv_fetal = (TextView) findViewById(R.id.tv_fetal);
-            ll_fetal_data = (LinearLayout) findViewById(R.id.ll_fetal_data);
-            iv_poc = (ImageView) findViewById(R.id.iv_poc);
-
-            et_bp_heart = (EditText) findViewById(R.id.et_bp_heart);
-            et_bgm = (EditText) findViewById(R.id.et_bgm);
-            et_bp_sys = (EditText) findViewById(R.id.et_bp_sys);
-            et_bp_dia = (EditText) findViewById(R.id.et_bp_dia);
-            et_fetal = (EditText) findViewById(R.id.et_fetal);
-//            et_steh = (EditText) findViewById(R.id.et_steh);
-            et_eet = (EditText) findViewById(R.id.et_eet);
-            tv_eet_cen = (TextView) findViewById(R.id.tv_eet_cen);
-
-            bt_save = (org.ei.telemedicine.view.customControls.CustomFontTextView) findViewById(R.id.bt_info_save);
-            if (formName.equals(AllConstants.FormNames.PNC_VISIT)) {
-                iv_fetal.setVisibility(View.GONE);
-                et_fetal.setVisibility(View.GONE);
-                ll_fetal_data.setVisibility(View.GONE);
-                tv_fetal.setVisibility(View.GONE);
-            }
-
-            iv_eet.setOnClickListener(this);
-            iv_fetal.setOnClickListener(this);
-            iv_steh.setOnClickListener(this);
-            iv_bgm.setOnClickListener(this);
-            iv_bp.setOnClickListener(this);
-            bt_save.setOnClickListener(this);
-            ib_play.setOnClickListener(this);
-            ib_record.setOnClickListener(this);
-            iv_poc.setOnClickListener(this);
-            File file = new File(getFilePath());
-            if (file.exists()) {
-                ib_play.setVisibility(View.VISIBLE);
-            }
-
-            progressDialog = new ProgressDialog(BlueToothInfoActivity.this);
-            progressDialog.setTitle("Device Connecting");
-            bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-            if (!bluetoothAdapter.isEnabled()) {
-                bluetoothAdapter.enable();
-            }
-            if (bluetoothAdapter != null) {
-                IntentFilter intent = new IntentFilter();
-                intent.addAction(BluetoothDevice.ACTION_FOUND);
-                intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-                intent.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
-                intent.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
-                registerReceiver(searchDevices, intent);
-
-            }
-
-        }
-    }
-
-    // For Testing
-    String metaData;
-
-    public void showForm(String entityId) {
-        String str = null;
-        this.metaData = null;
-        Intent intent = new Intent(this, FormActivity.class);
-        intent.putExtra(AllConstants.FORM_NAME_PARAM, AllConstants.FormNames.ANC_VISIT_EDIT);
-        intent.putExtra(AllConstants.ENTITY_ID_PARAM, entityId);
-        addFieldOverridesIfExist(intent);
-        startActivityForResult(intent, AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE);
-    }
-
-    private void addFieldOverridesIfExist(Intent intent) {
-        if (hasMetadata()) {
-            Map<String, String> metaDataMap = new Gson().fromJson(
-                    this.metaData, new TypeToken<Map<String, String>>() {
-                    }.getType());
-            if (metaDataMap.containsKey(AllConstants.FIELD_OVERRIDES_PARAM)) {
-                intent.putExtra(AllConstants.FIELD_OVERRIDES_PARAM,
-                        metaDataMap.get(AllConstants.FIELD_OVERRIDES_PARAM));
-            }
-        }
+    protected void onResumption() {
+//        if (bluetoothAdapter != null && bluetoothAdapter.getState() == BluetoothAdapter.STATE_OFF) {
+//            Toast.makeText(BlueToothInfoActivity.this, "Please Enable the bluetooth",
+//                    Toast.LENGTH_SHORT).show();
+//            iv_eet.setAlpha(opacity);
+//            iv_steh.setAlpha(opacity);
+//            iv_bp.setAlpha(opacity);
+//            iv_fetal.setAlpha(opacity);
+//            iv_bgm.setAlpha(opacity);
+//
+//            iv_bgm.setEnabled(false);
+//            iv_fetal.setEnabled(false);
+//            iv_eet.setEnabled(false);
+//            iv_steh.setEnabled(false);
+//            iv_bp.setEnabled(false);
+//        } else {
+//            iv_bgm.setEnabled(true);
+//            iv_fetal.setEnabled(true);
+//            iv_eet.setEnabled(true);
+//            iv_steh.setEnabled(true);
+//            iv_bp.setEnabled(true);
+//        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (isSuccessfulFormSubmission(resultCode)) {
-            Log.i("", "Form successfully saved. MetaData: " + metaData);
-            if (hasMetadata()) {
-                Map<String, String> metaDataMap = new Gson().fromJson(metaData,
-                        new TypeToken<Map<String, String>>() {
-                        }.getType());
-                if (metaDataMap.containsKey(AllConstants.ENTITY_ID)
-                        && metaDataMap.containsKey(AllConstants.ALERT_NAME_PARAM)) {
-                    org.ei.telemedicine.Context.getInstance()
-                            .alertService()
-                            .changeAlertStatusToInProcess(
-                                    metaDataMap.get(AllConstants.ENTITY_ID),
-                                    metaDataMap.get(AllConstants.ALERT_NAME_PARAM));
-                }
-            }
-        } else if (resultCode == DRUGS_INFO_RESULT_CODE) {
+        if (resultCode == DRUGS_INFO_RESULT_CODE) {
             Log.e("drugs", data.getExtras().getString(DRUGS));
             anmPocInfo = data.getExtras().getString(DRUGS);
         }
     }
 
-    private boolean isSuccessfulFormSubmission(int resultCode) {
-        return resultCode == AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
-    }
-
-    private boolean hasMetadata() {
-        return this.metaData != null
-                && !this.metaData.equalsIgnoreCase("undefined");
-    }
-    // For Opening form
-
 
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
-        showForm(entityId);
-        Toast.makeText(BlueToothInfoActivity.this, "Must Save bluetooth Information", Toast.LENGTH_SHORT).show();
+        startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, null);
     }
-
 
     private BroadcastReceiver searchDevices = new BroadcastReceiver() {
 
@@ -400,7 +359,7 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
                             Constants.BLOOD_DEVICE_NUM);
                 }
             } else {
-                Toast.makeText(BlueToothInfoActivity.this, "No Device", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(BlueToothInfoActivity.this, "No Device", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -443,15 +402,27 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
                 startActivityForResult(new Intent(this, NativeANMPlanofCareActivity.class), DRUGS_INFO_RESULT_CODE);
                 break;
             case R.id.bt_info_save:
-                try {
-                    unregisterReceiver(searchDevices);
-                    saveDevicesData(entityId);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                    Log.e("Exception", "UnSupported Encoding Exception");
-                }
+                if (et_bp_dia.getText().toString().equals("") && et_bp_sys.getText().toString().equals("") && et_eet.getText().toString().equals("") && et_fetal.getText().toString().equals("") && et_bgm.getText().toString().equals(""))
+                    new AlertDialog.Builder(this).setTitle("Do you want save with out vital reading?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            try {
+                                unregisterReceiver(searchDevices);
+                                saveDevicesData(entityId);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                                Log.e("Exception", "UnSupported Encoding Exception");
+                            }
+                        }
+                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    }).show();
+
+
                 break;
             case R.id.ib_play:
                 startPlaying();
@@ -616,6 +587,15 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
         Vector<Integer> _ver = BPBuf.m_buf;
         for (int i = 0; i < _ver.size(); i++) {
             Log.i("........", Integer.toHexString(_ver.get(i) & 0xFF));
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (bluetoothAdapter != null & bluetoothAdapter.isEnabled()) {
+            bluetoothAdapter.cancelDiscovery();
+            bluetoothAdapter.disable();
         }
     }
 

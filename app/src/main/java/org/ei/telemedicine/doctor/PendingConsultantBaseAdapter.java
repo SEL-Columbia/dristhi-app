@@ -30,6 +30,7 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.*;
  */
 public class PendingConsultantBaseAdapter extends BaseAdapter {
     List<DoctorData> consultantsList;
+    List<DoctorData> remainingList;
     List<DoctorData> searchconsultantsList;
     Context context;
     private String TAG = "PendingConsultantBaseAdapter";
@@ -38,6 +39,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         this.context = context;
         this.consultantsList = consultantsList;
         this.searchconsultantsList = new ArrayList<DoctorData>();
+        this.remainingList = new ArrayList<DoctorData>();
         this.searchconsultantsList.addAll(NativeDoctorActivity.doctorDataArrayList);
     }
 
@@ -60,7 +62,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
     private class ViewHolder {
 
         org.ei.telemedicine.view.customControls.CustomFontTextView tv_wife_name, tv_husband_name, tv_village_name, tv_id_no, tv_visit_type, tv_poc_pending, tv_status, tv_wife_age, tv_status2;
-        ImageView iv_profile;
+        ImageView iv_profile, iv_hr;
         ImageButton ib_btn_edit;
         LinearLayout ll_clients_header_layout;
     }
@@ -82,6 +84,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         viewHolder.tv_status = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_status1);
         viewHolder.tv_status2 = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_status2);
         viewHolder.iv_profile = (ImageView) convertView.findViewById(R.id.iv_profile);
+        viewHolder.iv_hr = (ImageView) convertView.findViewById(R.id.iv_hr);
         viewHolder.ib_btn_edit = (ImageButton) convertView.findViewById(R.id.btn_edit);
 
         final String formData = consultantsList.get(position).getFormInformation();
@@ -100,7 +103,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         viewHolder.ll_clients_header_layout.setBackgroundColor(Color.parseColor((pocPendingInfo.length() != 0 && !pocPendingInfo.equals("")) ? "#c0c0c0" : "#FFFFFF"));
         Drawable imgae = null;
         String data = getData(visit_type, formData);
-
+        viewHolder.iv_hr.setVisibility(getData(isHighRisk, formData).equalsIgnoreCase("yes") ? View.VISIBLE : View.GONE);
         switch (getData(visit_type, formData)) {
             case ancvisit:
                 viewHolder.tv_wife_name.setText(getData(wife_name, formData));
@@ -119,8 +122,8 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
             case childVisit:
                 viewHolder.tv_wife_name.setText("B/o " + getData(wife_name, formData));
                 imgae = context.getResources().getDrawable(R.drawable.child_boy_infant);
-                viewHolder.tv_status.setText("Place : " + getData(child_report_child_disease_place, formData));
-                viewHolder.tv_status2.setText("Date :" + getData(child_report_child_disease_date, formData));
+                viewHolder.tv_status.setText(!getData(child_report_child_disease_place, formData).equals("") ? "Place : " + getData(child_report_child_disease_place, formData) : "");
+                viewHolder.tv_status2.setText(!getData(child_report_child_disease_date, formData).equals("") ? "Date :" + getData(child_report_child_disease_date, formData) : "");
 //                viewHolder.tv_status.setText("Place: " + getData(child_report_child_disease_place, formData) + "\n Date:" + getData(child_report_child_disease_date, formData));
                 break;
 
@@ -212,13 +215,6 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
 
     public void sort(String sortingOption) {
         switch (sortingOption) {
-            case sorting_name:
-                consultantsList.clear();
-                for (DoctorData doctorData : searchconsultantsList) {
-                    consultantsList.add(doctorData);
-                }
-                Collections.sort(consultantsList, DoctorData.womanNameComparator);
-                break;
             case sorting_anc:
                 consultantsList.clear();
                 for (DoctorData doctorData : searchconsultantsList) {
@@ -228,6 +224,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
                     }
                 }
                 Collections.sort(consultantsList, DoctorData.womanNameComparator);
+//                consultantsList.addAll(remainingList);
                 break;
             case sorting_pnc:
                 consultantsList.clear();
@@ -238,6 +235,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
                     }
                 }
                 Collections.sort(consultantsList, DoctorData.womanNameComparator);
+//                consultantsList.addAll(remainingList);
                 break;
             case sorting_child:
                 consultantsList.clear();
@@ -248,17 +246,25 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
                     }
                 }
                 Collections.sort(consultantsList, DoctorData.womanNameComparator);
+//                consultantsList.addAll(remainingList);
                 break;
-            default:
+            case sorting_hr:
                 consultantsList.clear();
                 for (DoctorData doctorData : searchconsultantsList) {
-                    String visitType = getData(visit_type, doctorData.getFormInformation());
-                    if (visitType != null && visitType.toLowerCase(Locale.getDefault()).contains("hr")) {
+                    String isHighRisk = getData(DoctorFormDataConstants.isHighRisk, doctorData.getFormInformation());
+                    if (isHighRisk != null && isHighRisk.equalsIgnoreCase("yes")) {
                         consultantsList.add(doctorData);
                     }
                 }
                 Collections.sort(consultantsList, DoctorData.womanNameComparator);
-
+//                consultantsList.addAll(remainingList);
+                break;
+            default:
+                consultantsList.clear();
+                for (DoctorData doctorData : searchconsultantsList) {
+                    consultantsList.add(doctorData);
+                }
+                Collections.sort(consultantsList, DoctorData.womanNameComparator);
                 break;
         }
 

@@ -121,7 +121,15 @@ public abstract class SecuredActivity extends Activity {
         launchForm(formName, entityId, metaData, FormActivity.class);
     }
 
+    public void viewPOCActivity(String visitType, String entityId) {
+        Intent intent = new Intent(this, ViewPlanOfCareActivity.class);
+        intent.putExtra(ENTITY_ID, entityId);
+        intent.putExtra(VISIT_TYPE, visitType);
+        startActivity(intent);
+    }
+
     public void startFormActivity(String formName, String entityId, String metaData, boolean isViewForm) {
+        Log.e("View Form Entity Id", entityId);
         viewForm(formName, entityId, metaData, FormActivity.class, isViewForm);
     }
 
@@ -134,7 +142,6 @@ public abstract class SecuredActivity extends Activity {
         intent.putExtra(VIEW_FORM, true);
         addFieldOverridesIfExist(intent);
         startActivity(intent);
-
     }
 
     public void startMicroFormActivity(String formName, String entityId, String metaData) {
@@ -143,6 +150,7 @@ public abstract class SecuredActivity extends Activity {
 
     private void launchForm(String formName, String entityId, String metaData, Class formType) {
         this.metaData = metaData;
+        Log.e("Launching form", formName + "===" + entityId);
 
         Intent intent = new Intent(this, formType);
         intent.putExtra(FORM_NAME_PARAM, formName);
@@ -191,6 +199,7 @@ public abstract class SecuredActivity extends Activity {
         intent.putExtra(ENTITY_ID, entityId);
         intent.putExtra(INSTANCE_ID_PARAM, instanceId);
         intent.putExtra(FORM_NAME_PARAM, formName);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         startActivity(intent);
 
     }

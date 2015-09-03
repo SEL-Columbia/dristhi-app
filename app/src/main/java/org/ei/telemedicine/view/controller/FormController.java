@@ -13,6 +13,10 @@ public class FormController {
         activity.startFormActivity(formName, entityId, metaData);
     }
 
+    public void viewPOCActivity(String visitType, String entityId) {
+        activity.viewPOCActivity(visitType, entityId);
+    }
+
     public void viewFormActivity(String formName, String entityId, String metaData, Boolean isFormView) {
         activity.startFormActivity(formName, entityId, metaData, isFormView);
     }

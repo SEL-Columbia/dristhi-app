@@ -10,6 +10,9 @@
         android:id="@+id/hb_test"
         android:title="Hb Test" />
     <item
+        android:id="@+id/view_poc_anc"
+        android:title="View Plan Of Care" />
+    <item
         android:id="@+id/ifa"
         android:title="IFA" />
     <item
