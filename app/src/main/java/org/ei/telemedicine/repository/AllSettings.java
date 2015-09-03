@@ -14,6 +14,8 @@ public class AllSettings {
     private static final String ANM_LOCATION = "anmLocation";
     private static final String ANM_DRUGS = "anmDrugs";
     private static final String ANM_CONFIG = "anmConfiguration";
+    private static final String ANM_COUNTRY_CODE = "anmCountryCode";
+    private static final String FORM_FIELDS = "formFieldLabels";
     private AllSharedPreferences preferences;
     private SettingsRepository settingsRepository;
 
@@ -69,10 +71,12 @@ public class AllSettings {
         settingsRepository.updateSetting(ANM_LOCATION, anmLocation);
     }
 
-    public void saveANMInfo(String anmLocation, String anmDrugs, String anmConfig) {
+    public void saveANMInfo(String anmLocation, String anmDrugs, String anmConfig, String countryCode, String formFields) {
         settingsRepository.updateSetting(ANM_LOCATION, anmLocation);
         settingsRepository.updateSetting(ANM_DRUGS, anmDrugs);
         settingsRepository.updateSetting(ANM_CONFIG, anmConfig);
+        settingsRepository.updateSetting(ANM_COUNTRY_CODE, countryCode);
+        settingsRepository.updateSetting(FORM_FIELDS, formFields);
     }
 
     public String fetchANMLocation() {
@@ -82,6 +86,28 @@ public class AllSettings {
 
     public String fetchDrugs() {
         return settingsRepository.querySetting(ANM_DRUGS, "");
+    }
+
+    public String fetchCountryCode() {
+        return settingsRepository.querySetting(ANM_COUNTRY_CODE, "");
+    }
+
+    public String fetchFieldLabels(String regType) {
+        String fieldsData = settingsRepository.querySetting(FORM_FIELDS, "");
+        if (fieldsData != null && !fieldsData.equals("")) {
+            try {
+                JSONArray fieldsArray = new JSONArray(fieldsData);
+                for (int i = 0; i < fieldsArray.length(); i++) {
+                    JSONObject fieldsJson = fieldsArray.getJSONObject(i);
+                    if (fieldsJson.has(regType)) {
+                        return fieldsJson.getJSONArray(regType).toString();
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return "";
     }
 
     public String fetchANMConfiguration(String configKey) {

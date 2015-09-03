@@ -34,6 +34,7 @@ import org.ei.telemedicine.view.dialog.NameSort;
 import org.ei.telemedicine.view.dialog.OpenFormOption;
 import org.ei.telemedicine.view.dialog.ServiceModeOption;
 import org.ei.telemedicine.view.dialog.SortOption;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -151,6 +152,13 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         String locationJSON = context.anmLocationController().getFormInfoJSON();
         JSONObject formData = new JSONObject(locationJSON);
         formData.put("village", village);
+        String customFields = context.allSettings().fetchFieldLabels("ECRegistration");
+        if (customFields != null) {
+            JSONArray customFieldsArray = new JSONArray(customFields);
+            for (int i = 0; i < customFieldsArray.length(); i++) {
+                formData.put("field" + (i + 1), customFieldsArray.getString(i));
+            }
+        }
         //        locations.put("ecNumber", context.allSharedPreferences().fetchRegisteredANM() + "-" + System.currentTimeMillis());
         FieldOverrides fieldOverrides = new FieldOverrides(formData.toString());
         startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());

@@ -45,13 +45,16 @@
             <husband_age />
 
             <husband_name />
+            <ph_no />
             <phone_no />
             <phone_owner />
             <phone_no2 />
             <phone_owner2 />
             <religion />
 
-            <phone />
+            <phone_num />
+            <phone_num2 />
+            <country_code />
 
             <anc_number1 />
             <anc_number />
@@ -98,6 +101,33 @@
             <num_days_since_lmp />
             <num_weeks />
             <birth_plan_message />
+
+            <field1 />
+            <field1_group>
+                <field1_val />
+            </field1_group>
+
+            <field2 />
+            <field2_group>
+                <field2_val />
+            </field2_group>
+
+            <field3 />
+            <field3_group>
+                <field3_val />
+            </field3_group>
+
+            <field4 />
+            <field4_group>
+                <field4_val />
+            </field4_group>
+
+            <field5 />
+            <field5_group>
+                <field5_val />
+            </field5_group>
+
+
             <meta>
                 <instanceID />
             </meta>

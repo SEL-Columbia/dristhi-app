@@ -37,7 +37,7 @@ public class ANMLocationController {
         return cache.get(ANM_LOCATION_JSON, new CacheableData<String>() {
             @Override
             public String fetch() {
-                return new Gson().fromJson(allSettings.fetchANMLocation(), ANMLocation.class).asJSONString(allSettings.fetchANMPassword(), allSettings.fetchANMConfiguration(WIFE_MIN_AGE), allSettings.fetchANMConfiguration(WIFE_MAX_AGE), allSettings.fetchANMConfiguration(HUSBAND_MIN_AGE), allSettings.fetchANMConfiguration(HUSBAND_MAX_AGE));
+                return new Gson().fromJson(allSettings.fetchANMLocation(), ANMLocation.class).asJSONString(allSettings.fetchANMPassword(), allSettings.fetchANMConfiguration(WIFE_MIN_AGE), allSettings.fetchANMConfiguration(WIFE_MAX_AGE), allSettings.fetchANMConfiguration(HUSBAND_MIN_AGE), allSettings.fetchANMConfiguration(HUSBAND_MAX_AGE), allSettings.fetchCountryCode());
 
             }
         });

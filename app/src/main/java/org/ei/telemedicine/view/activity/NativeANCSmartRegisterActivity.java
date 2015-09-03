@@ -43,6 +43,7 @@ import org.ei.telemedicine.view.dialog.OutOfAreaFilter;
 import org.ei.telemedicine.view.dialog.ServiceModeOption;
 import org.ei.telemedicine.view.dialog.SortOption;
 import org.ei.telemedicine.view.dialog.TTServiceMode;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -138,7 +139,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_register_anc_visit_form), ANC_VISIT, formController),
-                new OpenFormOption("ANC Visit Edit", ANC_VISIT_EDIT, formController),
+//                new OpenFormOption("ANC Visit Edit", ANC_VISIT_EDIT, formController),
                 new OpenFormOption(getString(R.string.str_register_hb_test_form), HB_TEST, formController),
                 new OpenFormOption(getString(R.string.str_register_ifa_form), IFA, formController),
                 new OpenFormOption(getString(R.string.str_register_tt_form), TT, formController),
@@ -172,9 +173,16 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     @Override
     protected void startRegistration(String village) throws JSONException {
         String locationJSON = context.anmLocationController().getFormInfoJSON();
-        JSONObject locations = new JSONObject(locationJSON);
-        locations.put("village", village);
-        FieldOverrides fieldOverrides = new FieldOverrides(locations.toString());
+        JSONObject jsonFormInfo = new JSONObject(locationJSON);
+        jsonFormInfo.put("village", village);
+        String customFields = context.allSettings().fetchFieldLabels("ANCRegistration");
+        if (customFields != null) {
+            JSONArray customFieldsArray = new JSONArray(customFields);
+            for (int i = 0; i < customFieldsArray.length(); i++) {
+                jsonFormInfo.put("field" + (i + 1), customFieldsArray.getString(i));
+            }
+        }
+        FieldOverrides fieldOverrides = new FieldOverrides(jsonFormInfo.toString());
         Log.e("Json", fieldOverrides.getJSONString());
         startFormActivity(AllConstants.FormNames.ANC_REGISTRATION_OA, null, fieldOverrides.getJSONString());
     }

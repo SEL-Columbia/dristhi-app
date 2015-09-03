@@ -34,6 +34,7 @@ import org.ei.telemedicine.view.dialog.PNCOverviewServiceMode;
 import org.ei.telemedicine.view.dialog.PNCVisitsServiceMode;
 import org.ei.telemedicine.view.dialog.ServiceModeOption;
 import org.ei.telemedicine.view.dialog.SortOption;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -151,10 +152,16 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     @Override
     protected void startRegistration(String village) throws JSONException {
         String locationJSON = context.anmLocationController().getFormInfoJSON();
-        JSONObject locations = new JSONObject(locationJSON);
-        locations.put("village", village);
-        locations.put("validAge", 18);
-        FieldOverrides fieldOverrides = new FieldOverrides(locations.toString());
+        JSONObject jsonFormInfo = new JSONObject(locationJSON);
+        jsonFormInfo.put("village", village);
+        String customFields = context.allSettings().fetchFieldLabels("PNCRegistration");
+        if (customFields != null) {
+            JSONArray customFieldsArray = new JSONArray(customFields);
+            for (int i = 0; i < customFieldsArray.length(); i++) {
+                jsonFormInfo.put("field" + (i + 1), customFieldsArray.getString(i));
+            }
+        }
+        FieldOverrides fieldOverrides = new FieldOverrides(jsonFormInfo.toString());
         startFormActivity(PNC_REGISTRATION_OA, null, fieldOverrides.getJSONString());
     }
 

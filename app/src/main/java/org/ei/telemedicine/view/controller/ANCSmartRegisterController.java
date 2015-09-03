@@ -144,7 +144,9 @@ public class ANCSmartRegisterController {
         sort(ancClients, new Comparator<SmartRegisterClient>() {
             @Override
             public int compare(SmartRegisterClient oneANCClient, SmartRegisterClient anotherANCClient) {
-                return oneANCClient.wifeName().compareToIgnoreCase(anotherANCClient.wifeName());
+                if (oneANCClient.wifeName() != null && anotherANCClient.wifeName() != null)
+                    return oneANCClient.wifeName().compareToIgnoreCase(anotherANCClient.wifeName());
+                return -1;
             }
         });
     }

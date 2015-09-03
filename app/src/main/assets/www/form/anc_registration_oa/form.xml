@@ -10,7 +10,7 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">District:
         </span>
-        <input name="/ANC_Registration_OA_EngKan/district" autocomplete="off" data-type-xml="string"
+        <input name="/ANC_Registration_OA_EngKan/field1" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
     </label>
 
@@ -107,8 +107,6 @@
 
     <label class="question non-select ">
         <span class="question-label active" lang="">Husband's age</span>
-
-
         <input name="/ANC_Registration_OA_EngKan/husband_age"
             data-constraint=".&gt;=/ANC_Registration_OA_EngKan/husband_min_age and .&lt;=/ANC_Registration_OA_EngKan/husband_max_age"
             data-type-xml="int" type="number" />
@@ -117,9 +115,10 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">Contact phone number
         </span>
+        <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/phone_no"
             data-constraint=".&gt; 99999999 and .&lt; 10000000000000 " data-type-xml="int"
-            type="number" />
+            required="required" type="number" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
@@ -736,6 +735,58 @@
             </div>
         </fieldset>
     </fieldset>
+
+    <section name="/ANC_Registration_OA_EngKan/field1_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /ANC_Registration_OA_EngKan/field1  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/ANC_Registration_OA_EngKan/field1" />
+            <input name="/ANC_Registration_OA_EngKan/field1_group/field1_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/ANC_Registration_OA_EngKan/field2_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /ANC_Registration_OA_EngKan/field2  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/ANC_Registration_OA_EngKan/field2" />
+            <input name="/ANC_Registration_OA_EngKan/field2_group/field2_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/ANC_Registration_OA_EngKan/field3_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /ANC_Registration_OA_EngKan/field3  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/ANC_Registration_OA_EngKan/field3" />
+            <input name="/ANC_Registration_OA_EngKan/field3_group/field3_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/ANC_Registration_OA_EngKan/field4_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /ANC_Registration_OA_EngKan/field4  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/ANC_Registration_OA_EngKan/field4" />
+            <input name="/ANC_Registration_OA_EngKan/field4_group/field4_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/ANC_Registration_OA_EngKan/field5_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /ANC_Registration_OA_EngKan/field5  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/ANC_Registration_OA_EngKan/field5" />
+            <input name="/ANC_Registration_OA_EngKan/field5_group/field5_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">
             <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/woman_name "></span>is
@@ -757,6 +808,17 @@
         </label>
     </fieldset>
     <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_OA_EngKan/phone_num" autocomplete="off"
+                data-calculate="concat( /ANC_Registration_OA_EngKan/country_code, /ANC_Registration_OA_EngKan/phone_no)"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_OA_EngKan/phone_num2" autocomplete="off"
+                data-calculate="concat( /ANC_Registration_OA_EngKan/country_code, /ANC_Registration_OA_EngKan/phone_no2)"
+                data-type-xml="string" type="hidden" />
+        </label>
+
         <label class="calculation non-select ">
             <input name="/ANC_Registration_OA_EngKan/wife_age" autocomplete="off"
                 data-calculate="if( /ANC_Registration_OA_EngKan/wife_dob  = '', '', int(( /ANC_Registration_OA_EngKan/today  -  /ANC_Registration_OA_EngKan/wife_dob) div 365))"

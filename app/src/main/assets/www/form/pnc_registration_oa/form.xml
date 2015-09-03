@@ -704,6 +704,55 @@
             </div>
         </fieldset>
     </fieldset>
+    <section name="/PNC_Child_Registration_EngKan/field1_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /PNC_Child_Registration_EngKan/field1  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/PNC_Child_Registration_EngKan/field1" />
+            <input name="/PNC_Child_Registration_EngKan/field1_group/field1_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/PNC_Child_Registration_EngKan/field2_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /PNC_Child_Registration_EngKan/field2  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/PNC_Child_Registration_EngKan/field2" />
+            <input name="/PNC_Child_Registration_EngKan/field2_group/field2_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/PNC_Child_Registration_EngKan/field3_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /PNC_Child_Registration_EngKan/field3  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/PNC_Child_Registration_EngKan/field3" />
+            <input name="/PNC_Child_Registration_EngKan/field3_group/field3_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/PNC_Child_Registration_EngKan/field4_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /PNC_Child_Registration_EngKan/field4  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/PNC_Child_Registration_EngKan/field4" />
+            <input name="/PNC_Child_Registration_EngKan/field4_group/field4_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/PNC_Child_Registration_EngKan/field5_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /PNC_Child_Registration_EngKan/field5  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/PNC_Child_Registration_EngKan/field5" />
+            <input name="/PNC_Child_Registration_EngKan/field5_group/field5_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
 
     <fieldset style="display:none;" id="or-preload-items">
         <label class="calculation non-select ">
@@ -712,6 +761,14 @@
         </label>
     </fieldset>
     <fieldset style="display:none;" id="or-calculated-items">
+
+        <label class="calculation non-select ">
+            <input name="/PNC_Child_Registration_EngKan/phone_num" autocomplete="off"
+                data-calculate="concat( /PNC_Child_Registration_EngKan/country_code, /PNC_Child_Registration_EngKan/phone_no)"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+
         <label class="calculation non-select ">
             <input name="/PNC_Child_Registration_EngKan/woman_date_of_birth" autocomplete="off"
                 data-calculate="format-date(date( /PNC_Child_Registration_EngKan/today -( /PNC_Child_Registration_EngKan/wife_age *365.25)), '%Y-%n-%e')"

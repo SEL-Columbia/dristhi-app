@@ -31,6 +31,7 @@ import org.ei.telemedicine.view.dialog.OpenFormOption;
 import org.ei.telemedicine.view.dialog.OutOfAreaFilter;
 import org.ei.telemedicine.view.dialog.ServiceModeOption;
 import org.ei.telemedicine.view.dialog.SortOption;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -152,10 +153,16 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
     @Override
     protected void startRegistration(String village) throws JSONException {
         String locationJSON = context.anmLocationController().getFormInfoJSON();
-        JSONObject locations = new JSONObject(locationJSON);
-        locations.put("village", village);
-        locations.put("validAge", 18);
-        FieldOverrides fieldOverrides = new FieldOverrides(locations.toString());
+        JSONObject jsonFormInfo = new JSONObject(locationJSON);
+        jsonFormInfo.put("village", village);
+        String customFields = context.allSettings().fetchFieldLabels("ChildRegistration");
+        if (customFields != null) {
+            JSONArray customFieldsArray = new JSONArray(customFields);
+            for (int i = 0; i < customFieldsArray.length(); i++) {
+                jsonFormInfo.put("field" + (i + 1), customFieldsArray.getString(i));
+            }
+        }
+        FieldOverrides fieldOverrides = new FieldOverrides(jsonFormInfo.toString());
         startFormActivity(AllConstants.FormNames.CHILD_REGISTRATION_OA, null, fieldOverrides.getJSONString());
     }
 

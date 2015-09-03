@@ -84,6 +84,15 @@
       },
       {
         "name": "phoneNumber",
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/phone_num"
+      },
+      {
+        "name": "countryCode",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/country_code"
+      },
+      {
+        "name": "phoneNum",
         "bind": "/model/instance/ANC_Registration_OA_EngKan/phone_no"
       },
       {
@@ -92,7 +101,7 @@
       },
       {
         "name": "alternatePhoneNumber",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/phone_no2"
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/phone_num2"
       },
       {
         "name": "alternatePhoneOwner",
@@ -271,6 +280,51 @@
       {
         "name": "isOutOfArea",
         "value": "true"
+      },
+      {
+        "name": "field1",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/field1"
+      },
+      {
+        "name": "field1Value",
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/field1_group/field1_val"
+      },
+      {
+        "name": "field2",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/field2"
+      },
+      {
+        "name": "field2Value",
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/field2_group/field2_val"
+      },
+      {
+        "name": "field3",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/field3"
+      },
+      {
+        "name": "field3Value",
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/field3_group/field3_val"
+      },
+      {
+        "name": "field4",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/field4"
+      },
+      {
+        "name": "field4Value",
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/field4_group/field4_val"
+      },
+      {
+        "name": "field5",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/field5"
+      },
+      {
+        "name": "field5Value",
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/field5_group/field5_val"
       }
     ]
   }

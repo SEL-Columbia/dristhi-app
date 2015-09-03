@@ -80,9 +80,9 @@ public class UserService {
         loginWith(userName, password);
     }
 
-    public void remoteLogin(String userName, String password, String userRole, String anmLocation, String anmDrugs, String anmConfig) {
+    public void remoteLogin(String userName, String password, String userRole, String anmLocation, String anmDrugs, String anmConfig, String anmCountryCode, String formFields) {
         loginWithUserRole(userName, password, userRole);
-        saveANMLocationTask.save(anmLocation, anmDrugs, anmConfig);
+        saveANMLocationTask.save(anmLocation, anmDrugs, anmConfig, anmCountryCode, formFields);
     }
 
     public boolean hasARegisteredUser() {

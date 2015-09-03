@@ -111,7 +111,7 @@
       },
       {
         "name": "phoneNumber",
-        "bind": "/model/instance/EC_Registration_EngKan/phone_no"
+        "bind": "/model/instance/EC_Registration_EngKan/phone_num"
       },
       {
         "name": "phoneOwner",
@@ -119,7 +119,7 @@
       },
       {
         "name": "alternatePhoneNumber",
-        "bind": "/model/instance/EC_Registration_EngKan/phone_no2"
+        "bind": "/model/instance/EC_Registration_EngKan/phone_num2"
       },
       {
         "name": "economicStatus",
@@ -282,6 +282,51 @@
       {
         "name": "wouldBeHighRiskReason",
         "bind": "/model/instance/EC_Registration_EngKan/would_be_high_risk_reason"
+      },
+      {
+        "name": "field1",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Registration_EngKan/field1"
+      },
+      {
+        "name": "field1Value",
+        "bind": "/model/instance/EC_Registration_EngKan/field1_group/field1_val"
+      },
+      {
+        "name": "field2",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Registration_EngKan/field2"
+      },
+      {
+        "name": "field2Value",
+        "bind": "/model/instance/EC_Registration_EngKan/field2_group/field2_val"
+      },
+      {
+        "name": "field3",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Registration_EngKan/field3"
+      },
+      {
+        "name": "field3Value",
+        "bind": "/model/instance/EC_Registration_EngKan/field3_group/field3_val"
+      },
+      {
+        "name": "field4",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Registration_EngKan/field4"
+      },
+      {
+        "name": "field4Value",
+        "bind": "/model/instance/EC_Registration_EngKan/field4_group/field4_val"
+      },
+      {
+        "name": "field5",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Registration_EngKan/field5"
+      },
+      {
+        "name": "field5Value",
+        "bind": "/model/instance/EC_Registration_EngKan/field5_group/field5_val"
       }
     ]
   }

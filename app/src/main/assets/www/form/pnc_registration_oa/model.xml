@@ -16,11 +16,14 @@
             <wife_age />
             <wife_age_note />
 
+            <phone_num />
+            <country_code />
+
             <wife_min_age />
             <wife_max_age />
             <husband_min_age />
             <husband_max_age />
-            
+
             <phc />
             <sub_center />
             <district_value />
@@ -73,6 +76,34 @@
             <meta>
                 <instanceID />
             </meta>
+
+
+            <field1 />
+            <field1_group>
+                <field1_val />
+            </field1_group>
+
+            <field2 />
+            <field2_group>
+                <field2_val />
+            </field2_group>
+
+            <field3 />
+            <field3_group>
+                <field3_val />
+            </field3_group>
+
+            <field4 />
+            <field4_group>
+                <field4_val />
+            </field4_group>
+
+            <field5 />
+            <field5_group>
+                <field5_val />
+            </field5_group>
+
+
         </PNC_Child_Registration_EngKan>
     </instance>
     <instance id="delivery_outcome">

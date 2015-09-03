@@ -16,6 +16,10 @@
             <husband_min_age />
             <husband_max_age />
 
+            <phone_num />
+            <country_code />
+            <phone_num2 />
+
             <hh_number />
             <hh_address />
             <hh_head />
@@ -95,6 +99,32 @@
             <meta>
                 <instanceID />
             </meta>
+
+            <field1 />
+            <field1_group>
+                <field1_val />
+            </field1_group>
+
+            <field2 />
+            <field2_group>
+                <field2_val />
+            </field2_group>
+
+            <field3 />
+            <field3_group>
+                <field3_val />
+            </field3_group>
+
+            <field4 />
+            <field4_group>
+                <field4_val />
+            </field4_group>
+
+            <field5 />
+            <field5_group>
+                <field5_val />
+            </field5_group>
+
         </EC_Registration_EngKan>
     </instance>
     <instance id="positive_negative">
