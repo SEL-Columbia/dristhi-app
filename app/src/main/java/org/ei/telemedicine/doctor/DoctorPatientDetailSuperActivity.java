@@ -16,6 +16,7 @@ import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.event.Listener;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -125,11 +126,13 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         });
     }
 
-    public void referAnotherDoctor(String doctorId, String visitId, String entityId) {
+    public void referAnotherDoctor(String doctorId, String visitId, String entityId, final String documentId) {
         getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId, new Listener<String>() {
             @Override
             public void onEvent(String data) {
-                finish();
+                Context.getInstance().allDoctorRepository().deleteUseCaseId(documentId);
+                startActivity(new Intent(DoctorPatientDetailSuperActivity.this, NativeDoctorActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
             }
         });
 
@@ -220,6 +223,20 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getDatafromJsonArray(String jsonArrayStr) {
+        try {
+            String result = "";
+            JSONArray jsonArray = new JSONArray(jsonArrayStr);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                result = result + jsonArray.getString(i) + " ";
+            }
+            return result.trim().replace(" ", ",");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public String getDatafromJson(String jsonStr, String key) {

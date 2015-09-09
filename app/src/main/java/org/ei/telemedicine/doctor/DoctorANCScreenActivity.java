@@ -13,6 +13,8 @@ import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
 
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anmPoc;
+
 public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
     Button bt_poc, bt_doc_refer;
     ProgressDialog progressDialog;
@@ -25,7 +27,7 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
     String documentId = null, visitId = null, phoneNumber = null, entityId = null;
     ImageButton ib_play_stehoscope;
     String formData = null;
-    org.ei.telemedicine.view.customControls.CustomFontTextView tv_risks;
+    org.ei.telemedicine.view.customControls.CustomFontTextView tv_risks, tv_anm_poc;
 
     @Override
     protected String[] setDatatoViews(String formInfo) {
@@ -43,9 +45,10 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
         et_fetal.setText(getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data));
         ib_play_stehoscope.setVisibility(!getDatafromJson(formInfo, DoctorFormDataConstants.stethoscope_data).equals("") ? View.VISIBLE : View.GONE);
         tv_stehoscope_title.setVisibility(!getDatafromJson(formInfo, DoctorFormDataConstants.stethoscope_data).equals("") ? View.VISIBLE : View.GONE);
-        
+
         String risks = getDatafromJson(formInfo, DoctorFormDataConstants.risk_symptoms);
         tv_risks.setText(risks.replace(" ", ", "));
+        tv_anm_poc.setText(getDatafromJsonArray(getDatafromJson(formInfo, anmPoc)));
         return new String[]{documentId, phoneNumber};
 
     }
@@ -60,6 +63,7 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
 
         ib_play_stehoscope = (ImageButton) findViewById(R.id.ib_play_stehoscope);
         et_anc_num = (EditText) findViewById(R.id.et_anc_num);
+        tv_anm_poc = (CustomFontTextView) findViewById(R.id.tv_anm_poc);
         et_woman_name = (EditText) findViewById(R.id.et_woman_name);
         et_anc_visit_date = (EditText) findViewById(R.id.et_anc_visit_date);
         et_other_risks = (EditText) findViewById(R.id.et_other_risk_symptoms);
@@ -106,7 +110,7 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
                 getVitalsData(AllConstants.GraphFields.FETALDATA, visitId);
                 break;
             case R.id.bt_refer:
-                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId);
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId);
                 break;
         }
     }

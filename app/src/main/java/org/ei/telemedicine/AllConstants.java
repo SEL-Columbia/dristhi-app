@@ -146,7 +146,15 @@ public class AllConstants {
         public static final String FP_REFERRAL_FOLLOWUP = "fp_referral_followup";
         public static final String FP_FOLLOWUP = "fp_followup";
         //New Content
-        public static final String CUS_REG_FORMsFORMs = "cus_reg_form";
+        public static final String ANC_EDIT = "anc_edit";
+        public static final String ANC_REG_EDIT_OA = "anc_reg_edit_oa";
+        public static final String ANC_REG_EDIT = "anc_reg_edit";
+        public static final String PNC_EDIT = "pnc_edit";
+        public static final String PNC_REG_EDIT_OA = "pnc_reg_edit_oa";
+        public static final String PNC_REG_EDIT = "pnc_reg_edit";
+        public static final String CHILD_EDIT = "child_edit";
+        public static final String CHILD_REG_EDIT_OA = "child_reg_edit_oa";
+        public static final String CHILD_REG_EDIT = "child_reg_edit";
 
     }
 

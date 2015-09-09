@@ -191,7 +191,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 tv_eet_cen = (TextView) findViewById(R.id.tv_eet_cen);
 
                 bt_save = (org.ei.telemedicine.view.customControls.CustomFontTextView) findViewById(R.id.bt_info_save);
-                if (formName.equals(AllConstants.FormNames.PNC_VISIT)) {
+                if (formName.equalsIgnoreCase(AllConstants.FormNames.PNC_VISIT)) {
                     iv_fetal.setVisibility(View.GONE);
                     et_fetal.setVisibility(View.GONE);
                     ll_fetal_data.setVisibility(View.GONE);
@@ -268,7 +268,9 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
     @Override
     public void onBackPressed() {
-        startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, null);
+        if (formName.equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT))
+            startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, null);
+
     }
 
     private BroadcastReceiver searchDevices = new BroadcastReceiver() {
@@ -402,26 +404,20 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 startActivityForResult(new Intent(this, NativeANMPlanofCareActivity.class), DRUGS_INFO_RESULT_CODE);
                 break;
             case R.id.bt_info_save:
-                if (et_bp_dia.getText().toString().equals("") && et_bp_sys.getText().toString().equals("") && et_eet.getText().toString().equals("") && et_fetal.getText().toString().equals("") && et_bgm.getText().toString().equals(""))
+                if (et_bp_dia.getText().toString().equals("") && et_bp_sys.getText().toString().equals("") && et_eet.getText().toString().equals("") && et_fetal.getText().toString().equals("") && et_bgm.getText().toString().equals("")) {
                     new AlertDialog.Builder(this).setTitle("Do you want save with out vital reading?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            try {
-                                unregisterReceiver(searchDevices);
-                                saveDevicesData(entityId);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                                Log.e("Exception", "UnSupported Encoding Exception");
-                            }
+                            saveData();
                         }
                     }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                         }
                     }).show();
-
+                } else {
+                    saveData();
+                }
 
                 break;
             case R.id.ib_play:
@@ -431,6 +427,19 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
                 break;
         }
+    }
+
+    private void saveData() {
+        try {
+            unregisterReceiver(searchDevices);
+            saveDevicesData(entityId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            Log.e("Exception", "UnSupported Encoding Exception");
+        }
+
     }
 
     private void startPlaying() {

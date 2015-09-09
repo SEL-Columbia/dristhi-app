@@ -68,7 +68,7 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
                 getDrugData();
                 break;
             case R.id.bt_refer:
-                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId);
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId);
                 break;
         }
     }

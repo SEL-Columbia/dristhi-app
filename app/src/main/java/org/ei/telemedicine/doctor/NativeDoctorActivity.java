@@ -95,8 +95,6 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
     Object obj;
     private MenuItem updateMenuItem;
     private static final String DIALOG_TAG = "dialog";
-    ArrayList<String> tempList;
-    static String sort_by = "", village_name = "All";
     public static org.ei.telemedicine.view.customControls.CustomFontTextView sorted_by_name, village_name_view;
 
     private Listener<Boolean> onSyncStartListener = new Listener<Boolean>() {
@@ -191,7 +189,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
     }
 
     public void updateFromServer() {
-        allDoctorRepository.clearDataNoPoc();
+//        allDoctorRepository.clearDataNoPoc();
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
@@ -207,7 +205,6 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         initalize();
 
         doctorDataArrayList = new ArrayList<DoctorData>();
-        tempList = new ArrayList<String>();
 
 
         doctorDatas = allDoctorRepository.getAllConsultants();
@@ -248,36 +245,6 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         SYNC_COMPLETED.removeListener(onSyncCompleteListener);
         ACTION_HANDLED.removeListener(updateANMDetailsListener);
     }
-
-//    public void getData(final Listener<String> afterResult) {
-//        new AsyncTask<Void, Void, String>() {
-//
-//            @Override
-//            protected String doInBackground(Void... params) {
-//                org.ei.telemedicine.Context context = org.ei.telemedicine.Context.getInstance();
-//                String url = context.configuration().dristhiDoctorBaseURL() + "/docname=" + context.allSharedPreferences().fetchRegisteredANM() + "&pwd=" + context.allSharedPreferences().getPwd();
-//                Log.e(TAG, "Url " + url);
-//                String result = context.userService().gettingFromRemoteURL(url);
-//                return result;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(String resultData) {
-//                super.onPostExecute(resultData);
-//                afterResult.onEvent(resultData);
-//            }
-//        }.execute();
-//
-//    }
-//
-//    public String getData(String key, JSONObject formData) {
-//        if (formData != null) try {
-//            return (formData != null && formData.has(key) && formData.getString(key) != null) ? formData.getString(key) : "";
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
     public void showFragmentDialog(ArrayList<String> arrayList, String tag) {
         FragmentTransaction ft = getFragmentManager().beginTransaction();

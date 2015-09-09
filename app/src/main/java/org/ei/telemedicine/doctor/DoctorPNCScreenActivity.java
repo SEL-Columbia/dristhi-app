@@ -10,6 +10,9 @@ import android.widget.TextView;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.customControls.CustomFontTextView;
+
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anmPoc;
 
 /**
  * Created by naveen on 6/18/15.
@@ -22,6 +25,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
     Bundle bundle;
     ImageButton ib_play_stehoscope;
     private String documentId, visitId, phoneNumber, entityId = null;
+    org.ei.telemedicine.view.customControls.CustomFontTextView tv_anm_poc;
 
 
     @Override
@@ -53,6 +57,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         bt_plan_of_care.setOnClickListener(this);
         bt_doc_refer = (Button) findViewById(R.id.bt_refer);
         bt_doc_refer.setOnClickListener(this);
+        tv_anm_poc = (CustomFontTextView) findViewById(R.id.tv_anm_poc);
 
         ib_play_stehoscope.setOnClickListener(this);
         ib_bp_graph.setOnClickListener(this);
@@ -89,7 +94,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         tv_vaginal_difficulties.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_vaginal_problems));
         tv_kop_feel_hot.setText(getDatafromJson(formInfo, DoctorFormDataConstants.kopfeel_heat_or_chills));
         tv_urinating_problems.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_urinating_problems));
-
+        tv_anm_poc.setText(getDatafromJsonArray(getDatafromJson(formInfo, anmPoc)));
         return new String[]{documentId, phoneNumber};
     }
 
@@ -112,7 +117,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
                 getVitalsData(AllConstants.GraphFields.BLOODGLUCOSEDATA, visitId);
                 break;
             case R.id.bt_refer:
-                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId);
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId);
                 break;
         }
 

@@ -136,6 +136,37 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="ANM Poc"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_anm_poc"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:inputType="textMultiLine"
+                    android:maxLines="10"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:layout_marginTop="10dp"

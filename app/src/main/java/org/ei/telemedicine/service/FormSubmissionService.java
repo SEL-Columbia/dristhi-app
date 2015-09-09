@@ -30,6 +30,7 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anc_visit_date;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anc_visit_number;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.ancvisit;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anmId;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anmPoc;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.blood_glucose;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.bp_dia;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.bp_sys;
@@ -152,7 +153,7 @@ public class FormSubmissionService {
                         formData.put(visit_type, getDataFromJson("visit_type", riskJson));
                         formData.put(documentId, getDataFromJson("id", riskJson));
                         formData.put(isHighRisk, getDataFromJson("isHighRisk", riskJson));
-
+                        formData.put(anmPoc, getDataFromJson("anmPoc", riskJson));
                         String visit_typ2e = getDataFromJson("visit_type", riskJson);
                         if (getDataFromJson(visit_type, riskJson).equals(ancvisit)) {
                             formData.put(id_no, getDataFromJson("ancNumber", riskJson));

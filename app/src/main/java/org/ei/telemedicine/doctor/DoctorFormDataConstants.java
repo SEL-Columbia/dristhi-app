@@ -29,6 +29,7 @@ public interface DoctorFormDataConstants {
     public static String entityId = "entityId";
     public static String visitId = "visitId";
     public static String isHighRisk = "isHighRisk";
+    public static String anmPoc = "anmPoc";
     public static String bp_sys = "bpSys";
     public static String bp_dia = "bpDia";
     public static String temp_data = "temp";
