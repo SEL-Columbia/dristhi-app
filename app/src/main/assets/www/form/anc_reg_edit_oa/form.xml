@@ -2,7 +2,7 @@
     novalidate="novalidate">
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
-    <h3 id="form-title">ANC Registration - Out of Area</h3>
+    <h3 id="form-title">Edit ANC Registration - Out of Area</h3>
     <select style="display:none;" data-default-lang="" id="form-languages">
         <option value="">default</option>
     </select>
@@ -69,8 +69,8 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">ID Number:
         </span>
-        <input name="/ANC_Registration_OA_EngKan/id_number" autocomplete="off"
-            data-type-xml="text" type="text" />
+        <input name="/ANC_Registration_OA_EngKan/id_number" autocomplete="off" data-type-xml="text"
+            type="text" />
 
     </label>
 
@@ -107,8 +107,9 @@
 
     <label class="question non-select ">
         <span class="question-label active" lang="">Contact phone number
-        </span><span class="or-hint active" lang="">Without country code.
-    </span>
+        </span>
+        <span class="or-hint active" lang="">Without country code.
+        </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/phone_no"
             data-constraint=".&gt; 99999999 and .&lt; 10000000000000 " data-type-xml="int"

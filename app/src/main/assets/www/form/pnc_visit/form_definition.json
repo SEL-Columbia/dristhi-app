@@ -225,6 +225,10 @@
         "name": "docPocInfo",
         "value": "",
         "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/poc_info"
+      },
+      {
+        "name": "anmPoc",
+        "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/anm_poc"
       }
     ],
     "sub_forms": [

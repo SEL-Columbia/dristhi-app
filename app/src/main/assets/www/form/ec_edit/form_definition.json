@@ -58,14 +58,14 @@
         "shouldLoadValue": true
       },
       {
-        "name": "wifeIdzType",
+        "name": "wifeIdType",
         "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/woman_id_type",
         "shouldLoadValue": true
       },
       {
-        "name": "aadharNumber",
+        "name": "idNumber",
         "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/aadhaar_number",
-        "source": "eligible_couple.aadharNumber",
+        "source": "eligible_couple.idNumber",
         "shouldLoadValue": true
       },
       {

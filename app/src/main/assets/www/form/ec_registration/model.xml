@@ -10,7 +10,7 @@
             <phc />
             <village />
             <sub_center />
-
+            <id_number />
             <wife_min_age />
             <wife_max_age />
             <husband_min_age />

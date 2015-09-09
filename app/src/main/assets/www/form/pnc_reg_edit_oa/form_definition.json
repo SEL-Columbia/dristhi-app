@@ -40,14 +40,17 @@
       },
       {
         "name": "district",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/district"
       },
       {
         "name": "phc",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/phc"
       },
       {
         "name": "subCenter",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/sub_center"
       },
       {
@@ -57,132 +60,156 @@
       },
       {
         "name": "householdAddress",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/hh_address"
       },
       {
         "name": "pncNumber",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/pnc_number"
       },
       {
         "name": "wifeIdType",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/woman_id_type"
       },
       {
         "name": "idNumber",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/id_number"
       },
       {
         "name": "womanDOB",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/wife_dob"
       },
       {
         "name": "wifeName",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/woman_name"
       },
       {
         "name": "wifeAge",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/wife_age"
       },
       {
         "name": "husbandName",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/husband_name"
       },
       {
         "name": "phoneNumber",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/phone_num"
       },
       {
         "name": "phoneOwner",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/phone_owner"
       },
       {
         "name": "religion"
       },
       {
-        "name": "caste"
-      },
-      {
         "name": "referenceDate",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/delivery_date",
         "source": "eligible_couple.mother.referenceDate"
       },
       {
         "name": "deliveryPlace",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/place_delivery",
         "source": "eligible_couple.mother.deliveryPlace"
       },
       {
         "name": "deliveryFacilityName",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/name_delivery_facility",
         "source": "eligible_couple.mother.deliveryFacilityName"
       },
       {
         "name": "isSkilledDelivery",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/skilled_delivery",
         "source": "eligible_couple.mother.isSkilledDelivery"
       },
       {
         "name": "deliveryType",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/type_delivery",
         "source": "eligible_couple.mother.deliveryType"
       },
       {
         "name": "deliveryOutcome",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/delivery_outcome",
         "source": "eligible_couple.mother.deliveryOutcome"
       },
       {
         "name": "causeOfStillBirth",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth",
         "source": "eligible_couple.mother.causeOfStillBirth"
       },
       {
         "name": "otherCauseOfStillBirth",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/still_birth_group/other_cause_of_still_birth",
         "source": "eligible_couple.mother.otherCauseOfStillBirth"
       },
       {
         "name": "didBreastfeedingStart",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/breastfeeding_postbirth",
         "source": "eligible_couple.mother.didBreastfeedingStart"
       },
       {
         "name": "hadDeliveryComplications",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/had_delivery_complications",
         "source": "eligible_couple.mother.hadDeliveryComplications"
       },
       {
         "name": "deliveryComplications",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/complications",
         "source": "eligible_couple.mother.deliveryComplications"
       },
       {
         "name": "otherDeliveryComplications",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/delivery_complications_other",
         "source": "eligible_couple.mother.otherDeliveryComplications"
       },
       {
         "name": "isHighRisk",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/is_high_risk",
         "source": "eligible_couple.mother.isHighRisk"
       },
       {
         "name": "highRiskReason",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/high_risk_reason",
         "source": "eligible_couple.mother.highRiskReason"
       },
       {
         "name": "periodOfStay",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/stay_in_area",
         "source": "eligible_couple.mother.periodOfStay"
       },
       {
         "name": "didWomanSurvive",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/woman_survived",
         "source": "eligible_couple.mother.didWomanSurvive"
       },
       {
         "name": "submissionDate",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/today",
         "source": "eligible_couple.mother.submissionDate"
       },
@@ -211,6 +238,7 @@
       },
       {
         "name": "field1Value",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/field1_group/field1_val"
       },
       {
@@ -220,6 +248,7 @@
       },
       {
         "name": "field2Value",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/field2_group/field2_val"
       },
       {
@@ -229,6 +258,7 @@
       },
       {
         "name": "field3Value",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/field3_group/field3_val"
       },
       {
@@ -238,6 +268,7 @@
       },
       {
         "name": "field4Value",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/field4_group/field4_val"
       },
       {
@@ -247,6 +278,7 @@
       },
       {
         "name": "field5Value",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/field5_group/field5_val"
       }
     ],
@@ -262,30 +294,37 @@
           },
           {
             "name": "gender",
+            "shouldLoadValue": true,
             "bind": "/model/instance/PNC_Child_Registration_EngKan/child/sex_child"
           },
           {
             "name": "weight",
+            "shouldLoadValue": true,
             "bind": "/model/instance/PNC_Child_Registration_EngKan/child/birthweight"
           },
           {
             "name": "bloodGroup",
+            "shouldLoadValue": true,
             "bind": "/model/instance/PNC_Child_Registration_EngKan/child/child_blood_group"
           },
           {
             "name": "immunizationsGiven",
+            "shouldLoadValue": true,
             "bind": "/model/instance/PNC_Child_Registration_EngKan/child/immunizations_atbirth"
           },
           {
             "name": "isChildHighRisk1",
+            "shouldLoadValue": true,
             "bind": "/model/instance/PNC_Child_Registration_EngKan/child/is_child_high_risk1"
           },
           {
             "name": "isChildHighRisk",
+            "shouldLoadValue": true,
             "bind": "/model/instance/PNC_Child_Registration_EngKan/child/is_child_high_risk"
           },
           {
             "name": "childHighRiskReasons",
+            "shouldLoadValue": true,
             "bind": "/model/instance/PNC_Child_Registration_EngKan/child/child_high_risk_reasons"
           }
         ]

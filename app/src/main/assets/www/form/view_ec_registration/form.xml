@@ -76,6 +76,9 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">Contact phone number
         </span>
+        <span class="or-hint active" lang="">Without country code.
+        </span>
+        <span class="required">*</span>
         <input name="/EC_View_EngKan/ec_view_group/phone_no" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="number" />
     </label>

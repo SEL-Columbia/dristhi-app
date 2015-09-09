@@ -54,7 +54,7 @@
         "bind": "/model/instance/EC_Registration_EngKan/valid_age"
       },
       {
-        "name": "womanDob",
+        "name": "womanDOB",
         "bind": "/model/instance/EC_Registration_EngKan/wife_dob"
       },
       {
@@ -78,16 +78,12 @@
         "bind": "/model/instance/EC_Registration_EngKan/woman_name"
       },
       {
-        "name": "wifeIdzType",
+        "name": "wifeIdType",
         "bind": "/model/instance/EC_Registration_EngKan/woman_id_type"
       },
       {
-        "name": "aadharNumber",
-        "bind": "/model/instance/EC_Registration_EngKan/aadhaar_number"
-      },
-      {
-        "name": "wifeDOB",
-        "bind": "/model/instance/EC_Registration_EngKan/dob"
+        "name": "idNumber",
+        "bind": "/model/instance/EC_Registration_EngKan/id_number"
       },
       {
         "name": "wifeAge",
@@ -96,10 +92,6 @@
       {
         "name": "husbandAge",
         "bind": "/model/instance/EC_Registration_EngKan/husband_age"
-      },
-      {
-        "name": "womanDOB",
-        "bind": "/model/instance/EC_Registration_EngKan/woman_date_of_birth"
       },
       {
         "name": "husbandDOB",
@@ -112,6 +104,10 @@
       {
         "name": "phoneNumber",
         "bind": "/model/instance/EC_Registration_EngKan/phone_num"
+      },
+      {
+        "name": "phoneNo",
+        "bind": "/model/instance/EC_Registration_EngKan/phone_no"
       },
       {
         "name": "phoneOwner",

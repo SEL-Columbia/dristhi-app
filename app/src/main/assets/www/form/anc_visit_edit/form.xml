@@ -620,7 +620,10 @@
             <input name="/ANC_Visit_EngKan/blood_glucose_data" data-calculate="0.0"
                 data-type-xml="string" type="hidden" />
         </label>
-
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/anm_poc" data-calculate="" data-type-xml="string"
+                type="hidden" />
+        </label>
         <label class="calculation non-select ">
             <input name="/ANC_Visit_EngKan/poc_info" data-calculate="" data-type-xml="string"
                 type="hidden" />

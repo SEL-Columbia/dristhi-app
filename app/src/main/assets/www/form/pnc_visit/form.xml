@@ -429,9 +429,10 @@
             <span class="question-label active" lang="">Reason ?
             </span>
             <span class="required">*</span>
-            <input name="/PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor_no_reason" autocomplete="off"
-                data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/reason_for_no  = 'no'" data-type-xml="string"
-                required="required" type="text" />
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor_no_reason"
+                autocomplete="off"
+                data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/reason_for_no  = 'no'"
+                data-type-xml="string" required="required" type="text" />
         </label>
 
         <fieldset class="question ">
@@ -465,8 +466,8 @@
 
     <label class="calculation non-select ">
         <input name="/PNC_Visit_EngKan/pnc_mother_group/reason_for_no" autocomplete="off"
-            data-calculate=" /PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor" data-type-xml="string"
-            type="hidden" />
+            data-calculate=" /PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor"
+            data-type-xml="string" type="hidden" />
     </label>
 
     <label class="calculation non-select ">
@@ -908,6 +909,10 @@
         <label class="calculation non-select ">
             <input name="/PNC_Visit_EngKan/meta/instanceID" data-calculate="concat('uuid:', uuid())"
                 data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/anm_poc" data-calculate="" data-type-xml="string"
+                type="hidden" />
         </label>
         <label class="calculation non-select ">
             <input name="/PNC_Visit_EngKan/formhub/uuid"

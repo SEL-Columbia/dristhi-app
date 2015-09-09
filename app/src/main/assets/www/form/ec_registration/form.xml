@@ -5,12 +5,6 @@
     <select style="display:none;" data-default-lang="default" id="form-languages">
         <option value="default">default</option>
     </select>
-    <label class="question non-select ">
-        <span class="question-label active" lang="">District:
-        </span>
-        <input name="/EC_Registration_EngKan/district" autocomplete="off" data-type-xml="string"
-            disabled="disabled" type="text" />
-    </label>
 
     <label class="question non-select ">
         <span class="question-label active" lang="">PHC:
@@ -79,7 +73,7 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">ID Number:
         </span>
-        <input name="/EC_Registration_EngKan/aadhaar_number" autocomplete="off" data-type-xml="text"
+        <input name="/EC_Registration_EngKan/id_number" autocomplete="off" data-type-xml="text"
             type="text" />
 
     </label>
@@ -134,9 +128,12 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">Contact phone number
         </span>
+        <span class="or-hint active" lang="">Without country code.
+        </span>
+        <span class="required">*</span>
         <input name="/EC_Registration_EngKan/phone_no" autocomplete="off"
             data-constraint=".&gt; 99999999 and .&lt; 10000000000000" data-type-xml="int"
-            type="number" />
+            required="required" type="number" />
     </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
@@ -809,8 +806,7 @@
             </div>
         </fieldset>
     </fieldset>
-    <section name="/EC_Registration_EngKan/field1_group"
-        class="or-group-data or-branch pre-init "
+    <section name="/EC_Registration_EngKan/field1_group" class="or-group-data or-branch pre-init "
         data-relevant=" /EC_Registration_EngKan/field1  != ''">
         <label class="question non-select ">
             <span class="or-output" data-value="/EC_Registration_EngKan/field1" />
@@ -819,8 +815,7 @@
         </label>
     </section>
 
-    <section name="/EC_Registration_EngKan/field2_group"
-        class="or-group-data or-branch pre-init "
+    <section name="/EC_Registration_EngKan/field2_group" class="or-group-data or-branch pre-init "
         data-relevant=" /EC_Registration_EngKan/field2  != ''">
         <label class="question non-select ">
             <span class="or-output" data-value="/EC_Registration_EngKan/field2" />
@@ -829,8 +824,7 @@
         </label>
     </section>
 
-    <section name="/EC_Registration_EngKan/field3_group"
-        class="or-group-data or-branch pre-init "
+    <section name="/EC_Registration_EngKan/field3_group" class="or-group-data or-branch pre-init "
         data-relevant=" /EC_Registration_EngKan/field3  != ''">
         <label class="question non-select ">
             <span class="or-output" data-value="/EC_Registration_EngKan/field3" />
@@ -839,8 +833,7 @@
         </label>
     </section>
 
-    <section name="/EC_Registration_EngKan/field4_group"
-        class="or-group-data or-branch pre-init "
+    <section name="/EC_Registration_EngKan/field4_group" class="or-group-data or-branch pre-init "
         data-relevant=" /EC_Registration_EngKan/field4  != ''">
         <label class="question non-select ">
             <span class="or-output" data-value="/EC_Registration_EngKan/field4" />
@@ -849,8 +842,7 @@
         </label>
     </section>
 
-    <section name="/EC_Registration_EngKan/field5_group"
-        class="or-group-data or-branch pre-init "
+    <section name="/EC_Registration_EngKan/field5_group" class="or-group-data or-branch pre-init "
         data-relevant=" /EC_Registration_EngKan/field5  != ''">
         <label class="question non-select ">
             <span class="or-output" data-value="/EC_Registration_EngKan/field5" />

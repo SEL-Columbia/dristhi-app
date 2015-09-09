@@ -58,11 +58,6 @@
         "shouldLoadValue": true
       },
       {
-        "bind": "/model/instance/Child_Registration_EC_EngKan/woman_name",
-        "shouldLoadValue": true,
-        "source": "eligible_couple.mother.registrationDate"
-      },
-      {
         "name": "husbandName",
         "bind": "/model/instance/Child_Registration_EC_EngKan/case_husband_name",
         "shouldLoadValue": true

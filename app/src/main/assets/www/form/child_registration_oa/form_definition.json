@@ -77,6 +77,11 @@
         "source": "child.mother.eligible_couple.phoneNumber"
       },
       {
+        "name": "phoneNumber",
+        "bind": "/model/instance/Child_Registration_EngKan/phone_num",
+        "source": "child.mother.eligible_couple.phoneNumber"
+      },
+      {
         "name": "name",
         "bind": "/model/instance/Child_Registration_EngKan/child_name"
       },

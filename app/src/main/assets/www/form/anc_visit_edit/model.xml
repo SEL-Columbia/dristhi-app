@@ -24,7 +24,7 @@
             <fetal_data />
             <blood_glucose_data />
             <pstechoscope_data />
-
+            <anm_poc />
             <pulse_rate />
             <weight_group>
                 <weight />

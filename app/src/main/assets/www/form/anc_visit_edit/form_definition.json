@@ -180,6 +180,10 @@
         "bind": "/model/instance/ANC_Visit_EngKan/pih"
       },
       {
+        "name": "anmPoc",
+        "bind": "/model/instance/ANC_Visit_EngKan/anm_poc"
+      },
+      {
         "name": "anaemicStatus",
         "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Visit_EngKan/case_anaemic_status"
