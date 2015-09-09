@@ -123,6 +123,7 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
 
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
+                new OpenFormOption("Child Edit", AllConstants.FormNames.CHILD_EDIT, formController),
                 new OpenFormOption(getString(R.string.str_child_immunizations), AllConstants.FormNames.CHILD_IMMUNIZATIONS, formController),
                 new OpenFormOption(getString(R.string.str_child_illness), AllConstants.FormNames.CHILD_ILLNESS, formController),
                 new OpenFormOption(getString(R.string.str_anc_plan_of_care), AllConstants.VIEW_CHILD_PLAN_OF_CARE, formController, NativeChildSmartRegisterActivity.this),
@@ -156,7 +157,7 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
         JSONObject jsonFormInfo = new JSONObject(locationJSON);
         jsonFormInfo.put("village", village);
         String customFields = context.allSettings().fetchFieldLabels("ChildRegistration");
-        if (customFields != null) {
+        if (customFields != null && !customFields.equals("")) {
             JSONArray customFieldsArray = new JSONArray(customFields);
             for (int i = 0; i < customFieldsArray.length(); i++) {
                 jsonFormInfo.put("field" + (i + 1), customFieldsArray.getString(i));

@@ -107,7 +107,7 @@ public class AllSettings {
                 e.printStackTrace();
             }
         }
-        return "";
+        return null;
     }
 
     public String fetchANMConfiguration(String configKey) {

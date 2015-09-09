@@ -9,14 +9,13 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
@@ -28,11 +27,10 @@ import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.BackgroundAction;
 import org.ei.telemedicine.view.LockingBackgroundTask;
 import org.ei.telemedicine.view.ProgressIndicator;
-import org.json.JSONArray;
+import org.ei.telemedicine.view.UserSettingsActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -48,6 +46,7 @@ public class LoginActivity extends Activity {
     private Context context;
     private EditText userNameEditText;
     private EditText passwordEditText;
+
     private ProgressDialog progressDialog;
     private String TAG = "LoginActivity";
 
@@ -62,6 +61,7 @@ public class LoginActivity extends Activity {
         initializeBuildDetails();
         setDoneActionHandlerOnPasswordField();
         initializeProgressDialog();
+
     }
 
     private void initializeBuildDetails() {
@@ -223,7 +223,7 @@ public class LoginActivity extends Activity {
 
 
     private void remoteLoginWith(String userName, String password, String loginResponse) {
-        String userRole = null, personalInfo = null, location = null, drugs = null, configuration = null;
+        String userRole = null, personalInfo = null, location = null, drugs = null, configuration = null, countryCode = null, formFields = null;
         if (loginResponse != null) {
 
             userRole = getFromJson(loginResponse, AllConstants.ROLE);
@@ -231,9 +231,10 @@ public class LoginActivity extends Activity {
             location = getFromJson(personalInfo, "location");
             drugs = getFromJson(personalInfo, "drugs");
             configuration = getFromJson(personalInfo, "configuration");
-
+            countryCode = getFromJson(personalInfo, "countryCode");
+            formFields = getFromJson(personalInfo, "formLabels");
             context.userService()
-                    .remoteLogin(userName, password, userRole, location, drugs, configuration);
+                    .remoteLogin(userName, password, userRole, location, drugs, configuration, countryCode, formFields);
 
         }
         if (userRole != null && userRole.equals(AllConstants.DOCTOR_ROLE)) {

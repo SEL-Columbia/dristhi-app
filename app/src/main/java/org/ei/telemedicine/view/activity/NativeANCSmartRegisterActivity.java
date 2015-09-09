@@ -3,16 +3,7 @@ package org.ei.telemedicine.view.activity;
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
 import static java.util.Arrays.asList;
-import static org.ei.telemedicine.AllConstants.FormNames.ANC_CLOSE;
-import static org.ei.telemedicine.AllConstants.FormNames.ANC_INVESTIGATIONS;
-import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
-import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
-import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_OUTCOME;
-import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_PLAN;
-import static org.ei.telemedicine.AllConstants.FormNames.HB_TEST;
-import static org.ei.telemedicine.AllConstants.FormNames.IFA;
-import static org.ei.telemedicine.AllConstants.FormNames.TT;
-import static org.ei.telemedicine.AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC;
+import static org.ei.telemedicine.AllConstants.FormNames.*;
 
 import java.util.List;
 
@@ -139,7 +130,8 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_register_anc_visit_form), ANC_VISIT, formController),
-//                new OpenFormOption("ANC Visit Edit", ANC_VISIT_EDIT, formController),
+//                new OpenFormOption("ANC Reg Edit", "anc_reg_edit", formController),
+                new OpenFormOption("ANC Edit", ANC_EDIT, formController),
                 new OpenFormOption(getString(R.string.str_register_hb_test_form), HB_TEST, formController),
                 new OpenFormOption(getString(R.string.str_register_ifa_form), IFA, formController),
                 new OpenFormOption(getString(R.string.str_register_tt_form), TT, formController),
@@ -176,7 +168,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         JSONObject jsonFormInfo = new JSONObject(locationJSON);
         jsonFormInfo.put("village", village);
         String customFields = context.allSettings().fetchFieldLabels("ANCRegistration");
-        if (customFields != null) {
+        if (customFields != null && !customFields.equals("")) {
             JSONArray customFieldsArray = new JSONArray(customFields);
             for (int i = 0; i < customFieldsArray.length(); i++) {
                 jsonFormInfo.put("field" + (i + 1), customFieldsArray.getString(i));

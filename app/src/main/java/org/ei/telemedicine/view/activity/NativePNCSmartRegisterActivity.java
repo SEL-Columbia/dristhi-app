@@ -127,6 +127,7 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private DialogOption[] getUpdateOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_pnc_visit_form), PNC_VISIT, formController),
+                new OpenFormOption("PNC Edit", "pnc_edit", formController),
                 new OpenFormOption(getString(R.string.str_anc_plan_of_care), AllConstants.VIEW_PNC_PLAN_OF_CARE, formController, NativePNCSmartRegisterActivity.this),
                 new OpenFormOption(getString(R.string.str_pnc_postpartum_family_planning_form), PNC_POSTPARTUM_FAMILY_PLANNING, formController),
                 new OpenFormOption(getString(R.string.str_pnc_close_form), PNC_CLOSE, formController),
@@ -155,7 +156,7 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         JSONObject jsonFormInfo = new JSONObject(locationJSON);
         jsonFormInfo.put("village", village);
         String customFields = context.allSettings().fetchFieldLabels("PNCRegistration");
-        if (customFields != null) {
+        if (customFields != null && !customFields.equals("")) {
             JSONArray customFieldsArray = new JSONArray(customFields);
             for (int i = 0; i < customFieldsArray.length(); i++) {
                 jsonFormInfo.put("field" + (i + 1), customFieldsArray.getString(i));
