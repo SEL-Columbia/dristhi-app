@@ -1,0 +1,53 @@
+{
+    "form_data_definition_version": "1",
+    "form": {
+        "bind_type": "ibu",
+        "default_bind_path": "/model/instance/rencana_persalinan/",
+        "fields": [
+            {
+                "name": "id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "tanggalRencanaPersalinan",
+                "bind": "/model/instance/rencana_persalinan/tanggal"
+			},
+            {
+                "name": "rencanaPenolongPersalinan",
+                "bind": "/model/instance/rencana_persalinan/rencana_penolong_persalinan"
+			},
+            {
+                "name": "tempatRencanaPersalinan",
+                "bind": "/model/instance/rencana_persalinan/tempat_rencana_persalinan"
+			},
+            {
+                "name": "rencanaPendampingPersalinan",
+                "bind": "/model/instance/rencana_persalinan/rencana_pendamping_persalinan"
+			},
+            {
+                "name": "transportasi",
+                "bind": "/model/instance/rencana_persalinan/transportasi"
+			},
+            {
+                "name": "pendonor",
+                "bind": "/model/instance/rencana_persalinan/pendonor"
+			},
+            {
+                "name": "kondisiRumah",
+                "bind": "/model/instance/rencana_persalinan/kondisi_rumah"
+			},
+            {
+                "name": "persediaanPerlengkapanPersalinan",
+                "bind": "/model/instance/rencana_persalinan/persediaan_perlengkapan_persalinan"
+			},
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/rencana_persalinan/today"
+            },
+            {
+                "name": "registrationDate",
+                "bind": "/model/instance/rencana_persalinan/today"
+            }
+        ]
+    }
+}

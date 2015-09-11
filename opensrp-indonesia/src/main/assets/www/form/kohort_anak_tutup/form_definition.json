@@ -1,0 +1,45 @@
+{
+    "form_data_definition_version": "2",
+    "form": {
+        "bind_type": "anak",
+        "default_bind_path": "/model/instance/anak_close/",
+        "fields": [
+            {
+                "name": "id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "tanggalMeninggal",
+                "bind": "/model/instance/anak_close/B05014"
+            },
+            {
+                "name": "kematianDiakibatkanImunisasiAnak",
+                "bind": "/model/instance/anak_close/death_child_group/child_death_immunization"
+            },
+            {
+                "name": "penyebabKematianAnak",
+                "bind": "/model/instance/anak_close/death_child_group/child_death_cause"
+            },
+            {
+                "name": "penyebabKematianAnaklainnya",
+                "bind": "/model/instance/anak_close/death_child_group/child_death_cause_other"
+            },
+	       {
+                "name": "tanggalKematianAnak",
+                "bind": "/model/instance/anak_close/death_child_group/child_death_date"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/anak_close/today"
+            },
+            {
+                "name": "registrationDate",
+                "bind": "/model/instance/anak_close/reg_date"
+            },
+            {
+                "name": "isClosed",
+                "value": "true"
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "form_data_definition_version": "1",
+    "form": {
+        "bind_type": "kartu_ibu",
+        "default_bind_path": "/model/instance/Penutupan_KB/",
+        "fields": [
+            {
+                "name": "id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "kbCloseReason",
+                "bind": "/model/instance/Penutupan_KB/kb_close_reason"
+            },
+            {
+                "name": "keteranganGagal",
+                "bind": "/model/instance/Penutupan_KB/keterangan_gagal"
+            },
+            {
+                "name": "kbCloseReason",
+                "bind": "/model/instance/Penutupan_KB/kb_close_reason"
+            },
+            {
+                "name": "didWomanSurvive",
+                "bind": "/model/instance/Penutupan_KB/woman_survived"
+            },
+            {
+                "name": "deathDate",
+                "bind": "/model/instance/Penutupan_KB/death_date"
+            },
+            {
+                "name": "isKBCloseConfirmed",
+                "bind": "/model/instance/Penutupan_KB/confirm_kb_close"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/Penutupan_KB/today"
+            },
+            {
+                "name": "registrationDate",
+                "bind": "/model/instance/Penutupan_KB/reg_date"
+            },
+            {
+                "name": "jenisKontrasepsi",
+                "value": ""
+            }
+        ]
+    }
+}

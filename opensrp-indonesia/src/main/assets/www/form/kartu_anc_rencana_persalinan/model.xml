@@ -1,0 +1,27 @@
+<model>
+    <instance>
+        <rencana_persalinan id="rencana_persalinan" version="201506190652">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <start/>
+          <today/>
+          <reg_date/>
+          <deviceid/>
+          <simserial/>
+          <phonenumber/>
+          <tanggal/>
+          <rencana_penolong_persalinan/>
+          <tempat_rencana_persalinan/>
+          <rencana_pendamping_persalinan/>
+          <transportasi/>
+          <pendonor/>
+          <kondisi_rumah/>
+          <persediaan_perlengkapan_persalinan/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </rencana_persalinan>
+      </instance>
+  </model>

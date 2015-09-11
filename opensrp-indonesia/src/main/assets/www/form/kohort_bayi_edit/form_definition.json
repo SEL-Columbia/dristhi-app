@@ -1,0 +1,71 @@
+{
+    "form_data_definition_version": "1",
+    "form": {
+        "bind_type": "anak",
+        "default_bind_path": "/model/instance/register_baby_only/",
+        "fields": [
+            {
+                "name": "id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "kiId",
+                "source": "anak.ibu.kartu_ibu.id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "motherId",
+                "source": "anak.ibu.id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "tanggalPendaftaran",
+                "bind": "/model/instance/register_baby_only/tanggal_pendaftaran",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "noBayi",
+                "bind": "/model/instance/register_baby_only/no_bayi",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "namaBayi",
+                "bind": "/model/instance/register_baby_only/nama_bayi",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "tanggalLahirAnak",
+                "bind": "/model/instance/register_baby_only/tanggal_lahir",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "jenisKelamin",
+                "bind": "/model/instance/register_baby_only/jenis_kelamin",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "kepemilikanBukuKIA",
+                "bind": "/model/instance/register_baby_only/kepemilikan_buku_kia",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "beratLahir",
+                "bind": "/model/instance/register_baby_only/berat_lahir",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "isHighRiskChild",
+                "bind": "/model/instance/register_baby_only/is_high_risk_child",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "registrationDate",
+                "bind": "/model/instance/register_baby_only/reg_date"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/register_baby_only/today"
+            }
+        ]
+    }
+}

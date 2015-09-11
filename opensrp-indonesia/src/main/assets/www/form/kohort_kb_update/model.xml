@@ -1,0 +1,27 @@
+<model>
+    <instance>
+        <kohort_pelayanan_kb id="kohort_pelayanan_kb" version="201506200421">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <start/>
+          <today/>
+          <reg_date/>
+          <deviceid/>
+          <simserial/>
+          <phonenumber/>
+          <tanggal_kunjungan/>
+          <keterangan_tentang_peserta_kb/>
+          <jenis_kontrasepsi_yang_digunakan/>
+          <keterangan_tentang_peserta_kb_2/>
+          <keterangan_do/>
+          <keterangan_ganti_cara/>
+          <keterangan_efek_samping/>
+          <keterangan_komplikasi/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </kohort_pelayanan_kb>
+      </instance>
+  </model>

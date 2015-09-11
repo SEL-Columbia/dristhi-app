@@ -1,0 +1,148 @@
+{
+    "form_data_definition_version": "2",
+    "form": {
+        "bind_type": "ibu",
+        "default_bind_path": "/model/instance/Penutupan_ANC/",
+        "fields": [
+            {
+                "name": "id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "kiId",
+                "shouldLoadValue": true,
+                "source": "ibu.kartu_ibu.id"
+            },
+            {
+                "name": "closeReason",
+                "bind": "/model/instance/Penutupan_ANC/close_reason"
+            },
+            {
+                "name": "numberOfAbortions",
+                "bind": "/model/instance/Penutupan_ANC/case_num_abortions"
+            },
+            {
+                "name": "numberOfAbortions",
+                "bind": "/model/instance/Penutupan_ANC/num_abortions"
+            },
+            {
+                "name": "isMaternalDeath",
+                "bind": "/model/instance/Penutupan_ANC/maternal_death"
+            },
+            {
+                "name": "numberOfSpontaneousAbortions",
+                "bind": "/model/instance/Penutupan_ANC/spontaneous_abortion_group/case_num_abortions_spontaneous"
+            },
+            {
+                "name": "numberOfSpontaneousAbortions",
+                "bind": "/model/instance/Penutupan_ANC/spontaneous_abortion_group/num_abortions_spontaneous"
+            },
+            {
+                "name": "dateOfSpontaneousAbortion",
+                "bind": "/model/instance/Penutupan_ANC/spontaneous_abortion_group/date_spontaneous"
+            },
+            {
+                "name": "referenceDate",
+                "bind": "/model/instance/Penutupan_ANC/spontaneous_abortion_group/case_lmp"
+            },
+            {
+                "name": "numberOfWeeksPregnantWhenSpontaneousAbortionHappened",
+                "bind": "/model/instance/Penutupan_ANC/spontaneous_abortion_group/num_weeks_spontaneous"
+            },
+            {
+                "name": "causeOfSpontaneousAbortion",
+                "bind": "/model/instance/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_cause"
+            },
+            {
+                "name": "otherCauseOfSpontaneousAbortion",
+                "bind": "/model/instance/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_cause_other"
+            },
+            {
+                "name": "placeOfSpontaneousAbortion",
+                "bind": "/model/instance/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_place"
+            },
+            {
+                "name": "isRHNegative",
+                "bind": "/model/instance/Penutupan_ANC/spontaneous_abortion_group/case_w_rh_negative"
+            },
+            {
+                "name": "rhInjectionGiven1",
+                "bind": "/model/instance/Penutupan_ANC/induced_abortion_group/rh_injection_given1"
+            },
+            {
+                "name": "numberOfInducedAbortions",
+                "bind": "/model/instance/Penutupan_ANC/induced_abortion_group/case_num_abortions_induced"
+            },
+            {
+                "name": "numberOfInducedAbortions",
+                "bind": "/model/instance/Penutupan_ANC/induced_abortion_group/num_abortions_induced"
+            },
+            {
+                "name": "timeOfInducedAbortion",
+                "bind": "/model/instance/Penutupan_ANC/induced_abortion_group/time_induced"
+            },
+            {
+                "name": "dateOfInducedAbortion",
+                "bind": "/model/instance/Penutupan_ANC/induced_abortion_group/date_induced"
+            },
+            {
+                "name": "rhInjectionGiven2",
+                "bind": "/model/instance/Penutupan_ANC/induced_abortion_group/rh_injection_given2"
+            },
+            {
+                "name": "maternalDeathDate",
+                "bind": "/model/instance/Penutupan_ANC/maternal_death_group/date_maternal_death"
+            },
+            {
+                "name": "maternalDeathCause",
+                "bind": "/model/instance/Penutupan_ANC/maternal_death_group/maternal_death_cause"
+            },
+            {
+                "name": "otherMaternalDeathCause",
+                "bind": "/model/instance/Penutupan_ANC/maternal_death_group/other_maternal_death_cause"
+            },
+            {
+                "name": "placeOfDeath",
+                "bind": "/model/instance/Penutupan_ANC/maternal_death_group/place_of_death"
+            },
+            {
+                "name": "otherPlaceOfDeath",
+                "bind": "/model/instance/Penutupan_ANC/maternal_death_group/other_place_of_death"
+            },
+            {
+                "name": "notMaternalDeathCause",
+                "bind": "/model/instance/Penutupan_ANC/maternal_death_group/not_maternal_death_cause"
+            },
+            {
+                "name": "rhInjectionGiven",
+                "bind": "/model/instance/Penutupan_ANC/rh_injection_given"
+            },
+            {
+                "name": "isANCCloseConfirmed",
+                "bind": "/model/instance/Penutupan_ANC/confirm_anc_close"
+            },
+            {
+                "name": "hasANCLeftPlace",
+                "bind": "/model/instance/Penutupan_ANC/confirm_anc_left"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/Penutupan_ANC/today"
+            },
+            {
+                "name": "registrationDate",
+                "bind": "/model/instance/Penutupan_ANC/reg_date"
+            },
+            {
+                "name": "htp",
+                "source": "ibu.kartu_ibu.htp",
+                "value": ""
+            },
+            {
+                "name": "isClosed",
+                "source": "ibu.isClosed",
+                "value": "true"
+            }
+        ]
+    }
+}

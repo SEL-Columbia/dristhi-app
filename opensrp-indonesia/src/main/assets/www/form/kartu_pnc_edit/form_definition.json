@@ -1,0 +1,147 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "ibu",
+    "default_bind_path": "/model/instance/dokumentasi_persalinan/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "childId",
+        "shouldLoadValue": true,
+        "source": "ibu.anak.id"
+      },
+      {
+        "name": "hpht",
+        "bind": "/model/instance/dokumentasi_persalinan/hpht",
+        "source": "ibu.tanggalHPHT",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "usiaKehamilan",
+        "bind": "/model/instance/dokumentasi_persalinan/usia_kehamilan",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "keadaanIbu",
+        "bind": "/model/instance/dokumentasi_persalinan/keadaan_ibu",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "persalinan",
+        "bind": "/model/instance/dokumentasi_persalinan/persalinan",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "tanggalKalaIAktif",
+        "bind": "/model/instance/dokumentasi_persalinan/tanggal__kala_i_aktif",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "jamKalaIAktif",
+        "bind": "/model/instance/dokumentasi_persalinan/jam__kala_i_aktif",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "tanggalKalaII",
+        "bind": "/model/instance/dokumentasi_persalinan/tanggal__kala_ii",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "jamKalaII",
+        "bind": "/model/instance/dokumentasi_persalinan/jam__kala_ii",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "tanggalPlasentaLahir",
+        "bind": "/model/instance/dokumentasi_persalinan/tanggal__plasenta_lahir",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "jamPlasentaLahir",
+        "bind": "/model/instance/dokumentasi_persalinan/jam__plasenta_lahir",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "perdarahanKalaIV2JamPostpartum",
+        "bind": "/model/instance/dokumentasi_persalinan/perdarahan_kala_iv_2_jam_postpartum",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "persentasi",
+        "bind": "/model/instance/dokumentasi_persalinan/persentasi",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "tempatBersalin",
+        "bind": "/model/instance/dokumentasi_persalinan/tempat_bersalin",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "penolong",
+        "bind": "/model/instance/dokumentasi_persalinan/penolong",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "penolongLainLain",
+        "bind": "/model/instance/dokumentasi_persalinan/penolonglain-lain_ln",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "caraPersalinanIbu",
+        "bind": "/model/instance/dokumentasi_persalinan/cara_persalinan_ibu",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "manajemenAktifKalaIII",
+        "bind": "/model/instance/dokumentasi_persalinan/manajemen_aktif_kala_iii",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "pelayanan",
+        "bind": "/model/instance/dokumentasi_persalinan/pelayanan",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "integrasiProgram",
+        "bind": "/model/instance/dokumentasi_persalinan/integrasi_program",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "komplikasi",
+        "bind": "/model/instance/dokumentasi_persalinan/komplikasi",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "komplikasiLainLain",
+        "bind": "/model/instance/dokumentasi_persalinan/komplikasi_lain_lain",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "dirujukKe",
+        "bind": "/model/instance/dokumentasi_persalinan/dirujuk_ke",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "dirujukKeLainLain",
+        "bind": "/model/instance/dokumentasi_persalinan/dirujuk_kelain-lain",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "alamatBersalin",
+        "bind": "/model/instance/dokumentasi_persalinan/alamat_bersalin",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/dokumentasi_persalinan/today"
+      },
+      {
+        "name": "registrationDate",
+        "bind": "/model/instance/dokumentasi_persalinan/reg_date"
+      }
+    ]
+  }
+}

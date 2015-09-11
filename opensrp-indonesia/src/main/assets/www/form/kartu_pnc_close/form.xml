@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="PNC_Close">
+	<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+	<section class="form-logo" />
+	<h3 id="form-title">Penutupan PNC</h3>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Alasan menutup PNC</span>
+				<span class="required">*</span>
+				<span lang="" class="or-hint active">Pilihlah salah satu alasan yang tersedia</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Close/pnc_close_reason" data-name="/PNC_Close/pnc_close_reason" value="death_of_mother" required="required" data-type-xml="select1" />
+					<span lang="" class="option-label active">Ibu meninggal</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Close/pnc_close_reason" data-name="/PNC_Close/pnc_close_reason" value="relocation_temporary" required="required" data-type-xml="select1" />
+					<span lang="" class="option-label active">Relokasi (sementara)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Close/pnc_close_reason" data-name="/PNC_Close/pnc_close_reason" value="relocation_permanent" required="required" data-type-xml="select1" />
+					<span lang="" class="option-label active">Relokasi (permanen)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Close/pnc_close_reason" data-name="/PNC_Close/pnc_close_reason" value="end_of_pp_period" required="required" data-type-xml="select1" />
+					<span lang="" class="option-label active">Akhir periode postpartum</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Close/pnc_close_reason" data-name="/PNC_Close/pnc_close_reason" value="wrong_entry" required="required" data-type-xml="select1" />
+					<span lang="" class="option-label active">Kesalahan entry</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<section class="or-group-data or-branch pre-init " name="/PNC_Close/death_mother_group" data-relevant=" /PNC_Close/pnc_close_reason  = 'death_of_mother'">
+		<label class="question non-select ">
+			<span lang="" class="or-constraint-msg active">Tanggal kematian ibu hari ini atau hari-hari sebelumnya</span>
+			<span lang="" class="question-label active">Tanggal kematian</span>
+			<span lang="" class="or-hint active">masukkan tanggal kematian</span>
+			<input type="date" name="/PNC_Close/death_mother_group/death_date" data-constraint=".&lt;= /PNC_Close/today " data-type-xml="date" />
+		</label>
+		<fieldset class="question ">
+			<fieldset>
+				<legend>
+					<span lang="" class="question-label active">apakah penyebab kematian ibu?</span>
+					<span lang="" class="or-hint active">Pilihlah salah satu jawaban yang tersedia</span>
+				</legend>
+				<div class="option-wrapper">
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/maternal_death" data-name="/PNC_Close/death_mother_group/maternal_death" value="Penyebab langsung" data-type-xml="select1" />
+						<span lang="" class="option-label active">Penyebab langsung</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/maternal_death" data-name="/PNC_Close/death_mother_group/maternal_death" value="Penyebab tidak langsung" data-type-xml="select1" />
+						<span lang="" class="option-label active">Penyebab tidak langsung</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/maternal_death" data-name="/PNC_Close/death_mother_group/maternal_death" value="dont_know" data-type-xml="select1" />
+						<span lang="" class="option-label active">Tidak tahu</span>
+					</label>
+				</div>
+			</fieldset>
+		</fieldset>
+		<fieldset class="question or-branch pre-init ">
+			<fieldset>
+				<legend>
+					<span lang="" class="question-label active">Penyebab Kematian ibu?</span>
+					<span lang="" class="or-hint active">Pilihlah salah satu jawaban yang tersedia</span>
+				</legend>
+				<div class="option-wrapper">
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/maternal_death_cause" data-name="/PNC_Close/death_mother_group/maternal_death_cause" value="prolonged_obstructed_labor" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Persalinan macet / berkepanjangan</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/maternal_death_cause" data-name="/PNC_Close/death_mother_group/maternal_death_cause" value="hypertension_fits" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Hipertensi parah / tiba-tiba</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/maternal_death_cause" data-name="/PNC_Close/death_mother_group/maternal_death_cause" value="bleeding_hemorrhage" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Pendarahan</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/maternal_death_cause" data-name="/PNC_Close/death_mother_group/maternal_death_cause" value="fever_infection" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Demam tinggi / infeksi</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/maternal_death_cause" data-name="/PNC_Close/death_mother_group/maternal_death_cause" value="cause_not_identified" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Penyebab tidak teridentifikasi</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/maternal_death_cause" data-name="/PNC_Close/death_mother_group/maternal_death_cause" value="others" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Lainnya</span>
+					</label>
+				</div>
+			</fieldset>
+		</fieldset>
+		<label class="question or-branch pre-init non-select ">
+			<span lang="" class="question-label active">Lainnya</span>
+			<span lang="" class="or-hint active">Sebutkan alasan lainnya Jika ada</span>
+			<input type="text" name="/PNC_Close/death_mother_group/other_maternal_death_cause" data-relevant=" /PNC_Close/death_mother_group/maternal_death_cause  = 'others'" data-type-xml="string" />
+		</label>
+		<fieldset class="question or-branch pre-init ">
+			<fieldset>
+				<legend>
+					<span lang="" class="question-label active">Tempat Kematian</span>
+					<span lang="" class="or-hint active">Tempat Kematian ibu</span>
+				</legend>
+				<div class="option-wrapper">
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/place_of_death" data-name="/PNC_Close/death_mother_group/place_of_death" value="Rumah sendiri/keluarga" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Rumah sendiri/keluarga</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/place_of_death" data-name="/PNC_Close/death_mother_group/place_of_death" value="Rumah dukun" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Rumah dukun</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/place_of_death" data-name="/PNC_Close/death_mother_group/place_of_death" value="Polindes" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Polindes</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/place_of_death" data-name="/PNC_Close/death_mother_group/place_of_death" value="Pustu" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Pustu</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/place_of_death" data-name="/PNC_Close/death_mother_group/place_of_death" value="Rumah bidan" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Rumah bidan</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/place_of_death" data-name="/PNC_Close/death_mother_group/place_of_death" value="Puskesmas" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Puskesmas</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/place_of_death" data-name="/PNC_Close/death_mother_group/place_of_death" value="Dalam perjalanan ke fasilitas" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Dalam perjalanan ke fasilitas</span>
+					</label>
+					<label class="">
+						<input type="radio" name="/PNC_Close/death_mother_group/place_of_death" data-name="/PNC_Close/death_mother_group/place_of_death" value="Lainnya" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+						<span lang="" class="option-label active">Lainnya</span>
+					</label>
+				</div>
+			</fieldset>
+		</fieldset>
+		<label class="question or-branch pre-init non-select ">
+			<span lang="" class="question-label active">Lainnya</span>
+			<input type="text" name="/PNC_Close/death_mother_group/other_place_of_death" data-relevant=" /PNC_Close/death_mother_group/place_of_death  = 'Lainnya'" data-type-xml="string" />
+		</label>
+		<label class="question or-branch pre-init non-select ">
+			<span lang="" class="question-label active">Penyebab</span>
+			<span lang="" class="or-hint active">masukkan penyebab kematian</span>
+			<input type="text" name="/PNC_Close/death_mother_group/not_maternal_death_cause" data-relevant=" /PNC_Close/death_mother_group/maternal_death  = 'Penyebab tidak langsung'" data-type-xml="string" />
+		</label>
+	</section>
+	<!--end of group -->
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">konfirmasi penutupan PNC?</span>
+				<span class="required">*</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Close/confirm_pnc_close" data-name="/PNC_Close/confirm_pnc_close" value="yes" required="required" data-type-xml="select1" />
+					<span lang="" class="option-label active">Ya</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset id="or-preload-items" style="display:none;">
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Close/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Close/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Close/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Close/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Close/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Close/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+		</label>
+	</fieldset>
+	<fieldset id="or-calculated-items" style="display:none;">
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Close/death_mother_group/woman_survived" data-calculate="&quot;no&quot;" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Close/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Close/formhub/uuid" data-calculate="'37feed35f398402baaad94c74bbda748'" data-type-xml="string" />
+		</label>
+	</fieldset>
+</form>

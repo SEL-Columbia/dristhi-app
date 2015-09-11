@@ -1,0 +1,23 @@
+<model>
+    <instance>
+        <postpartum_kb id="postpartum_kb" version="201506081012">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <start/>
+          <today/>
+          <reg_date/>
+          <deviceid/>
+          <simserial/>
+          <phonenumber/>
+          <metode_kontrasepsi/>
+          <rencana/>
+          <pelaksanaan_bawah_42_hari/>
+          <pelaksanaan_atas_42_hari/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </postpartum_kb>
+      </instance>
+  </model>

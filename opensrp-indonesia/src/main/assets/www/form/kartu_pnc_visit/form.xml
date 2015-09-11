@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="PNC_Visit">
+	<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+	<section class="form-logo" />
+	<h3 id="form-title">Kunjungan PNC</h3>
+	<label class="question non-select ">
+		<span lang="" class="question-label active">Tanggal kunjungan</span>
+		<span lang="" class="or-hint active">Tanggal dilakukannya kunjungan nifas</span>
+		<input type="date" name="/PNC_Visit/tanggal_kunjungan" data-calculate=" /PNC_Visit/today " data-type-xml="date" />
+	</label>
+	<label class="note non-select ">
+		<span lang="" class="question-label active">
+			Tanggal lahir anak :
+			<span class="or-output" data-value=" /PNC_Visit/tanggal_lahir_anak " />
+		</span>
+		<input type="text" name="/PNC_Visit/generated_note_name_9" data-type-xml="string" readonly="readonly" />
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Hari Ke / KF</span>
+				<span lang="" class="or-hint active">Menunjukkan hari ke berapa setelah persalinan</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Visit/hari_ke__kf" data-name="/PNC_Visit/hari_ke__kf" value="kf1" data-type-xml="select1" />
+					<span lang="" class="option-label active">KF1 : 6 jam - 3 hari</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Visit/hari_ke__kf" data-name="/PNC_Visit/hari_ke__kf" value="kf2" data-type-xml="select1" />
+					<span lang="" class="option-label active">KF2 : 8 hari - 14 hari</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Visit/hari_ke__kf" data-name="/PNC_Visit/hari_ke__kf" value="kf3" data-type-xml="select1" />
+					<span lang="" class="option-label active">KF3 : 36 hari - 42 hari</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question non-select ">
+		<span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+		<span lang="" class="question-label active">Tanda Vital / TD (Sistolik)</span>
+		<span lang="" class="or-hint active">Menununjukkan hasil pengukuran tekanan darah (Sistolik) pada saat kunjungan Nifas</span>
+		<input type="number" name="/PNC_Visit/tanda_vital_td_sistolik" data-constraint=".&gt;0 and .&lt;1000" data-type-xml="int" />
+	</label>
+	<label class="question non-select ">
+		<span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+		<span lang="" class="question-label active">Tanda Vital / TD (Diastolik)</span>
+		<span lang="" class="or-hint active">Menununjukkan hasil pengukuran tekanan darah (Diastolik) pada saat kunjungan Nifas</span>
+		<input type="number" name="/PNC_Visit/tanda_vital_td_diastolik" data-constraint=".&gt;0 and .&lt;1000" data-type-xml="int" />
+	</label>
+	<label class="question non-select ">
+		<span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+		<span lang="" class="question-label active">Tanda Vital / Suhu</span>
+		<span lang="" class="or-hint active">Menunjukkan hasil pengukuran suhu tubuh</span>
+		<input type="number" name="/PNC_Visit/tanda_vital_suhu" data-constraint=".&gt;0 and .&lt;1000" data-type-xml="decimal" step="any" />
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Pelayanan / Catat di Buku Kia</span>
+				<span lang="" class="or-hint active">Semua Hasil Pemeriksaan PNC Di catat dibuku KIA</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Visit/pelayanan_catat_di_buku_kia" data-name="/PNC_Visit/pelayanan_catat_di_buku_kia" value="jika_dilakukan" data-type-xml="select1" />
+					<span lang="" class="option-label active">JIka dilakukan (√)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Visit/pelayanan_catat_di_buku_kia" data-name="/PNC_Visit/pelayanan_catat_di_buku_kia" value="jika_tidak_dilakukan" data-type-xml="select1" />
+					<span lang="" class="option-label active">Jika Tidak dilakukan (x)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Pelayanan Fe</span>
+				<span lang="" class="or-hint active">Menunjukkan pelayanan Fe dilakukan atau tidak</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Visit/pelayananfe" data-name="/PNC_Visit/pelayananfe" value="Ya" data-type-xml="select1" />
+					<span lang="" class="option-label active">Ya</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Visit/pelayananfe" data-name="/PNC_Visit/pelayananfe" value="Tidak" data-type-xml="select1" />
+					<span lang="" class="option-label active">Tidak</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+		<span lang="" class="question-label active">Pelayanan Fe</span>
+		<span lang="" class="or-hint active">Menunjukkan Jumlah Fe yang diberikan saat kunjungan PNC (tab/botol)</span>
+		<input type="number" name="/PNC_Visit/pelayanan_fe" data-constraint=".&gt;-1 and .&lt;100" data-relevant=" /PNC_Visit/pelayananfe ='Ya'" data-type-xml="int" />
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Pelayanan Vit A</span>
+				<span lang="" class="or-hint active">Menunjukkan apakah pelayanan Vitamin A diberikan saat kunjungan PNC</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Visit/pelayanan_vita" data-name="/PNC_Visit/pelayanan_vita" value="jika_dilakukan" data-type-xml="select1" />
+					<span lang="" class="option-label active">JIka dilakukan (√)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Visit/pelayanan_vita" data-name="/PNC_Visit/pelayanan_vita" value="jika_tidak_dilakukan" data-type-xml="select1" />
+					<span lang="" class="option-label active">Jika tidak dilakukan (x)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="" class="question-label active">2 Jam PP</span>
+		<span lang="" class="or-hint active">Tulis tanggal minumnya</span>
+		<input type="date" name="/PNC_Visit/vitaminA2jamPP" data-relevant=" /PNC_Visit/pelayanan_vita  = 'jika_dilakukan'" data-type-xml="date" />
+	</label>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="" class="question-label active">24 Jam PP</span>
+		<span lang="" class="or-hint active">Tulis tanggal minumnya</span>
+		<input type="date" name="/PNC_Visit/vitaminA24jamPP" data-relevant=" /PNC_Visit/pelayanan_vita  = 'jika_dilakukan'" data-type-xml="date" />
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Apakah anda melakukan Integrasi Program terhadap ibu nifas?</span>
+				<span lang="" class="or-hint active">Menunjukan detail Integrasi Program yang diberikan kepada ibu nifas</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Visit/ProgramIntegration" data-name="/PNC_Visit/ProgramIntegration" value="Ya" data-type-xml="select1" />
+					<span lang="" class="option-label active">Ya</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Visit/ProgramIntegration" data-name="/PNC_Visit/ProgramIntegration" value="Tidak" data-type-xml="select1" />
+					<span lang="" class="option-label active">Tidak</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+		<span lang="" class="question-label active">Integrasi Program / CD4 (kopi/m)</span>
+		<input type="number" name="/PNC_Visit/integrasi_program_cd4" data-constraint=".&gt;0 and .&lt;1000" data-relevant=" /PNC_Visit/ProgramIntegration ='Ya'" data-type-xml="int" />
+	</label>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="" class="question-label active">Integrasi Program / Anti Malaria</span>
+		<span lang="" class="or-hint active">Obat yang diberikan untuk malaria</span>
+		<input type="text" name="/PNC_Visit/integrasi_program_anti_malaria" data-relevant=" /PNC_Visit/ProgramIntegration ='Ya'" data-type-xml="string" />
+	</label>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="" class="question-label active">Integrasi Program / Anti TB</span>
+		<span lang="" class="or-hint active">Obat yang diberikan untuk TB</span>
+		<input type="text" name="/PNC_Visit/integrasi_program_anti_tb" data-relevant=" /PNC_Visit/ProgramIntegration ='Ya'" data-type-xml="string" />
+	</label>
+	<fieldset class="question or-branch pre-init ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Integrasi Program / Foto thorax</span>
+				<span lang="" class="or-hint active">Foto hasil rontgen</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Visit/integrasi_program_foto_thorax" data-name="/PNC_Visit/integrasi_program_foto_thorax" value="Ya" data-relevant=" /PNC_Visit/ProgramIntegration ='Ya'" data-type-xml="select1" />
+					<span lang="" class="option-label active">dilakukan(+)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Visit/integrasi_program_foto_thorax" data-name="/PNC_Visit/integrasi_program_foto_thorax" value="Tidak" data-relevant=" /PNC_Visit/ProgramIntegration ='Ya'" data-type-xml="select1" />
+					<span lang="" class="option-label active">tidak dilakukan (-)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Komplikasi</span>
+				<span lang="" class="or-hint active">Jenis komplikasi yang terjadi pada Ibu setelah persalinan</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="checkbox" name="/PNC_Visit/komplikasi" value="infeksi_nifas" data-type-xml="select" />
+					<span lang="" class="option-label active">Infeksi nifas</span>
+				</label>
+				<label class="">
+					<input type="checkbox" name="/PNC_Visit/komplikasi" value="hipertensi_post-partum" data-type-xml="select" />
+					<span lang="" class="option-label active">hipertensi post-partum</span>
+				</label>
+				<label class="">
+					<input type="checkbox" name="/PNC_Visit/komplikasi" value="post-partum_sepsis" data-type-xml="select" />
+					<span lang="" class="option-label active">post-partum sepsis</span>
+				</label>
+				<label class="">
+					<input type="checkbox" name="/PNC_Visit/komplikasi" value="perdarahan_post-partum" data-type-xml="select" />
+					<span lang="" class="option-label active">Perdarahan Post-Partum (PPP)</span>
+				</label>
+				<label class="">
+					<input type="checkbox" name="/PNC_Visit/komplikasi" value="mastitis" data-type-xml="select" />
+					<span lang="" class="option-label active">mastitis</span>
+				</label>
+				<label class="">
+					<input type="checkbox" name="/PNC_Visit/komplikasi" value="lain-lain" data-type-xml="select" />
+					<span lang="" class="option-label active">Lain - Lain (LN)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="" class="question-label active">Lainnya</span>
+		<span lang="" class="or-hint active">Jenis komplikasi yang terjadi pada ibu setelah persalinan selain komplikasi yang disebutkan</span>
+		<input type="text" name="/PNC_Visit/komplikasi_lainnya" data-relevant="selected( /PNC_Visit/komplikasi , 'lain-lain')" data-type-xml="string" />
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Apakah Anda merujuk Ibu hamil ke fasilitas kesehatan lainnya?</span>
+				<span lang="" class="or-hint active">Menunjukkan bahwa bidan merujuk Ibu hamil ke ke tempat fasilitas kesehatan lainnya</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Visit/rujukan" data-name="/PNC_Visit/rujukan" value="Ya" data-type-xml="select1" />
+					<span lang="" class="option-label active">Ya</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Visit/rujukan" data-name="/PNC_Visit/rujukan" value="Tidak" data-type-xml="select1" />
+					<span lang="" class="option-label active">Tidak</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question or-appearance-minimal  or-branch pre-init ">
+		<span lang="" class="question-label active">Dirujuk Ke</span>
+		<span lang="" class="or-hint active">Menunjukkan tempat rujukan</span>
+		<select name="/PNC_Visit/dirujuk_ke" data-name="/PNC_Visit/dirujuk_ke" data-relevant=" /PNC_Visit/rujukan  = 'Ya'" data-type-xml="select1">
+			<option value="">...</option>
+			<option value="pusat_kesehatan_masyarakat">Pusat Kesehatan Masyarakat (PKM)</option>
+			<option value="rumah_bersalin">Rumah Bersalin (RB)</option>
+			<option value="RSIA_RSB">Rumah Sakit Ibu dan Anak / Rumah Sakit Bersalin  (RSIA / RSB)</option>
+			<option value="RS">Rumah Sakit</option>
+			<option value="lainnya">Lain-Lain</option>
+		</select>
+		<span class="or-option-translations" style="display:none;" />
+	</label>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="" class="question-label active">Lainnya</span>
+		<span lang="" class="or-hint active">Menunjukkan tempat rujukan selain yang disebutkan</span>
+		<input type="text" name="/PNC_Visit/dirujuk_ke_lainnya" data-relevant=" /PNC_Visit/dirujuk_ke  = 'lainnya'" data-type-xml="string" />
+	</label>
+	<fieldset class="question or-branch pre-init ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Keadaan Tiba</span>
+				<span lang="" class="or-hint active">Menunjukkan keadaan Ibu saat tiba di rujuk</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Visit/keadaan_tiba" data-name="/PNC_Visit/keadaan_tiba" value="hidup" data-relevant=" /PNC_Visit/rujukan  = 'Ya'" data-type-xml="select1" />
+					<span lang="" class="option-label active">Hidup (H)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Visit/keadaan_tiba" data-name="/PNC_Visit/keadaan_tiba" value="mati" data-relevant=" /PNC_Visit/rujukan  = 'Ya'" data-type-xml="select1" />
+					<span lang="" class="option-label active">Mati (M)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question or-branch pre-init ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">Keadaan Pulang</span>
+				<span lang="" class="or-hint active">Menunjukkan keadaan Ibu saat pulang dari rujuk</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/PNC_Visit/keadaan_pulang" data-name="/PNC_Visit/keadaan_pulang" value="hidup" data-relevant=" /PNC_Visit/rujukan  = 'Ya'" data-type-xml="select1" />
+					<span lang="" class="option-label active">Hidup (H)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/PNC_Visit/keadaan_pulang" data-name="/PNC_Visit/keadaan_pulang" value="mati" data-relevant=" /PNC_Visit/rujukan  = 'Ya'" data-type-xml="select1" />
+					<span lang="" class="option-label active">Mati (M)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="" class="question-label active">Keterangan</span>
+		<span lang="" class="or-hint active">Diisi dengan keterangan berkaitan dengan rujukan</span>
+		<input type="text" name="/PNC_Visit/keterangan" data-relevant=" /PNC_Visit/rujukan  = 'Ya'" data-type-xml="string" />
+	</label>
+	<fieldset class="question or-branch pre-init ">
+		<fieldset>
+			<legend>
+				<span lang="" class="question-label active">
+					Termasuk kategori RT (Resiko Tinggi), karena :
+					<span class="or-output" data-value=" /PNC_Visit/high_risk_post-partum_reason " />
+				</span>
+				<span class="required">*</span>
+			</legend>
+			<div class="option-wrapper">
+				<label>
+					<input value="OK" type="radio" name="/PNC_Visit/high_risk_note" required="required" data-relevant=" /PNC_Visit/is_high_risk_post-partum  = 'yes'" data-type-xml="string" />
+					<span class="option-label active" lang="">OK</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset id="or-preload-items" style="display:none;">
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+		</label>
+	</fieldset>
+	<fieldset id="or-calculated-items" style="display:none;">
+		 <label class="calculation non-select "><input autocomplete="off" type="hidden" name="/PNC_Visit/reg_date" data-calculate=" /PNC_Visit/today " data-type-xml="date"/></label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/Infeksi_nifas_risk" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'infeksi_nifas'), 'infeksi_nifas',''))" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/hipertensi_post-partum_risk" data-calculate="(if( /PNC_Visit/tanda_vital_td_sistolik  &gt;= 140 or  /PNC_Visit/tanda_vital_td_diastolik  &gt;= 90 or selected( /PNC_Visit/komplikasi ,'hipertensi_post-partum'), 'hipertensi_post-partum',''))" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/post-partum_sepsis_risk" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'post-partum_sepsis'), 'post-partum_sepsis',''))" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/perdarahan_post-partum_risk" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'perdarahan_post-partum'), 'perdarahan_post-partum',''))" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/mastitis_risk" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'mastitis'), 'mastitis',''))" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/is_high_risk_post-partum" data-calculate="if(( /PNC_Visit/hipertensi_post-partum_risk  !='' or  /PNC_Visit/perdarahan_post-partum_risk  != '' or  /PNC_Visit/Infeksi_nifas_risk  != '' or  /PNC_Visit/mastitis_risk  != '' or  /PNC_Visit/post-partum_sepsis_risk  != ''), 'yes', 'no')" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/high_risk_post-partum_reason" data-calculate="concat( /PNC_Visit/hipertensi_post-partum_risk , ' ,',  /PNC_Visit/perdarahan_post-partum_risk , ' ,',  /PNC_Visit/Infeksi_nifas_risk , ' ,',  /PNC_Visit/mastitis_risk , ' ,',  /PNC_Visit/post-partum_sepsis_risk )" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/formhub/uuid" data-calculate="'7f3e45cb8fe942a3966a83f3e125979d'" data-type-xml="string" />
+		</label>
+	</fieldset>
+</form>

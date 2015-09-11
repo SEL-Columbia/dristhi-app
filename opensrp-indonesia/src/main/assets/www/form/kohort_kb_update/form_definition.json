@@ -1,0 +1,53 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "kartu_ibu",
+    "default_bind_path": "/model/instance/kohort_pelayanan_kb/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "tanggalkunjungan",
+        "bind": "/model/instance/kohort_pelayanan_kb/tanggal_kunjungan"
+      },
+      {
+        "name": "keteranganTentangPesertaKB",
+        "bind": "/model/instance/kohort_pelayanan_kb/keterangan_tentang_peserta_kb"
+      },
+      {
+        "name": "jenisKontrasepsi",
+        "bind": "/model/instance/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan"
+      },
+      {
+        "name": "keterangantentangPesertaKB2",
+        "bind": "/model/instance/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2"
+      },
+      {
+        "name": "keterangando",
+        "bind": "/model/instance/kohort_pelayanan_kb/keterangan_do"
+      },
+      {
+        "name": "keteranganGantiCara",
+        "bind": "/model/instance/kohort_pelayanan_kb/keterangan_ganti_cara"
+      },
+      {
+        "name": "keteranganEfekSamping",
+        "bind": "/model/instance/kohort_pelayanan_kb/keterangan_efek_samping"
+      },
+      {
+        "name": "keteranganKomplikasi",
+        "bind": "/model/instance/kohort_pelayanan_kb/keterangan_komplikasi"
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/kohort_pelayanan_kb/today"
+      },
+      {
+        "name": "registrationDate",
+        "bind": "/model/instance/kohort_pelayanan_kb/reg_date"
+      }
+    ]
+  }
+}

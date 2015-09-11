@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="postpartum_kb">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo" />
+   <h3 id="form-title">Post-partum KB</h3>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Metode Kontrasepsi</span>
+            <span lang="" class="or-hint active">Jenis metode kontrasepsi yang ada</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/postpartum_kb/metode_kontrasepsi" data-name="/postpartum_kb/metode_kontrasepsi" value="mal" data-type-xml="select1" />
+               <span lang="" class="option-label active">MAL</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/postpartum_kb/metode_kontrasepsi" data-name="/postpartum_kb/metode_kontrasepsi" value="kondom" data-type-xml="select1" />
+               <span lang="" class="option-label active">Kondom</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/postpartum_kb/metode_kontrasepsi" data-name="/postpartum_kb/metode_kontrasepsi" value="pil" data-type-xml="select1" />
+               <span lang="" class="option-label active">PIL</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/postpartum_kb/metode_kontrasepsi" data-name="/postpartum_kb/metode_kontrasepsi" value="suntik" data-type-xml="select1" />
+               <span lang="" class="option-label active">Suntik</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/postpartum_kb/metode_kontrasepsi" data-name="/postpartum_kb/metode_kontrasepsi" value="akdr" data-type-xml="select1" />
+               <span lang="" class="option-label active">AKDR (IUD)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/postpartum_kb/metode_kontrasepsi" data-name="/postpartum_kb/metode_kontrasepsi" value="implant" data-type-xml="select1" />
+               <span lang="" class="option-label active">Implant</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/postpartum_kb/metode_kontrasepsi" data-name="/postpartum_kb/metode_kontrasepsi" value="mow" data-type-xml="select1" />
+               <span lang="" class="option-label active">MOW</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/postpartum_kb/metode_kontrasepsi" data-name="/postpartum_kb/metode_kontrasepsi" value="mop" data-type-xml="select1" />
+               <span lang="" class="option-label active">MOP</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question non-select ">
+      <span lang="" class="question-label active">Rencana</span>
+      <span lang="" class="or-hint active">Rencana pemakaian alat kontrasepsi yang akan digunakan</span>
+      <input type="text" name="/postpartum_kb/rencana" data-type-xml="string" />
+   </label>
+   <label class="question non-select ">
+      <span lang="" class="question-label active">Pelaksanaan &lt;42 hari</span>
+      <span lang="" class="or-hint active">Tanggal pelaksanaan pemakaian alat kontrasepsi yang digunakan pada saat kurang dari 42 hari setelah persalinan</span>
+      <input type="date" name="/postpartum_kb/pelaksanaan_bawah_42_hari" data-type-xml="date" />
+   </label>
+   <label class="question non-select ">
+      <span lang="" class="question-label active">Pelaksanaan &gt;42 hari</span>
+      <span lang="" class="or-hint active">Tanggal pelaksanaan pemakaian alat kontrasepsi yang digunakan pada saat lebih dari 42 hari setelah persalinan</span>
+      <input type="date" name="/postpartum_kb/pelaksanaan_atas_42_hari" data-type-xml="date" />
+   </label>
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/postpartum_kb/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/postpartum_kb/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/postpartum_kb/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/postpartum_kb/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/postpartum_kb/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/postpartum_kb/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+       <label class="calculation non-select ">
+         <input autocomplete="off" type="hidden" name="/postpartum_kb/reg_date" data-calculate=" /postpartum_kb/today " data-type-xml="date"/></label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/postpartum_kb/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/postpartum_kb/formhub/uuid" data-calculate="'b3c5937304cd4086a518bff9ae2153e1'" data-type-xml="string" />
+      </label>
+   </fieldset>
+</form>

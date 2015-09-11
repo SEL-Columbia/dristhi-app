@@ -1,0 +1,26 @@
+<model>
+    <instance>
+        <penutupan_kb id="Penutupan_KB" version="201506200428">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <start/>
+          <today/>
+          <deviceid/>
+          <simserial/>
+          <phonenumber/>
+          <kb_close_reason/>
+          <keterangan_do/>
+          <keterangan_gagal/>
+          <death_mother_group>
+            <woman_survived/>
+            <death_date/>
+          </death_mother_group>
+          <confirm_kb_close/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </penutupan_kb>
+      </instance>
+  </model>

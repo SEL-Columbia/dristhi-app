@@ -1,18 +1,26 @@
 [
     {
-        "parent": "eligible_couple",
-        "child": "mother",
-        "field": "wife",
-        "kind": "one_to_one",
-        "from": "eligible_couple.id",
-        "to": "mother.ecCaseId"
+        "parent":"bidan",
+        "child":"ibu",
+        "field":"ibu_ibu",
+        "kind":"one_to_many",
+        "from":"bidan.id",
+        "to":"ibu.bidanId"
     },
     {
-        "parent": "mother",
-        "child": "child",
-        "field": "children",
-        "kind": "one_to_many",
-        "from": "mother.id",
-        "to": "child.motherCaseId"
+        "parent":"kartu_ibu",
+        "child": "ibu",
+        "field":"istri",
+        "kind":"one_to_one",
+        "from":"kartu_ibu.id",
+        "to":"ibu.kartuIbuId"
+    },
+    {
+        "parent":"ibu",
+        "child":"anak",
+        "field":"anak_anak",
+        "kind":"one_to_many",
+        "from":"ibu.id",
+        "to":"anak.ibuCaseId"
     }
 ]

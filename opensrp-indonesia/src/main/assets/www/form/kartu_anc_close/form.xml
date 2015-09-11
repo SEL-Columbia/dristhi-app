@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="Penutupan_ANC">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo" />
+   <h3 id="form-title">Penutupan ANC</h3>
+   <label class="question or-appearance-minimal ">
+      <span lang="" class="question-label active">Alasan penutupan ANC?</span>
+      <span class="required">*</span>
+      <span lang="" class="or-hint active">Pilihlah salah satu alasan yang tersedia</span>
+      <select name="/Penutupan_ANC/close_reason" data-name="/Penutupan_ANC/close_reason" required="required" data-type-xml="select1">
+         <option value="">...</option>
+         <option value="death_of_woman">Ibu meninggal</option>
+         <option value="relocation_temporary">Relokasi (sementara)</option>
+         <option value="relocation_permanent">Relokasi (permanen)</option>
+         <option value="spontaneous_abortion">Keguguran</option>
+         <option value="induced_abortion">Aborsi</option>
+         <option value="wrong_entry">Kesalahan entry</option>
+      </select>
+      <span class="or-option-translations" style="display:none;" />
+   </label>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Apakah penyebab kematian ibu?</span>
+            <span class="required">*</span>
+            <span lang="" class="or-hint active">Pilihlah salah satu alasan yang tersedia</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Penutupan_ANC/maternal_death" data-name="/Penutupan_ANC/maternal_death" value="Penyebab langsung" required="required" data-relevant=" /Penutupan_ANC/close_reason  = 'death_of_woman'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Penyebab langsung</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_ANC/maternal_death" data-name="/Penutupan_ANC/maternal_death" value="Penyebab tidak langsung" required="required" data-relevant=" /Penutupan_ANC/close_reason  = 'death_of_woman'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Penyebab tidak langsung</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_ANC/maternal_death" data-name="/Penutupan_ANC/maternal_death" value="dont_know" required="required" data-relevant=" /Penutupan_ANC/close_reason  = 'death_of_woman'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Tidak tahu</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <section class="or-group-data or-branch pre-init " name="/Penutupan_ANC/spontaneous_abortion_group" data-relevant=" /Penutupan_ANC/close_reason  = 'spontaneous_abortion'">
+      <label class="question non-select ">
+         <span lang="" class="or-constraint-msg active">Harus diisi Dengan Tanggal sebelum hari ini</span>
+         <span lang="" class="question-label active">Tanggal keguguran?</span>
+         <span lang="" class="or-hint active">Masukkan tanggal Ibu mengalami keguguran</span>
+         <input type="date" name="/Penutupan_ANC/spontaneous_abortion_group/date_spontaneous" data-constraint=".&lt;= /Penutupan_ANC/today " data-type-xml="date" />
+      </label>
+      <label class="question or-appearance-minimal ">
+         <span lang="" class="question-label active">Penyebab keguguran?</span>
+         <span lang="" class="or-hint active">Pilihlah salah satu alasan yang tersedia</span>
+         <select name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_cause" data-name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_cause" data-type-xml="select1">
+            <option value="">...</option>
+            <option value="rh_incompatibility">Rh incompatibility</option>
+            <option value="uterine_abnormality">Uterine tidak normal</option>
+            <option value="diabetes">Diabetes</option>
+            <option value="infection">Infeksi</option>
+            <option value="cause_not_identified">Penyebab tidak teridentifikasi</option>
+            <option value="others">Lainnya</option>
+         </select>
+         <span class="or-option-translations" style="display:none;" />
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="question-label active">Lainnya</span>
+         <span lang="" class="or-hint active">Sebutkan alasan lainnya jika ada</span>
+         <input type="text" name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_cause_other" data-relevant=" /Penutupan_ANC/spontaneous_abortion_group/spont_abortion_cause  = 'others'" data-type-xml="string" />
+      </label>
+      <fieldset class="question ">
+         <fieldset>
+            <legend>
+               <span lang="" class="question-label active">Tempat terjadinya keguguran?</span>
+               <span lang="" class="or-hint active">Pilihlah salah satu tempat yang tersedia</span>
+            </legend>
+            <div class="option-wrapper">
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_place" data-name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_place" value="home" data-type-xml="select1" />
+                  <span lang="" class="option-label active">Rumah</span>
+               </label>
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_place" data-name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_place" value="hospital" data-type-xml="select1" />
+                  <span lang="" class="option-label active">Rumah sakit</span>
+               </label>
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_place" data-name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_place" value="puskesmas" data-type-xml="select1" />
+                  <span lang="" class="option-label active">Puskesmas</span>
+               </label>
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_place" data-name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_place" value="elsewhere" data-type-xml="select1" />
+                  <span lang="" class="option-label active">Lainnya</span>
+               </label>
+            </div>
+         </fieldset>
+      </fieldset>
+      <fieldset class="question or-branch pre-init ">
+         <fieldset>
+            <legend>
+               <span lang="" class="question-label active">Apakah diberikan injeksi RH?</span>
+            </legend>
+            <div class="option-wrapper">
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/spontaneous_abortion_group/rh_injection_given1" data-name="/Penutupan_ANC/spontaneous_abortion_group/rh_injection_given1" value="yes" data-relevant=" /Penutupan_ANC/spontaneous_abortion_group/case_w_rh_negative  != ''" data-type-xml="select1" />
+                  <span lang="" class="option-label active">Ya</span>
+               </label>
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/spontaneous_abortion_group/rh_injection_given1" data-name="/Penutupan_ANC/spontaneous_abortion_group/rh_injection_given1" value="no" data-relevant=" /Penutupan_ANC/spontaneous_abortion_group/case_w_rh_negative  != ''" data-type-xml="select1" />
+                  <span lang="" class="option-label active">Tidak</span>
+               </label>
+            </div>
+         </fieldset>
+      </fieldset>
+      <fieldset class="question ">
+         <fieldset>
+            <legend>
+               <span lang="" class="question-label active">
+                  Ibu harus menunggu 3 bulan setelah keguguran sebelum mencoba untuk hamil kembali. Beri saran kepada pasangan suami istri untuk menggunakan KB sampai 3 bulan setelah kehamilan:
+                  <span class="or-output" data-value=" /Penutupan_ANC/spontaneous_abortion_group/threemonths_from_spont_abortion_date_formatted " />
+               </span>
+            </legend>
+            <div class="option-wrapper">
+               <label>
+                  <input value="OK" type="radio" name="/Penutupan_ANC/spontaneous_abortion_group/spont_abortion_message" data-type-xml="string" />
+                  <span class="option-label active" lang="">OK</span>
+               </label>
+            </div>
+         </fieldset>
+      </fieldset>
+   </section>
+   <!--end of group -->
+   <section class="or-group-data or-branch pre-init " name="/Penutupan_ANC/induced_abortion_group" data-relevant=" /Penutupan_ANC/close_reason  = 'induced_abortion'">
+      <fieldset class="question ">
+         <fieldset>
+            <legend>
+               <span lang="" class="question-label active">Apa tipe aborsinya?</span>
+               <span lang="" class="or-hint active">Pilihlah sesuai tipe aborsi yang tersedia</span>
+            </legend>
+            <div class="option-wrapper">
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/induced_abortion_group/time_induced" data-name="/Penutupan_ANC/induced_abortion_group/time_induced" value="less_12wks" data-type-xml="select1" />
+                  <span lang="" class="option-label active">MTP = 12 minggu</span>
+               </label>
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/induced_abortion_group/time_induced" data-name="/Penutupan_ANC/induced_abortion_group/time_induced" value="greater_12wks" data-type-xml="select1" />
+                  <span lang="" class="option-label active">MTP &gt; 12 minggu</span>
+               </label>
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/induced_abortion_group/time_induced" data-name="/Penutupan_ANC/induced_abortion_group/time_induced" value="not_mtp" data-type-xml="select1" />
+                  <span lang="" class="option-label active">Bukan MTP</span>
+               </label>
+            </div>
+         </fieldset>
+      </fieldset>
+      <label class="question non-select ">
+         <span lang="" class="or-constraint-msg active">Tanggal kematian ibu hari ini atau hari-hari sebelumnya</span>
+         <span lang="" class="question-label active">Tanggal aborsi?</span>
+         <span lang="" class="or-hint active">Diisi dengan dengan tanggal saat aborsi terjadi</span>
+         <input type="date" name="/Penutupan_ANC/induced_abortion_group/date_induced" data-constraint=".&lt;= /Penutupan_ANC/today " data-type-xml="date" />
+      </label>
+      <fieldset class="question or-branch pre-init ">
+         <fieldset>
+            <legend>
+               <span lang="" class="question-label active">Apakah diberikan injeksi Rh?</span>
+            </legend>
+            <div class="option-wrapper">
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/induced_abortion_group/rh_injection_given2" data-name="/Penutupan_ANC/induced_abortion_group/rh_injection_given2" value="yes" data-relevant=" /Penutupan_ANC/spontaneous_abortion_group/case_w_rh_negative  != ''" data-type-xml="select1" />
+                  <span lang="" class="option-label active">Ya</span>
+               </label>
+               <label class="">
+                  <input type="radio" name="/Penutupan_ANC/induced_abortion_group/rh_injection_given2" data-name="/Penutupan_ANC/induced_abortion_group/rh_injection_given2" value="no" data-relevant=" /Penutupan_ANC/spontaneous_abortion_group/case_w_rh_negative  != ''" data-type-xml="select1" />
+                  <span lang="" class="option-label active">Tidak</span>
+               </label>
+            </div>
+         </fieldset>
+      </fieldset>
+      <fieldset class="question ">
+         <fieldset>
+            <legend>
+               <span lang="" class="question-label active">Berikan konseling tentang metode KB kepada pasangan!</span>
+            </legend>
+            <div class="option-wrapper">
+               <label>
+                  <input value="OK" type="radio" name="/Penutupan_ANC/induced_abortion_group/induced_fp_message" data-type-xml="string" />
+                  <span class="option-label active" lang="">OK</span>
+               </label>
+            </div>
+         </fieldset>
+      </fieldset>
+   </section>
+   <!--end of group -->
+   <section class="or-group-data or-branch pre-init " name="/Penutupan_ANC/maternal_death_group" data-relevant=" /Penutupan_ANC/maternal_death  = 'Penyebab langsung' or  /Penutupan_ANC/maternal_death  = 'Penyebab tidak langsung'">
+      <label class="question non-select ">
+         <span lang="" class="or-constraint-msg active">Tanggal kematian ibu hari ini atau hari-hari sebelumnya</span>
+         <span lang="" class="question-label active">Tanggal kematian ibu?</span>
+         <span class="required">*</span>
+         <span lang="" class="or-hint active">Masukkan tanggal kematian Ibu!</span>
+         <input type="date" name="/Penutupan_ANC/maternal_death_group/date_maternal_death" required="required" data-constraint=".&lt;= /Penutupan_ANC/today " data-type-xml="date" />
+      </label>
+      <label class="question or-appearance-minimal  or-branch pre-init ">
+         <span lang="" class="question-label active">Penyebab kematian ibu?</span>
+         <span lang="" class="or-hint active">Pilihlah salah satu jawaban yang tersedia</span>
+         <select name="/Penutupan_ANC/maternal_death_group/maternal_death_cause" data-name="/Penutupan_ANC/maternal_death_group/maternal_death_cause" data-relevant=" /Penutupan_ANC/maternal_death  = 'Penyebab langsung'" data-type-xml="select1">
+            <option value="">...</option>
+            <option value="abortion">Aborsi</option>
+            <option value="hypertension_fits">Hipertensi parah</option>
+            <option value="bleeding_hemorrhage">Pendarahan</option>
+            <option value="fever_infection">Demam tinggi</option>
+            <option value="cause_not_identified">Penyebab tidak teridentifikasi</option>
+            <option value="others">Lainnya</option>
+         </select>
+         <span class="or-option-translations" style="display:none;" />
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="question-label active">Lainnya</span>
+         <span lang="" class="or-hint active">Sebutkan alasan lainnya jika ada</span>
+         <input type="text" name="/Penutupan_ANC/maternal_death_group/other_maternal_death_cause" data-relevant=" /Penutupan_ANC/maternal_death_group/maternal_death_cause  = 'others'" data-type-xml="string" />
+      </label>
+      <label class="question or-appearance-minimal  or-branch pre-init ">
+         <span lang="" class="question-label active">Tempat kematian</span>
+         <span lang="" class="or-hint active">Tempat kematian ibu</span>
+         <select name="/Penutupan_ANC/maternal_death_group/place_of_death" data-name="/Penutupan_ANC/maternal_death_group/place_of_death" data-relevant=" /Penutupan_ANC/maternal_death  = 'Penyebab langsung'" data-type-xml="select1">
+            <option value="">...</option>
+            <option value="Rumah sendiri/keluarga">Rumah sendiri/keluarga</option>
+            <option value="Rumah dukun">Rumah dukun</option>
+            <option value="Polindes">Polindes</option>
+            <option value="Pustu">Pustu</option>
+            <option value="Rumah bidan">Rumah bidan</option>
+            <option value="Puskesmas">Puskesmas</option>
+            <option value="Dalam perjalanan ke fasilitas">Dalam perjalanan ke fasilitas</option>
+            <option value="Lainnya">Lainnya</option>
+         </select>
+         <span class="or-option-translations" style="display:none;" />
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="question-label active">Lainnya</span>
+         <input type="text" name="/Penutupan_ANC/maternal_death_group/other_place_of_death" data-relevant=" /Penutupan_ANC/maternal_death_group/place_of_death  = 'Lainnya'" data-type-xml="string" />
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="question-label active">Penyebab</span>
+         <span lang="" class="or-hint active">Masukkan penyebab kematian</span>
+         <input type="text" name="/Penutupan_ANC/maternal_death_group/not_maternal_death_cause" data-relevant=" /Penutupan_ANC/maternal_death  = 'Penyebab tidak langsung'" data-type-xml="string" />
+      </label>
+   </section>
+   <!--end of group -->
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Konfirmasi penutupan ANC?</span>
+            <span class="required">*</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Penutupan_ANC/confirm_Penutupan_ANC" data-name="/Penutupan_ANC/confirm_Penutupan_ANC" value="yes" required="required" data-relevant=" /Penutupan_ANC/close_reason  != 'relocation_temporary'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Ya</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Konfirmasi relokasi ANC (sementara)?</span>
+            <span class="required">*</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Penutupan_ANC/confirm_anc_left" data-name="/Penutupan_ANC/confirm_anc_left" value="yes" required="required" data-relevant=" /Penutupan_ANC/close_reason  = 'relocation_temporary'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Ya</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+   <label class="calculation non-select ">
+         <input autocomplete="off" type="hidden" name="/Penutupan_ANC/reg_date" data-calculate=" /Penutupan_ANC/today " data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/num_abortions" data-relevant=" /Penutupan_ANC/close_reason  = 'induced_abortion' or  /Penutupan_ANC/close_reason  = 'spontaneous_abortion'" data-calculate=" /Penutupan_ANC/case_num_abortions  + 1" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/spontaneous_abortion_group/num_abortions_spontaneous" data-calculate=" /Penutupan_ANC/spontaneous_abortion_group/case_num_abortions_spontaneous  + 1" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/spontaneous_abortion_group/num_weeks_spontaneous" data-calculate="int(( /Penutupan_ANC/spontaneous_abortion_group/date_spontaneous  -  /Penutupan_ANC/spontaneous_abortion_group/case_lmp ) div 7)" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/spontaneous_abortion_group/threemonths_from_spont_abortion_date" data-calculate="date( /Penutupan_ANC/spontaneous_abortion_group/date_spontaneous  + 90)" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/spontaneous_abortion_group/threemonths_from_spont_abortion_date_formatted" data-calculate="format-date( /Penutupan_ANC/spontaneous_abortion_group/threemonths_from_spont_abortion_date , '%Y-%n-%e')" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/induced_abortion_group/num_abortions_induced" data-calculate=" /Penutupan_ANC/induced_abortion_group/case_num_abortions_induced  + 1" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/rh_injection_given" data-calculate="if( /Penutupan_ANC/close_reason  = 'spontaneous_abortion',  /Penutupan_ANC/spontaneous_abortion_group/rh_injection_given1 ,  /Penutupan_ANC/induced_abortion_group/rh_injection_given2 )" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_ANC/formhub/uuid" data-calculate="'87c8de340d9f4847b1c7a0b6768789de'" data-type-xml="string" />
+      </label>
+   </fieldset>
+</form>

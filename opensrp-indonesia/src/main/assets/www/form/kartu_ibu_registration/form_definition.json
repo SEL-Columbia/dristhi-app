@@ -1,0 +1,160 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "kartu_ibu",
+    "default_bind_path": "/model/instance/kartu_ibu/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "unique_id",
+        "bind": "/model/instance/kartu_ibu/unique_id",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "puskesmas",
+        "bind": "/model/instance/kartu_ibu/puskesmas"
+      },
+      {
+        "name": "noIbu",
+        "bind": "/model/instance/kartu_ibu/no_ibu"
+      },
+      {
+        "name": "namalengkap",
+        "bind": "/model/instance/kartu_ibu/nama_lengkap"
+      },
+      {
+        "name": "namaSuami",
+        "bind": "/model/instance/kartu_ibu/nama_suami"
+      },
+      {
+        "name": "tanggalLahir",
+        "bind": "/model/instance/kartu_ibu/tanggal_lahir_ibu"
+      },
+      {
+        "name": "umur",
+        "bind": "/model/instance/kartu_ibu/umur"
+      },
+      {
+        "name": "alamatDomisili",
+        "bind": "/model/instance/kartu_ibu/alamat_domisili"
+      },
+      {
+        "name": "propinsi",
+        "bind": "/model/instance/kartu_ibu/propinsi"
+      },
+      {
+        "name": "kabupaten",
+        "bind": "/model/instance/kartu_ibu/kabupaten"
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/kartu_ibu/kecamatan"
+      },
+      {
+        "name": "kecamatanl",
+        "bind": "/model/instance/kartu_ibu/kecamatanl"
+      },
+      {
+        "name": "desa",
+        "bind": "/model/instance/kartu_ibu/desa"
+      },
+    
+      {
+        "name": "dusun",
+        "bind": "/model/instance/kartu_ibu/dusun"
+      },
+     
+      {
+        "name": "pendidikan",
+        "bind": "/model/instance/kartu_ibu/pendidikan"
+      },
+      {
+        "name": "agama",
+        "bind": "/model/instance/kartu_ibu/agama"
+      },
+      {
+        "name": "pekerjaan",
+        "bind": "/model/instance/kartu_ibu/pekerjaan"
+      },
+      {
+        "name": "gakinTidak",
+        "bind": "/model/instance/kartu_ibu/gakin_tidak"
+      },
+      {
+        "name": "posyandu",
+        "bind": "/model/instance/kartu_ibu/posyandu"
+      },
+      {
+        "name": "namaKader",
+        "bind": "/model/instance/kartu_ibu/nama_kader"
+      },
+      {
+        "name": "namaDukun",
+        "bind": "/model/instance/kartu_ibu/nama_dukun"
+      },
+      {
+        "name": "asuransiJiwa",
+        "bind": "/model/instance/kartu_ibu/asuransi_jiwa"
+      },
+      {
+        "name": "golonganDarah",
+        "bind": "/model/instance/kartu_ibu/golongan_darah"
+      },
+      {
+        "name": "telponMemilikiTidak",
+        "bind": "/model/instance/kartu_ibu/nomortelpon"
+      },
+      {
+        "name": "NomorTelponHp",
+        "bind": "/model/instance/kartu_ibu/nomor_telpon_hp"
+      },
+      {
+        "name": "pptest",
+        "bind": "/model/instance/kartu_ibu/pptest"
+      },
+      {
+        "name": "tooYoungRisk",
+        "bind": "/model/instance/kartu_ibu/Too_young_risk"
+      },
+      {
+        "name": "tooOldMother",
+        "bind": "/model/instance/kartu_ibu/Too_old_mother"
+      },
+      {
+        "name": "isHighPriority",
+        "bind": "/model/instance/kartu_ibu/is_high_priority"
+      },
+      {
+        "name": "highPriorityReason",
+        "bind": "/model/instance/kartu_ibu/high_priority_reason"
+      },
+      {
+        "name": "highRiskNote",
+        "bind": "/model/instance/kartu_ibu/high_risk_note"
+      },
+      {
+        "name": "isHighRisk",
+        "bind": "/model/instance/kartu_ibu/is_high_risk"
+      },
+      {
+        "name": "isOutOfArea",
+        "value": "false"
+      },
+      {
+        "name": "isClosed",
+        "value": "false"
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/kartu_ibu/today"
+      },
+      {
+        "name": "registrationDate",
+        "bind": "/model/instance/kartu_ibu/reg_date"
+      }
+    ]
+  }
+}

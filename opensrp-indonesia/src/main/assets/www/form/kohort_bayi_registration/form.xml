@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="register_baby_only">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo" />
+   <h3 id="form-title">Register Baby Only</h3>
+   <label class="question non-select ">
+      <span lang="" class="question-label active">Tanggal pendaftaran</span>
+      <span lang="" class="or-hint active">Tanggal melakukan pendaftaran bayi</span>
+      <input type="date" name="/register_baby_only/tanggal_pendaftaran" data-type-xml="date" />
+   </label>
+   <label class="question non-select ">
+      <span lang="" class="question-label active">No. bayi</span>
+      <span lang="" class="or-hint active">Diisi dengan nomor bayi</span>
+      <input type="number" name="/register_baby_only/no_bayi" data-type-xml="int" />
+   </label>
+   <label class="question non-select ">
+      <span lang="" class="question-label active">Nama bayi</span>
+      <span lang="" class="or-hint active">Apabila nama bayi belum ada, isi dengan: Bayi 'nama_ibu'. misal nama ibu Ratna, maka isi dengan Bayi Ratna</span>
+      <input type="text" name="/register_baby_only/nama_bayi" data-type-xml="string" />
+   </label>
+   <label class="question non-select ">
+      <span lang="" class="or-constraint-msg active">Tanggal lahir bayi harus diisi dengan sebelum tanggal pendaftaran</span>
+      <span lang="" class="question-label active">Tanggal lahir</span>
+      <span lang="" class="or-hint active">Diisi dengan tanggal lahir bayi</span>
+      <input type="date" name="/register_baby_only/tanggal_lahir_anak" data-constraint=".&lt;=  /register_baby_only/tanggal_pendaftaran " data-type-xml="date" />
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Jenis kelamin</span>
+            <span lang="" class="or-hint active">Diisi dengan jenis kelamin bayi</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/register_baby_only/jenis_kelamin" data-name="/register_baby_only/jenis_kelamin" value="laki" data-type-xml="select1" />
+               <span lang="" class="option-label active">Laki (L)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/register_baby_only/jenis_kelamin" data-name="/register_baby_only/jenis_kelamin" value="perempuan" data-type-xml="select1" />
+               <span lang="" class="option-label active">Perempuan ( P)</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Kepemilikan buku KIA</span>
+            <span lang="" class="or-hint active">Diisi dengan status kepemilikan buku KIA</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/register_baby_only/kepemilikan_buku_kia" data-name="/register_baby_only/kepemilikan_buku_kia" value="ya" data-type-xml="select1" />
+               <span lang="" class="option-label active">Ya (+)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/register_baby_only/kepemilikan_buku_kia" data-name="/register_baby_only/kepemilikan_buku_kia" value="tidak" data-type-xml="select1" />
+               <span lang="" class="option-label active">Tidak (-)</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question non-select ">
+      <span lang="" class="or-constraint-msg active">Berat badan harus lebih dari 0</span>
+      <span lang="" class="question-label active">Berat lahir</span>
+      <span lang="" class="or-hint active">Diisi dengan berat badan bayi saat lahir (gram)</span>
+      <input type="number" name="/register_baby_only/berat_lahir" data-constraint=".&gt;0 and .&lt;5000" data-type-xml="int" />
+   </label>
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/register_baby_only/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/register_baby_only/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/register_baby_only/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/register_baby_only/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/register_baby_only/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/register_baby_only/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+   <label class="calculation non-select ">
+         <input autocomplete="off" type="hidden" name="/register_baby_only/reg_date" data-calculate=" /register_baby_only/today " data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/register_baby_only/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/register_baby_only/formhub/uuid" data-calculate="'2e2e452a915040e79f20d26f3761df13'" data-type-xml="string" />
+      </label>
+   </fieldset>
+</form>

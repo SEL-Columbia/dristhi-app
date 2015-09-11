@@ -1,0 +1,74 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "kartu_ibu",
+    "default_bind_path": "/model/instance/tambah_kb/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "tanggalkunjungan",
+        "bind": "/model/instance/tambah_kb/tanggal_kunjungan"
+      },
+      {
+        "name": "tanggalLahir",
+        "bind": "/model/instance/tambah_kb/tanggal_lahir_ibu",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "umur",
+        "bind": "/model/instance/tambah_kb/umur"
+      },
+      {
+        "name": "tdSistolik",
+        "bind": "/model/instance/tambah_kb/td_sistolik"
+      },
+      {
+        "name": "tdDiastolik",
+        "bind": "/model/instance/tambah_kb/td_diastolik"
+      },
+      {
+        "name": "paritas",
+        "bind": "/model/instance/tambah_kb/paritas"
+      },
+      {
+        "name": "alki",
+        "bind": "/model/instance/tambah_kb/alki"
+      },
+      {
+        "name": "alkihb",
+        "bind": "/model/instance/tambah_kb/alki_hb"
+      },
+      {
+        "name": "alkilila",
+        "bind": "/model/instance/tambah_kb/alki_lila"
+      },
+      {
+        "name": "alkiPenyakitKronis",
+        "bind": "/model/instance/tambah_kb/alki_penyakit_kronis"
+      },
+      {
+        "name": "alkiPenyakitIms",
+        "bind": "/model/instance/tambah_kb/alki_penyakit_ims"
+      },
+      {
+        "name": "keteranganTentangPesertaKB",
+        "bind": "/model/instance/tambah_kb/keterangan_tentang_peserta_kb"
+      },
+      {
+        "name": "jenisKontrasepsi",
+        "bind": "/model/instance/tambah_kb/jenis_kontrasepsi_yang_digunakan"
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/tambah_kb/today"
+      },
+      {
+        "name": "registrationDate",
+        "bind": "/model/instance/tambah_kb/reg_date"
+      }
+    ]
+  }
+}

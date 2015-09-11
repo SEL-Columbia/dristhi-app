@@ -1,0 +1,85 @@
+{
+    "form_data_definition_version": "1",
+    "form": {
+        "bind_type": "anak",
+        "default_bind_path": "/model/instance/kohort_bayi_kunjungan_perbulan/",
+        "fields": [
+            {
+                "name": "id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "tanggalKunjunganBayiPerbulan",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/tanggal_kunjungan_bayi_perbulan"
+            },
+            {
+                "name": "beratBadanBayiSetiapKunjunganBayiPerbulan",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/berat_badan_bayi_setiap_kunjungan_bayi_perbulan"
+            },
+            {
+                "name": "indikatorBeratBedanBayi",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/indikator_berat_bedan_bayi"
+            },
+            {
+                "name": "pemberianAsiEksklusif",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/pemberian_asi_eksklusif"
+            },
+            {
+                "name": "statusGizi",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/status_gizi"
+            },
+            {
+                "name": "hasilDilakukannyaKPSP",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/hasil_dilakukannya_kpsp"
+            },
+	        {
+                "name": "kpspPenyimpangan",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/kpsp_penyimpangan"
+            },
+	        {
+                "name": "pelayananVita",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/pelayanan_vita"
+            },
+	        {
+                "name": "dilakukanImunisasi",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/dilakukan_imunisasi"
+            },
+            {
+                "name": "tanggalpemberianimunisasiHb07",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/tanggal_pemberian_imunisasi_hb_07"
+            },
+            {
+                "name": "tanggalpemberianimunisasiBCGdanPolio1",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/tanggal_pemberian_imunisasi_bcg_dan_Polio1"
+            },
+            {
+                "name": "tanggalpemberianimunisasiDPTHB1Polio2",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/tanggal_pemberian_imunisasi_dpthb1Polio2"
+            },
+            {
+                "name": "tanggalpemberianimunisasiDPTHB2Polio3",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/tanggal_pemberian_imunisasi_dpthb2Polio3"
+            },
+            {
+                "name": "tanggalpemberianimunisasiDPTHB3Polio4",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/tanggal_pemberian_imunisasi_dpthb3Polio4"
+            },
+            {
+                "name": "tanggalpemberianimunisasiCampak",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/tanggal_pemberian_imunisasi_campak"
+            },
+            {
+                "name": "keterangan",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/keterangan"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/today"
+            },
+            {
+                "name": "registrationDate",
+                "bind": "/model/instance/kohort_bayi_kunjungan_perbulan/reg_date"
+            }
+        ]
+    }
+}

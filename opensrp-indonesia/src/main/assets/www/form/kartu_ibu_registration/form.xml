@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="kartu_ibu">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo" />
+   <h3 id="form-title">Identitas Ibu</h3>
+   <select id="form-languages" style="display:none;" data-default-lang="Bahasa">
+      <option value="Bahasa">Bahasa</option>
+   </select>
+   <label class="note non-select">
+      <span lang="" class="question-label active">
+         Unique ID:
+         <span class="or-output" data-value="/kartu_ibu/unique_id" />
+      </span>
+      <input type="text" name="/kartu_ibu/generated_note_name_99" data-type-xml="string" readonly="readonly" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/puskesmas:label">Puskesmas</span>
+      <span class="required">*</span>
+      <span lang="" class="or-hint active">Nama puskesmas tempat ibu melakukan pemeriksaan</span>
+      <input type="text" name="/kartu_ibu/puskesmas" required="required" data-type-xml="string" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/no_ibu:label">No. Ibu</span>
+      <input type="number" name="/kartu_ibu/no_ibu" data-type-xml="int" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/nama_lengkap:label">Nama lengkap</span>
+      <span class="required">*</span>
+      <span lang="" class="or-hint active">Nama lengkap ibu</span>
+      <input type="text" name="/kartu_ibu/nama_lengkap" required="required" data-type-xml="string" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/nama_suami:label">Nama suami</span>
+      <span class="required">*</span>
+      <span lang="" class="or-hint active">Nama lengkap suami</span>
+      <input type="text" name="/kartu_ibu/nama_suami" required="required" data-type-xml="string" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/tanggal_lahir_ibu:label">Tanggal lahir</span>
+      <span class="required">*</span>
+      <span lang="" class="or-hint active">Tanggal lahir ibu</span>
+      <input type="date" name="/kartu_ibu/tanggal_lahir_ibu" required="required" data-type-xml="date" />
+   </label>
+   <label class="note non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/generated_note_name_13:label">
+         Umur:
+         <span class="or-output" data-value=" /kartu_ibu/umur " />
+      </span>
+      <input type="text" name="/kartu_ibu/generated_note_name_13" data-type-xml="string" readonly="readonly" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/alamat_domisili:label">Alamat domisili</span>
+      <span lang="" class="or-hint active">Alamat Tempat tinggal (rumah) ibu</span>
+      <input type="text" name="/kartu_ibu/alamat_domisili" data-type-xml="string" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/propinsi:label">Propinsi</span>
+      <span lang="" class="or-hint active">Propinsi Tempat Tinggal Ibu</span>
+      <input type="text" name="/kartu_ibu/propinsi" data-type-xml="string" />
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/kabupaten:label">Kabupaten</span>
+            <span lang="" class="or-hint active">kabupaten Tempat Tinggal Ibu</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/kartu_ibu/kabupaten" data-name="/kartu_ibu/kabupaten" value="Lombok Barat" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/kabupaten/Lombok Barat:label">Lombok Barat</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/kartu_ibu/kabupaten" data-name="/kartu_ibu/kabupaten" value="Lombok Tengah" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/kabupaten/Lombok Tengah:label">Lombok Tengah</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/kartu_ibu/kabupaten" data-name="/kartu_ibu/kabupaten" value="Lombok Timur" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/kabupaten/Lombok Timur:label">Lombok Timur</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/kecamatan:label">Kecamatan</span>
+            <span lang="" class="or-hint active">kecamatan Tempat Tinggal Ibu</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/kartu_ibu/kecamatan" data-name="/kartu_ibu/kecamatan" value="Pujut" data-relevant=" /kartu_ibu/kabupaten ='Lombok Tengah'" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/kecamatan/Pujut:label">Pujut</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/kartu_ibu/kecamatan" data-name="/kartu_ibu/kecamatan" value="Janapria" data-relevant=" /kartu_ibu/kabupaten ='Lombok Tengah'" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/kecamatan/Janapria:label">Janapria</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/kartu_ibu/kecamatan" data-name="/kartu_ibu/kecamatan" value="Lainnya" data-relevant=" /kartu_ibu/kabupaten ='Lombok Tengah'" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/kecamatan/Lainnya:label">Lainnya</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/kecamatanl:label">Kecamatan</span>
+      <span lang="" class="or-hint active">kecamatan Tempat Tinggal Ibu</span>
+      <input type="text" name="/kartu_ibu/kecamatanl" data-relevant=" /kartu_ibu/kabupaten ='Lombok Barat' or  /kartu_ibu/kabupaten ='Lombok Timur' or  /kartu_ibu/kecamatan ='Lainnya'" data-type-xml="string" />
+   </label>
+   <label class="question or-appearance-minimal  or-branch pre-init ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/desa1:label">Desa</span>
+      <span lang="" class="or-hint active">desa Tempat tinggal Ibu</span>
+      <select name="/kartu_ibu/desa1" data-name="/kartu_ibu/desa1" data-relevant=" /kartu_ibu/kabupaten ='Lombok Tengah' and  /kartu_ibu/kecamatan  != 'Lainnya'" data-type-xml="select1">
+         <option class="itemset-template" value="" data-items-path="instance('desa')/root/item[kecamatan= /kartu_ibu/kecamatan ]">...</option>
+      </select>
+      <span class="or-option-translations" style="display:none;" />
+      <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-0">Lekor</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-1">Jango</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-2">Janapria</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-3">Saba</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-4">Setuta</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-5">Pendem</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-6">Lainnya</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-7">Sengkol</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-8">Tanak Awu</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-9">Ketara</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-10">Kawo</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-11">Pengembur</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-12">PKM Sengkol</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-13">Segala Anyar</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-desa-14">Lainnya</span>
+      </span>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/desa2:label">Desa</span>
+      <span lang="" class="or-hint active">desa Tempat tinggal Ibu</span>
+      <input type="text" name="/kartu_ibu/desa2" data-relevant=" /kartu_ibu/kabupaten ='Lombok Barat' or  /kartu_ibu/kabupaten ='Lombok Timur' or  /kartu_ibu/kecamatan ='Lainnya' or  /kartu_ibu/desa1 ='Lainnya'" data-type-xml="string" />
+   </label>
+   <label class="question or-appearance-minimal  or-branch pre-init ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/dusun1:label">Dusun</span>
+      <span lang="" class="or-hint active">dusun Tempat tinggal Ibu</span>
+      <select name="/kartu_ibu/dusun1" data-name="/kartu_ibu/dusun1" data-relevant=" /kartu_ibu/kabupaten ='Lombok Tengah' and  /kartu_ibu/kecamatan  != 'Lainnya'" data-type-xml="select1">
+         <option class="itemset-template" value="" data-items-path="instance('dusun')/root/item[kecamatan= /kartu_ibu/kecamatan  and desa= /kartu_ibu/desa1 ]">...</option>
+      </select>
+      <span class="or-option-translations" style="display:none;" />
+      <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-0">Kale</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-1">Piyang</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-2">Soweng</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-3">Senundal</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-4">Jomang</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-5">Penambong</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-6">Peresak</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-7">Pesarih</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-8">Sedo</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-9">Lotir</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-10">Belong</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-11">Sereneng</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-12">Sengkol I</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-13">Sengkol II</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-14">Junge</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-15">Gentang</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-16">Tajuk</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-17">Rebile</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-18">Perendik</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-19">Tanak Awu I</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-20">Tanak Awu II</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-21">Selawang</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-22">Reak I</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-23">Reak II</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-24">Singe</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-25">Gantang Lauk</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-26">Gantang Daye</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-27">Tatak</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-28">Tanak Awu Bat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-29">Tanpok</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-30">Jambek</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-31">Sempalan</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-32">Sarah</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-33">Reban</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-34">Plangsang</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-35">Bagek Dewe</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-36">Ketare</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-37">Dese</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-38">Dayen Rurung</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-39">Selak</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-40">Lebak</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-41">Sampet</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-42">Perigi</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-43">Abe</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-44">Kampu</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-45">Embung Rungkas</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-46">Bale Montong I</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-47">Bale Montong II</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-48">Batu Bangke</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-49">Pengadang</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-50">Karang Jangkong</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-51">Balen Along</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-52">Dayen Kubur</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-53">Gubuk Direk</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-54">Sarang Angin</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-55">Karang Daye</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-56">Gilik</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-57">Gampung</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-58">Wareng</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-59">Pance</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-60">Bumi Gora</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-61">Buntereng</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-62">Gonjong</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-63">Pengembur I</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-64">Pengembur II</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-65">Pengembur III</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-66">Penyampi</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-67">Batu Belek</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-68">Tawah</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-69">Perigi</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-70">Sinah</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-71">Siwang</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-72">Tamping</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-73">Sepit</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-74">Keramat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-75">Anak Anjan</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-76">Kadik I</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-77">Kadik II</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-78">Penupi</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-79">Penaok</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-80">Dasan Duah</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-81">Lamben</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-82">Segale</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-83">Karang baru</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-84">Tenang Baru</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-85">Tenang</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-86">Bolok</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-87">Lekor Barat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-88">Lekor Timur</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-89">Lekor Tengah</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-90">Sandat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-91">Bare Putih</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-92">Pelapak</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-93">Menteger</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-94">Ambat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-95">Berenge</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-96">Pepao Barat I</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-97">Pepao Barat II</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-98">Pepao Timur</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-99">Presak</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-100">Lendang Jawe</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-101">Kapet</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-102">Lempenge</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-103">Montong Bile</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-104">Gulung</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-105">Walun</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-106">Belo</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-107">Dongger</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-108">Wiyung</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-109">Embung Wile</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-110">Santong</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-111">Selaping</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-112">Sondo</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-113">Lengkok Bunut</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-114">Renge</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-115">Taken-Aken</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-116">Sesok</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-117">Puntik Baru</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-118">Prigi</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-119">Jango Utara</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-120">Jango Selatan</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-121">Batu Ngreng</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-122">Arba</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-123">Rungkang Barat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-124">Rungkang Timur</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-125">Gerepek</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-126">Kampung Baru</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-127">Kenyalu Barat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-128">Kenyalu Timur</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-129">Kenyalu Selatan</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-130">Kenyalu Utara</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-131">Kenyalu Tengah</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-132">Perok Timur</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-133">Perok Barat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-134">Tempek-Empek</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-135">Nunang I</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-136">Pengebat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-137">Sadah</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-138">Batu Bangus</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-139">Batu Kembar I</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-140">Batu Kembar II</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-141">Penambong</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-142">Lemokek</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-143">Lambah Olot</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-144">Tonjong</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-145">Jembe Barat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-146">Jembe Timur</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-147">Jembe Utara</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-148">Selek</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-149">Selek Direk</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-150">Masjaya</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-151">Melati</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-152">Gundu</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-153">Janggawana Selatan</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-154">Janggawana Utara</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-155">Janggawana</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-156">Janggawana Tengah</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-157">Sengkerek</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-158">Keruak</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-159">Keruak Utara</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-160">Presak Sanggeng</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-161">Pengempok</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-162">Lingkok Buak Barat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-163">Lingkok Buak Timur</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-164">Lingkok Buak Tengah</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-165">Terentem</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-166">Tentram</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-167">Suangke</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-168">Siwi</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-169">Nunang Selatan</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-170">Juna</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-171">Setuta Timur</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-172">Setuta Barat</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-173">Liwung Satu</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-174">Liwung Dua</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-175">Batu Belek</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-176">Biletawah</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-177">Pendem</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-178">Nyangget</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-179">Maliklo</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-180">Montong Bile</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-181">Gelondong</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-182">Penuntut</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-183">Kuang</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-184">Lekong Bangkon</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-185">Jangka</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-186">Jelitong</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-187">Gelung</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-188">Piling</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-189">Petorok</span>
+         <span lang="Bahasa" class="option-label active" data-itext-id="static_instance-dusun-190">Karang Majelo</span>
+      </span>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/dusun2:label">Dusun</span>
+      <span lang="" class="or-hint active">dusun Tempat tinggal Ibu</span>
+      <input type="text" name="/kartu_ibu/dusun2" data-relevant=" /kartu_ibu/kabupaten ='Lombok Barat' or  /kartu_ibu/kabupaten ='Lombok Timur' or  /kartu_ibu/kecamatan ='Lainnya' or  /kartu_ibu/desa1 ='Lainnya' or  /kartu_ibu/dusun1 ='Lainnya'" data-type-xml="string" />
+   </label>
+   <label class="question or-appearance-minimal ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/pendidikan:label">Pendidikan</span>
+      <span lang="" class="or-hint active">Pendidikan Terakhir Ibu</span>
+      <select name="/kartu_ibu/pendidikan" data-name="/kartu_ibu/pendidikan" data-type-xml="select1">
+         <option value="">...</option>
+         <option value="Tidak_sekolah">Tidak sekolah</option>
+         <option value="sekolah_dasar">Sekolah Dasar (SD)</option>
+         <option value="sekolah_menengah_pertama">Sekolah Menengah Pertama (SMP)</option>
+         <option value="sekolah_menengah_atas">Sekolah Menengah Atas (SMA)</option>
+         <option value="perguruan_tinggi">Perguruan Tinggi</option>
+      </select>
+      <span class="or-option-translations" style="display:none;" />
+   </label>
+   <label class="question or-appearance-minimal ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/agama:label">Agama</span>
+      <span lang="" class="or-hint active">Agama Ibu</span>
+      <select name="/kartu_ibu/agama" data-name="/kartu_ibu/agama" data-type-xml="select1">
+         <option value="">...</option>
+         <option value="islam">Islam</option>
+         <option value="hindu">Hindu</option>
+         <option value="kristen">Kristen</option>
+         <option value="katolik">Katolik</option>
+         <option value="budha">Budha</option>
+         <option value="lainnya">Lainnya</option>
+      </select>
+      <span class="or-option-translations" style="display:none;" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/pekerjaan:label">Pekerjaan</span>
+      <span lang="" class="or-hint active">Pekerjaan Ibu</span>
+      <input type="text" name="/kartu_ibu/pekerjaan" data-type-xml="string" />
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/gakin_tidak:label">Gakin/ Tidak</span>
+            <span lang="" class="or-hint active">Apakah ibu termasuk keluarga miskin atau tidak</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/kartu_ibu/gakin_tidak" data-name="/kartu_ibu/gakin_tidak" value="ya" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/gakin_tidak/ya:label">Ya (Y)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/kartu_ibu/gakin_tidak" data-name="/kartu_ibu/gakin_tidak" value="tidak" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/gakin_tidak/tidak:label">Tidak (T)</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/posyandu:label">Posyandu</span>
+      <span class="required">*</span>
+      <span lang="" class="or-hint active">Nama Posyandu Tempat Ibu Menerima Pelayanan Kesehatan</span>
+      <input type="text" name="/kartu_ibu/posyandu" required="required" data-type-xml="string" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/nama_kader:label">Nama Kader</span>
+      <span lang="" class="or-hint active">Nama Kader Posyandu yang memberi Ibu Pelayanan Kesehatan</span>
+      <input type="text" name="/kartu_ibu/nama_kader" data-type-xml="string" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/nama_dukun:label">Nama Dukun</span>
+      <span lang="" class="or-hint active">Nama Dukun yang Menemani Ibu pada saat Menerima Pelayanan Kesehatan</span>
+      <input type="text" name="/kartu_ibu/nama_dukun" data-type-xml="string" />
+   </label>
+   <label class="question or-appearance-minimal ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/asuransi_jiwa:label">Asuransi Jiwa</span>
+      <span lang="" class="or-hint active">Jenis Asuransi yang Dimiliki Ibu</span>
+      <select name="/kartu_ibu/asuransi_jiwa" data-name="/kartu_ibu/asuransi_jiwa" data-type-xml="select1">
+         <option value="">...</option>
+         <option value="jaminan_kesehatan_masyarakat">Jaminan Kesehatan Masyarakat (Jamkesmas)</option>
+         <option value="Jamsostek">Jaminan Sosial dan Ketenagakerjaan (Jamsostek)</option>
+         <option value="jaminan_kesehatan_daerah">Jaminan Kesehatan Daerah (Jamkesda)</option>
+         <option value="asuransi_kesehatan">Asuransi Kesehatan (Askes)</option>
+         <option value="jaminan_persalinan">Jaminan Persalinan (Jampersal)</option>
+         <option value="tidak_ada_asuransi">Tidak memiliki asuransi/pembiayaan</option>
+      </select>
+      <span class="or-option-translations" style="display:none;" />
+   </label>
+   <label class="question or-appearance-minimal ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/golongan_darah:label">Golongan Darah</span>
+      <span class="required">*</span>
+      <span lang="" class="or-hint active">Menunjukan Golongan Darah Ibu</span>
+      <select name="/kartu_ibu/golongan_darah" data-name="/kartu_ibu/golongan_darah" required="required" data-type-xml="select1">
+         <option value="">...</option>
+         <option value="a">A (A)</option>
+         <option value="b">B (B)</option>
+         <option value="ab">AB (AB)</option>
+         <option value="o">O (O)</option>
+         <option value="NA">Belum diketahui</option>
+      </select>
+      <span class="or-option-translations" style="display:none;" />
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/nomortelpon:label">Apakah ibu memiliki nomor telpon?</span>
+            <span class="required">*</span>
+            <span lang="" class="or-hint active">Menunjukkan nomor telpon Ibu yang dapat dihubungi</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/kartu_ibu/nomortelpon" data-name="/kartu_ibu/nomortelpon" value="Ya" required="required" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/nomortelpon/Ya:label">Ya</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/kartu_ibu/nomortelpon" data-name="/kartu_ibu/nomortelpon" value="Tidak" required="required" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/nomortelpon/Tidak:label">Tidak</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="or-constraint-msg active">Nomer telpon tidak boleh lebih dari 12 digit</span>
+      <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/nomor_telpon_hp:label">Nomor Telpon/Hp</span>
+      <span class="required">*</span>
+      <span lang="" class="or-hint active">Nomor Telpon/Hp yang dimiliki Oleh Ibu</span>
+      <input type="text" name="/kartu_ibu/nomor_telpon_hp" required="required" data-constraint=".&gt;0 and .&lt;100000000000" data-relevant=" /kartu_ibu/nomortelpon  = 'Ya'" data-type-xml="string" />
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/pptest:label">Hasil pptest</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/kartu_ibu/pptest" data-name="/kartu_ibu/pptest" value="positive" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/pptest/positive:label">positive</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/kartu_ibu/pptest" data-name="/kartu_ibu/pptest" value="negative" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/kartu_ibu/pptest/negative:label">negative</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/high_risk_note:label">
+               Ibu masuk kategori RT (Resiko TInggi), karena ibu :
+               <span class="or-output" data-value=" /kartu_ibu/high_risk_reason " />
+            </span>
+            <span class="required">*</span>
+         </legend>
+         <div class="option-wrapper">
+            <label>
+               <input value="OK" type="radio" name="/kartu_ibu/high_risk_note" required="required" data-relevant=" /kartu_ibu/is_high_risk  = 'yes'" data-type-xml="string" />
+               <span class="option-label active" lang="">OK</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+	<label class="calculation non-select ">
+         <input autocomplete="off" type="hidden" name="/kartu_ibu/reg_date" data-calculate=" /kartu_ibu/today " data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/umur" data-calculate="int(( /kartu_ibu/today  -  /kartu_ibu/tanggal_lahir_ibu ) div 365)" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/desa" data-calculate="if(( /kartu_ibu/desa1  != '' and  /kartu_ibu/desa1  != 'Lainnya'),  /kartu_ibu/desa1 ,  /kartu_ibu/desa2 )" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/dusun" data-calculate="if(( /kartu_ibu/dusun1  != '' and  /kartu_ibu/dusun1  != 'Lainnya'),  /kartu_ibu/dusun1 ,  /kartu_ibu/dusun2 )" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/Too_young_risk" data-calculate="if( /kartu_ibu/umur  &lt;20, 'Ibu Terlalu muda','')" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/Too_old_mother" data-calculate="if( /kartu_ibu/umur  &gt;35, 'Ibu Terlalu tua','')" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/is_high_risk" data-calculate="if(( /kartu_ibu/Too_young_risk  != '' or  /kartu_ibu/Too_old_mother  != ''), 'yes', 'no')" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/high_risk_reason" data-calculate="concat( /kartu_ibu/Too_young_risk , ', ',  /kartu_ibu/Too_old_mother )" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/formhub/uuid" data-calculate="'0266563288ba437ca44a007f665bbb79'" data-type-xml="string" />
+      </label>
+   </fieldset>
+</form>

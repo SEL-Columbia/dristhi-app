@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="Penutupan_kartu_ibu">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo" />
+   <h3 id="form-title">Penutupan Ibu</h3>
+   <label class="question or-appearance-minimal ">
+      <span lang="" class="question-label active">Alasan penutupan kartu ibu?</span>
+      <span class="required">*</span>
+      <span lang="" class="or-hint active">Pilihlah salah satu alasan yang tersedia</span>
+      <select name="/Penutupan_kartu_ibu/close_reason" data-name="/Penutupan_kartu_ibu/close_reason" required="required" data-type-xml="select1">
+         <option value="">...</option>
+         <option value="death_of_mother">Ibu meninggal</option>
+         <option value="relocation_temporary">Relokasi (sementara)</option>
+         <option value="relocation_permanent">Relokasi (permanen)</option>
+         <option value="age_morethan_49">Umur ibu &gt; 49 tahun</option>
+         <option value="wrong_entry">Kesalahan entry</option>
+         <option value="others">Lainnya</option>
+      </select>
+      <span class="or-option-translations" style="display:none;" />
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="question-label active">Lainnya</span>
+      <span lang="" class="or-hint active">Sebutkan alasan lainnya jika ada</span>
+      <input type="text" name="/Penutupan_kartu_ibu/close_reason_other" data-relevant=" /Penutupan_kartu_ibu/close_reason  = 'others'" data-type-xml="string" />
+   </label>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Apakah penyebab kematian ibu?</span>
+            <span lang="" class="or-hint active">Pilihlah salah satu dari jawaban yang tersedia</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/maternal_death" data-name="/Penutupan_kartu_ibu/maternal_death" value="Penyebab langsung" data-relevant="( /Penutupan_kartu_ibu/close_reason  = 'death_of_mother')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Penyebab langsung</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/maternal_death" data-name="/Penutupan_kartu_ibu/maternal_death" value="Penyebab tidak langsung" data-relevant="( /Penutupan_kartu_ibu/close_reason  = 'death_of_mother')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Penyebab tidak langsung</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/maternal_death" data-name="/Penutupan_kartu_ibu/maternal_death" value="dont_know" data-relevant="( /Penutupan_kartu_ibu/close_reason  = 'death_of_mother')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Tidak tahu</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="or-constraint-msg active">Tanggal kematian ibu hari ini atau hari-hari sebelumnya</span>
+      <span lang="" class="question-label active">Tanggal kematian ibu?</span>
+      <span lang="" class="or-hint active">Masukkan tanggal kematian ibu</span>
+      <input type="date" name="/Penutupan_kartu_ibu/maternal_death_date" data-constraint=".&lt;= /Penutupan_kartu_ibu/today " data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung' or  /Penutupan_kartu_ibu/maternal_death  = 'Penyebab tidak langsung'" data-type-xml="date" />
+   </label>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Tempat kematian</span>
+            <span lang="" class="or-hint active">Tempat kematian ibu</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/place_of_death" data-name="/Penutupan_kartu_ibu/place_of_death" value="Rumah sendiri/keluarga" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Rumah sendiri/keluarga</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/place_of_death" data-name="/Penutupan_kartu_ibu/place_of_death" value="Rumah dukun" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Rumah dukun</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/place_of_death" data-name="/Penutupan_kartu_ibu/place_of_death" value="Polindes" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Polindes</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/place_of_death" data-name="/Penutupan_kartu_ibu/place_of_death" value="Pustu" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Pustu</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/place_of_death" data-name="/Penutupan_kartu_ibu/place_of_death" value="Rumah bidan" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Rumah bidan</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/place_of_death" data-name="/Penutupan_kartu_ibu/place_of_death" value="Puskesmas" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Puskesmas</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/place_of_death" data-name="/Penutupan_kartu_ibu/place_of_death" value="Dalam perjalanan ke fasilitas" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Dalam perjalanan ke fasilitas</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/place_of_death" data-name="/Penutupan_kartu_ibu/place_of_death" value="Lainnya" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Lainnya</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="question-label active">Lainnya</span>
+      <span lang="" class="or-hint active">Sebutkan alasan lainnya jika ada</span>
+      <input type="text" name="/Penutupan_kartu_ibu/other_place_of_death" data-relevant=" /Penutupan_kartu_ibu/place_of_death  = 'Lainnya'" data-type-xml="string" />
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="question-label active">Penyebab</span>
+      <span lang="" class="or-hint active">Masukkan penyebab kematian</span>
+      <input type="text" name="/Penutupan_kartu_ibu/not_maternal_death_cause" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab tidak langsung'" data-type-xml="string" />
+   </label>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Penyebab kematian langsung?</span>
+            <span lang="" class="or-hint active">Pilihlah salah satu jawaban yang tersedia</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/maternal_death_cause" data-name="/Penutupan_kartu_ibu/maternal_death_cause" value="abortion" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Aborsi</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/maternal_death_cause" data-name="/Penutupan_kartu_ibu/maternal_death_cause" value="prolonged_obstructed_labor" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Hamil tua</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/maternal_death_cause" data-name="/Penutupan_kartu_ibu/maternal_death_cause" value="hypertension_fits" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Hipertensi parah</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/maternal_death_cause" data-name="/Penutupan_kartu_ibu/maternal_death_cause" value="bleeding_hemorrhage" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Pendarahan</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/maternal_death_cause" data-name="/Penutupan_kartu_ibu/maternal_death_cause" value="fever_infection" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Demam tinggi</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/maternal_death_cause" data-name="/Penutupan_kartu_ibu/maternal_death_cause" value="cause_not_identified" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Penyebab tidak teridentifikasi</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/maternal_death_cause" data-name="/Penutupan_kartu_ibu/maternal_death_cause" value="others" data-relevant=" /Penutupan_kartu_ibu/maternal_death  = 'Penyebab langsung'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Lainnya</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="question-label active">Lainnya</span>
+      <span lang="" class="or-hint active">Sebutkan alasan lainnya Jika ada</span>
+      <input type="text" name="/Penutupan_kartu_ibu/other_maternal_death_cause" data-relevant=" /Penutupan_kartu_ibu/maternal_death_cause  = 'others'" data-type-xml="string" />
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Konfirmasi penutupan kartu ibu?</span>
+            <span class="required">*</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Penutupan_kartu_ibu/confirm_ec_close" data-name="/Penutupan_kartu_ibu/confirm_ec_close" value="yes" required="required" data-type-xml="select1" />
+               <span lang="" class="option-label active">Ya</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_kartu_ibu/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_kartu_ibu/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_kartu_ibu/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_kartu_ibu/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_kartu_ibu/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_kartu_ibu/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+   <label class="calculation non-select ">
+         <input autocomplete="off" type="hidden" name="/Penutupan_kartu_ibu/reg_date" data-calculate=" /Penutupan_kartu_ibu/today " data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_kartu_ibu/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Penutupan_kartu_ibu/formhub/uuid" data-calculate="'8dbe1f740a204d058880dd30ec009189'" data-type-xml="string" />
+      </label>
+   </fieldset>
+</form>

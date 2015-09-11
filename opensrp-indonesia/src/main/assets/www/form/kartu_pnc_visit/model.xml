@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+	<instance>
+		<PNC_Visit id="PNC_Visit" version="201506200408">
+			<formhub>
+				<uuid />
+			</formhub>
+			<start />
+			<today />
+			<deviceid />
+			<simserial />
+			<phonenumber />
+			<tanggal_kunjungan />
+			<tanggal_lahir_anak />
+			<generated_note_name_9 />
+			<hari_ke__kf />
+			<tanda_vital_td_sistolik />
+			<tanda_vital_td_diastolik />
+			<tanda_vital_suhu />
+			<pelayanan_catat_di_buku_kia />
+			<pelayananfe />
+			<pelayanan_fe />
+			<pelayanan_vita />
+			<vitaminA2jamPP />
+			<vitaminA24jamPP />
+			<ProgramIntegration />
+			<integrasi_program_cd4 />
+			<integrasi_program_anti_malaria />
+			<integrasi_program_anti_tb />
+			<integrasi_program_foto_thorax />
+			<komplikasi />
+			<komplikasi_lainnya />
+			<rujukan />
+			<dirujuk_ke />
+			<dirujuk_ke_lainnya />
+			<keadaan_tiba />
+			<keadaan_pulang />
+			<keterangan />
+			<Infeksi_nifas_risk />
+			<hipertensi_post-partum_risk />
+			<post-partum_sepsis_risk />
+			<perdarahan_post-partum_risk />
+			<mastitis_risk />
+			<is_high_risk_post-partum />
+			<high_risk_post-partum_reason />
+			<high_risk_note />
+			<end />
+			<meta>
+				<instanceID />
+			</meta>
+		</PNC_Visit>
+	</instance>
+</model>

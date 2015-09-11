@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="Penutupan_KB">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo" />
+   <h3 id="form-title">Penutupan KB</h3>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Alasan menutup KB</span>
+            <span class="required">*</span>
+            <span lang="" class="or-hint active">Pilihlah salah satu alasan yang tersedia</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/penutupan_kb/kb_close_reason" data-name="/penutupan_kb/kb_close_reason" value="death_of_mother" required="required" data-type-xml="select1" />
+               <span lang="" class="option-label active">Ibu meninggal</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/penutupan_kb/kb_close_reason" data-name="/penutupan_kb/kb_close_reason" value="permanent_relocation" required="required" data-type-xml="select1" />
+               <span lang="" class="option-label active">Relokasi</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/penutupan_kb/kb_close_reason" data-name="/penutupan_kb/kb_close_reason" value="dropout" required="required" data-type-xml="select1" />
+               <span lang="" class="option-label active">Drop Out (DO)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/penutupan_kb/kb_close_reason" data-name="/penutupan_kb/kb_close_reason" value="gagal" required="required" data-type-xml="select1" />
+               <span lang="" class="option-label active">Gagal (G)</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question non-select ">
+      <span lang="" class="question-label active">Keterangan DO</span>
+      <span lang="" class="or-hint active">Berikan alasan dan penjelasan penyebab peserta KB Drop Out</span>
+      <input type="text" name="/penutupan_kb/keterangan_do" data-type-xml="string" />
+   </label>
+   <label class="question non-select ">
+      <span lang="" class="question-label active">Keterangan Gagal</span>
+      <span lang="" class="or-hint active">Berikan alasan dan penjelasan tambahan berkaitan peserta gagal KB</span>
+      <input type="text" name="/penutupan_kb/keterangan_gagal" data-type-xml="string" />
+   </label>
+   <section class="or-group-data or-branch pre-init " name="/penutupan_kb/death_mother_group" data-relevant=" /penutupan_kb/kb_close_reason  = 'death_of_mother'">
+      <label class="question non-select ">
+         <span lang="" class="or-constraint-msg active">Tanggal kematian ibu hari ini atau hari-hari sebelumnya</span>
+         <span lang="" class="question-label active">Tanggal kematian</span>
+         <span lang="" class="or-hint active">masukkan tanggal kematian</span>
+         <input type="date" name="/penutupan_kb/death_mother_group/death_date" data-constraint=".&lt;= /penutupan_kb/today " data-type-xml="date" />
+      </label>
+   </section>
+   <!--end of group -->
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">konfirmasi penutupan KB?</span>
+            <span class="required">*</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/penutupan_kb/confirm_kb_close" data-name="/penutupan_kb/confirm_kb_close" value="yes" required="required" data-type-xml="select1" />
+               <span lang="" class="option-label active">Ya</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/penutupan_kb/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/penutupan_kb/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/penutupan_kb/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/penutupan_kb/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/penutupan_kb/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/penutupan_kb/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+   <label class="calculation non-select ">
+         <input autocomplete="off" type="hidden" name="/penutupan_kb/reg_date" data-calculate=" /penutupan_kb/today " data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/penutupan_kb/death_mother_group/woman_survived" data-calculate="&quot;no&quot;" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/penutupan_kb/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/penutupan_kb/formhub/uuid" data-calculate="'4e64f357989e4b8691ae46c7d9ad8b48'" data-type-xml="string" />
+      </label>
+   </fieldset>
+</form>

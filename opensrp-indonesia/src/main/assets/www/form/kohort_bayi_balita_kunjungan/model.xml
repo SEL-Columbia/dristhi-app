@@ -1,0 +1,16 @@
+<model>
+    <instance>
+        <balita_kunjungan id="balita_kunjungan" version="201504220418">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <B05010/>
+          <B05011/>
+          <B05012/>
+          <B05013/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </balita_kunjungan>
+      </instance>
+  </model>

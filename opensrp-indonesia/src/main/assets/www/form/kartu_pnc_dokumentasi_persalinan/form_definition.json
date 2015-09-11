@@ -1,0 +1,248 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "ibu",
+    "default_bind_path": "/model/instance/dokumentasi_persalinan/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "childId",
+        "shouldLoadValue": true,
+        "source": "ibu.anak.id"
+      },
+      {
+        "name": "hpht",
+        "bind": "/model/instance/dokumentasi_persalinan/hpht",
+        "source": "ibu.tanggalHPHT",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "usiaKehamilan",
+        "bind": "/model/instance/dokumentasi_persalinan/usia_kehamilan"
+      },
+      {
+        "name": "keadaanIbu",
+        "bind": "/model/instance/dokumentasi_persalinan/keadaan_ibu"
+      },
+      {
+        "name": "keadaanBayi",
+        "bind": "/model/instance/dokumentasi_persalinan/keadaan_bayi",
+        "source": "ibu.anak.keadaanBayi"
+      },
+      {
+        "name": "beratLahir",
+        "bind": "/model/instance/dokumentasi_persalinan/berat_bayi",
+        "source": "ibu.anak.beratLahir"
+      },
+      {
+        "name": "persalinan",
+        "bind": "/model/instance/dokumentasi_persalinan/persalinan"
+      },
+      {
+        "name": "tanggalKalaIAktif",
+        "bind": "/model/instance/dokumentasi_persalinan/tanggal__kala_i_aktif"
+      },
+      {
+        "name": "jamKalaIAktif",
+        "bind": "/model/instance/dokumentasi_persalinan/jam__kala_i_aktif"
+      },
+      {
+        "name": "tanggalKalaII",
+        "bind": "/model/instance/dokumentasi_persalinan/tanggal__kala_ii"
+      },
+      {
+        "name": "jamKalaII",
+        "bind": "/model/instance/dokumentasi_persalinan/jam__kala_ii"
+      },
+      {
+        "name": "tanggalPlasentaLahir",
+        "bind": "/model/instance/dokumentasi_persalinan/tanggal__plasenta_lahir"
+      },
+      {
+        "name": "jamPlasentaLahir",
+        "bind": "/model/instance/dokumentasi_persalinan/jam__plasenta_lahir"
+      },
+      {
+        "name": "perdarahanKalaIV2JamPostpartum",
+        "bind": "/model/instance/dokumentasi_persalinan/perdarahan_kala_iv_2_jam_postpartum"
+      },
+      {
+        "name": "persentasi",
+        "bind": "/model/instance/dokumentasi_persalinan/persentasi"
+      },
+      {
+        "name": "tempatBersalin",
+        "bind": "/model/instance/dokumentasi_persalinan/tempat"
+      },
+      {
+        "name": "penolong",
+        "bind": "/model/instance/dokumentasi_persalinan/penolong"
+      },
+      {
+        "name": "penolongLainLain",
+        "bind": "/model/instance/dokumentasi_persalinan/penolong_lain_lain"
+      },
+      {
+        "name": "caraPersalinanIbu",
+        "bind": "/model/instance/dokumentasi_persalinan/cara_persalinan_ibu"
+      },
+      {
+        "name": "manajemenAktifKalaIII",
+        "bind": "/model/instance/dokumentasi_persalinan/manajemen_aktif_kala_iii"
+      },
+      {
+        "name": "pelayanan",
+        "bind": "/model/instance/dokumentasi_persalinan/pelayanan"
+      },
+      {
+        "name": "integrasiProgram",
+        "bind": "/model/instance/dokumentasi_persalinan/integrasi_program"
+      },
+      {
+        "name": "komplikasi",
+        "bind": "/model/instance/dokumentasi_persalinan/komplikasi"
+      },
+      {
+        "name": "komplikasiLainLain",
+        "bind": "/model/instance/dokumentasi_persalinan/komplikasi_lain_lain"
+      },
+      {
+        "name": "dirujukKe",
+        "bind": "/model/instance/dokumentasi_persalinan/dirujuk_ke"
+      },
+      {
+        "name": "dirujukKeLainLain",
+        "bind": "/model/instance/dokumentasi_persalinan/dirujuk_kelain-lain"
+      },
+      {
+        "name": "alamatBersalin",
+        "bind": "/model/instance/dokumentasi_persalinan/alamat_bersalin"
+      },
+      {
+        "name": "noBayi",
+        "source": "ibu.anak.no_bayi",
+        "bind": "/model/instance/dokumentasi_persalinan/no_bayi"
+      },
+      {
+        "name": "namaBayi",
+        "bind": "/model/instance/dokumentasi_persalinan/nama_bayi",
+        "source": "ibu.anak.namaBayi"
+      },
+      {
+        "name": "tanggalLahirAnak",
+        "bind": "/model/instance/dokumentasi_persalinan/tanggal_lahir_anak",
+        "source": "ibu.anak.tanggalLahirAnak"
+      },
+      {
+        "name": "jenisKelamin",
+        "bind": "/model/instance/dokumentasi_persalinan/jenis_kelamin",
+        "source": "ibu.anak.jenisKelamin"
+      },
+      {
+        "name": "kepemilikanBukuKia",
+        "bind": "/model/instance/dokumentasi_persalinan/kepemilikan_buku_kia",
+        "source": "ibu.anak.kepemilikan_buku_kia"
+      },
+      {
+        "name": "pretermRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/preterm_risk"
+      },
+      {
+        "name": "LowBirthweghtRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/Low_Birthweght_risk"
+      },
+      {
+        "name": "distosiaRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/distosia_risk"
+      },
+      {
+        "name": "hipertensiDalamKehamilanRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/hipertensi_dalam_kehamilan_risk"
+      },
+      {
+        "name": "perdarahanPostPartumRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/perdarahan_post-partum_risk"
+      },
+      {
+        "name": "InfeksiRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/Infeksi_risk"
+      },
+      {
+        "name": "sepsisMaternalRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/sepsis_maternal_risk"
+      },
+      {
+        "name": "preeklampsiEklampsiRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/preeklampsi_eklampsi_risk"
+      },
+      {
+        "name": "LainnyaRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/Lainnya_risk"
+      },
+      {
+        "name": "vacumRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/vacum_risk"
+      },
+      {
+        "name": "forcepsRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/forceps_risk"
+      },
+      {
+        "name": "sectioCaesariaRisk",
+        "bind": "/model/instance/dokumentasi_persalinan/sectio_caesaria_risk"
+      },
+      {
+        "name": "isHighRiskPostpartum",
+        "bind": "/model/instance/dokumentasi_persalinan/is_high_risk_post-partum"
+      },
+      {
+        "name": "highRiskPostPartumReason",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_reason"
+      },
+      {
+        "name": "isHighRiskChild",
+        "bind": "/model/instance/dokumentasi_persalinan/is_high_risk_child",
+        "source": "ibu.anak.isHighRiskChild"
+      },
+      {
+        "name": "highRiskChildReason",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_child_reason",
+        "source": "ibu.anak.highRiskChildReason"
+      },
+      {
+        "name": "type",
+        "value": "pnc",
+        "source": "ibu.type"
+      },
+      {
+        "name": "isOutOfArea",
+        "value": "false"
+      },
+      {
+        "name": "isClosed",
+        "value": "false"
+      },
+      {
+        "name": "isClosed",
+        "value": "false",
+        "source": "ibu.anak.isClosed"
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/dokumentasi_persalinan/today"
+      },
+      {
+        "name": "registrationDate",
+        "bind": "/model/instance/dokumentasi_persalinan/reg_date"
+      },
+      {
+        "name": "referenceDate",
+        "bind": "/model/instance/dokumentasi_persalinan/reference_date",
+        "source": "ibu.referenceDate"
+      }
+    ]
+  }
+}

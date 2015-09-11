@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="Bayi_Neonatal_Period">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo" />
+   <h3 id="form-title">Kunjungan neonatal</h3>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Kunjungan Neonatal</span>
+            <span lang="" class="or-hint active">Menunjukkan jenis kunjungan bayi Neonatal yang sedang dilakukan</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/neonatal" data-name="/Bayi_Neonatal_Period/neonatal" value="5_jam_pertama" data-type-xml="select1" />
+               <span lang="" class="option-label active">Saat Lahir &lt; 5 jam</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/neonatal" data-name="/Bayi_Neonatal_Period/neonatal" value="Pertama" data-type-xml="select1" />
+               <span lang="" class="option-label active">Pertama (6 - 48 jam)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/neonatal" data-name="/Bayi_Neonatal_Period/neonatal" value="Kedua" data-type-xml="select1" />
+               <span lang="" class="option-label active">Kedua (3 - 7 hari)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/neonatal" data-name="/Bayi_Neonatal_Period/neonatal" value="Ketiga" data-type-xml="select1" />
+               <span lang="" class="option-label active">Ketiga (8 - 28 hari)</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Kondisi bayi saat lahir</span>
+            <span lang="" class="or-hint active">Menunjukkan kondisi bayi dari setelah kelahiran hingga 5 jam pertama</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_kondisi_bayi" data-name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_kondisi_bayi" value="normal" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'5_jam_pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Normal (N)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_kondisi_bayi" data-name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_kondisi_bayi" value="komplikasi" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'5_jam_pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Komplikasi (K)</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Jenis pelayanan yang diberikan saat lahir</span>
+            <span lang="" class="or-hint active">Menunjukkan jenis pelayanan yang diberikan kepada bayi dalam 5 jam pertama</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="checkbox" name="/Bayi_Neonatal_Period/jenis_pelayanan_yang_diberikan_saat_lahir" value="first_breast_feeding" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'5_jam_pertama')" data-type-xml="select" />
+               <span lang="" class="option-label active">First Breast feeding (IMD)</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Bayi_Neonatal_Period/jenis_pelayanan_yang_diberikan_saat_lahir" value="vit-k_injection" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'5_jam_pertama')" data-type-xml="select" />
+               <span lang="" class="option-label active">Vit-K Injection (Vit-k)</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Bayi_Neonatal_Period/jenis_pelayanan_yang_diberikan_saat_lahir" value="salep_mata" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'5_jam_pertama')" data-type-xml="select" />
+               <span lang="" class="option-label active">Salep Mata</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Imunisasi HB0 jika dilakukan saat lahir</span>
+            <span lang="" class="or-hint active">Menunjukkan apakah bayi diberikan imunisasi Hb dalam durasi 5 jam pertama</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan" data-name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan" value="Ya" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'5_jam_pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Imunisasi Hb diberikan</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan" data-name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan" value="Tidak" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'5_jam_pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Imunisasi Hb tidak berikan</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Klasifikasi/Diagnosis jika lahir dengan komplikasi</span>
+            <span lang="" class="or-hint active">Diisi dengan klasifikasi/diagnosis jika lahir dengan komplikasi</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/komplikasi" data-name="/Bayi_Neonatal_Period/komplikasi" value="asfiksia" data-relevant=" /Bayi_Neonatal_Period/saat_lahir_sd_5_jam_kondisi_bayi  = 'komplikasi'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Asfiksia</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/komplikasi" data-name="/Bayi_Neonatal_Period/komplikasi" value="trauma_lahir" data-relevant=" /Bayi_Neonatal_Period/saat_lahir_sd_5_jam_kondisi_bayi  = 'komplikasi'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Trauma Lahir</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/komplikasi" data-name="/Bayi_Neonatal_Period/komplikasi" value="infeksi" data-relevant=" /Bayi_Neonatal_Period/saat_lahir_sd_5_jam_kondisi_bayi  = 'komplikasi'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Infeksi</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/komplikasi" data-name="/Bayi_Neonatal_Period/komplikasi" value="kelainan_kongenital" data-relevant=" /Bayi_Neonatal_Period/saat_lahir_sd_5_jam_kondisi_bayi  = 'komplikasi'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Kelainan Kongenital</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/komplikasi" data-name="/Bayi_Neonatal_Period/komplikasi" value="hipotermi" data-relevant=" /Bayi_Neonatal_Period/saat_lahir_sd_5_jam_kondisi_bayi  = 'komplikasi'" data-type-xml="select1" />
+               <span lang="" class="option-label active">Hipotermi</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Meninggal atau tidak saat lahir</span>
+            <span lang="" class="or-hint active">Menunjukkan apakah bayi meninggal/hidup dalam durasi 5 jam pertama setelah kelahiran</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_meninggal" data-name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_meninggal" value="Ya" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'5_jam_pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Meninggal</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_meninggal" data-name="/Bayi_Neonatal_Period/saat_lahir_sd_5_jam_meninggal" value="Tidak" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'5_jam_pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Hidup</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="or-constraint-msg active">diisi dengan tanggal hari ini atau sebelumnya</span>
+      <span lang="" class="question-label active">Tanggal kunjungan pertama</span>
+      <span lang="" class="or-hint active">Menunjukkan tanggal kunjungan Neonatal pertama dilakukan</span>
+      <input type="date" name="/Bayi_Neonatal_Period/kunjungan_neonatal_pertama_6_sd_48_jam_tanggal_dan_bulan_kunjungan" data-constraint=".&lt;= /Bayi_Neonatal_Period/today " data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Pertama')" data-type-xml="date" />
+   </label>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Imunisasi HB0 kunjungan pertama</span>
+            <span lang="" class="or-hint active">Menunjukkan apakah bayi diberikan imunisasi Hb dalam rentang 6 jam hingga 48 jam setelah kelahiran</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb" data-name="/Bayi_Neonatal_Period/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb" value="ya" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Imunisasi Hb diberikan</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb" data-name="/Bayi_Neonatal_Period/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb" value="tidak" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Imunisasi Hb tidak diberikan</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Keadaan Neonatal kunjungan pertama</span>
+            <span lang="" class="or-hint active">Diisi dengan data keadaan umum bayi dari 6 jam hingga 48 jam setelah kelahiran</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/keadaan_neonatal_6_sd_48_jam" data-name="/Bayi_Neonatal_Period/keadaan_neonatal_6_sd_48_jam" value="sehat" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Sehat</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/keadaan_neonatal_6_sd_48_jam" data-name="/Bayi_Neonatal_Period/keadaan_neonatal_6_sd_48_jam" value="sakit" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Sakit</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/keadaan_neonatal_6_sd_48_jam" data-name="/Bayi_Neonatal_Period/keadaan_neonatal_6_sd_48_jam" value="meninggal" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Pertama')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Meninggal</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="question-label active">Alasan sakit</span>
+      <span lang="" class="or-hint active">Diisi dengan alasan, penyebab atau informasi yang terkait sakit yang diderita bayi</span>
+      <input type="text" name="/Bayi_Neonatal_Period/alasan_sakit_kunjungan_pertama" data-relevant=" /Bayi_Neonatal_Period/keadaan_neonatal_6_sd_48_jam  = 'sakit'" data-type-xml="string" />
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="question-label active">Alasan meninggal</span>
+      <span lang="" class="or-hint active">Diisi dengan alasan, penyebab atau informasi yang terkait meninggalnya bayi</span>
+      <input type="text" name="/Bayi_Neonatal_Period/alasan_meninggal_kunjungan_pertama" data-relevant=" /Bayi_Neonatal_Period/keadaan_neonatal_6_sd_48_jam  = 'meninggal'" data-type-xml="string" />
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="or-constraint-msg active">diisi dengan tanggal hari ini atau sebelumnya</span>
+      <span lang="" class="question-label active">Tanggal kunjungan kedua</span>
+      <span lang="" class="or-hint active">Menunjukkan tanggal kunjungan Neonatal kedua dilakukan</span>
+      <input type="date" name="/Bayi_Neonatal_Period/kunjungan_neonatal_kedua_hari_ke_3_sd_7__tanggal_kunjungan" data-constraint=".&lt;= /Bayi_Neonatal_Period/today " data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Kedua')" data-type-xml="date" />
+   </label>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Imunisasi HB0 kunjungan kedua</span>
+            <span lang="" class="or-hint active">Menunjukkan apakah bayi diberikan imunisasi Hb dalam rentang hari ke 3 hingga hari ke 7 setelah kelahiran</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi" data-name="/Bayi_Neonatal_Period/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi" value="ya" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Kedua')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Imunisasi Hb diberikan</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi" data-name="/Bayi_Neonatal_Period/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi" value="tidak" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Kedua')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Imunisasi Hb tidak diberikan</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Keadaan Neonatal kunjungan kedua</span>
+            <span lang="" class="or-hint active">Diisi dengan data keadaan umum bayi dari hari ke 3 hingga hari ke 7 setelah kelahiran</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/keadaan_neonatal_3_sd_7_hari" data-name="/Bayi_Neonatal_Period/keadaan_neonatal_3_sd_7_hari" value="sehat" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Kedua')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Sehat</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/keadaan_neonatal_3_sd_7_hari" data-name="/Bayi_Neonatal_Period/keadaan_neonatal_3_sd_7_hari" value="sakit" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Kedua')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Sakit</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/keadaan_neonatal_3_sd_7_hari" data-name="/Bayi_Neonatal_Period/keadaan_neonatal_3_sd_7_hari" value="meninggal" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Kedua')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Meninggal</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="question-label active">Alasan sakit</span>
+      <span lang="" class="or-hint active">Diisi dengan alasan, penyebab atau informasi yang terkait sakit yang diderita bayi</span>
+      <input type="text" name="/Bayi_Neonatal_Period/alasan_sakit_kunjungan_kedua" data-relevant=" /Bayi_Neonatal_Period/keadaan_neonatal_3_sd_7_hari  = 'sakit'" data-type-xml="string" />
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="question-label active">Alasan meninggal</span>
+      <span lang="" class="or-hint active">Diisi dengan alasan, penyebab atau informasi yang terkait meninggalnya bayi</span>
+      <input type="text" name="/Bayi_Neonatal_Period/alasan_meninggal_kunjungan_kedua" data-relevant=" /Bayi_Neonatal_Period/keadaan_neonatal_3_sd_7_hari  = 'meninggal'" data-type-xml="string" />
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="or-constraint-msg active">diisi dengan tanggal hari ini atau sebelumnya</span>
+      <span lang="" class="question-label active">Tanggal kunjungan ketiga</span>
+      <span lang="" class="or-hint active">Menunjukkan tanggal kunjungan Neonatal ketiga dilakukan</span>
+      <input type="date" name="/Bayi_Neonatal_Period/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__tanggal_kunjungan" data-constraint=".&lt;= /Bayi_Neonatal_Period/today " data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Ketiga')" data-type-xml="date" />
+   </label>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Imunisasi HB0 kunjungan ketiga</span>
+            <span lang="" class="or-hint active">Menunjukkan apakah bayi diberikan imunisasi Hb dalam rentang hari ke 8 hingga hari ke 28 setelah kelahiran</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__bayi_diberikan_imunisasi" data-name="/Bayi_Neonatal_Period/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__bayi_diberikan_imunisasi" value="ya" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Ketiga')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Imunisasi Hb diberikan</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__bayi_diberikan_imunisasi" data-name="/Bayi_Neonatal_Period/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__bayi_diberikan_imunisasi" value="tidak" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Ketiga')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Imunisasi Hb tidak diberikan</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Keadaan Neonatal kunjungan ketiga</span>
+            <span lang="" class="or-hint active">Diisi dengan data keadaan umum bayi dari hari ke 8 hingga hari ke 28 setelah kelahiran</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/keadaan_neonatal_8_sd_28_hari" data-name="/Bayi_Neonatal_Period/keadaan_neonatal_8_sd_28_hari" value="sehat" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Ketiga')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Sehat</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/keadaan_neonatal_8_sd_28_hari" data-name="/Bayi_Neonatal_Period/keadaan_neonatal_8_sd_28_hari" value="sakit" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Ketiga')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Sakit</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/keadaan_neonatal_8_sd_28_hari" data-name="/Bayi_Neonatal_Period/keadaan_neonatal_8_sd_28_hari" value="meninggal" data-relevant="selected( /Bayi_Neonatal_Period/neonatal ,'Ketiga')" data-type-xml="select1" />
+               <span lang="" class="option-label active">Meninggal</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="question-label active">Alasan sakit</span>
+      <span lang="" class="or-hint active">Diisi dengan alasan, penyebab atau informasi yang terkait sakit yang diderita bayi</span>
+      <input type="text" name="/Bayi_Neonatal_Period/alasan_sakit_kunjungan_ketiga" data-relevant=" /Bayi_Neonatal_Period/keadaan_neonatal_8_sd_28_hari  = 'sakit'" data-type-xml="string" />
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="" class="question-label active">Alasan meninggal</span>
+      <span lang="" class="or-hint active">Diisi dengan alasan, penyebab atau informasi yang terkait meninggalnya bayi</span>
+      <input type="text" name="/Bayi_Neonatal_Period/alasan_meninggal_kunjungan_ketiga" data-relevant=" /Bayi_Neonatal_Period/keadaan_neonatal_8_sd_28_hari  = 'meninggal'" data-type-xml="string" />
+   </label>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Konfirmasi Kematian anak dan lanjutkan ke Close anak form</span>
+            <span class="required">*</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/confirm_of_death" data-name="/Bayi_Neonatal_Period/confirm_of_death" value="ya" required="required" data-relevant=" /Bayi_Neonatal_Period/saat_lahir_sd_5_jam_meninggal ='Ya' or  /Bayi_Neonatal_Period/keadaan_neonatal_6_sd_48_jam ='meninggal' or  /Bayi_Neonatal_Period/keadaan_neonatal_3_sd_7_hari ='meninggal' or  /Bayi_Neonatal_Period/keadaan_neonatal_8_sd_28_hari ='meninggal'" data-type-xml="select1" />
+               <span lang="" class="option-label active">ya</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Bayi_Neonatal_Period/confirm_of_death" data-name="/Bayi_Neonatal_Period/confirm_of_death" value="tidak" required="required" data-relevant=" /Bayi_Neonatal_Period/saat_lahir_sd_5_jam_meninggal ='Ya' or  /Bayi_Neonatal_Period/keadaan_neonatal_6_sd_48_jam ='meninggal' or  /Bayi_Neonatal_Period/keadaan_neonatal_3_sd_7_hari ='meninggal' or  /Bayi_Neonatal_Period/keadaan_neonatal_8_sd_28_hari ='meninggal'" data-type-xml="select1" />
+               <span lang="" class="option-label active">tidak</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Bayi_Neonatal_Period/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Bayi_Neonatal_Period/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Bayi_Neonatal_Period/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Bayi_Neonatal_Period/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Bayi_Neonatal_Period/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Bayi_Neonatal_Period/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+   <label class="calculation non-select ">
+         <input autocomplete="off" type="hidden" name="/Bayi_Neonatal_Period/reg_date" data-calculate=" /Bayi_Neonatal_Period/today " data-type-xml="date"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Bayi_Neonatal_Period/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Bayi_Neonatal_Period/formhub/uuid" data-calculate="'1cb533ea08fe48158022782cf97a1f03'" data-type-xml="string" />
+      </label>
+   </fieldset>
+</form>

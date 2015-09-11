@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="balita_kunjungan">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo" />
+   <h3 id="form-title">Kunjungan Balita</h3>
+   <label class="question non-select ">
+      <span lang="" class="or-constraint-msg active">diisi dengan tanggal hari ini atau sebelumnya</span>
+      <span lang="" class="question-label active">Tanggal diperiksa</span>
+      <span lang="" class="or-hint active">Diisi tanggal kunjungan</span>
+      <input type="date" name="/balita_kunjungan/tanggal_pemeriksaan_anak_balita" data-constraint=".&lt;= /balita_kunjungan/today " data-calculate=" /balita_kunjungan/today " data-type-xml="date" />
+   </label>
+   <label class="question non-select ">
+      <span lang="" class="or-constraint-msg active">nilai tidak boleh minus</span>
+      <span lang="" class="question-label active">Berat badan (BB) anak Balita</span>
+      <span lang="" class="or-hint active">Diisi dengan hasil penimbangan berat badan saat pemeriksaan</span>
+      <input type="number" name="/balita_kunjungan/hasil_penimbangan_anak_balita" data-constraint=".&gt;0" data-type-xml="decimal" step="any" />
+   </label>
+   <label class="question non-select ">
+      <span lang="" class="or-constraint-msg active">nilai tidak boleh minus</span>
+      <span lang="" class="question-label active">Tinggi badan (TB) anak Balita</span>
+      <span lang="" class="or-hint active">Diisi dengan hasil pengukuran tinggi badan saat pemeriksaan</span>
+      <input type="number" name="/balita_kunjungan/hasil_pengukuran_tinggi_anak_balita" data-constraint=".&gt;0" data-type-xml="decimal" step="any" />
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Indikator pertumbuhan balita (monitor berat badan)</span>
+            <span lang="" class="or-hint active">Diisi dengan indikator berat badan naik, turun, tidak ditimbang atau baru ditimbang</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/indikator_berat_badan_bayi" data-name="/balita_kunjungan/indikator_berat_badan_bayi" value="N" data-type-xml="select1" />
+               <span lang="" class="option-label active">N (jika berat bedan naik sesuai garis pertumbuhan)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/indikator_berat_badan_bayi" data-name="/balita_kunjungan/indikator_berat_badan_bayi" value="T" data-type-xml="select1" />
+               <span lang="" class="option-label active">T (tidak naik berat badannya, berat badan tetap)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/indikator_berat_badan_bayi" data-name="/balita_kunjungan/indikator_berat_badan_bayi" value="O" data-type-xml="select1" />
+               <span lang="" class="option-label active">O (tidak ditimbang pada bulan lalu)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/indikator_berat_badan_bayi" data-name="/balita_kunjungan/indikator_berat_badan_bayi" value="B" data-type-xml="select1" />
+               <span lang="" class="option-label active">B (baru pertama kali ditimbang)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/indikator_berat_badan_bayi" data-name="/balita_kunjungan/indikator_berat_badan_bayi" value="A" data-type-xml="select1" />
+               <span lang="" class="option-label active">A(berat badan menurut tinggi badan BB/TB dibawah minus dua standar deviasi -2SD)</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Hasil dilakukannya KPSP</span>
+            <span lang="" class="or-hint active">Hasil yang didapatkan setelah dilakukan Kuesioner Pra Skrining Perkembangan (KPSP) per Bulan selama 5 tahun</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/hasil_dilakukannya_kpsp" data-name="/balita_kunjungan/hasil_dilakukannya_kpsp" value="DS" data-type-xml="select1" />
+               <span lang="" class="option-label active">Jika dilakukan KPSP hasilnya sesuai (DS)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/hasil_dilakukannya_kpsp" data-name="/balita_kunjungan/hasil_dilakukannya_kpsp" value="Dm" data-type-xml="select1" />
+               <span lang="" class="option-label active">Jika dilakukan KPSP dan hasilnya meragukan (Dm)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/hasil_dilakukannya_kpsp" data-name="/balita_kunjungan/hasil_dilakukannya_kpsp" value="Dp" data-type-xml="select1" />
+               <span lang="" class="option-label active">Jika dilakukan KPSP dan hasilnya penyimpangan (Dp)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/hasil_dilakukannya_kpsp" data-name="/balita_kunjungan/hasil_dilakukannya_kpsp" value="NA" data-type-xml="select1" />
+               <span lang="" class="option-label active">KPSP tidak dilakukan</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Penyimpangan</span>
+            <span lang="" class="or-hint active">Diisi M bila balita sakit di MTBS, R bila dirujuk, S bila balita sakit tidak di MTBS</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/kpsp_penyimpangan" data-name="/balita_kunjungan/kpsp_penyimpangan" value="M" data-relevant=" /balita_kunjungan/hasil_dilakukannya_kpsp  = 'Dp'" data-type-xml="select1" />
+               <span lang="" class="option-label active">M (balita sakit di MTBS)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/kpsp_penyimpangan" data-name="/balita_kunjungan/kpsp_penyimpangan" value="R" data-relevant=" /balita_kunjungan/hasil_dilakukannya_kpsp  = 'Dp'" data-type-xml="select1" />
+               <span lang="" class="option-label active">R (dirujuk)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/kpsp_penyimpangan" data-name="/balita_kunjungan/kpsp_penyimpangan" value="S" data-relevant=" /balita_kunjungan/hasil_dilakukannya_kpsp  = 'Dp'" data-type-xml="select1" />
+               <span lang="" class="option-label active">S (tidak di MTBS)</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Apakah Vitamin A diberikan saat pelayanan</span>
+            <span lang="" class="or-hint active">Menunjukkan apakah pelayanan Vitamin A diberikan saat kunjungan balita</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/pelayanan_vita" data-name="/balita_kunjungan/pelayanan_vita" value="jika_dilakukan" data-type-xml="select1" />
+               <span lang="" class="option-label active">Jika dilakukan (v)</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/balita_kunjungan/pelayanan_vita" data-name="/balita_kunjungan/pelayanan_vita" value="jika_tidak_dilakukan" data-type-xml="select1" />
+               <span lang="" class="option-label active">Jika tidak dilakukan (x)</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question non-select ">
+      <span lang="" class="question-label active">Keterangan</span>
+      <span lang="" class="or-hint active">Diisi keterangan, pindah domisili atau informasi lainnya</span>
+      <input type="text" name="/balita_kunjungan/keterangan" data-type-xml="string" />
+   </label>
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/balita_kunjungan/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/balita_kunjungan/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/balita_kunjungan/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/balita_kunjungan/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/balita_kunjungan/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/balita_kunjungan/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+   <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/balita_kunjungan/reg_date" data-calculate=" /balita_kunjungan/today " data-type-xml="date"/>
+        </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/balita_kunjungan/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/balita_kunjungan/formhub/uuid" data-calculate="'6445372682cf4cb389e092dba3aa23c3'" data-type-xml="string" />
+      </label>
+   </fieldset>
+</form>

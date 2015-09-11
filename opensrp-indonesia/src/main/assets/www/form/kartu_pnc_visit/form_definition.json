@@ -1,0 +1,127 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "ibu",
+    "default_bind_path": "/model/instance/PNC_Visit/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kiId",
+        "source": "ibu.kartu_ibu.id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "referenceDate",
+        "bind": "/model/instance/PNC_Visit/tanggal_kunjungan"
+      },
+      {
+        "name": "tanggalLahirAnak",
+        "bind": "/model/instance/PNC_Visit/tanggal_lahir_anak",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "hariKeKF",
+        "bind": "/model/instance/PNC_Visit/hari_ke__kf"
+      },
+      {
+        "name": "tandaVitalTDSistolik",
+        "bind": "/model/instance/PNC_Visit/tanda_vital_td_sistolik",
+        "source": "ibu.kartu_ibu.tandaVitalTDSistolik",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "tandaVitalTDDiastolik",
+        "bind": "/model/instance/PNC_Visit/tanda_vital_td_diastolik",
+        "source": "ibu.kartu_ibu.tandaVitalTDDiastolik",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "tandaVitalSuhu",
+        "bind": "/model/instance/PNC_Visit/tanda_vital_suhu"
+      },
+      {
+        "name": "pelayananfe",
+        "bind": "/model/instance/PNC_Visit/pelayanan_fe"
+      },
+      {
+        "name": "vitaminA2jamPP",
+        "bind": "/model/instance/PNC_Visit/vitaminA2jamPP"
+      },
+      {
+        "name": "vitaminA24jamPP",
+        "bind": "/model/instance/PNC_Visit/vitaminA24jamPP"
+      },
+      {
+        "name": "integrasiProgramAntiMalaria",
+        "bind": "/model/instance/PNC_Visit/integrasi_program_anti_malaria"
+      },
+      {
+        "name": "integrasiProgramantitb",
+        "bind": "/model/instance/PNC_Visit/integrasi_program_anti_tb"
+      },
+      {
+        "name": "integrasiProgramFotoThorax",
+        "bind": "/model/instance/PNC_Visit/integrasi_program_foto_thorax"
+      },
+      {
+        "name": "komplikasi",
+        "bind": "/model/instance/PNC_Visit/komplikasi"
+      },
+      {
+        "name": "komplikasiLainnya",
+        "bind": "/model/instance/PNC_Visit/komplikasi_lainnya"
+      },
+      {
+        "name": "daruratNifas",
+        "bind": "/model/instance/PNC_Visit/daruratnifas"
+      },
+      {
+        "name": "penangananNifas",
+        "bind": "/model/instance/PNC_Visit/penanganannifas"
+      },
+      {
+        "name": "kondisiPascaTindakan",
+        "bind": "/model/instance/PNC_Visit/kondisipascatindakan"
+      },
+      {
+        "name": "rujukan",
+        "bind": "/model/instance/PNC_Visit/rujukan"
+      },
+      {
+        "name": "dirujukKe",
+        "bind": "/model/instance/PNC_Visit/dirujuk_ke"
+      },
+      {
+        "name": "dirujukKeLainnya",
+        "bind": "/model/instance/PNC_Visit/dirujuk_ke_lainnya"
+      },
+      {
+        "name": "keadaanTiba",
+        "bind": "/model/instance/PNC_Visit/keadaan_tiba"
+      },
+      {
+        "name": "keterangan",
+        "bind": "/model/instance/PNC_Visit/keterangan"
+      },
+      {
+        "name": "keadaanTiba",
+        "bind": "/model/instance/PNC_Visit/keadaan_tiba"
+      },
+      {
+        "name": "keadaanPulang",
+        "bind": "/model/instance/PNC_Visit/Keadaan_pulang"
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/PNC_Visit/today"
+      },
+      {
+        "name": "registrationDate",
+        "bind": "/model/instance/PNC_Visit/reg_date"
+      }
+    ]
+  }
+}

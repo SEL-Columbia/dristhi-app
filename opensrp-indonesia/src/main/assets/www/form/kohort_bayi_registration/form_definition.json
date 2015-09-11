@@ -1,0 +1,71 @@
+{
+    "form_data_definition_version": "1",
+    "form": {
+        "bind_type": "kartu_ibu",
+        "default_bind_path": "/model/instance/register_baby_only/",
+        "fields": [
+            {
+                "name": "id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "motherId",
+                "source": "kartu_ibu.ibu.id"
+            },
+            {
+                "name": "childId",
+                "source": "kartu_ibu.ibu.anak.id"
+            },
+            {
+                "name": "tanggalPendaftaran",
+                "bind": "/model/instance/register_baby_only/tanggal_pendaftaran",
+                "source": "kartu_ibu.ibu.anak.tanggalPendaftaran"
+            },
+            {
+                "name": "noBayi",
+                "bind": "/model/instance/register_baby_only/no_bayi",
+                "source": "kartu_ibu.ibu.anak.noBayi"
+            },
+            {
+                "name": "namaBayi",
+                "bind": "/model/instance/register_baby_only/nama_bayi",
+                "source": "kartu_ibu.ibu.anak.namaBayi"
+            },
+            {
+                "name": "tanggalLahirAnak",
+                "bind": "/model/instance/register_baby_only/tanggal_lahir_anak",
+                "source": "kartu_ibu.ibu.anak.tanggalLahirAnak"
+            },
+            {
+                "name": "jenisKelamin",
+                "bind": "/model/instance/register_baby_only/jenis_kelamin",
+                "source": "kartu_ibu.ibu.anak.jenisKelamin"
+            },
+            {
+                "name": "kepemilikanBukuKIA",
+                "bind": "/model/instance/register_baby_only/kepemilikan_buku_kia",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "beratLahir",
+                "bind": "/model/instance/register_baby_only/berat_lahir",
+                "source": "kartu_ibu.ibu.anak.beratLahir"
+            },
+            {
+                "name": "registrationDate",
+                "bind": "/model/instance/register_baby_only/reg_date",
+                "source": "kartu_ibu.ibu.anak.registrationDate"
+            },
+            {
+                "name": "isClosed",
+                "value": "false",
+                "source": "kartu_ibu.ibu.anak.isClosed"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/register_baby_only/today",
+                "source": "kartu_ibu.ibu.anak.submissionDate"
+            }
+        ]
+    }
+}
