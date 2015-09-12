@@ -18,11 +18,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.ei.opensrp.Context;
 import org.ei.opensrp.domain.LoginResponse;
 import org.ei.opensrp.domain.Response;
 import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.indonesia.view.activity.BidanHomeActivity;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
 import org.ei.opensrp.util.Log;
 import org.ei.opensrp.view.BackgroundAction;
@@ -43,7 +43,7 @@ import static org.ei.opensrp.util.Log.logError;
 import static org.ei.opensrp.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
-    private Context context;
+    private org.ei.opensrp.indonesia.Context context;
     private EditText userNameEditText;
     private EditText passwordEditText;
     private ProgressDialog progressDialog;
@@ -254,7 +254,7 @@ public class LoginActivity extends Activity {
     }
 
     private void goToHome() {
-        startActivity(new Intent(this, NativeHomeActivity.class));
+        startActivity(new Intent(this, BidanHomeActivity.class));
         finish();
     }
 

@@ -3,10 +3,12 @@ package org.ei.opensrp;
 import android.content.res.AssetManager;
 import android.util.Log;
 
+import org.apache.commons.io.IOUtils;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.util.IntegerUtil;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class DristhiConfiguration {
@@ -19,15 +21,21 @@ public class DristhiConfiguration {
     private static final String APP_NAME = "APP_NAME";
     public static AllSharedPreferences preferences;
     private Properties properties = new Properties();
+    private String dummyData = null;
 
     public DristhiConfiguration(AssetManager assetManager) {
         preferences=Context.getInstance().allSharedPreferences();
         try {
             properties.load(assetManager.open("app.properties"));
+            InputStream dummyNameFile = assetManager.open("dummy_name.json");
+            dummyData = IOUtils.toString(dummyNameFile);
+            IOUtils.closeQuietly(dummyNameFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public String getDummyData() { return this.dummyData; }
 
     private String get(String key) {
         return properties.getProperty(key);
