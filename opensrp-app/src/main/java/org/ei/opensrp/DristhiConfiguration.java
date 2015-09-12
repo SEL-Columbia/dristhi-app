@@ -16,6 +16,7 @@ public class DristhiConfiguration {
     private static final String PORT = "PORT";
     private static final String SHOULD_VERIFY_CERTIFICATE = "SHOULD_VERIFY_CERTIFICATE";
     private static final String SYNC_DOWNLOAD_BATCH_SIZE = "SYNC_DOWNLOAD_BATCH_SIZE";
+    private static final String APP_NAME = "APP_NAME";
     public static AllSharedPreferences preferences;
     private Properties properties = new Properties();
 
@@ -55,5 +56,9 @@ public class DristhiConfiguration {
 
     public int syncDownloadBatchSize() {
         return IntegerUtil.tryParse(this.get(SYNC_DOWNLOAD_BATCH_SIZE), 100);
+    }
+
+    public String appName() {
+        return this.get(APP_NAME);
     }
 }
