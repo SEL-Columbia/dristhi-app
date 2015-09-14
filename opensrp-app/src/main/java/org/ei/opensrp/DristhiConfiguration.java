@@ -67,6 +67,6 @@ public class DristhiConfiguration {
     }
 
     public String appName() {
-        return this.get(APP_NAME);
+        return this.get(APP_NAME) != null ? this.get(APP_NAME) : "";
     }
 }

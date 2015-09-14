@@ -81,10 +81,13 @@ public class Context extends org.ei.opensrp.Context{
     @Override
     protected Repository initRepository() {
         super.initRepository();
-        return new Repository(applicationContext(), session(), super.settingsRepository(),
-                super.alertRepository(), super.timelineEventRepository(), super.formDataRepository(),
-                super.serviceProvidedRepository(), super.formsVersionRepository(), kartuIbuRepository(), ibuRepository(),
-                anakRepository(), bidanRepository(), uniqueIdRepository());
+        if(getRepository() == null) {
+            setRepository(new Repository(applicationContext(), session(), super.settingsRepository(),
+                    super.alertRepository(), super.timelineEventRepository(), super.formDataRepository(),
+                    super.serviceProvidedRepository(), super.formsVersionRepository(), kartuIbuRepository(), ibuRepository(),
+                    anakRepository(), bidanRepository(), uniqueIdRepository()));
+        }
+        return getRepository();
     }
 
     @Override

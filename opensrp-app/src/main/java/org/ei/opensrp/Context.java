@@ -471,7 +471,6 @@ public class Context {
 
     protected Repository initRepository() {
         if(configuration().appName().equals(AllConstants.APP_NAME_INDONESIA)) {
-            assignbindtypes();
             return null;
         }
         if (repository == null) {
@@ -912,6 +911,13 @@ public class Context {
         this.applicationContext = applicationContext;
     }
 
+    protected Repository getRepository() {
+        return repository;
+    }
+
+    protected void setRepository(Repository repository) {
+        this.repository = repository;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
 }
