@@ -1,7 +1,10 @@
 package org.ei.opensrp.indonesia.view.controller;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.webkit.JavascriptInterface;
 
+import org.ei.opensrp.indonesia.view.activity.NativeKISmartRegisterActivity;
 import org.ei.opensrp.view.controller.ANMController;
 import org.ei.opensrp.view.controller.NavigationController;
 
@@ -10,12 +13,15 @@ import org.ei.opensrp.view.controller.NavigationController;
  */
 public class NavigationControllerINA extends NavigationController {
 
+    private Activity activity;
+
     public NavigationControllerINA(Activity activity, ANMController anmController) {
         super(activity, anmController);
+        this.activity = activity;
     }
 
     public void startKartuIbuRegistry() {
-
+        activity.startActivity(new Intent(activity, NativeKISmartRegisterActivity.class));
     }
 
     public void startKartuIbuANCRegistry() {
@@ -32,6 +38,11 @@ public class NavigationControllerINA extends NavigationController {
 
     public void startKBRegistry() {
 
+    }
+
+    @JavascriptInterface
+    public void startKI(String entityId) {
+        // navigateToKIProfile(activity, entityId);
     }
 
 }

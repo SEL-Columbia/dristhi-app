@@ -2,8 +2,11 @@ package org.ei.opensrp.indonesia.view.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.os.Bundle;
 
+import org.ei.opensrp.indonesia.view.controller.NavigationControllerINA;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
+import org.ei.opensrp.view.controller.NavigationController;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.SmartRegisterDialogFragment;
 
@@ -13,6 +16,13 @@ import org.ei.opensrp.view.dialog.SmartRegisterDialogFragment;
 public abstract class BidanSecuredNativeSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
     private static final String DIALOG_TAG = "dialog";
+    protected NavigationControllerINA navigationControllerINA;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        navigationControllerINA = new NavigationControllerINA(this, anmController);
+    }
 
     @Override
     protected void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {

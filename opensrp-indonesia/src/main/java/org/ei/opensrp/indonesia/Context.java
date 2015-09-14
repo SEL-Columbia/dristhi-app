@@ -1,12 +1,17 @@
 package org.ei.opensrp.indonesia;
 
+import org.ei.opensrp.indonesia.repository.AllKartuIbus;
+import org.ei.opensrp.indonesia.repository.AllKohort;
 import org.ei.opensrp.indonesia.repository.AnakRepository;
 import org.ei.opensrp.indonesia.repository.BidanRepository;
 import org.ei.opensrp.indonesia.repository.IbuRepository;
 import org.ei.opensrp.indonesia.repository.KartuIbuRepository;
 import org.ei.opensrp.indonesia.repository.UniqueIdRepository;
+import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
+import org.ei.opensrp.indonesia.view.contract.KartuIbuClients;
 import org.ei.opensrp.repository.FormDataRepository;
 import org.ei.opensrp.repository.Repository;
+import org.ei.opensrp.util.Cache;
 
 /**
  * Created by Dimas Ciputra on 9/12/15.
@@ -19,6 +24,11 @@ public class Context extends org.ei.opensrp.Context{
     private UniqueIdRepository uniqueIdRepository;
     private BidanRepository bidanRepository;
     private FormDataRepository formDataRepository;
+
+    private AllKartuIbus allKartuIbus;
+    private AllKohort allKohort;
+
+    private Cache<KartuIbuClients>kartuIbuClientsCache;
 
     public Context getContext() {
         return this;
@@ -89,5 +99,27 @@ public class Context extends org.ei.opensrp.Context{
         return formDataRepository;
     }
 
+    public AllKartuIbus allKartuIbus() {
+        initRepository();
+        if (allKartuIbus == null) {
+            allKartuIbus = new AllKartuIbus(kartuIbuRepository(), alertRepository(),
+                    timelineEventRepository(), configuration());
+        }
+        return allKartuIbus;
+    }
+
+    public AllKohort allKohort() {
+        if(allKohort == null) {
+            allKohort = new AllKohort(ibuRepository(), anakRepository(), alertRepository(), timelineEventRepository(), configuration());
+        }
+        return allKohort;
+    }
+
+    public Cache<KartuIbuClients> kiClientsCache() {
+        if (kartuIbuClientsCache == null) {
+            kartuIbuClientsCache = new Cache<KartuIbuClients>();
+        }
+        return kartuIbuClientsCache;
+    }
 
 }

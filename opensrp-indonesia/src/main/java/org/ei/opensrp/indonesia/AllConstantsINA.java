@@ -9,6 +9,11 @@ public class AllConstantsINA {
     public static final String BOOLEAN_FALSE = "no";
     public static final String SPACE = " ";
     public static final String COMMA_WITH_SPACE = ", ";
+    public static final int DIALOG_DOUBLE_SELECTION_NUM  = 3;
+    public static final String FEMALE_GENDER_INA = "perempuan";
+
+    public static final String OUT_OF_AREA = "out_of_area";
+    public static final String IN_AREA = "in_area";
 
     public class KeluargaBerencanaFields {
         public static final String CONTRACEPTION_METHOD = "jenisKontrasepsi";
@@ -94,6 +99,86 @@ public class AllConstantsINA {
         public static final String KOHORT_KB_EDIT="kohort_kb_edit";
 
         public static final String FEEDBACK_BIDAN = "feedback_bidan";
+    }
+    public class KartuIbuFields {
+        public static final String PUSKESMAS_NAME = "puskesmas";
+        public static final String POSYANDU_NAME = "posyandu";
+        public static final String PROPINSI = "propinsi";
+        public static final String KABUPATEN = "kabupaten";
+        public static final String MOTHER_ADDRESS = "alamatDomisili";
+        public static final String MOTHER_NUMBER = "noIbu";
+        public static final String MOTHER_NAME = "namalengkap";
+        public static final String MOTHER_AGE = "umur";
+        public static final String MOTHER_BLOOD_TYPE = "golonganDarah";
+        public static final String MOTHER_DOB = "tanggalLahir";
+        public static final String HUSBAND_NAME = "namaSuami";
+        public static final String VILLAGE = "dusun";
+        public static final String NUMBER_PARTUS = "partus";
+        public static final String NUMBER_ABORTIONS = "abortus";
+        public static final String NUMBER_OF_PREGNANCIES = "gravida";
+        public static final String NUMBER_OF_LIVING_CHILDREN = "hidup";
+        public static final String IS_HIGH_PRIORITY = "isHighPriority";
+        public static final String IS_HIGH_RISK = "isHighRisk";
+        public static final String IS_HIGH_RISK_ANC = "isHighRiskANC";
+        public static final String IS_HIGH_RISK_PREGNANCY = "isHighRiskPregnancy";
+        public static final String IS_HIGH_RISK_LABOUR = "isHighRiskLabour";
+        public static final String EDD = "htp";
+        public static final String VISITS_DATE = "tanggalkunjungan";
+        public static final String CHRONIC_DISEASE = "penyakitKronis";
+    }
 
+    public class KartuANCFields {
+        public static final String MOTHER_NUTRITION_STATUS = "StatusGiziibu";
+        public static final String COMPLICATION_HISTORY = "riwayatKomplikasiKebidanan";
+        public static final String TRIMESTER = "TrimesterKe";
+        public static final String IMMUNIZATION_TT_STATUS = "StatusImunisasiTT";
+        public static final String CLINICAL_AGE = "UsiaKlinis";
+        public static final String WEIGHT_BEFORE = "bbSebelumHamil";
+        public static final String WEIGHT_CHECK_RESULT = "bbKg";
+        public static final String LILA_CHECK_RESULT = "hasilPemeriksaanLILA";
+        public static final String HEIGHT = "tbCM";
+        public static final String ALLERGY = "Alergi";
+        public static final String HPHT_DATE = "tanggalHPHT";
+        public static final String HIGH_RISK_PREGNANCY_REASON = "highRiskPregnancyReason";
+        public static final String HB_RESULT = "laboratoriumPeriksaHbHasil";
+        public static final String SUGAR_BLOOD_LEVEL = "laboratoriumGulaDarah";
+        public static final String PELVIC_DEFORMITY = "kelainanBentuk";
+        public static final String FETUS_SIZE = "taksiranBeratJanin";
+        public static final String FETUS_NUMBER = "jumlahJanin";
+        public static final String FETUS_POSITION = "persentasi_janin";
+        public static final String ANC_VISIT_NUMBER = "ancKe";
+    }
+
+    public class KartuPNCFields {
+        public static final String PLANNING = "Rencana";
+        public static final String COMPLICATION = "komplikasi";
+        public static final String OTHER_COMPLICATION = "komplikasi_lainnya";
+        public static final String VITAL_SIGNS_TD_DIASTOLIC = "tandaVitalTDDiastolik";
+        public static final String VITAL_SIGNS_TD_SISTOLIC = "tandaVitalTDSistolik";
+        public static final String VITAL_SIGNS_TEMP = "tandaVitalSuhu";
+        public static final String MOTHER_CONDITION = "keadaanIbu";
+        public static final String PREGNANCY_AGE = "usiaKehamilan";
+        public static final String DELIVERY_METHOD = "caraPersalinanIbu";
+    }
+
+    public class KartuAnakFields {
+        public static final String BABY_NO = "noBayi";
+        public static final String BIRTH_WEIGHT = "beratLahir";
+        public static final String CHILD_NAME = "namaBayi";
+        public static final String BIRTH_CONDITION = "saatLahirsd5JamKondisibayi";
+        public static final String SERVICE_AT_BIRTH = "jenisPelayananYangDiberikanSaatLahir";
+        public static final String DATE_OF_BIRTH = "tanggalLahirAnak";
+        public static final String GENDER = "jenisKelamin";
+        public static final String IS_HIGH_RISK_CHILD = "isHighRiskChild";
+        public static final String IMMUNIZATION_HB_0_7_DATES = "tanggalpemberianimunisasiHb07";
+        public static final String IMMUNIZATION_BCG_AND_POLIO1 = "tanggalpemberianimunisasiBCGdanPolio1";
+        public static final String IMMUNIZATION_DPT_HB1_POLIO2 = "tanggalpemberianimunisasiDPTHB1Polio2";
+        public static final String IMMUNIZATION_DPT_HB2_POLIO3 = "tanggalpemberianimunisasiDPTHB2Polio3";
+        public static final String IMMUNIZATION_DPT_HB3_POLIO4 = "tanggalpemberianimunisasiDPTHB3Polio4";
+        public static final String IMMUNIZATION_MEASLES = "tanggalpemberianimunisasiCampak";
+        public static final String HB_GIVEN = "saatLahirsd5JamPemberianImunisasihbJikaDilakukan";
+        public static final String BIRTH_PLACE = "tempatBersalin";
+        public static final String CHILD_VISIT_DATE = "tanggalKunjunganBayiPerbulan";
+        public static final String CHILD_CURRENT_WEIGTH = "beratBadanBayiSetiapKunjunganBayiPerbulan";
     }
 }
