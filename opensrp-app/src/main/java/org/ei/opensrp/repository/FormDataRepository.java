@@ -61,6 +61,10 @@ public class FormDataRepository extends DrishtiRepository {
 //        TABLE_COLUMN_MAP.put("user",PersonRepository.person_TABLE_COLUMNS);
     }
 
+    public void addTableColumnMap(String key, String[] val) {
+        TABLE_COLUMN_MAP.put(key, val);
+    }
+
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(FORM_SUBMISSION_SQL);

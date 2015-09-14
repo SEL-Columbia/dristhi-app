@@ -28,7 +28,6 @@ import org.ei.opensrp.util.Log;
 import org.ei.opensrp.view.BackgroundAction;
 import org.ei.opensrp.view.LockingBackgroundTask;
 import org.ei.opensrp.view.ProgressIndicator;
-import org.ei.opensrp.view.activity.NativeHomeActivity;
 import org.ei.opensrp.view.activity.SettingsActivity;
 
 import java.io.IOException;
@@ -43,7 +42,7 @@ import static org.ei.opensrp.util.Log.logError;
 import static org.ei.opensrp.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
-    private org.ei.opensrp.indonesia.Context context;
+    private org.ei.opensrp.Context context;
     private EditText userNameEditText;
     private EditText passwordEditText;
     private ProgressDialog progressDialog;
@@ -54,7 +53,9 @@ public class LoginActivity extends Activity {
         logVerbose("Initializing ...");
         setContentView(R.layout.login);
 
-        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        context = Context.getInstance().setApplicationContextChild(this.getApplicationContext());
+        context = Context.setInstance(context);
+
         initializeLoginFields();
         initializeBuildDetails();
         setDoneActionHandlerOnPasswordField();

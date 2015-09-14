@@ -13,6 +13,7 @@ import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.indonesia.view.contract.BidanHomeContext;
 import org.ei.opensrp.indonesia.view.controller.NavigationControllerINA;
 import org.ei.opensrp.service.PendingFormSubmissionService;
+import org.ei.opensrp.view.activity.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,7 +28,7 @@ import static org.ei.opensrp.event.Event.SYNC_STARTED;
 /**
  * Created by Dimas Ciputra on 2/27/15.
  */
-public class BidanHomeActivity extends SecuredActivity {
+public class BidanHomeActivity extends org.ei.opensrp.view.activity.SecuredActivity {
     private MenuItem updateMenuItem;
     private MenuItem remainingFormsToSyncMenuItem;
     private PendingFormSubmissionService pendingFormSubmissionService;
