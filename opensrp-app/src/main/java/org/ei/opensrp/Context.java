@@ -914,6 +914,10 @@ public class Context {
         return returnString.toString();
     }
 
+    public HTTPAgent getHttpAgent() {
+        return httpAgent;
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////////
 }
