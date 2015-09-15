@@ -23,8 +23,16 @@ public class ImageUploadSyncService {
     }
     public void ImageSync(ArrayList<ProfileImage> profileimages,ImageRepository imagerepository){
         for(int i = 0;i<profileimages.size();i++){
-            String response = Context.getInstance().getHttpAgent().httpImagePost(Context.getInstance().configuration().dristhiBaseURL()+"/multimedia-file",profileimages.get(i));
-            imagerepository.close(profileimages.get(i).getImageid());
+            int response = Context.getInstance().getHttpAgent().httpImagePost(Context.getInstance().configuration().dristhiBaseURL()+"/multimedia-file",profileimages.get(i));
+            int RESPONSE_OK = 200;
+            int RESPONSE_OK_ = 201;
+
+            if (response != RESPONSE_OK_ && response != RESPONSE_OK) {
+            }else{
+                imagerepository.close(profileimages.get(i).getImageid());
+            }
+
+
         }
     }
 

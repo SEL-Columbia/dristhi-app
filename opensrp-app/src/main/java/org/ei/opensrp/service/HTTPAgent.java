@@ -170,44 +170,32 @@ public class HTTPAgent {
             throw new AssertionError(e);
         }
     }
-    public String httpImagePost(String url,ProfileImage image){
+    public int httpImagePost(String url,ProfileImage image){
 
         String responseString = "";
         try {
-//            List<NameValuePair> authenticationNameValuePairs = new ArrayList<NameValuePair>();
-//            authenticationNameValuePairs.add(new BasicNameValuePair("anm-id", user.getEmail()));
-//            authenticationNameValuePairs.add(new BasicNameValuePair("entity-id", user.getFirst_name()));
-//            authenticationNameValuePairs.add(new BasicNameValuePair("content-type", user.getLast_name()));
-//            authenticationNameValuePairs.add(new BasicNameValuePair("file", user.getDevice_id()));
             setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
-
-//            HttpClient httpclient = new DefaultHttpClient();
             HttpPost httpost = new HttpPost(url);
-
-//            httpost.setHeader("Content-Type", "application/json");
             httpost.setHeader("Accept", "multipart/form-data");
             File filetoupload = new File(image.getFilepath());
             Log.v("file to upload",""+filetoupload.length());
-//            UrlEncodedFormEntity postDataUrlEntity = new UrlEncodedFormEntity(authenticationNameValuePairs);
             MultipartEntity entity = new MultipartEntity();
             entity.addPart("anm-id", new StringBody(image.getAnmId()));
             entity.addPart("entity-id", new StringBody(image.getEntityID()));
             entity.addPart("content-type", new StringBody(image.getContenttype()));
             entity.addPart("file", new FileBody(new File(image.getFilepath())));
             httpost.setEntity(entity);
-            String authToken = null;
             HttpResponse response = httpClient.postContent(httpost);
             responseString = EntityUtils.toString(response.getEntity());
-            Log.v("response so many",responseString);
             int RESPONSE_OK = 200;
             int RESPONSE_OK_ = 201;
 
             if (response.getStatusLine().getStatusCode() != RESPONSE_OK_ && response.getStatusLine().getStatusCode() != RESPONSE_OK) {
             }
-
+           return response.getStatusLine().getStatusCode();
         }catch (Exception e){
-
+            return -1;
         }
-        return responseString;
+
     }
 }
