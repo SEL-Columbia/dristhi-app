@@ -8,11 +8,17 @@ import android.widget.TextView;
 // import com.flurry.android.FlurryAgent;
 
 import org.ei.opensrp.domain.form.FieldOverrides;
+import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.indonesia.view.contract.BidanHomeContext;
+import org.ei.opensrp.indonesia.view.controller.NativeAfterBidanDetailsFetchListener;
+import org.ei.opensrp.indonesia.view.controller.NativeUpdateBidanDetailsTask;
 import org.ei.opensrp.indonesia.view.controller.NavigationControllerINA;
 import org.ei.opensrp.service.PendingFormSubmissionService;
+import org.ei.opensrp.sync.SyncAfterFetchListener;
+import org.ei.opensrp.sync.SyncProgressIndicator;
+import org.ei.opensrp.sync.UpdateActionsTask;
 import org.ei.opensrp.view.activity.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -124,13 +130,13 @@ public class BidanHomeActivity extends org.ei.opensrp.view.activity.SecuredActiv
     }
 
     private void updateRegisterCounts() {
-//        NativeUpdateBidanDetailsTask task = new NativeUpdateBidanDetailsTask(this, Context.getInstance().bidanController());
-//        task.fetch(new NativeAfterBidanDetailsFetchListener() {
-//            @Override
-//            public void afterFetch(BidanHomeContext bidanDetails) {
-//                updateRegisterCounts(bidanDetails);
-//            }
-//        });
+        NativeUpdateBidanDetailsTask task = new NativeUpdateBidanDetailsTask(this, Context.getInstance().bidanController());
+        task.fetch(new NativeAfterBidanDetailsFetchListener() {
+            @Override
+            public void afterFetch(BidanHomeContext bidanDetails) {
+                updateRegisterCounts(bidanDetails);
+            }
+        });
     }
 
     public void updateRegisterCounts(BidanHomeContext homeContext) {
@@ -168,9 +174,11 @@ public class BidanHomeActivity extends org.ei.opensrp.view.activity.SecuredActiv
     public void updateFromServer() {
         // FlurryAgent.logEvent("clicked_update_from_server");
         // TODO : Change formSubmissionSyncService
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(
+                this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator(), context.allFormVersionSyncService());
 //        UpdateActionsTask updateActionsTask = new UpdateActionsTask(
 //                this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator(), context.uniqueIdService());
-//        updateActionsTask.updateFromServer(new SyncAfterFetchListener());
+        updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }
 
     @Override

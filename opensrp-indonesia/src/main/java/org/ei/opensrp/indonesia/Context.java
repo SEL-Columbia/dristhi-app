@@ -7,9 +7,12 @@ import org.ei.opensrp.indonesia.repository.BidanRepository;
 import org.ei.opensrp.indonesia.repository.IbuRepository;
 import org.ei.opensrp.indonesia.repository.KartuIbuRepository;
 import org.ei.opensrp.indonesia.repository.UniqueIdRepository;
+import org.ei.opensrp.indonesia.service.BidanService;
+import org.ei.opensrp.indonesia.view.contract.BidanHomeContext;
 import org.ei.opensrp.indonesia.view.contract.KIANCClients;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClients;
+import org.ei.opensrp.indonesia.view.controller.BidanController;
 import org.ei.opensrp.repository.FormDataRepository;
 import org.ei.opensrp.repository.Repository;
 import org.ei.opensrp.util.Cache;
@@ -31,6 +34,11 @@ public class Context extends org.ei.opensrp.Context{
 
     private Cache<KartuIbuClients>kartuIbuClientsCache;
     private Cache<KIANCClients>kartuIbuANCClientsCache;
+    private Cache<BidanHomeContext>bidanHomeContextCache;
+
+    private BidanService bidanService;
+
+    private BidanController bidanController;
 
     public Context getContext() {
         return this;
@@ -133,5 +141,27 @@ public class Context extends org.ei.opensrp.Context{
         }
         return kartuIbuANCClientsCache;
     }
+
+    public BidanController bidanController() {
+        if (bidanController == null) {
+            bidanController = new BidanController(bidanService(), listCache(), bidanHomeContextCache());
+        }
+        return bidanController;
+    }
+
+    public BidanService bidanService() {
+        if (bidanService == null) {
+            bidanService = new BidanService(allSharedPreferences(), allKartuIbus(), allKohort());
+        }
+        return bidanService;
+    }
+
+    public Cache<BidanHomeContext> bidanHomeContextCache() {
+        if (bidanHomeContextCache == null) {
+            bidanHomeContextCache = new Cache<>();
+        }
+        return bidanHomeContextCache;
+    }
+
 
 }
