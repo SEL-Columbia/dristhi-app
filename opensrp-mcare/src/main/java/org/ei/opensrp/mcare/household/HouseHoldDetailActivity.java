@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.mcare.R;
 
 import org.ei.opensrp.Context;
@@ -26,6 +27,7 @@ import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
+import org.ei.opensrp.repository.ImageRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import util.ImageCache;
 import util.ImageFetcher;
@@ -272,8 +275,10 @@ public class HouseHoldDetailActivity extends Activity {
     }
     public void saveimagereference(String bindobject,String entityid,Map<String,String> details){
         Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityid,details);
-//                householdclient.entityId();
-//        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
+        String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+        ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("profilepic"), ImageRepository.TYPE_Unsynced);
+        ((ImageRepository)Context.getInstance().imageRepository()).add(profileImage);
+//       Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
     }
     public static void setImagetoHolder(Activity activity,String file, ImageView view, int placeholder){
         mImageThumbSize = 300;
