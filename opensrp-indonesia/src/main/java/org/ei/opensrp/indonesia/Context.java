@@ -7,6 +7,7 @@ import org.ei.opensrp.indonesia.repository.BidanRepository;
 import org.ei.opensrp.indonesia.repository.IbuRepository;
 import org.ei.opensrp.indonesia.repository.KartuIbuRepository;
 import org.ei.opensrp.indonesia.repository.UniqueIdRepository;
+import org.ei.opensrp.indonesia.view.contract.KIANCClients;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClients;
 import org.ei.opensrp.repository.FormDataRepository;
@@ -29,6 +30,7 @@ public class Context extends org.ei.opensrp.Context{
     private AllKohort allKohort;
 
     private Cache<KartuIbuClients>kartuIbuClientsCache;
+    private Cache<KIANCClients>kartuIbuANCClientsCache;
 
     public Context getContext() {
         return this;
@@ -123,6 +125,13 @@ public class Context extends org.ei.opensrp.Context{
             kartuIbuClientsCache = new Cache<KartuIbuClients>();
         }
         return kartuIbuClientsCache;
+    }
+
+    public Cache<KIANCClients> kartuIbuANCClientsCache() {
+        if (kartuIbuANCClientsCache == null) {
+            kartuIbuANCClientsCache = new Cache<>();
+        }
+        return kartuIbuANCClientsCache;
     }
 
 }

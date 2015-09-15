@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.webkit.JavascriptInterface;
 
+import org.ei.opensrp.indonesia.view.activity.NativeKIANCSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKISmartRegisterActivity;
 import org.ei.opensrp.view.controller.ANMController;
 import org.ei.opensrp.view.controller.NavigationController;
@@ -25,7 +26,7 @@ public class NavigationControllerINA extends NavigationController {
     }
 
     public void startKartuIbuANCRegistry() {
-
+        activity.startActivity(new Intent(activity, NativeKIANCSmartRegisterActivity.class));
     }
 
     public void startKartuIbuPNCRegistry() {

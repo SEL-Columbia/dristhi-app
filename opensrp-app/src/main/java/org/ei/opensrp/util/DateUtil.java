@@ -3,6 +3,7 @@ package org.ei.opensrp.util;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
+import org.joda.time.Weeks;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,6 +75,14 @@ public class DateUtil {
     public static int dayDifference(LocalDate startDate, LocalDate endDate) {
         try {
             return Math.abs(Days.daysBetween(startDate, endDate).getDays());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public static int weekDifference(LocalDate startDate, LocalDate endDate) {
+        try {
+            return Math.abs(Weeks.weeksBetween(startDate, endDate).getWeeks());
         } catch (Exception e) {
             return 0;
         }

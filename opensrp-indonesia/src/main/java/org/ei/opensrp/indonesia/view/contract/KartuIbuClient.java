@@ -163,7 +163,7 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
         if(edd.equalsIgnoreCase("invalid date")) return "-";
 
         DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-MM-dd");
-        DateTimeFormatter formatter2 = DateTimeFormat.forPattern("KIChildClient.javadd MMM YYYY");
+        DateTimeFormatter formatter2 = DateTimeFormat.forPattern("dd MMM YYYY");
         LocalDateTime date = parse(edd, formatter);
 
         return "" + date.toString(formatter2);
