@@ -15,7 +15,7 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
     EditText et_mother_name, et_child_name, et_reporting_date;
     CustomFontTextView tv_child_disease_report, tv_breathing_problems, tv_child_dob, tv_referral, tv_referral_reason;
     Button bt_poc, bt_doc_refer;
-    String documentId = null, phoneNumber = null, visitId = null, entityId = null;
+    String documentId = null, phoneNumber = null, visitId = null, entityId = null, wifeName = null;
 
     @Override
     protected String[] setDatatoViews(String formInfo) {
@@ -24,6 +24,7 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
 
         visitId = getDatafromJson(formInfo, DoctorFormDataConstants.pnc_entityId);
         entityId = getDatafromJson(formInfo, DoctorFormDataConstants.entityId);
+        wifeName = getDatafromJson(formInfo, DoctorFormDataConstants.wife_name);
 
         et_mother_name.setText(getDatafromJson(formInfo, DoctorFormDataConstants.wife_name));
         et_child_name.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_name));
@@ -68,7 +69,7 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
                 getDrugData();
                 break;
             case R.id.bt_refer:
-                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId);
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId, "CHILD", wifeName);
                 break;
         }
     }

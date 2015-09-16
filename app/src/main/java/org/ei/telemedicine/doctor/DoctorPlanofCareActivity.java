@@ -47,7 +47,7 @@ import java.util.List;
 public class DoctorPlanofCareActivity extends Activity {
     AutoCompleteTextView act_icd10Diagnosis, act_tests;
     ListView lv_selected_icd10, lv_selected_tests, lv_selected_drugs;
-    Switch swich_poc_pending;
+    Switch swich_poc_pending, switch_poc_physical_consultation;
     Spinner sp_services, sp_drug_name, sp_drug_frequency, sp_drug_direction, sp_drug_dosage;
     EditText et_drug_qty, et_drug_no_of_days, et_reason, et_advice;
 
@@ -80,7 +80,7 @@ public class DoctorPlanofCareActivity extends Activity {
     Context context;
     private String TAG = "DoctorPlanOfCareActivity";
     String visitType, visitNumber;
-    String documentId, formData, phoneNumber;
+    String documentId, formData, phoneNumber, motherName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +119,8 @@ public class DoctorPlanofCareActivity extends Activity {
                 tv_stop_date = (CustomFontTextView) findViewById(R.id.tv_stop_by_date);
                 sp_drug_name = (Spinner) findViewById(R.id.sp_drug_name);
                 swich_poc_pending = (Switch) findViewById(R.id.switch_poc_pending);
+                switch_poc_physical_consultation = (Switch) findViewById(R.id.switch_poc_physical_consultation);
+
                 sp_drug_direction = (Spinner) findViewById(R.id.sp_drug_direction);
                 sp_drug_dosage = (Spinner) findViewById(R.id.sp_drug_dosage);
                 sp_drug_frequency = (Spinner) findViewById(R.id.sp_drug_frequency);
@@ -212,13 +214,16 @@ public class DoctorPlanofCareActivity extends Activity {
                         pocDrugFrequenciesList.add(drugJsonObject.getString("frequency"));
 
                 }
-                tv_doc_name.setText(Context.getInstance().allSharedPreferences().fetchRegisteredANM());
-                tv_mother_name.setText(getData(formDataJson, DoctorFormDataConstants.wife_name));
-                tv_age.setText(getData(formDataJson, DoctorFormDataConstants.age));
                 visitType = getData(formDataJson, DoctorFormDataConstants.visit_type);
                 visitNumber = getData(formDataJson, DoctorFormDataConstants.anc_visit_number);
+                motherName = getData(formDataJson, DoctorFormDataConstants.wife_name);
 
                 tv_visit_type.setText(visitType);
+                tv_doc_name.setText(Context.getInstance().allSharedPreferences().fetchRegisteredANM());
+                tv_mother_name.setText(motherName);
+                tv_age.setText(getData(formDataJson, DoctorFormDataConstants.age));
+
+
                 tv_village.setText(getData(formDataJson, DoctorFormDataConstants.village_name));
                 tv_health_worker_name.setText(getData(formDataJson, DoctorFormDataConstants.anmId));
                 tv_health_worker_village.setText(getData(formDataJson, DoctorFormDataConstants.village_name));
@@ -542,6 +547,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     for (int i = 0; i < selectTests.size(); i++) {
                                                                         testsArray.put(selectTests.get(i).toString());
                                                                     }
+                                                                    resultJson.put("documentId", documentId);
                                                                     resultJson.put("visitType", visitType);
                                                                     resultJson.put("visitNumber", visitNumber);
                                                                     resultJson.put("doctorName", Context.getInstance().allSharedPreferences().fetchRegisteredANM());
@@ -549,7 +555,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     resultJson.put("diagnosis", diagnosisArray);
                                                                     resultJson.put("drugs", drugsArray);
                                                                     resultJson.put("investigations", testsArray);
-                                                                    resultJson.put("advice", et_advice.getText().toString());
+                                                                    resultJson.put("advice", et_advice.getText().toString() + (switch_poc_physical_consultation.isChecked() ? ".\n Physical examination is required, for this patient." : ""));
                                                                     //                            resultJson.put("reason", et_reason.getText().toString());
                                                                     Log.e(TAG, "Reason" + et_reason.getText().toString() + "---" + swich_poc_pending.isChecked() + "");
                                                                     Log.e(TAG, "selected Json" + resultJson.toString());
@@ -681,7 +687,7 @@ public class DoctorPlanofCareActivity extends Activity {
                     _params.add(new BasicNameValuePair("pending", pendingReason));
                     _params.add(new BasicNameValuePair("entityid", formDataJson.getString(DoctorFormDataConstants.entityId)));
                     _params.add(new BasicNameValuePair("patientph", phoneNumber));
-
+                    _params.add(new BasicNameValuePair("patientname", visitType.equalsIgnoreCase("child") ? motherName + " your baby" : motherName));
                     switch (formDataJson.getString(DoctorFormDataConstants.visit_type)) {
                         case DoctorFormDataConstants.ancvisit:
                             _params.add(new BasicNameValuePair("visitid", formDataJson.getString(DoctorFormDataConstants.anc_entityId)));

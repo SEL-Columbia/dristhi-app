@@ -126,8 +126,8 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         });
     }
 
-    public void referAnotherDoctor(String doctorId, String visitId, String entityId, final String documentId) {
-        getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId, new Listener<String>() {
+    public void referAnotherDoctor(String doctorId, String visitId, String entityId, final String documentId, final String visitType, final String wifeName) {
+        getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId + "&patientname=" + (visitType.equalsIgnoreCase("CHILD") ? "Baby%20of%20" + wifeName : wifeName), new Listener<String>() {
             @Override
             public void onEvent(String data) {
                 Context.getInstance().allDoctorRepository().deleteUseCaseId(documentId);
@@ -177,7 +177,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
                 super.onPreExecute();
                 progressDialog = new ProgressDialog(DoctorPatientDetailSuperActivity.this);
                 progressDialog.setCancelable(false);
-                progressDialog.setMessage(getString(R.string.loggin_in_dialog_message));
+                progressDialog.setMessage(getString(R.string.dialog_message));
                 progressDialog.show();
             }
 
@@ -243,7 +243,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         if (jsonStr != null) {
             try {
                 JSONObject jsonData = new JSONObject(jsonStr);
-                return jsonData.has(key) ? jsonData.getString(key) : "";
+                return (jsonData.has(key) && jsonData.getString(key) != null) ? jsonData.getString(key) : "";
             } catch (JSONException e) {
                 e.printStackTrace();
             }

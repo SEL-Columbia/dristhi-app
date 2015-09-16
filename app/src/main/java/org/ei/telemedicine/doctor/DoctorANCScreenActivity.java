@@ -24,7 +24,7 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
     ImageButton ib_bp_graph, ib_fetal_graph, ib_bgm_graph, ib_temp_graph;
     EditText et_anc_num, et_woman_name, et_anc_visit_date, et_other_risks, et_bp_sys, et_bp_dia, et_temp, et_bloodGlucose, et_fetal;
     LinearLayout ll_woman_risks;
-    String documentId = null, visitId = null, phoneNumber = null, entityId = null;
+    String documentId = null, visitId = null, phoneNumber = null, entityId = null, wifeName = null;
     ImageButton ib_play_stehoscope;
     String formData = null;
     org.ei.telemedicine.view.customControls.CustomFontTextView tv_risks, tv_anm_poc;
@@ -35,8 +35,9 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
         phoneNumber = getDatafromJson(formInfo, DoctorFormDataConstants.phoneNumber);
         visitId = getDatafromJson(formInfo, DoctorFormDataConstants.anc_entityId);
         entityId = getDatafromJson(formInfo, DoctorFormDataConstants.entityId);
+        wifeName = getDatafromJson(formInfo, DoctorFormDataConstants.wife_name);
+        et_woman_name.setText(wifeName);
         et_anc_num.setText("Visit No " + getDatafromJson(formInfo, DoctorFormDataConstants.anc_visit_number));
-        et_woman_name.setText(getDatafromJson(formInfo, DoctorFormDataConstants.wife_name));
         et_anc_visit_date.setText(getDatafromJson(formInfo, DoctorFormDataConstants.anc_visit_date));
         et_bp_sys.setText(getDatafromJson(formInfo, DoctorFormDataConstants.bp_sys).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.bp_sys));
         et_bp_dia.setText(getDatafromJson(formInfo, DoctorFormDataConstants.bp_dia).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.bp_dia));
@@ -110,7 +111,7 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
                 getVitalsData(AllConstants.GraphFields.FETALDATA, visitId);
                 break;
             case R.id.bt_refer:
-                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId);
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId, "ANC", wifeName);
                 break;
         }
     }

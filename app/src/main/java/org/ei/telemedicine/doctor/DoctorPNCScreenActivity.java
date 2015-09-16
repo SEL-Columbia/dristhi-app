@@ -24,7 +24,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
     ImageButton ib_bp_graph, ib_fetal_graph, ib_bgm_graph, ib_temp_graph;
     Bundle bundle;
     ImageButton ib_play_stehoscope;
-    private String documentId, visitId, phoneNumber, entityId = null;
+    private String documentId, visitId, phoneNumber, entityId = null, wifeName = null;
     org.ei.telemedicine.view.customControls.CustomFontTextView tv_anm_poc;
 
 
@@ -73,9 +73,9 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
 
         visitId = getDatafromJson(formInfo, DoctorFormDataConstants.pnc_entityId);
         entityId = getDatafromJson(formInfo, DoctorFormDataConstants.entityId);
-
+        wifeName = getDatafromJson(formInfo, DoctorFormDataConstants.wife_name);
         et_pnc_num.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_number));
-        et_woman_name.setText(getDatafromJson(formInfo, DoctorFormDataConstants.wife_name));
+        et_woman_name.setText(wifeName);
         et_pnc_date.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_visit_date));
         ib_play_stehoscope = (ImageButton) findViewById(R.id.ib_play_stehoscope);
 
@@ -117,7 +117,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
                 getVitalsData(AllConstants.GraphFields.BLOODGLUCOSEDATA, visitId);
                 break;
             case R.id.bt_refer:
-                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId);
+                referAnotherDoctor(Context.getInstance().allSharedPreferences().fetchRegisteredANM(), visitId, entityId, documentId, "PNC", wifeName);
                 break;
         }
 
