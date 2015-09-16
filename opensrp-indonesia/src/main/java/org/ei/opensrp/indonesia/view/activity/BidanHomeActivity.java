@@ -19,13 +19,11 @@ import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
 import org.ei.opensrp.sync.UpdateActionsTask;
-import org.ei.opensrp.view.activity.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import static java.lang.String.valueOf;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.FEEDBACK_BIDAN;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_REGISTRATION;
 import static org.ei.opensrp.event.Event.ACTION_HANDLED;
 import static org.ei.opensrp.event.Event.FORM_SUBMITTED;
 import static org.ei.opensrp.event.Event.SYNC_COMPLETED;
