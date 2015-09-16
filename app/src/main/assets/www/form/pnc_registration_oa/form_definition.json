@@ -92,6 +92,10 @@
         "bind": "/model/instance/PNC_Child_Registration_EngKan/phone_num"
       },
       {
+        "name": "phoneNo",
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/phone_no"
+      },
+      {
         "name": "phoneOwner",
         "bind": "/model/instance/PNC_Child_Registration_EngKan/phone_owner"
       },

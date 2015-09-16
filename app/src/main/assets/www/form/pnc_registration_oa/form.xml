@@ -75,26 +75,59 @@
             data-type-xml="text" type="text" />
 
     </label>
+    <fieldset class="question">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">DOB is known?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/PNC_Child_Registration_EngKan/is_dob_known"
+                        data-name="/PNC_Child_Registration_EngKan/is_dob_known"
+                        data-type-xml="select1" required="required" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/PNC_Child_Registration_EngKan/is_dob_known"
+                        data-name="/PNC_Child_Registration_EngKan/is_dob_known"
+                        data-type-xml="select1" required="required" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
 
-    <label class="question non-select ">
+    <label class="question or-branch pre-init non-select">
+        <span class="question-label active" lang="">Woman age in years:
+        </span>
+        <span class="required">*</span>
+        <input name="/PNC_Child_Registration_EngKan/wife_age1" autocomplete="off"
+            data-constraint=".&lt;=(/PNC_Child_Registration_EngKan/wife_max_age) and .&gt;=(/PNC_Child_Registration_EngKan/wife_min_age)"
+            data-relevant=" /PNC_Child_Registration_EngKan/is_dob_known  = 'no'" data-type-xml="int"
+            required="required" type="number" />
+    </label>
+
+    <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Date of Birth?
         </span>
         <span class="required">*</span>
         <input name="/PNC_Child_Registration_EngKan/wife_dob" autocomplete="off"
             data-constraint=".&lt;= ( /PNC_Child_Registration_EngKan/today  - /PNC_Child_Registration_EngKan/wife_min_age * 365) and .&gt;= ( /PNC_Child_Registration_EngKan/today  - /PNC_Child_Registration_EngKan/wife_max_age* 365)"
+            data-relevant="/PNC_Child_Registration_EngKan/is_dob_known  = 'yes'"
             data-type-xml="date" required="required" type="date" />
     </label>
 
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">Woman's age is
-            <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/wife_age ">Years
+            <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/woman_age ">Years
             </span>
         </span>
         <input name="/PNC_Child_Registration_EngKan/wife_age_note" autocomplete="off"
-            data-relevant=" /PNC_Child_Registration_EngKan/wife_dob  &gt; 0" data-type-xml="string"
+            data-relevant=" /PNC_Child_Registration_EngKan/wife_dob  &gt; 0 " data-type-xml="string"
             readonly="readonly" type="text" />
     </label>
-
 
     <label class="question non-select ">
         <span class="question-label active" lang="">Husband's name :</span>
@@ -767,13 +800,20 @@
 
 
         <label class="calculation non-select ">
-            <input name="/PNC_Child_Registration_EngKan/woman_date_of_birth" autocomplete="off"
-                data-calculate="format-date(date( /PNC_Child_Registration_EngKan/today -( /PNC_Child_Registration_EngKan/wife_age *365.25)), '%Y-%n-%e')"
+            <input name="/PNC_Child_Registration_EngKan/woman_age" autocomplete="off"
+                data-calculate="if( /PNC_Child_Registration_EngKan/wife_dob  = '', '', int(( /PNC_Child_Registration_EngKan/today  -  /PNC_Child_Registration_EngKan/wife_dob) div 365))"
                 data-type-xml="string" type="hidden" />
         </label>
+
+        <label class="calculation non-select ">
+            <input name="/PNC_Child_Registration_EngKan/woman_date_of_birth" autocomplete="off"
+                data-calculate="if( /PNC_Child_Registration_EngKan/wife_dob  = '', format-date(date( /PNC_Child_Registration_EngKan/today -( /PNC_Child_Registration_EngKan/wife_age *365.25)), '%Y-%n-%e'),/PNC_Child_Registration_EngKan/wife_dob)"
+                data-type-xml="string" type="hidden" />
+        </label>
+
         <label class="calculation non-select ">
             <input name="/PNC_Child_Registration_EngKan/wife_age" autocomplete="off"
-                data-calculate="if( /PNC_Child_Registration_EngKan/wife_dob  = '', '', int(( /PNC_Child_Registration_EngKan/today  -  /PNC_Child_Registration_EngKan/wife_dob) div 365))"
+                data-calculate="if( /PNC_Child_Registration_EngKan/woman_age= '', /PNC_Child_Registration_EngKan/wife_age1, /PNC_Child_Registration_EngKan/woman_age)"
                 data-type-xml="string" type="hidden" />
         </label>
 

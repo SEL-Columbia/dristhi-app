@@ -17,9 +17,14 @@
             <husband_min_age />
             <husband_max_age />
 
-            <is_lmp_week_days />
-            <is_lmp_weeks />
+            <lmp_date />
+            <is_lmp_known />
+            <lmp_in_date />
+            <lmp_in_week />
+
             <wife_dob />
+            <is_dob_known />
+            <wife_age1 />
             <wife_age />
             <wife_age_note />
 
@@ -58,9 +63,8 @@
 
             <anc_number1 />
             <anc_number />
-            <lmp_date />
 
-            <_lmp_date />
+
 
             <edd />
             <edd_formatted />

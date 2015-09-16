@@ -82,7 +82,7 @@
       {
         "name": "womanDOB",
         "shouldLoadValue": true,
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/wife_dob"
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/woman_date_of_birth"
       },
       {
         "name": "wifeAge",
@@ -152,22 +152,20 @@
       },
       {
         "name": "referenceDate",
-        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/lmp_date",
         "source": "eligible_couple.mother.referenceDate"
       },
       {
         "name": "edd",
+        "shouldLoadValue": true,
         "source": "eligible_couple.mother.edd"
       },
       {
         "name": "numberOfPregnancies",
-        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/num_pregnancies1"
       },
       {
         "name": "numberOfPregnancies",
-        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/num_pregnancies"
       },
       {

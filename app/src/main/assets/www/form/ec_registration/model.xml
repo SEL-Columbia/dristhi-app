@@ -20,6 +20,7 @@
             <country_code />
             <phone_num2 />
 
+
             <hh_number />
             <hh_address />
             <hh_head />
@@ -29,6 +30,7 @@
             <woman_id_type />
             <aadhaar_number />
 
+            <is_dob_known />
             <dob />
             <woman_dob_note />
             <woman_age />
@@ -36,6 +38,9 @@
 
             <wife_dob />
             <wife_age />
+            <wife_age1 />
+            <wife_age2 />
+
             <wife_age_note />
 
             <husband_name />

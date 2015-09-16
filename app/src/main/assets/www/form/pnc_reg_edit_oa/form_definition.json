@@ -35,6 +35,7 @@
       },
       {
         "name": "registrationDate",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/pnc_reg_date",
         "source": "eligible_couple.mother.registrationDate"
       },
@@ -80,7 +81,6 @@
       },
       {
         "name": "womanDOB",
-        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/wife_dob"
       },
       {
@@ -90,7 +90,6 @@
       },
       {
         "name": "wifeAge",
-        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/wife_age"
       },
       {
@@ -102,6 +101,11 @@
         "name": "phoneNumber",
         "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/phone_num"
+      },
+      {
+        "name": "phoneNo",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/phone_no"
       },
       {
         "name": "phoneOwner",

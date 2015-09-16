@@ -18,14 +18,23 @@
                 <hh_address />
                 <hh_head />
                 <woman_name />
-                <aadhaar_number />
+                <id_number />
                 <woman_id_type />
                 <woman_age />
+                <country_code />
+                <wife_dob />
+                <wife_min_age />
+                <wife_max_age />
+                <wife_age_note />
+                <wife_age1 />
+                <is_dob_known />
+
                 <woman_date_of_birth />
                 <husband_name />
                 <husband_age />
                 <husband_date_of_birth />
                 <phone_no />
+                <phone_num />
                 <religion />
                 <woman_education_level />
                 <husband_education_level />

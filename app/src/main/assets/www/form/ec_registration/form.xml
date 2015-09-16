@@ -77,25 +77,58 @@
             type="text" />
 
     </label>
+    <fieldset class="question">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">DOB is known?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/is_dob_known"
+                        data-name="/EC_Registration_EngKan/is_dob_known" data-type-xml="select1"
+                        required="required" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/is_dob_known"
+                        data-name="/EC_Registration_EngKan/is_dob_known" data-type-xml="select1"
+                        required="required" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
 
-    <label class="question non-select ">
+    <label class="question or-branch pre-init non-select">
+        <span class="question-label active" lang="">Woman age in years:
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/wife_age1" autocomplete="off"
+            data-constraint=".&lt;=(/EC_Registration_EngKan/wife_max_age) and .&gt;=(/EC_Registration_EngKan/wife_min_age)"
+            data-relevant=" /EC_Registration_EngKan/is_dob_known  = 'no'" data-type-xml="int"
+            required="required" type="number" />
+    </label>
+
+    <label class="question or-branch pre-init non-select ">
         <span class="question-label active" lang="">Date of Birth?
         </span>
         <span class="required">*</span>
         <input name="/EC_Registration_EngKan/wife_dob" autocomplete="off"
             data-constraint=".&lt;= ( /EC_Registration_EngKan/today  - /EC_Registration_EngKan/wife_min_age * 365) and .&gt;= ( /EC_Registration_EngKan/today  - /EC_Registration_EngKan/wife_max_age* 365)"
-            data-type-xml="date" required="required" type="date" />
+            data-relevant="/EC_Registration_EngKan/is_dob_known  = 'yes'" data-type-xml="date"
+            required="required" type="date" />
     </label>
 
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">Woman's age is
-            <span class="or-output" data-value=" /EC_Registration_EngKan/wife_age ">Years</span>
+            <span class="or-output" data-value=" /EC_Registration_EngKan/woman_age ">Years</span>
         </span>
         <input name="/EC_Registration_EngKan/wife_age_note" autocomplete="off"
-            data-relevant=" /EC_Registration_EngKan/wife_dob  &gt; 0" data-type-xml="string"
+            data-relevant=" /EC_Registration_EngKan/wife_dob  &gt; 0 " data-type-xml="string"
             readonly="readonly" type="text" />
     </label>
-
 
     <!--<label class="question non-select ">-->
     <!--<span class="question-label active" lang="">Date of Birth?</span>-->
@@ -112,6 +145,8 @@
     <!--data-constraint=". &gt;= 15 and . &lt; 50" data-type-xml="int"-->
     <!--data-value=" /EC_Registration_EngKan/woman_age " required="required" type="number" />-->
     <!--</label>-->
+
+
     <label class="question non-select ">
         <span class="question-label active" lang="">Husband's name
         </span>
@@ -879,11 +914,7 @@
                 data-calculate="concat( /EC_Registration_EngKan/woman_name , ' ')"
                 data-type-xml="string" type="hidden" />
         </label>
-        <label class="calculation non-select ">
-            <input name="/EC_Registration_EngKan/woman_date_of_birth" autocomplete="off"
-                data-calculate="format-date(date( /EC_Registration_EngKan/today -( /EC_Registration_EngKan/wife_age *365.25)), '%Y-%n-%e')"
-                data-type-xml="string" type="hidden" />
-        </label>
+
         <label class="calculation non-select ">
             <input name="/EC_Registration_EngKan/husband_date_of_birth" autocomplete="off"
                 data-calculate="format-date(date( /EC_Registration_EngKan/today -( /EC_Registration_EngKan/husband_age *365.25)), '%Y-%n-%e')"
@@ -931,8 +962,20 @@
         </label>
 
         <label class="calculation non-select ">
-            <input name="/EC_Registration_EngKan/wife_age" autocomplete="off"
+            <input name="/EC_Registration_EngKan/woman_age" autocomplete="off"
                 data-calculate="if( /EC_Registration_EngKan/wife_dob  = '', '', int(( /EC_Registration_EngKan/today  -  /EC_Registration_EngKan/wife_dob) div 365))"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/woman_date_of_birth" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/wife_dob  = '', format-date(date( /EC_Registration_EngKan/today -( /EC_Registration_EngKan/wife_age *365.25)), '%Y-%n-%e'),/EC_Registration_EngKan/wife_dob)"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/wife_age" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/woman_age= '', /EC_Registration_EngKan/wife_age1, /EC_Registration_EngKan/woman_age)"
                 data-type-xml="string" type="hidden" />
         </label>
 
@@ -968,7 +1011,7 @@
         </label>
         <label class="calculation non-select ">
             <input name="/EC_Registration_EngKan/age_risk_priority" autocomplete="off"
-                data-calculate="if( /EC_Registration_EngKan/wife_age  &lt; 18 or  /EC_Registration_EngKan/wife_age  &gt;=35, 'Age', '')"
+                data-calculate="if( /EC_Registration_EngKan/wife_age  &lt; /EC_Registration_EngKan/wife_min_age or  /EC_Registration_EngKan/wife_age  &gt;=/EC_Registration_EngKan/wife_max_age, 'Age', '')"
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">

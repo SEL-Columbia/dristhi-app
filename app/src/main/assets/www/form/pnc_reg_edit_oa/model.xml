@@ -13,8 +13,12 @@
             <dob />
 
             <wife_dob />
+            <woman_age />
+            <is_dob_known />
+            <wife_age1 />
             <wife_age />
             <wife_age_note />
+            <woman_date_of_birth />
 
             <phone_num />
             <country_code />
@@ -35,7 +39,6 @@
             <village />
             <hh_address />
             <woman_name />
-            <woman_age />
 
 
             <husband_name />

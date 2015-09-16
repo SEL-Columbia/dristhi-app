@@ -16,6 +16,7 @@
             <anc_visit_person />
             <risk_observed />
             <other_risk_observed />
+            <having_risks />
             <vitals_taken />
             <bp_systolic />
             <bp_diastolic />

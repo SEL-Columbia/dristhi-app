@@ -387,46 +387,6 @@
             </div>
         </fieldset>
     </fieldset>
-    <!--<fieldset class="question or-branch pre-init ">-->
-    <!--<fieldset>-->
-    <!--<legend>-->
-    <!--<span class="question-label active" lang="">Prasooti Araike payment 1 given?-->
-    <!--</span>-->
-    <!--</legend>-->
-    <!--<div class="option-wrapper">-->
-    <!--<label class="">-->
-    <!--<input name="/ANC_Visit_EngKan/prasooti_payment1"-->
-    <!--data-name="/ANC_Visit_EngKan/prasooti_payment1"-->
-    <!--data-relevant="( /ANC_Visit_EngKan/num_days_since_lmp &gt;= 181) and ( /ANC_Visit_EngKan/case_prasooti_payment1  = 'later' or  /ANC_Visit_EngKan/case_prasooti_payment1  = '')"-->
-    <!--data-type-xml="select1" type="radio" value="yes" />-->
-    <!--<span class="option-label active" lang="">Yes</span>-->
-    <!--</label>-->
-    <!--<label class="">-->
-    <!--<input name="/ANC_Visit_EngKan/prasooti_payment1"-->
-    <!--data-name="/ANC_Visit_EngKan/prasooti_payment1"-->
-    <!--data-relevant="( /ANC_Visit_EngKan/num_days_since_lmp &gt;= 181) and ( /ANC_Visit_EngKan/case_prasooti_payment1  = 'later' or  /ANC_Visit_EngKan/case_prasooti_payment1  = '')"-->
-    <!--data-type-xml="select1" type="radio" value="later" />-->
-    <!--<span class="option-label active" lang="">Plan to give later</span>-->
-    <!--</label>-->
-    <!--<label class="">-->
-    <!--<input name="/ANC_Visit_EngKan/prasooti_payment1"-->
-    <!--data-name="/ANC_Visit_EngKan/prasooti_payment1"-->
-    <!--data-relevant="( /ANC_Visit_EngKan/num_days_since_lmp &gt;= 181) and ( /ANC_Visit_EngKan/case_prasooti_payment1  = 'later' or  /ANC_Visit_EngKan/case_prasooti_payment1  = '')"-->
-    <!--data-type-xml="select1" type="radio" value="not_eligible" />-->
-    <!--<span class="option-label active" lang="">Not eligible for Prasooti Araike-->
-    <!--</span>-->
-    <!--</label>-->
-    <!--</div>-->
-    <!--</fieldset>-->
-    <!--</fieldset>-->
-    <!--<label class="question or-branch pre-init non-select ">-->
-    <!--<span class="question-label active" lang="">Prasooti Araike payment 1 date?-->
-    <!--</span>-->
-    <!--<input name="/ANC_Visit_EngKan/prasooti1_date"-->
-    <!--data-constraint=".&lt;= /ANC_Visit_EngKan/today "-->
-    <!--data-relevant=" /ANC_Visit_EngKan/prasooti_payment1  = 'yes'" data-type-xml="date"-->
-    <!--type="date" />-->
-    <!--</label>-->
     <label class="note or-branch pre-init non-select ">
         <span class="question-label active" lang="">
             <span class="or-output" data-value=" /ANC_Visit_EngKan/woman_name "></span>
@@ -441,7 +401,7 @@
             readonly="readonly" type="text" />
     </label>
 
-    <fieldset class="question ">
+    <fieldset class="question">
         <fieldset>
             <legend>
                 <span class="question-label active" lang="">Do you want to Consult Doctor?
@@ -479,8 +439,8 @@
         </span>
         <span class="required">*</span>
         <input name="/ANC_Visit_EngKan/is_consult_doctor_no_reason" autocomplete="off"
-            data-relevant=" /ANC_Visit_EngKan/is_consult_doctor  = 'no'" data-type-xml="string"
-            required="required" type="text" />
+            data-relevant=" /ANC_Visit_EngKan/is_consult_doctor  = 'no' and /ANC_Visit_EngKan/having_risks  = 'yes'"
+            data-type-xml="string" required="required" type="text" />
     </label>
 
 
@@ -557,6 +517,13 @@
                 data-calculate="if(selected( /ANC_Visit_EngKan/risk_observed , 'jaundice'), 'Jaundice', '')"
                 data-type-xml="string" type="hidden" />
         </label>
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/having_risks"
+                data-calculate=" if(not(selected( /ANC_Visit_EngKan/risk_observed , 'none')) and string(/ANC_Visit_EngKan/risk_observed )!='','yes','no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+
         <label class="calculation non-select ">
             <input name="/ANC_Visit_EngKan/pih"
                 data-calculate="if( /ANC_Visit_EngKan/case_pih  = '', if( /ANC_Visit_EngKan/bp_systolic  &gt;= 140 or  /ANC_Visit_EngKan/bp_diastolic  &gt;= 90, 'PIH', ''), if( /ANC_Visit_EngKan/bp_systolic  &lt; 140 and  /ANC_Visit_EngKan/bp_diastolic  &lt; 90, '', 'PIH'))"
@@ -582,6 +549,8 @@
                 data-calculate=" /ANC_Visit_EngKan/case_is_high_risk_till_delivery_reason "
                 data-type-xml="string" type="hidden" />
         </label>
+
+
         <label class="calculation non-select ">
             <input name="/ANC_Visit_EngKan/is_high_risk1"
                 data-calculate="if( /ANC_Visit_EngKan/pih  != '' or  /ANC_Visit_EngKan/jaundice  != '' or  /ANC_Visit_EngKan/is_high_risk_till_delivery  = 'yes' or  /ANC_Visit_EngKan/case_is_high_risk_till_pnc_close  = 'yes' or  /ANC_Visit_EngKan/multiple_preg  != '' or  /ANC_Visit_EngKan/malpresentation  != '' or  /ANC_Visit_EngKan/case_anaemic_status  != '', 'yes', 'no')"

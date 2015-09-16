@@ -64,13 +64,13 @@
       },
       {
         "name": "idNumber",
-        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/aadhaar_number",
+        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/id_number",
         "source": "eligible_couple.idNumber",
         "shouldLoadValue": true
       },
       {
         "name": "wifeAge",
-        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/woman_age",
+        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/wife_age",
         "source": "eligible_couple.wifeAge",
         "shouldLoadValue": true
       },
@@ -95,10 +95,19 @@
         "shouldLoadValue": true
       },
       {
-        "name": "phoneNumber",
+        "name": "phoneNo",
         "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/phone_no",
-        "source": "eligible_couple.phoneNumber",
+        "source": "eligible_couple.phoneNo",
         "shouldLoadValue": true
+      },
+      {
+        "name": "phoneNumber",
+        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/phone_num"
+      },
+      {
+        "name": "countryCode",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/country_code"
       },
       {
         "name": "religion",

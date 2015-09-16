@@ -21,10 +21,11 @@
             <anc_number />
             <anc_number1 />
 
-            <jsy_beneficiary />
-            <asha_name />
-            <asha_phone_number />
             <lmp_date />
+            <is_lmp_known />
+            <lmp_in_date />
+            <lmp_in_week />
+
             <edd />
             <edd_formatted />
             <edd_note />
