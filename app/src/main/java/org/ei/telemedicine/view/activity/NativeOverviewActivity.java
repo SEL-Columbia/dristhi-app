@@ -1,6 +1,7 @@
 package org.ei.telemedicine.view.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,6 +19,8 @@ import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.OverviewTimelineAdapter;
+import org.ei.telemedicine.doctor.DoctorFormDataConstants;
+import org.ei.telemedicine.doctor.ViewPreVisitScreenActivity;
 import org.ei.telemedicine.domain.EligibleCouple;
 import org.ei.telemedicine.domain.Mother;
 import org.ei.telemedicine.domain.TimelineEvent;
@@ -36,32 +39,44 @@ import org.joda.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.mozilla.javascript.ObjToIntMap;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 
 import static android.view.View.GONE;
+import static org.ei.telemedicine.AllConstants.ALLFORMDATA;
+import static org.ei.telemedicine.AllConstants.CHILD_TYPE;
+import static org.ei.telemedicine.AllConstants.ENTITY_ID;
+import static org.ei.telemedicine.AllConstants.FORMINFO;
 import static org.ei.telemedicine.AllConstants.FormNames.*;
 import static org.ei.telemedicine.AllConstants.VISIT_TYPE;
+import static org.ei.telemedicine.AllConstants.WOMAN_TYPE;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.age;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.entityId;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.id_no;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.isHighRisk;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visit_type;
 import static org.ei.telemedicine.util.DateUtil.formatDate;
 
 public class NativeOverviewActivity extends SecuredActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {
     ImageButton ib_overview_options, ib_profile_pic;
     ImageView iv_home;
     CustomFontTextView tv_wife_name, tv_woman_name, tv_priority, tv_summary_priority, tv_husband_name, tv_id_no, tv_village_name, tv_fp_value, tv_register_type;
-    CustomFontTextView anc_summary_priority, anc_pregnency_time, anc_edd_summary_date;
-    CustomFontTextView pnc_summary_priority, pnc_summary_risks, pnc_postpartum_days, pnc_delivery_date;
+    CustomFontTextView anc_summary_priority, anc_pregnency_time, anc_edd_summary_date, anc_pregnency_title;
+    CustomFontTextView pnc_summary_priority, pnc_summary_risks, pnc_postpartum_days, pnc_delivery_date, postpartum_title;
     CustomFontTextView tv_child_name, child_summary_priority, child_age, child_date_of_birth;
     ListView lv_timeline_events;
-    List<org.ei.telemedicine.domain.TimelineEvent> timelineEvents;
-    String caseId, visitType;
+    List<org.ei.telemedicine.domain.TimelineEvent> timelineEvents, temptimelineEvents;
+    String caseId, visitType, formData, allFormData;
     View ecSummaryLayout, ancSummaryLayout, pncSummaryLayout, childSummaryLayout;
     Context context;
-    LinearLayout ec_summary, anc_summary, pnc_summary, child_summary;
+    LinearLayout ec_summary, anc_summary, pnc_summary, child_summary, anc_pregnency_summary, pnc_pregnency_summary;
     static Boolean isANCOA = false, isFromEC = false;
 
 
@@ -96,37 +111,73 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         anc_summary_priority = (CustomFontTextView) ancSummaryLayout.findViewById(R.id.anc_summary_priority);
         anc_pregnency_time = (CustomFontTextView) ancSummaryLayout.findViewById(R.id.anc_pregnency_time);
         anc_edd_summary_date = (CustomFontTextView) ancSummaryLayout.findViewById(R.id.anc_edd_summary_date);
+        anc_pregnency_title = (CustomFontTextView) ancSummaryLayout.findViewById(R.id.anc_pregnency_title);
+        anc_pregnency_summary = (LinearLayout) ancSummaryLayout.findViewById(R.id.anc_pregnency_summary);
 
+        pnc_pregnency_summary = (LinearLayout) pncSummaryLayout.findViewById(R.id.pnc_pregnency_summary);
         pnc_summary_priority = (CustomFontTextView) pncSummaryLayout.findViewById(R.id.pnc_summary_priority);
         pnc_summary_risks = (CustomFontTextView) pncSummaryLayout.findViewById(R.id.pnc_summary_risks);
         pnc_postpartum_days = (CustomFontTextView) pncSummaryLayout.findViewById(R.id.pnc_postpartum_days);
         pnc_delivery_date = (CustomFontTextView) pncSummaryLayout.findViewById(R.id.pnc_delivery_date);
+        postpartum_title = (CustomFontTextView) pncSummaryLayout.findViewById(R.id.postpartum_title);
 
         tv_child_name = (CustomFontTextView) findViewById(R.id.tv_child_name);
         child_summary_priority = (CustomFontTextView) childSummaryLayout.findViewById(R.id.child_summary_priority);
         child_age = (CustomFontTextView) childSummaryLayout.findViewById(R.id.child_age);
         child_date_of_birth = (CustomFontTextView) childSummaryLayout.findViewById(R.id.child_date_of_birth);
         ib_profile_pic = (ImageButton) findViewById(R.id.ib_profile_pic);
+
         ib_overview_options.setOnClickListener(this);
         iv_home.setOnClickListener(this);
+    }
+
+    private boolean isExist(String title, String referDate, List<org.ei.telemedicine.domain.TimelineEvent> timelineEventslist) {
+        if (timelineEventslist.size() != 0) {
+            ListIterator<TimelineEvent> listIterator = timelineEventslist.listIterator();
+            while (listIterator.hasNext()) {
+                TimelineEvent event = listIterator.next();
+                if (title.equalsIgnoreCase(event.title()) && referDate.equalsIgnoreCase(event.referenceDate().toString())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
     protected void onCreation() {
         {
             setContentView(R.layout.overview_layout);
-            if (getIntent().getExtras() != null) {
-                caseId = getIntent().getExtras().getString("caseId");
-                visitType = getIntent().getExtras().getString(VISIT_TYPE);
+            Bundle bundle = getIntent().getExtras();
+            if (bundle != null) {
+                caseId = bundle.getString("caseId");
+                formData = bundle.containsKey(FORMINFO) ? bundle.getString(FORMINFO) : "";
+                allFormData = bundle.containsKey(ALLFORMDATA) ? bundle.getString(ALLFORMDATA) : "";
+                visitType = bundle.getString(VISIT_TYPE);
                 context = Context.getInstance();
                 setupViews();
                 timelineEvents = context.allTimelineEvents().forCase(caseId);
+//                ListIterator<org.ei.telemedicine.domain.TimelineEvent> iterator = timelineEvents.listIterator();
+//                while (iterator.hasNext()) {
+//                    TimelineEvent timelineEvent = iterator.next();
+//
+//                    timelineEvent.title()
+//
+//                }
+
                 android.util.Log.e("CaseId", caseId);
 
                 switch (visitType.toLowerCase()) {
                     case "ec":
                         ec_summary.setVisibility(View.VISIBLE);
                         isFromEC = true;
+                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                takePhoto(WOMAN_TYPE);
+                            }
+                        });
+
 
                         String ecData = new EligibleCoupleDetailController(this, caseId, context.allEligibleCouples(), context.allTimelineEvents()).get();
                         String coupleDetails = getDataFromJson(ecData, "coupleDetails");
@@ -149,6 +200,12 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         break;
                     case "anc":
                         anc_summary.setVisibility(View.VISIBLE);
+                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                takePhoto(WOMAN_TYPE);
+                            }
+                        });
 
                         Mother mother = context.allBeneficiaries().findMother(caseId);
                         if (mother != null) {
@@ -194,6 +251,12 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 
                         break;
                     case "pnc":
+                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                takePhoto(WOMAN_TYPE);
+                            }
+                        });
                         pnc_summary.setVisibility(View.VISIBLE);
                         Mother pncMother = context.allBeneficiaries().findMother(caseId);
                         if (pncMother != null) {
@@ -232,16 +295,21 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         pnc_summary_priority.setTextColor(getDataFromJson(pncDetails, "isHighRisk").equals("yes") ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));
 
                         pnc_summary_risks.setText(getDataFromJson(pncDetails, "complications"));
-                        pnc_postpartum_days.setText(getDataFromJson(pncDelieveryDetails, "daysPostpartum"));
+                        pnc_postpartum_days.setVisibility(GONE);
                         pnc_delivery_date.setText(getDataFromJson(pncDelieveryDetails, "dateOfDelivery"));
 
                         break;
                     case "child":
+                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                takePhoto(CHILD_TYPE);
+                            }
+                        });
                         child_summary.setVisibility(View.VISIBLE);
                         tv_child_name.setVisibility(View.VISIBLE);
                         String childData = new ChildDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
                         android.util.Log.e("childData", childData);
-
                         String childCoupleDetails = getDataFromJson(childData, "coupleDetails");
                         String childDetails = getDataFromJson(childData, "details");
                         String childLocationDetails = getDataFromJson(childData, "location");
@@ -264,6 +332,95 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         child_age.setText(getDataFromJson(childInfoDetails, "age"));
                         child_date_of_birth.setText(getDataFromJson(childInfoDetails, "dateOfBirth"));
                         break;
+                    case "doctor":
+                        android.util.Log.e("Form Data Overview", formData);
+                        android.util.Log.e("All Form Data Overview", allFormData);
+//                        pnc_postpartum_days.setVisibility(GONE);
+                        pnc_pregnency_summary.setVisibility(GONE);
+                        anc_pregnency_summary.setVisibility(GONE);
+
+                        tv_register_type.setText(visitType);
+                        tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(formData, "wifeName")));
+                        tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(formData, "wifeName")));
+                        tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(formData, "husbandName")));
+                        tv_village_name.setText(WordUtils.capitalize(getDataFromJson(formData, "villageName")));
+                        tv_id_no.setText(getDataFromJson(formData, id_no));
+                        String visitType = getDataFromJson(formData, visit_type);
+
+                        switch (visitType) {
+                            case DoctorFormDataConstants.childVisit:
+                                ib_profile_pic.setImageResource(getDataFromJson(formData, "gender").equalsIgnoreCase("female") ? R.drawable.child_girl_infant : R.drawable.child_boy_infant);
+                                child_summary.setVisibility(View.VISIBLE);
+
+                                child_summary_priority.setText(getDataFromJson(formData, "childReferral").equals("yes") ? "High Risk" : "Normal Risk");
+                                child_summary_priority.setTextColor(getDataFromJson(formData, "childReferral").equals("yes") ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));
+
+                                break;
+                            case DoctorFormDataConstants.ancvisit:
+                                ib_profile_pic.setImageResource(R.drawable.woman_placeholder);
+                                anc_summary.setVisibility(View.VISIBLE);
+
+                                anc_summary_priority.setText(getDataFromJson(formData, "isHighRisk").equals("yes") ? "High Risk" : "Normal Risk");
+                                anc_summary_priority.setTextColor(getDataFromJson(formData, "isHighRisk").equals("yes") ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));
+                                anc_pregnency_time.setVisibility(GONE);
+                                anc_edd_summary_date.setText(getDataFromJson(formData, "edd").replace(" 00:00:00 GMT", ""));
+
+
+                                break;
+                            case DoctorFormDataConstants.pncVisit:
+                                ib_profile_pic.setImageResource(R.drawable.woman_placeholder);
+                                pnc_summary.setVisibility(View.VISIBLE);
+
+                                pnc_summary_priority.setText(getDataFromJson(formData, "isHighRisk").equals("yes") ? "High Risk" : "Normal Risk");
+                                pnc_summary_priority.setTextColor(getDataFromJson(formData, "isHighRisk").equals("yes") ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));
+
+                                break;
+
+                        }
+                        tv_summary_priority.setText(getDataFromJson(formData, "isHighPriority").equals("yes") ? "High Priority" : "Normal Priority");
+                        tv_summary_priority.setTextColor(getDataFromJson(formData, "isHighPriority").equals("yes") ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));
+
+                        tv_priority.setText(getDataFromJson(formData, "isHighRisk").equals("yes") ? "High Risk" : "Normal Risk");
+                        tv_priority.setTextColor(getDataFromJson(formData, "isHighRisk").equals("yes") ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));
+                        try {
+                            JSONArray visitsArray = new JSONArray(allFormData);
+//                            android.util.Log.e("size", allFormInfo.length() + "");
+//                            JSONArray visitsArray = new JSONArray(getDataFromJson(allFormInfo.getJSONObject(0).toString(), "riskinfo"));
+                            timelineEvents.clear();
+                            for (int i = 0; i < visitsArray.length(); i++) {
+                                String jsonData = visitsArray.getJSONObject(i).toString();
+                                String caseId = getDataFromJson(formData, entityId);
+                                String title = "";
+                                String date = getDataFromJson(formData, "visitDate");
+                                LocalDate referDate = new LocalDate();
+                                if (!date.equals(""))
+                                    referDate = LocalDate.parse(changeDateFormat(date));
+                                switch (getDataFromJson(jsonData, "visit_type")) {
+                                    case DoctorFormDataConstants.ancvisit:
+                                        title = "ANC " + (!getDataFromJson(jsonData, "visitNumber").equals("") ? (" - " + getDataFromJson(jsonData, "visitNumber")) : "");
+                                        break;
+                                    case DoctorFormDataConstants.pncVisit:
+                                        title = "PNC Visit";
+                                        break;
+                                    case DoctorFormDataConstants.childVisit:
+                                        title = "Child Illness";
+                                        break;
+                                }
+
+                                String type = "doctorOverview";
+                                String details2 = jsonData;
+                                String details1 = (!getDataFromJson(jsonData, "bpDiastolic").equals("") ? "Bp Dia :" + getDataFromJson(jsonData, "bpDiastolic") + " " : "") +
+                                        (!getDataFromJson(jsonData, "bpSystolic").equals("") ? "Bp Sys :" + getDataFromJson(jsonData, "bpSystolic") + " " : "") +
+                                        (!getDataFromJson(jsonData, "temperature").equals("") ? "Temperature :" + getDataFromJson(jsonData, "temperature") + " " : "") +
+                                        (!getDataFromJson(jsonData, "pulseRate").equals("") ? "Pulse :" + getDataFromJson(jsonData, "pulseRate") : "") + " " +
+                                        (!getDataFromJson(jsonData, "bloodGlucoseData").equals("") ? "BGM :" + getDataFromJson(jsonData, "bloodGlucoseData") + " " : "");
+                                timelineEvents.add(new TimelineEvent(caseId, type, referDate, title, details1, details2));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        break;
                 }
 
                 lv_timeline_events.setAdapter(new OverviewTimelineAdapter(this, timelineEvents));
@@ -271,49 +428,56 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                     @Override
                     public void onItemClick(AdapterView parent, View view, int position, long id) {
                         switch (timelineEvents.get(position).type()) {
-                            case "ECREGISTERED":
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+                            case "doctorOverview":
+                                android.util.Log.e("Detail2", timelineEvents.get(position).detail2());
+//                                Toast.makeText(NativeOverviewActivity.this, timelineEvents.get(position).detail2(), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(NativeOverviewActivity.this, ViewPreVisitScreenActivity.class);
+                                intent.putExtra("formInfo", timelineEvents.get(position).detail2());
+                                startActivity(intent);
                                 break;
-                            case "PREGNANCY":
-                                if (isANCOA)
-                                    startFormActivity(VIEW_ANC_REGISTRATION, caseId, null, true);
-                                else {
-                                    if (!isFromEC) {
-                                        startFormActivity(AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC, context.allBeneficiaries().findMother(caseId).ecCaseId(), null, true);
-                                    } else
-                                        startFormActivity(AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC, caseId, null, true);
-                                }
-                                break;
-                            case "CHILD-BIRTH":
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
-                                break;
-                            case "CHILD-DELIVERYPLAN":
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
-                                break;
-                            case "FPCHANGE":
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
-                                break;
-                            case "ANCVISIT":
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
-                                break;
-                            case "IFAPROVIDED":
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
-                                break;
-                            case "TTSHOTPROVIDED":
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
-                                break;
-                            case "PNCVISIT":
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
-                                break;
-                            case "IMMUNIZATIONSGIVEN":
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
-                                break;
-                            case "FPRENEW":
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
-                                break;
-                            default:
-                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
-                                break;
+//                            case "ECREGISTERED":
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
+//                            case "PREGNANCY":
+//                                if (isANCOA)
+//                                    startFormActivity(VIEW_ANC_REGISTRATION, caseId, null, true);
+//                                else {
+//                                    if (!isFromEC) {
+//                                        startFormActivity(AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC, context.allBeneficiaries().findMother(caseId).ecCaseId(), null, true);
+//                                    } else
+//                                        startFormActivity(AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC, caseId, null, true);
+//                                }
+//                                break;
+//                            case "CHILD-BIRTH":
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
+//                            case "CHILD-DELIVERYPLAN":
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
+//                            case "FPCHANGE":
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
+//                            case "ANCVISIT":
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
+//                            case "IFAPROVIDED":
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
+//                            case "TTSHOTPROVIDED":
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
+//                            case "PNCVISIT":
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
+//                            case "IMMUNIZATIONSGIVEN":
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
+//                            case "FPRENEW":
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
+//                            default:
+//                                startFormActivity(AllConstants.FormNames.VIEW_EC_REGISTRATION, caseId, null, true);
+//                                break;
                         }
                     }
                 });
@@ -322,8 +486,18 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     }
 
     public String changeDateFormat(String date) {
-        String vdate[] = date.split("-");
-        return vdate[2] + "-" + vdate[1] + "-" + vdate[0];
+        if (!date.equals("")) {
+            String vdate[] = date.split("-");
+            return vdate[2] + "-" + vdate[1] + "-" + vdate[0];
+        }
+        return "";
+    }
+
+    public void takePhoto(String type) {
+        Intent intent = new Intent(this, CameraLaunchActivity.class);
+        intent.putExtra(AllConstants.TYPE, type);
+        intent.putExtra(ENTITY_ID, caseId);
+        startActivity(intent);
     }
 
     @Override
@@ -456,7 +630,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         if (jsonData != null && !jsonData.equals("")) {
             try {
                 JSONObject jsonObject = new JSONObject(jsonData);
-                return jsonObject.has(keyValue) && jsonObject.getString(keyValue) != null ? jsonObject.getString(keyValue) : "";
+                return jsonObject.has(keyValue) && !jsonObject.getString(keyValue).equalsIgnoreCase("none") && !jsonObject.getString(keyValue).equalsIgnoreCase("null") ? jsonObject.getString(keyValue) : "";
             } catch (JSONException e) {
                 e.printStackTrace();
             }

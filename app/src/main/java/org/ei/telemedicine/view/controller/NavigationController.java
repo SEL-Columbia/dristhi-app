@@ -3,6 +3,7 @@ package org.ei.telemedicine.view.controller;
 import android.app.Activity;
 import android.content.Intent;
 
+import org.ei.telemedicine.Context;
 import org.ei.telemedicine.view.activity.*;
 
 import static org.ei.telemedicine.view.controller.ProfileNavigationController.*;
@@ -20,9 +21,6 @@ public class NavigationController {
         activity.startActivity(new Intent(activity, ReportsActivity.class));
     }
 
-    public void startVideos() {
-        activity.startActivity(new Intent(activity, VideosActivity.class));
-    }
 
     public void startECSmartRegistry() {
         activity.startActivity(new Intent(activity, NativeECSmartRegisterActivity.class));
@@ -55,6 +53,10 @@ public class NavigationController {
     public void startEC(String entityId) {
         navigateToECProfile(activity, entityId);
 //        navigateToProfile(activity, entityId);
+    }
+
+    public void startDoctor(String formallData, String formData) {
+        navigateToProfile(activity, formallData, formData);
     }
 
     public void startANC(String entityId) {

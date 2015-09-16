@@ -43,7 +43,9 @@ public class AllConstants {
     public static final String LOGIN_URL_PATH = "/auth/?userid=";
     public static final String VILLAGES_USER_URL_PATH = "/anm-villages?anm-id=";
     public static final String DOCTOR_REFER_URL_PATH = "/doctor_refer/?docid=";
+    public static final String DOC_DATA_URL_PATH = "docinfo";
     public static final String DRUG_INFO_URL_PATH = "/druginfo/";
+    public static final String DOCTOR_OVERVIEW_URL_PATH = "/docoverview/?";
     //    public static final String VITALS_INFO_URL_PATH = "/vitalsdata/";
     public static final String VITALS_INFO_URL_PATH = "/vitalsdata/?visit=";
     public static final String VITALS_INFO_RESULT = "vitalsData";
@@ -78,7 +80,8 @@ public class AllConstants {
     public static final String REPOSITORY = "formDataRepositoryContext";
 
     public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
-
+    public static final String FORMINFO="formInfo";
+    public static final String ALLFORMDATA="allFormInfo";
     public static final String ENTITY_ID = "entityId";
     public static final int FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE = 112;
     public static final int DRUGS_INFO_RESULT_CODE = 113;

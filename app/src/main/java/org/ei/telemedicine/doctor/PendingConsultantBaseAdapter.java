@@ -1,9 +1,12 @@
 package org.ei.telemedicine.doctor;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +15,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import org.apache.commons.lang3.text.WordUtils;
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
+import org.ei.telemedicine.event.Listener;
+import org.ei.telemedicine.view.controller.NavigationController;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,6 +30,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import static org.ei.telemedicine.AllConstants.DOCTOR_OVERVIEW_URL_PATH;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.*;
 
 /**
@@ -34,9 +42,12 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
     List<DoctorData> searchconsultantsList;
     Context context;
     private String TAG = "PendingConsultantBaseAdapter";
+    Activity activity;
+    ProgressDialog progressDialog;
 
-    public PendingConsultantBaseAdapter(Context context, ArrayList<DoctorData> consultantsList) {
+    public PendingConsultantBaseAdapter(Context context, ArrayList<DoctorData> consultantsList, Activity activity) {
         this.context = context;
+        this.activity = activity;
         this.consultantsList = consultantsList;
         this.searchconsultantsList = new ArrayList<DoctorData>();
         this.remainingList = new ArrayList<DoctorData>();
@@ -64,7 +75,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         org.ei.telemedicine.view.customControls.CustomFontTextView tv_wife_name, tv_husband_name, tv_village_name, tv_id_no, tv_visit_type, tv_poc_pending, tv_status, tv_wife_age, tv_status2;
         ImageView iv_profile, iv_hr;
         ImageButton ib_btn_edit;
-        LinearLayout ll_clients_header_layout;
+        LinearLayout ll_clients_header_layout, profile_layout;
     }
 
     @Override
@@ -72,6 +83,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(R.layout.consultant_item_list_view, null);
         ViewHolder viewHolder = new ViewHolder();
+        viewHolder.profile_layout = (LinearLayout) convertView.findViewById(R.id.profile_layout);
         viewHolder.ll_clients_header_layout = (LinearLayout) convertView.findViewById(R.id.clients_header_layout);
         viewHolder.tv_wife_name = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_wife_name);
         viewHolder.tv_husband_name = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_husband_name);
@@ -129,6 +141,24 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
 
         }
         viewHolder.iv_profile.setImageDrawable(imgae);
+        viewHolder.profile_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = DOCTOR_OVERVIEW_URL_PATH + "visitid=" + getData(visitId, formData) + "&entityid=" + getData(entityId, formData);
+
+                getData(url, new Listener<String>() {
+                    @Override
+                    public void onEvent(String data) {
+                        if (data != null) {
+                            NavigationController navigationController = new NavigationController(activity, org.ei.telemedicine.Context.getInstance().anmController());
+                            navigationController.startDoctor(data, formData);
+                        } else
+                            Toast.makeText(context, "No Data from server", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        });
         viewHolder.ib_btn_edit.setOnClickListener(new View.OnClickListener() {
                                                       @Override
                                                       public void onClick(View v) {
@@ -156,6 +186,37 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         );
 
         return convertView;
+    }
+
+
+    private void getData(final String url, final Listener<String> afterResult) {
+        new AsyncTask<Void, Void, String>() {
+
+            @Override
+            protected String doInBackground(Void... params) {
+                org.ei.telemedicine.Context context = org.ei.telemedicine.Context.getInstance();
+                Log.e("Doctor Overview URL", context.configuration().dristhiDjangoBaseURL() + url);
+                String result = context.userService().gettingFromRemoteURL(context.configuration().dristhiDjangoBaseURL() + url);
+                return result;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog = new ProgressDialog(context);
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage(context.getString(R.string.dialog_message));
+                progressDialog.show();
+            }
+
+            @Override
+            protected void onPostExecute(String resultData) {
+                super.onPostExecute(resultData);
+                if (progressDialog.isShowing())
+                    progressDialog.hide();
+                afterResult.onEvent(resultData);
+            }
+        }.execute();
     }
 
     public void villagesFilter(String text) {

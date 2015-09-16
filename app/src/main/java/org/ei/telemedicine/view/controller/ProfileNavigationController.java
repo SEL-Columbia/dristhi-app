@@ -9,14 +9,19 @@ import org.ei.telemedicine.view.activity.EligibleCoupleDetailActivity;
 import org.ei.telemedicine.view.activity.NativeOverviewActivity;
 import org.ei.telemedicine.view.activity.PNCDetailActivity;
 
+import static org.ei.telemedicine.AllConstants.ALLFORMDATA;
 import static org.ei.telemedicine.AllConstants.CASE_ID;
+import static org.ei.telemedicine.AllConstants.FORMINFO;
 import static org.ei.telemedicine.AllConstants.VISIT_TYPE;
 
 public class ProfileNavigationController {
 
-    public static void navigateToProfile(android.content.Context context, String caseId) {
+    public static void navigateToProfile(android.content.Context context, String allFormData, String formData) {
         Intent intent = new Intent(context.getApplicationContext(), NativeOverviewActivity.class);
-        intent.putExtra(CASE_ID, caseId);
+        intent.putExtra(CASE_ID, "");
+        intent.putExtra(ALLFORMDATA, allFormData);
+        intent.putExtra(FORMINFO, formData);
+        intent.putExtra(VISIT_TYPE, "doctor");
         context.startActivity(intent);
     }
 

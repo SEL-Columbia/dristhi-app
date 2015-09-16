@@ -41,7 +41,7 @@
 
 
         <LinearLayout
-            android:id="@+id/pregnency_summary"
+            android:id="@+id/anc_pregnency_summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -54,7 +54,6 @@
                 style="@style/CustomFontTextViewStyle.ListView.Normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_margin="3dp"
                 android:gravity="left"
                 android:text="0"
@@ -70,7 +69,7 @@
                 android:layout_below="@+id/pregnency_time"
                 android:layout_margin="3dp"
                 android:gravity="left"
-                android:text="Months Pregnet"
+                android:text="Months Pregnant"
                 android:textColor="#000000"
                 android:textSize="20sp" />
         </LinearLayout>

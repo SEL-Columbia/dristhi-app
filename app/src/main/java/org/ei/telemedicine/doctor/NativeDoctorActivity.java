@@ -141,7 +141,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
             }
         }
         tv_anc_count.setText(allDoctorRepository.getCount(DoctorFormDataConstants.ancvisit) + "");
-        syncAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, _doctorDataArrayList);
+        syncAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, _doctorDataArrayList, this);
         syncAdapter.notifyDataSetChanged();
         lv_pending_consultants.setAdapter(syncAdapter);
 
@@ -211,7 +211,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         doctorDataArrayList.addAll(doctorDatas);
 
         updateRegisterCounts();
-        pendingConsultantBaseAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, doctorDataArrayList);
+        pendingConsultantBaseAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, doctorDataArrayList, this);
         lv_pending_consultants.setAdapter(pendingConsultantBaseAdapter);
 
 

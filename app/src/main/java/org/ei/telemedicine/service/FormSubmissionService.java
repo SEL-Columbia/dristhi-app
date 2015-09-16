@@ -74,6 +74,7 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.poc_pending;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.risk_symptoms;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.stethoscope_data;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.temp_data;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visitId;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visit_type;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.weight_data;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.wife_name;
@@ -165,8 +166,8 @@ public class FormSubmissionService {
                             formData.put(anc_number, getDataFromJson("ancNumber", riskJson));
                             formData.put(anc_visit_number, getDataFromJson("ancVisitNumber", riskJson));
                             formData.put(anc_visit_date, getDataFromJson("ancVisitDate", riskJson));
-                            formData.put(anc_entityId, getDataFromJson("entityid", riskJson));
-
+//                            formData.put(anc_entityId, getDataFromJson("entityid", riskJson));
+                            formData.put(visitId, getDataFromJson("entityid", riskJson));
                             formData.put(risk_symptoms, getDataFromJson("riskObservedDuringANC", riskJson));
                             formData.put(bp_sys, getDataFromJson("bpSystolic", riskJson));
                             formData.put(bp_dia, getDataFromJson("bpDiastolic", riskJson));
@@ -181,7 +182,8 @@ public class FormSubmissionService {
                             formData.put(pnc_number, getDataFromJson("pncNumber", riskJson));
                             formData.put(pnc_visit_date, getDataFromJson("pncVisitDate", riskJson));
                             formData.put(pnc_visit_place, getDataFromJson("pncVisitPlace", riskJson));
-                            formData.put(pnc_entityId, getDataFromJson("entityid", riskJson));
+                            formData.put(visitId, getDataFromJson("entityid", riskJson));
+//                            formData.put(pnc_entityId, getDataFromJson("entityid", riskJson));
 
                             formData.put(pnc_difficulties, getDataFromJson("difficulties1", riskJson));
                             formData.put(pnc_vaginal_problems, getDataFromJson("vaginalProblems", riskJson));
@@ -206,7 +208,8 @@ public class FormSubmissionService {
                             formData.put(child_info, getDataFromJson("childInfo", riskJson));
                             formData.put(child_dob, getDataFromJson("dateOfBirth", riskJson));
                             formData.put(child_age, getDataFromJson("age", riskJson));
-                            formData.put(child_entityId, getDataFromJson("entityid", riskJson));
+//                            formData.put(child_entityId, getDataFromJson("entityid", riskJson));
+                            formData.put(visitId, getDataFromJson("entityid", riskJson));
                             formData.put(child_immediateReferral, getDataFromJson("immediateReferral", riskJson));
                             formData.put(child_immediateReferral_reason, getDataFromJson("immediateReferralReason", riskJson));
                             formData.put(child_no_of_osrs, getDataFromJson("numberOfORSGiven", riskJson));
