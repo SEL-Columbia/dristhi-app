@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.webkit.JavascriptInterface;
 
+import org.ei.opensrp.indonesia.view.activity.NativeKBSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKIANCSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKIAnakSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKISmartRegisterActivity;
@@ -39,7 +40,7 @@ public class NavigationControllerINA extends NavigationController {
     }
 
     public void startKBRegistry() {
-
+        activity.startActivity(new Intent(activity, NativeKBSmartRegisterActivity.class));
     }
 
     @JavascriptInterface
