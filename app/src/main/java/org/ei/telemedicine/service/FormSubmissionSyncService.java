@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.text.MessageFormat.format;
+import static org.ei.telemedicine.AllConstants.DOC_DATA_URL_PATH;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
 import static org.ei.telemedicine.AllConstants.PSTETHOSCOPE_DATA;
 import static org.ei.telemedicine.convertor.FormSubmissionConvertor.toDomain;
@@ -105,7 +106,7 @@ import static org.ei.telemedicine.util.Log.logInfo;
 
 public class FormSubmissionSyncService {
     public static final String FORM_SUBMISSIONS_PATH = "form-submissions";
-    public static final String DOC_DATA_URL_PATH = "docinfo";
+
     private final HTTPAgent httpAgent;
     private final FormDataRepository formDataRepository;
     private AllSettings allSettings;

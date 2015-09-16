@@ -27,7 +27,7 @@ public class NativeFPSmartRegisterViewHolder {
     private final TextView txtAlertDateView;
     private final TextView txtPrioritizationRisksView;
     private final LinearLayout lytAddFPView;
-    private final LinearLayout lytFPVideosView;
+//    private final LinearLayout lytFPVideosView;
 
 
     public NativeFPSmartRegisterViewHolder(ViewGroup itemView) {
@@ -64,7 +64,7 @@ public class NativeFPSmartRegisterViewHolder {
 
         lytAddFPView = (LinearLayout) serviceModeFPPrioritizationView.findViewById(R.id.lyt_fp_add);
 
-        lytFPVideosView = (LinearLayout) serviceModeFPPrioritizationView.findViewById(R.id.lyt_fp_videos);
+//        lytFPVideosView = (LinearLayout) serviceModeFPPrioritizationView.findViewById(R.id.lyt_fp_videos);
     }
 
     public void hideAllServiceModeOptions() {
@@ -88,7 +88,9 @@ public class NativeFPSmartRegisterViewHolder {
         return serviceModeFPMethodView;
     }
 
-    public ViewGroup serviceModeFPPrioritization() { return serviceModeFPPrioritizationView; }
+    public ViewGroup serviceModeFPPrioritization() {
+        return serviceModeFPPrioritizationView;
+    }
 
     public ClientFpMethodView fpMethodView() {
         return fpMethodview;
@@ -126,8 +128,5 @@ public class NativeFPSmartRegisterViewHolder {
         return lytAddFPView;
     }
 
-    public LinearLayout lytFPVideosView() {
-        return lytFPVideosView;
-    }
 
 }

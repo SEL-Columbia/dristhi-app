@@ -62,7 +62,7 @@ public class FPPrioritizationAllECServiceMode extends ServiceModeOption {
         viewHolder.serviceModeFPPrioritization().setVisibility(VISIBLE);
         setupPrioritizationRisksView(client, viewHolder);
         setupAddFPView(client, clientSectionClickListener, viewHolder);
-        viewHolder.lytFPVideosView().setOnClickListener(clientSectionClickListener);
+//        viewHolder.lytFPVideosView().setOnClickListener(clientSectionClickListener);
     }
 
     private void setupPrioritizationRisksView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {

@@ -7,6 +7,7 @@
     android:weightSum="10">
 
     <LinearLayout
+        android:id="@+id/profile_layout"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_marginRight="10dp"
@@ -27,8 +28,8 @@
                 android:id="@+id/iv_hr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/flag_hr"
                 android:padding="3dp"
+                android:src="@drawable/flag_hr"
                 android:visibility="gone" />
 
         </FrameLayout>

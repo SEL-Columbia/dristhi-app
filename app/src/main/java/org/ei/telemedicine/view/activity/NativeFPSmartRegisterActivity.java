@@ -171,9 +171,9 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     protected void startRegistration(String village) throws JSONException {
         String locationJSON = context.anmLocationController().getFormInfoJSON();
         JSONObject formData = new JSONObject(locationJSON);
-        formData.put("village", village);
+        formData.put("village", village.trim().replace(" ", "%20"));
         String customFields = context.allSettings().fetchFieldLabels("ECRegistration");
-        if (customFields != null&& !customFields.equals("")) {
+        if (customFields != null && !customFields.equals("")) {
             JSONArray customFieldsArray = new JSONArray(customFields);
             for (int i = 0; i < customFieldsArray.length(); i++) {
                 formData.put("field" + (i + 1), customFieldsArray.getString(i));
@@ -200,9 +200,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 case R.id.lyt_fp_add:
                     NativeFPSmartRegisterActivity.super.showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
                     break;
-                case R.id.lyt_fp_videos:
-                    navigationController.startVideos();
-                    break;
+
             }
         }
 

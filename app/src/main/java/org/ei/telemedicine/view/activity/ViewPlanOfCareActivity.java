@@ -27,7 +27,7 @@ import org.json.JSONObject;
  */
 public class ViewPlanOfCareActivity extends Activity {
     EditText et_anc_num, et_woman_name, et_plan_of_care_date, et_doc_name, et_investigations, et_drugs, et_advice, et_diagnosis;
-    Button bt_close, bt_history;
+    Button bt_close;
     String entityId;
     private String TAG = "ViewPlanofCareActivity";
     String visitType, intentVisitType;
@@ -43,7 +43,7 @@ public class ViewPlanOfCareActivity extends Activity {
 
             setContentView(R.layout.view_anc_poc);
             bt_close = (Button) findViewById(R.id.bt_close);
-            bt_history = (Button) findViewById(R.id.bt_history);
+//            bt_history = (Button) findViewById(R.id.bt_history);
             et_anc_num = (EditText) findViewById(R.id.et_anc_num);
             et_woman_name = (EditText) findViewById(R.id.et_woman_name);
             et_plan_of_care_date = (EditText) findViewById(R.id.et_plan_of_care_date);
@@ -53,12 +53,12 @@ public class ViewPlanOfCareActivity extends Activity {
             et_advice = (EditText) findViewById(R.id.et_advice_data);
             et_diagnosis = (EditText) findViewById(R.id.et_diagnosis);
             tv_anc_number_title = (TextView) findViewById(R.id.tv_anc_num_title);
-            bt_history.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(ViewPlanOfCareActivity.this, "Poc History", Toast.LENGTH_SHORT).show();
-                }
-            });
+//            bt_history.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(ViewPlanOfCareActivity.this, "Poc History", Toast.LENGTH_SHORT).show();
+//                }
+//            });
             bt_close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

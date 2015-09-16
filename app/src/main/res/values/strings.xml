@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="django_url_list">
+        <item>202.153.34.169:8000</item>
+        <item>10.10.11.6:8000</item>
+    </string-array>
+    <string-array name="url_list">
+        <item>202.153.34.169:8080</item>
+        <item>10.10.10.108:8081</item>
+    </string-array>
+
     <string name="app_name">OpenSRP</string>
     <string name="userNameEditText">Enter user name</string>
     <string name="passwordEditText">Enter password</string>
@@ -57,6 +66,9 @@
     <string name="label_sorted_by">Sorted By:</string>
     <string name="label_village">, Village:</string>
     <string name="ec_register_wife_age">({0})</string>
+
+    <string name="dialog_message">Fetching Data</string>
+
     <string name="ec_register_male_child">Male\n{0}</string>
     <string name="ec_register_female_child">Female\n{0}</string>
     <string name="ec_register_no_fp">No FP</string>

@@ -166,7 +166,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     protected void startRegistration(String village) throws JSONException {
         String locationJSON = context.anmLocationController().getFormInfoJSON();
         JSONObject jsonFormInfo = new JSONObject(locationJSON);
-        jsonFormInfo.put("village", village);
+        jsonFormInfo.put("village", village.trim().replace(" ", "%20"));
         String customFields = context.allSettings().fetchFieldLabels("ANCRegistration");
         if (customFields != null && !customFields.equals("")) {
             JSONArray customFieldsArray = new JSONArray(customFields);

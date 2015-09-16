@@ -96,6 +96,10 @@ public class Mother {
         return "anc".equalsIgnoreCase(this.type);
     }
 
+    public String getType() {
+        return type;
+    }
+
     public boolean isPNC() {
         return "pnc".equalsIgnoreCase(this.type);
     }

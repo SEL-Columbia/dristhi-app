@@ -66,11 +66,11 @@ public class OpenFormOption implements EditOption {
                 Child child = Context.getInstance().allBeneficiaries().findChild(client.entityId());
                 Mother mother = Context.getInstance().allBeneficiaries().findMother(child.motherCaseId());
                 EligibleCouple eligibleCouple = Context.getInstance().allEligibleCouples().findByCaseID(mother.ecCaseId());
-                if (mother.details().size() == 0) {
-                    formController.startFormActivity(CHILD_REG_EDIT, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
-                } else {
-                    formController.startFormActivity(CHILD_REG_EDIT, eligibleCouple.caseId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
-                }
+//                if (mother.details().size() == 0) {
+                formController.startFormActivity(CHILD_REG_EDIT, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
+//                } else {
+//                     formController.startFormActivity(CHILD_REG_EDIT, eligibleCouple.caseId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
+//                }
             } else if (formName.equals(PNC_EDIT) || formName.equals(ANC_EDIT)) {
                 Mother mother = Context.getInstance().allBeneficiaries().findMother(client.entityId());
                 if (mother != null) {
