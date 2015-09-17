@@ -103,5 +103,23 @@ public interface SmartRegisterClientINA extends SmartRegisterClient {
         }
     };
 
+    Comparator<SmartRegisterClient> NO_IBU_COMPARATOR = new Comparator<SmartRegisterClient>() {
+        @Override
+        public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
+            KartuIbuClient kartuIbuClient = (KartuIbuClient) client;
+            KartuIbuClient kartuIbuClient1 = (KartuIbuClient) anotherClient;
+            if(kartuIbuClient.getNoIbu().equalsIgnoreCase("-") && kartuIbuClient1.getNoIbu().equalsIgnoreCase("-")) {
+                return 0;
+            }
+            if(kartuIbuClient.getNoIbu().equalsIgnoreCase("-")) {
+                return 1;
+            }
+            if(kartuIbuClient1.getNoIbu().equalsIgnoreCase("-")) {
+                return -1;
+            }
+            return IntegerUtil.compare(Integer.parseInt(kartuIbuClient.getNoIbu()),
+                    Integer.parseInt(kartuIbuClient1.getNoIbu()));
+        }
+    };
 
 }
