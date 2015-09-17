@@ -36,6 +36,11 @@
             android:screenOrientation="landscape"
             >
         </activity>
+        <activity android:name=".view.activity.NativeKIPNCSmartRegisterActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:screenOrientation="landscape"
+            >
+        </activity>
     </application>
 
 

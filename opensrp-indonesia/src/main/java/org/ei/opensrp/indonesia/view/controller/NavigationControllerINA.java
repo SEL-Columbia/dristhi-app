@@ -7,6 +7,7 @@ import android.webkit.JavascriptInterface;
 import org.ei.opensrp.indonesia.view.activity.NativeKBSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKIANCSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKIAnakSmartRegisterActivity;
+import org.ei.opensrp.indonesia.view.activity.NativeKIPNCSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKISmartRegisterActivity;
 import org.ei.opensrp.view.controller.ANMController;
 import org.ei.opensrp.view.controller.NavigationController;
@@ -32,7 +33,7 @@ public class NavigationControllerINA extends NavigationController {
     }
 
     public void startKartuIbuPNCRegistry() {
-
+        activity.startActivity(new Intent(activity, NativeKIPNCSmartRegisterActivity.class));
     }
 
     public void startAnakBayiRegistry() {

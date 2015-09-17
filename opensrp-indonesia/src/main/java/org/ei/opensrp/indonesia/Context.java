@@ -11,6 +11,7 @@ import org.ei.opensrp.indonesia.service.BidanService;
 import org.ei.opensrp.indonesia.view.contract.BidanHomeContext;
 import org.ei.opensrp.indonesia.view.contract.KBClients;
 import org.ei.opensrp.indonesia.view.contract.KIANCClients;
+import org.ei.opensrp.indonesia.view.contract.KIPNCClients;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClients;
 import org.ei.opensrp.indonesia.view.controller.BidanController;
@@ -35,6 +36,7 @@ public class Context extends org.ei.opensrp.Context{
 
     private Cache<KartuIbuClients>kartuIbuClientsCache;
     private Cache<KIANCClients>kartuIbuANCClientsCache;
+    private Cache<KIPNCClients>kartuIbuPNCClientsCache;
     private Cache<KBClients>kbClientsCache;
     private Cache<BidanHomeContext>bidanHomeContextCache;
 
@@ -149,6 +151,13 @@ public class Context extends org.ei.opensrp.Context{
             kbClientsCache = new Cache<>();
         }
         return kbClientsCache;
+    }
+
+    public Cache<KIPNCClients> kartuIbuPNCClientsCache() {
+        if (kartuIbuPNCClientsCache == null) {
+            kartuIbuPNCClientsCache = new Cache<>();
+        }
+        return kartuIbuPNCClientsCache;
     }
 
     public BidanController bidanController() {

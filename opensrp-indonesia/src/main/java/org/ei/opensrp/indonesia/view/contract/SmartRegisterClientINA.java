@@ -86,4 +86,22 @@ public interface SmartRegisterClientINA extends SmartRegisterClient {
             return client1.kbMethod().compareToIgnoreCase(client2.kbMethod());
         }
     };
+
+    Comparator<SmartRegisterClient> VILLAGE_COMPARATOR = new Comparator<SmartRegisterClient>() {
+        @Override
+        public int compare(SmartRegisterClient client, SmartRegisterClient otherClient) {
+            if (client.village() == null && otherClient.village() == null) {
+                return 0;
+            }
+            if (client.village() == null) {
+                return 1;
+            }
+            if (otherClient.village() == null) {
+                return -1;
+            }
+            return client.village().compareToIgnoreCase(otherClient.village());
+        }
+    };
+
+
 }
