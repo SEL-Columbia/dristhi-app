@@ -1,8 +1,62 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.ei.opensrp.indonesia">
+    package="org.ei.opensrp.indonesia"
+    android:versionCode="32"
+    android:versionName="3.0.1"
+    android:installLocation="auto">
 
-    <application android:allowBackup="true" android:label="@string/app_name"
-        android:icon="@drawable/opensrp_logo" >
+    <compatible-screens>
+        <screen
+            android:screenSize="large"
+            android:screenDensity="ldpi"/>
+        <screen
+            android:screenSize="large"
+            android:screenDensity="mdpi"/>
+        <screen
+            android:screenSize="large"
+            android:screenDensity="hdpi"/>
+        <screen
+            android:screenSize="large"
+            android:screenDensity="xhdpi"/>
+
+        <screen
+            android:screenSize="xlarge"
+            android:screenDensity="ldpi"/>
+        <screen
+            android:screenSize="xlarge"
+            android:screenDensity="mdpi"/>
+        <screen
+            android:screenSize="xlarge"
+            android:screenDensity="hdpi"/>
+        <screen
+            android:screenSize="xlarge"
+            android:screenDensity="xhdpi"/>
+
+        <!-- Special case for Nexus 7 -->
+        <screen
+            android:screenSize="large"
+            android:screenDensity="213"/>
+    </compatible-screens>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"/>
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="16"/>
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/opensrp_logo"
+        android:clearTaskOnLaunch="true"
+        android:name="org.ei.opensrp.view.activity.DrishtiApplication"
+        android:largeHeap="true">
+
         <activity
             android:name=".LoginActivity"
             android:clearTaskOnLaunch="true"
@@ -17,31 +71,54 @@
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".view.activity.NativeKISmartRegisterActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKIANCSmartRegisterActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKIAnakSmartRegisterActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKBSmartRegisterActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKIPNCSmartRegisterActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape"
             >
         </activity>
-    </application>
+        <activity
+            android:name="org.ei.opensrp.view.activity.FormActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="org.ei.opensrp.view.activity.MicroFormActivity"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar"
+            android:screenOrientation="landscape"/>
 
+        <activity android:name="org.ei.opensrp.view.activity.NativeHomeActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name="org.ei.opensrp.view.activity.SettingsActivity"
+            android:screenOrientation="landscape">
+        </activity>
+
+
+        <receiver android:name=".view.receiver.SyncBidanBroadcastReceiver"/>
+        <receiver android:name=".view.receiver.ConnectivityChangeReceiverINA">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+    </application>
 
 </manifest>

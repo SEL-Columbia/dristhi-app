@@ -45,4 +45,9 @@ android {
     }
 }
 
-
+android.applicationVariants.all{ variant ->
+    variant.outputs.each { output ->
+        output.processResources.manifestFile = file('src/main/AndroidManifest.xml')
+        output.processManifest.enabled=false
+    }
+}
