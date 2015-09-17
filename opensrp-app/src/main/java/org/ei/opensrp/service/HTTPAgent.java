@@ -164,4 +164,15 @@ public class HTTPAgent {
             throw new AssertionError(e);
         }
     }
+
+    public Response<String> fetchUniqueId(String uri, String username, String password) {
+        setCredentials(username, password);
+        try {
+            String responseContent = IOUtils.toString(httpClient.fetchContent(new HttpGet(uri)));
+            return new Response<>(ResponseStatus.success, responseContent);
+        } catch (IOException e) {
+            logError("Failed to fetch unique id");
+            return new Response<>(ResponseStatus.failure, null);
+        }
+    }
 }

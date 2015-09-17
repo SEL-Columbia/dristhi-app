@@ -2,12 +2,14 @@ package org.ei.opensrp.indonesia;
 
 import org.ei.opensrp.indonesia.repository.AllKartuIbus;
 import org.ei.opensrp.indonesia.repository.AllKohort;
+import org.ei.opensrp.indonesia.repository.AllSettingsINA;
 import org.ei.opensrp.indonesia.repository.AnakRepository;
 import org.ei.opensrp.indonesia.repository.BidanRepository;
 import org.ei.opensrp.indonesia.repository.IbuRepository;
 import org.ei.opensrp.indonesia.repository.KartuIbuRepository;
 import org.ei.opensrp.indonesia.repository.UniqueIdRepository;
 import org.ei.opensrp.indonesia.service.BidanService;
+import org.ei.opensrp.indonesia.service.UniqueIdService;
 import org.ei.opensrp.indonesia.view.contract.BidanHomeContext;
 import org.ei.opensrp.indonesia.view.contract.KBClients;
 import org.ei.opensrp.indonesia.view.contract.KIANCClients;
@@ -15,9 +17,13 @@ import org.ei.opensrp.indonesia.view.contract.KIPNCClients;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClients;
 import org.ei.opensrp.indonesia.view.controller.BidanController;
+import org.ei.opensrp.indonesia.view.controller.UniqueIdController;
+import org.ei.opensrp.repository.AllSettings;
 import org.ei.opensrp.repository.FormDataRepository;
 import org.ei.opensrp.repository.Repository;
 import org.ei.opensrp.util.Cache;
+
+import java.util.List;
 
 /**
  * Created by Dimas Ciputra on 9/12/15.
@@ -39,10 +45,15 @@ public class Context extends org.ei.opensrp.Context{
     private Cache<KIPNCClients>kartuIbuPNCClientsCache;
     private Cache<KBClients>kbClientsCache;
     private Cache<BidanHomeContext>bidanHomeContextCache;
+    private Cache<List<Integer>> uIdsCache;
 
     private BidanService bidanService;
+    private UniqueIdService uniqueIdService;
 
     private BidanController bidanController;
+    private UniqueIdController uniqueIdController;
+
+    private AllSettingsINA allSettingsINA;
 
     public Context getContext() {
         return this;
@@ -160,11 +171,25 @@ public class Context extends org.ei.opensrp.Context{
         return kartuIbuPNCClientsCache;
     }
 
+    public Cache<List<Integer>> uIdsCache() {
+        if (uIdsCache == null) {
+            uIdsCache = new Cache<>();
+            }
+        return uIdsCache;
+    }
+
     public BidanController bidanController() {
         if (bidanController == null) {
             bidanController = new BidanController(bidanService(), listCache(), bidanHomeContextCache());
         }
         return bidanController;
+    }
+
+    public UniqueIdController uniqueIdController() {
+        if(uniqueIdController == null) {
+            uniqueIdController = new UniqueIdController(uniqueIdRepository(), allSettingsINA(), uIdsCache());
+        }
+        return uniqueIdController;
     }
 
     public BidanService bidanService() {
@@ -181,5 +206,19 @@ public class Context extends org.ei.opensrp.Context{
         return bidanHomeContextCache;
     }
 
+    public AllSettingsINA allSettingsINA() {
+        initRepository();
+        if(allSettingsINA == null) {
+            allSettingsINA = new AllSettingsINA(allSharedPreferences(), settingsRepository());
+        }
+        return allSettingsINA;
+    }
+
+    public UniqueIdService uniqueIdService() {
+        if(uniqueIdService == null) {
+            uniqueIdService = new UniqueIdService(httpAgent(), configuration(), uniqueIdController(), allSettings(), allSharedPreferences());
+        }
+        return uniqueIdService;
+    }
 
 }

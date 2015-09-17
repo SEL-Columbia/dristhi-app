@@ -151,17 +151,13 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
     @Override
     protected void startRegistration() {
         // FlurryAgent.logEvent("new_registration");
-        // TODO : uncomment this if unique id ready
-        /*
-        String uniqueIdJson = context.uniqueIdController().getUniqueIdJson();
+        String uniqueIdJson = ((Context)context).uniqueIdController().getUniqueIdJson();
         if(uniqueIdJson == null || uniqueIdJson.isEmpty()) {
             Toast.makeText(this, "No Unique Id", Toast.LENGTH_SHORT).show();
             return;
         }
         FieldOverrides fieldOverrides = new FieldOverrides(uniqueIdJson);
         startFormActivity(KARTU_IBU_REGISTRATION, null, fieldOverrides.getJSONString());
-        */
-        startFormActivity(KARTU_IBU_REGISTRATION, null, null);
     }
 
     @Override

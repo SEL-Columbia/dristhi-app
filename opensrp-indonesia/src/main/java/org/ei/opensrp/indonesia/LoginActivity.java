@@ -177,7 +177,7 @@ public class LoginActivity extends Activity {
         tryGetLocation(new Listener<Response<String>>() {
             @Override
             public void onEvent(Response<String> data) {
-                if(data.status() == ResponseStatus.success) {
+                if (data.status() == ResponseStatus.success) {
                     context.userService().saveAnmLocation(data.payload());
                 }
             }
@@ -250,7 +250,16 @@ public class LoginActivity extends Activity {
 
     private void remoteLoginWith(String userName, String password, String userInfo) {
         context.userService().remoteLogin(userName, password, userInfo);
-        goToHome();
+        // Get unique id
+        tryGetUniqueId(userName, password, new Listener<ResponseStatus>() {
+            @Override
+            public void onEvent(ResponseStatus data) {
+                if(data == ResponseStatus.failure) {
+                    logError("failed to fetch unique id");
+                }
+                goToHome();
+            }
+        });
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
@@ -271,4 +280,29 @@ public class LoginActivity extends Activity {
         return new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new java.util.Date(ze.getTime()));
     }
 
+    private void tryGetUniqueId(final String username, final String password, final Listener<ResponseStatus> afterGetUniqueId) {
+        LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
+            @Override
+            public void setVisible() {
+                progressDialog.show();
+            }
+            @Override
+            public void setInvisible() {
+                progressDialog.dismiss();
+            }
+        });
+
+        task.doActionInBackground(new BackgroundAction<ResponseStatus>() {
+            @Override
+            public ResponseStatus actionToDoInBackgroundThread() {
+                ((Context)context).uniqueIdService().syncUniqueIdFromServer(username, password);
+                return ((Context)context).uniqueIdService().getLastUsedId(username, password);
+            }
+
+            @Override
+            public void postExecuteInUIThread(ResponseStatus result) {
+                afterGetUniqueId.onEvent(result);
+            }
+        });
+    }
 }

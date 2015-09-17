@@ -462,7 +462,7 @@ public class Context {
         return formSubmissionSyncService;
     }
 
-    private HTTPAgent httpAgent() {
+    protected HTTPAgent httpAgent() {
         if (httpAgent == null) {
             httpAgent = new HTTPAgent(applicationContext, allSettings(), allSharedPreferences(), configuration());
         }
