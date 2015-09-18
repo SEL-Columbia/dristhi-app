@@ -78,7 +78,7 @@ public class UniqueIdService {
             String uri = format("{0}/{1}",
                     baseURL,
                     UNIQUE_ID_PATH);
-            Response<String> response = httpAgent.fetchUniqueId(uri, username, password);
+            Response<String> response = httpAgent.fetchWithCredentials(uri, username, password);
             if(response.isFailure()) {
                 logError(format("Unique id pull failed"));
                 return new Response<>(failure, "");
@@ -94,7 +94,7 @@ public class UniqueIdService {
             String uri = format("{0}/{1}",
                     baseURL,
                     LAST_USED_ID_PATH);
-            Response<String> response = httpAgent.fetchUniqueId(uri, username, password);
+            Response<String> response = httpAgent.fetchWithCredentials(uri, username, password);
             if(response.isFailure()) {
                 logError(format("Last used id pull failed"));
                 return ResponseStatus.failure;

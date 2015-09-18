@@ -165,7 +165,7 @@ public class HTTPAgent {
         }
     }
 
-    public Response<String> fetchUniqueId(String uri, String username, String password) {
+    public Response<String> fetchWithCredentials(String uri, String username, String password) {
         setCredentials(username, password);
         try {
             String responseContent = IOUtils.toString(httpClient.fetchContent(new HttpGet(uri)));
