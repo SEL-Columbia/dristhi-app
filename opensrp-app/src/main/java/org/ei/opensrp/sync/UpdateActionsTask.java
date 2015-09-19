@@ -32,7 +32,7 @@ public class UpdateActionsTask {
         task = new LockingBackgroundTask(progressIndicator);
     }
 
-    public void updateFromServer(final AfterFetchListener afterFetchListener) {
+    public void updateFromServer(final AfterFetchListener afterFetchListener, final AdditionalSyncService additionalSyncService) {
         if (org.ei.opensrp.Context.getInstance().IsUserLoggedOut()) {
             logInfo("Not updating from server as user is not logged in.");
             return;
@@ -46,13 +46,15 @@ public class UpdateActionsTask {
                 FetchStatus fetchStatusForActions = actionService.fetchNewActions();
                 FetchStatus fetchVersionStatus = allFormVersionSyncService.pullFormDefinitionFromServer();
                 DownloadStatus downloadStatus = allFormVersionSyncService.downloadAllPendingFormFromServer();
+                FetchStatus fetchStatusAdditional = additionalSyncService == null ? nothingFetched : additionalSyncService.sync();
 
                 if(downloadStatus == DownloadStatus.downloaded) {
                     allFormVersionSyncService.unzipAllDownloadedFormFile();
                 }
 
                 if(fetchStatusForActions == fetched || fetchStatusForForms == fetched ||
-                        fetchVersionStatus == fetched || downloadStatus == DownloadStatus.downloaded)
+                        fetchVersionStatus == fetched || downloadStatus == DownloadStatus.downloaded
+                        || fetchStatusAdditional == fetched)
                     return fetched;
 
                 return fetchStatusForForms;
