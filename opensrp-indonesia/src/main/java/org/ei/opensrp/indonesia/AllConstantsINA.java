@@ -26,6 +26,12 @@ public class AllConstantsINA {
         public static final String ALKI_CHRONIC_DISEASE = "alkiPenyakitKronis";
     }
 
+    public class CommonFormFields {
+        public static final String SUBMISSION_DATE = "submissionDate";
+        public static final String UNIQUE_ID = "unique_id";
+    }
+
+
     public class FormNames {
         public static final String EC_REGISTRATION = "ec_registration";
         public static final String FP_COMPLICATIONS = "fp_complications";

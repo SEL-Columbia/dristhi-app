@@ -146,6 +146,9 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
                 context.listCache(),((Context)context).kiClientsCache(),((Context)context).allKohort());
         villageController = new BidanVillageController(context.villagesCache(), ((Context)context).allKartuIbus());
         dialogOptionMapper = new DialogOptionMapper();
+        context.formSubmissionRouter().getHandlerMap()
+                .put(AllConstantsINA.FormNames.KARTU_IBU_REGISTRATION,
+                        new KIRegistrationHandler(((Context)context).kartuIbuService()));
     }
 
     @Override
