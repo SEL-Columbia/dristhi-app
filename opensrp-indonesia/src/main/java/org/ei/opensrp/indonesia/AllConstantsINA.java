@@ -15,6 +15,11 @@ public class AllConstantsINA {
     public static final String OUT_OF_AREA = "out_of_area";
     public static final String IN_AREA = "in_area";
 
+    public static final String HIGH_RISK = "high_risk";
+    public static final String HIGH_RISK_PREGNANCY = "high_risk_pregnancy";
+    public static final String HIGH_RISK_LABOUR = "high_risk_labour";
+    public static final String HIGH_RISK_POST_PARTUM = "high_risk_post_partum";
+
     public class KeluargaBerencanaFields {
         public static final String CONTRACEPTION_METHOD = "jenisKontrasepsi";
         public static final String KELUARGA_BERENCANA = "KB";

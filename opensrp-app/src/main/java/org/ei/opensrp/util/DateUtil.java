@@ -88,6 +88,15 @@ public class DateUtil {
         }
     }
 
+    public static boolean isValidDate(String dateString) {
+        if(dateString==null||dateString.length() != "yyyy-MM-dd".length()) {
+            return false;
+        }
+
+        return dateString.matches("\\d{4}-\\d{2}-\\d{2}");
+
+    }
+
 }
 
 interface DateUtility {

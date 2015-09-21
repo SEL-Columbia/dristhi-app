@@ -95,6 +95,11 @@
             android:screenOrientation="landscape"
             >
         </activity>
+        <activity android:name=".view.activity.MotherProfileViewActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape"
+            >
+        </activity>
         <activity
             android:name="org.ei.opensrp.view.activity.FormActivity"
             android:screenOrientation="portrait"

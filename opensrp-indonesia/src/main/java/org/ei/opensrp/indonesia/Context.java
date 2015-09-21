@@ -18,6 +18,7 @@ import org.ei.opensrp.indonesia.view.contract.KIPNCClients;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClients;
 import org.ei.opensrp.indonesia.view.controller.BidanController;
+import org.ei.opensrp.indonesia.view.controller.KartuIbuRegisterController;
 import org.ei.opensrp.indonesia.view.controller.UniqueIdController;
 import org.ei.opensrp.repository.AllSettings;
 import org.ei.opensrp.repository.FormDataRepository;
@@ -53,6 +54,7 @@ public class Context extends org.ei.opensrp.Context{
 
     private BidanController bidanController;
     private UniqueIdController uniqueIdController;
+    private KartuIbuRegisterController kartuIbuRegisterController;
 
     private AllSettingsINA allSettingsINA;
 
@@ -231,4 +233,10 @@ public class Context extends org.ei.opensrp.Context{
         return kartuIbuService;
     }
 
+    public KartuIbuRegisterController kartuIbuRegisterController() {
+        if (kartuIbuRegisterController == null) {
+            kartuIbuRegisterController = new KartuIbuRegisterController(allKartuIbus(), listCache(), kiClientsCache(), allKohort());
+        }
+        return kartuIbuRegisterController;
+    }
 }
