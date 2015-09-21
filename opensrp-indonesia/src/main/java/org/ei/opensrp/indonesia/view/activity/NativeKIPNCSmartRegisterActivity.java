@@ -176,8 +176,7 @@ public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartReg
                 e.printStackTrace();
             }
             FieldOverrides fieldOverrides = new FieldOverrides(obj.toString());
-            // onShowDialogOptionSelectionWithMetadata((EditOption)option, client, controller.getRandomNameChars(client), fieldOverrides.getJSONString());
-            onEditSelection((EditOption)option, client);
+            onShowDialogOptionSelectionWithMetadata((EditOption)option, client, controller.getRandomNameChars(client), fieldOverrides.getJSONString());
         }
     }
 

@@ -1,13 +1,20 @@
 package org.ei.opensrp.indonesia.view.activity;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import com.google.common.base.Strings;
+
+import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.view.controller.NavigationControllerINA;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.controller.NavigationController;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
+import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.SmartRegisterDialogFragment;
 
 /**
@@ -40,6 +47,56 @@ public abstract class BidanSecuredNativeSmartRegisterActivity extends SecuredNat
         SmartRegisterDialogFragment
                 .newInstance(this, dialogOptionModel, tag)
                 .show(ft, DIALOG_TAG);
+    }
+
+    protected void onShowDialogOptionSelection(EditOption option, SmartRegisterClient client, CharSequence[] randomChars) {
+        showDoubleSelectionDialog(option, client, randomChars, null);
+    }
+
+    protected void onShowDialogOptionSelectionWithMetadata(EditOption editOption, SmartRegisterClient client, CharSequence[] charSequences, String metadata) {
+        showDoubleSelectionDialog(editOption, client, charSequences, metadata);
+    }
+
+
+    protected void showDoubleSelectionDialog(final EditOption editOption, final SmartRegisterClient client, final CharSequence[] charSequences, final String metadata) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.title_double_selection);
+
+        // FlurryAgent.logEvent(editOption.name().replace(" ", "_").toLowerCase(), EasyMap.create("nama", client.name()).put("id", client.entityId()).map());
+
+        // FlurryAgent.logEvent("on_double_selection_dialog_showed");
+
+        builder.setItems(charSequences, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if ((charSequences[which]).toString().toLowerCase().equals(client.name().toLowerCase())) {
+                    // FlurryAgent.logEvent("success_on_double_selection_dialog");
+                    if (Strings.isNullOrEmpty(metadata)) {
+                        onEditSelection(editOption, client);
+                    }
+                    else {
+                        onEditSelectionWithMetadata(editOption, client, metadata);
+                    }
+                } else {
+                    /*
+                    FlurryAgent.logEvent("fail_on_double_selection_dialog",
+                            EasyMap.create("selected_name", (charSequences[which]).toString())
+                                    .put("name", client.name())
+                                    .map());
+                     */
+                }
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                // FlurryAgent.logEvent("double_selection_dialog_dismissed");
+            }
+        });
+
+        alertDialog.show();
     }
 
 }

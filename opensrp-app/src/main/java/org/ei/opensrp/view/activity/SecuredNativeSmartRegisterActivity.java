@@ -341,6 +341,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         editOption.doEdit(client);
     }
 
+    protected void onEditSelectionWithMetadata(EditOption editOption, SmartRegisterClient client, String metadata) {
+        editOption.doEditWithMetadata(client, metadata);
+    }
+
     private void goBack() {
         finish();
     }

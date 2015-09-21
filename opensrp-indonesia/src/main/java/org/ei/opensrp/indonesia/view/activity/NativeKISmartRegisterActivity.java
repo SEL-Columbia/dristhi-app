@@ -5,10 +5,12 @@ import android.widget.Toast;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.ei.opensrp.domain.form.FieldOverrides;
+import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.indonesia.provider.KIClientsProvider;
+import org.ei.opensrp.indonesia.service.formSubmissionHandler.KIRegistrationHandler;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
 import org.ei.opensrp.indonesia.view.controller.KartuIbuRegisterController;
@@ -210,8 +212,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
                     return;
                 }
             }
-            onEditSelection((EditOption) option, (SmartRegisterClient) tag);
-            // onShowDialogOptionSelection((EditOption) option, client, controller.getRandomNameChars(client));
+            onShowDialogOptionSelection((EditOption) option, client, controller.getRandomNameChars(client));
         }
     }
 
