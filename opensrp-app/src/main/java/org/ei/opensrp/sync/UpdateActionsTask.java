@@ -22,6 +22,7 @@ public class UpdateActionsTask {
     private Context context;
     private FormSubmissionSyncService formSubmissionSyncService;
     private AllFormVersionSyncService allFormVersionSyncService;
+    private AdditionalSyncService additionalSyncService;
 
     public UpdateActionsTask(Context context, ActionService actionService, FormSubmissionSyncService formSubmissionSyncService, ProgressIndicator progressIndicator,
                              AllFormVersionSyncService allFormVersionSyncService) {
@@ -29,10 +30,15 @@ public class UpdateActionsTask {
         this.context = context;
         this.formSubmissionSyncService = formSubmissionSyncService;
         this.allFormVersionSyncService = allFormVersionSyncService;
+        this.additionalSyncService = null;
         task = new LockingBackgroundTask(progressIndicator);
     }
 
-    public void updateFromServer(final AfterFetchListener afterFetchListener, final AdditionalSyncService additionalSyncService) {
+    public void setAdditionalSyncService(AdditionalSyncService additionalSyncService) {
+        this.additionalSyncService = additionalSyncService;
+    }
+
+    public void updateFromServer(final AfterFetchListener afterFetchListener) {
         if (org.ei.opensrp.Context.getInstance().IsUserLoggedOut()) {
             logInfo("Not updating from server as user is not logged in.");
             return;

@@ -68,7 +68,7 @@ public class UniqueIdController {
     public boolean needToRefillUniqueId() {
         List<Integer> uids = getAllUniqueId();
         int currentId = Integer.parseInt(allSettings.fetchCurrentId())/10;
-        return (uids.get(uids.size()-1)/10) - currentId <= uids.size()/4;
+        return uids==null || uids.isEmpty() || (uids.get(uids.size()-1)/10) - currentId <= uids.size()/4;
     }
 
     // Class for testing

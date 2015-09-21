@@ -1,36 +1,27 @@
-package org.ei.opensrp.view.activity;
+package org.ei.opensrp.indonesia.view.activity;
 
 import android.app.Application;
 import android.content.res.Configuration;
-import org.acra.ACRA;
-import org.acra.ReportingInteractionMode;
-import org.acra.annotation.ReportsCrashes;
+
 import org.ei.opensrp.Context;
+import org.ei.opensrp.indonesia.view.receiver.SyncBidanBroadcastReceiver;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
-import org.ei.opensrp.view.receiver.SyncBroadcastReceiver;
 
 import java.util.Locale;
 
 import static org.ei.opensrp.util.Log.logInfo;
 
-@ReportsCrashes(
-        formKey = "",
-        formUri = "https://drishtiapp.cloudant.com/acra-drishtiapp/_design/acra-storage/_update/report",
-        reportType = org.acra.sender.HttpSender.Type.JSON,
-        httpMethod = org.acra.sender.HttpSender.Method.POST,
-        formUriBasicAuthLogin = "sompleakereepeavoldiftle",
-        formUriBasicAuthPassword = "ecUMrMeTKf1X1ODxHqo3b43W",
-        mode = ReportingInteractionMode.SILENT
-)
-public class DrishtiApplication extends Application {
+/**
+ * Created by Dimas Ciputra on 9/18/15.
+ */
+public class BidanApplication extends Application {
     private Locale locale = null;
     private Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
-        ACRA.init(this);
+        DrishtiSyncScheduler.setReceiverClass(SyncBidanBroadcastReceiver.class);
 
         context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());
@@ -45,8 +36,9 @@ public class DrishtiApplication extends Application {
 
     @Override
     public void onTerminate() {
-        logInfo("Application is terminating. Stopping Dristhi Sync scheduler and resetting isSyncInProgress setting.");
+        logInfo("Application is terminating. Stopping Bidan Sync scheduler and resetting isSyncInProgress setting.");
         cleanUpSyncState();
+        super.onTerminate();
     }
 
     private void applyUserLanguagePreference() {

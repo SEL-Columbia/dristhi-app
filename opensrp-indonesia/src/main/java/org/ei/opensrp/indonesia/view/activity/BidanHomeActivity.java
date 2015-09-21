@@ -171,11 +171,9 @@ public class BidanHomeActivity extends org.ei.opensrp.view.activity.SecuredActiv
 
     public void updateFromServer() {
         // FlurryAgent.logEvent("clicked_update_from_server");
-        // TODO : Change formSubmissionSyncService
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator(), context.allFormVersionSyncService());
-//        UpdateActionsTask updateActionsTask = new UpdateActionsTask(
-//                this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator(), context.uniqueIdService());
+        updateActionsTask.setAdditionalSyncService(((Context)context).uniqueIdService());
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }
 

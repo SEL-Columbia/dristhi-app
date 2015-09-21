@@ -61,7 +61,7 @@ public class UpdateActionsTaskTest {
             public void afterFetch(FetchStatus status) {
                 assertEquals(fetched, status);
             }
-        }, null);
+        });
 
         InOrder inOrder = inOrder(actionService, progressIndicator);
         inOrder.verify(progressIndicator).setVisible();
@@ -85,7 +85,7 @@ public class UpdateActionsTaskTest {
             public void afterFetch(FetchStatus status) {
                 assertEquals(nothingFetched, status);
             }
-        }, null);
+        });
     }
 
     @Test
@@ -100,7 +100,7 @@ public class UpdateActionsTaskTest {
             public void afterFetch(FetchStatus status) {
                 fail("Should not have updated from server as the user is not logged in.");
             }
-        }, null);
+        });
 
         verifyZeroInteractions(actionService);
     }
@@ -116,7 +116,7 @@ public class UpdateActionsTaskTest {
         updateActionsTask.updateFromServer(new AfterFetchListener() {
             public void afterFetch(FetchStatus status) {
             }
-        }, null);
+        });
 
         verify(formSubmissionSyncService).sync();
     }

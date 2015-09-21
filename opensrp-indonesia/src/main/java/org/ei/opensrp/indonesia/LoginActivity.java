@@ -22,7 +22,6 @@ import org.ei.opensrp.domain.LoginResponse;
 import org.ei.opensrp.domain.Response;
 import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.opensrp.event.Listener;
-import org.ei.opensrp.indonesia.sync.BidanSyncScheduler;
 import org.ei.opensrp.indonesia.view.activity.BidanHomeActivity;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
 import org.ei.opensrp.util.Log;
@@ -246,7 +245,7 @@ public class LoginActivity extends Activity {
     private void localLoginWith(String userName, String password) {
         context.userService().localLogin(userName, password);
         goToHome();
-        BidanSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void remoteLoginWith(String userName, String password, String userInfo) {
@@ -261,7 +260,7 @@ public class LoginActivity extends Activity {
                 goToHome();
             }
         });
-        BidanSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void goToHome() {

@@ -9,6 +9,7 @@ import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.opensrp.repository.AllSettings;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.service.HTTPAgent;
+import org.ei.opensrp.sync.AdditionalSyncService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +24,7 @@ import static org.ei.opensrp.util.Log.logInfo;
 /**
  * Created by Dimas on 9/7/2015.
  */
-public class UniqueIdService {
+public class UniqueIdService implements AdditionalSyncService {
 
     public static final String UNIQUE_ID_PATH = "unique-id";
     public static final String LAST_USED_ID_PATH = "last-used-id";

@@ -216,7 +216,7 @@ public class Context extends org.ei.opensrp.Context{
 
     public UniqueIdService uniqueIdService() {
         if(uniqueIdService == null) {
-            uniqueIdService = new UniqueIdService(httpAgent(), configuration(), uniqueIdController(), allSettings(), allSharedPreferences());
+            uniqueIdService = new UniqueIdService(httpAgent(), configuration(), uniqueIdController(), allSettingsINA(), allSharedPreferences());
         }
         return uniqueIdService;
     }
