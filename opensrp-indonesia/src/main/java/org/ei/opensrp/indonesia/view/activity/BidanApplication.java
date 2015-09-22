@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
+import org.ei.opensrp.indonesia.lib.RaygunFacade;
 import org.ei.opensrp.indonesia.view.receiver.SyncBidanBroadcastReceiver;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
 
@@ -24,6 +25,7 @@ public class BidanApplication extends Application {
         super.onCreate();
         DrishtiSyncScheduler.setReceiverClass(SyncBidanBroadcastReceiver.class);
 
+        RaygunFacade.initErrorHandler(getApplicationContext());
         FlurryFacade.init(this);
 
         context = Context.getInstance();
