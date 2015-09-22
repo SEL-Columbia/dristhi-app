@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.webkit.JavascriptInterface;
 
+import org.ei.opensrp.indonesia.view.activity.ChildProfileViewActivity;
 import org.ei.opensrp.indonesia.view.activity.MotherProfileViewActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKBSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKIANCSmartRegisterActivity;
@@ -53,4 +54,9 @@ public class NavigationControllerINA extends NavigationController {
         activity.startActivity(intent);
     }
 
+    public void startChildDetail(String entityId) {
+        Intent intent = new Intent(activity.getApplicationContext(), ChildProfileViewActivity.class);
+        intent.putExtra(CASE_ID, entityId);
+        activity.startActivity(intent);
+    }
 }
