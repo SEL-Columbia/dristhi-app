@@ -2,12 +2,11 @@ package org.ei.opensrp.indonesia.view.activity;
 
 import android.view.View;
 
-// import com.flurry.android.FlurryAgent;
-
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.provider.KIPNCClientsProvider;
 import org.ei.opensrp.indonesia.view.contract.KIPNCClient;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
@@ -129,13 +128,7 @@ public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartReg
     @Override
     protected void onStart() {
         super.onStart();
-        // FlurryAgent.logEvent("pnc_dashboard", true);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // FlurryAgent.endTimedEvent("pnc_dashboard");
+        FlurryFacade.logEvent("pnc_dashboard");
     }
 
     @Override

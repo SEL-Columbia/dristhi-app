@@ -4,13 +4,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
-// import com.flurry.android.FlurryAgent;
-
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.view.contract.BidanHomeContext;
 import org.ei.opensrp.indonesia.view.controller.NativeAfterBidanDetailsFetchListener;
 import org.ei.opensrp.indonesia.view.controller.NativeUpdateBidanDetailsTask;
@@ -123,7 +121,7 @@ public class BidanHomeActivity extends org.ei.opensrp.view.activity.SecuredActiv
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if(hasFocus) {
-            // Flurry Agent.logEvent("home_dashboard");
+            FlurryFacade.logEvent("home_dashboard");
         }
     }
 
@@ -170,7 +168,7 @@ public class BidanHomeActivity extends org.ei.opensrp.view.activity.SecuredActiv
     }
 
     public void updateFromServer() {
-        // FlurryAgent.logEvent("clicked_update_from_server");
+        FlurryFacade.logEvent("clicked_update_from_server");
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator(), context.allFormVersionSyncService());
         updateActionsTask.setAdditionalSyncService(((Context)context).uniqueIdService());

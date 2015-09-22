@@ -2,13 +2,12 @@ package org.ei.opensrp.indonesia.view.activity;
 
 import android.view.View;
 
-// import com.flurry.android.FlurryAgent;
-
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.provider.KIANCClientsProvider;
 import org.ei.opensrp.indonesia.view.contract.KIANCClient;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
@@ -148,15 +147,8 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
     @Override
     protected void onStart() {
         super.onStart();
-        // FlurryAgent.logEvent("anc_dashboard", true);
+        FlurryFacade.logEvent("anc_dashboard");
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // FlurryAgent.endTimedEvent("anc_dashboard");
-    }
-
 
     @Override
     protected void startRegistration() {

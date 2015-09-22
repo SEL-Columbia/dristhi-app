@@ -1,14 +1,12 @@
 package org.ei.opensrp.indonesia.view.activity;
 
 import android.view.View;
-
-// import com.flurry.android.FlurryAgent;
-
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.*;
 
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.provider.KBClientsProvider;
 import org.ei.opensrp.indonesia.view.contract.KBClient;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
@@ -142,15 +140,8 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
     @Override
     protected void onStart() {
         super.onStart();
-        // FlurryAgent.logEvent("kb_dashboard", true);
+        FlurryFacade.logEvent("kb_dashboard");
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // FlurryAgent.endTimedEvent("kb_dashboard");
-    }
-
 
     @Override
     protected void startRegistration() {

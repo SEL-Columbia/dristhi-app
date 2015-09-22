@@ -2,11 +2,10 @@ package org.ei.opensrp.indonesia.view.activity;
 
 import android.view.View;
 
-// import com.flurry.android.FlurryAgent;
-
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.indonesia.Context;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.provider.AnakRegisterClientsProvider;
 import org.ei.opensrp.indonesia.view.contract.AnakClient;
 import org.ei.opensrp.indonesia.view.controller.AnakRegisterController;
@@ -126,13 +125,7 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
     @Override
     protected void onStart() {
         super.onStart();
-        // FlurryAgent.logEvent("anak_dashboard", true);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // FlurryAgent.endTimedEvent("anak_dashboard");
+        FlurryFacade.logEvent("anak_dashboard");
     }
 
     @Override

@@ -9,7 +9,9 @@ import android.os.Bundle;
 import com.google.common.base.Strings;
 
 import org.ei.opensrp.indonesia.R;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.view.controller.NavigationControllerINA;
+import org.ei.opensrp.util.EasyMap;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.controller.NavigationController;
@@ -62,15 +64,15 @@ public abstract class BidanSecuredNativeSmartRegisterActivity extends SecuredNat
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.title_double_selection);
 
-        // FlurryAgent.logEvent(editOption.name().replace(" ", "_").toLowerCase(), EasyMap.create("nama", client.name()).put("id", client.entityId()).map());
+        FlurryFacade.logEvent(editOption.name().replace(" ", "_").toLowerCase(), EasyMap.create("nama", client.name()).put("id", client.entityId()).map());
 
-        // FlurryAgent.logEvent("on_double_selection_dialog_showed");
+        FlurryFacade.logEvent("on_double_selection_dialog_showed");
 
         builder.setItems(charSequences, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if ((charSequences[which]).toString().toLowerCase().equals(client.name().toLowerCase())) {
-                    // FlurryAgent.logEvent("success_on_double_selection_dialog");
+                    FlurryFacade.logEvent("success_on_double_selection_dialog");
                     if (Strings.isNullOrEmpty(metadata)) {
                         onEditSelection(editOption, client);
                     }
@@ -78,12 +80,10 @@ public abstract class BidanSecuredNativeSmartRegisterActivity extends SecuredNat
                         onEditSelectionWithMetadata(editOption, client, metadata);
                     }
                 } else {
-                    /*
-                    FlurryAgent.logEvent("fail_on_double_selection_dialog",
+                    FlurryFacade.logEvent("fail_on_double_selection_dialog",
                             EasyMap.create("selected_name", (charSequences[which]).toString())
                                     .put("name", client.name())
                                     .map());
-                     */
                 }
             }
         });
@@ -92,7 +92,7 @@ public abstract class BidanSecuredNativeSmartRegisterActivity extends SecuredNat
         alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                // FlurryAgent.logEvent("double_selection_dialog_dismissed");
+                FlurryFacade.logEvent("double_selection_dialog_dismissed");
             }
         });
 

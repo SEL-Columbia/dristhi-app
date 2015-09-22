@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.res.Configuration;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.view.receiver.SyncBidanBroadcastReceiver;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
 
@@ -22,6 +23,8 @@ public class BidanApplication extends Application {
     public void onCreate() {
         super.onCreate();
         DrishtiSyncScheduler.setReceiverClass(SyncBidanBroadcastReceiver.class);
+
+        FlurryFacade.init(this);
 
         context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());

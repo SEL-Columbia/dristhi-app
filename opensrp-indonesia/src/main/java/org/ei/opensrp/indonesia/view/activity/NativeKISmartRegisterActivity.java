@@ -9,6 +9,7 @@ import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.provider.KIClientsProvider;
 import org.ei.opensrp.indonesia.service.formSubmissionHandler.KIRegistrationHandler;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
@@ -155,7 +156,6 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
 
     @Override
     protected void startRegistration() {
-        // FlurryAgent.logEvent("new_registration");
         String uniqueIdJson = ((Context)context).uniqueIdController().getUniqueIdJson();
         if(uniqueIdJson == null || uniqueIdJson.isEmpty()) {
             Toast.makeText(this, "No Unique Id", Toast.LENGTH_SHORT).show();
@@ -168,13 +168,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
     @Override
     protected void onStart() {
         super.onStart();
-        // FlurryAgent.logEvent("kohort_ibu_dashboard", true);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // FlurryAgent.endTimedEvent("kohort_ibu_dashboard");
+        FlurryFacade.logEvent("kohort_ibu_dashboard");
     }
 
     private class ClientActionHandler implements View.OnClickListener {
