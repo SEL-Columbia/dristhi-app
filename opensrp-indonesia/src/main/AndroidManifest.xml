@@ -56,7 +56,11 @@
         android:clearTaskOnLaunch="true"
         android:name=".view.activity.BidanApplication"
         android:largeHeap="true">
-
+        <service   android:name="main.java.com.mindscapehq.android.raygun4android.RaygunPostService"
+            android:exported="false"
+            android:process=":raygunpostservice"/>
+        <meta-data android:name="com.mindscapehq.android.raygun4android.apikey"
+            android:value="ohL6PsO4tlwM/9e0coSrcQ==" />
         <activity
             android:name=".LoginActivity"
             android:clearTaskOnLaunch="true"
