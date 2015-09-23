@@ -32,11 +32,11 @@ public class UniqueIdService implements AdditionalSyncService {
     private final HTTPAgent httpAgent;
     private DristhiConfiguration configuration;
     private UniqueIdController uniqueIdController;
-    private AllSettings allSettings;
+    private AllSettingsINA allSettings;
     private AllSharedPreferences allSharedPreferences;
 
     public UniqueIdService(HTTPAgent httpAgent, DristhiConfiguration configuration,
-                           UniqueIdController uniqueIdController, AllSettings allSettings,
+                           UniqueIdController uniqueIdController, AllSettingsINA allSettings,
                            AllSharedPreferences allSharedPreferences) {
         this.httpAgent = httpAgent;
         this.configuration = configuration;
@@ -47,16 +47,16 @@ public class UniqueIdService implements AdditionalSyncService {
 
     public FetchStatus sync() {
         FetchStatus dataStatus = nothingFetched;
-        int lastUsedId = Integer.parseInt(((AllSettingsINA)allSettings).fetchLastUsedId());
-        int currentId = Integer.parseInt(((AllSettingsINA)allSettings).fetchCurrentId());
+        int lastUsedId = Integer.parseInt(allSettings.fetchLastUsedId());
+        int currentId = Integer.parseInt(allSettings.fetchCurrentId());
 
         if(currentId > lastUsedId) {
             lastUsedId = currentId;
             pushLastUsedIdToServer(lastUsedId+"");
-            ((AllSettingsINA)allSettings).saveLastUsedId(lastUsedId + "");
+            allSettings.saveLastUsedId(lastUsedId + "");
         } else if(lastUsedId > currentId) {
             currentId = lastUsedId;
-            ((AllSettingsINA)allSettings).saveCurrentId(currentId + "");
+            allSettings.saveCurrentId(currentId + "");
         }
 
         if(currentId == 0) {
@@ -108,8 +108,8 @@ public class UniqueIdService implements AdditionalSyncService {
             try {
                 JSONObject jsonObject = new JSONObject(response.payload());
                 String lastUsedId = jsonObject.getString("lastUsedId");
-                ((AllSettingsINA)allSettings).saveLastUsedId(lastUsedId);
-                ((AllSettingsINA)allSettings).saveCurrentId(lastUsedId);
+                allSettings.saveLastUsedId(lastUsedId);
+                allSettings.saveCurrentId(lastUsedId);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
