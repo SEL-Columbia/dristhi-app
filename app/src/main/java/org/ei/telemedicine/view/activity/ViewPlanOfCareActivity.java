@@ -25,7 +25,7 @@ import org.json.JSONObject;
 /**
  * Created by naveen on 6/10/15.
  */
-public class ViewPlanOfCareActivity extends Activity {
+public class ViewPlanOfCareActivity extends SecuredActivity {
     EditText et_anc_num, et_woman_name, et_plan_of_care_date, et_doc_name, et_investigations, et_drugs, et_advice, et_diagnosis;
     Button bt_close;
     String entityId;
@@ -34,8 +34,7 @@ public class ViewPlanOfCareActivity extends Activity {
     TextView tv_anc_number_title;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreation() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             entityId = bundle.getString(AllConstants.ENTITY_ID);
@@ -79,20 +78,20 @@ public class ViewPlanOfCareActivity extends Activity {
                         if (pocInfo.getString("pending").length() == 0) {
                             JSONObject pocJson = pocInfo.has("poc") ? new JSONObject(pocInfo.getString("poc")) : new JSONObject();
                             Log.e("Pox", pocJson.toString());
-                            visitType = getDatafromJson(pocJson, "visitType");
+                            visitType = getDataFromJson(pocJson.toString(), "visitType");
                             if (visitType.equals(intentVisitType)) {
                                 et_woman_name.setText(eligibleCouple.wifeName());
                                 et_investigations.setText(getDatafromArray(pocJson.getJSONArray("investigations").toString()));
-                                et_doc_name.setText(getDatafromJson(pocJson, "doctorName"));
+                                et_doc_name.setText(getDataFromJson(pocJson.toString(), "doctorName"));
                                 et_anc_num.setText(mother.getDetail("ancNumber"));
                                 if (visitType.equals("PNC")) {
                                     tv_anc_number_title.setText("PNC Number");
                                 }
-                                et_plan_of_care_date.setText(getDatafromJson(pocJson, "planofCareDate"));
+                                et_plan_of_care_date.setText(getDataFromJson(pocJson.toString(), "planofCareDate"));
                                 et_drugs.setText(getDatafromDrugsArray(pocJson.getString("drugs")));
                                 et_diagnosis.setText(getDatafromArray(pocJson.getJSONArray("diagnosis").toString()));
                                 Log.e(TAG, "Advice" + pocJson.getString("advice"));
-                                et_advice.setText(getDatafromJson(pocJson, "advice"));
+                                et_advice.setText(getDataFromJson(pocJson.toString(), "advice"));
                             }
                         } else {
                             Toast.makeText(ViewPlanOfCareActivity.this, "Pending= " + pocInfo.getString("pending"), Toast.LENGTH_SHORT).show();
@@ -126,18 +125,18 @@ public class ViewPlanOfCareActivity extends Activity {
                                 : new JSONObject();
                         if (pocInfo.getString("pending").length() == 0) {
                             JSONObject pocJson = pocInfo.has("poc") ? new JSONObject(pocInfo.getString("poc")) : new JSONObject();
-                            visitType = getDatafromJson(pocJson, "visitType");
+                            visitType = getDataFromJson(pocJson.toString(), "visitType");
                             if (visitType.equalsIgnoreCase(intentVisitType)) {
                                 et_woman_name.setText(eligibleCouple.wifeName());
                                 et_investigations.setText(getDatafromArray(pocJson.getJSONArray("investigations").toString()));
-                                et_doc_name.setText(getDatafromJson(pocJson, "doctorName"));
+                                et_doc_name.setText(getDataFromJson(pocJson.toString(), "doctorName"));
 //                          et_anc_num.setText(mother.getDetail("ancNumber"));
 //                          tv_anc_number_title.setText("PNC Number");
-                                et_plan_of_care_date.setText(getDatafromJson(pocJson, "planofCareDate"));
+                                et_plan_of_care_date.setText(getDataFromJson(pocJson.toString(), "planofCareDate"));
                                 et_drugs.setText(getDatafromDrugsArray(pocJson.getString("drugs")));
                                 et_diagnosis.setText(getDatafromArray(pocJson.getJSONArray("diagnosis").toString()));
                                 Log.e(TAG, "Advice" + pocJson.getString("advice"));
-                                et_advice.setText(getDatafromJson(pocJson, "advice"));
+                                et_advice.setText(getDataFromJson(pocJson.toString(), "advice"));
                             }
                         } else {
                             Toast.makeText(ViewPlanOfCareActivity.this, "Pending= " + pocInfo.getString("pending"), Toast.LENGTH_SHORT).show();
@@ -157,6 +156,13 @@ public class ViewPlanOfCareActivity extends Activity {
                 }
             }
         }
+
+
+    }
+
+    @Override
+    protected void onResumption() {
+
     }
 
     private void showNoPoc() {
@@ -167,18 +173,6 @@ public class ViewPlanOfCareActivity extends Activity {
             }
         }).show();
     }
-
-    public String getDatafromJson(JSONObject jsonData, String key) {
-        try {
-            if (jsonData != null) {
-                return jsonData.has(key) ? jsonData.getString(key) : "";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
 
     public String getDatafromArray(String jsonArray) {
         try {

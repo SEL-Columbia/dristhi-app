@@ -12,11 +12,18 @@
         android:showAsAction="always"
         android:title="Refresh" />
     <!--<item-->
-    <!--android:id="@+id/settings"-->
+    <!--android:id="@+id/export"-->
     <!--android:icon="@android:drawable/ic_menu_manage"-->
     <!--android:orderInCategory="100"-->
     <!--android:showAsAction="always"-->
-    <!--android:title="Settings" />-->
+    <!--android:title="Export DB" />-->
+    <!-- -->
+    <item
+        android:id="@+id/video"
+        android:icon="@drawable/icon_fp_video"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="Video" />
     <item
         android:id="@+id/networkMenuItem"
         android:orderInCategory="100"

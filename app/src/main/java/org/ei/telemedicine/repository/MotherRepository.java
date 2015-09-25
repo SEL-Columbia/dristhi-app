@@ -47,6 +47,19 @@ public class MotherRepository extends DrishtiRepository {
         database.execSQL(MOTHER_REFERENCE_DATE_INDEX_SQL);
     }
 
+    public void updateDetails(String caseId, Map<String, String> details) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+
+        Mother mother = findMotherWithOpenStatusByECId(caseId);
+        if (mother == null) {
+            return;
+        }
+
+        ContentValues valuesToUpdate = new ContentValues();
+        valuesToUpdate.put(DETAILS_COLUMN, new Gson().toJson(details));
+        database.update(MOTHER_TABLE_NAME, valuesToUpdate, ID_COLUMN + " = ?", new String[]{caseId});
+    }
+
     public void add(Mother mother) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(MOTHER_TABLE_NAME, null, createValuesFor(mother, TYPE_ANC));

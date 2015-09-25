@@ -313,21 +313,21 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <Button
+            <!--<Button-->
 
-                android:id="@+id/bt_history"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:background="#669900"
-                android:ems="10"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="History"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            <!--android:id="@+id/bt_history"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:background="#669900"-->
+            <!--android:ems="10"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:text="History"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold" />-->
         </LinearLayout>
 
     </LinearLayout>
