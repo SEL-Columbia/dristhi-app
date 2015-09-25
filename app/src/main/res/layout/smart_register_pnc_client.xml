@@ -19,7 +19,7 @@
             android:src="@color/smart_register_client_divider_color"/>
 
     <org.ei.telemedicine.view.customControls.CustomFontTextView
-            android:id="@+id/txt_thayi_number"
+            android:id="@+id/txt_pnc_number"
             android:layout_width="@dimen/list_ec_no_view_width"
             android:layout_height="fill_parent"
             android:layout_weight="@integer/pnc_list_thayi_number_view_weight"

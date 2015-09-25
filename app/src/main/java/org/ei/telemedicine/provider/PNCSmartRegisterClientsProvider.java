@@ -66,7 +66,7 @@ public class PNCSmartRegisterClientsProvider implements SmartRegisterClientsProv
         PNCSmartRegisterClient client = (PNCSmartRegisterClient) smartRegisterClient;
 
         setupClientProfileView(client, viewHolder);
-        setupThayiNumberView(client, viewHolder);
+        setupPNCNumberView(client, viewHolder);
 
         viewHolder.hideAllServiceModeOptions();
         currentServiceModeOption.setupListView(client, viewHolder, onClickListener);
@@ -81,8 +81,8 @@ public class PNCSmartRegisterClientsProvider implements SmartRegisterClientsProv
         viewHolder.profileInfoLayout().setTag(client);
     }
 
-    private void setupThayiNumberView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
-        viewHolder.txtThayiNumberView().setText(client.pncNumber());
+    private void setupPNCNumberView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
+        viewHolder.txtPNCNumberView().setText(client.pncNumber());
     }
 
     @Override

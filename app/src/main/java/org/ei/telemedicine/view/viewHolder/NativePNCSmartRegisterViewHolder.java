@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class NativePNCSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;
-    private final TextView txtThayiNumberView;
+    private final TextView txtPNCNumberView;
     private final DeliveryInfoView deliveryInfoView;
     private final TextView txtComplicationsView;
     private final ClientPNCPpFpMethodView pncPpFpMethodView;
@@ -39,7 +39,7 @@ public class NativePNCSmartRegisterViewHolder {
         this.profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
         this.profileInfoLayout.initialize();
 
-        this.txtThayiNumberView = (TextView) itemView.findViewById(R.id.txt_thayi_number);
+        this.txtPNCNumberView = (TextView) itemView.findViewById(R.id.txt_pnc_number);
 
         this.pncOverviewServiceModeView = (ViewGroup) itemView.findViewById(R.id.pnc_overview_service_mode_views);
 
@@ -92,8 +92,8 @@ public class NativePNCSmartRegisterViewHolder {
         return profileInfoLayout;
     }
 
-    public TextView txtThayiNumberView() {
-        return txtThayiNumberView;
+    public TextView txtPNCNumberView() {
+        return txtPNCNumberView;
     }
 
     public ViewGroup pncOverviewServiceModeView() {

@@ -200,11 +200,6 @@ public class PNCClient implements PNCSmartRegisterClient {
     }
 
     @Override
-    public String thayiNumber() {
-        return thayi;
-    }
-
-    @Override
     public String pncNumber() {
         return pncNumber;
     }
