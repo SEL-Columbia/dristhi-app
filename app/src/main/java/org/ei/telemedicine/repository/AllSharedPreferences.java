@@ -14,6 +14,7 @@ import static org.ei.telemedicine.AllConstants.PNC_REGISTERS_KEY;
 public class AllSharedPreferences {
 
     public static final String ANM_IDENTIFIER_PREFERENCE_KEY = "anmIdentifier";
+    public static final String IS_FIRST_LOGIN = "isFirstLogin";
     public static final String USER_ROLE_PREFERENCE_KEY = "userRole";
     public static final String FORM_NAME_KEY = "formName";
     public static final String ENTITY_KEY = "entityId";
@@ -52,6 +53,14 @@ public class AllSharedPreferences {
 
     public void updateANMUserName(String userName) {
         preferences.edit().putString(ANM_IDENTIFIER_PREFERENCE_KEY, userName).commit();
+    }
+
+    public void updateIsFirstLogin(boolean isFirstLogin) {
+        preferences.edit().putBoolean(IS_FIRST_LOGIN, isFirstLogin).commit();
+    }
+
+    public boolean fetchIsFirstLogin() {
+        return preferences.getBoolean(IS_FIRST_LOGIN, false);
     }
 
     public void savePwd(String password) {

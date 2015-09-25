@@ -88,7 +88,7 @@ public class LoginActivity extends Activity {
         hideKeyboard();
         view.setClickable(false);
 
-        final String userName = userNameEditText.getText().toString();
+        final String userName = userNameEditText.getText().toString().trim();
         final String password = passwordEditText.getText().toString();
 
         if (context.userService().hasARegisteredUser()) {
@@ -203,6 +203,7 @@ public class LoginActivity extends Activity {
 
     private void localLoginWith(String userName, String password) {
         context.userService().localLogin(userName, password);
+        context.allSharedPreferences().updateIsFirstLogin(false);
         String userRole = context.userService().getUserRole();
         goToHome(userRole);
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
@@ -225,7 +226,7 @@ public class LoginActivity extends Activity {
     private void remoteLoginWith(String userName, String password, String loginResponse) {
         String userRole = null, personalInfo = null, location = null, drugs = null, configuration = null, countryCode = null, formFields = null;
         if (loginResponse != null) {
-
+            context.allSharedPreferences().updateIsFirstLogin(true);
             userRole = getFromJson(loginResponse, AllConstants.ROLE);
             personalInfo = getFromJson(loginResponse, AllConstants.PERSONAL_INFO);
             location = getFromJson(personalInfo, "location");
@@ -235,7 +236,6 @@ public class LoginActivity extends Activity {
             formFields = getFromJson(personalInfo, "formLabels");
             context.userService()
                     .remoteLogin(userName, password, userRole, location, drugs, configuration, countryCode, formFields);
-
         }
         if (userRole != null && userRole.equals(AllConstants.DOCTOR_ROLE)) {
             context.allSharedPreferences().savePwd(password);
@@ -245,7 +245,9 @@ public class LoginActivity extends Activity {
     }
 
     private void goToHome(String userRole) {
-        startActivity(new Intent(this, (userRole.equals(AllConstants.ANM_ROLE)) ? NativeHomeActivity.class : NativeDoctorActivity.class));
+        Intent intent = new Intent(this, (userRole.equals(AllConstants.ANM_ROLE)) ? NativeHomeActivity.class : NativeDoctorActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 

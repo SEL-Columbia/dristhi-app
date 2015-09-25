@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +24,7 @@ import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.doctor.NativeGraphActivity;
+import org.ei.telemedicine.domain.ANM;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.service.PendingFormSubmissionService;
@@ -35,6 +37,12 @@ import org.ei.telemedicine.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.telemedicine.view.controller.NativeUpdateANMDetailsTask;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 
 import static java.lang.String.valueOf;
 import static org.ei.telemedicine.event.Event.ACTION_HANDLED;
@@ -161,6 +169,11 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void initialize() {
+        if (context.allSharedPreferences().fetchIsFirstLogin()) {
+            updateRegisterCounts(new HomeContext(new ANM(context.allSharedPreferences().fetchRegisteredANM(), 0, 0, 0, 0, 0)));
+        } else {
+            updateRegisterCounts();
+        }
         pendingFormSubmissionService = context.pendingFormSubmissionService();
         SYNC_STARTED.addListener(onSyncStartListener);
         SYNC_COMPLETED.addListener(onSyncCompleteListener);
@@ -175,7 +188,7 @@ public class NativeHomeActivity extends SecuredActivity {
         Log.e("Resume", "resume");
         context.allSharedPreferences().saveCurrent(AllConstants.HOME_SCREEN);
         visibleRegisters();
-        updateRegisterCounts();
+//        updateRegisterCounts();
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
         try {
@@ -208,6 +221,13 @@ public class NativeHomeActivity extends SecuredActivity {
             }
         });
     }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        updateRegisterCounts();
+////        Toast.makeText(this, "Start", Toast.LENGTH_SHORT).show();
+//    }
 
     private void updateRegisterCounts(HomeContext homeContext) {
         ecRegisterClientCountView.setText(valueOf(homeContext.eligibleCoupleCount()));
@@ -245,9 +265,30 @@ public class NativeHomeActivity extends SecuredActivity {
             case R.id.updateMenuItem:
                 updateFromServer();
                 return true;
-//            case R.id.settings:
-//                startActivity(new Intent(this, NativeSettingsActivity.class));
+//            case R.id.export:
+//                File sd = Environment.getExternalStorageDirectory();
+//                File data = Environment.getDataDirectory();
+//                FileChannel source = null;
+//                FileChannel destination = null;
+//                String SAMPLE_DB_NAME = "drishti.db";
+//                String currentDBPath = "/data/" + "org.ei.telemedicine" + "/databases/" + SAMPLE_DB_NAME;
+//                String backupDBPath = SAMPLE_DB_NAME;
+//                File currentDB = new File(data, currentDBPath);
+//                File backupDB = new File(sd, backupDBPath);
+//                try {
+//                    source = new FileInputStream(currentDB).getChannel();
+//                    destination = new FileOutputStream(backupDB).getChannel();
+//                    destination.transferFrom(source, 0, source.size());
+//                    source.close();
+//                    destination.close();
+//                    Toast.makeText(this, "DB Exported!", Toast.LENGTH_LONG).show();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                Toast.makeText(this, "Comple", Toast.LENGTH_SHORT).show();
 //                return true;
+            case R.id.video:
+                return true;
             case R.id.logout:
                 new AlertDialog.Builder(this).setTitle("Do you want logout?").setPositiveButton("Logout", new DialogInterface.OnClickListener() {
                     @Override
