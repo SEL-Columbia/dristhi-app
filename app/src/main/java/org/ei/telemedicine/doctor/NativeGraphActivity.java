@@ -3,6 +3,7 @@ package org.ei.telemedicine.doctor;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -153,7 +154,7 @@ public class NativeGraphActivity extends Activity {
         for (int i = 0; i < vitalsArray.length(); i++) {
             switch (vitalType) {
                 case TEMPERATURE:
-                    datalist.add(getDatafromJson(vitalsArray.getJSONObject(i).toString(), TEMPERATURE));
+                    datalist.add(Double.parseDouble(getStrDatafromJson(vitalsArray.getJSONObject(i).toString(), TEMPERATURE)));
                     datelist.add(getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISIT_DATE) + "\n" + (!getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER).equals("") ? "ANC- " + getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER) : ""));
                     break;
                 case BLOODGLUCOSEDATA:
@@ -245,9 +246,28 @@ public class NativeGraphActivity extends Activity {
                 JSONObject jsonData = new JSONObject(jsonStr);
                 return jsonData.has(key) ? jsonData.getDouble(key) : 0;
             } catch (JSONException e) {
+                Log.e("Ersrot", e.toString());
                 e.printStackTrace();
             }
         }
         return 0;
+    }
+
+    public String getStrDatafromJson(String jsonStr, String key) {
+        if (jsonStr != null) {
+            try {
+                JSONObject jsonData = new JSONObject(jsonStr);
+                String tempVal = "0";
+                if (jsonData.has(key) && jsonData.getString(key).contains("-")) {
+                    String[] temp = jsonData.getString(key).split("-");
+                    tempVal = temp[0];
+                }
+                return tempVal;
+            } catch (JSONException e) {
+                Log.e("Ersrot", e.toString());
+                e.printStackTrace();
+            }
+        }
+        return "0";
     }
 }

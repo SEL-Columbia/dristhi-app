@@ -68,19 +68,12 @@
                             android:textSize="20sp" />
 
                         <TextView
+                            android:id="@+id/tv_eet_cen"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
                             android:gravity="left"
                             android:text="C"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:id="@+id/tv_eet_cen"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left"
                             android:textSize="20sp" />
                     </LinearLayout>
                 </LinearLayout>

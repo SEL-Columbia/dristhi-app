@@ -123,7 +123,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     @Override
     protected void onStart() {
         super.onStart();
-        if (!bluetoothAdapter.isEnabled()) {
+        if (bluetoothAdapter != null && !bluetoothAdapter.isEnabled()) {
             bluetoothAdapter.enable();
         }
         if (pulseService == null) {
@@ -189,7 +189,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 //            et_steh = (EditText) findViewById(R.id.et_steh);
                 et_eet = (EditText) findViewById(R.id.et_eet);
                 tv_eet_cen = (TextView) findViewById(R.id.tv_eet_cen);
-
+                tv_eet_cen.setText(context.allSettings().fetchANMConfiguration("temperature").startsWith("c") ? "C" : "F");
                 bt_save = (org.ei.telemedicine.view.customControls.CustomFontTextView) findViewById(R.id.bt_info_save);
                 if (formName.equalsIgnoreCase(AllConstants.FormNames.PNC_VISIT)) {
                     iv_fetal.setVisibility(View.GONE);
@@ -257,7 +257,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == DRUGS_INFO_RESULT_CODE) {
             Log.e("drugs", data.getExtras().getString(DRUGS));
@@ -268,9 +268,12 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
     @Override
     public void onBackPressed() {
-        if (formName.equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT))
+        if (bluetoothAdapter != null)
+            bluetoothAdapter.cancelDiscovery();
+        if (formName.equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT) || formName.equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT_EDIT)) {
+            this.finish();
             startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, null);
-
+        }
     }
 
     private BroadcastReceiver searchDevices = new BroadcastReceiver() {
@@ -562,7 +565,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     else if (jsonObject.get("name").equals(bpSystolic))
                         jsonObject.put("value", et_bp_sys.getText().toString());
                     else if (jsonObject.get("name").equals(temperature))
-                        jsonObject.put("value", et_eet.getText().toString());
+                        jsonObject.put("value", et_eet.getText().toString() + (context.allSettings().fetchANMConfiguration("temperature").startsWith("c") ? "-C" : "-F"));
                     else if (jsonObject.get("name").equals(fetal_data))
                         jsonObject.put("value", et_fetal.getText().toString());
                     else if (jsonObject.get("name").equals(blood_glucose_data))
@@ -598,13 +601,20 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
             Log.i("........", Integer.toHexString(_ver.get(i) & 0xFF));
         }
     }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//
+//    }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         if (bluetoothAdapter != null & bluetoothAdapter.isEnabled()) {
             bluetoothAdapter.cancelDiscovery();
             bluetoothAdapter.disable();
+            unregisterReceiver(searchDevices);
         }
     }
 
@@ -614,8 +624,10 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (progressDialog.isShowing())
+                if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
+                    bluetoothAdapter.cancelDiscovery();
+                }
                 if (deviceNum != Constants.NO_DEVICE && resultData != null) {
                     if (deviceNum == Constants.PULSE_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
                         Log.e(TAG, "SPO2= " + resultData[6]
@@ -636,7 +648,6 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                         String result = new String(resultData);
                         Log.e(TAG, "Data EET = " + result);
                         et_eet.setText(result);
-                        tv_eet_cen.setText("(" + Double.parseDouble(result) * 9 / 5 + 32 + " F )");
                     }
                     if (deviceNum == Constants.FET_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
                         Log.e(TAG,

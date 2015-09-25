@@ -20,11 +20,11 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
     ProgressDialog progressDialog;
     static String resultData;
     private String TAG = "DoctorANCSCreenActivity";
-    TextView tv_stehoscope_title;
+    TextView tv_stehoscope_title, tv_temp_format;
     ImageButton ib_bp_graph, ib_fetal_graph, ib_bgm_graph, ib_temp_graph;
     EditText et_anc_num, et_woman_name, et_anc_visit_date, et_other_risks, et_bp_sys, et_bp_dia, et_temp, et_bloodGlucose, et_fetal;
     LinearLayout ll_woman_risks;
-    String documentId = null, visitId = null, phoneNumber = null, entityId = null, wifeName = null;
+    String documentId = null, visitId = null, phoneNumber = null, entityId = null, wifeName = null, tempFormat = "", tempVal = "";
     ImageButton ib_play_stehoscope;
     String formData = null;
     org.ei.telemedicine.view.customControls.CustomFontTextView tv_risks, tv_anm_poc;
@@ -41,7 +41,16 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
         et_anc_visit_date.setText(getDatafromJson(formInfo, DoctorFormDataConstants.anc_visit_date));
         et_bp_sys.setText(getDatafromJson(formInfo, DoctorFormDataConstants.bp_sys).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.bp_sys));
         et_bp_dia.setText(getDatafromJson(formInfo, DoctorFormDataConstants.bp_dia).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.bp_dia));
-        et_temp.setText(getDatafromJson(formInfo, DoctorFormDataConstants.temp_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.temp_data));
+        String tempStr = getDatafromJson(formInfo, DoctorFormDataConstants.temp_data);
+        if (!tempStr.equals("") && tempStr.contains("-")) {
+            String[] temp = tempStr.split("-");
+            tempFormat = temp[temp.length - 1];
+            tempVal = temp[0];
+        } else {
+            tempVal = "Not Captured";
+        }
+        tv_temp_format.setText(tempFormat);
+        et_temp.setText(tempVal);
         et_bloodGlucose.setText(getDatafromJson(formInfo, DoctorFormDataConstants.blood_glucose).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.blood_glucose));
         et_fetal.setText(getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data));
         ib_play_stehoscope.setVisibility(!getDatafromJson(formInfo, DoctorFormDataConstants.stethoscope_data).equals("") ? View.VISIBLE : View.GONE);
@@ -78,6 +87,7 @@ public class DoctorANCScreenActivity extends DoctorPatientDetailSuperActivity {
         ll_woman_risks = (LinearLayout) findViewById(R.id.ll_risks);
         bt_doc_refer = (Button) findViewById(R.id.bt_refer);
         tv_stehoscope_title = (TextView) findViewById(R.id.tv_stehoscope_title);
+        tv_temp_format = (TextView) findViewById(R.id.tv_temp_format);
         bt_doc_refer.setOnClickListener(this);
         bt_poc.setOnClickListener(this);
 
