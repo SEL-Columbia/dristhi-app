@@ -25,8 +25,13 @@
                 <wife_dob />
                 <wife_min_age />
                 <wife_max_age />
+                <husband_min_age />
+                <husband_max_age />
+
                 <wife_age_note />
                 <wife_age1 />
+                <wife_age />
+
                 <is_dob_known />
 
                 <woman_date_of_birth />

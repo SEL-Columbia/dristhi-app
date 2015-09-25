@@ -61,7 +61,8 @@
       },
       {
         "name": "pncNumber",
-        "bind": "/model/instance/PNC_Child_Registration_EngKan/pnc_number"
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/pnc_number",
+        "source": "eligible_couple.mother.pncNumber"
       },
       {
         "name": "wifeIdType",

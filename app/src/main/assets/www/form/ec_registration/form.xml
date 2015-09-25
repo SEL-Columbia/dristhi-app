@@ -598,14 +598,14 @@
             data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"
             data-type-xml="date" required="required" type="date" />
     </label>
-    <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">LMP
-        </span>
-        <input name="/EC_Registration_EngKan/lmp_date" autocomplete="off"
-            data-constraint=".&lt;= /EC_Registration_EngKan/today "
-            data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"
-            data-type-xml="date" type="date" />
-    </label>
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">LMP-->
+    <!--</span>-->
+    <!--<input name="/EC_Registration_EngKan/lmp_date" autocomplete="off"-->
+    <!--data-constraint=".&lt;= /EC_Registration_EngKan/today "-->
+    <!--data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"-->
+    <!--data-type-xml="date" type="date" />-->
+    <!--</label>-->
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>

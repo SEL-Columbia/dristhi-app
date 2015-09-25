@@ -149,6 +149,18 @@
         "source": "eligible_couple.mother.referenceDate"
       },
       {
+        "name": "isLMPKnown",
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/is_lmp_known"
+      },
+      {
+        "name": "lmpInDate",
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/lmp_in_date"
+      },
+      {
+        "name": "lmpInWeek",
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/lmp_in_week"
+      },
+      {
         "name": "edd",
         "source": "eligible_couple.mother.edd"
       },

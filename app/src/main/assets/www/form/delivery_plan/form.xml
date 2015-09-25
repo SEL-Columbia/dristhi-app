@@ -110,50 +110,50 @@
             data-relevant=" /Delivery_Plan_EngKan/entity_phone_no  = ''"
             data-type-xml="int" type="number" />
     </label>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span class="question-label active" lang="">Is ASHA phone number still,
-                    <span class="or-output"
-                        data-value=" /Delivery_Plan_EngKan/entity_asha_phone_number "></span>?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input name="/Delivery_Plan_EngKan/same_asha_phone_number" autocomplete="off"
-                        data-name="/Delivery_Plan_EngKan/same_asha_phone_number"
-                        data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''" data-type-xml="select1"
-                        type="radio"
-                        value="yes" />
-                    <span class="option-label active" lang="">Yes</span>
-                </label>
-                <label class="">
-                    <input name="/Delivery_Plan_EngKan/same_asha_phone_number" autocomplete="off"
-                        data-name="/Delivery_Plan_EngKan/same_asha_phone_number"
-                        data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''" data-type-xml="select1"
-                        type="radio"
-                        value="no" />
-                    <span class="option-label active" lang="">No</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">What is new ASHA phone number?
-        </span>
-        <input name="/Delivery_Plan_EngKan/new_asha_phone_number" autocomplete="off" data-constraint=".&gt; 999999999 and .&lt; 10000000000"
-            data-relevant=" /Delivery_Plan_EngKan/same_asha_phone_number  = 'no'"
-            data-type-xml="int"
-            type="number" />
-    </label>
-    <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">ASHA phone number?
-        </span>
-        <input name="/Delivery_Plan_EngKan/asha_phone_number1" autocomplete="off" data-constraint=".&gt; 999999999 and .&lt; 10000000000"
-            data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  = ''"
-            data-type-xml="int"
-            type="number" />
-    </label>
+    <!--<fieldset class="question or-branch pre-init ">-->
+    <!--<fieldset>-->
+    <!--<legend>-->
+    <!--<span class="question-label active" lang="">Is ASHA phone number still,-->
+    <!--<span class="or-output"-->
+    <!--data-value=" /Delivery_Plan_EngKan/entity_asha_phone_number "></span>?-->
+    <!--</span>-->
+    <!--</legend>-->
+    <!--<div class="option-wrapper">-->
+    <!--<label class="">-->
+    <!--<input name="/Delivery_Plan_EngKan/same_asha_phone_number" autocomplete="off"-->
+    <!--data-name="/Delivery_Plan_EngKan/same_asha_phone_number"-->
+    <!--data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''" data-type-xml="select1"-->
+    <!--type="radio"-->
+    <!--value="yes" />-->
+    <!--<span class="option-label active" lang="">Yes</span>-->
+    <!--</label>-->
+    <!--<label class="">-->
+    <!--<input name="/Delivery_Plan_EngKan/same_asha_phone_number" autocomplete="off"-->
+    <!--data-name="/Delivery_Plan_EngKan/same_asha_phone_number"-->
+    <!--data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''" data-type-xml="select1"-->
+    <!--type="radio"-->
+    <!--value="no" />-->
+    <!--<span class="option-label active" lang="">No</span>-->
+    <!--</label>-->
+    <!--</div>-->
+    <!--</fieldset>-->
+    <!--</fieldset>-->
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">What is new ASHA phone number?-->
+    <!--</span>-->
+    <!--<input name="/Delivery_Plan_EngKan/new_asha_phone_number" autocomplete="off" data-constraint=".&gt; 999999999 and .&lt; 10000000000"-->
+    <!--data-relevant=" /Delivery_Plan_EngKan/same_asha_phone_number  = 'no'"-->
+    <!--data-type-xml="int"-->
+    <!--type="number" />-->
+    <!--</label>-->
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">ASHA phone number?-->
+    <!--</span>-->
+    <!--<input name="/Delivery_Plan_EngKan/asha_phone_number1" autocomplete="off" data-constraint=".&gt; 999999999 and .&lt; 10000000000"-->
+    <!--data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  = ''"-->
+    <!--data-type-xml="int"-->
+    <!--type="number" />-->
+    <!--</label>-->
     <label class="question or-appearance-minimal  or-branch pre-init ">
         <span class="question-label active" lang="">Woman's blood group?
         </span>

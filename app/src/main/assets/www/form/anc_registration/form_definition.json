@@ -102,6 +102,18 @@
         "source": "eligible_couple.mother.ashaPhoneNumber"
       },
       {
+        "name": "isLMPKnown",
+        "bind": "/model/instance/ANC_Registration_EngKan/is_lmp_known"
+      },
+      {
+        "name": "lmpInDate",
+        "bind": "/model/instance/ANC_Registration_EngKan/lmp_in_date"
+      },
+      {
+        "name": "lmpInWeek",
+        "bind": "/model/instance/ANC_Registration_EngKan/lmp_in_week"
+      },
+      {
         "name": "referenceDate",
         "bind": "/model/instance/ANC_Registration_EngKan/lmp_date",
         "source": "eligible_couple.mother.referenceDate"

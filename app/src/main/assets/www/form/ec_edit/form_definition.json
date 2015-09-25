@@ -46,6 +46,26 @@
         "shouldLoadValue": true
       },
       {
+        "name": "wifeMINAge",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/wife_min_age"
+      },
+      {
+        "name": "wifeMAXAge",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/wife_max_age"
+      },
+      {
+        "name": "husbandMINAge",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/husband_min_age"
+      },
+      {
+        "name": "husbandMAXAge",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/husband_max_age"
+      },
+      {
         "name": "headOfHousehold",
         "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/hh_head",
         "source": "eligible_couple.headOfHousehold",

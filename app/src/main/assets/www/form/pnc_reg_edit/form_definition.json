@@ -28,7 +28,7 @@
       {
         "name": "pncNumber",
         "shouldLoadValue": true,
-        "source": "mother.eligible_couple.pncNumber",
+        "source": "mother.pncNumber",
         "bind": "/model/instance/PNC_Registration_EngKan/pnc_number"
       },
       {

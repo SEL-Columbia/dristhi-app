@@ -4,132 +4,126 @@
             <formhub>
                 <uuid />
             </formhub>
-            <today />
-            <out_of_area_reg_date />
-            <out_of_area_village />
-            <district />
-            <phc />
-            <sub_center />
-            <district_value />
-            <id_number />
-            <wife_min_age />
-            <wife_max_age />
-            <husband_min_age />
-            <husband_max_age />
+            <edit_password />
+            <anc_oa_edit_group>
+                <pwd />
+                <today />
+                <out_of_area_reg_date />
+                <out_of_area_village />
+                <district />
+                <phc />
+                <sub_center />
+                <id_number />
+                <wife_min_age />
+                <wife_max_age />
+                <husband_min_age />
+                <husband_max_age />
 
-            <lmp_date />
-            <is_lmp_known />
-            <lmp_in_date />
-            <lmp_in_week />
+                <lmp_date />
+                <is_lmp_known />
+                <lmp_in_date />
+                <lmp_in_week />
 
-            <wife_dob />
-            <is_dob_known />
-            <wife_age1 />
-            <wife_age />
-            <wife_age_note />
+                <wife_dob />
+                <is_dob_known />
+                <wife_age1 />
+                <wife_age />
+                <wife_age_note />
 
-            <is_consult_doctor />
-            <is_consult_doctor_no_reason2 />
-            <is_consult_doctor_no_reason />
+                <is_consult_doctor />
+                <is_consult_doctor_no_reason2 />
+                <is_consult_doctor_no_reason />
 
-            <phc_value />
-            <sub_center_value />
-            <district_note />
-            <phc_note />
-            <sub_center_note />
-            <village />
-            <hh_address />
+                <village />
+                <hh_address />
 
-            <woman_name />
-            <woman_name2 />
+                <woman_name />
+                <woman_name2 />
 
-            <woman_id_type />
-            <aadhaar_number />
-            <woman_age />
-            <dob />
-            <husband_age />
+                <woman_id_type />
+                <woman_age />
 
-            <husband_name />
-            <ph_no />
-            <phone_no />
-            <phone_owner />
-            <phone_no2 />
-            <phone_owner2 />
-            <religion />
+                <husband_age />
+                <husband_name />
 
-            <phone_num />
-            <phone_num2 />
-            <country_code />
+                <phone_no />
+                <phone_owner />
+                <phone_no2 />
+                <phone_owner2 />
+                <religion />
 
-            <anc_number1 />
-            <anc_number />
+                <phone_num />
+                <phone_num2 />
+                <country_code />
+
+                <anc_number1 />
+                <anc_number />
 
 
+                <edd />
+                <edd_formatted />
+                <edd_date_formatted />
+                <edd_note />
+                <num_pregnancies1 />
+                <num_pregnancies />
+                <num_abortions />
+                <num_livebirths />
+                <num_stillbirths1 />
+                <num_stillbirths />
+                <parity />
+                <num_livingchildren />
+                <youngestchild_under2 />
+                <complication />
+                <other_complication />
+                <medical_histories />
+                <w_blood_group />
+                <height />
+                <weight_startofpregnancy />
+                <parity_risk />
+                <age_risk />
+                <youngchild_risk />
+                <abortion_risk />
+                <weight_risk />
+                <height_risk />
+                <is_high_risk_till_delivery />
+                <is_high_risk_till_delivery_reason />
+                <is_high_risk_till_pnc_close />
+                <is_high_risk_till_pnc_close_reason />
+                <is_high_risk1 />
+                <high_risk_reason />
+                <high_risk_note />
+                <risk_value />
+                <is_high_risk />
+                <num_days_since_lmp />
+                <num_weeks />
+                <birth_plan_message />
 
-            <edd />
-            <edd_formatted />
-            <edd_date_formatted />
-            <edd_note />
-            <num_pregnancies1 />
-            <num_pregnancies />
-            <num_abortions />
-            <num_livebirths />
-            <num_stillbirths1 />
-            <num_stillbirths />
-            <parity />
-            <num_livingchildren />
-            <youngestchild_under2 />
-            <complication />
-            <other_complication />
-            <medical_histories />
-            <w_blood_group />
-            <height />
-            <weight_startofpregnancy />
-            <parity_risk />
-            <age_risk />
-            <youngchild_risk />
-            <abortion_risk />
-            <weight_risk />
-            <height_risk />
-            <is_high_risk_till_delivery />
-            <is_high_risk_till_delivery_reason />
-            <is_high_risk_till_pnc_close />
-            <is_high_risk_till_pnc_close_reason />
-            <is_high_risk1 />
-            <high_risk_reason />
-            <high_risk_note />
-            <risk_value />
-            <is_high_risk />
-            <num_days_since_lmp />
-            <num_weeks />
-            <birth_plan_message />
+                <field1 />
+                <field1_group>
+                    <field1_val />
+                </field1_group>
 
-            <field1 />
-            <field1_group>
-                <field1_val />
-            </field1_group>
+                <field2 />
+                <field2_group>
+                    <field2_val />
+                </field2_group>
 
-            <field2 />
-            <field2_group>
-                <field2_val />
-            </field2_group>
+                <field3 />
+                <field3_group>
+                    <field3_val />
+                </field3_group>
 
-            <field3 />
-            <field3_group>
-                <field3_val />
-            </field3_group>
+                <field4 />
+                <field4_group>
+                    <field4_val />
+                </field4_group>
+                <field5 />
 
-            <field4 />
-            <field4_group>
-                <field4_val />
-            </field4_group>
+                <field5_group>
+                    <field5_val />
+                </field5_group>
 
-            <field5 />
-            <field5_group>
-                <field5_val />
-            </field5_group>
-
-
+            </anc_oa_edit_group>
             <meta>
                 <instanceID />
             </meta>
