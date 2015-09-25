@@ -121,7 +121,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
-                new OpenFormOption(getString(R.string.str_register_anc_form), ANC_REGISTRATION, formController),
+                new OpenFormOption(getString(R.string.str_register_anc_form), ANC_REGISTRATION, formController, this),
                 new OpenFormOption(getString(R.string.str_register_fp_form), FP_CHANGE, formController),
                 new OpenFormOption(getString(R.string.str_register_child_form), CHILD_REGISTRATION_EC, formController),
                 new OpenFormOption(getString(R.string.str_edit_ec_form), EC_EDIT, formController),
@@ -156,7 +156,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         if (customFields != null && !customFields.equals("")) {
             JSONArray customFieldsArray = new JSONArray(customFields);
             for (int i = 0; i < customFieldsArray.length(); i++) {
-                formData.put("field" + (i + 1), customFieldsArray.getString(i));
+                formData.put("field" + (i + 1), customFieldsArray.getString(i).trim().replace(" ", "%20"));
             }
         }
         //        locations.put("ecNumber", context.allSharedPreferences().fetchRegisteredANM() + "-" + System.currentTimeMillis());

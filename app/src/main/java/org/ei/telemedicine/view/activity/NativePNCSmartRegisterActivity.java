@@ -159,7 +159,7 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         if (customFields != null && !customFields.equals("")) {
             JSONArray customFieldsArray = new JSONArray(customFields);
             for (int i = 0; i < customFieldsArray.length(); i++) {
-                jsonFormInfo.put("field" + (i + 1), customFieldsArray.getString(i));
+                jsonFormInfo.put("field" + (i + 1), customFieldsArray.getString(i).trim().replace(" ", "%20"));
             }
         }
         FieldOverrides fieldOverrides = new FieldOverrides(jsonFormInfo.toString());
