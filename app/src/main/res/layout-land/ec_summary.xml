@@ -2,9 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:visibility="visible">
 
     <org.ei.telemedicine.view.customControls.CustomFontTextView
         android:id="@+id/summary_priority"
@@ -16,41 +15,62 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/boarder"
         android:gravity="left"
-        android:padding="10dp"
+        android:padding="5dp"
         android:text="High Risk"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="20sp" />
 
-    <org.ei.telemedicine.view.customControls.CustomFontTextView
-        android:id="@+id/title_ec_fp"
-        style="@style/CustomFontTextViewStyle.ListView.Normal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="Family Planning"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="20sp" />
-
     <LinearLayout
-        android:id="@+id/ll_ec_fp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/boarder"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="horizontal">
 
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/title_ec_fp"
+            style="@style/CustomFontTextViewStyle.ListView.Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
+            android:text="Family Planning -"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp" />
 
         <org.ei.telemedicine.view.customControls.CustomFontTextView
             android:id="@+id/tv_fp_value"
             style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_marginTop="3dp"
             android:text="Current"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
     </LinearLayout>
+
+    <!--<ScrollView-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="5dp"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:background="@drawable/boarder">-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/ll_ec_fp"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="10dp">-->
+
+
+    <!--<org.ei.telemedicine.view.customControls.CustomFontTextView-->
+    <!--android:id="@+id/tv_fp_value"-->
+    <!--style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:text="Current"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+    <!--</LinearLayout>-->
+    <!--</ScrollView>-->
 </LinearLayout>
