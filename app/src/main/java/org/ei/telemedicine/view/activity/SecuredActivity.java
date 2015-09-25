@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -17,14 +18,20 @@ import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
+import org.ei.telemedicine.domain.ProfileImage;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.event.Listener;
+import org.ei.telemedicine.repository.ImageRepository;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.controller.ANMController;
 import org.ei.telemedicine.view.controller.FormController;
 import org.ei.telemedicine.view.controller.NavigationController;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
+import java.util.UUID;
 
 import static org.ei.telemedicine.AllConstants.*;
 import static org.ei.telemedicine.AllConstants.ALERT_NAME_PARAM;
@@ -101,6 +108,14 @@ public abstract class SecuredActivity extends Activity {
         }
     }
 
+    public void saveimagereference(String bindobject, String entityid, Map<String, String> details) {
+//        Context.getInstance().allBeneficiaries().mergeDetails(entityid, details);
+        String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+        ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(), anmId, entityid, "Image", details.get("profilepic"), ImageRepository.TYPE_Unsynced);
+        ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
+        Toast.makeText(this, entityid, Toast.LENGTH_LONG).show();
+    }
+
     public void logoutUser() {
         context.userService().logout();
         startActivity(new Intent(this, LoginActivity.class));
@@ -173,7 +188,7 @@ public abstract class SecuredActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        Log.e("Res", resultCode + "");
         if (isSuccessfulFormSubmission(resultCode)) {
             logInfo("Form successfully saved. MetaData: " + metaData);
             if (hasMetadata()) {
@@ -210,6 +225,35 @@ public abstract class SecuredActivity extends Activity {
 
     private boolean hasMetadata() {
         return this.metaData != null && !this.metaData.equalsIgnoreCase("undefined");
+    }
+
+    public String getDataFromJson(String jsonData, String keyValue) {
+        if (jsonData != null && !jsonData.equals("")) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonData);
+                return jsonObject.has(keyValue) && !jsonObject.getString(keyValue).equalsIgnoreCase("none") && !jsonObject.getString(keyValue).equalsIgnoreCase("null") ? jsonObject.getString(keyValue) : "";
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return "";
+    }
+
+    public String getDatafromArray(String jsonArray) {
+        try {
+            String result = "";
+            if (jsonArray != null) {
+                JSONArray jsonArray1 = new JSONArray(jsonArray);
+                for (int i = 0; i < jsonArray1.length(); i++) {
+                    result = result + (!result.equals("") ? "," : "") + jsonArray1.getString(i);
+                }
+                return result;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
 

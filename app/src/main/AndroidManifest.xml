@@ -84,10 +84,6 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-            android:name=".view.activity.VideosActivity"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity
             android:name=".view.activity.ReportIndicatorListViewActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
@@ -211,6 +207,11 @@
         <activity
             android:name=".view.activity.NativeANMPlanofCareActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
+
+        <activity
+            android:name=".doctor.ViewPreVisitScreenActivity"
+            android:screenOrientation="landscape" />
+
 
         <receiver android:name=".view.receiver.SyncBroadcastReceiver" />
         <receiver android:name=".view.receiver.ConnectivityChangeReceiver">

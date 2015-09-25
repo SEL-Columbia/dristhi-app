@@ -36,15 +36,20 @@ import org.apache.http.conn.ssl.AbstractVerifier;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.ei.telemedicine.DristhiConfiguration;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.client.GZipEncodingHttpClient;
 import org.ei.telemedicine.domain.LoginResponse;
+import org.ei.telemedicine.domain.ProfileImage;
 import org.ei.telemedicine.domain.Response;
 import org.ei.telemedicine.domain.ResponseStatus;
 import org.ei.telemedicine.repository.AllSettings;
@@ -83,6 +88,7 @@ public class HTTPAgent {
 
     public Response<String> fetch(String requestURLPath) {
         try {
+            Log.e("URLs", requestURLPath);
             setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
             String responseContent = IOUtils.toString(httpClient.fetchContent(new HttpGet(requestURLPath)));
             return new Response<String>(ResponseStatus.success, responseContent);
@@ -288,5 +294,36 @@ public class HTTPAgent {
             logError("Failed to get Information");
             return null;
         }
+    }
+
+    public int httpImagePost(String url, ProfileImage image) {
+
+        String responseString = "";
+        try {
+//            setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
+            HttpPost httpost = new HttpPost(url);
+            Log.e("Image URL", url);
+            httpost.setHeader("Accept", "multipart/form-data");
+            File filetoupload = new File(image.getFilepath());
+            Log.v("file to upload", "" + filetoupload.length());
+            MultipartEntity entity = new MultipartEntity();
+//            entity.addPart("anm-id", new StringBody(image.getAnmId()));
+//            entity.addPart("entity-id", new StringBody(image.getEntityID()));
+            entity.addPart("content-type", new StringBody(image.getContenttype()));
+            entity.addPart("file", new FileBody(new File(image.getFilepath())));
+            httpost.setEntity(entity);
+            Log.e("File Data", new FileBody(new File(image.getFilepath())) + "");
+            HttpResponse response = httpClient.postContent(httpost);
+            responseString = EntityUtils.toString(response.getEntity());
+            int RESPONSE_OK = 200;
+            int RESPONSE_OK_ = 201;
+
+            if (response.getStatusLine().getStatusCode() != RESPONSE_OK_ && response.getStatusLine().getStatusCode() != RESPONSE_OK) {
+            }
+            return response.getStatusLine().getStatusCode();
+        } catch (Exception e) {
+            return -1;
+        }
+
     }
 }

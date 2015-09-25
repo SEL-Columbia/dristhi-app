@@ -29,6 +29,7 @@ import org.ei.telemedicine.dto.form.FormSubmissionDTO;
 import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.repository.FormDataRepository;
+import org.ei.telemedicine.repository.ImageRepository;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -127,6 +128,7 @@ public class FormSubmissionSyncService {
 
     public FetchStatus sync() {
         pushToServer();
+        new ImageUploadSyncService((ImageRepository) Context.getInstance().imageRepository());
         return pullFromServer();
     }
 

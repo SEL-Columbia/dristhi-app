@@ -2,7 +2,12 @@ package org.ei.telemedicine.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,18 +38,23 @@ import org.ei.telemedicine.util.Log;
 import org.ei.telemedicine.view.controller.ANCDetailController;
 import org.ei.telemedicine.view.controller.ChildDetailController;
 import org.ei.telemedicine.view.controller.EligibleCoupleDetailController;
+import org.ei.telemedicine.view.controller.FormController;
 import org.ei.telemedicine.view.controller.PNCDetailController;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
+import org.ei.telemedicine.view.dialog.OpenFormOption;
 import org.joda.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.mozilla.javascript.ObjToIntMap;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
@@ -78,6 +88,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     Context context;
     LinearLayout ec_summary, anc_summary, pnc_summary, child_summary, anc_pregnency_summary, pnc_pregnency_summary;
     static Boolean isANCOA = false, isFromEC = false;
+    Boolean isPoc = false;
 
 
     private void setupViews() {
@@ -174,11 +185,10 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         ib_profile_pic.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                takePhoto(WOMAN_TYPE);
+//                                takePhoto(WOMAN_TYPE);
+                                dispatchTakePictureIntent(ib_profile_pic, caseId);
                             }
                         });
-
-
                         String ecData = new EligibleCoupleDetailController(this, caseId, context.allEligibleCouples(), context.allTimelineEvents()).get();
                         String coupleDetails = getDataFromJson(ecData, "coupleDetails");
                         String details = getDataFromJson(ecData, "details");
@@ -213,13 +223,16 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 
                             if (!pocInfo.equals("")) {
                                 try {
+                                    isPoc = true;
                                     JSONArray pocJsonArray = new JSONArray(pocInfo);
                                     int val = pocJsonArray.length();
                                     android.util.Log.e("size", val + "");
                                     for (int i = 0; i < pocJsonArray.length(); i++) {
                                         String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
                                         String title = "Plan of care for " + getDataFromJson(pocData, "visitType") + "Visit - " + getDataFromJson(pocData, "visitNumber");
-                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care ", LocalDate.parse(changeDateFormat(getDataFromJson(pocData, "planofCareDate"))), title, "", ""));
+                                        String details1 = "Investigations - " + getDataFromJson(pocData, "investigations");
+
+                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care ", LocalDate.parse(changeDateFormat(getDataFromJson(pocData, "planofCareDate"))), title, details1, ""));
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -263,6 +276,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                             String pocInfo = pncMother.getDetail("docPocInfo") != null ? pncMother.getDetail("docPocInfo") : "";
                             if (!pocInfo.equals("")) {
                                 try {
+                                    isPoc = true;
                                     JSONArray pocJsonArray = new JSONArray(pocInfo);
                                     for (int i = 0; i < pocJsonArray.length(); i++) {
                                         String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
@@ -309,6 +323,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         child_summary.setVisibility(View.VISIBLE);
                         tv_child_name.setVisibility(View.VISIBLE);
                         String childData = new ChildDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
+
                         android.util.Log.e("childData", childData);
                         String childCoupleDetails = getDataFromJson(childData, "coupleDetails");
                         String childDetails = getDataFromJson(childData, "details");
@@ -485,6 +500,71 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         }
     }
 
+    String mCurrentPhotoPath;
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        return image;
+    }
+
+    static final int REQUEST_TAKE_PHOTO = 1;
+    static ImageView mImageView;
+    static File currentfile;
+    static String bindobject;
+    static String entityId;
+
+    private void dispatchTakePictureIntent(ImageView imageView, String entityid) {
+        mImageView = imageView;
+        entityId = entityid;
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                currentfile = photoFile;
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+//            Bundle extras = data.getExtras();
+//            String imageBitmap = (String) extras.get(MediaStore.EXTRA_OUTPUT);
+//            Toast.makeText(this,imageBitmap,Toast.LENGTH_LONG).show();
+            HashMap<String, String> details = new HashMap<String, String>();
+            details.put("profilepic", currentfile.getAbsolutePath());
+            saveimagereference(bindobject, entityId, details);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
+            mImageView.setImageBitmap(bitmap);
+        }
+    }
+
     public String changeDateFormat(String date) {
         if (!date.equals("")) {
             String vdate[] = date.split("-");
@@ -494,6 +574,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     }
 
     public void takePhoto(String type) {
+
         Intent intent = new Intent(this, CameraLaunchActivity.class);
         intent.putExtra(AllConstants.TYPE, type);
         intent.putExtra(ENTITY_ID, caseId);
@@ -530,10 +611,14 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 
             //Overview ANC Menu
             case R.id.anc_visit:
-                startFormActivity(ANC_VISIT, caseId, null);
+//                new OpenFormOption(getString(R.string.str_register_anc_visit_form), ANC_VISIT, new FormController(this)).doEdit(client);
+                formController.startFormActivity(ANC_VISIT, caseId, new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
                 return true;
             case R.id.anc_visit_edit:
-                startFormActivity(ANC_VISIT_EDIT, caseId, null);
+                if (!isPoc)
+                    startFormActivity(ANC_VISIT_EDIT, caseId, null);
+                else
+                    Toast.makeText(this, "Already Poc given for this visit", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.hb_test:
                 startFormActivity(HB_TEST, caseId, null);
@@ -626,17 +711,5 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         }
     }
 
-    public String getDataFromJson(String jsonData, String keyValue) {
-        if (jsonData != null && !jsonData.equals("")) {
-            try {
-                JSONObject jsonObject = new JSONObject(jsonData);
-                return jsonObject.has(keyValue) && !jsonObject.getString(keyValue).equalsIgnoreCase("none") && !jsonObject.getString(keyValue).equalsIgnoreCase("null") ? jsonObject.getString(keyValue) : "";
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-        return "";
-    }
 
 }
