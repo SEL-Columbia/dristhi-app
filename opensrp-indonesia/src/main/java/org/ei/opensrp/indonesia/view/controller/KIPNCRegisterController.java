@@ -160,7 +160,7 @@ public class KIPNCRegisterController extends CommonController {
 
     public CharSequence[] getRandomNameChars(final SmartRegisterClient client) {
         String clients = get();
-        List<SmartRegisterClient> pncClients = new Gson().fromJson(clients, new TypeToken<List<KIPNCClients>>(){}.getType());
+        List<SmartRegisterClient> pncClients = new Gson().fromJson(clients, new TypeToken<List<KIPNCClient>>(){}.getType());
 
         return onRandomNameChars(
                 client,
