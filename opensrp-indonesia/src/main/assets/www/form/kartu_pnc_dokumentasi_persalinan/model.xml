@@ -8,6 +8,7 @@
           <start/>
           <today/>
           <reg_date/>
+          <reference_date/>
           <deviceid/>
           <simserial/>
           <phonenumber/>

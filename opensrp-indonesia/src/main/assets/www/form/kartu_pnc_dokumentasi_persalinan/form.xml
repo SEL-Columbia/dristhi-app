@@ -7,6 +7,12 @@
       <span lang="" class="question-label active">DOKUMENTASI PERSALINAN</span>
       <input type="text" name="/dokumentasi_persalinan/generated_note_name_7" data-type-xml="string" readonly="readonly" />
    </label>
+   <label class="question non-select ">
+      <span lang="" class="question-label active">Tanggal Pendaftaran</span>
+      <span class="required">*</span>
+      <span lang="" class="or-hint active">Diisi dengan tanggal periksa Ibu</span>
+      <input type="date" name="/dokumentasi_persalinan/reference_date" required="required" data-type-xml="date" />
+   </label>
    <label class="note non-select ">
       <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
       <span lang="" class="question-label active">
