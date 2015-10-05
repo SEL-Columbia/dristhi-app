@@ -17,6 +17,7 @@ import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
 import org.ei.opensrp.indonesia.view.controller.KartuIbuRegisterController;
 import org.ei.opensrp.indonesia.view.dialog.AllHighRiskSort;
 import org.ei.opensrp.indonesia.view.dialog.AllKartuIbuServiceMode;
+import org.ei.opensrp.indonesia.view.dialog.EstimatedDateOfDeliverySortKI;
 import org.ei.opensrp.indonesia.view.dialog.NoIbuSort;
 import org.ei.opensrp.indonesia.view.dialog.ReverseNameSort;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -26,7 +27,6 @@ import org.ei.opensrp.view.dialog.DialogOption;
 import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
-import org.ei.opensrp.view.dialog.EstimatedDateOfDeliverySort;
 import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.OpenFormOption;
@@ -124,7 +124,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{new NameSort(),
                         new ReverseNameSort(), new NoIbuSort(),
-                        new EstimatedDateOfDeliverySort(), new AllHighRiskSort()};
+                        new EstimatedDateOfDeliverySortKI(), new AllHighRiskSort()};
             }
 
             @Override
