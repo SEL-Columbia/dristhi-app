@@ -851,6 +851,9 @@
          <input autocomplete="off" type="hidden" name="/ANC_Visit/reg_date" data-calculate=" /ANC_Visit/today " data-type-xml="date" />
       </label>
       <label class="calculation non-select ">
+         <input autocomplete="off" type="hidden" name="/ANC_Visit/anc_date_2" data-calculate=" /ANC_Visit/anc_date " data-type-xml="date" />
+      </label>
+      <label class="calculation non-select ">
          <input type="hidden" name="/ANC_Visit/usia_klinis" data-calculate="int((( /ANC_Visit/today  -  /ANC_Visit/hpht ) div 7)+1)" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">

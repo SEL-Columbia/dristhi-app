@@ -84,6 +84,7 @@
           <is_high_risk_labour/>
           <high_risk_labour_reason/>
           <high_risk_note/>
+          <anc_date_2/>
           <end/>
           <meta>
             <instanceID/>

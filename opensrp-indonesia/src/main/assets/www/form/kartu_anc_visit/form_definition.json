@@ -18,6 +18,10 @@
         "bind": "/model/instance/ANC_Visit/anc_date"
       },
       {
+        "name": "ancDate",
+        "bind": "/model/instance/ANC_Visit/anc_date_2"
+      },
+      {
         "name": "tanggalHPHT",
         "bind": "/model/instance/ANC_Visit/hpht",
         "shouldLoadValue": true
