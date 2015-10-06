@@ -9,7 +9,7 @@
       <span lang="" class="or-hint active">Diisi dengan tanggal taksiran persalinan</span>
       <input type="date" name="/rencana_persalinan/tanggal" required="required" data-type-xml="date" />
    </label>
-   <label class="question or-appearance-minimal ">
+   <label class="question ">
       <span lang="" class="question-label active">Rencana Penolong Persalinan</span>
       <span class="required">*</span>
       <span lang="" class="or-hint active">Diisi dengan pihak yang akan menolong persalinan</span>
@@ -25,7 +25,7 @@
       </select>
       <span class="or-option-translations" style="display:none;" />
    </label>
-   <label class="question or-appearance-minimal ">
+   <label class="question ">
       <span lang="" class="question-label active">Tempat Rencana Persalinan</span>
       <span lang="" class="or-hint active">Diisi dengan rencana tempat dimana Ibu akan bersalin</span>
       <select name="/rencana_persalinan/tempat_rencana_persalinan" data-name="/rencana_persalinan/tempat_rencana_persalinan" data-type-xml="select1">
@@ -41,7 +41,7 @@
       </select>
       <span class="or-option-translations" style="display:none;" />
    </label>
-   <label class="question or-appearance-minimal ">
+   <label class="question ">
       <span lang="" class="question-label active">Rencana Pendamping Persalinan</span>
       <span lang="" class="or-hint active">Diisi dengan rencana pihak yang akan mendampingi Ibu saat bersalin</span>
       <select name="/rencana_persalinan/rencana_pendamping_persalinan" data-name="/rencana_persalinan/rencana_pendamping_persalinan" data-type-xml="select1">
@@ -77,19 +77,35 @@
          </div>
       </fieldset>
    </fieldset>
-   <label class="question or-appearance-minimal ">
-      <span lang="" class="question-label active">Pendonor</span>
-      <span lang="" class="or-hint active">Diisi dengan rencana pihak yang akan menjadi Pendonor Darah jika terjadi pendarahan</span>
-      <select multiple="multiple" name="/rencana_persalinan/pendonor" data-type-xml="select">
-         <option value="">...</option>
-         <option value="suami">Suami (S)</option>
-         <option value="keluarga">Keluarga (K)</option>
-         <option value="teman">Teman (TM)</option>
-         <option value="lain-lain">Lain-lain (LL)</option>
-         <option value="tidak_ada">Tidak Ada (TA)</option>
-      </select>
-      <span class="or-option-translations" style="display:none;" />
-   </label>
+   <fieldset class="question ">
+   <fieldset>
+      <legend>
+         <span lang="" class="question-label active">Pendonor</span>
+         <span lang="" class="or-hint active">Diisi dengan rencana pihak yang akan menjadi Pendonor Darah jika terjadi pendarahan</span>
+      </legend>
+      <div class="option-wrapper">
+         <label class="">
+            <input type="checkbox" name="/rencana_persalinan/pendonor" value="suami" data-type-xml="select" />
+            <span lang="" class="option-label active">Suami</span>
+         </label>
+         <label class="">
+            <input type="checkbox" name="/rencana_persalinan/pendonor" value="keluarga" data-type-xml="select" />
+            <span lang="" class="option-label active">Keluarga</span>
+         </label>
+         <label class="">
+            <input type="checkbox" name="/rencana_persalinan/pendonor" value="teman" data-type-xml="select" />
+            <span lang="" class="option-label active">Teman</span>
+         </label>
+         <label class="">
+            <input type="checkbox" name="/rencana_persalinan/pendonor" value="lain-lain" data-type-xml="select" />
+            <span lang="" class="option-label active">Lain-lain</span>
+         </label>
+         <label class="">
+            <input type="checkbox" name="/rencana_persalinan/pendonor" value="tidak_ada" data-type-xml="select" />
+            <span lang="" class="option-label active">Tidak Ada</span>
+         </label>
+      </div>
+   </fieldset>
    <fieldset class="question ">
       <fieldset>
          <legend>
