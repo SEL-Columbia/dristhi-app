@@ -78,33 +78,34 @@
       </fieldset>
    </fieldset>
    <fieldset class="question ">
-   <fieldset>
-      <legend>
-         <span lang="" class="question-label active">Pendonor</span>
-         <span lang="" class="or-hint active">Diisi dengan rencana pihak yang akan menjadi Pendonor Darah jika terjadi pendarahan</span>
-      </legend>
-      <div class="option-wrapper">
-         <label class="">
-            <input type="checkbox" name="/rencana_persalinan/pendonor" value="suami" data-type-xml="select" />
-            <span lang="" class="option-label active">Suami</span>
-         </label>
-         <label class="">
-            <input type="checkbox" name="/rencana_persalinan/pendonor" value="keluarga" data-type-xml="select" />
-            <span lang="" class="option-label active">Keluarga</span>
-         </label>
-         <label class="">
-            <input type="checkbox" name="/rencana_persalinan/pendonor" value="teman" data-type-xml="select" />
-            <span lang="" class="option-label active">Teman</span>
-         </label>
-         <label class="">
-            <input type="checkbox" name="/rencana_persalinan/pendonor" value="lain-lain" data-type-xml="select" />
-            <span lang="" class="option-label active">Lain-lain</span>
-         </label>
-         <label class="">
-            <input type="checkbox" name="/rencana_persalinan/pendonor" value="tidak_ada" data-type-xml="select" />
-            <span lang="" class="option-label active">Tidak Ada</span>
-         </label>
-      </div>
+      <fieldset>
+         <legend>
+            <span lang="" class="question-label active">Pendonor</span>
+            <span lang="" class="or-hint active">Diisi dengan rencana pihak yang akan menjadi Pendonor Darah jika terjadi pendarahan</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="checkbox" name="/rencana_persalinan/pendonor" value="suami" data-type-xml="select" />
+               <span lang="" class="option-label active">Suami</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/rencana_persalinan/pendonor" value="keluarga" data-type-xml="select" />
+               <span lang="" class="option-label active">Keluarga</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/rencana_persalinan/pendonor" value="teman" data-type-xml="select" />
+               <span lang="" class="option-label active">Teman</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/rencana_persalinan/pendonor" value="lain-lain" data-type-xml="select" />
+               <span lang="" class="option-label active">Lain-lain</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/rencana_persalinan/pendonor" value="tidak_ada" data-type-xml="select" />
+               <span lang="" class="option-label active">Tidak Ada</span>
+            </label>
+         </div>
+      </fieldset>
    </fieldset>
    <fieldset class="question ">
       <fieldset>
