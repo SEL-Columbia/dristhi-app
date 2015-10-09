@@ -129,7 +129,10 @@
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape">
         </activity>
-
+        <activity
+            android:name="org.ei.opensrp.view.activity.VideosActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:screenOrientation="landscape"/>
 
         <receiver android:name=".view.receiver.SyncBidanBroadcastReceiver"/>
         <receiver android:name="org.ei.opensrp.view.receiver.ConnectivityChangeReceiver">
