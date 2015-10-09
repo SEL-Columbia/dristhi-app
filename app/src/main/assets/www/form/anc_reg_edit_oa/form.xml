@@ -10,7 +10,7 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">Edit password:</span>
         <input name="/ANC_Registration_OA_EngKan/edit_password" autocomplete="off"
-            data-type-xml="string" type="text" />
+            data-type-xml="string" type="password" />
     </label>
     <section name="/ANC_Registration_OA_EngKan/anc_oa_edit_group"
         class="or-group-data or-branch pre-init "
@@ -423,7 +423,7 @@
         </label>
 
         <label class="question or-branch pre-init non-select">
-            <span class="question-label active" lang="">LMP In Week:
+            <span class="question-label active" lang="">LMP In Weeks:
             </span>
             <span class="required">*</span>
             <input name="/ANC_Registration_OA_EngKan/anc_oa_edit_group/lmp_in_week"

@@ -68,7 +68,7 @@
 
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">Women Name: </span>
+        <span lang="" class="question-label active">Woman Name: </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/woman_name" data-type-xml="string" disabled="disabled"/>
     </label>
 

@@ -6,7 +6,7 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">Edit password:</span>
         <input name="/ANC_Registration_EngKan/edit_password" autocomplete="off"
-            data-type-xml="string" type="text" />
+            data-type-xml="string" type="password" />
     </label>
     <section name="/ANC_Registration_EngKan/anc_edit_group"
         class="or-group-data or-branch pre-init "
@@ -26,7 +26,7 @@
 
 
         <label class="question non-select ">
-            <span class="question-label active" lang="">Women Name:</span>
+            <span class="question-label active" lang="">Woman Name:</span>
             <input name="/ANC_Registration_EngKan/anc_edit_group/woman_name" autocomplete="off"
                 data-type-xml="string" disabled="disabled" type="text" />
         </label>
@@ -162,7 +162,7 @@
         </label>
 
         <label class="question or-branch pre-init non-select">
-            <span class="question-label active" lang="">LMP In Week:
+            <span class="question-label active" lang="">LMP In Weeks:
             </span>
             <span class="required">*</span>
             <input name="/ANC_Registration_EngKan/anc_edit_group/lmp_in_week" autocomplete="off"

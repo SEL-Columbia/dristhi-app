@@ -17,7 +17,7 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Women Name:</span>
+        <span class="question-label active" lang="">Woman Name:</span>
         <input name="/ANC_Visit_EngKan/case_woman_name" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
     </label>
@@ -256,13 +256,13 @@
             data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'pulse_rate')"
             data-type-xml="int" type="number" />
     </label>
-    <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">Temperature (F)
-        </span>
-        <input name="/ANC_Visit_EngKan/temperature" data-constraint=".&gt;0"
-            data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'temperature')"
-            data-type-xml="decimal" step="any" type="number" />
-    </label>
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">Temperature (F)-->
+    <!--</span>-->
+    <!--<input name="/ANC_Visit_EngKan/temperature" data-constraint=".&gt;0"-->
+    <!--data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'temperature')"-->
+    <!--data-type-xml="decimal" step="any" type="number" />-->
+    <!--</label>-->
     <section name="/ANC_Visit_EngKan/weight_group" class="or-group-data or-branch pre-init "
         data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'weight')">
         <label class="question non-select ">

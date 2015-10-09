@@ -29,7 +29,7 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Registration date,
+        <span class="question-label active" lang="">Registration date
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/out_of_area_reg_date"
@@ -48,7 +48,7 @@
         <input name="/ANC_Registration_OA_EngKan/hh_address" data-type-xml="string" type="text" />
     </label>
     <label class="question non-select ">
-        <span class="question-label active" lang="">Woman's name,</span>
+        <span class="question-label active" lang="">Woman's name</span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/woman_name" data-type-xml="string"
             required="required" type="text" />
@@ -147,7 +147,7 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Husband's name,</span>
+        <span class="question-label active" lang="">Husband's name</span>
         <input name="/ANC_Registration_OA_EngKan/husband_name" data-type-xml="string" type="text" />
     </label>
 
@@ -214,7 +214,7 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span class="question-label active" lang="">Alternative phone number,
+        <span class="question-label active" lang="">Alternative phone number
         </span>
         <input name="/ANC_Registration_OA_EngKan/phone_no2"
             data-constraint=".&gt; 99999999 and .&lt; 10000000000000"
@@ -404,7 +404,7 @@
     </label>
 
     <label class="question or-branch pre-init non-select">
-        <span class="question-label active" lang="">LMP In Week:
+        <span class="question-label active" lang="">LMP In Weeks:
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/lmp_in_week" autocomplete="off"
@@ -718,8 +718,8 @@
             <div class="option-wrapper">
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/is_high_risk"
-                        data-name="/ANC_Registration_OA_EngKan/is_high_risk" data-type-xml="select1"
-                        type="radio" value="yes" />
+                        data-name="/ANC_Registration_OA_EngKan/is_high_risk"
+                        data-type-xml="select1" type="radio" value="yes" />
                     <span class="option-label active" lang="">Yes</span>
                 </label>
                 <label class="">
