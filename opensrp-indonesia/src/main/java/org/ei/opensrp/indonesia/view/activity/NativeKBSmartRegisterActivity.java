@@ -145,7 +145,8 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
 
     @Override
     protected void startRegistration() {
-        startFormActivity(KOHORT_KB_REGISTER, null, null);
+        // if OA form needed again, uncomment this
+        // startFormActivity(KOHORT_KB_REGISTER, null, null);
     }
 
     private class ClientActionHandler implements View.OnClickListener {

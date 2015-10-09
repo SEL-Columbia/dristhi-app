@@ -130,7 +130,8 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
 
     @Override
     protected void startRegistration() {
-        startFormActivity(ANAK_NEW_REGISTRATION, null, null);
+        // if OA form needed again, uncomment this
+        // startFormActivity(ANAK_NEW_REGISTRATION, null, null);
     }
 
     private class ClientActionHandler implements View.OnClickListener {

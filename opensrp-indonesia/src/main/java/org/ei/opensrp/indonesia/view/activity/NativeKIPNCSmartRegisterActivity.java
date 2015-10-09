@@ -133,7 +133,8 @@ public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartReg
 
     @Override
     protected void startRegistration() {
-        startFormActivity(KARTU_IBU_PNC_OA, null, null);
+        // if OA form needed again, uncomment this
+        // startFormActivity(KARTU_IBU_PNC_OA, null, null);
     }
 
     private class ClientActionHandler implements View.OnClickListener {
