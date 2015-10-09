@@ -1,12 +1,16 @@
 package org.ei.telemedicine.service;
 
+import android.util.Log;
+
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.domain.Mother;
 import org.ei.telemedicine.domain.ServiceProvided;
+import org.ei.telemedicine.domain.TimelineEvent;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.repository.AllBeneficiaries;
 import org.ei.telemedicine.repository.AllEligibleCouples;
 import org.ei.telemedicine.repository.AllTimelineEvents;
+import org.joda.time.LocalDate;
 
 import static org.ei.telemedicine.AllConstants.ANCVisitFields.*;
 import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.*;
@@ -69,7 +73,17 @@ public class MotherService {
                                 .put(BLOODGLUCOSEDATA, submission.getFieldValue(BLOODGLUCOSEDATA))
                                 .put(ISCONSULTDOCTOR, submission.getFieldValue(ISCONSULTDOCTOR))
                                 .put(FETALDATA, submission.getFieldValue(FETALDATA))
+                                .put(POC_INFO, submission.getFieldValue(POC_INFO))
                                 .map()));
+        Log.e("Submission Form for poc", "POc fot visit" + submission.instance() + "");
+        if (submission.getFieldValue(POC_INFO) != null && !submission.getFieldValue(POC_INFO).equals("")) {
+            TimelineEvent ancVisitPoc = forPOCGiven(submission.entityId(),
+                    submission.getFieldValue(ANC_VISIT_DATE),
+                    "ANCVISIT", "Plan of care for ANC Visit" + "-" + submission.getFieldValue(ANC_VISIT_NUMBER), create(POC_INFO, submission.getFieldValue(POC_INFO)).map());
+            if (ancVisitPoc != null)
+                allTimelines.add(ancVisitPoc);
+        }
+
         serviceProvidedService.add(
                 ServiceProvided.forANCCareProvided(
                         submission.entityId(),
@@ -150,7 +164,17 @@ public class MotherService {
                         submission.getFieldValue(AllConstants.PNCVisitFields.BP_SYSTOLIC),
                         submission.getFieldValue(AllConstants.PNCVisitFields.BP_DIASTOLIC),
                         submission.getFieldValue(AllConstants.PNCVisitFields.TEMPERATURE),
-                        submission.getFieldValue(AllConstants.PNCVisitFields.HB_LEVEL), submission.getFieldValue(AllConstants.PNCVisitFields.BLOODGLUCOSEDATA), submission.getFieldValue(AllConstants.PNCVisitFields.ISCONSULTDOCTOR)));
+                        submission.getFieldValue(AllConstants.PNCVisitFields.HB_LEVEL),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.BLOODGLUCOSEDATA), submission.getFieldValue(AllConstants.PNCVisitFields.ISCONSULTDOCTOR)));
+        Log.e("Submission Form for poc", "POc fot visit" + submission.instance() + "");
+        if (submission.getFieldValue(POC_INFO) != null && !submission.getFieldValue(POC_INFO).equals("")) {
+            TimelineEvent pncVisitPoc = forPOCGiven(
+                    submission.entityId(),
+                    submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DATE),
+                    "PNCVISIT", "Plan of care for PNC Visit" + "-" + submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DAY), create(POC_INFO, submission.getFieldValue(POC_INFO)).map());
+            if (pncVisitPoc != null)
+                allTimelines.add(pncVisitPoc);
+        }
         serviceProvidedService.add(
                 ServiceProvided.forMotherPNCVisit(
                         submission.entityId(),

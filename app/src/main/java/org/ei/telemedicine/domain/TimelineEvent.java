@@ -8,6 +8,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.telemedicine.util.DateUtil;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -93,10 +96,39 @@ public class TimelineEvent {
 
     public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
         String detailsString = new DetailBuilder(details).withBP("bpSystolic", "bpDiastolic").withTemperature("temperature").withHbLevel("hbLevel").withBloodGlucose("bloodGlucoseData").withDCReq("isConsultDoctor").withFetal("fetalData").value();
-        String pocData = new DetailBuilder(details).withPOC(POC_INFO).value();
-        Log.e("Details String", detailsString);
-        Log.e("PocInfo", pocData);
-        return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, pocData);
+//        String pocData = new DetailBuilder(details).withPOC(POC_INFO).value();
+        Log.e("Details String12", visitDate);
+        return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, "");
+    }
+
+    public static TimelineEvent forPOCGiven(String caseId, String visitDate, String visitType, String title, Map<String, String> details) {
+        String detailsString = new DetailBuilder(details).withPOC(POC_INFO).value();
+        Log.e("Having POC", detailsString);
+        try {
+            JSONArray pocJsonArray = new JSONArray(detailsString);
+            if (pocJsonArray.length() != 0) {
+                JSONObject pocInfoData = pocJsonArray.getJSONObject(pocJsonArray.length() - 1);
+                String pocDataStr = getDataFromJson(pocInfoData.toString(), "poc");
+                String detailStr = "Investigations: " + getDataFromJson(pocDataStr, "investigations") + "," + getDataFromJson(pocDataStr, "drugs") + "," + getDataFromJson(pocDataStr, "diagnosis") + "," + getDataFromJson(pocDataStr, "advice");
+                return new TimelineEvent(caseId, visitType, LocalDate.parse(visitDate), title, detailStr, "");
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static String getDataFromJson(String jsonStr, String key) {
+        try {
+            if (jsonStr != null && !jsonStr.equals("")) {
+                JSONObject jsonObject = new JSONObject(jsonStr);
+                return jsonObject.has(key) ? jsonObject.getString(key) : "";
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public static TimelineEvent forIFATabletsGiven(String caseId, String numberOfIFATabletsProvided, String visitDate) {
@@ -121,13 +153,18 @@ public class TimelineEvent {
     public static TimelineEvent forChildPNCVisit(String caseId, String visitNumber, String visitDate, String weight, String temperature) {
         Map<String, String> details = create("childWeight", weight).put("childTemperature", temperature).map();
         String detailsString = new DetailBuilder(details).withTemperature("childTemperature").withWeight("childWeight").value();
-
         return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, detailsString, null);
     }
 
+    public static TimelineEvent forChildIllness(String caseId, String visitDate, String temperature) {
+        Map<String, String> details = create("childTemperature", temperature).map();
+        String detailsString = new DetailBuilder(details).withTemperature("childTemperature").withWeight("childWeight").value();
+        return new TimelineEvent(caseId, "CHILDILLNESS", LocalDate.parse(visitDate), "Child Illness", detailsString, null);
+    }
+
+
     public static TimelineEvent forChildImmunization(String caseId, String immunizationsGiven, String immunizationsGivenDate) {
         String detailString = new DetailBuilder(null).withImmunizationsGiven(immunizationsGiven).value();
-
         return new TimelineEvent(caseId, "IMMUNIZATIONSGIVEN", LocalDate.parse(immunizationsGivenDate), "Immunization Date: " + DateUtil.formatDateForTimelineEvent(immunizationsGivenDate), detailString, null);
     }
 
@@ -189,8 +226,12 @@ public class TimelineEvent {
         }
 
         private DetailBuilder withTemperature(String temperature) {
-            String bgm = "Temp: " + details.get(temperature) + " °F\n";
-            this.stringBuilder.append(checkEmptyField(bgm, details.get(temperature)));
+            String temp = "";
+            if (details.get(temperature) != null && !details.get(temperature).equals("") && details.get(temperature).contains("-")) {
+                String[] tempData = details.get(temperature).split("-");
+                temp = "Temp: " + tempData[0] + " °" + tempData[1] + "\n";
+            }
+            this.stringBuilder.append(checkEmptyField(temp, details.get(temperature)));
             return this;
         }
 

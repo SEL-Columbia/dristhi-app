@@ -1,9 +1,13 @@
 package org.ei.telemedicine.service;
 
+import android.util.Log;
+
 import org.ei.telemedicine.AllConstants;
+import org.ei.telemedicine.Context;
 import org.ei.telemedicine.domain.Child;
 import org.ei.telemedicine.domain.Mother;
 import org.ei.telemedicine.domain.ServiceProvided;
+import org.ei.telemedicine.domain.TimelineEvent;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.domain.form.SubForm;
 import org.ei.telemedicine.repository.*;
@@ -12,6 +16,7 @@ import org.ei.telemedicine.util.EasyMap;
 import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.POC_INFO;
 import static org.ei.telemedicine.AllConstants.ChildIllnessFields.*;
 import static org.ei.telemedicine.AllConstants.ChildRegistrationECFields.*;
 import static org.ei.telemedicine.AllConstants.ENTITY_ID_FIELD_NAME;
@@ -20,6 +25,7 @@ import static org.ei.telemedicine.AllConstants.ChildRegistrationOAFields.CHILD_I
 import static org.ei.telemedicine.AllConstants.ChildRegistrationOAFields.THAYI_CARD_NUMBER;
 import static org.ei.telemedicine.AllConstants.Immunizations.*;
 import static org.ei.telemedicine.domain.TimelineEvent.*;
+import static org.ei.telemedicine.util.EasyMap.create;
 
 public class ChildService {
     private AllBeneficiaries allBeneficiaries;
@@ -195,7 +201,7 @@ public class ChildService {
 
         for (Map<String, String> childInstances : subForm.instances()) {
             allTimelines.add(forChildPNCVisit(childInstances.get(ENTITY_ID_FIELD_NAME), pncVisitDay,
-                    pncVisitDate, childInstances.get(AllConstants.PNCVisitFields.WEIGHT), childInstances.get(AllConstants.PNCVisitFields.TEMPERATURE)));
+                    pncVisitDate, childInstances.get(AllConstants.PNCVisitFields.WEIGHT), childInstances.get(AllConstants.PNCVisitFields.CHILD_TEMPERATURE)));
             serviceProvidedService.add(ServiceProvided.forChildPNCVisit(childInstances.get(ENTITY_ID_FIELD_NAME), pncVisitDay, pncVisitDate));
         }
     }
@@ -212,6 +218,18 @@ public class ChildService {
         String sickVisitDate = submission.getFieldValue(SICK_VISIT_DATE);
         String date = sickVisitDate != null ?
                 sickVisitDate : submission.getFieldValue(REPORT_CHILD_DISEASE_DATE);
+
+        allTimelines.add(forChildIllness(submission.getFieldValue(ENTITY_ID_FIELD_NAME), date, submission.getFieldValue(AllConstants.PNCVisitFields.CHILD_TEMPERATURE)));
+
+        Log.e("Submission Form for poc", "POc fot illness" + submission.instance() + "");
+        if (submission.getFieldValue(POC_INFO) != null && !submission.getFieldValue(POC_INFO).equals("")) {
+            TimelineEvent childVisitPoc = forPOCGiven(
+                    submission.entityId(),
+                    date,
+                    "CHILDILLNESS", "Plan of care for Child Illness", create(POC_INFO, submission.getFieldValue(POC_INFO)).map());
+            if (childVisitPoc != null)
+                allTimelines.add(childVisitPoc);
+        }
         serviceProvidedService.add(
                 ServiceProvided.forChildIllnessVisit(submission.entityId(),
                         date,

@@ -1,6 +1,5 @@
 package org.ei.telemedicine.view.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,53 +26,60 @@ import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.OverviewTimelineAdapter;
 import org.ei.telemedicine.doctor.DoctorFormDataConstants;
 import org.ei.telemedicine.doctor.ViewPreVisitScreenActivity;
-import org.ei.telemedicine.domain.EligibleCouple;
+import org.ei.telemedicine.domain.Child;
 import org.ei.telemedicine.domain.Mother;
 import org.ei.telemedicine.domain.TimelineEvent;
 import org.ei.telemedicine.domain.form.FieldOverrides;
-import org.ei.telemedicine.dto.TimelineEventDTO;
-import org.ei.telemedicine.repository.AllBeneficiaries;
-import org.ei.telemedicine.repository.AllEligibleCouples;
-import org.ei.telemedicine.repository.AllTimelineEvents;
-import org.ei.telemedicine.util.Log;
 import org.ei.telemedicine.view.controller.ANCDetailController;
 import org.ei.telemedicine.view.controller.ChildDetailController;
 import org.ei.telemedicine.view.controller.EligibleCoupleDetailController;
-import org.ei.telemedicine.view.controller.FormController;
 import org.ei.telemedicine.view.controller.PNCDetailController;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
-import org.ei.telemedicine.view.dialog.OpenFormOption;
 import org.joda.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-import org.mozilla.javascript.ObjToIntMap;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Locale;
+import java.util.Map;
 
 import static android.view.View.GONE;
 import static org.ei.telemedicine.AllConstants.ALLFORMDATA;
 import static org.ei.telemedicine.AllConstants.CHILD_TYPE;
 import static org.ei.telemedicine.AllConstants.ENTITY_ID;
 import static org.ei.telemedicine.AllConstants.FORMINFO;
-import static org.ei.telemedicine.AllConstants.FormNames.*;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_CLOSE;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_INVESTIGATIONS;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_REGISTRATION;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_CLOSE;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_IMMUNIZATIONS;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_REGISTRATION_EC;
+import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_OUTCOME;
+import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_PLAN;
+import static org.ei.telemedicine.AllConstants.FormNames.EC_CLOSE;
+import static org.ei.telemedicine.AllConstants.FormNames.EC_EDIT;
+import static org.ei.telemedicine.AllConstants.FormNames.FP_CHANGE;
+import static org.ei.telemedicine.AllConstants.FormNames.HB_TEST;
+import static org.ei.telemedicine.AllConstants.FormNames.IFA;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_CLOSE;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_POSTPARTUM_FAMILY_PLANNING;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
+import static org.ei.telemedicine.AllConstants.FormNames.TT;
+import static org.ei.telemedicine.AllConstants.FormNames.VIEW_EC_REGISTRATION;
+import static org.ei.telemedicine.AllConstants.FormNames.VITAMIN_A;
 import static org.ei.telemedicine.AllConstants.VISIT_TYPE;
 import static org.ei.telemedicine.AllConstants.WOMAN_TYPE;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.age;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.entityId;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.id_no;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.isHighRisk;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visit_type;
-import static org.ei.telemedicine.util.DateUtil.formatDate;
 
 public class NativeOverviewActivity extends SecuredActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {
     ImageButton ib_overview_options, ib_profile_pic;
@@ -82,7 +89,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     CustomFontTextView pnc_summary_priority, pnc_summary_risks, pnc_postpartum_days, pnc_delivery_date, postpartum_title;
     CustomFontTextView tv_child_name, child_summary_priority, child_age, child_date_of_birth;
     ListView lv_timeline_events;
-    List<org.ei.telemedicine.domain.TimelineEvent> timelineEvents, temptimelineEvents;
+    List<org.ei.telemedicine.domain.TimelineEvent> timelineEvents;
     String caseId, visitType, formData, allFormData;
     View ecSummaryLayout, ancSummaryLayout, pncSummaryLayout, childSummaryLayout;
     Context context;
@@ -168,14 +175,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                 context = Context.getInstance();
                 setupViews();
                 timelineEvents = context.allTimelineEvents().forCase(caseId);
-//                ListIterator<org.ei.telemedicine.domain.TimelineEvent> iterator = timelineEvents.listIterator();
-//                while (iterator.hasNext()) {
-//                    TimelineEvent timelineEvent = iterator.next();
-//
-//                    timelineEvent.title()
-//
-//                }
-
+                Log.e("Timelines", timelineEvents.size() + "");
                 android.util.Log.e("CaseId", caseId);
 
                 switch (visitType.toLowerCase()) {
@@ -193,7 +193,12 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         String coupleDetails = getDataFromJson(ecData, "coupleDetails");
                         String details = getDataFromJson(ecData, "details");
 
-                        android.util.Log.e("ecData", ecData);
+                        Mother motherData = context.allBeneficiaries().findMotherByECCaseId(caseId);
+                        if (motherData != null) {
+                            android.util.Log.e("ecData", ecData + "------------" + motherData.caseId());
+                            timelineEvents.addAll(context.allTimelineEvents().forCase(motherData.caseId()));
+                        }
+
                         tv_register_type.setText(visitType.toUpperCase());
                         tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(coupleDetails, "wifeName")));
                         tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(coupleDetails, "wifeName")));
@@ -217,28 +222,28 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                             }
                         });
 
-                        Mother mother = context.allBeneficiaries().findMother(caseId);
-                        if (mother != null) {
-                            String pocInfo = mother.getDetail("docPocInfo") != null ? mother.getDetail("docPocInfo") : "";
-
-                            if (!pocInfo.equals("")) {
-                                try {
-                                    isPoc = true;
-                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
-                                    int val = pocJsonArray.length();
-                                    android.util.Log.e("size", val + "");
-                                    for (int i = 0; i < pocJsonArray.length(); i++) {
-                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
-                                        String title = "Plan of care for " + getDataFromJson(pocData, "visitType") + "Visit - " + getDataFromJson(pocData, "visitNumber");
-                                        String details1 = "Investigations - " + getDataFromJson(pocData, "investigations");
-
-                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care ", LocalDate.parse(changeDateFormat(getDataFromJson(pocData, "planofCareDate"))), title, details1, ""));
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
+//                        Mother mother = context.allBeneficiaries().findMother(caseId);
+//                        if (mother != null) {
+//                            String pocInfo = mother.getDetail("docPocInfo") != null ? mother.getDetail("docPocInfo") : "";
+//
+//                            if (!pocInfo.equals("")) {
+//                                try {
+//                                    isPoc = true;
+//                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
+//                                    int val = pocJsonArray.length();
+//                                    android.util.Log.e("size", val + "");
+//                                    for (int i = 0; i < pocJsonArray.length(); i++) {
+//                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
+//                                        String title = "Plan of care for " + getDataFromJson(pocData, "visitType") + "Visit - " + getDataFromJson(pocData, "visitNumber");
+//                                        String details1 = "Investigations - " + getDataFromJson(pocData, "investigations");
+//
+//                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care ", LocalDate.parse(changeDateFormat(getDataFromJson(pocData, "planofCareDate"))), title, details1, ""));
+//                                    }
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        }
                         String ancData = new ANCDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
                         String anccoupleDetails = getDataFromJson(ancData, "coupleDetails");
                         String ancDetails = getDataFromJson(ancData, "details");
@@ -271,23 +276,23 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                             }
                         });
                         pnc_summary.setVisibility(View.VISIBLE);
-                        Mother pncMother = context.allBeneficiaries().findMother(caseId);
-                        if (pncMother != null) {
-                            String pocInfo = pncMother.getDetail("docPocInfo") != null ? pncMother.getDetail("docPocInfo") : "";
-                            if (!pocInfo.equals("")) {
-                                try {
-                                    isPoc = true;
-                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
-                                    for (int i = 0; i < pocJsonArray.length(); i++) {
-                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
-                                        String title = "Plan of care for " + getDataFromJson(pocData, "visitType");
-                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care", LocalDate.parse(changeDateFormat(getDataFromJson(pocData, "planofCareDate"))), title, "", ""));
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
+//                        Mother pncMother = context.allBeneficiaries().findMother(caseId);
+//                        if (pncMother != null) {
+//                            String pocInfo = pncMother.getDetail("docPocInfo") != null ? pncMother.getDetail("docPocInfo") : "";
+//                            if (!pocInfo.equals("")) {
+//                                try {
+//                                    isPoc = true;
+//                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
+//                                    for (int i = 0; i < pocJsonArray.length(); i++) {
+//                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
+//                                        String title = "Plan of care for " + getDataFromJson(pocData, "visitType");
+//                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care", LocalDate.parse(changeDateFormat(getDataFromJson(pocData, "planofCareDate"))), title, "", ""));
+//                                    }
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        }
                         String pncData = new PNCDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
                         String pnccoupleDetails = getDataFromJson(pncData, "coupleDetails");
                         String pncDetails = getDataFromJson(pncData, "details");
@@ -324,11 +329,32 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         tv_child_name.setVisibility(View.VISIBLE);
                         String childData = new ChildDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
 
-                        android.util.Log.e("childData", childData);
+//                        Child child = context.allBeneficiaries().findChild(caseId);
+//                        Toast.makeText(this, "sda" + child.motherCaseId(), Toast.LENGTH_SHORT).show();
+//                        Mother childMother = context.allBeneficiaries().findMother(child.motherCaseId());
+//                        if (childMother != null) {
+//                            String pocInfo = childMother.getDetail("docPocInfo") != null ? childMother.getDetail("docPocInfo") : "";
+//                            if (!pocInfo.equals("")) {
+//                                try {
+//                                    isPoc = true;
+//                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
+//                                    for (int i = 0; i < pocJsonArray.length(); i++) {
+//                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
+//                                        String title = "Plan of care for child";
+//                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care", LocalDate.parse(changeDateFormat(getDataFromJson(pocData, "planofCareDate"))), title, "", ""));
+//                                    }
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        }
+
+
                         String childCoupleDetails = getDataFromJson(childData, "coupleDetails");
                         String childDetails = getDataFromJson(childData, "details");
                         String childLocationDetails = getDataFromJson(childData, "location");
                         String childInfoDetails = getDataFromJson(childData, "childDetails");
+
 
                         tv_register_type.setText(visitType.toUpperCase());
 
@@ -348,9 +374,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         child_date_of_birth.setText(getDataFromJson(childInfoDetails, "dateOfBirth"));
                         break;
                     case "doctor":
-                        android.util.Log.e("Form Data Overview", formData);
-                        android.util.Log.e("All Form Data Overview", allFormData);
-//                        pnc_postpartum_days.setVisibility(GONE);
+                        ib_overview_options.setVisibility(GONE);
                         pnc_pregnency_summary.setVisibility(GONE);
                         anc_pregnency_summary.setVisibility(GONE);
 
@@ -438,7 +462,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         break;
                 }
 
-                lv_timeline_events.setAdapter(new OverviewTimelineAdapter(this, timelineEvents));
+                lv_timeline_events.setAdapter(new OverviewTimelineAdapter(this, distinctTimelines(timelineEvents)));
                 lv_timeline_events.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView parent, View view, int position, long id) {
@@ -549,8 +573,10 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         }
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
 //            Bundle extras = data.getExtras();
 //            String imageBitmap = (String) extras.get(MediaStore.EXTRA_OUTPUT);
@@ -563,6 +589,18 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
             Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
             mImageView.setImageBitmap(bitmap);
         }
+    }
+
+    public List<TimelineEvent> distinctTimelines(List<TimelineEvent> timelineEvents) {
+        Map<String, TimelineEvent> timelineEventsMap = new HashMap<String, TimelineEvent>();
+        for (TimelineEvent timelineEvent : timelineEvents) {
+            timelineEventsMap.put(timelineEvent.title(), timelineEvent);
+        }
+        timelineEvents.clear();
+        for (Map.Entry<String, TimelineEvent> entry : timelineEventsMap.entrySet()) {
+            timelineEvents.add(entry.getValue());
+        }
+        return timelineEvents;
     }
 
     public String changeDateFormat(String date) {
@@ -591,7 +629,10 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         switch (item.getItemId()) {
             //Overview Ec Menu
             case R.id.register_anc_through_ec:
-                startFormActivity(ANC_REGISTRATION, caseId, null);
+                if (null == context.allBeneficiaries().findMotherByECCaseId(caseId)) {
+                    formController.startFormActivity(ANC_REGISTRATION, caseId, new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
+                } else
+                    Toast.makeText(NativeOverviewActivity.this, "ANC Registration is already completed", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.register_fp_through_ec:
                 startFormActivity(FP_CHANGE, caseId, null);
@@ -616,7 +657,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                 return true;
             case R.id.anc_visit_edit:
                 if (!isPoc)
-                    startFormActivity(ANC_VISIT_EDIT, caseId, null);
+                    formController.startFormActivity(ANC_VISIT_EDIT, caseId, new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
                 else
                     Toast.makeText(this, "Already Poc given for this visit", Toast.LENGTH_SHORT).show();
                 return true;
@@ -680,6 +721,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
             default:
                 return true;
         }
+
     }
 
     @Override
