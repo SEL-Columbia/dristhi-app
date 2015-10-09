@@ -5,114 +5,106 @@
                 <uuid />
             </formhub>
             <today />
-            <child_reg_date />
-            <district />
-            <phc />
-            <sub_center />
-            <district_value />
+            <edit_password />
+            <child_edit_group>
+                <pwd />
+                <child_reg_date />
+                <district />
+                <phc />
+                <sub_center />
+                <district_value />
 
-            <phone_num />
-            <country_code />
+                <phone_num />
+                <country_code />
 
-            <phc_value />
-            <sub_center_value />
-            <district_note />
-            <phc_note />
-            <sub_center_note />
-            <village />
-            <hh_number />
-            <hh_address />
-            <mother_name />
-            <father_name />
-            <thayi_card_number />
-            <religion />
-            <caste />
-            <phone_no />
-            <child_name />
-            <child_birth_date />
-            <child_age />
-            <child_age_note />
-            <child_sex />
-            <phone_no />
-            <child_blood_group />
-            <child_birthweight />
-            <child_weight />
-            <child_height />
-            <child_immunization_history />
-            <child_immunization_history_group>
-                <bcg_date />
-                <opv_0_date />
-                <hepb_0_date />
-                <opv_1_date />
-                <pentavalent_1_date />
-                <opv_2_date />
-                <pentavalent_2_date />
-                <opv_3_date />
-                <pentavalent_3_date />
-                <measles_date />
-                <je_date />
-                <mmr_date />
-                <dptbooster_1_date />
-                <opvbooster_date />
-                <measlesbooster_date />
-                <je_2_date />
-                <dptbooster_2_date />
-            </child_immunization_history_group>
-            <child_vitamin_a_history />
-            <child_vitamin_a_history_group>
-                <vita1_date />
-                <vita2_date />
-                <vita3_date />
-                <vita4_date />
-                <vita5_date />
-                <vita6_date />
-                <vita7_date />
-                <vita8_date />
-                <vita9_date />
-            </child_vitamin_a_history_group>
+                <phc_value />
+                <sub_center_value />
+                <district_note />
+                <phc_note />
+                <sub_center_note />
+                <village />
+                <hh_number />
+                <hh_address />
+                <mother_name />
+                <father_name />
+                <thayi_card_number />
+                <religion />
+                <caste />
+                <phone_no />
+                <child_name />
+                <child_birth_date />
+                <child_age />
+                <child_age_note />
+                <child_sex />
+                <phone_no />
+                <child_blood_group />
+                <child_birthweight />
+                <child_weight />
+                <child_height />
+                <child_immunization_history />
+                <child_immunization_history_group>
+                    <bcg_date />
+                    <opv_0_date />
+                    <hepb_0_date />
+                    <opv_1_date />
+                    <pentavalent_1_date />
+                    <opv_2_date />
+                    <pentavalent_2_date />
+                    <opv_3_date />
+                    <pentavalent_3_date />
+                    <measles_date />
+                    <je_date />
+                    <mmr_date />
+                    <dptbooster_1_date />
+                    <opvbooster_date />
+                    <measlesbooster_date />
+                    <je_2_date />
+                    <dptbooster_2_date />
+                </child_immunization_history_group>
+                <child_vitamin_a_history />
+                <child_vitamin_a_history_group>
+                    <vita1_date />
+                    <vita2_date />
+                    <vita3_date />
+                    <vita4_date />
+                    <vita5_date />
+                    <vita6_date />
+                    <vita7_date />
+                    <vita8_date />
+                    <vita9_date />
+                </child_vitamin_a_history_group>
+
+                <field1 />
+                <field1_group>
+                    <field1_val />
+                </field1_group>
+
+                <field2 />
+                <field2_group>
+                    <field2_val />
+                </field2_group>
+
+                <field3 />
+                <field3_group>
+                    <field3_val />
+                </field3_group>
+
+                <field4 />
+                <field4_group>
+                    <field4_val />
+                </field4_group>
+
+                <field5 />
+                <field5_group>
+                    <field5_val />
+                </field5_group>
+            </child_edit_group>
             <meta>
                 <instanceID />
             </meta>
 
 
-            <field1 />
-            <field1_group>
-                <field1_val />
-            </field1_group>
-
-            <field2 />
-            <field2_group>
-                <field2_val />
-            </field2_group>
-
-            <field3 />
-            <field3_group>
-                <field3_val />
-            </field3_group>
-
-            <field4 />
-            <field4_group>
-                <field4_val />
-            </field4_group>
-
-            <field5 />
-            <field5_group>
-                <field5_val />
-            </field5_group>
-
         </Child_Registration_EngKan>
-    </instance>
-    <instance id="economic_status">
-        <root>
-            <item>
-                <itextId>static_instance-economic_status-0</itextId>
-                <name>apl</name>
-            </item>
-            <item>
-                <itextId>static_instance-economic_status-1</itextId>
-                <name>bpl</name>
-            </item>
-        </root>
     </instance>
     <instance id="immunizations">
         <root>
@@ -271,22 +263,6 @@
             <item>
                 <itextId>static_instance-vitamin_a-8</itextId>
                 <name>9</name>
-            </item>
-        </root>
-    </instance>
-    <instance id="caste">
-        <root>
-            <item>
-                <itextId>static_instance-caste-0</itextId>
-                <name>sc</name>
-            </item>
-            <item>
-                <itextId>static_instance-caste-1</itextId>
-                <name>st</name>
-            </item>
-            <item>
-                <itextId>static_instance-caste-2</itextId>
-                <name>c_others</name>
             </item>
         </root>
     </instance>
