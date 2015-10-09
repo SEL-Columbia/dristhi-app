@@ -84,6 +84,10 @@
         "shouldLoadValue": true
       },
       {
+        "name": "childTemperature",
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/temperature"
+      },
+      {
         "name": "isConsultDocNoReason",
         "bind": "/model/instance/Child_Sick_Visit_EngKan/is_consult_doctor_no_reason"
       },

@@ -8,6 +8,7 @@
             <village />
             <mother_name />
             <sick_visit_option />
+            <temperature />
             <child_sickness_management_group>
                 <case_child_birth_date />
                 <sick_visit_date />
@@ -57,6 +58,7 @@
                 <number_ors_given />
                 <child_referral />
             </report_child_disease_group>
+
             <is_consult_doctor />
             <is_consult_doctor_no_reason />
             <reason_for_no />

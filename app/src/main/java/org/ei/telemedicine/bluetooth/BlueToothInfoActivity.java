@@ -1,23 +1,5 @@
 package org.ei.telemedicine.bluetooth;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Map;
-import java.util.Vector;
-
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -34,19 +16,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
@@ -60,16 +40,23 @@ import org.ei.telemedicine.bluetooth.pulse.ICallBack;
 import org.ei.telemedicine.bluetooth.pulse.PulseBuf;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
-import org.ei.telemedicine.view.activity.FormActivity;
 import org.ei.telemedicine.view.activity.NativeANMPlanofCareActivity;
 import org.ei.telemedicine.view.activity.SecuredActivity;
-import org.ei.telemedicine.view.contract.SmartRegisterClient;
-import org.ei.telemedicine.view.dialog.EditOption;
-import org.ei.telemedicine.view.dialog.OpenFormOption;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.Vector;
+
+import static android.view.View.*;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static org.ei.telemedicine.AllConstants.DRUGS;
 import static org.ei.telemedicine.AllConstants.DRUGS_INFO_RESULT_CODE;
 
@@ -79,11 +66,12 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
     org.ei.telemedicine.view.customControls.CustomFontTextView bt_save;
     String entityId, instanceId, formName;
+    int subFormCount;
 
     ImageView iv_bp, iv_steh, iv_bgm, iv_eet, iv_fetal, iv_poc;
     EditText et_bp_sys, et_bp_dia, et_steh, et_bgm, et_fetal, et_eet, et_bp_heart;
     TextView tv_eet_cen, tv_fetal;
-    LinearLayout ll_fetal_data;
+    LinearLayout ll_fetal_data, ll_fetal, ll_eet, ll_bp, ll_bgm, ll_poc, ll_steh, ll_eet_child, ll_eet_child_data;
 
     org.ei.telemedicine.bluetooth.pulse.BluetoothService pulseService;
     org.ei.telemedicine.bluetooth.pulse.CallBack pulsecall;
@@ -104,6 +92,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     private String TAG = "BlueToothInfoActivity";
     public static String progrs = null;
     private static int device = 0;
+    private static int tempartureFor = 0;
     private static int opacity = 128;
     BluetoothAdapter bluetoothAdapter;
     public static BluetoothSocket btSocket;
@@ -169,6 +158,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 entityId = extras.getString(AllConstants.ENTITY_ID, "");
                 instanceId = extras.getString(AllConstants.INSTANCE_ID_PARAM, "");
                 formName = extras.getString(AllConstants.FORM_NAME_PARAM, "");
+                subFormCount = extras.getInt(AllConstants.SUB_FORM_COUNT, 0);
 
                 iv_eet = (ImageView) findViewById(R.id.iv_eet);
                 iv_bgm = (ImageView) findViewById(R.id.iv_bgm);
@@ -191,11 +181,74 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 tv_eet_cen = (TextView) findViewById(R.id.tv_eet_cen);
                 tv_eet_cen.setText(context.allSettings().fetchANMConfiguration("temperature").startsWith("c") ? "C" : "F");
                 bt_save = (org.ei.telemedicine.view.customControls.CustomFontTextView) findViewById(R.id.bt_info_save);
+
+
+                ll_fetal = (LinearLayout) findViewById(R.id.ll_fetal);
+                ll_bgm = (LinearLayout) findViewById(R.id.ll_bgm);
+                ll_bp = (LinearLayout) findViewById(R.id.ll_bp);
+                ll_eet = (LinearLayout) findViewById(R.id.ll_eet);
+                ll_steh = (LinearLayout) findViewById(R.id.ll_steh);
+                ll_poc = (LinearLayout) findViewById(R.id.ll_poc);
+                ll_eet_child = (LinearLayout) findViewById(R.id.ll_eet_child);
+                ll_eet_child_data = (LinearLayout) findViewById(R.id.ll_eet_child_data);
+
                 if (formName.equalsIgnoreCase(AllConstants.FormNames.PNC_VISIT)) {
-                    iv_fetal.setVisibility(View.GONE);
-                    et_fetal.setVisibility(View.GONE);
-                    ll_fetal_data.setVisibility(View.GONE);
-                    tv_fetal.setVisibility(View.GONE);
+                    ll_fetal.setVisibility(INVISIBLE);
+                    ll_eet_child.setVisibility(VISIBLE);
+                    if (subFormCount == 0) {
+                        ll_eet_child.setVisibility(INVISIBLE);
+                    }
+                    for (int i = 1; i <= subFormCount; i++) {
+                        final int value = i;
+                        LinearLayout ll_eet_child_dat = new LinearLayout(this);
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        params.gravity = Gravity.CENTER;
+                        ll_eet_child_dat.setWeightSum(4);
+                        ll_eet_child_dat.setGravity(Gravity.CENTER);
+                        ll_eet_child_dat.setLayoutParams(params);
+
+                        TextView textView = new TextView(this);
+                        textView.setLayoutParams(new LinearLayout.LayoutParams(0, WRAP_CONTENT, 1.5f));
+                        textView.setText("Child-" + i + " Temp");
+                        textView.setTextSize(20);
+
+                        final EditText editText = new EditText(this);
+                        editText.setLayoutParams(new LinearLayout.LayoutParams(0, WRAP_CONTENT, 1.5f));
+                        editText.setTag("Child temperature");
+                        editText.setId(value);
+
+                        TextView textView2 = new TextView(this);
+                        textView2.setLayoutParams(new LinearLayout.LayoutParams(0, WRAP_CONTENT, 0.5f));
+                        textView2.setText((context.allSettings().fetchANMConfiguration("temperature").startsWith("c") ? "C" : "F"));
+                        textView2.setTextSize(20);
+
+                        ImageButton imageButton = new ImageButton(this);
+                        imageButton.setLayoutParams(new LinearLayout.LayoutParams(0, WRAP_CONTENT, 0.5F));
+                        imageButton.setTag("ib_eet-" + value);
+                        imageButton.setId(value);
+                        imageButton.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                tempartureFor = value;
+                                device = Constants.EET_DEVICE_NUM;
+                                iv_eet.setImageDrawable(getResources().getDrawable(R.drawable.eet_enable));
+                                startDiscovery();
+                            }
+                        });
+
+                        ll_eet_child_dat.addView(textView);
+                        ll_eet_child_dat.addView(editText);
+                        ll_eet_child_dat.addView(textView2);
+                        ll_eet_child_dat.addView(imageButton);
+
+                        ll_eet_child.addView(ll_eet_child_dat);
+                    }
+                } else if (formName.equalsIgnoreCase(AllConstants.FormNames.CHILD_ILLNESS)) {
+                    ll_fetal.setVisibility(INVISIBLE);
+                    ll_bgm.setVisibility(INVISIBLE);
+                    ll_bp.setVisibility(INVISIBLE);
+                    ll_steh.setVisibility(INVISIBLE);
+                    ll_poc.setVisibility(INVISIBLE);
                 }
 
                 iv_eet.setOnClickListener(this);
@@ -209,7 +262,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 iv_poc.setOnClickListener(this);
                 File file = new File(getFilePath());
                 if (file.exists()) {
-                    ib_play.setVisibility(View.VISIBLE);
+                    ib_play.setVisibility(VISIBLE);
                 }
 
                 progressDialog = new ProgressDialog(BlueToothInfoActivity.this);
@@ -223,9 +276,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     intent.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
                     intent.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
                     registerReceiver(searchDevices, intent);
-
                 }
-
             }
 
         }
@@ -233,31 +284,10 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
     @Override
     protected void onResumption() {
-//        if (bluetoothAdapter != null && bluetoothAdapter.getState() == BluetoothAdapter.STATE_OFF) {
-//            Toast.makeText(BlueToothInfoActivity.this, "Please Enable the bluetooth",
-//                    Toast.LENGTH_SHORT).show();
-//            iv_eet.setAlpha(opacity);
-//            iv_steh.setAlpha(opacity);
-//            iv_bp.setAlpha(opacity);
-//            iv_fetal.setAlpha(opacity);
-//            iv_bgm.setAlpha(opacity);
-//
-//            iv_bgm.setEnabled(false);
-//            iv_fetal.setEnabled(false);
-//            iv_eet.setEnabled(false);
-//            iv_steh.setEnabled(false);
-//            iv_bp.setEnabled(false);
-//        } else {
-//            iv_bgm.setEnabled(true);
-//            iv_fetal.setEnabled(true);
-//            iv_eet.setEnabled(true);
-//            iv_steh.setEnabled(true);
-//            iv_bp.setEnabled(true);
-//        }
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == DRUGS_INFO_RESULT_CODE) {
             Log.e("drugs", data.getExtras().getString(DRUGS));
@@ -394,6 +424,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 startRecord();
                 break;
             case R.id.iv_eet:
+                tempartureFor = 0;
                 device = Constants.EET_DEVICE_NUM;
                 iv_eet.setImageDrawable(getResources().getDrawable(R.drawable.eet_enable));
                 startDiscovery();
@@ -434,7 +465,8 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
     private void saveData() {
         try {
-            unregisterReceiver(searchDevices);
+            if (searchDevices != null)
+                unregisterReceiver(searchDevices);
             saveDevicesData(entityId);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -553,11 +585,19 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
             Log.e(TAG, "Form Name " + formSubmission.formName());
             JSONObject formData = new JSONObject(formSubmission.instance());
             JSONObject instanceData = formData.getJSONObject("form");
-            JSONArray jsonArray = instanceData.getJSONArray("fields");
-            Log.e(TAG, jsonArray + "" + formData);
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
+            JSONArray fieldsJsonArray = instanceData.getJSONArray("fields");
+            JSONArray instancesArray = instanceData.has("sub_forms") ? instanceData.getJSONArray("sub_forms").getJSONObject(0).getJSONArray("instances") : null;
+            if (instancesArray != null && subFormCount == 0) {
+                ;
+                for (int i = 1; i <= subFormCount; i++) {
+                    int value = i;
+                    EditText editText = (EditText) findViewById(value);
+                    instancesArray.getJSONObject(i - 1).put("childTemperature", editText.getText().toString());
+                }
+                instanceData.getJSONArray("sub_forms").getJSONObject(0).put("instances", instancesArray);
+            }
+            for (int i = 0; i < fieldsJsonArray.length(); i++) {
+                JSONObject jsonObject = new JSONObject(fieldsJsonArray.get(i).toString());
 
                 if (jsonObject.has("name")) {
                     if (jsonObject.get("name").equals(bpDiastolic))
@@ -566,6 +606,8 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                         jsonObject.put("value", et_bp_sys.getText().toString());
                     else if (jsonObject.get("name").equals(temperature))
                         jsonObject.put("value", et_eet.getText().toString() + (context.allSettings().fetchANMConfiguration("temperature").startsWith("c") ? "-C" : "-F"));
+                    else if (jsonObject.get("name").equals(AllConstants.PNCVisitFields.CHILD_TEMPERATURE))
+                        jsonObject.put("value", et_eet.getText().toString() + (context.allSettings().fetchANMConfiguration("childtemperature").startsWith("c") ? "-C" : "-F"));
                     else if (jsonObject.get("name").equals(fetal_data))
                         jsonObject.put("value", et_fetal.getText().toString());
                     else if (jsonObject.get("name").equals(blood_glucose_data))
@@ -574,11 +616,11 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                         jsonObject.put("value", getFilePath());
                     else if (jsonObject.get("name").equals(anm_poc))
                         jsonObject.put("value", anmPocInfo);
-                    jsonArray.put(i, jsonObject);
+                    fieldsJsonArray.put(i, jsonObject);
                 }
             }
-            Log.e(TAG, "After Putting values ---- " + jsonArray);
-            instanceData.put("fields", jsonArray);
+            Log.e(TAG, "After Putting values ---- " + fieldsJsonArray);
+            instanceData.put("fields", fieldsJsonArray);
             formData.put("form", instanceData);
             context.formDataRepository().updateInstance(instanceId, formData.toString());
         }
@@ -614,7 +656,6 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         if (bluetoothAdapter != null & bluetoothAdapter.isEnabled()) {
             bluetoothAdapter.cancelDiscovery();
             bluetoothAdapter.disable();
-            unregisterReceiver(searchDevices);
         }
     }
 
@@ -647,7 +688,12 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     if (deviceNum == Constants.EET_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
                         String result = new String(resultData);
                         Log.e(TAG, "Data EET = " + result);
-                        et_eet.setText(result);
+                        if (tempartureFor == 0)
+                            et_eet.setText(result);
+                        else {
+                            EditText editText = (EditText) findViewById(tempartureFor);
+                            editText.setText(result);
+                        }
                     }
                     if (deviceNum == Constants.FET_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
                         Log.e(TAG,

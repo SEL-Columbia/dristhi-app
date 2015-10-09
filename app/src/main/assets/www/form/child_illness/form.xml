@@ -658,6 +658,12 @@
                 data-calculate="if(selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'chest_indrawing'), 'Chest_indrawing', '')"
                 data-type-xml="string" type="hidden" />
         </label>
+
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/temperature" data-calculate="0"
+                data-type-xml="string" type="hidden" />
+        </label>
+
         <label class="calculation non-select ">
             <input
                 name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_sleepy_unconscious"

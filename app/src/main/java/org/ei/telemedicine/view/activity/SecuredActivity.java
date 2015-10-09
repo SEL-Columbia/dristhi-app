@@ -20,6 +20,7 @@ import org.ei.telemedicine.R;
 import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
 import org.ei.telemedicine.domain.ProfileImage;
 import org.ei.telemedicine.domain.form.FormSubmission;
+import org.ei.telemedicine.domain.form.SubForm;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.repository.ImageRepository;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
@@ -43,6 +44,7 @@ import static org.ei.telemedicine.AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESUL
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_INVESTIGATIONS;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS;
 import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
 import static org.ei.telemedicine.AllConstants.VIEW_FORM;
 import static org.ei.telemedicine.R.string.no_button_label;
@@ -198,22 +200,35 @@ public abstract class SecuredActivity extends Activity {
                     Context.getInstance().alertService().changeAlertStatusToInProcess(metaDataMap.get(ENTITY_ID), metaDataMap.get(ALERT_NAME_PARAM));
                 }
             }
-            if (context.userService().getFormName().equals(ANC_VISIT) || context.userService().getFormName().equals(ANC_INVESTIGATIONS) || context.userService().getFormName().equals(PNC_VISIT) || context.userService().getFormName().equals(ANC_VISIT_EDIT)) {
+            if (context.userService().getFormName().equals(ANC_VISIT) || context.userService().getFormName().equals(ANC_INVESTIGATIONS) || context.userService().getFormName().equals(PNC_VISIT) || context.userService().getFormName().equals(ANC_VISIT_EDIT) || context.userService().getFormName().equals(CHILD_ILLNESS)) {
                 DrishtiSyncScheduler.stop(SecuredActivity.this);
-                logError("Forms " + context.userService().getFormName());
-                Log.e(TAG, "Entity Id" + context.userService().getEntityId());
                 FormSubmission formSubmission = context.formDataRepository().fetchFromSubmissionUseEntity(context.userService().getEntityId());
+                int subFormCount = 0;
+                String deliveryOutcome = "";
+                try {
+                    deliveryOutcome = formSubmission.getFieldValue("deliveryOutcome");
+                    SubForm subForm = formSubmission.getSubFormByName(AllConstants.PNCVisitFields.CHILD_PNC_VISIT_SUB_FORM_NAME);
+                    subFormCount = subForm.instances().size();
+                    if (!deliveryOutcome.equals("") && deliveryOutcome.equalsIgnoreCase("still_birth")) {
+                        subFormCount = 0;
+                    }
+                } catch (Exception e) {
+                    Log.e("No Subforms", "No Subforms");
+                }
+
                 Log.e(TAG, "Form Data" + formSubmission.instance());
-                showBluetooth(formSubmission.entityId(), formSubmission.instanceId(), context.userService().getFormName());
+                showBluetooth(formSubmission.entityId(), formSubmission.instanceId(), context.userService().getFormName(), formSubmission, subFormCount);
             }
         }
     }
 
-    private void showBluetooth(final String entityId, final String instanceId, final String formName) {
+    private void showBluetooth(final String entityId, final String instanceId, final String formName, FormSubmission formSubmission, int subFormCount) {
         Intent intent = new Intent(SecuredActivity.this, BlueToothInfoActivity.class);
         intent.putExtra(ENTITY_ID, entityId);
         intent.putExtra(INSTANCE_ID_PARAM, instanceId);
         intent.putExtra(FORM_NAME_PARAM, formName);
+        intent.putExtra(SUB_FORM_COUNT, subFormCount);
+
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         startActivity(intent);
 

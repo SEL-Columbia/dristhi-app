@@ -509,6 +509,82 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="left"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Vital Measurements :"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="4">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Temperature :"
+                    android:textSize="20sp" />
+
+
+                <EditText
+                    android:id="@+id/et_temperature"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_temp_format"
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:gravity="left"
+                    android:text=""
+                    android:textSize="15sp" />
+
+                <ImageButton
+                    android:id="@+id/ib_temp_graph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/graph" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
