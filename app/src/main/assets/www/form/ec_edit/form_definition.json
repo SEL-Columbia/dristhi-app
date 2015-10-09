@@ -90,9 +90,8 @@
       },
       {
         "name": "wifeAge",
-        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/wife_age",
-        "source": "eligible_couple.wifeAge",
-        "shouldLoadValue": true
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/wife_age"
       },
       {
         "name": "husbandAge",

@@ -7,7 +7,7 @@
     <label class="question non-select ">
         <span class="question-label active" lang="">Edit password:</span>
         <input name="/EC_Edit_EngKan/edit_password" autocomplete="off" data-type-xml="string"
-            type="text" />
+            type="password" />
     </label>
     <section name="/EC_Edit_EngKan/ec_edit_group" class="or-group-data or-branch pre-init "
         data-relevant=" /EC_Edit_EngKan/edit_password  = /EC_Edit_EngKan/ec_edit_group/pwd">
@@ -74,58 +74,13 @@
 
         </label>
 
-        <fieldset class="question">
-            <fieldset>
-                <legend>
-                    <span class="question-label active" lang="">DOB is known?
-                    </span>
-                    <span class="required">*</span>
-                </legend>
-                <div class="option-wrapper">
-                    <label class="">
-                        <input name="/EC_Edit_EngKan/ec_edit_group/is_dob_known"
-                            data-name="/EC_Edit_EngKan/ec_edit_group/is_dob_known"
-                            data-type-xml="select1" required="required" type="radio" value="yes" />
-                        <span class="option-label active" lang="">Yes</span>
-                    </label>
-                    <label class="">
-                        <input name="/EC_Edit_EngKan/ec_edit_group/is_dob_known"
-                            data-name="/EC_Edit_EngKan/ec_edit_group/is_dob_known"
-                            data-type-xml="select1" required="required" type="radio" value="no" />
-                        <span class="option-label active" lang="">No</span>
-                    </label>
-                </div>
-            </fieldset>
-        </fieldset>
-
-        <label class="question or-branch pre-init non-select">
-            <span class="question-label active" lang="">Woman age in years:
+        <label class="question non-select">
+            <span class="question-label active" lang="">Woman age:
             </span>
             <span class="required">*</span>
-            <input name="/EC_Edit_EngKan/ec_edit_group/wife_age1" autocomplete="off"
+            <input name="/EC_Edit_EngKan/ec_edit_group/wife_age" autocomplete="off"
                 data-constraint=".&lt;=(/EC_Edit_EngKan/ec_edit_group/wife_max_age) and .&gt;=(/EC_Edit_EngKan/ec_edit_group/wife_min_age)"
-                data-relevant=" /EC_Edit_EngKan/ec_edit_group/is_dob_known  = 'no'"
                 data-type-xml="int" required="required" type="number" />
-        </label>
-
-        <label class="question or-branch pre-init non-select ">
-            <span class="question-label active" lang="">Date of Birth?
-            </span>
-            <span class="required">*</span>
-            <input name="/EC_Edit_EngKan/ec_edit_group/wife_dob" autocomplete="off"
-                data-constraint=".&lt;= ( /EC_Edit_EngKan/ec_edit_group/today  - /EC_Edit_EngKan/ec_edit_group/wife_min_age * 365) and .&gt;= ( /EC_Edit_EngKan/ec_edit_group/today  - /EC_Edit_EngKan/ec_edit_group/wife_max_age* 365)"
-                data-relevant="/EC_Edit_EngKan/ec_edit_group/is_dob_known  = 'yes'"
-                data-type-xml="date" required="required" type="date" />
-        </label>
-
-        <label class="note or-branch pre-init non-select ">
-            <span class="question-label active" lang="">Woman's age is
-                <span class="or-output" data-value=" /EC_Edit_EngKan/ec_edit_group/woman_age ">Years
-                </span>
-            </span>
-            <input name="/EC_Edit_EngKan/ec_edit_group/wife_age_note" autocomplete="off"
-                data-relevant=" /EC_Edit_EngKan/ec_edit_group/wife_dob  &gt; 0 "
-                data-type-xml="string" readonly="readonly" type="text" />
         </label>
 
         <label class="question non-select ">
@@ -437,21 +392,10 @@
                 data-calculate="concat( /EC_Edit_EngKan/ec_edit_group/country_code, /EC_Edit_EngKan/ec_edit_group/phone_no)"
                 data-type-xml="string" type="hidden" />
         </label>
-        <label class="calculation non-select ">
-            <input name="/EC_Edit_EngKan/ec_edit_group/woman_age" autocomplete="off"
-                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/wife_dob  = '', '', int(( /EC_Edit_EngKan/ec_edit_group/today  -  /EC_Edit_EngKan/ec_edit_group/wife_dob) div 365))"
-                data-type-xml="string" type="hidden" />
-        </label>
 
         <label class="calculation non-select ">
             <input name="/EC_Edit_EngKan/ec_edit_group/woman_date_of_birth" autocomplete="off"
-                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/wife_dob  = '', format-date(date( /EC_Edit_EngKan/ec_edit_group/today -( /EC_Edit_EngKan/ec_edit_group/wife_age *365.25)), '%Y-%n-%e'),/EC_Edit_EngKan/ec_edit_group/wife_dob)"
-                data-type-xml="string" type="hidden" />
-        </label>
-
-        <label class="calculation non-select ">
-            <input name="/EC_Edit_EngKan/ec_edit_group/wife_age" autocomplete="off"
-                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/woman_age= '', /EC_Edit_EngKan/ec_edit_group/wife_age1, /EC_Edit_EngKan/ec_edit_group/woman_age)"
+                data-calculate="format-date(date( /EC_Edit_EngKan/today -( /EC_Edit_EngKan/ec_edit_group/wife_age *365.25)), '%Y-%n-%e')"
                 data-type-xml="string" type="hidden" />
         </label>
 
