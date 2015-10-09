@@ -17,7 +17,9 @@ import org.ei.opensrp.indonesia.view.contract.KIANCClients;
 import org.ei.opensrp.indonesia.view.contract.KIPNCClients;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClients;
+import org.ei.opensrp.indonesia.view.controller.AnakRegisterController;
 import org.ei.opensrp.indonesia.view.controller.BidanController;
+import org.ei.opensrp.indonesia.view.controller.KIANCRegisterController;
 import org.ei.opensrp.indonesia.view.controller.KartuIbuRegisterController;
 import org.ei.opensrp.indonesia.view.controller.UniqueIdController;
 import org.ei.opensrp.repository.AllSettings;
@@ -55,6 +57,8 @@ public class Context extends org.ei.opensrp.Context{
     private BidanController bidanController;
     private UniqueIdController uniqueIdController;
     private KartuIbuRegisterController kartuIbuRegisterController;
+    private KIANCRegisterController kartuIbuANCRegisterController;
+    private AnakRegisterController anakRegisterController;
 
     private AllSettingsINA allSettingsINA;
 
@@ -238,5 +242,19 @@ public class Context extends org.ei.opensrp.Context{
             kartuIbuRegisterController = new KartuIbuRegisterController(allKartuIbus(), listCache(), kiClientsCache(), allKohort());
         }
         return kartuIbuRegisterController;
+    }
+
+    public KIANCRegisterController kartuIbuANCRegisterController() {
+        if (kartuIbuANCRegisterController == null) {
+            kartuIbuANCRegisterController = new KIANCRegisterController(allKohort(), listCache(), kartuIbuANCClientsCache(), villagesCache());
+        }
+        return kartuIbuANCRegisterController;
+    }
+
+    public AnakRegisterController anakRegisterController() {
+        if (anakRegisterController == null) {
+            anakRegisterController = new AnakRegisterController(allKohort(), alertService(), serviceProvidedService(), listCache(),smartRegisterClientsCache(), villagesCache());
+        }
+        return anakRegisterController;
     }
 }

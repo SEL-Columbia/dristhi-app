@@ -11,6 +11,7 @@ import org.ei.opensrp.indonesia.view.activity.NativeKIANCSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKIAnakSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKIPNCSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKISmartRegisterActivity;
+import org.ei.opensrp.indonesia.view.activity.NativeReportingActivity;
 import org.ei.opensrp.view.controller.ANMController;
 import org.ei.opensrp.view.controller.NavigationController;
 
@@ -58,5 +59,9 @@ public class NavigationControllerINA extends NavigationController {
         Intent intent = new Intent(activity.getApplicationContext(), ChildProfileViewActivity.class);
         intent.putExtra(CASE_ID, entityId);
         activity.startActivity(intent);
+    }
+
+    public void startReports() {
+        activity.startActivity(new Intent(activity, NativeReportingActivity.class));
     }
 }

@@ -125,6 +125,10 @@
         <activity android:name="org.ei.opensrp.view.activity.SettingsActivity"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name="org.ei.opensrp.indonesia.view.activity.NativeReportingActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape">
+        </activity>
 
 
         <receiver android:name=".view.receiver.SyncBidanBroadcastReceiver"/>

@@ -237,7 +237,7 @@ public class BidanHomeActivity extends org.ei.opensrp.view.activity.SecuredActiv
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btn_reporting:
-                    navigationController.startReports();
+                    ((NavigationControllerINA)navigationController).startReports();
                     break;
 
                 case R.id.btn_videos:
