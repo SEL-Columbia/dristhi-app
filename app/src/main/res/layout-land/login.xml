@@ -77,6 +77,7 @@
             android:singleLine="true"
             android:textColor="#666666"
             android:textColorHint="#bfbfbf"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:typeface="sans" />
 
         <EditText
@@ -96,6 +97,7 @@
             android:singleLine="true"
             android:textColor="#666666"
             android:textColorHint="#bfbfbf"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:typeface="sans" />
 
         <Button
@@ -118,12 +120,35 @@
             android:textColor="#666666"
             android:textSize="20sp" />
 
+        <Button
+            android:id="@+id/settings_Button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0"
+            android:background="@drawable/login_button"
+            android:ems="10"
+            android:onClick="login"
+            android:shadowColor="#ffffff"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="0.5"
+            android:text="settings"
+            android:textColor="#666666"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/form_spacer_below"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription="@string/spacer" />
+
+
     </LinearLayout>
 
 </LinearLayout>

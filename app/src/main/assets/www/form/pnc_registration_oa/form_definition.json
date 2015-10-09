@@ -101,6 +101,11 @@
         "bind": "/model/instance/PNC_Child_Registration_EngKan/phone_owner"
       },
       {
+        "name": "countryCode",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/country_code"
+      },
+      {
         "name": "religion"
       },
       {

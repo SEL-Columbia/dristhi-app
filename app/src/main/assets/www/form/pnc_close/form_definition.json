@@ -18,7 +18,7 @@
         "name": "pncNumber",
         "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Close_EngKan/pnc_num",
-        "source": "mother.eligible_couple.pncNumber"
+        "source": "mother.pncNumber"
       },
       {
         "name": "closeReason",

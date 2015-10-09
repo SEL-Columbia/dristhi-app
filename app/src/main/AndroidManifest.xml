@@ -45,7 +45,6 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -208,6 +207,7 @@
             android:name=".view.activity.NativeANMPlanofCareActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
 
+        
         <activity
             android:name=".doctor.ViewPreVisitScreenActivity"
             android:screenOrientation="landscape" />

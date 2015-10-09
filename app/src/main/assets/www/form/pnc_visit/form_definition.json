@@ -18,7 +18,7 @@
         "name": "pncNumber",
         "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Visit_EngKan/pnc_num",
-        "source": "mother.eligible_couple.pncNumber"
+        "source": "mother.pncNumber"
       },
       {
         "name": "ecId",
@@ -113,10 +113,6 @@
       {
         "name": "hasFeverSymptoms",
         "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms"
-      },
-      {
-        "name": "temperature",
-        "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/temperature"
       },
       {
         "name": "hasFever",
@@ -293,7 +289,7 @@
             "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms"
           },
           {
-            "name": "temperature",
+            "name": "childTemperature",
             "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature"
           },
           {

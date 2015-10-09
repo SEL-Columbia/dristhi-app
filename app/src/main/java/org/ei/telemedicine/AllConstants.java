@@ -76,12 +76,13 @@ public class AllConstants {
     public static final String ZIGGY_FILE_LOADER = "ziggyFileLoader";
     public static final String FORM_SUBMISSION_ROUTER = "formSubmissionRouter";
     public static final String ANM_LOCATION_CONTROLLER = "anmLocationContext";
+    public static final String SUB_FORM_COUNT = "subFormCount";
 
     public static final String REPOSITORY = "formDataRepositoryContext";
 
     public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
-    public static final String FORMINFO="formInfo";
-    public static final String ALLFORMDATA="allFormInfo";
+    public static final String FORMINFO = "formInfo";
+    public static final String ALLFORMDATA = "allFormInfo";
     public static final String ENTITY_ID = "entityId";
     public static final int FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE = 112;
     public static final int DRUGS_INFO_RESULT_CODE = 113;
@@ -272,6 +273,7 @@ public class AllConstants {
         public static final String BP_SYSTOLIC = "bpSystolic";
         public static final String BP_DIASTOLIC = "bpDiastolic";
         public static final String TEMPERATURE = "temperature";
+        public static final String CHILD_TEMPERATURE = "childTemperature";
         public static final String WEIGHT = "weight";
         public static final String HB_LEVEL = "hbLevel";
         public static final String BLOODGLUCOSEDATA = "bloodGlucoseData";

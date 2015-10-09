@@ -748,6 +748,7 @@
                     android:typeface="sans" />
 
                 <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_temp_format"
                     style="@style/CustomFontTextViewStyle.ListView.Normal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -755,7 +756,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="0.5"
                     android:gravity="left"
-                    android:text="F"
+                    android:text=""
                     android:textSize="15sp" />
 
                 <ImageButton

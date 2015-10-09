@@ -31,6 +31,7 @@ public class Context {
     private ReportRepository reportRepository;
     private FormDataRepository formDataRepository;
     private ServiceProvidedRepository serviceProvidedRepository;
+    private ImageRepository imageRepository;
 
     private AllSettings allSettings;
     private AllSharedPreferences allSharedPreferences;
@@ -391,7 +392,7 @@ public class Context {
             repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
                     eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(),
                     reportRepository(), formDataRepository(),
-                    serviceProvidedRepository(), doctorRepository());
+                    serviceProvidedRepository(), doctorRepository(), imageRepository());
         }
         return repository;
     }
@@ -430,7 +431,7 @@ public class Context {
     public AllBeneficiaries allBeneficiaries() {
         initRepository();
         if (allBeneficiaries == null) {
-            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository(), alertRepository(), timelineEventRepository(), testRepository(),  doctorRepository());
+            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository(), alertRepository(), timelineEventRepository(), testRepository(), doctorRepository());
         }
         return allBeneficiaries;
     }
@@ -515,6 +516,12 @@ public class Context {
         return doctorRepository;
     }
 
+    public ImageRepository imageRepository() {
+        if (imageRepository == null) {
+            imageRepository = new ImageRepository();
+        }
+        return imageRepository;
+    }
 
 
     private ReportRepository reportRepository() {
@@ -629,7 +636,7 @@ public class Context {
 
     public DristhiConfiguration configuration() {
         if (configuration == null) {
-            configuration = new DristhiConfiguration(getInstance().applicationContext().getAssets());
+            configuration = new DristhiConfiguration(getInstance().applicationContext().getAssets(), applicationContext);
         }
         return configuration;
     }
@@ -654,6 +661,11 @@ public class Context {
         }
         return anmLocationController;
     }
+
+    public HTTPAgent getHttpAgent() {
+        return httpAgent;
+    }
+
 
     //#TODO: Refactor to use one cache object
     public Cache<ECClients> ecClientsCache() {

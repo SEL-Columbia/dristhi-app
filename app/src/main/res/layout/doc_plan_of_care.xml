@@ -75,7 +75,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/tv_doc_name"
                     android:layout_toRightOf="@+id/iv_doc_profile"
-                    android:text="Child Illness"
+                    android:text=""
                     android:textSize="20sp" />
 
             </RelativeLayout>

@@ -112,7 +112,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
 //        viewHolder.tv_status.setText(getData(status, formData));
         viewHolder.tv_wife_age.setText(getData(age, formData));
 //        Log.e(TAG, "pocPending Info" + pocPendingInfo.length());
-        viewHolder.ll_clients_header_layout.setBackgroundColor(Color.parseColor((pocPendingInfo.length() != 0 && !pocPendingInfo.equals("")) ? "#c0c0c0" : "#FFFFFF"));
+        viewHolder.ll_clients_header_layout.setBackgroundColor(Color.parseColor((pocPendingInfo.trim().length() != 0 && !pocPendingInfo.equals("")) ? "#c0c0c0" : "#FFFFFF"));
         Drawable imgae = null;
         String data = getData(visit_type, formData);
         viewHolder.iv_hr.setVisibility(getData(isHighRisk, formData).equalsIgnoreCase("yes") ? View.VISIBLE : View.GONE);
