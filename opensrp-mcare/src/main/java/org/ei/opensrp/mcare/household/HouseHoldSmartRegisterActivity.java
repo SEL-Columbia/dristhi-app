@@ -5,16 +5,21 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
-
-import org.ei.opensrp.mcare.R;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonObjectFilterOption;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
+import org.ei.opensrp.commonregistry.CommonPersonObjectClients;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -39,6 +44,7 @@ import org.opensrp.api.util.TreeNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import util.AsyncTask;
@@ -155,8 +161,8 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
     private DialogOption[] getEditOptions() {
         HashMap <String,String> overridemap = new HashMap<String,String>();
-        overridemap.put("existing_MWRA","MWRA");
-        overridemap.put("existing_location","existing_location");
+        overridemap.put("existing_MWRA", "MWRA");
+        overridemap.put("existing_location", "existing_location");
         return new DialogOption[]{
 
                 new OpenFormOption("census enrollment form", "census_enrollment_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.byDetails)
@@ -171,7 +177,66 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         villageController = new VillageController(context.allEligibleCouples(),
                 context.listCache(), context.villagesCache());
         dialogOptionMapper = new DialogOptionMapper();
-        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form",new CensusEnrollmentHandler());
+        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
+
+//        checkforNidMissing();
+    }
+
+    private void checkforNidMissing() {
+        LinearLayout titlelayout = (LinearLayout)findViewById(org.ei.opensrp.R.id.title_layout);
+        if(anyNIdmissing(controller)) {
+            try {
+                titlelayout.removeView(findViewById(900)) ;
+
+            }catch(Exception e){
+
+            }
+            Button warn = new Button(this);
+            warn.setBackground(getResources().getDrawable(R.mipmap.warning));
+            warn.setId(900);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.gravity = Gravity.CENTER;
+//        warn.setGravity(Gravity.CENTER);
+//        warn.setB
+            titlelayout.addView(warn, layoutParams);
+            warn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getClientsAdapter()
+                            .refreshList(new noNIDFilter(), getCurrentServiceModeOption(),
+                                    getCurrentSearchFilter(), getCurrentSortOption());
+                }
+            });
+        }else{
+            titlelayout.removeView(findViewById(900));
+        }
+    }
+
+    private boolean anyNIdmissing(CommonPersonObjectController controller) {
+        boolean toreturn = false;
+        List<CommonPersonObject> allchildelco = null;
+        CommonPersonObjectClients clients = controller.getClients();
+        ArrayList<String> list = new ArrayList<String>();
+        AllCommonsRepository allElcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
+
+        for(int i = 0;i <clients.size();i++) {
+
+            list.add((clients.get(i).entityId()));
+
+        }
+        allchildelco = allElcoRepository.findByRelationalIDs(list);
+
+        if(allchildelco != null) {
+           for (int i = 0; i < allchildelco.size(); i++) {
+               if (allchildelco.get(i).getDetails().get("FWELIGIBLE").equalsIgnoreCase("1")) {
+                   if (allchildelco.get(i).getDetails().get("nidImage") == null) {
+                       toreturn = true;
+                   }
+               }
+           }
+       }
+        return toreturn;
+//        return false;
     }
 
     @Override
@@ -179,6 +244,7 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         getDefaultOptionsProvider();
 
         super.setupViews();
+        findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
 
         setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -235,6 +301,7 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         super.onResumption();
         getDefaultOptionsProvider();
         updateSearchView();
+        checkforNidMissing();
     }
 
     public void updateSearchView(){
@@ -250,8 +317,8 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
                     @Override
                     protected Object doInBackground(Object[] params) {
-//                        currentSearchFilter =
-                                setCurrentSearchFilter(new HHSearchOption(cs.toString()));
+//                        currentSearchFilter = new HHSearchOption(cs.toString());
+                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
                         filteredClients = getClientsAdapter().getListItemProvider()
                                 .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
                                         getCurrentSearchFilter(), getCurrentSortOption());

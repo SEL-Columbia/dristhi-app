@@ -3,8 +3,6 @@ package org.ei.opensrp.mcare.household;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.DataSetObserver;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,13 +17,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.ei.opensrp.domain.ProfileImage;
-import org.ei.opensrp.mcare.R;
-
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.domain.ProfileImage;
+import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.repository.ImageRepository;
 
@@ -51,13 +48,10 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 public class HouseHoldDetailActivity extends Activity {
 
     //image retrieving
-    private static final String TAG = "ImageGridFragment";
-    private static final String IMAGE_CACHE_DIR = "thumbs";
 
-    private static int mImageThumbSize;
-    private static int mImageThumbSpacing;
 
-    private static ImageFetcher mImageFetcher;
+
+//    private static ImageFetcher mImageFetcher;
 
 
 
@@ -98,7 +92,7 @@ public class HouseHoldDetailActivity extends Activity {
         final ImageView householdview = (ImageView)findViewById(R.id.householdprofileview);
 
         if(householdclient.getDetails().get("profilepic")!= null){
-            setImagetoHolder(HouseHoldDetailActivity.this,householdclient.getDetails().get("profilepic"),householdview, R.mipmap.household_profile_thumb);
+            setImagetoHolderFromUri(HouseHoldDetailActivity.this,householdclient.getDetails().get("profilepic"),householdview, R.mipmap.householdload);
         }
         householdview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,9 +143,9 @@ public class HouseHoldDetailActivity extends Activity {
 
         private void addPagination(ListView clientsView) {
             footerView = getPaginationView();
-            nextPageView = (Button) footerView.findViewById(org.ei.opensrp.R.id.btn_next_page);
-            previousPageView = (Button) footerView.findViewById(org.ei.opensrp.R.id.btn_previous_page);
-            pageInfoView = (TextView) footerView.findViewById(org.ei.opensrp.R.id.txt_page_info);
+            nextPageView = (Button) footerView.findViewById(R.id.btn_next_page);
+            previousPageView = (Button) footerView.findViewById(R.id.btn_previous_page);
+            pageInfoView = (TextView) footerView.findViewById(R.id.txt_page_info);
 
             nextPageView.setOnClickListener(this);
             previousPageView.setOnClickListener(this);
@@ -182,10 +176,10 @@ public class HouseHoldDetailActivity extends Activity {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case org.ei.opensrp.R.id.btn_next_page:
+                case R.id.btn_next_page:
                     gotoNextPage();
                     break;
-                case org.ei.opensrp.R.id.btn_previous_page:
+                case R.id.btn_previous_page:
                     goBackToPreviousPage();
                     break;
                 case R.id.profilepic:
@@ -196,6 +190,12 @@ public class HouseHoldDetailActivity extends Activity {
                     break;
                 case R.id.registerlink:
                     startActivity(new Intent(HouseHoldDetailActivity.this, ElcoSmartRegisterActivity.class));
+                    break;
+                case R.id.nidpic_capture:
+                    entityid = ((CommonPersonObjectClient)view.getTag()).entityId();
+                    bindobject = "elco";
+//                    mImageView = (ImageView)view;
+                    dispatchTakePictureIntentforNId(view);
                     break;
 
             }
@@ -231,6 +231,7 @@ public class HouseHoldDetailActivity extends Activity {
         return image;
     }
     static final int REQUEST_TAKE_PHOTO = 1;
+    static final int REQUEST_TAKE_PHOTO_NID = 9000;
    static ImageView mImageView;
     static File currentfile;
     static String bindobject;
@@ -258,6 +259,29 @@ public class HouseHoldDetailActivity extends Activity {
         }
     }
 
+    private void dispatchTakePictureIntentforNId(View imageView) {
+//        mImageView = imageView;
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                currentfile = photoFile;
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO_NID);
+            }
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
@@ -267,44 +291,70 @@ public class HouseHoldDetailActivity extends Activity {
             HashMap <String,String> details = new HashMap<String,String>();
             details.put("profilepic",currentfile.getAbsolutePath());
             saveimagereference(bindobject,entityid,details);
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
-            mImageView.setImageBitmap(bitmap);
+//            BitmapFactory.Options options = new BitmapFactory.Options();
+//            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
+//            mImageView.setImageBitmap(bitmap);
+//            setImagetoHolder(this,currentfile.getAbsolutePath(),mImageView,R.drawable.householdload);
+            setImagetoHolderFromUri(this,currentfile.getAbsolutePath(),mImageView, R.mipmap.householdload);
+
+        }else  if (requestCode == REQUEST_TAKE_PHOTO_NID && resultCode == RESULT_OK) {
+
+//            Bundle extras = data.getExtras();
+//            String imageBitmap = (String) extras.get(MediaStore.EXTRA_OUTPUT);
+//            Toast.makeText(this,imageBitmap,Toast.LENGTH_LONG).show();
+            HashMap <String,String> details = new HashMap<String,String>();
+            details.put("nidImage",currentfile.getAbsolutePath());
+            saveimagereferenceforNID(bindobject,entityid,details);
+//            BitmapFactory.Options options = new BitmapFactory.Options();
+//            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
+//            mImageView.setImageBitmap(bitmap);
+//            setImagetoHolder(this,currentfile.getAbsolutePath(),mImageView,R.drawable.householdload);
         }
     }
     public void saveimagereference(String bindobject,String entityid,Map<String,String> details){
         Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityid,details);
         String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
-        ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("profilepic"), ImageRepository.TYPE_Unsynced);
-        ((ImageRepository)Context.getInstance().imageRepository()).add(profileImage);
-//       Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
+        ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("profilepic"), ImageRepository.TYPE_Unsynced,"profileimage");
+        ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
+//                householdclient.entityId();
+//        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
+    }
+    public void saveimagereferenceforNID(String bindobject,String entityid,Map<String,String> details){
+        Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityid,details);
+        String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+        ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("nidImage"), ImageRepository.TYPE_Unsynced,"nidImage");
+        ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
+//                householdclient.entityId();
+//        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
     }
     public static void setImagetoHolder(Activity activity,String file, ImageView view, int placeholder){
+         String TAG = "ImageGridFragment";
+         String IMAGE_CACHE_DIR = "thumbs";
+
+        int mImageThumbSize;
+        int mImageThumbSpacing;
+
         mImageThumbSize = 300;
         mImageThumbSpacing = Context.getInstance().applicationContext().getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
 
 
         ImageCache.ImageCacheParams cacheParams =
                 new ImageCache.ImageCacheParams(activity, IMAGE_CACHE_DIR);
-             cacheParams.setMemCacheSizePercent(0.50f); // Set memory cache to 25% of app memory
-        mImageFetcher = new ImageFetcher(activity, mImageThumbSize);
+             cacheParams.setMemCacheSizePercent(0.80f); // Set memory cache to 25% of app memory
+        ImageFetcher mImageFetcher = new ImageFetcher(activity, mImageThumbSize);
         mImageFetcher.setLoadingImage(placeholder);
         mImageFetcher.addImageCache(activity.getFragmentManager(), cacheParams);
 //        Toast.makeText(activity,file,Toast.LENGTH_LONG).show();
         mImageFetcher.loadImage("file:///"+file,view);
 
-//        Uri.parse(new File("/sdcard/cats.jpg")
+    }
+    public static void setImagetoHolderFromUri(Activity activity,String file, ImageView view, int placeholder){
+        File externalFile = new File(file);
+        Uri external = Uri.fromFile(externalFile);
+        view.setImageURI(external);
 
-
-
-
-
-
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-//        Bitmap bitmap = BitmapFactory.decodeFile(file, options);
-//        view.setImageBitmap(bitmap);
     }
 
     @Override

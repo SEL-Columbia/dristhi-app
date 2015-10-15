@@ -11,11 +11,11 @@ import org.ei.opensrp.view.dialog.FilterOption;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HHSearchOption implements FilterOption {
-    private final String criteria;
+public class noNIDFilter implements FilterOption {
+//    private final String criteria;
 
-    public HHSearchOption(String criteria) {
-        this.criteria = criteria;
+    public noNIDFilter() {
+
     }
 
     @Override
@@ -28,40 +28,21 @@ public class HHSearchOption implements FilterOption {
         boolean result = false;
         CommonPersonObjectClient currentclient = (CommonPersonObjectClient) client;
 //        AllCommonsRepository allElcoRepository = new AllCommonsRepository("elco");
-        if(!result) {
-            if(currentclient.getDetails().get("FWHOHFNAME") != null) {
-                if (currentclient.getDetails().get("FWHOHFNAME").toLowerCase().contains(criteria.toLowerCase())) {
-                    result = true;
-                }
-            }
-        }
-        if(!result) {
-            if(currentclient.getDetails().get("FWJIVHHID") != null) {
-                if (currentclient.getDetails().get("FWJIVHHID").contains(criteria)) {
-                    result = true;
-                }
-            }
-        }
-        if(!result) {
-            if(currentclient.getDetails().get("FWGOBHHID") != null) {
-                if (currentclient.getDetails().get("FWGOBHHID").contains(criteria)) {
-                    result = true;
-                }
-            }
-        }
-        if(!result) {
+
+        if (!result) {
             AllCommonsRepository allElcoRepository = Context.getInstance().allCommonsRepositoryobjects("elco");
             ArrayList<String> list = new ArrayList<String>();
             list.add((currentclient.entityId()));
             List<CommonPersonObject> allchildelco = allElcoRepository.findByRelationalIDs(list);
             for (int i = 0; i < allchildelco.size(); i++) {
-                if(allchildelco.get(i).getDetails().get("FWWOMFNAME") != null) {
-                    if (allchildelco.get(i).getDetails().get("FWWOMFNAME").toLowerCase().contains(criteria.toLowerCase())) {
+                if (allchildelco.get(i).getDetails().get("FWELIGIBLE").equalsIgnoreCase("1")) {
+                    if (allchildelco.get(i).getDetails().get("nidImage") == null) {
                         result = true;
                     }
                 }
             }
         }
-        return result;
-    }
+            return result;
+        }
+
 }

@@ -1,5 +1,5 @@
 {
-  "form_data_definition_version": "11",
+  "form_data_definition_version": "12",
   "form": {
     "default_bind_path": "/model/instance/CensusNewWomanRegistrationForm",
     "bind_type": "household",
@@ -34,6 +34,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "FWNHHHGPS",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_FWNHHHGPS",
+        "shouldLoadValue": true
+      },
+      {
         "name": "FWJIVHHID",
         "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_JiVitAHHID",
         "shouldLoadValue": true
@@ -41,6 +46,46 @@
       {
         "name": "existing_MWRA",
         "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_MWRA"
+      },
+      {
+        "name": "existing_FWCOUNTRY",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_FWCOUNTRY",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_FWDIVISION",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_FWDIVISION",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_FWDISTRICT",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_FWDISTRICT",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_FWUPAZILLA",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_FWUPAZILLA",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_FWUNION",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_FWUNION",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_FWWARD",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_FWWARD",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_FWSUBUNIT",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_FWSUBUNIT",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_FWMAUZA_PARA",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_FWMAUZA_PARA",
+        "shouldLoadValue": true
       },
       {
         "name": "FWCENDATE",
@@ -96,18 +141,6 @@
             "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWWOMLNAME"
           },
           {
-            "name": "FWWOMNID",
-            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWWOMNID"
-          },
-          {
-            "name": "FWWOMBID",
-            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWWOMBID"
-          },
-          {
-            "name": "FWHUSNAME",
-            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWHUSNAME"
-          },
-          {
             "name": "FWBIRTHDATE",
             "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWBIRTHDATE"
           },
@@ -142,6 +175,70 @@
           {
             "name": "FWELIGIBLE",
             "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWELIGIBLE"
+          },
+          {
+            "name": "FWWOMANYID",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMANYID"
+          },
+          {
+            "name": "FWWOMNID",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMNID"
+          },
+          {
+            "name": "FWWOMRETYPENID",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMRETYPENID"
+          },
+          {
+            "name": "FWWOMBID",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMBID"
+          },
+          {
+            "name": "FWWOMRETYPEBID",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMRETYPEBID"
+          },
+          {
+            "name": "FWHUSNAME",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWHUSNAME"
+          },
+          {
+            "name": "FWWOMCOUNTRY",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMCOUNTRY"
+          },
+          {
+            "name": "FWWOMDIVISION",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMDIVISION"
+          },
+          {
+            "name": "FWWOMDISTRICT",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMDISTRICT"
+          },
+          {
+            "name": "FWWOMUPAZILLA",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMUPAZILLA"
+          },
+          {
+            "name": "FWWOMUNION",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMUNION"
+          },
+          {
+            "name": "FWWOMWARD",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMWARD"
+          },
+          {
+            "name": "FWWOMSUBUNIT",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMSUBUNIT"
+          },
+          {
+            "name": "FWWOMMAUZA_PARA",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMMAUZA_PARA"
+          },
+          {
+            "name": "FWWOMGOBHHID",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMGOBHHID"
+          },
+          {
+            "name": "FWWOMGPS",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMGPS"
           }
         ]
       }

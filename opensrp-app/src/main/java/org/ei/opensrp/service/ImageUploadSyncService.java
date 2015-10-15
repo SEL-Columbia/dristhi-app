@@ -1,18 +1,26 @@
 package org.ei.opensrp.service;
 
+import android.content.res.AssetManager;
+import android.os.Environment;
+
+import org.apache.commons.io.IOUtils;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.repository.ImageRepository;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by Dimas Ciputra on 3/22/15.
+ * Created by Raihan Ahmed on 10/14/15.
  */
 public class ImageUploadSyncService {
 
 
-    private ImageRepository imageRepository;
+    private  ImageRepository imageRepository;
 
 
 
@@ -23,16 +31,8 @@ public class ImageUploadSyncService {
     }
     public void ImageSync(ArrayList<ProfileImage> profileimages,ImageRepository imagerepository){
         for(int i = 0;i<profileimages.size();i++){
-            int response = Context.getInstance().getHttpAgent().httpImagePost(Context.getInstance().configuration().dristhiBaseURL()+"/multimedia-file",profileimages.get(i));
-            int RESPONSE_OK = 200;
-            int RESPONSE_OK_ = 201;
-
-            if (response != RESPONSE_OK_ && response != RESPONSE_OK) {
-            }else{
-                imagerepository.close(profileimages.get(i).getImageid());
-            }
-
-
+            String response = Context.getInstance().getHttpAgent().httpImagePost(Context.getInstance().configuration().dristhiBaseURL()+"/multimedia-file",profileimages.get(i));
+            imagerepository.close(profileimages.get(i).getImageid());
         }
     }
 

@@ -63,4 +63,5 @@
     <string name="register_label">নিবন্ধন</string>
     <string name="home_videos_label">Videos</string>
     <string name="elco_alphabetical_sort">বর্ণানুক্রমিক( মহিলার নাম)</string>
+    <string name="take_nid_picture">ছবি তুলুন-NID/BRID</string>
 </resources>

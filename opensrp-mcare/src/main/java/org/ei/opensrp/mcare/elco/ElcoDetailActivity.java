@@ -13,12 +13,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.ei.opensrp.mcare.R;
-
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
+import org.ei.opensrp.mcare.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,7 +72,7 @@ public class ElcoDetailActivity extends Activity {
 
 
 
-        ImageButton back = (ImageButton) findViewById(R.id.btn_back_to_home);
+        ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +90,7 @@ public class ElcoDetailActivity extends Activity {
         psf_due_date.setText(Elcoclient.getDetails().get("FWPSRDATE") != null ? Elcoclient.getDetails().get("FWPSRDATE") : "");
 
 
-        village.setText(Elcoclient.getDetails().get("location_name") != null ? Elcoclient.getDetails().get("location_name") : "");
+        village.setText(humanize(Elcoclient.getDetails().get("location_name") != null ? Elcoclient.getDetails().get("location_name") : ""));
             /////from househld
         AllCommonsRepository allelcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
         CommonPersonObject elcoobject = allelcoRepository.findByCaseID(Elcoclient.entityId());
@@ -111,7 +110,7 @@ public class ElcoDetailActivity extends Activity {
         final ImageView householdview = (ImageView) findViewById(R.id.householdprofileview);
 
         if (Elcoclient.getDetails().get("profilepic") != null) {
-            setImagetoHolder(ElcoDetailActivity.this, Elcoclient.getDetails().get("profilepic"), householdview, R.drawable.woman_placeholder);
+            setImagetoHolder(ElcoDetailActivity.this, Elcoclient.getDetails().get("profilepic"), householdview, R.mipmap.woman_placeholder);
         }
 //        householdview.setOnClickListener(new View.OnClickListener() {
 //            @Override

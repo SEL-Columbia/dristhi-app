@@ -170,12 +170,14 @@ public class HTTPAgent {
             throw new AssertionError(e);
         }
     }
-    public int httpImagePost(String url,ProfileImage image){
+    public String httpImagePost(String url,ProfileImage image){
 
         String responseString = "";
         try {
             setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
+
             HttpPost httpost = new HttpPost(url);
+
             httpost.setHeader("Accept", "multipart/form-data");
             File filetoupload = new File(image.getFilepath());
             Log.v("file to upload",""+filetoupload.length());
@@ -183,19 +185,22 @@ public class HTTPAgent {
             entity.addPart("anm-id", new StringBody(image.getAnmId()));
             entity.addPart("entity-id", new StringBody(image.getEntityID()));
             entity.addPart("content-type", new StringBody(image.getContenttype()));
+            entity.addPart("file-category", new StringBody(image.getFilecategory()));
             entity.addPart("file", new FileBody(new File(image.getFilepath())));
             httpost.setEntity(entity);
+            String authToken = null;
             HttpResponse response = httpClient.postContent(httpost);
             responseString = EntityUtils.toString(response.getEntity());
+            Log.v("response so many",responseString);
             int RESPONSE_OK = 200;
             int RESPONSE_OK_ = 201;
 
             if (response.getStatusLine().getStatusCode() != RESPONSE_OK_ && response.getStatusLine().getStatusCode() != RESPONSE_OK) {
             }
-           return response.getStatusLine().getStatusCode();
-        }catch (Exception e){
-            return -1;
-        }
 
+        }catch (Exception e){
+
+        }
+        return responseString;
     }
 }

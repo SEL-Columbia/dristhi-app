@@ -11,10 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.ei.opensrp.mcare.R;
-
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
@@ -48,7 +47,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
-                (int) context.getResources().getDimension(R.dimen.list_item_height));
+                (int) context.getResources().getDimension(org.ei.opensrp.R.dimen.list_item_height));
         txtColorBlack = context.getResources().getColor(R.color.text_black);
     }
 
@@ -67,10 +66,10 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
 
 
 
-            Button edit_form = (Button) itemView.findViewById(R.id.edit_forms);
+            Button edit_form = (Button) itemView.findViewById(R.id.nidpic_capture);
             ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
             if(pc.getDetails().get("profilepic")!=null){
-                HouseHoldDetailActivity.setImagetoHolder((Activity)context,pc.getDetails().get("profilepic"),profilepic, R.drawable.woman_placeholder);
+                HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, org.ei.opensrp.R.drawable.woman_placeholder);
             }
             registerlink.setOnClickListener(onClickListener);
             registerlink.setTag(smartRegisterClient);
@@ -92,7 +91,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
             ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
 
             if(pc.getDetails().get("profilepic")!=null){
-                HouseHoldDetailActivity.setImagetoHolder((Activity)context,pc.getDetails().get("profilepic"),profilepic, R.drawable.woman_placeholder);
+                HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, org.ei.opensrp.R.drawable.woman_placeholder);
             }
 
             profilepic.setOnClickListener(onClickListener);

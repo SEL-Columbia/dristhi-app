@@ -7,14 +7,24 @@ public class ProfileImage {
     private String contenttype;
     private  String filepath;
     private  String syncStatus;
+    private String filecategory;
 
-    public ProfileImage(String imageid, String anmId, String entityID, String contenttype, String filepath, String syncStatus) {
+    public ProfileImage(String imageid, String anmId, String entityID, String contenttype, String filepath, String syncStatus, String filecategory) {
         this.imageid = imageid;
         this.entityID = entityID;
         this.anmId = anmId;
         this.contenttype = contenttype;
         this.filepath = filepath;
         this.syncStatus = syncStatus;
+        this.filecategory = filecategory;
+    }
+
+    public String getFilecategory() {
+        return filecategory;
+    }
+
+    public void setFilecategory(String filecategory) {
+        this.filecategory = filecategory;
     }
 
     public String getImageid() {

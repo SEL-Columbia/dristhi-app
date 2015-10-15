@@ -2,9 +2,8 @@ package org.ei.opensrp.mcare.household;
 
 import android.view.View;
 
-import org.ei.opensrp.mcare.R;
-
 import org.ei.opensrp.Context;
+import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.view.contract.ANCSmartRegisterClient;
 import org.ei.opensrp.view.contract.ChildSmartRegisterClient;
@@ -39,12 +38,12 @@ public class HouseHoldServiceModeOption extends ServiceModeOption {
 
             @Override
             public int weightSum() {
-                return 10;
+                return 20;
             }
 
             @Override
             public int[] weights() {
-                return new int[]{3,2,2,3};
+                return new int[]{6,5,4,5};
             }
 
             @Override

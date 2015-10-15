@@ -6,14 +6,13 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ImageButton;
 
-import org.ei.opensrp.mcare.R;
-
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.form.FieldOverrides;
+import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -152,6 +151,8 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
+//                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+
         villageController = new VillageController(context.allEligibleCouples(),
                 context.listCache(), context.villagesCache());
         dialogOptionMapper = new DialogOptionMapper();
@@ -161,6 +162,8 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     @Override
     public void setupViews() {
         super.setupViews();
+        findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+
         ImageButton startregister = (ImageButton)findViewById(org.ei.opensrp.R.id.register_client);
         startregister.setVisibility(View.GONE);
         setServiceModeViewDrawableRight(null);
@@ -217,6 +220,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
                     @Override
                     protected Object doInBackground(Object[] params) {
+//                        currentSearchFilter = new ElcoSearchOption(cs.toString());
                         setCurrentSearchFilter(new ElcoSearchOption(cs.toString()));
                         filteredClients = getClientsAdapter().getListItemProvider()
                                 .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),

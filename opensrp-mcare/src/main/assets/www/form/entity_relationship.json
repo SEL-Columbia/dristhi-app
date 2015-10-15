@@ -9,11 +9,11 @@
   },
   {
     "parent": "elco",
-    "child": "child",
+    "child": "mcaremother",
     "field": "child",
     "kind": "one_to_many",
     "from": "elco.id",
-    "to": "child.motherCaseId"
+    "to": "mcaremother.relationalid"
   },
   {
     "parent": "eligible_couple",

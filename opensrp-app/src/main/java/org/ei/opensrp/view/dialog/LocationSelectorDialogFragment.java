@@ -79,7 +79,6 @@ public class LocationSelectorDialogFragment extends DialogFragment {
         tView = new AndroidTreeView(getActivity(), root);
         tView.setDefaultContainerStyle(R.style.TreeNodeStyle);
         tView.setSelectionModeEnabled(false);
-
         if(savestate != null){
             tView.restoreState(savestate);
         }
