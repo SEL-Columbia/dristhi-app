@@ -11,7 +11,7 @@
             <woman_id_type />
             <id_number />
             <dob />
-
+            <reg_no />
             <wife_dob />
             <woman_age />
             <is_dob_known />

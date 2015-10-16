@@ -8,6 +8,7 @@
             <village />
             <case_lmp />
             <delivery_date />
+            <reg_no />
             <anc_reg_num />
             <pnc_number />
             <delivery_reg_date />

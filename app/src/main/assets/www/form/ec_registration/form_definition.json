@@ -9,6 +9,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "regNo",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/EC_Registration_EngKan/reg_no"
+      },
+      {
         "name": "wifeMINAge",
         "shouldLoadValue": true,
         "bind": "/model/instance/EC_Registration_EngKan/wife_min_age"
@@ -92,6 +97,14 @@
       {
         "name": "isDObKnown",
         "bind": "/model/instance/EC_Registration_EngKan/is_dob_known"
+      },
+      {
+        "name": "wifeDob1",
+        "bind": "/model/instance/EC_Registration_EngKan/wife_dob"
+      },
+      {
+        "name": "wifeAge1",
+        "bind": "/model/instance/EC_Registration_EngKan/wife_age1"
       },
       {
         "name": "husbandAge",

@@ -19,6 +19,11 @@
         "source": "eligible_couple.mother.id"
       },
       {
+        "name": "regNo",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Registration_EngKan/reg_no"
+      },
+      {
         "name": "registrationDate",
         "bind": "/model/instance/ANC_Registration_EngKan/reg_date",
         "source": "eligible_couple.mother.registrationDate"

@@ -65,7 +65,7 @@ public class ECSmartRegisterController {
 
                 for (EligibleCouple ec : ecs) {
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
-                    ECClient ecClient = new ECClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), IntegerUtil.tryParse(ec.ecNumber(), 0))
+                    ECClient ecClient = new ECClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), Long.parseLong(ec.ecNumber()))
                             .withDateOfBirth(ec.getDetail(WOMAN_DOB))
                             .withFPMethod(ec.getDetail(CURRENT_FP_METHOD))
                             .withFamilyPlanningMethodChangeDate(ec.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE))
@@ -105,7 +105,7 @@ public class ECSmartRegisterController {
 
                 for (EligibleCouple ec : ecs) {
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
-                    ECClient ecClient = new ECClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), IntegerUtil.tryParse(ec.ecNumber(), 0))
+                    ECClient ecClient = new ECClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), Long.parseLong(ec.ecNumber()))
                             .withDateOfBirth(ec.getDetail(WOMAN_DOB))
                             .withFPMethod(ec.getDetail(CURRENT_FP_METHOD))
                             .withFamilyPlanningMethodChangeDate(ec.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE))

@@ -53,7 +53,8 @@
         </span>
         <span class="required">*</span>
         <input name="/PNC_Child_Registration_EngKan/pnc_number" autocomplete="off"
-            data-constraint=".&gt;0" data-type-xml="int" required="required" type="string" />
+            data-calculate="/PNC_Child_Registration_EngKan/reg_no" data-constraint=".&gt;0"
+            data-type-xml="int" disabled="disabled" required="required" type="string" />
     </label>
 
     <label class="question or-appearance-minimal ">
@@ -191,7 +192,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">Religion:
+                <span class="question-label active" lang="">Religion
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -820,12 +821,12 @@
 
         <label class="calculation non-select ">
             <input name="/PNC_Child_Registration_EngKan/child/lbw"
-                data-calculate="if( /PNC_Child_Registration_EngKan/child/birthweight  &gt;= 1.5 and  /PNC_Child_Registration_EngKan/child/birthweight  &lt; 2.5, 'Low_Birth_Weight','')"
+                data-calculate="if( /PNC_Child_Registration_EngKan/child/birthweight  &gt;= 1.5 and  /PNC_Child_Registration_EngKan/child/birthweight  &lt; 2.5, 'Low Birth Weight','')"
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
             <input name="/PNC_Child_Registration_EngKan/child/vlbw"
-                data-calculate="if( /PNC_Child_Registration_EngKan/child/birthweight  &lt; 1.5, 'Very_Low_Birth_Weight', '')"
+                data-calculate="if( /PNC_Child_Registration_EngKan/child/birthweight  &lt; 1.5, 'Very Low Birth Weight', '')"
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">

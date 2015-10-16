@@ -31,6 +31,11 @@
         "bind": "/model/instance/ANC_Registration_OA_EngKan/village"
       },
       {
+        "name": "regNo",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/reg_no"
+      },
+      {
         "name": "wifeMINAge",
         "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/wife_min_age"

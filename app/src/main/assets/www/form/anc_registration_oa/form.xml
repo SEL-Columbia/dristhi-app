@@ -327,7 +327,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">Religion:
+                <span class="question-label active" lang="">Religion
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -366,6 +366,7 @@
         <span class="question-label active" lang="">ANC number</span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/anc_number1" data-constraint=".&gt; 0"
+            data-calculate="/ANC_Registration_OA_EngKan/reg_no" disabled="disabled"
             data-type-xml="int" required="required" type="number" />
     </label>
 

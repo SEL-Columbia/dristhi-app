@@ -1,5 +1,7 @@
 package org.ei.telemedicine.view.contract;
 
+import android.util.Log;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -28,7 +30,7 @@ public class ECClient implements ECSmartRegisterClient {
     private String name;
     private String husbandName;
     private String dateOfBirth;
-    private Integer ecNumber;
+    private long ecNumber;
     private String village;
     private String fpMethod;
     private String numPregnancies;
@@ -51,7 +53,7 @@ public class ECClient implements ECSmartRegisterClient {
     private List<ECChildClient> children;
     private Map<String, String> status = new HashMap<String, String>();
 
-    public ECClient(String entityId, String name, String husbandName, String village, Integer ecNumber) {
+    public ECClient(String entityId, String name, String husbandName, String village, long ecNumber) {
         this.entityId = entityId;
         this.entityIdToSavePhoto = entityId;
         this.name = name;
@@ -105,7 +107,7 @@ public class ECClient implements ECSmartRegisterClient {
         return this.name().compareToIgnoreCase(client.name());
     }
 
-    public Integer ecNumber() {
+    public Long ecNumber() {
         return ecNumber;
     }
 
@@ -265,6 +267,7 @@ public class ECClient implements ECSmartRegisterClient {
     }
 
     public ECClient withPhotoPath(String photo_path) {
+        Log.e("Photo path", photo_path + "---");
         this.photo_path = photo_path;
         return this;
     }

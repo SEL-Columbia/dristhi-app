@@ -26,6 +26,11 @@
         "source": "mother.eligible_couple.id"
       },
       {
+        "name": "regNo",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Registration_EngKan/reg_no"
+      },
+      {
         "name": "pncNumber",
         "shouldLoadValue": true,
         "source": "mother.pncNumber",

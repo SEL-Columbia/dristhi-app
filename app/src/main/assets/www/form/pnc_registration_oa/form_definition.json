@@ -60,6 +60,11 @@
         "bind": "/model/instance/PNC_Child_Registration_EngKan/hh_address"
       },
       {
+        "name": "regNo",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/reg_no"
+      },
+      {
         "name": "pncNumber",
         "bind": "/model/instance/PNC_Child_Registration_EngKan/pnc_number",
         "source": "eligible_couple.mother.pncNumber"

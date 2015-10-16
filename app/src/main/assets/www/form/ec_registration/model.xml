@@ -5,6 +5,7 @@
                 <uuid />
             </formhub>
             <today />
+            <reg_no />
             <reg_date />
             <district />
             <phc />

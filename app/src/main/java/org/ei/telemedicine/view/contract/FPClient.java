@@ -446,7 +446,7 @@ public class FPClient implements FPSmartRegisterClient {
     }
 
     public String numberOfPregnancies() {
-        return  num_pregnancies;
+        return num_pregnancies;
     }
 
     public String parity() {
@@ -496,8 +496,8 @@ public class FPClient implements FPSmartRegisterClient {
     }
 
     @Override
-    public Integer ecNumber() {
-        return IntegerUtil.tryParse(ec_number, 0);
+    public Long ecNumber() {
+        return Long.parseLong(ec_number);
     }
 
     @Override

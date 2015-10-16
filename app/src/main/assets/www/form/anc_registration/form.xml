@@ -78,7 +78,8 @@
         <span class="question-label active" lang="">ANC number</span>
         <span class="required">*</span>
         <input name="/ANC_Registration_EngKan/anc_number" autocomplete="off"
-            data-constraint=".&gt; 0" data-type-xml="int" required="required" type="number" />
+            data-calculate="/ANC_Registration_EngKan/reg_no" disabled="disabled"
+            data-constraint=".&gt; 0" data-type-xml="string" required="required" type="text" />
     </label>
     <!--<fieldset class="question ">-->
     <!--<fieldset>-->

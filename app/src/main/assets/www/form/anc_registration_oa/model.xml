@@ -6,6 +6,7 @@
             </formhub>
             <today />
             <out_of_area_reg_date />
+            <reg_no />
             <out_of_area_village />
             <district />
             <phc />
@@ -16,7 +17,6 @@
             <wife_max_age />
             <husband_min_age />
             <husband_max_age />
-
 
 
             <is_consult_doctor />
@@ -38,7 +38,7 @@
             <wife_dob />
             <woman_age />
             <is_dob_known />
-            <wife_age1/>
+            <wife_age1 />
             <wife_age />
             <wife_age_note />
 
