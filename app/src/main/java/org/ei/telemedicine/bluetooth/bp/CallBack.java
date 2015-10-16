@@ -2,9 +2,9 @@ package org.ei.telemedicine.bluetooth.bp;
 
 
 public class CallBack {
-	public BPBuf m_mtbuf;
+	public MtBuf m_mtbuf;
 	public  ICallBack m_icall;
-	public CallBack(BPBuf mtbuf,ICallBack icall)
+	public CallBack(MtBuf mtbuf,ICallBack icall)
 	{
 		m_mtbuf = mtbuf;
 		m_icall = icall;

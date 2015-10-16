@@ -32,6 +32,7 @@ import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.bluetooth.blood.BloodBuf;
 import org.ei.telemedicine.bluetooth.bp.BPBuf;
+import org.ei.telemedicine.bluetooth.bp.MtBuf;
 import org.ei.telemedicine.bluetooth.eet.EETBuf;
 import org.ei.telemedicine.bluetooth.fetal.FetalBuf;
 import org.ei.telemedicine.bluetooth.pulse.BluetoothService;
@@ -120,7 +121,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
             pulseService = new BluetoothService(BlueToothInfoActivity.this, pulsecall);
         }
         if (bpService == null) {
-            bpCall = new org.ei.telemedicine.bluetooth.bp.CallBack(new BPBuf(), this);
+            bpCall = new org.ei.telemedicine.bluetooth.bp.CallBack(new MtBuf(), this);
             bpService = new org.ei.telemedicine.bluetooth.bp.BluetoothService(
                     BlueToothInfoActivity.this, bpCall);
         }
