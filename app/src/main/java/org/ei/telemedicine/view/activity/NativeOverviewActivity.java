@@ -27,9 +27,14 @@ import org.ei.telemedicine.adapter.OverviewTimelineAdapter;
 import org.ei.telemedicine.doctor.DoctorFormDataConstants;
 import org.ei.telemedicine.doctor.ViewPreVisitScreenActivity;
 import org.ei.telemedicine.domain.Child;
+import org.ei.telemedicine.domain.EligibleCouple;
 import org.ei.telemedicine.domain.Mother;
 import org.ei.telemedicine.domain.TimelineEvent;
 import org.ei.telemedicine.domain.form.FieldOverrides;
+import org.ei.telemedicine.event.CapturedPhotoInformation;
+import org.ei.telemedicine.event.Event;
+import org.ei.telemedicine.event.Listener;
+import org.ei.telemedicine.image.ImageLoader;
 import org.ei.telemedicine.view.controller.ANCDetailController;
 import org.ei.telemedicine.view.controller.ChildDetailController;
 import org.ei.telemedicine.view.controller.EligibleCoupleDetailController;
@@ -76,10 +81,13 @@ import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
 import static org.ei.telemedicine.AllConstants.FormNames.TT;
 import static org.ei.telemedicine.AllConstants.FormNames.VIEW_EC_REGISTRATION;
 import static org.ei.telemedicine.AllConstants.FormNames.VITAMIN_A;
+import static org.ei.telemedicine.AllConstants.IS_FP;
 import static org.ei.telemedicine.AllConstants.VISIT_TYPE;
 import static org.ei.telemedicine.AllConstants.WOMAN_TYPE;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_gender;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.id_no;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visit_type;
+import static org.ei.telemedicine.event.Event.ON_PHOTO_CAPTURED;
 
 public class NativeOverviewActivity extends SecuredActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {
     ImageButton ib_overview_options, ib_profile_pic;
@@ -95,7 +103,15 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     Context context;
     LinearLayout ec_summary, anc_summary, pnc_summary, child_summary, anc_pregnency_summary, pnc_pregnency_summary;
     static Boolean isANCOA = false, isFromEC = false;
-    Boolean isPoc = false;
+    Boolean isPoc = false, isFP = false;
+
+    private Listener<CapturedPhotoInformation> photoCaptureListener = new Listener<CapturedPhotoInformation>() {
+        @Override
+        public void onEvent(CapturedPhotoInformation data) {
+            Log.e("Cpatu", "Think pgto is capture.");
+
+        }
+    };
 
 
     private void setupViews() {
@@ -166,17 +182,19 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     protected void onCreation() {
         {
             setContentView(R.layout.overview_layout);
+
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
                 caseId = bundle.getString("caseId");
                 formData = bundle.containsKey(FORMINFO) ? bundle.getString(FORMINFO) : "";
                 allFormData = bundle.containsKey(ALLFORMDATA) ? bundle.getString(ALLFORMDATA) : "";
+                isFP = bundle.containsKey(IS_FP) ? bundle.getBoolean(IS_FP) : false;
                 visitType = bundle.getString(VISIT_TYPE);
                 context = Context.getInstance();
                 setupViews();
                 timelineEvents = context.allTimelineEvents().forCase(caseId);
-                Log.e("Timelines", timelineEvents.size() + "");
-                android.util.Log.e("CaseId", caseId);
+                if (isFP)
+                    ib_overview_options.setVisibility(GONE);
 
                 switch (visitType.toLowerCase()) {
                     case "ec":
@@ -192,14 +210,20 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         String ecData = new EligibleCoupleDetailController(this, caseId, context.allEligibleCouples(), context.allTimelineEvents()).get();
                         String coupleDetails = getDataFromJson(ecData, "coupleDetails");
                         String details = getDataFromJson(ecData, "details");
-
+                        EligibleCouple byCaseID = context.allEligibleCouples().findByCaseID(caseId);
+                        if (byCaseID.photoPath() != null && byCaseID.photoPath().equals("") && byCaseID.photoPath().toLowerCase().startsWith("http"))
+                            new ImageLoader(NativeOverviewActivity.this).DisplayImage(byCaseID.photoPath(), ib_profile_pic, getResources().getDrawable(R.drawable.woman_placeholder));
+                        else
+                            ib_profile_pic.setImageBitmap(getImageBitmap(byCaseID.photoPath()));
+                        if (byCaseID.photoPath() == null)
+                            ib_profile_pic.setImageDrawable(getResources().getDrawable(R.drawable.woman_placeholder));
                         Mother motherData = context.allBeneficiaries().findMotherByECCaseId(caseId);
                         if (motherData != null) {
                             android.util.Log.e("ecData", ecData + "------------" + motherData.caseId());
                             timelineEvents.addAll(context.allTimelineEvents().forCase(motherData.caseId()));
                         }
 
-                        tv_register_type.setText(visitType.toUpperCase());
+                        tv_register_type.setText(isFP ? "FP" : visitType.toUpperCase());
                         tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(coupleDetails, "wifeName")));
                         tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(coupleDetails, "wifeName")));
                         tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(coupleDetails, "husbandName")));
@@ -214,36 +238,23 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         tv_fp_value.setText(WordUtils.capitalize(!getDataFromJson(details, "currentMethod").equals("") ? getDataFromJson(details, "currentMethod") : "none"));
                         break;
                     case "anc":
+//                        ImageLoader imageLoader = new ImageLoader(this);
+//                        imageLoader.DisplayImage("http://media.mediatemple.netdna-cdn.com/wp-content/uploads/2013/01/1.jpg", ib_profile_pic);
                         anc_summary.setVisibility(View.VISIBLE);
+                        final Mother mother = context.allBeneficiaries().findMother(caseId);
                         ib_profile_pic.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                takePhoto(WOMAN_TYPE);
+//                                takePhoto(WOMAN_TYPE);
+                                dispatchTakePictureIntent(ib_profile_pic, mother != null ? mother.ecCaseId() : caseId);
                             }
                         });
-
-//                        Mother mother = context.allBeneficiaries().findMother(caseId);
-//                        if (mother != null) {
-//                            String pocInfo = mother.getDetail("docPocInfo") != null ? mother.getDetail("docPocInfo") : "";
-//
-//                            if (!pocInfo.equals("")) {
-//                                try {
-//                                    isPoc = true;
-//                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
-//                                    int val = pocJsonArray.length();
-//                                    android.util.Log.e("size", val + "");
-//                                    for (int i = 0; i < pocJsonArray.length(); i++) {
-//                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
-//                                        String title = "Plan of care for " + getDataFromJson(pocData, "visitType") + "Visit - " + getDataFromJson(pocData, "visitNumber");
-//                                        String details1 = "Investigations - " + getDataFromJson(pocData, "investigations");
-//
-//                                        timelineEvents.add(new TimelineEvent(caseId, "Plan Of Care ", LocalDate.parse(changeDateFormat(getDataFromJson(pocData, "planofCareDate"))), title, details1, ""));
-//                                    }
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        }
+                        if (mother != null) {
+                            String pocInfo = mother.getDetail("docPocInfo") != null ? mother.getDetail("docPocInfo") : "";
+                            if (!pocInfo.equals("")) {
+                                isPoc = true;
+                            }
+                        }
                         String ancData = new ANCDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
                         String anccoupleDetails = getDataFromJson(ancData, "coupleDetails");
                         String ancDetails = getDataFromJson(ancData, "details");
@@ -255,7 +266,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(anccoupleDetails, "wifeName")));
                         tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(anccoupleDetails, "wifeName")));
                         tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(anccoupleDetails, "husbandName")));
-                        isANCOA = getDataFromJson(ancDetails, "ancNumber").toLowerCase().contains("oa");
+//                        isANCOA = getDataFromJson(ancDetails, "ancNumber").toLowerCase().contains("oa");
                         tv_id_no.setText("ANC No: " + WordUtils.capitalize(getDataFromJson(ancDetails, "ancNumber")));
                         tv_village_name.setText(WordUtils.capitalize(getDataFromJson(locationDetails, "villageName")));
 
@@ -269,19 +280,24 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 
                         break;
                     case "pnc":
+
+                        pnc_summary.setVisibility(View.VISIBLE);
+                        final Mother pncMother = context.allBeneficiaries().findMother(caseId);
                         ib_profile_pic.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                takePhoto(WOMAN_TYPE);
+//                                takePhoto(WOMAN_TYPE);
+                                dispatchTakePictureIntent(ib_profile_pic, pncMother != null ? pncMother.ecCaseId() : caseId);
                             }
                         });
-                        pnc_summary.setVisibility(View.VISIBLE);
-//                        Mother pncMother = context.allBeneficiaries().findMother(caseId);
-//                        if (pncMother != null) {
-//                            String pocInfo = pncMother.getDetail("docPocInfo") != null ? pncMother.getDetail("docPocInfo") : "";
-//                            if (!pocInfo.equals("")) {
+                        if (pncMother != null) {
+                            String pocInfo = pncMother.getDetail("docPocInfo") != null ? pncMother.getDetail("docPocInfo") : "";
+                            if (!pocInfo.equals("")) {
+                                isPoc = true;
+                            }
+                        }
 //                                try {
-//                                    isPoc = true;
+//                                isPoc = true;
 //                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
 //                                    for (int i = 0; i < pocJsonArray.length(); i++) {
 //                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
@@ -305,7 +321,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         tv_woman_name.setText(WordUtils.capitalize(getDataFromJson(pnccoupleDetails, "wifeName")));
                         tv_wife_name.setText(WordUtils.capitalize(getDataFromJson(pnccoupleDetails, "wifeName")));
                         tv_husband_name.setText(WordUtils.capitalize(getDataFromJson(pnccoupleDetails, "husbandName")));
-                        tv_id_no.setText("ANC No: " + WordUtils.capitalize(getDataFromJson(pncDetails, "ancNumber")));
+                        tv_id_no.setText("PNC No: " + WordUtils.capitalize(getDataFromJson(pncDetails, "pncNumber")));
                         tv_village_name.setText(WordUtils.capitalize(getDataFromJson(pncLocationDetails, "villageName")));
 
                         tv_priority.setText(getDataFromJson(pncDetails, "isHighRisk").equals("yes") ? "High Risk" : "Normal Risk");
@@ -319,24 +335,29 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 
                         break;
                     case "child":
-                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                takePhoto(CHILD_TYPE);
-                            }
-                        });
                         child_summary.setVisibility(View.VISIBLE);
                         tv_child_name.setVisibility(View.VISIBLE);
                         String childData = new ChildDetailController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()).get();
 
-//                        Child child = context.allBeneficiaries().findChild(caseId);
-//                        Toast.makeText(this, "sda" + child.motherCaseId(), Toast.LENGTH_SHORT).show();
-//                        Mother childMother = context.allBeneficiaries().findMother(child.motherCaseId());
-//                        if (childMother != null) {
-//                            String pocInfo = childMother.getDetail("docPocInfo") != null ? childMother.getDetail("docPocInfo") : "";
-//                            if (!pocInfo.equals("")) {
-//                                try {
-//                                    isPoc = true;
+                        final Child child = context.allBeneficiaries().findChild(caseId);
+                        Toast.makeText(this, "sda" + child.motherCaseId(), Toast.LENGTH_SHORT).show();
+                        final Mother childMother = context.allBeneficiaries().findMother(child.motherCaseId());
+                        ib_profile_pic.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+//                                takePhoto(CHILD_TYPE);
+                                dispatchTakePictureIntent(ib_profile_pic, childMother != null ? child.motherCaseId() : caseId);
+                            }
+                        });
+
+                        if (childMother != null) {
+                            String pocInfo = childMother.getDetail("docPocInfo") != null ? childMother.getDetail("docPocInfo") : "";
+                            if (!pocInfo.equals("")) {
+                                isPoc = true;
+                            }
+                        }
+//                        try {
+//                            isPoc = true;
 //                                    JSONArray pocJsonArray = new JSONArray(pocInfo);
 //                                    for (int i = 0; i < pocJsonArray.length(); i++) {
 //                                        String pocData = getDataFromJson(pocJsonArray.getJSONObject(i).toString(), "poc");
@@ -374,6 +395,8 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
                         child_date_of_birth.setText(getDataFromJson(childInfoDetails, "dateOfBirth"));
                         break;
                     case "doctor":
+//                        ImageLoader imageLoader2 = new ImageLoader(this);
+//                        imageLoader2.DisplayImage("http://media.mediatemple.netdna-cdn.com/wp-content/uploads/2013/01/1.jpg", ib_profile_pic);
                         ib_overview_options.setVisibility(GONE);
                         pnc_pregnency_summary.setVisibility(GONE);
                         anc_pregnency_summary.setVisibility(GONE);
@@ -388,7 +411,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 
                         switch (visitType) {
                             case DoctorFormDataConstants.childVisit:
-                                ib_profile_pic.setImageResource(getDataFromJson(formData, "gender").equalsIgnoreCase("female") ? R.drawable.child_girl_infant : R.drawable.child_boy_infant);
+                                ib_profile_pic.setImageResource(getDataFromJson(formData, child_gender).equalsIgnoreCase("female") ? R.drawable.child_girl_infant : R.drawable.child_boy_infant);
                                 child_summary.setVisibility(View.VISIBLE);
 
                                 child_summary_priority.setText(getDataFromJson(formData, "childReferral").equals("yes") ? "High Risk" : "Normal Risk");
@@ -573,21 +596,26 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
         }
     }
 
+    private Bitmap getImageBitmap(String path) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+        return bitmap;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            String imageBitmap = (String) extras.get(MediaStore.EXTRA_OUTPUT);
-//            Toast.makeText(this,imageBitmap,Toast.LENGTH_LONG).show();
             HashMap<String, String> details = new HashMap<String, String>();
             details.put("profilepic", currentfile.getAbsolutePath());
             saveimagereference(bindobject, entityId, details);
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
-            mImageView.setImageBitmap(bitmap);
+            ON_PHOTO_CAPTURED.notifyListeners(new CapturedPhotoInformation(entityId, currentfile.getAbsolutePath()));
+//            BitmapFactory.Options options = new BitmapFactory.Options();
+//            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
+            mImageView.setImageBitmap(getImageBitmap(currentfile.getPath()));
         }
     }
 
@@ -612,12 +640,13 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     }
 
     public void takePhoto(String type) {
-
+        ON_PHOTO_CAPTURED.addListener(photoCaptureListener);
         Intent intent = new Intent(this, CameraLaunchActivity.class);
         intent.putExtra(AllConstants.TYPE, type);
         intent.putExtra(ENTITY_ID, caseId);
         startActivity(intent);
     }
+
 
     @Override
     protected void onResumption() {
@@ -626,96 +655,97 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+        String formInfo = new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString();
         switch (item.getItemId()) {
             //Overview Ec Menu
             case R.id.register_anc_through_ec:
                 if (null == context.allBeneficiaries().findMotherByECCaseId(caseId)) {
-                    formController.startFormActivity(ANC_REGISTRATION, caseId, new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
+                    formController.startFormActivity(ANC_REGISTRATION, caseId, formInfo);
                 } else
                     Toast.makeText(NativeOverviewActivity.this, "ANC Registration is already completed", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.register_fp_through_ec:
-                startFormActivity(FP_CHANGE, caseId, null);
+                startFormActivity(FP_CHANGE, caseId, formInfo);
                 return true;
             case R.id.register_child_through_ec:
-                startFormActivity(CHILD_REGISTRATION_EC, caseId, null);
+                startFormActivity(CHILD_REGISTRATION_EC, caseId, formInfo);
                 return true;
             case R.id.edit_ec:
-                startFormActivity(EC_EDIT, caseId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());
+                startFormActivity(EC_EDIT, caseId, formInfo);
                 return true;
             case R.id.view_ec:
-                startFormActivity(VIEW_EC_REGISTRATION, caseId, null);
+                startFormActivity(VIEW_EC_REGISTRATION, caseId, formInfo);
                 return true;
             case R.id.close_ec:
-                startFormActivity(EC_CLOSE, caseId, null);
+                startFormActivity(EC_CLOSE, caseId, formInfo);
                 return true;
 
             //Overview ANC Menu
             case R.id.anc_visit:
 //                new OpenFormOption(getString(R.string.str_register_anc_visit_form), ANC_VISIT, new FormController(this)).doEdit(client);
-                formController.startFormActivity(ANC_VISIT, caseId, new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
+                formController.startFormActivity(ANC_VISIT, caseId, formInfo);
                 return true;
             case R.id.anc_visit_edit:
                 if (!isPoc)
-                    formController.startFormActivity(ANC_VISIT_EDIT, caseId, new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
+                    formController.startFormActivity(ANC_VISIT_EDIT, caseId, formInfo);
                 else
                     Toast.makeText(this, "Already Poc given for this visit", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.hb_test:
-                startFormActivity(HB_TEST, caseId, null);
+                startFormActivity(HB_TEST, caseId, formInfo);
                 return true;
             case R.id.view_poc_anc:
                 viewPOCActivity(AllConstants.VisitTypes.ANC_VISIT, caseId);
                 return true;
             case R.id.ifa:
-                startFormActivity(IFA, caseId, null);
+                startFormActivity(IFA, caseId, formInfo);
                 return true;
             case R.id.tt:
-                startFormActivity(TT, caseId, null);
+                startFormActivity(TT, caseId, formInfo);
                 return true;
             case R.id.delivery_plan:
-                startFormActivity(DELIVERY_PLAN, caseId, null);
+                startFormActivity(DELIVERY_PLAN, caseId, formInfo);
                 return true;
             case R.id.pnc_registration:
-                startFormActivity(DELIVERY_OUTCOME, caseId, null);
+                startFormActivity(DELIVERY_OUTCOME, caseId, formInfo);
                 return true;
             case R.id.anc_investigations:
-                startFormActivity(ANC_INVESTIGATIONS, caseId, null);
+                startFormActivity(ANC_INVESTIGATIONS, caseId, formInfo);
                 return true;
             case R.id.anc_close:
-                startFormActivity(ANC_CLOSE, caseId, null);
+                startFormActivity(ANC_CLOSE, caseId, formInfo);
                 return true;
 
             //Overview PNC Menu
             case R.id.pnc_visit:
-                startFormActivity(PNC_VISIT, caseId, null);
+                startFormActivity(PNC_VISIT, caseId, formInfo);
                 return true;
             case R.id.view_poc_pnc:
                 viewPOCActivity(AllConstants.VisitTypes.PNC_VISIT, caseId);
                 return true;
 
             case R.id.postpartum_family_planning:
-                startFormActivity(PNC_POSTPARTUM_FAMILY_PLANNING, caseId, null);
+                startFormActivity(PNC_POSTPARTUM_FAMILY_PLANNING, caseId, formInfo);
                 return true;
             case R.id.pnc_close:
-                startFormActivity(PNC_CLOSE, caseId, null);
+                startFormActivity(PNC_CLOSE, caseId, formInfo);
                 return true;
 
             //Overview CHILD Menu
             case R.id.child_immunizations:
-                startFormActivity(CHILD_IMMUNIZATIONS, caseId, null);
+                startFormActivity(CHILD_IMMUNIZATIONS, caseId, formInfo);
                 return true;
             case R.id.view_poc_child:
                 viewPOCActivity(AllConstants.VisitTypes.CHILD_VISIT, caseId);
                 return true;
             case R.id.child_illness:
-                startFormActivity(CHILD_ILLNESS, caseId, null);
+                startFormActivity(CHILD_ILLNESS, caseId, formInfo);
                 return true;
             case R.id.vitamin_a:
-                startFormActivity(VITAMIN_A, caseId, null);
+                startFormActivity(VITAMIN_A, caseId, formInfo);
                 return true;
             case R.id.child_close:
-                startFormActivity(CHILD_CLOSE, caseId, null);
+                startFormActivity(CHILD_CLOSE, caseId, formInfo);
                 return true;
 
             default:

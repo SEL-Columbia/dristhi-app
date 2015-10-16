@@ -21,6 +21,8 @@ import org.apache.commons.lang3.text.WordUtils;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.event.Listener;
+import org.ei.telemedicine.image.ImageLoader;
+import org.ei.telemedicine.util.StringUtil;
 import org.ei.telemedicine.view.controller.NavigationController;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +46,8 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
     private String TAG = "PendingConsultantBaseAdapter";
     Activity activity;
     ProgressDialog progressDialog;
+    public ImageLoader imageLoader;
+
 
     public PendingConsultantBaseAdapter(Context context, ArrayList<DoctorData> consultantsList, Activity activity) {
         this.context = context;
@@ -52,6 +56,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         this.searchconsultantsList = new ArrayList<DoctorData>();
         this.remainingList = new ArrayList<DoctorData>();
         this.searchconsultantsList.addAll(NativeDoctorActivity.doctorDataArrayList);
+        this.imageLoader = new ImageLoader(activity.getApplicationContext());
     }
 
     @Override
@@ -70,8 +75,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
     }
 
 
-    private class ViewHolder {
-
+    static class ViewHolder {
         org.ei.telemedicine.view.customControls.CustomFontTextView tv_wife_name, tv_husband_name, tv_village_name, tv_id_no, tv_visit_type, tv_poc_pending, tv_status, tv_wife_age, tv_status2;
         ImageView iv_profile, iv_hr;
         ImageButton ib_btn_edit;
@@ -82,7 +86,9 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(R.layout.consultant_item_list_view, null);
-        ViewHolder viewHolder = new ViewHolder();
+        ViewHolder viewHolder;
+//        if (convertView == null) {
+        viewHolder = new ViewHolder();
         viewHolder.profile_layout = (LinearLayout) convertView.findViewById(R.id.profile_layout);
         viewHolder.ll_clients_header_layout = (LinearLayout) convertView.findViewById(R.id.clients_header_layout);
         viewHolder.tv_wife_name = (org.ei.telemedicine.view.customControls.CustomFontTextView) convertView.findViewById(R.id.item_wife_name);
@@ -98,11 +104,18 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         viewHolder.iv_profile = (ImageView) convertView.findViewById(R.id.iv_profile);
         viewHolder.iv_hr = (ImageView) convertView.findViewById(R.id.iv_hr);
         viewHolder.ib_btn_edit = (ImageButton) convertView.findViewById(R.id.btn_edit);
+//            convertView.setTag(viewHolder);
+//        } else {
+//            viewHolder = (ViewHolder) convertView.getTag();
+//        }
+//        if (consultantsList.get(position).getImage() != null) {
+//            viewHolder.iv_profile.setImageBitmap(consultantsList.get(position).getImage());
+//        } else {
+//            viewHolder.iv_profile.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_launcher));
+//        }
 
         final String formData = consultantsList.get(position).getFormInformation();
-
 //        String wifeName = getData(DoctorFormDataConstants.wife_name, formData);
-
         viewHolder.tv_husband_name.setText(!getData(husband_name, formData).equals("Null") ? getData(husband_name, formData) : "");
         viewHolder.tv_village_name.setText(getData(village_name, formData));
         viewHolder.tv_id_no.setText(getData(id_no, formData));
@@ -132,14 +145,31 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
 //                viewHolder.tv_status.setText("Place: " + getData(pnc_visit_place, formData) + "\n Date:" + getData(pnc_visit_date, formData));
                 break;
             case childVisit:
-                viewHolder.tv_wife_name.setText("B/o " + getData(wife_name, formData));
-                imgae = context.getResources().getDrawable(R.drawable.child_boy_infant);
+                viewHolder.tv_wife_name.setText(getData(child_name, formData).equals("") ? "B/o " + getData(wife_name, formData) : getData(child_name, formData));
+                imgae = getData(child_gender, formData).equalsIgnoreCase("male") ? context.getResources().getDrawable(R.drawable.child_boy_infant) : context.getResources().getDrawable(R.drawable.child_girl_infant);
                 viewHolder.tv_status.setText(!getData(child_report_child_disease_place, formData).equals("") ? "Place : " + getData(child_report_child_disease_place, formData) : "");
                 viewHolder.tv_status2.setText(!getData(child_report_child_disease_date, formData).equals("") ? "Date :" + getData(child_report_child_disease_date, formData) : "");
 //                viewHolder.tv_status.setText("Place: " + getData(child_report_child_disease_place, formData) + "\n Date:" + getData(child_report_child_disease_date, formData));
                 break;
 
         }
+//      Getting image from url
+//        switch ((getData(wife_name, formData).substring(0, 1)).toLowerCase()) {
+//            case "r":
+//                imageLoader.DisplayImage("http://media.mediatemple.netdna-cdn.com/wp-content/uploads/2013/01/1.jpg", viewHolder.iv_profile);
+//                break;
+//            case "j":
+//                imageLoader.DisplayImage("http://www.theandroidsoul.com/wp-content/uploads/2014/05/root-android-image-puzzle.jpg", viewHolder.iv_profile);
+//                break;
+//            case "l":
+//                imageLoader.DisplayImage("http://www.androiddunyasi.net/wp-content/uploads/2012/08/android-wallpaper-5.jpg", viewHolder.iv_profile);
+//                break;
+//            default:
+//                imageLoader.DisplayImage("http://thenextweb.com/wp-content/blogs.dir/1/files/2012/12/Android-VS-Apple.jpg", viewHolder.iv_profile);
+//                break;
+//
+//        }
+
         viewHolder.iv_profile.setImageDrawable(imgae);
         viewHolder.profile_layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,10 +265,10 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
             }
         }
 
-        if (NativeDoctorActivity.syncAdapter != null)
-            NativeDoctorActivity.syncAdapter.notifyDataSetChanged();
-        else
-            NativeDoctorActivity.pendingConsultantBaseAdapter.notifyDataSetChanged();
+//        if (NativeDoctorActivity.syncAdapter != null)
+//            NativeDoctorActivity.syncAdapter.notifyDataSetChanged();
+//        else
+//            NativeDoctorActivity.pendingConsultantBaseAdapter.notifyDataSetChanged();
     }
 
     public void filter(String text) {
@@ -256,17 +286,14 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
             }
         }
 
-        if (NativeDoctorActivity.syncAdapter != null)
-            NativeDoctorActivity.syncAdapter.notifyDataSetChanged();
-        else
-            NativeDoctorActivity.pendingConsultantBaseAdapter.notifyDataSetChanged();
+
     }
 
     public String getData(String key, String formData) {
 
         if (formData != null) try {
             JSONObject jsonData = new JSONObject(formData);
-            return (jsonData != null && jsonData.has(key) && jsonData.getString(key) != null) ? WordUtils.capitalize(jsonData.getString(key)) : "";
+            return (jsonData != null && jsonData.has(key) && jsonData.getString(key) != null && !jsonData.getString(key).equalsIgnoreCase("null")) ? WordUtils.capitalize(jsonData.getString(key)) : "";
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -329,10 +356,10 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
                 break;
         }
 
-        if (NativeDoctorActivity.syncAdapter != null)
-            NativeDoctorActivity.syncAdapter.notifyDataSetChanged();
-        else
-            NativeDoctorActivity.pendingConsultantBaseAdapter.notifyDataSetChanged();
+//        if (NativeDoctorActivity.syncAdapter != null)
+//            NativeDoctorActivity.syncAdapter.notifyDataSetChanged();
+//        else
+//            NativeDoctorActivity.pendingConsultantBaseAdapter.notifyDataSetChanged();
     }
 
 

@@ -85,7 +85,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
     AllDoctorRepository allDoctorRepository;
     private Context context;
     JSONObject formData = new JSONObject();
-    static PendingConsultantBaseAdapter pendingConsultantBaseAdapter, syncAdapter;
+    static PendingConsultantBaseAdapter syncDataAdapter;
     List<DoctorData> doctorDatas;
     static ArrayList<DoctorData> doctorDataArrayList;
     private String TAG = "NativeDoctorActivity";
@@ -118,7 +118,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
     };
     private Context _context;
 
-    private void updateRegisterCounts() {
+    private PendingConsultantBaseAdapter updateRegisterCounts() {
         ArrayList<DoctorData> _doctorDataArrayList = new ArrayList<DoctorData>();
         _doctorDataArrayList.addAll(allDoctorRepository.getAllConsultants());
 
@@ -141,10 +141,10 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
             }
         }
         tv_anc_count.setText(allDoctorRepository.getCount(DoctorFormDataConstants.ancvisit) + "");
-        syncAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, _doctorDataArrayList, this);
-        syncAdapter.notifyDataSetChanged();
-        lv_pending_consultants.setAdapter(syncAdapter);
-
+        syncDataAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, _doctorDataArrayList, this);
+        syncDataAdapter.notifyDataSetChanged();
+        lv_pending_consultants.setAdapter(syncDataAdapter);
+        return syncDataAdapter;
     }
 
     private Listener<String> updateANMDetailsListener = new Listener<String>() {
@@ -205,14 +205,11 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         initalize();
 
         doctorDataArrayList = new ArrayList<DoctorData>();
-
-
         doctorDatas = allDoctorRepository.getAllConsultants();
         doctorDataArrayList.addAll(doctorDatas);
+        PendingConsultantBaseAdapter adapter = updateRegisterCounts();
+        lv_pending_consultants.setAdapter(adapter);
 
-        updateRegisterCounts();
-        pendingConsultantBaseAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, doctorDataArrayList, this);
-        lv_pending_consultants.setAdapter(pendingConsultantBaseAdapter);
 
 
         edt_search.addTextChangedListener(new TextWatcher() {
@@ -230,10 +227,10 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
             public void afterTextChanged(Editable s) {
                 ib_clear_search.setVisibility(View.VISIBLE);
                 String text = edt_search.getText().toString().toLowerCase(Locale.getDefault());
-                if (syncAdapter != null)
-                    NativeDoctorActivity.syncAdapter.filter(text);
-                else
-                    NativeDoctorActivity.pendingConsultantBaseAdapter.filter(text);
+                if (syncDataAdapter != null)
+                    syncDataAdapter.filter(text);
+                syncDataAdapter.notifyDataSetChanged();
+
             }
         });
     }

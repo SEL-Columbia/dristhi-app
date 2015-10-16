@@ -19,12 +19,12 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anmPoc;
  */
 public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
     EditText et_pnc_num, et_woman_name, et_pnc_date, et_bp_sys, et_bp_dia, et_temp, et_blood_glucose, et_hb_level;
-    TextView tv_difficuties, tv_vaginal_difficulties, tv_breast_difficulties, tv_kop_feel_hot, tv_urinating_problems, tv_abdominal_problems, tv_stehoscope_title;
+    TextView tv_difficuties, tv_vaginal_difficulties, tv_breast_difficulties, tv_kop_feel_hot, tv_urinating_problems, tv_abdominal_problems, tv_stehoscope_title, tv_temp_format;
     Button bt_plan_of_care, bt_doc_refer;
     ImageButton ib_bp_graph, ib_fetal_graph, ib_bgm_graph, ib_temp_graph;
     Bundle bundle;
     ImageButton ib_play_stehoscope;
-    private String documentId, visitId, phoneNumber, entityId = null, wifeName = null;
+    private String documentId, visitId, phoneNumber, entityId = null, wifeName = null, tempFormat = "", tempVal = "";
     org.ei.telemedicine.view.customControls.CustomFontTextView tv_anm_poc;
 
 
@@ -47,6 +47,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         tv_kop_feel_hot = (TextView) findViewById(R.id.tv_kop_feel_hot);
         tv_urinating_problems = (TextView) findViewById(R.id.tv_urinating_difficulties);
         tv_abdominal_problems = (TextView) findViewById(R.id.tv_addominal_problems);
+        tv_temp_format = (TextView) findViewById(R.id.tv_temp_format);
 
         ib_play_stehoscope = (ImageButton) findViewById(R.id.ib_play_stehoscope);
         ib_bp_graph = (ImageButton) findViewById(R.id.ib_bp_graph);
@@ -81,7 +82,18 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
 
         et_bp_sys.setText(getDatafromJson(formInfo, DoctorFormDataConstants.bp_sys).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.bp_sys));
         et_bp_dia.setText(getDatafromJson(formInfo, DoctorFormDataConstants.bp_dia).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.bp_dia));
-        et_temp.setText(getDatafromJson(formInfo, DoctorFormDataConstants.temp_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.temp_data));
+        String tempStr = getDatafromJson(formInfo, DoctorFormDataConstants.temp_data);
+        if (!tempStr.equals("") && tempStr.contains("-")) {
+            String[] temp = tempStr.split("-");
+            tempFormat = temp[temp.length - 1];
+            tempVal = temp[0];
+        } else {
+            tempVal = "Not Captured";
+        }
+        tv_temp_format.setText(tempFormat);
+        et_temp.setText(tempVal);
+
+//        et_temp.setText(getDatafromJson(formInfo, DoctorFormDataConstants.temp_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.temp_data));
         et_blood_glucose.setText(getDatafromJson(formInfo, DoctorFormDataConstants.blood_glucose).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.blood_glucose));
         et_hb_level.setText(getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data));
 

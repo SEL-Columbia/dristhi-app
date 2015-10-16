@@ -35,6 +35,7 @@ public class AllConstants {
     public static final String ENGLISH_LANGUAGE = "English";
     public static final String KANNADA_LANGUAGE = "Kannada";
     public static final String IS_SYNC_IN_PROGRESS_PREFERENCE_KEY = "isSyncInProgress";
+    public static final String IS_FP = "isFp";
     public static final String TYPE = "type";
     public static final String WOMAN_TYPE = "woman";
     public static final String CHILD_TYPE = "child";
@@ -90,6 +91,7 @@ public class AllConstants {
     public static final String BOOLEAN_TRUE = "yes";
     public static final String BOOLEAN_FALSE = "no";
     public static final String SPACE = " ";
+    public static final String COLON = ";";
     public static final String COMMA_WITH_SPACE = ", ";
     public static final String DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH = "../../img/woman-placeholder.png";
     public static final String DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";

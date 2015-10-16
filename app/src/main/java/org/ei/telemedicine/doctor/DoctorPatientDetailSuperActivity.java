@@ -243,7 +243,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         if (jsonStr != null) {
             try {
                 JSONObject jsonData = new JSONObject(jsonStr);
-                return (jsonData.has(key) && jsonData.getString(key) != null) ? jsonData.getString(key) : "";
+                return (jsonData.has(key) && jsonData.getString(key) != null && !jsonData.getString(key).equalsIgnoreCase("null")) ? jsonData.getString(key) : "";
             } catch (JSONException e) {
                 e.printStackTrace();
             }

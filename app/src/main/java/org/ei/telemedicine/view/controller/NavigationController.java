@@ -54,7 +54,10 @@ public class NavigationController {
         navigateToECProfile(activity, entityId);
 //        navigateToProfile(activity, entityId);
     }
-
+    public void startFP(String entityId) {
+        navigateToFPProfile(activity, entityId);
+//        navigateToProfile(activity, entityId);
+    }
     public void startDoctor(String formallData, String formData) {
         navigateToProfile(activity, formallData, formData);
     }

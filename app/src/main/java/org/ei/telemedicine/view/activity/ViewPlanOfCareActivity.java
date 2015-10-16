@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +53,7 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
             et_advice = (EditText) findViewById(R.id.et_advice_data);
             et_diagnosis = (EditText) findViewById(R.id.et_diagnosis);
             tv_anc_number_title = (TextView) findViewById(R.id.tv_anc_num_title);
+
 //            bt_history.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -86,6 +88,7 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
                                 et_anc_num.setText(mother.getDetail("ancNumber"));
                                 if (visitType.equals("PNC")) {
                                     tv_anc_number_title.setText("PNC Number");
+                                    et_anc_num.setText(mother.getDetail("pncNumber"));
                                 }
                                 et_plan_of_care_date.setText(getDataFromJson(pocJson.toString(), "planofCareDate"));
                                 et_drugs.setText(getDatafromDrugsArray(pocJson.getString("drugs")));
@@ -163,6 +166,11 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
     @Override
     protected void onResumption() {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return false;
     }
 
     private void showNoPoc() {

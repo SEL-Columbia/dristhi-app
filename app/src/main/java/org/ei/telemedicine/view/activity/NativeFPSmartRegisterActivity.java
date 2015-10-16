@@ -205,7 +205,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         }
 
         private void showProfileView(FPClient client) {
-            navigationController.startEC(client.entityId());
+            navigationController.startFP(client.entityId());
         }
     }
 

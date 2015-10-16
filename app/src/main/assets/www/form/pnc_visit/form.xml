@@ -379,10 +379,11 @@
         <label class="note or-branch pre-init non-select ">
             <span class="question-label active" lang="">
                 <span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name "></span>has
-                following danger signs,
-                <span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name "></span>:<span
-                class="or-output"
-                data-value=" /PNC_Visit_EngKan/pnc_mother_group/immediate_referral_reason "></span>.
+                following danger signs:
+                <span class="or-output"
+                    data-value=" /PNC_Visit_EngKan/pnc_mother_group/immediate_referral_reason "></span>
+                .
+                <!--<span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name "></span>:-->
                 Refer immediately to health facility!
             </span>
             <input name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral_note"
@@ -749,11 +750,11 @@
                     </div>
                 </fieldset>
             </fieldset>
-            <label class="question non-select ">
-                <span class="question-label active" lang="">Bady temperature</span>
-                <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature"
-                    data-type-xml="decimal" step="any" type="number" />
-            </label>
+            <!--<label class="question non-select ">-->
+            <!--<span class="question-label active" lang="">Bady temperature</span>-->
+            <!--<input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature"-->
+            <!--data-type-xml="decimal" step="any" type="number" />-->
+            <!--</label>-->
             <fieldset class="question ">
                 <fieldset>
                     <legend>
@@ -880,6 +881,10 @@
             <input name="/PNC_Visit_EngKan/pnc_mother_group/pre_eclampsia"
                 data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/case_pre_eclampsia  = '', '', if( /PNC_Visit_EngKan/pnc_mother_group/bp_systolic  &lt; 140 and  /PNC_Visit_EngKan/pnc_mother_group/bp_diastolic  &lt; 90, '', 'Pre_eclampsia'))"
                 data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature"
+                data-type-xml="decimal" step="any" type="hidden" />
         </label>
         <label class="calculation non-select ">
             <input name="/PNC_Visit_EngKan/pnc_mother_group/is_high_risk1"

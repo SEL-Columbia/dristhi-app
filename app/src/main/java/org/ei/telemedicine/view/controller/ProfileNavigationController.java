@@ -12,6 +12,7 @@ import org.ei.telemedicine.view.activity.PNCDetailActivity;
 import static org.ei.telemedicine.AllConstants.ALLFORMDATA;
 import static org.ei.telemedicine.AllConstants.CASE_ID;
 import static org.ei.telemedicine.AllConstants.FORMINFO;
+import static org.ei.telemedicine.AllConstants.IS_FP;
 import static org.ei.telemedicine.AllConstants.VISIT_TYPE;
 
 public class ProfileNavigationController {
@@ -30,6 +31,15 @@ public class ProfileNavigationController {
         Intent intent = new Intent(context.getApplicationContext(), NativeOverviewActivity.class);
         intent.putExtra(CASE_ID, caseId);
         intent.putExtra(VISIT_TYPE, "ec");
+        context.startActivity(intent);
+    }
+
+    public static void navigateToFPProfile(android.content.Context context, String caseId) {
+//        Intent intent = new Intent(context.getApplicationContext(), EligibleCoupleDetailActivity.class);
+        Intent intent = new Intent(context.getApplicationContext(), NativeOverviewActivity.class);
+        intent.putExtra(CASE_ID, caseId);
+        intent.putExtra(VISIT_TYPE, "ec");
+        intent.putExtra(IS_FP, true);
         context.startActivity(intent);
     }
 

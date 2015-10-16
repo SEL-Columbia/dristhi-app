@@ -90,18 +90,16 @@ public class DoctorSmartRegisterDialogFragment extends DialogFragment {
                 Toast.makeText(context, values.get(i).toString(), Toast.LENGTH_SHORT).show();
                 if (tag.toString().equals("Filter")) {
                     String value = values.get(i).toString();
-                    if (NativeDoctorActivity.syncAdapter != null)
-                        NativeDoctorActivity.syncAdapter.villagesFilter(values.get(i).toString());
-                    else
-                        NativeDoctorActivity.pendingConsultantBaseAdapter.villagesFilter(values.get(i).toString());
+                    if (NativeDoctorActivity.syncDataAdapter != null)
+                        NativeDoctorActivity.syncDataAdapter.villagesFilter(values.get(i).toString());
                 } else if (tag.toString().equals("Sort")) {
                     Log.e("Coming to Sort", "Sotr");
                     NativeDoctorActivity.sorted_by_name.setText(values.get(i).toString());
 //                    NativeDoctorActivity.sort_by = values.get(i).toString();
-                    if (NativeDoctorActivity.syncAdapter != null)
-                        NativeDoctorActivity.syncAdapter.sort(values.get(i).toString());
-                    else
-                        NativeDoctorActivity.pendingConsultantBaseAdapter.sort(values.get(i).toString());
+                    if (NativeDoctorActivity.syncDataAdapter != null)
+                        NativeDoctorActivity.syncDataAdapter.sort(values.get(i).toString());
+                    NativeDoctorActivity.syncDataAdapter.notifyDataSetChanged();
+
                 }
 //                dialogOptionModel.onDialogOptionSelection(values.get(i), tag);
             }
