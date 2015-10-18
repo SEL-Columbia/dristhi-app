@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.ei.opensrp.Context;
@@ -75,7 +76,8 @@ public class LoginActivity extends Activity {
 
         }
         setContentView(org.ei.opensrp.R.layout.login);
-
+        ImageView loginglogo = (ImageView)findViewById(R.id.login_logo);
+        loginglogo.setImageDrawable(getResources().getDrawable(R.mipmap.login_logo));
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         initializeLoginFields();
         initializeBuildDetails();

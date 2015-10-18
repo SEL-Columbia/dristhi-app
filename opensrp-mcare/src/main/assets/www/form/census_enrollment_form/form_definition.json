@@ -104,8 +104,16 @@
         "bind": "/model/instance/CensusNewWomanRegistrationForm/new_mwra"
       },
       {
-        "name": "MWRA",
-        "bind": "/model/instance/CensusNewWomanRegistrationForm/MWRA"
+        "name": "ELCO",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/ELCO"
+      },
+      {
+        "name": "user_type",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/user_type"
+      },
+      {
+        "name": "external_user_ID",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/external_user_ID"
       }
     ],
     "sub_forms": [

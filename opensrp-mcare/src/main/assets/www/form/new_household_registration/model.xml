@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <FWNewHH encounter_type="New Household Registration" id="FWNewHH" version="201510081223">
+        <FWNewHH encounter_type="New Household Registration" id="FWNewHH" version="201510181114">
           <formhub>
             <uuid/>
           </formhub>
@@ -53,7 +53,7 @@
             <FWNHWOMHUSSTR openmrs_entity="concept" openmrs_entity_id="162959AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <FWELIGIBLE openmrs_entity="concept" openmrs_entity_id="162699AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <eligible>
-              <FWWOMANYID/>
+              <FWWOMANYID openmrs_entity="concept" openmrs_entity_id="163087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
               <FWWOMNID/>
               <FWWOMRETYPENID openmrs_entity="person_identifier" openmrs_entity_id="NID"/>
               <FWWOMBID/>
@@ -72,8 +72,9 @@
             </eligible>
             <add_women/>
           </woman>
-          <join_names/>
-          <MWRA/>
+          <ELCO/>
+          <user_type>FWA</user_type>
+          <external_user_ID/>
           <meta>
             <instanceID/>
           </meta>

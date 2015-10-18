@@ -1,5 +1,5 @@
 {
-  "form_data_definition_version": "12",
+  "form_data_definition_version": "13",
   "form": {
     "default_bind_path": "/model/instance/FWNewHH",
     "bind_type": "household",
@@ -137,8 +137,16 @@
         "bind": "/model/instance/FWNewHH/join_names"
       },
       {
-        "name": "MWRA",
-        "bind": "/model/instance/FWNewHH/MWRA"
+        "name": "ELCO",
+        "bind": "/model/instance/FWNewHH/ELCO"
+      },
+      {
+        "name": "user_type",
+        "bind": "/model/instance/FWNewHH/user_type"
+      },
+      {
+        "name": "external_user_ID",
+        "bind": "/model/instance/FWNewHH/external_user_ID"
       }
     ],
     "sub_forms": [

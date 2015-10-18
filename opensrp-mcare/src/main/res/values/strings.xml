@@ -330,7 +330,7 @@
     <string name="elco_details_summary">Summary</string>
     <string name="elco_mwra_registration_date_label">MWRA Registration Date</string>
     <string name="elco_last_psf_date_label">Last PSF Date</string>
-    <string name="all_eligible_couples">ALL eligible couples</string>
+    <string name="all_eligible_couples">‘All Eligible Couples</string>
     <string name="hhid_gob">HHID - Government :</string>
     <string name="hhid_jivita">HHID - JiVitA :</string>
     <string name="BRID">BRID :</string>
@@ -340,6 +340,10 @@
     <string name="hhid_gob_elco_label">HHID-Government :</string>
     <string name="elco_details_mauza">Mauza :</string>
     <string name="elco_alphabetical_sort">Alphabetical (Woman name)</string>
+    <string name="anc_nbnf_due_date">NBND due date</string>
+    <string name="anc_reminder_status">ANC reminder due</string>
+    <string name="anc_edd_ga">EDD and GA</string>
+    <string name="anc_reminder_due">ANC reminder due</string>
     <string name="take_nid_picture">Take Picture-NID/BRID</string>
 
 

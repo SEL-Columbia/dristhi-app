@@ -1,5 +1,5 @@
 {
-  "form_data_definition_version": "10",
+  "form_data_definition_version": "11",
   "form": {
     "default_bind_path": "/model/instance/PregnancySurveillanceRegistrationForm",
     "bind_type": "elco",
@@ -24,29 +24,24 @@
         "shouldLoadValue": true
       },
       {
-        "name": "FWHUSNAME",
-        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/existing_husname",
-        "shouldLoadValue": true
+        "name": "existing_husname",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/existing_husname"
       },
       {
-        "name": "FWWOMNID",
-        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/existing_wom_nid",
-        "shouldLoadValue": true
+        "name": "existing_wom_nid",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/existing_wom_nid"
       },
       {
-        "name": "FWWOMBID",
-        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/existing_wom_bid",
-        "shouldLoadValue": true
+        "name": "existing_wom_bid",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/existing_wom_bid"
       },
       {
-        "name": "FWWOMAGE",
-        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/existing_wom_age",
-        "shouldLoadValue": true
+        "name": "existing_wom_age",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/existing_wom_age"
       },
       {
         "name": "existing_location",
-        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/existing_location",
-        "shouldLoadValue": true
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/existing_location"
       },
       {
         "name": "today",
@@ -73,8 +68,24 @@
         "bind": "/model/instance/PregnancySurveillanceRegistrationForm/FWPSRSTS"
       },
       {
-        "name": "psrf_met",
-        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/psrf_met"
+        "name": "FWVG",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/FWVG"
+      },
+      {
+        "name": "FWHRP",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/FWHRP"
+      },
+      {
+        "name": "FWHR_PSR",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/FWHR_PSR"
+      },
+      {
+        "name": "FWFLAGVALUE",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/FWFLAGVALUE"
+      },
+      {
+        "name": "FWSORTVALUE",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/FWSORTVALUE"
       },
       {
         "name": "FWPSRLMP",
@@ -95,10 +106,6 @@
       {
         "name": "display_notpregnote",
         "bind": "/model/instance/PregnancySurveillanceRegistrationForm/psrf_met/display_notpregnote"
-      },
-      {
-        "name": "psrf_pregnant",
-        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/psrf_met/psrf_pregnant"
       },
       {
         "name": "mother_mauza",
