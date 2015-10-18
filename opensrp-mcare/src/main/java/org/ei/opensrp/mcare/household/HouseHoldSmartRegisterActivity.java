@@ -8,6 +8,8 @@ import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import org.ei.opensrp.Context;
@@ -191,11 +193,14 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
             }catch(Exception e){
 
             }
-            Button warn = new Button(this);
-            warn.setBackground(getResources().getDrawable(R.mipmap.warning));
+            ImageButton warn = new ImageButton(this);
+            warn.setImageDrawable(getResources().getDrawable(R.mipmap.warning));
+            warn.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            warn.setBackground(null);
             warn.setId(900);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.gravity = Gravity.CENTER;
+
 //        warn.setGravity(Gravity.CENTER);
 //        warn.setB
             titlelayout.addView(warn, layoutParams);

@@ -105,8 +105,8 @@ public class NativeHomeActivity extends SecuredActivity {
         ACTION_HANDLED.addListener(updateANMDetailsListener);
         ActionBar actionBar = getActionBar();
         getActionBar().setTitle("");
-        getActionBar().setIcon(getResources().getDrawable(R.drawable.logo));
-        actionBar.setLogo(R.drawable.logo);
+        getActionBar().setIcon(getResources().getDrawable(org.ei.opensrp.mcare.R.drawable.logo));
+        actionBar.setLogo(org.ei.opensrp.mcare.R.drawable.logo);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
         LoginActivity.setLanguage();

@@ -15,8 +15,7 @@
         android:text="@string/str_previous"
         android:textSize="@dimen/pagination_bar_text_size"
         android:focusable="true"
-        android:clickable="true"
-        android:textColor="@color/abc_search_url_text_selected" />
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/txt_page_info"
@@ -36,7 +35,6 @@
         android:text="@string/str_next"
         android:textSize="@dimen/pagination_bar_text_size"
         android:focusable="true"
-        android:clickable="true"
-        android:textColor="@color/abc_search_url_text_pressed" />
+        android:clickable="true"/>
 </RelativeLayout>
     
