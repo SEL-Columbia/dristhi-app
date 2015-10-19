@@ -323,8 +323,8 @@
     <string name="hh_fwJivhhid_sort">HHID - JiVitA</string>
     <string name="due_status">Due Status</string>
     <string name="hh_search_hint">Search Household</string>
-    <string name="hh_no_mwra">No MWRA</string>
-    <string name="hh_has_mwra">Has one or more MWRA</string>
+    <string name="hh_no_mwra">No ELCO</string>
+    <string name="hh_has_mwra">Has one or more ELCO</string>
     <string name="elco_search_hint">Search Eligible Couples</string>
     <string name="elco_woman_details">ELCO Woman Details</string>
     <string name="elco_details_summary">Summary</string>
