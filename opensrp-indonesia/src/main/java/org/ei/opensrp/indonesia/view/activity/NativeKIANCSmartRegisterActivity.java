@@ -89,6 +89,8 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_register_anc_visit_form),
                         KARTU_IBU_ANC_VISIT, formController),
+                new OpenFormOption(getString(R.string.anc_visit_integrasi), KARTU_IBU_ANC_VISIT_INTEGRASI, formController),
+                new OpenFormOption(getString(R.string.anc_visit_labtest), KARTU_IBU_ANC_VISIT_LABTEST, formController),
                 new OpenFormOption(getString(R.string.str_rencana_persalinan_anc_form),
                         KARTU_IBU_ANC_RENCANA_PERSALINAN, formController),
                 new OpenFormOption(getString(R.string.str_register_pnc_form),

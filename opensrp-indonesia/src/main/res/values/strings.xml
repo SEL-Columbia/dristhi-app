@@ -552,7 +552,7 @@
 
     <string name="str_out_of_area">(O/A)</string>
 
-    <string name="str_register_anc_visit_form">ANC Visit</string>
+    <string name="str_register_anc_visit_form">Kunjungan ANC</string>
     <string name="str_register_hb_test_form">Hb Test</string>
     <string name="str_register_ifa_form">IFA</string>
     <string name="str_register_tt_form">TT</string>
@@ -758,4 +758,7 @@
     <string name="show_more_button">Lihat lebih...</string>
 
     <string name="mother_already_registered">Ibu sudah terdaftar di ANC</string>
+
+    <string name="anc_visit_integrasi">Kunjungan ANC Integrasi</string>
+    <string name="anc_visit_labtest">Kunjungan ANC Tes Lab</string>
 </resources>

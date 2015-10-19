@@ -15,7 +15,7 @@
       },
       {
         "name": "referenceDate",
-        "bind": "/model/instance/ANC_Visit/anc_date"
+        "bind": "/model/instance/ANC_Visit/B01043"
       },
       {
         "name": "ancDate",
@@ -23,237 +23,139 @@
       },
       {
         "name": "tanggalHPHT",
-        "bind": "/model/instance/ANC_Visit/hpht",
+        "bind": "/model/instance/ANC_Visit/B01027",
         "shouldLoadValue": true
       },
       {
         "name": "usiaKlinis",
-        "bind": "/model/instance/ANC_Visit/usia_klinis"
+        "bind": "/model/instance/ANC_Visit/B01046"
       },
       {
         "name": "trimesterKe",
-        "bind": "/model/instance/ANC_Visit/trimester_ke"
+        "bind": "/model/instance/ANC_Visit/B01047"
       },
       {
         "name": "ancKe",
-        "bind": "/model/instance/ANC_Visit/anc_ke"
+        "bind": "/model/instance/ANC_Visit/B01145"
       },
       {
         "name": "Jamkesmas",
-        "bind": "/model/instance/ANC_Visit/jamkesmas"
+        "bind": "/model/instance/ANC_Visit/B01044"
       },
       {
         "name": "caraMasukTempatPelayanan",
-        "bind": "/model/instance/ANC_Visit/cara_masuk_tempat_pelayanan"
+        "bind": "/model/instance/ANC_Visit/B01045"
       },
       {
         "name": "anamnesisIbu",
-        "bind": "/model/instance/ANC_Visit/anamnesis_ibu"
+        "bind": "/model/instance/ANC_Visit/B01048"
       },
       {
         "name": "bbKg",
-        "bind": "/model/instance/ANC_Visit/bb_kg"
+        "bind": "/model/instance/ANC_Visit/B01049"
       },
       {
         "name": "tandaVitalTDSistolik",
-        "bind": "/model/instance/ANC_Visit/td_sistolik",
+        "bind": "/model/instance/ANC_Visit/B01050",
         "source": "ibu.kartu_ibu.tandaVitalTDSistolik"
       },
       {
         "name": "tandaVitalTDDiastolik",
-        "bind": "/model/instance/ANC_Visit/td_diastolik",
+        "bind": "/model/instance/ANC_Visit/B01051",
         "source": "ibu.kartu_ibu.tandaVitalTDDiastolik"
       },
       {
         "name": "hasilPemeriksaanLILA",
-        "bind": "/model/instance/ANC_Visit/lila_cm"
+        "bind": "/model/instance/ANC_Visit/B01052"
       },
       {
         "name": "statusGiziibu",
-        "bind": "/model/instance/ANC_Visit/status_gizi_ibu"
+        "bind": "/model/instance/ANC_Visit/B01053"
       },
       {
         "name": "tfu",
-        "bind": "/model/instance/ANC_Visit/tfu"
+        "bind": "/model/instance/ANC_Visit/B01054"
       },
       {
         "name": "refleksPatelaIbu",
-        "bind": "/model/instance/ANC_Visit/refleks_patela_ibu"
+        "bind": "/model/instance/ANC_Visit/B01055"
       },
       {
         "name": "djj",
-        "bind": "/model/instance/ANC_Visit/djj"
+        "bind": "/model/instance/ANC_Visit/B01056"
       },
       {
         "name": "kepalaJaninTerhadapPAP",
-        "bind": "/model/instance/ANC_Visit/kepala_terhadap_janin_pap"
+        "bind": "/model/instance/ANC_Visit/B01057"
       },
       {
         "name": "taksiranBeratJanin",
-        "bind": "/model/instance/ANC_Visit/taksiran_berat_janin"
+        "bind": "/model/instance/ANC_Visit/B01058"
       },
       {
         "name": "persentasiJanin",
-        "bind": "/model/instance/ANC_Visit/persentasi_janin"
+        "bind": "/model/instance/ANC_Visit/B01059"
       },
       {
         "name": "jumlahJanin",
-        "bind": "/model/instance/ANC_Visit/jumlah_janin"
+        "bind": "/model/instance/ANC_Visit/B01060"
       },
       {
         "name": "statusImunisasitt",
-        "bind": "/model/instance/ANC_Visit/status_imunisasi_tt"
+        "bind": "/model/instance/ANC_Visit/B01061"
       },
       {
         "name": "pelayananInjeksitt",
-        "bind": "/model/instance/ANC_Visit/pelayanan_injeksi_tt"
+        "bind": "/model/instance/ANC_Visit/B01062"
       },
       {
         "name": "pelayananCatatDiBukuKia",
-        "bind": "/model/instance/ANC_Visit/pelayanan_catat_buku_kia"
+        "bind": "/model/instance/ANC_Visit/B01063"
       },
       {
         "name": "pelayananfe",
-        "bind": "/model/instance/ANC_Visit/pelayananfe"
+        "bind": "/model/instance/ANC_Visit/B01064"
       },
       {
         "name": "pelayananFe",
-        "bind": "/model/instance/ANC_Visit/pelayanan_fe"
-      },
-      {
-        "name": "labCheck",
-        "bind": "/model/instance/ANC_Visit/Labcheck"
-      },
-      {
-        "name": "laboratoriumPeriksaHbDilakukan",
-        "bind": "/model/instance/ANC_Visit/laboratorium_periksa_hb_dilakukan"
-      },
-      {
-        "name": "laboratoriumPeriksaHbHasil",
-        "bind": "/model/instance/ANC_Visit/laboratorium_periksa_hb_hasil"
-      },
-      {
-        "name": "laboratoriumPeriksaHbAnemia",
-        "bind": "/model/instance/ANC_Visit/laboratorium_periksa_hb_anemia"
-      },
-      {
-        "name": "laboratoriumProteinUria",
-        "bind": "/model/instance/ANC_Visit/laboratorium_protein_uria"
-      },
-      {
-        "name": "laboratoriumGulaDarah",
-        "bind": "/model/instance/ANC_Visit/laboratorium_gula_darah"
-      },
-      {
-        "name": "laboratoriumThalasemia",
-        "bind": "/model/instance/ANC_Visit/laboratorium_thalasemia"
-      },
-      {
-        "name": "laboratoriumSifilis",
-        "bind": "/model/instance/ANC_Visit/laboratorium_sifilis"
-      },
-      {
-        "name": "laboratoriumHbsAg",
-        "bind": "/model/instance/ANC_Visit/laboratorium_hbsag"
-      },
-      {
-        "name": "programIntegration",
-        "bind": "/model/instance/ANC_Visit/program_integration"
-      },
-      {
-        "name": "integrasiProgrampmtctvct",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_pmtct_vct"
-      },
-      {
-        "name": "integrasiProgrampmtctPeriksaDarah",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_pmtct_periksa_darah"
-      },
-      {
-        "name": "integrasiProgrampmtctSerologi",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_pmtct_serologi"
-      },
-      {
-        "name": "integrasiProgrampmtctarvProfilaksis",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_pmtct_arv"
-      },
-      {
-        "name": "integrasiProgramMalariaPeriksaDarah",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_malaria_periksa_darah"
-      },
-      {
-        "name": "integrasiProgramMalariaMalaria",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_malaria_malaria"
-      },
-      {
-        "name": "integrasiProgramMalariaObat",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_malaria_obat"
-      },
-      {
-        "name": "integrasiProgramMalariaKelambuBerinsektisida",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_malaria_kelambu"
-      },
-      {
-        "name": "integrasiProgramtbDahak",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_tb_dahak"
-      },
-      {
-        "name": "integrasiProgramtbtbc",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_tb_tbc"
-      },
-      {
-        "name": "integrasiProgramtbObat",
-        "bind": "/model/instance/ANC_Visit/integrasi_program_tb_obat"
-      },
-      {
-        "name": "resikoTerdeteksiPertamaKaliOleh",
-        "bind": "/model/instance/ANC_Visit/resiko_terdeksi_pertama_kali"
+        "bind": "/model/instance/ANC_Visit/B01064_i"
       },
       {
         "name": "komplikasidalamKehamilan",
-        "bind": "/model/instance/ANC_Visit/komplikasi_dalam_kehamilan"
+        "bind": "/model/instance/ANC_Visit/B01086"
       },
       {
         "name": "rujukan",
-        "bind": "/model/instance/ANC_Visit/rujukan"
+        "bind": "/model/instance/ANC_Visit/B01149"
       },
       {
         "name": "dirujukKe",
-        "bind": "/model/instance/ANC_Visit/dirujuk_ke"
+        "bind": "/model/instance/ANC_Visit/B01087"
       },
       {
         "name": "lainLain",
-        "bind": "/model/instance/ANC_Visit/dirujuk_keL"
+        "bind": "/model/instance/ANC_Visit/B01088"
       },
       {
         "name": "keadaanIbusaatTiba",
-        "bind": "/model/instance/ANC_Visit/keadaan_ibu_saat_tiba"
+        "bind": "/model/instance/ANC_Visit/B01089"
       },
       {
         "name": "keadaanIbusaatPulang",
-        "bind": "/model/instance/ANC_Visit/keadaan_ibu_saat_pulang"
+        "bind": "/model/instance/ANC_Visit/B01090"
       },
       {
         "name": "keterangan",
-        "bind": "/model/instance/ANC_Visit/keterangan"
+        "bind": "/model/instance/ANC_Visit/B01091"
       },
       {
         "name": "proteinEnergyMalnutritionRisk",
         "bind": "/model/instance/ANC_Visit/Protein_energy_Malnutrition_risk"
       },
       {
-        "name": "anemiaRisk",
-        "bind": "/model/instance/ANC_Visit/anemia_risk",
-        "source": "ibu.kartu_ibu.anemiaRisk"
-      },
-      {
         "name": "pihRisk",
         "bind": "/model/instance/ANC_Visit/PIH_risk",
         "source": "ibu.kartu_ibu.pihRisk"
-      },
-      {
-        "name": "diabetesRisk",
-        "bind": "/model/instance/ANC_Visit/diabetes_risk",
-        "source": "ibu.kartu_ibu.diabetesRisk"
       },
       {
         "name": "fetusNumberRisk",
@@ -269,26 +171,6 @@
         "name": "fetusMalpresentationRisk",
         "bind": "/model/instance/ANC_Visit/fetus_Malpresentation_risk",
         "source": "ibu.kartu_ibu.fetusMalpresentationRisk"
-      },
-      {
-        "name": "tbcRisk",
-        "bind": "/model/instance/ANC_Visit/TBC_risk",
-        "source": "ibu.kartu_ibu.tbcRisk"
-      },
-      {
-        "name": "malariaRisk",
-        "bind": "/model/instance/ANC_Visit/malaria_risk",
-        "source": "ibu.kartu_ibu.malariaRisk"
-      },
-      {
-        "name": "isHighRisk",
-        "bind": "/model/instance/ANC_Visit/is_high_risk",
-        "source": "ibu.kartu_ibu.isHighRisk"
-      },
-      {
-        "name": "isHighRiskReason",
-        "bind": "/model/instance/ANC_Visit/is_high_risk_reason",
-        "source": "ibu.kartu_ibu.isHighRiskReason"
       },
       {
         "name": "isHighRiskPregnancy",
@@ -325,7 +207,7 @@
       },
       {
         "name": "hiddenAncKe",
-        "bind": "/model/instance/ANC_Visit/hidden_anc_ke"
+        "bind": "/model/instance/ANC_Visit/hidden_B01145"
       }
     ]
   }

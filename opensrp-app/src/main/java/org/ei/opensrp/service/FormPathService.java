@@ -1,10 +1,13 @@
 package org.ei.opensrp.service;
 
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
 import android.os.Environment;
 
 import org.apache.commons.io.IOUtils;
+import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.Context;
+import org.ei.opensrp.DristhiConfiguration;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,10 +33,14 @@ public class FormPathService {
     }
 
     public String getForms(String file, String encoding) throws IOException {
-        File formFile = new File(sdcardPath + file);
+        DristhiConfiguration configuration = Context.getInstance().configuration();
 
-        if(formFile.exists()) {
-            return IOUtils.toString(new FileInputStream(formFile), encoding);
+        if(configuration.shouldSyncForm()) {
+            File formFile = new File(sdcardPath + file);
+
+            if(formFile.exists()) {
+                return IOUtils.toString(new FileInputStream(formFile), encoding);
+            }
         }
 
         return IOUtils.toString(this.assetManager.open(appPath + file), encoding);

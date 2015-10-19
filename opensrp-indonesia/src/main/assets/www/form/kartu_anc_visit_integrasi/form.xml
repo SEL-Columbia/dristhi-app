@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="ANC_Visit_Integrasi">
+	<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+	<section class="form-logo" />
+	<h3 id="form-title">Kunjungan ANC integrasi</h3>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01043:label">Tanggal kunjungan Program Integrasi</span>
+		<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01043:label">Date of Integration Program visit</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01043:hint">Diisi dengan tanggal periksa Ibu</span>
+		<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01043:hint">Fill in the date of check-up</span>
+		<input type="date" name="/ANC_Visit_Integrasi/B01043" required="required" data-type-xml="date" />
+	</label>
+	<label class="note non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/generated_note_name_8:label">Apakah anda melakukan Integrasi Program terhadap Ibu Hamil?</span>
+		<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/generated_note_name_8:label">Do you provide Program Integration to the mother?</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/generated_note_name_8:hint">Menunjukan detail Integrasi Program yang diberikan kepada Ibu Hamil</span>
+		<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/generated_note_name_8:hint">Indicating details of Program Integration provided for the pregnant mother</span>
+		<input type="text" name="/ANC_Visit_Integrasi/generated_note_name_8" data-type-xml="string" readonly="readonly" />
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01073:label">VCT</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01073:label">VCT</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01073:hint">Menunjukkan apakah Ibu melakukan Voluntary Counseling Test atau tidak</span>
+				<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01073:hint">Indicating whether mother does a Voluntary Counseling Test</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01073" data-name="/ANC_Visit_Integrasi/B01073" value="positif" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01073/positif:label">Positif (+)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01073/positif:label">Positive (+)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01073" data-name="/ANC_Visit_Integrasi/B01073" value="negatif" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01073/negatif:label">Negatif (-)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01073/negatif:label">Negative (-)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01074:label">Periksa Darah untuk uji PMTCT</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01074:label">Blood checkup for PMTCT test</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01074:hint">Menunjukkan jika Ibu melakukan pemeriksaan darah untuk Uji PMTCT atau tidak</span>
+				<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01074:hint">Indicating whether mother does PMTCT (prevention of mother-to-child transmission) test</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01074" data-name="/ANC_Visit_Integrasi/B01074" value="jika_dilakukan" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01074/jika_dilakukan:label">JIka dilakukan (√)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01074/jika_dilakukan:label">Yes (√)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01074" data-name="/ANC_Visit_Integrasi/B01074" value="jika_tidak_dilakukan" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01074/jika_tidak_dilakukan:label">Jika tidak dilakukan (x)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01074/jika_tidak_dilakukan:label">No (x)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01075:label">Serologi</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01075:label">Serology</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01075:hint">Menunjukkan hasil pemeriksaan serologi pada Ibu hamil</span>
+				<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01075:hint">Indicating mother's serology test result</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01075" data-name="/ANC_Visit_Integrasi/B01075" value="positif" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01075/positif:label">Positif (+)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01075/positif:label">Positive (+)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01075" data-name="/ANC_Visit_Integrasi/B01075" value="negatif" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01075/negatif:label">Negatif (-)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01075/negatif:label">Negative (-)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01076:label">ARV Profilaksis</span>
+		<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01076:label">ARV</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01076:hint">Menunjukkan jenis obat pada Ibu yang mengalami PMTCT</span>
+		<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01076:hint">Indicating type of medicines that mother with PMTCT receives</span>
+		<input type="text" name="/ANC_Visit_Integrasi/B01076" data-type-xml="string" />
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01077:label">Periksa Darah untuk uji Malaria</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01077:label">Blood check-up for Malaria</span>
+				<span class="required">*</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01077:hint">Menunjukkan apakah Ibu melakukan pemeriksaan darah, yang bertujuan memastikan apakah ada parasit penyebab Malaria dalam darah Ibu</span>
+				<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01077:hint">Indicating whether mother does a blood test for malaria</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01077" data-name="/ANC_Visit_Integrasi/B01077" value="Ya" required="required" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01077/Ya:label">Ya</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01077/Ya:label">Yes</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01077" data-name="/ANC_Visit_Integrasi/B01077" value="Tidak" required="required" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01077/Tidak:label">Tidak</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01077/Tidak:label">No</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01078:label">Malaria</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01078:label">Malaria</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01078:hint">Menunjukkan apakah Ibu mengidap Malaria atau tidak</span>
+				<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01078:hint">Indicating whether mother has malaria</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01078" data-name="/ANC_Visit_Integrasi/B01078" value="positif" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01078/positif:label">Positif (+)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01078/positif:label">Positive (+)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01078" data-name="/ANC_Visit_Integrasi/B01078" value="negatif" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01078/negatif:label">Negatif (-)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01078/negatif:label">Negative (-)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01079:label">Obat Malaria</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01079:label">Medicine for malaria</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01079:hint">Menunjukkan jenis obat Malaria yang diberikan ke Ibu</span>
+				<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01079:hint">Indicating type of medicines that mother with malaria receives</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01079" data-name="/ANC_Visit_Integrasi/B01079" value="ZDV" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01079/ZDV:label">(ZDV)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01079/ZDV:label">(ZDV)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01079" data-name="/ANC_Visit_Integrasi/B01079" value="NVP" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01079/NVP:label">(NVP)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01079/NVP:label">(NVP)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01079" data-name="/ANC_Visit_Integrasi/B01079" value="TC" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01079/TC:label">(TC)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01079/TC:label">(TC)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01080:label">Memasang kelambu berinsektisida</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01080:label">mosquito net</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01080:hint">Menunjukkan apakah Ibu memasang kelambu berinsektisida atau tidak</span>
+				<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01080:hint">Indicating whether mother uses insecticide-treated nets</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01080" data-name="/ANC_Visit_Integrasi/B01080" value="jika_dilakukan" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01080/jika_dilakukan:label">Jika dilakukan (√)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01080/jika_dilakukan:label">yes (√)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01080" data-name="/ANC_Visit_Integrasi/B01080" value="jika_tidak_dilakukan" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01080/jika_tidak_dilakukan:label">Jika tidak dilakukan (x)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01080/jika_tidak_dilakukan:label">no (x)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01081:label">Periksa dahak</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01081:label">Phlegm</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01081:hint">Menunjukkan apakah Ibu melakukan pemeriksaan dahak untuk tes TB</span>
+				<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01081:hint">Indicating whether mother does sputum examination for TB test</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01081" data-name="/ANC_Visit_Integrasi/B01081" value="Ya" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01081/Ya:label">Ya</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01081/Ya:label">Yes</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01081" data-name="/ANC_Visit_Integrasi/B01081" value="Tidak" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01081/Tidak:label">Tidak</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01081/Tidak:label">No</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01082:label">TBC</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01082:label">Tuberculosis phlegm test</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01082:hint">Menunjukkan apakah Ibu mengidap TBC atau tidak</span>
+				<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01082:hint">Indicating whether mother suffers from TB</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01082" data-name="/ANC_Visit_Integrasi/B01082" value="positif" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01082/positif:label">Positif (+)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01082/positif:label">Positive (+)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01082" data-name="/ANC_Visit_Integrasi/B01082" value="negatif" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01082/negatif:label">Negatif (-)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01082/negatif:label">Negative (-)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01083:label">Obat TBC</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01083:label">Medicine for TBC</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01083:hint">Menunjukkan nama obat TBC yang diberikan kepada Ibu</span>
+				<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01083:hint">Indicating type of medicines that mother with TB receives</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01083" data-name="/ANC_Visit_Integrasi/B01083" value="rifampisin" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01083/rifampisin:label">Rifampisin (R)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01083/rifampisin:label">Rifampicin (R)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01083" data-name="/ANC_Visit_Integrasi/B01083" value="inh" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01083/inh:label">INH (H)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01083/inh:label">INH (H)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01083" data-name="/ANC_Visit_Integrasi/B01083" value="pyrazinamid" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01083/pyrazinamid:label">Pyrazinamid (Z)</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01083/pyrazinamid:label">Pyrazinamid (Z);</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/ANC_Visit_Integrasi/B01083" data-name="/ANC_Visit_Integrasi/B01083" value="etahmbutol" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/ANC_Visit_Integrasi/B01083/etahmbutol:label">Etahmbutol</span>
+					<span lang="en" class="option-label " data-itext-id="/ANC_Visit_Integrasi/B01083/etahmbutol:label">Etahmbutol</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question or-appearance-minimal ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/B01085:label">Resiko terdeteksi pertama kali oleh</span>
+		<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/B01085:label">First person diagnosed risk in pregnancy</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit_Integrasi/B01085:hint">Pendeteksi pertama komplikasi pada kehamilan Ibu</span>
+		<span lang="en" class="or-hint " data-itext-id="/ANC_Visit_Integrasi/B01085:hint">The person who first detect mother's pregnancy complication</span>
+		<select name="/ANC_Visit_Integrasi/B01085" data-name="/ANC_Visit_Integrasi/B01085" data-type-xml="select1">
+			<option value="">...</option>
+			<option value="pasien">Pasien (P)</option>
+			<option value="keluarga">Keluarga (K)</option>
+			<option value="masyarakat">Masyarakat (M)</option>
+			<option value="dukun">Dukun (D)</option>
+			<option value="kader">Kader (K)</option>
+			<option value="bidan">Bidan (B)</option>
+			<option value="dokter">Dokter (D)</option>
+			<option value="DSOG">Dokter Spesialis Obsestri dan Gemotologi (DSOG)</option>
+			<option value="tidak_ada">Tidak ada resiko terdeteksi</option>
+		</select>
+		<span class="or-option-translations" style="display:none;">
+			<span data-option-value="pasien" lang="Bahasa">Pasien (P)</span>
+			<span data-option-value="pasien" lang="en">Patient (P)</span>
+			<span data-option-value="keluarga" lang="Bahasa">Keluarga (K)</span>
+			<span data-option-value="keluarga" lang="en">Family (F)</span>
+			<span data-option-value="masyarakat" lang="Bahasa">Masyarakat (M)</span>
+			<span data-option-value="masyarakat" lang="en">Community (C)</span>
+			<span data-option-value="dukun" lang="Bahasa">Dukun (D)</span>
+			<span data-option-value="dukun" lang="en">Traditional Birth Attendant (TBA)</span>
+			<span data-option-value="kader" lang="Bahasa">Kader (K)</span>
+			<span data-option-value="kader" lang="en">Cadre (Cr)</span>
+			<span data-option-value="bidan" lang="Bahasa">Bidan (B)</span>
+			<span data-option-value="bidan" lang="en">Midwife (M)</span>
+			<span data-option-value="dokter" lang="Bahasa">Dokter (D)</span>
+			<span data-option-value="dokter" lang="en">Doctor (D)</span>
+			<span data-option-value="DSOG" lang="Bahasa">Dokter Spesialis Obsestri dan Gemotologi (DSOG)</span>
+			<span data-option-value="DSOG" lang="en">Obstectric and Gynecology Specialist (OGS)</span>
+			<span data-option-value="tidak_ada" lang="Bahasa">Tidak ada resiko terdeteksi</span>
+			<span data-option-value="tidak_ada" lang="en">No risk detected</span>
+		</span>
+	</label>
+	<fieldset class="question or-branch pre-init ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit_Integrasi/high_risk_note:label">
+					Ibu termasuk kategori RT (Resiko Tinggi), karena :
+					<span class="or-output" data-value=" /ANC_Visit_Integrasi/is_high_risk_reason " />
+				</span>
+				<span lang="en" class="question-label " data-itext-id="/ANC_Visit_Integrasi/high_risk_note:label">-</span>
+				<span class="required">*</span>
+			</legend>
+			<div class="option-wrapper">
+				<label>
+					<input value="OK" type="radio" name="/ANC_Visit_Integrasi/high_risk_note" required="required" data-relevant=" /ANC_Visit_Integrasi/is_high_risk  = 'yes'" data-type-xml="string" />
+					<span class="option-label active" lang="">OK</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset id="or-preload-items" style="display:none;">
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+		</label>
+	</fieldset>
+	<fieldset id="or-calculated-items" style="display:none;">
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/TBC_risk" data-calculate="if( /ANC_Visit_Integrasi/B01082  ='positif', 'Tuberculosis', '')" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/malaria_risk" data-calculate="if( /ANC_Visit_Integrasi/B01078  ='positif', 'Malaria', '')" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/is_high_risk" data-calculate="if(( /ANC_Visit_Integrasi/TBC_risk  !='' or  /ANC_Visit_Integrasi/malaria_risk  !=''), 'yes','no')" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/is_high_risk_reason" data-calculate="concat( /ANC_Visit_Integrasi/TBC_risk ,'', /ANC_Visit_Integrasi/malaria_risk )" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/ANC_Visit_Integrasi/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/kunjungan_anc_reviewed_split_integrasi/formhub/uuid" data-calculate="'180c382a2c474cd9849a6b6e92f1b28c'" data-type-xml="string" />
+		</label>
+	</fieldset>
+</form>

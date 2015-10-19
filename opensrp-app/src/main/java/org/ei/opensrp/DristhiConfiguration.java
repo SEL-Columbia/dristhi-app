@@ -19,6 +19,7 @@ public class DristhiConfiguration {
     private static final String SHOULD_VERIFY_CERTIFICATE = "SHOULD_VERIFY_CERTIFICATE";
     private static final String SYNC_DOWNLOAD_BATCH_SIZE = "SYNC_DOWNLOAD_BATCH_SIZE";
     private static final String APP_NAME = "APP_NAME";
+    private static final String SYNC_FORM = "SYNC_FORM";
     public static AllSharedPreferences preferences;
     private Properties properties = new Properties();
     private String dummyData = null;
@@ -68,5 +69,9 @@ public class DristhiConfiguration {
 
     public String appName() {
         return this.get(APP_NAME) != null ? this.get(APP_NAME) : "";
+    }
+
+    public boolean shouldSyncForm() {
+        return this.get(SYNC_FORM) != null ? Boolean.parseBoolean(this.get(SYNC_FORM)) : false;
     }
 }

@@ -1,0 +1,37 @@
+<model>
+    <instance>
+        <ANC_Visit_Integrasi id="ANC_Visit_Integrasi" version="201510160559">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <start/>
+          <today/>
+          <deviceid/>
+          <simserial/>
+          <phonenumber/>
+          <B01043/>
+          <generated_note_name_8/>
+          <B01073/>
+          <B01074/>
+          <B01075/>
+          <B01076/>
+          <B01077/>
+          <B01078/>
+          <B01079/>
+          <B01080/>
+          <B01081/>
+          <B01082/>
+          <B01083/>
+          <B01085/>
+          <TBC_risk/>
+          <malaria_risk/>
+          <is_high_risk/>
+          <is_high_risk_reason/>
+          <high_risk_note/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </ANC_Visit_Integrasi>
+      </instance>
+  </model>

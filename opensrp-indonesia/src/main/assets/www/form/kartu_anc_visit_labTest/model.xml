@@ -1,0 +1,32 @@
+<model>
+    <instance>
+        <kunjungan_anc_Lab_test id="kunjungan_anc_Lab_test" version="201510160614">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <start/>
+          <today/>
+          <deviceid/>
+          <simserial/>
+          <phonenumber/>
+          <B01043/>
+          <generated_note_name_8/>
+          <B01066/>
+          <B01067/>
+          <B01068/>
+          <B01069/>
+          <B01070/>
+          <B01071/>
+          <B01072/>
+          <anemia_risk/>
+          <diabetes_risk/>
+          <is_high_risk_pregnancy/>
+          <high_risk_pregnancy_reason/>
+          <high_risk_note/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </kunjungan_anc_Lab_test>
+      </instance>
+  </model>

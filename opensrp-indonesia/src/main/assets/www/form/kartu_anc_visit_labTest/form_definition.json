@@ -1,0 +1,83 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "ibu",
+    "default_bind_path": "/model/instance/kunjungan_anc_Lab_test/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kiId",
+        "shouldLoadValue": true,
+        "source": "ibu.kartu_ibu.id"
+      },
+      {
+        "name": "referenceDate",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/B01043"
+      },
+      {
+        "name": "laboratoriumPeriksaHbHasil",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/B01066"
+      },
+      {
+        "name": "laboratoriumPeriksaHbAnemia",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/B01067"
+      },
+      {
+        "name": "laboratoriumProteinUria",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/B01068"
+      },
+      {
+        "name": "laboratoriumGulaDarah",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/B01069"
+      },
+      {
+        "name": "laboratoriumThalasemia",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/B01070"
+      },
+      {
+        "name": "laboratoriumSifilis",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/B01071"
+      },
+      {
+        "name": "laboratoriumHbsAg",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/B01072"
+      },
+      {
+        "name": "anemiaRisk",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/anemia_risk",
+        "source": "ibu.kartu_ibu.anemiaRisk"
+      },
+      {
+        "name": "diabetesRisk",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/diabetes_risk",
+        "source": "ibu.kartu_ibu.diabetesRisk"
+      },
+      {
+        "name": "isHighRiskPregnancy",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/is_high_risk_pregnancy",
+        "source": "ibu.kartu_ibu.isHighRiskPregnancy"
+      },
+      {
+        "name": "highRiskPregnancyReason",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/high_risk_pregnancy_reason",
+        "source": "ibu.kartu_ibu.highRiskPregnancyReason"
+      },
+      {
+        "name": "highRiskNote",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/high_risk_note",
+        "source": "ibu.kartu_ibu.highRiskNote"
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/today"
+      },
+      {
+        "name": "registrationDate",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/reg_date"
+      }
+    ]
+  }
+}

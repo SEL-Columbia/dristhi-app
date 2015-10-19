@@ -89,6 +89,8 @@ public class AllConstantsINA {
         public static final String KARTU_IBU_ANC_EDIT="kartu_anc_edit";
         public static final String KARTU_IBU_ANC_CLOSE="kartu_anc_close";
         public static final String KARTU_IBU_ANC_VISIT="kartu_anc_visit";
+        public static final String KARTU_IBU_ANC_VISIT_INTEGRASI = "kartu_anc_visit_integrasi";
+        public static final String KARTU_IBU_ANC_VISIT_LABTEST = "kartu_anc_visit_labTest";
 
         // PNC
         public static final String KARTU_IBU_PNC_EDIT="kartu_pnc_edit";

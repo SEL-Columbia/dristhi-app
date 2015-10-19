@@ -1,0 +1,107 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "ibu",
+    "default_bind_path": "/model/instance/ANC_Visit_Integrasi/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kiId",
+        "shouldLoadValue": true,
+        "source": "ibu.kartu_ibu.id"
+      },
+      {
+        "name": "referenceDate",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01043"
+      },
+      {
+        "name": "integrasiProgrampmtctvct",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01073"
+      },
+      {
+        "name": "integrasiProgrampmtctPeriksaDarah",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01074"
+      },
+      {
+        "name": "integrasiProgrampmtctSerologi",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01075"
+      },
+      {
+        "name": "integrasiProgrampmtctarvProfilaksis",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01076"
+      },
+      {
+        "name": "integrasiProgramMalariaPeriksaDarah",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01077"
+      },
+      {
+        "name": "integrasiProgramMalariaMalaria",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01078"
+      },
+      {
+        "name": "integrasiProgramMalariaObat",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01079"
+      },
+      {
+        "name": "integrasiProgramMalariaKelambuBerinsektisida",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01080"
+      },
+      {
+        "name": "integrasiProgramtbDahak",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01081"
+      },
+      {
+        "name": "integrasiProgramtbtbc",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01082"
+      },
+      {
+        "name": "integrasiProgramtbObat",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01083"
+      },
+      {
+        "name": "resikoTerdeteksiPertamaKaliOleh",
+        "bind": "/model/instance/ANC_Visit_Integrasi/B01085"
+      },
+      {
+        "name": "proteinEnergyMalnutritionRisk",
+        "bind": "/model/instance/ANC_Visit_Integrasi/Protein_energy_Malnutrition_risk"
+      },
+      {
+        "name": "tbcRisk",
+        "bind": "/model/instance/ANC_Visit_Integrasi/TBC_risk",
+        "source": "ibu.kartu_ibu.tbcRisk"
+      },
+      {
+        "name": "malariaRisk",
+        "bind": "/model/instance/ANC_Visit_Integrasi/malaria_risk",
+        "source": "ibu.kartu_ibu.malariaRisk"
+      },
+      {
+        "name": "isHighRisk",
+        "bind": "/model/instance/ANC_Visit_Integrasi/is_high_risk",
+        "source": "ibu.kartu_ibu.isHighRisk"
+      },
+      {
+        "name": "isHighRiskReason",
+        "bind": "/model/instance/ANC_Visit_Integrasi/is_high_risk_reason",
+        "source": "ibu.kartu_ibu.isHighRiskReason"
+      },
+      {
+        "name": "highRiskNote",
+        "bind": "/model/instance/ANC_Visit_Integrasi/high_risk_note",
+        "source": "ibu.kartu_ibu.highRiskNote"
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/ANC_Visit_Integrasi/today"
+      },
+      {
+        "name": "registrationDate",
+        "bind": "/model/instance/ANC_Visit_Integrasi/reg_date"
+      }
+    ]
+  }
+}

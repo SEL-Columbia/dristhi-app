@@ -46,21 +46,28 @@ public class UpdateActionsTask {
 
         task.doActionInBackground(new BackgroundAction<FetchStatus>() {
             public FetchStatus actionToDoInBackgroundThread() {
-                allFormVersionSyncService.verifyFormsInFolder();
 
                 FetchStatus fetchStatusForForms = formSubmissionSyncService.sync();
                 FetchStatus fetchStatusForActions = actionService.fetchNewActions();
-                FetchStatus fetchVersionStatus = allFormVersionSyncService.pullFormDefinitionFromServer();
-                DownloadStatus downloadStatus = allFormVersionSyncService.downloadAllPendingFormFromServer();
                 FetchStatus fetchStatusAdditional = additionalSyncService == null ? nothingFetched : additionalSyncService.sync();
 
-                if(downloadStatus == DownloadStatus.downloaded) {
-                    allFormVersionSyncService.unzipAllDownloadedFormFile();
+                if(org.ei.opensrp.Context.getInstance().configuration().shouldSyncForm()) {
+
+                    allFormVersionSyncService.verifyFormsInFolder();
+                    FetchStatus fetchVersionStatus = allFormVersionSyncService.pullFormDefinitionFromServer();
+                    DownloadStatus downloadStatus = allFormVersionSyncService.downloadAllPendingFormFromServer();
+
+                    if(downloadStatus == DownloadStatus.downloaded) {
+                        allFormVersionSyncService.unzipAllDownloadedFormFile();
+                    }
+
+                    if(fetchVersionStatus == fetched || downloadStatus == DownloadStatus.downloaded) {
+                        return fetched;
+                    }
                 }
 
-                if(fetchStatusForActions == fetched || fetchStatusForForms == fetched ||
-                        fetchVersionStatus == fetched || downloadStatus == DownloadStatus.downloaded
-                        || fetchStatusAdditional == fetched)
+
+                if(fetchStatusForActions == fetched || fetchStatusForForms == fetched || fetchStatusAdditional == fetched)
                     return fetched;
 
                 return fetchStatusForForms;
