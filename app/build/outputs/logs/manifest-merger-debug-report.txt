@@ -444,17 +444,19 @@ activity#org.ei.telemedicine.view.activity.ActionActivity
 ADDED from AndroidManifest.xml:216:9
 	android:label
 		ADDED from AndroidManifest.xml:218:13
+	android:theme
+		ADDED from AndroidManifest.xml:219:13
 	android:name
 		ADDED from AndroidManifest.xml:217:13
 service#org.ei.telemedicine.service.CallService
-ADDED from AndroidManifest.xml:220:9
+ADDED from AndroidManifest.xml:221:9
 	android:process
-		ADDED from AndroidManifest.xml:223:13
+		ADDED from AndroidManifest.xml:224:13
 	android:enabled
+		ADDED from AndroidManifest.xml:223:13
+	android:name
 		ADDED from AndroidManifest.xml:222:13
-	android:name
-		ADDED from AndroidManifest.xml:221:13
 receiver#org.ei.telemedicine.view.receiver.CallReceiver
-ADDED from AndroidManifest.xml:224:9
+ADDED from AndroidManifest.xml:225:9
 	android:name
-		ADDED from AndroidManifest.xml:225:13
+		ADDED from AndroidManifest.xml:226:13

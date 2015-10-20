@@ -215,7 +215,8 @@
 
         <activity
             android:name="org.ei.telemedicine.view.activity.ActionActivity"
-            android:label="@string/title_activity_action" >
+            android:label="@string/title_activity_action"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
         </activity>
 
         <service
