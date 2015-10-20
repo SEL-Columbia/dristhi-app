@@ -14,6 +14,35 @@
         "shouldLoadValue" : true
       },
       {
+        "name": "Village",
+        "bind": "/model/instance/kartu_ibu/Village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Province",
+        "bind": "/model/instance/kartu_ibu/Province",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Sub-district",
+        "bind": "/model/instance/kartu_ibu/Sub-district",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "District",
+        "bind": "/model/instance/kartu_ibu/District",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Sub-village",
+        "bind": "/model/instance/kartu_ibu/Sub-village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "dusun",
+        "bind": "/model/instance/kartu_ibu/dusun"
+      },
+      {
         "name": "puskesmas",
         "bind": "/model/instance/kartu_ibu/puskesmas"
       },
@@ -54,19 +83,9 @@
         "bind": "/model/instance/kartu_ibu/kecamatan"
       },
       {
-        "name": "kecamatanl",
-        "bind": "/model/instance/kartu_ibu/kecamatanl"
-      },
-      {
         "name": "desa",
         "bind": "/model/instance/kartu_ibu/desa"
       },
-    
-      {
-        "name": "dusun",
-        "bind": "/model/instance/kartu_ibu/dusun"
-      },
-     
       {
         "name": "pendidikan",
         "bind": "/model/instance/kartu_ibu/pendidikan"

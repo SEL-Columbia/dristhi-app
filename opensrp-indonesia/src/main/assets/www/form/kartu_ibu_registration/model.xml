@@ -5,8 +5,18 @@
             <uuid/>
           </formhub>
           <unique_id/>
+          <Village/>
+          <Province/>
+          <Sub-district/>
+          <District/>
+          <Sub-village/>
+          <dusun/>
+          <desa/>
+          <kecamatan/>
+          <kabupaten/>
+          <propinsi/>
           <start/>
-	  <reg_date/>
+	      <reg_date/>
           <today/>
           <deviceid/>
           <simserial/>
@@ -19,6 +29,7 @@
           <umur/>
           <generated_note_name_13/>
           <generated_note_name_99/>
+          <generated_note_name_999/>
           <alamat_domisili/>
           <pendidikan/>
           <agama/>

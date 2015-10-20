@@ -1,5 +1,7 @@
 package org.ei.opensrp.indonesia.view.activity;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,6 +14,7 @@ import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.provider.KIClientsProvider;
 import org.ei.opensrp.indonesia.service.formSubmissionHandler.KIRegistrationHandler;
+import org.ei.opensrp.indonesia.util.StringUtil;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
 import org.ei.opensrp.indonesia.view.controller.KartuIbuRegisterController;
@@ -28,6 +31,7 @@ import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
@@ -35,8 +39,12 @@ import org.ei.opensrp.view.dialog.SortOption;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Iterator;
+import java.util.Objects;
+
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
+import static org.ei.opensrp.AllConstants.FormNames.EC_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.ANAK_BAYI_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_CLOSE;
@@ -47,12 +55,13 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_PELAY
 /**
  * Created by Dimas Ciputra on 2/18/15.
  */
-public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity {
+public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity implements LocationSelectorDialogFragment.OnLocationSelectedListener {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private KartuIbuRegisterController controller;
     private DialogOptionMapper dialogOptionMapper;
     private BidanVillageController villageController;
+    public static final String locationDialogTAG = "locationDialogTAG";
 
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
 
@@ -162,7 +171,19 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
             return;
         }
         FieldOverrides fieldOverrides = new FieldOverrides(uniqueIdJson);
-        startFormActivity(KARTU_IBU_REGISTRATION, null, fieldOverrides.getJSONString());
+        String location = context.anmLocationController().get();
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag(locationDialogTAG);
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        LocationSelectorDialogFragment
+                .newInstance(this, new EditDialogOptionModel(), context.anmLocationController().get(), KARTU_IBU_REGISTRATION)
+                .show(ft, locationDialogTAG);
+
+        // startFormActivity(KARTU_IBU_REGISTRATION, null, fieldOverrides.getJSONString());
     }
 
     @Override
@@ -207,6 +228,32 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
                 }
             }
             onShowDialogOptionSelection((EditOption) option, client, controller.getRandomNameChars(client));
+        }
+    }
+
+    @Override
+    public void OnLocationSelected(String locationJSONString) {
+        JSONObject combined = null;
+
+        try{
+            JSONObject locationJSON = new JSONObject(locationJSONString);
+            JSONObject uniqueId = new JSONObject(((Context)context).uniqueIdController().getUniqueIdJson());
+
+            combined = locationJSON;
+            Iterator<String> iter = uniqueId.keys();
+
+            while(iter.hasNext()){
+                String key = iter.next();
+                combined.put(key, uniqueId.get(key));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if(combined != null) {
+            FieldOverrides fieldOverrides = new FieldOverrides(combined.toString());
+            startFormActivity(KARTU_IBU_REGISTRATION, null, fieldOverrides.getJSONString());
         }
     }
 

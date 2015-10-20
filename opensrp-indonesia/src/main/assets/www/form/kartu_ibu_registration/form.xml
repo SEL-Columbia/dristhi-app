@@ -13,6 +13,14 @@
       </span>
       <input type="text" name="/kartu_ibu/generated_note_name_99" data-type-xml="string" readonly="readonly" />
    </label>
+   <label class="note non-select">
+      <span lang="" class="question-label active">
+         Lokasi:
+         <span class="or-output" data-value="/kartu_ibu/dusun" />,
+         <span class="or-output" data-value="/kartu_ibu/desa" />,
+         <span class="or-output" data-value="/kartu_ibu/kecamatan" />
+      </span>
+   </label>
    <label class="question non-select ">
       <span lang="Bahasa" class="question-label active" data-itext-id="/kartu_ibu/puskesmas:label">Puskesmas</span>
       <span class="required">*</span>
@@ -228,6 +236,9 @@
       </label>
    </fieldset>
    <fieldset id="or-calculated-items" style="display:none;">
+      <label class="calculation non-select">
+         <input autocomplete="off" type="hidden" name="/kartu_ibu/dusun" data-calculate=" /kartu_ibu/Sub-village " data-type-xml="string" />
+      </label>
 	<label class="calculation non-select ">
          <input autocomplete="off" type="hidden" name="/kartu_ibu/reg_date" data-calculate=" /kartu_ibu/today " data-type-xml="date" />
       </label>
@@ -235,10 +246,16 @@
          <input type="hidden" name="/kartu_ibu/umur" data-calculate="int(( /kartu_ibu/today  -  /kartu_ibu/tanggal_lahir_ibu ) div 365)" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/kartu_ibu/desa" data-calculate="if(( /kartu_ibu/desa1  != '' and  /kartu_ibu/desa1  != 'Lainnya'),  /kartu_ibu/desa1 ,  /kartu_ibu/desa2 )" data-type-xml="string" />
+         <input type="hidden" name="/kartu_ibu/desa" data-calculate=" /kartu_ibu/Village " data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/kartu_ibu/dusun" data-calculate="if(( /kartu_ibu/dusun1  != '' and  /kartu_ibu/dusun1  != 'Lainnya'),  /kartu_ibu/dusun1 ,  /kartu_ibu/dusun2 )" data-type-xml="string" />
+         <input type="hidden" name="/kartu_ibu/kecamatan" data-calculate=" /kartu_ibu/Sub-district " data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/kabupaten" data-calculate=" /kartu_ibu/District " data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/propinsi" data-calculate=" /kartu_ibu/Province " data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
          <input type="hidden" name="/kartu_ibu/Too_young_risk" data-calculate="if( /kartu_ibu/umur  &lt;20, 'Ibu Terlalu muda','')" data-type-xml="string" />

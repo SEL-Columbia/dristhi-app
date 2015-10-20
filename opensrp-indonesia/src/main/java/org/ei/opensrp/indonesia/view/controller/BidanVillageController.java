@@ -29,7 +29,9 @@ public class BidanVillageController {
                 Villages villagesList = new Villages();
                 List<String> villages = allKartuIbus.villages();
                 for (String village : villages) {
-                    villagesList.add(new Village(village));
+                    if(village != null){
+                        villagesList.add(new Village(village.replace("+", " ")));
+                    }
                 }
                 return villagesList;
             }
