@@ -1,0 +1,263 @@
+<form autocomplete="off" class="or clearfix" id="EC_Close_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">EC Close</h3>
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">EC Number:</span>
+        <input name="/EC_Close_EngKan/case_ec_number" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+
+        <input name="/EC_Close_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman Name:</span>
+        <input name="/EC_Close_EngKan/case_woman_name" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Reason for EC close?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Close_EngKan/close_reason" autocomplete="off" data-name="/EC_Close_EngKan/close_reason"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="age_morethan_49" />
+                    <span class="option-label active" lang="">Woman's age &gt; 49,
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/close_reason" autocomplete="off" data-name="/EC_Close_EngKan/close_reason"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="permanent_relocation" />
+                    <span class="option-label active" lang="">Relocation (permanent)
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/close_reason" autocomplete="off" data-name="/EC_Close_EngKan/close_reason"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="separation" />
+                    <span class="option-label active" lang="">Divorce / Separation</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/close_reason" autocomplete="off" data-name="/EC_Close_EngKan/close_reason"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="death_of_wife" />
+                    <span class="option-label active" lang="">Death of wife</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/close_reason" autocomplete="off" data-name="/EC_Close_EngKan/close_reason"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="death_of_husband" />
+                    <span class="option-label active" lang="">Death of husband</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/close_reason" autocomplete="off" data-name="/EC_Close_EngKan/close_reason"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="others" />
+                    <span class="option-label active" lang="">Others</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Others</span>
+        <input name="/EC_Close_EngKan/close_reason_other" autocomplete="off" data-relevant=" /EC_Close_EngKan/close_reason  = 'others'"
+            data-type-xml="string" type="text" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Is death due to sterilization
+                    complication?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Close_EngKan/sterilization_death" autocomplete="off"
+                        data-name="/EC_Close_EngKan/sterilization_death"
+                        data-relevant="( /EC_Close_EngKan/close_reason  = 'death_of_wife') or ( /EC_Close_EngKan/close_reason  = 'death_of_husband')" data-type-xml="select1"
+                        required="required"
+                        type="radio"
+                        value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/sterilization_death" autocomplete="off"
+                        data-name="/EC_Close_EngKan/sterilization_death"
+                        data-relevant="( /EC_Close_EngKan/close_reason  = 'death_of_wife') or ( /EC_Close_EngKan/close_reason  = 'death_of_husband')" data-type-xml="select1"
+                        required="required"
+                        type="radio"
+                        value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Date of sterilization death?
+        </span>
+        <input name="/EC_Close_EngKan/sterilization_death_date" autocomplete="off" data-constraint=".&lt;= /EC_Close_EngKan/today "
+            data-relevant=" /EC_Close_EngKan/sterilization_death  = 'yes'"
+            data-type-xml="date" type="date" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Is death a maternal death?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Close_EngKan/maternal_death" autocomplete="off" data-name="/EC_Close_EngKan/maternal_death"
+                        data-relevant="( /EC_Close_EngKan/close_reason  = 'death_of_wife') and ( /EC_Close_EngKan/sterilization_death  = 'no')" data-type-xml="select1"
+                        type="radio"
+                        value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/maternal_death" autocomplete="off" data-name="/EC_Close_EngKan/maternal_death"
+                        data-relevant="( /EC_Close_EngKan/close_reason  = 'death_of_wife') and ( /EC_Close_EngKan/sterilization_death  = 'no')" data-type-xml="select1"
+                        type="radio"
+                        value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/maternal_death" autocomplete="off" data-name="/EC_Close_EngKan/maternal_death"
+                        data-relevant="( /EC_Close_EngKan/close_reason  = 'death_of_wife') and ( /EC_Close_EngKan/sterilization_death  = 'no')" data-type-xml="select1"
+                        type="radio"
+                        value="dont_know" />
+                    <span class="option-label active" lang="">Don't know</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Date of maternal death?
+        </span>
+        <input name="/EC_Close_EngKan/maternal_death_date" autocomplete="off" data-constraint=".&lt;= /EC_Close_EngKan/today "
+            data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'"
+            data-type-xml="date" type="date" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Cause of maternal death?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Close_EngKan/maternal_death_cause" autocomplete="off"
+                        data-name="/EC_Close_EngKan/maternal_death_cause"
+                        data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'" data-type-xml="select1"
+                        type="radio"
+                        value="abortion" />
+                    <span class="option-label active" lang="">Abortion
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/maternal_death_cause" autocomplete="off"
+                        data-name="/EC_Close_EngKan/maternal_death_cause"
+                        data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="prolonged_obstructed_labor" />
+                    <span class="option-label active" lang="">Prolonged / Obstructed labor</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/maternal_death_cause" autocomplete="off"
+                        data-name="/EC_Close_EngKan/maternal_death_cause"
+                        data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'" data-type-xml="select1"
+                        type="radio"
+                        value="hypertension_fits" />
+                    <span class="option-label active" lang="">Severe hypertension / Fits</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/maternal_death_cause" autocomplete="off"
+                        data-name="/EC_Close_EngKan/maternal_death_cause"
+                        data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="bleeding_hemorrhage" />
+                    <span class="option-label active" lang="">Bleeding / Hemorrhage</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/maternal_death_cause" autocomplete="off"
+                        data-name="/EC_Close_EngKan/maternal_death_cause"
+                        data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'" data-type-xml="select1"
+                        type="radio"
+                        value="fever_infection" />
+                    <span class="option-label active" lang="">High fever / Infection</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/maternal_death_cause" autocomplete="off"
+                        data-name="/EC_Close_EngKan/maternal_death_cause"
+                        data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="cause_not_identified" />
+                    <span class="option-label active" lang="">Cause not identified</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Close_EngKan/maternal_death_cause" autocomplete="off"
+                        data-name="/EC_Close_EngKan/maternal_death_cause"
+                        data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'" data-type-xml="select1"
+                        type="radio"
+                        value="others" />
+                    <span class="option-label active" lang="">Others</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Others</span>
+        <input name="/EC_Close_EngKan/other_maternal_death_cause" autocomplete="off" data-relevant=" /EC_Close_EngKan/maternal_death_cause  = 'others'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Confirm EC close?</span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Close_EngKan/confirm_ec_close" autocomplete="off" data-name="/EC_Close_EngKan/confirm_ec_close"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/EC_Close_EngKan/today" autocomplete="off" data-preload="date"
+                data-preload-params="today" data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/EC_Close_EngKan/meta/instanceID" autocomplete="off" data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Close_EngKan/formhub/uuid" autocomplete="off" data-calculate="'5c5fb680ffd24df1b16ef79dacfa7f50'"
+                data-type-xml="string" type="hidden" />
+        </label>
+    </fieldset>
+</form>

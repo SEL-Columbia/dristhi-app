@@ -23,11 +23,11 @@ import org.ei.telemedicine.R;
 import org.ei.telemedicine.doctor.NativeDoctorActivity;
 import org.ei.telemedicine.domain.LoginResponse;
 import org.ei.telemedicine.event.Listener;
+import org.ei.telemedicine.sync.DrishtiCallScheduler;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.BackgroundAction;
 import org.ei.telemedicine.view.LockingBackgroundTask;
 import org.ei.telemedicine.view.ProgressIndicator;
-import org.ei.telemedicine.view.UserSettingsActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -125,6 +125,7 @@ public class LoginActivity extends Activity {
     private void localLogin(View view, String userName, String password) {
         if (context.userService().isValidLocalLogin(userName, password)) {
             localLoginWith(userName, password);
+
         } else {
             showErrorDialog(getString(R.string.login_failed_dialog_message));
             view.setClickable(true);
@@ -136,6 +137,7 @@ public class LoginActivity extends Activity {
             public void onEvent(LoginResponse loginResponse) {
                 if (loginResponse == SUCCESS) {
                     remoteLoginWith(userName, password, loginResponse.payload());
+
                 } else {
                     if (loginResponse == null) {
                         showErrorDialog("Login failed. Unknown reason. Try Again");
@@ -207,6 +209,7 @@ public class LoginActivity extends Activity {
         String userRole = context.userService().getUserRole();
         goToHome(userRole);
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
+        DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
 
@@ -242,6 +245,7 @@ public class LoginActivity extends Activity {
         }
         goToHome(userRole);
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
+        DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void goToHome(String userRole) {

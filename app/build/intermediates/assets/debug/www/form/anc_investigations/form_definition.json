@@ -1,0 +1,82 @@
+{
+  "form_data_definition_version": "2",
+  "form": {
+    "bind_type": "mother",
+    "default_bind_path": "/model/instance/ANC_Investigations_EngKan/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "ecId",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.id"
+      },
+      {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Investigations_EngKan/village",
+        "source": "mother.eligible_couple.village"
+      },
+      {
+        "name": "ancNumber",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Investigations_EngKan/anc_reg_num",
+        "source": "mother.ancNumber"
+      },
+      {
+        "name": "testDate",
+        "bind": "/model/instance/ANC_Investigations_EngKan/test_date"
+      },
+      {
+        "name": "testResultsToEnter",
+        "bind": "/model/instance/ANC_Investigations_EngKan/test_results_to_enter"
+      },
+      {
+        "name": "womanBloodGroup",
+        "bind": "/model/instance/ANC_Investigations_EngKan/w_blood_group"
+      },
+      {
+        "name": "rhIncompatibleCouple",
+        "bind": "/model/instance/ANC_Investigations_EngKan/rh_incompatible_couple"
+      },
+      {
+        "name": "testsResultPositive",
+        "bind": "/model/instance/ANC_Investigations_EngKan/tests_result_positive"
+      },
+      {
+        "name": "bileSalts",
+        "bind": "/model/instance/ANC_Investigations_EngKan/bile_salts"
+      },
+      {
+        "name": "bilePigments",
+        "bind": "/model/instance/ANC_Investigations_EngKan/bile_pigments"
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/ANC_Investigations_EngKan/today"
+      },
+      {
+        "name": "bpSystolic",
+        "bind": "/model/instance/ANC_Investigations_EngKan/bp_systolic"
+      },
+      {
+        "name": "bpDiastolic",
+        "bind": "/model/instance/ANC_Investigations_EngKan/bp_diastolic"
+      },
+      {
+        "name": "temperature",
+        "bind": "/model/instance/ANC_Investigations_EngKan/temperature"
+      },
+      {
+        "name": "fetalData",
+        "bind": "/model/instance/ANC_Investigations_EngKan/fetal_data"
+      },
+      {
+        "name": "bloodGlucoseData",
+        "bind": "/model/instance/ANC_Investigations_EngKan/blood_glucose_data"
+      }
+    ]
+  }
+}

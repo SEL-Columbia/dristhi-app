@@ -310,6 +310,10 @@
     <string name="please_select_direction">Please Select Direction</string>
     <string name="please_select_dosage">Please Select Dosage</string>
     <string name="view_ec_form">View EC</string>
+    <string name="title_activity_action">ActionActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 
 </resources>

@@ -1,0 +1,190 @@
+<form autocomplete="off" class="or clearfix" id="PNC_Close_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">PNC Close</h3>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">PNC Number:</span>
+        <input name="/PNC_Close_EngKan/pnc_num" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+
+        <input name="/PNC_Close_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Reason for PNC close?</span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/PNC_Close_EngKan/pnc_close_reason" autocomplete="off"
+                        data-name="/PNC_Close_EngKan/pnc_close_reason" data-type-xml="select1"
+                        required="required" type="radio" value="death_of_mother" />
+                    <span class="option-label active" lang="">Woman died</span>
+                </label>
+                <label class="">
+                    <input name="/PNC_Close_EngKan/pnc_close_reason" autocomplete="off"
+                        data-name="/PNC_Close_EngKan/pnc_close_reason" data-type-xml="select1"
+                        required="required" type="radio" value="permanent_relocation" />
+                    <span class="option-label active" lang="">Relocation (permanent)</span>
+                </label>
+                <label class="">
+                    <input name="/PNC_Close_EngKan/pnc_close_reason" autocomplete="off"
+                        data-name="/PNC_Close_EngKan/pnc_close_reason" data-type-xml="select1"
+                        required="required" type="radio" value="end_of_pp_period" />
+                    <span class="option-label active" lang="">End of postpartum period</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <section name="/PNC_Close_EngKan/death_mother_group" class="or-group-data or-branch pre-init "
+        data-relevant=" /PNC_Close_EngKan/pnc_close_reason  = 'death_of_mother'">
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Date of death?</span>
+            <input name="/PNC_Close_EngKan/death_mother_group/death_date" autocomplete="off"
+                data-constraint=".&lt;= /PNC_Close_EngKan/today " data-type-xml="date"
+                type="date" />
+        </label>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Was the death a maternal death?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/PNC_Close_EngKan/death_mother_group/maternal_death"
+                            autocomplete="off"
+                            data-name="/PNC_Close_EngKan/death_mother_group/maternal_death"
+                            data-type-xml="select1" type="radio" value="yes" />
+                        <span class="option-label active" lang="">Yes</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Close_EngKan/death_mother_group/maternal_death"
+                            autocomplete="off"
+                            data-name="/PNC_Close_EngKan/death_mother_group/maternal_death"
+                            data-type-xml="select1" type="radio" value="no" />
+                        <span class="option-label active" lang="">No</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Close_EngKan/death_mother_group/maternal_death"
+                            autocomplete="off"
+                            data-name="/PNC_Close_EngKan/death_mother_group/maternal_death"
+                            data-type-xml="select1" type="radio" value="dont_know" />
+                        <span class="option-label active" lang="">Don't know</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="question or-branch pre-init ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Cause of maternal death?</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            autocomplete="off"
+                            data-name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death  = 'yes'"
+                            data-type-xml="select1" type="radio"
+                            value="prolonged_obstructed_labor" />
+                        <span class="option-label active" lang="">Prolonged / Obstructed labor
+                        </span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            autocomplete="off"
+                            data-name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death  = 'yes'"
+                            data-type-xml="select1" type="radio" value="hypertension_fits" />
+                        <span class="option-label active" lang="">Severe hypertension / Fits</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            autocomplete="off"
+                            data-name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death  = 'yes'"
+                            data-type-xml="select1" type="radio" value="bleeding_hemorrhage" />
+                        <span class="option-label active" lang="">Bleeding / Hemorrhage</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            autocomplete="off"
+                            data-name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death  = 'yes'"
+                            data-type-xml="select1" type="radio" value="fever_infection" />
+                        <span class="option-label active" lang="">High fever / Infection</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            autocomplete="off"
+                            data-name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death  = 'yes'"
+                            data-type-xml="select1" type="radio" value="cause_not_identified" />
+                        <span class="option-label active" lang="">Cause not identified</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            autocomplete="off"
+                            data-name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause"
+                            data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death  = 'yes'"
+                            data-type-xml="select1" type="radio" value="others" />
+                        <span class="option-label active" lang="">Others</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Others :</span>
+            <input name="/PNC_Close_EngKan/death_mother_group/other_maternal_death_cause"
+                autocomplete="off"
+                data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death_cause  = 'others'"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+    <!--end of group -->
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Confirm PNC close?</span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/PNC_Close_EngKan/confirm_pnc_close" autocomplete="off"
+                        data-name="/PNC_Close_EngKan/confirm_pnc_close" data-type-xml="select1"
+                        required="required" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/PNC_Close_EngKan/today" autocomplete="off" data-preload="date"
+                data-preload-params="today" data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/PNC_Close_EngKan/death_mother_group/woman_survived" autocomplete="off"
+                data-calculate="&quot;no&quot;" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Close_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Close_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'30dd7102d0584928abf3ae70569b239d'" data-type-xml="string"
+                type="hidden" />
+        </label>
+    </fieldset>
+</form>

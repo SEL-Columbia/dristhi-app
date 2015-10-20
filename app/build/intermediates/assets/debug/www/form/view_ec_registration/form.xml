@@ -1,0 +1,153 @@
+<form autocomplete="off" class="or clearfix" id="EC_View_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">View EC</h3>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">PHC
+            <input name="/EC_View_EngKan/ec_view_group/case_phc" autocomplete="off"
+                data-type-xml="string" disabled="disabled" type="text" />
+        </span>
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Sub Center
+            <input name="/EC_View_EngKan/ec_view_group/case_sub_center" autocomplete="off"
+                data-type-xml="string" disabled="disabled" type="text" />
+        </span>
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Village
+            <input name="/EC_View_EngKan/ec_view_group/case_village" autocomplete="off"
+                data-type-xml="string" disabled="disabled" type="text" />
+        </span>
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Household number</span>
+        <input name="/EC_View_EngKan/ec_view_group/hh_number" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="number" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Household address</span>
+        <input name="/EC_View_EngKan/ec_view_group/hh_address" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Head of household name
+        </span>
+        <input name="/EC_View_EngKan/ec_view_group/hh_head" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman's name</span>
+        <input name="/EC_View_EngKan/ec_view_group/woman_name" autocomplete="off"
+            data-type-xml="string" disabled="disabled" required="required" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman's ID Type</span>
+        <input name="/EC_View_EngKan/ec_view_group/woman_id_type" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">ID Number:
+        </span>
+        <input name="/EC_View_EngKan/ec_view_group/aadhaar_number" autocomplete="off"
+            data-type-xml="text" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman's age</span>
+        <input name="/EC_View_EngKan/ec_view_group/woman_age" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="number" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Husband's name</span>
+        <input name="/EC_View_EngKan/ec_view_group/husband_name" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Husband's age</span>
+        <input name="/EC_View_EngKan/ec_view_group/husband_age" autocomplete="off"
+            data-type-xml="int" disabled="disabled" type="number" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Contact phone number
+        </span>
+        <span class="or-hint active" lang="">Without country code.
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_View_EngKan/ec_view_group/phone_no" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="number" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Religion</span>
+        <input name="/EC_View_EngKan/ec_view_group/religion" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman's education level</span>
+        <input name="/EC_View_EngKan/ec_view_group/woman_education_level" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Husband's education level</span>
+        <input name="/EC_View_EngKan/ec_view_group/husband_education_level" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of times woman has been pregnant</span>
+        <input name="/EC_View_EngKan/ec_view_group/num_pregnancies" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of abortions/Miscarriages</span>
+        <input name="/EC_View_EngKan/ec_view_group/num_abortions1" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of spontaneous abortions</span>
+        <input name="/EC_View_EngKan/ec_view_group/num_abortions_spontaneous1" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of live births</span>
+        <input name="/EC_View_EngKan/ec_view_group/num_livebirths1" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of still births</span>
+        <input name="/EC_View_EngKan/ec_view_group/num_stillbirths1" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of living children</span>
+        <input name="/EC_View_EngKan/ec_view_group/num_livingchildren1" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of male living children</span>
+        <input name="/EC_View_EngKan/ec_view_group/num_livingchildren_male" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">High Priority Reason</span>
+        <input name="/EC_View_EngKan/ec_view_group/high_priority_reason" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Do you want to mark as HP (High Priority)</span>
+        <input name="/EC_View_EngKan/ec_view_group/is_high_priority1" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <!--end of group -->
+
+</form>

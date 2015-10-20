@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,9 +46,10 @@ import java.util.List;
  * Created by naveen on 6/1/15.
  */
 public class DoctorPlanofCareActivity extends Activity {
+    String url="";
     AutoCompleteTextView act_icd10Diagnosis, act_tests;
     ListView lv_selected_icd10, lv_selected_tests, lv_selected_drugs;
-    Switch swich_poc_pending, switch_poc_physical_consultation;
+    Switch swich_poc_pending;
     Spinner sp_services, sp_drug_name, sp_drug_frequency, sp_drug_direction, sp_drug_dosage;
     EditText et_drug_qty, et_drug_no_of_days, et_reason, et_advice;
 
@@ -80,7 +82,7 @@ public class DoctorPlanofCareActivity extends Activity {
     Context context;
     private String TAG = "DoctorPlanOfCareActivity";
     String visitType, visitNumber;
-    String documentId, formData, phoneNumber, motherName;
+    String documentId, formData, phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,8 +121,6 @@ public class DoctorPlanofCareActivity extends Activity {
                 tv_stop_date = (CustomFontTextView) findViewById(R.id.tv_stop_by_date);
                 sp_drug_name = (Spinner) findViewById(R.id.sp_drug_name);
                 swich_poc_pending = (Switch) findViewById(R.id.switch_poc_pending);
-                switch_poc_physical_consultation = (Switch) findViewById(R.id.switch_poc_physical_consultation);
-
                 sp_drug_direction = (Spinner) findViewById(R.id.sp_drug_direction);
                 sp_drug_dosage = (Spinner) findViewById(R.id.sp_drug_dosage);
                 sp_drug_frequency = (Spinner) findViewById(R.id.sp_drug_frequency);
@@ -214,18 +214,17 @@ public class DoctorPlanofCareActivity extends Activity {
                         pocDrugFrequenciesList.add(drugJsonObject.getString("frequency"));
 
                 }
+                final String doc_name = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+                final String nus_name = getData(formDataJson, DoctorFormDataConstants.anmId);
+                tv_doc_name.setText(doc_name);
+                tv_mother_name.setText(getData(formDataJson, DoctorFormDataConstants.wife_name));
+                tv_age.setText(getData(formDataJson, DoctorFormDataConstants.age));
                 visitType = getData(formDataJson, DoctorFormDataConstants.visit_type);
                 visitNumber = getData(formDataJson, DoctorFormDataConstants.anc_visit_number);
-                motherName = getData(formDataJson, DoctorFormDataConstants.wife_name);
 
                 tv_visit_type.setText(visitType);
-                tv_doc_name.setText(Context.getInstance().allSharedPreferences().fetchRegisteredANM());
-                tv_mother_name.setText(motherName);
-                tv_age.setText(getData(formDataJson, DoctorFormDataConstants.age));
-
-
                 tv_village.setText(getData(formDataJson, DoctorFormDataConstants.village_name));
-                tv_health_worker_name.setText(getData(formDataJson, DoctorFormDataConstants.anmId));
+                tv_health_worker_name.setText(nus_name);
                 tv_health_worker_village.setText(getData(formDataJson, DoctorFormDataConstants.village_name));
 
                 Log.e(TAG, selectICD10Diagnosis.size() + "--" + selectDrugs.size() + "--" + selectTests.size());
@@ -253,111 +252,10 @@ public class DoctorPlanofCareActivity extends Activity {
                 ib_anm_logo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Dialog chooseDialog = new Dialog(DoctorPlanofCareActivity.this);
-                        chooseDialog.setContentView(R.layout.dialog_box);
-                        ListView chooselistview = (ListView) chooseDialog
-                                .findViewById(R.id.listview);
-
-                        Button submit = (Button) chooseDialog.findViewById(R.id.btn);
-                        submit.setVisibility(View.GONE);
-                        String[] channels = new String[]{"AppRTC", "Jitsi"};
-
-                        chooseDialog.show();
-
-                        ArrayAdapter<String> chooseadapter = new ArrayAdapter<String>(
-                                DoctorPlanofCareActivity.this,
-                                android.R.layout.simple_list_item_1, channels);
-                        chooselistview.setAdapter(chooseadapter);
-
-                        chooselistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                            @Override
-                            public void onItemClick(AdapterView<?> arg0, View arg1,
-                                                    int arg2, long arg3) {
-
-                                obj = arg0.getItemAtPosition(arg2);
-                                Log.v("Selected Item", obj.toString());
-                                if (obj.toString().equals("AppRTC")) {
-                                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                                    intent.setComponent(new ComponentName("org.appspot.apprtc",
-                                            "org.appspot.apprtc.ConnectActivity"));
-                                    startActivity(intent);
-                                } else {
-
-                                    popup_dialog = new Dialog(DoctorPlanofCareActivity.this);
-                                    popup_dialog.setContentView(R.layout.dialog_box);
-
-                                    //   getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-                                    ListView listview = (ListView) popup_dialog
-                                            .findViewById(R.id.listview);
-
-                                    Button submit = (Button) popup_dialog.findViewById(R.id.btn);
-                                    String[] accounts = new String[]{"Dhanush1", "Dhanush2"};
-
-                                    popup_dialog.show();
-
-                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                                            DoctorPlanofCareActivity.this,
-                                            android.R.layout.simple_list_item_1, accounts);
-                                    listview.setAdapter(adapter);
-
-                                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                                        @Override
-                                        public void onItemClick(AdapterView<?> arg0, View arg1,
-                                                                int arg2, long arg3) {
-                                            // TODO Auto-generated method stub
-
-                                            obj = arg0.getItemAtPosition(arg2);
-                                            Log.v("Selected Item", obj.toString());
-
-
-                                        }
-
-                                    });
-
-                                    submit.setOnClickListener(new View.OnClickListener() {
-
-                                        @Override
-                                        public void onClick(View v) {
-                                            popup_dialog.dismiss();
-                                            if (obj.toString().equalsIgnoreCase("Dhanush1")) {
-
-                                                Intent intent = new Intent(Intent.ACTION_MAIN);
-                                                intent.setComponent(new ComponentName("org.jitsi",
-                                                        "org.jitsi.android.gui.LauncherActivity"));
-
-                                                intent.putExtra("Username",
-                                                        "dhanush1@jwchat.org");
-                                                intent.putExtra("Password", "123456");
-
-                                                startActivity(intent);
-                                                finish();
-
-                                            } else if (obj.toString().equalsIgnoreCase("Dhanush2")) {
-
-                                                Intent intent = new Intent(Intent.ACTION_MAIN);
-                                                intent.setComponent(new ComponentName("org.jitsi",
-                                                        "org.jitsi.android.gui.LauncherActivity"));
-
-                                                intent.putExtra("Username",
-                                                        "dhanush2@jwchat.org");
-                                                intent.putExtra("Password", "123456");
-
-
-                                                startActivity(intent);
-                                                finish();
-                                            } else {
-
-                                            }
-
-
-                                        }
-
-                                    });
-                                }
-                            }
-                        });
+                        String caller_url = String.format("http://202.153.34.169/demos/callerdemo.html?callerid=%s&recepientid=%s",doc_name,nus_name);
+                        Uri url = Uri.parse(caller_url);
+                        Intent _broswer = new Intent(Intent.ACTION_VIEW,url);
+                        startActivity(_broswer);
                     }
                 });
 
@@ -547,7 +445,6 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     for (int i = 0; i < selectTests.size(); i++) {
                                                                         testsArray.put(selectTests.get(i).toString());
                                                                     }
-                                                                    resultJson.put("documentId", documentId);
                                                                     resultJson.put("visitType", visitType);
                                                                     resultJson.put("visitNumber", visitNumber);
                                                                     resultJson.put("doctorName", Context.getInstance().allSharedPreferences().fetchRegisteredANM());
@@ -555,7 +452,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     resultJson.put("diagnosis", diagnosisArray);
                                                                     resultJson.put("drugs", drugsArray);
                                                                     resultJson.put("investigations", testsArray);
-                                                                    resultJson.put("advice", et_advice.getText().toString() + (switch_poc_physical_consultation.isChecked() ? ".\n Physical examination is required, for this patient." : ""));
+                                                                    resultJson.put("advice", et_advice.getText().toString());
                                                                     //                            resultJson.put("reason", et_reason.getText().toString());
                                                                     Log.e(TAG, "Reason" + et_reason.getText().toString() + "---" + swich_poc_pending.isChecked() + "");
                                                                     Log.e(TAG, "selected Json" + resultJson.toString());
@@ -687,7 +584,7 @@ public class DoctorPlanofCareActivity extends Activity {
                     _params.add(new BasicNameValuePair("pending", pendingReason));
                     _params.add(new BasicNameValuePair("entityid", formDataJson.getString(DoctorFormDataConstants.entityId)));
                     _params.add(new BasicNameValuePair("patientph", phoneNumber));
-                    _params.add(new BasicNameValuePair("patientname", visitType.equalsIgnoreCase("child") ? motherName + " your baby" : motherName));
+
                     switch (formDataJson.getString(DoctorFormDataConstants.visit_type)) {
                         case DoctorFormDataConstants.ancvisit:
                             _params.add(new BasicNameValuePair("visitid", formDataJson.getString(DoctorFormDataConstants.anc_entityId)));

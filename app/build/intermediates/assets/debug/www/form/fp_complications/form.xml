@@ -1,0 +1,375 @@
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="Family_Planning_Complications_EngKan">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Record FP Complication</h3>
+
+    <label class="question non-select ">
+        <span lang="" class="question-label active">EC Number: </span>
+        <input autocomplete="off" type="text" name="/Family_Planning_Complications_EngKan/ec_num" data-type-xml="int" disabled="disabled"/>
+    </label>
+
+    <label class="question non-select ">
+
+        <input name="/Family_Planning_Complications_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Woman Name: </span>
+        <input autocomplete="off" type="text" name="/Family_Planning_Complications_EngKan/woman_name" data-type-xml="string" disabled="disabled"/>
+    </label>
+
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Date of FP problem? 
+        </span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="date" name="/Family_Planning_Complications_EngKan/complication_date"
+               required="required" data-constraint=".&lt;= /Family_Planning_Complications_EngKan/today "
+               data-type-xml="date"/>
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class="question-label active">Report sterilization failure? 
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/sterilization_failure"
+                           data-name="/Family_Planning_Complications_EngKan/sterilization_failure" value="yes"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'female_sterilization'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Yes </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/sterilization_failure"
+                           data-name="/Family_Planning_Complications_EngKan/sterilization_failure" value="no"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'female_sterilization'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">No </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class="question-label active">What are the problems? 
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/condom_sideeffect" value="allergic_reaction"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'condom'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Allergic reaction </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/condom_sideeffect" value="others"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'condom'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Others </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class="question-label active">What are the problems? 
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="bleeding"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Bleeding </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="nausea"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Nausea
+                        </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="headache"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Headache
+                        </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="pain"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Pain </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="fever"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Fever </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="others"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Others </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class="question-label active">What are the problems? 
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/ocp_sideeffect" value="spotting_or_bleeding"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'ocp'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Spotting or Bleeding </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/ocp_sideeffect" value="jaundice"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'ocp'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Jaundice </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/ocp_sideeffect" value="amenorrhea"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'ocp'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Amenorrhea </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/ocp_sideeffect" value="others"
+                           data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'ocp'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Others </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class="question-label active">What are the problems? 
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/sterilization_sideeffect" value="infection"
+                           data-relevant=" /Family_Planning_Complications_EngKan/sterilization_failure  != 'yes' and ( /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'female_sterilization')"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Infection </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/sterilization_sideeffect" value="headache"
+                           data-relevant=" /Family_Planning_Complications_EngKan/sterilization_failure  != 'yes' and ( /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'female_sterilization')"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Headache
+                        </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/sterilization_sideeffect" value="pain"
+                           data-relevant=" /Family_Planning_Complications_EngKan/sterilization_failure  != 'yes' and ( /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'female_sterilization')"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Pain </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/sterilization_sideeffect" value="fever"
+                           data-relevant=" /Family_Planning_Complications_EngKan/sterilization_failure  != 'yes' and ( /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'female_sterilization')"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Fever </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox"
+                           name="/Family_Planning_Complications_EngKan/sterilization_sideeffect" value="others"
+                           data-relevant=" /Family_Planning_Complications_EngKan/sterilization_failure  != 'yes' and ( /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'female_sterilization')"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Others </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span lang="" class="question-label active">What are the problems? 
+        </span>
+        <input autocomplete="off" type="text" name="/Family_Planning_Complications_EngKan/injectable_sideeffect"
+               data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'dmpa_injectable'"
+               data-type-xml="string"/>
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span lang="" class="question-label active">Do you want to refer the couple for treatment? 
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication"
+                           data-name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication"
+                           value="yes" required="required" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Yes </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication"
+                           data-name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication"
+                           value="no" required="required" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">No </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class="question-label active">Referral place? 
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication_place"
+                           data-name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication_place"
+                           value="phc" required="required"
+                           data-relevant=" /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'yes'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">PHC </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication_place"
+                           data-name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication_place"
+                           value="private_facility" required="required"
+                           data-relevant=" /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'yes'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Private facility </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication_place"
+                           data-name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication_place"
+                           value="others" required="required"
+                           data-relevant=" /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'yes'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Others </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class="question-label active">How do you want to treat this couple? 
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan"
+                           data-name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan"
+                           value="stop_fp_method" required="required"
+                           data-relevant=" /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'no'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Stop FP method </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan"
+                           data-name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan"
+                           value="change_fp_method" required="required"
+                           data-relevant=" /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'no'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Change FP method </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan"
+                           data-name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan"
+                           value="continue_fp_method" required="required"
+                           data-relevant=" /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'no'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Continue on method and provide counseling / treatment
+                        </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan"
+                           data-name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan"
+                           value="others" required="required"
+                           data-relevant=" /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'no'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Others </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="note or-branch pre-init non-select ">
+        <span lang="" class="question-label active">Please go to register and update FP method selection. 
+        </span>
+        <input autocomplete="off" type="text" name="/Family_Planning_Complications_EngKan/instructions"
+               data-relevant=" /Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan  = 'stop_fp_method' or  /Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan  = 'change_fp_method'"
+               data-type-xml="string" readonly="readonly"/>
+    </label>
+
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Complications_EngKan/today"
+                   data-preload="date" data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
+    <fieldset id="or-calculated-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Complications_EngKan/side_effects"
+                   data-calculate="concat( /Family_Planning_Complications_EngKan/condom_sideeffect , ' ', string( /Family_Planning_Complications_EngKan/iud_sideeffect ), ' ', string( /Family_Planning_Complications_EngKan/ocp_sideeffect ), ' ', string( /Family_Planning_Complications_EngKan/sterilization_sideeffect ), ' ',  /Family_Planning_Complications_EngKan/injectable_sideeffect )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Complications_EngKan/needs_referral_followup"
+                   data-calculate="if( /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'yes', 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Complications_EngKan/needs_followup"
+                   data-calculate="if( /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'no', 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Complications_EngKan/meta/instanceID"
+                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Complications_EngKan/formhub/uuid"
+                   data-calculate="'2fc442c38d3244b8947ea0c50aa8d31e'" data-type-xml="string"/>
+        </label>
+    </fieldset>
+</form>

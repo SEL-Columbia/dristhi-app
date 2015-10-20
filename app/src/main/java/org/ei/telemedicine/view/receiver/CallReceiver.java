@@ -3,7 +3,9 @@ package org.ei.telemedicine.view.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
 import org.ei.telemedicine.service.CallService;
+
 import static org.ei.telemedicine.util.Log.logInfo;
 
 /**

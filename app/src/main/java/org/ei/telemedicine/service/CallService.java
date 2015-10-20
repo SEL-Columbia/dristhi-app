@@ -71,7 +71,7 @@ public class CallService extends Service {
                 startActivity(dialogIntent);
             }else
             {
-                return;
+                Log.d(TAG, "No call");
             }
 
         } catch (JSONException e) {
@@ -92,8 +92,8 @@ public class CallService extends Service {
                 .build());
         String name= getUsern();
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-
         HttpPost httppost = new HttpPost(url+name);
+        Toast.makeText(this,"Ayanfe",Toast.LENGTH_LONG).show();
         Log.d(TAG, url+name);
         httppost.setHeader("Content-type", "application/json");
         InputStream inputStream = null;
