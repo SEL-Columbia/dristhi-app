@@ -38,6 +38,7 @@ import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.opensrp.repository.AllSettings;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.util.DownloadForm;
+import org.ei.opensrp.util.FileUtilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -96,7 +97,10 @@ public class HTTPAgent {
         try {
             setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
             HttpPost httpPost = new HttpPost(postURLPath);
-            Log.v("jsonpayload",jsonPayload);
+            Log.v("jsonpayload", jsonPayload);
+            FileUtilities fu = new FileUtilities();
+            fu.write("jsonpayload.txt", jsonPayload);
+
             StringEntity entity = new StringEntity(jsonPayload, HTTP.UTF_8);
             entity.setContentType("application/json; charset=utf-8");
             httpPost.setEntity(entity);

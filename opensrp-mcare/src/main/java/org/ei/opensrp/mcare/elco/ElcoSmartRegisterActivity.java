@@ -79,7 +79,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
             @Override
             public String nameInShortFormForTitle() {
-                return getResources().getString(org.ei.opensrp.R.string.ec_register_title_in_short);
+                return getResources().getString(R.string.ec_register_title_in_short);
             }
         };
     }

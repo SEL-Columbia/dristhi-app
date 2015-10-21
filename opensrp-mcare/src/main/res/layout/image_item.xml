@@ -4,7 +4,7 @@
 	android:layout_height="fill_parent" android:scrollbars="vertical"
 	android:scrollbarAlwaysDrawVerticalTrack="true">
 
-    <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:id="@+id/imgView" android:src="@mipmap/addform" android:layout_gravity="center_vertical|center_horizontal"
+    <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:id="@+id/imgView" android:src="@mipmap/tutoria1" android:layout_gravity="center_vertical|center_horizontal"
         android:scaleType="fitXY"></ImageView>
 
     <Button
