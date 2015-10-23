@@ -2,6 +2,8 @@ package org.ei.opensrp.indonesia.view.controller;
 
 import com.google.common.collect.Iterables;
 
+import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.domain.ServiceProvided;
 import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.domain.Anak;
 import org.ei.opensrp.indonesia.domain.Ibu;
@@ -11,16 +13,33 @@ import org.ei.opensrp.indonesia.repository.AllKohort;
 import org.ei.opensrp.indonesia.view.contract.KIChildClient;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClients;
+import org.ei.opensrp.service.AlertService;
+import org.ei.opensrp.service.ServiceProvidedService;
 import org.ei.opensrp.util.Cache;
 import org.ei.opensrp.util.CacheableData;
 import org.ei.opensrp.util.EasyMap;
+import org.ei.opensrp.view.contract.AlertDTO;
+import org.ei.opensrp.view.contract.ServiceProvidedDTO;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.joda.time.LocalDate;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 
+import static org.ei.opensrp.domain.ServiceProvided.ANC_1_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.ANC_2_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.ANC_3_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.ANC_4_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.DELIVERY_PLAN_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.HB_TEST_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.IFA_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.TT_1_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.TT_2_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.TT_BOOSTER_SERVICE_PROVIDED_NAME;
 import static org.ei.opensrp.indonesia.AllConstantsINA.KeluargaBerencanaFields.*;
 import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.*;
 import static org.ei.opensrp.indonesia.AllConstantsINA.KartuANCFields.*;
@@ -30,7 +49,23 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.KartuPNCFields.*;
  * Created by Dimas Ciputra on 2/18/15.
  */
 public class KartuIbuRegisterController  extends CommonController{
+    private static final String ANC_1_ALERT_NAME = "ANC 1";
+    private static final String ANC_2_ALERT_NAME = "ANC 2";
+    private static final String ANC_3_ALERT_NAME = "ANC 3";
+    private static final String ANC_4_ALERT_NAME = "ANC 4";
+    private static final String IFA_1_ALERT_NAME = "IFA 1";
+    private static final String IFA_2_ALERT_NAME = "IFA 2";
+    private static final String IFA_3_ALERT_NAME = "IFA 3";
+    private static final String LAB_REMINDER_ALERT_NAME = "REMINDER";
+    private static final String TT_1_ALERT_NAME = "TT 1";
+    private static final String TT_2_ALERT_NAME = "TT 2";
+    private static final String HB_TEST_1_ALERT_NAME = "Hb Test 1";
+    private static final String HB_TEST_2_ALERT_NAME = "Hb Test 2";
+    private static final String HB_FOLLOWUP_TEST_ALERT_NAME = "Hb Followup Test";
+    private static final String DELIVERY_PLAN_ALERT_NAME = "Delivery Plan";
     private static final String KI_CLIENTS_LIST = "KIClientsList";
+    private static final String KB_IUD = "KB IUD";
+    private static final String KB_IMPLANT = "KB Implant";
     public static final String STATUS_DATE_FIELD = "date";
     public static final String ANC_STATUS = "anc";
     public static final String PNC_STATUS = "pnc";
@@ -40,14 +75,74 @@ public class KartuIbuRegisterController  extends CommonController{
     private final Cache<String> cache;
     private final Cache<KartuIbuClients> kartuIbuClientsCache;
     private final AllKohort allKohort;
+    private final ServiceProvidedService serviceProvidedService;
+    private final AlertService alertService;
 
     public KartuIbuRegisterController(AllKartuIbus allKartuIbus, Cache<String> cache,
+                                      ServiceProvidedService serviceProvidedService,
+                                      AlertService alertService,
                                       Cache<KartuIbuClients> kartuIbuClientsCache,
                                       AllKohort allKohort) {
         this.allKartuIbus = allKartuIbus;
         this.cache = cache;
         this.kartuIbuClientsCache = kartuIbuClientsCache;
         this.allKohort = allKohort;
+        this.serviceProvidedService = serviceProvidedService;
+        this.alertService = alertService;
+    }
+
+    private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
+        List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,
+                IFA_SERVICE_PROVIDED_NAME,
+                TT_1_SERVICE_PROVIDED_NAME,
+                TT_2_SERVICE_PROVIDED_NAME,
+                TT_BOOSTER_SERVICE_PROVIDED_NAME,
+                HB_TEST_SERVICE_PROVIDED_NAME,
+                ANC_1_SERVICE_PROVIDED_NAME,
+                ANC_2_SERVICE_PROVIDED_NAME,
+                ANC_3_SERVICE_PROVIDED_NAME,
+                ANC_4_SERVICE_PROVIDED_NAME,
+                DELIVERY_PLAN_SERVICE_PROVIDED_NAME);
+        List<ServiceProvidedDTO> serviceProvidedDTOs = new ArrayList<ServiceProvidedDTO>();
+        for (ServiceProvided serviceProvided : servicesProvided) {
+            serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));
+        }
+        return serviceProvidedDTOs;
+    }
+
+    private List<AlertDTO> getAlerts(String entityId) {
+        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId,
+                ANC_1_ALERT_NAME,
+                ANC_2_ALERT_NAME,
+                ANC_3_ALERT_NAME,
+                ANC_4_ALERT_NAME,
+                IFA_1_ALERT_NAME,
+                IFA_2_ALERT_NAME,
+                IFA_3_ALERT_NAME,
+                LAB_REMINDER_ALERT_NAME,
+                TT_1_ALERT_NAME,
+                TT_2_ALERT_NAME,
+                HB_TEST_1_ALERT_NAME,
+                HB_FOLLOWUP_TEST_ALERT_NAME,
+                HB_TEST_2_ALERT_NAME,
+                DELIVERY_PLAN_ALERT_NAME
+        );
+        List<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
+        for (Alert alert : alerts) {
+            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.expiryDate()));
+        }
+        return alertDTOs;
+    }
+
+    private List<AlertDTO> getKIAlerts(String entityId) {
+        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId,
+                KB_IUD,
+                KB_IMPLANT);
+        List<AlertDTO> alertDTOs = new ArrayList<>();
+        for (Alert alert : alerts) {
+            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.expiryDate()));
+        }
+        return alertDTOs;
     }
 
     public KartuIbuClients getKartuIbuClients() {
@@ -58,6 +153,7 @@ public class KartuIbuRegisterController  extends CommonController{
                 KartuIbuClients kartuIbuClients = new KartuIbuClients();
 
                 for (KartuIbu kartuIbu : kartuIbus) {
+
                     KartuIbuClient kartuIbuClient = new KartuIbuClient(kartuIbu.getCaseId(),
                             kartuIbu.getDetail(PUSKESMAS_NAME), kartuIbu.getDetail(PROPINSI),
                             kartuIbu.getDetail(KABUPATEN), kartuIbu.getDetail(POSYANDU_NAME),
@@ -126,6 +222,13 @@ public class KartuIbuRegisterController  extends CommonController{
         }
 
         if( ibu == null && kartuIbu.hasKBMethod()) {
+
+            List<AlertDTO> alerts = getKIAlerts(kartuIbu.getCaseId());
+            List<ServiceProvidedDTO> servicesProvided = getServicesProvided(kartuIbu.getCaseId());
+            kartuIbuClient.setAlerts(alerts);
+            kartuIbuClient.setServicesProvided(servicesProvided);
+            kartuIbuClient.ancPreProcess();
+
             kartuIbuClient.withStatus(EasyMap.create(STATUS_TYPE_FIELD, KELUARGA_BERENCANA)
                     .put(STATUS_DATE_FIELD, kartuIbu.getDetail(VISITS_DATE)).map());
             kartuIbuClient.withKbStart(kartuIbu.getDetail(VISITS_DATE));
@@ -133,6 +236,14 @@ public class KartuIbuRegisterController  extends CommonController{
         }
 
         if(ibu!=null) {
+
+            List<ServiceProvidedDTO> servicesProvided = getServicesProvided(ibu.getId());
+            List<AlertDTO> alerts = getAlerts(ibu.getId());
+            kartuIbuClient.setMotherId(ibu.getId());
+            kartuIbuClient.setAlerts(alerts);
+            kartuIbuClient.setServicesProvided(servicesProvided);
+            kartuIbuClient.ancPreProcess();
+
             kartuIbuClient.setIsInPNCorANC(true);
 
             kartuIbuClient.setChronicDisease(ibu.getDetail(CHRONIC_DISEASE));

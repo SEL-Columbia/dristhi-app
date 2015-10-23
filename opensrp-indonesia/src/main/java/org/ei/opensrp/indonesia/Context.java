@@ -239,7 +239,7 @@ public class Context extends org.ei.opensrp.Context{
 
     public KartuIbuRegisterController kartuIbuRegisterController() {
         if (kartuIbuRegisterController == null) {
-            kartuIbuRegisterController = new KartuIbuRegisterController(allKartuIbus(), listCache(), kiClientsCache(), allKohort());
+            kartuIbuRegisterController = new KartuIbuRegisterController(allKartuIbus(), listCache(), serviceProvidedService(), alertService(), kiClientsCache(), allKohort());
         }
         return kartuIbuRegisterController;
     }

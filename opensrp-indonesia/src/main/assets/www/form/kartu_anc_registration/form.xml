@@ -399,7 +399,7 @@
 			<input type="hidden" name="/Register_Anc_Only/B01046" data-calculate="int((( /Register_Anc_Only/today  -  /Register_Anc_Only/B01027 ) div 7)+1)" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/Register_Anc_Only/B01047" data-calculate="if(( /Register_Anc_Only/B01046 &lt;'28'), 1, (if( /Register_Anc_Only/B01046 &gt;='28' and  /Register_Anc_Only/B01046 &lt;='36', 2, (if( /Register_Anc_Only/B01046 &gt;'36', 3, '')))))" data-type-xml="string" />
+			<input type="hidden" name="/Register_Anc_Only/B01047" data-calculate="if(( /Register_Anc_Only/B01046 &lt;'14'), 1, (if( /Register_Anc_Only/B01046 &gt;='14' and  /Register_Anc_Only/B01046 &lt;='27', 2, (if( /Register_Anc_Only/B01046 &gt;'27', 3, '')))))" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
 			<input type="hidden" name="/Register_Anc_Only/Protein_energy_Malnutrition_risk" data-calculate="if( /Register_Anc_Only/B01052  &lt; 23.5, 'kekurangan_energi_kronis', '')" data-type-xml="string" />

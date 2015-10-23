@@ -7,11 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
+import org.ei.opensrp.domain.ANCServiceType;
+import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.domain.ServiceProvided;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.controller.KartuIbuRegisterController;
 import org.ei.opensrp.indonesia.view.viewHolder.NativeKIRegisterViewHolder;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.view.contract.AlertDTO;
+import org.ei.opensrp.view.contract.ServiceProvidedDTO;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
 import org.ei.opensrp.view.dialog.FilterOption;
@@ -23,7 +28,13 @@ import org.ei.opensrp.view.viewHolder.ProfilePhotoLoader;
 
 import android.graphics.Color;
 
+import com.google.common.base.Strings;
+
+import java.util.List;
+
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static org.ei.opensrp.view.controller.ECSmartRegisterController.ANC_STATUS;
+import static org.ei.opensrp.view.controller.ECSmartRegisterController.STATUS_TYPE_FIELD;
 
 /**
  * Created by Dimas Ciputra on 2/16/15.
@@ -88,14 +99,6 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
         return itemView;
     }
 
-    private void setupHighlightColor(ViewGroup itemView, int index) {
-        if(index%2==0) {
-            itemView.setBackgroundColor(Color.parseColor("#E0F5FF"));
-        } else {
-            itemView.setBackgroundColor(Color.WHITE);
-        }
-    }
-
     private void setupClientProfileView(KartuIbuClient client, NativeKIRegisterViewHolder viewHolder) {
         viewHolder.profileInfoLayout().bindData(client, photoLoader);
         viewHolder.profileInfoLayout().setOnClickListener(onClickListener);
@@ -130,6 +133,37 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
 
     private void setupStatusView(KartuIbuClient client, NativeKIRegisterViewHolder viewHolder) {
         viewHolder.statusView().bindData(client);
+
+        // get status of mother
+        String motherStatus = client.status().get(STATUS_TYPE_FIELD);
+
+        if(!Strings.isNullOrEmpty(motherStatus) && motherStatus.equalsIgnoreCase(ANC_STATUS)) {
+            AlertDTO anc1VisitAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_ANC);
+            if(anc1VisitAlert != null && !Strings.isNullOrEmpty(anc1VisitAlert.name())) {
+                ViewGroup statusViewGroup = viewHolder.statusView().statusLayout(motherStatus);
+                setStatusView(statusViewGroup, anc1VisitAlert, viewHolder);
+            }
+        }
+
+        if (!Strings.isNullOrEmpty(motherStatus) && motherStatus.equalsIgnoreCase(KartuIbuClient.CATEGORY_KB)) {
+            AlertDTO kbAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_KB);
+            if(!Strings.isNullOrEmpty(kbAlert.name())) {
+                ViewGroup statusViewGroup = viewHolder.statusView().statusLayout(motherStatus);
+                setStatusView(statusViewGroup, kbAlert, viewHolder);
+            }
+        }
+    }
+
+    private void setStatusView(ViewGroup statusViewGroup, AlertDTO alert, NativeKIRegisterViewHolder viewHolder) {
+        viewHolder.statusView().typeView(statusViewGroup).setText(alert.name());
+        viewHolder.statusView().dateView(statusViewGroup).setText(alert.date());
+        viewHolder.statusView().statusView(statusViewGroup).setText(alert.status().toUpperCase());
+        viewHolder.statusView().setBackgroundColor(alert.alertStatus().backgroundColorResourceId());
+        viewHolder.statusView().typeView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
+        viewHolder.statusView().dateView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
+        viewHolder.statusView().statusView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
+        viewHolder.statusView().labelDateView(statusViewGroup).setText(R.string.str_due);
+        viewHolder.statusView().labelDateView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
     }
 
     @Override

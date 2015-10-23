@@ -216,6 +216,54 @@ public enum ANCServiceType {
         public String category() {
             return "";
         }
+    },
+    KB_IUD {
+        @Override
+        public String displayName() {
+            return "KB IUD";
+        }
+
+        @Override
+        public String serviceName() { return "KB IUD"; }
+
+        @Override
+        public String category() { return "kb"; }
+    },
+    KB_Implant {
+        @Override
+        public String displayName() {
+            return "KB Implant";
+        }
+
+        @Override
+        public String serviceName() { return "KB Implant"; }
+
+        @Override
+        public String category() { return "kb"; }
+    },
+    KB_Injection_Cyclofem {
+        @Override
+        public String displayName() {
+            return "KB Injection Cyclofem";
+        }
+
+        @Override
+        public String serviceName() { return "KB Injection Cyclofem"; }
+
+        @Override
+        public String category() { return "kb"; }
+    },
+    KB_Injection_Depoprovera {
+        @Override
+        public String displayName() {
+            return "KB Injection Depoprovera";
+        }
+
+        @Override
+        public String serviceName() { return "KB Injection Depoprovera"; }
+
+        @Override
+        public String category() { return "kb"; }
     };
 
     public abstract String displayName();
@@ -262,6 +310,14 @@ public enum ANCServiceType {
                 return ANCServiceType.valueOf("DELIVERY_PLAN");
             } else if (type.equalsIgnoreCase("PNC")) {
                 return ANCServiceType.valueOf("PNC");
+            } else if (type.equalsIgnoreCase("KB IUD")) {
+                return ANCServiceType.valueOf("KB_IUD");
+            } else if (type.equalsIgnoreCase("KB Implant")) {
+                return ANCServiceType.valueOf("KB_Implant");
+            } else if (type.equalsIgnoreCase("KB Injection Cyclofem")) {
+                return ANCServiceType.valueOf("KB_Injection_Cyclofem");
+            } else if (type.equalsIgnoreCase("KB Injection Depoprovera")) {
+                return ANCServiceType.valueOf("KB_Injection_Depoprovera");
             } else {
                 return StringUtils.isBlank(type) ? defaultType : ANCServiceType.valueOf(type.toUpperCase(Locale.getDefault()));
             }

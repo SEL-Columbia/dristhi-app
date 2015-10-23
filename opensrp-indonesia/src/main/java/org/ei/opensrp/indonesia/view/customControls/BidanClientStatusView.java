@@ -10,9 +10,13 @@ import android.widget.TextView;
 
 import com.google.common.base.Strings;
 
+import org.ei.opensrp.domain.ANCServiceType;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
+import org.ei.opensrp.view.contract.AlertDTO;
+import org.ei.opensrp.view.contract.ServiceProvidedDTO;
 import org.ei.opensrp.view.viewHolder.ViewStubInflater;
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -97,4 +101,13 @@ public class BidanClientStatusView extends FrameLayout {
     public TextView typeView(ViewGroup statusViewGroup) {
         return ((TextView) statusViewGroup.findViewById(R.id.txt_status_type));
     }
+
+    public TextView statusView(ViewGroup statusViewGroup) {
+        return ((TextView) statusViewGroup.findViewById(R.id.txt_alert_status));
+    }
+
+    public TextView labelDateView(ViewGroup statusViewGroup) {
+        return ((TextView) statusViewGroup.findViewById(R.id.str_edd_type));
+    }
+
 }

@@ -3,8 +3,13 @@ package org.ei.opensrp.indonesia.view.contract;
 import com.google.common.base.Strings;
 
 import org.apache.commons.lang3.StringUtils;
+import org.ei.opensrp.domain.ANCServiceType;
+import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.util.DateUtil;
+import org.ei.opensrp.view.contract.AlertDTO;
+import org.ei.opensrp.view.contract.ServiceProvidedDTO;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.Visits;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
@@ -14,18 +19,48 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
+import static org.ei.opensrp.domain.ANCServiceType.ANC_1;
+import static org.ei.opensrp.domain.ANCServiceType.ANC_2;
+import static org.ei.opensrp.domain.ANCServiceType.ANC_3;
+import static org.ei.opensrp.domain.ANCServiceType.ANC_4;
+import static org.ei.opensrp.domain.ANCServiceType.KB_IUD;
+import static org.ei.opensrp.domain.ANCServiceType.KB_Implant;
+import static org.ei.opensrp.domain.ANCServiceType.PNC;
 import static org.ei.opensrp.indonesia.util.StringUtil.humanize;
+import static org.ei.opensrp.view.contract.AlertDTO.emptyAlert;
 import static org.joda.time.LocalDateTime.parse;
 
 /**
  * Created by Dimas Ciputra on 2/17/15.
  */
 public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartRegisterClient {
+
+    public static final String CATEGORY_ANC = "anc";
+    public static final String CATEGORY_TT = "tt";
+    public static final String CATEGORY_IFA = "ifa";
+    public static final String CATEGORY_HB = "hb";
+    public static final String CATEGORY_DELIVERY_PLAN = "delivery_plan";
+    public static final String CATEGORY_PNC = "pnc";
+    public static final String CATEGORY_KB = "kb";
+
+    private static final String[] SERVICE_CATEGORIES = {CATEGORY_ANC, CATEGORY_PNC, CATEGORY_KB};
+
+    private static Map<String, List<ANCServiceType>> categoriesToServiceTypeMap = new HashMap<String, List<ANCServiceType>>();
+
+    static {
+        categoriesToServiceTypeMap.put(CATEGORY_ANC, Arrays.asList(ANC_1, ANC_2, ANC_3, ANC_4));
+        categoriesToServiceTypeMap.put(CATEGORY_PNC, Arrays.asList(PNC));
+        categoriesToServiceTypeMap.put(CATEGORY_KB, Arrays.asList(KB_IUD, KB_Implant));
+    }
+
 
     private String entityId;
     private String puskesmas;
@@ -59,6 +94,11 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
     private String insurance;
     private String phoneNumber;
     private List<String> highRiskPregnancyReason;
+    private Map<String, Visits> serviceToVisitsMap;
+    private String ibuId;
+
+    private List<AlertDTO> alerts;
+    private List<ServiceProvidedDTO> services_provided;
 
     public KartuIbuClient(String entityId,String puskesmas, String province, String kabupaten, String posyandu, String householdAddress, String noIbu, String wifeName, String wifeAge, String golonganDarah, String husbandName, String village) {
         this.highRiskPregnancyReason = new ArrayList<>();
@@ -75,6 +115,7 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
         this.husbandName = husbandName;
         this.village = village;
         this.children = new ArrayList<KIChildClient>();
+        this.serviceToVisitsMap = new HashMap<String, Visits>();
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -473,4 +514,89 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
         setIsHighRiskPregnancy(!Strings.isNullOrEmpty(highRiskPregnancy) && highRiskPregnancy.equalsIgnoreCase("yes"));
         return this;
     }
+
+    // Schedule Service
+    public String motherId(){
+        return ibuId;
+    }
+
+    public void setMotherId(String motherId) {
+        this.ibuId = motherId;
+    }
+
+    public void setAlerts(List<AlertDTO> alerts) {
+        this.alerts = alerts;
+    }
+
+    public void setServicesProvided(List<ServiceProvidedDTO> servicesProvided) {
+        this.services_provided = servicesProvided;
+    }
+
+    public Map<String, Visits> serviceToVisitsMap() {
+        return serviceToVisitsMap;
+    }
+
+    private AlertDTO serviceToProvide(String category) {
+        if (StringUtils.isBlank(category)) {
+            return emptyAlert;
+        }
+        return serviceToVisitsMap.get(category).toProvide;
+    }
+
+    public AlertDTO getANCAlert(ANCServiceType type) {
+        return serviceToProvide(type.category());
+    }
+
+    public AlertDTO getANCAlertByCategory(String category) {
+        return serviceToProvide(category);
+    }
+
+    public ServiceProvidedDTO getANCServiceProvidedDTO(String serviceName) {
+        for (ServiceProvidedDTO serviceProvidedDTO : services_provided) {
+            if (serviceProvidedDTO.name().equalsIgnoreCase(serviceName)) {
+                return serviceProvidedDTO;
+            }
+        }
+        return null;
+    }
+
+
+    public void ancPreProcess() {
+        initialize(SERVICE_CATEGORIES, serviceToVisitsMap);
+        initializeAllServiceToProvideAndProvided(categoriesToServiceTypeMap);
+    }
+
+    private void initialize(String[] types, Map<String, Visits> serviceToVisitsMap) {
+        for (String type : types) {
+            serviceToVisitsMap.put(type, new Visits());
+        }
+    }
+
+    private void initializeAllServiceToProvideAndProvided(Map<String, List<ANCServiceType>> categoriesToServiceTypeMap) {
+        Set<String> keys = categoriesToServiceTypeMap.keySet();
+        for (String key : keys) {
+            initializeServiceToProvideAndProvided(categoriesToServiceTypeMap.get(key));
+        }
+    }
+
+    private void initializeServiceToProvideAndProvided(List<ANCServiceType> types) {
+        for (ANCServiceType type : types) {
+            initializeServiceToProvideAndProvided(type);
+        }
+    }
+
+    private void initializeServiceToProvideAndProvided(ANCServiceType type) {
+        for (AlertDTO alert : alerts) {
+            if (type.equals(alert.ancServiceType())) {
+                serviceToVisitsMap.get(type.category()).toProvide = alert;
+            }
+        }
+
+        for (ServiceProvidedDTO service : services_provided) {
+            if (type.equals(service.ancServiceType())) {
+                serviceToVisitsMap.get(type.category()).provided = service;
+            }
+        }
+    }
+
 }

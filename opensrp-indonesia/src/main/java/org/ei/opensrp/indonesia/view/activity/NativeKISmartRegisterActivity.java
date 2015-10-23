@@ -154,8 +154,13 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
 
     @Override
     protected void onInitialization() {
-        controller = new KartuIbuRegisterController(((Context)context).allKartuIbus(),
-                context.listCache(),((Context)context).kiClientsCache(),((Context)context).allKohort());
+        controller = new KartuIbuRegisterController(
+                ((Context)context).allKartuIbus(),
+                context.listCache(),
+                context.serviceProvidedService(),
+                context.alertService(),
+                ((Context)context).kiClientsCache(),
+                ((Context)context).allKohort());
         villageController = new BidanVillageController(context.villagesCache(), ((Context)context).allKartuIbus());
         dialogOptionMapper = new DialogOptionMapper();
         context.formSubmissionRouter().getHandlerMap()
