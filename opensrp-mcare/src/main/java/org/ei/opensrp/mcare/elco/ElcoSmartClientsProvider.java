@@ -205,6 +205,16 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
                         psrfdue.setText(pc.getDetails().get("WomanREGDATE"));
                     }
                 }
+                if(pc.getDetails().get("FWPSRDATE")!=null){
+                    psrfdue.setText(pc.getDetails().get("FWPSRDATE"));
+                    psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
+                    psrfdue.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+                }
                 }catch(ParseException e){
                     e.printStackTrace();
                 }
