@@ -34,6 +34,7 @@ import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.ei.opensrp.view.controller.ECSmartRegisterController.ANC_STATUS;
+import static org.ei.opensrp.view.controller.ECSmartRegisterController.PNC_STATUS;
 import static org.ei.opensrp.view.controller.ECSmartRegisterController.STATUS_TYPE_FIELD;
 
 /**
@@ -137,15 +138,23 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
         // get status of mother
         String motherStatus = client.status().get(STATUS_TYPE_FIELD);
 
-        if(!Strings.isNullOrEmpty(motherStatus) && motherStatus.equalsIgnoreCase(ANC_STATUS)) {
+        if (Strings.isNullOrEmpty(motherStatus)) {
+            return;
+        }
+
+        if(motherStatus.equalsIgnoreCase(ANC_STATUS)) {
             AlertDTO anc1VisitAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_ANC);
             if(anc1VisitAlert != null && !Strings.isNullOrEmpty(anc1VisitAlert.name())) {
                 ViewGroup statusViewGroup = viewHolder.statusView().statusLayout(motherStatus);
                 setStatusView(statusViewGroup, anc1VisitAlert, viewHolder);
             }
-        }
-
-        if (!Strings.isNullOrEmpty(motherStatus) && motherStatus.equalsIgnoreCase(KartuIbuClient.CATEGORY_KB)) {
+        } else if (motherStatus.equalsIgnoreCase(PNC_STATUS)) {
+            AlertDTO pncVisitAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_PNC);
+            if(pncVisitAlert != null && !Strings.isNullOrEmpty(pncVisitAlert.name())) {
+                ViewGroup statusViewGroup = viewHolder.statusView().statusLayout(motherStatus);
+                setStatusView(statusViewGroup, pncVisitAlert, viewHolder);
+            }
+        } else if (motherStatus.equalsIgnoreCase(KartuIbuClient.CATEGORY_KB)) {
             AlertDTO kbAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_KB);
             if(!Strings.isNullOrEmpty(kbAlert.name())) {
                 ViewGroup statusViewGroup = viewHolder.statusView().statusLayout(motherStatus);

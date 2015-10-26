@@ -34,6 +34,9 @@ import static org.ei.opensrp.domain.ANCServiceType.ANC_4;
 import static org.ei.opensrp.domain.ANCServiceType.KB_IUD;
 import static org.ei.opensrp.domain.ANCServiceType.KB_Implant;
 import static org.ei.opensrp.domain.ANCServiceType.PNC;
+import static org.ei.opensrp.domain.ANCServiceType.PNC_1;
+import static org.ei.opensrp.domain.ANCServiceType.PNC_2;
+import static org.ei.opensrp.domain.ANCServiceType.PNC_3;
 import static org.ei.opensrp.indonesia.util.StringUtil.humanize;
 import static org.ei.opensrp.view.contract.AlertDTO.emptyAlert;
 import static org.joda.time.LocalDateTime.parse;
@@ -57,7 +60,7 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
 
     static {
         categoriesToServiceTypeMap.put(CATEGORY_ANC, Arrays.asList(ANC_1, ANC_2, ANC_3, ANC_4));
-        categoriesToServiceTypeMap.put(CATEGORY_PNC, Arrays.asList(PNC));
+        categoriesToServiceTypeMap.put(CATEGORY_PNC, Arrays.asList(PNC,PNC_1, PNC_2, PNC_3));
         categoriesToServiceTypeMap.put(CATEGORY_KB, Arrays.asList(KB_IUD, KB_Implant));
     }
 
@@ -559,7 +562,6 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
         }
         return null;
     }
-
 
     public void ancPreProcess() {
         initialize(SERVICE_CATEGORIES, serviceToVisitsMap);

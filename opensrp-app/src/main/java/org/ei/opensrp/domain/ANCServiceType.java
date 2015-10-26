@@ -201,6 +201,54 @@ public enum ANCServiceType {
             return ANCClient.CATEGORY_PNC;
         }
     },
+    PNC_1 {
+        @Override
+        public String displayName() {
+            return "PNC 1";
+        }
+
+        @Override
+        public String serviceName() {
+            return "PNC 1";
+        }
+
+        @Override
+        public String category() {
+            return ANCClient.CATEGORY_PNC;
+        }
+    },
+    PNC_2 {
+        @Override
+        public String displayName() {
+            return "PNC 2";
+        }
+
+        @Override
+        public String serviceName() {
+            return "PNC 2";
+        }
+
+        @Override
+        public String category() {
+            return ANCClient.CATEGORY_PNC;
+        }
+    },
+    PNC_3 {
+        @Override
+        public String displayName() {
+            return "PNC 3";
+        }
+
+        @Override
+        public String serviceName() {
+            return "PNC 3";
+        }
+
+        @Override
+        public String category() {
+            return ANCClient.CATEGORY_PNC;
+        }
+    },
     EMPTY {
         @Override
         public String displayName() {
@@ -310,6 +358,12 @@ public enum ANCServiceType {
                 return ANCServiceType.valueOf("DELIVERY_PLAN");
             } else if (type.equalsIgnoreCase("PNC")) {
                 return ANCServiceType.valueOf("PNC");
+            } else if (type.equalsIgnoreCase("PNC 1")) {
+                return ANCServiceType.valueOf("PNC_1");
+            } else if (type.equalsIgnoreCase("PNC 2")) {
+                return ANCServiceType.valueOf("PNC_2");
+            } else if (type.equalsIgnoreCase("PNC 3")) {
+                return ANCServiceType.valueOf("PNC_3");
             } else if (type.equalsIgnoreCase("KB IUD")) {
                 return ANCServiceType.valueOf("KB_IUD");
             } else if (type.equalsIgnoreCase("KB Implant")) {
