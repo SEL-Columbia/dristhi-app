@@ -9,8 +9,10 @@ import org.ei.opensrp.util.CacheableData;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Dimas on 9/8/2015.
@@ -19,16 +21,16 @@ public class UniqueIdController {
 
     private AllSettingsINA allSettings;
     private UniqueIdRepository uniqueIdRepository;
-    private Cache<List<Integer>> cache;
+    private Cache<List<Long>> cache;
 
-    public UniqueIdController(UniqueIdRepository uniqueIdRepository, AllSettingsINA allSettings, Cache<List<Integer>> cache) {
+    public UniqueIdController(UniqueIdRepository uniqueIdRepository, AllSettingsINA allSettings, Cache<List<Long>> cache) {
         this.uniqueIdRepository = uniqueIdRepository;
         this.allSettings = allSettings;
         this.cache = cache;
     }
 
     public String getUniqueId() {
-        List<Integer> uids = getAllUniqueId();
+        List<Long> uids = getAllUniqueId();
         return processLatestUniqueId(uids);
     }
 
@@ -47,15 +49,15 @@ public class UniqueIdController {
     }
 
     public void updateCurrentUniqueId(String id) {
-        if(Integer.parseInt(allSettings.fetchCurrentId()) < Integer.parseInt(id)) {
+        if(Long.parseLong(allSettings.fetchCurrentId()) < Long.parseLong(id)) {
             allSettings.saveCurrentId(id);
         }
     }
 
-    public List<Integer> getAllUniqueId() {
-        return cache.get("UNIQUE_ID_LIST", new CacheableData<List<Integer>>() {
+    public List<Long> getAllUniqueId() {
+        return cache.get("UNIQUE_ID_LIST", new CacheableData<List<Long>>() {
             @Override
-            public List<Integer> fetch() {
+            public List<Long> fetch() {
                 return uniqueIdRepository.getAllUniqueId();
             }
         });
@@ -66,7 +68,7 @@ public class UniqueIdController {
     }
 
     public boolean needToRefillUniqueId() {
-        List<Integer> uids = getAllUniqueId();
+        List<Long> uids = getAllUniqueId();
         int currentId = Integer.parseInt(allSettings.fetchCurrentId())/10;
         return uids==null || uids.isEmpty() || (uids.get(uids.size()-1)/10) - currentId <= uids.size()/4;
     }
@@ -74,25 +76,25 @@ public class UniqueIdController {
     // Class for testing
 
     public boolean needToRefillUniqueIdTest() {
-        List<Integer> uids = uniqueIdRepository.getAllUniqueId();
-        int currentId = Integer.parseInt(allSettings.fetchCurrentId())/10;
+        List<Long> uids = uniqueIdRepository.getAllUniqueId();
+        long currentId = Long.parseLong(allSettings.fetchCurrentId())/10;
         return (uids.get(uids.size()-1)/10) - currentId <= uids.size()/4;
     }
 
     public String getUniqueIdTest() {
-        List<Integer> uids = uniqueIdRepository.getAllUniqueId();
+        List<Long> uids = uniqueIdRepository.getAllUniqueId();
         return processLatestUniqueId(uids);
     }
 
     @Nullable
-    private String processLatestUniqueId(List<Integer> uids) {
-        int currentId = Integer.parseInt(allSettings.fetchCurrentId());
+    private String processLatestUniqueId(List<Long> uids) {
+        Long currentId = Long.parseLong(allSettings.fetchCurrentId());
         if(uids == null || uids.isEmpty() || currentId > uids.get(uids.size()-1)) {
             return null;
         }
         int index = Arrays.binarySearch(uids.toArray(), currentId);
         if(index<-1) index = -1;
-        return index >= uids.size()-1 ? null : "" + uids.get(index+1);
+        return index >= uids.size()-1 ? null : "" + String.valueOf(uids.get(index+1));
     }
 
 }

@@ -49,7 +49,7 @@ public class Context extends org.ei.opensrp.Context{
     private Cache<KIPNCClients>kartuIbuPNCClientsCache;
     private Cache<KBClients>kbClientsCache;
     private Cache<BidanHomeContext>bidanHomeContextCache;
-    private Cache<List<Integer>> uIdsCache;
+    private Cache<List<Long>> uIdsCache;
 
     private BidanService bidanService;
     private UniqueIdService uniqueIdService;
@@ -180,7 +180,7 @@ public class Context extends org.ei.opensrp.Context{
         return kartuIbuPNCClientsCache;
     }
 
-    public Cache<List<Integer>> uIdsCache() {
+    public Cache<List<Long>> uIdsCache() {
         if (uIdsCache == null) {
             uIdsCache = new Cache<>();
             }

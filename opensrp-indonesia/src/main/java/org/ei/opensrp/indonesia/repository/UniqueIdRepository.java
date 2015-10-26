@@ -52,14 +52,14 @@ public class UniqueIdRepository extends DrishtiRepository {
         return uniqueId;
     }
 
-    public List<Integer> getAllUniqueId() {
+    public List<Long> getAllUniqueId() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT id, " + UNIQUE_ID_COLUMN +
                 " FROM " + UNIQUE_ID_TABLE_NAME , new String[]{});
         cursor.moveToFirst();
-        List<Integer> uids = new ArrayList<>();
+        List<Long> uids = new ArrayList<>();
         while(!cursor.isAfterLast()) {
-            uids.add(cursor.getInt(1));
+            uids.add(cursor.getLong(1));
             cursor.moveToNext();
         }
         cursor.close();

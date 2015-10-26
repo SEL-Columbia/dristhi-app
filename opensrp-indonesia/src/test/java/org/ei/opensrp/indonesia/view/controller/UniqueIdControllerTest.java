@@ -30,38 +30,38 @@ public class UniqueIdControllerTest {
     @Mock
     private UniqueIdRepository uniqueIdRepository;
     @Mock
-    private Cache<List<Integer>> cache;
+    private Cache<List<Long>> cache;
     @Mock
     Context context;
     private UniqueIdController controller;
 
-    List<Integer> uids;
+    List<Long> uids;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
         controller = new UniqueIdController(uniqueIdRepository, allSettings, cache);
-        uids = Arrays.asList(new Integer[]{
-                10019,
-                10026,
-                10035,
-                10042,
-                10057,
-                10061,
-                10074,
-                10088,
-                10090,
-                10100,
-                10116,
-                10128,
-                10137,
-                10144,
-                10159,
-                10163,
-                10171,
-                10185,
-                10192,
-                10205});
+        uids = Arrays.asList(new Long[]{
+                10019L,
+                10026L,
+                10035L,
+                10042L,
+                10057L,
+                10061L,
+                10074L,
+                10088L,
+                10090L,
+                10100L,
+                10116L,
+                10128L,
+                10137L,
+                10144L,
+                10159L,
+                10163L,
+                10171L,
+                10185L,
+                10192L,
+                10205L});
     }
 
     @Test
