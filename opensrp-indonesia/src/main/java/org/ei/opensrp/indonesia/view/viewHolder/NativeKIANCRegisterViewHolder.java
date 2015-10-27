@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.view.customControls.BidanClientProfileView;
+import org.w3c.dom.Text;
 
 /**
  * Created by Dimas Ciputra on 3/4/15.
@@ -15,16 +16,17 @@ public class NativeKIANCRegisterViewHolder {
 
     private final BidanClientProfileView profileInfoLayout;
     private final TextView ancStatusUsiaKlinis;
-    private final TextView ancStatusHtpt;
+    private final TextView ancStatusHtp;
     private final TextView pemeriksaanLILA;
     private final TextView pemeriksaanBB;
     private final TextView penyakitKronis;
-    // private final TextView lblPenyakitKronis;
-    // private final TextView alergi;
-    // private final TextView lblAlergi;
     private final ViewGroup layoutResikoANC;
     private final ImageButton editButton;
-    private final TextView edd;
+    private final RelativeLayout ancStatusLayout;
+    private final TextView statusText;
+    private final TextView labelDateStatus;
+    private final TextView dateStatusText;
+    private final TextView alertStatusText;
 
     private final RelativeLayout detailIdLayout;
     private TextView txtNoIbu;
@@ -38,22 +40,26 @@ public class NativeKIANCRegisterViewHolder {
         this.txtNoIbu = (TextView) this.detailIdLayout.findViewById(R.id.no_ibu);
         this.txtUniqueId = (TextView) this.detailIdLayout.findViewById(R.id.unique_id);
 
-
         this.ancStatusUsiaKlinis = (TextView) itemView.findViewById(R.id.txt_usia_klinis);
-        this.ancStatusHtpt = (TextView) itemView.findViewById(R.id.txt_htpt);
+        this.ancStatusHtp = (TextView) itemView.findViewById(R.id.txt_htpt);
         this.pemeriksaanLILA = (TextView) itemView.findViewById(R.id.txt_ki_lila_bb);
         this.pemeriksaanBB = (TextView) itemView.findViewById(R.id.txt_ki_beratbadan_tb);
         this.penyakitKronis = (TextView) itemView.findViewById(R.id.txt_ki_anc_penyakit_kronis);
         this.layoutResikoANC = (ViewGroup) itemView.findViewById(R.id.layout_resiko_anc);
         this.editButton = (ImageButton) itemView.findViewById(R.id.btn_edit);
-        this.edd = (TextView) itemView.findViewById(R.id.txt_edd);
+
+        this.ancStatusLayout = (RelativeLayout) itemView.findViewById(R.id.anc_status_layout);
+        this.statusText = (TextView) this.ancStatusLayout.findViewById(R.id.txt_status_type);
+        this.labelDateStatus = (TextView) this.ancStatusLayout.findViewById(R.id.label_status_date);
+        this.dateStatusText = (TextView) this.ancStatusLayout.findViewById(R.id.txt_status_date);
+        this.alertStatusText = (TextView) this.ancStatusLayout.findViewById(R.id.txt_alert_status);
+
     }
 
     public ImageButton editButton() { return editButton; }
     public TextView ancStatusUsiaKlinis() { return ancStatusUsiaKlinis; }
-    public TextView ancStatusHtpt() { return ancStatusHtpt; }
+    public TextView ancStatusHtp() { return ancStatusHtp; }
 
-    public TextView edd() { return edd; }
     public BidanClientProfileView profileInfoLayout() {
         return profileInfoLayout;
     }
@@ -72,5 +78,25 @@ public class NativeKIANCRegisterViewHolder {
 
     public TextView getPenyakitKronis() {
         return penyakitKronis;
+    }
+
+    public TextView getLabelDateStatus() {
+        return labelDateStatus;
+    }
+
+    public TextView getDateStatusText() {
+        return dateStatusText;
+    }
+
+    public TextView getAlertStatusText() {
+        return alertStatusText;
+    }
+
+    public TextView getStatusText() {
+        return statusText;
+    }
+
+    public RelativeLayout getAncStatusLayout() {
+        return ancStatusLayout;
     }
 }

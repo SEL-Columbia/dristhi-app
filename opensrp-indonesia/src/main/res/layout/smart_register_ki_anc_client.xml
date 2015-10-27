@@ -97,7 +97,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HPHT :"/>
+                android:text="HTP :"/>
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:id="@+id/txt_htpt"
@@ -222,31 +222,48 @@
         android:layout_height="fill_parent"
         android:src="@color/smart_register_client_divider_color"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="135"
-        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:id="@+id/anc_status_layout"
         >
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@color/status_bar_text_almost_white"
-            android:orientation="vertical">
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/txt_status_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="ANC"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:id="@+id/txt_edd"
-                style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="14 Jan 2015"/>
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/label_status_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_status_type"
+            android:layout_alignParentLeft="true"
+            android:text="Start "
+            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 
-        </LinearLayout>
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/txt_status_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_status_type"
+            android:layout_toRightOf="@id/label_status_date"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/txt_alert_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/label_status_date"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <ImageView
         android:layout_width="@dimen/smart_register_client_divider_height"

@@ -246,7 +246,7 @@ public class Context extends org.ei.opensrp.Context{
 
     public KIANCRegisterController kartuIbuANCRegisterController() {
         if (kartuIbuANCRegisterController == null) {
-            kartuIbuANCRegisterController = new KIANCRegisterController(allKohort(), listCache(), kartuIbuANCClientsCache(), villagesCache());
+            kartuIbuANCRegisterController = new KIANCRegisterController(allKohort(), alertService(), listCache(), kartuIbuANCClientsCache(), villagesCache());
         }
         return kartuIbuANCRegisterController;
     }

@@ -150,7 +150,7 @@ public class AllConstantsINA {
     public class KartuANCFields {
         public static final String MOTHER_NUTRITION_STATUS = "StatusGiziibu";
         public static final String COMPLICATION_HISTORY = "riwayatKomplikasiKebidanan";
-        public static final String TRIMESTER = "TrimesterKe";
+        public static final String TRIMESTER = "trimesterKe";
         public static final String IMMUNIZATION_TT_STATUS = "StatusImunisasiTT";
         public static final String CLINICAL_AGE = "UsiaKlinis";
         public static final String WEIGHT_BEFORE = "bbSebelumHamil";

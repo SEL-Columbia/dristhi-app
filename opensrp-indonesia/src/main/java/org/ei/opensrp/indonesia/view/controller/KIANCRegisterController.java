@@ -4,14 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.domain.Ibu;
 import org.ei.opensrp.indonesia.domain.KartuIbu;
 import org.ei.opensrp.indonesia.repository.AllKohort;
 import org.ei.opensrp.indonesia.view.contract.KIANCClient;
 import org.ei.opensrp.indonesia.view.contract.KIANCClients;
+import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.util.Cache;
 import org.ei.opensrp.util.CacheableData;
+import org.ei.opensrp.view.contract.AlertDTO;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.Village;
 import org.ei.opensrp.view.contract.Villages;
@@ -21,6 +24,7 @@ import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.*;
 import static org.ei.opensrp.indonesia.AllConstantsINA.KartuANCFields.*;
@@ -31,17 +35,23 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.KartuANCFields.*;
 public class KIANCRegisterController extends CommonController {
 
     private static final String KI_ANC_CLIENTS_LIST = "KIANCClientsList";
+    private static final String ANC_1_ALERT_NAME = "ANC 1";
+    private static final String ANC_2_ALERT_NAME = "ANC 2";
+    private static final String ANC_3_ALERT_NAME = "ANC 3";
+    private static final String ANC_4_ALERT_NAME = "ANC 4";
 
     private final AllKohort allKohort;
     private final Cache<String> cache;
     private final Cache<KIANCClients> KIANCClientsCache;
     private final Cache<Villages> villagesCache;
+    private final AlertService alertService;
 
-    public KIANCRegisterController(AllKohort allKohort, Cache<String> cache, Cache<KIANCClients> KIANCClientsCache, Cache<Villages> villagesCache) {
+    public KIANCRegisterController(AllKohort allKohort, AlertService alertService, Cache<String> cache, Cache<KIANCClients> KIANCClientsCache, Cache<Villages> villagesCache) {
         this.allKohort = allKohort;
         this.cache = cache;
         this.villagesCache = villagesCache;
         this.KIANCClientsCache = KIANCClientsCache;
+        this.alertService = alertService;
     }
 
     public String get() {
@@ -95,7 +105,8 @@ public class KIANCRegisterController extends CommonController {
                             .withKINumber(ki.getDetail(MOTHER_NUMBER))
                             .withEDD(ki.getDetail(EDD))
                             .withANCStatus(anc.getDetail(MOTHER_NUTRITION_STATUS))
-                            .withKunjunganData(anc.getDetail(TRIMESTER))
+                            .withKunjunganData(ki.getDetail(TRIMESTER))
+                            .withVisitDate(anc.getReferenceDate())
                             .withTTImunisasiData(anc.getDetail(IMMUNIZATION_TT_STATUS))
                             .withTanggalHPHT(anc.getDetail(HPHT_DATE))
                             .withUniqueId(ki.getDetail(UNIQUE_ID));
@@ -131,6 +142,11 @@ public class KIANCRegisterController extends CommonController {
                     kartuIbuClient.setrDeliveryMethod(anc.getDetail(AllConstantsINA.KartuPNCFields.DELIVERY_METHOD));
                     kartuIbuClient.setLaborComplication(anc.getDetail(AllConstantsINA.KartuPNCFields.COMPLICATION));
 
+                    // get alerts
+                    List<AlertDTO> alertDTOs = getAlerts(anc.getId());
+                    kartuIbuClient.setAlerts(alertDTOs);
+                    kartuIbuClient.ancPreProcess();
+
                     ancClients.add(kartuIbuClient);
                 }
                 sortByName(ancClients);
@@ -157,13 +173,12 @@ public class KIANCRegisterController extends CommonController {
                 List<String> villageNameList = new ArrayList<>();
                 Villages villagesList = new Villages();
 
-                for(SmartRegisterClient client : clients) {
+                for (SmartRegisterClient client : clients) {
                     villageNameList.add(client.village());
                 }
 
                 villageNameList = new ArrayList<>(new LinkedHashSet<>(villageNameList));
-                for(String name : villageNameList) {
-                    Village village = new Village(name);
+                for (String name : villageNameList) {
                     villagesList.add(new Village(name));
                 }
                 return villagesList;
@@ -180,6 +195,20 @@ public class KIANCRegisterController extends CommonController {
                 ancClients,
                 allKohort.randomDummyANCName(),
                 AllConstantsINA.DIALOG_DOUBLE_SELECTION_NUM);
+    }
+
+    private List<AlertDTO> getAlerts(String entityId) {
+        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId,
+                ANC_1_ALERT_NAME,
+                ANC_2_ALERT_NAME,
+                ANC_3_ALERT_NAME,
+                ANC_4_ALERT_NAME
+        );
+        List<AlertDTO> alertDTOs = new ArrayList<>();
+        for (Alert alert : alerts) {
+            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.expiryDate()));
+        }
+        return alertDTOs;
     }
 
 }

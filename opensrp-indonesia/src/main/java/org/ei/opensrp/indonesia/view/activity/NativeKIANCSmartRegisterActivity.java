@@ -140,7 +140,7 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
 
     @Override
     protected void onInitialization() {
-        controller = new KIANCRegisterController(((Context)context).allKohort(),
+        controller = new KIANCRegisterController(((Context)context).allKohort(), context.alertService(),
                 context.listCache(), ((Context)context).kartuIbuANCClientsCache(), context.villagesCache());
         villageController = new BidanVillageController(context.villagesCache(), ((Context)context).allKartuIbus());
         dialogOptionMapper = new DialogOptionMapper();

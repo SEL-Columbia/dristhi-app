@@ -11,12 +11,15 @@ import android.widget.AbsListView;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 
+import org.ei.opensrp.domain.ANCServiceType;
 import org.ei.opensrp.indonesia.R;
+import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.view.activity.SecuredActivity;
 import org.ei.opensrp.indonesia.view.contract.KIANCClient;
 import org.ei.opensrp.indonesia.view.controller.KIANCRegisterController;
 import org.ei.opensrp.indonesia.view.viewHolder.NativeKIANCRegisterViewHolder;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.view.contract.AlertDTO;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
 import org.ei.opensrp.view.dialog.FilterOption;
@@ -85,14 +88,37 @@ public class KIANCClientsProvider implements SmartRegisterClientsProvider {
         setupPemeriksaanView(kartuIbuClient, viewHolder);
         setupResikoView(kartuIbuClient, viewHolder);
         setupEditView(kartuIbuClient, viewHolder);
-        setupEDDView(kartuIbuClient, viewHolder);
+        setupStatusView(kartuIbuClient, viewHolder);
 
         itemView.setLayoutParams(clientViewLayoutParams);
         return itemView;
     }
 
-    private void setupEDDView(KIANCClient client, NativeKIANCRegisterViewHolder viewHolder) {
-        viewHolder.edd().setText(client.eddForDisplay());
+    private void setupStatusView(KIANCClient client, NativeKIANCRegisterViewHolder viewHolder) {
+        // get Alert DTO
+        AlertDTO ancVisitAlert = client.getANCAlert();
+
+        if(!Strings.isNullOrEmpty(ancVisitAlert.name())) {
+            viewHolder.getStatusText().setText(ancVisitAlert.name());
+            viewHolder.getDateStatusText().setText(ancVisitAlert.date());
+            viewHolder.getAlertStatusText().setText(ancVisitAlert.status().toUpperCase());
+            viewHolder.getLabelDateStatus().setText(R.string.str_due);
+            setStatusLayoutColor(ancVisitAlert.alertStatus().backgroundColorResourceId(), ancVisitAlert.alertStatus().fontColor(), viewHolder);
+        } else {
+            viewHolder.getStatusText().setText("ANC " + client.kunjungan());
+            viewHolder.getDateStatusText().setText(client.visitDate());
+            viewHolder.getLabelDateStatus().setText("Start");
+            viewHolder.getAlertStatusText().setText("-");
+            setStatusLayoutColor(Color.parseColor("#f5f5f5"), Color.parseColor("#000000"), viewHolder);
+        }
+    }
+
+    private void setStatusLayoutColor(int backgroundColor, int fontColor, NativeKIANCRegisterViewHolder viewHolder) {
+        viewHolder.getAncStatusLayout().setBackgroundColor(backgroundColor);
+        viewHolder.getStatusText().setTextColor(fontColor);
+        viewHolder.getDateStatusText().setTextColor(fontColor);
+        viewHolder.getAlertStatusText().setTextColor(fontColor);
+        viewHolder.getLabelDateStatus().setTextColor(fontColor);
     }
 
     private void setupClientProfileView(KIANCClient client, NativeKIANCRegisterViewHolder viewHolder) {
@@ -107,7 +133,7 @@ public class KIANCClientsProvider implements SmartRegisterClientsProvider {
     }
 
     private void setupANCStatusView(KIANCClient client, NativeKIANCRegisterViewHolder viewHolder) {
-        viewHolder.ancStatusHtpt().setText(client.tanggalHPHT()==null?"-":client.tanggalHPHT());
+        viewHolder.ancStatusHtp().setText(client.eddForDisplay()==null?"-":client.eddForDisplay());
         viewHolder.ancStatusUsiaKlinis().setText(client.usiaKlinis()==null?"-":client.usiaKlinis());
     }
 

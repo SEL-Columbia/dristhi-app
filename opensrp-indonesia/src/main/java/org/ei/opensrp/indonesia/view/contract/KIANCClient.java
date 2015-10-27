@@ -52,6 +52,7 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
     private String village;
     private String ancStatus;
     private String kunjungan;
+    private String visitDate;
     private String ttImunisasi;
     private String BB;
     private String TB;
@@ -64,6 +65,7 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
     private String highRiskPregnancyReason;
     private String kartuIbuCaseId;
     private String ancVisitNumber;
+    private Visits ancVisits;
 
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
@@ -77,6 +79,7 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
         this.dateOfBirth = dateOfBirth;
         this.village = village;
         this.serviceToVisitsMap = new HashMap<String, Visits>();
+        this.ancVisits = new Visits();
     }
 
     @Override
@@ -309,6 +312,11 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
         return this;
     }
 
+    public KIANCClient withVisitDate(String visitDate) {
+        this.visitDate = visitDate;
+        return this;
+    }
+
     public KIANCClient withTTImunisasiData(String ttImunisasi) {
         this.ttImunisasi = ttImunisasi;
         return this;
@@ -403,7 +411,27 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
         return ancVisitNumber;
     }
 
+    public String visitDate() {
+        return Strings.isNullOrEmpty(visitDate) ? "-" : DateUtil.formatDate(tanggalHPHT, "dd/MM/YYYY");
+    }
+
     public void setAncVisitNumber(String ancVisitNumber) {
         this.ancVisitNumber = ancVisitNumber;
     }
+
+    public void setAlerts(List<AlertDTO> alerts) {
+        this.alerts = alerts;
+    }
+
+    public void ancPreProcess() {
+        this.ancVisits.toProvide = AlertDTO.emptyAlert;
+        for(AlertDTO alert : alerts) {
+            this.ancVisits.toProvide = alert;
+        }
+    }
+
+    public AlertDTO getANCAlert() {
+        return ancVisits.toProvide;
+    }
+
 }
