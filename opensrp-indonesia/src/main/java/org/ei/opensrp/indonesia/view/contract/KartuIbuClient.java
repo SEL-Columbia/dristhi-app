@@ -72,6 +72,7 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
     private String posyandu;
     private String householdAddress;
     private String noIbu;
+    private String uniqueId;
     private String wifeName;
     private String wifeAge;
     private String golonganDarah;
@@ -188,6 +189,10 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
 
     public String getNoIbu() {
         return Strings.isNullOrEmpty(noIbu) ? "-" : noIbu;
+    }
+
+    public String getUniqueId() {
+        return Strings.isNullOrEmpty(uniqueId) ? "-" : uniqueId;
     }
 
     public String getWifeName() {
@@ -466,6 +471,11 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
 
     public KartuIbuClient withKbStart(String kbStart) {
         this.kbStart = kbStart;
+        return this;
+    }
+
+    public KartuIbuClient withUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
         return this;
     }
 

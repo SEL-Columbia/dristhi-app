@@ -112,6 +112,7 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
 
     private void setupClientNoIbuView(KartuIbuClient client, NativeKIRegisterViewHolder viewHolder) {
         viewHolder.txtNoIbu().setText(String.valueOf(client.getNoIbu()));
+        viewHolder.txtUniqueId().setText(String.valueOf(client.getUniqueId()));
     }
 
     private void setupObsetriView(KartuIbuClient client, NativeKIRegisterViewHolder viewHolder) {

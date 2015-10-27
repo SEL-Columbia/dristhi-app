@@ -2,6 +2,7 @@ package org.ei.opensrp.indonesia.view.viewHolder;
 
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.ei.opensrp.indonesia.R;
@@ -22,8 +23,10 @@ public class NativeKIRegisterViewHolder {
     private TextView txtEdd;
     private TextView txtEddDue;
     private TextView txtNoIbu;
+    private TextView txtUniqueId;
     private final BidanClientStatusView statusView;
     private final ImageButton editButton;
+    private final RelativeLayout detailIdLayout;
 
     public NativeKIRegisterViewHolder(ViewGroup itemView) {
         this.profileInfoLayout = (BidanClientProfileView) itemView.findViewById(R.id.profile_info_layout_ki);
@@ -31,6 +34,10 @@ public class NativeKIRegisterViewHolder {
 
         this.bidanObsetriView = (BidanObsetriView) itemView.findViewById(R.id.obsetri_layout);
         this.bidanObsetriView.initialize();
+
+        this.detailIdLayout = (RelativeLayout) itemView.findViewById(R.id.id_detail_layout);
+        this.txtNoIbu = (TextView) this.detailIdLayout.findViewById(R.id.no_ibu);
+        this.txtUniqueId = (TextView) this.detailIdLayout.findViewById(R.id.unique_id);
 
         statusView = (BidanClientStatusView) itemView.findViewById(R.id.status_layout);
         statusView.initialize();
@@ -41,8 +48,6 @@ public class NativeKIRegisterViewHolder {
         this.txtEdd = (TextView) itemView.findViewById(R.id.txt_edd);
 
         this.txtEddDue = (TextView) itemView.findViewById(R.id.txt_edd_due);
-
-        this.txtNoIbu = (TextView) itemView.findViewById(R.id.no_ibu);
 
         this.editButton = (ImageButton) itemView.findViewById(R.id.btn_edit);
     }
@@ -58,5 +63,6 @@ public class NativeKIRegisterViewHolder {
     public TextView txtNoIbu() { return txtNoIbu; }
     public TextView txtEdd() { return txtEdd; }
     public TextView txtEddDue() { return txtEddDue; }
+    public TextView txtUniqueId() { return txtUniqueId; }
     public ImageButton editButton() { return editButton; }
 }

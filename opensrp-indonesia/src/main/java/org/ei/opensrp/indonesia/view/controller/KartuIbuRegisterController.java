@@ -179,7 +179,8 @@ public class KartuIbuRegisterController  extends CommonController{
                 .withHighPriority(kartuIbu.getDetail(IS_HIGH_PRIORITY))
                 .withIsHighRisk(kartuIbu.getDetail(IS_HIGH_RISK))
                 .withEdd(kartuIbu.getDetail(EDD))
-                .withHighRiskLabour(kartuIbu.getDetail(IS_HIGH_RISK_LABOUR));
+                .withHighRiskLabour(kartuIbu.getDetail(IS_HIGH_RISK_LABOUR))
+                .withUniqueId(kartuIbu.getDetail(UNIQUE_ID));
 
         updateStatusInformation(kartuIbu, kartuIbuClient);
         updateChildrenInformation(kartuIbuClient);

@@ -141,6 +141,7 @@ public class AllConstantsINA {
         public static final String IS_HIGH_RISK_ANC = "isHighRiskANC";
         public static final String IS_HIGH_RISK_PREGNANCY = "isHighRiskPregnancy";
         public static final String IS_HIGH_RISK_LABOUR = "isHighRiskLabour";
+        public static final String UNIQUE_ID = "unique_id";
         public static final String EDD = "htp";
         public static final String VISITS_DATE = "tanggalkunjungan";
         public static final String CHRONIC_DISEASE = "penyakitKronis";

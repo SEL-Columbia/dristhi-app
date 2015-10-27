@@ -97,7 +97,8 @@ public class KIANCRegisterController extends CommonController {
                             .withANCStatus(anc.getDetail(MOTHER_NUTRITION_STATUS))
                             .withKunjunganData(anc.getDetail(TRIMESTER))
                             .withTTImunisasiData(anc.getDetail(IMMUNIZATION_TT_STATUS))
-                            .withTanggalHPHT(anc.getDetail(HPHT_DATE));
+                            .withTanggalHPHT(anc.getDetail(HPHT_DATE))
+                            .withUniqueId(ki.getDetail(UNIQUE_ID));
 
                     kartuIbuClient.setKartuIbuCaseId(anc.getKartuIbuId());
                     kartuIbuClient.setBB(anc.getDetail(WEIGHT_BEFORE));

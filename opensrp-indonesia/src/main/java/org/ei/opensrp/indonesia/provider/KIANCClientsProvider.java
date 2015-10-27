@@ -102,7 +102,8 @@ public class KIANCClientsProvider implements SmartRegisterClientsProvider {
     }
 
     private void setupIdDetailsView(KIANCClient client, NativeKIANCRegisterViewHolder viewHolder) {
-        viewHolder.ancId().setText(client.kiNumber()==null?"-":client.kiNumber());
+        viewHolder.txtNoIbu().setText(String.valueOf(client.kiNumber()));
+        viewHolder.txtUniqueId().setText(String.valueOf(client.getUniqueId()));
     }
 
     private void setupANCStatusView(KIANCClient client, NativeKIANCRegisterViewHolder viewHolder) {

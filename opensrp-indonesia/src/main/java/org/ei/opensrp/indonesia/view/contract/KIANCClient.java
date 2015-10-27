@@ -40,6 +40,7 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
 
     private String entityId;
     private String kiNumber;
+    private String uniqueId;
     private String puskesmas;
     private String name;
     private String ancNumber;
@@ -256,7 +257,11 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
     }
 
     public String kiNumber() {
-        return kiNumber;
+        return Strings.isNullOrEmpty(kiNumber) ? "-" : kiNumber;
+    }
+
+    public String getUniqueId() {
+        return Strings.isNullOrEmpty(uniqueId) ? "-" : uniqueId;
     }
 
     public String ancStatus() { return humanize(ancStatus); }
@@ -281,6 +286,11 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
 
     public KIANCClient withKINumber(String kiNumber) {
         this.kiNumber = kiNumber;
+        return this;
+    }
+
+    public KIANCClient withUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
         return this;
     }
 
