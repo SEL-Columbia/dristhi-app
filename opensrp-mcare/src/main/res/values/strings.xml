@@ -345,6 +345,8 @@
     <string name="anc_edd_ga">EDD and GA</string>
     <string name="anc_reminder_due">ANC reminder due</string>
     <string name="take_nid_picture">Take Picture-NID/BRID</string>
+    <string name="censusenrollmentform">Census New Woman Registration Form</string>
+    <string name="psrfform">Pregnancy Surveillance And Registration Form</string>
 
 
 </resources>

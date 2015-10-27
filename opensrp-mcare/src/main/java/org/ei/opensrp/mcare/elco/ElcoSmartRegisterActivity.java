@@ -142,7 +142,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
 
-                new OpenFormOption("PSRF Form", "psrf_form", formController)
+                new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController)
         };
     }
 

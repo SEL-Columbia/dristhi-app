@@ -167,7 +167,7 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         overridemap.put("existing_location", "existing_location");
         return new DialogOption[]{
 
-                new OpenFormOption("census enrollment form", "census_enrollment_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.byDetails)
+                new OpenFormOption(getResources().getString(R.string.censusenrollmentform), "census_enrollment_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.byDetails)
         };
     }
 
