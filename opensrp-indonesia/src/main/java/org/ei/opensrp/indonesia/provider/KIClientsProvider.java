@@ -133,34 +133,28 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
     }
 
     private void setupStatusView(KartuIbuClient client, NativeKIRegisterViewHolder viewHolder) {
+        // get status of mother
         viewHolder.statusView().bindData(client);
 
-        // get status of mother
-        String motherStatus = client.status().get(STATUS_TYPE_FIELD);
-
-        if (Strings.isNullOrEmpty(motherStatus)) {
-            return;
-        }
-
-        if(motherStatus.equalsIgnoreCase(ANC_STATUS)) {
+        if (client.status().containsKey(STATUS_TYPE_FIELD)) {
+            String motherStatus = client.status().get(STATUS_TYPE_FIELD);
             AlertDTO anc1VisitAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_ANC);
-            if(anc1VisitAlert != null && !Strings.isNullOrEmpty(anc1VisitAlert.name())) {
-                ViewGroup statusViewGroup = viewHolder.statusView().statusLayout(motherStatus);
-                setStatusView(statusViewGroup, anc1VisitAlert, viewHolder);
-            }
-        } else if (motherStatus.equalsIgnoreCase(PNC_STATUS)) {
             AlertDTO pncVisitAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_PNC);
-            if(pncVisitAlert != null && !Strings.isNullOrEmpty(pncVisitAlert.name())) {
-                ViewGroup statusViewGroup = viewHolder.statusView().statusLayout(motherStatus);
-                setStatusView(statusViewGroup, pncVisitAlert, viewHolder);
-            }
-        } else if (motherStatus.equalsIgnoreCase(KartuIbuClient.CATEGORY_KB)) {
             AlertDTO kbAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_KB);
+
             if(!Strings.isNullOrEmpty(kbAlert.name())) {
-                ViewGroup statusViewGroup = viewHolder.statusView().statusLayout(motherStatus);
-                setStatusView(statusViewGroup, kbAlert, viewHolder);
+                setStatusView(viewHolder.statusView().statusLayout(motherStatus), kbAlert, viewHolder);
+            } else if(!Strings.isNullOrEmpty(anc1VisitAlert.name())) {
+                setStatusView(viewHolder.statusView().statusLayout(motherStatus), anc1VisitAlert, viewHolder);
+            } else if(!Strings.isNullOrEmpty(pncVisitAlert.name())) {
+                setStatusView(viewHolder.statusView().statusLayout(motherStatus), pncVisitAlert, viewHolder);
+            } else {
+                viewHolder.statusView().setBackgroundColor(Color.parseColor("#f5f5f5"));
             }
+        } else {
+            viewHolder.statusView().setBackgroundColor(Color.parseColor("#f5f5f5"));
         }
+
     }
 
     private void setStatusView(ViewGroup statusViewGroup, AlertDTO alert, NativeKIRegisterViewHolder viewHolder) {
