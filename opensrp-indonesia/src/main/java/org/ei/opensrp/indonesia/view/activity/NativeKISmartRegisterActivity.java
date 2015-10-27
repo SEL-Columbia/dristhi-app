@@ -175,8 +175,6 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
             Toast.makeText(this, "No Unique Id", Toast.LENGTH_SHORT).show();
             return;
         }
-        FieldOverrides fieldOverrides = new FieldOverrides(uniqueIdJson);
-        String location = context.anmLocationController().get();
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         Fragment prev = getFragmentManager().findFragmentByTag(locationDialogTAG);
@@ -188,7 +186,6 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
                 .newInstance(this, new EditDialogOptionModel(), context.anmLocationController().get(), KARTU_IBU_REGISTRATION)
                 .show(ft, locationDialogTAG);
 
-        // startFormActivity(KARTU_IBU_REGISTRATION, null, fieldOverrides.getJSONString());
     }
 
     @Override

@@ -1,7 +1,7 @@
 {
   "form_data_definition_version": "1",
   "form": {
-    "bind_type": "anak",
+    "bind_type": "kartu_ibu",
     "default_bind_path": "/model/instance/register_baby/",
     "fields": [
       {
@@ -9,71 +9,188 @@
         "shouldLoadValue": true
       },
       {
-        "name": "namaIbu",
-        "bind": "/model/instance/register_baby/nama_ibu"
+        "name": "motherId",
+        "source": "kartu_ibu.ibu.id"
       },
       {
-        "name": "alamat",
-        "bind": "/model/instance/register_baby/alamat"
+        "name": "childId",
+        "source": "kartu_ibu.ibu.anak.id"
       },
       {
-        "name": "tanggalPendaftaran",
-        "bind": "/model/instance/register_baby/tanggal_pendaftaran"
+        "name": "unique_id",
+        "bind": "/model/instance/register_baby/unique_id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Village",
+        "bind": "/model/instance/register_baby/Village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Province",
+        "bind": "/model/instance/register_baby/Province",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Sub-district",
+        "bind": "/model/instance/register_baby/Sub-district",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "District",
+        "bind": "/model/instance/register_baby/District",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Sub-village",
+        "bind": "/model/instance/register_baby/Sub-village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "propinsi",
+        "bind": "/model/instance/register_baby/propinsi"
+      },
+      {
+        "name": "kabupaten",
+        "bind": "/model/instance/register_baby/Kabupaten"
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/register_baby/Kecamatan"
+      },
+      {
+        "name": "desa",
+        "bind": "/model/instance/register_baby/Desa"
+      },
+      {
+        "name": "dusun",
+        "bind": "/model/instance/register_baby/Dusun"
+      },
+      {
+        "name": "puskesmas",
+        "bind": "/model/instance/register_baby/puskesmas"
+      },
+      {
+        "name": "noIbu",
+        "bind": "/model/instance/register_baby/no_ibu"
+      },
+      {
+        "name": "namalengkap",
+        "bind": "/model/instance/register_baby/nama_lengkap"
+      },
+      {
+        "name": "namaSuami",
+        "bind": "/model/instance/register_baby/nama_suami"
+      },
+      {
+        "name": "tanggalLahir",
+        "bind": "/model/instance/register_baby/tanggal_lahir_ibu"
+      },
+      {
+        "name": "umur",
+        "bind": "/model/instance/register_baby/umur"
+      },
+      {
+        "name": "alamatDomisili",
+        "bind": "/model/instance/register_baby/alamat_domisili"
+      },
+      {
+        "name": "pendidikan",
+        "bind": "/model/instance/register_baby/pendidikan"
+      },
+      {
+        "name": "agama",
+        "bind": "/model/instance/register_baby/agama"
+      },
+      {
+        "name": "pekerjaan",
+        "bind": "/model/instance/register_baby/pekerjaan"
+      },
+      {
+        "name": "gakinTidak",
+        "bind": "/model/instance/register_baby/gakin_tidak"
+      },
+      {
+        "name": "posyandu",
+        "bind": "/model/instance/register_baby/posyandu"
+      },
+      {
+        "name": "namaKader",
+        "bind": "/model/instance/register_baby/nama_kader"
+      },
+      {
+        "name": "namaDukun",
+        "bind": "/model/instance/register_baby/nama_dukun"
+      },
+      {
+        "name": "asuransiJiwa",
+        "bind": "/model/instance/register_baby/asuransi_jiwa"
+      },
+      {
+        "name": "golonganDarah",
+        "bind": "/model/instance/register_baby/golongan_darah"
+      },
+      {
+        "name": "NomorTelponHp",
+        "bind": "/model/instance/register_baby/nomor_telpon_hp"
+      },
+      {
+        "name": "pptest",
+        "bind": "/model/instance/register_baby/pptest"
       },
       {
         "name": "noBayi",
-        "bind": "/model/instance/register_baby/no_bayi"
+        "bind": "/model/instance/register_baby/no_bayi",
+        "source": "kartu_ibu.ibu.anak.no_bayi"
       },
       {
         "name": "namaBayi",
-        "bind": "/model/instance/register_baby/nama_bayi"
+        "bind": "/model/instance/register_baby/nama_bayi",
+        "source": "kartu_ibu.ibu.anak.namaBayi"
       },
       {
         "name": "tanggalLahirAnak",
-        "bind": "/model/instance/register_baby/tanggal_lahir_anak"
+        "bind": "/model/instance/register_baby/tanggal_lahir_anak",
+        "source": "kartu_ibu.ibu.anak.tanggalLahirAnak"
       },
       {
         "name": "jenisKelamin",
-        "bind": "/model/instance/register_baby/jenis_kelamin"
-      },
-      {
-        "name": "kepemilikanBukuKIA",
-        "bind": "/model/instance/register_baby/kepemilikan_buku_kia"
+        "bind": "/model/instance/register_baby/jenis_kelamin",
+        "source": "kartu_ibu.ibu.anak.jenisKelamin"
       },
       {
         "name": "beratLahir",
-        "bind": "/model/instance/register_baby/berat_lahir"
+        "bind": "/model/instance/register_baby/berat_lahir",
+        "source": "kartu_ibu.ibu.anak.beratLahir"
+      },
+      {
+        "name": "highRiskPregnancyYoungMaternalAge",
+        "bind": "/model/instance/register_baby/High_Risk_Pregnancy_Young_maternal_age"
+      },
+      {
+        "name": "highRiskPregnancyOldMaternalAge",
+        "bind": "/model/instance/register_baby/High_Risk_Pregnancy_Old_maternal_age"
       },
       {
         "name": "isHighRiskChild",
         "bind": "/model/instance/register_baby/is_high_risk_child"
       },
       {
-        "name": "motherId",
-        "source": "anak.ibu.id"
-      },
-      {
-        "name": "kiId",
-        "source": "anak.ibu.kartu_ibu.id"
-      },
-      {
         "name": "isClosed",
-        "source": "anak.ibu.isClosed",
+        "source": "kartu_ibu.ibu.isClosed",
         "value": false
       },
       {
         "name": "isClosed",
-        "source": "anak.isClosed",
+        "source": "kartu_ibu.ibu.anak.isClosed",
         "value": false
       },
       {
         "name": "isClosed",
-        "source": "anak.ibu.kartu_ibu.isClosed",
         "value": false
       },
       {
         "name": "isOutOfArea",
-        "source": "anak.ibu.kartu_ibu.isOutOfArea",
         "value": true
       },
       {
@@ -82,7 +199,7 @@
       },
       {
         "name": "registrationDate",
-        "bind": "/model/instance/register_baby/reg_date"
+        "bind": "/model/instance/register_baby/today"
       }
     ]
   }

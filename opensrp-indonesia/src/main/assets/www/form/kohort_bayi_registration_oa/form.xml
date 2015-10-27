@@ -1,146 +1,436 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form autocomplete="off" novalidate="novalidate" class="or clearfix" id="register_baby">
-   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
-   <section class="form-logo" />
-   <h3 id="form-title">Register Bayi</h3>
-   <select id="form-languages" style="display:none;" data-default-lang="default">
-      <option value="default">default</option>
-   </select>
-   <label class="note non-select ">
-      <span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/generated_note_name_8:label">REGISTER BAYI</span>
-      <span lang="en" class="question-label " data-itext-id="/register_baby/generated_note_name_8:label">BABY'S REGISTRATION</span>
-      <input type="text" name="/register_baby/generated_note_name_8" data-type-xml="string" readonly="readonly" />
-   </label>
-   <label class="question non-select ">
-      <span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/tanggal_pendaftaran:label">Tanggal Pendaftaran</span>
-      <span lang="en" class="question-label " data-itext-id="/register_baby/tanggal_pendaftaran:label">Registration Date</span>
-      <span class="required">*</span>
-      <span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/tanggal_pendaftaran:hint">Tanggal melakukan pendaftaran bayi</span>
-      <span lang="en" class="or-hint " data-itext-id="/register_baby/tanggal_pendaftaran:hint">Date of child registration</span>
-      <input type="date" name="/register_baby/tanggal_pendaftaran" required="required" data-type-xml="date" />
-   </label>
-   <label class="question non-select ">
-      <span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/nama_ibu:label">Nama Ibu</span>
-      <span lang="en" class="question-label " data-itext-id="/register_baby/nama_ibu:label">Full Name</span>
-      <span class="required">*</span>
-      <input type="text" name="/register_baby/nama_ibu" required="required" data-type-xml="string" />
-   </label>
-   <label class="question non-select ">
-      <span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/alamat:label">Alamat</span>
-      <span lang="en" class="question-label " data-itext-id="/register_baby/alamat:label">Address</span>
-      <span class="required">*</span>
-      <input type="text" name="/register_baby/alamat" required="required" data-type-xml="string" />
-   </label>
-   <label class="question non-select ">
-      <span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/no_bayi:label">No. bayi</span>
-      <span lang="en" class="question-label " data-itext-id="/register_baby/no_bayi:label">Baby's ID Number</span>
-      <span class="required">*</span>
-      <span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/no_bayi:hint">Diisi dengan nomor bayi</span>
-      <span lang="en" class="or-hint " data-itext-id="/register_baby/no_bayi:hint">Fill in the child's ID number</span>
-      <input type="number" name="/register_baby/no_bayi" required="required" data-type-xml="int" />
-   </label>
-   <label class="question non-select ">
-      <span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/nama_bayi:label">Nama Bayi</span>
-      <span lang="en" class="question-label " data-itext-id="/register_baby/nama_bayi:label">Name of baby</span>
-      <span class="required">*</span>
-      <span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/nama_bayi:hint">Apabila nama bayi belum ada, isi dengan: Bayi 'nama_ibu'. misal nama ibu Ratna, maka isi dengan Bayi Ratna</span>
-      <span lang="en" class="or-hint " data-itext-id="/register_baby/nama_bayi:hint">If baby doesn't have a name yet, fill in: Baby "mother's name". For example, the mother's name is Ratna, then fill in Baby Ratna</span>
-      <input type="text" name="/register_baby/nama_bayi" required="required" data-type-xml="string" />
-   </label>
-   <label class="question non-select ">
-      <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/register_baby/tanggal_lahir_anak:jr:constraintMsg">Tanggal lahir bayi harus diisi dengan sebelum tanggal pendaftaran</span>
-      <span lang="en" class="or-constraint-msg " data-itext-id="/register_baby/tanggal_lahir_anak:jr:constraintMsg">Date of baby's birth should be filled in with the date before registration date</span>
-      <span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/tanggal_lahir_anak:label">Tanggal Lahir</span>
-      <span lang="en" class="question-label " data-itext-id="/register_baby/tanggal_lahir_anak:label">DOB</span>
-      <span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/tanggal_lahir_anak:hint">Tanggal lahir Bayi</span>
-      <span lang="en" class="or-hint " data-itext-id="/register_baby/tanggal_lahir_anak:hint">Baby's birth of date</span>
-      <input type="date" name="/register_baby/tanggal_lahir_anak" data-constraint=".&lt;=  /register_baby/tanggal_pendaftaran " data-type-xml="date" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/jenis_kelamin:label">Jenis Kelamin</span>
-            <span lang="en" class="question-label " data-itext-id="/register_baby/jenis_kelamin:label">Gender</span>
-            <span class="required">*</span>
-            <span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/jenis_kelamin:hint">Jenis kelamin Bayi</span>
-            <span lang="en" class="or-hint " data-itext-id="/register_baby/jenis_kelamin:hint">Baby's gender</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/register_baby/jenis_kelamin" data-name="/register_baby/jenis_kelamin" value="laki" required="required" data-type-xml="select1" />
-               <span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/jenis_kelamin/laki:label">Laki (L)</span>
-               <span lang="en" class="option-label " data-itext-id="/register_baby/jenis_kelamin/laki:label">Male (L);</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/register_baby/jenis_kelamin" data-name="/register_baby/jenis_kelamin" value="perempuan" required="required" data-type-xml="select1" />
-               <span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/jenis_kelamin/perempuan:label">Perempuan ( P)</span>
-               <span lang="en" class="option-label " data-itext-id="/register_baby/jenis_kelamin/perempuan:label">Female (P)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/kepemilikan_buku_kia:label">Kepemilikan buku KIA</span>
-            <span lang="en" class="question-label " data-itext-id="/register_baby/kepemilikan_buku_kia:label">Maternal and Child Health booklet ownership (pink book)</span>
-            <span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/kepemilikan_buku_kia:hint">Diisi jika ibu memiliki buku KIA</span>
-            <span lang="en" class="or-hint " data-itext-id="/register_baby/kepemilikan_buku_kia:hint">Fill in whether mother has MCH Booklet</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/register_baby/kepemilikan_buku_kia" data-name="/register_baby/kepemilikan_buku_kia" value="ya" data-type-xml="select1" />
-               <span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/kepemilikan_buku_kia/ya:label">Ya (+)</span>
-               <span lang="en" class="option-label " data-itext-id="/register_baby/kepemilikan_buku_kia/ya:label">Yes (+);</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/register_baby/kepemilikan_buku_kia" data-name="/register_baby/kepemilikan_buku_kia" value="tidak" data-type-xml="select1" />
-               <span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/kepemilikan_buku_kia/tidak:label">Tidak (-)</span>
-               <span lang="en" class="option-label " data-itext-id="/register_baby/kepemilikan_buku_kia/tidak:label">No (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question non-select ">
-      <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/register_baby/berat_lahir:jr:constraintMsg">Berat badan harus lebih dari 0</span>
-      <span lang="en" class="or-constraint-msg " data-itext-id="/register_baby/berat_lahir:jr:constraintMsg">Birthweight should be more than 0</span>
-      <span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/berat_lahir:label">Berat Lahir</span>
-      <span lang="en" class="question-label " data-itext-id="/register_baby/berat_lahir:label">Baby's weight (gram)</span>
-      <span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/berat_lahir:hint">Berat badan bayi saat lahir (gram)</span>
-      <span lang="en" class="or-hint " data-itext-id="/register_baby/berat_lahir:hint">Baby's birthweight (gram)</span>
-      <input type="number" name="/register_baby/berat_lahir" data-constraint=".&gt;0 and .&lt;5000" data-type-xml="int" />
-   </label>
+	<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+	<section class="form-logo" />
+	<h3 id="form-title">Register Bayi OA</h3>
+	<select id="form-languages" data-default-lang="Bahasa">
+		<option value="Bahasa">Bahasa</option>
+		<option value="en">English</option>
+	</select>
+	<label class="note non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/generated_note_name_13:label">
+			Unique ID:
+			<span class="or-output" data-value=" /register_baby/unique_id " />
+		</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/generated_note_name_13:label">
+			Unique ID:
+			<span class="or-output" data-value=" /register_baby/unique_id " />
+		</span>
+		<input type="text" name="/register_baby/generated_note_name_13" data-type-xml="string" readonly="readonly" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/puskesmas:label">Puskesmas</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/puskesmas:label">Primary Health Center (PHC)</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/puskesmas:hint">Nama puskesmas tempat ibu melakukan pemeriksaan</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/puskesmas:hint">Name of primary health center where mother does a check-up</span>
+		<input type="text" name="/register_baby/puskesmas" required="required" data-type-xml="string" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/no_ibu:label">No. Ibu</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/no_ibu:label">Mother's Number</span>
+		<input type="number" name="/register_baby/no_ibu" data-type-xml="int" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/nama_lengkap:label">Nama Ibu</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/nama_lengkap:label">Full name</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/nama_lengkap:hint">Nama lengkap Ibu</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/nama_lengkap:hint">Mother's full name</span>
+		<input type="text" name="/register_baby/nama_lengkap" required="required" data-type-xml="string" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/nama_suami:label">Nama ayah</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/nama_suami:label">Name of husband</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/nama_suami:hint">Nama lengkap ayah</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/nama_suami:hint">Husband's full name</span>
+		<input type="text" name="/register_baby/nama_suami" required="required" data-type-xml="string" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/tanggal_lahir_ibu:label">Tanggal lahir Ibu</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/tanggal_lahir_ibu:label">DOB</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/tanggal_lahir_ibu:hint">Tanggal lahir Ibu</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/tanggal_lahir_ibu:hint">Mother's date of birth</span>
+		<input type="date" name="/register_baby/tanggal_lahir_ibu" required="required" data-type-xml="date" />
+	</label>
+	<label class="note non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/generated_note_name_20:label">
+			Umur Ibu:
+			<span class="or-output" data-value=" /register_baby/umur " />
+		</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/generated_note_name_20:label">Age</span>
+		<input type="text" name="/register_baby/generated_note_name_20" data-type-xml="string" readonly="readonly" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/alamat_domisili:label">Alamat domisili</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/alamat_domisili:label">Address</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/alamat_domisili:hint">Alamat tempat tinggal (rumah) Ibu</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/alamat_domisili:hint">Mother's address</span>
+		<input type="text" name="/register_baby/alamat_domisili" data-type-xml="string" />
+	</label>
+	<label class="question or-appearance-minimal ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/pendidikan:label">Pendidikan Ibu</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/pendidikan:label">Education</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/pendidikan:hint">Pendidikan Terakhir Ibu</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/pendidikan:hint">Mother's highest education</span>
+		<select name="/register_baby/pendidikan" data-name="/register_baby/pendidikan" data-type-xml="select1">
+			<option value="">...</option>
+			<option value="sekolah_dasar">Sekolah Dasar (SD)</option>
+			<option value="sekolah_menengah_pertama">Sekolah Menengah Pertama (SMP)</option>
+			<option value="sekolah_menengah_atas">Sekolah Menengah Atas (SMA)</option>
+			<option value="perguruan_tinggi">Perguruan Tinggi</option>
+			<option value="Tidak_sekolah">Tidak sekolah</option>
+		</select>
+		<span class="or-option-translations" style="display:none;">
+			<span data-option-value="sekolah_dasar" lang="Bahasa">Sekolah Dasar (SD)</span>
+			<span data-option-value="sekolah_dasar" lang="en">Primary School</span>
+			<span data-option-value="sekolah_menengah_pertama" lang="Bahasa">Sekolah Menengah Pertama (SMP)</span>
+			<span data-option-value="sekolah_menengah_pertama" lang="en">Junior High School</span>
+			<span data-option-value="sekolah_menengah_atas" lang="Bahasa">Sekolah Menengah Atas (SMA)</span>
+			<span data-option-value="sekolah_menengah_atas" lang="en">Senior High School</span>
+			<span data-option-value="perguruan_tinggi" lang="Bahasa">Perguruan Tinggi</span>
+			<span data-option-value="perguruan_tinggi" lang="en">College</span>
+			<span data-option-value="Tidak_sekolah" lang="Bahasa">Tidak sekolah</span>
+			<span data-option-value="Tidak_sekolah" lang="en">No Formal Education</span>
+		</span>
+	</label>
+	<label class="question or-appearance-minimal ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/agama:label">Agama ibu</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/agama:label">Religion</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/agama:hint">Agama Ibu</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/agama:hint">Mother's religion</span>
+		<select name="/register_baby/agama" data-name="/register_baby/agama" data-type-xml="select1">
+			<option value="">...</option>
+			<option value="islam">Islam</option>
+			<option value="hindu">Hindu</option>
+			<option value="kristen">Kristen</option>
+			<option value="katolik">Katolik</option>
+			<option value="budha">Budha</option>
+			<option value="lainnya">Lainnya</option>
+		</select>
+		<span class="or-option-translations" style="display:none;">
+			<span data-option-value="islam" lang="Bahasa">Islam</span>
+			<span data-option-value="islam" lang="en">Islam (I)</span>
+			<span data-option-value="hindu" lang="Bahasa">Hindu</span>
+			<span data-option-value="hindu" lang="en">Hindu (H);</span>
+			<span data-option-value="kristen" lang="Bahasa">Kristen</span>
+			<span data-option-value="kristen" lang="en">Christian (K)</span>
+			<span data-option-value="katolik" lang="Bahasa">Katolik</span>
+			<span data-option-value="katolik" lang="en">Catholic</span>
+			<span data-option-value="budha" lang="Bahasa">Budha</span>
+			<span data-option-value="budha" lang="en">Budha (B)</span>
+			<span data-option-value="lainnya" lang="Bahasa">Lainnya</span>
+			<span data-option-value="lainnya" lang="en">Other</span>
+		</span>
+	</label>
+	<label class="question or-appearance-minimal ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/pekerjaan:label">Pekerjaan Ibu</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/pekerjaan:label">Occupation</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/pekerjaan:hint">Pekerjaan Ibu</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/pekerjaan:hint">Mother's occupation</span>
+		<select name="/register_baby/pekerjaan" data-name="/register_baby/pekerjaan" data-type-xml="select1">
+			<option value="">...</option>
+			<option value="ibu_rumah_tangga">Ibu rumah tangga</option>
+			<option value="petani">Petani</option>
+			<option value="nelayan">Nelayan</option>
+			<option value="pedagang">Pedagang</option>
+			<option value="pns">PNS</option>
+			<option value="swasta">Swasta</option>
+		</select>
+		<span class="or-option-translations" style="display:none;">
+			<span data-option-value="ibu_rumah_tangga" lang="Bahasa">Ibu rumah tangga</span>
+			<span data-option-value="ibu_rumah_tangga" lang="en">Housewife</span>
+			<span data-option-value="petani" lang="Bahasa">Petani</span>
+			<span data-option-value="petani" lang="en">farmer</span>
+			<span data-option-value="nelayan" lang="Bahasa">Nelayan</span>
+			<span data-option-value="nelayan" lang="en">fisherman</span>
+			<span data-option-value="pedagang" lang="Bahasa">Pedagang</span>
+			<span data-option-value="pedagang" lang="en">merchant</span>
+			<span data-option-value="pns" lang="Bahasa">PNS</span>
+			<span data-option-value="pns" lang="en">civil servant</span>
+			<span data-option-value="swasta" lang="Bahasa">Swasta</span>
+			<span data-option-value="swasta" lang="en">private empoyees</span>
+		</span>
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/gakin_tidak:label">Gakin/ Tidak</span>
+				<span lang="en" class="question-label " data-itext-id="/register_baby/gakin_tidak:label">Poor Family/not</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/gakin_tidak:hint">Apakah Ibu termasuk keluarga miskin atau tidak</span>
+				<span lang="en" class="or-hint " data-itext-id="/register_baby/gakin_tidak:hint">Does mother belong to poor family or not?</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/register_baby/gakin_tidak" data-name="/register_baby/gakin_tidak" value="Ya" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/gakin_tidak/Ya:label">Ya</span>
+					<span lang="en" class="option-label " data-itext-id="/register_baby/gakin_tidak/Ya:label">Yes</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/register_baby/gakin_tidak" data-name="/register_baby/gakin_tidak" value="Tidak" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/gakin_tidak/Tidak:label">Tidak</span>
+					<span lang="en" class="option-label " data-itext-id="/register_baby/gakin_tidak/Tidak:label">No</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/posyandu:label">Posyandu</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/posyandu:label">Health Post</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/posyandu:hint">Nama Posyandu tempat Ibu menerima pelayanan kesehatan</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/posyandu:hint">Name of Health Post where mother receives health care</span>
+		<input type="text" name="/register_baby/posyandu" required="required" data-type-xml="string" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/nama_kader:label">Nama Kader</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/nama_kader:label">Name of Cadre</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/nama_kader:hint">Nama kader Posyandu yang memberi Ibu pelayanan kesehatan</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/nama_kader:hint">Name of community health worker that gives health service</span>
+		<input type="text" name="/register_baby/nama_kader" data-type-xml="string" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/nama_dukun:label">Nama Dukun</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/nama_dukun:label">Name of Traditional Birth Attendant</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/nama_dukun:hint">Nama dukun yang menemani Ibu pada saat menerima pelayanan kesehatan</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/nama_dukun:hint">Name of traditional birth attendant that accompany mother during health care service</span>
+		<input type="text" name="/register_baby/nama_dukun" data-type-xml="string" />
+	</label>
+	<label class="question or-appearance-minimal ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/asuransi_jiwa:label">Asuransi Jiwa ibu</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/asuransi_jiwa:label">Insurance</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/asuransi_jiwa:hint">Jenis asuransi yang dimiliki Ibu</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/asuransi_jiwa:hint">Type insurance that mother has</span>
+		<select name="/register_baby/asuransi_jiwa" data-name="/register_baby/asuransi_jiwa" data-type-xml="select1">
+			<option value="">...</option>
+			<option value="jaminan_kesehatan_masyarakat">Jaminan Kesehatan Masyarakat (Jamkesmas)</option>
+			<option value="Jamsostek">Jaminan Sosial dan Ketenagakerjaan (Jamsostek)</option>
+			<option value="jaminan_kesehatan_daerah">Jaminan Kesehatan Daerah (Jamkesda)</option>
+			<option value="asuransi_kesehatan">Asuransi Kesehatan (Askes)</option>
+			<option value="jaminan_persalinan">Jaminan Persalinan (Jampersal)</option>
+			<option value="tidak_ada_asuransi">Tidak memiliki asuransi/pembiayaan</option>
+		</select>
+		<span class="or-option-translations" style="display:none;">
+			<span data-option-value="jaminan_kesehatan_masyarakat" lang="Bahasa">Jaminan Kesehatan Masyarakat (Jamkesmas)</span>
+			<span data-option-value="jaminan_kesehatan_masyarakat" lang="en">National Health Insurance for the Poor and Near Poor;</span>
+			<span data-option-value="Jamsostek" lang="Bahasa">Jaminan Sosial dan Ketenagakerjaan (Jamsostek)</span>
+			<span data-option-value="Jamsostek" lang="en">Social Insurance for Private Sector Workers;</span>
+			<span data-option-value="jaminan_kesehatan_daerah" lang="Bahasa">Jaminan Kesehatan Daerah (Jamkesda)</span>
+			<span data-option-value="jaminan_kesehatan_daerah" lang="en">Regional Health Insurance for the Poor and Near Poor;</span>
+			<span data-option-value="asuransi_kesehatan" lang="Bahasa">Asuransi Kesehatan (Askes)</span>
+			<span data-option-value="asuransi_kesehatan" lang="en">Health Insurance for Civil Servants and Retired Armed Forces Personnel</span>
+			<span data-option-value="jaminan_persalinan" lang="Bahasa">Jaminan Persalinan (Jampersal)</span>
+			<span data-option-value="jaminan_persalinan" lang="en">Health Insurance for Pregnant Women and Newborns</span>
+			<span data-option-value="tidak_ada_asuransi" lang="Bahasa">Tidak memiliki asuransi/pembiayaan</span>
+			<span data-option-value="tidak_ada_asuransi" lang="en">No Insurance</span>
+		</span>
+	</label>
+	<label class="question or-appearance-minimal ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/golongan_darah:label">Golongan Darah ibu</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/golongan_darah:label">Blood Type</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/golongan_darah:hint">Menunjukan golongan darah Ibu</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/golongan_darah:hint">Mother's blood type</span>
+		<select name="/register_baby/golongan_darah" data-name="/register_baby/golongan_darah" required="required" data-type-xml="select1">
+			<option value="">...</option>
+			<option value="a">A (A)</option>
+			<option value="b">B (B)</option>
+			<option value="ab">AB (AB)</option>
+			<option value="o">O (O)</option>
+			<option value="NA">Belum diketahui</option>
+		</select>
+		<span class="or-option-translations" style="display:none;">
+			<span data-option-value="a" lang="Bahasa">A (A)</span>
+			<span data-option-value="a" lang="en">A</span>
+			<span data-option-value="b" lang="Bahasa">B (B)</span>
+			<span data-option-value="b" lang="en">B</span>
+			<span data-option-value="ab" lang="Bahasa">AB (AB)</span>
+			<span data-option-value="ab" lang="en">AB</span>
+			<span data-option-value="o" lang="Bahasa">O (O)</span>
+			<span data-option-value="o" lang="en">O</span>
+			<span data-option-value="NA" lang="Bahasa">Belum diketahui</span>
+			<span data-option-value="NA" lang="en">Unknown</span>
+		</span>
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/register_baby/nomor_telpon_hp:jr:constraintMsg">Nomer teelpon tidak boleh lebih dari 12 digit</span>
+		<span lang="en" class="or-constraint-msg " data-itext-id="/register_baby/nomor_telpon_hp:jr:constraintMsg">Contact number should be no more than 12 digits</span>
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/nomor_telpon_hp:label">Nomor Telpon/Hp</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/nomor_telpon_hp:label">Landline/Cell Phone Number</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/nomor_telpon_hp:hint">Nomor telpon/Hp yang dimiliki oleh Ibu atau No telpon Keluarga</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/nomor_telpon_hp:hint">Mother's contact number</span>
+		<input type="text" name="/register_baby/nomor_telpon_hp" required="required" data-constraint=".&gt;0 and .&lt;100000000000" data-type-xml="string" />
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/pptest:label">Hasil pptest</span>
+				<span lang="en" class="question-label " data-itext-id="/register_baby/pptest:label">Pregnancy Test</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/register_baby/pptest" data-name="/register_baby/pptest" value="positive" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/pptest/positive:label">Positif</span>
+					<span lang="en" class="option-label " data-itext-id="/register_baby/pptest/positive:label">positive</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/register_baby/pptest" data-name="/register_baby/pptest" value="negative" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/pptest/negative:label">Negatif</span>
+					<span lang="en" class="option-label " data-itext-id="/register_baby/pptest/negative:label">negative</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="note non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/generated_note_name_35:label">REGISTER BAYI</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/generated_note_name_35:label">BABY'S REGISTRATION</span>
+		<input type="text" name="/register_baby/generated_note_name_35" data-type-xml="string" readonly="readonly" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/tanggal_pendaftaran:label">Tanggal Pendaftaran</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/tanggal_pendaftaran:label">Registration Date</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/tanggal_pendaftaran:hint">Tanggal melakukan pendaftaran bayi</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/tanggal_pendaftaran:hint">Date of child registration</span>
+		<input type="date" name="/register_baby/tanggal_pendaftaran" required="required" data-type-xml="date" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/no_bayi:label">No. bayi</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/no_bayi:label">Baby's ID Number</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/no_bayi:hint">Diisi dengan nomor bayi</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/no_bayi:hint">Fill in the child's ID number</span>
+		<input type="number" name="/register_baby/no_bayi" required="required" data-type-xml="int" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/nama_bayi:label">Nama Bayi</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/nama_bayi:label">Name of baby</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/nama_bayi:hint">Apabila nama bayi belum ada, isi dengan: Bayi 'nama_ibu'. misal nama ibu Ratna, maka isi dengan Bayi Ratna</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/nama_bayi:hint">If baby doesn't have a name yet, fill in: Baby "mother's name". For example, the mother's name is Ratna, then fill in Baby Ratna</span>
+		<input type="text" name="/register_baby/nama_bayi" required="required" data-type-xml="string" />
+	</label>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/register_baby/tanggal_lahir_anak:jr:constraintMsg">Tanggal lahir bayi harus diisi dengan sebelum tanggal pendaftaran</span>
+		<span lang="en" class="or-constraint-msg " data-itext-id="/register_baby/tanggal_lahir_anak:jr:constraintMsg">Date of baby's birth should be filled in with the date before registration date</span>
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/tanggal_lahir_anak:label">Tanggal Lahir</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/tanggal_lahir_anak:label">DOB</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/tanggal_lahir_anak:hint">Tanggal lahir Bayi</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/tanggal_lahir_anak:hint">Baby's birth of date</span>
+		<input type="date" name="/register_baby/tanggal_lahir_anak" data-constraint=".&lt;=  /register_baby/tanggal_pendaftaran " data-type-xml="date" />
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/jenis_kelamin:label">Jenis Kelamin</span>
+				<span lang="en" class="question-label " data-itext-id="/register_baby/jenis_kelamin:label">Gender</span>
+				<span class="required">*</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/jenis_kelamin:hint">Jenis kelamin Bayi</span>
+				<span lang="en" class="or-hint " data-itext-id="/register_baby/jenis_kelamin:hint">Baby's gender</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/register_baby/jenis_kelamin" data-name="/register_baby/jenis_kelamin" value="laki" required="required" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/jenis_kelamin/laki:label">Laki (L)</span>
+					<span lang="en" class="option-label " data-itext-id="/register_baby/jenis_kelamin/laki:label">Male (L);</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/register_baby/jenis_kelamin" data-name="/register_baby/jenis_kelamin" value="perempuan" required="required" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/jenis_kelamin/perempuan:label">Perempuan ( P)</span>
+					<span lang="en" class="option-label " data-itext-id="/register_baby/jenis_kelamin/perempuan:label">Female (P)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/kepemilikan_buku_kia:label">Kepemilikan buku KIA</span>
+				<span lang="en" class="question-label " data-itext-id="/register_baby/kepemilikan_buku_kia:label">Maternal and Child Health booklet ownership (pink book)</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/kepemilikan_buku_kia:hint">Diisi jika ibu memiliki buku KIA</span>
+				<span lang="en" class="or-hint " data-itext-id="/register_baby/kepemilikan_buku_kia:hint">Fill in whether mother has MCH Booklet</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/register_baby/kepemilikan_buku_kia" data-name="/register_baby/kepemilikan_buku_kia" value="ya" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/kepemilikan_buku_kia/ya:label">Ya (+)</span>
+					<span lang="en" class="option-label " data-itext-id="/register_baby/kepemilikan_buku_kia/ya:label">Yes (+);</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/register_baby/kepemilikan_buku_kia" data-name="/register_baby/kepemilikan_buku_kia" value="tidak" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/register_baby/kepemilikan_buku_kia/tidak:label">Tidak (-)</span>
+					<span lang="en" class="option-label " data-itext-id="/register_baby/kepemilikan_buku_kia/tidak:label">No (-)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/register_baby/berat_lahir:jr:constraintMsg">Berat badan harus lebih dari 0</span>
+		<span lang="en" class="or-constraint-msg " data-itext-id="/register_baby/berat_lahir:jr:constraintMsg">Birthweight should be more than 0</span>
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/berat_lahir:label">Berat Lahir</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/berat_lahir:label">Baby's weight (gram)</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/berat_lahir:hint">Berat badan bayi saat lahir (gram)</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_baby/berat_lahir:hint">Baby's birthweight (gram)</span>
+		<input type="number" name="/register_baby/berat_lahir" data-constraint=".&gt;0 and .&lt;5000" data-type-xml="int" />
+	</label>
+	<fieldset id="or-preload-items" style="display:none;">
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+		</label>
+	</fieldset>
+	<fieldset id="or-calculated-items" style="display:none;">
+		<label class="calculation non-select">
+			<input autocomplete="off" type="hidden" name="/register_baby/dusun" data-calculate=" /register_baby/Sub-village " data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/desa" data-calculate=" /register_baby/Village " data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/kecamatan" data-calculate=" /register_baby/Sub-district " data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/kabupaten" data-calculate=" /register_baby/District " data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/propinsi" data-calculate=" /register_baby/Province " data-type-xml="string" />
+		</label>
 
-   <fieldset id="or-preload-items" style="display:none;">
-      <label class="calculation non-select ">
-         <input type="hidden" name="/register_baby/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/register_baby/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/register_baby/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/register_baby/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/register_baby/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/register_baby/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
-      </label>
-   </fieldset>
-   <fieldset id="or-calculated-items" style="display:none;">
-      <label class="calculation non-select ">
-         <input type="hidden" name="/register_baby/High_Risk_Child_Low_Birthweght" data-calculate="if ( /register_baby/berat_lahir  &lt; 2500, 'yes', 'no')" data-type-xml="string" />
-      </label>
-
-      <label class="calculation non-select ">
-         <input type="hidden" name="/register_baby/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/register_baby/formhub/uuid" data-calculate="'00f6327e669c4990b86503e7baeeceda'" data-type-xml="string" />
-      </label>
-   </fieldset>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/umur" data-calculate="int(( /register_baby/today  -  /register_baby/tanggal_lahir_ibu ) div 365)" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/high_risk_child_Low_Birthweght" data-calculate="if( /register_baby/berat_lahir  &lt; 2500, 'yes', 'no')" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/High_Risk_Pregnancy_Young_maternal_age" data-calculate="if( /register_baby/umur  &lt;20, 'yes','no')" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/High_Risk_Pregnancy_Old_maternal_age" data-calculate="if( /register_baby/umur  &gt;35, 'yes','no')" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/register_baby/formhub/uuid" data-calculate="'2573587bc7b146f49ec941980f27b0bb'" data-type-xml="string" />
+		</label>
+	</fieldset>
 </form>
+
