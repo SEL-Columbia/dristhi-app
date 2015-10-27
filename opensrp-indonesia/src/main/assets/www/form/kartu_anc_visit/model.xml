@@ -1,67 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <model>
-	<instance>
-		<ANC_Visit encounter_type="Kunjungan ANC" id="kunjungan_anc" version="201510160602">
-			<formhub>
-				<uuid />
-			</formhub>
-			<start />
-			<today />
-			<anc_date_2 />
-			<deviceid />
-			<simserial />
-			<phonenumber />
-			<B01043 />
-			<B01027 />
-			<B01046 />
-			<hpht/>
-			<generated_note_name_10 />
-			<B01047 />
-			<generated_note_name_12 />
-			<hidden_B01145 />
-			<B01145 />
-			<B01044 />
-			<B01045 />
-			<B01048>tidak ada keluhan</B01048>
-			<B01049 />
-			<B01050 />
-			<B01051 />
-			<B01052 />
-			<B01053 />
-			<B01054 />
-			<B01055 />
-			<B01056 />
-			<B01057 />
-			<B01058 />
-			<generated_note_name_28 />
-			<B01059 />
-			<B01060 />
-			<B01061 />
-			<B01062 />
-			<B01063 />
-			<B01064 />
-			<B01064_i />
-			<B01086 />
-			<B01149 />
-			<B01087 />
-			<B01088 />
-			<B01089 />
-			<B01090 />
-			<B01091 />
-			<Protein_energy_Malnutrition_risk />
-			<PIH_risk />
-			<fetus_number_risk />
-			<fetus_size_risk />
-			<fetus_Malpresentation_risk />
-			<is_high_risk_pregnancy />
-			<high_risk_pregnancy_reason />
-			<is_high_risk_labour />
-			<high_risk_labour_reason />
-			<high_risk_note />
-			<end />
-			<meta>
-				<instanceID />
-			</meta>
-		</ANC_Visit>
-	</instance>
-</model>
+    <instance>
+        <ANC_Visit encounter_type="Kunjungan ANC" id="kunjungan_anc" version="201510220627">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <start/>
+          <today/>
+	  <reg_date/>
+          <deviceid/>
+          <simserial/>
+          <phonenumber/>
+          <anc_date/>
+          <hpht/>
+          <usia_klinis/>
+          <generated_note_name_10/>
+          <trimester_ke/>
+          <generated_note_name_12/>
+          <hidden_anc_ke/>
+          <anc_ke/>
+          <jamkesmas/>
+          <cara_masuk_tempat_pelayanan/>
+          <anamnesis_ibu>tidak ada keluhan</anamnesis_ibu>
+          <bb_kg/>
+          <td_sistolik/>
+          <td_diastolik/>
+          <lila_cm/>
+          <status_gizi_ibu/>
+          <tfu/>
+          <refleks_patela_ibu/>
+          <djj/>
+          <kepala_terhadap_janin_pap/>
+          <taksiran_berat_janin/>
+          <generated_note_name_28/>
+          <persentasi_janin/>
+          <jumlah_janin/>
+          <status_imunisasi_tt/>
+          <pelayanan_injeksi_tt/>
+          <pelayanan_catat_buku_kia/>
+          <pelayananfe/>
+          <jumlah_fe/>
+          <komplikasi_dalam_kehamilan/>
+          <rujukan/>
+          <dirujuk_ke/>
+          <dirujuk_keL/>
+          <keadaan_ibu_saat_tiba/>
+          <keadaan_ibu_saat_pulang/>
+          <keterangan/>
+          <High_Risk_Pregnancy_Protein_energy_Malnutrition/>
+          <High_Risk_Pregnancy_PIH/>
+          <High_Risk_Labour_fetus_number/>
+          <High_Risk_Labour_fetus_size/>
+          <High_Risk_Labour_fetus_Malpresentation/>
+          <end/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </ANC_Visit>
+      </instance>
+  </model>

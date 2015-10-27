@@ -1,17 +1,17 @@
 <model>
     <instance>
-        <Penutupan_kartu_ibu id="Penutupan_kartu_ibu" version="201506190618">
+        <Penutupan_kartu_ibu encounter_type="Penutupan Ibu" id="Penutupan_kartu_ibu" version="201510210313">
           <formhub>
             <uuid/>
           </formhub>
           <start/>
           <today/>
+	  <reg_date/>
           <deviceid/>
           <simserial/>
           <phonenumber/>
           <close_reason/>
           <close_reason_other/>
-          <maternal_death/>
           <maternal_death_date/>
           <place_of_death/>
           <other_place_of_death/>

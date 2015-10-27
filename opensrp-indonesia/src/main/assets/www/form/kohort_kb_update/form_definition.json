@@ -25,10 +25,6 @@
         "bind": "/model/instance/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2"
       },
       {
-        "name": "keterangando",
-        "bind": "/model/instance/kohort_pelayanan_kb/keterangan_do"
-      },
-      {
         "name": "keteranganGantiCara",
         "bind": "/model/instance/kohort_pelayanan_kb/keterangan_ganti_cara"
       },

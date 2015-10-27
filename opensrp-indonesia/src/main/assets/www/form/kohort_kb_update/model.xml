@@ -1,12 +1,12 @@
 <model>
     <instance>
-        <kohort_pelayanan_kb id="kohort_pelayanan_kb" version="201506200421">
+        <kohort_pelayanan_kb encounter_type="Kohort Pelayanan KB" id="kohort_pelayanan_kb" version="201510210353">
           <formhub>
             <uuid/>
           </formhub>
           <start/>
           <today/>
-          <reg_date/>
+	  <reg_date/>
           <deviceid/>
           <simserial/>
           <phonenumber/>
@@ -14,7 +14,6 @@
           <keterangan_tentang_peserta_kb/>
           <jenis_kontrasepsi_yang_digunakan/>
           <keterangan_tentang_peserta_kb_2/>
-          <keterangan_do/>
           <keterangan_ganti_cara/>
           <keterangan_efek_samping/>
           <keterangan_komplikasi/>

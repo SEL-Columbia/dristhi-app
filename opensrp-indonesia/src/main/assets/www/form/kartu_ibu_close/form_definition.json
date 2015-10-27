@@ -17,10 +17,6 @@
                 "bind": "/model/instance/Penutupan_kartu_ibu/close_reason_other"
             },
             {
-                "name": "isMaternalDeath",
-                "bind": "/model/instance/Penutupan_kartu_ibu/maternal_death"
-            },
-            {
                 "name": "maternalDeathDate",
                 "bind": "/model/instance/Penutupan_kartu_ibu/maternal_death_date"
             },

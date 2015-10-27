@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <model>
     <instance>
-        <dokumentasi_persalinan id="dokumentasi_persalinan" version="201506190731">
+        <dokumentasi_persalinan encounter_type="Dokumentasi Persalinan" id="dokumentasi_persalinan" version="201510220739">
           <formhub>
             <uuid/>
           </formhub>
           <start/>
           <today/>
-          <reg_date/>
-          <reference_date/>
           <deviceid/>
           <simserial/>
           <phonenumber/>
@@ -18,7 +15,6 @@
           <usia_kehamilan_hpht/>
           <keadaan_ibu/>
           <keadaan_bayi/>
-          <berat_bayi/>
           <persalinan/>
           <tanggal__kala_i_aktif/>
           <jam__kala_i_aktif/>
@@ -45,24 +41,19 @@
           <nama_bayi/>
           <tanggal_lahir_anak/>
           <jenis_kelamin/>
+          <berat_bayi/>
           <kepemilikan_buku_kia/>
-          <preterm_risk/>
-          <Low_Birthweght_risk/>
-          <distosia_risk/>
-          <hipertensi_dalam_kehamilan_risk/>
-          <perdarahan_post-partum_risk/>
-          <Infeksi_risk/>
-          <sepsis_maternal_risk/>
-          <preeklampsi_eklampsi_risk/>
-          <Lainnya_risk/>
-          <vacum_risk/>
-          <forceps_risk/>
-          <sectio_caesaria_risk/>
-          <is_high_risk_post-partum/>
-          <high_risk_post-partum_reason/>
-          <is_high_risk_child/>
-          <high_risk_child_reason/>
-          <high_risk_note/>
+          <High_Risk_Child_preterm/>
+          <High_Risk_Child_Low_Birthweght/>
+          <high_risk_post-partum_distosia/>
+          <high_risk_post-partum_PIH/>
+          <high_risk_post-partum_Hemorrhage/>
+          <high_risk_post-partum_infection/>
+          <high_risk_post-partum_maternal_sepsis/>
+          <high_risk_post-partum_Pre-eclampsia_eclampsia/>
+          <high_risk_post-partum_vacum/>
+          <high_risk_post-partum_forceps/>
+          <high_risk_post-partum_Sectio_Caesaria/>
           <end/>
           <meta>
             <instanceID/>

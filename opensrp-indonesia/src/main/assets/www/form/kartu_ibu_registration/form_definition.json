@@ -43,6 +43,26 @@
         "bind": "/model/instance/kartu_ibu/dusun"
       },
       {
+        "name": "propinsi",
+        "bind": "/model/instance/kartu_ibu/propinsi"
+      },
+      {
+        "name": "kabupaten",
+        "bind": "/model/instance/kartu_ibu/Kabupaten"
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/kartu_ibu/Kecamatan"
+      },
+      {
+        "name": "desa",
+        "bind": "/model/instance/kartu_ibu/Desa"
+      },
+      {
+        "name": "dusun",
+        "bind": "/model/instance/kartu_ibu/Dusun"
+      },
+      {
         "name": "puskesmas",
         "bind": "/model/instance/kartu_ibu/puskesmas"
       },
@@ -69,22 +89,6 @@
       {
         "name": "alamatDomisili",
         "bind": "/model/instance/kartu_ibu/alamat_domisili"
-      },
-      {
-        "name": "propinsi",
-        "bind": "/model/instance/kartu_ibu/propinsi"
-      },
-      {
-        "name": "kabupaten",
-        "bind": "/model/instance/kartu_ibu/kabupaten"
-      },
-      {
-        "name": "kecamatan",
-        "bind": "/model/instance/kartu_ibu/kecamatan"
-      },
-      {
-        "name": "desa",
-        "bind": "/model/instance/kartu_ibu/desa"
       },
       {
         "name": "pendidikan",
@@ -123,10 +127,6 @@
         "bind": "/model/instance/kartu_ibu/golongan_darah"
       },
       {
-        "name": "telponMemilikiTidak",
-        "bind": "/model/instance/kartu_ibu/nomortelpon"
-      },
-      {
         "name": "NomorTelponHp",
         "bind": "/model/instance/kartu_ibu/nomor_telpon_hp"
       },
@@ -135,28 +135,12 @@
         "bind": "/model/instance/kartu_ibu/pptest"
       },
       {
-        "name": "tooYoungRisk",
-        "bind": "/model/instance/kartu_ibu/Too_young_risk"
+        "name": "highRiskPregnancyYoungMaternalAge",
+        "bind": "/model/instance/kartu_ibu/High_Risk_Pregnancy_Young_maternal_age"
       },
       {
-        "name": "tooOldMother",
-        "bind": "/model/instance/kartu_ibu/Too_old_mother"
-      },
-      {
-        "name": "isHighPriority",
-        "bind": "/model/instance/kartu_ibu/is_high_priority"
-      },
-      {
-        "name": "highPriorityReason",
-        "bind": "/model/instance/kartu_ibu/high_priority_reason"
-      },
-      {
-        "name": "highRiskNote",
-        "bind": "/model/instance/kartu_ibu/high_risk_note"
-      },
-      {
-        "name": "isHighRisk",
-        "bind": "/model/instance/kartu_ibu/is_high_risk"
+        "name": "highRiskPregnancyOldMaternalAge",
+        "bind": "/model/instance/kartu_ibu/High_Risk_Pregnancy_Old_maternal_age"
       },
       {
         "name": "isOutOfArea",

@@ -17,11 +17,13 @@ public class KartuIbu {
     private Map<String, String> details;
     private String dusun;
     private boolean isClosed;
+    private boolean isOutOfArea;
 
     public KartuIbu(String caseId, Map<String, String> details, String dusun) {
         this.caseId = caseId;
         this.details = details;
         this.isClosed = false;
+        this.isOutOfArea = false;
         this.dusun = dusun;
     }
 
@@ -38,6 +40,8 @@ public class KartuIbu {
         return isClosed;
     }
 
+    public boolean isOutOfArea() { return isOutOfArea; }
+
     // Setter
     public void setCaseId(String caseId) {
         this.caseId = caseId;
@@ -50,6 +54,8 @@ public class KartuIbu {
     public void setClosed(boolean isClosed) {
         this.isClosed = isClosed;
     }
+
+    public void setOutOfArea(boolean isOutOfArea) { this.isOutOfArea = isOutOfArea; }
 
     public boolean hasKBMethod() {
         String kbMethod = getDetail(CONTRACEPTION_METHOD);

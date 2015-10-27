@@ -15,187 +15,161 @@
       },
       {
         "name": "referenceDate",
-        "bind": "/model/instance/ANC_Visit/B01043"
+        "bind": "/model/instance/ANC_Visit/reg_date"
       },
       {
         "name": "ancDate",
-        "bind": "/model/instance/ANC_Visit/anc_date_2"
+        "bind": "/model/instance/ANC_Visit/anc_date"
       },
       {
         "name": "tanggalHPHT",
-        "bind": "/model/instance/ANC_Visit/B01027",
+        "bind": "/model/instance/ANC_Visit/hpht",
         "shouldLoadValue": true
       },
       {
         "name": "usiaKlinis",
-        "bind": "/model/instance/ANC_Visit/B01046"
+        "bind": "/model/instance/ANC_Visit/usia_klinis"
       },
       {
         "name": "trimesterKe",
-        "bind": "/model/instance/ANC_Visit/B01047"
+        "bind": "/model/instance/ANC_Visit/trimester_ke"
       },
       {
         "name": "ancKe",
-        "bind": "/model/instance/ANC_Visit/B01145"
+        "bind": "/model/instance/ANC_Visit/anc_ke"
       },
       {
         "name": "Jamkesmas",
-        "bind": "/model/instance/ANC_Visit/B01044"
+        "bind": "/model/instance/ANC_Visit/jamkesmas"
       },
       {
         "name": "caraMasukTempatPelayanan",
-        "bind": "/model/instance/ANC_Visit/B01045"
+        "bind": "/model/instance/ANC_Visit/cara_masuk_tempat_pelayanan"
       },
       {
         "name": "anamnesisIbu",
-        "bind": "/model/instance/ANC_Visit/B01048"
+        "bind": "/model/instance/ANC_Visit/anamnesis_ibu"
       },
       {
         "name": "bbKg",
-        "bind": "/model/instance/ANC_Visit/B01049"
+        "bind": "/model/instance/ANC_Visit/bb_kg"
       },
       {
         "name": "tandaVitalTDSistolik",
-        "bind": "/model/instance/ANC_Visit/B01050",
+        "bind": "/model/instance/ANC_Visit/td_sistolik",
         "source": "ibu.kartu_ibu.tandaVitalTDSistolik"
       },
       {
         "name": "tandaVitalTDDiastolik",
-        "bind": "/model/instance/ANC_Visit/B01051",
+        "bind": "/model/instance/ANC_Visit/td_diastolik",
         "source": "ibu.kartu_ibu.tandaVitalTDDiastolik"
       },
       {
         "name": "hasilPemeriksaanLILA",
-        "bind": "/model/instance/ANC_Visit/B01052"
+        "bind": "/model/instance/ANC_Visit/lila_cm"
       },
       {
         "name": "statusGiziibu",
-        "bind": "/model/instance/ANC_Visit/B01053"
+        "bind": "/model/instance/ANC_Visit/status_gizi_ibu"
       },
       {
         "name": "tfu",
-        "bind": "/model/instance/ANC_Visit/B01054"
+        "bind": "/model/instance/ANC_Visit/tfu"
       },
       {
         "name": "refleksPatelaIbu",
-        "bind": "/model/instance/ANC_Visit/B01055"
+        "bind": "/model/instance/ANC_Visit/refleks_patela_ibu"
       },
       {
         "name": "djj",
-        "bind": "/model/instance/ANC_Visit/B01056"
+        "bind": "/model/instance/ANC_Visit/djj"
       },
       {
         "name": "kepalaJaninTerhadapPAP",
-        "bind": "/model/instance/ANC_Visit/B01057"
+        "bind": "/model/instance/ANC_Visit/kepala_terhadap_janin_pap"
       },
       {
         "name": "taksiranBeratJanin",
-        "bind": "/model/instance/ANC_Visit/B01058"
+        "bind": "/model/instance/ANC_Visit/taksiran_berat_janin"
       },
       {
         "name": "persentasiJanin",
-        "bind": "/model/instance/ANC_Visit/B01059"
+        "bind": "/model/instance/ANC_Visit/persentasi_janin"
       },
       {
         "name": "jumlahJanin",
-        "bind": "/model/instance/ANC_Visit/B01060"
+        "bind": "/model/instance/ANC_Visit/jumlah_janin"
       },
       {
         "name": "statusImunisasitt",
-        "bind": "/model/instance/ANC_Visit/B01061"
+        "bind": "/model/instance/ANC_Visit/status_imunisasi_tt"
       },
       {
         "name": "pelayananInjeksitt",
-        "bind": "/model/instance/ANC_Visit/B01062"
+        "bind": "/model/instance/ANC_Visit/pelayanan_injeksi_tt"
       },
       {
         "name": "pelayananCatatDiBukuKia",
-        "bind": "/model/instance/ANC_Visit/B01063"
+        "bind": "/model/instance/ANC_Visit/pelayanan_catat_buku_kia"
       },
       {
         "name": "pelayananfe",
-        "bind": "/model/instance/ANC_Visit/B01064"
+        "bind": "/model/instance/ANC_Visit/pelayananfe"
       },
       {
         "name": "pelayananFe",
-        "bind": "/model/instance/ANC_Visit/B01064_i"
+        "bind": "/model/instance/ANC_Visit/jumlah_fe"
       },
       {
         "name": "komplikasidalamKehamilan",
-        "bind": "/model/instance/ANC_Visit/B01086"
+        "bind": "/model/instance/ANC_Visit/jumlah_fe"
       },
       {
         "name": "rujukan",
-        "bind": "/model/instance/ANC_Visit/B01149"
+        "bind": "/model/instance/ANC_Visit/dirujuk"
       },
       {
         "name": "dirujukKe",
-        "bind": "/model/instance/ANC_Visit/B01087"
+        "bind": "/model/instance/ANC_Visit/dirujuk_ke"
       },
       {
         "name": "lainLain",
-        "bind": "/model/instance/ANC_Visit/B01088"
+        "bind": "/model/instance/ANC_Visit/dirujuk_keL"
       },
       {
         "name": "keadaanIbusaatTiba",
-        "bind": "/model/instance/ANC_Visit/B01089"
+        "bind": "/model/instance/ANC_Visit/keadaan_ibu_saat_tiba"
       },
       {
         "name": "keadaanIbusaatPulang",
-        "bind": "/model/instance/ANC_Visit/B01090"
+        "bind": "/model/instance/ANC_Visit/keadaan_ibu_saat_pulang"
       },
       {
         "name": "keterangan",
-        "bind": "/model/instance/ANC_Visit/B01091"
+        "bind": "/model/instance/ANC_Visit/keterangan"
       },
       {
-        "name": "proteinEnergyMalnutritionRisk",
-        "bind": "/model/instance/ANC_Visit/Protein_energy_Malnutrition_risk"
+        "name": "highRiskPregnancyProteinEnergyMalnutrition",
+        "bind": "/model/instance/ANC_Visit/High_Risk_Pregnancy_Protein_energy_Malnutrition"
       },
       {
-        "name": "pihRisk",
-        "bind": "/model/instance/ANC_Visit/PIH_risk",
-        "source": "ibu.kartu_ibu.pihRisk"
+        "name": "highRiskPregnancyPIH",
+        "bind": "/model/instance/ANC_Visit/High_Risk_Pregnancy_PIH"
       },
       {
-        "name": "fetusNumberRisk",
-        "bind": "/model/instance/ANC_Visit/fetus_number_risk",
-        "source": "ibu.kartu_ibu.fetusNumberRisk"
+        "name": "highRisklabourFetusNumber",
+        "bind": "/model/instance/ANC_Visit/High_Risk_Labour_fetus_number"
+     
       },
       {
-        "name": "fetusSizeRisk",
-        "bind": "/model/instance/ANC_Visit/fetus_size_risk",
-        "source": "ibu.kartu_ibu.fetusSizeRisk"
+        "name": "highRiskLabourFetusSize",
+        "bind": "/model/instance/ANC_Visit/High_Risk_Labour_fetus_size"
+      
       },
       {
-        "name": "fetusMalpresentationRisk",
-        "bind": "/model/instance/ANC_Visit/fetus_Malpresentation_risk",
-        "source": "ibu.kartu_ibu.fetusMalpresentationRisk"
-      },
-      {
-        "name": "isHighRiskPregnancy",
-        "bind": "/model/instance/ANC_Visit/is_high_risk_pregnancy",
-        "source": "ibu.kartu_ibu.isHighRiskPregnancy"
-      },
-      {
-        "name": "highRiskPregnancyReason",
-        "bind": "/model/instance/ANC_Visit/high_risk_pregnancy_reason",
-        "source": "ibu.kartu_ibu.highRiskPregnancyReason"
-      },
-      {
-        "name": "isHighRiskLabour",
-        "bind": "/model/instance/ANC_Visit/is_high_risk_labour",
-        "source": "ibu.kartu_ibu.isHighRiskLabour"
-      },
-      {
-        "name": "highRiskLabourReason",
-        "bind": "/model/instance/ANC_Visit/high_risk_labour_reason",
-        "source": "ibu.kartu_ibu.highRiskLabourReason"
-      },
-      {
-        "name": "highRiskNote",
-        "bind": "/model/instance/ANC_Visit/high_risk_note",
-        "source": "ibu.kartu_ibu.highRiskNote"
+        "name": "highRiskLabourFetusMalpresentation",
+        "bind": "/model/instance/ANC_Visit/High_Risk_Labour_fetus_Malpresentation"
+       
       },
       {
         "name": "submissionDate",

@@ -1,6 +1,9 @@
 package org.ei.opensrp.indonesia.view.activity;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Toast;
 
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
@@ -8,6 +11,8 @@ import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.provider.KIPNCClientsProvider;
+import org.ei.opensrp.indonesia.service.formSubmissionHandler.KIPNCRegistrationHandler;
+import org.ei.opensrp.indonesia.util.StringUtil;
 import org.ei.opensrp.indonesia.view.contract.KIPNCClient;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
 import org.ei.opensrp.indonesia.view.controller.KIPNCRegisterController;
@@ -24,12 +29,15 @@ import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Iterator;
 
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
@@ -38,13 +46,14 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.*;
 /**
  * Created by Dimas Ciputra on 3/5/15.
  */
-public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity{
+public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity implements LocationSelectorDialogFragment.OnLocationSelectedListener{
 
     private SmartRegisterClientsProvider clientProvider = null;
     private KIPNCRegisterController controller;
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
     private DialogOptionMapper dialogOptionMapper;
     private BidanVillageController villageController;
+    public static final String locationDialogTAG = "locationDialogTAG";
 
     @Override
     protected SmartRegisterPaginatedAdapter adapter() {
@@ -123,6 +132,10 @@ public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartReg
                 context.villagesCache(),
                 ((Context)context).allKartuIbus());
         dialogOptionMapper = new DialogOptionMapper();
+
+        context.formSubmissionRouter().getHandlerMap()
+                .put(AllConstantsINA.FormNames.KARTU_IBU_PNC_OA,
+                        new KIPNCRegistrationHandler(((Context)context).kartuIbuService()));
     }
 
     @Override
@@ -133,8 +146,21 @@ public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartReg
 
     @Override
     protected void startRegistration() {
-        // if OA form needed again, uncomment this
-        // startFormActivity(KARTU_IBU_PNC_OA, null, null);
+        String uniqueIdJson = ((Context)context).uniqueIdController().getUniqueIdJson();
+        if(uniqueIdJson == null || uniqueIdJson.isEmpty()) {
+            Toast.makeText(this, "No Unique Id", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag(locationDialogTAG);
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        LocationSelectorDialogFragment
+                .newInstance(this, new EditDialogOptionModel(), context.anmLocationController().get(), KARTU_IBU_PNC_OA)
+                .show(ft, locationDialogTAG);
     }
 
     private class ClientActionHandler implements View.OnClickListener {
@@ -185,5 +211,12 @@ public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartReg
                 new OpenFormOption(getString(R.string.str_pnc_close_form),
                         KARTU_IBU_PNC_CLOSE, formController),
         };
+    }
+
+    @Override
+    public void OnLocationSelected(String locationJSONString) {
+        FieldOverrides fieldOverrides = new FieldOverrides(
+                StringUtil.mergeTwoJSONString(locationJSONString, ((Context) context).uniqueIdController().getUniqueIdJson()));
+        startFormActivity(KARTU_IBU_PNC_OA, null, fieldOverrides.getJSONString());
     }
 }

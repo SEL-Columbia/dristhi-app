@@ -18,32 +18,32 @@
                 "bind":"/model/instance/PNC_Close/pnc_close_reason"
             },
             {
-                "name":"womanSurvived",
-                "bind":"/model/instance/PNC_Close/death_mother_group/woman_survived"
-            },
-            {
                 "name":"deathDate",
-                "bind":"/model/instance/PNC_Close/death_mother_group/death_date"
-            },
-            {
-                "name":"maternalDeath",
-                "bind":"/model/instance/PNC_Close/death_mother_group/maternal_death"
+                "bind":"/model/instance/PNC_Close/death_date"
             },
             {
                 "name":"maternalDeathCause",
-                "bind":"/model/instance/PNC_Close/death_mother_group/maternal_death_cause"
+                "bind":"/model/instance/PNC_Close/maternal_death_cause"
             },
             {
                 "name":"otherMaternalDeathCause",
-                "bind":"/model/instance/PNC_Close/death_mother_group/other_maternal_death_cause"
+                "bind":"/model/instance/PNC_Close/other_maternal_death_cause"
             },
             {
                 "name":"placeOfDeath",
-                "bind":"/model/instance/PNC_Close/death_mother_group/place_of_death"
+                "bind":"/model/instance/PNC_Close/place_of_death"
             },
             {
                 "name":"otherPlaceOfDeath",
-                "bind":"/model/instance/PNC_Close/death_mother_group/other_place_of_death"
+                "bind":"/model/instance/PNC_Close/other_place_of_death"
+            },
+	    {
+                "name": "notMaternalDeathCause",
+                "bind": "/model/instance/PNC_Close/maternal_death_group/not_maternal_death_cause"
+            },
+	    {
+                "name": "isPNCCloseConfirmed",
+                "bind": "/model/instance/PNC_Close/confirm_pnc_close"
             },
             {
                 "name":"submissionDate",
@@ -59,7 +59,7 @@
             },
             {
                 "name":"isClosed",
-                "bind":"/model/instance/PNC_Close/death_mother_group/is_mother_closed"
+                "bind":"/model/instance/PNC_Close/is_mother_closed"
             }
         ]
     }

@@ -36,14 +36,12 @@
 			<keadaan_tiba />
 			<keadaan_pulang />
 			<keterangan />
-			<Infeksi_nifas_risk />
-			<hipertensi_post-partum_risk />
-			<post-partum_sepsis_risk />
-			<perdarahan_post-partum_risk />
-			<mastitis_risk />
-			<is_high_risk_post-partum />
-			<high_risk_post-partum_reason />
-			<high_risk_note />
+			 <high_risk_post-partum_PIH />
+			  <high_risk_post-partum_Hemorrhage />
+			  <high_risk_post-partum_infection />
+			  <high_risk_post-partum_maternal_sepsis />
+			<high_risk_post-partum_Mastitis />
+			
 			<end />
 			<meta>
 				<instanceID />

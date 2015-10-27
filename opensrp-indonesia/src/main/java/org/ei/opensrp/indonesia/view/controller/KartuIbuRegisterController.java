@@ -153,34 +153,37 @@ public class KartuIbuRegisterController  extends CommonController{
                 KartuIbuClients kartuIbuClients = new KartuIbuClients();
 
                 for (KartuIbu kartuIbu : kartuIbus) {
-
-                    KartuIbuClient kartuIbuClient = new KartuIbuClient(kartuIbu.getCaseId(),
-                            kartuIbu.getDetail(PUSKESMAS_NAME), kartuIbu.getDetail(PROPINSI),
-                            kartuIbu.getDetail(KABUPATEN), kartuIbu.getDetail(POSYANDU_NAME),
-                            kartuIbu.getDetail(MOTHER_ADDRESS), kartuIbu.getDetail(MOTHER_NUMBER),
-                            kartuIbu.getDetail(MOTHER_NAME), kartuIbu.getDetail(MOTHER_AGE),
-                            kartuIbu.getDetail(MOTHER_BLOOD_TYPE),
-                            kartuIbu.getDetail(HUSBAND_NAME),
-                            kartuIbu.dusun())
-                            .withIsHighRiskPregnancy(kartuIbu.getDetail(IS_HIGH_RISK_PREGNANCY))
-                            .withDateOfBirth(kartuIbu.getDetail(MOTHER_DOB))
-                            .withParity(kartuIbu.getDetail(NUMBER_PARTUS))
-                            .withNumberOfAbortions(kartuIbu.getDetail(NUMBER_ABORTIONS))
-                            .withNumberOfPregnancies(kartuIbu.getDetail(NUMBER_OF_PREGNANCIES))
-                            .withNumberOfLivingChildren(kartuIbu.getDetail(NUMBER_OF_LIVING_CHILDREN))
-                            .withHighPriority(kartuIbu.getDetail(IS_HIGH_PRIORITY))
-                            .withIsHighRisk(kartuIbu.getDetail(IS_HIGH_RISK))
-                            .withEdd(kartuIbu.getDetail(EDD))
-                            .withHighRiskLabour(kartuIbu.getDetail(IS_HIGH_RISK_LABOUR));
-
-                    updateStatusInformation(kartuIbu, kartuIbuClient);
-                    updateChildrenInformation(kartuIbuClient);
-                    kartuIbuClients.add(kartuIbuClient);
+                    kartuIbuClients.add(readKartuIbu(kartuIbu));
                 }
                 sortByName(kartuIbuClients);
                 return kartuIbuClients;
             }
         });
+    }
+
+    public KartuIbuClient readKartuIbu(KartuIbu kartuIbu) {
+        KartuIbuClient kartuIbuClient = new KartuIbuClient(kartuIbu.getCaseId(),
+                kartuIbu.getDetail(PUSKESMAS_NAME), kartuIbu.getDetail(PROPINSI),
+                kartuIbu.getDetail(KABUPATEN), kartuIbu.getDetail(POSYANDU_NAME),
+                kartuIbu.getDetail(MOTHER_ADDRESS), kartuIbu.getDetail(MOTHER_NUMBER),
+                kartuIbu.getDetail(MOTHER_NAME), kartuIbu.getDetail(MOTHER_AGE),
+                kartuIbu.getDetail(MOTHER_BLOOD_TYPE),
+                kartuIbu.getDetail(HUSBAND_NAME),
+                kartuIbu.dusun())
+                .withIsHighRiskPregnancy(kartuIbu.getDetail(IS_HIGH_RISK_PREGNANCY))
+                .withDateOfBirth(kartuIbu.getDetail(MOTHER_DOB))
+                .withParity(kartuIbu.getDetail(NUMBER_PARTUS))
+                .withNumberOfAbortions(kartuIbu.getDetail(NUMBER_ABORTIONS))
+                .withNumberOfPregnancies(kartuIbu.getDetail(NUMBER_OF_PREGNANCIES))
+                .withNumberOfLivingChildren(kartuIbu.getDetail(NUMBER_OF_LIVING_CHILDREN))
+                .withHighPriority(kartuIbu.getDetail(IS_HIGH_PRIORITY))
+                .withIsHighRisk(kartuIbu.getDetail(IS_HIGH_RISK))
+                .withEdd(kartuIbu.getDetail(EDD))
+                .withHighRiskLabour(kartuIbu.getDetail(IS_HIGH_RISK_LABOUR));
+
+        updateStatusInformation(kartuIbu, kartuIbuClient);
+        updateChildrenInformation(kartuIbuClient);
+        return kartuIbuClient;
     }
 
     private void sortByName(List<?extends SmartRegisterClient> kiClients) {

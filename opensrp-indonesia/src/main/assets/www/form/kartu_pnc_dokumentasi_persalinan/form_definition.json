@@ -147,70 +147,48 @@
         "source": "ibu.anak.kepemilikan_buku_kia"
       },
       {
-        "name": "pretermRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/preterm_risk"
+        "name": "highRiskChildPreterm",
+        "bind": "/model/instance/dokumentasi_persalinan/High_Risk_Child_preterm"
       },
       {
-        "name": "LowBirthweghtRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/Low_Birthweght_risk"
+        "name": "HighRiskChildLowBirthweght",
+        "bind": "/model/instance/dokumentasi_persalinan/High_Risk_Child_Low_Birthweght"
       },
       {
-        "name": "distosiaRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/distosia_risk"
+        "name": "highRiskPostPartumDistosia",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_distosia"
       },
       {
-        "name": "hipertensiDalamKehamilanRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/hipertensi_dalam_kehamilan_risk"
+        "name": "highRiskPostPartumPIH",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_PIH"
       },
       {
-        "name": "perdarahanPostPartumRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/perdarahan_post-partum_risk"
+        "name": "highRiskPostPartumHemorrhage",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_Hemorrhage"
       },
       {
-        "name": "InfeksiRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/Infeksi_risk"
+        "name": "highRiskPostPartumInfection",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_infection"
       },
       {
-        "name": "sepsisMaternalRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/sepsis_maternal_risk"
+        "name": "highRiskPostPartumMaternalSepsis",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_maternal_sepsis"
       },
       {
-        "name": "preeklampsiEklampsiRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/preeklampsi_eklampsi_risk"
+        "name": "highRiskPostPartumPreEclampsiaEclampsia",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_Pre-eclampsia_eclampsia"
       },
       {
-        "name": "LainnyaRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/Lainnya_risk"
+        "name": "highRiskPostPartumVacum",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_vacum"
       },
       {
-        "name": "vacumRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/vacum_risk"
+        "name": "highRiskPostPartumForceps",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_forceps"
       },
       {
-        "name": "forcepsRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/forceps_risk"
-      },
-      {
-        "name": "sectioCaesariaRisk",
-        "bind": "/model/instance/dokumentasi_persalinan/sectio_caesaria_risk"
-      },
-      {
-        "name": "isHighRiskPostpartum",
-        "bind": "/model/instance/dokumentasi_persalinan/is_high_risk_post-partum"
-      },
-      {
-        "name": "highRiskPostPartumReason",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_reason"
-      },
-      {
-        "name": "isHighRiskChild",
-        "bind": "/model/instance/dokumentasi_persalinan/is_high_risk_child",
-        "source": "ibu.anak.isHighRiskChild"
-      },
-      {
-        "name": "highRiskChildReason",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_child_reason",
-        "source": "ibu.anak.highRiskChildReason"
+        "name": "highRiskPostPartumSectioCaesaria",
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_Sectio_Caesaria"
       },
       {
         "name": "type",
@@ -236,7 +214,7 @@
       },
       {
         "name": "registrationDate",
-        "bind": "/model/instance/dokumentasi_persalinan/reg_date"
+        "bind": "/model/instance/dokumentasi_persalinan/today"
       },
       {
         "name": "referenceDate",

@@ -1,28 +1,26 @@
 <model>
     <instance>
-        <kunjungan_anc_Lab_test id="kunjungan_anc_Lab_test" version="201510160614">
+        <kunjungan_anc_Lab_test encounter_type="Kunjungan ANC Lab Test" id="kunjungan_anc_Lab_test" version="201510210404">
           <formhub>
             <uuid/>
           </formhub>
           <start/>
           <today/>
+	  <reg_date/>
           <deviceid/>
           <simserial/>
           <phonenumber/>
-          <B01043/>
+          <reference_date/>
           <generated_note_name_8/>
-          <B01066/>
-          <B01067/>
-          <B01068/>
-          <B01069/>
-          <B01070/>
-          <B01071/>
-          <B01072/>
-          <anemia_risk/>
-          <diabetes_risk/>
-          <is_high_risk_pregnancy/>
-          <high_risk_pregnancy_reason/>
-          <high_risk_note/>
+          <laboratorium_periksa_hb_hasil/>
+          <laboratorium_periksa_hb_anemia/>
+          <laboratorium_protein_uria/>
+          <laboratorium_gula_darah/>
+          <laboratorium_thalasemia/>
+          <laboratorium_sifilis/>
+          <laboratorium_hbsag/>
+          <High_Risk_Pregnancy_anemia/>
+          <High_Risk_Pregnancy_diabetes/>
           <end/>
           <meta>
             <instanceID/>

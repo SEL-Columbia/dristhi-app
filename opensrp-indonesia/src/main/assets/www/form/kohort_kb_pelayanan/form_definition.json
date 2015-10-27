@@ -34,10 +34,6 @@
         "bind": "/model/instance/tambah_kb/paritas"
       },
       {
-        "name": "alki",
-        "bind": "/model/instance/tambah_kb/alki"
-      },
-      {
         "name": "alkihb",
         "bind": "/model/instance/tambah_kb/alki_hb"
       },

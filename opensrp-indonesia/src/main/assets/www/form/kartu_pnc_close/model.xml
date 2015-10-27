@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <PNC_Close id="PNC_Close" version="201506200347">
+        <PNC_Close encounter_type="Penutupan PNC" id="PNC_Close" version="201510210533">
           <formhub>
             <uuid/>
           </formhub>
@@ -10,16 +10,12 @@
           <simserial/>
           <phonenumber/>
           <pnc_close_reason/>
-          <death_mother_group>
-            <woman_survived/>
-            <death_date/>
-            <maternal_death/>
-            <maternal_death_cause/>
-            <other_maternal_death_cause/>
-            <place_of_death/>
-            <other_place_of_death/>
-            <not_maternal_death_cause/>
-          </death_mother_group>
+          <death_date/>
+          <maternal_death_cause/>
+          <other_maternal_death_cause/>
+          <place_of_death/>
+          <other_place_of_death/>
+          <not_maternal_death_cause/>
           <confirm_pnc_close/>
           <end/>
           <meta>

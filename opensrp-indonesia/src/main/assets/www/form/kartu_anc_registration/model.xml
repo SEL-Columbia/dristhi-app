@@ -1,68 +1,58 @@
 <model>
     <instance>
-        <Register_Anc_Only id="Register_Anc_Only" version="201510150255">
+        <Register_Anc_Only encounter_type="Tambah ANC" id="Register_Anc_Only" version="201510220617">
           <formhub>
             <uuid/>
           </formhub>
           <start/>
           <today/>
-	  <reg_date/>
+	      <reg_date/>
           <deviceid/>
           <simserial/>
           <phonenumber/>
-          <B01026/>
-          <B01044/>
+          <tanggal_periksa/>
+          <jamkesmas/>
           <generated_note_name_9/>
-          <B01022/>
-          <B01023/>
-          <B01024/>
-          <B01025/>
+          <gravida/>
+          <partus/>
+          <abortus/>
+          <hidup/>
           <generated_note_name_14/>
-          <B01027/>
+          <hpht/>
           <edd/>
-          <B01028/>
+          <htp/>
           <edd_note/>
-          <B01046/>
+          <usia_klinis/>
           <generated_note_name_20/>
-          <B01047/>
+          <trimester_ke/>
           <generated_note_name_22/>
-          <B01032/>
-          <B02010/>
-          <B01030/>
-          <B01031/>
-          <B01052/>
-          <B01029/>
-          <B01033/>
-          <B01033L/>
-          <B01034/>
-          <B01034L/>
-          <B01035/>
-          <Protein_energy_Malnutrition_risk/>
-          <TB_risk/>
-          <Too_many_children_risk/>
-          <abortus_risk/>
-          <Section_Cesarea_record_risk/>
-          <STI_BBVs_risk/>
-          <Ectopic_Pregnancy_risk/>
-          <Mola_Hidatidosa_risk/>
-          <congenital_abnormality_risk/>
-          <early_waterbreak_risk/>
-          <Cardiovascular_Disease_Record_risk/>
-          <Kidney_Disorder_risk/>
-          <Heart_Disorder_risk/>
-          <Asthma_risk/>
-          <Tuberculosis_risk/>
-          <malaria_risk/>
-          <HIV_AIDS_risk/>
-          <is_high_risk/>
-          <high_risk_reason/>
-          <is_high_risk_pregnancy/>
-          <high_risk_pregnancy_reason/>
-          <is_high_risk_labour/>
-          <high_risk_labour_reason/>
-          <is_other_risk/>
-          <other_risk_reason/>
-          <high_risk_note/>
+          <tanggal_memperoleh_buku_kia/>
+          <bb_kg/>
+          <tb_cm/>
+          <lila_cm/>
+          <persalinan_sebelumnya/>
+          <riwayat_komplikasi_kebidanan/>
+          <riwayat_komplikasi_kebidananL/>
+          <penyakit_kronis/>
+          <penyakit_kronisL/>
+          <alergi/>
+          <High_Risk_Labour_TB_risk/>
+          <High_Risk_Labour_Section_Cesarea_record_risk/>
+          <Other_Risk_Mola_Hidatidosa/>
+          <Other_Risk_congenital_abnormality/>
+          <Other_Risk_early_waterbreak/>
+          <High_Risk_cardiovascular_Disease_Record/>
+          <High_Risk_kidney_disorder/>
+          <High_Risk_Heart_Disorder/>
+          <High_Risk_Asthma/>
+          <High_Risk_Tuberculosis/>
+          <High_Risk_Malaria/>
+          <High_Risk_HIV_AIDS/>
+          <High_Risk__STI_BBVs/>
+          <High_Risk_Ectopic_Pregnancy/>
+          <High_Risk_Pregnancy_Protein_energy_Malnutrition/>
+          <High_Risk_Pregnancy_Too_many_children/>
+          <High_Risk_Pregnancy_abortus/>
           <end/>
           <meta>
             <instanceID/>

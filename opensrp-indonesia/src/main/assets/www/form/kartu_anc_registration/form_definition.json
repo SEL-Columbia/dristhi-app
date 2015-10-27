@@ -14,121 +14,99 @@
       },
       {
         "name": "referenceDate",
-        "bind": "/model/instance/Register_Anc_Only/B01026",
+        "bind": "/model/instance/Register_Anc_Only/tanggal_periksa",
         "source": "kartu_ibu.ibu.referenceDate"
       },
       {
         "name": "gravida",
-        "bind": "/model/instance/Register_Anc_Only/B01022",
+        "bind": "/model/instance/Register_Anc_Only/gravida",
         "shouldLoadValue": true
       },
       {
         "name": "partus",
-        "bind": "/model/instance/Register_Anc_Only/B01023",
+        "bind": "/model/instance/Register_Anc_Only/partus",
         "shouldLoadValue": true
       },
       {
         "name": "abortus",
-        "bind": "/model/instance/Register_Anc_Only/B01024",
+        "bind": "/model/instance/Register_Anc_Only/abortus",
         "shouldLoadValue": true
       },
       {
         "name": "hidup",
-        "bind": "/model/instance/Register_Anc_Only/B01025",
+        "bind": "/model/instance/Register_Anc_Only/hidup",
         "shouldLoadValue": true
       },
       {
         "name": "persalinanSebelumnya",
-        "bind": "/model/instance/Register_Anc_Only/B01029",
+        "bind": "/model/instance/Register_Anc_Only/persalinan_sebelumnya",
         "source": "kartu_ibu.ibu.persalinanSebelumnya"
       },
       {
         "name": "rkk",
-        "bind": "/model/instance/Register_Anc_Only/B01033",
+        "bind": "/model/instance/Register_Anc_Only/riwayat_komplikasi_kebidanan",
         "source": "kartu_ibu.ibu.rkk"
       },
       {
         "name": "rkklainnya",
-        "bind": "/model/instance/Register_Anc_Only/B01033L",
+        "bind": "/model/instance/Register_Anc_Only/riwayat_komplikasi_kebidananL",
         "source": "kartu_ibu.ibu.rkklainnya"
       },
       {
         "name": "penyakitKronis",
-        "bind": "/model/instance/Register_Anc_Only/B01034",
+        "bind": "/model/instance/Register_Anc_Only/penyakit_kronis",
         "source": "kartu_ibu.ibu.penyakitKronis"
       },
       {
         "name": "rpkLainnya",
-        "bind": "/model/instance/Register_Anc_Only/B01034L",
+        "bind": "/model/instance/Register_Anc_Only/penyakit_kronisL",
         "source": "kartu_ibu.ibu.rpkLainnya"
       },
       {
         "name": "Alergi",
-        "bind": "/model/instance/Register_Anc_Only/B01035",
+        "bind": "/model/instance/Register_Anc_Only/alergi",
         "source": "kartu_ibu.ibu.Alergi"
       },
       {
         "name": "tanggalHPHT",
-        "bind": "/model/instance/Register_Anc_Only/B01027",
+        "bind": "/model/instance/Register_Anc_Only/hpht",
         "source": "kartu_ibu.ibu.tanggalHPHT"
       },
       {
         "name": "htp",
-        "bind": "/model/instance/Register_Anc_Only/B01028"
+        "bind": "/model/instance/Register_Anc_Only/htp"
       },
       {
         "name": "trimesterKe",
-        "bind": "/model/instance/Register_Anc_Only/B01047"
-      },
-      {
-        "name": "bukuKIA",
-        "bind": "/model/instance/Register_Anc_Only/B01032",
-        "source": "kartu_ibu.ibu.bukuKIA"
+        "bind": "/model/instance/Register_Anc_Only/trimester_ke"
       },
       {
         "name": "tanggalMemperolehBukuKia",
-        "bind": "/model/instance/Register_Anc_Only/B02010",
+        "bind": "/model/instance/Register_Anc_Only/tanggal_memperoleh_buku_kia",
         "source": "kartu_ibu.ibu.tanggalMemperolehBukuKia"
       },
       {
         "name": "jamkesmas",
-        "bind": "/model/instance/Register_Anc_Only/B01044"
+        "bind": "/model/instance/Register_Anc_Only/jamkesmas"
       },
       {
         "name": "tbCM",
-        "bind": "/model/instance/Register_Anc_Only/B01031",
+        "bind": "/model/instance/Register_Anc_Only/tb_cm",
         "source": "kartu_ibu.ibu.tbCM"
       },
       {
         "name": "bbKg",
-        "bind": "/model/instance/Register_Anc_Only/B01030",
+        "bind": "/model/instance/Register_Anc_Only/bb_kg",
         "source": "kartu_ibu.ibu.bbKg"
       },
       {
         "name": "hasilPemeriksaanLILA",
-        "bind": "/model/instance/Register_Anc_Only/B01052",
+        "bind": "/model/instance/Register_Anc_Only/lila_cm",
         "source": "kartu_ibu.ibu.hasilPemeriksaanLILA"
-      },
-      {
-        "name": "keterangan",
-        "bind": "/model/instance/Register_Anc_Only/keterangan",
-        "source": "kartu_ibu.ibu.keterangan"
       },
       {
         "name": "proteinEnergyMalnutritionRisk",
         "bind": "/model/instance/Register_Anc_Only/Protein_energy_Malnutrition_risk"
-      },
-      {
-        "name": "anemiaRisk",
-        "bind": "/model/instance/Register_Anc_Only/anemia_risk"
-      },
-      {
-        "name": "pihRisk",
-        "bind": "/model/instance/Register_Anc_Only/PIH_risk"
-      },
-      {
-        "name": "tbcRisk",
-        "bind": "/model/instance/Register_Anc_Only/TBC_risk"
       },
       {
         "name": "malariaRisk",

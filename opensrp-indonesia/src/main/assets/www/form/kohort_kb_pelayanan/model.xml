@@ -1,15 +1,11 @@
 <model>
     <instance>
-        <tambah_kb id="tambah_kb" version="201506200410">
+        <tambah_kb encounter_type="Tambah KB" id="tambah_kb" version="201510210304">
           <formhub>
             <uuid/>
           </formhub>
           <start/>
           <today/>
-	  <td_sistolik/>
-	  <td_diastolik/>
-	  
-          <reg_date/>
           <deviceid/>
           <simserial/>
           <phonenumber/>
@@ -18,7 +14,8 @@
           <umur/>
           <generated_note_name_10/>
           <paritas/>
-          <alki/>
+          <td_sistolik/>
+          <td_diastolik/>
           <alki_hb/>
           <alki_lila/>
           <alki_penyakit_kronis/>

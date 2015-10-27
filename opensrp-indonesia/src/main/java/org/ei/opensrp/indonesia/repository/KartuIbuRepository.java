@@ -28,18 +28,19 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.KeluargaBerencanaFields.C
  */
 public class KartuIbuRepository extends DrishtiRepository{
 
-    private static final String KI_SQL = "CREATE TABLE kartu_ibu(id VARCHAR PRIMARY KEY, details VARCHAR, dusun VARCHAR, isClosed VARCHAR)";
+    private static final String KI_SQL = "CREATE TABLE kartu_ibu(id VARCHAR PRIMARY KEY, details VARCHAR, dusun VARCHAR, isClosed VARCHAR, isOutOfArea VARCHAR)";
     public static final String ID_COLUMN = "id";
     public static final String DETAILS_COLUMN = "details";
     private static final String IS_CLOSED_COLUMN = "isClosed";
     public static final String DUSUN_COLUMN = "dusun";
-
+    public static final String IS_OUT_OF_AREA_COLUMN = "isOutOfArea";
     public static final String KI_TABLE_NAME = "kartu_ibu";
     public static final String[] KI_TABLE_COLUMNS = new String[]{ID_COLUMN, DETAILS_COLUMN,
             DUSUN_COLUMN,
-            IS_CLOSED_COLUMN};
+            IS_CLOSED_COLUMN, IS_OUT_OF_AREA_COLUMN};
 
     public static final String NOT_CLOSED = "false";
+    private static final String IN_AREA = "false";
 
     @Override
     protected void onCreate(SQLiteDatabase database) {
@@ -81,8 +82,8 @@ public class KartuIbuRepository extends DrishtiRepository{
 
     public List<KartuIbu> allKartuIbus() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(KI_TABLE_NAME, KI_TABLE_COLUMNS,
-                IS_CLOSED_COLUMN + " = ?", new String[]{NOT_CLOSED}, null, null, null, null);
+        Cursor cursor = database.query(KI_TABLE_NAME, KI_TABLE_COLUMNS, IS_OUT_OF_AREA_COLUMN + " = ? AND " +
+                IS_CLOSED_COLUMN + " = ?", new String[]{IN_AREA, NOT_CLOSED}, null, null, null, null);
         return readAllKartuIbus(cursor);
     }
 
@@ -168,6 +169,7 @@ public class KartuIbuRepository extends DrishtiRepository{
                     new Gson().<Map<String, String>>fromJson(cursor.getString(1), new TypeToken<Map<String, String>>() {
                     }.getType()), cursor.getString(2));
             kartuIbu.setClosed(Boolean.valueOf(cursor.getString(3)));
+            kartuIbu.setOutOfArea(Boolean.valueOf(cursor.getString(4)));
             kartuIbus.add(kartuIbu);
             cursor.moveToNext();
         }

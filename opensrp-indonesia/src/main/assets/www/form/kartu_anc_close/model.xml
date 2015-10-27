@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <Penutupan_ANC id="Penutupan_ANC" version="201506190658">
+        <Penutupan_ANC encounter_type="Penutupan ANC" id="penutupan_anc" version="201510210442">
           <formhub>
             <uuid/>
           </formhub>
@@ -12,7 +12,6 @@
           <close_reason/>
           <case_num_abortions/>
           <num_abortions/>
-          <maternal_death/>
           <spontaneous_abortion_group>
             <case_num_abortions_spontaneous/>
             <num_abortions_spontaneous/>
@@ -42,10 +41,10 @@
             <other_maternal_death_cause/>
             <place_of_death/>
             <other_place_of_death/>
-            <not_maternal_death_cause/>
           </maternal_death_group>
+          <not_maternal_death_cause/>
           <rh_injection_given/>
-          <confirm_Penutupan_ANC/>
+          <confirm_anc_close/>
           <confirm_anc_left/>
           <end/>
           <meta>

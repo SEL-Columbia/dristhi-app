@@ -26,10 +26,6 @@
                 "bind": "/model/instance/Penutupan_ANC/num_abortions"
             },
             {
-                "name": "isMaternalDeath",
-                "bind": "/model/instance/Penutupan_ANC/maternal_death"
-            },
-            {
                 "name": "numberOfSpontaneousAbortions",
                 "bind": "/model/instance/Penutupan_ANC/spontaneous_abortion_group/case_num_abortions_spontaneous"
             },

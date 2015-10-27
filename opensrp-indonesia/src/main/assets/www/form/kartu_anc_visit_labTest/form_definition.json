@@ -15,60 +15,45 @@
       },
       {
         "name": "referenceDate",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/B01043"
+        "bind": "/model/instance/kunjungan_anc_Lab_test/reference_date"
       },
       {
         "name": "laboratoriumPeriksaHbHasil",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/B01066"
+        "bind": "/model/instance/kunjungan_anc_Lab_test/laboratorium_periksa_hb_hasil"
       },
       {
         "name": "laboratoriumPeriksaHbAnemia",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/B01067"
+        "bind": "/model/instance/kunjungan_anc_Lab_test/laboratorium_periksa_hb_anemia"
       },
       {
         "name": "laboratoriumProteinUria",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/B01068"
+        "bind": "/model/instance/kunjungan_anc_Lab_test/laboratorium_protein_uria"
       },
       {
         "name": "laboratoriumGulaDarah",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/B01069"
+        "bind": "/model/instance/kunjungan_anc_Lab_test/laboratorium_gula_darah"
       },
       {
         "name": "laboratoriumThalasemia",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/B01070"
+        "bind": "/model/instance/kunjungan_anc_Lab_test/laboratorium_thalasemia"
       },
       {
         "name": "laboratoriumSifilis",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/B01071"
+        "bind": "/model/instance/kunjungan_anc_Lab_test/laboratorium_sifilis"
       },
       {
         "name": "laboratoriumHbsAg",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/B01072"
+        "bind": "/model/instance/kunjungan_anc_Lab_test/laboratorium_hbsag"
       },
       {
-        "name": "anemiaRisk",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/anemia_risk",
+        "name": "highRiskPregnancyAnemia",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/HighRiskPregnancyAnemia",
         "source": "ibu.kartu_ibu.anemiaRisk"
       },
       {
-        "name": "diabetesRisk",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/diabetes_risk",
+        "name": "highRiskPregnancyDiabetes",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/High_Risk_Pregnancy_diabetes",
         "source": "ibu.kartu_ibu.diabetesRisk"
-      },
-      {
-        "name": "isHighRiskPregnancy",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/is_high_risk_pregnancy",
-        "source": "ibu.kartu_ibu.isHighRiskPregnancy"
-      },
-      {
-        "name": "highRiskPregnancyReason",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/high_risk_pregnancy_reason",
-        "source": "ibu.kartu_ibu.highRiskPregnancyReason"
-      },
-      {
-        "name": "highRiskNote",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/high_risk_note",
-        "source": "ibu.kartu_ibu.highRiskNote"
       },
       {
         "name": "submissionDate",

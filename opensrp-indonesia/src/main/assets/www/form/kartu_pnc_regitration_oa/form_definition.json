@@ -1,265 +1,336 @@
 {
-  "form_data_definition_version":"1",
-  "form":{
-    "bind_type":"kartu_ibu",
-    "default_bind_path":"/model/instance/register_pnc/",
-    "fields":[
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "kartu_ibu",
+    "default_bind_path": "/model/instance/register_pnc/",
+    "fields": [
       {
-        "name":"id",
-        "shouldLoadValue":true
+        "name": "id",
+        "shouldLoadValue": true
       },
       {
-        "name":"motherId",
-        "shouldLoadValue":true,
-        "source":"kartu_ibu.ibu.id"
+        "name": "unique_id",
+        "bind": "/model/instance/register_pnc/unique_id",
+        "shouldLoadValue" : true
+      },
+	  {
+        "name": "Village",
+        "bind": "/model/instance/register_pnc/Village",
+        "shouldLoadValue": true
       },
       {
-        "name":"childId",
-        "shouldLoadValue":true,
-        "source":"kartu_ibu.ibu.anak.id"
+        "name": "Province",
+        "bind": "/model/instance/register_pnc/Province",
+        "shouldLoadValue": true
       },
       {
-        "name":"puskesmas",
-        "bind":"/model/instance/register_pnc/puskesmas"
+        "name": "Sub-district",
+        "bind": "/model/instance/register_pnc/Sub-district",
+        "shouldLoadValue": true
       },
       {
-        "name":"noIbu",
-        "bind":"/model/instance/register_pnc/no_ibu"
+        "name": "District",
+        "bind": "/model/instance/register_pnc/District",
+        "shouldLoadValue": true
       },
       {
-        "name":"namalengkap",
-        "bind":"/model/instance/register_pnc/nama_lengkap"
+        "name": "Sub-village",
+        "bind": "/model/instance/register_pnc/Sub-village",
+        "shouldLoadValue": true
       },
       {
-        "name":"namaSuami",
-        "bind":"/model/instance/register_pnc/nama_suami"
+        "name": "propinsi",
+        "bind": "/model/instance/register_pnc/propinsi"
       },
       {
-        "name":"tanggalLahir",
-        "bind":"/model/instance/register_pnc/tanggal_lahir_ibu"
+        "name": "kabupaten",
+        "bind": "/model/instance/register_pnc/Kabupaten"
       },
       {
-        "name":"umur",
-        "bind":"/model/instance/register_pnc/umur"
+        "name": "kecamatan",
+        "bind": "/model/instance/register_pnc/Kecamatan"
       },
       {
-        "name":"alamatDomisili",
-        "bind":"/model/instance/register_pnc/alamat_domisili"
+        "name": "desa",
+        "bind": "/model/instance/register_pnc/Desa"
       },
       {
-        "name":"propinsi",
-        "bind":"/model/instance/register_pnc/propinsi"
+        "name": "dusun",
+        "bind": "/model/instance/register_pnc/Dusun"
       },
       {
-        "name":"kabupaten",
-        "bind":"/model/instance/register_pnc/kabupaten"
+        "name": "puskesmas",
+        "bind": "/model/instance/register_pnc/puskesmas"
       },
       {
-        "name":"kecamatan",
-        "bind":"/model/instance/register_pnc/kecamatan"
+        "name": "noIbu",
+        "bind": "/model/instance/register_pnc/no_ibu"
       },
       {
-        "name":"desa",
-        "bind":"/model/instance/register_pnc/desa"
+        "name": "namalengkap",
+        "bind": "/model/instance/register_pnc/nama_lengkap"
       },
       {
-        "name":"dusun",
-        "bind":"/model/instance/register_pnc/dusun"
+        "name": "namaSuami",
+        "bind": "/model/instance/register_pnc/nama_suami"
       },
       {
-        "name":"pendidikan",
-        "bind":"/model/instance/register_pnc/pendidikan"
+        "name": "tanggalLahir",
+        "bind": "/model/instance/register_pnc/tanggal_lahir_ibu"
       },
       {
-        "name":"agama",
-        "bind":"/model/instance/register_pnc/agama"
+        "name": "umur",
+        "bind": "/model/instance/register_pnc/umur"
       },
       {
-        "name":"pekerjaan",
-        "bind":"/model/instance/register_pnc/pekerjaan"
+        "name": "alamatDomisili",
+        "bind": "/model/instance/register_pnc/alamat_domisili"
       },
       {
-        "name":"gakinTidak",
-        "bind":"/model/instance/register_pnc/gakin_tidak"
+        "name": "pendidikan",
+        "bind": "/model/instance/register_pnc/pendidikan"
       },
       {
-        "name":"posyandu",
-        "bind":"/model/instance/register_pnc/posyandu"
+        "name": "agama",
+        "bind": "/model/instance/register_pnc/agama"
       },
       {
-        "name":"namaKader",
-        "bind":"/model/instance/register_pnc/nama_kader"
+        "name": "pekerjaan",
+        "bind": "/model/instance/register_pnc/pekerjaan"
       },
       {
-        "name":"namaDukun",
-        "bind":"/model/instance/register_pnc/nama_dukun"
+        "name": "gakinTidak",
+        "bind": "/model/instance/register_pnc/gakin_tidak"
       },
       {
-        "name":"asuransiJiwa",
-        "bind":"/model/instance/register_pnc/asuransi_jiwa"
+        "name": "posyandu",
+        "bind": "/model/instance/register_pnc/posyandu"
       },
       {
-        "name":"golonganDarah",
-        "bind":"/model/instance/register_pnc/golongan_darah"
+        "name": "namaKader",
+        "bind": "/model/instance/register_pnc/nama_kader"
       },
       {
-        "name":"nomorTelponHp",
-        "bind":"/model/instance/register_pnc/nomor_telponhp"
+        "name": "namaDukun",
+        "bind": "/model/instance/register_pnc/nama_dukun"
       },
       {
-        "name":"usiaKehamilan",
-        "bind":"/model/instance/register_pnc/usia_kehamilan_saat_persalinan",
+        "name": "asuransiJiwa",
+        "bind": "/model/instance/register_pnc/asuransi_jiwa"
+      },
+      {
+        "name": "golonganDarah",
+        "bind": "/model/instance/register_pnc/golongan_darah"
+      },
+      {
+        "name": "NomorTelponHp",
+        "bind": "/model/instance/register_pnc/nomor_telpon_hp"
+      },
+      {
+        "name": "pptest",
+        "bind": "/model/instance/register_pnc/pptest"
+      },
+      {
+        "name": "hpht",
+        "bind": "/model/instance/register_pnc/hpht",
+        "source": "ibu.tanggalHPHT",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "usiaKehamilan",
+        "bind": "/model/instance/register_pnc/usia_kehamilan",
         "source":"kartu_ibu.ibu.usiaKehamilan"
       },
       {
-        "name":"usiaKehamilanBerdasarkanHPHT",
-        "bind":"/model/instance/register_pnc/usia_kehamilan_berdasarkan_hpht",
-        "source":"kartu_ibu.ibu.usiaKehamilanBerdasarkanHPHT"
-      },
-      {
-        "name":"keadaanIbu",
-        "bind":"/model/instance/register_pnc/keadaan_ibu",
+        "name": "keadaanIbu",
+        "bind": "/model/instance/register_pnc/keadaan_ibu",
         "source":"kartu_ibu.ibu.keadaanIbu"
       },
       {
-        "name":"keadaanBayi",
-        "bind":"/model/instance/register_pnc/keadaan_bayi",
+        "name": "keadaanBayi",
+        "bind": "/model/instance/register_pnc/keadaan_bayi",
         "source":"kartu_ibu.ibu.anak.keadaanBayi"
       },
       {
-        "name":"beratLahir",
-        "bind":"/model/instance/register_pnc/berat_bayi_gram",
+        "name": "beratLahir",
+        "bind": "/model/instance/register_pnc/berat_bayi",
         "source":"kartu_ibu.ibu.anak.beratLahir"
       },
       {
-        "name":"persalinan",
-        "bind":"/model/instance/register_pnc/persalinan",
+        "name": "persalinan",
+        "bind": "/model/instance/register_pnc/persalinan",
         "source":"kartu_ibu.ibu.persalinan"
       },
       {
-        "name":"tanggalKalaIAktif",
-        "bind":"/model/instance/register_pnc/tanggal__kala_i_aktif",
+        "name": "tanggalKalaIAktif",
+        "bind": "/model/instance/register_pnc/tanggal__kala_i_aktif",
         "source":"kartu_ibu.ibu.tanggalKalaIAktif"
       },
       {
-        "name":"jamKalaIAktif",
-        "bind":"/model/instance/register_pnc/jam__kala_i_aktif",
+        "name": "jamKalaIAktif",
+        "bind": "/model/instance/register_pnc/jam__kala_i_aktif",
         "source":"kartu_ibu.ibu.jamKalaIAktif"
       },
       {
-        "name":"tanggalKalaII",
-        "bind":"/model/instance/register_pnc/tanggal__kala_ii",
+        "name": "tanggalKalaII",
+        "bind": "/model/instance/register_pnc/tanggal__kala_ii",
         "source":"kartu_ibu.ibu.tanggalKalaII"
       },
       {
-        "name":"jamKalaII",
-        "bind":"/model/instance/register_pnc/jam__kala_ii",
+        "name": "jamKalaII",
+        "bind": "/model/instance/register_pnc/jam__kala_ii",
         "source":"kartu_ibu.ibu.jamKalaII"
       },
       {
-        "name":"tanggalPlasentaLahir",
-        "bind":"/model/instance/register_pnc/tanggal__plasenta_lahir",
+        "name": "tanggalPlasentaLahir",
+        "bind": "/model/instance/register_pnc/tanggal__plasenta_lahir",
         "source":"kartu_ibu.ibu.tanggalPlasentaLahir"
       },
       {
-        "name":"jamPlasentaLahir",
-        "bind":"/model/instance/register_pnc/jam__plasenta_lahir",
+        "name": "jamPlasentaLahir",
+        "bind": "/model/instance/register_pnc/jam__plasenta_lahir",
         "source":"kartu_ibu.ibu.jamPlasentaLahir"
       },
       {
-        "name":"perdarahanKalaIV2JamPostpartum",
-        "bind":"/model/instance/register_pnc/perdarahan_kala_iv_2_jam_postpartum",
+        "name": "perdarahanKalaIV2JamPostpartum",
+        "bind": "/model/instance/register_pnc/perdarahan_kala_iv_2_jam_postpartum",
         "source":"kartu_ibu.ibu.perdarahanKalaIV2JamPostpartum"
       },
       {
-        "name":"persentasi",
-        "bind":"/model/instance/register_pnc/persentasi",
+        "name": "persentasi",
+        "bind": "/model/instance/register_pnc/persentasi",
         "source":"kartu_ibu.ibu.persentasi"
       },
       {
-        "name":"tempatBersalin",
-        "bind":"/model/instance/register_pnc/tempat_bersalin",
-        "source":"kartu_ibu.ibu.jamKalaII"
+        "name": "tempatBersalin",
+        "bind": "/model/instance/register_pnc/tempat",
+        "source":"kartu_ibu.ibu.tempatBersalin"
       },
       {
-        "name":"penolong",
-        "bind":"/model/instance/register_pnc/penolong",
+        "name": "penolong",
+        "bind": "/model/instance/register_pnc/penolong",
         "source":"kartu_ibu.ibu.penolong"
       },
       {
-        "name":"penolongLainLain",
-        "bind":"/model/instance/register_pnc/penolonglain-lain_ln",
+        "name": "penolongLainLain",
+        "bind": "/model/instance/register_pnc/penolong_lain_lain",
         "source":"kartu_ibu.ibu.penolongLainLain"
       },
       {
-        "name":"caraPersalinanIbu",
-        "bind":"/model/instance/register_pnc/cara_persalinan_ibu",
+        "name": "caraPersalinanIbu",
+        "bind": "/model/instance/register_pnc/cara_persalinan_ibu",
         "source":"kartu_ibu.ibu.caraPersalinanIbu"
       },
       {
-        "name":"manajemenAktifKalaIII",
-        "bind":"/model/instance/register_pnc/manajemen_aktif_kala_iii",
+        "name": "manajemenAktifKalaIII",
+        "bind": "/model/instance/register_pnc/manajemen_aktif_kala_iii",
         "source":"kartu_ibu.ibu.manajemenAktifKalaIII"
       },
       {
-        "name":"pelayanan",
-        "bind":"/model/instance/register_pnc/pelayanan",
+        "name": "pelayanan",
+        "bind": "/model/instance/register_pnc/pelayanan",
         "source":"kartu_ibu.ibu.pelayanan"
       },
       {
-        "name":"integrasiProgram",
-        "bind":"/model/instance/register_pnc/integrasi_program",
+        "name": "integrasiProgram",
+        "bind": "/model/instance/register_pnc/integrasi_program",
         "source":"kartu_ibu.ibu.integrasiProgram"
       },
       {
-        "name":"komplikasi",
-        "bind":"/model/instance/register_pnc/komplikasi",
+        "name": "komplikasi",
+        "bind": "/model/instance/register_pnc/komplikasi",
         "source":"kartu_ibu.ibu.komplikasi"
       },
       {
-        "name":"komplikasiLainLain",
-        "bind":"/model/instance/register_pnc/komplikasi_lain_lain",
-        "source":"kartu_ibu.ibu.komplikasiLainLain"
+        "name": "komplikasiLainLain",
+        "bind": "/model/instance/register_pnc/komplikasi_lain_lain"
       },
       {
-        "name":"dirujukKe",
-        "bind":"/model/instance/register_pnc/dirujuk_ke",
+        "name": "dirujukKe",
+        "bind": "/model/instance/register_pnc/dirujuk_ke",
         "source":"kartu_ibu.ibu.dirujukKe"
       },
       {
-        "name":"dirujukKeLainLain",
-        "bind":"/model/instance/register_pnc/dirujuk_kelain-lain",
+        "name": "dirujukKeLainLain",
+        "bind": "/model/instance/register_pnc/dirujuk_kelain-lain",
         "source":"kartu_ibu.ibu.dirujukKeLainLain"
       },
       {
-        "name":"alamatBersalin",
-        "bind":"/model/instance/register_pnc/alamat_bersalin",
+        "name": "alamatBersalin",
+        "bind": "/model/instance/register_pnc/alamat_bersalin",
         "source":"kartu_ibu.ibu.alamatBersalin"
       },
       {
-        "name":"noBayi",
-        "bind":"/model/instance/register_pnc/no_bayi",
-        "source":"kartu_ibu.ibu.anak.noBayi"
+        "name": "noBayi",
+        "bind": "/model/instance/register_pnc/no_bayi",
+        "source": "kartu_ibu.ibu.anak.no_bayi"
       },
       {
-        "name":"namaBayi",
-        "bind":"/model/instance/register_pnc/nama_bayi",
-        "source":"kartu_ibu.ibu.anak.namaBayi"
+        "name": "namaBayi",
+        "bind": "/model/instance/register_pnc/nama_bayi",
+        "source": "kartu_ibu.ibu.anak.namaBayi"
       },
       {
-        "name":"tanggalLahirAnak",
-        "bind":"/model/instance/register_pnc/tanggal_lahir_anak",
-        "source":"kartu_ibu.ibu.anak.tanggalLahirAnak"
+        "name": "tanggalLahirAnak",
+        "bind": "/model/instance/register_pnc/tanggal_lahir_anak",
+        "source": "kartu_ibu.ibu.anak.tanggalLahirAnak"
       },
       {
-        "name":"jenisKelamin",
-        "bind":"/model/instance/register_pnc/jenis_kelamin",
-        "source":"kartu_ibu.ibu.anak.jenisKelamin"
+        "name": "jenisKelamin",
+        "bind": "/model/instance/register_pnc/jenis_kelamin",
+        "source": "kartu_ibu.ibu.anak.jenisKelamin"
+      },
+       {
+        "name": "highRiskPregnancyYoungMaternalAge",
+        "bind": "/model/instance/register_pnc/High_Risk_Pregnancy_Young_maternal_age"
       },
       {
-        "name":"kepemilikan_buku_kia",
-        "bind":"/model/instance/register_pnc/kepemilikan_buku_kia",
-        "source":"kartu_ibu.ibu.anak.kepemilikan_buku_kia"
+        "name": "highRiskPregnancyOldMaternalAge",
+        "bind": "/model/instance/register_pnc/High_Risk_Pregnancy_Old_maternal_age"
+      },
+      {
+        "name": "highRiskChildPreterm",
+        "bind": "/model/instance/register_pnc/High_Risk_Child_preterm"
+      },
+      {
+        "name": "HighRiskChildLowBirthweght",
+        "bind": "/model/instance/register_pnc/High_Risk_Child_Low_Birthweght"
+      },
+      {
+        "name": "highRiskPostPartumDistosia",
+        "bind": "/model/instance/register_pnc/high_risk_post-partum_distosia"
+      },
+      {
+        "name": "highRiskPostPartumPIH",
+        "bind": "/model/instance/register_pnc/high_risk_post-partum_PIH"
+      },
+      {
+        "name": "highRiskPostPartumHemorrhage",
+        "bind": "/model/instance/register_pnc/high_risk_post-partum_Hemorrhage"
+      },
+      {
+        "name": "highRiskPostPartumInfection",
+        "bind": "/model/instance/register_pnc/high_risk_post-partum_infection"
+      },
+      {
+        "name": "highRiskPostPartumMaternalSepsis",
+        "bind": "/model/instance/register_pnc/high_risk_post-partum_maternal_sepsis"
+      },
+      {
+        "name": "highRiskPostPartumPreEclampsiaEclampsia",
+        "bind": "/model/instance/register_pnc/high_risk_post-partum_Pre-eclampsia_eclampsia"
+      },
+      {
+        "name": "highRiskPostPartumVacum",
+        "bind": "/model/instance/register_pnc/high_risk_post-partum_vacum"
+      },
+      {
+        "name": "highRiskPostPartumForceps",
+        "bind": "/model/instance/register_pnc/high_risk_post-partum_forceps"
+      },
+      {
+        "name": "highRiskPostPartumSectioCaesaria",
+        "bind": "/model/instance/register_pnc/high_risk_post-partum_Sectio_Caesaria"
       },
       {
         "name":"type",
@@ -268,7 +339,7 @@
       },
       {
         "name":"isOutOfArea",
-        "value":"false"
+        "value":"true"
       },
       {
         "name":"isClosed",
@@ -285,26 +356,12 @@
         "source":"kartu_ibu.ibu.anak.isClosed"
       },
       {
-        "name":"isHighRisk",
-        "bind":"/model/instance/register_pnc/is_high_risk"
+        "name": "submissionDate",
+        "bind": "/model/instance/register_pnc/today"
       },
       {
-        "name":"isHighRiskChild",
-        "bind":"/model/instance/register_pnc/is_high_risk_child",
-        "source":"kartu_ibu.ibu.anak.isHighRiskChild"
-      },
-      {
-        "name":"submissionDate",
-        "bind":"/model/instance/register_pnc/today"
-      },
-      {
-        "name":"registrationDate",
-        "bind":"/model/instance/register_pnc/reg_date"
-      },
-      {
-        "name": "referenceDate",
-        "bind": "/model/instance/register_pnc/reference_date",
-        "source": "kartu_ibu.ibu.referenceDate"
+        "name": "registrationDate",
+        "bind": "/model/instance/register_pnc/reg_date"
       }
     ]
   }

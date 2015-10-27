@@ -18,6 +18,27 @@ import java.util.TreeMap;
 
 import it.gmariotti.cardslib.library.prototypes.CardWithList;
 
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.EDD;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.HUSBAND_NAME;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.IS_HIGH_PRIORITY;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.IS_HIGH_RISK;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.IS_HIGH_RISK_LABOUR;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.IS_HIGH_RISK_PREGNANCY;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.KABUPATEN;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.MOTHER_ADDRESS;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.MOTHER_AGE;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.MOTHER_BLOOD_TYPE;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.MOTHER_DOB;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.MOTHER_NAME;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.MOTHER_NUMBER;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.NUMBER_ABORTIONS;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.NUMBER_OF_LIVING_CHILDREN;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.NUMBER_OF_PREGNANCIES;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.NUMBER_PARTUS;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.POSYANDU_NAME;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.PROPINSI;
+import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.PUSKESMAS_NAME;
+
 /**
  * Created by Dimas Ciputra on 9/21/15.
  */
@@ -37,16 +58,7 @@ public class ProfileDetailController {
     }
 
     public KartuIbuClient get() {
-
-        List<SmartRegisterClient> clients = FluentIterable.from(controller.getKartuIbuClients()).filter(new Predicate<SmartRegisterClient>() {
-            @Override
-            public boolean apply(SmartRegisterClient input) {
-                return caseId.equalsIgnoreCase(input.entityId());
-            }
-        }).toList();
-
-        if(clients.size()==0) return null;
-        return (KartuIbuClient) clients.get(0);
+        return controller.readKartuIbu(allKartuIbus.findByCaseID(caseId));
     }
 
     public boolean containsCaseInsensitive(String s, CharSequence[] l) {

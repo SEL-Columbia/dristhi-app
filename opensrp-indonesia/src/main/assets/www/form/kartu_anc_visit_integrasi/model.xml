@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <ANC_Visit_Integrasi id="ANC_Visit_Integrasi" version="201510160559">
+        <ANC_Visit_Integrasi encounter_type="Kunjungan ANC integrasi" id="ANC_Visit_Integrasi" version="201510230640">
           <formhub>
             <uuid/>
           </formhub>
@@ -9,25 +9,20 @@
           <deviceid/>
           <simserial/>
           <phonenumber/>
-          <B01043/>
+          <reference_date/>
           <generated_note_name_8/>
-          <B01073/>
-          <B01074/>
-          <B01075/>
-          <B01076/>
-          <B01077/>
-          <B01078/>
-          <B01079/>
-          <B01080/>
-          <B01081/>
-          <B01082/>
-          <B01083/>
-          <B01085/>
-          <TBC_risk/>
-          <malaria_risk/>
-          <is_high_risk/>
-          <is_high_risk_reason/>
-          <high_risk_note/>
+          <integrasi_program_pmtct_vct/>
+          <integrasi_program_pmtct_periksa_darah/>
+          <integrasi_program_pmtct_serologi/>
+          <integrasi_program_pmtct_arv/>
+          <integrasi_program_malaria_periksa_darah/>
+          <integrasi_program_malaria_obat/>
+          <integrasi_program_malaria_kelambu/>
+          <integrasi_program_tb_dahak/>
+          <integrasi_program_tb_obat/>
+          <resiko_terdeksi_pertama_kali/>
+          <High_Risk_TBC/>
+          <High_Risk_malaria/>
           <end/>
           <meta>
             <instanceID/>

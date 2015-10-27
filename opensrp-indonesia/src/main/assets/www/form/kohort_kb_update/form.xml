@@ -1,140 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form autocomplete="off" novalidate="novalidate" class="or clearfix" id="kohort_pelayanan_kb">
-   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
-   <section class="form-logo" />
-   <h3 id="form-title">Kohort Pelayanan KB</h3>
-   <label class="question non-select ">
-      <span lang="" class="question-label active">Tanggal kunjungan</span>
-      <span lang="" class="or-hint active">Diisi dengan tanggal kunjungan/ pelayanan</span>
-      <input type="date" name="/kohort_pelayanan_kb/tanggal_kunjungan" data-calculate=" /kohort_pelayanan_kb/today " data-type-xml="date" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Keterangan tentang Peserta KB</span>
-            <span lang="" class="or-hint active">Diisi B untuk peserta KB baru, L untuk peserta KB Lama, BO untuk peserta KB baru pasca salin</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb" data-name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb" value="lama" data-type-xml="select1" />
-               <span lang="" class="option-label active">Lama (L)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb" data-name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb" value="kb_baru_pasca_salin" data-type-xml="select1" />
-               <span lang="" class="option-label active">KB Baru Pasca Salin (BO)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Jenis Kontrasepsi yang digunakan</span>
-            <span lang="" class="or-hint active">Diisi dengan jenis metode kontrasepsi yang dilayani</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" data-name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" value="pil" data-type-xml="select1" />
-               <span lang="" class="option-label active">Pil (P)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" data-name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" value="suntik" data-type-xml="select1" />
-               <span lang="" class="option-label active">Suntik (S)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" data-name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" value="iud" data-type-xml="select1" />
-               <span lang="" class="option-label active">IUD (I)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" data-name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" value="mow" data-type-xml="select1" />
-               <span lang="" class="option-label active">MOW (OW)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" data-name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" value="mop" data-type-xml="select1" />
-               <span lang="" class="option-label active">MOP (OP)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" data-name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" value="kondom" data-type-xml="select1" />
-               <span lang="" class="option-label active">Kondom (K)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" data-name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" value="Implant" data-type-xml="select1" />
-               <span lang="" class="option-label active">Implant (IP)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Keterangan tentang Peserta KB2</span>
-            <span lang="" class="or-hint active">Diisi dengan DO jika klien drop out, GC ganti cara, ES jika ada efek samping, K jika ada komplikasi</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" data-name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" value="ganti_cara" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ganti Cara (GC)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" data-name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" value="efek_samping" data-type-xml="select1" />
-               <span lang="" class="option-label active">Efek Samping (ES)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" data-name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" value="komplikasi" data-type-xml="select1" />
-               <span lang="" class="option-label active">Komplikasi (K)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">Keterangan DO</span>
-      <span lang="" class="or-hint active">Berikan alasan dan penjelasan penyebab peserta KB Drop Out</span>
-      <input type="text" name="/kohort_pelayanan_kb/keterangan_do" data-relevant=" /kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2  = 'drop_out'" data-type-xml="string" />
-   </label>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">Keterangan Ganti Cara</span>
-      <span lang="" class="or-hint active">Berikan alasan dan penjelasan penyebab peserta KB Ganti Cara</span>
-      <input type="text" name="/kohort_pelayanan_kb/keterangan_ganti_cara" data-relevant=" /kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2  = 'ganti_cara'" data-type-xml="string" />
-   </label>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">Keterangan Efek Samping</span>
-      <span lang="" class="or-hint active">Keterangan efek samping penggunaan metode kontrasepsi</span>
-      <input type="text" name="/kohort_pelayanan_kb/keterangan_efek_samping" data-relevant=" /kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2  = 'efek_samping'" data-type-xml="string" />
-   </label>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">Keterangan Komplikasi</span>
-      <span lang="" class="or-hint active">Keterangan tentang komplikasi penggunaan metode kontrasepsi</span>
-      <input type="text" name="/kohort_pelayanan_kb/keterangan_komplikasi" data-relevant=" /kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2  = 'komplikasi'" data-type-xml="string" />
-   </label>
-   <fieldset id="or-preload-items" style="display:none;">
-      <label class="calculation non-select ">
-         <input type="hidden" name="/kohort_pelayanan_kb/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/kohort_pelayanan_kb/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/kohort_pelayanan_kb/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/kohort_pelayanan_kb/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/kohort_pelayanan_kb/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/kohort_pelayanan_kb/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
-      </label>
-   </fieldset>
-   <fieldset id="or-calculated-items" style="display:none;">
-   <label class="calculation non-select ">
-         <input autocomplete="off" type="hidden" name="/kohort_pelayanan_kb/reg_date" data-calculate=" /kohort_pelayanan_kb/today " data-type-xml="date" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/kohort_pelayanan_kb/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/kohort_pelayanan_kb/formhub/uuid" data-calculate="'33c7f99dc13d4d45bc6320374fcf5cc2'" data-type-xml="string" />
-      </label>
-   </fieldset>
+	<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+	<section class="form-logo" />
+	<h3 id="form-title">Kohort Pelayanan KB</h3>
+	<select id="form-languages" data-default-lang="Bahasa">
+		<option value="Bahasa">Bahasa</option>
+		<option value="en">English</option>
+	</select>
+	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/kohort_pelayanan_kb/tanggal_kunjungan:label">Tanggal kunjungan</span>
+		<span lang="en" class="question-label " data-itext-id="/kohort_pelayanan_kb/tanggal_kunjungan:label">date of check-up</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/kohort_pelayanan_kb/tanggal_kunjungan:hint">Diisi dengan tanggal kunjungan/ pelayanan</span>
+		<span lang="en" class="or-hint " data-itext-id="/kohort_pelayanan_kb/tanggal_kunjungan:hint">Fill in the date of check-up/care service</span>
+		<input type="date" name="/kohort_pelayanan_kb/tanggal_kunjungan" required="required" data-calculate=" /kohort_pelayanan_kb/today " data-type-xml="date" />
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb:label">Keterangan tentang Peserta KB</span>
+				<span lang="en" class="question-label " data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb:label">notes about contraception tools user</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb:hint">Diisi B untuk peserta KB baru, L untuk peserta KB Lama, BO untuk peserta KB baru pasca salin</span>
+				<span lang="en" class="or-hint " data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb:hint">Fill in B if it's a new FP contraceptor, L for old contraceptor, BO for post-partum contraceptor</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb" data-name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb" value="lama" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb/lama:label">Lama (L)</span>
+					<span lang="en" class="option-label " data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb/lama:label">Old FP Acceptor (OA)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb" data-name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb" value="kb_baru_pasca_salin" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb/kb_baru_pasca_salin:label">KB Baru Pasca Salin (BO)</span>
+					<span lang="en" class="option-label " data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb/kb_baru_pasca_salin:label">Post-partum FP Acceptor</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question or-appearance-minimal ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan:label">Jenis Kontrasepsi yang digunakan</span>
+		<span lang="en" class="question-label " data-itext-id="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan:label">kind of contraceptions used</span>
+		<span class="required">*</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan:hint">Diisi dengan jenis metode kontrasepsi yang dilayani</span>
+		<span lang="en" class="or-hint " data-itext-id="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan:hint">Fill in the type of contraceptive method used</span>
+		<select name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" data-name="/kohort_pelayanan_kb/jenis_kontrasepsi_yang_digunakan" required="required" data-type-xml="select1">
+			<option value="">...</option>
+			<option value="pil">Pil (P)</option>
+			<option value="suntik_depoprovera">Suntik depoprovera</option>
+			<option value="suntik_cyclofem">Suntik cyclofem </option>
+			<option value="iud">IUD (I)</option>
+			<option value="mow">MOW (OW)</option>
+			<option value="mop">MOP (OP)</option>
+			<option value="kondom">Kondom (K)</option>
+			<option value="Implant">Implant (IP)</option>
+		</select>
+		<span class="or-option-translations" style="display:none;">
+			<span data-option-value="pil" lang="Bahasa">Pil (P)</span>
+			<span data-option-value="pil" lang="en">Pill (P)</span>
+			<span data-option-value="suntik_depoprovera" lang="Bahasa">Suntik depoprovera</span>
+			<span data-option-value="suntik_depoprovera" lang="en">Suntik depoprovera</span>
+			<span data-option-value="suntik_cyclofem" lang="Bahasa">Suntik cyclofem</span>
+			<span data-option-value="suntik_cyclofem" lang="en">Suntik cyclofem</span>
+			<span data-option-value="iud" lang="Bahasa">IUD (I)</span>
+			<span data-option-value="iud" lang="en">IUD (I)</span>
+			<span data-option-value="mow" lang="Bahasa">MOW (OW)</span>
+			<span data-option-value="mow" lang="en">Tubectomy (TUB)</span>
+			<span data-option-value="mop" lang="Bahasa">MOP (OP)</span>
+			<span data-option-value="mop" lang="en">Vasectomy (VAS)</span>
+			<span data-option-value="kondom" lang="Bahasa">Kondom (K)</span>
+			<span data-option-value="kondom" lang="en">Condom (C)</span>
+			<span data-option-value="Implant" lang="Bahasa">Implant (IP)</span>
+			<span data-option-value="Implant" lang="en">Implant (Ip)</span>
+		</span>
+	</label>
+	<fieldset class="question ">
+		<fieldset>
+			<legend>
+				<span lang="Bahasa" class="question-label active" data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2:label">Keterangan tentang Peserta KB2</span>
+				<span lang="en" class="question-label " data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2:label">Information of FP Acceptor related to Contraception Use</span>
+				<span lang="Bahasa" class="or-hint active" data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2:hint">Diisi dengan ganti cara, efek samping, komplikasi</span>
+				<span lang="en" class="or-hint " data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2:hint">Fill in GC for method change, ES for side effect, or K for complication</span>
+			</legend>
+			<div class="option-wrapper">
+				<label class="">
+					<input type="radio" name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" data-name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" value="ganti_cara" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2/ganti_cara:label">Ganti Cara (GC)</span>
+					<span lang="en" class="option-label " data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2/ganti_cara:label">Methode Change (MC)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" data-name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" value="efek_samping" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2/efek_samping:label">Efek Samping (ES)</span>
+					<span lang="en" class="option-label " data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2/efek_samping:label">Side Effects (SE)</span>
+				</label>
+				<label class="">
+					<input type="radio" name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" data-name="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2" value="komplikasi" data-type-xml="select1" />
+					<span lang="Bahasa" class="option-label active" data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2/komplikasi:label">Komplikasi (K)</span>
+					<span lang="en" class="option-label " data-itext-id="/kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2/komplikasi:label">Complication (C)</span>
+				</label>
+			</div>
+		</fieldset>
+	</fieldset>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/kohort_pelayanan_kb/keterangan_ganti_cara:label">Keterangan Ganti Cara</span>
+		<span lang="en" class="question-label " data-itext-id="/kohort_pelayanan_kb/keterangan_ganti_cara:label">Change Type (CT)</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/kohort_pelayanan_kb/keterangan_ganti_cara:hint">Berikan alasan dan penjelasan penyebab peserta KB Ganti Cara</span>
+		<span lang="en" class="or-hint " data-itext-id="/kohort_pelayanan_kb/keterangan_ganti_cara:hint">Write the reason for Method Change</span>
+		<input type="text" name="/kohort_pelayanan_kb/keterangan_ganti_cara" data-relevant=" /kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2  = 'ganti_cara'" data-type-xml="string" />
+	</label>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/kohort_pelayanan_kb/keterangan_efek_samping:label">Keterangan Efek Samping</span>
+		<span lang="en" class="question-label " data-itext-id="/kohort_pelayanan_kb/keterangan_efek_samping:label">Side Effects (SE)</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/kohort_pelayanan_kb/keterangan_efek_samping:hint">Keterangan efek samping penggunaan metode kontrasepsi</span>
+		<span lang="en" class="or-hint " data-itext-id="/kohort_pelayanan_kb/keterangan_efek_samping:hint">Write description of side effect when using a contraceptive</span>
+		<input type="text" name="/kohort_pelayanan_kb/keterangan_efek_samping" data-relevant=" /kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2  = 'efek_samping'" data-type-xml="string" />
+	</label>
+	<label class="question or-branch pre-init non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/kohort_pelayanan_kb/keterangan_komplikasi:label">Keterangan Komplikasi</span>
+		<span lang="en" class="question-label " data-itext-id="/kohort_pelayanan_kb/keterangan_komplikasi:label">Complication</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/kohort_pelayanan_kb/keterangan_komplikasi:hint">Keterangan tentang komplikasi penggunaan metode kontrasepsi</span>
+		<span lang="en" class="or-hint " data-itext-id="/kohort_pelayanan_kb/keterangan_komplikasi:hint">Write description of complication when using a contraceptive</span>
+		<input type="text" name="/kohort_pelayanan_kb/keterangan_komplikasi" data-relevant=" /kohort_pelayanan_kb/keterangan_tentang_peserta_kb_2  = 'komplikasi'" data-type-xml="string" />
+	</label>
+	<fieldset id="or-preload-items" style="display:none;">
+		<label class="calculation non-select ">
+			<input type="hidden" name="/kohort_pelayanan_kb/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/kohort_pelayanan_kb/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/kohort_pelayanan_kb/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/kohort_pelayanan_kb/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/kohort_pelayanan_kb/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/kohort_pelayanan_kb/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+		</label>
+	</fieldset>
+	<fieldset id="or-calculated-items" style="display:none;">
+		<label class="calculation non-select ">
+			<input type="hidden" name="/kohort_pelayanan_kb/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+		 <input autocomplete="off" type="hidden" name="/kohort_pelayanan_kb/reg_date" data-calculate=" /kohort_pelayanan_kb/today " data-type-xml="date" />
+	      </label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/kohort_pelayanan_kb/formhub/uuid" data-calculate="'5015b7bc0d604fc49d0a96c2e674bc3e'" data-type-xml="string" />
+		</label>
+	</fieldset>
 </form>
