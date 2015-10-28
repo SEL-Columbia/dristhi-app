@@ -9,6 +9,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "motherId",
+        "source": "kartu_ibu.ibu.id",
+        "shouldLoadValue": true
+      },
+      {
         "name": "unique_id",
         "bind": "/model/instance/register_pnc/unique_id",
         "shouldLoadValue" : true
