@@ -43,9 +43,9 @@
         "source": "kartu_ibu.ibu.persalinanSebelumnya"
       },
       {
-        "name": "rkk",
+        "name": "riwayatKomplikasiKebidanan",
         "bind": "/model/instance/Register_Anc_Only/riwayat_komplikasi_kebidanan",
-        "source": "kartu_ibu.ibu.rkk"
+        "source": "kartu_ibu.ibu.riwayatKomplikasiKebidanan"
       },
       {
         "name": "rkklainnya",
