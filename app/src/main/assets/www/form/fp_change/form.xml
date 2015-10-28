@@ -167,7 +167,7 @@
                data-type-xml="date"/>
     </label>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">LMP, 
+        <span lang="" class="question-label active">LMP
         </span>
         <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/lmp_date"
                data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
@@ -284,7 +284,7 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of IUCD inserter, 
+        <span lang="" class="question-label active">Name of IUCD inserter
         </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_person_name"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"

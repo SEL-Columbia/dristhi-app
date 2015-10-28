@@ -4,7 +4,7 @@
     <h3 id="form-title">Edit ANC Visit</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Edit password:</span>
+        <span class="question-label active" lang="">Edit password</span>
         <input name="/ANC_Visit_EngKan/edit_password" autocomplete="off" data-type-xml="string"
             type="password" />
     </label>
@@ -26,19 +26,19 @@
             </span>
         </fieldset>
         <fieldset name="/ANC_Visit_EngKan/anc_visit_group/case_woman_name" class="trigger ">
-            <span class="question-label active" lang="">Woman Name:
+            <span class="question-label active" lang="">Woman Name
                 <span class="or-output"
                     data-value=" /ANC_Visit_EngKan/anc_visit_group/case_woman_name "></span>
             </span>
         </fieldset>
         <fieldset name="/ANC_Visit_EngKan/anc_visit_group/this_anc_number" class="trigger ">
-            <span class="question-label active" lang="">ANC Visit Number:
+            <span class="question-label active" lang="">ANC Visit Number
                 <span class="or-output"
                     data-value=" /ANC_Visit_EngKan/anc_visit_group/this_anc_number "></span>
             </span>
         </fieldset>
         <fieldset name="/ANC_Visit_EngKan/anc_visit_group/anc_visit_date" class="trigger ">
-            <span class="question-label active" lang="">ANC visit date:
+            <span class="question-label active" lang="">ANC visit date
                 <span class="or-output"
                     data-value=" /ANC_Visit_EngKan/anc_visit_group/anc_visit_date "></span>
             </span>
@@ -474,10 +474,10 @@
         <!--</label>-->
         <label class="note or-branch pre-init non-select ">
             <span class="question-label active" lang="">
-                <span class="or-output" data-value=" /ANC_Visit_EngKan/woman_name "></span>
+                <span class="or-output" data-value=" /ANC_Visit_EngKan/case_woman_name "></span>
                 is at risk
                 because of,
-                <span class="or-output" data-value=" /ANC_Visit_EngKan/woman_name "></span>
+                <span class="or-output" data-value=" /ANC_Visit_EngKan/case_woman_name "></span>
 
                 <span class="or-output"
                     data-value=" /ANC_Visit_EngKan/anc_visit_group/high_risk_reason "></span>
@@ -548,12 +548,12 @@
         <label class="note or-branch pre-init non-select ">
             <span class="question-label active" lang="">
                 <span class="or-output"
-                    data-value=" /ANC_Visit_EngKan/anc_visit_group/woman_name "></span>is
+                    data-value=" /ANC_Visit_EngKan/anc_visit_group/case_woman_name "></span>is
                 <span class="or-output"
                     data-value=" /ANC_Visit_EngKan/anc_visit_group/num_weeks "></span>
                 weeks pregnant. Complete Delivery Plan form now.
                 <span class="or-output"
-                    data-value=" /ANC_Visit_EngKan/anc_visit_group/woman_name "></span>
+                    data-value=" /ANC_Visit_EngKan/anc_visit_group/case_woman_name "></span>
                 <span class="or-output"
                     data-value=" /ANC_Visit_EngKan/anc_visit_group/num_weeks "></span>
 
@@ -651,6 +651,10 @@
 
         <label class="calculation non-select ">
             <input name="/ANC_Visit_EngKan/anc_visit_group/bp_systolic" data-calculate="0"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/anc_visit_group/pulse_rate" data-calculate="0"
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">

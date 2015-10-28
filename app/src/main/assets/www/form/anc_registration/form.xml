@@ -4,7 +4,7 @@
     <h3 id="form-title">ANC Registration</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">EC Number:</span>
+        <span class="question-label active" lang="">EC Number</span>
         <input name="/ANC_Registration_EngKan/ec_num" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="text" />
     </label>
@@ -17,19 +17,19 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Woman Name:</span>
+        <span class="question-label active" lang="">Woman Name</span>
         <input name="/ANC_Registration_EngKan/woman_name" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
     </label>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Husband Name:</span>
+        <span class="question-label active" lang="">Husband Name</span>
         <input name="/ANC_Registration_EngKan/husband_name" autocomplete="off"
             data-type-xml="string" disabled="disabled" type="text" />
     </label>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Registration date:
+        <span class="question-label active" lang="">Registration date
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_EngKan/reg_date" autocomplete="off"
@@ -39,7 +39,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span class="question-label active" lang="">Registration place:</span>
+                <span class="question-label active" lang="">Registration place</span>
                 <span class="required">*</span>
             </legend>
             <div class="option-wrapper">
@@ -140,7 +140,7 @@
 
 
     <label class="question or-branch">
-        <span class="question-label active" lang="">LMP Date:
+        <span class="question-label active" lang="">LMP Date
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_EngKan/lmp_in_date" autocomplete="off"
@@ -149,7 +149,7 @@
     </label>
 
     <label class="question or-branch pre-init non-select">
-        <span class="question-label active" lang="">LMP In Weeks:
+        <span class="question-label active" lang="">LMP In Weeks
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_EngKan/lmp_in_week" autocomplete="off"

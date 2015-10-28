@@ -4,7 +4,7 @@
     <h3 id="form-title">Record FP Complication</h3>
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">EC Number: </span>
+        <span lang="" class="question-label active">EC Number </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Complications_EngKan/ec_num" data-type-xml="int" disabled="disabled"/>
     </label>
 
@@ -15,7 +15,7 @@
     </label>
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">Woman Name: </span>
+        <span lang="" class="question-label active">Woman Name </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Complications_EngKan/woman_name" data-type-xml="string" disabled="disabled"/>
     </label>
 
