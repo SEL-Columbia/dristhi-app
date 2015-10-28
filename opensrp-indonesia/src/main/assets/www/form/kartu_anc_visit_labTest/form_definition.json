@@ -47,7 +47,7 @@
       },
       {
         "name": "highRiskPregnancyAnemia",
-        "bind": "/model/instance/kunjungan_anc_Lab_test/HighRiskPregnancyAnemia",
+        "bind": "/model/instance/kunjungan_anc_Lab_test/High_Risk_Pregnancy_anemia",
         "source": "ibu.kartu_ibu.anemiaRisk"
       },
       {

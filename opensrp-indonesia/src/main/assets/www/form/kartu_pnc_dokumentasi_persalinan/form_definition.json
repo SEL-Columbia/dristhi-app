@@ -156,39 +156,39 @@
       },
       {
         "name": "highRiskPostPartumDistosia",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_distosia"
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_postPartum_distosia"
       },
       {
         "name": "highRiskPostPartumPIH",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_PIH"
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_postPartum_PIH"
       },
       {
         "name": "highRiskPostPartumHemorrhage",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_Hemorrhage"
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_postPartum_Hemorrhage"
       },
       {
         "name": "highRiskPostPartumInfection",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_infection"
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_postPartum_infection"
       },
       {
         "name": "highRiskPostPartumMaternalSepsis",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_maternal_sepsis"
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_postPartum_maternal_sepsis"
       },
       {
         "name": "highRiskPostPartumPreEclampsiaEclampsia",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_Pre-eclampsia_eclampsia"
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_postPartum_Pre-eclampsia_eclampsia"
       },
       {
         "name": "highRiskPostPartumVacum",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_vacum"
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_postPartum_vacum"
       },
       {
         "name": "highRiskPostPartumForceps",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_forceps"
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_postPartum_forceps"
       },
       {
         "name": "highRiskPostPartumSectioCaesaria",
-        "bind": "/model/instance/dokumentasi_persalinan/high_risk_post-partum_Sectio_Caesaria"
+        "bind": "/model/instance/dokumentasi_persalinan/high_risk_postPartum_Sectio_Caesaria"
       },
       {
         "name": "type",

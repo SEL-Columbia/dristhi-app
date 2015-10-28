@@ -114,29 +114,29 @@
         "name": "keadaanPulang",
         "bind": "/model/instance/PNC_Visit/Keadaan_pulang"
       },
-	 {
+      {
         "name": "highRiskPostPartumDistosia",
-        "bind": "/model/instance/register_pnc/high_risk_post-partum_distosia"
+        "bind": "/model/instance/PNC_Visit/high_risk_postPartum_distosia"
       },
       {
         "name": "highRiskPostPartumPIH",
-        "bind": "/model/instance/register_pnc/high_risk_post-partum_PIH"
+        "bind": "/model/instance/PNC_Visit/high_risk_postPartum_PIH"
       },
       {
         "name": "highRiskPostPartumHemorrhage",
-        "bind": "/model/instance/register_pnc/high_risk_post-partum_Hemorrhage"
+        "bind": "/model/instance/PNC_Visit/high_risk_postPartum_Hemorrhage"
       },
       {
         "name": "highRiskPostPartumInfection",
-        "bind": "/model/instance/register_pnc/high_risk_post-partum_infection"
+        "bind": "/model/instance/PNC_Visit/high_risk_postPartum_infection"
       },
       {
         "name": "highRiskPostPartumMaternalSepsis",
-        "bind": "/model/instance/register_pnc/high_risk_post-partum_maternal_sepsis"
+        "bind": "/model/instance/PNC_Visit/high_risk_postPartum_maternal_sepsis"
       },
       {
         "name": "highRiskPostPartumMastitis",
-        "bind": "/model/instance/register_pnc/high_risk_post-partum_Mastitis"
+        "bind": "/model/instance/PNC_Visit/high_risk_postPartum_Mastitis"
       },
       {
         "name": "submissionDate",

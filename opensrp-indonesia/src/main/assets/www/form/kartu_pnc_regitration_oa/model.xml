@@ -9,15 +9,16 @@
           <deviceid/>
           <simserial/>
           <phonenumber/>
-	<Village/>
+	      <Village/>
           <Province/>
           <Sub-district/>
           <District/>
           <Sub-village/>
-          <Kabupaten/>
-          <Kecamatan/>
-          <Desa/>
-          <Dusun/>
+	      <provinsi/>
+          <kabupaten/>
+          <kecamatan/>
+          <desa/>
+          <dusun/>
           <unique_id/>
           <generated_note_name_12/>
           <puskesmas/>

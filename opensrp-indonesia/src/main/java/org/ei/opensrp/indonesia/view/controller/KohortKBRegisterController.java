@@ -54,7 +54,7 @@ public class KohortKBRegisterController extends CommonController{
         return cache.get(KB_CLIENTS_LIST, new CacheableData<String>() {
             @Override
             public String fetch() {
-                List<KartuIbu> kartuIbus = allKartuIbus.all();
+                List<KartuIbu> kartuIbus = allKartuIbus.allWithOutOfArea();
                 KBClients KBs = new KBClients();
 
                 for (KartuIbu kartuIbu : kartuIbus) {
@@ -92,7 +92,7 @@ public class KohortKBRegisterController extends CommonController{
         return kbClientsCache.get(KB_CLIENTS_LIST, new CacheableData<KBClients>() {
             @Override
             public KBClients fetch() {
-                List<KartuIbu> kartuIbus = allKartuIbus.all();
+                List<KartuIbu> kartuIbus = allKartuIbus.allWithOutOfArea();
                 KBClients KBs = new KBClients();
 
                 for (KartuIbu kartuIbu : kartuIbus) {

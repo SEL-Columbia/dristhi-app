@@ -105,112 +105,76 @@
         "source": "kartu_ibu.ibu.hasilPemeriksaanLILA"
       },
       {
-        "name": "proteinEnergyMalnutritionRisk",
-        "bind": "/model/instance/Register_Anc_Only/Protein_energy_Malnutrition_risk"
+        "name": "highRiskPregnancyProteinEnergyMalnutrition",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_Pregnancy_Protein_energy_Malnutrition"
       },
       {
         "name": "malariaRisk",
         "bind": "/model/instance/Register_Anc_Only/malaria_risk"
       },
       {
-        "name": "tbRisk",
-        "bind": "/model/instance/Register_Anc_Only/TB_risk"
+        "name": "highRiskLabourTBRisk",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_Labour_TB_risk"
       },
       {
-        "name": "tooManyChildrenRisk",
-        "bind": "/model/instance/Register_Anc_Only/Too_many_children_risk"
+        "name": "HighRiskPregnancyTooManyChildren",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_Pregnancy_Too_many_children"
       },
       {
-        "name": "abortusRisk",
-        "bind": "/model/instance/Register_Anc_Only/abortus_risk"
+        "name": "HighRiskPregnancyAbortus",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_Pregnancy_abortus"
       },
       {
-        "name": "zectionCesareaRecordRisk",
-        "bind": "/model/instance/Register_Anc_Only/Section_Cesarea_record_risk"
+        "name": "HighRiskLabourSectionCesareaRecord",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_Labour_Section_Cesarea_record_risk"
       },
       {
-        "name": "stibbvsRisk",
-        "bind": "/model/instance/Register_Anc_Only/STI_BBVs_risk"
+        "name": "highRiskSTIBBVs",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk__STI_BBVs"
       },
       {
-        "name": "ectopicPregnancyRisk",
-        "bind": "/model/instance/Register_Anc_Only/Ectopic_Pregnancy_risk"
+        "name": "highRiskEctopicPregnancy",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_Ectopic_Pregnancy"
       },
       {
-        "name": "molaHidatidosaRisk",
-        "bind": "/model/instance/Register_Anc_Only/Mola_Hidatidosa_risk"
+        "name": "otherRiskMolaHidatidosa",
+        "bind": "/model/instance/Register_Anc_Only/Other_Risk_Mola_Hidatidosa"
       },
       {
-        "name": "congenitalAbnormalityRisk",
-        "bind": "/model/instance/Register_Anc_Only/congenital_abnormality_risk"
+        "name": "otherRiskCongenitalAbnormality",
+        "bind": "/model/instance/Register_Anc_Only/Other_Risk_congenital_abnormality"
       },
       {
-        "name": "earlyWaterbreakRisk",
-        "bind": "/model/instance/Register_Anc_Only/early_waterbreak_risk"
+        "name": "otherRiskEarlyWaterbreak",
+        "bind": "/model/instance/Register_Anc_Only/Other_Risk_early_waterbreak"
       },
       {
-        "name": "cardiovascularDiseaseRecordRisk",
-        "bind": "/model/instance/Register_Anc_Only/Cardiovascular_Disease_Record_risk"
+        "name": "highRiskCardiovascularDiseaseRecord",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_cardiovascular_Disease_Record"
       },
       {
-        "name": "kidneyDisorderRisk",
-        "bind": "/model/instance/Register_Anc_Only/Kidney_Disorder_risk"
+        "name": "highRiskDidneyDisorder",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_kidney_disorder"
       },
       {
-        "name": "heartDisorderRisk",
-        "bind": "/model/instance/Register_Anc_Only/Heart_Disorder_risk"
+        "name": "highRiskHeartDisorder",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_Heart_Disorder"
       },
       {
-        "name": "asthmaRisk",
-        "bind": "/model/instance/Register_Anc_Only/Asthma_risk"
+        "name": "highRiskAsthma",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_Asthma"
       },
       {
-        "name": "tuberculosisRisk",
-        "bind": "/model/instance/Register_Anc_Only/Tuberculosis_risk"
+        "name": "highRiskTuberculosis",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_Tuberculosis"
       },
       {
-        "name": "malariaRisk",
-        "bind": "/model/instance/Register_Anc_Only/Malaria_risk"
+        "name": "highRiskMalaria",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_Malaria"
       },
       {
-        "name": "hivaidsRisk",
-        "bind": "/model/instance/Register_Anc_Only/HIV_AIDS_risk"
-      },
-      {
-        "name": "isHighRiskANC",
-        "bind": "/model/instance/Register_Anc_Only/is_high_risk"
-      },
-      {
-        "name": "isHighRiskReason",
-        "bind": "/model/instance/Register_Anc_Only/is_high_risk_reason"
-      },
-      {
-        "name": "isHighRiskPregnancy",
-        "bind": "/model/instance/Register_Anc_Only/is_high_risk_pregnancy"
-      },
-      {
-        "name": "highRiskPregnancyReason",
-        "bind": "/model/instance/Register_Anc_Only/high_risk_pregnancy_reason"
-      },
-      {
-        "name": "isHighRiskLabour",
-        "bind": "/model/instance/Register_Anc_Only/is_high_risk_labour"
-      },
-      {
-        "name": "highRiskLabourReason",
-        "bind": "/model/instance/Register_Anc_Only/high_risk_labour_reason"
-      },
-      {
-        "name": "isOtherRisk",
-        "bind": "/model/instance/Register_Anc_Only/is_other_risk"
-      },
-      {
-        "name": "otherRiskReason",
-        "bind": "/model/instance/Register_Anc_Only/other_risk_reason"
-      },
-      {
-        "name": "highRiskNote",
-        "bind": "/model/instance/Register_Anc_Only/high_risk_note"
+        "name": "highRiskHIVAIDS",
+        "bind": "/model/instance/Register_Anc_Only/High_Risk_HIV_AIDS"
       },
       {
         "name": "isOutOfArea",

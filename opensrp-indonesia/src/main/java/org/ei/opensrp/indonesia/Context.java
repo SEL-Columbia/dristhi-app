@@ -9,6 +9,7 @@ import org.ei.opensrp.indonesia.repository.IbuRepository;
 import org.ei.opensrp.indonesia.repository.KartuIbuRepository;
 import org.ei.opensrp.indonesia.repository.UniqueIdRepository;
 import org.ei.opensrp.indonesia.service.BidanService;
+import org.ei.opensrp.indonesia.service.KartuAnakService;
 import org.ei.opensrp.indonesia.service.KartuIbuService;
 import org.ei.opensrp.indonesia.service.UniqueIdService;
 import org.ei.opensrp.indonesia.view.contract.BidanHomeContext;
@@ -63,6 +64,7 @@ public class Context extends org.ei.opensrp.Context{
     private AllSettingsINA allSettingsINA;
 
     private KartuIbuService kartuIbuService;
+    private KartuAnakService kartuAnakService;
 
     public Context getContext() {
         return this;
@@ -235,6 +237,13 @@ public class Context extends org.ei.opensrp.Context{
             kartuIbuService = new KartuIbuService(allKartuIbus(), allTimelineEvents(), allKohort(), uniqueIdController());
         }
         return kartuIbuService;
+    }
+
+    public KartuAnakService kartuAnakService() {
+        if(kartuAnakService == null) {
+            kartuAnakService = new KartuAnakService( uniqueIdController());
+        }
+        return kartuAnakService;
     }
 
     public KartuIbuRegisterController kartuIbuRegisterController() {

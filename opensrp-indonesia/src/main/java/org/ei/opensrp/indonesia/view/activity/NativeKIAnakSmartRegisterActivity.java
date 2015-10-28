@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import org.ei.opensrp.domain.form.FieldOverrides;
+import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.provider.AnakRegisterClientsProvider;
+import org.ei.opensrp.indonesia.service.formSubmissionHandler.AnakRegistrationHandler;
 import org.ei.opensrp.indonesia.util.StringUtil;
 import org.ei.opensrp.indonesia.view.contract.AnakClient;
 import org.ei.opensrp.indonesia.view.controller.AnakRegisterController;
@@ -131,6 +133,10 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
 
         clientsProvider().onServiceModeSelected(new AnakOverviewServiceMode(clientsProvider()));
         dialogOptionMapper = new DialogOptionMapper();
+
+        context.formSubmissionRouter().getHandlerMap()
+                .put(AllConstantsINA.FormNames.KARTU_IBU_REGISTRATION,
+                        new AnakRegistrationHandler(((Context)context).kartuAnakService()));
     }
 
     @Override

@@ -321,7 +321,10 @@
          <input type="hidden" name="/kartu_ibu/kabupaten" data-calculate=" /kartu_ibu/District " data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/kartu_ibu/propinsi" data-calculate=" /kartu_ibu/Province " data-type-xml="string" />
+         <input type="hidden" name="/kartu_ibu/provinsi" data-calculate=" /kartu_ibu/Province " data-type-xml="string" />
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/kartu_ibu/dusun" data-calculate=" /kartu_ibu/Sub-village " data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
          <input type="hidden" name="/kartu_ibu/High_Risk_Pregnancy_Young_maternal_age" data-calculate="if( /kartu_ibu/umur  &lt;20, 'yes','no')" data-type-xml="string" />

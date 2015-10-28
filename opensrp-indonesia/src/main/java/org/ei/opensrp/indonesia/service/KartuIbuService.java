@@ -39,6 +39,13 @@ public class KartuIbuService {
         }
     }
 
+    public void registerKB(FormSubmission submission) {
+        if(isNotBlank(submission.getFieldValue(SUBMISSION_DATE))) {
+            uniqueIdController.updateCurrentUniqueId(submission.getFieldValue(UNIQUE_ID));
+        }
+    }
+
+
     public void closeKartuIbu(FormSubmission formSubmission) {
         allKartuIbus.close(formSubmission.entityId());
         allKohort.closeAllIbuForKartuIbu(formSubmission.entityId());

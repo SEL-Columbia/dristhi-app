@@ -410,7 +410,7 @@
 			<input type="hidden" name="/register_baby/kabupaten" data-calculate=" /register_baby/District " data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/register_baby/propinsi" data-calculate=" /register_baby/Province " data-type-xml="string" />
+			<input type="hidden" name="/register_baby/provinsi" data-calculate=" /register_baby/Province " data-type-xml="string" />
 		</label>
 
 		<label class="calculation non-select ">

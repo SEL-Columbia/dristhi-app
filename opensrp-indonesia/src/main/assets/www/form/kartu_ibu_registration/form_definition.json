@@ -43,24 +43,20 @@
         "bind": "/model/instance/kartu_ibu/dusun"
       },
       {
-        "name": "propinsi",
-        "bind": "/model/instance/kartu_ibu/propinsi"
+        "name": "provinsi",
+        "bind": "/model/instance/kartu_ibu/provinsi"
       },
       {
         "name": "kabupaten",
-        "bind": "/model/instance/kartu_ibu/Kabupaten"
+        "bind": "/model/instance/kartu_ibu/kabupaten"
       },
       {
         "name": "kecamatan",
-        "bind": "/model/instance/kartu_ibu/Kecamatan"
+        "bind": "/model/instance/kartu_ibu/kecamatan"
       },
       {
         "name": "desa",
-        "bind": "/model/instance/kartu_ibu/Desa"
-      },
-      {
-        "name": "dusun",
-        "bind": "/model/instance/kartu_ibu/Dusun"
+        "bind": "/model/instance/kartu_ibu/desa"
       },
       {
         "name": "puskesmas",

@@ -87,6 +87,13 @@ public class KartuIbuRepository extends DrishtiRepository{
         return readAllKartuIbus(cursor);
     }
 
+    public List<KartuIbu> allKartuIbusWithOA() {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(KI_TABLE_NAME, KI_TABLE_COLUMNS,
+                IS_CLOSED_COLUMN + " = ?", new String[]{NOT_CLOSED}, null, null, null, null);
+        return readAllKartuIbus(cursor);
+    }
+
     public List<KartuIbu> findByCaseIDs(String... caseIds) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", KI_TABLE_NAME, ID_COLUMN,

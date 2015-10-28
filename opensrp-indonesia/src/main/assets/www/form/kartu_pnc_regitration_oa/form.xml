@@ -353,15 +353,7 @@
 			</div>
 		</fieldset>
 	</fieldset>
-	<label class="question non-select ">
-		<span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/register_pnc/berat_bayi:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-		<span lang="en" class="or-constraint-msg " data-itext-id="/register_pnc/berat_bayi:jr:constraintMsg">The entered value doesn't meet the criteria, please check it again</span>
-		<span lang="Bahasa" class="question-label active" data-itext-id="/register_pnc/berat_bayi:label">Berat Bayi (Gram)</span>
-		<span lang="en" class="question-label " data-itext-id="/register_pnc/berat_bayi:label">Weight of baby</span>
-		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_pnc/berat_bayi:hint">Berat Badan saat bayi baru lahir (Gram)</span>
-		<span lang="en" class="or-hint " data-itext-id="/register_pnc/berat_bayi:hint">Baby's birthweight (gram)</span>
-		<input type="number" name="/register_pnc/berat_bayi" data-constraint=".&gt;0" data-type-xml="int" />
-	</label>
+
 	<fieldset class="question ">
 		<fieldset>
 			<legend>
@@ -772,6 +764,15 @@
 		<input type="text" name="/register_pnc/nama_bayi" required="required" data-type-xml="string" />
 	</label>
 	<label class="question non-select ">
+		<span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/register_pnc/berat_bayi:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+		<span lang="en" class="or-constraint-msg " data-itext-id="/register_pnc/berat_bayi:jr:constraintMsg">The entered value doesn't meet the criteria, please check it again</span>
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_pnc/berat_bayi:label">Berat Bayi (Gram)</span>
+		<span lang="en" class="question-label " data-itext-id="/register_pnc/berat_bayi:label">Weight of baby</span>
+		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_pnc/berat_bayi:hint">Berat Badan saat bayi baru lahir (Gram)</span>
+		<span lang="en" class="or-hint " data-itext-id="/register_pnc/berat_bayi:hint">Baby's birthweight (gram)</span>
+		<input type="number" name="/register_pnc/berat_bayi" data-constraint=".&gt;0" data-type-xml="int" />
+	</label>
+	<label class="question non-select ">
 		<span lang="Bahasa" class="question-label active" data-itext-id="/register_pnc/tanggal_lahir_anak:label">Tanggal Lahir Bayi</span>
 		<span lang="en" class="question-label " data-itext-id="/register_pnc/tanggal_lahir_anak:label">DOB</span>
 		<span class="required">*</span>
@@ -840,7 +841,10 @@
 		 <input type="hidden" name="/register_pnc/kabupaten" data-calculate=" /register_pnc/District " data-type-xml="string" />
 	      </label>
 	      <label class="calculation non-select ">
-		 <input type="hidden" name="/register_pnc/propinsi" data-calculate=" /register_pnc/Province " data-type-xml="string" />
+		 <input type="hidden" name="/register_pnc/provinsi" data-calculate=" /register_pnc/Province " data-type-xml="string" />
+	      </label>
+	      <label class="calculation non-select ">
+		 <input type="hidden" name="/register_pnc/dusun" data-calculate=" /register_pnc/Sub-village " data-type-xml="string" />
 	      </label>
       <label class="calculation non-select ">
          <input type="hidden" name="/register_pnc/High_Risk_Child_preterm" data-calculate="if( /register_pnc/usiakehamilan  &lt; '37', 'yes', 'no')" data-type-xml="string" />

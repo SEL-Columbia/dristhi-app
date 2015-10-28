@@ -31,6 +31,10 @@ public class AllKartuIbus {
         return kartuIbuRepository.allKartuIbus();
     }
 
+    public List<KartuIbu> allWithOutOfArea() {
+        return kartuIbuRepository.allKartuIbusWithOA();
+    }
+
     public KartuIbu findByCaseID(String caseId) {
         return kartuIbuRepository.findByCaseID(caseId);
     }

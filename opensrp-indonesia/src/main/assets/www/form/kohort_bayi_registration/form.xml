@@ -15,14 +15,16 @@
    </label>
    <label class="question non-select ">
       <span lang="" class="question-label active">Nama bayi</span>
+      <span class="required">*</span>
       <span lang="" class="or-hint active">Apabila nama bayi belum ada, isi dengan: Bayi 'nama_ibu'. misal nama ibu Ratna, maka isi dengan Bayi Ratna</span>
-      <input type="text" name="/register_baby_only/nama_bayi" data-type-xml="string" />
+      <input type="text" name="/register_baby_only/nama_bayi" required="required" data-type-xml="string" />
    </label>
    <label class="question non-select ">
       <span lang="" class="or-constraint-msg active">Tanggal lahir bayi harus diisi dengan sebelum tanggal pendaftaran</span>
       <span lang="" class="question-label active">Tanggal lahir</span>
+      <span class="required">*</span>
       <span lang="" class="or-hint active">Diisi dengan tanggal lahir bayi</span>
-      <input type="date" name="/register_baby_only/tanggal_lahir_anak" data-constraint=".&lt;=  /register_baby_only/tanggal_pendaftaran " data-type-xml="date" />
+      <input type="date" name="/register_baby_only/tanggal_lahir_anak" data-constraint=".&lt;=  /register_baby_only/tanggal_pendaftaran " required="required" data-type-xml="date" />
    </label>
    <fieldset class="question ">
       <fieldset>

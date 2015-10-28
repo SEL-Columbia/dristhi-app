@@ -167,7 +167,7 @@
          </div>
       </fieldset>
    </fieldset>
-   <label class="question or-branch pre-init non-select ">
+   <label class="question ">
       <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/ANC_Visit/tfu:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
       <span lang="en" class="or-constraint-msg " data-itext-id="/ANC_Visit/tfu:jr:constraintMsg">The entered value doesn't meet the criteria, please check it again</span>
       <span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit/tfu:label">TFU</span>
@@ -176,7 +176,7 @@
       <span lang="en" class="or-hint " data-itext-id="/ANC_Visit/tfu:hint">Indicating mother's fundal height on ANC check-up</span>
       <input type="number" name="/ANC_Visit/tfu" data-constraint=".&gt;0 and .&lt;50" data-relevant=" /ANC_Visit/usia_klinis &gt;=20" data-type-xml="int" />
    </label>
-   <fieldset class="question or-branch pre-init ">
+   <fieldset class="question ">
       <fieldset>
          <legend>
             <span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit/refleks_patela_ibu:label">Refleks Patela Ibu</span>
@@ -198,7 +198,7 @@
          </div>
       </fieldset>
    </fieldset>
-   <label class="question or-branch pre-init non-select ">
+   <label class="question ">
       <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/ANC_Visit/djj:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
       <span lang="en" class="or-constraint-msg " data-itext-id="/ANC_Visit/djj:jr:constraintMsg">The entered value doesn't meet the criteria, please check it again</span>
       <span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit/djj:label">DJJ</span>
@@ -207,7 +207,7 @@
       <span lang="en" class="or-hint " data-itext-id="/ANC_Visit/djj:hint">Indicating the calculation of fetus heart rate per minute on ANC check-up</span>
       <input type="number" name="/ANC_Visit/djj" data-constraint=".&gt;0 and .&lt;1000" data-relevant=" /ANC_Visit/usia_klinis &gt;=20" data-type-xml="int" />
    </label>
-   <fieldset class="question or-branch pre-init ">
+   <fieldset class="question ">
       <fieldset>
          <legend>
             <span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit/kepala_terhadap_janin_pap:label">Kepala Janin Terhadap PAP</span>

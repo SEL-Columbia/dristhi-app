@@ -155,7 +155,8 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
     @Override
     protected void startRegistration() {
         // if OA form needed again, uncomment this
-        // FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
+        // FieldOverrides fieldOverrides = new FieldOverrides(context.anmLoc
+        // ationController().getLocationJSON());
         // startFormActivity(AllConstantsINA.FormNames.KARTU_IBU_ANC_OA, null, fieldOverrides.getJSONString());
     }
 

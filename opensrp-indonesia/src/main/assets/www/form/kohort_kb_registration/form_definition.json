@@ -8,7 +8,11 @@
         "name": "id",
         "shouldLoadValue": true
       },
-	{
+      {
+        "name": "tanggalkunjungan",
+        "bind": "/model/instance/register_kb/tanggal_kunjungan"
+      },
+      {
         "name": "Village",
         "bind": "/model/instance/register_kb/Village",
         "shouldLoadValue": true
@@ -36,27 +40,27 @@
       {
         "name": "unique_id",
         "bind": "/model/instance/register_kb/unique_id",
-        "shouldLoadValue" : true
+        "shouldLoadValue": true
       },
       {
-        "name": "propinsi",
-        "bind": "/model/instance/register_kb/propinsi"
+        "name": "provinsi",
+        "bind": "/model/instance/register_kb/provinsi"
       },
       {
         "name": "kabupaten",
-        "bind": "/model/instance/register_kb/Kabupaten"
+        "bind": "/model/instance/register_kb/kabupaten"
       },
       {
         "name": "kecamatan",
-        "bind": "/model/instance/register_kb/Kecamatan"
+        "bind": "/model/instance/register_kb/kecamatan"
       },
       {
         "name": "desa",
-        "bind": "/model/instance/register_kb/Desa"
+        "bind": "/model/instance/register_kb/desa"
       },
       {
         "name": "dusun",
-        "bind": "/model/instance/register_kb/Dusun"
+        "bind": "/model/instance/register_kb/dusun"
       },
       {
         "name": "puskesmas",
@@ -184,7 +188,7 @@
       },
       {
         "name": "isOutOfArea",
-        "value": "false"
+        "value": "true"
       },
       {
         "name": "isClosed",

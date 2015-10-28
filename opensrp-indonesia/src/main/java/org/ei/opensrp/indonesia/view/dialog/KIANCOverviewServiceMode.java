@@ -58,7 +58,7 @@ public class KIANCOverviewServiceMode extends BidanServiceModeOption {
                 return new int[]{
                         R.string.header_name, R.string.header_id, R.string.header_status,
                         R.string.header_pemeriksaan, R.string.header_resiko,
-                        R.string.header_edd, R.string.header_edit};
+                        R.string.header_kunjungan, R.string.header_edit};
             }
         };
     }

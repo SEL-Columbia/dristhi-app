@@ -575,31 +575,31 @@
 			<input type="hidden" name="/dokumentasi_persalinan/High_Risk_Child_Low_Birthweght" data-calculate="if ( /dokumentasi_persalinan/berat_bayi  &lt; 2500, 'yes', 'no')" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/dokumentasi_persalinan/high_risk_post-partum_distosia" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'distosia'), 'yes','no'))" data-type-xml="string" />
+			<input type="hidden" name="/dokumentasi_persalinan/high_risk_postPartum_distosia" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'distosia'), 'yes','no'))" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/dokumentasi_persalinan/high_risk_post-partum_PIH" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'hipertensi_dalam_kehamilan'), 'yes','no'))" data-type-xml="string" />
+			<input type="hidden" name="/dokumentasi_persalinan/high_risk_postPartum_PIH" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'hipertensi_dalam_kehamilan'), 'yes','no'))" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/dokumentasi_persalinan/high_risk_post-partum_Hemorrhage" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'perdarahan_post-partum'), 'yes','no'))" data-type-xml="string" />
+			<input type="hidden" name="/dokumentasi_persalinan/high_risk_postPartum_Hemorrhage" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'perdarahan_post-partum'), 'yes','no'))" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/dokumentasi_persalinan/high_risk_post-partum_infection" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'Infeksi'), 'yes','no'))" data-type-xml="string" />
+			<input type="hidden" name="/dokumentasi_persalinan/high_risk_postPartum_infection" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'Infeksi'), 'yes','no'))" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/dokumentasi_persalinan/high_risk_post-partum_maternal_sepsis" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'sepsis_maternal'), 'yes','no'))" data-type-xml="string" />
+			<input type="hidden" name="/dokumentasi_persalinan/high_risk_postPartum_maternal_sepsis" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'sepsis_maternal'), 'yes','no'))" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/dokumentasi_persalinan/high_risk_post-partum_Pre-eclampsia_eclampsia" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'preeklampsi_eklampsi'), 'yes','no'))" data-type-xml="string" />
+			<input type="hidden" name="/dokumentasi_persalinan/high_risk_postPartum_Pre-eclampsia_eclampsia" data-calculate="(if(selected( /dokumentasi_persalinan/komplikasi ,'preeklampsi_eklampsi'), 'yes','no'))" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/dokumentasi_persalinan/high_risk_post-partum_vacum" data-calculate="(if(selected( /dokumentasi_persalinan/cara_persalinan_ibu ,'vacum'), 'yes','no'))" data-type-xml="string" />
+			<input type="hidden" name="/dokumentasi_persalinan/high_risk_postPartum_vacum" data-calculate="(if(selected( /dokumentasi_persalinan/cara_persalinan_ibu ,'vacum'), 'yes','no'))" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/dokumentasi_persalinan/high_risk_post-partum_forceps" data-calculate="(if(selected( /dokumentasi_persalinan/cara_persalinan_ibu ,'forceps'), 'yes','no'))" data-type-xml="string" />
+			<input type="hidden" name="/dokumentasi_persalinan/high_risk_postPartum_forceps" data-calculate="(if(selected( /dokumentasi_persalinan/cara_persalinan_ibu ,'forceps'), 'yes','no'))" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
-			<input type="hidden" name="/dokumentasi_persalinan/high_risk_post-partum_Sectio_Caesaria" data-calculate="(if(selected( /dokumentasi_persalinan/cara_persalinan_ibu ,'sectio_caesaria'), 'yes','no'))" data-type-xml="string" />
+			<input type="hidden" name="/dokumentasi_persalinan/high_risk_postPartum_Sectio_Caesaria" data-calculate="(if(selected( /dokumentasi_persalinan/cara_persalinan_ibu ,'sectio_caesaria'), 'yes','no'))" data-type-xml="string" />
 		</label>
 		<label class="calculation non-select ">
 			<input type="hidden" name="/dokumentasi_persalinan/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />

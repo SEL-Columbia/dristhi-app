@@ -73,7 +73,7 @@
       },
       {
         "name": "registrationDate",
-        "bind": "/model/instance/ANC_Visit_Integrasi/reg_date"
+        "bind": "/model/instance/ANC_Visit_Integrasi/today"
       }
     ]
   }

@@ -15,7 +15,7 @@
       },
       {
         "name": "referenceDate",
-        "bind": "/model/instance/ANC_Visit/reg_date"
+        "bind": "/model/instance/ANC_Visit/today"
       },
       {
         "name": "ancDate",
@@ -177,11 +177,11 @@
       },
       {
         "name": "registrationDate",
-        "bind": "/model/instance/ANC_Visit/reg_date"
+        "bind": "/model/instance/ANC_Visit/today"
       },
       {
         "name": "hiddenAncKe",
-        "bind": "/model/instance/ANC_Visit/hidden_B01145"
+        "bind": "/model/instance/ANC_Visit/hidden_anc_ke"
       }
     ]
   }

@@ -47,24 +47,24 @@
         "shouldLoadValue": true
       },
       {
-        "name": "propinsi",
-        "bind": "/model/instance/register_baby/propinsi"
+        "name": "provinsi",
+        "bind": "/model/instance/register_baby/provinsi"
       },
       {
         "name": "kabupaten",
-        "bind": "/model/instance/register_baby/Kabupaten"
+        "bind": "/model/instance/register_baby/kabupaten"
       },
       {
         "name": "kecamatan",
-        "bind": "/model/instance/register_baby/Kecamatan"
+        "bind": "/model/instance/register_baby/kecamatan"
       },
       {
         "name": "desa",
-        "bind": "/model/instance/register_baby/Desa"
+        "bind": "/model/instance/register_baby/desa"
       },
       {
         "name": "dusun",
-        "bind": "/model/instance/register_baby/Dusun"
+        "bind": "/model/instance/register_baby/dusun"
       },
       {
         "name": "puskesmas",
@@ -172,8 +172,8 @@
         "bind": "/model/instance/register_baby/High_Risk_Pregnancy_Old_maternal_age"
       },
       {
-        "name": "isHighRiskChild",
-        "bind": "/model/instance/register_baby/is_high_risk_child"
+        "name": "highRiskLowBirthWeight",
+        "bind": "/model/instance/register_baby/high_risk_child_Low_Birthweght"
       },
       {
         "name": "isClosed",

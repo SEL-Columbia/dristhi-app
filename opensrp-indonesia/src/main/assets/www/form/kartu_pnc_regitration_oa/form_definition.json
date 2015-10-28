@@ -39,24 +39,24 @@
         "shouldLoadValue": true
       },
       {
-        "name": "propinsi",
-        "bind": "/model/instance/register_pnc/propinsi"
+        "name": "provinsi",
+        "bind": "/model/instance/register_pnc/provinsi"
       },
       {
         "name": "kabupaten",
-        "bind": "/model/instance/register_pnc/Kabupaten"
+        "bind": "/model/instance/register_pnc/kabupaten"
       },
       {
         "name": "kecamatan",
-        "bind": "/model/instance/register_pnc/Kecamatan"
+        "bind": "/model/instance/register_pnc/kecamatan"
       },
       {
         "name": "desa",
-        "bind": "/model/instance/register_pnc/Desa"
+        "bind": "/model/instance/register_pnc/desa"
       },
       {
         "name": "dusun",
-        "bind": "/model/instance/register_pnc/Dusun"
+        "bind": "/model/instance/register_pnc/dusun"
       },
       {
         "name": "puskesmas",

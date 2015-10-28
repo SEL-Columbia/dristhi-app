@@ -188,16 +188,16 @@
 					<span lang="" class="option-label active">Infeksi nifas</span>
 				</label>
 				<label class="">
-					<input type="checkbox" name="/PNC_Visit/komplikasi" value="hipertensi_post-partum" data-type-xml="select" />
-					<span lang="" class="option-label active">hipertensi post-partum</span>
+					<input type="checkbox" name="/PNC_Visit/komplikasi" value="hipertensi_postPartum" data-type-xml="select" />
+					<span lang="" class="option-label active">hipertensi postPartum</span>
 				</label>
 				<label class="">
-					<input type="checkbox" name="/PNC_Visit/komplikasi" value="post-partum_sepsis" data-type-xml="select" />
-					<span lang="" class="option-label active">post-partum sepsis</span>
+					<input type="checkbox" name="/PNC_Visit/komplikasi" value="postPartum_sepsis" data-type-xml="select" />
+					<span lang="" class="option-label active">postPartum sepsis</span>
 				</label>
 				<label class="">
-					<input type="checkbox" name="/PNC_Visit/komplikasi" value="perdarahan_post-partum" data-type-xml="select" />
-					<span lang="" class="option-label active">Perdarahan Post-Partum (PPP)</span>
+					<input type="checkbox" name="/PNC_Visit/komplikasi" value="perdarahan_postPartum" data-type-xml="select" />
+					<span lang="" class="option-label active">Perdarahan postPartum (PPP)</span>
 				</label>
 				<label class="">
 					<input type="checkbox" name="/PNC_Visit/komplikasi" value="mastitis" data-type-xml="select" />
@@ -292,7 +292,7 @@
 		<span lang="" class="or-hint active">Diisi dengan keterangan berkaitan dengan rujukan</span>
 		<input type="text" name="/PNC_Visit/keterangan" data-relevant=" /PNC_Visit/rujukan  = 'Ya'" data-type-xml="string" />
 	</label>
-	
+
 	<fieldset id="or-preload-items" style="display:none;">
 		<label class="calculation non-select ">
 			<input type="hidden" name="/PNC_Visit/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
@@ -314,22 +314,22 @@
 		</label>
 	</fieldset>
 	<fieldset id="or-calculated-items" style="display:none;">
-		 <label class="calculation non-select "><input autocomplete="off" type="hidden" name="/PNC_Visit/reg_date" data-calculate=" /PNC_Visit/today " data-type-xml="date"/></label>
+		<label class="calculation non-select "><input autocomplete="off" type="hidden" name="/PNC_Visit/reg_date" data-calculate=" /PNC_Visit/today " data-type-xml="date"/></label>
 		<label class="calculation non-select ">
-         <input type="hidden" name="/PNC_Visit/high_risk_post-partum_PIH" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'hipertensi_dalam_kehamilan'), 'yes','no'))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/PNC_Visit/high_risk_post-partum_Hemorrhage" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'perdarahan_post-partum'), 'yes','no'))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/PNC_Visit/high_risk_post-partum_infection" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'Infeksi'), 'yes','no'))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/PNC_Visit/high_risk_post-partum_maternal_sepsis" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'sepsis_maternal'), 'yes','no'))" data-type-xml="string" />
-      </label>
-	<label class="calculation non-select ">
-         <input type="hidden" name="/PNC_Visit/high_risk_post-partum_Mastitis" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'mastitis'), 'yes','no'))" data-type-xml="string" />
-      </label>
+			<input type="hidden" name="/PNC_Visit/high_risk_postPartum_PIH" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'hipertensi_postPartum'), 'yes','no'))" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/high_risk_postPartum_Hemorrhage" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'perdarahan_postPartum'), 'yes','no'))" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/high_risk_postPartum_infection" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'infeksi_nifas'), 'yes','no'))" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/high_risk_postPartum_maternal_sepsis" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'postPartum_sepsis'), 'yes','no'))" data-type-xml="string" />
+		</label>
+		<label class="calculation non-select ">
+			<input type="hidden" name="/PNC_Visit/high_risk_postPartum_Mastitis" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'mastitis'), 'yes','no'))" data-type-xml="string" />
+		</label>
 		<label class="calculation non-select ">
 			<input type="hidden" name="/PNC_Visit/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
 		</label>
