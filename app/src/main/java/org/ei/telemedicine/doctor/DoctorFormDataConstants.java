@@ -32,6 +32,7 @@ public interface DoctorFormDataConstants {
     public static String anmPoc = "anmPoc";
     public static String bp_sys = "bpSys";
     public static String bp_dia = "bpDia";
+    public static String bp_pulse = "pulseRate";
     public static String temp_data = "temp";
     public static String weight_data = "weight";
     public static String blood_glucose = "bloodGlucoseData";
@@ -43,6 +44,7 @@ public interface DoctorFormDataConstants {
     public static String anc_visit_number = "ancVisitNumber";
     public static String anc_visit_date = "ancVisitDate";
     public static String risk_symptoms = "riskObservedDuringANC";
+
     public static String anc_entityId = "visitId";
     public static String lmp = "lmp";
     public static String edd = "edd";
@@ -66,6 +68,14 @@ public interface DoctorFormDataConstants {
     public static String child_breating_problems = "childBreatingProblems";
     public static String child_info = "childInfo";
     public static String child_dob = "childDob";
+
+    public static String child_sick_visit_date = "sickVisitDate";
+    public static String child_days_of_cough = "numberOfDaysCough";
+    public static String child_breaths_per_minute = "breathsPerMinute";
+    public static String child_days_of_diarrhea = "daysOfDiarrhea";
+    public static String child_blood_in_stool = "bloodInStool";
+    public static String child_vommit_every_thing = "vommitEveryThing";
+    public static String child_number_of_days_fever = "daysOfFever";
 
 
     public static String child_entityId = "visitId";
