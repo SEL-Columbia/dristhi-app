@@ -2,7 +2,7 @@
   "form_data_definition_version": "1",
   "form": {
     "bind_type": "ibu",
-    "default_bind_path": "/model/instance/Register_ANC_only/",
+    "default_bind_path": "/model/instance/Register_Anc_Only/",
     "fields": [
       {
         "name": "id",
@@ -15,292 +15,125 @@
       },
       {
         "name": "referenceDate",
-        "bind": "/model/instance/Register_ANC_only/tanggal_periksa",
+        "bind": "/model/instance/Register_Anc_Only/tanggal_periksa",
         "shouldLoadValue": true
+
       },
       {
         "name": "gravida",
-        "bind": "/model/instance/Register_ANC_only/gravida",
+        "bind": "/model/instance/Register_Anc_Only/gravida",
         "source": "ibu.kartu_ibu.gravida",
         "shouldLoadValue": true
       },
       {
         "name": "partus",
-        "bind": "/model/instance/Register_ANC_only/partus",
+        "bind": "/model/instance/Register_Anc_Only/partus",
         "source": "ibu.kartu_ibu.partus",
         "shouldLoadValue": true
       },
       {
         "name": "abortus",
-        "bind": "/model/instance/Register_ANC_only/abortus",
+        "bind": "/model/instance/Register_Anc_Only/abortus",
         "source": "ibu.kartu_ibu.abortus",
         "shouldLoadValue": true
       },
       {
         "name": "hidup",
-        "bind": "/model/instance/Register_ANC_only/hidup",
+        "bind": "/model/instance/Register_Anc_Only/hidup",
         "source": "ibu.kartu_ibu.hidup",
         "shouldLoadValue": true
       },
       {
         "name": "persalinanSebelumnya",
-        "bind": "/model/instance/Register_ANC_only/persalinan_sebelumnya",
+        "bind": "/model/instance/Register_Anc_Only/persalinan_sebelumnya",
         "shouldLoadValue": true
-      },
-      {
-        "name": "rkk",
-        "bind": "/model/instance/Register_ANC_only/rkk",
-        "shouldLoadValue": true
+
       },
       {
         "name": "riwayatKomplikasiKebidanan",
-        "bind": "/model/instance/Register_ANC_only/riwayat_komplikasi_kebidanan",
+        "bind": "/model/instance/Register_Anc_Only/riwayat_komplikasi_kebidanan",
         "shouldLoadValue": true
+
       },
       {
         "name": "rkklainnya",
-        "bind": "/model/instance/Register_ANC_only/rkklainnya",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "kronis",
-        "bind": "/model/instance/Register_ANC_only/kronis",
+        "bind": "/model/instance/Register_Anc_Only/riwayat_komplikasi_kebidananL",
         "shouldLoadValue": true
       },
       {
         "name": "penyakitKronis",
-        "bind": "/model/instance/Register_ANC_only/penyakit_kronis",
+        "bind": "/model/instance/Register_Anc_Only/penyakit_kronis",
         "shouldLoadValue": true
       },
       {
         "name": "rpkLainnya",
-        "bind": "/model/instance/Register_ANC_only/rpklainnya",
+        "bind": "/model/instance/Register_Anc_Only/penyakit_kronisL",
         "shouldLoadValue": true
+
       },
       {
         "name": "Alergi",
-        "bind": "/model/instance/Register_ANC_only/alergi",
+        "bind": "/model/instance/Register_Anc_Only/alergi",
         "shouldLoadValue": true
-      },
-      {
-        "name": "kelainanBentuk",
-        "bind": "/model/instance/Register_ANC_only/kelainanbentuk",
-        "shouldLoadValue": true
+
       },
       {
         "name": "tanggalHPHT",
-        "bind": "/model/instance/Register_ANC_only/tanggal_hpht",
+        "bind": "/model/instance/Register_Anc_Only/hpht",
         "shouldLoadValue": true
+
       },
       {
         "name": "htp",
-        "bind": "/model/instance/Register_ANC_only/htp",
-        "source": "ibu.kartu_ibu.htp",
+        "bind": "/model/instance/Register_Anc_Only/htp",
         "shouldLoadValue": true
       },
       {
         "name": "trimesterKe",
-        "bind": "/model/instance/Register_ANC_only/trimester_ke",
-        "source": "ibu.kartu_ibu.trimesterKe",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "ancKe",
-        "bind": "/model/instance/Register_ANC_only/anc_ke",
-        "source": "ibu.kartu_ibu.ancKe",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "bukuKIA",
-        "bind": "/model/instance/Register_ANC_only/buku_kia",
-        "shouldLoadValue": true
+        "bind": "/model/instance/Register_Anc_Only/trimester_ke"
       },
       {
         "name": "tanggalMemperolehBukuKia",
-        "bind": "/model/instance/Register_ANC_only/tanggal_memperoleh_buku_kia",
+        "bind": "/model/instance/Register_Anc_Only/tanggal_memperoleh_buku_kia",
+        "source": "ibu.kartu_ibu.tanggalMemperolehBukuKia",
         "shouldLoadValue": true
       },
       {
         "name": "jamkesmas",
-        "bind": "/model/instance/Register_ANC_only/jamkesmas",
+        "bind": "/model/instance/Register_Anc_Only/jamkesmas",
         "source": "ibu.kartu_ibu.jamkesmas",
         "shouldLoadValue": true
       },
       {
-        "name": "caraMasukTempatPelayanan",
-        "bind": "/model/instance/Register_ANC_only/cara_masuk_tempat_pelayanan",
-        "source": "ibu.kartu_ibu.caraMasukTempatPelayanan",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "anamnesisIbu",
-        "bind": "/model/instance/Register_ANC_only/anamnesis_ibu",
-        "source": "ibu.kartu_ibu.anamnesisIbu",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "bbSebelumHamil",
-        "bind": "/model/instance/Register_ANC_only/bbsebelumhamil",
-        "shouldLoadValue": true
-      },
-      {
         "name": "tbCM",
-        "bind": "/model/instance/Register_ANC_only/tb_cm",
+        "bind": "/model/instance/Register_Anc_Only/tb_cm",
         "shouldLoadValue": true
       },
       {
         "name": "bbKg",
-        "bind": "/model/instance/Register_ANC_only/bb_kg",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "tandaVitalTDSistolik",
-        "bind": "/model/instance/Register_ANC_only/td_sistolik",
-        "source": "ibu.kartu_ibu.tandaVitalTDSistolik",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "tandaVitalTDDiastolik",
-        "bind": "/model/instance/Register_ANC_only/td_diastolik",
-        "source": "ibu.kartu_ibu.tandaVitalTDDiastolik",
+        "bind": "/model/instance/Register_Anc_Only/bb_kg",
         "shouldLoadValue": true
       },
       {
         "name": "hasilPemeriksaanLILA",
-        "bind": "/model/instance/Register_ANC_only/hasil_pemeriksaan_lila",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "statusGiziibu",
-        "bind": "/model/instance/Register_ANC_only/status_gizi_ibu",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "tfu",
-        "bind": "/model/instance/Register_ANC_only/tfu",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "refleksPatelaIbu",
-        "bind": "/model/instance/Register_ANC_only/refleks_patela_ibu",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "djj",
-        "bind": "/model/instance/Register_ANC_only/djj",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "kepalaJaninTerhadapPAP",
-        "bind": "/model/instance/Register_ANC_only/kepala_terhadap_janin_pap",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "taksiranBeratJanin",
-        "bind": "/model/instance/Register_ANC_only/taksiran_berat_janin",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "persentasiJanin",
-        "bind": "/model/instance/Register_ANC_only/persentasi_janin",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "jumlahJanin",
-        "bind": "/model/instance/Register_ANC_only/jumlah_janin",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "statusImunisasitt",
-        "bind": "/model/instance/Register_ANC_only/status_imunisasi_tt",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "pelayananInjeksitt",
-        "bind": "/model/instance/Register_ANC_only/pelayanan_injeksi_tt",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "pelayananCatatDiBukuKia",
-        "bind": "/model/instance/Register_ANC_only/pelayanan_catat_buku_kia",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "pelayananfe",
-        "bind": "/model/instance/Register_ANC_only/pelayananfe",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "pelayananFe",
-        "bind": "/model/instance/Register_ANC_only/pelayanan_fe",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "labCheck",
-        "bind": "/model/instance/Register_ANC_only/Labcheck",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "isHighRiskANC",
-        "bind": "/model/instance/Register_ANC_only/is_high_risk_anc",
-        "source": "ibu.kartu_ibu.isHighRiskANC",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "isHighRiskReason",
-        "bind": "/model/instance/Register_ANC_only/is_high_risk_reason",
-        "source": "ibu.kartu_ibu.isHighRiskReason",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "isHighRiskPregnancy",
-        "bind": "/model/instance/Register_ANC_only/is_high_risk_pregnancy",
-        "source": "ibu.kartu_ibu.isHighRiskPregnancy",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "highRiskPregnancyReason",
-        "bind": "/model/instance/Register_ANC_only/high_risk_pregnancy_reason",
-        "source": "ibu.kartu_ibu.highRiskPregnancyReason",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "isHighRiskLabour",
-        "bind": "/model/instance/Register_ANC_only/is_high_risk_labour",
-        "source": "ibu.kartu_ibu.isHighRiskLabour",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "highRiskLabourReason",
-        "bind": "/model/instance/Register_ANC_only/high_risk_labour_reason",
-        "source": "ibu.kartu_ibu.highRiskLabourReason",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "isOtherRisk",
-        "bind": "/model/instance/Register_ANC_only/is_other_risk",
-        "source": "ibu.kartu_ibu.isOtherRisk",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "otherRiskReason",
-        "bind": "/model/instance/Register_ANC_only/other_risk_reason",
-        "source": "ibu.kartu_ibu.otherRiskReason",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "highRiskNote",
-        "bind": "/model/instance/Register_ANC_only/high_risk_note",
-        "source": "ibu.kartu_ibu.highRiskNote",
+        "bind": "/model/instance/Register_Anc_Only/lila_cm",
         "shouldLoadValue": true
       },
       {
         "name": "submissionDate",
-        "bind": "/model/instance/Register_ANC_only/today"
+        "bind": "/model/instance/Register_Anc_Only/today",
+        "source": "ibu.kartu_ibu.submissionDate"
       },
       {
         "name": "registrationDate",
-        "bind": "/model/instance/Register_ANC_only/reg_date"
+        "bind": "/model/instance/Register_Anc_Only/reg_date",
+        "source": "ibu.kartu_ibu.registrationDate"
+      },
+
+      {
+        "name": "type",
+        "value": "anc",
+        "source": "ibu.kartu_ibu.type"
       }
     ]
   }

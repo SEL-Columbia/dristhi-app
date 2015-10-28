@@ -14,13 +14,29 @@
         "shouldLoadValue": true
       },
       {
-        "name": "paritas",
-        "bind": "/model/instance/tambah_kb/paritas",
+        "name": "tanggalLahir",
+        "bind": "/model/instance/tambah_kb/tanggal_lahir_ibu",
         "shouldLoadValue": true
       },
       {
-        "name": "alki",
-        "bind": "/model/instance/tambah_kb/alki",
+        "name": "umur",
+        "bind": "/model/instance/tambah_kb/umur",
+        "shouldLoadValue": true
+
+      },
+      {
+        "name": "tdSistolik",
+        "bind": "/model/instance/tambah_kb/td_sistolik",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "tdDiastolik",
+        "bind": "/model/instance/tambah_kb/td_diastolik",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "paritas",
+        "bind": "/model/instance/tambah_kb/paritas",
         "shouldLoadValue": true
       },
       {

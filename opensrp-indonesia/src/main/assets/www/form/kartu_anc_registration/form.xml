@@ -49,7 +49,7 @@
 		<span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/gravida:label">Gravida</span>
 		<span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/gravida:hint">Menunjukkan jumlah kehamilan Ibu</span>
 		<span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/gravida:hint">Indicating mother's number of pregnancy</span>
-		<input type="number" name="/Register_Anc_Only/gravida" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="int" />
+		<input type="number" name="/Register_Anc_Only/gravida" data-constraint=".&gt;-1 and .&lt;30" data-type-xml="int" />
 	</label>
 	<label class="question non-select ">
 		<span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/Register_Anc_Only/partus:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
@@ -58,7 +58,7 @@
 		<span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/partus:label">Parity</span>
 		<span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/partus:hint">Menunjukkan jumlah kelahiran / persalinan Ibu</span>
 		<span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/partus:hint">Indicating mother's number of birth/delivery</span>
-		<input type="number" name="/Register_Anc_Only/partus" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="int" />
+		<input type="number" name="/Register_Anc_Only/partus" data-constraint=".&gt;-1 and .&lt;30" data-type-xml="int" />
 	</label>
 	<label class="question non-select ">
 		<span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/Register_Anc_Only/abortus:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
@@ -67,7 +67,7 @@
 		<span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/abortus:label">Abortus</span>
 		<span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/abortus:hint">Menunjukkan jumlah berapa kali Ibu keguguran</span>
 		<span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/abortus:hint">Indicating mother's number of abortion/miscarriage</span>
-		<input type="number" name="/Register_Anc_Only/abortus" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="int" />
+		<input type="number" name="/Register_Anc_Only/abortus" data-constraint=".&gt;-1 and .&lt;30" data-type-xml="int" />
 	</label>
 	<label class="question non-select ">
 		<span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/Register_Anc_Only/hidup:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
@@ -76,7 +76,7 @@
 		<span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/hidup:label">Alive</span>
 		<span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/hidup:hint">Menunjukkan jumlah anak hidup sampai kehamilan sekarang</span>
 		<span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/hidup:hint">Inidcating mother's number of alive children until the current pregnancy</span>
-		<input type="number" name="/Register_Anc_Only/hidup" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="int" />
+		<input type="number" name="/Register_Anc_Only/hidup" data-constraint=".&gt;-1 and .&lt;30" data-type-xml="int" />
 	</label>
 	<label class="note non-select ">
 		<span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/generated_note_name_14:label">Pemeriksaan Bidan</span>

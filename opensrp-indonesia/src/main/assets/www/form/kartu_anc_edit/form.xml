@@ -3,1169 +3,336 @@
    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
    <section class="form-logo" />
    <h3 id="form-title">Tambah ANC</h3>
+   <select id="form-languages" data-default-lang="Bahasa">
+      <option value="Bahasa">Bahasa</option>
+      <option value="en">English</option>
+   </select>
    <label class="question non-select ">
-      <span lang="" class="question-label active">Tanggal Kunjungan</span>
-      <span lang="" class="or-hint active">Tanggal pemeriksaan kehamilan pertama kali oleh Bidan</span>
-      <input type="date" name="/Register_ANC_only/tanggal_periksa" data-type-xml="date" />
-   </label>
-   <label class="note non-select ">
-      <span lang="" class="question-label active">Riwayat Obstetrik</span>
-      <input type="text" name="/Register_ANC_only/generated_note_name_8" data-type-xml="string" readonly="readonly" />
-   </label>
-   <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">Gravida</span>
-      <span lang="" class="or-hint active">Menunjukkan jumlah kehamilan Ibu</span>
-      <input type="number" name="/Register_ANC_only/gravida" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="int" />
-   </label>
-   <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">Partus</span>
-      <span lang="" class="or-hint active">Menunjukkan jumlah kelahiran / persalinan Ibu</span>
-      <input type="number" name="/Register_ANC_only/partus" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="int" />
-   </label>
-   <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">abortus tidak boleh lebih dari Gravida - Partus</span>
-      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_ANC/abortus:label">Abortus</span>
-      <span lang="" class="or-hint active">Menunjukkan jumlah berapa kali Ibu keguguran</span>
-      <input type="number" name="/Register_ANC_only/abortus" data-constraint=".&gt;-1 and .&lt;=100" data-type-xml="int" />
-   </label>
-   <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">Hidup</span>
-      <span lang="" class="or-hint active">Menunjukkan jumlah anak hidup sampai kehamilan sekarang</span>
-      <input type="number" name="/Register_ANC_only/hidup" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="int" />
-   </label>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Persalinan sebelumnya</span>
-            <span lang="" class="or-hint active">Riwayat persalinan sebelumnya normal atau dengan komplikasi</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/persalinan_sebelumnya" data-name="/Register_ANC_only/persalinan_sebelumnya" value="normal" data-relevant=" /Register_ANC_only/gravida  != '1'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Normal (N)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/persalinan_sebelumnya" data-name="/Register_ANC_only/persalinan_sebelumnya" value="tidak_normal" data-relevant=" /Register_ANC_only/gravida  != '1'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak Normal (dengan tindakan) (TN)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Apakah Ibu memiliki Riwayat Komplikasi Kebidanan?</span>
-            <span lang="" class="or-hint active">Diisi 'Ya' jika ibu memiliki faktor seperti : abortus berulang, KET, mola, KPD, riwayat SC, atau riwayat VE.</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/rkk" data-name="/Register_ANC_only/rkk" value="Ya" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ya</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/rkk" data-name="/Register_ANC_only/rkk" value="Tidak" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Riwayat Komplikasi Kebidanan</span>
-            <span class="required">*</span>
-            <span lang="" class="or-hint active">Riwayat komplikasi yang dimiliki Ibu sebelumnya</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/riwayat_komplikasi_kebidanan" value="abortus_berulang" required="required" data-relevant=" /Register_ANC_only/rkk  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Abortus Berulang</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/riwayat_komplikasi_kebidanan" value="ket" required="required" data-relevant=" /Register_ANC_only/rkk  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">KET</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/riwayat_komplikasi_kebidanan" value="mola" required="required" data-relevant=" /Register_ANC_only/rkk  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Mola Hidatidosa</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/riwayat_komplikasi_kebidanan" value="kpd" required="required" data-relevant=" /Register_ANC_only/rkk  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">KPD</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/riwayat_komplikasi_kebidanan" value="cacat_kongenital" required="required" data-relevant=" /Register_ANC_only/rkk  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Cacat Kongenital</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/riwayat_komplikasi_kebidanan" value="riwayat_sc" required="required" data-relevant=" /Register_ANC_only/rkk  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Riwayat SC</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/riwayat_komplikasi_kebidanan" value="riwayat_ve_forseps" required="required" data-relevant=" /Register_ANC_only/rkk  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Riwayat VE/Forseps</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/riwayat_komplikasi_kebidanan" value="lainnya" required="required" data-relevant=" /Register_ANC_only/rkk  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Lainnya</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">Komplikasi Lainnya</span>
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/tanggal_periksa:label">Tanggal Kunjungan</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/tanggal_periksa:label">Date of visit</span>
       <span class="required">*</span>
-      <span lang="" class="or-hint active">Menunjukkan keterangan komplikasi lain yang diderita Ibu hamil</span>
-      <input type="text" name="/Register_ANC_only/rkklainnya" required="required" data-relevant="selected( /Register_ANC_only/riwayat_komplikasi_kebidanan , 'lainnya')" data-type-xml="string" />
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/tanggal_periksa:hint">Tanggal pemeriksaan kehamilan pertama kali oleh bidan</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/tanggal_periksa:hint">Date of first antenatal checkup by midwife</span>
+      <input type="date" name="/Register_Anc_Only/tanggal_periksa" required="required" data-type-xml="date" />
    </label>
    <fieldset class="question ">
       <fieldset>
          <legend>
-            <span lang="" class="question-label active">Apakah Ibu memiliki Riwayat Penyakit Kronis</span>
-            <span lang="" class="or-hint active">Disi 'Ya' jika ibu memiliki penyakit kronis seperti: Hipertensi, Diabetes Melitus, Jantung, Malaria, asma, dan lainnya</span>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/jamkesmas:label">Jamkesmas</span>
+            <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/jamkesmas:label">Insurance</span>
+            <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/jamkesmas:hint">Apakah Ibu memiliki Jamkesmas atau tidak</span>
+            <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/jamkesmas:hint">Does mother have the card of National Health Insurance for the Poor and Near Poor?</span>
          </legend>
          <div class="option-wrapper">
             <label class="">
-               <input type="radio" name="/Register_ANC_only/kronis" data-name="/Register_ANC_only/kronis" value="Ya" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ya</span>
+               <input type="radio" name="/Register_Anc_Only/jamkesmas" data-name="/Register_Anc_Only/jamkesmas" value="jika_ya" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/jamkesmas/jika_ya:label">Jika Ya (√)</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/jamkesmas/jika_ya:label">Yes</span>
             </label>
             <label class="">
-               <input type="radio" name="/Register_ANC_only/kronis" data-name="/Register_ANC_only/kronis" value="Tidak" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Penyakit Kronis</span>
-            <span class="required">*</span>
-            <span lang="" class="or-hint active">Penyakit yang pernah atau sedang dimiliki oleh Ibu (Isi NA jika tidak ada penyakit kronis)</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="hipertensi" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Hipertensi</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="diabetes_melitus" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Diabetes Melitus</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="kelainan_jantung" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Kelainan Jantung</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="kelainan_ginjal" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Kelainan Ginjal</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="kelainan_hati" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Kelainan Hati</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="STI/BBVs" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">STI/BBVs</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="malaria" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Malaria</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="asma" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Asma</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="sifilis" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">IMS Sifilis</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="hbsag" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">IMS HbsAg</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="hiv_aids" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">HIV/AIDS</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="tbc" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Tubercolusis</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/penyakit_kronis" value="lainnya" required="required" data-relevant=" /Register_ANC_only/kronis  = 'Ya'" data-type-xml="select" />
-               <span lang="" class="option-label active">Lainnya</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">Penyakit Kronis Lainnya</span>
-      <span lang="" class="or-hint active">Menunjukkan keterangan penyakit kronis</span>
-      <input type="text" name="/Register_ANC_only/rpklainnya" data-relevant="selected( /Register_ANC_only/penyakit_kronis , 'lainnya')" data-type-xml="string" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Apakah ibu memiliki alergi</span>
-            <span class="required">*</span>
-            <span lang="" class="or-hint active">Diisi 'ya' jika ibu memiliki alergi</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/memiliki_alergi" data-name="/Register_ANC_only/memiliki_alergi" value="Ya" required="required" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ya</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/memiliki_alergi" data-name="/Register_ANC_only/memiliki_alergi" value="Tidak" required="required" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">Alergi</span>
-      <span class="required">*</span>
-      <span lang="" class="or-hint active">Alergi yang dimiliki oleh Ibu (Isi NA jika tidak ada alergi)</span>
-      <input type="text" name="/Register_ANC_only/alergi" required="required" data-relevant=" /Register_ANC_only/memiliki_alergi  = 'Ya'" data-type-xml="string" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Kelainan Bentuk Panggul</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah panggul Ibu mengalami kelainan atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/kelainanbentuk" data-name="/Register_ANC_only/kelainanbentuk" value="Ya" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ya</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/kelainanbentuk" data-name="/Register_ANC_only/kelainanbentuk" value="Tidak" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak</span>
+               <input type="radio" name="/Register_Anc_Only/jamkesmas" data-name="/Register_Anc_Only/jamkesmas" value="jika_tidak" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/jamkesmas/jika_tidak:label">Jika Tidak (x)</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/jamkesmas/jika_tidak:label">No</span>
             </label>
          </div>
       </fieldset>
    </fieldset>
    <label class="note non-select ">
-      <span lang="" class="question-label active">Pemeriksaan Bidan</span>
-      <input type="text" name="/Register_ANC_only/generated_note_name_23" data-type-xml="string" readonly="readonly" />
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/generated_note_name_9:label">Riwayat Obstetrik</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/generated_note_name_9:label">Obstetric history</span>
+      <input type="text" name="/Register_Anc_Only/generated_note_name_9" data-type-xml="string" readonly="readonly" />
    </label>
    <label class="question non-select ">
-      <span lang="" class="question-label active">Tanggal HPHT</span>
-      <span lang="" class="or-hint active">Tanggal Hari Pertama Haid Terakhir Ibu</span>
-      <input type="date" name="/Register_ANC_only/tanggal_hpht" data-type-xml="date" />
+      <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/Register_Anc_Only/gravida:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+      <span lang="en" class="or-constraint-msg " data-itext-id="/Register_Anc_Only/gravida:jr:constraintMsg">The entered value doesn't meet the criteria, please check it again</span>
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/gravida:label">Gravida</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/gravida:label">Gravida</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/gravida:hint">Menunjukkan jumlah kehamilan Ibu</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/gravida:hint">Indicating mother's number of pregnancy</span>
+      <input type="number" name="/Register_Anc_Only/gravida" data-constraint=".&gt;-1 and .&lt;30" data-type-xml="int" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/Register_Anc_Only/partus:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+      <span lang="en" class="or-constraint-msg " data-itext-id="/Register_Anc_Only/partus:jr:constraintMsg">The entered value doesn't meet the criteria, please check it again</span>
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/partus:label">Partus</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/partus:label">Parity</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/partus:hint">Menunjukkan jumlah kelahiran / persalinan Ibu</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/partus:hint">Indicating mother's number of birth/delivery</span>
+      <input type="number" name="/Register_Anc_Only/partus" data-constraint=".&gt;-1 and .&lt;30" data-type-xml="int" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/Register_Anc_Only/abortus:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+      <span lang="en" class="or-constraint-msg " data-itext-id="/Register_Anc_Only/abortus:jr:constraintMsg">The entered value doesn't meet the criteria, please check it again</span>
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/abortus:label">Abortus</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/abortus:label">Abortus</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/abortus:hint">Menunjukkan jumlah berapa kali Ibu keguguran</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/abortus:hint">Indicating mother's number of abortion/miscarriage</span>
+      <input type="number" name="/Register_Anc_Only/abortus" data-constraint=".&gt;-1 and .&lt;30" data-type-xml="int" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/Register_Anc_Only/hidup:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+      <span lang="en" class="or-constraint-msg " data-itext-id="/Register_Anc_Only/hidup:jr:constraintMsg">The entered value doesn't meet the criteria, please check it again</span>
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/hidup:label">Hidup</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/hidup:label">Alive</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/hidup:hint">Menunjukkan jumlah anak hidup sampai kehamilan sekarang</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/hidup:hint">Inidcating mother's number of alive children until the current pregnancy</span>
+      <input type="number" name="/Register_Anc_Only/hidup" data-constraint=".&gt;-1 and .&lt;30" data-type-xml="int" />
    </label>
    <label class="note non-select ">
-      <span lang="" class="question-label active">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/generated_note_name_14:label">Pemeriksaan Bidan</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/generated_note_name_14:label">Midwife chek-up</span>
+      <input type="text" name="/Register_Anc_Only/generated_note_name_14" data-type-xml="string" readonly="readonly" />
+   </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/hpht:label">Tanggal HPHT</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/hpht:label">Last Menstrual Period date</span>
+      <span class="required">*</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/hpht:hint">Tanggal Hari Pertama Haid Terakhir Ibu</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/hpht:hint">Date of first day of last menstrual period</span>
+      <input type="date" name="/Register_Anc_Only/hpht" required="required" data-type-xml="date" />
+   </label>
+   <label class="note non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/edd_note:label">
          HTP:
-         <span class="or-output" data-value=" /Register_ANC_only/htp " />
+         <span class="or-output" data-value=" /Register_Anc_Only/htp " />
       </span>
-      <input type="text" name="/Register_ANC_only/edd_note" data-type-xml="string" readonly="readonly" />
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/edd_note:label">Estimated Date of Delivery</span>
+      <input type="text" name="/Register_Anc_Only/edd_note" data-type-xml="string" readonly="readonly" />
    </label>
    <label class="note non-select ">
-      <span lang="" class="question-label active">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/generated_note_name_20:label">
          Usia Klinis :
-         <span class="or-output" data-value=" /Register_ANC_only/usia_klinis " />
+         <span class="or-output" data-value=" /Register_Anc_Only/usia_klinis " />
       </span>
-      <input type="text" name="/Register_ANC_only/generated_note_name_29" data-type-xml="string" readonly="readonly" />
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/generated_note_name_20:label">Gestational age (in weeks)</span>
+      <input type="text" name="/Register_Anc_Only/generated_note_name_20" data-type-xml="string" readonly="readonly" />
    </label>
    <label class="note non-select ">
-      <span lang="" class="question-label active">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/generated_note_name_22:label">
          Trimester Ke:
-         <span class="or-output" data-value=" /Register_ANC_only/trimester_ke " />
+         <span class="or-output" data-value=" /Register_Anc_Only/trimester_ke " />
       </span>
-      <input type="text" name="/Register_ANC_only/generated_note_name_31" data-type-xml="string" readonly="readonly" />
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/generated_note_name_22:label">Trimester order</span>
+      <input type="text" name="/Register_Anc_Only/generated_note_name_22" data-type-xml="string" readonly="readonly" />
    </label>
    <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Kunjungan ANC harus sesuai dengan trimester dari ibu</span>
-      <span lang="Bahasa" class="question-label active" data-itext-id="/tambah_anc.xlsx/anc_ke:label">K1 - K4?</span>
-      <span lang="" class="or-hint active">Diisi dengan K1 atau K2 sampai dengan K4</span>
-      <input type="number" name="/Register_ANC_only/anc_ke" data-constraint=".&gt;0 and .&lt;=4" data-type-xml="int" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Buku KIA</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah Ibu memiliki buku KIA atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/buku_kia" data-name="/Register_ANC_only/buku_kia" value="memiliki" data-type-xml="select1" />
-               <span lang="" class="option-label active">Memiliki (M)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/buku_kia" data-name="/Register_ANC_only/buku_kia" value="tidak_memiliki" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak Memiliki (TM)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">Tanggal memperoleh Buku KIA</span>
-      <input type="date" name="/Register_ANC_only/tanggal_memperoleh_buku_kia" data-relevant=" /Register_ANC_only/buku_kia  = 'memiliki'" data-type-xml="date" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Jamkesmas</span>
-            <span lang="" class="or-hint active">Apakah Ibu membawa Jamkesmas atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/jamkesmas" data-name="/Register_ANC_only/jamkesmas" value="jika_ya" data-type-xml="select1" />
-               <span lang="" class="option-label active">Jika Ya (v)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/jamkesmas" data-name="/Register_ANC_only/jamkesmas" value="jika_tidak" data-type-xml="select1" />
-               <span lang="" class="option-label active">Jika Tidak (x)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Cara Masuk Tempat Pelayanan</span>
-            <span lang="" class="or-hint active">Cara Ibu untuk masuk ke tempat pelayanan</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/cara_masuk_tempat_pelayanan" data-name="/Register_ANC_only/cara_masuk_tempat_pelayanan" value="atas_permintaan_sendiri" data-type-xml="select1" />
-               <span lang="" class="option-label active">Atas Permintaan Sendiri (APS)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/cara_masuk_tempat_pelayanan" data-name="/Register_ANC_only/cara_masuk_tempat_pelayanan" value="rujukan_dokter" data-type-xml="select1" />
-               <span lang="" class="option-label active">Rujukan Dokter (Dr)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/cara_masuk_tempat_pelayanan" data-name="/Register_ANC_only/cara_masuk_tempat_pelayanan" value="rujukan_bidan" data-type-xml="select1" />
-               <span lang="" class="option-label active">Rujukan Bidan (Bd)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/cara_masuk_tempat_pelayanan" data-name="/Register_ANC_only/cara_masuk_tempat_pelayanan" value="rujukan_dukun" data-type-xml="select1" />
-               <span lang="" class="option-label active">Rujukan Dukun (RD)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/cara_masuk_tempat_pelayanan" data-name="/Register_ANC_only/cara_masuk_tempat_pelayanan" value="rujukan_polindes" data-type-xml="select1" />
-               <span lang="" class="option-label active">Rujukan Polindes (Pol)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/cara_masuk_tempat_pelayanan" data-name="/Register_ANC_only/cara_masuk_tempat_pelayanan" value="rujukan_puskesmas_pembantu" data-type-xml="select1" />
-               <span lang="" class="option-label active">Rujukan Puskesmas Pembantu ( PST)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/cara_masuk_tempat_pelayanan" data-name="/Register_ANC_only/cara_masuk_tempat_pelayanan" value="rujukan_puskesmas" data-type-xml="select1" />
-               <span lang="" class="option-label active">Rujukan Puskesmas (PKS)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/cara_masuk_tempat_pelayanan" data-name="/Register_ANC_only/cara_masuk_tempat_pelayanan" value="rujukan_rumah_bersalin" data-type-xml="select1" />
-               <span lang="" class="option-label active">Rujukan Rumah Bersalin (RB)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/cara_masuk_tempat_pelayanan" data-name="/Register_ANC_only/cara_masuk_tempat_pelayanan" value="RSIA" data-type-xml="select1" />
-               <span lang="" class="option-label active">Rujukan Rumah Sakit Ibu dan Anak (RSIA)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question non-select ">
-      <span lang="" class="question-label active">Anamnesis Ibu</span>
-      <span lang="" class="or-hint active">Diisi dengan keluhan atau hal-hal yang dirasakan ibu selama hamil</span>
-      <input type="text" name="/Register_ANC_only/anamnesis_ibu" data-type-xml="string" />
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/tanggal_memperoleh_buku_kia:label">Tanggal memperoleh Buku KIA</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/tanggal_memperoleh_buku_kia:label">Date of recieving Maternal and Child Health Booklet</span>
+      <input type="date" name="/Register_Anc_Only/tanggal_memperoleh_buku_kia" data-type-xml="date" />
    </label>
    <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Berat badan tidak boleh kurang dari nol</span>
-      <span lang="" class="question-label active">BB (Kg)</span>
+      <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/Register_Anc_Only/bb_kg:jr:constraintMsg">Berat badan tidak boleh kurang dari nol</span>
+      <span lang="en" class="or-constraint-msg " data-itext-id="/Register_Anc_Only/bb_kg:jr:constraintMsg">Weight can not be less than zero</span>
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/bb_kg:label">BB (Kg)</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/bb_kg:label">Weight</span>
       <span class="required">*</span>
-      <span lang="" class="or-hint active">Menunjukkan berat badan Ibu sebelum kehamilan (kg)</span>
-      <input type="number" name="/Register_ANC_only/bb_kg_1" required="required" data-constraint=".&gt;0 and .&lt;150" data-type-xml="decimal" step="any" />
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/bb_kg:hint">Menunjukkan berat badan Ibu sebelum kehamilan (kg)</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/bb_kg:hint">Indicating mother's weight before being pregnant (kg)</span>
+      <input type="number" name="/Register_Anc_Only/bb_kg" required="required" data-constraint=".&gt;0 and .&lt;150" data-type-xml="decimal" step="any" />
    </label>
    <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Tinggi badan tidak boleh kurang dari nol</span>
-      <span lang="" class="question-label active">TB (Cm)</span>
-      <span lang="" class="or-hint active">Menunjukkan tinggi badan Ibu (CM)</span>
-      <input type="number" name="/Register_ANC_only/tb_cm" data-constraint=".&gt;0 and .&lt;200" data-type-xml="decimal" step="any" />
+      <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/Register_Anc_Only/tb_cm:jr:constraintMsg">Tinggi badan tidak boleh kurang dari nol</span>
+      <span lang="en" class="or-constraint-msg " data-itext-id="/Register_Anc_Only/tb_cm:jr:constraintMsg">Height can not be less than zero</span>
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/tb_cm:label">TB (Cm)</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/tb_cm:label">Height</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/tb_cm:hint">Menunjukkan tinggi badan Ibu (CM)</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/tb_cm:hint">Indicating mother's height (cm)</span>
+      <input type="number" name="/Register_Anc_Only/tb_cm" data-constraint=".&gt;0 and .&lt;200" data-type-xml="decimal" step="any" />
    </label>
    <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">BB (Kg)</span>
-      <span lang="" class="or-hint active">Menunjukkan berat badan Ibu pada saat kunjungan ANC (kg)</span>
-      <input type="number" name="/Register_ANC_only/bb_kg_2" data-constraint=".&gt;0 and .&lt;200" data-type-xml="decimal" step="any" />
+      <span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/Register_Anc_Only/lila_cm:jr:constraintMsg">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
+      <span lang="en" class="or-constraint-msg " data-itext-id="/Register_Anc_Only/lila_cm:jr:constraintMsg">The entered value doesn't meet the criteria, please check it again</span>
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/lila_cm:label">LILA (cm)</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/lila_cm:label">Mid-Upper Arm Circumference of mother</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/lila_cm:hint">Menunjukkan lingkar lengan Ibu pada saat kunjungan ANC (cm)</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/lila_cm:hint">Indicating mother's arm circumference on ANC check-up</span>
+      <input type="number" name="/Register_Anc_Only/lila_cm" data-constraint=".&gt;0 and .&lt;200" data-type-xml="decimal" step="any" />
+   </label>
+   <fieldset class="question or-branch pre-init ">
+      <fieldset>
+         <legend>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/persalinan_sebelumnya:label">Persalinan sebelumnya</span>
+            <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/persalinan_sebelumnya:label">Previous labor</span>
+            <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/persalinan_sebelumnya:hint">Riwayat persalinan sebelumnya normal atau dengan komplikasi</span>
+            <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/persalinan_sebelumnya:hint">History of previous delivery whether normal or with complication</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Register_Anc_Only/persalinan_sebelumnya" data-name="/Register_Anc_Only/persalinan_sebelumnya" value="normal" data-relevant=" /Register_Anc_Only/gravida  != '1'" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/persalinan_sebelumnya/normal:label">Normal (N)</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/persalinan_sebelumnya/normal:label">Normal (N);</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Register_Anc_Only/persalinan_sebelumnya" data-name="/Register_Anc_Only/persalinan_sebelumnya" value="tidak_normal" data-relevant=" /Register_Anc_Only/gravida  != '1'" data-type-xml="select1" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/persalinan_sebelumnya/tidak_normal:label">Tidak Normal (dengan tindakan) (TN)</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/persalinan_sebelumnya/tidak_normal:label">Abnormal ( With Treatment)</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan:label">Riwayat Komplikasi Kebidanan</span>
+            <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan:label">Obstetric complication record</span>
+            <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan:hint">Riwayat komplikasi yang dimiliki Ibu sebelumnya</span>
+            <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan:hint">History of complication that mother previously had</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/riwayat_komplikasi_kebidanan" value="abortus_berulang" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/abortus_berulang:label">Abortus Berulang</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/abortus_berulang:label">Repeated Abortus (AS)</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/riwayat_komplikasi_kebidanan" value="ket" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/ket:label">KET</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/ket:label">Ectopic Pregnancy (EP)</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/riwayat_komplikasi_kebidanan" value="mola" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/mola:label">Mola Hidatidosa</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/mola:label">Mola Hydatidosa (ML)</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/riwayat_komplikasi_kebidanan" value="kpd" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/kpd:label">KPD</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/kpd:label">Premature Rupture of Membranes</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/riwayat_komplikasi_kebidanan" value="cacat_kongenital" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/cacat_kongenital:label">Cacat Kongenital</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/cacat_kongenital:label">Congenital Abnormality</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/riwayat_komplikasi_kebidanan" value="riwayat_sc" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/riwayat_sc:label">Riwayat SC</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/riwayat_sc:label">Sectio Caesaria (SC)</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/riwayat_komplikasi_kebidanan" value="riwayat_ve_forseps" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/riwayat_ve_forseps:label">Riwayat VE/Forseps</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/riwayat_ve_forseps:label">Vacuum (VC); Forceps (FS)</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/riwayat_komplikasi_kebidanan" value="lainnya" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/lainnya:label">Lainnya</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidanan/lainnya:label">Other</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidananL:label">Komplikasi Lainnya</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidananL:label">Other complication</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidananL:hint">Menunjukkan keterangan komplikasi lain yang diderita Ibu hamil</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/riwayat_komplikasi_kebidananL:hint">Indicating information of other complication that mother had</span>
+      <input type="text" name="/Register_Anc_Only/riwayat_komplikasi_kebidananL" data-relevant="selected( /Register_Anc_Only/riwayat_komplikasi_kebidanan , 'lainnya')" data-type-xml="string" />
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis:label">Penyakit Kronis</span>
+            <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/penyakit_kronis:label">Chronic disease</span>
+            <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/penyakit_kronis:hint">Penyakit yang pernah atau sedang dimiliki oleh Ibu (Isi NA jika tidak ada penyakit kronis)</span>
+            <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/penyakit_kronis:hint">Disease that mother had or has (Write NA if mother has no chronical diseases)</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="hipertensi" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/hipertensi:label">Hipertensi</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/hipertensi:label">Hypertension</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="diabetes_melitus" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/diabetes_melitus:label">Diabetes Melitus</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/diabetes_melitus:label">Diabetes Mellitus</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="kelainan_jantung" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/kelainan_jantung:label">Kelainan Jantung</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/kelainan_jantung:label">Heart Disease</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="kelainan_ginjal" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/kelainan_ginjal:label">Kelainan Ginjal</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/kelainan_ginjal:label">Kidney Disease</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="kelainan_hati" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/kelainan_hati:label">Kelainan Hati</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/kelainan_hati:label">Liver Disease</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="malaria" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/malaria:label">Malaria</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/malaria:label">Malaria</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="asma" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/asma:label">Asma</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/asma:label">Asthma</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="sifilis" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/sifilis:label">IMS Sifilis</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/sifilis:label">Syphilis</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="hbsag" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/hbsag:label">HbsAg</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/hbsag:label">HBsAg</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="hiv_aids" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/hiv_aids:label">HIV/AIDS</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/hiv_aids:label">HIV/AIDS</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="tbc" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/tbc:label">Tubercolusis</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/tbc:label">TBC</span>
+            </label>
+            <label class="">
+               <input type="checkbox" name="/Register_Anc_Only/penyakit_kronis" value="lainnya" data-type-xml="select" />
+               <span lang="Bahasa" class="option-label active" data-itext-id="/Register_Anc_Only/penyakit_kronis/lainnya:label">Lainnya</span>
+               <span lang="en" class="option-label " data-itext-id="/Register_Anc_Only/penyakit_kronis/lainnya:label">Other</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/penyakit_kronisL:label">Penyakit Kronis Lainnya</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/penyakit_kronisL:label">Other chronic disease</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/penyakit_kronisL:hint">Menunjukkan keterangan penyakit kronis</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/penyakit_kronisL:hint">Indicating information of other chronical disease that mother has</span>
+      <input type="text" name="/Register_Anc_Only/penyakit_kronisL" data-relevant="selected( /Register_Anc_Only/penyakit_kronis , 'lainnya')" data-type-xml="string" />
    </label>
    <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">LILA (cm)</span>
-      <span lang="" class="or-hint active">Menunjukkan lingkar lengan Ibu pada saat kunjungan ANC (cm)</span>
-      <input type="number" name="/Register_ANC_only/lila_cm" data-constraint=".&gt;0 and .&lt;200" data-type-xml="decimal" step="any" />
+      <span lang="Bahasa" class="question-label active" data-itext-id="/Register_Anc_Only/alergi:label">Alergi</span>
+      <span lang="en" class="question-label " data-itext-id="/Register_Anc_Only/alergi:label">Alergic</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/Register_Anc_Only/alergi:hint">Alergi yang dimiliki oleh Ibu (Isi NA jika tidak ada alergi)</span>
+      <span lang="en" class="or-hint " data-itext-id="/Register_Anc_Only/alergi:hint">Allergy that mother has (Write NA if mother has no allergy)</span>
+      <input type="text" name="/Register_Anc_Only/alergi" data-type-xml="string" />
    </label>
-   <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">TD (Sistolik)</span>
-      <span lang="" class="or-hint active">Menunjukkan tekanan darah (Sistolik) Ibu pada saat kunjungan ANC (mmHg)</span>
-      <input type="number" name="/Register_ANC_only/td_sistolik" data-constraint=".&gt;0 and .&lt;1000" data-type-xml="int" />
-   </label>
-   <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">TD (Diastolik)</span>
-      <span lang="" class="or-hint active">Menunjukkan tekanan darah (Diastolik) Ibu pada saat kunjungan ANC (mmHg)</span>
-      <input type="number" name="/Register_ANC_only/td_diastolik" data-constraint=".&gt;0 and .&lt;1000" data-type-xml="int" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Status Gizi ibu</span>
-            <span lang="" class="or-hint active">Menunjukkan status gizi Ibu pada saat kunjungan ANC (Kg)</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/status_gizi_ibu" data-name="/Register_ANC_only/status_gizi_ibu" value="kekurangan_energi_kronis" data-type-xml="select1" />
-               <span lang="" class="option-label active">Kekurangan Energi Kronis (KEK)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/status_gizi_ibu" data-name="/Register_ANC_only/status_gizi_ibu" value="normal" data-type-xml="select1" />
-               <span lang="" class="option-label active">Normal (N)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">TFU</span>
-      <span lang="" class="or-hint active">Menunjukkan Tinggi Fundus Uteri Ibu pada saat kunjungan ANC (cm)</span>
-      <input type="number" name="/Register_ANC_only/tfu" data-constraint=".&gt;0 and .&lt;50" data-relevant=" /Register_ANC_only/usia_klinis &gt;=20" data-type-xml="int" />
-   </label>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Refleks Patela Ibu</span>
-            <span lang="" class="or-hint active">Menunjukkan hasil pemeriksaan Refleks Patella Ibu pada saat kunjungan ANC</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/refleks_patela_ibu" data-name="/Register_ANC_only/refleks_patela_ibu" value="ada" data-relevant=" /Register_ANC_only/usia_klinis &gt;=20" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ada (+)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/refleks_patela_ibu" data-name="/Register_ANC_only/refleks_patela_ibu" value="tidak" data-relevant=" /Register_ANC_only/usia_klinis &gt;=20" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">DJJ</span>
-      <span lang="" class="or-hint active">Menunjukkan hasil perhitungan Denyut Jantung Janin per menit pada saat kunjungan ANC</span>
-      <input type="number" name="/Register_ANC_only/djj" data-constraint=".&gt;0 and .&lt;1000" data-relevant=" /Register_ANC_only/usia_klinis &gt;=20" data-type-xml="int" />
-   </label>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Kepala Janin Terhadap PAP</span>
-            <span class="required">*</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah kepala janin sudah masuk pintu atas panggul atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/kepala_terhadap_janin_pap" data-name="/Register_ANC_only/kepala_terhadap_janin_pap" value="masuk" required="required" data-relevant=" /Register_ANC_only/usia_klinis &gt;=20" data-type-xml="select1" />
-               <span lang="" class="option-label active">Masuk (M)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/kepala_terhadap_janin_pap" data-name="/Register_ANC_only/kepala_terhadap_janin_pap" value="belum_masuk" required="required" data-relevant=" /Register_ANC_only/usia_klinis &gt;=20" data-type-xml="select1" />
-               <span lang="" class="option-label active">Belum Masuk (BM)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="note non-select ">
-      <span lang="" class="question-label active">
-         Taksiran Berat Janin:
-         <span class="or-output" data-value=" /Register_ANC_only/taksiran_berat_janin " />
-      </span>
-      <span lang="" class="or-hint active">Menunjukkan berapa hasil perhitungan taksiran berat badan janin (gram)</span>
-      <input type="text" name="/Register_ANC_only/aaaaaa" data-type-xml="string" readonly="readonly" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Persentasi Janin</span>
-            <span lang="" class="or-hint active">Bagian terendah dari janin dalam perut ibu</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/persentasi_janin" data-name="/Register_ANC_only/persentasi_janin" value="kepala" data-type-xml="select1" />
-               <span lang="" class="option-label active">Kepala (KP)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/persentasi_janin" data-name="/Register_ANC_only/persentasi_janin" value="bokong___sungsang" data-type-xml="select1" />
-               <span lang="" class="option-label active">Bokong / Sungsang (BS)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/persentasi_janin" data-name="/Register_ANC_only/persentasi_janin" value="letak_lintang___obligue" data-type-xml="select1" />
-               <span lang="" class="option-label active">Letak Lintang / Obligue (LLO)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Jumlah Janin</span>
-            <span lang="" class="or-hint active">Berapa jumlah janin yang ada dalam uterus ibu</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/jumlah_janin" data-name="/Register_ANC_only/jumlah_janin" value="tunggal" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tunggal (T)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/jumlah_janin" data-name="/Register_ANC_only/jumlah_janin" value="ganda" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ganda (G)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-appearance-minimal ">
-      <span lang="" class="question-label active">Status Imunisasi TT</span>
-      <span lang="" class="or-hint active">Menunjukkan status Imunisasi TT yang diberikan kepada Ibu</span>
-      <select name="/Register_ANC_only/status_imunisasi_tt" data-name="/Register_ANC_only/status_imunisasi_tt" data-type-xml="select1">
-         <option value="">...</option>
-         <option value="tt_ke_0">TT Ke 0 (T0)</option>
-         <option value="tt_ke_1">TT ke 1 (T1)</option>
-         <option value="tt_ke_2">TT Ke 2 (T2)</option>
-         <option value="tt_ke_3__tt_ke_4">TT ke 3 (T3) TT ke 4 (TT4)</option>
-         <option value="tt_ke_ke_5">TT ke Ke 5 (TT5)</option>
-         <option value="lengkap">Ibu telah menerima imunisasi TT yang lengkap</option>
-      </select>
-      <span class="or-option-translations" style="display:none;" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Injeksi TT dilakukan</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah ibu mendapatkan suntik TT pada saat kunjungan ANC atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/pelayanan_injeksi_tt" data-name="/Register_ANC_only/pelayanan_injeksi_tt" value="jika_dilakukan" data-type-xml="select1" />
-               <span lang="" class="option-label active">JIka dilakukan (v)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/pelayanan_injeksi_tt" data-name="/Register_ANC_only/pelayanan_injeksi_tt" value="jika_tidak_dilakukan" data-type-xml="select1" />
-               <span lang="" class="option-label active">Jika tidak dilakukan (x)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Catat di Buku Kia</span>
-            <span lang="" class="or-hint active">Semua hasil pemeriksaan dicatat dibuku KIA</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/pelayanan_catat_buku_kia" data-name="/Register_ANC_only/pelayanan_catat_buku_kia" value="jika_dilakukan" data-type-xml="select1" />
-               <span lang="" class="option-label active">JIka dilakukan (v)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/pelayanan_catat_buku_kia" data-name="/Register_ANC_only/pelayanan_catat_buku_kia" value="jika_tidak_dilakukan" data-type-xml="select1" />
-               <span lang="" class="option-label active">Jika Tidak dilakukan (x)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Pelayanan Fe dilakukan</span>
-            <span lang="" class="or-hint active">Menunjukkan pelayanan Fe dilakukan atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/pelayananfe" data-name="/Register_ANC_only/pelayananfe" value="Ya" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ya</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/pelayananfe" data-name="/Register_ANC_only/pelayananfe" value="Tidak" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">Jumlah Fe yang diberikan</span>
-      <span lang="" class="or-hint active">Menunjukkan jumlah Fe yang diberikan saat kunjungan ANC (tab/botol)</span>
-      <input type="number" name="/Register_ANC_only/pelayanan_fe" data-constraint=".&gt;0 and .&lt;100" data-relevant=" /Register_ANC_only/pelayananfe ='Ya'" data-type-xml="int" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Apakah Anda melakukan pemeriksaan Laboratorium?</span>
-            <span lang="" class="or-hint active">Menunjukan apakah Ibu melakukan pemeriksaan laboratorium terkait Hb, Protein Uria, Gula Darah, Thalasemia dan Sifilis</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/Labcheck" data-name="/Register_ANC_only/Labcheck" value="Ya" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ya</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/Labcheck" data-name="/Register_ANC_only/Labcheck" value="Tidak" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Periksa Hb dilakukan</span>
-            <span class="required">*</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah Ibu melakukan sudah pemeriksaan Hb di laboratorium atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_periksa_hb_dilakukan" data-name="/Register_ANC_only/laboratorium_periksa_hb_dilakukan" value="Ya" required="required" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">JIka dilakukan (v)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_periksa_hb_dilakukan" data-name="/Register_ANC_only/laboratorium_periksa_hb_dilakukan" value="Tidak" required="required" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Jika Tidak dilakukan (x)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">Hasil periksa Hb</span>
-      <span lang="" class="or-hint active">Hasil pemeriksaan Hb Ibu dari laboratorium</span>
-      <input type="number" name="/Register_ANC_only/laboratorium_periksa_hb_hasil" data-constraint=".&gt;0 and .&lt;1000" data-relevant=" /Register_ANC_only/laboratorium_periksa_hb_dilakukan  = 'Ya'" data-type-xml="int" />
-   </label>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Anemia?</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah Ibu mengalami anemia atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_periksa_hb_anemia" data-name="/Register_ANC_only/laboratorium_periksa_hb_anemia" value="positif" data-relevant=" /Register_ANC_only/laboratorium_periksa_hb_dilakukan  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Positif (+)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_periksa_hb_anemia" data-name="/Register_ANC_only/laboratorium_periksa_hb_anemia" value="negatif" data-relevant=" /Register_ANC_only/laboratorium_periksa_hb_dilakukan  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Negatif (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Protein Uria</span>
-            <span lang="" class="or-hint active">Menunjukkan kadar protein pada urine Ibu</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_protein_uria" data-name="/Register_ANC_only/laboratorium_protein_uria" value="positif" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Positif (+)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_protein_uria" data-name="/Register_ANC_only/laboratorium_protein_uria" value="negatif" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Negatif (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Gula Darah</span>
-            <span lang="" class="or-hint active">Menunjukkan tingkat gula darah Ibu apakah &gt;140 mg/dl atau &lt; 140 mg/dl</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_gula_darah" data-name="/Register_ANC_only/laboratorium_gula_darah" value="&gt;_140_mg_dl" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">&gt; 140 mg/dl (+)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_gula_darah" data-name="/Register_ANC_only/laboratorium_gula_darah" value="&lt;_140_mg_dl" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">&lt; 140 mg/dl (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Thalasemia</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah Ibu mengidap penyakit Thalasemia atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_thalasemia" data-name="/Register_ANC_only/laboratorium_thalasemia" value="positif" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Positif (+)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_thalasemia" data-name="/Register_ANC_only/laboratorium_thalasemia" value="negatif" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Negatif (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Sifilis</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah Ibu mengidap Sifilis atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_sifilis" data-name="/Register_ANC_only/laboratorium_sifilis" value="positif" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Positif (+)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_sifilis" data-name="/Register_ANC_only/laboratorium_sifilis" value="negatif" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Negatif (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">HbsAg</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah ibu mengidap Hepatitis B surface Antigen</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_hbsag" data-name="/Register_ANC_only/laboratorium_hbsag" value="positif" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Positif (+)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/laboratorium_hbsag" data-name="/Register_ANC_only/laboratorium_hbsag" value="negatif" data-relevant=" /Register_ANC_only/Labcheck ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Negatif (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Apakah Anda melakukan Integrasi Program terhadap Ibu Hamil?</span>
-            <span lang="" class="or-hint active">Menunjukan detail Integrasi Program yang diberikan kepada Ibu hamil</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/program_integration" data-name="/Register_ANC_only/program_integration" value="Ya" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ya</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/program_integration" data-name="/Register_ANC_only/program_integration" value="Tidak" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">VCT</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah Ibu melakukan Voluntary Counseling Test atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_pmtct_vct" data-name="/Register_ANC_only/integrasi_program_pmtct_vct" value="jika_dilakukan" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">JIka dilakukan (v)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_pmtct_vct" data-name="/Register_ANC_only/integrasi_program_pmtct_vct" value="jika_tidak_dilakukan" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Jika Tidak dilakukan (x)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Periksa Darah untuk uji PMTCT</span>
-            <span lang="" class="or-hint active">Menunjukkan jika Ibu melakukan Pemeriksaan Darah untuk Uji PMTCT atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_pmtct_periksa_darah" data-name="/Register_ANC_only/integrasi_program_pmtct_periksa_darah" value="jika_dilakukan" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">JIka dilakukan (v)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_pmtct_periksa_darah" data-name="/Register_ANC_only/integrasi_program_pmtct_periksa_darah" value="jika_tidak_dilakukan" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Jika Tidak dilakukan (x)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Serologi</span>
-            <span lang="" class="or-hint active">Menunjukkan hasil pemeriksaan Serologi pada Ibu hamil</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_pmtct_serologi" data-name="/Register_ANC_only/integrasi_program_pmtct_serologi" value="positif" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Positif (+)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_pmtct_serologi" data-name="/Register_ANC_only/integrasi_program_pmtct_serologi" value="negatif" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Negatif (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">ARV Profilaksis</span>
-      <span lang="" class="or-hint active">Menunjukkan jenis obat yang diberikan pada Ibu yang mengalami PMTCT</span>
-      <input type="text" name="/Register_ANC_only/integrasi_program_pmtct_arv" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="string" />
-   </label>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Periksa Darah untuk uji Malaria</span>
-            <span class="required">*</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah ibu melakukan Pemeriksaan Darah, yang bertujuan memastikan apakah ada parasit penyebab Malaria dalam darah Ibu</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_malaria_periksa_darah" data-name="/Register_ANC_only/integrasi_program_malaria_periksa_darah" value="Ya" required="required" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">JIka dilakukan (v)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_malaria_periksa_darah" data-name="/Register_ANC_only/integrasi_program_malaria_periksa_darah" value="Tidak" required="required" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Jika Tidak dilakukan (x)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Malaria</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah ibu mengidap Malaria atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_malaria_malaria" data-name="/Register_ANC_only/integrasi_program_malaria_malaria" value="positif" data-relevant=" /Register_ANC_only/integrasi_program_malaria_periksa_darah  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Positif (+)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_malaria_malaria" data-name="/Register_ANC_only/integrasi_program_malaria_malaria" value="negatif" data-relevant=" /Register_ANC_only/integrasi_program_malaria_periksa_darah  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Negatif (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Obat malaria</span>
-            <span lang="" class="or-hint active">Menunjukkan jenis obat Malaria yang diberikan ke Ibu</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_malaria_obat" data-name="/Register_ANC_only/integrasi_program_malaria_obat" value="ZDV" data-relevant=" /Register_ANC_only/integrasi_program_malaria_periksa_darah  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">(ZDV)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_malaria_obat" data-name="/Register_ANC_only/integrasi_program_malaria_obat" value="NVP" data-relevant=" /Register_ANC_only/integrasi_program_malaria_periksa_darah  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">(NVP)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_malaria_obat" data-name="/Register_ANC_only/integrasi_program_malaria_obat" value="TC" data-relevant=" /Register_ANC_only/integrasi_program_malaria_periksa_darah  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">(TC)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Memasang kelambu berinsektisida</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah Ibu memasang kelambu berinsektisida atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_malaria_kelambu" data-name="/Register_ANC_only/integrasi_program_malaria_kelambu" value="jika_dilakukan" data-relevant=" /Register_ANC_only/integrasi_program_malaria_periksa_darah  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">JIka dilakukan (v)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_malaria_kelambu" data-name="/Register_ANC_only/integrasi_program_malaria_kelambu" value="jika_tidak_dilakukan" data-relevant=" /Register_ANC_only/integrasi_program_malaria_periksa_darah  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Jika Tidak dilakukan (x)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Periksa dahak</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah Ibu melakukan Pemeriksaan Dahak untuk tes TB</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_tb_dahak" data-name="/Register_ANC_only/integrasi_program_tb_dahak" value="Ya" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">JIka dilakukan (v)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_tb_dahak" data-name="/Register_ANC_only/integrasi_program_tb_dahak" value="Tidak" data-relevant=" /Register_ANC_only/program_integration ='Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Jika Tidak dilakukan (x)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">TBC</span>
-            <span lang="" class="or-hint active">Menunjukkan apakah Ibu mengidap TBC atau tidak</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_tb_tbc" data-name="/Register_ANC_only/integrasi_program_tb_tbc" value="positif" data-relevant=" /Register_ANC_only/integrasi_program_tb_dahak  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Positif (+)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_tb_tbc" data-name="/Register_ANC_only/integrasi_program_tb_tbc" value="negatif" data-relevant=" /Register_ANC_only/integrasi_program_tb_dahak  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Negatif (-)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Obat TBC</span>
-            <span lang="" class="or-hint active">Menunjukkan nama obat TBC yang diberikan kepada Ibu</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_tb_obat" data-name="/Register_ANC_only/integrasi_program_tb_obat" value="rifampisin" data-relevant=" /Register_ANC_only/integrasi_program_tb_dahak  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Rifampisin (R)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_tb_obat" data-name="/Register_ANC_only/integrasi_program_tb_obat" value="inh" data-relevant=" /Register_ANC_only/integrasi_program_tb_dahak  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">INH (H)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_tb_obat" data-name="/Register_ANC_only/integrasi_program_tb_obat" value="pyrazinamid" data-relevant=" /Register_ANC_only/integrasi_program_tb_dahak  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Pyrazinamid (Z)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/integrasi_program_tb_obat" data-name="/Register_ANC_only/integrasi_program_tb_obat" value="etahmbutol" data-relevant=" /Register_ANC_only/integrasi_program_tb_dahak  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Etahmbutol</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-appearance-minimal ">
-      <span lang="" class="question-label active">Resiko terdeteksi pertama kali oleh</span>
-      <span lang="" class="or-hint active">Pendeteksi pertama komplikasi pada kehamilan Ibu</span>
-      <select name="/Register_ANC_only/resiko_terdeksi_pertama_kali" data-name="/Register_ANC_only/resiko_terdeksi_pertama_kali" data-type-xml="select1">
-         <option value="">...</option>
-         <option value="pasien">Pasien (P)</option>
-         <option value="keluarga">Keluarga (K)</option>
-         <option value="masyarakat">Masyarakat (M)</option>
-         <option value="dukun">Dukun (D)</option>
-         <option value="kader">Kader (K)</option>
-         <option value="bidan">Bidan (B)</option>
-         <option value="dokter">Dokter (D)</option>
-         <option value="DSOG">Dokter Spesialis Obsestri dan Gemotologi (DSOG)</option>
-         <option value="tidak_ada">Tidak ada resiko terdeteksi</option>
-      </select>
-      <span class="or-option-translations" style="display:none;" />
-   </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Komplikasi dalam kehamilan</span>
-            <span lang="" class="or-hint active">Menunjukkan komplikasi kehamilan pada Ibu</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="hipertensi_dalam_kehamilan" data-type-xml="select" />
-               <span lang="" class="option-label active">Hipertensi dalam Kehamilan (HDK)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="abortus" data-type-xml="select" />
-               <span lang="" class="option-label active">Abortus (AS)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="mola" data-type-xml="select" />
-               <span lang="" class="option-label active">Mola (ML)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="kehamilan_ektopit_terganggu" data-type-xml="select" />
-               <span lang="" class="option-label active">Kehamilan Ektopit Terganggu (KET)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="hemoragi_post_partum" data-type-xml="select" />
-               <span lang="" class="option-label active">Hemoragi Post Partum (HPP)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="ante_partum_beleding" data-type-xml="select" />
-               <span lang="" class="option-label active">Ante Partum Beleding (APB)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="injeksi_jalan_lahir" data-type-xml="select" />
-               <span lang="" class="option-label active">Injeksi Jalan Lahir (IJL)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="partum_kasep" data-type-xml="select" />
-               <span lang="" class="option-label active">Partum Kasep (PK)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="partus_lama" data-type-xml="select" />
-               <span lang="" class="option-label active">Partus Lama (PL)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="demam_berdarah" data-type-xml="select" />
-               <span lang="" class="option-label active">Demam Berdarah (DB)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="tifus_abdominalis" data-type-xml="select" />
-               <span lang="" class="option-label active">Tifus Abdominalis (TA)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="sepsis" data-type-xml="select" />
-               <span lang="" class="option-label active">Sepsis (S)</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/Register_ANC_only/komplikasi_dalam_kehamilan" value="tidak_ada_komplikasi" data-type-xml="select" />
-               <span lang="" class="option-label active">Tidak ada komplikasi kehamilan</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Apakah Anda merujuk Ibu hamil ke fasilitas kesehatan lainnya?</span>
-            <span lang="" class="or-hint active">Menunjukkan bahwa bidan merujuk ibu hamil ke ke tempat fasilitas kesehatan lainnya</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/rujukan" data-name="/Register_ANC_only/rujukan" value="Ya" data-type-xml="select1" />
-               <span lang="" class="option-label active">Ya</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/rujukan" data-name="/Register_ANC_only/rujukan" value="Tidak" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-appearance-minimal  or-branch pre-init ">
-      <span lang="" class="question-label active">Dirujuk ke</span>
-      <span lang="" class="or-hint active">Lokasi tujuan rujukan Ibu jika mengalami komplikasi kehamilan</span>
-      <select name="/Register_ANC_only/dirujuk_ke" data-name="/Register_ANC_only/dirujuk_ke" data-relevant=" /Register_ANC_only/rujukan  = 'Ya'" data-type-xml="select1">
-         <option value="">...</option>
-         <option value="pusat_kesehatan_masyarakat">Pusat Kesehatan Masyarakat (Puskesmas )</option>
-         <option value="rumah_bersalin">Rumah Bersalin (RB)</option>
-         <option value="rumah_sakit_ibu_dan_anak">Rumah Sakit Ibu dan Anak (RSIA)</option>
-         <option value="rumah_sakit">Rumah Sakit (RS)</option>
-         <option value="lain_lain">Lain-lain (LN)</option>
-      </select>
-      <span class="or-option-translations" style="display:none;" />
-   </label>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">Lain-lain</span>
-      <span lang="" class="or-hint active">Diisi dengan lokasi tujuan rujukan selain yang disebutkan jika Ibu mengalami komplikasi kehamilan</span>
-      <input type="text" name="/Register_ANC_only/dirujuk_keL" data-relevant=" /Register_ANC_only/dirujuk_ke  = 'lain_lain'" data-type-xml="string" />
-   </label>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Keadaan Ibu saat tiba</span>
-            <span lang="" class="or-hint active">Keadaan saat Ibu tiba tempat rujukan</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/keadaan_ibu_saat_tiba" data-name="/Register_ANC_only/keadaan_ibu_saat_tiba" value="hidup" data-relevant=" /Register_ANC_only/rujukan  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Hidup (H)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/keadaan_ibu_saat_tiba" data-name="/Register_ANC_only/keadaan_ibu_saat_tiba" value="mati" data-relevant=" /Register_ANC_only/rujukan  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Mati (M)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Keadaan Ibu saat pulang</span>
-            <span lang="" class="or-hint active">Keadaan saat Ibu pulang dari tempat rujukan</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/keadaan_ibu_saat_pulang" data-name="/Register_ANC_only/keadaan_ibu_saat_pulang" value="hidup" data-relevant=" /Register_ANC_only/rujukan  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Hidup (H)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/Register_ANC_only/keadaan_ibu_saat_pulang" data-name="/Register_ANC_only/keadaan_ibu_saat_pulang" value="mati" data-relevant=" /Register_ANC_only/rujukan  = 'Ya'" data-type-xml="select1" />
-               <span lang="" class="option-label active">Mati (M)</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="question-label active">Keterangan</span>
-      <span lang="" class="or-hint active">Diisi dengan keterangan berkaitan dengan rujukan</span>
-      <input type="text" name="/Register_ANC_only/keterangan" data-relevant=" /Register_ANC_only/rujukan  = 'Ya'" data-type-xml="string" />
-   </label>
-   <fieldset class="question or-branch pre-init ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">
-               masuk kategori RT (Resiko Tinggi), karena:
-               <span class="or-output" data-value=" /Register_ANC_only/high_risk_reason " />
-               ,
-               <span class="or-output" data-value=" /Register_ANC_only/high_risk_pregnancy_reason " />
-               ,
-               <span class="or-output" data-value=" /Register_ANC_only/high_risk_labour_reason " />
-               <span class="or-output" data-value=" /Register_ANC_only/other_risk_reason " />
-            </span>
-            <span class="required">*</span>
-         </legend>
-         <div class="option-wrapper">
-            <label>
-               <input value="OK" type="radio" name="/Register_ANC_only/high_risk_note" required="required" data-relevant=" /Register_ANC_only/is_high_risk_pregnancy  = 'yes' or  /Register_ANC_only/is_high_risk  = 'yes' or  /Register_ANC_only/is_high_risk_labour  = 'yes' or  /Register_ANC_only/is_other_risk  = 'yes' or  /Register_ANC_only/is_high_risk  = 'yes' or  /Register_ANC_only/is_high_risk_pregnancy  = 'yes' or  /Register_ANC_only/is_high_risk_labour  = 'yes'" data-type-xml="string" />
-               <span class="option-label active" lang="">OK</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
    <fieldset id="or-preload-items" style="display:none;">
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+         <input type="hidden" name="/Register_Anc_Only/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+         <input type="hidden" name="/Register_Anc_Only/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
+         <input type="hidden" name="/Register_Anc_Only/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
       </label>
    </fieldset>
    <fieldset id="or-calculated-items" style="display:none;">
@@ -1173,124 +340,73 @@
          <input autocomplete="off" type="hidden" name="/Register_ANC_only/reg_date" data-calculate=" /Register_ANC_only/today " data-type-xml="date" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/edd" data-calculate="date( /Register_ANC_only/tanggal_hpht +280)" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/edd" data-calculate="date( /Register_Anc_Only/hpht +280)" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/htp" data-calculate="format-date( /Register_ANC_only/edd , '%Y-%n-%e')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/htp" data-calculate="format-date( /Register_Anc_Only/edd , '%Y-%n-%e')" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/usia_klinis" data-calculate="int((( /Register_ANC_only/today  -  /Register_ANC_only/tanggal_hpht ) div 7)+1)" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/usia_klinis" data-calculate="int((( /Register_Anc_Only/today  -  /Register_Anc_Only/hpht ) div 7)+1)" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/trimester_ke" data-calculate="if(( /Register_ANC_only/usia_klinis &lt;='14'), 1, (if( /Register_ANC_only/usia_klinis &gt;='15' and  /Register_ANC/usia_klinis &lt;='28', 2, (if( /Register_ANC_only/usia_klinis &gt;'29', 3, '')))))" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/trimester_ke" data-calculate="if(( /Register_Anc_Only/usia_klinis &lt;'14'), 1, (if( /Register_Anc_Only/usia_klinis &gt;='14' and  /Register_Anc_Only/usia_klinis &lt;='28', 2, (if( /Register_Anc_Only/usia_klinis &gt;'28', 3, '')))))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/taksiran_berat_janin" data-calculate="if(selected( /Register_ANC_only/kepala_terhadap_janin_pap ,'masuk'), (( /Register_ANC_only/tfu -11)*155), (if(selected( /Register_ANC_only/kepala_terhadap_janin_pap ,'belum_masuk'), (( /Register_ANC_only/tfu -12)*155), 0)))" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_Labour_TB_risk" data-calculate="if( /Register_Anc_Only/tb_cm  &lt;= 145, 'yes', 'no')" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Protein_energy_Malnutrition_risk" data-calculate="if( /Register_ANC_only/lila_cm  &lt; 23.5, 'kekurangan_energi_kronis', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_Labour_Section_Cesarea_record_risk" data-calculate="(if(selected( /Register_Anc_Only/riwayat_komplikasi_kebidanan ,'riwayat_sc'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/anemia_risk" data-calculate="if( /Register_ANC_only/laboratorium_periksa_hb_hasil  &gt;= 7 and  /Register_ANC_only/laboratorium_periksa_hb_hasil  &lt; 11, 'anemia', (if ( /Register_ANC_only/laboratorium_periksa_hb_hasil  &lt; 7, 'severe_anemia', '')))" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/Other_Risk_Mola_Hidatidosa" data-calculate="(if(selected( /Register_Anc_Only/riwayat_komplikasi_kebidanan ,'mola'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/PIH_risk" data-calculate="if( /Register_ANC_only/td_sistolik  &gt;= 140 or  /Register_ANC_only/td_diastolik  &gt;= 90, 'PIH', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/Other_Risk_congenital_abnormality" data-calculate="(if(selected( /Register_Anc_Only/riwayat_komplikasi_kebidanan ,'cacat_kongenital'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/diabetes_risk" data-calculate="if( /Register_ANC_only/laboratorium_gula_darah  = '&gt;_140_mg_dl', 'Diabetes', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/Other_Risk_early_waterbreak" data-calculate="(if(selected( /Register_Anc_Only/riwayat_komplikasi_kebidanan ,'kpd'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/fetus_number_risk" data-calculate="if( /Register_ANC_only/jumlah_janin  ='ganda', 'Kelainan jumlah janin', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_cardiovascular_Disease_Record" data-calculate="(if(selected( /Register_Anc_Only/penyakit_kronis ,'kelainan_jantung'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/fetus_size_risk" data-calculate="if( /Register_ANC_only/taksiran_berat_janin  &gt;4000, 'Kelainan Berat janin', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_kidney_disorder" data-calculate="(if(selected( /Register_Anc_Only/penyakit_kronis ,'kelainan_ginjal'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/fetus_Malpresentation_risk" data-calculate="if( /Register_ANC_only/persentasi_janin  ='bokong___sungsang' or  /Register_ANC_only/persentasi_janin  ='letak_lintang___obligue', 'Malpresentasi janin', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_Heart_Disorder" data-calculate="(if(selected( /Register_Anc_Only/penyakit_kronis ,'kelainan_hati'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/TBC_risk" data-calculate="if( /Register_ANC_only/integrasi_program_tb_tbc  ='positif', 'Tuberculosis', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_Asthma" data-calculate="(if(selected( /Register_Anc_Only/penyakit_kronis ,'asma'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/malaria_risk" data-calculate="if( /Register_ANC_only/integrasi_program_malaria_malaria  ='positif', 'Malaria', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_Tuberculosis" data-calculate="(if(selected( /Register_Anc_Only/penyakit_kronis ,'tbc'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/TB_risk" data-calculate="if( /Register_ANC_only/tb_cm  &lt;= 145, 'Tinggi_badan_kurang', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_Malaria" data-calculate="(if(selected( /Register_Anc_Only/penyakit_kronis ,'malaria'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Too_many_children_risk" data-calculate="if( /Register_ANC_only/partus  &gt;3, 'Anak Lebih dari 3', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_HIV_AIDS" data-calculate="(if(selected( /Register_Anc_Only/penyakit_kronis ,'hiv_aids'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/abortus_risk" data-calculate="if( /Register_ANC_only/abortus  &gt; 3, 'Riwayat aborsi', '')" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk__STI_BBVs" data-calculate="(if(selected( /Register_Anc_Only/penyakit_kronis ,'STI/BBVs'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Section_Cesarea_record_risk" data-calculate="(if(selected( /Register_ANC_only/riwayat_komplikasi_kebidanan ,'riwayat_sc'), 'Riwayat SC',''))" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_Ectopic_Pregnancy" data-calculate="(if(selected( /Register_Anc_Only/riwayat_komplikasi_kebidanan ,'ket'), 'yes','no'))" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/STI_BBVs_risk" data-calculate="(if(selected( /Register_ANC_only/penyakit_kronis ,'STI/BBVs'), 'STI/BBVs',''))" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_Pregnancy_Protein_energy_Malnutrition" data-calculate="if( /Register_Anc_Only/lila_cm  &lt; 23.5, 'yes', 'no')" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Ectopic_Pregnancy_risk" data-calculate="(if(selected( /Register_ANC_only/riwayat_komplikasi_kebidanan ,'ket'), 'KET',''))" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_Pregnancy_Too_many_children" data-calculate="if( /Register_Anc_Only/partus  &gt;3, 'yes', 'no')" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Mola_Hidatidosa_risk" data-calculate="(if(selected( /Register_ANC_only/riwayat_komplikasi_kebidanan ,'mola'), 'mola',''))" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/High_Risk_Pregnancy_abortus" data-calculate="if( /Register_Anc_Only/abortus  &gt; 3, 'yes', 'no')" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/congenital_abnormality_risk" data-calculate="(if(selected( /Register_ANC_only/riwayat_komplikasi_kebidanan ,'cacat_kongenital'), 'cacat_kongenital',''))" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/early_waterbreak_risk" data-calculate="(if(selected( /Register_ANC_only/riwayat_komplikasi_kebidanan ,'kpd'), 'kpd',''))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Cardiovascular_Disease_Record_risk" data-calculate="(if(selected( /Register_ANC_only/penyakit_kronis ,'kelainan_jantung'), 'kelainan_jantung',''))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Kidney_Disorder_risk" data-calculate="(if(selected( /Register_ANC_only/penyakit_kronis ,'kelainan_ginjal'), 'kelainan_ginjal',''))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Heart_Disorder_risk" data-calculate="(if(selected( /Register_ANC_only/penyakit_kronis ,'kelainan_hati'), 'kelainan_hati',''))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Asthma_risk" data-calculate="(if(selected( /Register_ANC_only/penyakit_kronis ,'asma'), 'asma',''))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Tuberculosis_risk" data-calculate="(if(selected( /Register_ANC_only/penyakit_kronis ,'tbc'), 'tbc',''))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/Malaria_risk" data-calculate="(if(selected( /Register_ANC_only/penyakit_kronis ,'malaria'), 'malaria',''))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/HIV_AIDS_risk" data-calculate="(if(selected( /Register_ANC_only/penyakit_kronis ,'hiv_aids'), 'hiv_aids',''))" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/is_high_risk" data-calculate="if(( /Register_ANC_only/Cardiovascular_Disease_Record_risk  != '' or  /Register_ANC_only/Kidney_Disorder_risk  != '' or  /Register_ANC_only/Heart_Disorder_risk  != '' or  /Register_ANC_only/Asthma_risk  != '' or  /Register_ANC_only/Tuberculosis_risk  != '' or  /Register_ANC_only/Malaria_risk  != '' or  /Register_ANC_only/HIV_AIDS_risk  != '' or  /Register_ANC_only/STI_BBVs_risk  != '' or  /Register_ANC_only/Ectopic_Pregnancy_risk  != ''or  /Register_ANC_only/TBC_risk  !='' or  /Register_ANC_only/malaria_risk  !=''), 'yes', 'no')" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/high_risk_reason" data-calculate="concat( /Register_ANC_only/Cardiovascular_Disease_Record_risk , ' ',  /Register_ANC_only/Kidney_Disorder_risk , ' ',  /Register_ANC_only/Heart_Disorder_risk , ' ',  /Register_ANC_only/Asthma_risk , ' ',  /Register_ANC_only/Tuberculosis_risk , ' ',  /Register_ANC_only/Malaria_risk , ' ',  /Register_ANC_only/HIV_AIDS_risk , ' ',  /Register_ANC_only/STI_BBVs_risk , ' ',  /Register_ANC_only/Ectopic_Pregnancy_risk , ' ',  /Register_ANC_only/TBC_risk , ' ',  /Register_ANC_only/malaria_risk )" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/is_high_risk_pregnancy" data-calculate="if(( /Register_ANC_only/Too_many_children_risk  != '' or  /Register_ANC_only/Protein_energy_Malnutrition_risk  != '' or  /Register_ANC_only/abortus_risk  != '' or  /Register_ANC_only/Protein_energy_Malnutrition_risk  != '' or  /Register_ANC_only/anemia_risk  != '' or  /Register_ANC_only/PIH_risk  != '' or  /Register_ANC_only/diabetes_risk  != ''), 'yes', 'no')" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/high_risk_pregnancy_reason" data-calculate="concat( /Register_ANC_only/Too_many_children_risk , ' ,',  /Register_ANC_only/Protein_energy_Malnutrition_risk , ' ,',  /Register_ANC_only/abortus_risk , ' ,',  /Register_ANC_only/Protein_energy_Malnutrition_risk , ' ,',  /Register_ANC_only/anemia_risk , ' ,',  /Register_ANC_only/PIH_risk , ' ,',  /Register_ANC_only/diabetes_risk )" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/is_high_risk_labour" data-calculate="if(( /Register_ANC_only/TB_risk  !='' or  /Register_ANC_only/Section_Cesarea_record_risk  !='' or  /Register_ANC_only/fetus_number_risk  != '' or  /Register_ANC_only/fetus_size_risk  != '' or  /Register_ANC_only/fetus_Malpresentation_risk  != '' or  /Register_ANC_only/PIH_risk  != ''), 'yes', 'no')" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/high_risk_labour_reason" data-calculate="concat( /Register_ANC_only/TB_risk , ' ,',  /Register_ANC_only/Section_Cesarea_record_risk , ' ,',  /Register_ANC_only/fetus_number_risk , ' ,',  /Register_ANC_only/fetus_size_risk , ' ,',  /Register_ANC_only/fetus_Malpresentation_risk , ' ,',  /Register_ANC_only/PIH_risk )" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/is_other_risk" data-calculate="if(( /Register_ANC_only/Mola_Hidatidosa_risk  != '' or  /Register_ANC_only/congenital_abnormality_risk  != '' or  /Register_ANC_only/early_waterbreak_risk  != ''), 'yes', 'no')" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/other_risk_reason" data-calculate="concat( /Register_ANC_only/Mola_Hidatidosa_risk , ' ,',  /Register_ANC_only/congenital_abnormality_risk , ' ,',  /Register_ANC_only/early_waterbreak_risk )" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/Register_ANC_only/formhub/uuid" data-calculate="'261358bf0088451996eaef09b8167aa6'" data-type-xml="string" />
+         <input type="hidden" name="/Register_Anc_Only/formhub/uuid" data-calculate="'2235853d4e6b4add9add671488fd7dd3'" data-type-xml="string" />
       </label>
    </fieldset>
 </form>

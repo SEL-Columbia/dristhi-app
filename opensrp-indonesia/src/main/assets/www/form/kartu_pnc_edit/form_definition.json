@@ -30,6 +30,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "keadaanBayi",
+        "bind": "/model/instance/dokumentasi_persalinan/keadaan_bayi",
+        "shouldLoadValue": true
+      },
+      {
         "name": "persalinan",
         "bind": "/model/instance/dokumentasi_persalinan/persalinan",
         "shouldLoadValue": true
@@ -132,6 +137,11 @@
       {
         "name": "alamatBersalin",
         "bind": "/model/instance/dokumentasi_persalinan/alamat_bersalin",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kepemilikanBukuKia",
+        "bind": "/model/instance/dokumentasi_persalinan/kepemilikan_buku_kia",
         "shouldLoadValue": true
       },
       {

@@ -1,458 +1,55 @@
 <model>
   <instance>
-    <dokumentasi_persalinan id="dokumentasi_persalinan" version="201506090948">
+    <dokumentasi_persalinan encounter_type="Dokumentasi Persalinan" id="dokumentasi_persalinan" version="201510220739">
       <formhub>
-        <uuid />
+        <uuid/>
       </formhub>
-      <start />
-      <today />
-      <reg_date />
-      <deviceid />
-      <simserial />
-      <phonenumber />
-      <keadaan_ibu />
-      <persalinan />
-      <tanggal__kala_i_aktif />
-      <jam__kala_i_aktif />
-      <tanggal__kala_ii />
-      <jam__kala_ii />
-      <tanggal__plasenta_lahir />
-      <jam__plasenta_lahir />
-      <perdarahan_kala_iv_2_jam_postpartum />
-      <persentasi />
-      <tempat_bersalin />
-      <penolong />
-      <penolonglain-lain_ln />
-      <cara_persalinan_ibu />
-      <manajemen_aktif_kala_iii />
-      <pelayanan />
-      <integrasi_program />
-      <komplikasi />
-      <komplikasilain-lain />
-      <dirujuk_ke />
-      <dirujuk_kelain-lain />
-      <alamat_bersalin />
-      <end />
+      <start/>
+      <today/>
+      <deviceid/>
+      <simserial/>
+      <phonenumber/>
+      <generated_note_name_7/>
+      <hpht/>
+      <usiakehamilan/>
+      <usia_kehamilan_hpht/>
+      <keadaan_ibu/>
+      <keadaan_bayi/>
+      <persalinan/>
+      <tanggal__kala_i_aktif/>
+      <jam__kala_i_aktif/>
+      <tanggal__kala_ii/>
+      <jam__kala_ii/>
+      <tanggal__plasenta_lahir/>
+      <jam__plasenta_lahir/>
+      <perdarahan_kala_iv_2_jam_postpartum/>
+      <persentasi/>
+      <tempat/>
+      <penolong/>
+      <penolong_lain_lain/>
+      <cara_persalinan_ibu/>
+      <manajemen_aktif_kala_iii/>
+      <pelayanan/>
+      <integrasi_program/>
+      <komplikasi/>
+      <komplikasilain-lain/>
+      <dirujuk_ke/>
+      <dirujuk_ke_lain_lain/>
+      <alamat_bersalin/>
+      <kepemilikan_buku_kia/>
+      <high_risk_postPartum_distosia/>
+      <high_risk_postPartum_PIH/>
+      <high_risk_postPartum_Hemorrhage/>
+      <high_risk_postPartum_infection/>
+      <high_risk_postPartum_maternal_sepsis/>
+      <high_risk_postPartum_Pre-eclampsia_eclampsia/>
+      <high_risk_postPartum_vacum/>
+      <high_risk_postPartum_forceps/>
+      <high_risk_postPartum_Sectio_Caesaria/>
+      <end/>
       <meta>
-        <instanceID />
+        <instanceID/>
       </meta>
     </dokumentasi_persalinan>
-  </instance>
-  <instance id="individual_accompanying_during_labor">
-    <root>
-      <item>
-        <itextId>static_instance-individual_accompanying_during_labor-0</itextId>
-        <name>suami</name>
-      </item>
-      <item>
-        <itextId>static_instance-individual_accompanying_during_labor-1</itextId>
-        <name>keluaga</name>
-      </item>
-      <item>
-        <itextId>static_instance-individual_accompanying_during_labor-2</itextId>
-        <name>teman</name>
-      </item>
-      <item>
-        <itextId>static_instance-individual_accompanying_during_labor-3</itextId>
-        <name>tetangga</name>
-      </item>
-      <item>
-        <itextId>static_instance-individual_accompanying_during_labor-4</itextId>
-        <name>lain-lain</name>
-      </item>
-      <item>
-        <itextId>static_instance-individual_accompanying_during_labor-5</itextId>
-        <name>tidak_ada</name>
-      </item>
-    </root>
-  </instance>
-
-  <instance id="management_of_active_stage_iii">
-    <root>
-      <item>
-        <itextId>static_instance-management_of_active_stage_iii-0</itextId>
-        <name>injeksi_oksittosin</name>
-      </item>
-      <item>
-        <itextId>static_instance-management_of_active_stage_iii-1</itextId>
-        <name>peregangan_tali_pusat</name>
-      </item>
-      <item>
-        <itextId>static_instance-management_of_active_stage_iii-2</itextId>
-        <name>masase_fundus_uteri</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="ways_of_mother_delivery">
-    <root>
-      <item>
-        <itextId>static_instance-ways_of_mother_delivery-0</itextId>
-        <name>normal</name>
-      </item>
-      <item>
-        <itextId>static_instance-ways_of_mother_delivery-1</itextId>
-        <name>vacum</name>
-      </item>
-      <item>
-        <itextId>static_instance-ways_of_mother_delivery-2</itextId>
-        <name>forceps</name>
-      </item>
-      <item>
-        <itextId>static_instance-ways_of_mother_delivery-3</itextId>
-        <name>sectio_caesaria</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="service">
-    <root>
-      <item>
-        <itextId>static_instance-service-0</itextId>
-        <name>imd_k_1_jam_l_1_jam</name>
-      </item>
-      <item>
-        <itextId>static_instance-service-1</itextId>
-        <name>menggunakan_partograf</name>
-      </item>
-      <item>
-        <itextId>static_instance-service-2</itextId>
-        <name>catat_di_buku_kia</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="referred_to">
-    <root>
-      <item>
-        <itextId>static_instance-referred_to-0</itextId>
-        <name>pusat_kesehatan_masyarakat</name>
-      </item>
-      <item>
-        <itextId>static_instance-referred_to-1</itextId>
-        <name>rumah_bersalin</name>
-      </item>
-      <item>
-        <itextId>static_instance-referred_to-2</itextId>
-        <name>rumah_sakit_ibu_dan_anak</name>
-      </item>
-      <item>
-        <itextId>static_instance-referred_to-3</itextId>
-        <name>rumah_sakit</name>
-      </item>
-      <item>
-        <itextId>static_instance-referred_to-4</itextId>
-        <name>lain_lain</name>
-      </item>
-      <item>
-        <itextId>static_instance-referred_to-5</itextId>
-        <name>tidak_dirujuk</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="condition_of_house">
-    <root>
-      <item>
-        <itextId>static_instance-condition_of_house-0</itextId>
-        <name>permanen</name>
-      </item>
-      <item>
-        <itextId>static_instance-condition_of_house-1</itextId>
-        <name>tidak_permanen</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="blood_donor">
-    <root>
-      <item>
-        <itextId>static_instance-blood_donor-0</itextId>
-        <name>suami</name>
-      </item>
-      <item>
-        <itextId>static_instance-blood_donor-1</itextId>
-        <name>keluaga</name>
-      </item>
-      <item>
-        <itextId>static_instance-blood_donor-2</itextId>
-        <name>teman</name>
-      </item>
-      <item>
-        <itextId>static_instance-blood_donor-3</itextId>
-        <name>lain-lain</name>
-      </item>
-      <item>
-        <itextId>static_instance-blood_donor-4</itextId>
-        <name>tidak_ada</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="maternal_and_child_health_booklet">
-    <root>
-      <item>
-        <itextId>static_instance-maternal_and_child_health_booklet-0</itextId>
-        <name>memiliki</name>
-      </item>
-      <item>
-        <itextId>static_instance-maternal_and_child_health_booklet-1</itextId>
-        <name>tidak_memiliki</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="place">
-    <root>
-      <item>
-        <itextId>static_instance-place-0</itextId>
-        <name>rumah</name>
-      </item>
-      <item>
-        <itextId>static_instance-place-1</itextId>
-        <name>podok_bersalin_desa</name>
-      </item>
-      <item>
-        <itextId>static_instance-place-2</itextId>
-        <name>pusat_kesehatan_masyarakat_pembantu</name>
-      </item>
-      <item>
-        <itextId>static_instance-place-3</itextId>
-        <name>pusat_kesehatan_masyarakat</name>
-      </item>
-      <item>
-        <itextId>static_instance-place-4</itextId>
-        <name>rumah_bersalin</name>
-      </item>
-      <item>
-        <itextId>static_instance-place-5</itextId>
-        <name>rumah_sakit_ibu_dan_anak</name>
-      </item>
-      <item>
-        <itextId>static_instance-place-6</itextId>
-        <name>rumah_sakit</name>
-      </item>
-      <item>
-        <itextId>static_instance-place-7</itextId>
-        <name>rumah_sakit_orang_dengan_hiv_aids</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="presentation">
-    <root>
-      <item>
-        <itextId>static_instance-presentation-0</itextId>
-        <name>puncak_kepala</name>
-      </item>
-      <item>
-        <itextId>static_instance-presentation-1</itextId>
-        <name>belakang_kepala</name>
-      </item>
-      <item>
-        <itextId>static_instance-presentation-2</itextId>
-        <name>lintang_oblique</name>
-      </item>
-      <item>
-        <itextId>static_instance-presentation-3</itextId>
-        <name>menumbung</name>
-      </item>
-      <item>
-        <itextId>static_instance-presentation-4</itextId>
-        <name>bokong</name>
-      </item>
-      <item>
-        <itextId>static_instance-presentation-5</itextId>
-        <name>dahi</name>
-      </item>
-      <item>
-        <itextId>static_instance-presentation-6</itextId>
-        <name>muka</name>
-      </item>
-      <item>
-        <itextId>static_instance-presentation-7</itextId>
-        <name>kaki</name>
-      </item>
-      <item>
-        <itextId>static_instance-presentation-8</itextId>
-        <name>rangkap</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="birth_attendant">
-    <root>
-      <item>
-        <itextId>static_instance-birth_attendant-0</itextId>
-        <name>keluarga</name>
-      </item>
-      <item>
-        <itextId>static_instance-birth_attendant-1</itextId>
-        <name>dukun</name>
-      </item>
-      <item>
-        <itextId>static_instance-birth_attendant-2</itextId>
-        <name>bidan</name>
-      </item>
-      <item>
-        <itextId>static_instance-birth_attendant-3</itextId>
-        <name>dr.umum</name>
-      </item>
-      <item>
-        <itextId>static_instance-birth_attendant-4</itextId>
-        <name>dr.spesialis</name>
-      </item>
-      <item>
-        <itextId>static_instance-birth_attendant-5</itextId>
-        <name>lain_lain</name>
-      </item>
-      <item>
-        <itextId>static_instance-birth_attendant-6</itextId>
-        <name>tidak_ada</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="transportation">
-    <root>
-      <item>
-        <itextId>static_instance-transportation-0</itextId>
-        <name>sepeda_motor</name>
-      </item>
-      <item>
-        <itextId>static_instance-transportation-1</itextId>
-        <name>mobil</name>
-      </item>
-      <item>
-        <itextId>static_instance-transportation-2</itextId>
-        <name>lain-lain</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="condition_of_mother">
-    <root>
-      <item>
-        <itextId>static_instance-condition_of_mother-0</itextId>
-        <name>hidup</name>
-      </item>
-      <item>
-        <itextId>static_instance-condition_of_mother-1</itextId>
-        <name>mati</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="maternal_and_child_health_booklet_ownership">
-    <root>
-      <item>
-        <itextId>static_instance-maternal_and_child_health_booklet_ownership-0</itextId>
-        <name>ya</name>
-      </item>
-      <item>
-        <itextId>static_instance-maternal_and_child_health_booklet_ownership-1</itextId>
-        <name>tidak</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="condition_of_baby">
-    <root>
-      <item>
-        <itextId>static_instance-condition_of_baby-0</itextId>
-        <name>hidup</name>
-      </item>
-      <item>
-        <itextId>static_instance-condition_of_baby-1</itextId>
-        <name>mati</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="yes_no">
-    <root>
-      <item>
-        <itextId>static_instance-yes_no-0</itextId>
-        <name>Ya</name>
-      </item>
-      <item>
-        <itextId>static_instance-yes_no-1</itextId>
-        <name>Tidak</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="poor_family_not">
-    <root>
-      <item>
-        <itextId>static_instance-poor_family_not-0</itextId>
-        <name>ya</name>
-      </item>
-      <item>
-        <itextId>static_instance-poor_family_not-1</itextId>
-        <name>tidak</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="persalinan">
-    <root>
-      <item>
-        <itextId>static_instance-persalinan-0</itextId>
-        <name>kalasatu</name>
-      </item>
-      <item>
-        <itextId>static_instance-persalinan-1</itextId>
-        <name>kaladua</name>
-      </item>
-      <item>
-        <itextId>static_instance-persalinan-2</itextId>
-        <name>kalatiga</name>
-      </item>
-      <item>
-        <itextId>static_instance-persalinan-3</itextId>
-        <name>kalaempat</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="complications">
-    <root>
-      <item>
-        <itextId>static_instance-complications-0</itextId>
-        <name>tidak_ada_komplikasi</name>
-      </item>
-      <item>
-        <itextId>static_instance-complications-1</itextId>
-        <name>distosia</name>
-      </item>
-      <item>
-        <itextId>static_instance-complications-2</itextId>
-        <name>hipertensi_dalam_kehamilan</name>
-      </item>
-      <item>
-        <itextId>static_instance-complications-3</itextId>
-        <name>perdarahan_post-partum</name>
-      </item>
-      <item>
-        <itextId>static_instance-complications-4</itextId>
-        <name>Infeksi</name>
-      </item>
-      <item>
-        <itextId>static_instance-complications-5</itextId>
-        <name>lain_lain</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="stock_of_labor_tools">
-    <root>
-      <item>
-        <itextId>static_instance-stock_of_labor_tools-0</itextId>
-        <name>kain</name>
-      </item>
-      <item>
-        <itextId>static_instance-stock_of_labor_tools-1</itextId>
-        <name>handuk</name>
-      </item>
-      <item>
-        <itextId>static_instance-stock_of_labor_tools-2</itextId>
-        <name>pakaian_bersih_dan_kering</name>
-      </item>
-    </root>
-  </instance>
-  <instance id="gender">
-    <root>
-      <item>
-        <itextId>static_instance-gender-0</itextId>
-        <name>laki</name>
-      </item>
-      <item>
-        <itextId>static_instance-gender-1</itextId>
-        <name>perempuan</name>
-      </item>
-    </root>
   </instance>
 </model>
