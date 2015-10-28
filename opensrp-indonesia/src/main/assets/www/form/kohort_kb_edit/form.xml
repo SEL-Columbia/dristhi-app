@@ -1,99 +1,263 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="tambah_kb">
+<form autocomplete="off" class="or clearfix" id="tambah_kb" novalidate="novalidate">
    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
    <section class="form-logo" />
-   <h3 id="form-title">Register KB</h3>
+   <h3 id="form-title">Tambah KB</h3>
+   <select data-default-lang="Bahasa" id="form-languages">
+      <option value="Bahasa">Bahasa</option>
+      <option value="en">English</option>
+   </select>
    <label class="question non-select ">
-      <span lang="" class="question-label active">Tanggal kunjungan</span>
-      <span lang="" class="or-hint active">Diisi dengan tanggal kunjungan/ pelayanan</span>
-      <input type="date" name="/tambah_kb/tanggal_kunjungan" data-type-xml="date" />
+      <span class="question-label active" data-itext-id="/tambah_kb/tanggal_kunjungan:label"
+          lang="Bahasa">Tanggal kunjungan
+      </span>
+      <span class="question-label " data-itext-id="/tambah_kb/tanggal_kunjungan:label" lang="en">
+         Visit date
+      </span>
+      <span class="required">*</span>
+      <span class="or-hint active" data-itext-id="/tambah_kb/tanggal_kunjungan:hint"
+          lang="Bahasa">Diisi dengan tanggal kunjungan/
+         pelayanan
+      </span>
+      <span class="or-hint " data-itext-id="/tambah_kb/tanggal_kunjungan:hint" lang="en">Fill in
+         date of visit/care service
+      </span>
+      <input name="/tambah_kb/tanggal_kunjungan" data-type-xml="date" required="required"
+          type="date" />
    </label>
    <label class="note non-select ">
-      <span lang="" class="question-label active">
+      <span class="question-label active" data-itext-id="/tambah_kb/generated_note_name_10:label"
+          lang="Bahasa">
          Umur:
          <span class="or-output" data-value=" /tambah_kb/umur " />
       </span>
-      <input type="text" name="/tambah_kb/generated_note_name_10" data-type-xml="string" readonly="readonly" />
+      <span class="question-label " data-itext-id="/tambah_kb/generated_note_name_10:label"
+          lang="en">Age
+      </span>
+      <input name="/tambah_kb/generated_note_name_10" data-type-xml="string" readonly="readonly"
+          type="text" />
    </label>
    <label class="question non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">Paritas</span>
-      <span lang="" class="or-hint active">Diisi dengan paritas ibu</span>
-      <input type="number" name="/tambah_kb/paritas" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="int" />
+      <span class="or-constraint-msg active" data-itext-id="/tambah_kb/paritas:jr:constraintMsg"
+          lang="Bahasa">Nilai yang dimasukkan tidak memenuhi
+         syarat, mohon periksa kembali
+      </span>
+      <span class="or-constraint-msg " data-itext-id="/tambah_kb/paritas:jr:constraintMsg"
+          lang="en">The entered value doesn't meet the
+         criteria, please check it again
+      </span>
+      <span class="question-label active" data-itext-id="/tambah_kb/paritas:label" lang="Bahasa">
+         Paritas
+      </span>
+      <span class="question-label " data-itext-id="/tambah_kb/paritas:label" lang="en">Parity
+      </span>
+      <span class="or-hint active" data-itext-id="/tambah_kb/paritas:hint" lang="Bahasa">Diisi
+         dengan paritas ibu
+      </span>
+      <span class="or-hint " data-itext-id="/tambah_kb/paritas:hint" lang="en">Fill in mother's
+         parity
+      </span>
+      <input name="/tambah_kb/paritas" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="int"
+          type="number" />
    </label>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">ALKI</span>
-            <span class="required">*</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="checkbox" name="/tambah_kb/alki" value="HB" required="required" data-type-xml="select" />
-               <span lang="" class="option-label active">HB</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/tambah_kb/alki" value="LILA" required="required" data-type-xml="select" />
-               <span lang="" class="option-label active">LILA</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/tambah_kb/alki" value="Penyakit_Kronis" required="required" data-type-xml="select" />
-               <span lang="" class="option-label active">Penyakit Kronis</span>
-            </label>
-            <label class="">
-               <input type="checkbox" name="/tambah_kb/alki" value="IMS" required="required" data-type-xml="select" />
-               <span lang="" class="option-label active">IMS</span>
-            </label>
-         </div>
-      </fieldset>
-   </fieldset>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">ALKI/ HB</span>
-      <span lang="" class="or-hint active">Diisi dengan hasil pemeriksaan HB</span>
-      <input type="number" name="/tambah_kb/alki_hb" data-constraint=".&gt;-1 and .&lt;100" data-relevant="selected( /tambah_kb/alki ,'HB')" data-type-xml="decimal" step="any" />
+   <label class="question non-select ">
+      <span class="or-constraint-msg active" data-itext-id="/tambah_kb/td_sistolik:jr:constraintMsg"
+          lang="Bahasa">Nilai yang dimasukkan tidak
+         memenuhi syarat, mohon periksa kembali
+      </span>
+      <span class="or-constraint-msg " data-itext-id="/tambah_kb/td_sistolik:jr:constraintMsg"
+          lang="en">The entered value doesn't meet
+         the criteria, please check it again
+      </span>
+      <span class="question-label active" data-itext-id="/tambah_kb/td_sistolik:label"
+          lang="Bahasa">TD (Sistolik)
+      </span>
+      <span class="question-label " data-itext-id="/tambah_kb/td_sistolik:label" lang="en">Blood
+         pressure (sistolic) of mother
+      </span>
+      <span class="or-hint active" data-itext-id="/tambah_kb/td_sistolik:hint" lang="Bahasa">
+         Menunjukkan tekanan darah (Sistolik) Ibu pada saat kunjungan (mmHg)
+      </span>
+      <span class="or-hint " data-itext-id="/tambah_kb/td_sistolik:hint" lang="en">Indicating
+         blood pressure (systolic) on mother's visit for care service (mmHg)
+      </span>
+      <input name="/tambah_kb/td_sistolik" data-constraint=".&gt;0 and .&lt;1000" data-type-xml="int"
+          type="number" />
    </label>
-   <label class="question or-branch pre-init non-select ">
-      <span lang="" class="or-constraint-msg active">Nilai yang dimasukkan tidak memenuhi syarat, mohon periksa kembali</span>
-      <span lang="" class="question-label active">ALKI/ LILA</span>
-      <span lang="" class="or-hint active">Diisi dengan hasil pemeriksaan LILA</span>
-      <input type="number" name="/tambah_kb/alki_lila" data-constraint=".&gt;-1 and .&lt;100" data-relevant="selected( /tambah_kb/alki ,'LILA')" data-type-xml="decimal" step="any" />
+   <label class="question non-select ">
+      <span class="or-constraint-msg active" data-itext-id="/tambah_kb/td_diastolik:jr:constraintMsg"
+          lang="Bahasa">Nilai yang dimasukkan tidak
+         memenuhi syarat, mohon periksa kembali
+      </span>
+      <span class="or-constraint-msg " data-itext-id="/tambah_kb/td_diastolik:jr:constraintMsg"
+          lang="en">The entered value doesn't meet
+         the criteria, please check it again
+      </span>
+      <span class="question-label active" data-itext-id="/tambah_kb/td_diastolik:label"
+          lang="Bahasa">TD (Diastolik)
+      </span>
+      <span class="question-label " data-itext-id="/tambah_kb/td_diastolik:label" lang="en">Blood
+         pressure (Diastolic) of mother
+      </span>
+      <span class="or-hint active" data-itext-id="/tambah_kb/td_diastolik:hint" lang="Bahasa">
+         Menunjukkan tekanan darah (Diastolik) Ibu pada saat kunjungan (mmHg)
+      </span>
+      <span class="or-hint " data-itext-id="/tambah_kb/td_diastolik:hint" lang="en">Indicating
+         blood pressure (dyastolic) on mother's visit for care service (mmHg)
+      </span>
+      <input name="/tambah_kb/td_diastolik" data-constraint=".&gt;0 and .&lt;1000" data-type-xml="decimal"
+          step="any" type="number" />
    </label>
-   <label class="question or-appearance-minimal  or-branch pre-init ">
-      <span lang="" class="question-label active">ALKI/ Penyakit Kronis</span>
-      <span lang="" class="or-hint active">Diisi dengan keterangan tentang penyakit kronis yang dimiliki peserta KB</span>
-      <select name="/tambah_kb/alki_penyakit_kronis" data-name="/tambah_kb/alki_penyakit_kronis" data-relevant="selected( /tambah_kb/alki ,'Penyakit_Kronis')" data-type-xml="select1">
+   <label class="question non-select ">
+      <span class="or-constraint-msg active" data-itext-id="/tambah_kb/alki_hb:jr:constraintMsg"
+          lang="Bahasa">Nilai yang dimasukkan tidak memenuhi
+         syarat, mohon periksa kembali
+      </span>
+      <span class="or-constraint-msg " data-itext-id="/tambah_kb/alki_hb:jr:constraintMsg"
+          lang="en">The entered value doesn't meet the
+         criteria, please check it again
+      </span>
+      <span class="question-label active" data-itext-id="/tambah_kb/alki_hb:label" lang="Bahasa">
+         ALKI/ HB
+      </span>
+      <span class="question-label " data-itext-id="/tambah_kb/alki_hb:label" lang="en">ALKI / HB
+      </span>
+      <span class="or-hint active" data-itext-id="/tambah_kb/alki_hb:hint" lang="Bahasa">Diisi
+         dengan hasil pemeriksaan HB
+      </span>
+      <span class="or-hint " data-itext-id="/tambah_kb/alki_hb:hint" lang="en">Fill in Hb test
+         result
+      </span>
+      <input name="/tambah_kb/alki_hb" data-constraint=".&gt;0" data-type-xml="decimal"
+          step="any" type="number" />
+   </label>
+   <label class="question non-select ">
+      <span class="or-constraint-msg active" data-itext-id="/tambah_kb/alki_lila:jr:constraintMsg"
+          lang="Bahasa">Nilai yang dimasukkan tidak
+         memenuhi syarat, mohon periksa kembali
+      </span>
+      <span class="or-constraint-msg " data-itext-id="/tambah_kb/alki_lila:jr:constraintMsg"
+          lang="en">The entered value doesn't meet the
+         criteria, please check it again
+      </span>
+      <span class="question-label active" data-itext-id="/tambah_kb/alki_lila:label"
+          lang="Bahasa">ALKI/ LILA
+      </span>
+      <span class="question-label " data-itext-id="/tambah_kb/alki_lila:label" lang="en">ALKI /
+         Mid-Upper Arm Circumference
+      </span>
+      <span class="or-hint active" data-itext-id="/tambah_kb/alki_lila:hint" lang="Bahasa">Diisi
+         dengan hasil pemeriksaan LILA
+      </span>
+      <span class="or-hint " data-itext-id="/tambah_kb/alki_lila:hint" lang="en">FIll in mother's
+         MUAC
+      </span>
+      <input name="/tambah_kb/alki_lila" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="decimal"
+          step="any" type="number" />
+   </label>
+   <label class="question or-appearance-minimal ">
+      <span class="question-label active" data-itext-id="/tambah_kb/alki_penyakit_kronis:label"
+          lang="Bahasa">ALKI/ Penyakit Kronis
+      </span>
+      <span class="question-label " data-itext-id="/tambah_kb/alki_penyakit_kronis:label"
+          lang="en">ALKI / Chronical diseases
+      </span>
+      <span class="or-hint active" data-itext-id="/tambah_kb/alki_penyakit_kronis:hint"
+          lang="Bahasa">Diisi dengan keterangan tentang
+         penyakit kronis yang dimiliki peserta KB
+      </span>
+      <span class="or-hint " data-itext-id="/tambah_kb/alki_penyakit_kronis:hint" lang="en">Fill
+         in chronical diseases that mother has
+      </span>
+      <select name="/tambah_kb/alki_penyakit_kronis" data-name="/tambah_kb/alki_penyakit_kronis"
+          data-type-xml="select1">
          <option value="">...</option>
-         <option value="alki_penyakit_kronis">TBC</option>
-         <option value="alki_penyakit_kronis">DM</option>
-         <option value="alki_penyakit_kronis">Jantung</option>
-         <option value="alki_penyakit_kronis">Asma Berat</option>
-         <option value="alki_penyakit_kronis">Malaria</option>
+         <option value="TBC">TBC</option>
+         <option value="DM">DM</option>
+         <option value="Jantung">Jantung</option>
+         <option value="Asma Berat">Asma Berat</option>
+         <option value="Malaria">Malaria</option>
+         <option value="Lainnya">Lainnya</option>
       </select>
-      <span class="or-option-translations" style="display:none;" />
+      <span style="display:none;" class="or-option-translations">
+         <span data-option-value="TBC" lang="Bahasa">TBC</span>
+         <span data-option-value="TBC" lang="en">TBC</span>
+         <span data-option-value="DM" lang="Bahasa">DM</span>
+         <span data-option-value="DM" lang="en">DM</span>
+         <span data-option-value="Jantung" lang="Bahasa">Jantung</span>
+         <span data-option-value="Jantung" lang="en">Heart Disease</span>
+         <span data-option-value="Asma Berat" lang="Bahasa">Asma Berat</span>
+         <span data-option-value="Asma Berat" lang="en">Severe Asthma</span>
+         <span data-option-value="Malaria" lang="Bahasa">Malaria</span>
+         <span data-option-value="Malaria" lang="en">Malaria</span>
+         <span data-option-value="Lainnya" lang="Bahasa">Lainnya</span>
+         <span data-option-value="Lainnya" lang="en">Other</span>
+      </span>
    </label>
-   <fieldset class="question or-branch pre-init ">
+   <fieldset class="question ">
       <fieldset>
          <legend>
-            <span lang="" class="question-label active">ALKI/ IMS</span>
-            <span lang="" class="or-hint active">Diisi dengan keterangan tentang Infeksi Menular Seksual yang dimiliki peserta KB</span>
+            <span class="question-label active" data-itext-id="/tambah_kb/alki_penyakit_ims:label"
+                lang="Bahasa">ALKI/ IMS
+            </span>
+            <span class="question-label " data-itext-id="/tambah_kb/alki_penyakit_ims:label"
+                lang="en">ALKI / Sexually Transmitted
+               Infection
+            </span>
+            <span class="or-hint active" data-itext-id="/tambah_kb/alki_penyakit_ims:hint"
+                lang="Bahasa">Diisi dengan keterangan
+               tentang Infeksi Menular Seksual yang dimiliki peserta KB
+            </span>
+            <span class="or-hint " data-itext-id="/tambah_kb/alki_penyakit_ims:hint" lang="en">
+               Fill in Sexually Transmitted Infection that mother has
+            </span>
          </legend>
          <div class="option-wrapper">
             <label class="">
-               <input type="radio" name="/tambah_kb/alki_penyakit_ims" data-name="/tambah_kb/alki_penyakit_ims" value="alki_penyakit_ims" data-relevant="selected( /tambah_kb/alki ,'IMS')" data-type-xml="select1" />
-               <span lang="" class="option-label active">Gonore</span>
+               <input name="/tambah_kb/alki_penyakit_ims" data-name="/tambah_kb/alki_penyakit_ims"
+                   data-type-xml="select1" type="radio"
+                   value="Gonore" />
+               <span class="option-label active" data-itext-id="/tambah_kb/alki_penyakit_ims/Gonore:label"
+                   lang="Bahasa">Gonore
+               </span>
+               <span class="option-label " data-itext-id="/tambah_kb/alki_penyakit_ims/Gonore:label"
+                   lang="en">Gonorrhea
+               </span>
             </label>
             <label class="">
-               <input type="radio" name="/tambah_kb/alki_penyakit_ims" data-name="/tambah_kb/alki_penyakit_ims" value="alki_penyakit_ims" data-relevant="selected( /tambah_kb/alki ,'IMS')" data-type-xml="select1" />
-               <span lang="" class="option-label active">Sifilis</span>
+               <input name="/tambah_kb/alki_penyakit_ims" data-name="/tambah_kb/alki_penyakit_ims"
+                   data-type-xml="select1" type="radio"
+                   value="Sifilis" />
+               <span class="option-label active" data-itext-id="/tambah_kb/alki_penyakit_ims/Sifilis:label"
+                   lang="Bahasa">Sifilis
+               </span>
+               <span class="option-label " data-itext-id="/tambah_kb/alki_penyakit_ims/Sifilis:label"
+                   lang="en">Syphilis
+               </span>
             </label>
             <label class="">
-               <input type="radio" name="/tambah_kb/alki_penyakit_ims" data-name="/tambah_kb/alki_penyakit_ims" value="alki_penyakit_ims" data-relevant="selected( /tambah_kb/alki ,'IMS')" data-type-xml="select1" />
-               <span lang="" class="option-label active">Condyloma</span>
+               <input name="/tambah_kb/alki_penyakit_ims" data-name="/tambah_kb/alki_penyakit_ims"
+                   data-type-xml="select1" type="radio"
+                   value="Condyloma" />
+               <span class="option-label active" data-itext-id="/tambah_kb/alki_penyakit_ims/Condyloma:label"
+                   lang="Bahasa">Condyloma
+               </span>
+               <span class="option-label " data-itext-id="/tambah_kb/alki_penyakit_ims/Condyloma:label"
+                   lang="en">Condyloma
+               </span>
             </label>
             <label class="">
-               <input type="radio" name="/tambah_kb/alki_penyakit_ims" data-name="/tambah_kb/alki_penyakit_ims" value="alki_penyakit_ims" data-relevant="selected( /tambah_kb/alki ,'IMS')" data-type-xml="select1" />
-               <span lang="" class="option-label active">Herpes Genitalis</span>
+               <input name="/tambah_kb/alki_penyakit_ims" data-name="/tambah_kb/alki_penyakit_ims"
+                   data-type-xml="select1" type="radio"
+                   value="Herpes Genitalis" />
+               <span class="option-label active" data-itext-id="/tambah_kb/alki_penyakit_ims/Herpes Genitalis:label"
+                   lang="Bahasa">Herpes
+                  Genitalis
+               </span>
+               <span class="option-label " data-itext-id="/tambah_kb/alki_penyakit_ims/Herpes Genitalis:label"
+                   lang="en">Genital
+                  Herpes
+               </span>
             </label>
          </div>
       </fieldset>
@@ -101,95 +265,159 @@
    <fieldset class="question ">
       <fieldset>
          <legend>
-            <span lang="" class="question-label active">Keterangan tentang Peserta KB</span>
-            <span lang="" class="or-hint active">Diisi dengan keterangan tentang kunjungan peserta KB baru atau lama</span>
+            <span class="question-label active" data-itext-id="/tambah_kb/keterangan_tentang_peserta_kb:label"
+                lang="Bahasa">Keterangan
+               tentang peserta KB
+            </span>
+            <span class="question-label " data-itext-id="/tambah_kb/keterangan_tentang_peserta_kb:label"
+                lang="en">Notes about FP
+               user
+            </span>
+            <span class="or-hint active" data-itext-id="/tambah_kb/keterangan_tentang_peserta_kb:hint"
+                lang="Bahasa">Diisi dengan
+               keterangan tentang kunjungan peserta KB baru atau lama
+            </span>
+            <span class="or-hint " data-itext-id="/tambah_kb/keterangan_tentang_peserta_kb:hint"
+                lang="en">Fill in
+               information on whether mother is new or old FP contraceptor
+            </span>
          </legend>
          <div class="option-wrapper">
             <label class="">
-               <input type="radio" name="/tambah_kb/keterangan_tentang_peserta_kb" data-name="/tambah_kb/keterangan_tentang_peserta_kb" value="kb_baru" data-type-xml="select1" />
-               <span lang="" class="option-label active">KB baru (B)</span>
+               <input name="/tambah_kb/keterangan_tentang_peserta_kb" data-name="/tambah_kb/keterangan_tentang_peserta_kb"
+                   data-type-xml="select1" type="radio"
+                   value="kb_baru" />
+               <span class="option-label active" data-itext-id="/tambah_kb/keterangan_tentang_peserta_kb/kb_baru:label"
+                   lang="Bahasa">KB
+                  baru (B)
+               </span>
+               <span class="option-label " data-itext-id="/tambah_kb/keterangan_tentang_peserta_kb/kb_baru:label"
+                   lang="en">New
+                  FP Acceptor (NA)
+               </span>
             </label>
             <label class="">
-               <input type="radio" name="/tambah_kb/keterangan_tentang_peserta_kb" data-name="/tambah_kb/keterangan_tentang_peserta_kb" value="lama" data-type-xml="select1" />
-               <span lang="" class="option-label active">Lama (L)</span>
+               <input name="/tambah_kb/keterangan_tentang_peserta_kb" data-name="/tambah_kb/keterangan_tentang_peserta_kb"
+                   data-type-xml="select1" type="radio"
+                   value="lama" />
+               <span class="option-label active" data-itext-id="/tambah_kb/keterangan_tentang_peserta_kb/lama:label"
+                   lang="Bahasa">Lama (L)
+               </span>
+               <span class="option-label " data-itext-id="/tambah_kb/keterangan_tentang_peserta_kb/lama:label"
+                   lang="en">Old FP
+                  Acceptor (OA)
+               </span>
             </label>
             <label class="">
-               <input type="radio" name="/tambah_kb/keterangan_tentang_peserta_kb" data-name="/tambah_kb/keterangan_tentang_peserta_kb" value="kb_baru_pasca_salin" data-type-xml="select1" />
-               <span lang="" class="option-label active">KB Baru Pasca Salin (BO)</span>
+               <input name="/tambah_kb/keterangan_tentang_peserta_kb" data-name="/tambah_kb/keterangan_tentang_peserta_kb"
+                   data-type-xml="select1"
+                   type="radio" value="kb_baru_pasca_salin" />
+               <span class="option-label active" data-itext-id="/tambah_kb/keterangan_tentang_peserta_kb/kb_baru_pasca_salin:label"
+                   lang="Bahasa">
+                  KB Baru Pasca Salin (BO)
+               </span>
+               <span class="option-label " data-itext-id="/tambah_kb/keterangan_tentang_peserta_kb/kb_baru_pasca_salin:label"
+                   lang="en">
+                  Post-partum FP Acceptor (PPA)
+               </span>
             </label>
          </div>
       </fieldset>
    </fieldset>
-   <fieldset class="question ">
-      <fieldset>
-         <legend>
-            <span lang="" class="question-label active">Jenis kontrasepsi yang digunakan</span>
-            <span lang="" class="or-hint active">Diisi dengan jenis metode kontrasepsi yang digunakan</span>
-         </legend>
-         <div class="option-wrapper">
-            <label class="">
-               <input type="radio" name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" data-name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" value="pil" data-type-xml="select1" />
-               <span lang="" class="option-label active">Pil (P)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" data-name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" value="suntik" data-type-xml="select1" />
-               <span lang="" class="option-label active">Suntik (S)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" data-name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" value="iud" data-type-xml="select1" />
-               <span lang="" class="option-label active">IUD (I)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" data-name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" value="mow" data-type-xml="select1" />
-               <span lang="" class="option-label active">MOW (OW)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" data-name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" value="mop" data-type-xml="select1" />
-               <span lang="" class="option-label active">MOP (OP)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" data-name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" value="kondom" data-type-xml="select1" />
-               <span lang="" class="option-label active">Kondom (K)</span>
-            </label>
-            <label class="">
-               <input type="radio" name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" data-name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" value="Implant" data-type-xml="select1" />
-               <span lang="" class="option-label active">Implant (IP)</span>
-            </label>
-         </div>
-      </fieldset>
+   <label class="question or-appearance-minimal ">
+      <span class="question-label active" data-itext-id="/tambah_kb/jenis_kontrasepsi_yang_digunakan:label"
+          lang="Bahasa">Jenis kontrasepsi yang
+         digunakan
+      </span>
+      <span class="question-label " data-itext-id="/tambah_kb/jenis_kontrasepsi_yang_digunakan:label"
+          lang="en">Kind of contraceptions
+         used
+      </span>
+      <span class="required">*</span>
+      <span class="or-hint active" data-itext-id="/tambah_kb/jenis_kontrasepsi_yang_digunakan:hint"
+          lang="Bahasa">Diisi dengan jenis
+         metode kontrasepsi yang digunakan
+      </span>
+      <span class="or-hint " data-itext-id="/tambah_kb/jenis_kontrasepsi_yang_digunakan:hint"
+          lang="en">Fill in type of
+         contraceptive method that mother uses
+      </span>
+      <select name="/tambah_kb/jenis_kontrasepsi_yang_digunakan"
+          data-name="/tambah_kb/jenis_kontrasepsi_yang_digunakan" data-type-xml="select1"
+          required="required">
+         <option value="">...</option>
+         <option value="pil">Pil (P)</option>
+         <option value="suntik_depoprovera">Suntik depoprovera</option>
+         <option value="suntik_cyclofem">Suntik cyclofem</option>
+         <option value="iud">IUD (I)</option>
+         <option value="mow">MOW (OW)</option>
+         <option value="mop">MOP (OP)</option>
+         <option value="kondom">Kondom (K)</option>
+         <option value="Implant">Implant (IP)</option>
+      </select>
+      <span style="display:none;" class="or-option-translations">
+         <span data-option-value="pil" lang="Bahasa">Pil (P)</span>
+         <span data-option-value="pil" lang="en">Pill (P)</span>
+         <span data-option-value="suntik_depoprovera" lang="Bahasa">Suntik depoprovera</span>
+         <span data-option-value="suntik_depoprovera" lang="en">Suntik depoprovera</span>
+         <span data-option-value="suntik_cyclofem" lang="Bahasa">Suntik cyclofem</span>
+         <span data-option-value="suntik_cyclofem" lang="en">Suntik cyclofem</span>
+         <span data-option-value="suntik" lang="en">Injection (I)</span>
+         <span data-option-value="iud" lang="Bahasa">IUD (I)</span>
+         <span data-option-value="iud" lang="en">IUD (I)</span>
+         <span data-option-value="mow" lang="Bahasa">MOW (OW)</span>
+         <span data-option-value="mow" lang="en">Tubectomy (TUB)</span>
+         <span data-option-value="mop" lang="Bahasa">MOP (OP)</span>
+         <span data-option-value="mop" lang="en">Vasectomy (VAS)</span>
+         <span data-option-value="kondom" lang="Bahasa">Kondom (K)</span>
+         <span data-option-value="kondom" lang="en">Condom (C)</span>
+         <span data-option-value="Implant" lang="Bahasa">Implant (IP)</span>
+         <span data-option-value="Implant" lang="en">Implant (Ip)</span>
+      </span>
+   </label>
+   <fieldset style="display:none;" id="or-preload-items">
+      <label class="calculation non-select ">
+         <input name="/tambah_kb/start" data-preload="timestamp" data-preload-params="start"
+             data-type-xml="dateTime" type="hidden" />
+      </label>
+      <label class="calculation non-select ">
+         <input name="/tambah_kb/today" data-preload="date" data-preload-params="today"
+             data-type-xml="date" type="hidden" />
+      </label>
+      <label class="calculation non-select ">
+         <input name="/tambah_kb/deviceid" data-preload="property" data-preload-params="deviceid"
+             data-type-xml="string" type="hidden" />
+      </label>
+      <label class="calculation non-select ">
+         <input name="/tambah_kb/simserial" data-preload="property" data-preload-params="simserial"
+             data-type-xml="string" type="hidden" />
+      </label>
+      <label class="calculation non-select ">
+         <input name="/tambah_kb/phonenumber" data-preload="property" data-preload-params="phonenumber"
+             data-type-xml="string" type="hidden" />
+      </label>
+      <label class="calculation non-select ">
+         <input name="/tambah_kb/end" data-preload="timestamp" data-preload-params="end"
+             data-type-xml="dateTime" type="hidden" />
+      </label>
    </fieldset>
-   <fieldset id="or-preload-items" style="display:none;">
+   <fieldset style="display:none;" id="or-calculated-items">
       <label class="calculation non-select ">
-         <input type="hidden" name="/tambah_kb/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" />
+         <input name="/tambah_kb/umur" data-calculate="int(( /tambah_kb/today  -  /tambah_kb/tanggal_lahir_ibu ) div 365)"
+             data-type-xml="string"
+             type="hidden" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/tambah_kb/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+         <input name="/tambah_kb/reg_date" autocomplete="off" data-calculate=" /tambah_kb/today "
+             data-type-xml="date" type="hidden" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/tambah_kb/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string" />
+         <input name="/tambah_kb/meta/instanceID" data-calculate="concat('uuid:', uuid())"
+             data-type-xml="string" type="hidden" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/tambah_kb/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/tambah_kb/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/tambah_kb/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" />
-      </label>
-   </fieldset>
-   <fieldset id="or-calculated-items" style="display:none;">
-   <label class="calculation non-select ">
-         <input autocomplete="off" type="hidden" name="/tambah_kb/reg_date" data-calculate=" /tambah_kb/today " data-type-xml="date" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/tambah_kb/umur" data-calculate="int(( /tambah_kb/today  -  /tambah_kb/tanggal_lahir_ibu ) div 365)" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/tambah_kb/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
-      </label>
-      <label class="calculation non-select ">
-         <input type="hidden" name="/tambah_kb/formhub/uuid" data-calculate="'0e1a086589f04418b449194baeb9332b'" data-type-xml="string" />
+         <input name="/tambah_kb/formhub/uuid" data-calculate="'210d54e802494bb4a3406606b7423627'"
+             data-type-xml="string" type="hidden" />
       </label>
    </fieldset>
 </form>

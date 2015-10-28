@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <Register_ANC_only id="Register_ANC_only" version="201506200347">
+    <Register_Anc_Only encounter_type="Tambah ANC" id="Register_Anc_Only" version="201510220617">
       <formhub>
         <uuid/>
       </formhub>
@@ -11,124 +11,52 @@
       <simserial/>
       <phonenumber/>
       <tanggal_periksa/>
-      <generated_note_name_8/>
+      <jamkesmas/>
+      <generated_note_name_9/>
       <gravida/>
       <partus/>
       <abortus/>
       <hidup/>
-      <persalinan_sebelumnya/>
-      <rkk/>
-      <riwayat_komplikasi_kebidanan/>
-      <rkklainnya/>
-      <kronis/>
-      <penyakit_kronis/>
-      <rpklainnya/>
-      <memiliki_alergi/>
-      <alergi/>
-      <kelainanbentuk/>
-      <generated_note_name_23/>
-      <tanggal_hpht/>
+      <generated_note_name_14/>
+      <hpht/>
       <edd/>
       <htp/>
       <edd_note/>
       <usia_klinis/>
-      <generated_note_name_29/>
+      <generated_note_name_20/>
       <trimester_ke/>
-      <generated_note_name_31/>
-      <anc_ke/>
-      <buku_kia/>
+      <generated_note_name_22/>
       <tanggal_memperoleh_buku_kia/>
-      <jamkesmas/>
-      <cara_masuk_tempat_pelayanan/>
-      <anamnesis_ibu>tidak ada keluhan</anamnesis_ibu>
-      <bb_kg_1/>
+      <bb_kg/>
       <tb_cm/>
-      <bb_kg_2/>
       <lila_cm/>
-      <td_sistolik/>
-      <td_diastolik/>
-      <status_gizi_ibu/>
-      <tfu/>
-      <refleks_patela_ibu/>
-      <djj/>
-      <kepala_terhadap_janin_pap/>
-      <taksiran_berat_janin/>
-      <aaaaaa/>
-      <persentasi_janin/>
-      <jumlah_janin/>
-      <status_imunisasi_tt/>
-      <pelayanan_injeksi_tt/>
-      <pelayanan_catat_buku_kia/>
-      <pelayananfe/>
-      <pelayanan_fe/>
-      <Labcheck/>
-      <laboratorium_periksa_hb_dilakukan/>
-      <laboratorium_periksa_hb_hasil/>
-      <laboratorium_periksa_hb_anemia/>
-      <laboratorium_protein_uria/>
-      <laboratorium_gula_darah/>
-      <laboratorium_thalasemia/>
-      <laboratorium_sifilis/>
-      <laboratorium_hbsag/>
-      <program_integration/>
-      <integrasi_program_pmtct_vct/>
-      <integrasi_program_pmtct_periksa_darah/>
-      <integrasi_program_pmtct_serologi/>
-      <integrasi_program_pmtct_arv/>
-      <integrasi_program_malaria_periksa_darah/>
-      <integrasi_program_malaria_malaria/>
-      <integrasi_program_malaria_obat/>
-      <integrasi_program_malaria_kelambu/>
-      <integrasi_program_tb_dahak/>
-      <integrasi_program_tb_tbc/>
-      <integrasi_program_tb_obat/>
-      <resiko_terdeksi_pertama_kali/>
-      <komplikasi_dalam_kehamilan/>
-      <rujukan/>
-      <dirujuk_ke/>
-      <dirujuk_keL/>
-      <keadaan_ibu_saat_tiba/>
-      <keadaan_ibu_saat_pulang/>
-      <keterangan/>
-      <Protein_energy_Malnutrition_risk/>
-      <anemia_risk/>
-      <PIH_risk/>
-      <diabetes_risk/>
-      <fetus_number_risk/>
-      <fetus_size_risk/>
-      <fetus_Malpresentation_risk/>
-      <TBC_risk/>
-      <malaria_risk/>
-      <TB_risk/>
-      <Too_many_children_risk/>
-      <abortus_risk/>
-      <Section_Cesarea_record_risk/>
-      <STI_BBVs_risk/>
-      <Ectopic_Pregnancy_risk/>
-      <Mola_Hidatidosa_risk/>
-      <congenital_abnormality_risk/>
-      <early_waterbreak_risk/>
-      <Cardiovascular_Disease_Record_risk/>
-      <Kidney_Disorder_risk/>
-      <Heart_Disorder_risk/>
-      <Asthma_risk/>
-      <Tuberculosis_risk/>
-      <Malaria_risk/>
-      <HIV_AIDS_risk/>
-      <is_high_risk/>
-      <high_risk_reason/>
-      <is_high_risk_pregnancy/>
-      <high_risk_pregnancy_reason/>
-      <is_high_risk_labour/>
-      <high_risk_labour_reason/>
-      <is_other_risk/>
-      <other_risk_reason/>
-      <high_risk_note/>
+      <persalinan_sebelumnya/>
+      <riwayat_komplikasi_kebidanan/>
+      <riwayat_komplikasi_kebidananL/>
+      <penyakit_kronis/>
+      <penyakit_kronisL/>
+      <alergi/>
+      <High_Risk_Labour_TB_risk/>
+      <High_Risk_Labour_Section_Cesarea_record_risk/>
+      <Other_Risk_Mola_Hidatidosa/>
+      <Other_Risk_congenital_abnormality/>
+      <Other_Risk_early_waterbreak/>
+      <High_Risk_cardiovascular_Disease_Record/>
+      <High_Risk_kidney_disorder/>
+      <High_Risk_Heart_Disorder/>
+      <High_Risk_Asthma/>
+      <High_Risk_Tuberculosis/>
+      <High_Risk_Malaria/>
+      <High_Risk_HIV_AIDS/>
+      <High_Risk__STI_BBVs/>
+      <High_Risk_Ectopic_Pregnancy/>
+      <High_Risk_Pregnancy_Protein_energy_Malnutrition/>
+      <High_Risk_Pregnancy_Too_many_children/>
+      <High_Risk_Pregnancy_abortus/>
       <end/>
       <meta>
         <instanceID/>
       </meta>
-    </Register_ANC_only>
+    </Register_Anc_Only>
   </instance>
 </model>
-

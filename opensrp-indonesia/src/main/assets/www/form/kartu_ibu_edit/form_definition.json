@@ -9,169 +9,165 @@
         "shouldLoadValue": true
       },
       {
-        "name": "puskesmas",
-        "bind": "/model/instance/kartu_ibu/puskesmas",
+        "name": "unique_id",
+        "bind": "/model/instance/kartu_ibu/unique_id",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "Village",
+        "bind": "/model/instance/kartu_ibu/Village",
         "shouldLoadValue": true
       },
       {
-        "name": "noIbu",
-        "bind": "/model/instance/kartu_ibu/no_ibu",
+        "name": "Province",
+        "bind": "/model/instance/kartu_ibu/Province",
         "shouldLoadValue": true
       },
       {
-        "name": "namalengkap",
-        "bind": "/model/instance/kartu_ibu/nama_lengkap",
+        "name": "Sub-district",
+        "bind": "/model/instance/kartu_ibu/Sub-district",
         "shouldLoadValue": true
       },
       {
-        "name": "namaSuami",
-        "bind": "/model/instance/kartu_ibu/nama_suami",
+        "name": "District",
+        "bind": "/model/instance/kartu_ibu/District",
         "shouldLoadValue": true
       },
       {
-        "name": "tanggalLahir",
-        "bind": "/model/instance/kartu_ibu/tanggal_lahir_ibu",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "umur",
-        "bind": "/model/instance/kartu_ibu/umur",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "alamatDomisili",
-        "bind": "/model/instance/kartu_ibu/alamat_domisili",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "propinsi",
-        "bind": "/model/instance/kartu_ibu/propinsi",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "kabupaten",
-        "bind": "/model/instance/kartu_ibu/kabupaten",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "kecamatan",
-        "bind": "/model/instance/kartu_ibu/kecamatan",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "kecamatanl",
-        "bind": "/model/instance/kartu_ibu/kecamatanl",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "desa",
-        "bind": "/model/instance/kartu_ibu/desa",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "desal",
-        "bind": "/model/instance/kartu_ibu/desal",
+        "name": "Sub-village",
+        "bind": "/model/instance/kartu_ibu/Sub-village",
         "shouldLoadValue": true
       },
       {
         "name": "dusun",
         "bind": "/model/instance/kartu_ibu/dusun",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
-        "name": "dusunl",
-        "bind": "/model/instance/kartu_ibu/dusunl",
-        "shouldLoadValue": true
+        "name": "provinsi",
+        "bind": "/model/instance/kartu_ibu/provinsi",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "kabupaten",
+        "bind": "/model/instance/kartu_ibu/kabupaten",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/kartu_ibu/kecamatan",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "desa",
+        "bind": "/model/instance/kartu_ibu/desa",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "puskesmas",
+        "bind": "/model/instance/kartu_ibu/puskesmas",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "noIbu",
+        "bind": "/model/instance/kartu_ibu/no_ibu",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "namalengkap",
+        "bind": "/model/instance/kartu_ibu/nama_lengkap",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "namaSuami",
+        "bind": "/model/instance/kartu_ibu/nama_suami",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "tanggalLahir",
+        "bind": "/model/instance/kartu_ibu/tanggal_lahir_ibu",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "umur",
+        "bind": "/model/instance/kartu_ibu/umur",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "alamatDomisili",
+        "bind": "/model/instance/kartu_ibu/alamat_domisili",
+        "shouldLoadValue" : true
       },
       {
         "name": "pendidikan",
         "bind": "/model/instance/kartu_ibu/pendidikan",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "agama",
         "bind": "/model/instance/kartu_ibu/agama",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "pekerjaan",
         "bind": "/model/instance/kartu_ibu/pekerjaan",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "gakinTidak",
         "bind": "/model/instance/kartu_ibu/gakin_tidak",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "posyandu",
         "bind": "/model/instance/kartu_ibu/posyandu",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "namaKader",
         "bind": "/model/instance/kartu_ibu/nama_kader",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "namaDukun",
         "bind": "/model/instance/kartu_ibu/nama_dukun",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "asuransiJiwa",
         "bind": "/model/instance/kartu_ibu/asuransi_jiwa",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "golonganDarah",
         "bind": "/model/instance/kartu_ibu/golongan_darah",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "telponMemilikiTidak",
-        "bind": "/model/instance/kartu_ibu/nomortelpon",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "NomorTelponHp",
         "bind": "/model/instance/kartu_ibu/nomor_telpon_hp",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "pptest",
         "bind": "/model/instance/kartu_ibu/pptest",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
-        "name": "tooYoungRisk",
-        "bind": "/model/instance/kartu_ibu/Too_young_risk",
-        "shouldLoadValue": true
+        "name": "highRiskPregnancyYoungMaternalAge",
+        "bind": "/model/instance/kartu_ibu/High_Risk_Pregnancy_Young_maternal_age"
       },
       {
-        "name": "tooOldMother",
-        "bind": "/model/instance/kartu_ibu/Too_old_mother",
-        "shouldLoadValue": true
+        "name": "highRiskPregnancyOldMaternalAge",
+        "bind": "/model/instance/kartu_ibu/High_Risk_Pregnancy_Old_maternal_age"
       },
       {
-        "name": "isHighPriority",
-        "bind": "/model/instance/kartu_ibu/is_high_priority",
-        "shouldLoadValue": true
+        "name": "isOutOfArea",
+        "value": "false"
       },
       {
-        "name": "highPriorityReason",
-        "bind": "/model/instance/kartu_ibu/high_priority_reason",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "highRiskNote",
-        "bind": "/model/instance/kartu_ibu/high_risk_note",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "isHighRisk",
-        "bind": "/model/instance/kartu_ibu/is_high_risk",
-        "shouldLoadValue": true
+        "name": "isClosed",
+        "value": "false"
       },
       {
         "name": "submissionDate",
