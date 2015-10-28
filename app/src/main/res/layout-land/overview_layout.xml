@@ -278,8 +278,9 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="20sp" />
 
-            <LinearLayout
-                android:id="@+id/ll_ec_timeline"
+
+            <ListView
+                android:id="@+id/lv_timeline_events"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_below="@+id/title_ec_timeline"
@@ -287,14 +288,27 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="4"
                 android:background="@drawable/overview_box"
-                android:padding="5dp">
+                android:divider="@android:color/transparent"
+                android:padding="5dp" />
 
-                <ListView
-                    android:id="@+id/lv_timeline_events"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:divider="@android:color/transparent" />
-            </LinearLayout>
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/ll_ec_timeline"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_below="@+id/title_ec_timeline"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_weight="4"-->
+            <!--android:background="@drawable/overview_box"-->
+            <!--android:padding="5dp">-->
+
+            <!--<ListView-->
+            <!--android:id="@+id/lv_timeline_events"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:divider="@android:color/transparent" />-->
+            <!--</LinearLayout>-->
         </LinearLayout>
     </RelativeLayout>
 

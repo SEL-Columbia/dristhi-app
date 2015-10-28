@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -80,7 +81,7 @@ public class DoctorPlanofCareActivity extends Activity {
     Context context;
     private String TAG = "DoctorPlanOfCareActivity";
     String visitType, visitNumber;
-    String documentId, formData, phoneNumber, motherName;
+    String documentId, formData, phoneNumber, motherName, caseId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,7 @@ public class DoctorPlanofCareActivity extends Activity {
             String resultData = bundle.getString(AllConstants.DRUG_INFO_RESULT);
             documentId = bundle.getString(DoctorFormDataConstants.documentId);
             phoneNumber = bundle.getString(DoctorFormDataConstants.phoneNumber);
+            caseId = bundle.getString(DoctorFormDataConstants.anc_entityId);
             formData = bundle.getString("formData");
             try {
                 setContentView(R.layout.doc_plan_of_care);
@@ -141,7 +143,7 @@ public class DoctorPlanofCareActivity extends Activity {
                 pocDrugDirectionsList.add(getString(R.string.please_select_direction));
                 pocDrugDosagesList.add(getString(R.string.please_select_dosage));
 
-                String existPocInfo = context.allDoctorRepository().getPocInfoCaseId(documentId);
+                String existPocInfo = context.allDoctorRepository().getPocInfoCaseId(caseId);
                 if (existPocInfo != null && !existPocInfo.equals("")) {
                     JSONObject pocInfo = new JSONObject(existPocInfo);
                     JSONArray diagnosisArray = pocInfo.has("diagnosis") ? pocInfo.getJSONArray("diagnosis") : new JSONArray();
@@ -253,111 +255,6 @@ public class DoctorPlanofCareActivity extends Activity {
                 ib_anm_logo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Dialog chooseDialog = new Dialog(DoctorPlanofCareActivity.this);
-                        chooseDialog.setContentView(R.layout.dialog_box);
-                        ListView chooselistview = (ListView) chooseDialog
-                                .findViewById(R.id.listview);
-
-                        Button submit = (Button) chooseDialog.findViewById(R.id.btn);
-                        submit.setVisibility(View.GONE);
-                        String[] channels = new String[]{"AppRTC", "Jitsi"};
-
-                        chooseDialog.show();
-
-                        ArrayAdapter<String> chooseadapter = new ArrayAdapter<String>(
-                                DoctorPlanofCareActivity.this,
-                                android.R.layout.simple_list_item_1, channels);
-                        chooselistview.setAdapter(chooseadapter);
-
-                        chooselistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                            @Override
-                            public void onItemClick(AdapterView<?> arg0, View arg1,
-                                                    int arg2, long arg3) {
-
-                                obj = arg0.getItemAtPosition(arg2);
-                                Log.v("Selected Item", obj.toString());
-                                if (obj.toString().equals("AppRTC")) {
-                                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                                    intent.setComponent(new ComponentName("org.appspot.apprtc",
-                                            "org.appspot.apprtc.ConnectActivity"));
-                                    startActivity(intent);
-                                } else {
-
-                                    popup_dialog = new Dialog(DoctorPlanofCareActivity.this);
-                                    popup_dialog.setContentView(R.layout.dialog_box);
-
-                                    //   getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-                                    ListView listview = (ListView) popup_dialog
-                                            .findViewById(R.id.listview);
-
-                                    Button submit = (Button) popup_dialog.findViewById(R.id.btn);
-                                    String[] accounts = new String[]{"Dhanush1", "Dhanush2"};
-
-                                    popup_dialog.show();
-
-                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                                            DoctorPlanofCareActivity.this,
-                                            android.R.layout.simple_list_item_1, accounts);
-                                    listview.setAdapter(adapter);
-
-                                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                                        @Override
-                                        public void onItemClick(AdapterView<?> arg0, View arg1,
-                                                                int arg2, long arg3) {
-                                            // TODO Auto-generated method stub
-
-                                            obj = arg0.getItemAtPosition(arg2);
-                                            Log.v("Selected Item", obj.toString());
-
-
-                                        }
-
-                                    });
-
-                                    submit.setOnClickListener(new View.OnClickListener() {
-
-                                        @Override
-                                        public void onClick(View v) {
-                                            popup_dialog.dismiss();
-                                            if (obj.toString().equalsIgnoreCase("Dhanush1")) {
-
-                                                Intent intent = new Intent(Intent.ACTION_MAIN);
-                                                intent.setComponent(new ComponentName("org.jitsi",
-                                                        "org.jitsi.android.gui.LauncherActivity"));
-
-                                                intent.putExtra("Username",
-                                                        "dhanush1@jwchat.org");
-                                                intent.putExtra("Password", "123456");
-
-                                                startActivity(intent);
-                                                finish();
-
-                                            } else if (obj.toString().equalsIgnoreCase("Dhanush2")) {
-
-                                                Intent intent = new Intent(Intent.ACTION_MAIN);
-                                                intent.setComponent(new ComponentName("org.jitsi",
-                                                        "org.jitsi.android.gui.LauncherActivity"));
-
-                                                intent.putExtra("Username",
-                                                        "dhanush2@jwchat.org");
-                                                intent.putExtra("Password", "123456");
-
-
-                                                startActivity(intent);
-                                                finish();
-                                            } else {
-
-                                            }
-
-
-                                        }
-
-                                    });
-                                }
-                            }
-                        });
                     }
                 });
 
@@ -505,11 +402,13 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                selectDrugs.add(pocDrugData);
                                                                pocDrugBaseAdapter.notifyDataSetChanged();
                                                            }
+                                                           et_drug_no_of_days.setText("");
+                                                           et_drug_qty.setText("");
+                                                           tv_stop_date.setText("");
                                                        } else
                                                            Toast.makeText(DoctorPlanofCareActivity.this, "All Fields are mandatory", Toast.LENGTH_SHORT).show();
-                                                       tv_stop_date.setText("");
-                                                       et_drug_no_of_days.setText("");
-                                                       et_drug_qty.setText("");
+
+
                                                    }
                                                }
 
@@ -555,17 +454,22 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     resultJson.put("diagnosis", diagnosisArray);
                                                                     resultJson.put("drugs", drugsArray);
                                                                     resultJson.put("investigations", testsArray);
-                                                                    resultJson.put("advice", et_advice.getText().toString() + (switch_poc_physical_consultation.isChecked() ? ".\n Physical examination is required, for this patient." : ""));
+                                                                    resultJson.put("advice", et_advice.getText().toString() + (switch_poc_physical_consultation.isChecked() ? ".Physical examination is required, for this patient." : ""));
                                                                     //                            resultJson.put("reason", et_reason.getText().toString());
                                                                     Log.e(TAG, "Reason" + et_reason.getText().toString() + "---" + swich_poc_pending.isChecked() + "");
                                                                     Log.e(TAG, "selected Json" + resultJson.toString());
-                                                                    if (swich_poc_pending.isChecked() && et_reason.getText().toString().trim().length() != 0) {
-                                                                        saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString());
-                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
-                                                                    } else if (!swich_poc_pending.isChecked() && (diagnosisArray.length() != 0 || drugsArray.length() != 0 || testsArray.length() != 0 || resultJson.getString("advice").length() != 0)) {
-                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber);
-                                                                    } else {
-                                                                        Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care / Reason for Pending must be given", Toast.LENGTH_SHORT).show();
+                                                                    if (swich_poc_pending.isChecked()) {
+                                                                        if (et_reason.getText().toString().trim().length() != 0) {
+                                                                            saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString(), caseId);
+                                                                            saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber, caseId);
+                                                                        } else {
+                                                                            Toast.makeText(DoctorPlanofCareActivity.this, "Reason for Pending must be given", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    } else if (!swich_poc_pending.isChecked()) {
+                                                                        if (resultJson.getString("advice").length() != 0)
+                                                                            saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString(), phoneNumber, caseId);
+                                                                        else
+                                                                            Toast.makeText(DoctorPlanofCareActivity.this, "Advice must be given", Toast.LENGTH_SHORT).show();
                                                                     }
 
                                                                 } catch (JSONException e) {
@@ -620,13 +524,14 @@ public class DoctorPlanofCareActivity extends Activity {
 
             {
                 e.printStackTrace();
-                Toast.makeText(DoctorPlanofCareActivity.this, "Json Failure" + e.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(DoctorPlanofCareActivity.this, "Json Failure" + e.toString(), Toast.LENGTH_SHORT).show();
             }
         } else
 
         {
             Log.e(TAG, "No Data");
         }
+
     }
 
     private String getData(JSONObject jsonData, String key) {
@@ -643,19 +548,19 @@ public class DoctorPlanofCareActivity extends Activity {
     }
 
     public void saveDatainLocal(String documentId, String pocJsonInfo, String
-            pocPendingInfo) {
-        context.allDoctorRepository().updatePocInLocal(documentId, pocJsonInfo, pocPendingInfo);
+            pocPendingInfo, String caseId) {
+        context.allDoctorRepository().updatePocInLocal(caseId, pocJsonInfo, pocPendingInfo);
         if (!pocPendingInfo.equals(""))
             gotoHome();
     }
 
-    private void saveData(final String documentID, String pocJsonData, JSONObject formDataJson, final String pocPendingReason, final String phoneNumber) {
+    private void saveData(final String documentID, String pocJsonData, JSONObject formDataJson, final String pocPendingReason, final String phoneNumber, final String caseId) {
         savePocData(documentID, pocJsonData, formDataJson, pocPendingReason, phoneNumber, new Listener<String>() {
                     //        getDataFromServer(new Listener<String>() {
                     public void onEvent(String resultData) {
                         if (resultData != null) {
                             if (pocPendingReason.length() == 0) {
-                                context.allDoctorRepository().deleteUseCaseId(documentID);
+                                context.allDoctorRepository().deleteUseCaseId(caseId);
                             }
                             Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care is submitted", Toast.LENGTH_SHORT).show();
                             gotoHome();
@@ -713,6 +618,7 @@ public class DoctorPlanofCareActivity extends Activity {
 
                 return result;
             }
+
 
             @Override
             protected void onPostExecute(String resultData) {
