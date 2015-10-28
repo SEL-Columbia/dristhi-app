@@ -196,6 +196,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="14sp"
                 android:text="Something something asdasd"/>
 
             <!--<org.ei.bidan.view.customControls.CustomFontTextView-->
@@ -245,8 +246,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_status_type"
             android:layout_alignParentLeft="true"
-            android:text="Start "
-            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+            android:text="Start"
+            style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:id="@+id/txt_status_date"
@@ -254,7 +255,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_status_type"
             android:layout_toRightOf="@id/label_status_date"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+            style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:id="@+id/txt_alert_status"

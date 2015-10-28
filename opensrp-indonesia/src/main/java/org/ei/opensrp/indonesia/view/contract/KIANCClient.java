@@ -360,7 +360,7 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
     }
 
     public String getPenyakitKronis() {
-        return Strings.isNullOrEmpty(penyakitKronis) ? "" : humanize(penyakitKronis) + ",";
+        return Strings.isNullOrEmpty(penyakitKronis) ? "" : humanize(penyakitKronis);
     }
 
     public void setPenyakitKronis(String penyakitKronis) {
@@ -368,7 +368,7 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
     }
 
     public String getAlergi() {
-        return Strings.isNullOrEmpty(alergi) ? "-" : StringUtil.humanize(alergi);
+        return Strings.isNullOrEmpty(alergi) ? "" : StringUtil.humanize(alergi);
     }
 
     public void setAlergi(String alergi) {
@@ -396,7 +396,7 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
     }
 
     public String getRiwayatKomplikasiKebidanan() {
-        return Strings.isNullOrEmpty(riwayatKomplikasiKebidanan)? "" : humanize(this.riwayatKomplikasiKebidanan) + ",";
+        return Strings.isNullOrEmpty(riwayatKomplikasiKebidanan)? "" : humanize(this.riwayatKomplikasiKebidanan);
     }
 
     public String getKartuIbuCaseId() {

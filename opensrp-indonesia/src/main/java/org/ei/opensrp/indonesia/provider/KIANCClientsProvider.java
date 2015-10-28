@@ -11,8 +11,10 @@ import android.widget.AbsListView;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.domain.ANCServiceType;
 import org.ei.opensrp.indonesia.R;
+import org.ei.opensrp.indonesia.util.StringUtil;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.view.activity.SecuredActivity;
 import org.ei.opensrp.indonesia.view.contract.KIANCClient;
@@ -29,8 +31,10 @@ import org.ei.opensrp.view.viewHolder.ECProfilePhotoLoader;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 import org.ei.opensrp.view.viewHolder.ProfilePhotoLoader;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -109,12 +113,12 @@ public class KIANCClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.getDateStatusText().setText(client.visitDate());
             viewHolder.getLabelDateStatus().setText("Start");
             viewHolder.getAlertStatusText().setText("-");
-            setStatusLayoutColor(Color.parseColor("#f5f5f5"), Color.parseColor("#000000"), viewHolder);
+            setStatusLayoutColor(android.R.color.transparent, Color.parseColor("#000000"), viewHolder);
         }
     }
 
     private void setStatusLayoutColor(int backgroundColor, int fontColor, NativeKIANCRegisterViewHolder viewHolder) {
-        viewHolder.getAncStatusLayout().setBackgroundColor(backgroundColor);
+        viewHolder.getAncStatusLayout().setBackgroundResource(backgroundColor);
         viewHolder.getStatusText().setTextColor(fontColor);
         viewHolder.getDateStatusText().setTextColor(fontColor);
         viewHolder.getAlertStatusText().setTextColor(fontColor);
@@ -143,16 +147,22 @@ public class KIANCClientsProvider implements SmartRegisterClientsProvider {
     }
 
     private void setupResikoView(KIANCClient client, NativeKIANCRegisterViewHolder viewHolder) {
-        Set<String> riwayatKomplikasi = new HashSet<>(Arrays.asList(client.getRiwayatKomplikasiKebidanan().replaceAll("^[,\\s]+", "").split(",")));
-        Set<String> highPregnancyReason = new HashSet<>(Arrays.asList(client.getHighRiskPregnancyReason().replaceAll("^[,\\s]+", "").split(",")));
-
-        String penyakit = client.getPenyakitKronis() + "" +
-                Joiner.on(", ").join(riwayatKomplikasi) + "" + Joiner.on(", ").join(highPregnancyReason) + "" +
-                (!client.getAlergi().equalsIgnoreCase("NA") && !client.getAlergi().equalsIgnoreCase("-") ? "(Alergi : "+client.getAlergi()+" )" : "");
+        List<String> allRisks = new ArrayList<>();
+        allRisks.addAll(client.highRiskReason());
+        allRisks.addAll(client.highPregnancyReason());
+        String rkk = client.getRiwayatKomplikasiKebidanan().replaceAll("^[,\\s]+", "");
+        String pk = client.getPenyakitKronis().replaceAll("^[,\\s]+", "");
+        if(!Strings.isNullOrEmpty(rkk))
+            allRisks.addAll(Arrays.asList(rkk.split(",")));
+        if(!Strings.isNullOrEmpty(pk))
+            allRisks.addAll(Arrays.asList(pk.split(",")));
 
         String alergi = client.getAlergi();
 
-        viewHolder.getPenyakitKronis().setText(Strings.isNullOrEmpty(penyakit) ? "-" : penyakit);
+        String penyakit = StringUtils.join(allRisks, ',') +
+                (!alergi.equalsIgnoreCase("NA") && !Strings.isNullOrEmpty(alergi) ? "(Alergi : " + alergi + " )" : "");
+
+        viewHolder.getPenyakitKronis().setText(Strings.isNullOrEmpty(penyakit) ? "" : penyakit);
 
         if(!Strings.isNullOrEmpty(penyakit) || !Strings.isNullOrEmpty(alergi)) {
             viewHolder.getLayoutResikoANC().setBackgroundColor(Color.parseColor("#FAD5D5"));
