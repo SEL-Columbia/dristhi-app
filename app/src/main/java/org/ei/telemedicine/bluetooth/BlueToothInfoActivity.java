@@ -39,6 +39,7 @@ import org.ei.telemedicine.bluetooth.pulse.BluetoothService;
 import org.ei.telemedicine.bluetooth.pulse.CallBack;
 import org.ei.telemedicine.bluetooth.pulse.ICallBack;
 import org.ei.telemedicine.bluetooth.pulse.PulseBuf;
+import org.ei.telemedicine.domain.form.FieldOverrides;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.activity.NativeANMPlanofCareActivity;
@@ -66,7 +67,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         org.ei.telemedicine.bluetooth.eet.ICallBack, org.ei.telemedicine.bluetooth.fetal.ICallBack, org.ei.telemedicine.bluetooth.blood.ICallBack {
 
     org.ei.telemedicine.view.customControls.CustomFontTextView bt_save;
-    String entityId, instanceId, formName;
+    String entityId, instanceId, formName, risks, pncRisks;
     int subFormCount;
 
     ImageView iv_bp, iv_steh, iv_bgm, iv_eet, iv_fetal, iv_poc;
@@ -155,11 +156,13 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 getActionBar().setTitle("Vital Information");
             }
             Bundle extras = getIntent().getExtras();
-            if (extras != null && extras.containsKey(AllConstants.ENTITY_ID) && extras.containsKey(AllConstants.INSTANCE_ID_PARAM)) {
+            if (extras != null && extras.containsKey(AllConstants.ENTITY_ID) && extras.containsKey(AllConstants.INSTANCE_ID_PARAM) && extras.containsKey(AllConstants.ANCVisitFields.RISKS)) {
                 entityId = extras.getString(AllConstants.ENTITY_ID, "");
                 instanceId = extras.getString(AllConstants.INSTANCE_ID_PARAM, "");
                 formName = extras.getString(AllConstants.FORM_NAME_PARAM, "");
                 subFormCount = extras.getInt(AllConstants.SUB_FORM_COUNT, 0);
+                risks = extras.getString(AllConstants.ANCVisitFields.RISKS, "");
+                pncRisks = extras.getString(AllConstants.PNCVisitFields.PNC_RISKS, "");
 
                 iv_eet = (ImageView) findViewById(R.id.iv_eet);
                 iv_bgm = (ImageView) findViewById(R.id.iv_bgm);
@@ -303,7 +306,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
             bluetoothAdapter.cancelDiscovery();
         if (formName.equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT) || formName.equalsIgnoreCase(AllConstants.FormNames.ANC_VISIT_EDIT)) {
             this.finish();
-            startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, null);
+            startFormActivity(AllConstants.FormNames.ANC_VISIT_EDIT, entityId, new FieldOverrides(context.anmLocationController().getFormInfoJSON()).getJSONString());
         }
     }
 
@@ -436,7 +439,11 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 startDiscovery();
                 break;
             case R.id.iv_poc:
-                startActivityForResult(new Intent(this, NativeANMPlanofCareActivity.class), DRUGS_INFO_RESULT_CODE);
+//                Log.e("Risks in ANC VIsit", risks + "===============" + risks.length());
+                Intent intent = new Intent(this, NativeANMPlanofCareActivity.class);
+                risks = risks.equals("") ? pncRisks : risks;
+                intent.putExtra(AllConstants.ANCVisitFields.RISKS, risks.trim().replace(" ", ",").replace("_", " "));
+                startActivityForResult(intent, DRUGS_INFO_RESULT_CODE);
                 break;
             case R.id.bt_info_save:
                 if (et_bp_dia.getText().toString().equals("") && et_bp_sys.getText().toString().equals("") && et_eet.getText().toString().equals("") && et_fetal.getText().toString().equals("") && et_bgm.getText().toString().equals("")) {
@@ -605,6 +612,8 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                         jsonObject.put("value", et_bp_dia.getText().toString());
                     else if (jsonObject.get("name").equals(bpSystolic))
                         jsonObject.put("value", et_bp_sys.getText().toString());
+                    else if (jsonObject.get("name").equals("pulseRate"))
+                        jsonObject.put("value", et_bp_heart.getText().toString());
                     else if (jsonObject.get("name").equals(temperature))
                         jsonObject.put("value", et_eet.getText().toString() + (context.allSettings().fetchANMConfiguration("temperature").startsWith("c") ? "-C" : "-F"));
                     else if (jsonObject.get("name").equals(AllConstants.PNCVisitFields.CHILD_TEMPERATURE))
