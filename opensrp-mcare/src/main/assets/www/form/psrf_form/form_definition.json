@@ -160,6 +160,16 @@
         "source": "elco.mcaremother.FWWOMAGE"
       },
       {
+        "name": "mother_wom_lmp",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/psrf_met/psrf_pregnant/mother_wom_lmp",
+        "source": "elco.mcaremother.FWPSRLMP"
+      },
+      {
+        "name": "mother_valid",
+        "bind": "/model/instance/PregnancySurveillanceRegistrationForm/psrf_met/psrf_pregnant/mother_valid",
+        "source": "elco.mcaremother.FWWOMVALID"
+      },
+      {
         "name": "FWPSRWOMPREGWTD",
         "bind": "/model/instance/PregnancySurveillanceRegistrationForm/psrf_met/psrf_pregnant/FWPSRWOMPREGWTD"
       },

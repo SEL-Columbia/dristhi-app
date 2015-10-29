@@ -52,8 +52,8 @@ public class ElcoPSRFDueDateSort implements SortOption {
 //            if((commonPersonObjectClient.getDetails().get("FWPSRSTS")!=null) && !(((commonPersonObjectClient.getDetails().get("psrf_schedule_logic")!=null?commonPersonObjectClient.getDetails().get("psrf_schedule_logic"):"").equalsIgnoreCase("1")) || commonPersonObjectClient.getDetails().get("FWPSRSTS").equalsIgnoreCase("2"))){
 //                alertforclient1 = "pregnant";
 //            }
-            if(commonPersonObjectClient.getDetails().get("FWPSRSTS")!=null && commonPersonObjectClient.getDetails().get("psrf_schedule_logic")!=null){
-                if( !((commonPersonObjectClient.getDetails().get("psrf_schedule_logic").equalsIgnoreCase("1")) || commonPersonObjectClient.getDetails().get("FWPSRSTS").equalsIgnoreCase("2"))){
+            if(commonPersonObjectClient.getDetails().get("FWPSRSTS")!=null && commonPersonObjectClient.getDetails().get("psrf_schedule_logic")!=null && !commonPersonObjectClient.getDetails().get("psrf_schedule_logic").trim().equalsIgnoreCase("")){
+                if( !((commonPersonObjectClient.getDetails().get("psrf_schedule_logic").equalsIgnoreCase("1")) || commonPersonObjectClient.getDetails().get("FWPSRSTS").equalsIgnoreCase("02"))){
                     alertforclient1 = "pregnant";
                 }
             }
@@ -70,8 +70,8 @@ public class ElcoPSRFDueDateSort implements SortOption {
             for(int i = 0;i<alertlist_for_client2.size();i++){
                 alertforclient2 = alertlist_for_client2.get(i).status().value();
             }
-            if(commonPersonObjectClient2.getDetails().get("FWPSRSTS")!=null && commonPersonObjectClient2.getDetails().get("psrf_schedule_logic")!=null){
-                if( !((commonPersonObjectClient2.getDetails().get("psrf_schedule_logic").equalsIgnoreCase("1")) || commonPersonObjectClient2.getDetails().get("FWPSRSTS").equalsIgnoreCase("2"))){
+            if(commonPersonObjectClient2.getDetails().get("FWPSRSTS")!=null && commonPersonObjectClient2.getDetails().get("psrf_schedule_logic")!=null && !commonPersonObjectClient2.getDetails().get("psrf_schedule_logic").trim().equalsIgnoreCase("")){
+                if( !((commonPersonObjectClient2.getDetails().get("psrf_schedule_logic").equalsIgnoreCase("1")) || commonPersonObjectClient2.getDetails().get("FWPSRSTS").equalsIgnoreCase("02"))){
                     alertforclient2 = "pregnant";
                 }
             }
