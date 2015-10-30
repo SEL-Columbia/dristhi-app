@@ -35,6 +35,7 @@ import java.util.List;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.ei.opensrp.view.controller.ECSmartRegisterController.ANC_STATUS;
 import static org.ei.opensrp.view.controller.ECSmartRegisterController.PNC_STATUS;
+import static org.ei.opensrp.view.controller.ECSmartRegisterController.STATUS_DATE_FIELD;
 import static org.ei.opensrp.view.controller.ECSmartRegisterController.STATUS_TYPE_FIELD;
 
 /**
@@ -134,26 +135,46 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
     }
 
     private void setupStatusView(KartuIbuClient client, NativeKIRegisterViewHolder viewHolder) {
-        // get status of mother
-        viewHolder.statusView().bindData(client);
+
+        viewHolder.statusView().hideAllLayout();
 
         if (client.status().containsKey(STATUS_TYPE_FIELD)) {
+
             String motherStatus = client.status().get(STATUS_TYPE_FIELD);
             AlertDTO anc1VisitAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_ANC);
             AlertDTO pncVisitAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_PNC);
             AlertDTO kbAlert = client.getANCAlertByCategory(KartuIbuClient.CATEGORY_KB);
 
+            viewHolder.statusView().statusLayout(motherStatus).setVisibility(View.VISIBLE);
+
             if(!Strings.isNullOrEmpty(kbAlert.name())) {
                 setStatusView(viewHolder.statusView().statusLayout(motherStatus), kbAlert, viewHolder);
-            } else if(!Strings.isNullOrEmpty(anc1VisitAlert.name())) {
-                setStatusView(viewHolder.statusView().statusLayout(motherStatus), anc1VisitAlert, viewHolder);
-            } else if(!Strings.isNullOrEmpty(pncVisitAlert.name())) {
-                setStatusView(viewHolder.statusView().statusLayout(motherStatus), pncVisitAlert, viewHolder);
-            } else {
-                viewHolder.statusView().setBackgroundColor(Color.parseColor("#f5f5f5"));
+                return;
             }
+
+            if(!Strings.isNullOrEmpty(anc1VisitAlert.name())) {
+                setStatusView(viewHolder.statusView().statusLayout(motherStatus), anc1VisitAlert, viewHolder);
+                return;
+            }
+
+            if(!Strings.isNullOrEmpty(pncVisitAlert.name())) {
+                setStatusView(viewHolder.statusView().statusLayout(motherStatus), pncVisitAlert, viewHolder);
+                return;
+            }
+
+            ViewGroup statusViewGroup = viewHolder.statusView().statusLayout(motherStatus);
+            viewHolder.statusView().dateView(statusViewGroup).setText(client.status().get(STATUS_DATE_FIELD));
+            if(motherStatus.equalsIgnoreCase("kb")) {
+                viewHolder.statusView().typeView(statusViewGroup).setText("KB" + (Strings.isNullOrEmpty(client.kbMethod()) ? "" : " - " + client.kbMethod()));
+            } else {
+                viewHolder.statusView().typeView(statusViewGroup).setText(motherStatus.toUpperCase());
+            }
+            viewHolder.statusView().labelDateView(statusViewGroup).setText("Date:");
+            viewHolder.statusView().statusView(statusViewGroup).setText("-");
+            setStatusLayoutColor(R.color.status_bar_text_almost_white, Color.parseColor("#000000"), viewHolder, statusViewGroup);
+
         } else {
-            viewHolder.statusView().setBackgroundColor(Color.parseColor("#f5f5f5"));
+            setStatusLayoutColor(R.color.status_bar_text_almost_white, Color.parseColor("#000000"), viewHolder, null);
         }
 
     }
@@ -162,13 +183,20 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.statusView().typeView(statusViewGroup).setText(alert.name());
         viewHolder.statusView().dateView(statusViewGroup).setText(alert.date());
         viewHolder.statusView().statusView(statusViewGroup).setText(alert.status().toUpperCase());
-        viewHolder.statusView().setBackgroundResource(alert.alertStatus().backgroundColorResourceId());
-        viewHolder.statusView().typeView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
-        viewHolder.statusView().dateView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
-        viewHolder.statusView().statusView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
+        setStatusLayoutColor(alert.alertStatus().backgroundColorResourceId(), alert.alertStatus().fontColor(), viewHolder, statusViewGroup);
         viewHolder.statusView().labelDateView(statusViewGroup).setText("Start");
-        viewHolder.statusView().labelDateView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
     }
+
+    private void setStatusLayoutColor(int backgroundColor, int fontColor, NativeKIRegisterViewHolder viewHolder, ViewGroup statusViewGroup) {
+        viewHolder.statusView().setBackgroundResource(backgroundColor);
+        if(statusViewGroup != null) {
+            viewHolder.statusView().labelDateView(statusViewGroup).setTextColor(fontColor);
+            viewHolder.statusView().typeView(statusViewGroup).setTextColor(fontColor);
+            viewHolder.statusView().dateView(statusViewGroup).setTextColor(fontColor);
+            viewHolder.statusView().statusView(statusViewGroup).setTextColor(fontColor);
+        }
+    }
+
 
     @Override
     public SmartRegisterClients getClients() {

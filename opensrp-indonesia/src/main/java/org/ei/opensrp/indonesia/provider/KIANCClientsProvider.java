@@ -102,18 +102,18 @@ public class KIANCClientsProvider implements SmartRegisterClientsProvider {
         // get Alert DTO
         AlertDTO ancVisitAlert = client.getANCAlert();
 
-        viewHolder.getLabelDateStatus().setText("Start");
-
         if(!Strings.isNullOrEmpty(ancVisitAlert.name())) {
             viewHolder.getStatusText().setText(ancVisitAlert.name());
             viewHolder.getDateStatusText().setText(ancVisitAlert.date());
+            viewHolder.getLabelDateStatus().setText("Start");
             viewHolder.getAlertStatusText().setText(ancVisitAlert.status().toUpperCase());
             setStatusLayoutColor(ancVisitAlert.alertStatus().backgroundColorResourceId(), ancVisitAlert.alertStatus().fontColor(), viewHolder);
         } else {
-            viewHolder.getStatusText().setText("ANC " + client.kunjungan());
+            viewHolder.getStatusText().setText("ANC");
             viewHolder.getDateStatusText().setText(client.visitDate());
+            viewHolder.getLabelDateStatus().setText("Date");
             viewHolder.getAlertStatusText().setText("-");
-            setStatusLayoutColor(android.R.color.transparent, Color.parseColor("#000000"), viewHolder);
+            setStatusLayoutColor(R.color.status_bar_text_almost_white, Color.parseColor("#000000"), viewHolder);
         }
     }
 
