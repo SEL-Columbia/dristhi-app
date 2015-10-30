@@ -40,7 +40,7 @@ public class AllKartuIbus {
     }
 
     public long count() {
-        return kartuIbuRepository.count();
+        return all().size();
     }
 
     public long kbCount() { return kartuIbuRepository.kbCount(); }

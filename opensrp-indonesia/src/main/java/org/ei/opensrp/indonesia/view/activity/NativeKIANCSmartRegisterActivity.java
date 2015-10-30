@@ -2,7 +2,6 @@ package org.ei.opensrp.indonesia.view.activity;
 
 import android.view.View;
 
-import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
@@ -140,7 +139,7 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
 
     @Override
     protected void onInitialization() {
-        controller = new KIANCRegisterController(((Context)context).allKohort(), context.alertService(),
+        controller = new KIANCRegisterController(((Context)context).allKohort(), context.alertService(), context.serviceProvidedService(),
                 context.listCache(), ((Context)context).kartuIbuANCClientsCache(), context.villagesCache());
         villageController = new BidanVillageController(context.villagesCache(), ((Context)context).allKartuIbus());
         dialogOptionMapper = new DialogOptionMapper();

@@ -166,7 +166,7 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.statusView().typeView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
         viewHolder.statusView().dateView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
         viewHolder.statusView().statusView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
-        viewHolder.statusView().labelDateView(statusViewGroup).setText(R.string.str_due);
+        viewHolder.statusView().labelDateView(statusViewGroup).setText("Start");
         viewHolder.statusView().labelDateView(statusViewGroup).setTextColor(alert.alertStatus().fontColor());
     }
 

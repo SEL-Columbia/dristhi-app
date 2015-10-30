@@ -129,7 +129,7 @@ public class KartuIbuRegisterController  extends CommonController{
         );
         List<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
         for (Alert alert : alerts) {
-            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.expiryDate()));
+            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.startDate()));
         }
         return alertDTOs;
     }
@@ -140,7 +140,7 @@ public class KartuIbuRegisterController  extends CommonController{
                 KB_IMPLANT);
         List<AlertDTO> alertDTOs = new ArrayList<>();
         for (Alert alert : alerts) {
-            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.expiryDate()));
+            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.startDate()));
         }
         return alertDTOs;
     }

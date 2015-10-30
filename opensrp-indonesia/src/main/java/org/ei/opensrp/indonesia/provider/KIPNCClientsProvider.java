@@ -89,8 +89,14 @@ public class KIPNCClientsProvider implements SmartRegisterClientsProvider {
 
     private void setupMetodeKontrasepsiView(KIPNCClient client, NativeKIPNCRegisterViewHolder viewHolder) {
         viewHolder.kondisiIbu().setText(client.motherCondition());
-        viewHolder.kondisiAnak1().setText(client.getLastChild().getBirthCondition());
-        viewHolder.kondisiAnak2().setText(client.getLastChild().gender() + " , " + client.getLastChild().birthWeight());
+        String birthCondition1 = "-";
+        String birthCondition2 = "-";
+        if(client.getLastChild()!=null) {
+            birthCondition1 = client.getLastChild().getBirthCondition();
+            birthCondition2 = client.getLastChild().gender() + " , " + client.getLastChild().birthWeight();
+        }
+        viewHolder.kondisiAnak1().setText(birthCondition1);
+        viewHolder.kondisiAnak2().setText(birthCondition2);
     }
 
     private void setupKomplikasiView(KIPNCClient client, NativeKIPNCRegisterViewHolder viewHolder) {

@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.domain.ServiceProvided;
 import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.domain.Ibu;
 import org.ei.opensrp.indonesia.domain.KartuIbu;
@@ -12,9 +13,11 @@ import org.ei.opensrp.indonesia.repository.AllKohort;
 import org.ei.opensrp.indonesia.view.contract.KIANCClient;
 import org.ei.opensrp.indonesia.view.contract.KIANCClients;
 import org.ei.opensrp.service.AlertService;
+import org.ei.opensrp.service.ServiceProvidedService;
 import org.ei.opensrp.util.Cache;
 import org.ei.opensrp.util.CacheableData;
 import org.ei.opensrp.view.contract.AlertDTO;
+import org.ei.opensrp.view.contract.ServiceProvidedDTO;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.Village;
 import org.ei.opensrp.view.contract.Villages;
@@ -26,6 +29,16 @@ import java.util.List;
 
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
+import static org.ei.opensrp.domain.ServiceProvided.ANC_1_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.ANC_2_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.ANC_3_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.ANC_4_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.DELIVERY_PLAN_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.HB_TEST_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.IFA_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.TT_1_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.TT_2_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.domain.ServiceProvided.TT_BOOSTER_SERVICE_PROVIDED_NAME;
 import static org.ei.opensrp.indonesia.AllConstantsINA.KartuIbuFields.*;
 import static org.ei.opensrp.indonesia.AllConstantsINA.KartuANCFields.*;
 
@@ -45,13 +58,15 @@ public class KIANCRegisterController extends CommonController {
     private final Cache<KIANCClients> KIANCClientsCache;
     private final Cache<Villages> villagesCache;
     private final AlertService alertService;
+    private final ServiceProvidedService serviceProvidedService;
 
-    public KIANCRegisterController(AllKohort allKohort, AlertService alertService, Cache<String> cache, Cache<KIANCClients> KIANCClientsCache, Cache<Villages> villagesCache) {
+    public KIANCRegisterController(AllKohort allKohort, AlertService alertService,ServiceProvidedService serviceProvidedService, Cache<String> cache, Cache<KIANCClients> KIANCClientsCache, Cache<Villages> villagesCache) {
         this.allKohort = allKohort;
         this.cache = cache;
         this.villagesCache = villagesCache;
         this.KIANCClientsCache = KIANCClientsCache;
         this.alertService = alertService;
+        this.serviceProvidedService = serviceProvidedService;
     }
 
     public String get() {
@@ -144,6 +159,7 @@ public class KIANCRegisterController extends CommonController {
 
                     // get alerts
                     List<AlertDTO> alertDTOs = getAlerts(anc.getId());
+                    List<ServiceProvidedDTO> servicesProvided = getServicesProvided(anc.getId());
                     kartuIbuClient.setAlerts(alertDTOs);
                     kartuIbuClient.ancPreProcess();
 
@@ -206,9 +222,22 @@ public class KIANCRegisterController extends CommonController {
         );
         List<AlertDTO> alertDTOs = new ArrayList<>();
         for (Alert alert : alerts) {
-            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.expiryDate()));
+            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.startDate()));
         }
         return alertDTOs;
+    }
+
+    private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
+        List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,
+                ANC_1_SERVICE_PROVIDED_NAME,
+                ANC_2_SERVICE_PROVIDED_NAME,
+                ANC_3_SERVICE_PROVIDED_NAME,
+                ANC_4_SERVICE_PROVIDED_NAME);
+        List<ServiceProvidedDTO> serviceProvidedDTOs = new ArrayList<ServiceProvidedDTO>();
+        for (ServiceProvided serviceProvided : servicesProvided) {
+            serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));
+        }
+        return serviceProvidedDTOs;
     }
 
 }

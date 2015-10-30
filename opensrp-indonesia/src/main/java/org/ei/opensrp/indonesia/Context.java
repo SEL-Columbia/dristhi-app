@@ -16,14 +16,12 @@ import org.ei.opensrp.indonesia.view.contract.BidanHomeContext;
 import org.ei.opensrp.indonesia.view.contract.KBClients;
 import org.ei.opensrp.indonesia.view.contract.KIANCClients;
 import org.ei.opensrp.indonesia.view.contract.KIPNCClients;
-import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClients;
 import org.ei.opensrp.indonesia.view.controller.AnakRegisterController;
 import org.ei.opensrp.indonesia.view.controller.BidanController;
 import org.ei.opensrp.indonesia.view.controller.KIANCRegisterController;
 import org.ei.opensrp.indonesia.view.controller.KartuIbuRegisterController;
 import org.ei.opensrp.indonesia.view.controller.UniqueIdController;
-import org.ei.opensrp.repository.AllSettings;
 import org.ei.opensrp.repository.FormDataRepository;
 import org.ei.opensrp.repository.Repository;
 import org.ei.opensrp.util.Cache;
@@ -239,6 +237,7 @@ public class Context extends org.ei.opensrp.Context{
         return kartuIbuService;
     }
 
+
     public KartuAnakService kartuAnakService() {
         if(kartuAnakService == null) {
             kartuAnakService = new KartuAnakService( uniqueIdController());
@@ -255,7 +254,7 @@ public class Context extends org.ei.opensrp.Context{
 
     public KIANCRegisterController kartuIbuANCRegisterController() {
         if (kartuIbuANCRegisterController == null) {
-            kartuIbuANCRegisterController = new KIANCRegisterController(allKohort(), alertService(), listCache(), kartuIbuANCClientsCache(), villagesCache());
+            kartuIbuANCRegisterController = new KIANCRegisterController(allKohort(), alertService(), serviceProvidedService(), listCache(), kartuIbuANCClientsCache(), villagesCache());
         }
         return kartuIbuANCRegisterController;
     }

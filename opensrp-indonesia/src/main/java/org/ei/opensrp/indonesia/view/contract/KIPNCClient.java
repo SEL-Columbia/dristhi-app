@@ -340,10 +340,12 @@ public class KIPNCClient extends BidanSmartRegisterClient implements KIANCSmartR
         return children;
     }
 
-    public AnakClient getLastChild() { return children.get(children.size()-1); }
+    public AnakClient getLastChild() {
+        return (children == null || children.size() == 0) ? null : children.get(children.size()-1);
+    }
 
     public String getLastBirth() {
-        if(children==null) return "";
+        if(children==null || children.size() == 0) return "";
 
         return getLastChild().dateOfBirth();
     }
