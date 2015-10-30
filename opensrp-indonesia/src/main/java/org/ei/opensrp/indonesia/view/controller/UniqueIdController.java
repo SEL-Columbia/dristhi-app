@@ -70,11 +70,10 @@ public class UniqueIdController {
     public boolean needToRefillUniqueId() {
         List<Long> uids = getAllUniqueId();
         int currentId = Integer.parseInt(allSettings.fetchCurrentId())/10;
-        return uids==null || uids.isEmpty() || (uids.get(uids.size()-1)/10) - currentId <= uids.size()/4;
+        return uids==null || uids.isEmpty() || uids.get(uids.size()-15) < currentId;
     }
 
     // Class for testing
-
     public boolean needToRefillUniqueIdTest() {
         List<Long> uids = uniqueIdRepository.getAllUniqueId();
         long currentId = Long.parseLong(allSettings.fetchCurrentId())/10;
