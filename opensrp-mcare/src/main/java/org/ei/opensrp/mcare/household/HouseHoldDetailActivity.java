@@ -93,6 +93,13 @@ public class HouseHoldDetailActivity extends Activity {
 
         if(householdclient.getDetails().get("profilepic")!= null){
             setImagetoHolderFromUri(HouseHoldDetailActivity.this,householdclient.getDetails().get("profilepic"),householdview, R.mipmap.householdload);
+        }else{
+
+            if((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("2")){
+                householdview.setImageDrawable(getResources().getDrawable(R.drawable.woman_placeholder));
+            }else if ((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("1")){
+                householdview.setImageDrawable(getResources().getDrawable(R.mipmap.household_profile_thumb));
+            }
         }
         householdview.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,49 +5,7 @@
           android:versionName="3.0.1"
           android:installLocation="auto">
 
-    <compatible-screens>
-        <screen
-                android:screenSize="large"
-                android:screenDensity="ldpi"/>
-        <screen
-                android:screenSize="large"
-                android:screenDensity="mdpi"/>
-        <screen
-                android:screenSize="large"
-                android:screenDensity="hdpi"/>
-        <screen
-                android:screenSize="large"
-                android:screenDensity="xhdpi"/>
-        <screen
-                android:screenSize="xlarge"
-                android:screenDensity="ldpi"/>
-        <screen
-                android:screenSize="xlarge"
-                android:screenDensity="mdpi"/>
-        <screen
-                android:screenSize="xlarge"
-                android:screenDensity="hdpi"/>
-        <screen
-                android:screenSize="xlarge"
-                android:screenDensity="xhdpi"/>
 
-        <screen
-            android:screenSize="normal"
-            android:screenDensity="mdpi"/>
-        <screen
-            android:screenSize="normal"
-            android:screenDensity="hdpi"/>
-        <screen
-            android:screenSize="normal"
-            android:screenDensity="xhdpi"/>
-
-        <!-- Special case for Nexus 7 -->
-        <screen
-                android:screenSize="large"
-                android:screenDensity="213"/>
-
-
-    </compatible-screens>
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
