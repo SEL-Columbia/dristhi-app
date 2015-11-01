@@ -18,7 +18,6 @@
         <screen
                 android:screenSize="large"
                 android:screenDensity="xhdpi"/>
-
         <screen
                 android:screenSize="xlarge"
                 android:screenDensity="ldpi"/>
@@ -32,10 +31,22 @@
                 android:screenSize="xlarge"
                 android:screenDensity="xhdpi"/>
 
+        <screen
+            android:screenSize="normal"
+            android:screenDensity="mdpi"/>
+        <screen
+            android:screenSize="normal"
+            android:screenDensity="hdpi"/>
+        <screen
+            android:screenSize="normal"
+            android:screenDensity="xhdpi"/>
+
         <!-- Special case for Nexus 7 -->
         <screen
                 android:screenSize="large"
                 android:screenDensity="213"/>
+
+
     </compatible-screens>
 
     <uses-permission android:name="android.permission.INTERNET"/>
