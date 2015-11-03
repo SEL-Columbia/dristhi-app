@@ -348,6 +348,8 @@
     <string name="censusenrollmentform">Census New Woman Registration Form</string>
     <string name="psrfform">Pregnancy Surveillance And Registration Form</string>
     <string name="all_mcare_anc">All Pregnant Women</string>
+    <string name="history">History</string>
+    <string name="mcare_anc_woman_details">Pregnant Woman Details</string>
 
 
 </resources>

@@ -67,4 +67,6 @@
     <string name="censusenrollmentform">নতুন মহিলা নিবন্ধন ফর্ম</string>
     <string name="psrfform">গর্ভাবস্থা সনাক্তকরন ও নিবন্ধন ফর্ম</string>
     <string name="all_mcare_anc">All Pregnant Women</string>
+    <string name="history">History</string>
+    <string name="mcare_anc_woman_details">Pregnant Woman Details</string>
 </resources>
