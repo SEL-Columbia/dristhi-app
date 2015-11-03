@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.household.HouseHoldSmartRegisterActivity;
 import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
+import org.ei.opensrp.view.activity.NativeANCSmartRegisterActivity;
 import org.ei.opensrp.view.controller.ANMController;
 
 
@@ -37,6 +39,9 @@ public class McareNavigationController extends org.ei.opensrp.view.controller.Na
     public void startFPSmartRegistry() {
         activity.startActivity(new Intent(activity, ElcoSmartRegisterActivity.class));
     }
-
+    @Override
+    public void startANCSmartRegistry() {
+        activity.startActivity(new Intent(activity, mCareANCSmartRegisterActivity.class));
+    }
 
 }

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/client_list_header_dark_grey">
+
+    <include layout="@layout/elcodetail_nav_bar"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/smart_register_client_divider_height"
+        android:src="@color/smart_register_client_divider_color"
+        android:id="@+id/imageView5" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="hhid"
+            android:id="@+id/name"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:textStyle="bold"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/smart_register_client_divider_height"
+        android:src="@color/smart_register_client_divider_color"
+        android:id="@+id/imageView4" />
+
+    <include
+        layout="@layout/elco_detail_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/smart_register_client_divider_height"
+        android:src="@color/smart_register_client_divider_color"
+        android:id="@+id/imageView3" />
+
+    <LinearLayout
+            android:id="@+id/clients_header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_header_height"
+            android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
+            android:layout_marginRight="@dimen/list_view_margin_left_and_right"
+            android:orientation="horizontal">
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/elco_details_summary"
+            android:id="@+id/inhabitants"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/text_black"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/smart_register_client_divider_height"
+            android:src="@color/smart_register_client_divider_color"/>
+
+    <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+        android:background="@drawable/listview_background_rounded">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp">
+
+                <org.ei.opensrp.view.customControls.CustomFontTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    style="@style/CustomFontTextViewStyle.ListView.Medium"
+                    android:text="@string/elco_mwra_registration_date_label"
+                    android:textColor="@color/text_black"
+
+                    android:id="@+id/textView2"
+                    android:layout_weight="1" />
+
+                <org.ei.opensrp.view.customControls.CustomFontTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    style="@style/CustomFontTextViewStyle.ListView.Medium"
+                    android:textColor="@color/text_black"
+
+                    android:id="@+id/mw_reg_date"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/smart_register_client_divider_height"
+                android:src="@color/smart_register_client_divider_color"
+                android:id="@+id/imageView" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp">
+
+                <org.ei.opensrp.view.customControls.CustomFontTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/CustomFontTextViewStyle.ListView.Medium"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/elco_last_psf_date_label"
+                    android:id="@+id/textView4"
+                    android:textColor="@color/text_black"
+
+                    android:layout_weight="1" />
+
+                <org.ei.opensrp.view.customControls.CustomFontTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    style="@style/CustomFontTextViewStyle.ListView.Medium"
+                    android:textColor="@color/text_black"
+
+                    android:text="Medium Text"
+                    android:id="@+id/last_psf_date"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
