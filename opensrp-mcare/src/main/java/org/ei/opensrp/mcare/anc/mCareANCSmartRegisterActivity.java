@@ -188,8 +188,8 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    ElcoDetailActivity.Elcoclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(mCareANCSmartRegisterActivity.this,ElcoDetailActivity.class);
+                    mCareAncDetailActivity.ancclient = (CommonPersonObjectClient)view.getTag();
+                    Intent intent = new Intent(mCareANCSmartRegisterActivity.this,mCareAncDetailActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.psrf_due_date:
