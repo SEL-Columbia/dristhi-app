@@ -190,6 +190,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
             customFontTextView.setOnClickListener(onClickListener);
             customFontTextView.setTag(pc);
 
+
         }
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("urgent")){
             customFontTextView.setOnClickListener(onClickListener);
@@ -230,12 +231,30 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
     }
 
     private void constructRiskFlagView(CommonPersonObjectClient pc, ViewGroup itemView) {
+        AllCommonsRepository allancRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcaremother");
+        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
+        AllCommonsRepository allelcorep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
+        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getRelationalId());
+
         ImageView hrp = (ImageView)itemView.findViewById(R.id.hrp);
         ImageView hp = (ImageView)itemView.findViewById(R.id.hr);
         ImageView vg = (ImageView)itemView.findViewById(R.id.vg);
-        hrp.setVisibility(View.GONE);
-        hp.setVisibility(View.GONE);
-        vg.setVisibility(View.GONE);
+        if(elcoparent.getDetails().get("FWVG") != null && elcoparent.getDetails().get("FWVG").equalsIgnoreCase("1")){
+
+        }else{
+            vg.setVisibility(View.GONE);
+        }
+        if(elcoparent.getDetails().get("FWHRP") != null && elcoparent.getDetails().get("FWHRP").equalsIgnoreCase("1")){
+
+        }else{
+            hrp.setVisibility(View.GONE);
+        }
+        if(elcoparent.getDetails().get("FWHR_PSR") != null && elcoparent.getDetails().get("FWHR_PSR").equalsIgnoreCase("1")){
+
+        }else{
+            hp.setVisibility(View.GONE);
+        }
+
 //        if(pc.getDetails().get("FWWOMAGE")!=null &&)
 
     }

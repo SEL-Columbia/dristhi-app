@@ -27,6 +27,7 @@ import org.ei.opensrp.view.contract.ECClient;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
 import org.ei.opensrp.view.controller.VillageController;
+import org.ei.opensrp.view.customControls.CustomFontTextView;
 import org.ei.opensrp.view.dialog.AllClientsFilter;
 import org.ei.opensrp.view.dialog.DialogOption;
 import org.ei.opensrp.view.dialog.DialogOptionMapper;
@@ -86,7 +87,7 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             @Override
             public String nameInShortFormForTitle() {
-                return getResources().getString(R.string.ec_register_title_in_short);
+                return getResources().getString(R.string.mcare_ANC_register_title_in_short);
             }
         };
     }
@@ -121,7 +122,7 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             @Override
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{
-                        new ElcoPSRFDueDateSort(),
+//                        new ElcoPSRFDueDateSort(),
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"FWWOMFNAME", Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort)),
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"GOBHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort)),
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"JiVitAHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort))
@@ -149,15 +150,30 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
 
-                new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController)
+                new OpenFormOption(getResources().getString(R.string.nbnf), "birthnotificationpregnancystatusfollowup", formController)
         };
     }
+    private DialogOption[] getEditOptionsforanc(String ancvisittext) {
+
+        if (ancvisittext.contains("ANC4")) {
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc4form), "anc_reminder_visit_4", formController)};
+        } else if (ancvisittext.contains("ANC3")) {
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc3form), "anc_reminder_visit_3", formController)};
+        } else if (ancvisittext.contains("ANC2")) {
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc2form), "anc_reminder_visit_2", formController)};
+        } else if (ancvisittext.contains("ANC1")) {
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc1form), "anc_reminder_visit_1", formController)};
+        }else {
+            return null;
+        }
+    }
+
 
     @Override
     protected void onInitialization() {
         controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
                 context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
+                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 //                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
         villageController = new VillageController(context.allEligibleCouples(),
@@ -192,8 +208,13 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                     Intent intent = new Intent(mCareANCSmartRegisterActivity.this,mCareAncDetailActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.psrf_due_date:
-                    showFragmentDialog(new EditDialogOptionModel(), view.getTag());
+                case R.id.nbnf_due_date:
+                    showFragmentDialog(new EditDialogOptionModelfornbnf(), view.getTag());
+                    break;
+                case R.id.anc_reminder_due_date:
+                    CustomFontTextView ancreminderDueDate = (CustomFontTextView)findViewById(R.id.anc_reminder_due_date);
+
+                    showFragmentDialog(new EditDialogOptionModelForANC(ancreminderDueDate.getText()), view.getTag());
                     break;
             }
         }
@@ -203,10 +224,26 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         }
     }
 
-    private class EditDialogOptionModel implements DialogOptionModel {
+    private class EditDialogOptionModelfornbnf implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
             return getEditOptions();
+        }
+
+        @Override
+        public void onDialogOptionSelection(DialogOption option, Object tag) {
+            onEditSelection((EditOption) option, (SmartRegisterClient) tag);
+        }
+    }
+    private class EditDialogOptionModelForANC implements DialogOptionModel {
+        String ancvisittext = "not synced";
+        public EditDialogOptionModelForANC(CharSequence text) {
+            ancvisittext = text.toString();
+        }
+
+        @Override
+        public DialogOption[] getDialogOptions() {
+            return getEditOptionsforanc(ancvisittext);
         }
 
         @Override

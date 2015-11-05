@@ -1,0 +1,109 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "default_bind_path": "/model/instance/BirthNotificationPregnancyStatusFollowUp",
+    "bind_type": "mcaremother",
+    "fields": [
+      {
+        "name": "version",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/version"
+      },
+      {
+        "name": "changes",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/changes"
+      },
+      {
+        "name": "existing_gobhhid",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_gobhhid"
+      },
+      {
+        "name": "existing_jivhhid",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_jivhhid"
+      },
+      {
+        "name": "existing_wom_bid",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_wom_bid"
+      },
+      {
+        "name": "existing_wom_nid",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_wom_nid"
+      },
+      {
+        "name": "existing_first_name",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_first_name"
+      },
+      {
+        "name": "existing_husname",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_husname"
+      },
+      {
+        "name": "existing_psrlmp",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_psrlmp"
+      },
+      {
+        "name": "existing_location",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_location"
+      },
+      {
+        "name": "today",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/today"
+      },
+      {
+        "name": "start",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/start"
+      },
+      {
+        "name": "end",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/end"
+      },
+      {
+        "name": "FWBNFDATE",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/FWBNFDATE"
+      },
+      {
+        "name": "FWCONFIRMATION",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/FWCONFIRMATION"
+      },
+      {
+        "name": "FWGESTATIONALAGE",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/FWGESTATIONALAGE"
+      },
+      {
+        "name": "FWEDD",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/FWEDD"
+      },
+      {
+        "name": "FWBNFSTS",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/FWBNFSTS"
+      },
+      {
+        "name": "FWDISPLAYTEXT1",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/FWDISPLAYTEXT1"
+      },
+      {
+        "name": "FWBNFWOMVITSTS",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNFWOMVITSTS"
+      },
+      {
+        "name": "FWBNFDTOO",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNFDTOO"
+      },
+      {
+        "name": "FWBNFLB",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNFLB"
+      },
+      {
+        "name": "FWBNFGEN",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFGEN"
+      },
+      {
+        "name": "FWBNFCHLDVITSTS",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFCHLDVITSTS"
+      },
+      {
+        "name": "FWBNFSMSRSN",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNFSMSRSN"
+      }
+    ]
+  }
+}

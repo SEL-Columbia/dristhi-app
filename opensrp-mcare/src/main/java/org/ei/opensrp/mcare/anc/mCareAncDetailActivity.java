@@ -23,8 +23,11 @@ import org.ei.opensrp.mcare.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,15 +98,22 @@ public class mCareAncDetailActivity extends Activity {
 
         village.setText(humanize(ancclient.getDetails().get("location_name") != null ? ancclient.getDetails().get("location_name") : ""));
             /////from househld
+        AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("mcaremother");
+        CommonPersonObject ancobject = allancRepository.findByCaseID(ancclient.entityId());
+        AllCommonsRepository allelcorep = Context.getInstance().allCommonsRepositoryobjects("elco");
+        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getRelationalId());
+
+//
         checkAnc1view(ancclient);
         checkAnc2view(ancclient);
         checkAnc3view(ancclient);
         checkAnc4view(ancclient);
-        numberofChildrenView(ancclient);
-        numberofstillbirthview(ancclient);
-        historyofmr(ancclient);
-        historyofsb(ancclient);
-        pregnancyin2years(ancclient);
+        numberofChildrenView(elcoparent);
+        numberofstillbirthview(elcoparent);
+        historyofmr(elcoparent);
+        historyofsb(elcoparent);
+        pregnancyin2years(elcoparent);
+        eddlay(ancclient);
 
 
 
@@ -140,41 +150,114 @@ public class mCareAncDetailActivity extends Activity {
 
     }
 
-    private void pregnancyin2years(CommonPersonObjectClient ancclient) {
+    private void eddlay(CommonPersonObjectClient ancclient) {
+        TextView edd = (TextView)findViewById(R.id.edd_date);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date edd_date = format.parse(ancclient.getDetails().get("FWPSRLMP")!=null?ancclient.getDetails().get("FWPSRLMP"):"");
+            GregorianCalendar calendar = new GregorianCalendar();
+            calendar.setTime(edd_date);
+            calendar.add(Calendar.DATE, 259);
+            edd_date.setTime(calendar.getTime().getTime());
+            edd.setText(format.format(edd_date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    private void historyofsb(CommonPersonObjectClient ancclient) {
+    private void pregnancyin2years(CommonPersonObject ecclient) {
+        String text = ecclient.getDetails().get("FWPSRPREGTWYRS")!=null?ecclient.getDetails().get("FWPSRPREGTWYRS"):"";
+        TextView stillbirth = (TextView)findViewById(R.id.history_of_mr);
+        stillbirth.setText(text);
+    }
+
+    private void historyofsb(CommonPersonObject ecclient) {
+        String text = ecclient.getDetails().get("FWPSRPRSB")!=null?ecclient.getDetails().get("FWPSRPRSB"):"";
+        TextView stillbirth = (TextView)findViewById(R.id.history_of_mr);
+        stillbirth.setText(text);
+    }
+
+    private void historyofmr(CommonPersonObject ecclient) {
+        String text = ecclient.getDetails().get("FWPSRPRMC")!=null?ecclient.getDetails().get("FWPSRPRMC"):"";
+        TextView stillbirth = (TextView)findViewById(R.id.history_of_mr);
+        stillbirth.setText(text);
 
     }
 
-    private void historyofmr(CommonPersonObjectClient ancclient) {
-
-
+    private void numberofstillbirthview(CommonPersonObject ecclient) {
+        String text = ecclient.getDetails().get("FWPSRNBDTH")!=null?ecclient.getDetails().get("FWPSRNBDTH"):"";
+        TextView stillbirth = (TextView)findViewById(R.id.stillbirths);
+        stillbirth.setText(text);
     }
 
-    private void numberofstillbirthview(CommonPersonObjectClient ancclient) {
-    }
+    private void numberofChildrenView(CommonPersonObject ecclient) {
+        String text = ecclient.getDetails().get("FWPSRTOTBIRTH")!=null?ecclient.getDetails().get("FWPSRTOTBIRTH"):"";
+        TextView numberofChildren = (TextView)findViewById(R.id.livechildren);
+        numberofChildren.setText(text);
 
-    private void numberofChildrenView(CommonPersonObjectClient ancclient) {
     }
-    private void checkAnc4view(CommonPersonObjectClient ancclient) {
-    }
-    private void checkAnc3view(CommonPersonObjectClient ancclient) {
-    }
-
-    private void checkAnc2view(CommonPersonObjectClient ancclient) {
-    }
-
-    private void checkAnc1view(CommonPersonObjectClient ancclient) {
-        LinearLayout anc1layout = (LinearLayout)findViewById(R.id.anc1_layout);
-        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(ancclient.entityId(), "ancrv_1");
+    private void checkAnc4view(CommonPersonObjectClient ecclient) {
+        LinearLayout anc1layout = (LinearLayout)findViewById(R.id.anc4_layout);
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(ecclient.entityId(), "ancrv_4");
         if(alertlist.size()!=0){
 //            alerttextstatus = setAlertStatus("ANC1",alertlist);
             for(int i = 0;i<alertlist.size();i++){
                 String status = alertlist.get(i).status().value();
-                String text = ancclient.getDetails().get("FWANC1DATE")!=null?ancclient.getDetails().get("FWANC1DATE"):"";
+                String text = ecclient.getDetails().get("FWANC4DATE")!=null?ecclient.getDetails().get("FWANC4DATE"):"";
+                TextView anc1date = (TextView)findViewById(R.id.anc4date);
+                anc1date.setText(text);
+
+            }
+        }else{
+            anc1layout.setVisibility(View.GONE);
+        }
+    }
+    private void checkAnc3view(CommonPersonObjectClient ecclient) {
+        LinearLayout anc1layout = (LinearLayout)findViewById(R.id.anc3_layout);
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(ecclient.entityId(), "ancrv_3");
+        if(alertlist.size()!=0){
+//            alerttextstatus = setAlertStatus("ANC1",alertlist);
+            for(int i = 0;i<alertlist.size();i++){
+                String status = alertlist.get(i).status().value();
+                String text = ecclient.getDetails().get("FWANC3DATE")!=null?ecclient.getDetails().get("FWANC3DATE"):"";
+                TextView anc1date = (TextView)findViewById(R.id.anc3date);
+                anc1date.setText(text);
+
+            }
+        }else{
+            anc1layout.setVisibility(View.GONE);
+        }
+    }
+
+    private void checkAnc2view(CommonPersonObjectClient ecclient) {
+        LinearLayout anc1layout = (LinearLayout)findViewById(R.id.anc2_layout);
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(ecclient.entityId(), "ancrv_2");
+        if(alertlist.size()!=0){
+//            alerttextstatus = setAlertStatus("ANC1",alertlist);
+            for(int i = 0;i<alertlist.size();i++){
+                String status = alertlist.get(i).status().value();
+                String text = ecclient.getDetails().get("FWANC2DATE")!=null?ecclient.getDetails().get("FWANC2DATE"):"";
+                TextView anc1date = (TextView)findViewById(R.id.anc2date);
+                anc1date.setText(text);
+
+            }
+        }else{
+            anc1layout.setVisibility(View.GONE);
+        }
+    }
+
+    private void checkAnc1view(CommonPersonObjectClient ecclient) {
+        LinearLayout anc1layout = (LinearLayout)findViewById(R.id.anc1_layout);
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(ecclient.entityId(), "ancrv_1");
+        if(alertlist.size()!=0){
+//            alerttextstatus = setAlertStatus("ANC1",alertlist);
+            for(int i = 0;i<alertlist.size();i++){
+                String status = alertlist.get(i).status().value();
+                String text = ecclient.getDetails().get("FWANC1DATE")!=null?ecclient.getDetails().get("FWANC1DATE"):"";
                 TextView anc1date = (TextView)findViewById(R.id.anc1date);
-                
+                anc1date.setText(text);
+
             }
         }else{
             anc1layout.setVisibility(View.GONE);

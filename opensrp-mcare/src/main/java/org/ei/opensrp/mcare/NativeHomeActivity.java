@@ -12,6 +12,7 @@ import android.widget.Toast;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
 import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
@@ -141,11 +142,13 @@ public class NativeHomeActivity extends SecuredActivity {
         CommonPersonObjectController elcocontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-
+        CommonPersonObjectController anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
+                context.allBeneficiaries(), context.listCache(),
+                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
 
         ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
-        ancRegisterClientCountView.setText(valueOf(homeContext.ancCount()));
+        ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
         pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
         fpRegisterClientCountView.setText(valueOf(elcocontroller.getClients().size()));
         childRegisterClientCountView.setText(valueOf(homeContext.childCount()));
