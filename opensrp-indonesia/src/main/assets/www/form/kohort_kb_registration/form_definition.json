@@ -188,7 +188,7 @@
       },
       {
         "name": "isOutOfArea",
-        "value": "true"
+        "value": "false"
       },
       {
         "name": "isClosed",

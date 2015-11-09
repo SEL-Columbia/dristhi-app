@@ -67,14 +67,6 @@
         "bind": "/model/instance/register_baby/dusun"
       },
       {
-        "name": "puskesmas",
-        "bind": "/model/instance/register_baby/puskesmas"
-      },
-      {
-        "name": "noIbu",
-        "bind": "/model/instance/register_baby/no_ibu"
-      },
-      {
         "name": "namalengkap",
         "bind": "/model/instance/register_baby/nama_lengkap"
       },
@@ -93,50 +85,6 @@
       {
         "name": "alamatDomisili",
         "bind": "/model/instance/register_baby/alamat_domisili"
-      },
-      {
-        "name": "pendidikan",
-        "bind": "/model/instance/register_baby/pendidikan"
-      },
-      {
-        "name": "agama",
-        "bind": "/model/instance/register_baby/agama"
-      },
-      {
-        "name": "pekerjaan",
-        "bind": "/model/instance/register_baby/pekerjaan"
-      },
-      {
-        "name": "gakinTidak",
-        "bind": "/model/instance/register_baby/gakin_tidak"
-      },
-      {
-        "name": "posyandu",
-        "bind": "/model/instance/register_baby/posyandu"
-      },
-      {
-        "name": "namaKader",
-        "bind": "/model/instance/register_baby/nama_kader"
-      },
-      {
-        "name": "namaDukun",
-        "bind": "/model/instance/register_baby/nama_dukun"
-      },
-      {
-        "name": "asuransiJiwa",
-        "bind": "/model/instance/register_baby/asuransi_jiwa"
-      },
-      {
-        "name": "golonganDarah",
-        "bind": "/model/instance/register_baby/golongan_darah"
-      },
-      {
-        "name": "NomorTelponHp",
-        "bind": "/model/instance/register_baby/nomor_telpon_hp"
-      },
-      {
-        "name": "pptest",
-        "bind": "/model/instance/register_baby/pptest"
       },
       {
         "name": "noBayi",
