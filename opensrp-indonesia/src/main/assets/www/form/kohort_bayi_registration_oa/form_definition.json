@@ -67,20 +67,16 @@
         "bind": "/model/instance/register_baby/dusun"
       },
       {
+        "name": "noIbu",
+        "bind": "/model/instance/register_baby/no_ibu"
+      },
+      {
         "name": "namalengkap",
         "bind": "/model/instance/register_baby/nama_lengkap"
       },
       {
         "name": "namaSuami",
         "bind": "/model/instance/register_baby/nama_suami"
-      },
-      {
-        "name": "tanggalLahir",
-        "bind": "/model/instance/register_baby/tanggal_lahir_ibu"
-      },
-      {
-        "name": "umur",
-        "bind": "/model/instance/register_baby/umur"
       },
       {
         "name": "alamatDomisili",

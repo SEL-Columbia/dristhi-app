@@ -19,6 +19,11 @@
 		<input type="text" name="/register_baby/generated_note_name_13" data-type-xml="string" readonly="readonly" />
 	</label>
 	<label class="question non-select ">
+		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/no_ibu:label">No. Ibu</span>
+		<span lang="en" class="question-label " data-itext-id="/register_baby/no_ibu:label">Mother's Number</span>
+		<input type="number" name="/register_baby/no_ibu" data-type-xml="int" />
+	</label>
+	<label class="question non-select ">
 		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/nama_lengkap:label">Nama Ibu</span>
 		<span lang="en" class="question-label " data-itext-id="/register_baby/nama_lengkap:label">Full name</span>
 		<span class="required">*</span>
@@ -33,22 +38,6 @@
 		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/nama_suami:hint">Nama lengkap ayah</span>
 		<span lang="en" class="or-hint " data-itext-id="/register_baby/nama_suami:hint">Husband's full name</span>
 		<input type="text" name="/register_baby/nama_suami" required="required" data-type-xml="string" />
-	</label>
-	<label class="question non-select ">
-		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/tanggal_lahir_ibu:label">Tanggal lahir Ibu</span>
-		<span lang="en" class="question-label " data-itext-id="/register_baby/tanggal_lahir_ibu:label">DOB</span>
-		<span class="required">*</span>
-		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_baby/tanggal_lahir_ibu:hint">Tanggal lahir Ibu</span>
-		<span lang="en" class="or-hint " data-itext-id="/register_baby/tanggal_lahir_ibu:hint">Mother's date of birth</span>
-		<input type="date" name="/register_baby/tanggal_lahir_ibu" required="required" data-type-xml="date" />
-	</label>
-	<label class="note non-select ">
-		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/generated_note_name_20:label">
-			Umur Ibu:
-			<span class="or-output" data-value=" /register_baby/umur " />
-		</span>
-		<span lang="en" class="question-label " data-itext-id="/register_baby/generated_note_name_20:label">Age</span>
-		<input type="text" name="/register_baby/generated_note_name_20" data-type-xml="string" readonly="readonly" />
 	</label>
 	<label class="question non-select ">
 		<span lang="Bahasa" class="question-label active" data-itext-id="/register_baby/alamat_domisili:label">Alamat domisili</span>
@@ -118,7 +107,6 @@
 			</div>
 		</fieldset>
 	</fieldset>
-
 	<label class="question non-select ">
 		<span lang="Bahasa" class="or-constraint-msg active" data-itext-id="/register_baby/berat_lahir:jr:constraintMsg">Berat badan harus lebih dari 0</span>
 		<span lang="en" class="or-constraint-msg " data-itext-id="/register_baby/berat_lahir:jr:constraintMsg">Birthweight should be more than 0</span>
@@ -166,17 +154,9 @@
 		</label>
 
 		<label class="calculation non-select ">
-			<input type="hidden" name="/register_baby/umur" data-calculate="int(( /register_baby/today  -  /register_baby/tanggal_lahir_ibu ) div 365)" data-type-xml="string" />
-		</label>
-		<label class="calculation non-select ">
 			<input type="hidden" name="/register_baby/high_risk_child_Low_Birthweght" data-calculate="if( /register_baby/berat_lahir  &lt; 2500, 'yes', 'no')" data-type-xml="string" />
 		</label>
-		<label class="calculation non-select ">
-			<input type="hidden" name="/register_baby/High_Risk_Pregnancy_Young_maternal_age" data-calculate="if( /register_baby/umur  &lt;20, 'yes','no')" data-type-xml="string" />
-		</label>
-		<label class="calculation non-select ">
-			<input type="hidden" name="/register_baby/High_Risk_Pregnancy_Old_maternal_age" data-calculate="if( /register_baby/umur  &gt;35, 'yes','no')" data-type-xml="string" />
-		</label>
+
 		<label class="calculation non-select ">
 			<input type="hidden" name="/register_baby/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
 		</label>
