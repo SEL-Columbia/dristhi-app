@@ -75,7 +75,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
                 new OpenFormOption(getString(R.string.str_register_kb_form), KOHORT_KB_PELAYANAN,
                         formController),
                 new OpenFormOption(getString(R.string.str_register_anc_form), KARTU_IBU_ANC_REGISTRATION, formController),
-                new OpenFormOption(getString(R.string.str_register_anak_form), ANAK_BAYI_REGISTRATION, formController),
+                // new OpenFormOption(getString(R.string.str_register_anak_form), ANAK_BAYI_REGISTRATION, formController),
                 new OpenFormOption(getString(R.string.str_edit_ki_form), KARTU_IBU_EDIT, formController),
                 new OpenFormOption(getString(R.string.str_close_ki_form),KARTU_IBU_CLOSE, formController),
         };
