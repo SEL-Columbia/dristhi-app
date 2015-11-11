@@ -143,6 +143,7 @@
       </label>
    </fieldset>
    <fieldset id="or-calculated-items" style="display:none;">
+
    <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/balita_kunjungan/reg_date" data-calculate=" /balita_kunjungan/today " data-type-xml="date"/>
         </label>

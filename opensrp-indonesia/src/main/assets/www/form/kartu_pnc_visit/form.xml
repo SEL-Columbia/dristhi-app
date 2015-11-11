@@ -314,7 +314,9 @@
 		</label>
 	</fieldset>
 	<fieldset id="or-calculated-items" style="display:none;">
-		<label class="calculation non-select "><input autocomplete="off" type="hidden" name="/PNC_Visit/reg_date" data-calculate=" /PNC_Visit/today " data-type-xml="date"/></label>
+		<label class="calculation non-select ">
+			<input autocomplete="off" type="hidden" name="/PNC_Visit/reg_date" data-calculate=" /PNC_Visit/today " data-type-xml="date"/>
+		</label>
 		<label class="calculation non-select ">
 			<input type="hidden" name="/PNC_Visit/high_risk_postPartum_PIH" data-calculate="(if(selected( /PNC_Visit/komplikasi ,'hipertensi_postPartum'), 'yes','no'))" data-type-xml="string" />
 		</label>
