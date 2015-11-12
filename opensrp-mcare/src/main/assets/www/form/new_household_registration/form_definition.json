@@ -133,10 +133,6 @@
         "bind": "/model/instance/FWNewHH/FWNHHMWRA"
       },
       {
-        "name": "join_names",
-        "bind": "/model/instance/FWNewHH/join_names"
-      },
-      {
         "name": "ELCO",
         "bind": "/model/instance/FWNewHH/ELCO"
       },

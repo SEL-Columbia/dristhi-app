@@ -263,7 +263,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
                 });
             }
         }
-
+//        Log.v("printing psrf schedule",pc.getDetails().get("psrf_schedule_logic")!=null?pc.getDetails().get("psrf_schedule_logic"):"");
         ////location////////
 //        current.setText("(10 mo)");
         //check if woman is pregnant and if so then block the button

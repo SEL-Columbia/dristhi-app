@@ -69,7 +69,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
             Button edit_form = (Button) itemView.findViewById(R.id.nidpic_capture);
             ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
             if(pc.getDetails().get("profilepic")!=null){
-                HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, org.ei.opensrp.R.drawable.woman_placeholder);
+                HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic,R.mipmap.womanimageload);
             }
             registerlink.setOnClickListener(onClickListener);
             registerlink.setTag(smartRegisterClient);
@@ -91,7 +91,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
             ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
 
             if(pc.getDetails().get("profilepic")!=null){
-                HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, org.ei.opensrp.R.drawable.woman_placeholder);
+                HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.womanimageload);
             }
 
             profilepic.setOnClickListener(onClickListener);

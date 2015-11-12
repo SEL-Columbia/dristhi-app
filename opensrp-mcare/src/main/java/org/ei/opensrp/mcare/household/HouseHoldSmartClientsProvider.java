@@ -105,7 +105,12 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvid
         List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "FW CENSUS");
 
         if(pc.getDetails().get("profilepic")!=null){
-            HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), viewHolder.profilepic, R.mipmap.household_profile_thumb);
+            if((pc.getDetails().get("FWHOHGENDER")!=null?pc.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("2")) {
+                HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), viewHolder.profilepic, R.mipmap.womanimageload);
+            }else if ((pc.getDetails().get("FWHOHGENDER")!=null?pc.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("1")){
+                HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), viewHolder.profilepic, R.mipmap.householdload);
+            }
+
         }else{
             if((pc.getDetails().get("FWHOHGENDER")!=null?pc.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("2")){
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.woman_placeholder));
