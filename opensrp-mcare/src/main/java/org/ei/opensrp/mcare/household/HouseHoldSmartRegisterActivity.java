@@ -163,7 +163,7 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
     private DialogOption[] getEditOptions() {
         HashMap <String,String> overridemap = new HashMap<String,String>();
-        overridemap.put("existing_MWRA", "MWRA");
+        overridemap.put("existing_ELCO", "ELCO");
         overridemap.put("existing_location", "existing_location");
         return new DialogOption[]{
 
