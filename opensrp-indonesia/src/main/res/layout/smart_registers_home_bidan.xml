@@ -33,7 +33,7 @@
                     android:layout_margin="20dp"
                     android:layout_gravity="right"
                     android:background="@drawable/message_box"
-                    android:visibility="gone"/>
+                    android:visibility="invisible"/>
             </FrameLayout>
         </LinearLayout>
 

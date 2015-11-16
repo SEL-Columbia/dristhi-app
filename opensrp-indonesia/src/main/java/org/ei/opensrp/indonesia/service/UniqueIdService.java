@@ -50,23 +50,23 @@ public class UniqueIdService implements AdditionalSyncService {
         int lastUsedId = Integer.parseInt(allSettings.fetchLastUsedId());
         int currentId = Integer.parseInt(allSettings.fetchCurrentId());
 
-        if(currentId > lastUsedId) {
+        if (currentId > lastUsedId) {
             lastUsedId = currentId;
-            pushLastUsedIdToServer(lastUsedId+"");
+            pushLastUsedIdToServer(lastUsedId + "");
             allSettings.saveLastUsedId(lastUsedId + "");
-        } else if(lastUsedId > currentId) {
+        } else if (lastUsedId > currentId) {
             currentId = lastUsedId;
             allSettings.saveCurrentId(currentId + "");
         }
 
-        if(currentId == 0) {
+        if (currentId == 0) {
             ResponseStatus status = getLastUsedId(allSharedPreferences.fetchRegisteredANM(), allSettings.fetchANMPassword());
-            if(status == ResponseStatus.success) {
+            if (status == ResponseStatus.success) {
                 dataStatus = fetched;
             }
         }
 
-        if(uniqueIdController.needToRefillUniqueId()) {
+        if (uniqueIdController.needToRefillUniqueId()) {
             dataStatus = refillUniqueId();
         }
 
@@ -80,7 +80,7 @@ public class UniqueIdService implements AdditionalSyncService {
                     baseURL,
                     UNIQUE_ID_PATH);
             Response<String> response = httpAgent.fetchWithCredentials(uri, username, password);
-            if(response.isFailure()) {
+            if (response.isFailure()) {
                 logError(format("Unique id pull failed"));
                 return new Response<>(failure, "");
             }
@@ -96,10 +96,10 @@ public class UniqueIdService implements AdditionalSyncService {
                     baseURL,
                     LAST_USED_ID_PATH);
             Response<String> response = httpAgent.fetchWithCredentials(uri, username, password);
-            if(response.isFailure()) {
+            if (response.isFailure()) {
                 logError(format("Last used id pull failed"));
                 return ResponseStatus.failure;
-            } else if(response.payload().isEmpty()) {
+            } else if (response.payload().isEmpty()) {
                 logError(format("Last used Id empty"));
                 return ResponseStatus.failure;
             }
@@ -140,28 +140,43 @@ public class UniqueIdService implements AdditionalSyncService {
     }
 
     public FetchStatus refillUniqueId() {
-        Response<String> response = httpAgent.fetch(
+        Response<String> response = httpAgent.post(
                 format("{0}/{1}",
                         configuration.dristhiBaseURL(),
-                        REFILL_UNIQUE_ID));
+                        REFILL_UNIQUE_ID), "");
         if (response.isFailure()) {
             logError(format("Refill unique id sync failed"));
             return fetchedFailed;
+        } else {
+            String baseURL = configuration.dristhiBaseURL();
+            while (true) {
+                String uri = format("{0}/{1}",
+                        baseURL,
+                        UNIQUE_ID_PATH);
+                Response<String> refillResponse = httpAgent.fetch(uri);
+                if (refillResponse.isFailure()) {
+                    logError(format("Unique id pull failed"));
+                    return fetchedFailed;
+                }
+                logDebug(format("Unique id fetched"));
+                saveJsonResponseToUniqueId(refillResponse.payload());
+                return fetched;
+            }
         }
-        saveJsonResponseToUniqueId(response.payload());
-        logInfo(format("Refill unique id sync successfully : {0}", response.payload()));
-        return fetched;
+
     }
 
     public void saveJsonResponseToUniqueId(String payload) {
-        try {
-            JSONObject ids = new JSONObject(payload);
-            JSONArray uniqueId = ids.getJSONArray("ids");
-            for(int i=0;i<uniqueId.length();i++) {
-                uniqueIdController.saveUniqueId(uniqueId.getString(i));
+        if (payload != null) {
+            try {
+                JSONObject ids = new JSONObject(payload);
+                JSONArray uniqueId = ids.getJSONArray("ids");
+                for (int i = 0; i < uniqueId.length(); i++) {
+                    uniqueIdController.saveUniqueId(uniqueId.getString(i));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 
