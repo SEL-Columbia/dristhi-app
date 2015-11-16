@@ -14,7 +14,8 @@
       },
       {
         "name": "existing_location",
-        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_location"
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_location",
+        "shouldLoadValue": true
       },
       {
         "name": "today",
