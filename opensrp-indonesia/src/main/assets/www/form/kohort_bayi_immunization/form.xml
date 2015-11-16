@@ -59,6 +59,9 @@
          <input autocomplete="off" type="hidden" name="/Baby_Immunization/reg_date" data-calculate=" /Baby_Immunization/today " data-type-xml="date"/>
       </label>
       <label class="calculation non-select ">
+         <input autocomplete="off" type="hidden" name="/Baby_Immunization/reg_date" data-calculate=" /Baby_Immunization/today " data-type-xml="date"/>
+      </label>
+      <label class="calculation non-select ">
          <input type="hidden" name="/Baby_Immunization/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">

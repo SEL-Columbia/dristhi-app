@@ -36,7 +36,15 @@
         <span lang="" class="question-label active">Pemberian Vit. A dan kondisi Balita saat sakit</span>
         <input type="text" name="/balita_kunjungan/B05013" data-type-xml="string" />
     </label>
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input type="hidden" name="/balita_kunjungan/today" data-preload="date" data-preload-params="today" data-type-xml="date" />
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/balita_kunjungan/reg_date" data-calculate=" /Bayi_Neonatal_Period/today " data-type-xml="date"/>
+        </label>
         <label class="calculation non-select ">
             <input type="hidden" name="/balita_kunjungan/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
         </label>

@@ -25,6 +25,14 @@
                 "bind": "/model/instance/balita_kunjungan/B01004"
             },
             {
+                "name": "submissionDate",
+                "bind": "/model/instance/balita_kunjungan/today"
+            },
+            {
+                "name": "registrationDate",
+                "bind": "/model/instance/balita_kunjungan/reg_date"
+            },
+            {
                 "name": "isClosed",
                 "value": "false"
             }

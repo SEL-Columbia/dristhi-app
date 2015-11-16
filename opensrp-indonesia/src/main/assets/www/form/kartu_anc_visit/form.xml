@@ -15,6 +15,13 @@
       <span lang="en" class="or-hint " data-itext-id="/ANC_Visit/anc_date:hint">Fill in the date of check-up</span>
       <input type="date" name="/ANC_Visit/anc_date" required="required" data-type-xml="date" />
    </label>
+   <label class="question non-select ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit/nomor_telpon_hp:label">Nomor Telpon/Hp</span>
+      <span lang="en" class="question-label " data-itext-id="/ANC_Visit/nomor_telpon_hp:label">Landline/Cell Phone Number</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/ANC_Visit/nomor_telpon_hp:hint">Nomor telpon/Hp yang dimiliki oleh Ibu atau No telpon Keluarga</span>
+      <span lang="en" class="or-hint " data-itext-id="/ANC_Visit/nomor_telpon_hp:hint">Mother's contact number</span>
+      <input type="text" name="/ANC_Visit/nomor_telpon_hp" data-constraint=".&gt;0 and .&lt;100000000000" data-type-xml="string" />
+   </label>
    <label class="note non-select ">
       <span lang="Bahasa" class="question-label active" data-itext-id="/ANC_Visit/generated_note_name_10:label">
          Usia Klinis :

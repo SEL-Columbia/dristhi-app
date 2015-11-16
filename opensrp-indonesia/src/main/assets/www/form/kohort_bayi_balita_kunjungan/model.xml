@@ -4,6 +4,8 @@
           <formhub>
             <uuid/>
           </formhub>
+            <today/>
+            <reg_date/>
           <B05010/>
           <B05011/>
           <B05012/>

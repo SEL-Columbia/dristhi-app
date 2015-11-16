@@ -223,6 +223,9 @@
       </label>
    </fieldset>
    <fieldset id="or-calculated-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input autocomplete="off" type="hidden" name="/kohort_bayi_kunjungan_perbulan/reg_date" data-calculate=" /kohort_bayi_kunjungan_perbulan/today " data-type-xml="date"/>
+      </label>
    <label class="calculation non-select ">
 				<input autocomplete="off" type="hidden" name="/kohort_bayi_kunjungan_perbulan/reg_date" data-calculate=" /kohort_bayi_kunjungan_perbulan/today " data-type-xml="date" />
 		  </label>

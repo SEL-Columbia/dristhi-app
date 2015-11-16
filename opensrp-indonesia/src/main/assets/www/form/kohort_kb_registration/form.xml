@@ -230,12 +230,11 @@
             no more than 12 digits
         </span>
         <span class="question-label active" lang="">Nomor Telpon/Hp</span>
-        <span class="required">*</span>
         <span class="or-hint active" lang="">Nomor telpon/Hp yang dimiliki oleh Ibu atau No telpon
             Keluarga
         </span>
         <input name="/register_kb/nomor_telpon_hp" data-constraint=".&gt;0 and .&lt;100000000000" data-type-xml="string"
-            required="required" type="text" />
+             type="text" />
     </label>
     <fieldset class="question ">
         <fieldset>

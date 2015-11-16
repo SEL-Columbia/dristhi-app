@@ -259,10 +259,9 @@
 		<span lang="en" class="or-constraint-msg " data-itext-id="/register_pnc/nomor_telpon_hp:jr:constraintMsg">Contact number should be no more than 12 digits</span>
 		<span lang="Bahasa" class="question-label active" data-itext-id="/register_pnc/nomor_telpon_hp:label">Nomor Telpon/Hp</span>
 		<span lang="en" class="question-label " data-itext-id="/register_pnc/nomor_telpon_hp:label">Landline/Cell Phone Number</span>
-		<span class="required">*</span>
 		<span lang="Bahasa" class="or-hint active" data-itext-id="/register_pnc/nomor_telpon_hp:hint">Nomor telpon/Hp yang dimiliki oleh Ibu atau No telpon Keluarga</span>
 		<span lang="en" class="or-hint " data-itext-id="/register_pnc/nomor_telpon_hp:hint">Mother's contact number</span>
-		<input type="text" name="/register_pnc/nomor_telpon_hp" required="required" data-constraint=".&gt;0 and .&lt;100000000000" data-type-xml="string" />
+		<input type="text" name="/register_pnc/nomor_telpon_hp"  data-constraint=".&gt;0 and .&lt;100000000000" data-type-xml="string" />
 	</label>
 	<fieldset class="question ">
 		<fieldset>
