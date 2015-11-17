@@ -1,13 +1,18 @@
 package org.ei.opensrp.indonesia.view.fragment;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Toast;
 
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
+import org.ei.opensrp.indonesia.provider.KIANCClientsProvider;
 import org.ei.opensrp.indonesia.provider.KIPNCClientsProvider;
+import org.ei.opensrp.indonesia.service.formSubmissionHandler.KIPNCRegistrationHandler;
 import org.ei.opensrp.indonesia.view.activity.NativeKIPNCSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.contract.KIPNCClient;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
@@ -25,6 +30,7 @@ import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
@@ -33,6 +39,7 @@ import org.json.JSONObject;
 
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_OA;
 
 /**
  * Created by koros on 10/29/15.
@@ -44,6 +51,8 @@ public class NativeKIPNCSmartRegisterFragment extends BidanSecuredNativeSmartReg
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
     private DialogOptionMapper dialogOptionMapper;
     private BidanVillageController villageController;
+
+    public static final String locationDialogTAG = "locationDialogTAG";
 
     @Override
     protected SmartRegisterPaginatedAdapter adapter() {
@@ -122,11 +131,29 @@ public class NativeKIPNCSmartRegisterFragment extends BidanSecuredNativeSmartReg
                 context.villagesCache(),
                 ((Context)context).allKartuIbus());
         dialogOptionMapper = new DialogOptionMapper();
+
+        context.formSubmissionRouter().getHandlerMap()
+                .put(AllConstantsINA.FormNames.KARTU_IBU_PNC_OA,
+                        new KIPNCRegistrationHandler(((Context)context).kartuIbuService()));
     }
 
     @Override
     protected void startRegistration() {
-        //
+        String uniqueIdJson = ((Context)context).uniqueIdController().getUniqueIdJson();
+        if(uniqueIdJson == null || uniqueIdJson.isEmpty()) {
+            Toast.makeText(getActivity(), "No Unique Id", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+        Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        LocationSelectorDialogFragment
+                .newInstance((SecuredNativeSmartRegisterActivity)getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), KARTU_IBU_PNC_OA)
+                .show(ft, locationDialogTAG);
     }
 
     @Override
@@ -167,7 +194,7 @@ public class NativeKIPNCSmartRegisterFragment extends BidanSecuredNativeSmartReg
                 e.printStackTrace();
             }
             FieldOverrides fieldOverrides = new FieldOverrides(obj.toString());
-            onShowDialogOptionSelectionWithMetadata((EditOption) option, client, controller.getRandomNameChars(client), fieldOverrides.getJSONString());
+            onShowDialogOptionSelectionWithMetadata((EditOption)option, client, controller.getRandomNameChars(client), fieldOverrides.getJSONString());
         }
     }
 

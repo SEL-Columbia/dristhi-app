@@ -1,5 +1,10 @@
 package org.ei.opensrp.indonesia.view.activity;
 
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import org.ei.opensrp.indonesia.AllConstantsINA;
@@ -14,7 +19,10 @@ import org.ei.opensrp.indonesia.view.controller.KIANCRegisterController;
 import org.ei.opensrp.indonesia.view.dialog.AllHighRiskSort;
 import org.ei.opensrp.indonesia.view.dialog.EstimatedDateOfDeliverySortKIANC;
 import org.ei.opensrp.indonesia.view.dialog.KIANCOverviewServiceMode;
+import org.ei.opensrp.indonesia.view.fragment.NativeKIANCSmartRegisterFragment;
+import org.ei.opensrp.indonesia.view.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.dialog.AllClientsFilter;
 import org.ei.opensrp.view.dialog.DialogOption;
@@ -26,6 +34,16 @@ import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
+import org.ei.opensrp.view.fragment.DisplayFormFragment;
+import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
+import org.ei.opensrp.view.viewpager.SampleViewPager;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
@@ -35,15 +53,40 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.*;
  */
 public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity {
 
-    private SmartRegisterClientsProvider clientProvider = null;
-    private KIANCRegisterController controller;
-    private final ClientActionHandler clientActionHandler = new ClientActionHandler();
-    private DialogOptionMapper dialogOptionMapper;
-    private BidanVillageController villageController;
+    @Bind(R.id.view_pager)
+    SampleViewPager mPager;
+    private FragmentPagerAdapter mPagerAdapter;
+    private int currentPage;
+
+    private String[] formNames = new String[]{};
+    private Fragment mBaseFragment = null;
 
     @Override
-    protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(clientsProvider());
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        formNames = this.buildFormNameList();
+        mBaseFragment = new NativeKIANCSmartRegisterFragment();
+
+        // Instantiate a ViewPager and a PagerAdapter.
+        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
+        mPager.setOffscreenPageLimit(getEditOptions().length);
+        mPager.setAdapter(mPagerAdapter);
+        mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+                onPageChanged(position);
+            }
+        });
+    }
+
+    public void onPageChanged(int page){
+        setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
@@ -71,19 +114,6 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
         };
     }
 
-    private class EditDialogOptionModel implements DialogOptionModel {
-        @Override
-        public DialogOption[] getDialogOptions() {
-            return getEditOptions();
-        }
-
-        @Override
-        public void onDialogOptionSelection(DialogOption option, Object tag) {
-            SmartRegisterClient client = (SmartRegisterClient) tag;
-            onShowDialogOptionSelection((EditOption) option, client, controller.getRandomNameChars(client));
-        }
-    }
-
     public DialogOption[] getEditOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_register_anc_visit_form),
@@ -103,47 +133,24 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
 
     @Override
     protected NavBarOptionsProvider getNavBarOptionsProvider() {
-        return new NavBarOptionsProvider() {
-
-            @Override
-            public DialogOption[] filterOptions() {
-                Iterable<? extends DialogOption> villageFilterOptions =
-                        dialogOptionMapper.mapToVillageFilterOptions(controller.villages());
-                return toArray(concat(DEFAULT_FILTER_OPTIONS, villageFilterOptions), DialogOption.class);
-            }
-
-            @Override
-            public DialogOption[] serviceModeOptions() {
-                return new DialogOption[]{};
-            }
-
-            @Override
-            public DialogOption[] sortingOptions() {
-                return new DialogOption[]{new NameSort(), new EstimatedDateOfDeliverySortKIANC(), new AllHighRiskSort()};
-            }
-
-            @Override
-            public String searchHint() {
-                return getString(R.string.str_ki_search_hint);
-            }
-        };
+        return null;
     }
 
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
-        if (clientProvider == null) {
-            clientProvider = new KIANCClientsProvider(this, clientActionHandler, controller);
-        }
-        return clientProvider;
+        return null;
     }
 
     @Override
     protected void onInitialization() {
-        controller = new KIANCRegisterController(((Context)context).allKohort(), context.alertService(), context.serviceProvidedService(),
-                context.listCache(), ((Context)context).kartuIbuANCClientsCache(), context.villagesCache());
-        villageController = new BidanVillageController(context.villagesCache(), ((Context)context).allKartuIbus());
-        dialogOptionMapper = new DialogOptionMapper();
+
     }
+
+    @Override
+    protected void setupViews() {}
+
+    @Override
+    protected void onResumption(){}
 
     @Override
     protected void onStart() {
@@ -159,22 +166,96 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
         // startFormActivity(AllConstantsINA.FormNames.KARTU_IBU_ANC_OA, null, fieldOverrides.getJSONString());
     }
 
-    private class ClientActionHandler implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.profile_info_layout_ki:
-                    showProfileView((KIANCClient) view.getTag());
-                    break;
-                case R.id.btn_edit:
-                    showFragmentDialog(new EditDialogOptionModel(), view.getTag());
-                    break;
+    @Override
+    public void startFormActivity(String formName, String entityId, String metaData) {
+        try {
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
+            if (entityId != null || metaData != null){
+                String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.setFormData(data);
+                    displayFormFragment.loadFormData();
+                    displayFormFragment.setRecordId(entityId);
+                }
             }
-        }
 
-        private void showProfileView(KIANCClient ancClient) {
-            navigationControllerINA.startMotherDetail(ancClient.getKartuIbuCaseId());
-        }
+            mPager.setCurrentItem(formIndex, false); //Don't animate the view on orientation change the view disapears
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private String[] buildFormNameList(){
+        List<String> formNames = new ArrayList<String>();
+        //formNames.add(KARTU_IBU_ANC_OA);
+
+        DialogOption[] options = getEditOptions();
+        for (int i = 0; i < options.length; i++){
+            formNames.add(((OpenFormOption) options[i]).getFormName());
+        }
+        return formNames.toArray(new String[formNames.size()]);
+    }
+
+    @Override
+    public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides){
+        // save the form
+        try{
+//            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
+//            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
+//
+//            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
+//            ZiggyService ziggyService = context.ziggyService();
+//            ziggyService.saveForm(getParams(submission), submission.instance());
+
+            //switch to forms list fragment
+            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void switchToBaseFragment(final String data){
+        final int prevPageIndex = currentPage;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mPager.setCurrentItem(0, false);
+                SecuredNativeSmartRegisterFragment registerFragment = (SecuredNativeSmartRegisterFragment) findFragmentByPosition(0);
+                if (registerFragment != null && data != null) {
+                    registerFragment.refreshListView();
+                }
+
+                //hack reset the form
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.setFormData(null);
+                    displayFormFragment.loadFormData();
+                }
+
+                displayFormFragment.setRecordId(null);
+            }
+        });
+
+    }
+
+    public android.support.v4.app.Fragment findFragmentByPosition(int position) {
+        FragmentPagerAdapter fragmentPagerAdapter = mPagerAdapter;
+        return getSupportFragmentManager().findFragmentByTag("android:switcher:" + mPager.getId() + ":" + fragmentPagerAdapter.getItemId(position));
+    }
+
+    public DisplayFormFragment getDisplayFormFragmentAtIndex(int index) {
+        return  (DisplayFormFragment)findFragmentByPosition(index);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currentPage != 0){
+            switchToBaseFragment(null);
+        }else if (currentPage == 0) {
+            super.onBackPressed(); // allow back key only if we are
+        }
     }
 }

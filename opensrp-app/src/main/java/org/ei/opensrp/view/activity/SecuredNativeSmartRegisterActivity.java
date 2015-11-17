@@ -12,9 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.*;
+
+import com.google.gson.Gson;
+
 import org.ei.opensrp.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.domain.ReportMonth;
+import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.customControls.CustomFontTextView;
@@ -31,7 +35,14 @@ import static android.view.View.VISIBLE;
 import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.ei.opensrp.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.opensrp.AllConstants.FORM_NAME_PARAM;
+import static org.ei.opensrp.AllConstants.INSTANCE_ID_PARAM;
 import static org.ei.opensrp.AllConstants.SHORT_DATE_FORMAT;
+import static org.ei.opensrp.AllConstants.SYNC_STATUS;
+import static org.ei.opensrp.AllConstants.VERSION_PARAM;
+import static org.ei.opensrp.domain.SyncStatus.PENDING;
+import static org.ei.opensrp.util.EasyMap.create;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity {
 
@@ -517,5 +528,15 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     public void saveFormSubmission(String formSubmision, String id, String formName, Map<String, String> fieldOverrides){
         Log.e("saveFormSubmission()", "Override this method in child class");
+    }
+
+    protected String getParams(FormSubmission submission) {
+        return new Gson().toJson(
+                create(INSTANCE_ID_PARAM, submission.instanceId())
+                        .put(ENTITY_ID_PARAM, submission.entityId())
+                        .put(FORM_NAME_PARAM, submission.formName())
+                        .put(VERSION_PARAM, submission.version())
+                        .put(SYNC_STATUS, PENDING.value())
+                        .map());
     }
 }

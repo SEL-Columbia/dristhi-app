@@ -3,9 +3,11 @@ package org.ei.opensrp.indonesia.view.fragment;
 import android.view.View;
 
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.provider.AnakRegisterClientsProvider;
+import org.ei.opensrp.indonesia.service.formSubmissionHandler.AnakRegistrationHandler;
 import org.ei.opensrp.indonesia.view.activity.NativeKIAnakSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.contract.AnakClient;
 import org.ei.opensrp.indonesia.view.controller.AnakRegisterController;
@@ -120,6 +122,10 @@ public class NativeKIAnakSmartRegisterFragment extends BidanSecuredNativeSmartRe
 
         clientsProvider().onServiceModeSelected(new AnakOverviewServiceMode(clientsProvider()));
         dialogOptionMapper = new DialogOptionMapper();
+
+        context.formSubmissionRouter().getHandlerMap()
+                .put(AllConstantsINA.FormNames.KARTU_IBU_REGISTRATION,
+                        new AnakRegistrationHandler(((Context)context).kartuAnakService()));
     }
 
     @Override
@@ -158,9 +164,6 @@ public class NativeKIAnakSmartRegisterFragment extends BidanSecuredNativeSmartRe
         public DialogOption[] getDialogOptions() {
             return getEditOptions();
         }
-
-        String name;
-        CharSequence listNames[];
 
         @Override
         public void onDialogOptionSelection(DialogOption option, Object tag) {

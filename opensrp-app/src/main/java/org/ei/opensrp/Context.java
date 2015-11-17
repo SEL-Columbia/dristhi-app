@@ -440,7 +440,7 @@ public class Context {
         return ancInvestigationsHandler;
     }
 
-    private ZiggyService ziggyService() {
+    public ZiggyService ziggyService() {
         initRepository();
         if (ziggyService == null) {
             ziggyService = new ZiggyService(ziggyFileLoader(), formDataRepository(), formSubmissionRouter());

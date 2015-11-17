@@ -2,7 +2,7 @@
   "form_data_definition_version": "1",
   "form": {
     "bind_type": "kartu_ibu",
-    "default_bind_path": "/model/instance/kartu_ibu/",
+    "default_bind_path": "/model/instance/identitas_ibu_reviewed.xls/",
     "fields": [
       {
         "name": "id",
@@ -10,133 +10,133 @@
       },
       {
         "name": "unique_id",
-        "bind": "/model/instance/kartu_ibu/unique_id",
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/unique_id",
         "shouldLoadValue" : true
       },
       {
         "name": "Village",
-        "bind": "/model/instance/kartu_ibu/Village",
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/Village",
         "shouldLoadValue": true
       },
       {
         "name": "Province",
-        "bind": "/model/instance/kartu_ibu/Province",
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/Province",
         "shouldLoadValue": true
       },
       {
         "name": "Sub-district",
-        "bind": "/model/instance/kartu_ibu/Sub-district",
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/Sub-district",
         "shouldLoadValue": true
       },
       {
         "name": "District",
-        "bind": "/model/instance/kartu_ibu/District",
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/District",
         "shouldLoadValue": true
       },
       {
         "name": "Sub-village",
-        "bind": "/model/instance/kartu_ibu/Sub-village",
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/Sub-village",
         "shouldLoadValue": true
       },
       {
         "name": "dusun",
-        "bind": "/model/instance/kartu_ibu/dusun"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/dusun"
       },
       {
         "name": "provinsi",
-        "bind": "/model/instance/kartu_ibu/provinsi"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/provinsi"
       },
       {
         "name": "kabupaten",
-        "bind": "/model/instance/kartu_ibu/kabupaten"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/kabupaten"
       },
       {
         "name": "kecamatan",
-        "bind": "/model/instance/kartu_ibu/kecamatan"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/kecamatan"
       },
       {
         "name": "desa",
-        "bind": "/model/instance/kartu_ibu/desa"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/desa"
       },
       {
         "name": "puskesmas",
-        "bind": "/model/instance/kartu_ibu/puskesmas"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/puskesmas"
       },
       {
         "name": "noIbu",
-        "bind": "/model/instance/kartu_ibu/no_ibu"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/no_ibu"
       },
       {
         "name": "namalengkap",
-        "bind": "/model/instance/kartu_ibu/nama_lengkap"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/nama_lengkap"
       },
       {
         "name": "namaSuami",
-        "bind": "/model/instance/kartu_ibu/nama_suami"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/nama_suami"
       },
       {
         "name": "tanggalLahir",
-        "bind": "/model/instance/kartu_ibu/tanggal_lahir_ibu"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/tanggal_lahir_ibu"
       },
       {
         "name": "umur",
-        "bind": "/model/instance/kartu_ibu/umur"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/umur"
       },
       {
         "name": "alamatDomisili",
-        "bind": "/model/instance/kartu_ibu/alamat_domisili"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/alamat_domisili"
       },
       {
         "name": "pendidikan",
-        "bind": "/model/instance/kartu_ibu/pendidikan"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/pendidikan"
       },
       {
         "name": "agama",
-        "bind": "/model/instance/kartu_ibu/agama"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/agama"
       },
       {
         "name": "pekerjaan",
-        "bind": "/model/instance/kartu_ibu/pekerjaan"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/pekerjaan"
       },
       {
         "name": "gakinTidak",
-        "bind": "/model/instance/kartu_ibu/gakin_tidak"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/gakin_tidak"
       },
       {
         "name": "posyandu",
-        "bind": "/model/instance/kartu_ibu/posyandu"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/posyandu"
       },
       {
         "name": "namaKader",
-        "bind": "/model/instance/kartu_ibu/nama_kader"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/nama_kader"
       },
       {
         "name": "namaDukun",
-        "bind": "/model/instance/kartu_ibu/nama_dukun"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/nama_dukun"
       },
       {
         "name": "asuransiJiwa",
-        "bind": "/model/instance/kartu_ibu/asuransi_jiwa"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/asuransi_jiwa"
       },
       {
         "name": "golonganDarah",
-        "bind": "/model/instance/kartu_ibu/golongan_darah"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/golongan_darah"
       },
       {
         "name": "NomorTelponHp",
-        "bind": "/model/instance/kartu_ibu/nomor_telpon_hp"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/nomor_telpon_hp"
       },
       {
         "name": "pptest",
-        "bind": "/model/instance/kartu_ibu/pptest"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/pptest"
       },
       {
         "name": "highRiskPregnancyYoungMaternalAge",
-        "bind": "/model/instance/kartu_ibu/High_Risk_Pregnancy_Young_maternal_age"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/High_Risk_Pregnancy_Young_maternal_age"
       },
       {
         "name": "highRiskPregnancyOldMaternalAge",
-        "bind": "/model/instance/kartu_ibu/High_Risk_Pregnancy_Old_maternal_age"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/High_Risk_Pregnancy_Old_maternal_age"
       },
       {
         "name": "isOutOfArea",
@@ -148,11 +148,11 @@
       },
       {
         "name": "submissionDate",
-        "bind": "/model/instance/kartu_ibu/today"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/today"
       },
       {
         "name": "registrationDate",
-        "bind": "/model/instance/kartu_ibu/reg_date"
+        "bind": "/model/instance/identitas_ibu_reviewed.xls/reg_date"
       }
     ]
   }
