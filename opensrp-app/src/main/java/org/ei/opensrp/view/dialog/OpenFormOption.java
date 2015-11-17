@@ -21,6 +21,10 @@ public class OpenFormOption implements EditOption {
         byColumn,byDetails,bydefault;
     }
 
+    public String getFormName(){
+        return formName;
+    }
+
     public OpenFormOption(String name, String formName, FormController formController,   HashMap<String,String> overrideStringmap,ByColumnAndByDetails byColumnAndByDetails) {
         this.name = name;
         this.formName = formName;

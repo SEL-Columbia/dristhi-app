@@ -34,7 +34,7 @@ public abstract class BidanSecuredNativeSmartRegisterActivity extends SecuredNat
     }
 
     @Override
-    protected void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
         if (dialogOptionModel.getDialogOptions().length <= 0) {
             return;
         }
@@ -60,7 +60,7 @@ public abstract class BidanSecuredNativeSmartRegisterActivity extends SecuredNat
     }
 
 
-    protected void showDoubleSelectionDialog(final EditOption editOption, final SmartRegisterClient client, final CharSequence[] charSequences, final String metadata) {
+    public void showDoubleSelectionDialog(final EditOption editOption, final SmartRegisterClient client, final CharSequence[] charSequences, final String metadata) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.title_double_selection);
 

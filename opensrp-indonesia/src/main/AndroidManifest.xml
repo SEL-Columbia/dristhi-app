@@ -72,40 +72,46 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.BidanHomeActivity"
+            android:theme="@style/AppThemeNoTitle"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".view.activity.NativeKISmartRegisterActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppThemeNoActionBarAndTitle"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKIANCSmartRegisterActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppThemeNoActionBarAndTitle"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKIAnakSmartRegisterActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppThemeNoActionBarAndTitle"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKBSmartRegisterActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:theme="@style/AppThemeNoActionBarAndTitle"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKIPNCSmartRegisterActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppThemeNoActionBarAndTitle"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.MotherProfileViewActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:theme="@style/AppThemeNoActionBarAndTitle"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.ChildProfileViewActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:theme="@style/AppThemeNoActionBarAndTitle"
             android:screenOrientation="landscape"
             >
         </activity>
@@ -126,7 +132,7 @@
             android:screenOrientation="landscape">
         </activity>
         <activity android:name="org.ei.opensrp.indonesia.view.activity.NativeReportingActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:theme="@style/AppThemeNoActionBarAndTitle"
             android:screenOrientation="landscape">
         </activity>
         <activity

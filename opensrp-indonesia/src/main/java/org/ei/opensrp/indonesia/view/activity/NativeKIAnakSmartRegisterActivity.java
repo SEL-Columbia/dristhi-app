@@ -197,7 +197,7 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
         }
     }
 
-    private DialogOption[] getEditOptions() {
+    public DialogOption[] getEditOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_anak_neonatal),
                         BAYI_NEONATAL_PERIOD, formController),

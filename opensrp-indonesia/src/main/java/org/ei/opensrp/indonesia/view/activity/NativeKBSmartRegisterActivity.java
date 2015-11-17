@@ -2,6 +2,10 @@ package org.ei.opensrp.indonesia.view.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,7 +27,10 @@ import org.ei.opensrp.indonesia.view.dialog.AllHighRiskSort;
 import org.ei.opensrp.indonesia.view.dialog.AllKBServiceMode;
 import org.ei.opensrp.indonesia.view.dialog.KBMethodSort;
 import org.ei.opensrp.indonesia.view.dialog.WifeAgeSort;
+import org.ei.opensrp.indonesia.view.fragment.NativeKBSmartRegisterFragment;
+import org.ei.opensrp.indonesia.view.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.dialog.AllClientsFilter;
 import org.ei.opensrp.view.dialog.DialogOption;
@@ -36,10 +43,19 @@ import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
+import org.ei.opensrp.view.fragment.DisplayFormFragment;
+import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
+import org.ei.opensrp.view.viewpager.SampleViewPager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
@@ -47,22 +63,46 @@ import static com.google.common.collect.Iterables.toArray;
 /**
  * Created by Dimas Ciputra on 2/18/15.
  */
-public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity implements LocationSelectorDialogFragment.OnLocationSelectedListener {
+public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity  implements LocationSelectorDialogFragment.OnLocationSelectedListener {
 
-    private SmartRegisterClientsProvider clientProvider = null;
-    private KohortKBRegisterController controller;
-    private DialogOptionMapper dialogOptionMapper;
-    private BidanVillageController villageController;
-    public static final String locationDialogTAG = "locationDialogTAG";
+    @Bind(R.id.view_pager)
+    SampleViewPager mPager;
+    private FragmentPagerAdapter mPagerAdapter;
+    private int currentPage;
 
-    private final ClientActionHandler clientActionHandler = new ClientActionHandler();
+    private String[] formNames = new String[]{};
+    private android.support.v4.app.Fragment mBaseFragment = null;
 
     @Override
-    protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(clientsProvider());
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        formNames = this.buildFormNameList();
+        mBaseFragment = new NativeKBSmartRegisterFragment();
+
+        // Instantiate a ViewPager and a PagerAdapter.
+        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
+        mPager.setOffscreenPageLimit(getEditOptions().length);
+        mPager.setAdapter(mPagerAdapter);
+        mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+                onPageChanged(position);
+            }
+        });
     }
 
-    private DialogOption[] getEditOptions() {
+    public void onPageChanged(int page){
+        setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+
+    public DialogOption[] getEditOptions() {
         return new DialogOption[]{
             new OpenFormOption(getString(R.string.str_kb_update),
                     KOHORT_KB_UPDATE, formController),
@@ -75,84 +115,30 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
 
     @Override
     protected DefaultOptionsProvider getDefaultOptionsProvider() {
-        return new DefaultOptionsProvider() {
-
-            @Override
-            public ServiceModeOption serviceMode() {
-                return new AllKBServiceMode(clientsProvider());
-            }
-
-            @Override
-            public FilterOption villageFilter() {
-                return new AllClientsFilter();
-            }
-
-            @Override
-            public SortOption sortOption() {
-                return new NameSort();
-            }
-
-            @Override
-            public String nameInShortFormForTitle() {
-                return getResources().getString(R.string.kb_register_title_in_short);
-            }
-        };
+        return null;
     }
 
     @Override
     public void setupViews() {
-        super.setupViews();
+
     }
 
     @Override
+    protected void onResumption(){}
+
+    @Override
     protected NavBarOptionsProvider getNavBarOptionsProvider() {
-
-        return new NavBarOptionsProvider() {
-
-            @Override
-            public DialogOption[] filterOptions() {
-                Iterable<? extends DialogOption> villageFilterOptions =
-                        dialogOptionMapper.mapToVillageFilterOptions(controller.villages());
-                return toArray(concat(DEFAULT_FILTER_OPTIONS, villageFilterOptions), DialogOption.class);
-            }
-
-            @Override
-            public DialogOption[] serviceModeOptions() {
-                return new DialogOption[]{};
-            }
-
-            @Override
-            public DialogOption[] sortingOptions() {
-                return new DialogOption[]{new NameSort(), new WifeAgeSort(),
-                        new KBMethodSort(), new AllHighRiskSort()};
-            }
-
-            @Override
-            public String searchHint() {
-                return getString(R.string.str_ki_search_hint);
-            }
-        };
+        return null;
     }
 
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
-        if (clientProvider == null) {
-            clientProvider = new KBClientsProvider(
-                    this, clientActionHandler, controller);
-        }
-        return clientProvider;
+        return null;
     }
 
     @Override
     protected void onInitialization() {
-        controller = new KohortKBRegisterController(((Context)context).allKartuIbus(),
-                context.listCache(),((Context)context).kbClientsCache(),((Context)context).allKohort(), context.villagesCache());
-        villageController = new BidanVillageController(context.villagesCache(),((Context)context).allKartuIbus());
-        dialogOptionMapper = new DialogOptionMapper();
 
-        context.formSubmissionRouter().getHandlerMap()
-                .put(AllConstantsINA.FormNames.KOHORT_KB_REGISTER,
-                        new KBRegistrationHandler(((Context)context).kartuIbuService()));
     }
 
     @Override
@@ -163,52 +149,100 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
 
     @Override
     protected void startRegistration() {
-        String uniqueIdJson = ((Context)context).uniqueIdController().getUniqueIdJson();
-        if(uniqueIdJson == null || uniqueIdJson.isEmpty()) {
-            Toast.makeText(this, "No Unique Id", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Fragment prev = getFragmentManager().findFragmentByTag(locationDialogTAG);
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        LocationSelectorDialogFragment
-                .newInstance(this, new EditDialogOptionModel(), context.anmLocationController().get(), KOHORT_KB_REGISTER)
-                .show(ft, locationDialogTAG);
     }
 
-    private class ClientActionHandler implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.profile_info_layout_ki:
-                    showProfileView((KBClient) view.getTag());
-                    break;
-                case R.id.btn_edit:
-                    showFragmentDialog(new EditDialogOptionModel(), view.getTag());
-                    break;
+    @Override
+    public void startFormActivity(String formName, String entityId, String metaData) {
+        try {
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
+            if (entityId != null || metaData != null){
+                String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.setFormData(data);
+                    displayFormFragment.loadFormData();
+                    displayFormFragment.setRecordId(entityId);
+                }
             }
-        }
 
-        private void showProfileView(KBClient kartuIbuClient) {
-            navigationControllerINA.startMotherDetail(kartuIbuClient.entityId());
+            mPager.setCurrentItem(formIndex, false); //Don't animate the view on orientation change the view disapears
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
-    private class EditDialogOptionModel implements DialogOptionModel {
-        @Override
-        public DialogOption[] getDialogOptions() {
-            return getEditOptions();
-        }
+    @Override
+    public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides){
+        // save the form
+        try{
+//            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
+//            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
+//
+//            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
+//            ZiggyService ziggyService = context.ziggyService();
+//            ziggyService.saveForm(getParams(submission), submission.instance());
 
-        @Override
-        public void onDialogOptionSelection(DialogOption option, Object tag) {
-            SmartRegisterClient client = (SmartRegisterClient) tag;
-            onShowDialogOptionSelection((EditOption)option, client, controller.getRandomNameChars(client));
+            //switch to forms list fragment
+            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
+    }
+
+    public void switchToBaseFragment(final String data){
+        final int prevPageIndex = currentPage;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mPager.setCurrentItem(0, false);
+                SecuredNativeSmartRegisterFragment registerFragment = (SecuredNativeSmartRegisterFragment) findFragmentByPosition(0);
+                if (registerFragment != null && data != null) {
+                    registerFragment.refreshListView();
+                }
+
+                //hack reset the form
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.setFormData(null);
+                    displayFormFragment.loadFormData();
+                }
+
+                displayFormFragment.setRecordId(null);
+            }
+        });
+
+    }
+
+    public android.support.v4.app.Fragment findFragmentByPosition(int position) {
+        FragmentPagerAdapter fragmentPagerAdapter = mPagerAdapter;
+        return getSupportFragmentManager().findFragmentByTag("android:switcher:" + mPager.getId() + ":" + fragmentPagerAdapter.getItemId(position));
+    }
+
+    public DisplayFormFragment getDisplayFormFragmentAtIndex(int index) {
+        return  (DisplayFormFragment)findFragmentByPosition(index);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currentPage != 0){
+            switchToBaseFragment(null);
+        }else if (currentPage == 0) {
+            super.onBackPressed(); // allow back key only if we are
+        }
+    }
+
+    private String[] buildFormNameList(){
+        List<String> formNames = new ArrayList<String>();
+        formNames.add(KOHORT_KB_REGISTER);
+
+        DialogOption[] options = getEditOptions();
+        for (int i = 0; i < options.length; i++){
+            formNames.add(((OpenFormOption) options[i]).getFormName());
+        }
+        return formNames.toArray(new String[formNames.size()]);
     }
 
     @Override

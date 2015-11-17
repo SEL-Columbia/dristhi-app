@@ -3,6 +3,7 @@ package org.ei.opensrp.view.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,7 +25,7 @@ import static org.ei.opensrp.AllConstants.*;
 import static org.ei.opensrp.event.Event.ON_LOGOUT;
 import static org.ei.opensrp.util.Log.logInfo;
 
-public abstract class SecuredActivity extends Activity {
+public abstract class SecuredActivity extends ActionBarActivity {
     protected Context context;
     protected Listener<Boolean> logoutListener;
     protected FormController formController;

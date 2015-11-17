@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -22,6 +23,7 @@ import org.ei.opensrp.view.dialog.*;
 import org.joda.time.LocalDate;
 
 import java.util.List;
+import java.util.Map;
 
 import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 import static android.view.View.INVISIBLE;
@@ -353,7 +355,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         showFragmentDialog(dialogOptionModel, null);
     }
 
-    protected void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
         if (dialogOptionModel.getDialogOptions().length <= 0) {
             return;
         }
@@ -511,5 +513,9 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         private void clearSearchText() {
             searchView.setText("");
         }
+    }
+
+    public void saveFormSubmission(String formSubmision, String id, String formName, Map<String, String> fieldOverrides){
+        Log.e("saveFormSubmission()", "Override this method in child class");
     }
 }
