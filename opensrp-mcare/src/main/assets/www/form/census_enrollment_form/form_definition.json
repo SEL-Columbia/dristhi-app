@@ -39,6 +39,10 @@
         "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_FWNHHHGPS",
         "shouldLoadValue": true
       },
+       {
+        "name": "form_name",
+        "bind": "/model/instance/CensusNewWomanRegistrationForm/form_name"
+      },
       {
         "name": "FWJIVHHID",
         "bind": "/model/instance/CensusNewWomanRegistrationForm/existing_JiVitAHHID",

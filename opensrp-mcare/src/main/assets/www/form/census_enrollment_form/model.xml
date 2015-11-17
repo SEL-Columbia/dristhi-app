@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <CensusNewWomanRegistrationForm encounter_type="Census Visit" id="CensusNewWomanRegistrationForm" version="201510280920">
+        <CensusNewWomanRegistrationForm encounter_type="Census Visit" id="CensusNewWomanRegistrationForm" version="201511150938">
           <formhub>
             <uuid/>
           </formhub>
@@ -8,8 +8,8 @@
           <changes/>
           <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
           <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
-          <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
-          <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+          <start/>
+          <end/>
           <existing_ELCO/>
           <existing_GOBHHID/>
           <existing_JiVitAHHID/>
@@ -23,6 +23,7 @@
           <existing_FWMAUZA_PARA/>
           <existing_FWGOB_HHID/>
           <existing_FWNHHHGPS/>
+          <form_name/>
           <FWCENDATE openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           <FWCENSTAT openmrs_entity="concept" openmrs_entity_id="162947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           <woman template="" openmrs_entity="person" openmrs_entity_id="New Woman Registration">
@@ -64,7 +65,7 @@
           </woman>
           <new_ELCO/>
           <ELCO/>
-          <user_type>FWA</user_type>
+          <user_type/>
           <external_user_ID/>
           <meta>
             <instanceID/>

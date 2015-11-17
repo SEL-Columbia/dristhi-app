@@ -49,6 +49,10 @@
         "bind": "/model/instance/FWNewHH/existing_Mauzapara"
       },
       {
+        "name": "form_name",
+        "bind": "/model/instance/FWNewHH/form_name"
+      },
+      {
         "name": "today",
         "bind": "/model/instance/FWNewHH/today"
       },

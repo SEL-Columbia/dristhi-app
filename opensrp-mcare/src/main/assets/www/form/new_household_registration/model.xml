@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <FWNewHH encounter_type="New Household Registration" id="FWNewHH" version="201510280904">
+        <FWNewHH encounter_type="New Household Registration" id="FWNewHH" version="201511150934">
           <formhub>
             <uuid/>
           </formhub>
@@ -15,9 +15,10 @@
           <existing_Ward/>
           <existing_Subunit/>
           <existing_Mauzapara/>
+          <form_name/>
           <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
-          <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
-          <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+          <start/>
+          <end/>
           <FWNHREGDATE openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           <FWGOBHHID openmrs_entity="person_attribute" openmrs_entity_id="GoB_HHID"/>
           <FWJIVHHID openmrs_entity="person_attribute" openmrs_entity_id="JiVitA_HHID"/>
@@ -75,7 +76,7 @@
             <add_women/>
           </woman>
           <ELCO/>
-          <user_type>FWA</user_type>
+          <user_type/>
           <external_user_ID/>
           <meta>
             <instanceID/>
