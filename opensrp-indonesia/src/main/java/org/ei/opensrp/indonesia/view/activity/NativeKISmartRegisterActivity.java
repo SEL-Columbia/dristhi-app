@@ -264,7 +264,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
                 //hack reset the form
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
                 if (displayFormFragment != null) {
-                    displayFormFragment.setFormData(null);
+                    displayFormFragment.nullifyFormData();
                     displayFormFragment.loadFormData();
                 }
 

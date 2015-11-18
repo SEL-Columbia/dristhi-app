@@ -1,8 +1,12 @@
 package org.ei.opensrp.view.fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by Geoffrey Koros on 9/12/2015.
@@ -48,6 +53,9 @@ public class DisplayFormFragment extends Fragment {
     }
 
     private String recordId;
+
+    //boolean loadingFinished = false;
+    private boolean javascriptLoaded = false;
 
     public String getRecordId() {
         return recordId;
@@ -132,24 +140,52 @@ public class DisplayFormFragment extends Fragment {
 
     String formData;
     public void setFormData(String data){
-        this.formData = data;
+        if (data != null){
+            this.formData = data;
+        }
+    }
+
+    /**
+     * Explicitly call this function to nullify/clear the form data
+     **/
+    public void nullifyFormData(){
+        this.formData = null;
     }
 
     public void loadFormData(){
-        formData = formData != null && !formData.isEmpty() ? formData.replaceAll("\"","\\\"") : "";
-        webView.post(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                webView.loadUrl("javascript:loadDraft('"+ formData + "')");
+                try{
+                    while (!javascriptLoaded){
+                        Thread.sleep(1000);
+                    }
+
+                    formData = formData != null && !formData.isEmpty() ? formData.replaceAll("\"","\\\"") : "";
+                    webView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            webView.loadUrl("javascript:loadDraft('" + formData + "')");
+                            Log.e("posting data", formData);
+                        }
+                    });
+
+                }catch(Exception doNothing){}
+
+
+
             }
-        });
+        }).start();
+
     }
+
+    public static final String TAG = "DisplayFormFragment";
 
     private void dismissProgressDialog(){
         //dialog.dismiss();
         webView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
-        loadFormData();
+        //loadFormData();
     }
 
     //override this on tha child classes to override specific fields
@@ -195,6 +231,12 @@ public class DisplayFormFragment extends Fragment {
         @JavascriptInterface
         public void processFormSubmission(String formSubmission){
             ((SecuredNativeSmartRegisterActivity)getActivity()).saveFormSubmission(formSubmission, recordId, formName, getFormFieldsOverrides());
+        }
+
+        @JavascriptInterface
+        public void javascriptLoaded(){
+            //Toast.makeText(mContext, "Javascript loaded", Toast.LENGTH_LONG).show();
+            javascriptLoaded = true;
         }
     }
 
