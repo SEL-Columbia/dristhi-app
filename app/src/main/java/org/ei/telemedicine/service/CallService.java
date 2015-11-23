@@ -2,6 +2,8 @@ package org.ei.telemedicine.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.os.StrictMode;
 import android.util.Log;
@@ -20,6 +22,8 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import static org.ei.telemedicine.util.Log.logInfo;
 
 public class CallService extends Service {
     private Context context;
@@ -48,7 +52,7 @@ public class CallService extends Service {
 
     @Override
     public void onStart(Intent intent, int startid) {
-        MyNotify();
+        startOnlyIfConnectedToNetwork(getApplicationContext());
         Log.d(TAG, "onStart");
     }
     public String getUsern()
@@ -64,6 +68,7 @@ public class CallService extends Service {
             id = jObject.getString("id");
             message = jObject.getBoolean("message");
             caller = jObject.getString("caller");
+            Toast.makeText(this,caller, Toast.LENGTH_SHORT).show();
             if (message) {
                 Intent dialogIntent = new Intent(this, ActionActivity.class);
                 dialogIntent.putExtra(CALLER, caller);
@@ -93,7 +98,6 @@ public class CallService extends Service {
         String name= getUsern();
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
         HttpPost httppost = new HttpPost(url+name);
-        Toast.makeText(this,"Ayanfe",Toast.LENGTH_LONG).show();
         Log.d(TAG, url+name);
         httppost.setHeader("Content-type", "application/json");
         InputStream inputStream = null;
@@ -118,6 +122,22 @@ public class CallService extends Service {
             try{if(inputStream != null)inputStream.close();}catch(Exception squish){}
         }
         return result;
+    }
+
+    public  boolean isNetWorkAvailable(android.content.Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(android.content.Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+    public  void startOnlyIfConnectedToNetwork(android.content.Context context) {
+        if (isNetWorkAvailable(context)) {
+            Toast.makeText(context,"started",Toast.LENGTH_LONG).show();
+            MyNotify();
+        } else {
+            logInfo("Device not connected to network so not starting sync scheduler.");
+        }
+
     }
 
 }

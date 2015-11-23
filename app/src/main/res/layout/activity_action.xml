@@ -7,43 +7,67 @@
     android:background="#FFFFFF"
     tools:context="org.ei.telemedicine.view.activity.ActionActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer"
-        android:id="@+id/btnCall"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="@color/alert_in_progress_blue"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="callerText"
-        android:id="@+id/txtCaller"
-        android:layout_alignRight="@+id/btnCall"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:textColor="@color/alert_in_progress_blue"/>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_above="@+id/btnCall"
-        android:layout_below="@+id/txtCaller"
-        android:id="@+id/lji"
-        android:weightSum="1">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="callerText"
+            android:id="@+id/txtCaller"
+            android:layout_alignRight="@+id/btnCall"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/text_black"
+            android:textSize="50dp"
+            android:layout_weight="0.96" />
+</LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="340dp"
+            android:layout_height="211dp"
             android:id="@+id/imageView2"
-            android:layout_weight="0.91" />
+            android:layout_gravity="center_vertical"
+            android:layout_weight="29.10"
+            android:src="@drawable/call"/>
+        </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="122dp"
+            android:text="Answer"
+            android:id="@+id/btnCall"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/text_black"
+            android:layout_weight="50.00"
+            android:textColor="#ffffff"
+            android:textSize="50dp"
+            android:layout_gravity="bottom" />
+
+
     </LinearLayout>
+
 
 </RelativeLayout>

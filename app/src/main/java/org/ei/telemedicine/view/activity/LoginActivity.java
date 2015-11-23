@@ -9,6 +9,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -16,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
@@ -32,10 +34,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.security.PublicKey;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import org.json.JSONObject;
+
+import de.tavendo.autobahn.WebSocketConnection;
+import de.tavendo.autobahn.WebSocketException;
+import de.tavendo.autobahn.WebSocketHandler;
+
+
+
 
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
@@ -46,9 +57,79 @@ public class LoginActivity extends Activity {
     private Context context;
     private EditText userNameEditText;
     private EditText passwordEditText;
+    private final String CALLER = "name";
 
     private ProgressDialog progressDialog;
     private String TAG = "LoginActivity";
+
+    private int waitTime = 5;
+    private final WebSocketConnection mConnection = new WebSocketConnection();
+
+    public String getUsern()
+    {
+        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        return context.allSharedPreferences().fetchRegisteredANM();
+    }
+
+    private void start() {
+
+
+        final String wsuri = "ws://202.153.34.166:8004/wslogin?id=%s";
+        try {
+            mConnection.connect(String.format(wsuri,getUsern()), new WebSocketHandler() {
+
+                @Override
+                public void onOpen() {
+                    Log.d(TAG, "Status: Connected to " + wsuri);
+                    Toast.makeText(getApplicationContext(),String.format(wsuri,getUsern()), Toast.LENGTH_SHORT).show();
+                    //mConnection.sendTextMessage("Hello, world!");
+                }
+
+                @Override
+                public void onTextMessage(String payload) {
+                    Log.d(TAG, "Got echo: " + payload);
+                    try {
+                        JSONObject jObject = new JSONObject(payload);
+                        String status = jObject.getString("status");
+                        String msg = jObject.getString("msg_type");
+                        String caller = jObject.getString("caller");
+                        //Log.d(TAG, check);
+                        String match = "INI";
+                        boolean response = (status.equals(match))? true : false;
+                        if (response)
+                        {
+                            Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getApplicationContext(), ActionActivity.class);
+                            i.putExtra(CALLER, caller);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+                        }
+
+                    }catch (Exception ex)
+                    {
+                        Log.d(TAG, ex.toString());
+                    }
+                }
+
+                @Override
+                public void onClose(int code, String reason) {
+                    Log.d(TAG, "Connection lost.");
+                    Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
+                    try {
+                        Thread.sleep(waitTime);
+                        waitTime = waitTime*2;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    start();
+
+                }
+            });
+        } catch (WebSocketException e) {
+
+            Log.d(TAG, e.toString());
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -208,8 +289,9 @@ public class LoginActivity extends Activity {
         context.allSharedPreferences().updateIsFirstLogin(false);
         String userRole = context.userService().getUserRole();
         goToHome(userRole);
+        start();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
-        DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+        //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
 
@@ -244,8 +326,10 @@ public class LoginActivity extends Activity {
             context.allSharedPreferences().savePwd(password);
         }
         goToHome(userRole);
+        start();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
-        DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+
+        //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void goToHome(String userRole) {

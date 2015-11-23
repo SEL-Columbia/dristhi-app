@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+//import org.ei.telemedicine.Context;
 
 import org.ei.telemedicine.R;
 
@@ -21,9 +22,16 @@ import java.util.Random;
 
 public class ActionActivity extends Activity {
 
-    protected String callUrl="http://202.153.34.169/demos/callerdemo.html";
+    private org.ei.telemedicine.Context context;
+    protected String callUrl="http://202.153.34.166:8004/recieve?id=%s&peer_id=%s";
 
     private Ringtone ringtone;
+
+    public String getUsern()
+    {
+        context = org.ei.telemedicine.Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        return context.allSharedPreferences().fetchRegisteredANM();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +51,7 @@ public class ActionActivity extends Activity {
         }
         setContentView(R.layout.activity_action);
         Intent myIntent = getIntent();
-        String callerId = myIntent.getStringExtra("name");
+        final String callerId = myIntent.getStringExtra("name");
         TextView showCaller =(TextView) findViewById(R.id.txtCaller);
         showCaller.setText(callerId + " is calling..");
         findViewById(R.id.btnCall).setOnClickListener(new View.OnClickListener() {
@@ -52,7 +60,7 @@ public class ActionActivity extends Activity {
 
                 AudioManager aM = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
                 aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-                Uri url = Uri.parse(callUrl);
+                Uri url = Uri.parse(String.format(callUrl,getUsern(),callerId));
                 Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
                 startActivity(_broswer);
                 finish();

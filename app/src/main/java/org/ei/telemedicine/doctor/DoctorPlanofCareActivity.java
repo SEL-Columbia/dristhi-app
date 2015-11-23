@@ -83,6 +83,7 @@ public class DoctorPlanofCareActivity extends Activity {
     private String TAG = "DoctorPlanOfCareActivity";
     String visitType, visitNumber;
     String documentId, formData, phoneNumber;
+    public String CALLER_URL="http://202.153.34.169:8004/call?id=%s&peer_id=%s";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,7 +253,7 @@ public class DoctorPlanofCareActivity extends Activity {
                 ib_anm_logo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String caller_url = String.format("http://202.153.34.169/demos/callerdemo.html?callerid=%s&recepientid=%s",doc_name,nus_name);
+                        String caller_url = String.format(CALLER_URL,doc_name,nus_name);
                         Uri url = Uri.parse(caller_url);
                         Intent _broswer = new Intent(Intent.ACTION_VIEW,url);
                         startActivity(_broswer);
