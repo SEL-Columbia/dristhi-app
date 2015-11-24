@@ -5,8 +5,8 @@
     "bind_type": "mcaremother",
     "fields": [
       {
-        "name": "version",
-        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/version"
+        "name": "id",
+        "shouldLoadValue": true
       },
       {
         "name": "changes",

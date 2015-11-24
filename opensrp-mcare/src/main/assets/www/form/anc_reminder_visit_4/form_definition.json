@@ -5,6 +5,10 @@
     "bind_type": "mcaremother",
     "fields": [
       {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
         "name": "version",
         "bind": "/model/instance/ANC_Reminder_Visit_4/version"
       },
