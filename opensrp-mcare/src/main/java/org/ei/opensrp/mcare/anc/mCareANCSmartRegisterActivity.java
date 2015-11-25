@@ -3,8 +3,10 @@ package org.ei.opensrp.mcare.anc;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
@@ -153,7 +155,9 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 new OpenFormOption(getResources().getString(R.string.nbnf), "birthnotificationpregnancystatusfollowup", formController)
         };
     }
-    private DialogOption[] getEditOptionsforanc(String ancvisittext) {
+    private DialogOption[] getEditOptionsforanc(String visittext) {
+        String ancvisittext = "Not Synced";
+        ancvisittext = visittext;
 
         if (ancvisittext.contains("ANC4")) {
             return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc4form), "anc_reminder_visit_4", formController)};
@@ -164,7 +168,7 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         } else if (ancvisittext.contains("ANC1")) {
             return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc1form), "anc_reminder_visit_1", formController)};
         }else {
-            return null;
+            return new DialogOption[]{};
         }
     }
 
@@ -179,7 +183,7 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         villageController = new VillageController(context.allEligibleCouples(),
                 context.listCache(), context.villagesCache());
         dialogOptionMapper = new DialogOptionMapper();
-        context.formSubmissionRouter().getHandlerMap().put("psrf_form",new PSRFHandler());
+//        context.formSubmissionRouter().getHandlerMap().put("psrf_form",new PSRFHandler());
     }
 
     @Override
@@ -209,12 +213,12 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                     startActivity(intent);
                     break;
                 case R.id.nbnf_due_date:
-                    showFragmentDialog(new EditDialogOptionModelfornbnf(), view.getTag());
+                    showFragmentDialog(new EditDialogOptionModelfornbnf(), view.getTag(R.id.clientobject));
                     break;
                 case R.id.anc_reminder_due_date:
                     CustomFontTextView ancreminderDueDate = (CustomFontTextView)findViewById(R.id.anc_reminder_due_date);
-
-                    showFragmentDialog(new EditDialogOptionModelForANC(ancreminderDueDate.getText()), view.getTag());
+                    Log.v("do as you will",(String)view.getTag(R.id.textforAncRegister));
+                    showFragmentDialog(new EditDialogOptionModelForANC((String)view.getTag(R.id.textforAncRegister)), view.getTag(R.id.clientobject));
                     break;
             }
         }
@@ -236,9 +240,9 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         }
     }
     private class EditDialogOptionModelForANC implements DialogOptionModel {
-        String ancvisittext = "not synced";
-        public EditDialogOptionModelForANC(CharSequence text) {
-            ancvisittext = text.toString();
+        String ancvisittext ;
+        public EditDialogOptionModelForANC(String text) {
+            ancvisittext = text;
         }
 
         @Override

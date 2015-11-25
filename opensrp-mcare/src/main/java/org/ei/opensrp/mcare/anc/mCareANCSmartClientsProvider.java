@@ -188,13 +188,16 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("upcoming")){
             customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
             customFontTextView.setOnClickListener(onClickListener);
-            customFontTextView.setTag(pc);
+            customFontTextView.setTag(R.id.clientobject,pc);
+            customFontTextView.setTag(R.id.textforAncRegister,alerttextstatus.getAlertText() != null ? alerttextstatus.getAlertText() : "");
+
 
 
         }
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("urgent")){
             customFontTextView.setOnClickListener(onClickListener);
-            customFontTextView.setTag(pc);
+            customFontTextView.setTag(R.id.clientobject,pc);
+            customFontTextView.setTag(R.id.textforAncRegister,alerttextstatus.getAlertText() != null ? alerttextstatus.getAlertText() : "");
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
         }
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("expired")){
