@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <identitas_ibu_reviewed.xls encounter_type="Identitas Ibu" id="Kartu_ibu_1" version="201510220841">
+    <Kartu_ibu encounter_type="Identitas Ibu" id="Kartu_ibu" version="201511260619">
       <formhub>
         <uuid/>
       </formhub>
@@ -9,23 +9,22 @@
       <deviceid/>
       <simserial/>
       <phonenumber/>
-      <Kabupaten/>
-      <Kecamatan/>
-      <Desa/>
-      <Dusun/>
       <unique_id/>
+      <generated_note_name_8/>
+      <Village/>
+      <generated_note_name_10/>
+      <Sub-village/>
       <generated_note_name_12/>
-      <generated_note_name_13/>
-      <generated_note_name_14/>
-      <generated_note_name_15/>
-      <generated_note_name_16/>
+      <Province/>
+      <District/>
+      <Sub-district/>
       <puskesmas/>
       <no_ibu/>
       <nama_lengkap/>
       <nama_suami/>
       <tanggal_lahir_ibu/>
       <umur/>
-      <generated_note_name_23/>
+      <generated_note_name_22/>
       <alamat_domisili/>
       <pendidikan/>
       <agama/>
@@ -40,10 +39,15 @@
       <pptest/>
       <High_Risk_Pregnancy_Young_maternal_age/>
       <High_Risk_Pregnancy_Old_maternal_age/>
+      <dusun/>
+      <desa/>
+      <provinsi/>
+      <kabupaten/>
+      <kecamatan/>
       <end/>
       <meta>
         <instanceID/>
       </meta>
-    </identitas_ibu_reviewed.xls>
+    </Kartu_ibu>
   </instance>
 </model>

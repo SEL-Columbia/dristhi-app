@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <tambah_kb encounter_type="Tambah KB" id="tambah_kb" version="201510210304">
+        <tambah_kb_1 encounter_type="Tambah KB" id="tambah_kb" version="201511260719">
             <formhub>
                 <uuid />
             </formhub>
@@ -10,12 +10,13 @@
             <simserial />
             <phonenumber />
             <tanggal_kunjungan />
-            <tanggal_lahir_ibu />
+            <tanggal_lahir />
             <umur />
             <generated_note_name_10 />
             <paritas />
             <td_sistolik />
             <td_diastolik />
+            <alki />
             <alki_hb />
             <alki_lila />
             <alki_penyakit_kronis />
@@ -26,6 +27,6 @@
             <meta>
                 <instanceID />
             </meta>
-        </tambah_kb>
+        </tambah_kb_1>
     </instance>
 </model>
