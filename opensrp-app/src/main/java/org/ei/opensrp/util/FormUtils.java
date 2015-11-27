@@ -434,20 +434,15 @@ public class FormUtils {
                 item.remove("bind");
             }
 
-            item.put("source", bindPath + "." +  item.getString("name"));
+            if (!item.has("source")){
+                item.put("source", bindPath + "." +  item.getString("name"));
+            }
 
             if (item.has("name") && item.getString("name").equalsIgnoreCase("id")){
                 String id = entityJson.has("id") ? entityJson.getString("id") : generateRandomUUIDString();
                 item.put("value", id);
             }
 
-//            // temp hack for existing location field
-//            if (item.has("name") && item.getString("name").equalsIgnoreCase("existing_location")){
-//                if (overrides.containsKey("existing_location")){
-//                    item.put("value", overrides.get("existing_location"));
-//                }else
-//                    item.put("value", "4ccd5a33-c462-4b53-b8c1-a1ad1c3ba0cf");
-//            }
         }
         return fieldsArray;
     }
@@ -464,7 +459,13 @@ public class FormUtils {
             if (!item.has("name"))
                 continue; // skip elements without name
             field.put("name", item.getString("name"));
-            field.put("source", bindPath + "." +  item.getString("name"));
+
+            if (!item.has("source")){
+                field.put("source", bindPath + "." +  item.getString("name"));
+            }else{
+                field.put("source", bindPath + "." +  item.getString("source"));
+            }
+
             subFormFieldsArray.put(i, field);
         }
 
