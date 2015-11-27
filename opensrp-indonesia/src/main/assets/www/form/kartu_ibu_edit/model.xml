@@ -1,34 +1,30 @@
 <model>
   <instance>
-    <kartu_ibu encounter_type="Identitas Ibu" id="Kartu_ibu" version="201510220543">
+    <Kartu_ibu encounter_type="Identitas Ibu" id="Kartu_ibu" version="201511260619">
       <formhub>
         <uuid/>
       </formhub>
       <start/>
       <today/>
-      <reg_date/>
       <deviceid/>
       <simserial/>
       <phonenumber/>
-      <Village/>
-      <Province/>
-      <Sub-district/>
-      <District/>
-      <Sub-village/>
-      <provinsi/>
-      <kabupaten/>
-      <kecamatan/>
-      <desa/>
-      <dusun/>
       <unique_id/>
+      <generated_note_name_8/>
+      <Village/>
+      <generated_note_name_10/>
+      <Sub-village/>
       <generated_note_name_12/>
+      <Province/>
+      <District/>
+      <Sub-district/>
       <puskesmas/>
       <no_ibu/>
       <nama_lengkap/>
       <nama_suami/>
       <tanggal_lahir_ibu/>
       <umur/>
-      <generated_note_name_19/>
+      <generated_note_name_22/>
       <alamat_domisili/>
       <pendidikan/>
       <agama/>
@@ -43,10 +39,15 @@
       <pptest/>
       <High_Risk_Pregnancy_Young_maternal_age/>
       <High_Risk_Pregnancy_Old_maternal_age/>
+      <dusun/>
+      <desa/>
+      <provinsi/>
+      <kabupaten/>
+      <kecamatan/>
       <end/>
       <meta>
         <instanceID/>
       </meta>
-    </kartu_ibu>
+    </Kartu_ibu>
   </instance>
 </model>

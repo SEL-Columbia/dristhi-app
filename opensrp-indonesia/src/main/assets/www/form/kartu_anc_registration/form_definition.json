@@ -2,7 +2,7 @@
   "form_data_definition_version": "1",
   "form": {
     "bind_type": "kartu_ibu",
-    "default_bind_path": "/model/instance/Register_Anc_Only/",
+    "default_bind_path": "/model/instance/anc_registration/",
     "fields": [
       {
         "name": "id",
@@ -10,171 +10,172 @@
       },
       {
         "name": "motherId",
-        "source": "kartu_ibu.ibu.id"
+        "source": "kartu_ibu.ibu.id",
+        "shouldLoadValue": true
       },
       {
         "name": "referenceDate",
-        "bind": "/model/instance/Register_Anc_Only/tanggal_periksa",
+        "bind": "/model/instance/anc_registration/tanggal_periksa",
         "source": "kartu_ibu.ibu.referenceDate"
       },
       {
         "name": "gravida",
-        "bind": "/model/instance/Register_Anc_Only/gravida",
+        "bind": "/model/instance/anc_registration/gravida",
         "shouldLoadValue": true
       },
       {
         "name": "partus",
-        "bind": "/model/instance/Register_Anc_Only/partus",
+        "bind": "/model/instance/anc_registration/partus",
         "shouldLoadValue": true
       },
       {
         "name": "abortus",
-        "bind": "/model/instance/Register_Anc_Only/abortus",
+        "bind": "/model/instance/anc_registration/abortus",
         "shouldLoadValue": true
       },
       {
         "name": "hidup",
-        "bind": "/model/instance/Register_Anc_Only/hidup",
+        "bind": "/model/instance/anc_registration/hidup",
         "shouldLoadValue": true
       },
       {
         "name": "persalinanSebelumnya",
-        "bind": "/model/instance/Register_Anc_Only/persalinan_sebelumnya",
+        "bind": "/model/instance/anc_registration/persalinan_sebelumnya",
         "source": "kartu_ibu.ibu.persalinanSebelumnya"
       },
       {
         "name": "riwayatKomplikasiKebidanan",
-        "bind": "/model/instance/Register_Anc_Only/riwayat_komplikasi_kebidanan",
+        "bind": "/model/instance/anc_registration/riwayat_komplikasi_kebidanan",
         "source": "kartu_ibu.ibu.riwayatKomplikasiKebidanan"
       },
       {
         "name": "rkklainnya",
-        "bind": "/model/instance/Register_Anc_Only/riwayat_komplikasi_kebidananL",
+        "bind": "/model/instance/anc_registration/riwayat_komplikasi_kebidananL",
         "source": "kartu_ibu.ibu.rkklainnya"
       },
       {
         "name": "penyakitKronis",
-        "bind": "/model/instance/Register_Anc_Only/penyakit_kronis",
+        "bind": "/model/instance/anc_registration/penyakit_kronis",
         "source": "kartu_ibu.ibu.penyakitKronis"
       },
       {
         "name": "rpkLainnya",
-        "bind": "/model/instance/Register_Anc_Only/penyakit_kronisL",
+        "bind": "/model/instance/anc_registration/penyakit_kronisL",
         "source": "kartu_ibu.ibu.rpkLainnya"
       },
       {
         "name": "Alergi",
-        "bind": "/model/instance/Register_Anc_Only/alergi",
+        "bind": "/model/instance/anc_registration/alergi",
         "source": "kartu_ibu.ibu.Alergi"
       },
       {
         "name": "tanggalHPHT",
-        "bind": "/model/instance/Register_Anc_Only/hpht",
+        "bind": "/model/instance/anc_registration/hpht",
         "source": "kartu_ibu.ibu.tanggalHPHT"
       },
       {
         "name": "htp",
-        "bind": "/model/instance/Register_Anc_Only/htp"
+        "bind": "/model/instance/anc_registration/htp"
       },
       {
         "name": "trimesterKe",
-        "bind": "/model/instance/Register_Anc_Only/trimester_ke"
+        "bind": "/model/instance/anc_registration/trimester_ke"
       },
       {
         "name": "tanggalMemperolehBukuKia",
-        "bind": "/model/instance/Register_Anc_Only/tanggal_memperoleh_buku_kia",
+        "bind": "/model/instance/anc_registration/tanggal_memperoleh_buku_kia",
         "source": "kartu_ibu.ibu.tanggalMemperolehBukuKia"
       },
       {
         "name": "jamkesmas",
-        "bind": "/model/instance/Register_Anc_Only/jamkesmas"
+        "bind": "/model/instance/anc_registration/jamkesmas"
       },
       {
         "name": "tbCM",
-        "bind": "/model/instance/Register_Anc_Only/tb_cm",
+        "bind": "/model/instance/anc_registration/tb_cm",
         "source": "kartu_ibu.ibu.tbCM"
       },
       {
         "name": "bbKg",
-        "bind": "/model/instance/Register_Anc_Only/bb_kg",
+        "bind": "/model/instance/anc_registration/bb_kg",
         "source": "kartu_ibu.ibu.bbKg"
       },
       {
         "name": "hasilPemeriksaanLILA",
-        "bind": "/model/instance/Register_Anc_Only/lila_cm",
+        "bind": "/model/instance/anc_registration/lila_cm",
         "source": "kartu_ibu.ibu.hasilPemeriksaanLILA"
       },
       {
         "name": "highRiskPregnancyProteinEnergyMalnutrition",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_Pregnancy_Protein_energy_Malnutrition"
+        "bind": "/model/instance/anc_registration/High_Risk_Pregnancy_Protein_energy_Malnutrition"
       },
       {
         "name": "malariaRisk",
-        "bind": "/model/instance/Register_Anc_Only/malaria_risk"
+        "bind": "/model/instance/anc_registration/malaria_risk"
       },
       {
         "name": "highRiskLabourTBRisk",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_Labour_TB_risk"
+        "bind": "/model/instance/anc_registration/High_Risk_Labour_TB_risk"
       },
       {
         "name": "HighRiskPregnancyTooManyChildren",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_Pregnancy_Too_many_children"
+        "bind": "/model/instance/anc_registration/High_Risk_Pregnancy_Too_many_children"
       },
       {
         "name": "HighRiskPregnancyAbortus",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_Pregnancy_abortus"
+        "bind": "/model/instance/anc_registration/High_Risk_Pregnancy_abortus"
       },
       {
         "name": "HighRiskLabourSectionCesareaRecord",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_Labour_Section_Cesarea_record_risk"
+        "bind": "/model/instance/anc_registration/High_Risk_Labour_Section_Cesarea_record_risk"
       },
       {
         "name": "highRiskSTIBBVs",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk__STI_BBVs"
+        "bind": "/model/instance/anc_registration/High_Risk__STI_BBVs"
       },
       {
         "name": "highRiskEctopicPregnancy",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_Ectopic_Pregnancy"
+        "bind": "/model/instance/anc_registration/High_Risk_Ectopic_Pregnancy"
       },
       {
         "name": "otherRiskMolaHidatidosa",
-        "bind": "/model/instance/Register_Anc_Only/Other_Risk_Mola_Hidatidosa"
+        "bind": "/model/instance/anc_registration/Other_Risk_Mola_Hidatidosa"
       },
       {
         "name": "otherRiskCongenitalAbnormality",
-        "bind": "/model/instance/Register_Anc_Only/Other_Risk_congenital_abnormality"
+        "bind": "/model/instance/anc_registration/Other_Risk_congenital_abnormality"
       },
       {
         "name": "otherRiskEarlyWaterbreak",
-        "bind": "/model/instance/Register_Anc_Only/Other_Risk_early_waterbreak"
+        "bind": "/model/instance/anc_registration/Other_Risk_early_waterbreak"
       },
       {
         "name": "highRiskCardiovascularDiseaseRecord",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_cardiovascular_Disease_Record"
+        "bind": "/model/instance/anc_registration/High_Risk_cardiovascular_Disease_Record"
       },
       {
         "name": "highRiskDidneyDisorder",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_kidney_disorder"
+        "bind": "/model/instance/anc_registration/High_Risk_kidney_disorder"
       },
       {
         "name": "highRiskHeartDisorder",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_Heart_Disorder"
+        "bind": "/model/instance/anc_registration/High_Risk_Heart_Disorder"
       },
       {
         "name": "highRiskAsthma",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_Asthma"
+        "bind": "/model/instance/anc_registration/High_Risk_Asthma"
       },
       {
         "name": "highRiskTuberculosis",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_Tuberculosis"
+        "bind": "/model/instance/anc_registration/High_Risk_Tuberculosis"
       },
       {
         "name": "highRiskMalaria",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_Malaria"
+        "bind": "/model/instance/anc_registration/High_Risk_Malaria"
       },
       {
         "name": "highRiskHIVAIDS",
-        "bind": "/model/instance/Register_Anc_Only/High_Risk_HIV_AIDS"
+        "bind": "/model/instance/anc_registration/High_Risk_HIV_AIDS"
       },
       {
         "name": "isOutOfArea",
@@ -191,12 +192,12 @@
       },
       {
         "name": "submissionDate",
-        "bind": "/model/instance/Register_Anc_Only/today",
+        "bind": "/model/instance/anc_registration/today",
         "source": "kartu_ibu.ibu.submissionDate"
       },
       {
         "name": "registrationDate",
-        "bind": "/model/instance/Register_Anc_Only/reg_date",
+        "bind": "/model/instance/anc_registration/reg_date",
         "source": "kartu_ibu.ibu.registrationDate"
       },
       {
