@@ -365,6 +365,11 @@
         "bind": "/model/instance/register_pnc_reviewed/today"
       },
       {
+        "name":"kartu_ibu.ibu.anak.id",
+        "source":"kartu_ibu.ibu.anak.id",
+        "shouldLoadValue": true
+      },
+      {
         "name": "registrationDate",
         "bind": "/model/instance/register_pnc_reviewed/reg_date"
       }

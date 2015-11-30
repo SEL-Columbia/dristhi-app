@@ -431,9 +431,16 @@ public class FormUtils {
                 String[] path = pathSting.split("/");
                 String value = getValueForPath(path, jsonObject);
                 item.put("value", value);
-                item.remove("bind");
+                //item.remove("bind");
+
             }
 
+            // map the id field for child elements
+            if (item.has("source") && item.getString("source").endsWith(".id")){
+                item.put("value", generateRandomUUIDString());
+            }
+
+            // add source property if not available
             if (!item.has("source")){
                 item.put("source", bindPath + "." +  item.getString("name"));
             }
