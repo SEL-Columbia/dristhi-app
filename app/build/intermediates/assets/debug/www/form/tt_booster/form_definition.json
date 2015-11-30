@@ -1,0 +1,46 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "mother",
+    "default_bind_path": "/model/instance/TTBooster_EngKan/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "ecId",
+        "shouldLoadValue": true,
+        "source": "mother.eligible_couple.id"
+      },
+      {
+        "name": "village",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/TTBooster_EngKan/village",
+        "source": "mother.eligible_couple.village"
+      },
+      {
+        "name": "ancNumber",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/TTBooster_EngKan/anc_reg_num",
+        "source": "mother.ancNumber"
+      },
+      {
+        "name": "ttDose",
+        "bind": "/model/instance/TTBooster_EngKan/tt_dose"
+      },
+      {
+        "name": "ttInjectionPlace",
+        "bind": "/model/instance/TTBooster_EngKan/ttbooster_injection_place"
+      },
+      {
+        "name": "ttDate",
+        "bind": "/model/instance/TTBooster_EngKan/ttbooster_date"
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/TTBooster_EngKan/today"
+      }
+    ]
+  }
+}

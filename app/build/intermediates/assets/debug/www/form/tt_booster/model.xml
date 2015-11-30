@@ -1,0 +1,18 @@
+<model>
+    <instance>
+        <TTBooster_EngKan id="TTBooster_EngKan">
+            <formhub>
+                <uuid />
+            </formhub>
+            <today />
+            <tt_dose />
+            <village />
+            <anc_reg_num />
+            <ttbooster_injection_place />
+            <ttbooster_date />
+            <meta>
+                <instanceID />
+            </meta>
+        </TTBooster_EngKan>
+    </instance>
+</model>

@@ -1,0 +1,89 @@
+<form autocomplete="off" class="or clearfix" id="Vitamin_A_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Vitamin A</h3>
+
+    <label class="question non-select ">
+        <input name="/Child_Vitamin_A_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+    <label class="question or-appearance-minimal ">
+        <span class="question-label active" lang="">Which dose of Vitamin A was given?
+        </span>
+        <span class="required">*</span>
+        <select name="/Child_Vitamin_A_EngKan/vit_a_dose"
+            data-name="/Child_Vitamin_A_EngKan/vit_a_dose" data-type-xml="select1"
+            required="required">
+            <option value="">...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Where was Vitamin A given?</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Child_Vitamin_A_EngKan/vit_a_place" autocomplete="off"
+                        data-name="/Child_Vitamin_A_EngKan/vit_a_place" data-type-xml="select1"
+                        type="radio" value="sub_center" />
+                    <span class="option-label active" lang="">My Sub Center</span>
+                </label>
+                <label class="">
+                    <input name="/Child_Vitamin_A_EngKan/vit_a_place" autocomplete="off"
+                        data-name="/Child_Vitamin_A_EngKan/vit_a_place" data-type-xml="select1"
+                        type="radio" value="phc" />
+                    <span class="option-label active" lang="">My PHC</span>
+                </label>
+                <label class="">
+                    <input name="/Child_Vitamin_A_EngKan/vit_a_place" autocomplete="off"
+                        data-name="/Child_Vitamin_A_EngKan/vit_a_place" data-type-xml="select1"
+                        type="radio" value="elsewhere" />
+                    <span class="option-label active" lang="">Elsewhere
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Vitamin A date?
+        </span>
+        <span class="required">*</span>
+        <input name="/Child_Vitamin_A_EngKan/vit_a_date" autocomplete="off"
+            data-constraint=".&gt;=  /Child_Vitamin_A_EngKan/eight_months  and .&lt;= /Child_Vitamin_A_EngKan/today "
+            data-type-xml="date" required="required" type="date" />
+    </label>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/Child_Vitamin_A_EngKan/today" autocomplete="off" data-preload="date"
+                data-preload-params="today" data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/Child_Vitamin_A_EngKan/eight_months" autocomplete="off"
+                data-calculate=" /Child_Vitamin_A_EngKan/case_child_birth_date  + 243"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Vitamin_A_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Vitamin_A_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'75e97af4cc4843dfae933a478ec901e6'" data-type-xml="string"
+                type="hidden" />
+        </label>
+    </fieldset>
+</form>

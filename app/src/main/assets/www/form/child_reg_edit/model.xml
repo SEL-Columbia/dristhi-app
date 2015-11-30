@@ -1,0 +1,281 @@
+<model>
+    <instance>
+        <Child_Registration_EngKan id="Child_Registration_EngKan">
+            <formhub>
+                <uuid />
+            </formhub>
+            <today />
+            <edit_password />
+            <child_edit_group>
+                <pwd />
+                <child_reg_date />
+                <district />
+                <phc />
+                <sub_center />
+                <district_value />
+
+                <phone_num />
+                <country_code />
+
+                <phc_value />
+                <sub_center_value />
+                <district_note />
+                <phc_note />
+                <sub_center_note />
+                <village />
+                <hh_number />
+                <hh_address />
+                <mother_name />
+                <father_name />
+                <thayi_card_number />
+                <religion />
+                <caste />
+                <phone_no />
+                <child_name />
+                <child_birth_date />
+                <child_age />
+                <child_age_note />
+                <child_sex />
+                <phone_no />
+                <child_blood_group />
+                <child_birthweight />
+                <child_weight />
+                <child_height />
+                <child_immunization_history />
+                <child_immunization_history_group>
+                    <bcg_date />
+                    <opv_0_date />
+                    <hepb_0_date />
+                    <opv_1_date />
+                    <pentavalent_1_date />
+                    <opv_2_date />
+                    <pentavalent_2_date />
+                    <opv_3_date />
+                    <pentavalent_3_date />
+                    <measles_date />
+                    <je_date />
+                    <mmr_date />
+                    <dptbooster_1_date />
+                    <opvbooster_date />
+                    <measlesbooster_date />
+                    <je_2_date />
+                    <dptbooster_2_date />
+                </child_immunization_history_group>
+                <child_vitamin_a_history />
+                <child_vitamin_a_history_group>
+                    <vita1_date />
+                    <vita2_date />
+                    <vita3_date />
+                    <vita4_date />
+                    <vita5_date />
+                    <vita6_date />
+                    <vita7_date />
+                    <vita8_date />
+                    <vita9_date />
+                </child_vitamin_a_history_group>
+
+                <field1 />
+                <field1_group>
+                    <field1_val />
+                </field1_group>
+
+                <field2 />
+                <field2_group>
+                    <field2_val />
+                </field2_group>
+
+                <field3 />
+                <field3_group>
+                    <field3_val />
+                </field3_group>
+
+                <field4 />
+                <field4_group>
+                    <field4_val />
+                </field4_group>
+
+                <field5 />
+                <field5_group>
+                    <field5_val />
+                </field5_group>
+            </child_edit_group>
+            <meta>
+                <instanceID />
+            </meta>
+
+
+        </Child_Registration_EngKan>
+    </instance>
+    <instance id="immunizations">
+        <root>
+            <item>
+                <itextId>static_instance-immunizations-0</itextId>
+                <name>bcg</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-1</itextId>
+                <name>opv_0</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-2</itextId>
+                <name>hepb_0</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-3</itextId>
+                <name>opv_1</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-4</itextId>
+                <name>pentavalent_1</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-5</itextId>
+                <name>opv_2</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-6</itextId>
+                <name>pentavalent_2</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-7</itextId>
+                <name>opv_3</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-8</itextId>
+                <name>pentavalent_3</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-9</itextId>
+                <name>measles</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-10</itextId>
+                <name>je</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-11</itextId>
+                <name>mmr</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-12</itextId>
+                <name>dptbooster_1</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-13</itextId>
+                <name>opvbooster</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-14</itextId>
+                <name>measlesbooster</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-15</itextId>
+                <name>je_2</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-16</itextId>
+                <name>dptbooster_2</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="child_sex">
+        <root>
+            <item>
+                <itextId>static_instance-child_sex-0</itextId>
+                <name>female</name>
+            </item>
+            <item>
+                <itextId>static_instance-child_sex-1</itextId>
+                <name>male</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="blood_group">
+        <root>
+            <item>
+                <itextId>static_instance-blood_group-0</itextId>
+                <name>a_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-1</itextId>
+                <name>a_negative</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-2</itextId>
+                <name>b_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-3</itextId>
+                <name>b_negative</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-4</itextId>
+                <name>ab_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-5</itextId>
+                <name>ab_negative</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-6</itextId>
+                <name>o_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-7</itextId>
+                <name>o_negative</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="vitamin_a">
+        <root>
+            <item>
+                <itextId>static_instance-vitamin_a-0</itextId>
+                <name>1</name>
+            </item>
+            <item>
+                <itextId>static_instance-vitamin_a-1</itextId>
+                <name>2</name>
+            </item>
+            <item>
+                <itextId>static_instance-vitamin_a-2</itextId>
+                <name>3</name>
+            </item>
+            <item>
+                <itextId>static_instance-vitamin_a-3</itextId>
+                <name>4</name>
+            </item>
+            <item>
+                <itextId>static_instance-vitamin_a-4</itextId>
+                <name>5</name>
+            </item>
+            <item>
+                <itextId>static_instance-vitamin_a-5</itextId>
+                <name>6</name>
+            </item>
+            <item>
+                <itextId>static_instance-vitamin_a-6</itextId>
+                <name>7</name>
+            </item>
+            <item>
+                <itextId>static_instance-vitamin_a-7</itextId>
+                <name>8</name>
+            </item>
+            <item>
+                <itextId>static_instance-vitamin_a-8</itextId>
+                <name>9</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="yes_no">
+        <root>
+            <item>
+                <itextId>static_instance-yes_no-0</itextId>
+                <name>yes</name>
+            </item>
+            <item>
+                <itextId>static_instance-yes_no-1</itextId>
+                <name>no</name>
+            </item>
+        </root>
+    </instance>
+</model>

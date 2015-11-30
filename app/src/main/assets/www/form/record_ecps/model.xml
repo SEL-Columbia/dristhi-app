@@ -1,0 +1,19 @@
+<model>
+    <instance>
+        <Family_Planning_ECPs_EngKan id="Family_Planning_ECPs">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <today/>
+            <ec_num/>
+            <village />
+            <woman_name/>
+            <ecp_given/>
+            <ecp_date/>
+            <ecp_message/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </Family_Planning_ECPs_EngKan>
+    </instance>
+</model>

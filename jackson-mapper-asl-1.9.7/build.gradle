@@ -1,0 +1,2 @@
+configurations.create("default")
+artifacts.add("default", file('jackson-mapper-asl-1.9.7.jar'))

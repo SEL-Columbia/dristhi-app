@@ -1,0 +1,306 @@
+<form autocomplete="off" class="or clearfix" id="Family_Planning_Referral_Followup_EngKan"
+    novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">FP Referral Follow-up</h3>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">EC Number:</span>
+        <input name="/Family_Planning_Referral_Followup_EngKan/ec_num" autocomplete="off"
+            data-type-xml="int" disabled="disabled"
+            type="text" />
+    </label>
+    <label class="question non-select ">
+
+        <input name="/Family_Planning_Referral_Followup_EngKan/village" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="hidden" />
+    </label>
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman Name:</span>
+        <input name="/Family_Planning_Referral_Followup_EngKan/woman_name" autocomplete="off"
+            data-type-xml="string" disabled="disabled"
+            type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Date of referral follow-up?
+        </span>
+        <span class="required">*</span>
+        <input name="/Family_Planning_Referral_Followup_EngKan/referral_followup_date" autocomplete="off"
+            data-constraint=".&lt;= /Family_Planning_Referral_Followup_EngKan/today "
+            data-type-xml="date"
+            required="required"
+            type="date" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Did couple go for referral?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/couple_went_for_referral" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/couple_went_for_referral"
+                        data-type-xml="select1"
+                        required="required" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/couple_went_for_referral" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/couple_went_for_referral"
+                        data-type-xml="select1"
+                        required="required" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">What was the result of the referral?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/referral_result" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/referral_result"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'yes'"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="problem_resolved" />
+                    <span class="option-label active" lang="">Problem was resolved</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/referral_result" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/referral_result"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'yes'"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="problem_not_resolved" />
+                    <span class="option-label active" lang="">Problem was not resolved</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/referral_result" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/referral_result"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'yes'"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="stopped_fp_method" />
+                    <span class="option-label active" lang="">Couple stopped FP method</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/referral_result" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/referral_result"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'yes'"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="changed_fp_method" />
+                    <span class="option-label active" lang="">Couple changed FP method</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Why did the couple not go for referral?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason" autocomplete="off"
+                        data-constraint="(selected(., 'problem_resolved_itself') and (count-selected(.) = 1) or (not(selected(., 'problem_resolved_itself'))))"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'no'"
+                        data-type-xml="select"
+                        type="checkbox"
+                        value="problem_resolved_itself" />
+                    <span class="option-label active" lang="">Problem was resolved on its own</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason" autocomplete="off"
+                        data-constraint="(selected(., 'problem_resolved_itself') and (count-selected(.) = 1) or (not(selected(., 'problem_resolved_itself'))))"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'no'"
+                        data-type-xml="select"
+                        type="checkbox"
+                        value="couple_thought_referral_not_necessary" />
+                    <span class="option-label active" lang="">Couple didn't think referral was
+                        necessary
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason" autocomplete="off"
+                        data-constraint="(selected(., 'problem_resolved_itself') and (count-selected(.) = 1) or (not(selected(., 'problem_resolved_itself'))))"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'no'"
+                        data-type-xml="select"
+                        type="checkbox"
+                        value="couple_used_home_remedy" />
+                    <span class="option-label active" lang="">Couple used home remedy instead</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason" autocomplete="off"
+                        data-constraint="(selected(., 'problem_resolved_itself') and (count-selected(.) = 1) or (not(selected(., 'problem_resolved_itself'))))"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'no'"
+                        data-type-xml="select"
+                        type="checkbox"
+                        value="couple_didnt_want_to_pay" />
+                    <span class="option-label active" lang="">Couple did not want to pay for
+                        referral
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason" autocomplete="off"
+                        data-constraint="(selected(., 'problem_resolved_itself') and (count-selected(.) = 1) or (not(selected(., 'problem_resolved_itself'))))"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'no'"
+                        data-type-xml="select"
+                        type="checkbox"
+                        value="couple_had_no_transport" />
+                    <span class="option-label active" lang="">Couple did not have transport to
+                        referral facility
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason" autocomplete="off"
+                        data-constraint="(selected(., 'problem_resolved_itself') and (count-selected(.) = 1) or (not(selected(., 'problem_resolved_itself'))))"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'no'"
+                        data-type-xml="select"
+                        type="checkbox"
+                        value="others" />
+                    <span class="option-label active" lang="">Others</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">What will you do now?</span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/new_treatment_plan" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/new_treatment_plan"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/referral_result  = 'problem_not_resolved' or ( /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'no' and not(selected( /Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason , 'problem_resolved_itself')))"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="refer_again" />
+                    <span class="option-label active" lang="">Refer the couple again</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/new_treatment_plan" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/new_treatment_plan"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/referral_result  = 'problem_not_resolved' or ( /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'no' and not(selected( /Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason , 'problem_resolved_itself')))"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="counseling_treatment" />
+                    <span class="option-label active" lang="">Continue on method and provide
+                        counseling / treatment
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/new_treatment_plan" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/new_treatment_plan"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/referral_result  = 'problem_not_resolved' or ( /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'no' and not(selected( /Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason , 'problem_resolved_itself')))"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="stop_fp_method" />
+                    <span class="option-label active" lang="">Stop FP method</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/new_treatment_plan" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/new_treatment_plan"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/referral_result  = 'problem_not_resolved' or ( /Family_Planning_Referral_Followup_EngKan/couple_went_for_referral  = 'no' and not(selected( /Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason , 'problem_resolved_itself')))"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="change_fp_method" />
+                    <span class="option-label active" lang="">Change FP method</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Referral place?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/referral_place" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/referral_place"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/new_treatment_plan  = 'refer_again'"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="phc" />
+                    <span class="option-label active" lang="">PHC</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/referral_place" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/referral_place"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/new_treatment_plan  = 'refer_again'"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="private_facility" />
+                    <span class="option-label active" lang="">Private facility</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Referral_Followup_EngKan/referral_place" autocomplete="off"
+                        data-name="/Family_Planning_Referral_Followup_EngKan/referral_place"
+                        data-relevant=" /Family_Planning_Referral_Followup_EngKan/new_treatment_plan  = 'refer_again'"
+                        data-type-xml="select1" required="required"
+                        type="radio"
+                        value="others" />
+                    <span class="option-label active" lang="">Others</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="note or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Please go to register and update FP method
+            selection.
+        </span>
+        <input name="/Family_Planning_Referral_Followup_EngKan/instructions" autocomplete="off"
+            data-relevant=" /Family_Planning_Referral_Followup_EngKan/referral_result  = 'stopped_fp_method' or  /Family_Planning_Referral_Followup_EngKan/referral_result  = 'changed_fp_method' or  /Family_Planning_Referral_Followup_EngKan/new_treatment_plan  = 'stop_fp_method' or  /Family_Planning_Referral_Followup_EngKan/new_treatment_plan  = 'change_fp_method'"
+            data-type-xml="string"
+            readonly="readonly" type="text" />
+    </label>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/Family_Planning_Referral_Followup_EngKan/today" autocomplete="off"
+                data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/Family_Planning_Referral_Followup_EngKan/needs_referral_followup" autocomplete="off"
+                data-calculate="if( /Family_Planning_Referral_Followup_EngKan/new_treatment_plan  = 'refer_again', 'yes', '')"
+                data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Family_Planning_Referral_Followup_EngKan/needs_followup" autocomplete="off"
+                data-calculate="if( /Family_Planning_Referral_Followup_EngKan/new_treatment_plan  = 'counseling_treatment', 'yes', '')"
+                data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Family_Planning_Referral_Followup_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Family_Planning_Referral_Followup_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'a4e75149e84a4bdf972cdda419e1034f'"
+                data-type-xml="string" type="hidden" />
+        </label>
+    </fieldset>
+</form>

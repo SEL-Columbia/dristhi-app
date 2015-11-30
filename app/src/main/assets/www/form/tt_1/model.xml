@@ -1,0 +1,18 @@
+<model>
+    <instance>
+        <TT1_EngKan id="TT1_EngKan">
+            <formhub>
+                <uuid />
+            </formhub>
+            <anc_reg_num />
+            <village />
+            <today />
+            <tt_dose />
+            <tt1_injection_place />
+            <tt1_date />
+            <meta>
+                <instanceID />
+            </meta>
+        </TT1_EngKan>
+    </instance>
+</model>

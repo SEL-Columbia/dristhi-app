@@ -1,0 +1,361 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff313131"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_texture"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:src="@drawable/logo" />
+        <!--<LinearLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_weight="0.2"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:padding="10dp">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:paddingLeft="10dp">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<org.ei.telemedicine.view.customControls.CustomFontTextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="ANM Name: "&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@android:color/darker_gray"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="25sp" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<org.ei.telemedicine.view.customControls.CustomFontTextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/tv_anm_name"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="afj"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@android:color/white"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="25sp" />&ndash;&gt;-->
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:paddingLeft="10dp">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<org.ei.telemedicine.view.customControls.CustomFontTextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="PHC : "&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@android:color/darker_gray"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="25sp" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<org.ei.telemedicine.view.customControls.CustomFontTextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/tv_phc_name"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="afj"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@android:color/white"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="25sp" />&ndash;&gt;-->
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:paddingLeft="10dp">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<org.ei.telemedicine.view.customControls.CustomFontTextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="Sub Center: "&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@android:color/darker_gray"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="25sp" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<org.ei.telemedicine.view.customControls.CustomFontTextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/tv_sub_center_name"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="afj"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@android:color/white"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="25sp" />&ndash;&gt;-->
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+        <!-- -->
+
+
+        <!--</LinearLayout>-->
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:gravity="center">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@+id/frame_ec_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <ImageButton
+                        android:id="@+id/btn_ec_register"
+                        style="@style/ImageButton.Home.Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/register_ec" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="EC"
+                        android:textStyle="bold" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTER" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        android:id="@+id/txt_ec_register_client_count"
+                        style="@style/CustomFontTextViewStyle.Badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/frame_fp_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <ImageButton
+                        android:id="@+id/btn_fp_register"
+                        style="@style/ImageButton.Home.Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/register_fp" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="FP" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTER" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        android:id="@+id/txt_fp_register_client_count"
+                        style="@style/CustomFontTextViewStyle.Badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/frame_anc_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <ImageButton
+                        android:id="@+id/btn_anc_register"
+                        style="@style/ImageButton.Home.Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/register_anc" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ANC" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTER" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        android:id="@+id/txt_anc_register_client_count"
+                        style="@style/CustomFontTextViewStyle.Badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/frame_pnc_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <ImageButton
+                        android:id="@+id/btn_pnc_register"
+                        style="@style/ImageButton.Home.Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/register_pnc" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PNC" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTER" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        android:id="@+id/txt_pnc_register_client_count"
+                        style="@style/CustomFontTextViewStyle.Badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/frame_child_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1">
+
+                    <ImageButton
+                        android:id="@+id/btn_child_register"
+                        style="@style/ImageButton.Home.Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/register_child" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CHILD" />
+                    z
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTER" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        android:id="@+id/txt_child_register_client_count"
+                        style="@style/CustomFontTextViewStyle.Badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </FrameLayout>
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/btn_reporting"
+            style="@style/CustomFontTextViewStyle.Home.Buttons"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_reporting"
+            android:drawablePadding="5dp"
+            android:paddingLeft="185dp"
+            android:paddingRight="185dp"
+            android:text="@string/str_reporting" />
+
+        <LinearLayout
+            style="@style/CustomFontTextViewStyle.Home.Buttons"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1">
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                android:id="@+id/tv_anm_name"
+                style="@style/CustomFontTextViewStyle.Home.Buttons"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="ANM"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_phc_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PHC"
+                    android:textColor="@android:color/white" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_sub_center_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sub Center"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <!--<org.ei.telemedicine.view.customControls.CustomFontTextView-->
+        <!--android:id="@+id/btn_videos"-->
+        <!--style="@style/CustomFontTextViewStyle.Home.Buttons"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:drawableLeft="@drawable/ic_tv"-->
+        <!--android:drawablePadding="5dp"-->
+        <!--android:paddingLeft="200dp"-->
+        <!--android:paddingRight="200dp"-->
+        <!--android:text="@string/str_videos" />-->
+
+    </LinearLayout>
+
+</LinearLayout>

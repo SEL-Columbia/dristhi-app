@@ -1,0 +1,185 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff313131"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_texture"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text="Customize Registers"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            />
+
+        <TableLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <org.ei.telemedicine.view.customControls.CustomFrameLayout
+                    android:layout_weight="1"
+                    android:alpha="0.5"
+                    android:visibility="visible"
+                    android:id="@+id/frame_ec_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent">
+
+                    <ImageButton
+                        android:id="@+id/btn_ec_register"
+                        style="@style/ImageButton.Home.Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/register_ec" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="EC"
+                        android:textStyle="bold" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTER" />
+
+                </org.ei.telemedicine.view.customControls.CustomFrameLayout>
+
+                <org.ei.telemedicine.view.customControls.CustomFrameLayout
+                    android:layout_weight="1"
+                    android:id="@+id/frame_fp_reg"
+                    android:alpha="0.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:visibility="visible">
+
+                    <ImageButton
+                        android:id="@+id/btn_fp_register"
+                        style="@style/ImageButton.Home.Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/register_fp" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="FP" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTER" />
+
+                </org.ei.telemedicine.view.customControls.CustomFrameLayout>
+
+
+                <org.ei.telemedicine.view.customControls.CustomFrameLayout
+                    android:layout_weight="1"
+                    android:id="@+id/frame_anc_reg"
+                    android:layout_width="wrap_content"
+                    android:alpha="0.5"
+                    android:layout_height="fill_parent"
+                    android:visibility="visible">
+
+                    <ImageButton
+                        android:id="@+id/btn_anc_register"
+                        style="@style/ImageButton.Home.Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/register_anc" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ANC" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTER" />
+
+                </org.ei.telemedicine.view.customControls.CustomFrameLayout>
+
+                <org.ei.telemedicine.view.customControls.CustomFrameLayout
+                    android:layout_weight="1"
+                    android:id="@+id/frame_pnc_reg"
+                    android:alpha="0.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:visibility="visible">
+
+                    <ImageButton
+                        android:id="@+id/btn_pnc_register"
+                        style="@style/ImageButton.Home.Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/register_pnc" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PNC" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTER" />
+
+                </org.ei.telemedicine.view.customControls.CustomFrameLayout>
+
+                <org.ei.telemedicine.view.customControls.CustomFrameLayout
+                    android:layout_weight="1"
+                    android:id="@+id/frame_child_reg"
+                    android:alpha="0.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent">
+
+                    <ImageButton
+                        android:id="@+id/btn_child_register"
+                        style="@style/ImageButton.Home.Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/register_child" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CHILD" />
+
+                    <org.ei.telemedicine.view.customControls.CustomFontTextView
+                        style="@style/CustomFontTextViewStyle.Home.RegisterLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTER" />
+
+                </org.ei.telemedicine.view.customControls.CustomFrameLayout>
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    android:background="@android:color/transparent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/ll_item_drug"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_weight=""-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9"
+        android:inputType="textMultiLine"
+        android:maxLines="10"
+        android:text="afalsfdnakgfn;alsgnaklfgnadsgasdgasdgasdgasdgasdgasdgasgasdgasdgasdgasdg;agn;asgknlaskl;dgnlks;agn"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/ib_remove"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
+        android:background="@android:color/transparent"
+        android:src="@drawable/del_icon" />
+    <!-- -->
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_name"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:inputType="textMultiLine"-->
+    <!--android:maxLines="10"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="&#45;&#45;&#45;&#45;"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_dosage"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="afadsf"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="&#45;&#45;&#45;&#45;"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_qty"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="afadsf"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_frequnecy"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="afadsf"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="&#45;&#45;&#45;&#45;"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_direction"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="afadsf"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="&#45;&#45;&#45;&#45;"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_no_of_days"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="afadsf"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="20sp" />-->
+
+    <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/ib_remove"-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:background="@android:color/transparent"-->
+    <!--android:src="@drawable/del_icon" />-->
+</LinearLayout>

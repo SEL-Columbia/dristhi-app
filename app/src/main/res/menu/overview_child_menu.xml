@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/child_immunizations"
+        android:title="Child Immunizations" />
+    <item
+        android:id="@+id/child_illness"
+        android:title="Child Illness" />
+    <item
+        android:id="@+id/view_poc_child"
+        android:title="View Plan Of Care" />
+    <item
+        android:id="@+id/vitamin_a"
+        android:title="Vitamin A" />
+    <item
+        android:id="@+id/child_close"
+        android:title="Child Close" />
+
+</menu>

@@ -1,0 +1,58 @@
+<form autocomplete="off" class="or clearfix" id="TT2_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">TT2</h3>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">ANC Number:</span>
+        <input name="/TT2_EngKan/anc_reg_num" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+
+        <input name="/TT2_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+
+    <label class="question or-appearance-minimal ">
+        <span class="question-label active" lang="">Place of TT2 injection?
+        </span>
+        <span class="required">*</span>
+        <select name="/TT2_EngKan/tt2_injection_place" data-name="/TT2_EngKan/tt2_injection_place"
+            data-type-xml="select1" required="required">
+            <option value="">...</option>
+            <option value="sub_center">My Sub Center</option>
+            <option value="phc">My PHC</option>
+            <option value="elsewhere">Elsewhere</option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Date of TT2 injection?
+        </span>
+        <span class="required">*</span>
+        <input name="/TT2_EngKan/tt2_date" autocomplete="off" data-constraint=".&lt;= /TT2_EngKan/today " data-type-xml="date"
+            required="required" type="date" />
+    </label>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/TT2_EngKan/today" autocomplete="off" data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/TT2_EngKan/tt_dose" autocomplete="off" data-calculate="&quot;tt2&quot;"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/TT2_EngKan/meta/instanceID" autocomplete="off" data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/TT2_EngKan/formhub/uuid" autocomplete="off" data-calculate="'5eb63051831a48528cf66c474353d22a'"
+                data-type-xml="string" type="hidden" />
+        </label>
+    </fieldset>
+</form>
