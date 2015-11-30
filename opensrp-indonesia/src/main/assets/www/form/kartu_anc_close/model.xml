@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <Penutupan_ANC encounter_type="Penutupan ANC" id="penutupan_anc" version="201510210442">
+        <Penutupan_ANC encounter_type="Penutupan ANC" id="penutupan_anc" version="201511240657">
           <formhub>
             <uuid/>
           </formhub>

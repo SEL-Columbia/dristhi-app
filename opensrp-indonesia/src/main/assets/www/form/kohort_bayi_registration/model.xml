@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <register_baby_only id="register_baby_only" version="201506190604">
+        <register_baby_only encounter_type="Register Baby" id="register_baby_only" version="201506190604">
           <formhub>
             <uuid/>
           </formhub>

@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <PNC_Visit encounter_type="Kunjungan PNC" id="kunjungan_pnc" version="201511160708">
+        <PNC_Visit encounter_type="Kunjungan PNC" id="PNC_Visit" version="201511160708">
             <formhub>
                 <uuid />
             </formhub>

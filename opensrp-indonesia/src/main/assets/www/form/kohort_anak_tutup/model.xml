@@ -1,29 +1,23 @@
 <model>
     <instance>
-        <anak_close id="anak_close" version="201506080830">
-          <formhub>
-            <uuid/>
-          </formhub>
-          <start/>
-          <today/>
-          <reg_date/>
-          <deviceid/>
-          <simserial/>
-          <phonenumber/>
-          <close_reason/>
-          <death_child_group>
-            <case_num_livingchildren/>
-            <num_livingchildren/>
-            <child_death_immunization/>
-            <child_death_cause/>
-            <child_death_cause_other/>
-            <child_death_date/>
-          </death_child_group>
-          <confirm_child_close/>
-          <end/>
-          <meta>
-            <instanceID/>
-          </meta>
+        <anak_close encounter_type="Penutupan Anak" id="anak_close" version="201511160717">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <close_reason />
+            <child_death_cause />
+            <child_death_cause_other />
+            <child_death_date />
+            <confirm_child_close />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
         </anak_close>
-      </instance>
-  </model>
+    </instance>
+</model>

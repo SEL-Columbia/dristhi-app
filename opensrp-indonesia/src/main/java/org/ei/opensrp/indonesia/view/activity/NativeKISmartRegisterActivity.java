@@ -1,50 +1,28 @@
 package org.ei.opensrp.indonesia.view.activity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.Toast;
-
-import org.apache.commons.lang3.ArrayUtils;
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.domain.form.FormSubmission;
-import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
-import org.ei.opensrp.indonesia.provider.KIClientsProvider;
-import org.ei.opensrp.indonesia.service.formSubmissionHandler.KIRegistrationHandler;
-import org.ei.opensrp.indonesia.util.StringUtil;
-import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
 import org.ei.opensrp.indonesia.view.controller.KartuIbuRegisterController;
-import org.ei.opensrp.indonesia.view.dialog.AllHighRiskSort;
-import org.ei.opensrp.indonesia.view.dialog.AllKartuIbuServiceMode;
-import org.ei.opensrp.indonesia.view.dialog.EstimatedDateOfDeliverySortKI;
-import org.ei.opensrp.indonesia.view.dialog.NoIbuSort;
-import org.ei.opensrp.indonesia.view.dialog.ReverseNameSort;
 import org.ei.opensrp.indonesia.view.fragment.NativeKISmartRegisterFragment;
 import org.ei.opensrp.indonesia.view.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
-import org.ei.opensrp.view.contract.SmartRegisterClient;
-import org.ei.opensrp.view.dialog.AllClientsFilter;
 import org.ei.opensrp.view.dialog.DialogOption;
 import org.ei.opensrp.view.dialog.DialogOptionMapper;
-import org.ei.opensrp.view.dialog.DialogOptionModel;
-import org.ei.opensrp.view.dialog.EditOption;
-import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
-import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.OpenFormOption;
-import org.ei.opensrp.view.dialog.ServiceModeOption;
-import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.SampleViewPager;
@@ -56,14 +34,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static org.ei.opensrp.AllConstants.FormNames.EC_REGISTRATION;
+import static org.ei.opensrp.R.string.form_back_confirm_dialog_message;
+import static org.ei.opensrp.R.string.form_back_confirm_dialog_title;
+import static org.ei.opensrp.R.string.no_button_label;
+import static org.ei.opensrp.R.string.yes_button_label;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.ANAK_BAYI_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_CLOSE;
@@ -114,26 +91,28 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
         });
     }
 
-    public void onPageChanged(int page){
+    public void onPageChanged(int page) {
         setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
-    protected SmartRegisterPaginatedAdapter adapter() {return null;}
+    protected SmartRegisterPaginatedAdapter adapter() {
+        return null;
+    }
 
     public DialogOption[] getEditOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_register_kb_form), KOHORT_KB_PELAYANAN,
                         formController),
                 new OpenFormOption(getString(R.string.str_register_anc_form), KARTU_IBU_ANC_REGISTRATION, formController),
-                // new OpenFormOption(getString(R.string.str_register_anak_form), ANAK_BAYI_REGISTRATION, formController),
                 new OpenFormOption(getString(R.string.str_edit_ki_form), KARTU_IBU_EDIT, formController),
-                new OpenFormOption(getString(R.string.str_close_ki_form),KARTU_IBU_CLOSE, formController),
+                new OpenFormOption(getString(R.string.str_close_ki_form), KARTU_IBU_CLOSE, formController),
         };
     }
 
     @Override
-    protected void onResumption(){}
+    protected void onResumption() {
+    }
 
     @Override
     protected DefaultOptionsProvider getDefaultOptionsProvider() {
@@ -171,19 +150,18 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
     }
 
 
-
     @Override
     public void OnLocationSelected(String locationJSONString) {
         JSONObject combined = null;
 
-        try{
+        try {
             JSONObject locationJSON = new JSONObject(locationJSONString);
-            JSONObject uniqueId = new JSONObject(((Context)context).uniqueIdController().getUniqueIdJson());
+            JSONObject uniqueId = new JSONObject(((Context) context).uniqueIdController().getUniqueIdJson());
 
             combined = locationJSON;
             Iterator<String> iter = uniqueId.keys();
 
-            while(iter.hasNext()){
+            while (iter.hasNext()) {
                 String key = iter.next();
                 combined.put(key, uniqueId.get(key));
             }
@@ -192,7 +170,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
             e.printStackTrace();
         }
 
-        if(combined != null) {
+        if (combined != null) {
             FieldOverrides fieldOverrides = new FieldOverrides(combined.toString());
             startFormActivity(KARTU_IBU_REGISTRATION, null, fieldOverrides.getJSONString());
         }
@@ -202,7 +180,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
     public void startFormActivity(String formName, String entityId, String metaData) {
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
-            if (entityId != null || metaData != null){
+            if (entityId != null || metaData != null) {
                 String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
                 if (displayFormFragment != null) {
@@ -214,27 +192,27 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
 
             mPager.setCurrentItem(formIndex, false); //Don't animate the view on orientation change the view disapears
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    private String[] buildFormNameList(){
+    private String[] buildFormNameList() {
         List<String> formNames = new ArrayList<String>();
         formNames.add(KARTU_IBU_REGISTRATION);
 
         DialogOption[] options = getEditOptions();
-        for (int i = 0; i < options.length; i++){
+        for (int i = 0; i < options.length; i++) {
             formNames.add(((OpenFormOption) options[i]).getFormName());
         }
         return formNames.toArray(new String[formNames.size()]);
     }
 
     @Override
-    public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides){
+    public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides) {
         // save the form
-        try{
+        try {
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
 
@@ -245,12 +223,12 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void switchToBaseFragment(final String data){
+    public void switchToBaseFragment(final String data) {
         final int prevPageIndex = currentPage;
         runOnUiThread(new Runnable() {
             @Override
@@ -280,14 +258,35 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
     }
 
     public DisplayFormFragment getDisplayFormFragmentAtIndex(int index) {
-        return  (DisplayFormFragment)findFragmentByPosition(index);
+        return (DisplayFormFragment) findFragmentByPosition(index);
+    }
+
+    private void goBack() {
+        switchToBaseFragment(null);
     }
 
     @Override
     public void onBackPressed() {
-        if (currentPage != 0){
-            switchToBaseFragment(null);
-        }else if (currentPage == 0) {
+        if (currentPage != 0) {
+            new AlertDialog.Builder(this)
+                    .setMessage(form_back_confirm_dialog_message)
+                    .setTitle(form_back_confirm_dialog_title)
+                    .setCancelable(false)
+                    .setPositiveButton(yes_button_label,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                    goBack();
+                                }
+                            })
+                    .setNegativeButton(no_button_label,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                }
+                            })
+                    .show();
+        } else if (currentPage == 0) {
             super.onBackPressed(); // allow back key only if we are
         }
     }

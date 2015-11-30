@@ -1,62 +1,36 @@
 package org.ei.opensrp.indonesia.view.activity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.Toast;
 
+import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.indonesia.R;
-import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
-import org.ei.opensrp.indonesia.provider.KIPNCClientsProvider;
-import org.ei.opensrp.indonesia.service.formSubmissionHandler.KIPNCRegistrationHandler;
 import org.ei.opensrp.indonesia.util.StringUtil;
-import org.ei.opensrp.indonesia.view.contract.KIPNCClient;
-import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
-import org.ei.opensrp.indonesia.view.controller.KIPNCRegisterController;
-import org.ei.opensrp.indonesia.view.dialog.AllHighRiskSort;
-import org.ei.opensrp.indonesia.view.dialog.DusunSort;
-import org.ei.opensrp.indonesia.view.dialog.KIPNCOverviewServiceMode;
-import org.ei.opensrp.indonesia.view.dialog.WifeAgeSort;
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.indonesia.view.fragment.NativeKIPNCSmartRegisterFragment;
 import org.ei.opensrp.indonesia.view.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
-import org.ei.opensrp.view.contract.SmartRegisterClient;
-import org.ei.opensrp.view.dialog.AllClientsFilter;
 import org.ei.opensrp.view.dialog.DialogOption;
-import org.ei.opensrp.view.dialog.DialogOptionMapper;
-import org.ei.opensrp.view.dialog.DialogOptionModel;
-import org.ei.opensrp.view.dialog.EditOption;
-import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
-import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.OpenFormOption;
-import org.ei.opensrp.view.dialog.ServiceModeOption;
-import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.SampleViewPager;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.*;
 
 /**
@@ -185,12 +159,12 @@ public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartReg
     public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides){
         // save the form
         try{
-//            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
-//            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
-//
-//            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
-//            ZiggyService ziggyService = context.ziggyService();
-//            ziggyService.saveForm(getParams(submission), submission.instance());
+            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
+
+            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
+            ZiggyService ziggyService = context.ziggyService();
+            ziggyService.saveForm(getParams(submission), submission.instance());
 
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data

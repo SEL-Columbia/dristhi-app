@@ -1,15 +1,16 @@
 <model>
     <instance>
-        <balita_kunjungan id="balita_kunjungan" version="201506200244">
+        <balita_kunjungan encounter_type="Kunjungan Balita" id="balita_kunjungan" version="201511240850">
           <formhub>
             <uuid/>
           </formhub>
           <start/>
           <today/>
-          <reg_date/>
           <deviceid/>
           <simserial/>
           <phonenumber/>
+          <tanggal_lahir/>
+          <baby_age/>
           <tanggal_pemeriksaan_anak_balita/>
           <hasil_penimbangan_anak_balita/>
           <hasil_pengukuran_tinggi_anak_balita/>
@@ -18,7 +19,6 @@
           <kpsp_penyimpangan/>
           <pelayanan_vita/>
           <keterangan/>
-		  <reg_date>
           <end/>
           <meta>
             <instanceID/>

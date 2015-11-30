@@ -3,16 +3,24 @@
    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
    <section class="form-logo" />
    <h3 id="form-title">Rencana Persalinan</h3>
+   <select id="form-languages" data-default-lang="Bahasa">
+      <option value="Bahasa">Bahasa</option>
+      <option value="en">English</option>
+   </select>
    <label class="question non-select ">
-      <span lang="" class="question-label active">Tanggal</span>
+      <span lang="Bahasa" class="question-label active" data-itext-id="/rencana_persalinan/tanggal:label">Tanggal Taksiran Persalinan</span>
+      <span lang="en" class="question-label " data-itext-id="/rencana_persalinan/tanggal:label">Date of estimated delivery</span>
       <span class="required">*</span>
-      <span lang="" class="or-hint active">Diisi dengan tanggal taksiran persalinan</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/rencana_persalinan/tanggal:hint">Diisi dengan tanggal taksiran persalinan</span>
+      <span lang="en" class="or-hint " data-itext-id="/rencana_persalinan/tanggal:hint">Fill in the estimated date of delivery</span>
       <input type="date" name="/rencana_persalinan/tanggal" required="required" data-type-xml="date" />
    </label>
-   <label class="question ">
-      <span lang="" class="question-label active">Rencana Penolong Persalinan</span>
+   <label class="question or-appearance-minimal ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/rencana_persalinan/rencana_penolong_persalinan:label">Rencana Penolong Persalinan</span>
+      <span lang="en" class="question-label " data-itext-id="/rencana_persalinan/rencana_penolong_persalinan:label">Birth Attendant</span>
       <span class="required">*</span>
-      <span lang="" class="or-hint active">Diisi dengan pihak yang akan menolong persalinan</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/rencana_persalinan/rencana_penolong_persalinan:hint">Diisi dengan pihak yang akan menolong persalinan</span>
+      <span lang="en" class="or-hint " data-itext-id="/rencana_persalinan/rencana_penolong_persalinan:hint">Fill in the intended birth attendant</span>
       <select name="/rencana_persalinan/rencana_penolong_persalinan" data-name="/rencana_persalinan/rencana_penolong_persalinan" required="required" data-type-xml="select1">
          <option value="">...</option>
          <option value="keluarga">Keluarga (K)</option>
@@ -23,11 +31,28 @@
          <option value="lain-lain">Lain-Lain (LN)</option>
          <option value="tidak_ada">Tidak Ada (TA)</option>
       </select>
-      <span class="or-option-translations" style="display:none;" />
+      <span class="or-option-translations" style="display:none;">
+         <span data-option-value="keluarga" lang="Bahasa">Keluarga (K)</span>
+         <span data-option-value="keluarga" lang="en">Family</span>
+         <span data-option-value="dukun" lang="Bahasa">Dukun (D)</span>
+         <span data-option-value="dukun" lang="en">Traditional Birth Attendant</span>
+         <span data-option-value="bidan" lang="Bahasa">Bidan (B)</span>
+         <span data-option-value="bidan" lang="en">Midwife</span>
+         <span data-option-value="dr_umum" lang="Bahasa">Dr.Umum (DU)</span>
+         <span data-option-value="dr_umum" lang="en">Doctor</span>
+         <span data-option-value="dr_spesialis" lang="Bahasa">Dr.Spesialis (DS)</span>
+         <span data-option-value="dr_spesialis" lang="en">Medical Specialist</span>
+         <span data-option-value="lain-lain" lang="Bahasa">Lain-Lain (LN)</span>
+         <span data-option-value="lain-lain" lang="en">Others</span>
+         <span data-option-value="tidak_ada" lang="Bahasa">Tidak Ada (TA)</span>
+         <span data-option-value="tidak_ada" lang="en">None</span>
+      </span>
    </label>
-   <label class="question ">
-      <span lang="" class="question-label active">Tempat Rencana Persalinan</span>
-      <span lang="" class="or-hint active">Diisi dengan rencana tempat dimana Ibu akan bersalin</span>
+   <label class="question or-appearance-minimal ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/rencana_persalinan/tempat_rencana_persalinan:label">Tempat Rencana Persalinan</span>
+      <span lang="en" class="question-label " data-itext-id="/rencana_persalinan/tempat_rencana_persalinan:label">Intended place for labor</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/rencana_persalinan/tempat_rencana_persalinan:hint">Diisi dengan rencana tempat dimana Ibu akan bersalin</span>
+      <span lang="en" class="or-hint " data-itext-id="/rencana_persalinan/tempat_rencana_persalinan:hint">Fill in the intended location of delivery</span>
       <select name="/rencana_persalinan/tempat_rencana_persalinan" data-name="/rencana_persalinan/tempat_rencana_persalinan" data-type-xml="select1">
          <option value="">...</option>
          <option value="rumah">Rumah (RMH)</option>
@@ -39,11 +64,30 @@
          <option value="rumah_sakit">Rumah Sakit (RS)</option>
          <option value="rumah_sakit_orang_dengan_hiv_aids">Rumah Sakit Orang dengan HIV / AIDS (RS Odha)</option>
       </select>
-      <span class="or-option-translations" style="display:none;" />
+      <span class="or-option-translations" style="display:none;">
+         <span data-option-value="rumah" lang="Bahasa">Rumah (RMH)</span>
+         <span data-option-value="rumah" lang="en">House</span>
+         <span data-option-value="pondok_bersalin_desa" lang="Bahasa">Pondok Bersalin desa ( Polindes)</span>
+         <span data-option-value="pondok_bersalin_desa" lang="en">Community-based Health Post</span>
+         <span data-option-value="puskesmas_pembantu" lang="Bahasa">Puskesmas Pembantu (Pustu)</span>
+         <span data-option-value="puskesmas_pembantu" lang="en">Sub-center</span>
+         <span data-option-value="pusat_kesehatan_masyarakat" lang="Bahasa">Pusat Kesehatan Masyarakat (Puskesmas )</span>
+         <span data-option-value="pusat_kesehatan_masyarakat" lang="en">Primary Health Center</span>
+         <span data-option-value="rumah_bersalin" lang="Bahasa">Rumah Bersalin (RB)</span>
+         <span data-option-value="rumah_bersalin" lang="en">Maternity Hospital</span>
+         <span data-option-value="rumah_sakit_ibu_dan_anak" lang="Bahasa">Rumah Sakit Ibu dan Anak (RSIA)</span>
+         <span data-option-value="rumah_sakit_ibu_dan_anak" lang="en">Maternal and Child Hospital</span>
+         <span data-option-value="rumah_sakit" lang="Bahasa">Rumah Sakit (RS)</span>
+         <span data-option-value="rumah_sakit" lang="en">Hospital</span>
+         <span data-option-value="rumah_sakit_orang_dengan_hiv_aids" lang="Bahasa">Rumah Sakit Orang dengan HIV / AIDS (RS Odha)</span>
+         <span data-option-value="rumah_sakit_orang_dengan_hiv_aids" lang="en">Hospital which also occupied by HIV/AIDS patiets</span>
+      </span>
    </label>
-   <label class="question ">
-      <span lang="" class="question-label active">Rencana Pendamping Persalinan</span>
-      <span lang="" class="or-hint active">Diisi dengan rencana pihak yang akan mendampingi Ibu saat bersalin</span>
+   <label class="question or-appearance-minimal ">
+      <span lang="Bahasa" class="question-label active" data-itext-id="/rencana_persalinan/rencana_pendamping_persalinan:label">Rencana Pendamping Persalinan</span>
+      <span lang="en" class="question-label " data-itext-id="/rencana_persalinan/rencana_pendamping_persalinan:label">Person(s) accompanying during labor</span>
+      <span lang="Bahasa" class="or-hint active" data-itext-id="/rencana_persalinan/rencana_pendamping_persalinan:hint">Diisi dengan rencana pihak yang akan mendampingi Ibu saat bersalin</span>
+      <span lang="en" class="or-hint " data-itext-id="/rencana_persalinan/rencana_pendamping_persalinan:hint">Fill in the persons who will accompany the mother for delivery</span>
       <select name="/rencana_persalinan/rencana_pendamping_persalinan" data-name="/rencana_persalinan/rencana_pendamping_persalinan" data-type-xml="select1">
          <option value="">...</option>
          <option value="suami">Suami (S)</option>
@@ -53,26 +97,44 @@
          <option value="lain-lain">Lain-lain (LL)</option>
          <option value="tidak_ada">Tidak Ada (TA)</option>
       </select>
-      <span class="or-option-translations" style="display:none;" />
+      <span class="or-option-translations" style="display:none;">
+         <span data-option-value="suami" lang="Bahasa">Suami (S)</span>
+         <span data-option-value="suami" lang="en">Husband</span>
+         <span data-option-value="keluarga" lang="Bahasa">Keluarga (K)</span>
+         <span data-option-value="keluarga" lang="en">Family</span>
+         <span data-option-value="teman" lang="Bahasa">Teman (TM)</span>
+         <span data-option-value="teman" lang="en">Friend</span>
+         <span data-option-value="tetangga" lang="Bahasa">Tetangga (TG)</span>
+         <span data-option-value="tetangga" lang="en">Neighbor</span>
+         <span data-option-value="lain-lain" lang="Bahasa">Lain-lain (LL)</span>
+         <span data-option-value="lain-lain" lang="en">Etc.</span>
+         <span data-option-value="tidak_ada" lang="Bahasa">Tidak Ada (TA)</span>
+         <span data-option-value="tidak_ada" lang="en">None</span>
+      </span>
    </label>
    <fieldset class="question ">
       <fieldset>
          <legend>
-            <span lang="" class="question-label active">Transportasi</span>
-            <span lang="" class="or-hint active">Diisi dengan rencana transportasi yang akan digunakan menuju tempat bersalin</span>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/rencana_persalinan/transportasi:label">Transportasi</span>
+            <span lang="en" class="question-label " data-itext-id="/rencana_persalinan/transportasi:label">Transportation</span>
+            <span lang="Bahasa" class="or-hint active" data-itext-id="/rencana_persalinan/transportasi:hint">Diisi dengan rencana transportasi yang akan digunakan menuju tempat bersalin</span>
+            <span lang="en" class="or-hint " data-itext-id="/rencana_persalinan/transportasi:hint">Fill in the transportation that will be used to location of delivery</span>
          </legend>
          <div class="option-wrapper">
             <label class="">
                <input type="radio" name="/rencana_persalinan/transportasi" data-name="/rencana_persalinan/transportasi" value="sepeda_motor" data-type-xml="select1" />
-               <span lang="" class="option-label active">Sepeda Motor (SM)</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/transportasi/sepeda_motor:label">Sepeda Motor (SM)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/transportasi/sepeda_motor:label">Motorcycle</span>
             </label>
             <label class="">
                <input type="radio" name="/rencana_persalinan/transportasi" data-name="/rencana_persalinan/transportasi" value="mobil" data-type-xml="select1" />
-               <span lang="" class="option-label active">Mobil (MB)</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/transportasi/mobil:label">Mobil (MB)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/transportasi/mobil:label">Car</span>
             </label>
             <label class="">
                <input type="radio" name="/rencana_persalinan/transportasi" data-name="/rencana_persalinan/transportasi" value="lain-lain" data-type-xml="select1" />
-               <span lang="" class="option-label active">Lain-Lain (LN)</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/transportasi/lain-lain:label">Lain-Lain (LN)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/transportasi/lain-lain:label">Etc.</span>
             </label>
          </div>
       </fieldset>
@@ -80,29 +142,36 @@
    <fieldset class="question ">
       <fieldset>
          <legend>
-            <span lang="" class="question-label active">Pendonor</span>
-            <span lang="" class="or-hint active">Diisi dengan rencana pihak yang akan menjadi Pendonor Darah jika terjadi pendarahan</span>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/rencana_persalinan/pendonor:label">Pendonor</span>
+            <span lang="en" class="question-label " data-itext-id="/rencana_persalinan/pendonor:label">Blood donor</span>
+            <span lang="Bahasa" class="or-hint active" data-itext-id="/rencana_persalinan/pendonor:hint">Diisi dengan rencana pihak yang akan menjadi Pendonor Darah jika terjadi pendarahan</span>
+            <span lang="en" class="or-hint " data-itext-id="/rencana_persalinan/pendonor:hint">Fill in the persons who will donor their blood if bleeding happens</span>
          </legend>
          <div class="option-wrapper">
             <label class="">
                <input type="checkbox" name="/rencana_persalinan/pendonor" value="suami" data-type-xml="select" />
-               <span lang="" class="option-label active">Suami</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/pendonor/suami:label">Suami (S)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/pendonor/suami:label">Husband</span>
             </label>
             <label class="">
                <input type="checkbox" name="/rencana_persalinan/pendonor" value="keluarga" data-type-xml="select" />
-               <span lang="" class="option-label active">Keluarga</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/pendonor/keluarga:label">Keluarga (K)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/pendonor/keluarga:label">Family</span>
             </label>
             <label class="">
                <input type="checkbox" name="/rencana_persalinan/pendonor" value="teman" data-type-xml="select" />
-               <span lang="" class="option-label active">Teman</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/pendonor/teman:label">Teman (TM)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/pendonor/teman:label">Friend</span>
             </label>
             <label class="">
                <input type="checkbox" name="/rencana_persalinan/pendonor" value="lain-lain" data-type-xml="select" />
-               <span lang="" class="option-label active">Lain-lain</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/pendonor/lain-lain:label">Lain-lain (LL)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/pendonor/lain-lain:label">Others</span>
             </label>
             <label class="">
                <input type="checkbox" name="/rencana_persalinan/pendonor" value="tidak_ada" data-type-xml="select" />
-               <span lang="" class="option-label active">Tidak Ada</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/pendonor/tidak_ada:label">Tidak Ada (TA)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/pendonor/tidak_ada:label">None</span>
             </label>
          </div>
       </fieldset>
@@ -110,17 +179,21 @@
    <fieldset class="question ">
       <fieldset>
          <legend>
-            <span lang="" class="question-label active">Kondisi Rumah</span>
-            <span lang="" class="or-hint active">Bagaimana kondisi rumah Ibu</span>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/rencana_persalinan/kondisi_rumah:label">Kondisi Rumah</span>
+            <span lang="en" class="question-label " data-itext-id="/rencana_persalinan/kondisi_rumah:label">Condition of house</span>
+            <span lang="Bahasa" class="or-hint active" data-itext-id="/rencana_persalinan/kondisi_rumah:hint">Bagaimana kondisi rumah Ibu</span>
+            <span lang="en" class="or-hint " data-itext-id="/rencana_persalinan/kondisi_rumah:hint">How is condition of mother's house</span>
          </legend>
          <div class="option-wrapper">
             <label class="">
                <input type="radio" name="/rencana_persalinan/kondisi_rumah" data-name="/rencana_persalinan/kondisi_rumah" value="permanen" data-type-xml="select1" />
-               <span lang="" class="option-label active">Permanen (PM)</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/kondisi_rumah/permanen:label">Permanen (PM)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/kondisi_rumah/permanen:label">Permanent (PM)</span>
             </label>
             <label class="">
                <input type="radio" name="/rencana_persalinan/kondisi_rumah" data-name="/rencana_persalinan/kondisi_rumah" value="tidak_permanen" data-type-xml="select1" />
-               <span lang="" class="option-label active">Tidak Permanen (TM)</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/kondisi_rumah/tidak_permanen:label">Tidak Permanen (TM)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/kondisi_rumah/tidak_permanen:label">Impermanent (NP)</span>
             </label>
          </div>
       </fieldset>
@@ -128,21 +201,26 @@
    <fieldset class="question ">
       <fieldset>
          <legend>
-            <span lang="" class="question-label active">Persediaan Perlengkapan Persalinan</span>
-            <span lang="" class="or-hint active">Persediaan perlengkapan persalinan yang dilakukan Ibu</span>
+            <span lang="Bahasa" class="question-label active" data-itext-id="/rencana_persalinan/persediaan_perlengkapan_persalinan:label">Persediaan Perlengkapan Persalinan</span>
+            <span lang="en" class="question-label " data-itext-id="/rencana_persalinan/persediaan_perlengkapan_persalinan:label">Stock of labor tools</span>
+            <span lang="Bahasa" class="or-hint active" data-itext-id="/rencana_persalinan/persediaan_perlengkapan_persalinan:hint">Persediaan perlengkapan persalinan yang dilakukan Ibu</span>
+            <span lang="en" class="or-hint " data-itext-id="/rencana_persalinan/persediaan_perlengkapan_persalinan:hint">Stock of labor tools prepared by mother</span>
          </legend>
          <div class="option-wrapper">
             <label class="">
                <input type="checkbox" name="/rencana_persalinan/persediaan_perlengkapan_persalinan" value="kain" data-type-xml="select" />
-               <span lang="" class="option-label active">Kain (KN)</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/persediaan_perlengkapan_persalinan/kain:label">Kain (KN)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/persediaan_perlengkapan_persalinan/kain:label">Cloth</span>
             </label>
             <label class="">
                <input type="checkbox" name="/rencana_persalinan/persediaan_perlengkapan_persalinan" value="handuk" data-type-xml="select" />
-               <span lang="" class="option-label active">Handuk (HD)</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/persediaan_perlengkapan_persalinan/handuk:label">Handuk (HD)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/persediaan_perlengkapan_persalinan/handuk:label">Towel</span>
             </label>
             <label class="">
                <input type="checkbox" name="/rencana_persalinan/persediaan_perlengkapan_persalinan" value="pakaian_bersih_dan_kering" data-type-xml="select" />
-               <span lang="" class="option-label active">Pakaian Bersih dan Kering (PBK)</span>
+               <span lang="Bahasa" class="option-label active" data-itext-id="/rencana_persalinan/persediaan_perlengkapan_persalinan/pakaian_bersih_dan_kering:label">Pakaian Bersih dan Kering (PBK)</span>
+               <span lang="en" class="option-label " data-itext-id="/rencana_persalinan/persediaan_perlengkapan_persalinan/pakaian_bersih_dan_kering:label">Dry and Clean Clothes</span>
             </label>
          </div>
       </fieldset>
@@ -175,7 +253,7 @@
          <input type="hidden" name="/rencana_persalinan/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
       </label>
       <label class="calculation non-select ">
-         <input type="hidden" name="/rencana_persalinan/formhub/uuid" data-calculate="'434d349af5e44fba91b768c2bf68376c'" data-type-xml="string" />
+         <input type="hidden" name="/rencana_persalinan/formhub/uuid" data-calculate="'d4d6e01b42db4bc5a39326d7d3f2d6da'" data-type-xml="string" />
       </label>
    </fieldset>
 </form>
