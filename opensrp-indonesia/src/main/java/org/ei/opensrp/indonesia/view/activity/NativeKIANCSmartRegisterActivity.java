@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
 import org.ei.opensrp.indonesia.R;
@@ -22,6 +23,7 @@ import org.ei.opensrp.indonesia.view.dialog.KIANCOverviewServiceMode;
 import org.ei.opensrp.indonesia.view.fragment.NativeKIANCSmartRegisterFragment;
 import org.ei.opensrp.indonesia.view.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.dialog.AllClientsFilter;
@@ -39,6 +41,7 @@ import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.SampleViewPager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -202,12 +205,12 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
     public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides){
         // save the form
         try{
-//            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
-//            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
-//
-//            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
-//            ZiggyService ziggyService = context.ziggyService();
-//            ziggyService.saveForm(getParams(submission), submission.instance());
+            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
+
+            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
+            ZiggyService ziggyService = context.ziggyService();
+            ziggyService.saveForm(getParams(submission), submission.instance());
 
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
