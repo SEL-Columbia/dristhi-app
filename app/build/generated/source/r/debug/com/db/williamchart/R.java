@@ -24,13 +24,13 @@ public final class R {
 		public static final int chart_typeface = 0x7f010009;
 	}
 	public static final class dimen {
-		public static final int axis_dist_from_label = 0x7f060007;
-		public static final int axis_thickness = 0x7f060008;
-		public static final int bar_spacing = 0x7f060009;
-		public static final int dot_region_radius = 0x7f060015;
-		public static final int font_size = 0x7f06001a;
-		public static final int grid_thickness = 0x7f06001f;
-		public static final int set_spacing = 0x7f06003b;
+		public static final int axis_dist_from_label = 0x7f070007;
+		public static final int axis_thickness = 0x7f070008;
+		public static final int bar_spacing = 0x7f070009;
+		public static final int dot_region_radius = 0x7f070015;
+		public static final int font_size = 0x7f07001a;
+		public static final int grid_thickness = 0x7f07001f;
+		public static final int set_spacing = 0x7f07003b;
 	}
 	public static final class styleable {
 		public static final int[] BarChartAttrs = { 0x7f010000, 0x7f010001 };

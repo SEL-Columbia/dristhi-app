@@ -55,8 +55,6 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <application
         android:name="org.ei.telemedicine.view.activity.DrishtiApplication"
         android:clearTaskOnLaunch="true"
@@ -218,13 +216,6 @@
             android:label="@string/title_activity_action"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
         </activity>
-
-        <service
-            android:name="org.ei.telemedicine.service.CallService"
-            android:enabled="true"
-            android:process=":my_process" />
-
-        <receiver android:name="org.ei.telemedicine.view.receiver.CallReceiver" />
     </application>
 
 </manifest>

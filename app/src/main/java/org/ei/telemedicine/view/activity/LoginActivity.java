@@ -75,14 +75,14 @@ public class LoginActivity extends Activity {
     private void start() {
 
 
-        final String wsuri = "ws://202.153.34.166:8004/wslogin?id=%s";
+        final String wsuri = AllConstants.WEBSOCKET;
         try {
             mConnection.connect(String.format(wsuri,getUsern()), new WebSocketHandler() {
 
                 @Override
                 public void onOpen() {
                     Log.d(TAG, "Status: Connected to " + wsuri);
-                    //Toast.makeText(getApplicationContext(),String.format(wsuri,getUsern()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),String.format(wsuri,getUsern()), Toast.LENGTH_SHORT).show();
                     //mConnection.sendTextMessage("Hello, world!");
                 }
 

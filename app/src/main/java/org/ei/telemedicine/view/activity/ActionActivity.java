@@ -14,6 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
+import org.ei.telemedicine.AllConstants;
+
 //import org.ei.telemedicine.Context;
 
 import org.ei.telemedicine.R;
@@ -23,12 +27,14 @@ import java.util.Random;
 public class ActionActivity extends Activity {
 
     private org.ei.telemedicine.Context context;
-    protected String callUrl="http://202.153.34.166:8004/recieve?id=%s&peer_id=%s";
+
+    protected String callUrl=AllConstants.RECEIVING_URL;
 
     private Ringtone ringtone;
 
     public String getUsern()
     {
+
         context = org.ei.telemedicine.Context.getInstance().updateApplicationContext(this.getApplicationContext());
         return context.allSharedPreferences().fetchRegisteredANM();
     }

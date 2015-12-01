@@ -692,6 +692,10 @@
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/anm_poc" data-calculate="" data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
             <input name="/Child_Sick_Visit_EngKan/meta/instanceID" autocomplete="off"
                 data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
         </label>
