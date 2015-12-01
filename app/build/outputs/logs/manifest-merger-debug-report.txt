@@ -438,9 +438,7 @@ ADDED from AndroidManifest.xml:219:17
 		ADDED from AndroidManifest.xml:219:25
 activity#org.ei.telemedicine.view.activity.ActionActivity
 ADDED from AndroidManifest.xml:223:9
-	android:label
-		ADDED from AndroidManifest.xml:225:13
 	android:theme
-		ADDED from AndroidManifest.xml:226:13
+		ADDED from AndroidManifest.xml:225:13
 	android:name
 		ADDED from AndroidManifest.xml:224:13
