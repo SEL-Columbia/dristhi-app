@@ -123,12 +123,12 @@ public class FormSubmissionSyncServiceTest {
                 .thenReturn(new Response<String>(success, new Gson().toJson(this.expectedFormSubmissionsDto)),
                         new Response<String>(success, new Gson().toJson(Collections.emptyList())));
 
-        FetchStatus fetchStatus = service.pullFromServer();
+        FetchStatus fetchStatus = service.pullFromServer("");
 
         assertEquals(fetched, fetchStatus);
         verify(httpAgent, times(2))
                 .fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122&batch-size=1");
-        verify(formSubmissionService).processSubmissions(expectedFormSubmissions);
+        verify(formSubmissionService).processSubmissions(expectedFormSubmissions,"");
     }
 
     @Test
@@ -138,7 +138,7 @@ public class FormSubmissionSyncServiceTest {
         when(httpAgent.fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122&batch-size=1"))
                 .thenReturn(new Response<String>(success, new Gson().toJson(Collections.emptyList())));
 
-        FetchStatus fetchStatus = service.pullFromServer();
+        FetchStatus fetchStatus = service.pullFromServer("");
 
         assertEquals(nothingFetched, fetchStatus);
         verify(httpAgent).fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122&batch-size=1");
@@ -152,7 +152,7 @@ public class FormSubmissionSyncServiceTest {
         when(httpAgent.fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122&batch-size=1"))
                 .thenReturn(new Response<String>(failure, null));
 
-        FetchStatus fetchStatus = service.pullFromServer();
+        FetchStatus fetchStatus = service.pullFromServer("");
 
         assertEquals(FetchStatus.fetchedFailed, fetchStatus);
         verifyZeroInteractions(formSubmissionService);
