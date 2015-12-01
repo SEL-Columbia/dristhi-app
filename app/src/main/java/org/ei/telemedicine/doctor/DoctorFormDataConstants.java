@@ -38,7 +38,7 @@ public interface DoctorFormDataConstants {
     public static String blood_glucose = "bloodGlucoseData";
     public static String fhr = "FHR";
     public static String fetal_data = "fetal";
-    public static String stethoscope_data = "stethoscopeData";
+    public static String stethoscope_data = "pstechoscopeData";
 
     public static String anc_number = "ancNumber";
     public static String anc_visit_number = "ancVisitNumber";

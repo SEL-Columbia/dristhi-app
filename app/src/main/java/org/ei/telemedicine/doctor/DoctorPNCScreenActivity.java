@@ -116,15 +116,15 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         return new String[]{documentId, phoneNumber, visitId};
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (ib_play_stehoscope != null && ib_pause_stehoscope != null) {
-            ib_play_stehoscope.setVisibility(View.VISIBLE);
-            ib_pause_stehoscope.setVisibility(View.INVISIBLE);
-        }
-
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if (ib_play_stehoscope != null && ib_pause_stehoscope != null) {
+//            ib_play_stehoscope.setVisibility(View.VISIBLE);
+//            ib_pause_stehoscope.setVisibility(View.INVISIBLE);
+//        }
+//
+//    }
 
     @Override
     public void onClick(View v) {
