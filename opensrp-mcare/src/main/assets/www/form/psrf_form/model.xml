@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <PregnancySurveillanceAndRegistrationForm encounter_type="Pregnancy Surveillance and Registration" id="PregnancySurveillanceAndRegistrationForm" version="201511151026">
+    <PregnancySurveillanceAndRegistrationForm encounter_type="Pregnancy Surveillance and Registration" id="PregnancySurveillanceAndRegistrationForm" version="201511301047">
       <formhub>
         <uuid/>
       </formhub>
@@ -64,7 +64,6 @@
         </psrf_pregnant>
       </psrf_met>
       <psrf_schedule_logic/>
-      <test/>
       <FWVG openmrs_entity="concept" openmrs_entity_id="163090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWHRP openmrs_entity="concept" openmrs_entity_id="163092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWHR_PSR openmrs_entity="concept" openmrs_entity_id="163091AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>

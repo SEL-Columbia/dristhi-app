@@ -241,15 +241,15 @@ public class NativeHomeActivity extends SecuredActivity {
                     break;
 
                 case R.id.btn_anc_register:
-                    navigationController.startANCSmartRegistry();
+//                    navigationController.startANCSmartRegistry();
                     break;
 
                 case R.id.btn_pnc_register:
-                    navigationController.startPNCSmartRegistry();
+//                    navigationController.startPNCSmartRegistry();
                     break;
 
                 case R.id.btn_child_register:
-                    navigationController.startChildSmartRegistry();
+//                    navigationController.startChildSmartRegistry();
                     break;
 
                 case R.id.btn_fp_register:
@@ -265,11 +265,11 @@ public class NativeHomeActivity extends SecuredActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btn_reporting:
-                    navigationController.startReports();
+//                    navigationController.startReports();
                     break;
 
                 case R.id.btn_videos:
-                    navigationController.startVideos();
+//                    navigationController.startVideos();
                     break;
             }
         }
