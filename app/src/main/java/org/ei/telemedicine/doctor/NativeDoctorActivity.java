@@ -188,7 +188,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
 //        allDoctorRepository.clearDataNoPoc();
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
-        updateActionsTask.updateFromServer(new SyncAfterFetchListener());
+        updateActionsTask.updateFromServer(new SyncAfterFetchListener(),"");
     }
 
     @Override

@@ -29,7 +29,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     private ProgressDialog progressDialog;
 
     @Override
-    protected void onCreation() {
+    public void onCreation() {
         setActivityLayout();
 
         progressDialogInitialization();
@@ -60,7 +60,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
     public void updateFromServer() {
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
-        updateActionsTask.updateFromServer(new SyncAfterFetchListener());
+        updateActionsTask.updateFromServer(new SyncAfterFetchListener(),"");
     }
 
     protected void closeDialog() {
@@ -69,7 +69,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     }
 
     @Override
-    protected void onResumption() {
+    public void onResumption() {
     }
 
     //    Added to fix the memory leak caused due to bug in android which stops activities with webview to be GCed.

@@ -140,9 +140,9 @@ public abstract class SecuredActivity extends Activity {
         return true;
     }
 
-    protected abstract void onCreation();
+    public abstract void onCreation();
 
-    protected abstract void onResumption();
+    public abstract void onResumption();
 
     public void startFormActivity(String formName, String entityId, String metaData) {
         launchForm(formName, entityId, metaData, FormActivity.class);
@@ -214,10 +214,11 @@ public abstract class SecuredActivity extends Activity {
                 DrishtiSyncScheduler.stop(SecuredActivity.this);
                 FormSubmission formSubmission = context.formDataRepository().fetchFromSubmissionUseEntity(context.userService().getEntityId());
                 int subFormCount = 0;
-                String deliveryOutcome = "", risks = "", pncRisks = "";
+                String deliveryOutcome = "", risks = "", pncRisks = "", childSigns = "";
                 try {
-                    risks = formSubmission.getFieldValue(AllConstants.ANCVisitFields.RISKS);
+                    childSigns = formSubmission.getFieldValue(AllConstants.ChildIllnessFields.CHILD_SIGNS);
                     pncRisks = formSubmission.getFieldValue("immediateReferralReason");
+                    risks = formSubmission.getFieldValue(AllConstants.ANCVisitFields.RISKS);
                     deliveryOutcome = formSubmission.getFieldValue("deliveryOutcome");
                     SubForm subForm = formSubmission.getSubFormByName(AllConstants.PNCVisitFields.CHILD_PNC_VISIT_SUB_FORM_NAME);
                     subFormCount = subForm.instances().size();
@@ -229,12 +230,12 @@ public abstract class SecuredActivity extends Activity {
                 }
 
                 Log.e(TAG, "Form Data" + formSubmission.instance());
-                showBluetooth(formSubmission.entityId(), formSubmission.instanceId(), context.userService().getFormName(), formSubmission, subFormCount, risks, pncRisks);
+                showBluetooth(formSubmission.entityId(), formSubmission.instanceId(), context.userService().getFormName(), formSubmission, subFormCount, risks, pncRisks, childSigns);
             }
         }
     }
 
-    private void showBluetooth(final String entityId, final String instanceId, final String formName, FormSubmission formSubmission, int subFormCount, String risks, String pncRisks) {
+    private void showBluetooth(final String entityId, final String instanceId, final String formName, FormSubmission formSubmission, int subFormCount, String risks, String pncRisks, String childSigns) {
 
         Intent intent = new Intent(SecuredActivity.this, BlueToothInfoActivity.class);
         intent.putExtra(ENTITY_ID, entityId);
@@ -243,6 +244,7 @@ public abstract class SecuredActivity extends Activity {
         intent.putExtra(SUB_FORM_COUNT, subFormCount);
         intent.putExtra(AllConstants.ANCVisitFields.RISKS, risks != null && risks.trim().length() != 0 ? risks : "");
         intent.putExtra(AllConstants.PNCVisitFields.PNC_RISKS, pncRisks != null && pncRisks.trim().length() != 0 ? pncRisks : "");
+        intent.putExtra(AllConstants.ChildIllnessFields.CHILD_SIGNS, childSigns != null && childSigns.trim().length() != 0 ? childSigns : "");
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         startActivity(intent);

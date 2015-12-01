@@ -9,13 +9,26 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.ei.telemedicine.AllConstants.PNC_REGISTERS_KEY;
 import static org.ei.telemedicine.AllConstants.SHORT_DATE_FORMAT;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
+import org.ei.telemedicine.AllConstants;
+import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.telemedicine.domain.ProfileImage;
 import org.ei.telemedicine.domain.ReportMonth;
+import org.ei.telemedicine.event.CapturedPhotoInformation;
+import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+import org.ei.telemedicine.repository.ImageRepository;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
 import org.ei.telemedicine.view.customControls.FontVariant;
@@ -33,13 +46,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.DataSetObserver;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -51,6 +72,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -121,7 +143,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private NavBarOptionsProvider navBarOptionsProvider;
 
     @Override
-    protected void onCreation() {
+    public void onCreation() {
         setContentView(R.layout.smart_register_activity);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -154,7 +176,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     @Override
-    protected void onResumption() {
+    public void onResumption() {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -423,7 +445,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
     }
 
-    private class PaginationViewHandler implements View.OnClickListener {
+    public class PaginationViewHandler implements View.OnClickListener {
         private Button nextPageView;
         private Button previousPageView;
         private TextView pageInfoView;
@@ -483,6 +505,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             clientsAdapter.notifyDataSetChanged();
         }
     }
+
 
     public class NavBarActionsHandler implements View.OnClickListener {
 

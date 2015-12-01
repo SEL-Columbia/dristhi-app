@@ -67,7 +67,7 @@ public class AllBeneficiaries {
         return motherRepository.allMothersOfATypeWithEC(TYPE_PNC);
     }
 
-    public Mother findMotherByECCaseId(String ecCaseId) {
+        public Mother findMotherByECCaseId(String ecCaseId) {
         List<Mother> mothers = motherRepository.findAllCasesForEC(ecCaseId);
         if (mothers.isEmpty())
             return null;

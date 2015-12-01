@@ -79,6 +79,7 @@ public class MotherService {
                                 .put(ISCONSULTDOCTOR, submission.getFieldValue(ISCONSULTDOCTOR))
                                 .put(FETALDATA, submission.getFieldValue(FETALDATA))
                                 .put(POC_INFO, submission.getFieldValue(POC_INFO))
+                                .put(ANM_POC, submission.getFieldValue(ANM_POC))
                                 .put(RISKS, riskObserved)
                                 .map()));
 
@@ -172,7 +173,7 @@ public class MotherService {
                         submission.getFieldValue(AllConstants.PNCVisitFields.BP_DIASTOLIC),
                         submission.getFieldValue(AllConstants.PNCVisitFields.TEMPERATURE),
                         submission.getFieldValue(AllConstants.PNCVisitFields.HB_LEVEL),
-                        submission.getFieldValue(AllConstants.PNCVisitFields.BLOODGLUCOSEDATA), submission.getFieldValue(AllConstants.PNCVisitFields.ISCONSULTDOCTOR)));
+                        submission.getFieldValue(AllConstants.PNCVisitFields.BLOODGLUCOSEDATA), submission.getFieldValue(AllConstants.PNCVisitFields.ISCONSULTDOCTOR), submission.getFieldValue(AllConstants.ANCVisitFields.ANM_POC)));
         Log.e("Submission Form for poc", "POc fot visit" + submission.instance() + "");
         if (submission.getFieldValue(POC_INFO) != null && !submission.getFieldValue(POC_INFO).equals("")) {
             TimelineEvent pncVisitPoc = forPOCGiven(

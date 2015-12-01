@@ -37,6 +37,7 @@
             android:screenSize="large" />
     </compatible-screens>
 
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -47,15 +48,12 @@
 
     <uses-permission android:name="android.permission.STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="16" />
 
     <application
         android:name=".view.activity.DrishtiApplication"
@@ -207,11 +205,9 @@
             android:name=".view.activity.NativeANMPlanofCareActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
 
-        
         <activity
             android:name=".doctor.ViewPreVisitScreenActivity"
             android:screenOrientation="landscape" />
-
 
         <receiver android:name=".view.receiver.SyncBroadcastReceiver" />
         <receiver android:name=".view.receiver.ConnectivityChangeReceiver">
@@ -219,6 +215,8 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+
+
     </application>
 
 </manifest>
