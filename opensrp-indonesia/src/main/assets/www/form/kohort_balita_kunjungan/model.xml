@@ -1,28 +1,29 @@
 <model>
     <instance>
-        <balita_kunjungan encounter_type="Kunjungan Balita" id="balita_kunjungan" version="201511240850">
-          <formhub>
-            <uuid/>
-          </formhub>
-          <start/>
-          <today/>
-          <deviceid/>
-          <simserial/>
-          <phonenumber/>
-          <tanggal_lahir/>
-          <baby_age/>
-          <tanggal_pemeriksaan_anak_balita/>
-          <hasil_penimbangan_anak_balita/>
-          <hasil_pengukuran_tinggi_anak_balita/>
-          <indikator_berat_badan_bayi/>
-          <hasil_dilakukannya_kpsp/>
-          <kpsp_penyimpangan/>
-          <pelayanan_vita/>
-          <keterangan/>
-          <end/>
-          <meta>
-            <instanceID/>
-          </meta>
-        </balita_kunjungan>
-      </instance>
-  </model>
+        <kunjungan_balita_reviewed encounter_type="Kunjungan Balita" id="kunjungan_balita"
+            version="201511240850">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <tanggal_lahir />
+            <baby_age />
+            <tanggal_pemeriksaan_anak_balita />
+            <hasil_penimbangan_anak_balita />
+            <hasil_pengukuran_tinggi_anak_balita />
+            <indikator_berat_badan_bayi />
+            <hasil_dilakukannya_kpsp />
+            <kpsp_penyimpangan />
+            <pelayanan_vita />
+            <keterangan />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </kunjungan_balita_reviewed>
+    </instance>
+</model>

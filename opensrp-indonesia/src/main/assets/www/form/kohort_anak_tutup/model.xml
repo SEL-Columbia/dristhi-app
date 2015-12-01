@@ -1,6 +1,7 @@
 <model>
     <instance>
-        <anak_close encounter_type="Penutupan Anak" id="anak_close" version="201511160717">
+        <penutupan_anak_reviewed encounter_type="Penutupan Anak" id="penutupan_anak"
+            version="201511160717">
             <formhub>
                 <uuid />
             </formhub>
@@ -18,6 +19,6 @@
             <meta>
                 <instanceID />
             </meta>
-        </anak_close>
+        </penutupan_anak_reviewed>
     </instance>
 </model>

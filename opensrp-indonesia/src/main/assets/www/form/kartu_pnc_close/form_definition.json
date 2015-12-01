@@ -2,7 +2,7 @@
     "form_data_definition_version":"1",
     "form":{
         "bind_type":"ibu",
-        "default_bind_path":"/model/instance/PNC_Close/",
+        "default_bind_path":"/model/instance/penutupan_pnc_reviewed/",
         "fields":[
             {
                 "name":"id",
@@ -15,43 +15,43 @@
             },
             {
                 "name":"pncCloseReason",
-                "bind":"/model/instance/PNC_Close/pnc_close_reason"
+                "bind":"/model/instance/penutupan_pnc_reviewed/pnc_close_reason"
             },
             {
                 "name":"deathDate",
-                "bind":"/model/instance/PNC_Close/death_date"
+                "bind":"/model/instance/penutupan_pnc_reviewed/death_date"
             },
             {
                 "name":"maternalDeathCause",
-                "bind":"/model/instance/PNC_Close/maternal_death_cause"
+                "bind":"/model/instance/penutupan_pnc_reviewed/maternal_death_cause"
             },
             {
                 "name":"otherMaternalDeathCause",
-                "bind":"/model/instance/PNC_Close/other_maternal_death_cause"
+                "bind":"/model/instance/penutupan_pnc_reviewed/other_maternal_death_cause"
             },
             {
                 "name":"placeOfDeath",
-                "bind":"/model/instance/PNC_Close/place_of_death"
+                "bind":"/model/instance/penutupan_pnc_reviewed/place_of_death"
             },
             {
                 "name":"otherPlaceOfDeath",
-                "bind":"/model/instance/PNC_Close/other_place_of_death"
+                "bind":"/model/instance/penutupan_pnc_reviewed/other_place_of_death"
             },
 	    {
                 "name": "notMaternalDeathCause",
-                "bind": "/model/instance/PNC_Close/maternal_death_group/not_maternal_death_cause"
+                "bind": "/model/instance/penutupan_pnc_reviewed/maternal_death_group/not_maternal_death_cause"
             },
 	    {
                 "name": "isPNCCloseConfirmed",
-                "bind": "/model/instance/PNC_Close/confirm_pnc_close"
+                "bind": "/model/instance/penutupan_pnc_reviewed/confirm_pnc_close"
             },
             {
                 "name":"submissionDate",
-                "bind":"/model/instance/PNC_Close/today"
+                "bind":"/model/instance/penutupan_pnc_reviewed/today"
             },
             {
                 "name":"registrationDate",
-                "bind":"/model/instance/PNC_Close/reg_date"
+                "bind":"/model/instance/penutupan_pnc_reviewed/reg_date"
             },
             {
             	"name":"type",
@@ -59,7 +59,7 @@
             },
             {
                 "name":"isClosed",
-                "bind":"/model/instance/PNC_Close/is_mother_closed"
+                "bind":"/model/instance/penutupan_pnc_reviewed/is_mother_closed"
             }
         ]
     }

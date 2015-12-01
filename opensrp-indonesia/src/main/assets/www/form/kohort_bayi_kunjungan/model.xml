@@ -1,7 +1,7 @@
 <model>
     <instance>
-        <kohort_bayi_kunjungan_perbulan encounter_type="Kohort Kunjungan Bayi Perbulan"
-            id="kohort_bayi_kunjungan_perbulan" version="201511240649">
+        <kohort_kunjungan_bayi_reviewed encounter_type="Kohort Kunjungan Bayi Perbulan"
+            id="kohort_kunjungan_bayi_perbulan" version="201511240649">
             <formhub>
                 <uuid />
             </formhub>
@@ -32,6 +32,6 @@
             <meta>
                 <instanceID />
             </meta>
-        </kohort_bayi_kunjungan_perbulan>
+        </kohort_kunjungan_bayi_reviewed>
     </instance>
 </model>

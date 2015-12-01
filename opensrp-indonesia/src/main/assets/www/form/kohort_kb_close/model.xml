@@ -1,6 +1,7 @@
 <model>
     <instance>
-        <penutupan_kb encounter_type="Penutupan KB" id="Penutupan_KB" version="201511160713">
+        <penutupan_kb_reviewed encounter_type="Penutupan KB" id="Penutupan_KB"
+            version="201511160713">
             <formhub>
                 <uuid />
             </formhub>
@@ -19,6 +20,6 @@
             <meta>
                 <instanceID />
             </meta>
-        </penutupan_kb>
+        </penutupan_kb_reviewed>
     </instance>
 </model>

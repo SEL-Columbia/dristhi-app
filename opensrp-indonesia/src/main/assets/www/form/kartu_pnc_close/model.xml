@@ -1,6 +1,7 @@
 <model>
     <instance>
-        <PNC_Close encounter_type="Penutupan PNC" id="PNC_Close" version="201511240656">
+        <penutupan_pnc_reviewed encounter_type="Penutupan PNC" id="penutupan_pnc"
+            version="201511240656">
             <formhub>
                 <uuid />
             </formhub>
@@ -21,6 +22,6 @@
             <meta>
                 <instanceID />
             </meta>
-        </PNC_Close>
+        </penutupan_pnc_reviewed>
     </instance>
 </model>

@@ -1,6 +1,7 @@
 <model>
     <instance>
-        <postpartum_kb encounter_type="Post-partum KB" id="postpartum_kb" version="201511160705">
+        <postpartum_kb_reviewed encounter_type="Post-partum KB" id="post-partum_kb"
+            version="201511160705">
             <formhub>
                 <uuid />
             </formhub>
@@ -16,6 +17,6 @@
             <meta>
                 <instanceID />
             </meta>
-        </postpartum_kb>
+        </postpartum_kb_reviewed>
     </instance>
 </model>

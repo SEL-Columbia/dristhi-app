@@ -2,7 +2,7 @@
   "form_data_definition_version": "1",
   "form": {
     "bind_type": "kartu_ibu",
-    "default_bind_path": "/model/instance/tambah_kb/",
+    "default_bind_path": "/model/instance/tambah_kb_1/",
     "fields": [
       {
         "name": "id",
@@ -10,72 +10,71 @@
       },
       {
         "name": "tanggalkunjungan",
-        "bind": "/model/instance/tambah_kb/tanggal_kunjungan",
+        "bind": "/model/instance/tambah_kb_1/tanggal_kunjungan",
         "shouldLoadValue": true
       },
       {
         "name": "tanggalLahir",
-        "bind": "/model/instance/tambah_kb/tanggal_lahir_ibu",
+        "bind": "/model/instance/tambah_kb_1/tanggal_lahir_ibu",
         "shouldLoadValue": true
       },
       {
         "name": "umur",
-        "bind": "/model/instance/tambah_kb/umur",
+        "bind": "/model/instance/tambah_kb_1/umur",
         "shouldLoadValue": true
-
       },
       {
         "name": "tdSistolik",
-        "bind": "/model/instance/tambah_kb/td_sistolik",
+        "bind": "/model/instance/tambah_kb_1/td_sistolik",
         "shouldLoadValue": true
       },
       {
         "name": "tdDiastolik",
-        "bind": "/model/instance/tambah_kb/td_diastolik",
+        "bind": "/model/instance/tambah_kb_1/td_diastolik",
         "shouldLoadValue": true
       },
       {
         "name": "paritas",
-        "bind": "/model/instance/tambah_kb/paritas",
+        "bind": "/model/instance/tambah_kb_1/paritas",
         "shouldLoadValue": true
       },
       {
         "name": "alkihb",
-        "bind": "/model/instance/tambah_kb/alki_hb",
+        "bind": "/model/instance/tambah_kb_1/alki_hb",
         "shouldLoadValue": true
       },
       {
         "name": "alkilila",
-        "bind": "/model/instance/tambah_kb/alki_lila",
+        "bind": "/model/instance/tambah_kb_1/alki_lila",
         "shouldLoadValue": true
       },
       {
         "name": "alkiPenyakitKronis",
-        "bind": "/model/instance/tambah_kb/alki_penyakit_kronis",
+        "bind": "/model/instance/tambah_kb_1/alki_penyakit_kronis",
         "shouldLoadValue": true
       },
       {
         "name": "alkiPenyakitIms",
-        "bind": "/model/instance/tambah_kb/alki_penyakit_ims",
+        "bind": "/model/instance/tambah_kb_1/alki_penyakit_ims",
         "shouldLoadValue": true
       },
       {
         "name": "keteranganTentangPesertaKB",
-        "bind": "/model/instance/tambah_kb/keterangan_tentang_peserta_kb",
+        "bind": "/model/instance/tambah_kb_1/keterangan_tentang_peserta_kb",
         "shouldLoadValue": true
       },
       {
         "name": "jenisKontrasepsi",
-        "bind": "/model/instance/tambah_kb/jenis_kontrasepsi_yang_digunakan",
+        "bind": "/model/instance/tambah_kb_1/jenis_kontrasepsi_yang_digunakan",
         "shouldLoadValue": true
       },
       {
         "name": "submissionDate",
-        "bind": "/model/instance/tambah_kb/today"
+        "bind": "/model/instance/tambah_kb_1/today"
       },
       {
         "name": "registrationDate",
-        "bind": "/model/instance/tambah_kb/reg_date"
+        "bind": "/model/instance/tambah_kb_1/reg_date"
       }
     ]
   }

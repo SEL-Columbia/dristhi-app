@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <Bayi_Neonatal_Period encounter_type="Kunjungan neonatal" id="Bayi_Neonatal_Period"
+        <kunjungan_neonatal_reviewed encounter_type="Kunjungan neonatal" id="kunjungan_neonatal"
             version="201511160716">
             <formhub>
                 <uuid />
@@ -35,6 +35,6 @@
             <meta>
                 <instanceID />
             </meta>
-        </Bayi_Neonatal_Period>
+        </kunjungan_neonatal_reviewed>
     </instance>
 </model>

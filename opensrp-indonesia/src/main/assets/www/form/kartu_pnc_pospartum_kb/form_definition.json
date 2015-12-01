@@ -2,7 +2,7 @@
   "form_data_definition_version": "1",
   "form": {
     "bind_type": "ibu",
-    "default_bind_path": "/model/instance/postpartum_kb/",
+    "default_bind_path": "/model/instance/postpartum_kb_reviewed/",
     "fields": [
       {
         "name": "id",
@@ -10,27 +10,27 @@
       },
       {
         "name": "metodeKontrasepsi",
-        "bind": "/model/instance/postpartum_kb/metode_kontrasepsi"
+        "bind": "/model/instance/postpartum_kb_reviewed/metode_kontrasepsi"
       },
       {
         "name": "rencana",
-        "bind": "/model/instance/postpartum_kb/rencana"
+        "bind": "/model/instance/postpartum_kb_reviewed/rencana"
       },
       {
         "name": "pelaksanaank42hari",
-        "bind": "/model/instance/postpartum_kb/pelaksanaan_bawah_42_hari"
+        "bind": "/model/instance/postpartum_kb_reviewed/pelaksanaan_bawah_42_hari"
       },
       {
         "name": "pelaksanaanl42hari",
-        "bind": "/model/instance/postpartum_kb/pelaksanaan_atas_42_hari"
+        "bind": "/model/instance/postpartum_kb_reviewed/pelaksanaan_atas_42_hari"
       },
       {
         "name": "submissionDate",
-        "bind": "/model/instance/postpartum_kb/today"
+        "bind": "/model/instance/postpartum_kb_reviewed/today"
       },
       {
         "name": "registrationDate",
-        "bind": "/model/instance/postpartum_kb/reg_date"
+        "bind": "/model/instance/postpartum_kb_reviewed/reg_date"
       }
     ]
   }

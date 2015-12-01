@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <dok_persalinan encounter_type="Dokumentasi Persalinan" id="dokumentasi_persalinan"
+        <dok_persalinan_reviewed encounter_type="Dokumentasi Persalinan" id="dokumentasi_persalinan"
             version="201511160657">
             <formhub>
                 <uuid />
@@ -59,6 +59,6 @@
             <meta>
                 <instanceID />
             </meta>
-        </dok_persalinan>
+        </dok_persalinan_reviewed>
     </instance>
 </model>

@@ -127,7 +127,7 @@ public class AnakClient extends BidanSmartRegisterClient{
     }
 
     public String dateOfBirth() {
-        return isBlank(dob) ? "-" : formatDate(dob);
+        return dob == null || isBlank(dob) ? "-" : formatDate(dob);
     }
 
     public String dobString() {

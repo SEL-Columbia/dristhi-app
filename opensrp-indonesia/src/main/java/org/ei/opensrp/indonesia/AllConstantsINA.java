@@ -103,7 +103,7 @@ public class AllConstantsINA {
         // ANAK
         public static final String KOHORT_BAYI_KUNJUNGAN="kohort_bayi_kunjungan";
         public static final String KARTU_IBU_ANAK_CLOSE="kohort_anak_tutup";
-        public static final String BALITA_KUNJUNGAN="kohort_bayi_balita_kunjungan";
+        public static final String BALITA_KUNJUNGAN="kohort_balita_kunjungan";
         public static final String BAYI_IMUNISASI="kohort_bayi_immunization";
         public static final String BAYI_NEONATAL_PERIOD="kohort_bayi_neonatal_period";
         public static final String KOHORT_BAYI_EDIT="kohort_bayi_edit";

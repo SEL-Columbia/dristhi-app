@@ -14,6 +14,7 @@ import org.ei.opensrp.indonesia.provider.KIANCClientsProvider;
 import org.ei.opensrp.indonesia.provider.KIPNCClientsProvider;
 import org.ei.opensrp.indonesia.service.formSubmissionHandler.KIPNCRegistrationHandler;
 import org.ei.opensrp.indonesia.view.activity.NativeKIPNCSmartRegisterActivity;
+import org.ei.opensrp.indonesia.view.contract.AnakClient;
 import org.ei.opensrp.indonesia.view.contract.KIPNCClient;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
 import org.ei.opensrp.indonesia.view.controller.KIPNCRegisterController;
@@ -188,10 +189,13 @@ public class NativeKIPNCSmartRegisterFragment extends BidanSecuredNativeSmartReg
         public void onDialogOptionSelection(DialogOption option, Object tag) {
             SmartRegisterClient client = (SmartRegisterClient) tag;
             JSONObject obj = new JSONObject();
-            try {
-                obj.put(AllConstantsINA.KartuAnakFields.DATE_OF_BIRTH, ((KIPNCClient) client).getLastChild().dateOfBirth());
-            } catch (JSONException e) {
-                e.printStackTrace();
+            AnakClient anak = ((KIPNCClient) client).getLastChild();
+            if(anak != null) {
+                try {
+                    obj.put(AllConstantsINA.KartuAnakFields.DATE_OF_BIRTH, anak.dateOfBirth());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             FieldOverrides fieldOverrides = new FieldOverrides(obj.toString());
             onShowDialogOptionSelectionWithMetadata((EditOption)option, client, controller.getRandomNameChars(client), fieldOverrides.getJSONString());

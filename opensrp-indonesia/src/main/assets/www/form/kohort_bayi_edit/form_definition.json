@@ -2,7 +2,7 @@
     "form_data_definition_version": "1",
     "form": {
         "bind_type": "anak",
-        "default_bind_path": "/model/instance/register_baby_only/",
+        "default_bind_path": "/model/instance/tambah_bayi_reviewed/",
         "fields": [
             {
                 "name": "id",
@@ -20,51 +20,51 @@
             },
             {
                 "name": "tanggalPendaftaran",
-                "bind": "/model/instance/register_baby_only/tanggal_pendaftaran",
+                "bind": "/model/instance/tambah_bayi_reviewed/tanggal_pendaftaran",
                 "shouldLoadValue": true
             },
             {
                 "name": "noBayi",
-                "bind": "/model/instance/register_baby_only/no_bayi",
+                "bind": "/model/instance/tambah_bayi_reviewed/no_bayi",
                 "shouldLoadValue": true
             },
             {
                 "name": "namaBayi",
-                "bind": "/model/instance/register_baby_only/nama_bayi",
+                "bind": "/model/instance/tambah_bayi_reviewed/nama_bayi",
                 "shouldLoadValue": true
             },
             {
                 "name": "tanggalLahirAnak",
-                "bind": "/model/instance/register_baby_only/tanggal_lahir",
+                "bind": "/model/instance/tambah_bayi_reviewed/tanggal_lahir_anak",
                 "shouldLoadValue": true
             },
             {
                 "name": "jenisKelamin",
-                "bind": "/model/instance/register_baby_only/jenis_kelamin",
+                "bind": "/model/instance/tambah_bayi_reviewed/jenis_kelamin",
                 "shouldLoadValue": true
             },
             {
                 "name": "kepemilikanBukuKIA",
-                "bind": "/model/instance/register_baby_only/kepemilikan_buku_kia",
+                "bind": "/model/instance/tambah_bayi_reviewed/kepemilikan_buku_kia",
                 "shouldLoadValue": true
             },
             {
                 "name": "beratLahir",
-                "bind": "/model/instance/register_baby_only/berat_lahir",
+                "bind": "/model/instance/tambah_bayi_reviewed/berat_lahir",
                 "shouldLoadValue": true
             },
             {
                 "name": "isHighRiskChild",
-                "bind": "/model/instance/register_baby_only/is_high_risk_child",
+                "bind": "/model/instance/tambah_bayi_reviewed/is_high_risk_child",
                 "shouldLoadValue": true
             },
             {
                 "name": "registrationDate",
-                "bind": "/model/instance/register_baby_only/reg_date"
+                "bind": "/model/instance/tambah_bayi_reviewed/reg_date"
             },
             {
                 "name": "submissionDate",
-                "bind": "/model/instance/register_baby_only/today"
+                "bind": "/model/instance/tambah_bayi_reviewed/today"
             }
         ]
     }

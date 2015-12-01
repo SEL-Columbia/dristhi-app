@@ -2,7 +2,7 @@
     "form_data_definition_version": "1",
     "form": {
         "bind_type": "kartu_ibu",
-        "default_bind_path": "/model/instance/penutupan_kb/",
+        "default_bind_path": "/model/instance/penutupan_kb_reviewed/",
         "fields": [
             {
                 "name": "id",
@@ -10,35 +10,35 @@
             },
             {
                 "name": "kbCloseReason",
-                "bind": "/model/instance/penutupan_kb/kb_close_reason"
+                "bind": "/model/instance/penutupan_kb_reviewed/kb_close_reason"
             },
             {
                 "name": "keteranganGagal",
-                "bind": "/model/instance/penutupan_kb/keterangan_gagal"
+                "bind": "/model/instance/penutupan_kb_reviewed/keterangan_gagal"
             },
             {
                 "name": "kbCloseReason",
-                "bind": "/model/instance/penutupan_kb/kb_close_reason"
+                "bind": "/model/instance/penutupan_kb_reviewed/kb_close_reason"
             },
             {
                 "name": "didWomanSurvive",
-                "bind": "/model/instance/penutupan_kb/woman_survived"
+                "bind": "/model/instance/penutupan_kb_reviewed/woman_survived"
             },
             {
                 "name": "deathDate",
-                "bind": "/model/instance/penutupan_kb/death_date"
+                "bind": "/model/instance/penutupan_kb_reviewed/death_date"
             },
             {
                 "name": "isKBCloseConfirmed",
-                "bind": "/model/instance/penutupan_kb/confirm_kb_close"
+                "bind": "/model/instance/penutupan_kb_reviewed/confirm_kb_close"
             },
             {
                 "name": "submissionDate",
-                "bind": "/model/instance/penutupan_kb/today"
+                "bind": "/model/instance/penutupan_kb_reviewed/today"
             },
             {
                 "name": "registrationDate",
-                "bind": "/model/instance/penutupan_kb/reg_date"
+                "bind": "/model/instance/penutupan_kb_reviewed/reg_date"
             },
             {
                 "name": "jenisKontrasepsi",

@@ -1,31 +1,27 @@
 <model>
     <instance>
-        <register_baby_only id="register_baby_only" version="201506080836">
-          <formhub>
-            <uuid/>
-          </formhub>
-          <start/>
-          <today/>
-          <reg_date/>
-          <deviceid/>
-          <simserial/>
-          <phonenumber/>
-          <tanggal_pendaftaran/>
-          <no_bayi/>
-          <nama_bayi/>
-          <tanggal_lahir/>
-          <jenis_kelamin/>
-          <kepemilikan_buku_kia/>
-          <berat_lahir/>
-          <Low_Birthweght_risk />
-          <Very_Low_Birthweight_risk />
-          <is_high_risk_child />
-          <high_risk_child_reason />
-          <high_risk_note />
-          <end/>
-          <meta>
-            <instanceID/>
-          </meta>
-        </register_baby_only>
-      </instance>
-  </model>
+        <tambah_bayi_reviewed encounter_type="Tambah Bayi" id="tambah_bayi" version="201511160646">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <tanggal_pendaftaran />
+            <nama_ibu />
+            <alamat />
+            <no_bayi />
+            <nama_bayi />
+            <tanggal_lahir_anak />
+            <jenis_kelamin />
+            <kepemilikan_buku_kia />
+            <berat_lahir />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </tambah_bayi_reviewed>
+    </instance>
+</model>
