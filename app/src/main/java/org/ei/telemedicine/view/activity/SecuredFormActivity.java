@@ -69,7 +69,7 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
                 "www/form/" + formName + "/form.xml"));
 //        model = IOUtils.toString(new FileInputStream(new File(Environment.getExternalStorageDirectory().getPath() + "/forms/anc_visit/model.xml")), null);
 //        form = IOUtils.toString(new FileInputStream(new File(Environment.getExternalStorageDirectory().getPath() + "/forms/anc_visit/form.xml")), null);
-
+        Log.e("Form Details", formName + "--" + entityId);
         context.userService().setFormDetails(formName, entityId);
     }
 

@@ -4,6 +4,7 @@
     <string-array name="django_url_list">
         <item>202.153.34.169:8000</item>
         <item>10.10.11.6:8000</item>
+        <item>10.10.11.79:8000</item>
     </string-array>
     <string-array name="url_list">
         <item>202.153.34.169:8080</item>

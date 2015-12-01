@@ -58,6 +58,7 @@ public class OpenFormOption implements EditOption {
 
     @Override
     public void doEdit(SmartRegisterClient client) {
+
         if (!isFormView) {
             if (formName.equals(VIEW_PLAN_OF_CARE)) {
                 formController.viewPOCActivity(AllConstants.VisitTypes.ANC_VISIT, client.entityId());
@@ -74,7 +75,6 @@ public class OpenFormOption implements EditOption {
                         formController.startFormActivity(formName, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
                 } catch (Exception e) {
                     e.printStackTrace();
-
                 }
             } else if (formName.equals(CHILD_EDIT)) {
                 formController.startFormActivity(CHILD_REG_EDIT, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());

@@ -54,8 +54,6 @@ public class UserService {
     }
 
     public LoginResponse isValidRemoteLogin(String userName, String password) {
-//        String requestURL = configuration.dristhiBaseURL() + AUTHENTICATE_USER_URL_PATH + userName;
-//        String requestURL = configuration.dristhiBaseURL() + USER_DETAILS_URL_PATH + userName;
         String requestURL = configuration.dristhiDjangoBaseURL() + LOGIN_URL_PATH + userName + "&pwd=" + password;
         android.util.Log.e("Login url", requestURL);
         return httpAgent.urlCanBeAccessWithGivenCredentials(requestURL, userName, password);

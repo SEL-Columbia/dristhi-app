@@ -1,5 +1,7 @@
 package org.ei.telemedicine.service;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -26,10 +28,12 @@ public class DrishtiService {
     public Response<List<Action>> fetchNewActions(String anmIdentifier, String previouslyFetchedIndex) {
         String anmID = URLEncoder.encode(anmIdentifier);
         Response<String> response = agent.fetch(drishtiBaseURL + "/actions?anmIdentifier=" + anmID + "&timeStamp=" + previouslyFetchedIndex);
+
         Type collectionType = new TypeToken<List<Action>>() {
         }.getType();
         List<Action> actions;
         try {
+
             actions = new Gson().fromJson(response.payload(), collectionType);
         } catch (JsonSyntaxException e) {
             return new Response<List<Action>>(failure, new ArrayList<Action>());

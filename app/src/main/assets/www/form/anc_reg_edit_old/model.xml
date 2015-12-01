@@ -1,0 +1,336 @@
+<model>
+    <instance>
+        <ANC_Registration_OA_EDIT id="ANC_Registration_OA_EDIT">
+            <formhub>
+                <uuid />
+            </formhub>
+            <today />
+            <out_of_area_reg_date />
+            <out_of_area_village />
+            <district />
+            <motherId />
+            <phc />
+            <sub_center />
+            <district_value />
+            <id_number />
+            <wife_min_age />
+            <wife_max_age />
+            <husband_min_age />
+            <husband_max_age />
+
+            <is_lmp_week_days />
+            <is_lmp_weeks />
+            <wife_dob />
+            <wife_age />
+            <wife_age_note />
+
+            <is_consult_doctor />
+            <is_consult_doctor_no_reason2 />
+            <is_consult_doctor_no_reason />
+
+            <phc_value />
+            <sub_center_value />
+            <district_note />
+            <phc_note />
+            <sub_center_note />
+            <village />
+            <hh_address />
+
+            <woman_name />
+            <woman_name2 />
+
+            <woman_id_type />
+            <aadhaar_number />
+            <woman_age />
+            <dob />
+            <husband_age />
+
+            <husband_name />
+            <ph_no />
+            <phone_no />
+            <phone_owner />
+            <phone_no2 />
+            <phone_owner2 />
+            <religion />
+
+            <phone_num />
+            <phone_num2 />
+            <country_code />
+
+            <anc_number1 />
+            <anc_number />
+            <lmp_date />
+
+            <_lmp_date />
+
+            <edd />
+            <edd_formatted />
+            <edd_date_formatted />
+
+
+            <edd_note />
+            <num_pregnancies1 />
+            <num_pregnancies />
+            <num_abortions />
+            <num_livebirths />
+            <num_stillbirths1 />
+            <num_stillbirths />
+            <parity />
+            <num_livingchildren />
+            <youngestchild_under2 />
+            <complication />
+            <other_complication />
+            <medical_histories />
+            <w_blood_group />
+            <height />
+            <weight_startofpregnancy />
+            <parity_risk />
+            <age_risk />
+            <youngchild_risk />
+            <outOfArea />
+            <abortion_risk />
+            <weight_risk />
+            <height_risk />
+            <is_high_risk_till_delivery />
+            <is_high_risk_till_delivery_reason />
+            <is_high_risk_till_pnc_close />
+            <is_high_risk_till_pnc_close_reason />
+            <is_high_risk1 />
+            <high_risk_reason />
+            <high_risk_note />
+            <risk_value />
+            <is_high_risk />
+            <num_days_since_lmp />
+            <num_weeks />
+            <birth_plan_message />
+            <val />
+
+            <field1 />
+            <field1_group>
+                <field1_val />
+            </field1_group>
+
+            <field2 />
+            <field2_group>
+                <field2_val />
+            </field2_group>
+
+            <field3 />
+            <field3_group>
+                <field3_val />
+            </field3_group>
+
+            <field4 />
+            <field4_group>
+                <field4_val />
+            </field4_group>
+
+            <field5 />
+            <field5_group>
+                <field5_val />
+            </field5_group>
+
+
+            <meta>
+                <instanceID />
+            </meta>
+        </ANC_Registration_OA_EDIT>
+    </instance>
+    <instance id="tobacco_user">
+        <root>
+            <item>
+                <itextId>static_instance-tobacco_user-0</itextId>
+                <name>woman_uses_tobacco</name>
+            </item>
+            <item>
+                <itextId>static_instance-tobacco_user-1</itextId>
+                <name>husband_uses_tobacco</name>
+            </item>
+            <item>
+                <itextId>static_instance-tobacco_user-2</itextId>
+                <name>others_use_tobacco</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="prevpreg_complication">
+        <root>
+            <item>
+                <itextId>static_instance-prevpreg_complication-0</itextId>
+                <name>APH;</name>
+            </item>
+            <item>
+                <itextId>static_instance-prevpreg_complication-1</itextId>
+                <name>PIH;</name>
+            </item>
+            <item>
+                <itextId>static_instance-prevpreg_complication-2</itextId>
+                <name>PreeclampsiaEclampsia;</name>
+            </item>
+            <item>
+                <itextId>static_instance-prevpreg_complication-3</itextId>
+                <name>PregnancyWithTumors;</name>
+            </item>
+            <item>
+                <itextId>static_instance-prevpreg_complication-4</itextId>
+                <name>ProlongedObstructedLabor;</name>
+            </item>
+            <item>
+                <itextId>static_instance-prevpreg_complication-5</itextId>
+                <name>IntrauterineGrowthRetardation;</name>
+            </item>
+            <item>
+                <itextId>static_instance-prevpreg_complication-6</itextId>
+                <name>PPH;</name>
+            </item>
+            <item>
+                <itextId>static_instance-prevpreg_complication-7</itextId>
+                <name>Cesarean;</name>
+            </item>
+            <item>
+                <itextId>static_instance-prevpreg_complication-8</itextId>
+                <name>StillBirth;</name>
+            </item>
+            <item>
+                <itextId>static_instance-prevpreg_complication-9</itextId>
+                <name>SpontaneousAbortion;</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="medical_history">
+        <root>
+            <item>
+                <itextId>static_instance-medical_history-0</itextId>
+                <name>TB;</name>
+            </item>
+            <item>
+                <itextId>static_instance-medical_history-1</itextId>
+                <name>Hypertension;</name>
+            </item>
+            <item>
+                <itextId>static_instance-medical_history-2</itextId>
+                <name>HeartRelatedDiseases;</name>
+            </item>
+            <item>
+                <itextId>static_instance-medical_history-3</itextId>
+                <name>Diabetes;</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="numbers">
+        <root>
+            <item>
+                <itextId>static_instance-numbers-0</itextId>
+                <name>0</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-1</itextId>
+                <name>1</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-2</itextId>
+                <name>2</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-3</itextId>
+                <name>3</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-4</itextId>
+                <name>4</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-5</itextId>
+                <name>5</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-6</itextId>
+                <name>6</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-7</itextId>
+                <name>7</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-8</itextId>
+                <name>8</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-9</itextId>
+                <name>999</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="blood_groups">
+        <root>
+            <item>
+                <itextId>static_instance-blood_groups-0</itextId>
+                <name>a_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_groups-1</itextId>
+                <name>a_negative</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_groups-2</itextId>
+                <name>b_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_groups-3</itextId>
+                <name>b_negative</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_groups-4</itextId>
+                <name>ab_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_groups-5</itextId>
+                <name>ab_negative</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_groups-6</itextId>
+                <name>o_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_groups-7</itextId>
+                <name>o_negative</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="phone_owner">
+        <root>
+            <item>
+                <itextId>static_instance-phone_owner-0</itextId>
+                <name>woman</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-1</itextId>
+                <name>husband</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-2</itextId>
+                <name>relative</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-3</itextId>
+                <name>neighbor</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-4</itextId>
+                <name>others</name>
+            </item>
+        </root>
+    </instance>
+
+    <instance id="yes_no">
+        <root>
+            <item>
+                <itextId>static_instance-yes_no-0</itextId>
+                <name>yes</name>
+            </item>
+            <item>
+                <itextId>static_instance-yes_no-1</itextId>
+                <name>no</name>
+            </item>
+        </root>
+    </instance>
+</model>
