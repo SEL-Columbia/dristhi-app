@@ -309,6 +309,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_days_of_cough"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -346,6 +347,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_breaths_per_minute"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -382,6 +384,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_days_of_diarrhea"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -418,6 +421,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_blood_in_stool"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -454,6 +458,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_vommit_every_thing"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -490,6 +495,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_number_of_days_fever"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -26,13 +26,13 @@ import static org.ei.telemedicine.event.Event.ON_PHOTO_CAPTURED;
 public class CameraLaunchActivity extends SecuredActivity {
     private static final int TAKE_PHOTO_REQUEST_CODE = 111;
     private static final String JPG_FILE_SUFFIX = ".jpg";
-    private static final String DRISTHI_DIRECTORY_NAME = "Dristhi";
+
     private File imageFile;
     private String entityType;
     private String entityId;
 
     @Override
-    protected void onCreation() {
+    public void onCreation() {
         Intent intent = getIntent();
         entityId = intent.getStringExtra(ENTITY_ID);
         entityType = intent.getStringExtra(AllConstants.TYPE);
@@ -40,7 +40,7 @@ public class CameraLaunchActivity extends SecuredActivity {
     }
 
     @Override
-    protected void onResumption() {
+    public void onResumption() {
     }
 
     public void startCamera() {
@@ -58,7 +58,7 @@ public class CameraLaunchActivity extends SecuredActivity {
 
     private File createImageFile() throws IOException {
         String imageFileName = UUID.randomUUID().toString();
-        File directory = new File(getExternalStoragePublicDirectory(DIRECTORY_PICTURES), DRISTHI_DIRECTORY_NAME);
+        File directory = new File(getExternalStoragePublicDirectory(DIRECTORY_PICTURES), AllConstants.DRISTHI_DIRECTORY_NAME);
         if (!directory.exists()) {
             directory.mkdir();
         }
@@ -102,7 +102,7 @@ public class CameraLaunchActivity extends SecuredActivity {
         if (WOMAN_TYPE.equals(entityType)) {
             context.allEligibleCouples().updatePhotoPath(entityId, imagePath);
         }
-        if(CHILD_TYPE.equals(entityType)) {
+        if (CHILD_TYPE.equals(entityType)) {
             context.childService().updatePhotoPath(entityId, imagePath);
         }
         ON_PHOTO_CAPTURED.notifyListeners(new CapturedPhotoInformation(entityId, imagePath));

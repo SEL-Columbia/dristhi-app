@@ -206,24 +206,25 @@
         <item name="android:clickable">true</item>
     </style>
 
+
     <!--<style name="MooTheme" parent="android:Theme">-->
-        <!--<item name="android:spinnerItemStyle">@style/MooSpinnerItem</item>-->
+    <!--<item name="android:spinnerItemStyle">@style/MooSpinnerItem</item>-->
     <!--</style>-->
 
     <!--<style name="MooSpinnerItem" parent="android:Widget.TextView.SpinnerItem">-->
-        <!--<item name="android:textAppearance">@style/MooTextAppearanceSpinnerItem</item>-->
+    <!--<item name="android:textAppearance">@style/MooTextAppearanceSpinnerItem</item>-->
     <!--</style>-->
 
     <!--<style name="MooTextAppearanceSpinnerItem" parent="android:TextAppearance.Widget.TextView.SpinnerItem">-->
-        <!--<item name="android:textColor">#F00</item>-->
+    <!--<item name="android:textColor">#F00</item>-->
     <!--</style>-->
 
     <!--<style name="SpinnerDropdown" parent="android:style/Widget.ListView.DropDown">-->
-        <!--<item name="android:background">#c0c0c0</item>-->
-        <!--<item name="android:divider">#FF0000</item>-->
-        <!--<item name="android:textColor">#000000</item>-->
-        <!--<item name="android:listSelector">#FF00FF</item>-->
-        <!--<item name="android:dividerHeight">3dp</item>-->
+    <!--<item name="android:background">#c0c0c0</item>-->
+    <!--<item name="android:divider">#FF0000</item>-->
+    <!--<item name="android:textColor">#000000</item>-->
+    <!--<item name="android:listSelector">#FF00FF</item>-->
+    <!--<item name="android:dividerHeight">3dp</item>-->
     <!--</style>-->
 
 </resources>

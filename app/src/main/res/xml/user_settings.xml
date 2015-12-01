@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="URL">
+
+        <EditTextPreference
+            android:key="prefBaseURL"
+            android:text="202.153.34.169:8080"
+            android:title="Enter Drishti Java Base URL" />
+        <!--<EditTextPreference-->
+        <!--android:key="prefDjangoBaseURL"-->
+        <!--android:text="202.153.34.169:8000"-->
+        <!--android:title="Enter Drishti Django Base URL" />-->
+        <!--<ListPreference-->
+        <!--android:entries="@array/url_list"-->
+        <!--android:entryValues="@array/url_list"-->
+        <!--android:key="prefBaseURL"-->
+        <!--android:title="Select URL" />-->
+        <EditTextPreference
+            android:key="prefDjangoBaseURL"
+            android:text="202.153.34.169:8000"
+            android:title="Enter Drishti Django Base URL" />
+
+        <!--<ListPreference-->
+            <!--android:entries="@array/django_url_list"-->
+            <!--android:entryValues="@array/django_url_list"-->
+            <!--android:key="prefDjangoBaseURL"-->
+            <!--android:title="Select Django URL" />-->
+    </PreferenceCategory>
+
+</PreferenceScreen>

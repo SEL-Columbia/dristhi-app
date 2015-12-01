@@ -50,8 +50,8 @@ public class ChildDetailControllerTest {
     @Test
     public void shouldGetChildDetailsAsJSON() throws Exception {
         TimelineEvent birthEvent = TimelineEvent.forChildBirthInChildProfile(caseId, "2011-10-21", null, null);
-        TimelineEvent ancEvent = TimelineEvent.forMotherPNCVisit(caseId, "2", "2011-12-22", "bps 1", "bpd 1", "temp 1", "hb 1","bmg 1","false");
-        TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forMotherPNCVisit(caseId, "2", "2012-07-29", "bps 2", "bpd 2", "temp 2", "hb 2","bmg 2","false");
+        TimelineEvent ancEvent = TimelineEvent.forMotherPNCVisit(caseId, "2", "2011-12-22", "bps 1", "bpd 1", "temp 1", "hb 1","bmg 1","false","");
+        TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forMotherPNCVisit(caseId, "2", "2012-07-29", "bps 2", "bpd 2", "temp 2", "hb 2","bmg 2","false","");
 
         HashMap<String, String> details = new HashMap<String, String>();
         details.put("ashaName", "Shiwani");

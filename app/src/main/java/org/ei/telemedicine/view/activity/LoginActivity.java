@@ -30,6 +30,7 @@ import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.BackgroundAction;
 import org.ei.telemedicine.view.LockingBackgroundTask;
 import org.ei.telemedicine.view.ProgressIndicator;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -142,6 +143,7 @@ public class LoginActivity extends Activity {
         initializeBuildDetails();
         setDoneActionHandlerOnPasswordField();
         initializeProgressDialog();
+
 
     }
 

@@ -49,7 +49,7 @@ public class FormSubmissionServiceTest {
         List<FormSubmission> submissions = asList(create().withInstanceId("instance id 1").withVersion("122").build(),
                 create().withInstanceId("instance id 2").withVersion("123").build());
 
-        service.processSubmissions(submissions);
+        service.processSubmissions(submissions, "");
 
         String paramsForFirstSubmission = new Gson().toJson(
                 create("instanceId", "instance id 1")
@@ -67,10 +67,10 @@ public class FormSubmissionServiceTest {
                         .map());
         InOrder inOrder = inOrder(ziggyService, allSettings, formDataRepository);
         inOrder.verify(ziggyService).saveForm(paramsForFirstSubmission, "{}");
-        inOrder.verify(formDataRepository).updateServerVersion("instance id 1", "0");
+        inOrder.verify(formDataRepository).updateServerVersion("instance id 1", "0", "");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("0");
         inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
-        inOrder.verify(formDataRepository).updateServerVersion("instance id 2", "0");
+        inOrder.verify(formDataRepository).updateServerVersion("instance id 2", "0", "");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("0");
     }
 
@@ -82,7 +82,7 @@ public class FormSubmissionServiceTest {
         when(formDataRepository.submissionExists("instance id 1")).thenReturn(true);
         when(formDataRepository.submissionExists("instance id 2")).thenReturn(false);
 
-        service.processSubmissions(submissions);
+        service.processSubmissions(submissions, "");
 
         String paramsForFirstSubmission = new Gson().toJson(
                 create("instanceId", "instance id 1")
@@ -100,10 +100,10 @@ public class FormSubmissionServiceTest {
                         .map());
         InOrder inOrder = inOrder(ziggyService, allSettings, formDataRepository);
         inOrder.verify(ziggyService, times(0)).saveForm(paramsForFirstSubmission, "{}");
-        inOrder.verify(formDataRepository).updateServerVersion("instance id 1", "0");
+        inOrder.verify(formDataRepository).updateServerVersion("instance id 1", "0", "");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("0");
         inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
-        inOrder.verify(formDataRepository).updateServerVersion("instance id 2", "1");
+        inOrder.verify(formDataRepository).updateServerVersion("instance id 2", "1", "");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("1");
     }
 }

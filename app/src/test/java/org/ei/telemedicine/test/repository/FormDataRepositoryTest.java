@@ -249,8 +249,8 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         repository.saveFormSubmission(secondSubmission);
         repository.saveFormSubmission(thirdSubmission);
 
-        repository.updateServerVersion("instance 1", "0");
-        repository.updateServerVersion("instance 2", "1");
+        repository.updateServerVersion("instance 1", "0","");
+        repository.updateServerVersion("instance 2", "1","");
 
         assertEquals(firstSubmission.setServerVersion("0"), repository.fetchFromSubmission("instance 1"));
         assertEquals(secondSubmission.setServerVersion("1"), repository.fetchFromSubmission("instance 2"));

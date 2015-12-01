@@ -121,6 +121,11 @@
         "bind": "/model/instance/Child_Sick_Visit_EngKan/is_consult_doctor"
       },
       {
+        "name": "anmPoc",
+        "value": "",
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/anm_poc"
+      },
+      {
         "name": "docPocInfo",
         "value": "",
         "bind": "/model/instance/Child_Sick_Visit_EngKan/poc_info"

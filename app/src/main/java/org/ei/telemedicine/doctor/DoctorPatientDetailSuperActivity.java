@@ -21,9 +21,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 import static android.R.drawable.ic_media_pause;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.formData;
@@ -70,14 +75,14 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
     }
 
     public void pausePlay() {
-
-        if (player != null && player.isPlaying()) {
+        if (player != null) {
             player.stop();
             player.release();
         }
     }
 
     public void playData(String url, final ImageButton ib_play_stehoscope, final ImageButton ib_pause_stehoscope) {
+        Log.e("Play pat", url);
         try {
             player = new MediaPlayer();
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -152,11 +157,11 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         });
     }
 
-    public void referAnotherDoctor(String doctorId, String visitId, String entityId, final String documentId, final String visitType, final String wifeName) {
+    public void referAnotherDoctor(String doctorId, final String visitId, String entityId, final String documentId, final String visitType, final String wifeName) {
         getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId + "&patientname=" + (visitType.equalsIgnoreCase("CHILD") ? "Baby%20of%20" + wifeName : wifeName), new Listener<String>() {
             @Override
             public void onEvent(String data) {
-                Context.getInstance().allDoctorRepository().deleteUseCaseId(documentId);
+                Context.getInstance().allDoctorRepository().deleteUseCaseId(visitId);
                 startActivity(new Intent(DoctorPatientDetailSuperActivity.this, NativeDoctorActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
             }

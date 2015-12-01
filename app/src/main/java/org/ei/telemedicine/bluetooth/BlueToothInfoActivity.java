@@ -15,6 +15,8 @@ import android.media.MediaRecorder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -22,6 +24,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,13 +54,18 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Vector;
 
+import static android.os.Environment.getExternalStoragePublicDirectory;
 import static android.view.View.*;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static org.ei.telemedicine.AllConstants.DRUGS;
 import static org.ei.telemedicine.AllConstants.DRUGS_INFO_RESULT_CODE;
@@ -67,13 +75,14 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         org.ei.telemedicine.bluetooth.eet.ICallBack, org.ei.telemedicine.bluetooth.fetal.ICallBack, org.ei.telemedicine.bluetooth.blood.ICallBack {
 
     org.ei.telemedicine.view.customControls.CustomFontTextView bt_save;
-    String entityId, instanceId, formName, risks, pncRisks;
+    String entityId, instanceId, formName, risks, pncRisks, childSigns, filePath = "";
     int subFormCount;
 
     ImageView iv_bp, iv_steh, iv_bgm, iv_eet, iv_fetal, iv_poc;
-    EditText et_bp_sys, et_bp_dia, et_steh, et_bgm, et_fetal, et_eet, et_bp_heart;
+    EditText et_bp_sys, et_bp_dia, et_steh, et_bgm, et_bgm_mg, et_fetal, et_eet, et_bp_heart;
     TextView tv_eet_cen, tv_fetal;
     LinearLayout ll_fetal_data, ll_fetal, ll_eet, ll_bp, ll_bgm, ll_poc, ll_steh, ll_eet_child, ll_eet_child_data;
+    FrameLayout frame_fetal;
 
     org.ei.telemedicine.bluetooth.pulse.BluetoothService pulseService;
     org.ei.telemedicine.bluetooth.pulse.CallBack pulsecall;
@@ -149,7 +158,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     }
 
     @Override
-    protected void onCreation() {
+    public void onCreation() {
         {
             setContentView(R.layout.bluetooth_info_layout);
             if (getActionBar() != null) {
@@ -163,6 +172,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 subFormCount = extras.getInt(AllConstants.SUB_FORM_COUNT, 0);
                 risks = extras.getString(AllConstants.ANCVisitFields.RISKS, "");
                 pncRisks = extras.getString(AllConstants.PNCVisitFields.PNC_RISKS, "");
+                childSigns = extras.getString(AllConstants.ChildIllnessFields.CHILD_SIGNS, "");
 
                 iv_eet = (ImageView) findViewById(R.id.iv_eet);
                 iv_bgm = (ImageView) findViewById(R.id.iv_bgm);
@@ -176,7 +186,8 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 iv_poc = (ImageView) findViewById(R.id.iv_poc);
 
                 et_bp_heart = (EditText) findViewById(R.id.et_bp_heart);
-                et_bgm = (EditText) findViewById(R.id.et_bgm);
+                et_bgm = (EditText) findViewById(R.id.et_bgm_mmoi);
+                et_bgm_mg = (EditText) findViewById(R.id.et_bgm_mg);
                 et_bp_sys = (EditText) findViewById(R.id.et_bp_sys);
                 et_bp_dia = (EditText) findViewById(R.id.et_bp_dia);
                 et_fetal = (EditText) findViewById(R.id.et_fetal);
@@ -186,7 +197,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 tv_eet_cen.setText(context.allSettings().fetchANMConfiguration("temperature").startsWith("c") ? "C" : "F");
                 bt_save = (org.ei.telemedicine.view.customControls.CustomFontTextView) findViewById(R.id.bt_info_save);
 
-
+                frame_fetal = (FrameLayout) findViewById(R.id.frame_fetal);
                 ll_fetal = (LinearLayout) findViewById(R.id.ll_fetal);
                 ll_bgm = (LinearLayout) findViewById(R.id.ll_bgm);
                 ll_bp = (LinearLayout) findViewById(R.id.ll_bp);
@@ -196,6 +207,25 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 ll_eet_child = (LinearLayout) findViewById(R.id.ll_eet_child);
                 ll_eet_child_data = (LinearLayout) findViewById(R.id.ll_eet_child_data);
 
+                et_bgm.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        String text = et_bgm.getText().toString().toLowerCase(Locale.getDefault());
+                        if (et_bgm_mg != null && et_bgm.getText().toString().trim().length() != 0)
+                            et_bgm_mg.setText(conversionBGM(text));
+
+                    }
+                });
                 if (formName.equalsIgnoreCase(AllConstants.FormNames.PNC_VISIT)) {
                     ll_fetal.setVisibility(INVISIBLE);
                     ll_eet_child.setVisibility(VISIBLE);
@@ -248,11 +278,13 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                         ll_eet_child.addView(ll_eet_child_dat);
                     }
                 } else if (formName.equalsIgnoreCase(AllConstants.FormNames.CHILD_ILLNESS)) {
-                    ll_fetal.setVisibility(INVISIBLE);
-                    ll_bgm.setVisibility(INVISIBLE);
-                    ll_bp.setVisibility(INVISIBLE);
-                    ll_steh.setVisibility(INVISIBLE);
-                    ll_poc.setVisibility(INVISIBLE);
+//                    (FrameLayout) findViewById(R.id.frame_fetal).setVisibility(GONE);
+                    frame_fetal.setVisibility(GONE);
+                    ll_fetal.setVisibility(GONE);
+                    ll_bgm.setVisibility(GONE);
+                    ll_bp.setVisibility(GONE);
+                    ll_steh.setVisibility(GONE);
+                    ll_poc.setVisibility(VISIBLE);
                 }
 
                 iv_eet.setOnClickListener(this);
@@ -264,10 +296,10 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 ib_play.setOnClickListener(this);
                 ib_record.setOnClickListener(this);
                 iv_poc.setOnClickListener(this);
-                File file = new File(getFilePath());
-                if (file.exists()) {
-                    ib_play.setVisibility(VISIBLE);
-                }
+//                File file = new File(getFilePath());
+//                if (file.exists()) {
+//                    ib_play.setVisibility(VISIBLE);
+//                }
 
                 progressDialog = new ProgressDialog(BlueToothInfoActivity.this);
                 progressDialog.setTitle("Device Connecting");
@@ -287,7 +319,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     }
 
     @Override
-    protected void onResumption() {
+    public void onResumption() {
     }
 
     @Override
@@ -425,7 +457,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
             case R.id.iv_steh:
                 device = 0;
                 iv_steh.setImageDrawable(getResources().getDrawable(R.drawable.steh_enable));
-                startRecord();
+                startRecord(getFilePath());
                 break;
             case R.id.iv_eet:
                 tempartureFor = 0;
@@ -439,9 +471,10 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                 startDiscovery();
                 break;
             case R.id.iv_poc:
-//                Log.e("Risks in ANC VIsit", risks + "===============" + risks.length());
                 Intent intent = new Intent(this, NativeANMPlanofCareActivity.class);
                 risks = risks.equals("") ? pncRisks : risks;
+                risks = risks.equals("") ? childSigns : risks;
+
                 intent.putExtra(AllConstants.ANCVisitFields.RISKS, risks.trim().replace(" ", ",").replace("_", " "));
                 startActivityForResult(intent, DRUGS_INFO_RESULT_CODE);
                 break;
@@ -463,7 +496,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
                 break;
             case R.id.ib_play:
-                startPlaying();
+                startPlaying(this.filePath);
                 break;
             default:
 
@@ -485,10 +518,10 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
     }
 
-    private void startPlaying() {
+    private void startPlaying(String filePath) {
         mPlayer = new MediaPlayer();
         try {
-            mPlayer.setDataSource(getFilePath());
+            mPlayer.setDataSource(filePath);
 //            mPlayer.setDataSource("http://www.hrupin.com/wp-content/uploads/mp3/testsong_20_sec.mp3");
             mPlayer.prepare();
             mPlayer.start();
@@ -504,23 +537,26 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         }
     }
 
-    private void startRecord() {
-        File file = new File(getFilePath());
+    private void startRecord(String filePath) {
+        this.filePath = filePath;
+        File file = new File(filePath);
         if (!file.exists()) {
-            new AsyncTaskRunner().execute();
+            new AsyncTaskRunner().execute(filePath);
         }
     }
 
     public String getFilePath() {
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm
-// :ss");
-//        Calendar calendar = Calendar.getInstance();
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-        path += "/audiorecordtest.wav";
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + AllConstants.DRISTHI_DIRECTORY_NAME;
+        File directory = new File(path);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        path += "/" + System.currentTimeMillis() + ".wav";
+        Log.e("Audio path", path);
         return path;
     }
 
-    private class AsyncTaskRunner extends AsyncTask<Void, Void, String> {
+    private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
 
         private String resp;
 
@@ -535,11 +571,11 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
 
 
         @Override
-        protected String doInBackground(Void... params) {
+        protected String doInBackground(String... params) {
             try {
                 // Do your long operations here and return the result
                 // Sleeping for given time period
-                startRecording();
+                startRecording(params[0]);
                 Thread.sleep(time);
                 resp = "Slept for " + time + " milliseconds";
             } catch (InterruptedException e) {
@@ -561,11 +597,12 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         }
     }
 
-    private void startRecording() {
+
+    private void startRecording(String filePath) {
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mRecorder.setOutputFile(getFilePath());
+        mRecorder.setOutputFile(filePath);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
         try {
             mRecorder.prepare();
@@ -576,9 +613,13 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
     }
 
     private void stopRecording() {
-        mRecorder.stop();
-        mRecorder.release();
-        mRecorder = null;
+        if (mRecorder != null) {
+            mRecorder.stop();
+            mRecorder.release();
+            mRecorder = null;
+        }
+        if (ib_play != null)
+            ib_play.setVisibility(VISIBLE);
     }
 
 
@@ -623,7 +664,7 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     else if (jsonObject.get("name").equals(blood_glucose_data))
                         jsonObject.put("value", et_bgm.getText().toString());
                     else if (jsonObject.get("name").equals(pstechoscope_data))
-                        jsonObject.put("value", getFilePath());
+                        jsonObject.put("value", this.filePath);
                     else if (jsonObject.get("name").equals(anm_poc))
                         jsonObject.put("value", anmPocInfo);
                     fieldsJsonArray.put(i, jsonObject);
@@ -669,6 +710,17 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
         }
     }
 
+    private String conversionBGM(String data) {
+        try {
+            float resultFloat = 18 * Float.parseFloat(data);
+            return Float.toString(resultFloat);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(BlueToothInfoActivity.this, "Blood Glucose meter Conversion problem", Toast.LENGTH_SHORT).show();
+        }
+        return "";
+    }
+
     @Override
     public void onResult(final byte[] resultData, final int deviceNum) {
         Log.e(TAG, "Coming Interface" + deviceNum);
@@ -697,22 +749,32 @@ public class BlueToothInfoActivity extends SecuredActivity implements OnClickLis
                     }
                     if (deviceNum == Constants.EET_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
                         String result = new String(resultData);
-                        Log.e(TAG, "Data EET = " + result);
+                        String result_in_faren = String.format("%.02f", (Float.parseFloat(result) * 1.8) + 32);
+                        String tempVal = tv_eet_cen.getText().toString().equalsIgnoreCase("c") ? result : result_in_faren;
+                        Log.e(TAG, "Data EET = " + tempVal);
                         if (tempartureFor == 0)
-                            et_eet.setText(result);
+                            et_eet.setText(tempVal);
                         else {
                             EditText editText = (EditText) findViewById(tempartureFor);
-                            editText.setText(result);
+                            editText.setText(tempVal);
                         }
                     }
                     if (deviceNum == Constants.FET_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
                         Log.e(TAG,
                                 "Data FET= " + Arrays.toString(resultData));
-                        et_fetal.setText(resultData[0] + "");
+                        String fetalStr = resultData[0] + "";
+                        et_fetal.setText(fetalStr.replace("-", "").trim());
                     }
                     if (deviceNum == Constants.BLOOD_DEVICE_NUM && deviceNum == BlueToothInfoActivity.device) {
                         String result = new String(resultData);
                         Log.e(TAG, "Data Blood= " + new String(resultData));
+                        if (result.trim().length() != 0)
+                            try {
+                                et_bgm_mg.setText(conversionBGM(result));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(BlueToothInfoActivity.this, "Blood Conversion not possible", Toast.LENGTH_SHORT).show();
+                            }
                         et_bgm.setText(result + "");
                     }
                 } else {

@@ -215,11 +215,11 @@ public class ChildService {
     }
 
     public void updateIllnessStatus(FormSubmission submission) {
+        String poc = submission.getFieldValue("anmPoc");
         String sickVisitDate = submission.getFieldValue(SICK_VISIT_DATE);
         String date = sickVisitDate != null ?
                 sickVisitDate : submission.getFieldValue(REPORT_CHILD_DISEASE_DATE);
-
-        allTimelines.add(forChildIllness(submission.getFieldValue(ENTITY_ID_FIELD_NAME), date, submission.getFieldValue(AllConstants.PNCVisitFields.CHILD_TEMPERATURE)));
+        allTimelines.add(forChildIllness(submission.getFieldValue(ENTITY_ID_FIELD_NAME), date, submission.getFieldValue(AllConstants.PNCVisitFields.CHILD_TEMPERATURE), poc));
 
         Log.e("Submission Form for poc", "POc fot illness" + submission.instance() + "");
         if (submission.getFieldValue(POC_INFO) != null && !submission.getFieldValue(POC_INFO).equals("")) {

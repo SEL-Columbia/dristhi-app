@@ -13,6 +13,7 @@ public class CoupleDetails {
     private String economicStatus;
     private String photo_path;
 
+
     public CoupleDetails(String wifeName, String husbandName, String ecNumber, boolean outOfArea) {
         this.wifeName = wifeName;
         this.husbandName = husbandName;

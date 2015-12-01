@@ -179,7 +179,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
     }
 
     @Override
-    protected void onCreation() {
+    public void onCreation() {
         {
             setContentView(R.layout.overview_layout);
 
@@ -649,7 +649,7 @@ public class NativeOverviewActivity extends SecuredActivity implements PopupMenu
 
 
     @Override
-    protected void onResumption() {
+    public void onResumption() {
     }
 
 

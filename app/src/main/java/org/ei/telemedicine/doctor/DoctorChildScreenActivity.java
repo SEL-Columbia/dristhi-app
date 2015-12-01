@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.ei.telemedicine.AllConstants;
@@ -22,6 +23,7 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
     String documentId = null, phoneNumber = null, visitId = null, entityId = null, wifeName = null, tempFormat = "", tempVal = "";
     TextView tv_temp_format;
     ImageButton ib_temp_graph;
+    LinearLayout ll_number_of_days_fever, ll_vommit_every_thing, ll_blood_in_stool, ll_days_of_diarrhea, ll_breaths_per_minute, ll_days_of_cough;
 
     @Override
     protected String[] setDatatoViews(String formInfo) {
@@ -38,9 +40,14 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
         tv_child_disease_report.setText(childSigns(formInfo));
         tv_child_dob.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_dob));
 
-        tv_days_of_cough.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_days_of_cough).length() != 0 ? View.VISIBLE : View.GONE);
-        et_days_of_cough.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_days_of_cough));
+        ll_days_of_cough.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_days_of_cough).length() != 0 ? View.VISIBLE : View.GONE);
+        ll_number_of_days_fever.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_number_of_days_fever).length() != 0 ? View.VISIBLE : View.GONE);
+        ll_vommit_every_thing.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_vommit_every_thing).length() != 0 ? View.VISIBLE : View.GONE);
+        ll_blood_in_stool.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_blood_in_stool).length() != 0 ? View.VISIBLE : View.GONE);
+        ll_days_of_diarrhea.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_days_of_diarrhea).length() != 0 ? View.VISIBLE : View.GONE);
+        ll_breaths_per_minute.setVisibility(getDatafromJson(formInfo, DoctorFormDataConstants.child_breaths_per_minute).length() != 0 ? View.VISIBLE : View.GONE);
 
+        et_days_of_cough.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_days_of_cough));
         et_breaths_per_minute.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_breaths_per_minute));
         et_days_of_diarrhea.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_days_of_diarrhea));
         et_blood_in_stool.setText(getDatafromJson(formInfo, DoctorFormDataConstants.child_blood_in_stool));
@@ -94,6 +101,14 @@ public class DoctorChildScreenActivity extends DoctorPatientDetailSuperActivity 
         et_blood_in_stool = (EditText) findViewById(R.id.et_blood_in_stool);
         et_vommit_every_thing = (EditText) findViewById(R.id.et_vommit_every_thing);
         et_number_of_days_fever = (EditText) findViewById(R.id.et_number_of_days_fever);
+
+
+        ll_number_of_days_fever = (LinearLayout) findViewById(R.id.ll_number_of_days_fever);
+        ll_vommit_every_thing = (LinearLayout) findViewById(R.id.ll_vommit_every_thing);
+        ll_blood_in_stool = (LinearLayout) findViewById(R.id.ll_blood_in_stool);
+        ll_days_of_diarrhea = (LinearLayout) findViewById(R.id.ll_days_of_diarrhea);
+        ll_breaths_per_minute = (LinearLayout) findViewById(R.id.ll_breaths_per_minute);
+        ll_days_of_cough = (LinearLayout) findViewById(R.id.ll_days_of_cough);
 
         tv_child_disease_report = (CustomFontTextView) findViewById(R.id.tv_child_disease_report);
         tv_child_dob = (CustomFontTextView) findViewById(R.id.tv_child_dob);

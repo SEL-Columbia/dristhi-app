@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.ANM_POC;
 import static org.ei.telemedicine.AllConstants.ANCVisitFields.POC_INFO;
 import static org.ei.telemedicine.AllConstants.PNCVisitFields.BLOODGLUCOSEDATA;
 import static org.ei.telemedicine.AllConstants.PNCVisitFields.BP_DIASTOLIC;
@@ -95,7 +96,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
-        String detailsString = new DetailBuilder(details).withBP("bpSystolic", "bpDiastolic").withTemperature("temperature").withHbLevel("hbLevel").withBloodGlucose("bloodGlucoseData").withDCReq("isConsultDoctor").withFetal("fetalData").withRisks("riskObservedDuringANC").value();
+        String detailsString = new DetailBuilder(details).withBP("bpSystolic", "bpDiastolic").withTemperature("temperature").withHbLevel("hbLevel").withBloodGlucose("bloodGlucoseData").withDCReq("isConsultDoctor").withFetal("fetalData").withRisks("riskObservedDuringANC").withANMPOC(ANM_POC, "ANM Prescribed Drugs: ").value();
 //        String pocData = new DetailBuilder(details).withPOC(POC_INFO).value();
         Log.e("Details String12", visitDate);
         return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, "");
@@ -180,9 +181,9 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "ECREGISTERED", registrationDate1, "EC Registered", null, null);
     }
 
-    public static TimelineEvent forMotherPNCVisit(String caseId, String visitNumber, String visitDate, String bpSystolic, String bpDiastolic, String temperature, String hbLevel, String bgmData, String isConsultDoctor) {
-        Map<String, String> details = create(BP_SYSTOLIC, bpSystolic).put(BP_DIASTOLIC, bpDiastolic).put(TEMPERATURE, temperature).put(HB_LEVEL, hbLevel).put(BLOODGLUCOSEDATA, bgmData).put(ISCONSULTDOCTOR, isConsultDoctor).map();
-        String detailsString = new DetailBuilder(details).withBP(BP_SYSTOLIC, BP_DIASTOLIC).withTemperature(TEMPERATURE).withHbLevel(HB_LEVEL).withBloodGlucose(BLOODGLUCOSEDATA).withDCReq(ISCONSULTDOCTOR).value();
+    public static TimelineEvent forMotherPNCVisit(String caseId, String visitNumber, String visitDate, String bpSystolic, String bpDiastolic, String temperature, String hbLevel, String bgmData, String isConsultDoctor, String anmPoc) {
+        Map<String, String> details = create(BP_SYSTOLIC, bpSystolic).put(BP_DIASTOLIC, bpDiastolic).put(TEMPERATURE, temperature).put(HB_LEVEL, hbLevel).put(BLOODGLUCOSEDATA, bgmData).put(ISCONSULTDOCTOR, isConsultDoctor).put(ANM_POC, anmPoc).map();
+        String detailsString = new DetailBuilder(details).withBP(BP_SYSTOLIC, BP_DIASTOLIC).withTemperature(TEMPERATURE).withHbLevel(HB_LEVEL).withBloodGlucose(BLOODGLUCOSEDATA).withDCReq(ISCONSULTDOCTOR).withANMPOC(ANM_POC, "ANM Prescribed Drugs: ").value();
         return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, detailsString, null);
     }
 
@@ -192,9 +193,9 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, detailsString, null);
     }
 
-    public static TimelineEvent forChildIllness(String caseId, String visitDate, String temperature) {
-        Map<String, String> details = create("childTemperature", temperature).map();
-        String detailsString = new DetailBuilder(details).withTemperature("childTemperature").withWeight("childWeight").value();
+    public static TimelineEvent forChildIllness(String caseId, String visitDate, String temperature, String anmPoc) {
+        Map<String, String> details = create("childTemperature", temperature).put(ANM_POC, anmPoc).map();
+        String detailsString = new DetailBuilder(details).withTemperature("childTemperature").withWeight("childWeight").withANMPOC(ANM_POC, "ANM Prescribed Drugs: ").value();
         return new TimelineEvent(caseId, "CHILDILLNESS", LocalDate.parse(visitDate), "Child Illness", detailsString, null);
     }
 
@@ -347,6 +348,13 @@ public class TimelineEvent {
         private DetailBuilder withBP(String bpSystolic, String bpDiastolic) {
             String bp = "BP: " + details.get(bpSystolic) + "/" + details.get(bpDiastolic) + "\n";
             this.stringBuilder.append(checkEmptyField(bp, details.get(bpSystolic)));
+            return this;
+        }
+
+        private DetailBuilder withANMPOC(String pocData, String title) {
+            Log.e("Ssdfs", details.toString() + "-------------------------------" + pocData);
+            String pocInfo = details.get(pocData) != null ? title + details.get(pocData).replace("[", "").replace("]", "").replace("\"", "") : "";
+            this.stringBuilder.append(checkEmptyField(pocInfo, details.get(pocData)));
             return this;
         }
 

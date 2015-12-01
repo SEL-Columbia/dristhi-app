@@ -10,7 +10,9 @@ import org.ei.telemedicine.domain.TimelineEvent;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TimelineEventRepository extends DrishtiRepository {
     private static final String TIMELINEEVENT_SQL = "CREATE TABLE timelineEvent(caseID VARCHAR, type VARCHAR, referenceDate VARCHAR, title VARCHAR, detail1 VARCHAR, detail2 VARCHAR)";
