@@ -4,7 +4,7 @@
     <h3 id="form-title">Edit PNC Registration</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Edit password:</span>
+        <span class="question-label active" lang="">Edit password</span>
         <input name="/PNC_Registration_EngKan/edit_password" autocomplete="off"
             data-type-xml="string" type="password" />
     </label>
@@ -13,18 +13,19 @@
         class="or-group-data or-branch pre-init "
         data-relevant=" /PNC_Registration_EngKan/edit_password  = /PNC_Registration_EngKan/pnc_edit_group/pwd">
 
-        <label class="question non-select ">
-            <input name="/PNC_Registration_EngKan/pnc_edit_group/village" autocomplete="off"
-                data-type-xml="string" disabled="disabled" type="hidden" />
-        </label>
-
-        <label class="question non-select ">
-            <span class="question-label active" lang="">PNC number:
+        <fieldset name="/PNC_Registration_EngKan/pnc_edit_group/village" class="trigger ">
+            <span class="question-label active" lang="">PHC
+                <span class="or-output"
+                    data-value=" /PNC_Registration_EngKan/pnc_edit_group/village "></span>
             </span>
-            <span class="required">*</span>
-            <input name="/PNC_Registration_EngKan/pnc_edit_group/pnc_number" autocomplete="off"
-                data-constraint=".&gt;0" data-type-xml="int" required="required" type="string" />
-        </label>
+        </fieldset>
+        <fieldset name="/PNC_Registration_EngKan/pnc_edit_group/pnc_number" class="trigger ">
+            <span class="question-label active" lang="">PHC
+                <span class="or-output"
+                    data-value=" /PNC_Registration_EngKan/pnc_edit_group/pnc_number "></span>
+            </span>
+        </fieldset>
+
 
         <label class="question non-select ">
             <span class="question-label active" lang="">Delivery date?</span>

@@ -31,17 +31,18 @@ public class ImageLoader {
     FileCache fileCache;
     private Map<ImageView, String> imageViews = Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
     ExecutorService executorService;
-
+    public static Drawable drawable;
 
     public ImageLoader(Context context) {
         fileCache = new FileCache(context);
         executorService = Executors.newFixedThreadPool(5);
     }
 
-    final int stub_id = R.drawable.ic_launcher;
+//    final int stub_id = R.drawable.ic_launcher;
 
     public void DisplayImage(String url, ImageView imageView, Drawable drawable) {
 //        Log.e("disp", "Image");
+        this.drawable = drawable;
         if (url.toLowerCase().startsWith("http")) {
             imageViews.put(imageView, url);
             Bitmap bitmap = memoryCache.get(url);
@@ -200,7 +201,7 @@ public class ImageLoader {
             if (bitmap != null)
                 photoToLoad.imageView.setImageBitmap(bitmap);
             else
-                photoToLoad.imageView.setImageResource(stub_id);
+                photoToLoad.imageView.setImageDrawable(drawable);
         }
     }
 

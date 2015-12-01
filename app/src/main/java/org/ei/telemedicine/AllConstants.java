@@ -267,6 +267,7 @@ public class AllConstants {
         public static final String FETALDATA = "fetalData";
         public static final String WEIGHT = "weight";
         public static final String POC_INFO = "docPocInfo";
+        public static final String RISKS = "riskObservedDuringANC";
     }
 
     public class PNCVisitFields {
@@ -280,6 +281,7 @@ public class AllConstants {
         public static final String HB_LEVEL = "hbLevel";
         public static final String BLOODGLUCOSEDATA = "bloodGlucoseData";
         public static final String ISCONSULTDOCTOR = "isConsultDoctor";
+        public static final String PNC_RISKS = "pncRisks";
 
         public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
         public static final String CHILD_PNC_VISIT_SUB_FORM_NAME = "child_pnc_visit";

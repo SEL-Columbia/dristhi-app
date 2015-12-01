@@ -12,9 +12,12 @@ import static org.ei.telemedicine.AllConstants.FormNames.VIEW_ANC_REGISTRATION_E
 import static org.ei.telemedicine.AllConstants.FormNames.VIEW_EC_REGISTRATION;
 
 import org.codehaus.jackson.node.POJONode;
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.telemedicine.domain.form.FieldOverrides;
+import org.ei.telemedicine.event.Event;
+import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.provider.ECSmartRegisterClientsProvider;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.contract.ECClient;
@@ -38,6 +41,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ProgressDialog;
 import android.view.View;
 import android.widget.Toast;
 
@@ -159,7 +163,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 formData.put("field" + (i + 1), customFieldsArray.getString(i).trim().replace(" ", "%20"));
             }
         }
-        //        locations.put("ecNumber", context.allSharedPreferences().fetchRegisteredANM() + "-" + System.currentTimeMillis());
+//        formData.put("ecNumber", context.allSharedPreferences().fetchRegisteredANM() + "-" + System.currentTimeMillis());
         FieldOverrides fieldOverrides = new FieldOverrides(formData.toString());
         startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }
@@ -178,6 +182,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         }
 
         private void showProfileView(ECClient client) {
+
             navigationController.startEC(client.entityId());
         }
     }

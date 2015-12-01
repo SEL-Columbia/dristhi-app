@@ -4,7 +4,7 @@
     <h3 id="form-title">PNC Close</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">PNC Number:</span>
+        <span class="question-label active" lang="">PNC Number</span>
         <input name="/PNC_Close_EngKan/pnc_num" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="text" />
     </label>
@@ -141,7 +141,7 @@
             </fieldset>
         </fieldset>
         <label class="question or-branch pre-init non-select ">
-            <span class="question-label active" lang="">Others :</span>
+            <span class="question-label active" lang="">Others </span>
             <input name="/PNC_Close_EngKan/death_mother_group/other_maternal_death_cause"
                 autocomplete="off"
                 data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death_cause  = 'others'"

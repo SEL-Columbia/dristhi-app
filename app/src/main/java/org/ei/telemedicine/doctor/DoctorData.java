@@ -1,12 +1,9 @@
 package org.ei.telemedicine.doctor;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Comparator;
-import java.util.Map;
 
 /**
  * Created by naveen on 5/20/15.
@@ -23,6 +20,8 @@ public class DoctorData {
     private String SyncStatus;
     private String VisitType;
     private String villageName;
+
+    private String imgUrl;
 
     public String getVisitType() {
         return VisitType;
@@ -106,6 +105,7 @@ public class DoctorData {
         this.villageName = villageName;
     }
 
+
     public static Comparator<DoctorData> womanNameComparator = new Comparator<DoctorData>() {
 
         public int compare(DoctorData s1, DoctorData s2) {
@@ -126,5 +126,13 @@ public class DoctorData {
         }
     };
 
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
 }

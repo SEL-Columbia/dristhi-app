@@ -95,7 +95,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
-        String detailsString = new DetailBuilder(details).withBP("bpSystolic", "bpDiastolic").withTemperature("temperature").withHbLevel("hbLevel").withBloodGlucose("bloodGlucoseData").withDCReq("isConsultDoctor").withFetal("fetalData").value();
+        String detailsString = new DetailBuilder(details).withBP("bpSystolic", "bpDiastolic").withTemperature("temperature").withHbLevel("hbLevel").withBloodGlucose("bloodGlucoseData").withDCReq("isConsultDoctor").withFetal("fetalData").withRisks("riskObservedDuringANC").value();
 //        String pocData = new DetailBuilder(details).withPOC(POC_INFO).value();
         Log.e("Details String12", visitDate);
         return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, "");
@@ -109,7 +109,11 @@ public class TimelineEvent {
             if (pocJsonArray.length() != 0) {
                 JSONObject pocInfoData = pocJsonArray.getJSONObject(pocJsonArray.length() - 1);
                 String pocDataStr = getDataFromJson(pocInfoData.toString(), "poc");
-                String detailStr = "Investigations: " + getDataFromJson(pocDataStr, "investigations") + "," + getDataFromJson(pocDataStr, "drugs") + "," + getDataFromJson(pocDataStr, "diagnosis") + "," + getDataFromJson(pocDataStr, "advice");
+                String investigationsStr = getDataFromArray(getDataFromJson(pocDataStr, "investigations"), "Investigations: ");
+                String diagnosisStr = getDataFromArray(getDataFromJson(pocDataStr, "diagnosis"), "Diagnosis: ");
+                String drugsStr = getDatafromDrugsArray(getDataFromJson(pocDataStr, "drugs"));
+                String adviceStr = !getDataFromJson(pocDataStr, "advice").equals("") ? "Advice:" + getDataFromJson(pocDataStr, "advice") : "";
+                String detailStr = investigationsStr + diagnosisStr + (!drugsStr.equals("") ? "Drugs:" + drugsStr + ";" : "") + "\n" + adviceStr;
                 return new TimelineEvent(caseId, visitType, LocalDate.parse(visitDate), title, detailStr, "");
             }
 
@@ -126,6 +130,38 @@ public class TimelineEvent {
                 return jsonObject.has(key) ? jsonObject.getString(key) : "";
             }
         } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    private static String getDataFromArray(String jsonArrayStr, String name) {
+        try {
+            JSONArray jsonArray = new JSONArray(jsonArrayStr);
+            String str = "";
+            for (int i = 0; i < jsonArray.length(); i++) {
+                str = !str.equals("") ? str + ";" + jsonArray.getString(i) : jsonArray.getString(i);
+            }
+            return !str.equals("") ? name + str + "\n" : "";
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static String getDatafromDrugsArray(String jsonArray) {
+        try {
+            String result = "";
+            if (jsonArray != null) {
+                JSONArray jsonArray1 = new JSONArray(jsonArray);
+                for (int i = 0; i < jsonArray1.length(); i++) {
+                    JSONObject jsonObject = jsonArray1.getJSONObject(i);
+                    String data = jsonObject.getString("drugName") + "-" + jsonObject.getString("direction") + "-" + jsonObject.getString("dosage") + "-" + jsonObject.getString("frequency") + "- Days :" + jsonObject.getString("drugNoOfDays") + "- Qty :" + jsonObject.getString("drugQty");
+                    result = !result.equals("") ? result + "\n" + data : data;
+                }
+                return result;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
@@ -243,8 +279,14 @@ public class TimelineEvent {
         }
 
         private DetailBuilder withFetal(String fetalData) {
-            String fetal = "Fetal Data : " + details.get(fetalData) + " °F\n";
+            String fetal = "Fetal Data : " + details.get(fetalData) + " bpm\n";
             this.stringBuilder.append(checkEmptyField(fetal, details.get(fetalData)));
+            return this;
+        }
+
+        private DetailBuilder withRisks(String risksObserved) {
+            String fetal = "Risks Observed : " + details.get(risksObserved) + "\n";
+            this.stringBuilder.append(checkEmptyField(fetal, details.get(risksObserved)));
             return this;
         }
 

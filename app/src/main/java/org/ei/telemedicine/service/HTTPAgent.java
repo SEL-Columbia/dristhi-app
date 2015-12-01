@@ -300,16 +300,17 @@ public class HTTPAgent {
 
         String responseString = "";
         try {
-//            setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
+            setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
             HttpPost httpost = new HttpPost(url);
-            Log.e("Image URL", url);
+            Log.e("Image URL", url + "-------------" + image.getContenttype());
             httpost.setHeader("Accept", "multipart/form-data");
             File filetoupload = new File(image.getFilepath());
             Log.v("file to upload", "" + filetoupload.length());
             MultipartEntity entity = new MultipartEntity();
-//            entity.addPart("anm-id", new StringBody(image.getAnmId()));
-//            entity.addPart("entity-id", new StringBody(image.getEntityID()));
+            entity.addPart("anm-id", new StringBody(image.getAnmId()));
+            entity.addPart("entity-id", new StringBody(image.getEntityID()));
             entity.addPart("content-type", new StringBody(image.getContenttype()));
+            entity.addPart("file-category", new StringBody(image.getEntityID()));
             entity.addPart("file", new FileBody(new File(image.getFilepath())));
             httpost.setEntity(entity);
             Log.e("File Data", new FileBody(new File(image.getFilepath())) + "");

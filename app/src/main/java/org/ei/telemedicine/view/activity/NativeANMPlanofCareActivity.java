@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.CheckBox;
@@ -35,54 +36,60 @@ public class NativeANMPlanofCareActivity extends Activity implements CompoundBut
     ArrayList<String> drugsList = new ArrayList<String>();
     JSONArray drugsArray = new JSONArray();
     CustomFontTextView save_poc_data;
+    String risks = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.anm_poc_info);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null && extras.containsKey(AllConstants.ANCVisitFields.RISKS))
+            risks = extras.getString(AllConstants.ANCVisitFields.RISKS, "");
+//        Toast.makeText(this, risks, Toast.LENGTH_SHORT).show();
 
         ll_drugs = (LinearLayout) findViewById(R.id.ll_drugs);
         save_poc_data = (CustomFontTextView) findViewById(R.id.bt_info_save);
         context = Context.getInstance();
         String drugsJson = context.allSettings().fetchDrugs();
         save_poc_data.setOnClickListener(this);
-        try {
-            JSONObject jsonData = new JSONObject(drugsJson);
-            Iterator<String> keys = jsonData.keys();
-            while (keys.hasNext()) {
-                String key = (String) keys.next();
-                TextView tv_diseaseName = new TextView(this);
-                tv_diseaseName.setText(key);
-                tv_diseaseName.setTextColor(context.getColorResource(R.color.light_blue));
-                tv_diseaseName.setTextSize(20);
-                tv_diseaseName.setPadding(10, 10, 10, 10);
-                ll_drugs.addView(tv_diseaseName);
-                JSONArray drugsArray = jsonData.getJSONArray(key);
-                checkBox = new CheckBox[drugsArray.length()];
-                for (int i = 0; i < drugsArray.length(); i++) {
-                    checkBox[i] = new CheckBox(this);
-                    checkBox[i].setText(drugsArray.getString(i));
-                    checkBox[i].setTextColor(Color.BLACK);
-                    checkBox[i].setTextSize(25);
-                    checkBox[i].setOnCheckedChangeListener(this);
-                    ll_drugs.addView(checkBox[i]);
+        if (!risks.equals("")) {
+            try {
+                JSONObject jsonData = new JSONObject(drugsJson);
+                Iterator<String> keys = jsonData.keys();
+                while (keys.hasNext()) {
+                    String key = (String) keys.next();
+                    if (risks.toLowerCase().contains(key.toLowerCase())) {
+                        TextView tv_diseaseName = new TextView(this);
+                        tv_diseaseName.setText(key);
+                        tv_diseaseName.setTextColor(context.getColorResource(R.color.light_blue));
+                        tv_diseaseName.setTextSize(20);
+                        tv_diseaseName.setPadding(10, 10, 10, 10);
+                        ll_drugs.addView(tv_diseaseName);
+                        JSONArray drugsArray = jsonData.getJSONArray(key);
+                        checkBox = new CheckBox[drugsArray.length()];
+                        for (int i = 0; i < drugsArray.length(); i++) {
+                            checkBox[i] = new CheckBox(this);
+                            checkBox[i].setText(drugsArray.getString(i));
+                            checkBox[i].setTextColor(Color.BLACK);
+                            checkBox[i].setTextSize(25);
+                            checkBox[i].setTag(tv_diseaseName.getText().toString());
+                            checkBox[i].setOnCheckedChangeListener(this);
+                            ll_drugs.addView(checkBox[i]);
+                        }
+                    }
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        } else
+            Toast.makeText(this, "No Risks", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (isChecked) {
-            if (!drugsList.contains(buttonView.getText().toString())) {
-                drugsList.add(buttonView.getText().toString());
-            } else {
-                if (drugsList.contains(buttonView.getText().toString()))
-                    drugsList.remove(buttonView.getText().toString());
-            }
-
+            if (!drugsList.contains(buttonView.getTag().toString() + "-" + buttonView.getText().toString()))
+                drugsList.add(buttonView.getTag().toString().replace(" ", "_") + "-" + buttonView.getText().toString());
         }
     }
 

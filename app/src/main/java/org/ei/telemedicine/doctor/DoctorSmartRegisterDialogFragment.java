@@ -33,14 +33,18 @@ public class DoctorSmartRegisterDialogFragment extends DialogFragment {
     //    private final DialogOptionModel dialogOptionModel;
     private final Object tag;
     private Activity activity;
+    PendingConsultantBaseAdapter pendingConsultantBaseAdapter;
+    ArrayList<DoctorData> doctorDatas;
 
     private DoctorSmartRegisterDialogFragment(Context context,
                                               ArrayList<String> values,
-                                              Object tag) {
+                                              Object tag, PendingConsultantBaseAdapter adapter, ArrayList<DoctorData> doctorDatas) {
 //        this.parentActivity = activity;
         this.activity = (Activity) context;
         this.context = context;
         this.values = values;
+        this.pendingConsultantBaseAdapter = adapter;
+        this.doctorDatas = doctorDatas;
 //        this.options = dialogOptionModel.getDialogOptions();
 //        this.dialogOptionModel = dialogOptionModel;
         this.tag = tag;
@@ -48,8 +52,8 @@ public class DoctorSmartRegisterDialogFragment extends DialogFragment {
 
     public static DoctorSmartRegisterDialogFragment newInstance(
             Activity activity,
-            ArrayList<String> values, String tag) {
-        return new DoctorSmartRegisterDialogFragment(activity, values, tag);
+            ArrayList<String> values, String tag, PendingConsultantBaseAdapter adapter, ArrayList<DoctorData> doctorDatas) {
+        return new DoctorSmartRegisterDialogFragment(activity, values, tag, adapter, doctorDatas);
     }
 
     @Override
@@ -90,16 +94,17 @@ public class DoctorSmartRegisterDialogFragment extends DialogFragment {
                 Toast.makeText(context, values.get(i).toString(), Toast.LENGTH_SHORT).show();
                 if (tag.toString().equals("Filter")) {
                     String value = values.get(i).toString();
-                    if (NativeDoctorActivity.syncDataAdapter != null)
-                        NativeDoctorActivity.syncDataAdapter.villagesFilter(values.get(i).toString());
+                    if (pendingConsultantBaseAdapter != null) {
+                        pendingConsultantBaseAdapter.villagesFilter(values.get(i).toString(), doctorDatas);
+//                        pendingConsultantBaseAdapter.notifyDataSetChanged();
+                    }
                 } else if (tag.toString().equals("Sort")) {
                     Log.e("Coming to Sort", "Sotr");
                     NativeDoctorActivity.sorted_by_name.setText(values.get(i).toString());
-//                    NativeDoctorActivity.sort_by = values.get(i).toString();
-                    if (NativeDoctorActivity.syncDataAdapter != null)
-                        NativeDoctorActivity.syncDataAdapter.sort(values.get(i).toString());
-                    NativeDoctorActivity.syncDataAdapter.notifyDataSetChanged();
-
+                    if (pendingConsultantBaseAdapter != null) {
+                        pendingConsultantBaseAdapter.sort(values.get(i).toString(), doctorDatas);
+//                        pendingConsultantBaseAdapter.notifyDataSetChanged();
+                    }
                 }
 //                dialogOptionModel.onDialogOptionSelection(values.get(i), tag);
             }

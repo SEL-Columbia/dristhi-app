@@ -9,6 +9,7 @@
             <entity_phone_no />
             <entity_is_high_risk />
             <village />
+            <country_code />
             <entity_high_risk_reason />
             <entity_anaemic_status />
             <entity_w_blood_group />

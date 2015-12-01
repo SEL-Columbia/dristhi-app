@@ -2,6 +2,7 @@ package org.ei.telemedicine.view.customControls;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
+import org.ei.telemedicine.image.ImageLoader;
 import org.ei.telemedicine.util.Log;
 import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
@@ -57,7 +58,11 @@ public class ClientProfileView extends RelativeLayout {
 
     // #TODO: make these names generic, so this layout can be reused in all the registers
     public void bindData(SmartRegisterClient client, ProfilePhotoLoader photoLoader) {
-        imgProfileView.setBackground(photoLoader.get(client));
+        if (!client.profilePhotoPath().equals("") && client.profilePhotoPath().toLowerCase().startsWith("http://")) {
+            new ImageLoader(getContext()).DisplayImage(client.profilePhotoPath(), imgProfileView, photoLoader.get(client));
+        } else
+            new ImageLoader(getContext()).DisplayImage(client.profilePhotoPath(), imgProfileView, photoLoader.get(client));
+//        imgProfileView.setBackground(photoLoader.get(client));
         txtNameView.setText(client.displayName());
         txtHusbandNameView.setText(client.husbandName());
         txtVillageNameView.setText(client.village());

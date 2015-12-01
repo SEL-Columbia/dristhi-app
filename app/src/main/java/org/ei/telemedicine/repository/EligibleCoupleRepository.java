@@ -131,9 +131,11 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     public void updatePhotoPath(String caseId, String imagePath) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(PHOTO_PATH_COLUMN, imagePath);
-        database.update(EC_TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{caseId});
+        if (!   imagePath.equals("") && !caseId.equals("")) {
+            ContentValues values = new ContentValues();
+            values.put(PHOTO_PATH_COLUMN, imagePath);
+            database.update(EC_TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{caseId});
+        }
     }
 
     public void close(String caseId) {
