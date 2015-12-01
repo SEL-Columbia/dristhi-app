@@ -81,7 +81,7 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onOpen() {
                     Log.d(TAG, "Status: Connected to " + wsuri);
-                    Toast.makeText(getApplicationContext(),String.format(wsuri,getUsern()), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),String.format(wsuri,getUsern()), Toast.LENGTH_SHORT).show();
                     //mConnection.sendTextMessage("Hello, world!");
                 }
 
@@ -95,7 +95,7 @@ public class LoginActivity extends Activity {
                         String caller = jObject.getString("caller");
                         //Log.d(TAG, check);
                         String match = "INI";
-                        boolean response = (status.equals(match))? true : false;
+                        boolean response = (status.equals(match));
                         if (response)
                         {
                             Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();

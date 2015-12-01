@@ -5,7 +5,7 @@
     <h3 id="form-title">Refill FP Product</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">EC Number:</span>
+        <span class="question-label active" lang="">EC Number</span>
         <input name="/Family_Planning_Refill_Method_EngKan/ec_num" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="text" />
     </label>
@@ -17,7 +17,7 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Woman Name:</span>
+        <span class="question-label active" lang="">Woman Name</span>
         <input name="/Family_Planning_Refill_Method_EngKan/woman_name" autocomplete="off"
             data-type-xml="string" disabled="disabled"
             type="text" />
@@ -153,7 +153,7 @@
             </fieldset>
         </fieldset>
         <label class="question or-branch pre-init non-select ">
-            <span class="question-label active" lang="">Others :</span>
+            <span class="question-label active" lang="">Others </span>
             <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason_other" autocomplete="off"
                 data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'others'"
                 data-type-xml="string"
@@ -251,7 +251,7 @@
             </fieldset>
         </fieldset>
         <label class="question or-branch pre-init non-select ">
-            <span class="question-label active" lang="">Others :</span>
+            <span class="question-label active" lang="">Others </span>
             <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason_other" autocomplete="off"
                 data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'others')"
                 data-type-xml="string"

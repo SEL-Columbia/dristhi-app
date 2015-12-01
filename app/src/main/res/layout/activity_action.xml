@@ -42,7 +42,7 @@
             android:id="@+id/imageView2"
             android:layout_gravity="center_vertical"
             android:layout_weight="29.10"
-            android:src="@drawable/call"/>
+            android:src="@drawable/avatar"/>
         </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -50,22 +50,26 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:id="@+id/hello">
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="122dp"
-            android:text="Answer"
-            android:id="@+id/btnCall"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:background="@color/text_black"
-            android:layout_weight="50.00"
-            android:textColor="#ffffff"
-            android:textSize="50dp"
-            android:layout_gravity="bottom" />
+            android:layout_height="wrap_content"
+            android:id="@+id/img_btn1"
+            android:layout_gravity="bottom"
+            android:layout_weight="5.00"
+            android:src="@drawable/pickcall"
+            />
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_btn2"
+            android:layout_gravity="bottom"
+            android:layout_weight="5.00"
+            android:src="@drawable/dropcall"
+            />
 
     </LinearLayout>
 

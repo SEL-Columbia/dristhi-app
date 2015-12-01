@@ -54,7 +54,7 @@ public class ActionActivity extends Activity {
         final String callerId = myIntent.getStringExtra("name");
         TextView showCaller =(TextView) findViewById(R.id.txtCaller);
         showCaller.setText(callerId + " is calling..");
-        findViewById(R.id.btnCall).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.img_btn1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -65,6 +65,14 @@ public class ActionActivity extends Activity {
                 startActivity(_broswer);
                 finish();
             }
+        });
+
+        findViewById(R.id.img_btn2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                            }
         });
 
 

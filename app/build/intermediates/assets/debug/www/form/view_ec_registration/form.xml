@@ -136,17 +136,17 @@
         <input name="/EC_View_EngKan/ec_view_group/num_livingchildren_male" autocomplete="off"
             data-type-xml="string" disabled="disabled" type="text" />
     </label>
-    <label class="question non-select ">
-        <span class="question-label active" lang="">High Priority Reason</span>
-        <input name="/EC_View_EngKan/ec_view_group/high_priority_reason" autocomplete="off"
-            data-type-xml="string" disabled="disabled" type="text" />
-    </label>
+    <!--<label class="question non-select ">-->
+    <!--<span class="question-label active" lang="">High Priority Reason</span>-->
+    <!--<input name="/EC_View_EngKan/ec_view_group/high_priority_reason" autocomplete="off"-->
+    <!--data-type-xml="string" disabled="disabled" type="text" />-->
+    <!--</label>-->
 
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Do you want to mark as HP (High Priority)</span>
-        <input name="/EC_View_EngKan/ec_view_group/is_high_priority1" autocomplete="off"
-            data-type-xml="string" disabled="disabled" type="text" />
-    </label>
+    <!--<label class="question non-select ">-->
+    <!--<span class="question-label active" lang="">Do you want to mark as HP (High Priority)</span>-->
+    <!--<input name="/EC_View_EngKan/ec_view_group/is_high_priority1" autocomplete="off"-->
+    <!--data-type-xml="string" disabled="disabled" type="text" />-->
+    <!--</label>-->
 
     <!--end of group -->
 

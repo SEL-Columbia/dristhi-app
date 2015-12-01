@@ -4,7 +4,7 @@
     <h3 id="form-title">ANC Close</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">ANC Number:</span>
+        <span class="question-label active" lang="">ANC Number</span>
         <input name="/ANC_Close_EngKan/anc_reg_num" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="text" />
     </label>
@@ -114,7 +114,7 @@
                             autocomplete="off"
                             data-name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_cause"
                             data-type-xml="select1" type="radio" value="rh_incompatibility" />
-                        <span class="option-label active" lang="">Rh incompatibility, Rh</span>
+                        <span class="option-label active" lang="">Rh incompatibility</span>
                     </label>
                     <label class="">
                         <input
@@ -268,16 +268,14 @@
                             autocomplete="off"
                             data-name="/ANC_Close_EngKan/induced_abortion_group/time_induced"
                             data-type-xml="select1" type="radio" value="less_12wks" />
-                        <span class="option-label active" lang="">MTP &#x2264; 12 weeks, &#xC8E;&#xC82;&#xC9F;&#xCBF;&#xCAA;&#xCBF;
-                            &#x2264; 12 &#xCB5;&#xCBE;&#xCB0;</span>
+                        <span class="option-label active" lang="">MTP &#x2264; 12 weeks</span>
                     </label>
                     <label class="">
                         <input name="/ANC_Close_EngKan/induced_abortion_group/time_induced"
                             autocomplete="off"
                             data-name="/ANC_Close_EngKan/induced_abortion_group/time_induced"
                             data-type-xml="select1" type="radio" value="greater_12wks" />
-                        <span class="option-label active" lang="">MTP &gt; 12 weeks, &#xC8E;&#xC82;&#xC9F;&#xCBF;&#xCAA;&#xCBF;
-                            &gt; 12 &#xCB5;&#xCBE;&#xCB0;</span>
+                        <span class="option-label active" lang="">MTP &gt; 12 weeks</span>
                     </label>
                     <label class="">
                         <input name="/ANC_Close_EngKan/induced_abortion_group/time_induced"
@@ -395,7 +393,7 @@
             </fieldset>
         </fieldset>
         <label class="question or-branch pre-init non-select ">
-            <span class="question-label active" lang="">Others :</span>
+            <span class="question-label active" lang="">Others</span>
             <input name="/ANC_Close_EngKan/maternal_death_group/other_maternal_death_cause"
                 autocomplete="off"
                 data-relevant=" /ANC_Close_EngKan/maternal_death_group/maternal_death_cause  = 'others'"

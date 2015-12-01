@@ -5,7 +5,7 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Edit password:</span>
+        <span class="question-label active" lang="">Edit password</span>
         <input name="/EC_Edit_EngKan/edit_password" autocomplete="off" data-type-xml="string"
             type="password" />
     </label>
@@ -17,7 +17,6 @@
                 <span class="or-output"
                     data-value=" /EC_Edit_EngKan/ec_edit_group/case_phc "></span>
             </span>
-
         </fieldset>
         <fieldset name="/EC_Edit_EngKan/ec_edit_group/sub_center_note" class="trigger ">
             <span class="question-label active" lang="">Sub Center
@@ -67,7 +66,7 @@
         </label>
 
         <label class="question non-select ">
-            <span class="question-label active" lang="">ID Number:
+            <span class="question-label active" lang="">ID Number
             </span>
             <input name="/EC_Edit_EngKan/ec_edit_group/id_number" autocomplete="off"
                 data-type-xml="text" type="text" />
@@ -75,7 +74,7 @@
         </label>
 
         <label class="question non-select">
-            <span class="question-label active" lang="">Woman age:
+            <span class="question-label active" lang="">Woman age
             </span>
             <span class="required">*</span>
             <input name="/EC_Edit_EngKan/ec_edit_group/wife_age" autocomplete="off"
@@ -165,7 +164,7 @@
                 <option value="literate">Literate</option>
                 <option value="primary">Primary School</option>
                 <option value="middle">Middle School</option>
-                <option value="high">High School ;</option>
+                <option value="high">High School</option>
                 <option value="puc">PUC</option>
                 <option value="graduate">Graduate and above</option>
             </select>
