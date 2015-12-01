@@ -82,7 +82,7 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onOpen() {
                     Log.d(TAG, "Status: Connected to " + wsuri);
-                    Toast.makeText(getApplicationContext(),String.format(wsuri,getUsern()), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),String.format(wsuri,getUsern()), Toast.LENGTH_SHORT).show();
                     //mConnection.sendTextMessage("Hello, world!");
                 }
 

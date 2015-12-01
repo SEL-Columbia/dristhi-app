@@ -59,7 +59,7 @@ public class ActionActivity extends Activity {
         Intent myIntent = getIntent();
         final String callerId = myIntent.getStringExtra("name");
         TextView showCaller =(TextView) findViewById(R.id.txtCaller);
-        showCaller.setText(callerId + " is calling..");
+        showCaller.setText(callerId);
         findViewById(R.id.img_btn1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
