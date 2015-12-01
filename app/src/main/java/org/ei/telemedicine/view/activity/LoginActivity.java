@@ -99,7 +99,7 @@ public class LoginActivity extends Activity {
                         boolean response = (status.equals(match));
                         if (response)
                         {
-                            Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), ActionActivity.class);
                             i.putExtra(CALLER, caller);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -115,7 +115,7 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onClose(int code, String reason) {
                     Log.d(TAG, "Connection lost.");
-                    Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
                     try {
                         Thread.sleep(waitTime);
                         waitTime = waitTime*2;

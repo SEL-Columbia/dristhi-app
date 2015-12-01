@@ -5,7 +5,9 @@
     android:versionCode="33"
     android:versionName="3.0.2">
 
- 
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="16" />
 
     <compatible-screens>
         <screen
@@ -222,8 +224,9 @@
 
         <activity
             android:name=".view.activity.ActionActivity"
-            android:theme="@android:style/Theme.Translucent"
-            >
+            android:label="@string/title_activity_action"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
         </activity>       
 
 

@@ -43,10 +43,9 @@ public class ActionActivity extends Activity {
         super.onCreate(savedInstanceState);
         try {
 
-            ringAlarm(getApplicationContext()).play();
-            Random rt = new Random();
-            int max = 500, min = 100;
-            int rd = rt.nextInt((max - min) + 1) + min;
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+            ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
+            ringtone.play();
             Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             // Vibrate for 500 milliseconds
             v.vibrate(500);
@@ -64,8 +63,7 @@ public class ActionActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                AudioManager aM = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                ringtone.stop();
                 Uri url = Uri.parse(String.format(callUrl,getUsern(),callerId));
                 Intent _broswer = new Intent(Intent.ACTION_VIEW, url);
                 startActivity(_broswer);
@@ -76,7 +74,7 @@ public class ActionActivity extends Activity {
         findViewById(R.id.img_btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ringtone.stop();
                 finish();
                             }
         });
