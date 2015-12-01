@@ -23,6 +23,7 @@ import org.ei.telemedicine.doctor.DoctorFormDataConstants;
 import org.ei.telemedicine.doctor.PendingConsultantBaseAdapter;
 import org.ei.telemedicine.domain.ANM;
 import org.ei.telemedicine.domain.FetchStatus;
+import org.ei.telemedicine.domain.ProfileImage;
 import org.ei.telemedicine.domain.Response;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.dto.form.FormSubmissionDTO;
@@ -47,6 +48,8 @@ import java.util.List;
 import static java.text.MessageFormat.format;
 import static org.ei.telemedicine.AllConstants.DOC_DATA_URL_PATH;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
 import static org.ei.telemedicine.AllConstants.PSTETHOSCOPE_DATA;
 import static org.ei.telemedicine.convertor.FormSubmissionConvertor.toDomain;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.age;
@@ -126,85 +129,49 @@ public class FormSubmissionSyncService {
         this.configuration = configuration;
     }
 
-    public FetchStatus sync() {
+    public FetchStatus sync(String villageName) {
         pushToServer();
         new ImageUploadSyncService((ImageRepository) Context.getInstance().imageRepository());
-        return pullFromServer();
-    }
-
-    private byte[] convertToByte(File file) {
-        try {
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            BufferedInputStream in = null;
-            in = new BufferedInputStream(new FileInputStream(file));
-            int read;
-            byte[] buff = new byte[2048];
-            while ((read = in.read(buff)) > 0) {
-                out.write(buff, 0, read);
-            }
-            out.flush();
-            byte[] audioBytes = out.toByteArray();
-            Log.e("Audio Bytes", audioBytes + "");
-            return audioBytes;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return pullFromServer(villageName);
     }
 
 
     public void pushToServer() {
         List<FormSubmission> pendingFormSubmissions = formDataRepository.getPendingFormSubmissions();
-
+        String audiofilePath = "";
         if (pendingFormSubmissions.isEmpty()) {
             return;
         } else {
-            for (FormSubmission formSubmission : pendingFormSubmissions) {
-
-                if (formSubmission.formName().equals(ANC_VISIT)) {
+            for (int index = 0; index < pendingFormSubmissions.size(); index++) {
+                FormSubmission formSubmission = pendingFormSubmissions.get(index);
+                if (formSubmission.formName().equals(ANC_VISIT) || formSubmission.formName().equals(ANC_VISIT_EDIT) || formSubmission.formName().equals(PNC_VISIT)) {
                     try {
+                        String entityId = formSubmission.entityId();
                         String formData = formSubmission.instance();
                         JSONObject formInstanceJsonData = new JSONObject(formData);
                         Log.e("JsonD", formInstanceJsonData + "");
-                        JSONArray formFieldsjsonArray = formInstanceJsonData.getJSONObject("form").getJSONArray("fields");
-                        for (int i = formFieldsjsonArray.length() - 1; i >= 0; i--) {
-                            JSONObject jsonData = formFieldsjsonArray.getJSONObject(i);
+                        JSONObject instanceData = formInstanceJsonData.getJSONObject("form");
+                        JSONArray fieldsJsonArray = instanceData.getJSONArray("fields");
+                        for (int i = fieldsJsonArray.length() - 1; i >= 0; i--) {
+                            JSONObject jsonData = fieldsJsonArray.getJSONObject(i);
                             if (jsonData.getString("name").equals(PSTETHOSCOPE_DATA)) {
                                 String fileLocation = jsonData.has("value") ? jsonData.getString("value") : "";
-                                File file = new File(fileLocation);
-                                if (file.exists()) {
-                                    String jsonLoad = new JSONObject().put("jsonstring", new String(convertToByte(file))).toString();
-
-                                    HttpClient httpClient = new DefaultHttpClient();
-                                    HttpPost httpPost = new HttpPost("http://10.10.11.95:8081/telemedicinefileuploaddemo/uploadfile");
-                                    List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
-                                    nameValuePair.add(new BasicNameValuePair("file", jsonLoad));
-                                    //Encoding POST data
-                                    try {
-                                        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
-
-                                    } catch (UnsupportedEncodingException e) {
-                                        e.printStackTrace();
+                                if (fileLocation.trim().length() != 0) {
+                                    ProfileImage profileImage = new ProfileImage("", Context.getInstance().allSharedPreferences().fetchRegisteredANM(), entityId, "audio/x-wav", fileLocation, "");
+                                    String response = Context.getInstance().getHttpAgent().httpImagePost(Context.getInstance().configuration().dristhiBaseURL() + "/multimedia-file", profileImage);
+                                    if (response.trim().length() != 0) {
+                                        jsonData.put("value", response);
+                                        fieldsJsonArray.put(i, jsonData);
                                     }
-                                    try {
-                                        HttpResponse response = httpClient.execute(httpPost);
-                                        // write response to log
-                                        Log.e("Http Post Response:", response.toString() + "---" + response.getStatusLine());
-                                    } catch (ClientProtocolException e) {
-                                        // Log exception
-                                        e.printStackTrace();
-                                    } catch (IOException e) {
-                                        // Log exception
-                                        e.printStackTrace();
-                                    }
-
-
+                                } else {
+                                    return;
                                 }
-                                Log.e("No", "No file");
                             }
                         }
+                        instanceData.put("fields", fieldsJsonArray);
+                        formInstanceJsonData.put("form", instanceData);
+                        FormSubmission updateFormSubmission = new FormSubmission(formSubmission.instanceId(), formSubmission.entityId(), formSubmission.formName(), formInstanceJsonData.toString(), formSubmission.version(), formSubmission.syncStatus(), formSubmission.formDataDefinitionVersion());
+                        pendingFormSubmissions.set(index, updateFormSubmission);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -212,6 +179,7 @@ public class FormSubmissionSyncService {
                 }
             }
         }
+
         String jsonPayload = mapToFormSubmissionDTO(pendingFormSubmissions);
         logError("Json Data " + jsonPayload);
         Response<String> response = httpAgent.post(
@@ -227,7 +195,7 @@ public class FormSubmissionSyncService {
         logInfo(format("Form submissions sync successfully. Submissions:  {0}", pendingFormSubmissions));
     }
 
-    public FetchStatus pullFromServer() {
+    public FetchStatus pullFromServer(String villageName) {
         FetchStatus dataStatus = nothingFetched;
         String userId = allSharedPreferences.fetchRegisteredANM();
 
@@ -255,19 +223,22 @@ public class FormSubmissionSyncService {
                 dataStatus = fetched;
             }
 
-        } else
-
-        {
+        } else {
             int downloadBatchSize = configuration.syncDownloadBatchSize();
             String baseURL = configuration.dristhiBaseURL();
             Log.e("Base Url", baseURL);
+//            ArrayList<String> villagesList = new ArrayList<String>();
+//            villagesList.add("Gazi Pur");
+//            villagesList.add("Kotla");
+//            villagesList.add("Dalu Pura");
+//            for (String villageName : villagesList) {
             while (true) {
-                String uri = format("{0}/{1}?anm-id={2}&timestamp={3}&batch-size={4}",
+                String uri = format("{0}/{1}?anm-id={2}&timestamp={3}&batch-size={4}&village={5}",
                         baseURL,
                         FORM_SUBMISSIONS_PATH,
                         userId,
-                        allSettings.fetchPreviousFormSyncIndex(),
-                        downloadBatchSize);
+                        formDataRepository.getLastFormIndex(villageName),
+                        downloadBatchSize, villageName.replace(" ", "%20"));
                 logError("url= " + uri);
                 Response<String> response = httpAgent.fetch(uri);
                 if (response.isFailure()) {
@@ -281,10 +252,11 @@ public class FormSubmissionSyncService {
                     return dataStatus;
                 } else {
                     List<FormSubmission> submissions = toDomain(formSubmissions);
-                    formSubmissionService.processSubmissions(submissions);
+                    formSubmissionService.processSubmissions(submissions, villageName);
                     dataStatus = fetched;
                 }
             }
+//            }
         }
         return dataStatus;
     }

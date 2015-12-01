@@ -43,7 +43,7 @@ public class FormSubmissionService {
         this.allSettings = allSettings;
     }
 
-    public void processSubmissions(List<FormSubmission> formSubmissions) {
+    public void processSubmissions(List<FormSubmission> formSubmissions, String villageName) {
         for (FormSubmission submission : formSubmissions) {
             logError("Entity Id " + submission.entityId() + "\n Form Name" + submission.formName() + "\n Instance= " + submission.instance());
             if (formDataRepository.submissionExists(submission.instanceId())) {
@@ -56,7 +56,7 @@ public class FormSubmissionService {
                 logError(format("Form submission processing failed, with instanceId: {0}. Exception: {1}, StackTrace: {2}",
                         submission.instanceId(), e.getMessage(), ExceptionUtils.getStackTrace(e)));
             }
-            formDataRepository.updateServerVersion(submission.instanceId(), submission.serverVersion());
+            formDataRepository.updateServerVersion(submission.instanceId(), submission.serverVersion(), villageName);
             allSettings.savePreviousFormSyncIndex(submission.serverVersion());
         }
     }
@@ -121,7 +121,7 @@ public class FormSubmissionService {
                             formData.put(weight_data, getDataFromJson("weight", riskJson));
                             formData.put(blood_glucose, getDataFromJson("bloodGlucoseData", riskJson));
                             formData.put(fetal_data, getDataFromJson("fetalData", riskJson));
-                            formData.put(stethoscope_data, getDataFromJson("stethoscopeData", riskJson));
+                            formData.put(stethoscope_data, getDataFromJson("pstechoscopeData", riskJson));
                         } else if (getDataFromJson(visit_type, riskJson).equals(pncVisit)) {
 //                                            formData.put(status, "Place: " + getData("pncVisitPlace", riskJson) + "Date: " + getData("pncVisitDate", riskJson));
                             formData.put(id_no, getDataFromJson("pncNumber", riskJson));
@@ -146,7 +146,7 @@ public class FormSubmissionService {
                             formData.put(weight_data, getDataFromJson("weight", riskJson));
                             formData.put(blood_glucose, getDataFromJson("bloodGlucoseData", riskJson));
                             formData.put(hb_level, getDataFromJson("hbLevel", riskJson));
-                            formData.put(stethoscope_data, getDataFromJson("stethoscopeData", riskJson));
+                            formData.put(stethoscope_data, getDataFromJson("pstechoscopeData", riskJson));
                         } else {
                             formData.put(id_no, getDataFromJson("childNumber", riskJson));
                             formData.put(child_report_child_disease_place, getDataFromJson("reportChildDiseasePlace", riskJson));
