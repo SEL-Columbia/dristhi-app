@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <Baby_Immunization id="Baby_Immunization" version="201511160715">
+        <Baby_Immunization.xls id="Baby_Immunization" version="201512020701">
             <formhub>
                 <uuid />
             </formhub>
@@ -19,6 +19,6 @@
             <meta>
                 <instanceID />
             </meta>
-        </Baby_Immunization>
+        </Baby_Immunization.xls>
     </instance>
 </model>

@@ -149,7 +149,7 @@ public class NativeKIAnakSmartRegisterFragment extends BidanSecuredNativeSmartRe
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
                 case R.id.immunization_service_mode_views:
-                    formController.startFormActivity(BAYI_IMUNISASI, "" + view.getTag(), null);
+                    ((NativeKIAnakSmartRegisterActivity)getActivity()).startFormActivity(BAYI_IMUNISASI, "" + view.getTag(), null);
                     break;
             }
         }

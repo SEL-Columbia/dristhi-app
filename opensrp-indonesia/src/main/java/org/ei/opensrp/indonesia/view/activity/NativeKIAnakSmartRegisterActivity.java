@@ -49,6 +49,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -160,6 +161,9 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
         try {
+            if(!Arrays.asList(formNames).contains(formName)) {
+
+            }
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
                 String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
@@ -186,6 +190,8 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
         for (int i = 0; i < options.length; i++){
             formNames.add(((OpenFormOption) options[i]).getFormName());
         }
+
+        formNames.add(BAYI_IMUNISASI);
         return formNames.toArray(new String[formNames.size()]);
     }
 
