@@ -19,13 +19,19 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.ei.opensrp.R;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -54,8 +60,27 @@ public class DisplayFormFragment extends Fragment {
 
     private String recordId;
 
-    //boolean loadingFinished = false;
     private boolean javascriptLoaded = false;
+
+    private JSONObject fieldOverides = new JSONObject();
+
+    public JSONObject getFieldOverides() {
+        return fieldOverides;
+    }
+
+    public void setFieldOverides(String overrides) {
+        try{
+            //get the field overrides map
+            if (overrides != null){
+                JSONObject json = new JSONObject(overrides);
+                String overridesStr = json.getString("fieldOverrides");
+                this.fieldOverides = new JSONObject(overridesStr);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     public String getRecordId() {
         return recordId;
@@ -189,8 +214,8 @@ public class DisplayFormFragment extends Fragment {
     }
 
     //override this on tha child classes to override specific fields
-    public Map<String,String> getFormFieldsOverrides(){
-        return new HashMap<String, String>();
+    public JSONObject getFormFieldsOverrides(){
+        return fieldOverides;
     }
 
     public class AppWebViewClient extends WebViewClient {

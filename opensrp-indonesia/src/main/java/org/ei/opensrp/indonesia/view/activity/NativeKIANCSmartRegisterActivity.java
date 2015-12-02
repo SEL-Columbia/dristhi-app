@@ -39,6 +39,7 @@ import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.SampleViewPager;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -180,6 +181,7 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
                     displayFormFragment.setFormData(data);
                     displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
+                    displayFormFragment.setFieldOverides(metaData);
                 }
             }
 
@@ -202,11 +204,11 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
     }
 
     @Override
-    public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides){
+    public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         // save the form
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
-            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
 
             org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
             ZiggyService ziggyService = context.ziggyService();

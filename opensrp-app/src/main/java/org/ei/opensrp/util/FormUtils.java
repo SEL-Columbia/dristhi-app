@@ -54,7 +54,7 @@ public class FormUtils {
         return instance;
     }
 
-    public FormSubmission generateFormSubmisionFromXMLString(String entity_id, String formData, String formName, Map<String, String> overrides) throws Exception{
+    public FormSubmission generateFormSubmisionFromXMLString(String entity_id, String formData, String formName, JSONObject overrides) throws Exception{
         JSONObject formSubmission = XML.toJSONObject(formData);
         System.out.println(formSubmission);
 
@@ -411,7 +411,7 @@ public class FormUtils {
         return object.has(path[i]) ? object.get(path[i]) : null;
     }
 
-    public JSONArray getPopulatedFieldsForArray(JSONObject fieldsDefinition, String entityId, JSONObject jsonObject, Map<String, String> overrides) throws  Exception{
+    public JSONArray getPopulatedFieldsForArray(JSONObject fieldsDefinition, String entityId, JSONObject jsonObject, JSONObject overrides) throws  Exception{
         String bindPath = fieldsDefinition.getString("bind_type");
         String sql = "select * from " + bindPath + " where id='" + entityId + "'";
         String dbEntity = theAppContext.formDataRepository().queryUniqueResult(sql);
@@ -436,8 +436,9 @@ public class FormUtils {
 
             }
 
-            if (item.has("shouldLoadValue") && item.getBoolean("shouldLoadValue") && overrides.containsKey(item.getString("name"))){
-                item.put("value", overrides.get(item.getString("name")));
+            if (item.has("shouldLoadValue") && item.getBoolean("shouldLoadValue") && overrides.has(item.getString("name"))){
+                if (!item.has("value")) // if the value is not set use the value in the overrides filed
+                    item.put("value", overrides.getString(item.getString("name")));
             }
 
             // map the id field for child elements
@@ -566,7 +567,7 @@ public class FormUtils {
         return subFormFieldsArray;
     }
 
-    public JSONObject getFieldValuesForSubFormDefinition(JSONObject fieldsDefinition, String entityId, JSONObject jsonObject, Map<String, String> overrides) throws  Exception{
+    public JSONObject getFieldValuesForSubFormDefinition(JSONObject fieldsDefinition, String entityId, JSONObject jsonObject, JSONObject overrides) throws  Exception{
 
         JSONArray fieldsArray = fieldsDefinition.getJSONArray("fields");
 
@@ -582,8 +583,8 @@ public class FormUtils {
                 String[] path = pathSting.split("/");
 
                 //check if we need to override this val
-                if (overrides.containsKey(item.getString("name"))){
-                    fieldsValues.put(item.getString("name"), overrides.get(item.getString("name")));
+                if (overrides.has(item.getString("name"))){
+                    fieldsValues.put(item.getString("name"), overrides.getString(item.getString("name")));
                 }
                 else{
                     String value = getValueForPath(path, jsonObject);

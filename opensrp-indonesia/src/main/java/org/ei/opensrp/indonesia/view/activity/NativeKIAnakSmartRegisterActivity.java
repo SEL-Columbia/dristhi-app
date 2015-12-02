@@ -172,6 +172,7 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
                     displayFormFragment.setFormData(data);
                     displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
+                    displayFormFragment.setFieldOverides(metaData);
                 }
             }
 
@@ -196,11 +197,11 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
     }
 
     @Override
-    public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides){
+    public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         // save the form
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
-            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
 
             org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
             ZiggyService ziggyService = context.ziggyService();
