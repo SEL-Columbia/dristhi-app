@@ -35,6 +35,7 @@ import org.opensrp.api.util.LocationTree;
 import org.opensrp.api.util.TreeNode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import util.AsyncTask;
@@ -140,9 +141,11 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     }
 
     private DialogOption[] getEditOptions() {
+        HashMap<String,String> overridemap = new HashMap<String,String>();
+        overridemap.put("existing_ELCO", "ELCO");
         return new DialogOption[]{
 
-                new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController)
+                new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.byDetails)
         };
     }
 

@@ -186,6 +186,10 @@
             "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWELIGIBLE"
           },
           {
+            "name": "FWELIGIBLE2",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWELIGIBLE2"
+          },
+          {
             "name": "FWWOMANYID",
             "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/eligible/FWWOMANYID"
           },

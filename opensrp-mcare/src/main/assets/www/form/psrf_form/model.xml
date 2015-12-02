@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <PregnancySurveillanceAndRegistrationForm encounter_type="Pregnancy Surveillance and Registration" id="PregnancySurveillanceAndRegistrationForm" version="201511301047">
+    <PregnancySurveillanceAndRegistrationForm encounter_type="Pregnancy Surveillance and Registration" id="PregnancySurveillanceAndRegistrationForm" version="201512021053">
       <formhub>
         <uuid/>
       </formhub>
@@ -14,6 +14,7 @@
       <existing_wom_nid/>
       <existing_wom_bid/>
       <existing_wom_age/>
+      <existing_ELCO/>
       <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
       <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
       <start/>
@@ -49,10 +50,10 @@
           <FWPSRPRCHECKS openmrs_entity="concept" openmrs_entity_id="162957AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           <risk_group openmrs_entity="concept" openmrs_entity_id="160079AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
             <yn_dk_label/>
-            <FWPSRANM openmrs_entity="concept" openmrs_entity_id="161544AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-            <FWPSRHBP/>
-            <FWPSRDBT openmrs_entity="concept" openmrs_entity_id="119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-            <FWPSRTHY/>
+            <FWPSRANM openmrs_entity="concept" openmrs_entity_id="1729AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="148834AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <FWPSRHBP openmrs_entity="concept" openmrs_entity_id="1729AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="113859AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <FWPSRDBT openmrs_entity="concept" openmrs_entity_id="1729AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="119477AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <FWPSRTHY openmrs_entity="concept" openmrs_entity_id="1729AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="124719AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           </risk_group>
           <FWPSRVDGMEM openmrs_entity="concept" openmrs_entity_id="162956AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           <FWPSRWOMEDU openmrs_entity="concept" openmrs_entity_id="1545AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -64,6 +65,8 @@
         </psrf_pregnant>
       </psrf_met>
       <psrf_schedule_logic/>
+      <FWNOTELIGIBLE/>
+      <ELCO/>
       <FWVG openmrs_entity="concept" openmrs_entity_id="163090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWHRP openmrs_entity="concept" openmrs_entity_id="163092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWHR_PSR openmrs_entity="concept" openmrs_entity_id="163091AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>

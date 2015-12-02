@@ -49,6 +49,10 @@
         "shouldLoadValue": true
       },
       {
+        "name": "existing_ELCO",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/existing_ELCO"
+      },
+      {
         "name": "existing_location",
         "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/existing_location",
         "shouldLoadValue": true
@@ -80,6 +84,14 @@
       {
         "name": "psrf_schedule_logic",
         "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/psrf_schedule_logic"
+      },
+      {
+        "name": "FWNOTELIGIBLE",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/FWNOTELIGIBLE"
+      },
+      {
+        "name": "ELCO",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/ELCO"
       },
       {
         "name": "FWVG",
