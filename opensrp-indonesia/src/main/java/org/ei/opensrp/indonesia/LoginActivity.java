@@ -53,7 +53,7 @@ public class LoginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         logVerbose("Initializing ...");
-        setContentView(R.layout.login);
+        setContentView(R.layout.login_ind);
 
         context = Context.getInstance().setApplicationContextChild(this.getApplicationContext());
         context = Context.setInstance(context);
