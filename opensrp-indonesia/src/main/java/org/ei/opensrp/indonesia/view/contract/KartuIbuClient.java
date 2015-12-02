@@ -5,6 +5,8 @@ import com.google.common.base.Strings;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.domain.ANCServiceType;
 import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.indonesia.Context;
+import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.util.DateUtil;
 import org.ei.opensrp.view.contract.AlertDTO;
 import org.ei.opensrp.view.contract.ServiceProvidedDTO;
@@ -232,14 +234,14 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
 
             int months = Months.monthsBetween(dateNow, date).getMonths();
             if(months >= 1) {
-                _dueEdd = "" + months + " bulan lagi";
+                _dueEdd = "" + months + " " + Context.getInstance().getStringResource(R.string.months_away);
             } else if(months == 0){
                 if(DateUtil.dayDifference(dateNow, date) > 0) {
-                    _dueEdd = "Bulan ini";
+                    _dueEdd =  Context.getInstance().getStringResource(R.string.this_month);
                 }
-                _dueEdd = "Sudah melahirkan";
+                _dueEdd = Context.getInstance().getStringResource(R.string.delivered);
             } else {
-                _dueEdd = "Sudah melahirkan";
+                _dueEdd = Context.getInstance().getStringResource(R.string.delivered);
             }
         }
 

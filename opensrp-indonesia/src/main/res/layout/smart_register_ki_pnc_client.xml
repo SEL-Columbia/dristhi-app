@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/dok_tanggal_bersalin"
-            android:text="Tempat : "
+            android:text="@string/place_place"
             style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
 
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_tempat_persalinan"
             android:layout_alignParentLeft="true"
-            android:text="Tipe : "
+            android:text="@string/plan_type"
             style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -133,7 +133,7 @@
             android:layout_marginTop="10dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="Ibu : "
+            android:text="@string/mother_title"
             style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -153,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/kondisi_ibu"
-            android:text="Anak : "
+            android:text="@string/child_title"
             style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView

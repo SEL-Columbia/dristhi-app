@@ -11,7 +11,11 @@ public class AllConstantsINA {
     public static final String COMMA_WITH_SPACE = ", ";
     public static final int DIALOG_DOUBLE_SELECTION_NUM  = 3;
     public static final String FEMALE_GENDER_INA = "perempuan";
-
+    public static final String ENGLISH_LOCALE = "en";
+    public static final String BAHASA_LOCALE = "in";
+    public static final String DEFAULT_LOCALE = ENGLISH_LOCALE;
+    public static final String ENGLISH_LANGUAGE = "English";
+    public static final String BAHASA_LANGUAGE = "Bahasa Indonesia";
     public static final String OUT_OF_AREA = "out_of_area";
     public static final String IN_AREA = "in_area";
 

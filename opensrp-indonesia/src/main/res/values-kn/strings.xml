@@ -365,5 +365,6 @@
     <string name="title_double_selection">"Pick the name again"</string>
     <string name="title_app">"Bidan"</string>
     <string name="home_fp_label">FP</string>
+    <string name="str_kb_close"></string>
 
 </resources>

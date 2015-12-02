@@ -4,8 +4,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.ei.opensrp.domain.form.FieldOverrides;
+import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.Context;
+import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
@@ -20,7 +24,12 @@ import org.ei.opensrp.sync.UpdateActionsTask;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static android.widget.Toast.LENGTH_SHORT;
 import static java.lang.String.valueOf;
+import static org.ei.opensrp.AllConstants.ENGLISH_LANGUAGE;
+import static org.ei.opensrp.AllConstants.ENGLISH_LOCALE;
+import static org.ei.opensrp.AllConstants.KANNADA_LANGUAGE;
+import static org.ei.opensrp.AllConstants.KANNADA_LOCALE;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.FEEDBACK_BIDAN;
 import static org.ei.opensrp.event.Event.ACTION_HANDLED;
 import static org.ei.opensrp.event.Event.FORM_SUBMITTED;
@@ -162,6 +171,10 @@ public class BidanHomeActivity extends org.ei.opensrp.view.activity.SecuredActiv
             case R.id.updateMenuItem:
                 updateFromServer();
                 return true;
+            case R.id.switchLanguageMenuItem:
+                String newLanguagePreference = switchLanguagePreference();
+                Toast.makeText(this, "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -257,4 +270,15 @@ public class BidanHomeActivity extends org.ei.opensrp.view.activity.SecuredActiv
             }
         }
     };
+
+    public String switchLanguagePreference() {
+        String preferredLocale = context.allSharedPreferences().fetchLanguagePreference();
+        if (ENGLISH_LOCALE.equals(preferredLocale)) {
+            context.allSharedPreferences().saveLanguagePreference(AllConstantsINA.BAHASA_LOCALE);
+            return AllConstantsINA.BAHASA_LANGUAGE;
+        } else {
+            context.allSharedPreferences().saveLanguagePreference(ENGLISH_LOCALE);
+            return ENGLISH_LANGUAGE;
+        }
+    }
 }

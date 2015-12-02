@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="userNameEditText">Masukan user name</string>
     <string name="passwordEditText">Masukan kata kunci</string>
     <string name="login_text">Log Masuk</string>
@@ -44,6 +45,7 @@
     <string name="header_nama">Nama</string>
     <string name="header_tgl_periksa">Tgl Periksa</string>
     <string name="header_edd">HTP</string>
+    <string name="header_kunjungan">Kunjungan</string>
     <string name="header_no_ibu">No Ibu</string>
     <string name="header_status_b">Status</string>
     <string name="header_obsetri">Obsetri</string>
@@ -105,29 +107,31 @@
     <string name="str_close_ki_form">Tutup Kartu Ibu</string>
     <string name="str_kb_update">Update KB</string>
     <string name="str_kb_edit">Edit KB</string>
+    <string name="str_kb_close">Tutup KB</string>
 
     <!-- ANAK -->
     <string name="str_register_anak_form">Register Anak</string>
     <string name="str_tutup_anak">Tutup Anak</string>
-    <string name="str_imunisasi_bayi">"Imunisasi Bayi"</string>
+    <string name="str_imunisasi_bayi">Imunisasi Bayi</string>
     <string name="str_anak_edit">Edit Anak</string>
     <string name="str_anak_bayi_visit">Kunjungan Bayi</string>
     <string name="str_anak_balita_visit">Kunjungan Balita</string>
-    <string name="str_anak_neonatal">Bayi Neonatal Periode</string>
+    <string name="str_anak_neonatal">Kunjungan Neonatal</string>
 
     <string name="str_kunjungan_anak">Kunjungan</string>
     <string name="anc_edit">Edit ANC</string>
     <string name="pnc_edit">Edit PNC</string>
-    <string name="pnc_visit">PNC VISIT</string>
+    <string name="pnc_visit">PNC Visit</string>
+    <string name="pnc_pospartum_kb">Postpartum KB</string>
 
-      <!-- BIDAN -->
+    <!-- BIDAN -->
     <string name="header_resiko">Resiko</string>
     <string name="header_trimester">Trimester</string>
     <string name="header_tt_imunisasi">Imunisasi</string>
     <string name="header_tt_usia_klinis">Usia Klinis</string>
     <string name="header_komplikasi">Komplikasi</string>
-    <string name="header_kontrasepsi">Kontrasepsi</string>
-    <string name="header_rencana">Rencana</string>
+    <string name="header_kontrasepsi">Kondisi</string>
+    <string name="header_rencana">Dok Persalinan</string>
     <string name="header_tanda_vital">Tanda Vital</string>
     <string name="header_pemeriksaan">Pemeriksaan</string>
 
@@ -143,8 +147,9 @@
     <string name="header_last_service">Pelayanan</string>
     <string name="header_method">Metode</string>
     <string name="header_risk_factors">Faktor Risk</string>
-    <string name="str_pnc_dob_label"></string>
+    <string name="str_pnc_dob_label">Tanggal Lahir</string>
     <string name="header_dob">Tgl Lahir</string>
+    <string name="header_dok_persalinan">Dok Prsalinan</string>
 
     <string name="app_name">Bidan</string>
 
@@ -174,7 +179,7 @@
 
     <string name="str_out_of_area">(O/A)</string>
 
-    <string name="str_register_anc_visit_form">ANC Visit</string>
+    <string name="str_register_anc_visit_form">Kunjungan ANC</string>
     <string name="str_register_hb_test_form">Hb Test</string>
     <string name="str_register_ifa_form">IFA</string>
     <string name="str_register_tt_form">TT</string>
@@ -182,16 +187,16 @@
     <string name="str_register_pnc_registration_form">PNC Registration</string>
     <string name="str_register_anc_investigations_form">ANC Investigations</string>
     <string name="str_register_anc_partograf_form">Kartu Partograf</string>
-    <string name="str_register_anc_close_form">ANC Close</string>
+    <string name="str_register_anc_close_form">Tutup ANC</string>
 
     <string name="str_reporting">Reporting</string>
     <string name="str_videos">Videos</string>
 
-    <string name="child_register_title_in_short">Child:</string>
+    <string name="child_register_title_in_short">Anak:</string>
     <string name="child_service_mode_overview">Overview</string>
-    <string name="child_service_mode_immunization">Immunization</string>
-    <string name="child_service_mode_immunization_0_to_9">Immunization 0-9</string>
-    <string name="child_service_mode_immunization_9_plus">Immunization 9+</string>
+    <string name="child_service_mode_immunization">Imunisasi</string>
+    <string name="child_service_mode_immunization_0_to_9">Imunisasi 0-9</string>
+    <string name="child_service_mode_immunization_9_plus">Imunisasi 9+</string>
     <string name="header_id_no">ID NO</string>
     <string name="header_sick_status">SICK STATUS</string>
     <string name="header_bcg">BCG</string>
@@ -235,7 +240,7 @@
     <string name="illness_report"><b>Illness Report:</b> %s</string>
     <string name="illness_date">Date:</string>
     <string name="str_bcg">BCG</string>
-    <string name="str_bcg_on">On</string>
+    <string name="str_bcg_on">Pada</string>
     <string name="hep_b_birth">Hep B</string>
     <string name="opv">OPV</string>
     <string name="tt">TT</string>
@@ -277,7 +282,7 @@
     <string name="fp_prioritization_high_priority_service_mode">High Priority (HP)</string>
     <string name="fp_prioritization_two_plus_children_service_mode">2+ Children</string>
     <string name="fp_prioritization_one_child_service_mode">1 Child</string>
-    <string name="fp_register_child_details">Child:</string>
+    <string name="fp_register_child_details">Anak:</string>
     <string name="str_due">"Due "</string>
     <string name="fp_methods">FP Methods</string>
     <string name="fp_prioritization">FP Prioritization</string>
@@ -288,7 +293,7 @@
     <string name="header_delivery_info">DELIVERY INFO</string>
     <string name="header_delivery_complications">COMPLICATIONS</string>
     <string name="header_pp_fp">PP FP</string>
-    <string name="header_child">CHILD</string>
+    <string name="header_child">Anak</string>
     <string name="header_days_pp">DAYS PP</string>
     <string name="header_first_seven_days">FIRST 7 DAYS</string>
     <string name="header_pnc_visits">PNC VISITS</string>
@@ -370,7 +375,35 @@
     <string name="header_imunisasi_campak">Campak</string>
 
 
-    <string name="title_double_selection">"Pick the name again"</string>
+    <string name="title_double_selection">"Pilih nama lagi"</string>
     <string name="title_app">"Bidan"</string>
 
+    <string name="detail_subtitle">Daftar resiko yang dimiliki</string>
+    <string name="risk_flags_subtitle">Daftar resiko yang dimiliki</string>
+    <string name="risk_flags_title">Resiko</string>
+
+    <string name="show_more_button">Lihat lebih...</string>
+
+    <string name="mother_already_registered">Ibu sudah terdaftar di ANC</string>
+
+    <string name="anc_visit_integrasi">Kunjungan ANC Integrasi</string>
+    <string name="anc_visit_labtest">Kunjungan ANC Tes Lab</string>
+    <string name="months_away"> bulan lagi</string>
+    <string name="this_month">bulan ini</string>
+    <string name="delivered">sudah melahirkan</string>
+    <string name="mother_weight">Berat Badan :</string>
+    <string name="lila">LILA :</string>
+    <string name="empty_string"></string>
+    <string name="edd_title">HTP :</string>
+    <string name="place_place">Tempat :</string>
+    <string name="plan_type">Tipe :</string>
+    <string name="mother_title">Ibu :</string>
+    <string name="child_title">Anak :</string>
+    <string name="dob_title">Tgl Lahir :</string>
+    <string name="birth_place_title">Tmpt :</string>
+    <string name="birth_weight_title">B.Lahir :</string>
+    <string name="date_visit_title">Tgl Kunjungan :</string>
+    <string name="cohort_child">ANAK</string>
+    <string name="cohort_mother">KOHORT IBU</string>
+    <string name="cohort_fp">KOHORT KB</string>
 </resources>

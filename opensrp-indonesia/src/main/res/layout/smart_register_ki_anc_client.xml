@@ -97,7 +97,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HTP :"/>
+                android:text="@string/edd_title"/>
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:id="@+id/txt_htpt"
@@ -133,7 +133,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LILA :"/>
+                android:text="@string/lila"/>
 
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -148,7 +148,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Berat Badan :"/>
+                android:text="@string/mother_weight"/>
 
 
             <org.ei.opensrp.view.customControls.CustomFontTextView

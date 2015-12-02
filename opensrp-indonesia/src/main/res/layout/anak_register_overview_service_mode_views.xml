@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="Tgl Lhr : "
+            android:text="@string/dob_title"
             android:textStyle="normal" />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/lbl_anak_register_dob"
-            android:text="Tmpt : "
+            android:text="@string/birth_place_title"
             android:textStyle="normal" />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/lbl_tempat_lahir"
-            android:text="B.Lahir : "
+            android:text="@string/birth_weight_title"
             android:textStyle="normal" />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
