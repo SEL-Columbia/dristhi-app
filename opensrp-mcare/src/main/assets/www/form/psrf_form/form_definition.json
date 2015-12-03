@@ -90,6 +90,10 @@
         "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/FWNOTELIGIBLE"
       },
       {
+        "name": "FWELIGIBLE",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/FWELIGIBLE"
+      },
+      {
         "name": "ELCO",
         "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/ELCO"
       },

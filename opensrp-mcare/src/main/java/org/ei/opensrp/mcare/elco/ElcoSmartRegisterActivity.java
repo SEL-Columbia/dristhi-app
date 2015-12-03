@@ -8,10 +8,13 @@ import android.widget.ImageButton;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.form.FieldOverrides;
+import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
@@ -132,6 +135,16 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     }
 
     @Override
+    protected void onResumption() {
+        super.onResumption();
+        try{
+            LoginActivity.setLanguage();
+        }catch (Exception e){
+
+        }
+    }
+
+    @Override
     protected SmartRegisterClientsProvider clientsProvider() {
         if (clientProvider == null) {
             clientProvider = new ElcoSmartClientsProvider(
@@ -140,12 +153,17 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         return clientProvider;
     }
 
-    private DialogOption[] getEditOptions() {
+    private DialogOption[] getEditOptions(CommonPersonObjectClient elco) {
+        AllCommonsRepository allelcoRepository = context.getInstance().allCommonsRepositoryobjects("elco");
+        CommonPersonObject elcoobject = allelcoRepository.findByCaseID(elco.entityId());
+        AllCommonsRepository householdrep = context.getInstance().allCommonsRepositoryobjects("household");
+        CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
         HashMap<String,String> overridemap = new HashMap<String,String>();
-        overridemap.put("existing_ELCO", "ELCO");
+
+        overridemap.put("existing_ELCO", householdparent.getDetails().get("ELCO"));
         return new DialogOption[]{
 
-                new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.byDetails)
+                new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)
         };
     }
 
@@ -189,7 +207,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
                     startActivity(intent);
                     break;
                 case R.id.psrf_due_date:
-                    showFragmentDialog(new EditDialogOptionModel(), view.getTag());
+                    showFragmentDialog(new EditDialogOptionModel((CommonPersonObjectClient)view.getTag()), view.getTag());
                     break;
             }
         }
@@ -200,9 +218,14 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     }
 
     private class EditDialogOptionModel implements DialogOptionModel {
+        CommonPersonObjectClient tag;
+        public EditDialogOptionModel(CommonPersonObjectClient tag) {
+            this.tag = tag;
+        }
+
         @Override
         public DialogOption[] getDialogOptions() {
-            return getEditOptions();
+            return getEditOptions(tag);
         }
 
         @Override
@@ -210,6 +233,9 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
         }
     }
+
+
+
     public void updateSearchView(){
         getSearchView().addTextChangedListener(new TextWatcher() {
             @Override

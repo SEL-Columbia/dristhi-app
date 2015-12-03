@@ -21,8 +21,8 @@ android {
         applicationId "org.ei.opensrp.mcare"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 7
-        versionName "7.0"
+        versionCode 11
+        versionName "11.0"
     }
     buildTypes {
         release {

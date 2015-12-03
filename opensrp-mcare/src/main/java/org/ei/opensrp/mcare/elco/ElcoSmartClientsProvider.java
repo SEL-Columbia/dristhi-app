@@ -35,6 +35,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.ei.opensrp.util.StringUtil.humanize;
@@ -179,7 +180,9 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
                 calendar.setTime(lastdate);
                 calendar.add(Calendar.DATE, 56);
                 lastdate.setTime(calendar.getTime().getTime());
-                psrfdue.setText(format.format(lastdate));
+                String result = String.format(Locale.ENGLISH, format.format(lastdate) );
+
+                psrfdue.setText(result);
 //           psrfdue.append(format.format(lastdate));
 
             }

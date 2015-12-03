@@ -21,6 +21,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClients;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
@@ -307,6 +308,11 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         getDefaultOptionsProvider();
         updateSearchView();
         checkforNidMissing();
+        try{
+            LoginActivity.setLanguage();
+        }catch (Exception e){
+
+        }
     }
 
     public void updateSearchView(){
