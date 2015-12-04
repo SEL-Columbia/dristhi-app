@@ -1,4 +1,7 @@
 # dristhi-app
+
+<a href="https://travis-ci.org/DhanushInfotech/dristhi-app"> <img src="https://travis-ci.org/DhanushInfotech/dristhi-app" >  </img> </a>
+
 Android app for rural nurse midwives (Dristhi project).
 
 To run test classes
