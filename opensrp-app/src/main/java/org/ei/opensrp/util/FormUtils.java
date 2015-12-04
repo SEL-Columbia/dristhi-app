@@ -442,9 +442,9 @@ public class FormUtils {
             }
 
             // map the id field for child elements
-            if (item.has("source") && item.getString("source").split("\\.").length > 2){ // like ibu.anak.id
+            if (item.has("source") && item.getString("source").split("\\.").length > 2){ // e.g ibu.anak.id
                 String value = null;
-                if (entityJson.length() > 0){
+                if (entityJson.length() > 0 && item.has("shouldLoadValue") && item.getBoolean("shouldLoadValue")){
                     //retrieve the child attributes
                     value = retrieveValueForLinkedRecord(item.getString("source"), entityJson);
                 }
@@ -453,7 +453,7 @@ public class FormUtils {
                     value = generateRandomUUIDString();
                 }
 
-                if (value != null)
+                if (value != null && !item.has("value"))
                     item.put("value", value);
             }
 

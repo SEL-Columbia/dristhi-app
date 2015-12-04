@@ -183,7 +183,7 @@ public class DisplayFormFragment extends Fragment {
             public void run() {
                 try{
                     while (!javascriptLoaded){
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     }
 
                     formData = formData != null && !formData.isEmpty() ? formData.replaceAll("\"","\\\"") : "";
