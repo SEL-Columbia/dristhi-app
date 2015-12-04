@@ -577,6 +577,20 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_HB_0_7_hari:label"
+            lang="Bahasa">
+            imunisasi HB 0-7 hari
+        </span>
+        <span class="question-label " data-itext-id="/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_HB_0_7_hari:label"
+            lang="en">
+            HB0 immunization 0-7 days
+        </span>
+        <input name="/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_HB_0_7_hari"
+            data-relevant="selected( /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi , 'imunisasi_HB_0_7_hari')"
+            data-type-xml="date"
+            type="date" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
         <span class="or-constraint-msg active" data-itext-id="/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_bcg_dan_Polio1:jr:constraintMsg"
             lang="Bahasa">
             diisi dengan tanggal hari ini atau sebelumnya
@@ -603,7 +617,7 @@
         </span>
         <input name="/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_bcg_dan_Polio1"
             data-constraint=".&lt;=  /kohort_kunjungan_bayi_reviewed/today "
-            data-relevant=" /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi  = 'imunisasi_BCG_dan_Polio_1'"
+            data-relevant="selected( /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi , 'imunisasi_BCG_dan_Polio_1')"
             data-type-xml="date"
             type="date" />
     </label>
@@ -634,7 +648,7 @@
         </span>
         <input name="/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_dpthb1Polio2"
             data-constraint=".&lt;=  /kohort_kunjungan_bayi_reviewed/today "
-            data-relevant=" /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi  = 'imunisasi_DPT_HB1_Polio_2'"
+            data-relevant="selected( /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi , 'imunisasi_DPT_HB1_Polio_2')"
             data-type-xml="date"
             type="date" />
     </label>
@@ -665,7 +679,7 @@
         </span>
         <input name="/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_dpthb2Polio3"
             data-constraint=".&lt;=  /kohort_kunjungan_bayi_reviewed/today "
-            data-relevant=" /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi  = 'imunisasi_DPT_HB2_Polio_3'"
+            data-relevant="selected( /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi , 'imunisasi_DPT_HB2_Polio_3')"
             data-type-xml="date"
             type="date" />
     </label>
@@ -696,7 +710,7 @@
         </span>
         <input name="/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_dpthb3Polio4"
             data-constraint=".&lt;=  /kohort_kunjungan_bayi_reviewed/today "
-            data-relevant=" /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi  = 'imunisasi_DPT_HB3_Polio_4'"
+            data-relevant="selected( /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi , 'imunisasi_DPT_HB3_Polio_4')"
             data-type-xml="date"
             type="date" />
     </label>
@@ -726,7 +740,7 @@
             Date and month when the baby receives measles immunization
         </span>
         <input name="/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_campak" data-constraint=".&lt;=  /kohort_kunjungan_bayi_reviewed/today "
-            data-relevant=" /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi  = 'imunisasi_Campak'"
+            data-relevant="selected( /kohort_kunjungan_bayi_reviewed/dilakukan_imunisasi , 'imunisasi_Campak')"
             data-type-xml="date"
             type="date" />
     </label>
@@ -791,7 +805,7 @@
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input name="/kohort_kunjungan_bayi_reviewed/formhub/uuid" data-calculate="'2a6f84a8659946dcb13c06d955fb5f65'"
+            <input name="/kohort_kunjungan_bayi_perbulan/formhub/uuid" data-calculate="'2a6f84a8659946dcb13c06d955fb5f65'"
                 data-type-xml="string" type="hidden" />
         </label>
     </fieldset>

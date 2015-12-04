@@ -1,7 +1,7 @@
 <model>
     <instance>
         <kohort_kunjungan_bayi_reviewed encounter_type="Kohort Kunjungan Bayi Perbulan"
-            id="kohort_kunjungan_bayi_perbulan" version="201511240649">
+            id="kohort_kunjungan_bayi_perbulan" version="201512040559">
             <formhub>
                 <uuid />
             </formhub>
@@ -22,6 +22,7 @@
             <kpsp_penyimpangan />
             <pelayanan_vita />
             <dilakukan_imunisasi />
+            <tanggal_pemberian_imunisasi_HB_0_7_hari />
             <tanggal_pemberian_imunisasi_bcg_dan_Polio1 />
             <tanggal_pemberian_imunisasi_dpthb1Polio2 />
             <tanggal_pemberian_imunisasi_dpthb2Polio3 />
