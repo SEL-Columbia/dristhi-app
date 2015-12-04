@@ -14,6 +14,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "childId",
+        "shouldLoadValue": true,
+        "source": "kartu_ibu.ibu.anak.id"
+      },
+      {
         "name": "unique_id",
         "bind": "/model/instance/register_pnc_reviewed/unique_id",
         "shouldLoadValue" : true

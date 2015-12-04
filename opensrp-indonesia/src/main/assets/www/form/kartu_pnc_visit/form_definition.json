@@ -14,6 +14,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "childId",
+        "shouldLoadValue": true,
+        "source": "ibu.anak.id"
+      },
+      {
         "name": "referenceDate",
         "bind": "/model/instance/PNC_visit_reviewed/tanggal_kunjungan"
       },
