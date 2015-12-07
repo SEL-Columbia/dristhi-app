@@ -5,13 +5,13 @@
         "default_bind_path":"/model/instance/penutupan_pnc_reviewed/",
         "fields":[
             {
-                "name":"id",
-                "shouldLoadValue":true
+                "name": "id",
+                "shouldLoadValue": true
             },
             {
-                "name":"kiId",
-                "source":"ibu.kartu_ibu.id",
-                "shouldLoadValue":true
+                "name": "kiId",
+                "shouldLoadValue": true,
+                "source": "ibu.kartu_ibu.id"
             },
             {
                 "name":"pncCloseReason",
@@ -58,8 +58,9 @@
             	"value":"anc"
             },
             {
-                "name":"isClosed",
-                "bind":"/model/instance/penutupan_pnc_reviewed/is_mother_closed"
+                "name": "isClosed",
+                "source": "ibu.isClosed",
+                "value": "true"
             }
         ]
     }
