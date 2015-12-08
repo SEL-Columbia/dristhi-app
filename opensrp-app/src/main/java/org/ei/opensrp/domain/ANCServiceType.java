@@ -373,7 +373,7 @@ public enum ANCServiceType {
             } else if (type.equalsIgnoreCase("KB Injection Depoprovera")) {
                 return ANCServiceType.valueOf("KB_Injection_Depoprovera");
             } else {
-                return StringUtils.isBlank(type) ? defaultType : ANCServiceType.valueOf(type.toUpperCase(Locale.getDefault()));
+                return StringUtils.isBlank(type) || type.equalsIgnoreCase("REMINDER") ? defaultType : ANCServiceType.valueOf(type.toUpperCase(Locale.getDefault()));
             }
         } catch (IllegalArgumentException e) {
             logWarn("Unknown current Service Type : " + type + " Exception : " + e);
