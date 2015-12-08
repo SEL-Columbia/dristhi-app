@@ -180,9 +180,9 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
                 calendar.setTime(lastdate);
                 calendar.add(Calendar.DATE, 56);
                 lastdate.setTime(calendar.getTime().getTime());
-                String result = String.format(Locale.ENGLISH, format.format(lastdate) );
+//                String result = String.format(Locale.ENGLISH, format.format(lastdate) );
 
-                psrfdue.setText(result);
+                psrfdue.setText(format.format(lastdate));
 //           psrfdue.append(format.format(lastdate));
 
             }

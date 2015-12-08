@@ -216,8 +216,8 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvid
             calendar.add(Calendar.DATE, 84);
             lastdate.setTime(calendar.getTime().getTime());
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            String result = String.format(Locale.ENGLISH, format.format(lastdate) );
-            viewHolder.due_visit_date.setText(result);
+//            String result = String.format(Locale.ENGLISH, format.format(lastdate) );
+            viewHolder.due_visit_date.setText( format.format(lastdate) );
 //            viewHolder.due_visit_date.append(format.format(lastdate));
 
         }
