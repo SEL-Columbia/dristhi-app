@@ -1,30 +1,43 @@
-package org.ei.opensrp.view.activity;
+package org.ei.opensrp.view.fragment;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.content.pm.ActivityInfo;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.*;
-import com.google.gson.Gson;
+import android.widget.AbsListView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import org.ei.opensrp.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.domain.ReportMonth;
-import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.customControls.CustomFontTextView;
 import org.ei.opensrp.view.customControls.FontVariant;
-import org.ei.opensrp.view.dialog.*;
+import org.ei.opensrp.view.dialog.AllClientsFilter;
+import org.ei.opensrp.view.dialog.DialogOption;
+import org.ei.opensrp.view.dialog.DialogOptionModel;
+import org.ei.opensrp.view.dialog.ECSearchOption;
+import org.ei.opensrp.view.dialog.EditOption;
+import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.ServiceModeOption;
+import org.ei.opensrp.view.dialog.SortOption;
 import org.joda.time.LocalDate;
 
 import java.util.List;
-import java.util.Map;
 
 import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 import static android.view.View.INVISIBLE;
@@ -32,16 +45,12 @@ import static android.view.View.VISIBLE;
 import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.ei.opensrp.AllConstants.ENTITY_ID_PARAM;
-import static org.ei.opensrp.AllConstants.FORM_NAME_PARAM;
-import static org.ei.opensrp.AllConstants.INSTANCE_ID_PARAM;
 import static org.ei.opensrp.AllConstants.SHORT_DATE_FORMAT;
-import static org.ei.opensrp.AllConstants.SYNC_STATUS;
-import static org.ei.opensrp.AllConstants.VERSION_PARAM;
-import static org.ei.opensrp.domain.SyncStatus.PENDING;
-import static org.ei.opensrp.util.EasyMap.create;
 
-public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity {
+/**
+ * Created by koros on 10/12/15.
+ */
+public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment {
 
     public static final String DIALOG_TAG = "dialog";
     public static final List<? extends DialogOption> DEFAULT_FILTER_OPTIONS = asList(new AllClientsFilter());
@@ -92,6 +101,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private FilterOption currentVillageFilter;
     private SortOption currentSortOption;
 
+    public View mView;
+
     public void setCurrentSearchFilter(FilterOption currentSearchFilter) {
         this.currentSearchFilter = currentSearchFilter;
     }
@@ -103,55 +114,34 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private final NavBarActionsHandler navBarActionsHandler = new NavBarActionsHandler();
     private final SearchCancelHandler searchCancelHandler = new SearchCancelHandler();
 
-    public interface ClientsHeaderProvider {
-
-        public abstract int count();
-
-        public abstract int weightSum();
-
-        public abstract int[] weights();
-
-        public abstract int[] headerTextResourceIds();
-    }
-
-    public interface DefaultOptionsProvider {
-
-        public abstract ServiceModeOption serviceMode();
-
-        public abstract FilterOption villageFilter();
-
-        public abstract SortOption sortOption();
-
-        public abstract String nameInShortFormForTitle();
-
-    }
-
-    public interface NavBarOptionsProvider {
-
-        public abstract DialogOption[] filterOptions();
-
-        public abstract DialogOption[] serviceModeOptions();
-
-        public abstract DialogOption[] sortingOptions();
-
-        public abstract String searchHint();
-    }
-
-    private DefaultOptionsProvider defaultOptionProvider;
-    private NavBarOptionsProvider navBarOptionsProvider;
-
     @Override
-    protected void onCreation() {
-        setContentView(R.layout.smart_register_activity);
-
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        View view = inflater.inflate(R.layout.smart_register_activity, container, false);
+        mView = view;
+        this.getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         onInitialization();
+        setupViews(view);
+        onResumption();
+        return view;
+    }
 
-        defaultOptionProvider = getDefaultOptionsProvider();
-        navBarOptionsProvider = getNavBarOptionsProvider();
+    protected void setupViews(View view) {
+        setupNavBarViews(view);
+        populateClientListHeaderView(getDefaultOptionsProvider().serviceMode().getHeaderProvider(), view);
 
-        setupViews();
+        clientsProgressView = (ProgressBar) view.findViewById(R.id.client_list_progress);
+        clientsView = (ListView) view.findViewById(R.id.list);
+
+        setupStatusBarViews(view);
+        paginationViewHandler.addPagination(clientsView);
+
+        updateDefaultOptions();
+    }
+
+    public void refreshListView(){
+        this.onResumption();
     }
 
     @Override
@@ -182,60 +172,47 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }.executeOnExecutor(THREAD_POOL_EXECUTOR);
     }
 
-    protected void setupViews() {
-        setupNavBarViews();
-        populateClientListHeaderView(defaultOptionProvider.serviceMode().getHeaderProvider());
-
-        clientsProgressView = (ProgressBar) findViewById(R.id.client_list_progress);
-        clientsView = (ListView) findViewById(R.id.list);
-
-        setupStatusBarViews();
-        paginationViewHandler.addPagination(clientsView);
-
-        updateDefaultOptions();
+    private void setupStatusBarViews(View view) {
+        appliedSortView = (TextView) view.findViewById(R.id.sorted_by);
+        appliedVillageFilterView = (TextView) view.findViewById(R.id.village);
     }
 
-    private void setupStatusBarViews() {
-        appliedSortView = (TextView) findViewById(R.id.sorted_by);
-        appliedVillageFilterView = (TextView) findViewById(R.id.village);
-    }
+    private void setupNavBarViews(View view) {
+        view.findViewById(R.id.btn_back_to_home).setOnClickListener(navBarActionsHandler);
 
-    private void setupNavBarViews() {
-        findViewById(R.id.btn_back_to_home).setOnClickListener(navBarActionsHandler);
+        setupTitleView(view);
 
-        setupTitleView();
-
-        View villageFilterView = findViewById(R.id.filter_selection);
+        View villageFilterView = view.findViewById(R.id.filter_selection);
         villageFilterView.setOnClickListener(navBarActionsHandler);
 
-        View sortView = findViewById(R.id.sort_selection);
+        View sortView = view.findViewById(R.id.sort_selection);
         sortView.setOnClickListener(navBarActionsHandler);
 
-        serviceModeView = (TextView) findViewById(R.id.service_mode_selection);
+        serviceModeView = (TextView)view.findViewById(R.id.service_mode_selection);
         serviceModeView.setOnClickListener(navBarActionsHandler);
 
-        findViewById(R.id.register_client).setOnClickListener(navBarActionsHandler);
+        view.findViewById(R.id.register_client).setOnClickListener(navBarActionsHandler);
 
-        setupSearchView();
+        setupSearchView(view);
     }
 
     protected void setServiceModeViewDrawableRight(Drawable drawable) {
         serviceModeView.setCompoundDrawables(null, null, drawable, null);
     }
 
-    private void setupTitleView() {
-        ViewGroup titleLayout = (ViewGroup) findViewById(R.id.title_layout);
+    private void setupTitleView(View view) {
+        ViewGroup titleLayout = (ViewGroup) view.findViewById(R.id.title_layout);
         titleLayout.setOnClickListener(navBarActionsHandler);
 
-        titleLabelView = (TextView) findViewById(R.id.txt_title_label);
+        titleLabelView = (TextView) view.findViewById(R.id.txt_title_label);
 
-        TextView reportMonthStartView = (TextView) findViewById(R.id.btn_report_month);
+        TextView reportMonthStartView = (TextView) view.findViewById(R.id.btn_report_month);
         setReportDates(reportMonthStartView);
     }
 
-    private void setupSearchView() {
-        searchView = (EditText) findViewById(R.id.edt_search);
-        searchView.setHint(navBarOptionsProvider.searchHint());
+    private void setupSearchView(View view) {
+        searchView = (EditText) view.findViewById(R.id.edt_search);
+        searchView.setHint(getNavBarOptionsProvider().searchHint());
         searchView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -255,7 +232,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             public void afterTextChanged(Editable editable) {
             }
         });
-        searchCancelView = findViewById(R.id.btn_search_cancel);
+        searchCancelView = view.findViewById(R.id.btn_search_cancel);
         searchCancelView.setOnClickListener(searchCancelHandler);
     }
 
@@ -268,18 +245,18 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     private void updateDefaultOptions() {
         currentSearchFilter = new ECSearchOption(null);
-        currentVillageFilter = defaultOptionProvider.villageFilter();
-        currentServiceModeOption = defaultOptionProvider.serviceMode();
-        currentSortOption = defaultOptionProvider.sortOption();
+        currentVillageFilter = getDefaultOptionsProvider().villageFilter();
+        currentServiceModeOption = getDefaultOptionsProvider().serviceMode();
+        currentSortOption = getDefaultOptionsProvider().sortOption();
 
         appliedSortView.setText(currentSortOption.name());
         appliedVillageFilterView.setText(currentVillageFilter.name());
         serviceModeView.setText(currentServiceModeOption.name());
-        titleLabelView.setText(defaultOptionProvider.nameInShortFormForTitle());
+        titleLabelView.setText(getDefaultOptionsProvider().nameInShortFormForTitle());
     }
 
-    private void populateClientListHeaderView(ClientsHeaderProvider headerProvider) {
-        LinearLayout clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
+    private void populateClientListHeaderView(SecuredNativeSmartRegisterActivity.ClientsHeaderProvider headerProvider, View view) {
+        LinearLayout clientsHeaderLayout = (LinearLayout) view.findViewById(R.id.clients_header_layout);
         clientsHeaderLayout.removeAllViewsInLayout();
         int columnCount = headerProvider.count();
         int[] weights = headerProvider.weights();
@@ -292,7 +269,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     private View getColumnHeaderView(int i, int[] weights, int[] headerTxtResIds) {
-        CustomFontTextView header = new CustomFontTextView(this, null, R.style.CustomFontTextViewStyle_Header_Black);
+        CustomFontTextView header = new CustomFontTextView(getActivity(), null, R.style.CustomFontTextViewStyle_Header_Black);
         header.setFontVariant(FontVariant.BLACK);
         header.setTextSize(16);
         header.setTextColor(getResources().getColor(R.color.client_list_header_text_color));
@@ -321,14 +298,14 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         return new SmartRegisterPaginatedAdapter(clientsProvider());
     }
 
-    protected void onServiceModeSelection(ServiceModeOption serviceModeOption) {
+    protected void onServiceModeSelection(ServiceModeOption serviceModeOption, View view) {
         currentServiceModeOption = serviceModeOption;
         serviceModeView.setText(serviceModeOption.name());
         clientsAdapter
                 .refreshList(currentVillageFilter, currentServiceModeOption,
                         currentSearchFilter, currentSortOption);
 
-        populateClientListHeaderView(serviceModeOption.getHeaderProvider());
+        populateClientListHeaderView(serviceModeOption.getHeaderProvider(), view);
     }
 
     protected void onSortSelection(SortOption sortBy) {
@@ -352,44 +329,31 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     private void goBack() {
-        finish();
+        getActivity().finish();
     }
 
-    public void showFragmentDialog(DialogOptionModel dialogOptionModel) {
+    void showFragmentDialog(DialogOptionModel dialogOptionModel) {
         showFragmentDialog(dialogOptionModel, null);
     }
 
-    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
-        if (dialogOptionModel.getDialogOptions().length <= 0) {
-            return;
-        }
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Fragment prev = getFragmentManager().findFragmentByTag(DIALOG_TAG);
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-
-        SmartRegisterDialogFragment
-                .newInstance(this, dialogOptionModel, tag)
-                .show(ft, DIALOG_TAG);
+    protected void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+        ((SecuredNativeSmartRegisterActivity)getActivity()).showFragmentDialog(dialogOptionModel, tag);
     }
 
-    protected abstract DefaultOptionsProvider getDefaultOptionsProvider();
+    protected abstract SecuredNativeSmartRegisterActivity.DefaultOptionsProvider getDefaultOptionsProvider();
 
-    protected abstract NavBarOptionsProvider getNavBarOptionsProvider();
+    protected abstract SecuredNativeSmartRegisterActivity.NavBarOptionsProvider getNavBarOptionsProvider();
 
     protected abstract SmartRegisterClientsProvider clientsProvider();
 
     protected abstract void onInitialization();
 
-    public abstract void startRegistration();
+    protected abstract void startRegistration();
 
     private class FilterDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
-            return navBarOptionsProvider.filterOptions();
+            return getNavBarOptionsProvider().filterOptions();
         }
 
         @Override
@@ -401,7 +365,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private class SortDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
-            return navBarOptionsProvider.sortingOptions();
+            return getNavBarOptionsProvider().sortingOptions();
         }
 
         @Override
@@ -413,12 +377,12 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     protected class ServiceModeDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
-            return navBarOptionsProvider.serviceModeOptions();
+            return getNavBarOptionsProvider().serviceModeOptions();
         }
 
         @Override
         public void onDialogOptionSelection(DialogOption option, Object tag) {
-            onServiceModeSelection((ServiceModeOption) option);
+            onServiceModeSelection((ServiceModeOption) option, mView);
         }
     }
 
@@ -444,7 +408,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
 
         private ViewGroup getPaginationView() {
-            return (ViewGroup) getLayoutInflater().inflate(R.layout.smart_register_pagination, null);
+            return (ViewGroup) getActivity().getLayoutInflater().inflate(R.layout.smart_register_pagination, null);
         }
 
         private int getCurrentPageCount() {
@@ -517,17 +481,5 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         private void clearSearchText() {
             searchView.setText("");
         }
-    }
-    protected String getParams(FormSubmission submission) {
-        return new Gson().toJson(
-                create(INSTANCE_ID_PARAM, submission.instanceId())
-                        .put(ENTITY_ID_PARAM, submission.entityId())
-                        .put(FORM_NAME_PARAM, submission.formName())
-                        .put(VERSION_PARAM, submission.version())
-                        .put(SYNC_STATUS, PENDING.value())
-                        .map());
-    }
-
-    public void saveFormSubmission(String formSubmision, String id, String formName, Map<String, String> fieldOverrides){
     }
 }

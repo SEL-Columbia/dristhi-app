@@ -16,10 +16,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".NativeHomeActivity"
-            android:theme="@android:style/Theme.Holo"
+            android:theme="@style/AppTheme"
             android:screenOrientation="landscape"/>
         <activity android:name=".household.HouseHoldSmartRegisterActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppThemeNoActionBarAndTitle"
             android:screenOrientation="landscape"/>
         <activity android:name=".household.tutorial.tutorialCircleViewFlow"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"

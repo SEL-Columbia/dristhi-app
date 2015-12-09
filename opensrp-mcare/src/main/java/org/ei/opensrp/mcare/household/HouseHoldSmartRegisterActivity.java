@@ -3,6 +3,10 @@ package org.ei.opensrp.mcare.household;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -21,9 +25,14 @@ import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClients;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.mcare.fragment.HouseHoldSmartRegisterFragment;
+import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.contract.ECClient;
@@ -40,6 +49,9 @@ import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
+import org.ei.opensrp.view.fragment.DisplayFormFragment;
+import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
+import org.ei.opensrp.view.viewpager.SampleViewPager;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.EntityUtils;
 import org.opensrp.api.util.LocationTree;
@@ -50,6 +62,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import util.AsyncTask;
 
 import static android.view.View.INVISIBLE;
@@ -58,111 +72,67 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
-    private SmartRegisterClientsProvider clientProvider = null;
-    private CommonPersonObjectController controller;
-    private VillageController villageController;
-    private DialogOptionMapper dialogOptionMapper;
+    @Bind(R.id.view_pager)
+    SampleViewPager mPager;
+    private FragmentPagerAdapter mPagerAdapter;
+    private int currentPage;
 
-    private final ClientActionHandler clientActionHandler = new ClientActionHandler();
-    private String locationDialogTAG = "locationDialogTAG";
+    private String[] formNames = new String[]{};
+    private android.support.v4.app.Fragment mBaseFragment = null;
 
     @Override
-    protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(clientsProvider());
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        formNames = this.buildFormNameList();
+        mBaseFragment = new HouseHoldSmartRegisterFragment();
+
+        // Instantiate a ViewPager and a PagerAdapter.
+        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
+        mPager.setOffscreenPageLimit(getEditOptions().length);
+        mPager.setAdapter(mPagerAdapter);
+        mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+                onPageChanged(position);
+            }
+        });
+    }
+    public void onPageChanged(int page){
+        setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
-    protected DefaultOptionsProvider getDefaultOptionsProvider() {
-        return new DefaultOptionsProvider() {
-
-            @Override
-            public ServiceModeOption serviceMode() {
-                return new HouseHoldServiceModeOption(clientsProvider());
-            }
-
-            @Override
-            public FilterOption villageFilter() {
-                return new AllClientsFilter();
-            }
-
-            @Override
-            public SortOption sortOption() {
-               return new HouseholdCensusDueDateSort();
-
-            }
-
-            @Override
-            public String nameInShortFormForTitle() {
-                return Context.getInstance().getStringResource(R.string.hh_register_title_in_short);
-            }
-        };
-    }
+    protected DefaultOptionsProvider getDefaultOptionsProvider() {return null;}
 
     @Override
-    protected NavBarOptionsProvider getNavBarOptionsProvider() {
-        return new NavBarOptionsProvider() {
-
-            @Override
-            public DialogOption[] filterOptions() {
-
-                ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
-
-                dialogOptionslist.add(new AllClientsFilter());
-                dialogOptionslist.add( new NOHHMWRAEXISTFilterOption("0","ELCO", NOHHMWRAEXISTFilterOption.ByColumnAndByDetails.byDetails));
-                dialogOptionslist.add(new HHMWRAEXISTFilterOption("0","ELCO", HHMWRAEXISTFilterOption.ByColumnAndByDetails.byDetails));
-
-
-
-                String locationjson = context.anmLocationController().get();
-                LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
-
-                Map<String,TreeNode<String, Location>> locationMap =
-                        locationTree.getLocationsHierarchy();
-                    addChildToList(dialogOptionslist,locationMap);
-                        DialogOption[] dialogOptions = new DialogOption[dialogOptionslist.size()];
-                       for (int i = 0;i < dialogOptionslist.size();i++){
-                        dialogOptions[i] = dialogOptionslist.get(i);
-                       }
-
-                               return  dialogOptions;
-            }
-
-            @Override
-            public DialogOption[] serviceModeOptions() {
-                return new DialogOption[]{};
-            }
-
-            @Override
-            public DialogOption[] sortingOptions() {
-                return new DialogOption[]{
-//                        new HouseholdCensusDueDateSort(),
-
-                        new HouseholdCensusDueDateSort(),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"FWHOHFNAME",getResources().getString(R.string.hh_alphabetical_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"FWGOBHHID",getResources().getString(R.string.hh_fwGobhhid_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"FWJIVHHID",getResources().getString(R.string.hh_fwJivhhid_sort))
-//""
-//                        new CommonObjectSort(true,false,true,"age")
-                };
-            }
-
-            @Override
-            public String searchHint() {
-                return getResources().getString(R.string.hh_search_hint);
-            }
-        };
-    }
+    protected void setupViews() {}
 
     @Override
-    protected SmartRegisterClientsProvider clientsProvider() {
-        if (clientProvider == null) {
-            clientProvider = new HouseHoldSmartClientsProvider(
-                    this,clientActionHandler , controller,context.alertService());
-        }
-        return clientProvider;
+    protected void onResumption(){}
+
+    @Override
+    protected NavBarOptionsProvider getNavBarOptionsProvider() {return null;}
+
+    @Override
+    protected SmartRegisterClientsProvider clientsProvider() {return null;}
+
+    @Override
+    protected void onInitialization() {}
+
+    @Override
+    public void startRegistration() {
     }
 
-    private DialogOption[] getEditOptions() {
+
+
+
+    public DialogOption[] getEditOptions() {
         HashMap <String,String> overridemap = new HashMap<String,String>();
         overridemap.put("existing_ELCO", "ELCO");
         overridemap.put("existing_location", "existing_location");
@@ -170,213 +140,114 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
                 new OpenFormOption(getResources().getString(R.string.censusenrollmentform), "census_enrollment_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.byDetails)
         };
+
     }
+
+
+
+
+
+
+
+
+
+
 
     @Override
-    protected void onInitialization() {
-        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new HouseholdCensusDueDateSort());
-        villageController = new VillageController(context.allEligibleCouples(),
-                context.listCache(), context.villagesCache());
-        dialogOptionMapper = new DialogOptionMapper();
-        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
-
-//        checkforNidMissing();
-    }
-
-    private void checkforNidMissing() {
-        LinearLayout titlelayout = (LinearLayout)findViewById(org.ei.opensrp.R.id.title_layout);
-        if(anyNIdmissing(controller)) {
-            try {
-                titlelayout.removeView(findViewById(900)) ;
-
-            }catch(Exception e){
-
-            }
-            ImageButton warn = new ImageButton(this);
-            warn.setImageDrawable(getResources().getDrawable(R.mipmap.warning));
-            warn.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            warn.setBackground(null);
-            warn.setId(900);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.gravity = Gravity.CENTER;
-
-//        warn.setGravity(Gravity.CENTER);
-//        warn.setB
-            titlelayout.addView(warn, layoutParams);
-            warn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getClientsAdapter()
-                            .refreshList(new noNIDFilter(), getCurrentServiceModeOption(),
-                                    getCurrentSearchFilter(), getCurrentSortOption());
-                }
-            });
-        }else{
-            titlelayout.removeView(findViewById(900));
-        }
-    }
-
-    private boolean anyNIdmissing(CommonPersonObjectController controller) {
-        boolean toreturn = false;
-        List<CommonPersonObject> allchildelco = null;
-        CommonPersonObjectClients clients = controller.getClients();
-        ArrayList<String> list = new ArrayList<String>();
-        AllCommonsRepository allElcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
-
-        for(int i = 0;i <clients.size();i++) {
-
-            list.add((clients.get(i).entityId()));
-
-        }
-        allchildelco = allElcoRepository.findByRelationalIDs(list);
-
-        if(allchildelco != null) {
-           for (int i = 0; i < allchildelco.size(); i++) {
-               if (allchildelco.get(i).getDetails().get("FWELIGIBLE").equalsIgnoreCase("1")) {
-                   if (allchildelco.get(i).getDetails().get("nidImage") == null) {
-                       toreturn = true;
-                   }
-               }
-           }
-       }
-        return toreturn;
-//        return false;
-    }
-
-    @Override
-    public void setupViews() {
-        getDefaultOptionsProvider();
-
-        super.setupViews();
-        findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-
-        setServiceModeViewDrawableRight(null);
-        updateSearchView();
-    }
-
-    @Override
-    protected void startRegistration() {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Fragment prev = getFragmentManager().findFragmentByTag(locationDialogTAG);
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        LocationSelectorDialogFragment
-                .newInstance(this, new EditDialogOptionModel(), context.anmLocationController().get(), "new_household_registration")
-                .show(ft, locationDialogTAG);
-    }
-
-    private class ClientActionHandler implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.profile_info_layout:
-                    HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(HouseHoldSmartRegisterActivity.this,HouseHoldDetailActivity.class);
-                    startActivity(intent);
-                    finish();
-                    break;
-                case R.id.hh_due_date:
-                    showFragmentDialog(new EditDialogOptionModel(), view.getTag());
-                    break;
-            }
-        }
-
-        private void showProfileView(ECClient client) {
-            navigationController.startEC(client.entityId());
-        }
-    }
-
-    private class EditDialogOptionModel implements DialogOptionModel {
-        @Override
-        public DialogOption[] getDialogOptions() {
-            return getEditOptions();
-        }
-
-        @Override
-        public void onDialogOptionSelection(DialogOption option, Object tag) {
-            onEditSelection((EditOption) option, (SmartRegisterClient) tag);
-        }
-    }
-
-    @Override
-    protected void onResumption() {
-        super.onResumption();
-        getDefaultOptionsProvider();
-        updateSearchView();
-        checkforNidMissing();
+    public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides){
+        // save the form
         try{
-            LoginActivity.setLanguage();
-        }catch (Exception e){
+            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
 
+            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
+            ZiggyService ziggyService = context.ziggyService();
+            ziggyService.saveForm(getParams(submission), submission.instance());
+
+            //switch to forms list fragment
+            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
-    public void updateSearchView(){
-        getSearchView().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    @Override
+    public void startFormActivity(String formName, String entityId, String metaData) {
+        try {
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
+            if (entityId != null || metaData != null){
+                String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.setFormData(data);
+                    displayFormFragment.loadFormData();
+                    displayFormFragment.setRecordId(entityId);
+                }
             }
 
+            mPager.setCurrentItem(formIndex, false); //Don't animate the view on orientation change the view disapears
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void switchToBaseFragment(final String data){
+        final int prevPageIndex = currentPage;
+        runOnUiThread(new Runnable() {
             @Override
-            public void onTextChanged(final CharSequence cs, int start, int before, int count) {
-                (new AsyncTask() {
-                    SmartRegisterClients filteredClients;
+            public void run() {
+                mPager.setCurrentItem(0, false);
+                SecuredNativeSmartRegisterFragment registerFragment = (SecuredNativeSmartRegisterFragment) findFragmentByPosition(0);
+                if (registerFragment != null && data != null) {
+                    registerFragment.refreshListView();
+                }
 
-                    @Override
-                    protected Object doInBackground(Object[] params) {
-//                        currentSearchFilter = new HHSearchOption(cs.toString());
-                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
-                        filteredClients = getClientsAdapter().getListItemProvider()
-                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
-                                        getCurrentSearchFilter(), getCurrentSortOption());
+                //hack reset the form
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.setFormData(null);
+                    displayFormFragment.loadFormData();
+                }
 
-
-                        return null;
-                    }
-
-                    @Override
-                    protected void onPostExecute(Object o) {
-//                        clientsAdapter
-//                                .refreshList(currentVillageFilter, currentServiceModeOption,
-//                                        currentSearchFilter, currentSortOption);
-                        getClientsAdapter().refreshClients(filteredClients);
-                        getClientsAdapter().notifyDataSetChanged();
-                        getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
-                        super.onPostExecute(o);
-                    }
-                }).execute();
-//                currentSearchFilter = new HHSearchOption(cs.toString());
-//                clientsAdapter
-//                        .refreshList(currentVillageFilter, currentServiceModeOption,
-//                                currentSearchFilter, currentSortOption);
-//
-//                searchCancelView.setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
+                displayFormFragment.setRecordId(null);
             }
         });
+
     }
-    public void addChildToList(ArrayList<DialogOption> dialogOptionslist,Map<String,TreeNode<String, Location>> locationMap){
-        for(Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
 
-                    if(entry.getValue().getChildren() != null) {
-                        addChildToList(dialogOptionslist,entry.getValue().getChildren());
+    public android.support.v4.app.Fragment findFragmentByPosition(int position) {
+        FragmentPagerAdapter fragmentPagerAdapter = mPagerAdapter;
+        return getSupportFragmentManager().findFragmentByTag("android:switcher:" + mPager.getId() + ":" + fragmentPagerAdapter.getItemId(position));
+    }
 
-                    }else{
-                        StringUtil.humanize(entry.getValue().getLabel());
-                        String name = StringUtil.humanize(entry.getValue().getLabel());
-                        dialogOptionslist.add(new CommonObjectFilterOption(name.replace(" ","_"),"location_name", CommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+    public DisplayFormFragment getDisplayFormFragmentAtIndex(int index) {
+        return  (DisplayFormFragment)findFragmentByPosition(index);
+    }
 
-                    }
+    @Override
+    public void onBackPressed() {
+        if (currentPage != 0){
+            switchToBaseFragment(null);
+        }else if (currentPage == 0) {
+            super.onBackPressed(); // allow back key only if we are
         }
     }
+
+    private String[] buildFormNameList(){
+        List<String> formNames = new ArrayList<String>();
+        formNames.add("new_household_registration");
+        DialogOption[] options = getEditOptions();
+        for (int i = 0; i < options.length; i++){
+            formNames.add(((OpenFormOption) options[i]).getFormName());
+        }
+        return formNames.toArray(new String[formNames.size()]);
+    }
+
+
+
+
+
 }

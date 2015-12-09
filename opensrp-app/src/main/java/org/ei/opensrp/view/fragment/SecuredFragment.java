@@ -1,31 +1,40 @@
-package org.ei.opensrp.view.activity;
+package org.ei.opensrp.view.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.R;
 import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.view.activity.FormActivity;
+import org.ei.opensrp.view.activity.LoginActivity;
+import org.ei.opensrp.view.activity.MicroFormActivity;
+import org.ei.opensrp.view.activity.SecuredActivity;
 import org.ei.opensrp.view.controller.ANMController;
 import org.ei.opensrp.view.controller.FormController;
 import org.ei.opensrp.view.controller.NavigationController;
-import android.support.v7.app.ActionBarActivity;
 
 import java.util.Map;
 
 import static android.widget.Toast.LENGTH_SHORT;
-import static org.ei.opensrp.AllConstants.*;
+import static org.ei.opensrp.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.opensrp.AllConstants.FIELD_OVERRIDES_PARAM;
+import static org.ei.opensrp.AllConstants.FORM_NAME_PARAM;
+import static org.ei.opensrp.AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
 import static org.ei.opensrp.event.Event.ON_LOGOUT;
-import static org.ei.opensrp.util.Log.logInfo;
 
-public abstract class SecuredActivity extends ActionBarActivity {
+/**
+ * Created by koros on 10/12/15.
+ */
+public abstract class SecuredFragment extends Fragment {
+
     protected Context context;
     protected Listener<Boolean> logoutListener;
     protected FormController formController;
@@ -34,35 +43,35 @@ public abstract class SecuredActivity extends ActionBarActivity {
     private String metaData;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        context = Context.getInstance().updateApplicationContext(this.getActivity().getApplicationContext());
 
         logoutListener = new Listener<Boolean>() {
             public void onEvent(Boolean data) {
-                finish();
+                getActivity().finish();
             }
         };
         ON_LOGOUT.addListener(logoutListener);
 
         if (context.IsUserLoggedOut()) {
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(getActivity(), LoginActivity.class));
             context.userService().logoutSession();
             return;
         }
-        formController = new FormController(this);
+        formController = new FormController((SecuredActivity)getActivity());
         anmController = context.anmController();
-        navigationController = new NavigationController(this, anmController);
+        navigationController = new NavigationController(getActivity(), anmController);
         onCreation();
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         if (context.IsUserLoggedOut()) {
             context.userService().logoutSession();
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(getActivity(), LoginActivity.class));
             return;
         }
 
@@ -74,7 +83,7 @@ public abstract class SecuredActivity extends ActionBarActivity {
         int i = item.getItemId();
         if (i == R.id.switchLanguageMenuItem) {
             String newLanguagePreference = context.userService().switchLanguagePreference();
-            Toast.makeText(this, "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
 
             return super.onOptionsItemSelected(item);
         } else {
@@ -84,14 +93,7 @@ public abstract class SecuredActivity extends ActionBarActivity {
 
     public void logoutUser() {
         context.userService().logout();
-        startActivity(new Intent(this, LoginActivity.class));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
+        startActivity(new Intent(getActivity(), LoginActivity.class));
     }
 
     protected abstract void onCreation();
@@ -109,7 +111,7 @@ public abstract class SecuredActivity extends ActionBarActivity {
     private void launchForm(String formName, String entityId, String metaData, Class formType) {
         this.metaData = metaData;
 
-        Intent intent = new Intent(this, formType);
+        Intent intent = new Intent(getActivity(), formType);
         intent.putExtra(FORM_NAME_PARAM, formName);
         intent.putExtra(ENTITY_ID_PARAM, entityId);
         addFieldOverridesIfExist(intent);
@@ -123,21 +125,6 @@ public abstract class SecuredActivity extends ActionBarActivity {
                     }.getType());
             if (metaDataMap.containsKey(FIELD_OVERRIDES_PARAM)) {
                 intent.putExtra(FIELD_OVERRIDES_PARAM, metaDataMap.get(FIELD_OVERRIDES_PARAM));
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (isSuccessfulFormSubmission(resultCode)) {
-            logInfo("Form successfully saved. MetaData: " + metaData);
-            if (hasMetadata()) {
-                Map<String, String> metaDataMap = new Gson().fromJson(metaData, new TypeToken<Map<String, String>>() {
-                }.getType());
-                if (metaDataMap.containsKey(ENTITY_ID) && metaDataMap.containsKey(ALERT_NAME_PARAM)) {
-                    Context.getInstance().alertService().changeAlertStatusToInProcess(metaDataMap.get(ENTITY_ID), metaDataMap.get(ALERT_NAME_PARAM));
-                }
             }
         }
     }
