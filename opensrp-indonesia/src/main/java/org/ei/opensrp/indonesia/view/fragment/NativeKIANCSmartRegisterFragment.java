@@ -138,7 +138,7 @@ public class NativeKIANCSmartRegisterFragment extends BidanSecuredNativeSmartReg
         }
 
         private void showProfileView(KIANCClient ancClient) {
-            navigationControllerINA.startMotherDetail(ancClient.getKartuIbuCaseId());
+            ((NativeKIANCSmartRegisterActivity)getActivity()).startDetailFragment(ancClient.getKartuIbuCaseId());
         }
     }
 

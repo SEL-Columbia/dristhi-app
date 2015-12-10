@@ -53,7 +53,7 @@ public class RiskFlagsNativeCard extends CardWithList {
 
     @Override
     protected void initCard() {
-        setSwipeable(true);
+        setSwipeable(false);
     }
 
     @Override

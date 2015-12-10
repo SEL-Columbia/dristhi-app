@@ -175,7 +175,7 @@ public class NativeKIPNCSmartRegisterFragment extends BidanSecuredNativeSmartReg
             }
         }
         private void showProfileView(KIPNCClient kartuIbuClient) {
-            navigationControllerINA.startMotherDetail(kartuIbuClient.getKartuIbuEntityId());
+            ((NativeKIPNCSmartRegisterActivity)getActivity()).startDetailFragment(kartuIbuClient.getKartuIbuEntityId());
         }
     }
 

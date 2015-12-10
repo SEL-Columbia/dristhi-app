@@ -2,10 +2,7 @@ package org.ei.opensrp.indonesia.view.controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.webkit.JavascriptInterface;
 
-import org.ei.opensrp.indonesia.view.activity.ChildProfileViewActivity;
-import org.ei.opensrp.indonesia.view.activity.MotherProfileViewActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKBSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKIANCSmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeKIAnakSmartRegisterActivity;
@@ -14,8 +11,6 @@ import org.ei.opensrp.indonesia.view.activity.NativeKISmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.activity.NativeReportingActivity;
 import org.ei.opensrp.view.controller.ANMController;
 import org.ei.opensrp.view.controller.NavigationController;
-
-import static org.ei.opensrp.AllConstants.CASE_ID;
 
 /**
  * Created by Dimas Ciputra on 9/12/15.
@@ -47,18 +42,6 @@ public class NavigationControllerINA extends NavigationController {
 
     public void startKBRegistry() {
         activity.startActivity(new Intent(activity, NativeKBSmartRegisterActivity.class));
-    }
-
-    public void startMotherDetail(String entityId) {
-        Intent intent = new Intent(activity.getApplicationContext(), MotherProfileViewActivity.class);
-        intent.putExtra(CASE_ID, entityId);
-        activity.startActivity(intent);
-    }
-
-    public void startChildDetail(String entityId) {
-        Intent intent = new Intent(activity.getApplicationContext(), ChildProfileViewActivity.class);
-        intent.putExtra(CASE_ID, entityId);
-        activity.startActivity(intent);
     }
 
     public void startReports() {

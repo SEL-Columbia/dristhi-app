@@ -155,7 +155,7 @@ public class NativeKIAnakSmartRegisterFragment extends BidanSecuredNativeSmartRe
         }
 
         public void showProfileView(AnakClient client) {
-            navigationControllerINA.startChildDetail(client.entityId());
+            ((NativeKIAnakSmartRegisterActivity)getActivity()).startDetailFragment(client.entityId());
         }
     }
 

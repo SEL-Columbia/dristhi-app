@@ -1,7 +1,7 @@
 package org.ei.opensrp.indonesia.view.activity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -19,12 +19,7 @@ import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.provider.AnakRegisterClientsProvider;
 import org.ei.opensrp.indonesia.service.formSubmissionHandler.AnakRegistrationHandler;
 import org.ei.opensrp.indonesia.util.StringUtil;
-import org.ei.opensrp.indonesia.view.contract.AnakClient;
-import org.ei.opensrp.indonesia.view.controller.AnakRegisterController;
-import org.ei.opensrp.indonesia.view.dialog.AllHighRiskSort;
-import org.ei.opensrp.indonesia.view.dialog.AnakImmunizationServiceMode;
-import org.ei.opensrp.indonesia.view.dialog.AnakOverviewServiceMode;
-import org.ei.opensrp.indonesia.view.dialog.ReverseNameSort;
+import org.ei.opensrp.indonesia.view.fragment.ChildProfileViewFragment;
 import org.ei.opensrp.indonesia.view.fragment.NativeKIAnakSmartRegisterFragment;
 import org.ei.opensrp.indonesia.view.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -58,8 +53,10 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
+import static org.ei.opensrp.R.string.form_back_confirm_dialog_message;
+import static org.ei.opensrp.R.string.form_back_confirm_dialog_title;
+import static org.ei.opensrp.R.string.no_button_label;
+import static org.ei.opensrp.R.string.yes_button_label;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.*;
 
 /**
@@ -67,13 +64,12 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.*;
  */
 public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity implements LocationSelectorDialogFragment.OnLocationSelectedListener{
 
-    @Bind(R.id.view_pager)
-    SampleViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
     private int currentPage;
 
     private String[] formNames = new String[]{};
     private android.support.v4.app.Fragment mBaseFragment = null;
+    private android.support.v4.app.Fragment mProfileFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,10 +81,11 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
 
         formNames = this.buildFormNameList();
         mBaseFragment = new NativeKIAnakSmartRegisterFragment();
+        mProfileFragment = new ChildProfileViewFragment();
 
         // Instantiate a ViewPager and a PagerAdapter.
-        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
-        mPager.setOffscreenPageLimit(getEditOptions().length);
+        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment, mProfileFragment);
+        mPager.setOffscreenPageLimit(getEditOptions().length + ((BaseRegisterActivityPagerAdapter)mPagerAdapter).offset());
         mPager.setAdapter(mPagerAdapter);
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -100,10 +97,10 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
     }
 
     public void onPageChanged(int page){
-        setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(page < ((BaseRegisterActivityPagerAdapter)mPagerAdapter).offset() ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
-    @Override
+    @Override   
     protected SmartRegisterPaginatedAdapter adapter() {
         return null;
     }
@@ -164,7 +161,7 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
             if(!Arrays.asList(formNames).contains(formName)) {
 
             }
-            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + ((BaseRegisterActivityPagerAdapter)mPagerAdapter).offset(); // add the offset
             if (entityId != null || metaData != null){
                 String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
@@ -250,10 +247,45 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
 
     @Override
     public void onBackPressed() {
-        if (currentPage != 0){
-            switchToBaseFragment(null);
-        }else if (currentPage == 0) {
+        if (currentPage > 1) {
+            new AlertDialog.Builder(this)
+                    .setMessage(form_back_confirm_dialog_message)
+                    .setTitle(form_back_confirm_dialog_title)
+                    .setCancelable(false)
+                    .setPositiveButton(yes_button_label,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                    goBack();
+                                }
+                            })
+                    .setNegativeButton(no_button_label,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                }
+                            })
+                    .show();
+        } else if(currentPage == 1) {
+            mPager.setCurrentItem(0, false);
+            ChildProfileViewFragment fragment = (ChildProfileViewFragment)findFragmentByPosition(1);
+            fragment.clearCard();
+        } else if (currentPage == 0) {
             super.onBackPressed(); // allow back key only if we are
         }
     }
+
+    private void goBack() {
+        switchToBaseFragment(null);
+    }
+
+    public void startDetailFragment(String entityId) {
+        if(entityId!=null) {
+            ChildProfileViewFragment fragment = (ChildProfileViewFragment) findFragmentByPosition(1);
+            fragment.setCaseId(entityId);
+        }
+        mPager.setCurrentItem(1, false);
+    }
+
+
 }

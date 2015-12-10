@@ -176,7 +176,7 @@ public class NativeKBSmartRegisterFragment extends BidanSecuredNativeSmartRegist
         }
 
         private void showProfileView(KBClient kartuIbuClient) {
-            navigationControllerINA.startMotherDetail(kartuIbuClient.entityId());
+            ((NativeKBSmartRegisterActivity)getActivity()).startDetailFragment(kartuIbuClient.entityId());
         }
     }
 

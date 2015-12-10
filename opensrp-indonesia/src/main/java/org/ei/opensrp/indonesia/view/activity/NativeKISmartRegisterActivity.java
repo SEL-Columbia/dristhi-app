@@ -14,6 +14,7 @@ import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
 import org.ei.opensrp.indonesia.view.controller.KartuIbuRegisterController;
+import org.ei.opensrp.indonesia.view.fragment.MotherProfileViewFragment;
 import org.ei.opensrp.indonesia.view.fragment.NativeKISmartRegisterFragment;
 import org.ei.opensrp.indonesia.view.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -25,23 +26,18 @@ import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
-import org.ei.opensrp.view.viewpager.SampleViewPager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import static org.ei.opensrp.R.string.form_back_confirm_dialog_message;
 import static org.ei.opensrp.R.string.form_back_confirm_dialog_title;
 import static org.ei.opensrp.R.string.no_button_label;
 import static org.ei.opensrp.R.string.yes_button_label;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.ANAK_BAYI_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_CLOSE;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_EDIT;
@@ -53,19 +49,12 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_PELAY
  */
 public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity implements LocationSelectorDialogFragment.OnLocationSelectedListener {
 
-    private SmartRegisterClientsProvider clientProvider = null;
-    private KartuIbuRegisterController controller;
-    private DialogOptionMapper dialogOptionMapper;
-    private BidanVillageController villageController;
-
-
-    @Bind(R.id.view_pager)
-    SampleViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
     private int currentPage;
 
     private String[] formNames = new String[]{};
     private android.support.v4.app.Fragment mBaseFragment = null;
+    private android.support.v4.app.Fragment mProfileFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +66,12 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
 
         formNames = this.buildFormNameList();
         mBaseFragment = new NativeKISmartRegisterFragment();
+        mProfileFragment = new MotherProfileViewFragment();
 
         // Instantiate a ViewPager and a PagerAdapter.
-        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
-        mPager.setOffscreenPageLimit(getEditOptions().length);
+        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment, mProfileFragment);
+        // + 1 for detail view
+        mPager.setOffscreenPageLimit(getEditOptions().length + ((BaseRegisterActivityPagerAdapter)mPagerAdapter).offset());
         mPager.setAdapter(mPagerAdapter);
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -92,7 +83,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
     }
 
     public void onPageChanged(int page) {
-        setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(page < 2 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
@@ -179,7 +170,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
         try {
-            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + ((BaseRegisterActivityPagerAdapter)mPagerAdapter).offset(); // add the offset
             if (entityId != null || metaData != null) {
                 String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
@@ -268,7 +259,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
 
     @Override
     public void onBackPressed() {
-        if (currentPage != 0) {
+        if (currentPage > 1) {
             new AlertDialog.Builder(this)
                     .setMessage(form_back_confirm_dialog_message)
                     .setTitle(form_back_confirm_dialog_title)
@@ -287,9 +278,21 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
                                 }
                             })
                     .show();
+        } else if(currentPage == 1) {
+            mPager.setCurrentItem(0, false);
+            MotherProfileViewFragment fragment = (MotherProfileViewFragment)findFragmentByPosition(1);
+            fragment.clearCard();
         } else if (currentPage == 0) {
             super.onBackPressed(); // allow back key only if we are
         }
+    }
+
+    public void startDetailFragment(String entityId) {
+        if(entityId!=null) {
+            MotherProfileViewFragment fragment = (MotherProfileViewFragment) findFragmentByPosition(1);
+            fragment.setCaseId(entityId);
+        }
+        mPager.setCurrentItem(1, false);
     }
 
 }

@@ -12,6 +12,7 @@ import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.provider.KIClientsProvider;
 import org.ei.opensrp.indonesia.service.formSubmissionHandler.KIRegistrationHandler;
+import org.ei.opensrp.indonesia.view.activity.NativeKISmartRegisterActivity;
 import org.ei.opensrp.indonesia.view.contract.KartuIbuClient;
 import org.ei.opensrp.indonesia.view.controller.BidanVillageController;
 import org.ei.opensrp.indonesia.view.controller.KartuIbuRegisterController;
@@ -201,7 +202,7 @@ public class NativeKISmartRegisterFragment extends BidanSecuredNativeSmartRegist
         }
 
         private void showProfileView(KartuIbuClient kartuIbuClient) {
-            navigationControllerINA.startMotherDetail(kartuIbuClient.entityId());
+            ((NativeKISmartRegisterActivity)getActivity()).startDetailFragment(kartuIbuClient.entityId());
         }
     }
 

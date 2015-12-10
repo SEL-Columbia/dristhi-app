@@ -18,6 +18,9 @@ import org.ei.opensrp.view.controller.NavigationController;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.SmartRegisterDialogFragment;
+import org.ei.opensrp.view.viewpager.SampleViewPager;
+
+import butterknife.Bind;
 
 /**
  * Created by Dimas Ciputra on 3/8/15.
@@ -26,6 +29,9 @@ public abstract class BidanSecuredNativeSmartRegisterActivity extends SecuredNat
 
     private static final String DIALOG_TAG = "dialog";
     protected NavigationControllerINA navigationControllerINA;
+
+    @Bind(R.id.view_pager)
+    public SampleViewPager mPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

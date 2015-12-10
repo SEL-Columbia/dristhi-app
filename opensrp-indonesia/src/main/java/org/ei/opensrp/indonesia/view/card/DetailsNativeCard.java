@@ -61,13 +61,7 @@ public class DetailsNativeCard extends CardWithList {
 
     @Override
     protected void initCard() {
-        setSwipeable(true);
-        setOnSwipeListener(new OnSwipeListener() {
-            @Override
-            public void onSwipe(Card card) {
-                Toast.makeText(getContext(), "Swipe on " + card.getCardHeader().getTitle(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        setSwipeable(false);
     }
 
     @Override

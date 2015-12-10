@@ -1,7 +1,9 @@
 package org.ei.opensrp.indonesia.view.activity;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,6 +11,10 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Toast;
 
+import static org.ei.opensrp.R.string.form_back_confirm_dialog_message;
+import static org.ei.opensrp.R.string.form_back_confirm_dialog_title;
+import static org.ei.opensrp.R.string.no_button_label;
+import static org.ei.opensrp.R.string.yes_button_label;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.*;
 
 import org.ei.opensrp.domain.form.FieldOverrides;
@@ -28,6 +34,7 @@ import org.ei.opensrp.indonesia.view.dialog.AllHighRiskSort;
 import org.ei.opensrp.indonesia.view.dialog.AllKBServiceMode;
 import org.ei.opensrp.indonesia.view.dialog.KBMethodSort;
 import org.ei.opensrp.indonesia.view.dialog.WifeAgeSort;
+import org.ei.opensrp.indonesia.view.fragment.MotherProfileViewFragment;
 import org.ei.opensrp.indonesia.view.fragment.NativeKBSmartRegisterFragment;
 import org.ei.opensrp.indonesia.view.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -75,6 +82,7 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
 
     private String[] formNames = new String[]{};
     private android.support.v4.app.Fragment mBaseFragment = null;
+    private android.support.v4.app.Fragment mProfileFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,10 +94,11 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
 
         formNames = this.buildFormNameList();
         mBaseFragment = new NativeKBSmartRegisterFragment();
+        mProfileFragment = new MotherProfileViewFragment();
 
         // Instantiate a ViewPager and a PagerAdapter.
-        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
-        mPager.setOffscreenPageLimit(getEditOptions().length);
+        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment, mProfileFragment);
+        mPager.setOffscreenPageLimit(getEditOptions().length + ((BaseRegisterActivityPagerAdapter)mPagerAdapter).offset());
         mPager.setAdapter(mPagerAdapter);
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -101,7 +110,7 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
     }
 
     public void onPageChanged(int page){
-        setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(page < ((BaseRegisterActivityPagerAdapter)mPagerAdapter).offset() ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
 
@@ -158,7 +167,7 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
         try {
-            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + + ((BaseRegisterActivityPagerAdapter)mPagerAdapter).offset(); // add the offset
             if (entityId != null || metaData != null){
                 String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
@@ -230,15 +239,6 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
         return  (DisplayFormFragment)findFragmentByPosition(index);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (currentPage != 0){
-            switchToBaseFragment(null);
-        }else if (currentPage == 0) {
-            super.onBackPressed(); // allow back key only if we are
-        }
-    }
-
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
         formNames.add(KOHORT_KB_REGISTER);
@@ -275,4 +275,47 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
             startFormActivity(KOHORT_KB_REGISTER, null, fieldOverrides.getJSONString());
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (currentPage > 1) {
+            new AlertDialog.Builder(this)
+                    .setMessage(form_back_confirm_dialog_message)
+                    .setTitle(form_back_confirm_dialog_title)
+                    .setCancelable(false)
+                    .setPositiveButton(yes_button_label,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                    goBack();
+                                }
+                            })
+                    .setNegativeButton(no_button_label,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                }
+                            })
+                    .show();
+        } else if(currentPage == 1) {
+            mPager.setCurrentItem(0, false);
+            MotherProfileViewFragment fragment = (MotherProfileViewFragment)findFragmentByPosition(1);
+            fragment.clearCard();
+        } else if (currentPage == 0) {
+            super.onBackPressed(); // allow back key only if we are
+        }
+    }
+
+    private void goBack() {
+        switchToBaseFragment(null);
+    }
+
+    public void startDetailFragment(String entityId) {
+        if(entityId!=null) {
+            MotherProfileViewFragment fragment = (MotherProfileViewFragment) findFragmentByPosition(1);
+            fragment.setCaseId(entityId);
+        }
+        mPager.setCurrentItem(1, false);
+    }
+
 }
