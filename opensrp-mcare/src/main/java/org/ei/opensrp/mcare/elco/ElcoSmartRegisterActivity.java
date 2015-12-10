@@ -1,6 +1,10 @@
 package org.ei.opensrp.mcare.elco;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,9 +18,14 @@ import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.form.FieldOverrides;
-import org.ei.opensrp.mcare.LoginActivity;
+import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.mcare.fragment.ElcoSmartRegisterFragment;
+import org.ei.opensrp.mcare.fragment.HouseHoldSmartRegisterFragment;
+import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.contract.ECClient;
@@ -32,6 +41,9 @@ import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
+import org.ei.opensrp.view.fragment.DisplayFormFragment;
+import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
+import org.ei.opensrp.view.viewpager.SampleViewPager;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.EntityUtils;
 import org.opensrp.api.util.LocationTree;
@@ -39,8 +51,11 @@ import org.opensrp.api.util.TreeNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import util.AsyncTask;
 
 import static android.view.View.INVISIBLE;
@@ -49,111 +64,93 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
-    private SmartRegisterClientsProvider clientProvider = null;
-    private CommonPersonObjectController controller;
-    private VillageController villageController;
-    private DialogOptionMapper dialogOptionMapper;
+    @Bind(R.id.view_pager)
+    SampleViewPager mPager;
+    private FragmentPagerAdapter mPagerAdapter;
+    private int currentPage;
 
-    private final ClientActionHandler clientActionHandler = new ClientActionHandler();
+    private String[] formNames = new String[]{};
+    private android.support.v4.app.Fragment mBaseFragment = null;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        formNames = this.buildFormNameList();
+        mBaseFragment = new ElcoSmartRegisterFragment();
+
+        // Instantiate a ViewPager and a PagerAdapter.
+        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
+        mPager.setOffscreenPageLimit(getEditOptions().length);
+        mPager.setAdapter(mPagerAdapter);
+        mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+                onPageChanged(position);
+            }
+        });
+    }
+    private String[] buildFormNameList(){
+        List<String> formNames = new ArrayList<String>();
+        DialogOption[] options = getEditOptions();
+        for (int i = 0; i < options.length; i++){
+            formNames.add(((OpenFormOption) options[i]).getFormName());
+        }
+        return formNames.toArray(new String[formNames.size()]);
+    }
+
+    public void onPageChanged(int page){
+        setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
     @Override
     protected SmartRegisterPaginatedAdapter adapter() {
         return new SmartRegisterPaginatedAdapter(clientsProvider());
     }
 
     @Override
-    protected DefaultOptionsProvider getDefaultOptionsProvider() {
-        return new DefaultOptionsProvider() {
+    protected DefaultOptionsProvider getDefaultOptionsProvider() {return null;}
 
-            @Override
-            public ServiceModeOption serviceMode() {
-                return new ElcoServiceModeOption(clientsProvider());
-            }
+    @Override
+    protected void setupViews() {}
 
-            @Override
-            public FilterOption villageFilter() {
-                return new AllClientsFilter();
-            }
+    @Override
+    protected void onResumption(){}
 
-            @Override
-            public SortOption sortOption() {
-                return new ElcoPSRFDueDateSort();
+    @Override
+    protected NavBarOptionsProvider getNavBarOptionsProvider() {return null;}
 
-            }
+    @Override
+    protected SmartRegisterClientsProvider clientsProvider() {return null;}
 
-            @Override
-            public String nameInShortFormForTitle() {
-                return getResources().getString(R.string.ec_register_title_in_short);
-            }
+    @Override
+    protected void onInitialization() {}
+
+    @Override
+    public void startRegistration() {
+    }
+
+
+
+
+    public DialogOption[] getEditOptions() {
+        return new DialogOption[]{
+
+                new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController)
         };
     }
 
-    @Override
-    protected NavBarOptionsProvider getNavBarOptionsProvider() {
-        return new NavBarOptionsProvider() {
 
-            @Override
-            public DialogOption[] filterOptions() {
-                ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
-                dialogOptionslist.add(new AllClientsFilter());
-                String locationjson = context.anmLocationController().get();
-                LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
 
-                Map<String,TreeNode<String, Location>> locationMap =
-                        locationTree.getLocationsHierarchy();
-                addChildToList(dialogOptionslist,locationMap);
-                DialogOption[] dialogOptions = new DialogOption[dialogOptionslist.size()];
-                for (int i = 0;i < dialogOptionslist.size();i++){
-                    dialogOptions[i] = dialogOptionslist.get(i);
-                }
 
-                return  dialogOptions;
-            }
 
-            @Override
-            public DialogOption[] serviceModeOptions() {
-                return new DialogOption[]{};
-            }
 
-            @Override
-            public DialogOption[] sortingOptions() {
-                return new DialogOption[]{
-                        new ElcoPSRFDueDateSort(),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"FWWOMFNAME", Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"GOBHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"JiVitAHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort))
 
-//                        new CommonObjectSort(true,false,true,"age")
-                };
-            }
-
-            @Override
-            public String searchHint() {
-                return getString(org.ei.opensrp.R.string.str_ec_search_hint);
-            }
-        };
-    }
-
-    @Override
-    protected void onResumption() {
-        super.onResumption();
-        try{
-            LoginActivity.setLanguage();
-        }catch (Exception e){
-
-        }
-    }
-
-    @Override
-    protected SmartRegisterClientsProvider clientsProvider() {
-        if (clientProvider == null) {
-            clientProvider = new ElcoSmartClientsProvider(
-                    this,clientActionHandler , controller);
-        }
-        return clientProvider;
-    }
-
-    private DialogOption[] getEditOptions(CommonPersonObjectClient elco) {
+    public DialogOption[] getEditOptions(CommonPersonObjectClient elco) {
         AllCommonsRepository allelcoRepository = context.getInstance().allCommonsRepositoryobjects("elco");
         CommonPersonObject elcoobject = allelcoRepository.findByCaseID(elco.entityId());
         AllCommonsRepository householdrep = context.getInstance().allCommonsRepositoryobjects("household");
@@ -166,76 +163,27 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
                 new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)
         };
     }
-
     @Override
-    protected void onInitialization() {
-        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
-//                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-
-        villageController = new VillageController(context.allEligibleCouples(),
-                context.listCache(), context.villagesCache());
-        dialogOptionMapper = new DialogOptionMapper();
-        context.formSubmissionRouter().getHandlerMap().put("psrf_form",new PSRFHandler());
-    }
-
-    @Override
-    public void setupViews() {
-        super.setupViews();
-        findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-
-        ImageButton startregister = (ImageButton)findViewById(org.ei.opensrp.R.id.register_client);
-        startregister.setVisibility(View.GONE);
-        setServiceModeViewDrawableRight(null);
-        updateSearchView();
-    }
-
-    @Override
-    public void startRegistration() {
-        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
-        startFormActivity("census_enrollment_form", null,fieldOverrides.getJSONString());
-    }
-
-    private class ClientActionHandler implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.profile_info_layout:
-                    ElcoDetailActivity.Elcoclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(ElcoSmartRegisterActivity.this,ElcoDetailActivity.class);
-                    startActivity(intent);
-                    break;
-                case R.id.psrf_due_date:
-                    showFragmentDialog(new EditDialogOptionModel((CommonPersonObjectClient)view.getTag()), view.getTag());
-                    break;
+    public void startFormActivity(String formName, String entityId, String metaData) {
+        try {
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
+            if (entityId != null || metaData != null){
+                String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.setFormData(data);
+                    displayFormFragment.loadFormData();
+                    displayFormFragment.setRecordId(entityId);
+                }
             }
+
+            mPager.setCurrentItem(formIndex, false); //Don't animate the view on orientation change the view disapears
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
-        private void showProfileView(ECClient client) {
-            navigationController.startEC(client.entityId());
-        }
     }
-
-    private class EditDialogOptionModel implements DialogOptionModel {
-        CommonPersonObjectClient tag;
-        public EditDialogOptionModel(CommonPersonObjectClient tag) {
-            this.tag = tag;
-        }
-
-        @Override
-        public DialogOption[] getDialogOptions() {
-            return getEditOptions(tag);
-        }
-
-        @Override
-        public void onDialogOptionSelection(DialogOption option, Object tag) {
-            onEditSelection((EditOption) option, (SmartRegisterClient) tag);
-        }
-    }
-
-
-
     public void updateSearchView(){
         getSearchView().addTextChangedListener(new TextWatcher() {
             @Override
@@ -285,6 +233,57 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
             }
         });
+    }
+
+    @Override
+    public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides){
+        // save the form
+        try{
+            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
+
+            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
+            ZiggyService ziggyService = context.ziggyService();
+            ziggyService.saveForm(getParams(submission), submission.instance());
+
+            //switch to forms list fragment
+            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void switchToBaseFragment(final String data){
+        final int prevPageIndex = currentPage;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mPager.setCurrentItem(0, false);
+                SecuredNativeSmartRegisterFragment registerFragment = (SecuredNativeSmartRegisterFragment) findFragmentByPosition(0);
+                if (registerFragment != null && data != null) {
+                    registerFragment.refreshListView();
+                }
+
+                //hack reset the form
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.setFormData(null);
+                    displayFormFragment.loadFormData();
+                }
+
+                displayFormFragment.setRecordId(null);
+            }
+        });
+
+    }
+    public android.support.v4.app.Fragment findFragmentByPosition(int position) {
+        FragmentPagerAdapter fragmentPagerAdapter = mPagerAdapter;
+        return getSupportFragmentManager().findFragmentByTag("android:switcher:" + mPager.getId() + ":" + fragmentPagerAdapter.getItemId(position));
+    }
+
+    public DisplayFormFragment getDisplayFormFragmentAtIndex(int index) {
+        return  (DisplayFormFragment)findFragmentByPosition(index);
     }
     public void addChildToList(ArrayList<DialogOption> dialogOptionslist,Map<String,TreeNode<String, Location>> locationMap){
         for(Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {

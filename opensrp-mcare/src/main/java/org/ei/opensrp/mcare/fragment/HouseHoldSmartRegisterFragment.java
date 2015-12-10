@@ -199,7 +199,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 
         setServiceModeViewDrawableRight(null);
         updateSearchView();
-        checkforNidMissing(view);
+//        checkforNidMissing(view);
     }
 
     @Override
