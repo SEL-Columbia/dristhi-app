@@ -5,12 +5,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ImageButton;
-
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.elco.ElcoDetailActivity;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
@@ -169,6 +169,17 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
     @Override
     protected void onCreation() {
+    }
+    @Override
+    protected void onResumption() {
+        super.onResumption();
+
+        try{
+            LoginActivity.setLanguage();
+        }catch (Exception e){
+
+        }
+
     }
 
     @Override
