@@ -78,23 +78,27 @@
         <activity android:name=".view.activity.NativeKISmartRegisterActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppThemeNoActionBarAndTitle"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKIANCSmartRegisterActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppThemeNoActionBarAndTitle"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKIAnakSmartRegisterActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppThemeNoActionBarAndTitle"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="landscape"
             >
         </activity>
         <activity android:name=".view.activity.NativeKBSmartRegisterActivity"
             android:theme="@style/AppThemeNoActionBarAndTitle"
+            android:windowSoftInputMode="adjustResize"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"
             >
@@ -102,6 +106,7 @@
         <activity android:name=".view.activity.NativeKIPNCSmartRegisterActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppThemeNoActionBarAndTitle"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="landscape"
             >
         </activity>
