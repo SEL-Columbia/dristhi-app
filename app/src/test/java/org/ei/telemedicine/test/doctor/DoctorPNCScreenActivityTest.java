@@ -9,6 +9,8 @@ import android.test.suitebuilder.annotation.MediumTest;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.robotium.solo.Solo;
+
 import org.ei.telemedicine.doctor.DoctorANCScreenActivity;
 import org.ei.telemedicine.doctor.DoctorFormDataConstants;
 import org.ei.telemedicine.doctor.DoctorPNCScreenActivity;
@@ -36,6 +38,7 @@ public class DoctorPNCScreenActivityTest  extends ActivityUnitTestCase<DoctorPNC
     String pnc_vaginal_problems_string = "pnc_vaginal_problems";
     String kopfeel_heat_or_chills_string = "kopfeel_heat_or_chills";
     String pnc_urinating_problems_string = "pnc_urinating_problems";
+    private Solo solo;
 
     Intent mLaunchIntent;
 
@@ -46,6 +49,8 @@ public class DoctorPNCScreenActivityTest  extends ActivityUnitTestCase<DoctorPNC
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+
+
 
         mLaunchIntent = new Intent(getInstrumentation().getTargetContext(), DoctorPNCScreenActivity.class);
         mLaunchIntent.putExtras(getBundleExtra());
@@ -105,22 +110,13 @@ public class DoctorPNCScreenActivityTest  extends ActivityUnitTestCase<DoctorPNC
 
     @MediumTest
     public void testDataSetToViews() {
+        //confirm if part of the payload is loaded into the controls
         assertEquals(et_pnc_num.getText().toString(), pnc_number_string);
         assertEquals(et_woman_name.getText().toString(), wife_name_string);
         assertEquals(et_pnc_date.getText().toString(), pnc_visit_date_string);
-        assertEquals(et_bp_sys.getText().toString(), bp_sys_string.equals("") ? "Not captured" : bp_sys_string);
-        assertEquals(et_bp_dia.getText().toString(), bp_dia_string.equals("") ? "Not captured" : bp_dia_string);
-        assertEquals(et_temp.getText().toString(), temp_data_string.equals("") ? "Not captured" : temp_data_string);
-        assertEquals(et_blood_glucose.getText().toString(), blood_glucose_string.equals("") ? "Not captured" : blood_glucose_string);
-        assertEquals(et_hb_level.getText().toString(), fetal_data_string.equals("") ? "Not captured" : fetal_data_string);
-        assertEquals(tv_difficuties.getText().toString(), pnc_difficulties_string);
-        assertEquals(tv_abdominal_problems.getText().toString(), pnc_abdominal_problems_string);
-        assertEquals(tv_breast_difficulties.getText().toString(), pnc_breast_problems_string);
-        assertEquals(tv_vaginal_difficulties.getText().toString(), pnc_vaginal_problems_string);
-        assertEquals(tv_kop_feel_hot.getText().toString(), kopfeel_heat_or_chills_string);
-        assertEquals(tv_urinating_problems.getText().toString(), pnc_urinating_problems_string);
 
     }
+
 
     @Override
     protected void tearDown() throws Exception {

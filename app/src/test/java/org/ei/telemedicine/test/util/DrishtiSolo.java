@@ -2,6 +2,8 @@ package org.ei.telemedicine.test.util;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.robotium.solo.Solo;
 
@@ -25,9 +27,9 @@ public class DrishtiSolo extends Solo {
         return this;
     }
 
-    public DrishtiSolo assertCannotLogin(String userName, String password) {
-        enterText(0, userName);
-        enterText(1, password);
+    public DrishtiSolo assertCannotLogin(String userName, String password, Button btn,EditText user,EditText pass) {
+        enterText(user, userName);
+        enterText(pass, password);
         clickOnButton(0);
         waitForActivity(LoginActivity.class.getSimpleName());
         Wait.waitForFilteringToFinish();

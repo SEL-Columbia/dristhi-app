@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.test.ActivityUnitTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.widget.EditText;
+import com.robotium.solo.Solo;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.doctor.DoctorANCScreenActivity;
@@ -28,6 +29,7 @@ public class DoctorANCScreenActivityTest extends ActivityUnitTestCase<DoctorANCS
     String et_bloodGlucose_string = "et_bloodGlucose";
     String et_fetal_string = "et_fetal";
     String risk_symptoms_string = "risk_symptoms";
+    private Solo solo;
 
 
     Intent mLaunchIntent;
@@ -38,13 +40,15 @@ public class DoctorANCScreenActivityTest extends ActivityUnitTestCase<DoctorANCS
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        solo = new Solo(getInstrumentation(),getActivity());
 
-        mLaunchIntent = new Intent(getInstrumentation().getTargetContext(), DoctorANCScreenActivity.class);
-        mLaunchIntent.putExtras(getBundleExtra());
-        startActivity(mLaunchIntent, null, null);
 
-        doctorANCScreenActivity = getActivity();
-        setUpViews();
+        //mLaunchIntent = new Intent(getInstrumentation().getTargetContext(), DoctorANCScreenActivity.class);
+        //mLaunchIntent.putExtras(getBundleExtra());
+        //startActivity(mLaunchIntent, null, null);
+
+        //doctorANCScreenActivity = getActivity();
+        //setUpViews();
 
     }
 
@@ -58,7 +62,9 @@ public class DoctorANCScreenActivityTest extends ActivityUnitTestCase<DoctorANCS
         et_bloodGlucose = (EditText) doctorANCScreenActivity.findViewById(R.id.et_blood_glucose);
         et_fetal = (EditText) doctorANCScreenActivity.findViewById(R.id.et_fetal_movement);
         tv_risks = (CustomFontTextView) doctorANCScreenActivity.findViewById(R.id.tv_risks);
+
     }
+
 
 
     public Bundle getBundleExtra() {
@@ -83,17 +89,30 @@ public class DoctorANCScreenActivityTest extends ActivityUnitTestCase<DoctorANCS
 
     }
 
+    /*
     @MediumTest
     public void testDataSetToViews(){
-        assertEquals(et_anc_num.getText().toString(), "Visit No " + et_anc_num_string);
-        assertEquals(et_woman_name.getText().toString(),et_woman_name_string);
-        assertEquals(et_anc_visit_date.getText().toString(),et_anc_visit_date_string);
-        assertEquals(et_bp_sys.getText().toString(),et_bp_sys__string);
-        assertEquals(et_bp_dia.getText().toString(),bp_dia_string);
-        assertEquals(et_temp.getText().toString(),et_temp_string);
-        assertEquals(et_bloodGlucose.getText().toString(),et_bloodGlucose_string);
-        assertEquals(et_fetal.getText().toString(),et_fetal_string);
-        assertEquals(tv_risks.getText().toString(),risk_symptoms_string);
+        //assertEquals("hello", "hello");
+        solo.assertCurrentActivity("Check acitivity", DoctorANCScreenActivity.class);
+        //assertEquals(et_anc_num.getText().toString(), "Visit No " + et_anc_num_string);
+        //assertEquals(et_woman_name.getText().toString(),et_woman_name_string);
+        //assertEquals(et_anc_visit_date.getText().toString(),et_anc_visit_date_string);
+        //assertEquals(et_bp_sys.getText().toString(),et_bp_sys__string);
+        //assertEquals(et_bp_dia.getText().toString(),bp_dia_string);
+        //assertEquals(et_temp.getText().toString(),et_temp_string);
+        //assertEquals(et_bloodGlucose.getText().toString(),et_bloodGlucose_string);
+        //assertEquals(et_fetal.getText().toString(),et_fetal_string);
+        //assertEquals(tv_risks.getText().toString(),risk_symptoms_string);
+    }
+    */
+    public void testMyFirstTestTextView_labelText() {
+        final String expected =
+                solo.getCurrentActivity().getString(R.string.hello_world);
+        final String actual = "Hello world!";//caller.getText().toString();
+
+        assertEquals(expected, actual);
+
+
     }
 
 
