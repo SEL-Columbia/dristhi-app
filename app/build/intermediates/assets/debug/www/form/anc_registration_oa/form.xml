@@ -8,20 +8,20 @@
     </select>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">PHC:
+        <span class="question-label active" lang="">PHC
         </span>
         <input name="/ANC_Registration_OA_EngKan/phc" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
     </label>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Sub Center:
+        <span class="question-label active" lang="">Sub Center
         </span>
         <input name="/ANC_Registration_OA_EngKan/sub_center" autocomplete="off"
             data-type-xml="string" disabled="disabled" type="text" />
     </label>
     <label class="question non-select ">
-        <span class="question-label active" lang="">Village:
+        <span class="question-label active" lang="">Village
         </span>
         <input name="/ANC_Registration_OA_EngKan/village" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
@@ -67,7 +67,7 @@
     </label>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">ID Number:
+        <span class="question-label active" lang="">ID Number
         </span>
         <input name="/ANC_Registration_OA_EngKan/id_number" autocomplete="off" data-type-xml="text"
             type="text" />
@@ -98,7 +98,7 @@
     </fieldset>
 
     <label class="question or-branch pre-init non-select">
-        <span class="question-label active" lang="">Woman age in years:
+        <span class="question-label active" lang="">Woman age in years
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/wife_age1" autocomplete="off"
@@ -396,7 +396,7 @@
 
 
     <label class="question or-branch">
-        <span class="question-label active" lang="">LMP Date:
+        <span class="question-label active" lang="">LMP Date
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/lmp_in_date" autocomplete="off"
@@ -405,7 +405,7 @@
     </label>
 
     <label class="question or-branch pre-init non-select">
-        <span class="question-label active" lang="">LMP In Weeks:
+        <span class="question-label active" lang="">LMP In Weeks
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/lmp_in_week" autocomplete="off"

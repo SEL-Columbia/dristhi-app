@@ -79,6 +79,7 @@ public class AllSettings {
         settingsRepository.updateSetting(FORM_FIELDS, formFields);
     }
 
+
     public String fetchANMLocation() {
         String setting = settingsRepository.querySetting(ANM_LOCATION, "");
         return setting;

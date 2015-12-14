@@ -636,7 +636,7 @@ public class Context {
 
     public DristhiConfiguration configuration() {
         if (configuration == null) {
-            configuration = new DristhiConfiguration(getInstance().applicationContext().getAssets());
+            configuration = new DristhiConfiguration(getInstance().applicationContext().getAssets(), applicationContext);
         }
         return configuration;
     }

@@ -21,7 +21,7 @@ import static org.joda.time.DateTimeConstants.MILLIS_PER_SECOND;
 
 public class DrishtiSyncScheduler {
     public static final int SYNC_INTERVAL = 2 * MILLIS_PER_MINUTE;
-    public static final int SYNC_START_DELAY = 2 * MILLIS_PER_SECOND;
+    public static final int SYNC_START_DELAY = 1 * MILLIS_PER_SECOND;
     private static Listener<Boolean> logoutListener;
     private static String TAG = "DrishtiSyncScheduler";
 

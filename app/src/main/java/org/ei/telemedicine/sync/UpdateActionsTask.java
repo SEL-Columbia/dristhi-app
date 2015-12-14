@@ -29,7 +29,7 @@ public class UpdateActionsTask {
         task = new LockingBackgroundTask(progressIndicator);
     }
 
-    public void updateFromServer(final AfterFetchListener afterFetchListener) {
+    public void updateFromServer(final AfterFetchListener afterFetchListener, final String villageName) {
         if (org.ei.telemedicine.Context.getInstance().IsUserLoggedOut()) {
             logInfo("Not updating from server as user is not logged in.");
             return;
@@ -37,8 +37,9 @@ public class UpdateActionsTask {
 
         task.doActionInBackground(new BackgroundAction<FetchStatus>() {
             public FetchStatus actionToDoInBackgroundThread() {
+                org.ei.telemedicine.Context.getInstance().allSharedPreferences().saveVillageName(villageName);
                 FetchStatus fetchStatusForActions = null;
-                FetchStatus fetchStatusForForms = formSubmissionSyncService.sync();
+                FetchStatus fetchStatusForForms = formSubmissionSyncService.sync(villageName);
                 if (org.ei.telemedicine.Context.getInstance().allSharedPreferences().getUserRole().equals(AllConstants.ANM_ROLE))
                     fetchStatusForActions = actionService.fetchNewActions();
                 if (fetchStatusForActions == fetched || fetchStatusForForms == fetched)

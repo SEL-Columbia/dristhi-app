@@ -35,8 +35,9 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
     TextView tv_anc_number_title;
 
     @Override
-    protected void onCreation() {
+    public void onCreation() {
         Bundle bundle = getIntent().getExtras();
+//        et_anc_num = (EditText) findViewById(R.id.et_anc_num);
         if (bundle != null) {
             entityId = bundle.getString(AllConstants.ENTITY_ID);
             intentVisitType = bundle.getString(AllConstants.VISIT_TYPE);
@@ -164,7 +165,7 @@ public class ViewPlanOfCareActivity extends SecuredActivity {
     }
 
     @Override
-    protected void onResumption() {
+    public void onResumption() {
 
     }
 

@@ -7,7 +7,7 @@
         <option value="">default</option>
     </select>
     <label class="question non-select ">
-        <span class="question-label active" lang="">Edit password:</span>
+        <span class="question-label active" lang="">Edit password</span>
         <input name="/PNC_Child_Registration_EngKan/edit_password" autocomplete="off"
             data-type-xml="string" type="password" />
     </label>
@@ -16,25 +16,24 @@
         class="or-group-data or-branch pre-init "
         data-relevant=" /PNC_Child_Registration_EngKan/edit_password  = /PNC_Child_Registration_EngKan/pnc_edit_group/pwd">
 
-        <label class="question non-select ">
-            <span class="question-label active" lang="">PHC:
+        <fieldset name="/PNC_Child_Registration_EngKan/pnc_edit_group/phc" class="trigger ">
+            <span class="question-label active" lang="">PHC
+                <span class="or-output"
+                    data-value=" /PNC_Child_Registration_EngKan/pnc_edit_group/phc"></span>
             </span>
-            <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/phc" autocomplete="off"
-                data-type-xml="string" disabled="disabled" type="text" />
-        </label>
-
-        <label class="question non-select ">
-            <span class="question-label active" lang="">Sub Center:
+        </fieldset>
+        <fieldset name="/PNC_Child_Registration_EngKan/pnc_edit_group/sub_center" class="trigger ">
+            <span class="question-label active" lang="">Sub Center
+                <span class="or-output"
+                    data-value=" /PNC_Child_Registration_EngKan/pnc_edit_group/sub_center"></span>
             </span>
-            <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/sub_center"
-                autocomplete="off" data-type-xml="string" disabled="disabled" type="text" />
-        </label>
-        <label class="question non-select ">
-            <span class="question-label active" lang="">Village:
+        </fieldset>
+        <fieldset name="/PNC_Child_Registration_EngKan/pnc_edit_group/village" class="trigger ">
+            <span class="question-label active" lang="">Village
+                <span class="or-output"
+                    data-value=" /PNC_Child_Registration_EngKan/pnc_edit_group/village"></span>
             </span>
-            <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/village" autocomplete="off"
-                data-type-xml="string" disabled="disabled" type="text" />
-        </label>
+        </fieldset>
 
 
         <label class="question non-select ">
@@ -47,24 +46,23 @@
 
 
         <label class="question non-select ">
-            <span class="question-label active" lang="">Household address :</span>
+            <span class="question-label active" lang="">Household address</span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/hh_address"
                 data-type-xml="string" type="text" />
         </label>
         <label class="question non-select ">
-            <span class="question-label active" lang="">Woman's name :</span>
+            <span class="question-label active" lang="">Woman's name</span>
             <span class="required">*</span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/woman_name"
                 data-type-xml="string" required="required" type="text" />
         </label>
-        <label class="question non-select ">
-            <span class="question-label active" lang="">PNC number:
+        <fieldset name="/PNC_Child_Registration_EngKan/pnc_edit_group/pnc_number" class="trigger ">
+            <span class="question-label active" lang="">PNC number
+                <span class="or-output"
+                    data-value=" /PNC_Child_Registration_EngKan/pnc_edit_group/pnc_number"></span>
             </span>
-            <span class="required">*</span>
-            <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/pnc_number"
-                autocomplete="off" data-constraint=".&gt;0" data-type-xml="int" required="required"
-                type="string" />
-        </label>
+        </fieldset>
+
 
         <label class="question or-appearance-minimal ">
             <span class="question-label active" lang="">Woman's ID Type?</span>
@@ -80,7 +78,7 @@
         </label>
 
         <label class="question non-select ">
-            <span class="question-label active" lang="">ID Number:
+            <span class="question-label active" lang="">ID Number
             </span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/id_number" autocomplete="off"
                 data-type-xml="text" type="text" />
@@ -111,7 +109,7 @@
         </fieldset>
 
         <label class="question or-branch pre-init non-select">
-            <span class="question-label active" lang="">Woman age in years:
+            <span class="question-label active" lang="">Woman age in years
             </span>
             <span class="required">*</span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/wife_age1" autocomplete="off"
@@ -144,7 +142,7 @@
         </label>
 
         <label class="question non-select ">
-            <span class="question-label active" lang="">Husband's name :</span>
+            <span class="question-label active" lang="">Husband's name</span>
 
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/husband_name"
                 data-type-xml="string" type="text" />
@@ -205,7 +203,7 @@
         <fieldset class="question ">
             <fieldset>
                 <legend>
-                    <span class="question-label active" lang="">Religion:
+                    <span class="question-label active" lang="">Religion
                     </span>
                 </legend>
                 <div class="option-wrapper">
@@ -452,7 +450,7 @@
                 </fieldset>
             </fieldset>
             <label class="question or-branch pre-init non-select ">
-                <span class="question-label active" lang="">Others :</span>
+                <span class="question-label active" lang="">Others</span>
                 <input
                     name="/PNC_Child_Registration_EngKan/pnc_edit_group/still_birth_group/other_cause_of_still_birth"
                     data-relevant=" /PNC_Child_Registration_EngKan/pnc_edit_group/still_birth_group/cause_of_still_birth  = 'others'"
@@ -587,7 +585,7 @@
                     <span class="question-label active" lang="">Child needs 3 more PNC visits on
                         days
                         14, 21, and 28 because
-                        of, 14, 21
+                        of
                         <span class="or-output"
                             data-value=" /PNC_Child_Registration_EngKan/pnc_edit_group/child/child_high_risk_reasons "></span>
                     </span>
@@ -708,7 +706,7 @@
             </fieldset>
         </fieldset>
         <label class="question or-branch pre-init non-select ">
-            <span class="question-label active" lang="">Others :</span>
+            <span class="question-label active" lang="">Others</span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/delivery_complications_other"
                 data-relevant="selected( /PNC_Child_Registration_EngKan/pnc_edit_group/complications , 'others')"
                 data-type-xml="string" type="text" />
@@ -738,7 +736,7 @@
             </fieldset>
         </fieldset>
         <label class="question or-branch pre-init non-select ">
-            <span class="question-label active" lang="">High risk reasons:
+            <span class="question-label active" lang="">High risk reasons
             </span>
             <input name="/PNC_Child_Registration_EngKan/pnc_edit_group/high_risk_reason"
                 data-relevant=" /PNC_Child_Registration_EngKan/pnc_edit_group/is_high_risk  = 'yes'"

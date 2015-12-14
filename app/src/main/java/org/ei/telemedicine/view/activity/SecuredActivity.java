@@ -18,12 +18,16 @@ import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
+import org.ei.telemedicine.domain.ANM;
 import org.ei.telemedicine.domain.ProfileImage;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.domain.form.SubForm;
+import org.ei.telemedicine.event.CapturedPhotoInformation;
+import org.ei.telemedicine.event.Event;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.repository.ImageRepository;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
+import org.ei.telemedicine.view.contract.HomeContext;
 import org.ei.telemedicine.view.controller.ANMController;
 import org.ei.telemedicine.view.controller.FormController;
 import org.ei.telemedicine.view.controller.NavigationController;
@@ -56,6 +60,7 @@ import static org.ei.telemedicine.util.Log.logInfo;
 public abstract class SecuredActivity extends Activity {
     protected Context context;
     protected Listener<Boolean> logoutListener;
+    protected Listener<CapturedPhotoInformation> photoCaptureListener;
     protected FormController formController;
     protected ANMController anmController;
     protected NavigationController navigationController;
@@ -67,6 +72,7 @@ public abstract class SecuredActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+
 
         logoutListener = new Listener<Boolean>() {
             public void onEvent(Boolean data) {
@@ -115,11 +121,15 @@ public abstract class SecuredActivity extends Activity {
         String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
         ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(), anmId, entityid, "Image", details.get("profilepic"), ImageRepository.TYPE_Unsynced);
         ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
+        Context.getInstance().allEligibleCouples().updatePhotoPath(entityid, details.get("profilepic"));
         Toast.makeText(this, entityid, Toast.LENGTH_LONG).show();
     }
 
     public void logoutUser() {
         context.userService().logout();
+
+
+        this.finish();
         startActivity(new Intent(this, LoginActivity.class));
     }
 
@@ -130,9 +140,9 @@ public abstract class SecuredActivity extends Activity {
         return true;
     }
 
-    protected abstract void onCreation();
+    public abstract void onCreation();
 
-    protected abstract void onResumption();
+    public abstract void onResumption();
 
     public void startFormActivity(String formName, String entityId, String metaData) {
         launchForm(formName, entityId, metaData, FormActivity.class);
@@ -204,8 +214,11 @@ public abstract class SecuredActivity extends Activity {
                 DrishtiSyncScheduler.stop(SecuredActivity.this);
                 FormSubmission formSubmission = context.formDataRepository().fetchFromSubmissionUseEntity(context.userService().getEntityId());
                 int subFormCount = 0;
-                String deliveryOutcome = "";
+                String deliveryOutcome = "", risks = "", pncRisks = "", childSigns = "";
                 try {
+                    childSigns = formSubmission.getFieldValue(AllConstants.ChildIllnessFields.CHILD_SIGNS);
+                    pncRisks = formSubmission.getFieldValue("immediateReferralReason");
+                    risks = formSubmission.getFieldValue(AllConstants.ANCVisitFields.RISKS);
                     deliveryOutcome = formSubmission.getFieldValue("deliveryOutcome");
                     SubForm subForm = formSubmission.getSubFormByName(AllConstants.PNCVisitFields.CHILD_PNC_VISIT_SUB_FORM_NAME);
                     subFormCount = subForm.instances().size();
@@ -217,17 +230,21 @@ public abstract class SecuredActivity extends Activity {
                 }
 
                 Log.e(TAG, "Form Data" + formSubmission.instance());
-                showBluetooth(formSubmission.entityId(), formSubmission.instanceId(), context.userService().getFormName(), formSubmission, subFormCount);
+                showBluetooth(formSubmission.entityId(), formSubmission.instanceId(), context.userService().getFormName(), formSubmission, subFormCount, risks, pncRisks, childSigns);
             }
         }
     }
 
-    private void showBluetooth(final String entityId, final String instanceId, final String formName, FormSubmission formSubmission, int subFormCount) {
+    private void showBluetooth(final String entityId, final String instanceId, final String formName, FormSubmission formSubmission, int subFormCount, String risks, String pncRisks, String childSigns) {
+
         Intent intent = new Intent(SecuredActivity.this, BlueToothInfoActivity.class);
         intent.putExtra(ENTITY_ID, entityId);
         intent.putExtra(INSTANCE_ID_PARAM, instanceId);
         intent.putExtra(FORM_NAME_PARAM, formName);
         intent.putExtra(SUB_FORM_COUNT, subFormCount);
+        intent.putExtra(AllConstants.ANCVisitFields.RISKS, risks != null && risks.trim().length() != 0 ? risks : "");
+        intent.putExtra(AllConstants.PNCVisitFields.PNC_RISKS, pncRisks != null && pncRisks.trim().length() != 0 ? pncRisks : "");
+        intent.putExtra(AllConstants.ChildIllnessFields.CHILD_SIGNS, childSigns != null && childSigns.trim().length() != 0 ? childSigns : "");
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         startActivity(intent);

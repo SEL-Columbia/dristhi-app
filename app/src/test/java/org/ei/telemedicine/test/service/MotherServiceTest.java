@@ -304,7 +304,7 @@ public class MotherServiceTest {
 
         service.pncVisitHappened(submission);
 
-        verify(allTimelineEvents).add(TimelineEvent.forMotherPNCVisit("entity id 1", "2", "2012-01-01", "120", "80", "98.1", "10.0","55","false"));
+        verify(allTimelineEvents).add(TimelineEvent.forMotherPNCVisit("entity id 1", "2", "2012-01-01", "120", "80", "98.1", "10.0","55","false",""));
     }
 
     @Test

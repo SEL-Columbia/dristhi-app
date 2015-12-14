@@ -46,14 +46,14 @@
         </label>
 
         <label class="question non-select ">
-            <span class="question-label active" lang="">Mother's name,</span>
+            <span class="question-label active" lang="">Mother's name</span>
             <span class="required">*</span>
             <input name="/Child_Registration_EngKan/child_edit_group/mother_name" autocomplete="off"
                 data-type-xml="string" disabled="disabled" type="text" />
         </label>
 
         <label class="question non-select ">
-            <span class="question-label active" lang="">Father's name,</span>
+            <span class="question-label active" lang="">Father's name</span>
 
             <input name="/Child_Registration_EngKan/child_edit_group/father_name" autocomplete="off"
                 data-type-xml="string" disabled="disabled" type="text" />
@@ -61,7 +61,7 @@
         <fieldset class="question ">
             <fieldset>
                 <legend>
-                    <span class="question-label active" lang="">Religion:
+                    <span class="question-label active" lang="">Religion
                     </span>
                 </legend>
                 <div class="option-wrapper">
@@ -125,7 +125,7 @@
                 data-type-xml="date" required="required" type="date" />
         </label>
         <label class="note non-select ">
-            <span class="question-label active" lang="">Child age,
+            <span class="question-label active" lang="">Child age
                 <span class="or-output"
                     data-value=" /Child_Registration_EngKan/child_edit_group/child_age "></span>
                 months

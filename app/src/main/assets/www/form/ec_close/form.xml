@@ -5,7 +5,7 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">EC Number:</span>
+        <span class="question-label active" lang="">EC Number</span>
         <input name="/EC_Close_EngKan/case_ec_number" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="text" />
     </label>
@@ -17,7 +17,7 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Woman Name:</span>
+        <span class="question-label active" lang="">Woman Name</span>
         <input name="/EC_Close_EngKan/case_woman_name" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
     </label>
@@ -34,7 +34,7 @@
                     <input name="/EC_Close_EngKan/close_reason" autocomplete="off" data-name="/EC_Close_EngKan/close_reason"
                         data-type-xml="select1" required="required"
                         type="radio" value="age_morethan_49" />
-                    <span class="option-label active" lang="">Woman's age &gt; 49,
+                    <span class="option-label active" lang="">Woman's age &gt; 49
                     </span>
                 </label>
                 <label class="">

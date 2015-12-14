@@ -5,7 +5,7 @@
     <h3 id="form-title">Postpartum Family Planning</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">PNC Number:</span>
+        <span class="question-label active" lang="">PNC Number</span>
         <input name="/Postpartum_FamilyPlanning_EngKan/pnc_num" autocomplete="off"
             data-type-xml="int" disabled="disabled" type="text" />
     </label>

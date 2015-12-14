@@ -61,6 +61,11 @@ public class MotherService {
     }
 
     public void ancVisit(FormSubmission submission) {
+        String risks = submission.getFieldValue("riskObservedDuringANC");
+        String riskObserved = "";
+        if (risks != null && risks.trim().length() != 0) {
+            riskObserved = risks.trim().replace(" ", ",").replace("_", " ");
+        }
         allTimelines.add(
                 forANCCareProvided(
                         submission.entityId(),
@@ -74,9 +79,12 @@ public class MotherService {
                                 .put(ISCONSULTDOCTOR, submission.getFieldValue(ISCONSULTDOCTOR))
                                 .put(FETALDATA, submission.getFieldValue(FETALDATA))
                                 .put(POC_INFO, submission.getFieldValue(POC_INFO))
+                                .put(ANM_POC, submission.getFieldValue(ANM_POC))
+                                .put(RISKS, riskObserved)
                                 .map()));
-        Log.e("Submission Form for poc", "POc fot visit" + submission.instance() + "");
+
         if (submission.getFieldValue(POC_INFO) != null && !submission.getFieldValue(POC_INFO).equals("")) {
+            Log.e("Submission Form for poc", "POc fot visit-------------------" + submission.getFieldValue(POC_INFO));
             TimelineEvent ancVisitPoc = forPOCGiven(submission.entityId(),
                     submission.getFieldValue(ANC_VISIT_DATE),
                     "ANCVISIT", "Plan of care for ANC Visit" + "-" + submission.getFieldValue(ANC_VISIT_NUMBER), create(POC_INFO, submission.getFieldValue(POC_INFO)).map());
@@ -165,7 +173,7 @@ public class MotherService {
                         submission.getFieldValue(AllConstants.PNCVisitFields.BP_DIASTOLIC),
                         submission.getFieldValue(AllConstants.PNCVisitFields.TEMPERATURE),
                         submission.getFieldValue(AllConstants.PNCVisitFields.HB_LEVEL),
-                        submission.getFieldValue(AllConstants.PNCVisitFields.BLOODGLUCOSEDATA), submission.getFieldValue(AllConstants.PNCVisitFields.ISCONSULTDOCTOR)));
+                        submission.getFieldValue(AllConstants.PNCVisitFields.BLOODGLUCOSEDATA), submission.getFieldValue(AllConstants.PNCVisitFields.ISCONSULTDOCTOR), submission.getFieldValue(AllConstants.ANCVisitFields.ANM_POC)));
         Log.e("Submission Form for poc", "POc fot visit" + submission.instance() + "");
         if (submission.getFieldValue(POC_INFO) != null && !submission.getFieldValue(POC_INFO).equals("")) {
             TimelineEvent pncVisitPoc = forPOCGiven(

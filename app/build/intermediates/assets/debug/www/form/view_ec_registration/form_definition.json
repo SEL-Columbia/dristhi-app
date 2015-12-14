@@ -108,9 +108,9 @@
         "shouldLoadValue": true
       },
       {
-        "name": "husbandEducationalLevel",
+        "name": "husbandEducationLevel",
         "bind": "/model/instance/EC_View_EngKan/ec_view_group/husband_education_level",
-        "source": "eligible_couple.husbandEducationalLevel",
+        "source": "eligible_couple.husbandEducationLevel",
         "shouldLoadValue": true
       },
       {

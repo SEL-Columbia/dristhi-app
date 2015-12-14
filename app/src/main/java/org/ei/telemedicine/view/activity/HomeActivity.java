@@ -70,7 +70,7 @@ public class HomeActivity extends SecuredWebActivity {
     }
 
     @Override
-    protected void onResumption() {
+    public void onResumption() {
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
     }

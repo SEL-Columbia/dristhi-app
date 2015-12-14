@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
@@ -20,10 +21,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
+import static android.R.drawable.ic_media_pause;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.formData;
 
 /**
@@ -32,9 +39,10 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.formData;
 public abstract class DoctorPatientDetailSuperActivity extends Activity implements View.OnClickListener {
     private ProgressDialog progressDialog;
     private Bundle bundle;
-    private String formInfo, documentId, phoneNumber;
+    private String formInfo, documentId, phoneNumber, caseId;
     private String[] details;
     ProgressDialog playProgressDialog;
+    MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +54,10 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
             formInfo = bundle.getString(DoctorFormDataConstants.formData);
             setupViews();
             details = setDatatoViews(formInfo);
+
             documentId = details[0] != null ? details[0] : "";
             phoneNumber = details[1] != null ? details[1] : "";
+            caseId = details[2] != null ? details[2] : "";
 
         }
     }
@@ -56,17 +66,33 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
 
     protected abstract void setupViews();
 
-    public void playData(String url) {
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (player != null) {
+            player.release();
+        }
+    }
+
+    public void pausePlay() {
+        if (player != null) {
+            player.stop();
+            player.release();
+        }
+    }
+
+    public void playData(String url, final ImageButton ib_play_stehoscope, final ImageButton ib_pause_stehoscope) {
+        Log.e("Play pat", url);
         try {
-            final MediaPlayer player = new MediaPlayer();
+            player = new MediaPlayer();
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             player.setDataSource(url);
             player.prepare();
-
-            playProgressDialog = new ProgressDialog(DoctorPatientDetailSuperActivity.this);
-            playProgressDialog.setTitle("Playing Heartbeat");
-            playProgressDialog.setCancelable(false);
-            playProgressDialog.show();
+//
+//            playProgressDialog = new ProgressDialog(DoctorPatientDetailSuperActivity.this);
+//            playProgressDialog.setTitle("Playing Heartbeat");
+////            playProgressDialog.setCancelable(false);
+//            playProgressDialog.show();
 
             player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
@@ -74,15 +100,20 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
                     mp.start();
                 }
             });
+
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    if (playProgressDialog != null && playProgressDialog.isShowing()) {
-                        playProgressDialog.dismiss();
-                    }
+                    ib_play_stehoscope.setVisibility(View.VISIBLE);
+                    ib_pause_stehoscope.setVisibility(View.INVISIBLE);
                 }
             });
-        } catch (IOException e) {
+
+        } catch (
+                IOException e
+                )
+
+        {
             e.printStackTrace();
         }
 //
@@ -126,11 +157,11 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         });
     }
 
-    public void referAnotherDoctor(String doctorId, String visitId, String entityId, final String documentId, final String visitType, final String wifeName) {
+    public void referAnotherDoctor(String doctorId, final String visitId, String entityId, final String documentId, final String visitType, final String wifeName) {
         getData(AllConstants.DOCTOR_REFER_URL_PATH + doctorId + "&visitid=" + visitId + "&entityid=" + entityId + "&patientname=" + (visitType.equalsIgnoreCase("CHILD") ? "Baby%20of%20" + wifeName : wifeName), new Listener<String>() {
             @Override
             public void onEvent(String data) {
-                Context.getInstance().allDoctorRepository().deleteUseCaseId(documentId);
+                Context.getInstance().allDoctorRepository().deleteUseCaseId(visitId);
                 startActivity(new Intent(DoctorPatientDetailSuperActivity.this, NativeDoctorActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
             }
@@ -152,6 +183,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
                     intent.putExtra(DoctorFormDataConstants.formData, formInfo);
                     intent.putExtra(DoctorFormDataConstants.documentId, documentId);
                     intent.putExtra(DoctorFormDataConstants.phoneNumber, phoneNumber);
+                    intent.putExtra(DoctorFormDataConstants.anc_entityId, caseId);
                     startActivity(intent);
                 } else {
                     Toast.makeText(DoctorPatientDetailSuperActivity.this, "No Data getting from server", Toast.LENGTH_SHORT).show();
@@ -230,9 +262,9 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
             String result = "";
             JSONArray jsonArray = new JSONArray(jsonArrayStr);
             for (int i = 0; i < jsonArray.length(); i++) {
-                result = result + jsonArray.getString(i) + " ";
+                result = !result.equals("") ? result + jsonArray.getString(i).trim().replace("_", " ") + "," : jsonArray.getString(i).trim().replace("_", " ") + ",";
             }
-            return result.trim().replace(" ", ",");
+            return result;
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -243,7 +275,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity implemen
         if (jsonStr != null) {
             try {
                 JSONObject jsonData = new JSONObject(jsonStr);
-                return (jsonData.has(key) && jsonData.getString(key) != null && !jsonData.getString(key).equalsIgnoreCase("null")) ? jsonData.getString(key) : "";
+                return (jsonData.has(key) && jsonData.getString(key) != null && !jsonData.getString(key).equalsIgnoreCase("null")) ? jsonData.getString(key).trim().replace(" ", ",").replace("_", " ") : "";
             } catch (JSONException e) {
                 e.printStackTrace();
             }

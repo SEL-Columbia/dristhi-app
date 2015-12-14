@@ -7,20 +7,20 @@
     </select>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">PHC:
+        <span class="question-label active" lang="">PHC
         </span>
         <input name="/EC_Registration_EngKan/phc" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
     </label>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Sub Center:
+        <span class="question-label active" lang="">Sub Center
         </span>
         <input name="/EC_Registration_EngKan/sub_center" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
     </label>
     <label class="question non-select ">
-        <span class="question-label active" lang="">Village:
+        <span class="question-label active" lang="">Village
         </span>
         <input name="/EC_Registration_EngKan/village" autocomplete="off" data-type-xml="string"
             disabled="disabled" type="text" />
@@ -72,7 +72,7 @@
     </label>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">ID Number:
+        <span class="question-label active" lang="">ID Number
         </span>
         <input name="/EC_Registration_EngKan/id_number" autocomplete="off" data-type-xml="text"
             type="text" />
@@ -103,7 +103,7 @@
     </fieldset>
 
     <label class="question or-branch pre-init non-select">
-        <span class="question-label active" lang="">Woman age in years:
+        <span class="question-label active" lang="">Woman age in years
         </span>
         <span class="required">*</span>
         <input name="/EC_Registration_EngKan/wife_age1" autocomplete="off"

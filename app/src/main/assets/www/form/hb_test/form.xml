@@ -4,7 +4,7 @@
     <h3 id="form-title">Hb Test</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">ANC Number:</span>
+        <span class="question-label active" lang="">ANC Number</span>
         <input name="/Hb_Test_EngKan/anc_number" autocomplete="off" data-type-xml="text"
             disabled="disabled" type="text" />
     </label>

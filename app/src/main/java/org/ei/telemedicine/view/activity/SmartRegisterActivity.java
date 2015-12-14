@@ -37,7 +37,7 @@ public abstract class SmartRegisterActivity extends SecuredWebActivity {
     protected abstract void onSmartRegisterInitialization();
 
     @Override
-    protected void onResumption() {
+    public void onResumption() {
         webView.loadUrl("javascript:if(window.pageView) {window.pageView.reload();}");
     }
 }

@@ -18,12 +18,12 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anmPoc;
  * Created by naveen on 6/18/15.
  */
 public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
-    EditText et_pnc_num, et_woman_name, et_pnc_date, et_bp_sys, et_bp_dia, et_temp, et_blood_glucose, et_hb_level;
+    EditText et_pnc_num, et_woman_name, et_pnc_date, et_bp_sys, et_bp_dia, et_temp, et_blood_glucose, et_hb_level, et_bp_pulse;
     TextView tv_difficuties, tv_vaginal_difficulties, tv_breast_difficulties, tv_kop_feel_hot, tv_urinating_problems, tv_abdominal_problems, tv_stehoscope_title, tv_temp_format;
     Button bt_plan_of_care, bt_doc_refer;
     ImageButton ib_bp_graph, ib_fetal_graph, ib_bgm_graph, ib_temp_graph;
     Bundle bundle;
-    ImageButton ib_play_stehoscope;
+    ImageButton ib_play_stehoscope, ib_pause_stehoscope;
     private String documentId, visitId, phoneNumber, entityId = null, wifeName = null, tempFormat = "", tempVal = "";
     org.ei.telemedicine.view.customControls.CustomFontTextView tv_anm_poc;
 
@@ -36,6 +36,8 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         et_pnc_date = (EditText) findViewById(R.id.et_pnc_visit_date);
         et_bp_sys = (EditText) findViewById(R.id.et_pnc_sysstolic);
         et_bp_dia = (EditText) findViewById(R.id.et_pnc_diastolic);
+        et_bp_pulse = (EditText) findViewById(R.id.et_pnc_pulse);
+
         et_temp = (EditText) findViewById(R.id.et_pnc_temperature);
         et_blood_glucose = (EditText) findViewById(R.id.et_pnc_blood_glucose);
         et_hb_level = (EditText) findViewById(R.id.et_pnc_hb_level);
@@ -49,6 +51,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         tv_abdominal_problems = (TextView) findViewById(R.id.tv_addominal_problems);
         tv_temp_format = (TextView) findViewById(R.id.tv_temp_format);
 
+        ib_pause_stehoscope = (ImageButton) findViewById(R.id.ib_pause_stehoscope);
         ib_play_stehoscope = (ImageButton) findViewById(R.id.ib_play_stehoscope);
         ib_bp_graph = (ImageButton) findViewById(R.id.ib_bp_graph);
         ib_temp_graph = (ImageButton) findViewById(R.id.ib_temp_graph);
@@ -64,6 +67,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         ib_bp_graph.setOnClickListener(this);
         ib_bgm_graph.setOnClickListener(this);
         ib_temp_graph.setOnClickListener(this);
+        ib_pause_stehoscope.setOnClickListener(this);
 
     }
 
@@ -80,8 +84,10 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         et_pnc_date.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_visit_date));
         ib_play_stehoscope = (ImageButton) findViewById(R.id.ib_play_stehoscope);
 
+
         et_bp_sys.setText(getDatafromJson(formInfo, DoctorFormDataConstants.bp_sys).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.bp_sys));
         et_bp_dia.setText(getDatafromJson(formInfo, DoctorFormDataConstants.bp_dia).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.bp_dia));
+        et_bp_pulse.setText(getDatafromJson(formInfo, DoctorFormDataConstants.bp_pulse).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.bp_pulse));
         String tempStr = getDatafromJson(formInfo, DoctorFormDataConstants.temp_data);
         if (!tempStr.equals("") && tempStr.contains("-")) {
             String[] temp = tempStr.split("-");
@@ -95,7 +101,7 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
 
 //        et_temp.setText(getDatafromJson(formInfo, DoctorFormDataConstants.temp_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.temp_data));
         et_blood_glucose.setText(getDatafromJson(formInfo, DoctorFormDataConstants.blood_glucose).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.blood_glucose));
-        et_hb_level.setText(getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.fetal_data));
+        et_hb_level.setText(getDatafromJson(formInfo, DoctorFormDataConstants.hb_level).equals("") ? "Not captured" : getDatafromJson(formInfo, DoctorFormDataConstants.hb_level));
 
         ib_play_stehoscope.setVisibility(!getDatafromJson(formInfo, DoctorFormDataConstants.stethoscope_data).equals("") ? View.VISIBLE : View.GONE);
         tv_stehoscope_title.setVisibility(!getDatafromJson(formInfo, DoctorFormDataConstants.stethoscope_data).equals("") ? View.VISIBLE : View.GONE);
@@ -107,15 +113,34 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
         tv_kop_feel_hot.setText(getDatafromJson(formInfo, DoctorFormDataConstants.kopfeel_heat_or_chills));
         tv_urinating_problems.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_urinating_problems));
         tv_anm_poc.setText(getDatafromJsonArray(getDatafromJson(formInfo, anmPoc)));
-        return new String[]{documentId, phoneNumber};
+        return new String[]{documentId, phoneNumber, visitId};
     }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if (ib_play_stehoscope != null && ib_pause_stehoscope != null) {
+//            ib_play_stehoscope.setVisibility(View.VISIBLE);
+//            ib_pause_stehoscope.setVisibility(View.INVISIBLE);
+//        }
+//
+//    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ib_play_stehoscope:
-                playData("http://202.153.34.169/hs/sound_1.wav");
+                playData("http://202.153.34.169/hs/sound_1.wav", ib_play_stehoscope, ib_pause_stehoscope);
+                ib_pause_stehoscope.setVisibility(View.VISIBLE);
+                ib_play_stehoscope.setVisibility(View.INVISIBLE);
                 break;
+            case R.id.ib_pause_stehoscope:
+                pausePlay();
+                ib_pause_stehoscope.setVisibility(View.INVISIBLE);
+                ib_play_stehoscope.setVisibility(View.VISIBLE);
+
+                break;
+
             case R.id.bt_plan_of_care:
                 getDrugData();
                 break;

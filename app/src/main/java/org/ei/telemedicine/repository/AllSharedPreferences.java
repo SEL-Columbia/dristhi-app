@@ -17,6 +17,7 @@ public class AllSharedPreferences {
     public static final String IS_FIRST_LOGIN = "isFirstLogin";
     public static final String USER_ROLE_PREFERENCE_KEY = "userRole";
     public static final String FORM_NAME_KEY = "formName";
+    public static final String VILLAGE_NAME_KEY = "villageName";
     public static final String ENTITY_KEY = "entityId";
     public static final String PASSWORD = "password";
     public static final String SCREEN = "screen";
@@ -41,6 +42,14 @@ public class AllSharedPreferences {
     public void saveFormName(String formName, String entityId) {
         preferences.edit().putString(FORM_NAME_KEY, formName).commit();
         preferences.edit().putString(ENTITY_KEY, entityId).commit();
+    }
+
+    public void saveVillageName(String villageName) {
+        preferences.edit().putString(VILLAGE_NAME_KEY, villageName).commit();
+    }
+
+    public String getVillageName() {
+        return preferences.getString(VILLAGE_NAME_KEY, "");
     }
 
     public String getFormName() {

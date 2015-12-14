@@ -40,7 +40,6 @@ public class AllEligibleCouples {
         return eligibleCoupleRepository.findByCaseIDs(caseIds.toArray(new String[caseIds.size()]));
     }
 
-
     public void updatePhotoPath(String caseId, String imagePath) {
         eligibleCoupleRepository.updatePhotoPath(caseId, imagePath);
     }

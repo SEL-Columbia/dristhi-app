@@ -101,13 +101,13 @@ public class MtBuf {
                 }
                 if (_size == 0) {
 //				pOutputStream.write(DeviceCommand.REPLAY_CONTEC08A());
-
                     Log.e(TAG, "-------No Pressure-------");
-
                 } else {
-//				pOutputStream.write(DeviceCommand.REPLAY_CONTEC08A());
 
+//				pOutputStream.write(DeviceCommand.REPLAY_CONTEC08A());
                 }
+
+                pOutputStream.write(DeviceCommand.REPLAY_CONTEC08A());
 
 
                 break;

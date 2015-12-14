@@ -23,61 +23,7 @@ import java.util.List;
 
 import static java.text.MessageFormat.format;
 import static org.ei.telemedicine.AllConstants.*;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.age;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anc_entityId;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anc_number;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anc_visit_date;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anc_visit_number;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.ancvisit;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anmId;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anmPoc;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.blood_glucose;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.bp_dia;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.bp_sys;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_age;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_dob;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_entityId;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_immediateReferral;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_immediateReferral_reason;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_info;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_name;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_no_of_osrs;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_referral;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_report_child_disease;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_report_child_disease_date;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_report_child_disease_other;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_report_child_disease_place;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_signs;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_signs_other;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.child_submission_date;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.documentId;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.edd;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.entityId;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.fetal_data;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.husband_name;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.id_no;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.isHighRisk;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.kopfeel_heat_or_chills;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.lmp;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.phoneNumber;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pncVisit;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_abdominal_problems;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_breast_problems;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_difficulties;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_entityId;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_number;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_urinating_problems;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_vaginal_problems;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_visit_date;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.pnc_visit_place;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.poc_pending;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.risk_symptoms;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.stethoscope_data;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.temp_data;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visitId;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.visit_type;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.weight_data;
-import static org.ei.telemedicine.doctor.DoctorFormDataConstants.wife_name;
+import static org.ei.telemedicine.doctor.DoctorFormDataConstants.*;
 import static org.ei.telemedicine.domain.SyncStatus.SYNCED;
 import static org.ei.telemedicine.util.EasyMap.create;
 import static org.ei.telemedicine.util.Log.logError;
@@ -97,7 +43,7 @@ public class FormSubmissionService {
         this.allSettings = allSettings;
     }
 
-    public void processSubmissions(List<FormSubmission> formSubmissions) {
+    public void processSubmissions(List<FormSubmission> formSubmissions, String villageName) {
         for (FormSubmission submission : formSubmissions) {
             logError("Entity Id " + submission.entityId() + "\n Form Name" + submission.formName() + "\n Instance= " + submission.instance());
             if (formDataRepository.submissionExists(submission.instanceId())) {
@@ -110,7 +56,7 @@ public class FormSubmissionService {
                 logError(format("Form submission processing failed, with instanceId: {0}. Exception: {1}, StackTrace: {2}",
                         submission.instanceId(), e.getMessage(), ExceptionUtils.getStackTrace(e)));
             }
-            formDataRepository.updateServerVersion(submission.instanceId(), submission.serverVersion());
+            formDataRepository.updateServerVersion(submission.instanceId(), submission.serverVersion(), villageName);
             allSettings.savePreviousFormSyncIndex(submission.serverVersion());
         }
     }
@@ -129,13 +75,11 @@ public class FormSubmissionService {
         context = Context.getInstance();
         allDoctorRepository = context.allDoctorRepository();
         JSONObject formData = new JSONObject();
-
         try {
             if (data != null) {
                 Log.e(TAG, "Data " + data);
                 JSONArray dataArray = new JSONArray(data);
                 for (int i = 0; i < dataArray.length(); i++) {
-
                     JSONObject datajsonObject = dataArray.getJSONObject(i);
                     JSONArray visitsArray = datajsonObject.getJSONArray("riskinfo");
 
@@ -171,11 +115,13 @@ public class FormSubmissionService {
                             formData.put(risk_symptoms, getDataFromJson("riskObservedDuringANC", riskJson));
                             formData.put(bp_sys, getDataFromJson("bpSystolic", riskJson));
                             formData.put(bp_dia, getDataFromJson("bpDiastolic", riskJson));
+                            formData.put(DoctorFormDataConstants.bp_pulse, getDataFromJson("pulseRate", riskJson));
+
                             formData.put(temp_data, getDataFromJson("temperature", riskJson));
                             formData.put(weight_data, getDataFromJson("weight", riskJson));
                             formData.put(blood_glucose, getDataFromJson("bloodGlucoseData", riskJson));
                             formData.put(fetal_data, getDataFromJson("fetalData", riskJson));
-                            formData.put(stethoscope_data, getDataFromJson("stethoscopeData", riskJson));
+                            formData.put(stethoscope_data, getDataFromJson("pstechoscopeData", riskJson));
                         } else if (getDataFromJson(visit_type, riskJson).equals(pncVisit)) {
 //                                            formData.put(status, "Place: " + getData("pncVisitPlace", riskJson) + "Date: " + getData("pncVisitDate", riskJson));
                             formData.put(id_no, getDataFromJson("pncNumber", riskJson));
@@ -194,13 +140,15 @@ public class FormSubmissionService {
 
                             formData.put(bp_sys, getDataFromJson("bpSystolic", riskJson));
                             formData.put(bp_dia, getDataFromJson("bpDiastolic", riskJson));
+                            formData.put(DoctorFormDataConstants.bp_pulse, getDataFromJson("pulseRate", riskJson));
+
                             formData.put(temp_data, getDataFromJson("temperature", riskJson));
                             formData.put(weight_data, getDataFromJson("weight", riskJson));
                             formData.put(blood_glucose, getDataFromJson("bloodGlucoseData", riskJson));
-                            formData.put(fetal_data, getDataFromJson("fetalData", riskJson));
-                            formData.put(stethoscope_data, getDataFromJson("stethoscopeData", riskJson));
+                            formData.put(hb_level, getDataFromJson("hbLevel", riskJson));
+                            formData.put(stethoscope_data, getDataFromJson("pstechoscopeData", riskJson));
                         } else {
-
+                            formData.put(id_no, getDataFromJson("childNumber", riskJson));
                             formData.put(child_report_child_disease_place, getDataFromJson("reportChildDiseasePlace", riskJson));
                             formData.put(child_report_child_disease_date, getDataFromJson("reportChildDiseaseDate", riskJson));
 
@@ -208,8 +156,10 @@ public class FormSubmissionService {
                             formData.put(child_info, getDataFromJson("childInfo", riskJson));
                             formData.put(child_dob, getDataFromJson("dateOfBirth", riskJson));
                             formData.put(child_age, getDataFromJson("age", riskJson));
+                            formData.put(child_gender, getDataFromJson("gender", riskJson));
 //                            formData.put(child_entityId, getDataFromJson("entityid", riskJson));
                             formData.put(visitId, getDataFromJson("entityid", riskJson));
+                            formData.put(temp_data, getDataFromJson("childTemperature", riskJson));
                             formData.put(child_immediateReferral, getDataFromJson("immediateReferral", riskJson));
                             formData.put(child_immediateReferral_reason, getDataFromJson("immediateReferralReason", riskJson));
                             formData.put(child_no_of_osrs, getDataFromJson("numberOfORSGiven", riskJson));
@@ -220,12 +170,23 @@ public class FormSubmissionService {
                             formData.put(child_report_child_disease, getDataFromJson("reportChildDisease", riskJson));
                             formData.put(child_signs_other, getDataFromJson("childSignsOther", riskJson));
                             formData.put(child_signs, getDataFromJson("childSigns", riskJson));
+
+                            formData.put(child_sick_visit_date, getDataFromJson("sickVisitDate", riskJson));
+                            formData.put(child_days_of_cough, getDataFromJson("numberOfDaysCough", riskJson));
+                            formData.put(child_breaths_per_minute, getDataFromJson("breathsPerMinute", riskJson));
+                            formData.put(child_days_of_diarrhea, getDataFromJson("daysOfDiarrhea", riskJson));
+                            formData.put(child_blood_in_stool, getDataFromJson("bloodInStool", riskJson));
+                            formData.put(child_vommit_every_thing, getDataFromJson("vommitEveryThing", riskJson));
+                            formData.put(child_number_of_days_fever, getDataFromJson("daysOfFever", riskJson));
+
+
                         }
                         DoctorData doctorData = new DoctorData();
 //                                        doctorData.setVisitType(getData("visit_type", datajsonObject));
+
                         doctorData.setFormInformation(formData.toString());
                         doctorData.setAnmId(getDataFromJson("anmId", datajsonObject));
-                        doctorData.setCaseId(getDataFromJson("id", riskJson));
+                        doctorData.setCaseId(getDataFromJson("entityid", riskJson));
                         doctorData.setSyncStatus("pending");
                         String village = getDataFromJson("village", datajsonObject);
                         doctorData.setVillageName(village);

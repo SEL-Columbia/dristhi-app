@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Environment;
@@ -43,6 +44,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 
 import static java.lang.String.valueOf;
 import static org.ei.telemedicine.event.Event.ACTION_HANDLED;
@@ -61,15 +63,16 @@ public class NativeHomeActivity extends SecuredActivity {
     private PendingFormSubmissionService pendingFormSubmissionService;
     Dialog popup_dialog;
     Object obj;
+
     private Listener<Boolean> onSyncStartListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
             if (updateMenuItem != null) {
                 updateMenuItem.setActionView(R.layout.progress);
             }
-            if (context.allSharedPreferences().getScreen().equals(AllConstants.HOME_SCREEN)) {
+            if (context.allSharedPreferences().getScreen().equals(AllConstants.HOME_SCREEN) && context.allSharedPreferences().fetchIsFirstLogin()) {
                 progressDialog = new ProgressDialog(NativeHomeActivity.this);
-                progressDialog.setMessage("Data is Syncing");
+                progressDialog.setMessage((!context.allSharedPreferences().getVillageName().toString().equals("") ? "\"" + context.allSharedPreferences().getVillageName().toString() + "\"" + " " : "") + "Data is Syncing");
                 progressDialog.setCancelable(false);
                 progressDialog.show();
             }
@@ -125,7 +128,7 @@ public class NativeHomeActivity extends SecuredActivity {
     private String TAG = "NativeHomeActivity";
 
     @Override
-    protected void onCreation() {
+    public void onCreation() {
         setContentView(R.layout.smart_registers_home);
         setupViews();
         initialize();
@@ -184,7 +187,7 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     @Override
-    protected void onResumption() {
+    public void onResumption() {
         Log.e("Resume", "resume");
         context.allSharedPreferences().saveCurrent(AllConstants.HOME_SCREEN);
         visibleRegisters();
@@ -265,6 +268,17 @@ public class NativeHomeActivity extends SecuredActivity {
             case R.id.updateMenuItem:
                 updateFromServer();
                 return true;
+
+            case R.id.video:
+                try {
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.setComponent(new ComponentName("org.appspot.apprtc",
+                            "org.appspot.apprtc.ConnectActivity"));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(this, "Please install Apprtc APK", Toast.LENGTH_SHORT).show();
+                }
+                return true;
 //            case R.id.export:
 //                File sd = Environment.getExternalStorageDirectory();
 //                File data = Environment.getDataDirectory();
@@ -287,8 +301,7 @@ public class NativeHomeActivity extends SecuredActivity {
 //                }
 //                Toast.makeText(this, "Comple", Toast.LENGTH_SHORT).show();
 //                return true;
-            case R.id.video:
-                return true;
+
             case R.id.logout:
                 new AlertDialog.Builder(this).setTitle("Do you want logout?").setPositiveButton("Logout", new DialogInterface.OnClickListener() {
                     @Override
@@ -318,7 +331,14 @@ public class NativeHomeActivity extends SecuredActivity {
     public void updateFromServer() {
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
-        updateActionsTask.updateFromServer(new SyncAfterFetchListener());
+        final ArrayList<String> villagesList = context.allSettings().getVillages();
+//        ArrayList<String> villagesList = new ArrayList<String>();
+//        villagesList.add("Gazi Pur");
+//        villagesList.add("Kotla");
+//        villagesList.add("Dalu Pura");
+//        villagesList.add("Hasan Pur");
+        for (String villageName : villagesList)
+            updateActionsTask.updateFromServer(new SyncAfterFetchListener(), villageName);
     }
 
     @Override

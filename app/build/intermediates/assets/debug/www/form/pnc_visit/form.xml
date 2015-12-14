@@ -4,7 +4,7 @@
     <h3 id="form-title">PNC Visit</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">PNC Number:</span>
+        <span class="question-label active" lang="">PNC Number</span>
         <input name="/PNC_Visit_EngKan/pnc_num" autocomplete="off" data-type-xml="int"
             disabled="disabled" type="text" />
     </label>
@@ -100,7 +100,7 @@
     <section name="/PNC_Visit_EngKan/pnc_mother_group" class="or-group-data or-branch pre-init "
         data-relevant="( /PNC_Visit_EngKan/case_woman_survived  = 'yes' or  /PNC_Visit_EngKan/case_mother_survived  = 'yes')">
         <label class="note non-select ">
-            <span class="question-label active" lang="">Mother check-up :</span>
+            <span class="question-label active" lang="">Mother check-up </span>
             <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_group_message"
                 data-type-xml="string" readonly="readonly" type="text" />
         </label>
@@ -114,7 +114,7 @@
                     <label class="">
                         <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1"
                             data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
-                            data-type-xml="select" type="checkbox" value="difficulty_breathing" />
+                            data-type-xml="select" type="checkbox" value="difficult_breathing" />
                         <span class="option-label active" lang="">Difficulty breathing</span>
                     </label>
                     <label class="">
@@ -148,7 +148,7 @@
                         <input
                             name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems"
                             data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
-                            data-type-xml="select" type="checkbox" value="uterus_soft_or_tender" />
+                            data-type-xml="select" type="checkbox" value="uterus_is_soft_or_tender" />
                         <span class="option-label active" lang="">Uterus is soft or tender</span>
                     </label>
                     <label class="">
@@ -177,19 +177,19 @@
                     <label class="">
                         <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems"
                             data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
-                            data-type-xml="select" type="checkbox" value="heavy_bleeding" />
+                            data-type-xml="select" type="checkbox" value="heavy_bleeding_per_vaginum" />
                         <span class="option-label active" lang="">Heavy bleeding per vaginum</span>
                     </label>
                     <label class="">
                         <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems"
                             data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
-                            data-type-xml="select" type="checkbox" value="bad_smell_lochea" />
+                            data-type-xml="select" type="checkbox" value="bad_smelling_lochea" />
                         <span class="option-label active" lang="">Bad-smelling lochea</span>
                     </label>
                     <label class="">
                         <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems"
                             data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
-                            data-type-xml="select" type="checkbox" value="infected_suture" />
+                            data-type-xml="select" type="checkbox" value="infected_perineum_suture" />
                         <span class="option-label active" lang="">Infected perineum suture</span>
                     </label>
                     <label class="">
@@ -211,13 +211,13 @@
                     <label class="">
                         <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2"
                             data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
-                            data-type-xml="select" type="checkbox" value="difficulty_urinating" />
+                            data-type-xml="select" type="checkbox" value="difficulty_passing_urine" />
                         <span class="option-label active" lang="">Difficulty passing urine</span>
                     </label>
                     <label class="">
                         <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2"
                             data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
-                            data-type-xml="select" type="checkbox" value="burning_when_urinating" />
+                            data-type-xml="select" type="checkbox" value="burning_sensation_when_urinating" />
                         <span class="option-label active" lang="">Burning sensation when urinating
                         </span>
                     </label>
@@ -332,10 +332,11 @@
         <!--<input type="number" name="/PNC_Visit_EngKan/pnc_mother_group/temperature" data-type-xml="decimal"-->
         <!--step="any"/>-->
         <!--</label>-->
-        <!--<label class="question non-select ">-->
-        <!--<span lang="" class="question-label active">Pulse rate </span>-->
-        <!--<input type="number" name="/PNC_Visit_EngKan/pnc_mother_group/pulse_rate" data-type-xml="int"/>-->
-        <!--</label>-->
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Pulse rate</span>
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/pulse_rate" data-type-xml="int"
+                type="number" />
+        </label>
         <!--<label class="question non-select ">-->
         <!--<span lang="" class="question-label active">BP (systolic) </span>-->
         <!--<input type="number" name="/PNC_Visit_EngKan/pnc_mother_group/bp_systolic" data-type-xml="int"/>-->
@@ -391,7 +392,7 @@
                 data-type-xml="string" readonly="readonly" type="text" />
         </label>
         <label class="note or-branch pre-init non-select ">
-            <span class="question-label active" lang="">Woman is still at risk because of, :
+            <span class="question-label active" lang="">Woman is still at risk because of,
                 <span class="or-output"
                     data-value=" /PNC_Visit_EngKan/pnc_mother_group/high_risk_reason "></span>
             </span>
@@ -492,12 +493,12 @@
         data-relevant=" /PNC_Visit_EngKan/case_delivery_outcome  = 'live_birth'">
         <section name="/PNC_Visit_EngKan/pnc_child_repeat" class="or-repeat ">
             <label class="note non-select ">
-                <span class="question-label active" lang="">Baby check-up :</span>
+                <span class="question-label active" lang="">Baby check-up </span>
                 <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_group_message"
                     data-type-xml="string" readonly="readonly" type="text" />
             </label>
             <label class="note non-select ">
-                <span class="question-label active" lang="">Sex :
+                <span class="question-label active" lang="">Sex
                     <span class="or-output"
                         data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_sex_child "></span>
                     Birth weight :
@@ -788,7 +789,7 @@
                     data-type-xml="string" readonly="readonly" type="text" />
             </label>
             <label class="note or-branch pre-init non-select ">
-                <span class="question-label active" lang="">Child has following danger signs, :
+                <span class="question-label active" lang="">Child has following danger signs
                     <span class="or-output"
                         data-value=" /PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_reason_baby "></span>
                     . Refer immediately to health facility!

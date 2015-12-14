@@ -20,7 +20,7 @@
                     <input autocomplete="off" type="radio" name="/Child_Close_EngKan/close_reason"
                            data-name="/Child_Close_EngKan/close_reason" value="child_over5" required="required"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Child &gt; 5 years of age, </span>
+                    <span lang="" class="option-label active">Child &gt; 5 years of age </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/Child_Close_EngKan/close_reason"
@@ -78,7 +78,7 @@
                                data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="within_24hrs"
                                data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
                                data-type-xml="select1"/>
-                        <span lang="" class="option-label active">Within 24 hrs of birth, </span>
+                        <span lang="" class="option-label active">Within 24 hrs of birth </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="radio"
@@ -102,7 +102,7 @@
                                data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="lbw"
                                data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
                                data-type-xml="select1"/>
-                        <span lang="" class="option-label active">Low birth weight (&lt; 2.5 kg),
+                        <span lang="" class="option-label active">Low birth weight (&lt; 2.5 kg)
                         </span>
                     </label>
                     <label class="">

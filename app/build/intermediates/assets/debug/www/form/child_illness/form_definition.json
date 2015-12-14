@@ -71,6 +71,30 @@
         "bind": "/model/instance/Child_Sick_Visit_EngKan/report_child_disease_group/number_ors_given"
       },
       {
+        "name": "numberOfDaysCough",
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/days_of_cough"
+      },
+      {
+        "name": "breathsPerMinute",
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/breaths_per_minute"
+      },
+      {
+        "name": "daysOfDiarrhea",
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/days_of_diarrhea"
+      },
+      {
+        "name": "bloodInStool",
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/blood_in_stool"
+      },
+      {
+        "name": "vommitEveryThing",
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/child_sickness_management_group/vomiting_everything"
+      },
+      {
+        "name": "daysOfFever",
+        "bind": "/model/instance/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group/days_of_fever"
+      },
+      {
         "name": "childReferral",
         "bind": "/model/instance/Child_Sick_Visit_EngKan/report_child_disease_group/child_referral"
       },

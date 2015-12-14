@@ -26,9 +26,14 @@
         "source": "mother.eligible_couple.id"
       },
       {
+        "name": "countryCode",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Delivery_Plan_EngKan/country_code"
+      },
+      {
         "name": "phoneNumber",
         "shouldLoadValue": true,
-        "source": "mother.eligible_couple.phoneNumber",
+        "source": "mother.eligible_couple.phoneNo",
         "bind": "/model/instance/Delivery_Plan_EngKan/entity_phone_no"
       },
       {
@@ -54,6 +59,7 @@
       {
         "name": "womanName",
         "shouldLoadValue": true,
+        "source": "mother.eligible_couple.wifeName",
         "bind": "/model/instance/Delivery_Plan_EngKan/entity_woman_name"
       },
       {

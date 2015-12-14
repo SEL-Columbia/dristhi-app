@@ -40,7 +40,7 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.*;
  */
 public class PendingConsultantBaseAdapter extends BaseAdapter {
     List<DoctorData> consultantsList;
-    List<DoctorData> remainingList;
+    List<DoctorData> totalConsultansList;
     List<DoctorData> searchconsultantsList;
     Context context;
     private String TAG = "PendingConsultantBaseAdapter";
@@ -54,8 +54,9 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         this.activity = activity;
         this.consultantsList = consultantsList;
         this.searchconsultantsList = new ArrayList<DoctorData>();
-        this.remainingList = new ArrayList<DoctorData>();
-        this.searchconsultantsList.addAll(NativeDoctorActivity.doctorDataArrayList);
+        this.totalConsultansList = new ArrayList<DoctorData>();
+        this.totalConsultansList.addAll(consultantsList);
+        this.searchconsultantsList.addAll(consultantsList);
         this.imageLoader = new ImageLoader(activity.getApplicationContext());
     }
 
@@ -249,46 +250,6 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         }.execute();
     }
 
-    public void villagesFilter(String text) {
-        NativeDoctorActivity.village_name_view.setText(text);
-        text = text.toLowerCase(Locale.getDefault());
-        consultantsList.clear();
-        if (text.length() == 0 || text.equals("all")) {
-            consultantsList.addAll(searchconsultantsList);
-        } else {
-            for (DoctorData doctorData : searchconsultantsList) {
-//                String womanName = getData(wife_name, doctorData.getFormInformation());
-                String villageName = getData(village_name, doctorData.getFormInformation());
-                if (villageName != null && villageName.toLowerCase(Locale.getDefault()).contains(text)) {
-                    consultantsList.add(doctorData);
-                }
-            }
-        }
-
-//        if (NativeDoctorActivity.syncAdapter != null)
-//            NativeDoctorActivity.syncAdapter.notifyDataSetChanged();
-//        else
-//            NativeDoctorActivity.pendingConsultantBaseAdapter.notifyDataSetChanged();
-    }
-
-    public void filter(String text) {
-
-        text = text.toLowerCase(Locale.getDefault());
-        consultantsList.clear();
-        if (text.length() == 0 && text.equalsIgnoreCase("all")) {
-            consultantsList.addAll(searchconsultantsList);
-        } else {
-            for (DoctorData doctorData : searchconsultantsList) {
-                String womanName = getData(wife_name, doctorData.getFormInformation());
-                if (womanName != null && womanName.toLowerCase(Locale.getDefault()).contains(text)) {
-                    consultantsList.add(doctorData);
-                }
-            }
-        }
-
-
-    }
-
     public String getData(String key, String formData) {
 
         if (formData != null) try {
@@ -301,66 +262,86 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         return null;
     }
 
-    public void sort(String sortingOption) {
-        switch (sortingOption) {
-            case sorting_anc:
-                consultantsList.clear();
-                for (DoctorData doctorData : searchconsultantsList) {
-                    String visitType = getData(visit_type, doctorData.getFormInformation());
-                    if (visitType != null && visitType.toLowerCase(Locale.getDefault()).contains("anc")) {
-                        consultantsList.add(doctorData);
-                    }
-                }
-                Collections.sort(consultantsList, DoctorData.womanNameComparator);
-//                consultantsList.addAll(remainingList);
-                break;
-            case sorting_pnc:
-                consultantsList.clear();
-                for (DoctorData doctorData : searchconsultantsList) {
-                    String visitType = getData(visit_type, doctorData.getFormInformation());
-                    if (visitType != null && visitType.toLowerCase(Locale.getDefault()).contains("pnc")) {
-                        consultantsList.add(doctorData);
-                    }
-                }
-                Collections.sort(consultantsList, DoctorData.womanNameComparator);
-//                consultantsList.addAll(remainingList);
-                break;
-            case sorting_child:
-                consultantsList.clear();
-                for (DoctorData doctorData : searchconsultantsList) {
-                    String visitType = getData(visit_type, doctorData.getFormInformation());
-                    if (visitType != null && visitType.toLowerCase(Locale.getDefault()).contains("child")) {
-                        consultantsList.add(doctorData);
-                    }
-                }
-                Collections.sort(consultantsList, DoctorData.womanNameComparator);
-//                consultantsList.addAll(remainingList);
-                break;
-            case sorting_hr:
-                consultantsList.clear();
-                for (DoctorData doctorData : searchconsultantsList) {
-                    String isHighRisk = getData(DoctorFormDataConstants.isHighRisk, doctorData.getFormInformation());
-                    if (isHighRisk != null && isHighRisk.equalsIgnoreCase("yes")) {
-                        consultantsList.add(doctorData);
-                    }
-                }
-                Collections.sort(consultantsList, DoctorData.womanNameComparator);
-//                consultantsList.addAll(remainingList);
-                break;
-            default:
-                consultantsList.clear();
-                for (DoctorData doctorData : searchconsultantsList) {
-                    consultantsList.add(doctorData);
-                }
-                Collections.sort(consultantsList, DoctorData.womanNameComparator);
-                break;
-        }
 
-//        if (NativeDoctorActivity.syncAdapter != null)
-//            NativeDoctorActivity.syncAdapter.notifyDataSetChanged();
-//        else
-//            NativeDoctorActivity.pendingConsultantBaseAdapter.notifyDataSetChanged();
+    public void villagesFilter(String text, ArrayList<DoctorData> doctorDatas) {
+        NativeDoctorActivity.village_name_view.setText(text);
+        text = text.toLowerCase(Locale.getDefault());
+
+        totalConsultansList.clear();
+//        consultantsList.clear();
+        if (text.trim().length() == 0 || text.equalsIgnoreCase("all")) {
+            notifyDataSetChanged(doctorDatas);
+        } else {
+            for (DoctorData doctorData : doctorDatas) {
+                String villageName = getData(village_name, doctorData.getFormInformation());
+                if (villageName != null && villageName.toLowerCase(Locale.getDefault()).contains(text)) {
+                    totalConsultansList.add(doctorData);
+                }
+            }
+            notifyDataSetChanged(totalConsultansList);
+        }
     }
 
+    public List<DoctorData> filter(String text, ArrayList<DoctorData> doctorDatas) {
+        text = text.toLowerCase(Locale.getDefault());
+        totalConsultansList.clear();
+//        consultantsList.clear();
+        if (text.trim().length() == 0 || text.equalsIgnoreCase("all")) {
+            return doctorDatas;
+        } else {
+            for (DoctorData doctorData : doctorDatas) {
+                String womanName = getData(wife_name, doctorData.getFormInformation());
+                if (womanName != null && womanName.toLowerCase(Locale.getDefault()).contains(text)) {
+                    totalConsultansList.add(doctorData);
+                }
+            }
+        }
+        return totalConsultansList;
+    }
+
+    public void notifyDataSetChanged(List<DoctorData> consultantsList) {
+        this.consultantsList = consultantsList;
+        super.notifyDataSetChanged();
+    }
+
+
+    public void sort(String sortingOption, ArrayList<DoctorData> doctorDatas) {
+
+        String text = sortingOption.toLowerCase(Locale.getDefault());
+        totalConsultansList.clear();
+        searchconsultantsList.clear();
+//        consultantsList.clear();
+        if (text.trim().length() == 0 || text.trim().equalsIgnoreCase(DoctorFormDataConstants.sorting_name.toLowerCase().trim())) {
+            consultantsList.addAll(doctorDatas);
+            Collections.sort(doctorDatas, DoctorData.womanNameComparator);
+            notifyDataSetChanged(doctorDatas);
+        }
+        if (text.trim().equalsIgnoreCase(DoctorFormDataConstants.sorting_hr)) {
+            for (DoctorData doctorData : doctorDatas) {
+                String isHighRisk = getData(DoctorFormDataConstants.isHighRisk, doctorData.getFormInformation());
+                if (isHighRisk != null && isHighRisk.toLowerCase(Locale.getDefault()).contains("yes")) {
+                    totalConsultansList.add(doctorData);
+                } else {
+                    searchconsultantsList.add(doctorData);
+                }
+            }
+            Collections.sort(totalConsultansList, DoctorData.womanNameComparator);
+            totalConsultansList.addAll(searchconsultantsList);
+            notifyDataSetChanged(totalConsultansList);
+        } else {
+            for (DoctorData doctorData : doctorDatas) {
+                String visitType = getData(visit_type, doctorData.getFormInformation());
+                if (visitType != null && visitType.toLowerCase(Locale.getDefault()).contains(text)) {
+                    totalConsultansList.add(doctorData);
+                } else {
+                    searchconsultantsList.add(doctorData);
+                }
+            }
+            Collections.sort(totalConsultansList, DoctorData.womanNameComparator);
+            totalConsultansList.addAll(searchconsultantsList);
+            notifyDataSetChanged(totalConsultansList);
+        }
+
+    }
 
 }

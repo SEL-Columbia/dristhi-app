@@ -88,9 +88,20 @@ public class DoctorRepository extends DrishtiRepository {
         Log.e(TAG, "Adding records" + doctorData.getFormInformation());
         if (!isExistCaseId(doctorData.getCaseId()))
             database.insert(DOCTORS_INFO_TABLE_NAME, null, createValuesFor(doctorData));
-        else
-//            database.update(DOCTORS_INFO_TABLE_NAME, createValuesFor(doctorData), CASE_ID_COLUMN, new String[]{doctorData.getCaseId()});
+        else {
+            try {
+                database.update(DOCTORS_INFO_TABLE_NAME, createValuesFor(doctorData), CASE_ID_COLUMN + " = ?", new String[]{doctorData.getCaseId()});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             Log.e(TAG, "Already exist");
+        }
+
+//        if (isExistCaseId(doctorData.getCaseId())) {
+//            deleteUseCaseId(doctorData.getCaseId());
+//            Log.e(TAG, "Already exist");
+//        }
+//        database.insert(DOCTORS_INFO_TABLE_NAME, null, createValuesFor(doctorData));
     }
 
 

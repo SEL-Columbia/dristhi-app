@@ -27,18 +27,19 @@ import static org.ei.telemedicine.domain.SyncStatus.SYNCED;
 
 public class FormDataRepository extends DrishtiRepository {
     private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(instanceId VARCHAR PRIMARY KEY, entityId VARCHAR, " +
-            "formName VARCHAR, instance VARCHAR, version VARCHAR, serverVersion VARCHAR, formDataDefinitionVersion VARCHAR, syncStatus VARCHAR)";
+            "formName VARCHAR, instance VARCHAR, version VARCHAR, serverVersion VARCHAR, formDataDefinitionVersion VARCHAR, syncStatus VARCHAR,village VARCHAR)";
     public static final String INSTANCE_ID_COLUMN = "instanceId";
     public static final String ENTITY_ID_COLUMN = "entityId";
     private static final String FORM_NAME_COLUMN = "formName";
     private static final String INSTANCE_COLUMN = "instance";
+    private static final String VILLAGE_NAME_COLUMN = "village";
     private static final String VERSION_COLUMN = "version";
     private static final String SERVER_VERSION_COLUMN = "serverVersion";
     private static final String SYNC_STATUS_COLUMN = "syncStatus";
     private static final String FORM_DATA_DEFINITION_VERSION_COLUMN = "formDataDefinitionVersion";
     private static final String FORM_SUBMISSION_TABLE_NAME = "form_submission";
     public static final String[] FORM_SUBMISSION_TABLE_COLUMNS = new String[]{INSTANCE_ID_COLUMN, ENTITY_ID_COLUMN, FORM_NAME_COLUMN,
-            INSTANCE_COLUMN, VERSION_COLUMN, SERVER_VERSION_COLUMN, FORM_DATA_DEFINITION_VERSION_COLUMN, SYNC_STATUS_COLUMN};
+            INSTANCE_COLUMN, VERSION_COLUMN, SERVER_VERSION_COLUMN, FORM_DATA_DEFINITION_VERSION_COLUMN, SYNC_STATUS_COLUMN, VILLAGE_NAME_COLUMN};
     public static final String ID_COLUMN = "id";
     private static final String DETAILS_COLUMN_NAME = "details";
     private static final String FORM_NAME_PARAM = "formName";
@@ -50,7 +51,6 @@ public class FormDataRepository extends DrishtiRepository {
         TABLE_COLUMN_MAP.put(EligibleCoupleRepository.EC_TABLE_NAME, EligibleCoupleRepository.EC_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(MotherRepository.MOTHER_TABLE_NAME, MotherRepository.MOTHER_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(ChildRepository.CHILD_TABLE_NAME, ChildRepository.CHILD_TABLE_COLUMNS);
-//		TABLE_COLUMN_MAP.put(TestRepository.TAB_NAME,TestRepository.test_tb_cols);
     }
 
     @Override
@@ -80,6 +80,13 @@ public class FormDataRepository extends DrishtiRepository {
         }
         cursor.close();
         return new Gson().toJson(results);
+    }
+
+    public String getLastFormIndex(String villageName) {
+        long index = longForQuery(masterRepository.getReadableDatabase(), "SELECT MAX(serverVersion) FROM " + FORM_SUBMISSION_TABLE_NAME
+                        + " WHERE " + VILLAGE_NAME_COLUMN + " = ? ",
+                new String[]{villageName});
+        return String.valueOf(index);
     }
 
     public String saveFormSubmission(String paramsJSON, String data, String formDataDefinitionVersion) {
@@ -128,10 +135,11 @@ public class FormDataRepository extends DrishtiRepository {
         }
     }
 
-    public void updateServerVersion(String instanceId, String serverVersion) {
+    public void updateServerVersion(String instanceId, String serverVersion, String villageName) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(SERVER_VERSION_COLUMN, serverVersion);
+        values.put(VILLAGE_NAME_COLUMN, villageName);
 //        values.put(INSTANCE_COLUMN, instance);
         database.update(FORM_SUBMISSION_TABLE_NAME, values, INSTANCE_ID_COLUMN + " = ?", new String[]{instanceId});
     }

@@ -4,7 +4,7 @@
     <h3 id="form-title">Edit ANC Registration</h3>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Edit password:</span>
+        <span class="question-label active" lang="">Edit password</span>
         <input name="/ANC_Registration_EngKan/edit_password" autocomplete="off"
             data-type-xml="string" type="password" />
     </label>
@@ -12,33 +12,30 @@
         class="or-group-data or-branch pre-init "
         data-relevant=" /ANC_Registration_EngKan/edit_password  = /ANC_Registration_EngKan/anc_edit_group/pwd">
 
-        <label class="question non-select ">
-            <span class="question-label active" lang="">EC Number:</span>
-            <input name="/ANC_Registration_EngKan/anc_edit_group/ec_num" autocomplete="off"
-                data-type-xml="int" disabled="disabled" type="text" />
+        <label class="note  non-select ">
+            <span class="question-label active" lang="">EC Number
+                <span class="or-output"
+                    data-value=" /ANC_Registration_EngKan/anc_edit_group/ec_num"></span>
+            </span>
+
+        </label>
+
+        <label class="note  non-select ">
+            <span class="question-label active" lang="">Woman Name
+                <span class="or-output"
+                    data-value=" /ANC_Registration_EngKan/anc_edit_group/woman_name"></span>
+            </span>
+        </label>
+
+        <label class="note  non-select ">
+            <span class="question-label active" lang="">Husband Name
+                <span class="or-output"
+                    data-value=" /ANC_Registration_EngKan/anc_edit_group/husband_name"></span>
+            </span>
         </label>
 
         <label class="question non-select ">
-
-            <input name="/ANC_Registration_EngKan/anc_edit_group/village" autocomplete="off"
-                data-type-xml="string" disabled="disabled" type="hidden" />
-        </label>
-
-
-        <label class="question non-select ">
-            <span class="question-label active" lang="">Woman Name:</span>
-            <input name="/ANC_Registration_EngKan/anc_edit_group/woman_name" autocomplete="off"
-                data-type-xml="string" disabled="disabled" type="text" />
-        </label>
-
-        <label class="question non-select ">
-            <span class="question-label active" lang="">Husband Name:</span>
-            <input name="/ANC_Registration_EngKan/anc_edit_group/husband_name" autocomplete="off"
-                data-type-xml="string" disabled="disabled" type="text" />
-        </label>
-
-        <label class="question non-select ">
-            <span class="question-label active" lang="">Registration date:
+            <span class="question-label active" lang="">Registration date
             </span>
             <span class="required">*</span>
             <input name="/ANC_Registration_EngKan/anc_edit_group/reg_date" autocomplete="off"
@@ -48,7 +45,7 @@
         <fieldset class="question ">
             <fieldset>
                 <legend>
-                    <span class="question-label active" lang="">Registration place:</span>
+                    <span class="question-label active" lang="">Registration place</span>
                     <span class="required">*</span>
                 </legend>
                 <div class="option-wrapper">
@@ -88,11 +85,11 @@
         <!--data-constraint=".&gt; 999999 and .&lt; 10000000" data-type-xml="int"/>-->
         <!--</label>-->
 
-        <label class="question non-select ">
-            <span class="question-label active" lang="">ANC number</span>
-            <span class="required">*</span>
-            <input name="/ANC_Registration_EngKan/anc_edit_group/anc_number" autocomplete="off"
-                data-constraint=".&gt; 0" data-type-xml="int" required="required" type="number" />
+        <label class="note non-select ">
+            <span class="question-label active" lang="">ANC Number
+                <span class="or-output"
+                    data-value=" /ANC_Registration_EngKan/anc_edit_group/anc_number"></span>
+            </span>
         </label>
         <!--<fieldset class="question ">-->
         <!--<fieldset>-->
@@ -153,7 +150,7 @@
 
 
         <label class="question or-branch">
-            <span class="question-label active" lang="">LMP Date:
+            <span class="question-label active" lang="">LMP Date
             </span>
             <span class="required">*</span>
             <input name="/ANC_Registration_EngKan/anc_edit_group/lmp_in_date" autocomplete="off"
@@ -162,7 +159,7 @@
         </label>
 
         <label class="question or-branch pre-init non-select">
-            <span class="question-label active" lang="">LMP In Weeks:
+            <span class="question-label active" lang="">LMP In Weeks
             </span>
             <span class="required">*</span>
             <input name="/ANC_Registration_EngKan/anc_edit_group/lmp_in_week" autocomplete="off"

@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -38,23 +39,14 @@ import org.ei.telemedicine.sync.SyncAfterFetchListener;
 import org.ei.telemedicine.sync.SyncProgressIndicator;
 import org.ei.telemedicine.sync.UpdateActionsTask;
 import org.ei.telemedicine.view.activity.LoginActivity;
-import org.ei.telemedicine.view.contract.HomeContext;
-import org.ei.telemedicine.view.contract.SmartRegisterClient;
-import org.ei.telemedicine.view.controller.NativeAfterANMDetailsFetchListener;
-import org.ei.telemedicine.view.controller.NativeUpdateANMDetailsTask;
-import org.ei.telemedicine.view.controller.VillageController;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
-import org.ei.telemedicine.view.dialog.AllClientsFilter;
-import org.ei.telemedicine.view.dialog.DialogOption;
-import org.ei.telemedicine.view.dialog.DialogOptionMapper;
-import org.ei.telemedicine.view.dialog.DialogOptionModel;
-import org.ei.telemedicine.view.dialog.EditOption;
-import org.ei.telemedicine.view.dialog.FilterOption;
-import org.ei.telemedicine.view.dialog.OutOfAreaFilter;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -84,8 +76,9 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
     int anc_count, pnc_count, child_count;
     AllDoctorRepository allDoctorRepository;
     private Context context;
-    JSONObject formData = new JSONObject();
-    static PendingConsultantBaseAdapter syncDataAdapter;
+
+    PendingConsultantBaseAdapter adapter;
+
     List<DoctorData> doctorDatas;
     static ArrayList<DoctorData> doctorDataArrayList;
     private String TAG = "NativeDoctorActivity";
@@ -113,12 +106,18 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
                 sync_progressBar.setVisibility(View.INVISIBLE);
                 ib_start_sync_doc_data.setVisibility(View.VISIBLE);
             }
-            updateRegisterCounts();
+            updateInfo(adapter);
         }
     };
-    private Context _context;
+    private Listener<String> updateANMDetailsListener = new Listener<String>() {
+        @Override
+        public void onEvent(String data) {
+            updateInfo(adapter);
+            Toast.makeText(NativeDoctorActivity.this, "Completed", Toast.LENGTH_SHORT).show();
+        }
+    };
 
-    private PendingConsultantBaseAdapter updateRegisterCounts() {
+    private ArrayList<DoctorData> updateRegisterCounts() {
         ArrayList<DoctorData> _doctorDataArrayList = new ArrayList<DoctorData>();
         _doctorDataArrayList.addAll(allDoctorRepository.getAllConsultants());
 
@@ -141,19 +140,16 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
             }
         }
         tv_anc_count.setText(allDoctorRepository.getCount(DoctorFormDataConstants.ancvisit) + "");
-        syncDataAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, _doctorDataArrayList, this);
-        syncDataAdapter.notifyDataSetChanged();
-        lv_pending_consultants.setAdapter(syncDataAdapter);
-        return syncDataAdapter;
+        return _doctorDataArrayList;
     }
 
-    private Listener<String> updateANMDetailsListener = new Listener<String>() {
-        @Override
-        public void onEvent(String data) {
-            updateRegisterCounts();
-            Toast.makeText(NativeDoctorActivity.this, "Completed", Toast.LENGTH_SHORT).show();
-        }
-    };
+    public void updateInfo(PendingConsultantBaseAdapter pendingConsultantBaseAdapter) {
+        ArrayList<DoctorData> doctorDatas = updateRegisterCounts();
+        if (pendingConsultantBaseAdapter == null)
+            pendingConsultantBaseAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, doctorDatas, this);
+        pendingConsultantBaseAdapter.notifyDataSetChanged(doctorDatas);
+    }
+
 
     private void setupViews() {
         village_name_view = (CustomFontTextView) findViewById(R.id.village);
@@ -192,25 +188,29 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
 //        allDoctorRepository.clearDataNoPoc();
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
-        updateActionsTask.updateFromServer(new SyncAfterFetchListener());
+        updateActionsTask.updateFromServer(new SyncAfterFetchListener(),"");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (adapter != null && lv_pending_consultants != null)
+            updateInfo(adapter);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doctor_home_screen);
-        _context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+//        _context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
 
         setupViews();
         initalize();
 
-        doctorDataArrayList = new ArrayList<DoctorData>();
-        doctorDatas = allDoctorRepository.getAllConsultants();
-        doctorDataArrayList.addAll(doctorDatas);
-        PendingConsultantBaseAdapter adapter = updateRegisterCounts();
+//        updateRegisterCounts();
+        adapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, updateRegisterCounts(), this);
         lv_pending_consultants.setAdapter(adapter);
-
-
+        updateInfo(adapter);
 
         edt_search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -227,9 +227,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
             public void afterTextChanged(Editable s) {
                 ib_clear_search.setVisibility(View.VISIBLE);
                 String text = edt_search.getText().toString().toLowerCase(Locale.getDefault());
-                if (syncDataAdapter != null)
-                    syncDataAdapter.filter(text);
-                syncDataAdapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged(adapter.filter(text, updateRegisterCounts()));
 
             }
         });
@@ -251,7 +249,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         }
         ft.addToBackStack(null);
 
-        DoctorSmartRegisterDialogFragment.newInstance(this, arrayList, tag)
+        DoctorSmartRegisterDialogFragment.newInstance(this, arrayList, tag, adapter, updateRegisterCounts())
                 .show(ft, DIALOG_TAG);
     }
 
@@ -261,6 +259,30 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         this.finish();
+    }
+
+    private void backup() {
+        File sd = Environment.getExternalStorageDirectory();
+        File data = Environment.getDataDirectory();
+        FileChannel source = null;
+        FileChannel destination = null;
+        String SAMPLE_DB_NAME = "drishti.db";
+        String currentDBPath = "/data/" + "org.ei.telemedicine" + "/databases/" + SAMPLE_DB_NAME;
+        String backupDBPath = SAMPLE_DB_NAME;
+        File currentDB = new File(data, currentDBPath);
+        File backupDB = new File(sd, backupDBPath);
+        try {
+            source = new FileInputStream(currentDB).getChannel();
+            destination = new FileOutputStream(backupDB).getChannel();
+            destination.transferFrom(source, 0, source.size());
+            source.close();
+            destination.close();
+            Toast.makeText(this, "DB Exported!", Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, "Comple", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -294,6 +316,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         logoutUser();
+//                        backup();
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override

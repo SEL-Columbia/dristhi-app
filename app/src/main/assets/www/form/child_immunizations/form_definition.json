@@ -22,6 +22,12 @@
         "value": ""
       },
       {
+        "name": "motherName",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/Child_Immunizations_EngKan/mother_name",
+        "source": "child.mother.eligible_couple.wifeName"
+      },
+      {
         "name": "immunizationsReceived",
         "bind": "/model/instance/Child_Immunizations_EngKan/entity_immunizations_received"
       },

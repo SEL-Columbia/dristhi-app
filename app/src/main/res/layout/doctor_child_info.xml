@@ -308,6 +308,228 @@
                     android:typeface="sans" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/ll_days_of_cough"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_days_of_cough"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Number of days of cough :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_days_of_cough"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_breaths_per_minute"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Number of breaths per minute :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_breaths_per_minute"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_days_of_diarrhea"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Number of days of diarrhea :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_days_of_diarrhea"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_blood_in_stool"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Blood in stool :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_blood_in_stool"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_vommit_every_thing"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Is the child vommit everything :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_vommit_every_thing"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_number_of_days_fever"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Number of days of fever :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_number_of_days_fever"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -319,191 +541,72 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:weightSum="2">
+            <!--<LinearLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:gravity="center"-->
+            <!--android:weightSum="2">-->
 
-                <org.ei.telemedicine.view.customControls.CustomFontTextView
-                    style="@style/CustomFontTextViewStyle.ListView.Bold"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Immediate Referral :"
-                    android:textSize="20sp" />
+            <!--<org.ei.telemedicine.view.customControls.CustomFontTextView-->
+            <!--style="@style/CustomFontTextViewStyle.ListView.Bold"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="top"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Immediate Referral :"-->
+            <!--android:textSize="20sp" />-->
 
-                <org.ei.telemedicine.view.customControls.CustomFontTextView
-                    android:id="@+id/tv_referral"
-                    style="@style/CustomFontTextViewStyle.ListView.Bold"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:inputType="textMultiLine"
-                    android:maxLines="10"
-                    android:textSize="20sp" />
+            <!--<org.ei.telemedicine.view.customControls.CustomFontTextView-->
+            <!--android:id="@+id/tv_referral"-->
+            <!--style="@style/CustomFontTextViewStyle.ListView.Bold"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="top"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:inputType="textMultiLine"-->
+            <!--android:maxLines="10"-->
+            <!--android:textSize="20sp" />-->
+            <!--</LinearLayout>-->
 
-                <!--<LinearLayout-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginRight="10dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:orientation="vertical">-->
+            <!--<LinearLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:gravity="center"-->
+            <!--android:weightSum="2">-->
 
-                <!--<CheckBox-->
-                <!--android:id="@+id/cb_cough"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:checked="false"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Cough"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="20sp" />-->
+            <!--<org.ei.telemedicine.view.customControls.CustomFontTextView-->
+            <!--style="@style/CustomFontTextViewStyle.ListView.Bold"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="top"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Immediate Referral Reason:"-->
+            <!--android:textSize="20sp" />-->
 
-                <!--<CheckBox-->
-                <!--android:id="@+id/cb_diarrhea"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:checked="false"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Diarrhea"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="20sp" />-->
+            <!--<org.ei.telemedicine.view.customControls.CustomFontTextView-->
+            <!--android:id="@+id/tv_referral_reason"-->
+            <!--style="@style/CustomFontTextViewStyle.ListView.Bold"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="top"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:inputType="textMultiLine"-->
+            <!--android:maxLines="10"-->
+            <!--android:textSize="20sp" />-->
 
-                <!--<CheckBox-->
-                <!--android:id="@+id/cb_fever"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:checked="false"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Fever"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="20sp" />-->
-
-                <!--<CheckBox-->
-                <!--android:id="@+id/cb_convulsions"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:checked="false"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Convulsions"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="20sp" />-->
-
-                <!--<CheckBox-->
-                <!--android:id="@+id/cb_difficulty_drinking"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:checked="false"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Difficulty in drinking"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="20sp" />-->
-
-                <!--<CheckBox-->
-                <!--android:id="@+id/cb_vomiting"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:checked="false"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Vomiting"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="20sp" />-->
-
-                <!--<CheckBox-->
-                <!--android:id="@+id/cb_chest_indrawing"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:checked="false"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Chest indrwaing"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="20sp" />-->
-
-                <!--<CheckBox-->
-                <!--android:id="@+id/cb_unusally_sleepy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:checked="false"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Unusually sleepy or unconscious"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="20sp" />-->
-
-                <!--<CheckBox-->
-                <!--android:id="@+id/cb_swelling_of_both_feet"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:checked="false"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Swelling of both feet"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="20sp" />-->
-
-                <!--<CheckBox-->
-                <!--android:id="@+id/cb_breating_others"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:checked="false"-->
-                <!--android:padding="5dp"-->
-                <!--android:text="Other"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:textSize="20sp" />-->
-
-                <!--</LinearLayout>-->
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:weightSum="2">
-
-                <org.ei.telemedicine.view.customControls.CustomFontTextView
-                    style="@style/CustomFontTextViewStyle.ListView.Bold"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Immediate Referral Reason:"
-                    android:textSize="20sp" />
-
-                <org.ei.telemedicine.view.customControls.CustomFontTextView
-                    android:id="@+id/tv_referral_reason"
-                    style="@style/CustomFontTextViewStyle.ListView.Bold"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="fill_parent"
