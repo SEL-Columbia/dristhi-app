@@ -44,6 +44,7 @@ import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.SampleViewPager;
+import org.json.JSONObject;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.EntityUtils;
 import org.opensrp.api.util.LocationTree;
@@ -236,7 +237,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     }
 
     @Override
-    public void saveFormSubmission(String formSubmission, String id, String formName, Map<String, String> fieldOverrides){
+    public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         // save the form
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());

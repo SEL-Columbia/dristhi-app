@@ -22,6 +22,7 @@ import org.ei.opensrp.view.customControls.CustomFontTextView;
 import org.ei.opensrp.view.customControls.FontVariant;
 import org.ei.opensrp.view.dialog.*;
 import org.joda.time.LocalDate;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -528,6 +529,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                         .map());
     }
 
-    public void saveFormSubmission(String formSubmision, String id, String formName, Map<String, String> fieldOverrides){
+    public void saveFormSubmission(String formSubmision, String id, String formName, JSONObject fieldOverrides){
     }
 }

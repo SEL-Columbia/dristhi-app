@@ -1,8 +1,12 @@
 package org.ei.opensrp.view.fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +19,20 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.ei.opensrp.R;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by Geoffrey Koros on 9/12/2015.
@@ -48,6 +59,28 @@ public class DisplayFormFragment extends Fragment {
     }
 
     private String recordId;
+
+    private boolean javascriptLoaded = false;
+
+    private JSONObject fieldOverides = new JSONObject();
+
+    public JSONObject getFieldOverides() {
+        return fieldOverides;
+    }
+
+    public void setFieldOverides(String overrides) {
+        try{
+            //get the field overrides map
+            if (overrides != null){
+                JSONObject json = new JSONObject(overrides);
+                String overridesStr = json.getString("fieldOverrides");
+                this.fieldOverides = new JSONObject(overridesStr);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     public String getRecordId() {
         return recordId;
@@ -132,29 +165,50 @@ public class DisplayFormFragment extends Fragment {
 
     String formData;
     public void setFormData(String data){
-        this.formData = data;
+        if (data != null){
+            this.formData = data;
+        }
     }
 
     public void loadFormData(){
-        formData = formData != null ?  formData.replaceAll("\"","\\\"") : "";
-        webView.post(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                webView.loadUrl("javascript:loadDraft('"+ formData + "')");
+                try{
+                    while (!javascriptLoaded){
+                        Thread.sleep(100);
+                    }
+
+                    formData = formData != null && !formData.isEmpty() ? formData.replaceAll("\"","\\\"") : "";
+                    webView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            webView.loadUrl("javascript:loadDraft('" + formData + "')");
+                            Log.e("posting data", formData);
+                        }
+                    });
+
+                }catch(Exception doNothing){}
+
+
+
             }
-        });
+        }).start();
+
     }
+
+    public static final String TAG = "DisplayFormFragment";
 
     private void dismissProgressDialog(){
         //dialog.dismiss();
         webView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
-        loadFormData();
+        //loadFormData();
     }
 
     //override this on tha child classes to override specific fields
-    public Map<String,String> getFormFieldsOverrides(){
-        return new HashMap<String, String>();
+    public JSONObject getFormFieldsOverrides(){
+        return fieldOverides;
     }
 
     public class AppWebViewClient extends WebViewClient {
@@ -195,6 +249,12 @@ public class DisplayFormFragment extends Fragment {
         @JavascriptInterface
         public void processFormSubmission(String formSubmission){
             ((SecuredNativeSmartRegisterActivity)getActivity()).saveFormSubmission(formSubmission, recordId, formName, getFormFieldsOverrides());
+        }
+
+        @JavascriptInterface
+        public void javascriptLoaded(){
+            //Toast.makeText(mContext, "Javascript loaded", Toast.LENGTH_LONG).show();
+            javascriptLoaded = true;
         }
     }
 
