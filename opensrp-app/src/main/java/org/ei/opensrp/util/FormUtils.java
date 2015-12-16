@@ -93,7 +93,7 @@ public class FormUtils {
                 //how do you tell which id originally belonged to a particular edited subform !!!!
                 List<String> ids = retrieveRelationalIdForSubForm(childTableName, entity_id);
                 for (int i = 0; i < subFormData.length(); i++){
-                    String relationalId = ids.isEmpty() && ids.size() > i ? null : ids.get(i);
+                    String relationalId = ids.isEmpty() || ids.size() >= i ? null : ids.get(i);
                     JSONObject subFormInstance = getFieldValuesForSubFormDefinition(subFormDefinition, relationalId, subFormData.getJSONObject(i), overrides);
                     subFormInstances.put(i,subFormInstance);
                 }
@@ -119,7 +119,7 @@ public class FormUtils {
     private List<String> retrieveRelationalIdForSubForm(String childTableName, String entityId) throws  Exception{
         List<String> ids = new ArrayList<String>();
         if (entityId != null){
-            String sql = "select * from " + childTableName + " where relationalid='" + entityId + "'";
+            String sql = "select * from " + childTableName + " where relationalid ='" + entityId + "'";
             String dbEntity = theAppContext.formDataRepository().queryList(sql);
 
             JSONArray entityJson = new JSONArray();
@@ -209,18 +209,18 @@ public class FormUtils {
 
             serializer.startTag("", nodeName);
 
-            //write the node value
-            if (entityJson.has(nodeName)){
-                serializer.text(entityJson.getString(nodeName));
-            }
-
-            //overwrite the node value with contents from overrides map
-            if (fieldOverrides.has(nodeName)){
-                serializer.text(fieldOverrides.getString(nodeName));
-            }
-
             // write the xml attributes
             writeXMLAttributes(node, serializer);
+
+            String nodeValue = retrieveValueForNodeName(nodeName, entityJson, formDefinition);
+            //overwrite the node value with contents from overrides map
+            if (fieldOverrides.has(nodeName)){
+                nodeValue = fieldOverrides.getString(nodeName);
+            }
+            //write the node value
+            if (nodeValue != null){
+                serializer.text(nodeValue);
+            }
 
             List<String> subFormNames = getSubFormNames(formDefinition);
 
@@ -256,8 +256,10 @@ public class FormUtils {
                         // write the xml attributes
                         writeXMLAttributes(child, serializer);
                         //write the node value
-                        if (entityJson.has(fieldName)){
-                            serializer.text(entityJson.getString(fieldName));
+                        String value = retrieveValueForNodeName(fieldName, entityJson, formDefinition);
+                        //write the node value
+                        if (value != null){
+                            serializer.text(value);
                         }
 
                         //overwrite the node value with contents from overrides map
@@ -275,6 +277,40 @@ public class FormUtils {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * retrieves node value for cases which the nodename don't match the name of the xml element
+     * @param nodeName
+     * @param entityJson
+     * @param formDefinition
+     * @return
+     */
+    private String retrieveValueForNodeName(String nodeName, JSONObject entityJson, JSONObject formDefinition){
+        try{
+            if (entityJson != null && entityJson.length() > 0){
+                if (entityJson.has(nodeName)){
+                    return entityJson.get(nodeName).toString();
+                }else{
+                    JSONObject fieldsObject = formDefinition.has("form") ? formDefinition.getJSONObject("form") :
+                            formDefinition.has("sub_forms") ? formDefinition.getJSONObject("sub_forms") : formDefinition;
+                    if (fieldsObject.has("fields")){
+                        JSONArray fields = fieldsObject.getJSONArray("fields");
+                        for (int i = 0; i < fields.length(); i++){
+                            JSONObject field = fields.getJSONObject(i);
+                            String bindPath = field.has("bind") ? field.getString("bind") : null;
+                            String name = field.has("name") ? field.getString("name") : null;
+                            if (bindPath != null && name != null && bindPath.endsWith(nodeName) && entityJson.has(name)){
+                                return entityJson.getString(name);
+                            }
+                        }
+                    }
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "";
     }
 
     /**
