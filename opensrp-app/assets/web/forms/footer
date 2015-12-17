@@ -25,3 +25,7 @@
 </body>
 
 </html>
+<script type="text/javascript">
+    $('input[type=date]').attr("min", "1910-01-01");
+    $('input[type=date]').attr("max", "2100-01-01");
+</script>
