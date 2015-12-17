@@ -19,22 +19,21 @@ public class DoctorANCScreenActivityTest extends ActivityUnitTestCase<DoctorANCS
     EditText et_anc_num, et_woman_name, et_anc_visit_date, et_bp_sys, et_bp_dia, et_temp, et_bloodGlucose, et_fetal;
     CustomFontTextView tv_risks;
 
-    String et_anc_num_string = "et_anc_num_string";
-    String et_woman_name_string = "et_woman_name_string";
-    String et_anc_visit_date_string = "et_anc_visit_date_string";
-    String et_bp_sys__string = "et_bp_sys__string";
-    String et_temp_string = "et_temp";
-    String bp_dia_string = "bp_dia";
-    String et_bloodGlucose_string = "et_bloodGlucose";
-    String et_fetal_string = "et_fetal";
-    String risk_symptoms_string = "risk_symptoms";
+    String et_anc_num_string = "et,anc,num,string";
+    String et_woman_name_string = "et,woman,name,string";
+    String et_anc_visit_date_string = "et,anc,visit,date,string";
+    String et_bp_sys__string = "et,bp,sys,string";
+    //String et_temp_string = "et_temp";
+    String bp_dia_string = "bp,dia";
+    String et_bloodGlucose_string = "et,bloodGlucose";
+    String et_fetal_string = "et,fetal";
+    String risk_symptoms_string = "risk,symptoms";
 
 
     Intent mLaunchIntent;
     public DoctorANCScreenActivityTest(){
         super(DoctorANCScreenActivity.class);
     }
-
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -70,7 +69,7 @@ public class DoctorANCScreenActivityTest extends ActivityUnitTestCase<DoctorANCS
             jsonObject.put(DoctorFormDataConstants.anc_visit_date, et_anc_visit_date_string);
             jsonObject.put(DoctorFormDataConstants.bp_sys, et_bp_sys__string);
             jsonObject.put(DoctorFormDataConstants.bp_dia, bp_dia_string);
-            jsonObject.put(DoctorFormDataConstants.temp_data, et_temp_string);
+            //jsonObject.put(DoctorFormDataConstants.temp_data, et_temp_string);
             jsonObject.put(DoctorFormDataConstants.blood_glucose, et_bloodGlucose_string);
             jsonObject.put(DoctorFormDataConstants.fetal_data, et_fetal_string);
             jsonObject.put(DoctorFormDataConstants.risk_symptoms, risk_symptoms_string);
@@ -90,7 +89,7 @@ public class DoctorANCScreenActivityTest extends ActivityUnitTestCase<DoctorANCS
         assertEquals(et_anc_visit_date.getText().toString(),et_anc_visit_date_string);
         assertEquals(et_bp_sys.getText().toString(),et_bp_sys__string);
         assertEquals(et_bp_dia.getText().toString(),bp_dia_string);
-        assertEquals(et_temp.getText().toString(),et_temp_string);
+        //assertEquals(et_temp.getText().toString(),et_temp_string);
         assertEquals(et_bloodGlucose.getText().toString(),et_bloodGlucose_string);
         assertEquals(et_fetal.getText().toString(),et_fetal_string);
         assertEquals(tv_risks.getText().toString(),risk_symptoms_string);

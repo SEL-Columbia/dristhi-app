@@ -528,4 +528,4 @@
             android:paddingRight="200dp"
             android:text="@string/save_devices_info" />
     </LinearLayout>
-</LinearLayout><!-- From: file:/C:/Users/Beloved/AndroidStudioProjects/dristhi-app/app/src/main/res/layout/bluetooth_info_layout.xml -->
+</LinearLayout><!-- From: file:/D:/Android/dhanush/dristhi-app/app/src/main/res/layout/bluetooth_info_layout.xml -->

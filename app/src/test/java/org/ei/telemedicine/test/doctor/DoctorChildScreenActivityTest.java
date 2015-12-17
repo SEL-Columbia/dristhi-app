@@ -19,9 +19,9 @@ public class DoctorChildScreenActivityTest  extends ActivityUnitTestCase<DoctorC
     DoctorChildScreenActivity doctorChildScreenActivity;
     EditText et_mother_name, et_child_name, et_reporting_date;
 
-    String wife_name_string = "wife_name";
-    String child_name_string = "child_name";
-    String child_report_child_disease_date_string = "child_report_child_disease_date";
+    String wife_name_string = "wife,name";
+    String child_name_string = "child,name";
+    String child_report_child_disease_date_string = "child,report,child,disease,date";
 
     Intent mLaunchIntent;
 

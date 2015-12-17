@@ -46,9 +46,9 @@ public class DoctorRepositoryTest extends AndroidTestCase {
     public void testUpdateDoctorDetails() throws Exception
     {
         String caseId = "Case_Update";
-        String pocInformation = "pocInformation_Update";
-        String pocPendingInfo = "pocPendingInfo_Update";
-        String pocInformationNew = "pocInformation_new";
+        String pocInformation = "pocInformation,new";
+        String pocPendingInfo = "pocPendingInfo,Update";
+        String pocInformationNew = "pocInformation,new";
 
         DoctorData doctorData = new DoctorData();
         doctorData.setCaseId(caseId);

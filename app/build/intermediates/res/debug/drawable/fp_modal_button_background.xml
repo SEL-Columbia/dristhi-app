@@ -14,4 +14,4 @@
     <item
             android:state_checked="true"
             android:drawable="@color/transparent_blue_for_edit_button"/>
-</selector><!-- From: file:/C:/Users/Beloved/AndroidStudioProjects/dristhi-app/app/src/main/res/drawable/fp_modal_button_background.xml -->
+</selector><!-- From: file:/D:/Android/dhanush/dristhi-app/app/src/main/res/drawable/fp_modal_button_background.xml -->

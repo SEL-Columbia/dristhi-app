@@ -22,20 +22,20 @@ public class DoctorPNCScreenActivityTest  extends ActivityUnitTestCase<DoctorPNC
     TextView tv_difficuties, tv_vaginal_difficulties, tv_breast_difficulties, tv_kop_feel_hot, tv_urinating_problems, tv_abdominal_problems;
 
 
-    String pnc_number_string = "pnc_number";
-    String wife_name_string = "wife_name";
-    String pnc_visit_date_string = "pnc_visit_date";
-    String bp_sys_string = "bp_sys";
-    String bp_dia_string = "bp_dia";
-    String temp_data_string = "temp_data";
-    String blood_glucose_string = "blood_glucose";
-    String fetal_data_string = "fetal_data";
-    String pnc_difficulties_string = "pnc_difficulties";
-    String pnc_abdominal_problems_string = "pnc_abdominal_problems";
-    String pnc_breast_problems_string = "pnc_breast_problems";
-    String pnc_vaginal_problems_string = "pnc_vaginal_problems";
-    String kopfeel_heat_or_chills_string = "kopfeel_heat_or_chills";
-    String pnc_urinating_problems_string = "pnc_urinating_problems";
+    String pnc_number_string = "pnc,number";
+    String wife_name_string = "wife,name";
+    String pnc_visit_date_string = "pnc,visit,date";
+    String bp_sys_string = "bp,sys";
+    String bp_dia_string = "bp,dia";
+    //String temp_data_string = "temp,data";
+    String blood_glucose_string = "blood,glucose";
+    //String fetal_data_string = "fetal,data";
+    String pnc_difficulties_string = "pnc,difficulties";
+    String pnc_abdominal_problems_string = "pnc,abdominal,problems";
+    String pnc_breast_problems_string = "pnc,breast,problems";
+    String pnc_vaginal_problems_string = "pnc,vaginal,problems";
+    String kopfeel_heat_or_chills_string = "kopfeel,heat,or,chills";
+    String pnc_urinating_problems_string = "pnc,urinating,problems";
 
     Intent mLaunchIntent;
 
@@ -62,7 +62,7 @@ public class DoctorPNCScreenActivityTest  extends ActivityUnitTestCase<DoctorPNC
         et_pnc_date = (EditText) doctorPNCScreenActivity.findViewById(R.id.et_pnc_visit_date);
         et_bp_sys = (EditText) doctorPNCScreenActivity.findViewById(R.id.et_pnc_sysstolic);
         et_bp_dia = (EditText) doctorPNCScreenActivity.findViewById(R.id.et_pnc_diastolic);
-        et_temp = (EditText) doctorPNCScreenActivity.findViewById(R.id.et_pnc_temperature);
+        //et_temp = (EditText) doctorPNCScreenActivity.findViewById(R.id.et_pnc_temperature);
         et_blood_glucose = (EditText) doctorPNCScreenActivity.findViewById(R.id.et_pnc_blood_glucose);
         et_hb_level = (EditText) doctorPNCScreenActivity.findViewById(R.id.et_pnc_hb_level);
         tv_difficuties = (TextView) doctorPNCScreenActivity.findViewById(R.id.tv_difficulties);
@@ -85,9 +85,9 @@ public class DoctorPNCScreenActivityTest  extends ActivityUnitTestCase<DoctorPNC
                 jsondata.put(DoctorFormDataConstants.pnc_visit_date, pnc_visit_date_string);
                 jsondata.put(DoctorFormDataConstants.bp_sys, bp_sys_string);
                 jsondata.put(DoctorFormDataConstants.bp_dia, bp_dia_string);
-                jsondata.put(DoctorFormDataConstants.temp_data, temp_data_string);
+                //jsondata.put(DoctorFormDataConstants.temp_data, temp_data_string);
                 jsondata.put(DoctorFormDataConstants.blood_glucose, blood_glucose_string);
-                jsondata.put(DoctorFormDataConstants.fetal_data, fetal_data_string);
+                //jsondata.put(DoctorFormDataConstants.fetal_data, fetal_data_string);
                 jsondata.put(DoctorFormDataConstants.pnc_difficulties, pnc_difficulties_string);
                 jsondata.put(DoctorFormDataConstants.pnc_abdominal_problems, pnc_abdominal_problems_string);
                 jsondata.put(DoctorFormDataConstants.pnc_breast_problems, pnc_breast_problems_string);
@@ -110,9 +110,9 @@ public class DoctorPNCScreenActivityTest  extends ActivityUnitTestCase<DoctorPNC
         assertEquals(et_pnc_date.getText().toString(), pnc_visit_date_string);
         assertEquals(et_bp_sys.getText().toString(), bp_sys_string.equals("") ? "Not captured" : bp_sys_string);
         assertEquals(et_bp_dia.getText().toString(), bp_dia_string.equals("") ? "Not captured" : bp_dia_string);
-        assertEquals(et_temp.getText().toString(), temp_data_string.equals("") ? "Not captured" : temp_data_string);
+        //assertEquals(et_temp.getText().toString(), temp_data_string.equals("") ? "Not captured" : temp_data_string);
         assertEquals(et_blood_glucose.getText().toString(), blood_glucose_string.equals("") ? "Not captured" : blood_glucose_string);
-        assertEquals(et_hb_level.getText().toString(), fetal_data_string.equals("") ? "Not captured" : fetal_data_string);
+        //assertEquals(et_hb_level.getText().toString(), fetal_data_string.equals("") ? "Not captured" : fetal_data_string);
         assertEquals(tv_difficuties.getText().toString(), pnc_difficulties_string);
         assertEquals(tv_abdominal_problems.getText().toString(), pnc_abdominal_problems_string);
         assertEquals(tv_breast_difficulties.getText().toString(), pnc_breast_problems_string);

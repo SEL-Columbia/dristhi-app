@@ -36,4 +36,4 @@
             android:layout_marginRight="@dimen/anc_list_hb_ifa_service_mode_hb_details_indicator_view_margin"
             android:src="@color/smart_register_client_divider_color"/>
 
-</RelativeLayout><!-- From: file:/C:/Users/Beloved/AndroidStudioProjects/dristhi-app/app/src/main/res/layout/smart_register_anc_ifa_details_layout.xml -->
+</RelativeLayout><!-- From: file:/D:/Android/dhanush/dristhi-app/app/src/main/res/layout/smart_register_anc_ifa_details_layout.xml -->

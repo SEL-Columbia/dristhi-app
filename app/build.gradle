@@ -8,12 +8,20 @@ android {
         applicationId "org.ei.telemedicine"
         minSdkVersion 16
         targetSdkVersion 16
+        multiDexEnabled true
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        debug {
+            testCoverageEnabled = true
         }
     }
     packagingOptions {
@@ -38,8 +46,51 @@ android {
             res.srcDirs = ['src/main/res', 'src/test/resources']
         }
     }
+    /*  compileOptions {
+          sourceCompatibility JavaVersion.VERSION_1_7
+          targetCompatibility JavaVersion.VERSION_1_7
+      }*/
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    compileOptions {
+    }
 }
 
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.7.1.201405082137"
+}
+
+def coverageSourceDirs = [
+        '../app/src/main/java'
+]
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebug") {
+    group = "Reporting"
+
+    description = "Generate Jacoco coverage reports"
+
+    classDirectories = fileTree(
+            dir: '../app/build/intermediates/classes/debug',
+            excludes: ['**/R.class',
+                       '**/R$*.class',
+                       '**/*$ViewInjector*.*',
+                       '**/BuildConfig.*',
+                       '**/Manifest*.*']
+    )
+
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = files('../app/build/jacoco/testDebug.html')
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+}
 dependencies {
     compile 'com.diogobernardino:williamchart:2.0.1'
     compile 'com.android.support:support-v4:21.0.3'
@@ -77,5 +128,6 @@ dependencies {
     // Set this dependency if you want to use Hamcrest matching
     androidTestCompile 'org.hamcrest:hamcrest-library:1.1'
 }
+
 
 apply plugin: 'com.getkeepsafe.dexcount'

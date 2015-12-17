@@ -25,4 +25,4 @@
         android:layout_height="40dp"
         android:background="@android:color/transparent"
         android:src="@drawable/del_icon" />
-</LinearLayout><!-- From: file:/C:/Users/Beloved/AndroidStudioProjects/dristhi-app/app/src/main/res/layout/poc_diagnosis_list_item.xml -->
+</LinearLayout><!-- From: file:/D:/Android/dhanush/dristhi-app/app/src/main/res/layout/poc_diagnosis_list_item.xml -->

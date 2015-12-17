@@ -6,4 +6,4 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:ellipsize="marquee"
     android:singleLine="true"
-    android:textColor="#aa66cc" /><!-- From: file:/C:/Users/Beloved/AndroidStudioProjects/dristhi-app/app/src/main/res/layout/spinner_dropdown_item.xml -->
+    android:textColor="#aa66cc" /><!-- From: file:/D:/Android/dhanush/dristhi-app/app/src/main/res/layout/spinner_dropdown_item.xml -->
