@@ -1,6 +1,7 @@
 package org.ei.opensrp.indonesia.view.fragment;
 
 import android.view.View;
+import android.widget.ImageButton;
 
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.indonesia.Context;
@@ -122,6 +123,13 @@ public class NativeKIANCSmartRegisterFragment extends BidanSecuredNativeSmartReg
     @Override
     protected void onCreation() {
 
+    }
+
+    @Override
+    protected void setupViews(View view) {
+        super.setupViews(view);
+        ImageButton registerButton = (ImageButton) view.findViewById(org.ei.opensrp.R.id.register_client);
+        registerButton.setVisibility(View.GONE);
     }
 
     private class ClientActionHandler implements View.OnClickListener {

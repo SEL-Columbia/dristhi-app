@@ -1,6 +1,7 @@
 package org.ei.opensrp.indonesia.view.fragment;
 
 import android.view.View;
+import android.widget.ImageButton;
 
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.indonesia.AllConstantsINA;
@@ -126,6 +127,13 @@ public class NativeKIAnakSmartRegisterFragment extends BidanSecuredNativeSmartRe
         context.formSubmissionRouter().getHandlerMap()
                 .put(AllConstantsINA.FormNames.KARTU_IBU_REGISTRATION,
                         new AnakRegistrationHandler(((Context)context).kartuAnakService()));
+    }
+
+    @Override
+    protected void setupViews(View view) {
+        super.setupViews(view);
+        ImageButton registerButton = (ImageButton) view.findViewById(org.ei.opensrp.R.id.register_client);
+        registerButton.setVisibility(View.GONE);
     }
 
     @Override
