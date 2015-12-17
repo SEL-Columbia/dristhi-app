@@ -32,3 +32,4 @@ script:
   # so we'll just if the project compiles 
   #- ./gradlew connectedAndroidTest
   - ./gradlew clean assembleDebug
+  - ./gradlew clean test
