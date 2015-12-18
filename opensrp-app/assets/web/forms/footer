@@ -1,18 +1,4 @@
-<section class="form-footer">
-    <div class="content">
-        <fieldset class="draft question"></fieldset>
-
-        <div class="main-controls">
-            <a class="previous-page disabled" href="#">Back</a>
-            <button id="submit-form" class="btn btn-primary btn-large" ><i class="glyphicon glyphicon-ok"></i> Submit</button>
-            <a class="btn btn-primary next-page" href="#">Next</a>
-        </div>
-
-
-        <a class="btn btn-default disabled first-page" href="#">Return to Beginning</a>
-        <a class="btn btn-default disabled last-page" href="#">Go to End</a>
-    </div>
-</section>
+    <button id="submit-form" class="btn btn-info btn-large">Save</button>
 
 </article>
 </div>
@@ -25,6 +11,11 @@
 </body>
 
 </html>
+
+<!-- $script_placeholder >
+
+<script type="text/javascript" data-main="" src="../build/js/webform-combined.min.js"></script>
+
 <script type="text/javascript">
     $('input[type=date]').attr("min", "1910-01-01");
     $('input[type=date]').attr("max", "2100-01-01");

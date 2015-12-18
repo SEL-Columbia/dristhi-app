@@ -127,7 +127,7 @@ public class DisplayFormFragment extends Fragment {
 
         // inject the model and form into html template
         script = script.replace("$model_string_placeholder", modelString);
-        header = header.replace("<!-- $script_placeholder >", script);
+        footer = footer.replace("<!-- $script_placeholder >", script);
 
         StringBuilder sb = new StringBuilder();
         sb.append(header).append(form).append(footer);
