@@ -3,6 +3,7 @@ package org.ei.telemedicine.test.view.contract;
 import org.ei.telemedicine.util.DateUtil;
 import org.ei.telemedicine.view.contract.ECClient;
 import org.joda.time.LocalDate;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -10,10 +11,19 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ECClientTest {
 
+    @Before
+    public void setUp() throws Exception {
+        initMocks(this);
+    }
+
+/*    private ECClient getClient() {
+        return new ECClient("0", "heigh", "1", "1", "0", "2013-05-25","1","1","0","sudheer","ypl");
+    }*/
 
     @Test
     public void testShouldReturnTrueForIsBPLWhenEconomicStatusIsBPL() throws Exception {
@@ -53,7 +63,7 @@ public class ECClientTest {
 
         final int age = getClient().withDateOfBirth(new LocalDate(1980, 4, 4).toString()).age();
 
-        assertEquals(34, age);
+        assertEquals(35, age);
     }
 
     @Test
@@ -62,7 +72,7 @@ public class ECClientTest {
 
         int age = getClient().withDateOfBirth(new LocalDate(2014, 4, 4).toString()).age();
 
-        assertEquals(0, age);
+        assertEquals(1, age);
     }
 
     @Test
@@ -71,7 +81,7 @@ public class ECClientTest {
 
         final int age = getClient().withDateOfBirth(new LocalDate(2013, 4, 18).toString()).age();
 
-        assertEquals(1, age);
+        assertEquals(2, age);
     }
 
     @Test

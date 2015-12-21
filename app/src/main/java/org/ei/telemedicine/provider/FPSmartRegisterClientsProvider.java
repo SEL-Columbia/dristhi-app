@@ -4,7 +4,6 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.activity.SecuredActivity;
-import org.ei.telemedicine.view.contract.FPClients;
 import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.contract.SmartRegisterClients;
@@ -100,13 +99,13 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     public SmartRegisterClients getClients() {
         NameSort nameSortOption = new NameSort();
         FilterOption filterOption = getFPFilterOptionBasedOnDialogTab(currentServiceModeOption);
-        return controller.getClients().applyFilterWithFP(currentServiceModeOption, nameSortOption, filterOption);
+        return controller.getClients("condom").applyFilterWithFP(currentServiceModeOption, nameSortOption, filterOption);
     }
 
     @Override
     public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                                               FilterOption searchFilter, SortOption sortOption) {
-        return controller.getClients().applyFilterWithFP(serviceModeOption, sortOption, villageFilter, searchFilter, getFPFilterOptionBasedOnDialogTab(serviceModeOption));
+        return controller.getClients("condom").applyFilterWithFP(serviceModeOption, sortOption, villageFilter, searchFilter, getFPFilterOptionBasedOnDialogTab(serviceModeOption));
     }
 
     private FilterOption getFPFilterOptionBasedOnDialogTab(ServiceModeOption serviceModeOption) {

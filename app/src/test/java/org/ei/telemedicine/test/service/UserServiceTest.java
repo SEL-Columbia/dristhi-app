@@ -1,7 +1,5 @@
 package org.ei.telemedicine.test.service;
 
-import android.test.AndroidTestCase;
-
 import org.ei.telemedicine.DristhiConfiguration;
 import org.ei.telemedicine.repository.AllAlerts;
 import org.ei.telemedicine.repository.AllEligibleCouples;
@@ -61,7 +59,8 @@ public class UserServiceTest {
 
         userService.isValidRemoteLogin("userX", "password Y");
 
-        verify(httpAgent).urlCanBeAccessWithGivenCredentials("http://dristhi_base_url/anm-villages?anm-id=userX", "userX", "password Y");
+        //verify(httpAgent).urlCanBeAccessWithGivenCredentials("http://dristhi_base_url/anm-villages?anm-id=userX", "userX", "password Y");
+        verify(httpAgent).urlCanBeAccessWithGivenCredentials("null/auth/?userid=userX&pwd=password Y", "userX", "password Y");
     }
 
    /* @Test

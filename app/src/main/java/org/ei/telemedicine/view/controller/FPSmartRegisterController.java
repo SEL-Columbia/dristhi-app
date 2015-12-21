@@ -67,7 +67,7 @@ public class FPSmartRegisterController {
         return alertDTOs;
     }
 
-    public FPClients getClients() {
+    public FPClients getClients(String condom) {
         return fpClientsCache.get(FP_CLIENTS_LIST, new CacheableData<FPClients>() {
             @Override
             public FPClients fetch() {

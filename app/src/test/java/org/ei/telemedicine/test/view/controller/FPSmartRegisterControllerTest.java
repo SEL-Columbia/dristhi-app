@@ -1,18 +1,13 @@
 package org.ei.telemedicine.test.view.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import org.ei.telemedicine.domain.Alert;
 import org.ei.telemedicine.domain.EligibleCouple;
 import org.ei.telemedicine.repository.AllBeneficiaries;
 import org.ei.telemedicine.repository.AllEligibleCouples;
 import org.ei.telemedicine.service.AlertService;
 import org.ei.telemedicine.util.Cache;
-import org.ei.telemedicine.util.EasyMap;
 import org.ei.telemedicine.view.contract.AlertDTO;
 import org.ei.telemedicine.view.contract.FPClient;
 import org.ei.telemedicine.view.contract.FPClients;
-import org.ei.telemedicine.view.contract.RefillFollowUps;
 import org.ei.telemedicine.view.controller.FPSmartRegisterController;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,15 +16,11 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.telemedicine.dto.AlertStatus.normal;
-import static org.ei.telemedicine.dto.AlertStatus.urgent;
 import static org.ei.telemedicine.util.EasyMap.create;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -55,8 +46,9 @@ public class FPSmartRegisterControllerTest {
     private AllBeneficiaries allBeneficiaries;
     @Mock
     private AlertService alertService;
-
+    @Mock
     private FPSmartRegisterController controller;
+    @Mock
     private Map<String, String> emptyDetails;
 
     @Before
@@ -66,7 +58,7 @@ public class FPSmartRegisterControllerTest {
         controller = new FPSmartRegisterController(allEligibleCouples, allBeneficiaries, alertService, new Cache<String>(), new Cache<FPClients>());
     }
 
-    /*@Test
+  /*  @Test
     public void shouldSortECsByName() throws Exception {
         EligibleCouple ec2 = new EligibleCouple("EC Case 2", "Woman B", "Husband B", "EC Number 2", "kavalu_hosur", "Bherya SC", emptyDetails);
         EligibleCouple ec3 = new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyDetails);
@@ -76,88 +68,19 @@ public class FPSmartRegisterControllerTest {
         FPClient expectedClient2 = createFPClient("EC Case 2", "Woman B", "Husband B", "kavalu_hosur", "EC Number 2").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
         FPClient expectedClient3 = createFPClient("EC Case 3", "Woman C", "Husband C", "Bherya", "EC Number 3").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
 
-        String clients = controller.get();
+        FPClients clients = controller.getClients("test");
 
-        List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
+        List<FPClients> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClients>>(){
         }.getType());
         assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), actualClients);
-    }*/
+    }
 
     private FPClient createFPClient(String entityId, String name, String husbandName, String village, String ecNumber) {
         return new FPClient(entityId, name, husbandName, village, ecNumber).withPhotoPath("../../img/woman-placeholder.png").withAlerts(Collections.<AlertDTO>emptyList());
-    }
+    }*/
 
-    /*@Test
-    public void shouldMapECToFPClient() throws Exception {
-        Map<String, String> details = create("wifeAge", "22")
-                .put("currentMethod", "condom")
-                .put("familyPlanningMethodChangeDate", "2013-01-02")
-                .put("sideEffects", "sideEffects 1")
-                .put("numberOfPregnancies", "2")
-                .put("parity", "2")
-                .put("numberOfLivingChildren", "1")
-                .put("numberOfStillBirths", "1")
-                .put("numberOfAbortions", "0")
-                .put("isHighPriority", Boolean.toString(false))
-                .put("isYoungestChildUnderTwo", "yes")
-                .put("youngestChildAge", "3")
-                .put("complicationDate", "2011-05-05")
-                .put("caste", "sc")
-                .put("economicStatus", "bpl")
-                .put("fpFollowupDate", "2013-03-04")
-                .put("iudPlace", "iudPlace")
-                .put("iudPerson", "iudPerson")
-                .put("numberOfCondomsSupplied", "numberOfCondomsSupplied")
-                .put("numberOfCentchromanPillsDelivered", "numberOfCentchromanPillsDelivered")
-                .put("numberOfOCPDelivered", "numberOfOCPDelivered")
-                .put("condomSideEffect", "condom side effect")
-                .put("iudSidEffect", "iud side effect")
-                .put("ocpSideEffect", "ocp side effect")
-                .put("sterilizationSideEffect", "sterilization side effect")
-                .put("injectableSideEffect", "injectable side effect")
-                .put("otherSideEffect", "other side effect")
-                .put("highPriorityReason", "high priority reason")
-                .map();
-        EligibleCouple ec = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", details)
-                .withPhotoPath("new photo path");
-        when(allEligibleCouples.all()).thenReturn(asList(ec));
-        FPClient expectedFPClient = new FPClient("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
-                .withAge("22")
-                .withFPMethod("condom")
-                .withFamilyPlanningMethodChangeDate("2013-01-02")
-                .withComplicationDate("2011-05-05")
-                .withIUDPlace("iudPlace")
-                .withIUDPerson("iudPerson")
-                .withNumberOfCondomsSupplied("numberOfCondomsSupplied")
-                .withNumberOfCentchromanPillsDelivered("numberOfCentchromanPillsDelivered")
-                .withNumberOfOCPDelivered("numberOfOCPDelivered").withFPMethodFollowupDate("2013-03-04")
-                .withCaste("sc")
-                .withEconomicStatus("bpl")
-                .withNumberOfPregnancies("2")
-                .withParity("2")
-                .withNumberOfLivingChildren("1")
-                .withNumberOfStillBirths("1")
-                .withNumberOfAbortions("0")
-                .withIsYoungestChildUnderTwo(true)
-                .withYoungestChildAge("3")
-                .withIsHighPriority(false)
-                .withPhotoPath("new photo path")
-                .withCondomSideEffect("condom side effect")
-                .withIUDSidEffect("iud side effect")
-                .withOCPSideEffect("ocp side effect")
-                .withSterilizationSideEffect("sterilization side effect")
-                .withInjectableSideEffect("injectable side effect")
-                .withOtherSideEffect("other side effect")
-                .withHighPriorityReason("high priority reason")
-                .withAlerts(Collections.<AlertDTO>emptyList());
 
-        String clients = controller.get();
-
-        List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
-        }.getType());
-        assertEquals(asList(expectedFPClient), actualClients);
-    }
-
+/*
     @Test
     public void shouldReturnOnlyClientsWhichMatchesTheFPMethodName() throws Exception {
 
@@ -407,7 +330,7 @@ public class FPSmartRegisterControllerTest {
         when(allEligibleCouples.all()).thenReturn(asList(ec));
         when(alertService.findByEntityIdAndAlertNames("entity id 1", EC_ALERTS)).thenReturn(asList(ocpRefillAlert));
 
-        String clients = controller.get();
+        FPClients clients = controller.getClients("test");
 
         List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
         }.getType());
@@ -424,7 +347,7 @@ public class FPSmartRegisterControllerTest {
         when(allEligibleCouples.all()).thenReturn(asList(ec));
         when(alertService.findByEntityIdAndAlertNames("entity id 1", EC_ALERTS)).thenReturn(asList(condomRefillAlert));
 
-        FPClients clients = controller.getClients();
+        FPClients clients = controller.getClients("condom");
 
         verify(alertService).findByEntityIdAndAlertNames("entity id 1", EC_ALERTS);
 
@@ -457,6 +380,82 @@ public class FPSmartRegisterControllerTest {
         }.getType());
         FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");;
         assertEquals(asList(expectedEC), actualClients);
-    }*/
+    }
+*/
+
+
+
+
+    @Test
+    public void shouldMapECToFPClient() throws Exception {
+        Map<String, String> details = create("wifeAge", "22")
+                .put("currentMethod", "condom")
+                .put("familyPlanningMethodChangeDate", "2013-01-02")
+                .put("sideEffects", "sideEffects 1")
+                .put("numberOfPregnancies", "2")
+                .put("parity", "2")
+                .put("numberOfLivingChildren", "1")
+                .put("numberOfStillBirths", "1")
+                .put("numberOfAbortions", "0")
+                .put("isHighPriority", Boolean.toString(false))
+                .put("isYoungestChildUnderTwo", "yes")
+                .put("youngestChildAge", "3")
+                .put("complicationDate", "2011-05-05")
+                .put("caste", "sc")
+                .put("economicStatus", "bpl")
+                .put("fpFollowupDate", "2013-03-04")
+                .put("iudPlace", "iudPlace")
+                .put("iudPerson", "iudPerson")
+                .put("numberOfCondomsSupplied", "numberOfCondomsSupplied")
+                .put("numberOfCentchromanPillsDelivered", "numberOfCentchromanPillsDelivered")
+                .put("numberOfOCPDelivered", "numberOfOCPDelivered")
+                .put("condomSideEffect", "condom side effect")
+                .put("iudSidEffect", "iud side effect")
+                .put("ocpSideEffect", "ocp side effect")
+                .put("sterilizationSideEffect", "sterilization side effect")
+                .put("injectableSideEffect", "injectable side effect")
+                .put("otherSideEffect", "other side effect")
+                .put("highPriorityReason", "high priority reason")
+                .map();
+        EligibleCouple ec = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", details)
+                .withPhotoPath("new photo path");
+        when(allEligibleCouples.all()).thenReturn(asList(ec));
+        FPClient expectedFPClient = new FPClient("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
+                .withAge("22")
+                .withFPMethod("condom")
+                .withFamilyPlanningMethodChangeDate("2013-01-02")
+                .withComplicationDate("2011-05-05")
+                .withIUDPlace("iudPlace")
+                .withIUDPerson("iudPerson")
+                .withNumberOfCondomsSupplied("numberOfCondomsSupplied")
+                .withNumberOfCentchromanPillsDelivered("numberOfCentchromanPillsDelivered")
+                .withNumberOfOCPDelivered("numberOfOCPDelivered").withFPMethodFollowupDate("2013-03-04")
+                .withCaste("sc")
+                .withEconomicStatus("bpl")
+                .withNumberOfPregnancies("2")
+                .withParity("2")
+                .withNumberOfLivingChildren("1")
+                .withNumberOfStillBirths("1")
+                .withNumberOfAbortions("0")
+                .withIsYoungestChildUnderTwo(true)
+                .withYoungestChildAge("3")
+                .withIsHighPriority(false)
+                .withPhotoPath("new photo path")
+                .withCondomSideEffect("condom side effect")
+                .withIUDSidEffect("iud side effect")
+                .withOCPSideEffect("ocp side effect")
+                .withSterilizationSideEffect("sterilization side effect")
+                .withInjectableSideEffect("injectable side effect")
+                .withOtherSideEffect("other side effect")
+                .withHighPriorityReason("high priority reason")
+                .withAlerts(Collections.<AlertDTO>emptyList());
+        FPClients clients1 = new FPClients();
+        clients1.add(expectedFPClient);
+        FPClients clients = controller.getClients("condom");
+
+        /*FPClient actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
+        }.getType());*/
+        assertEquals(clients1, clients);
+    }
 
 }
