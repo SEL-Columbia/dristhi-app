@@ -322,7 +322,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new CommonObjectFilterOption(name.replace(" ","_"),"location_name", CommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+                dialogOptionslist.add(new CommonObjectFilterOption(name,"existing_Mauzapara", CommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
 
             }
         }

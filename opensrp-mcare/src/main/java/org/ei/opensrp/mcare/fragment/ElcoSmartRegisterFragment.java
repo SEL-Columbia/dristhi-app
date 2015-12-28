@@ -173,7 +173,8 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
     @Override
     protected void onResumption() {
         super.onResumption();
-
+        getDefaultOptionsProvider();
+        updateSearchView();
         try{
             LoginActivity.setLanguage();
         }catch (Exception e){
@@ -293,7 +294,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"location_name", ElcoMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name", ElcoMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
 
             }
         }

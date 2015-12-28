@@ -87,7 +87,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
-        mPager.setOffscreenPageLimit(getEditOptions().length);
+        mPager.setOffscreenPageLimit(formNames.length);
         mPager.setAdapter(mPagerAdapter);
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -99,10 +99,11 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     }
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
-        DialogOption[] options = getEditOptions();
-        for (int i = 0; i < options.length; i++){
-            formNames.add(((OpenFormOption) options[i]).getFormName());
-        }
+        formNames.add("psrf_form");
+//        DialogOption[] options = getEditOptions();
+//        for (int i = 0; i < options.length; i++){
+//            formNames.add(((OpenFormOption) options[i]).getFormName());
+//        }
         return formNames.toArray(new String[formNames.size()]);
     }
 
@@ -139,12 +140,12 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
 
 
-    public DialogOption[] getEditOptions() {
-        return new DialogOption[]{
-
-                new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController)
-        };
-    }
+//    public DialogOption[] getEditOptions() {
+//        return new DialogOption[]{
+//
+//                new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController)
+//        };
+//    }
 
 
 
@@ -250,8 +251,8 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
             ZiggyService ziggyService = context.ziggyService();
             ziggyService.saveForm(getParams(submission), submission.instance());
-
-            //switch to forms list fragment
+            Log.v("we are here", "hhregister");
+            //switch to forms list fragmentstregi
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
         }catch (Exception e){
@@ -260,6 +261,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     }
 
     public void switchToBaseFragment(final String data){
+        Log.v("we are here","switchtobasegragment");
         final int prevPageIndex = currentPage;
         runOnUiThread(new Runnable() {
             @Override
@@ -282,6 +284,15 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         });
 
     }
+    @Override
+    public void onBackPressed() {
+        if (currentPage != 0){
+            switchToBaseFragment(null);
+        }else if (currentPage == 0) {
+            super.onBackPressed(); // allow back key only if we are
+        }
+    }
+
     public android.support.v4.app.Fragment findFragmentByPosition(int position) {
         FragmentPagerAdapter fragmentPagerAdapter = mPagerAdapter;
         return getSupportFragmentManager().findFragmentByTag("android:switcher:" + mPager.getId() + ":" + fragmentPagerAdapter.getItemId(position));
@@ -299,7 +310,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"location_name", ElcoMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"existing_Mauzapara", ElcoMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
 
             }
         }
