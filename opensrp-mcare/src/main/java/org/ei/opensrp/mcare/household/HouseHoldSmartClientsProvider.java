@@ -129,7 +129,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvid
 //
         viewHolder.gobhhid.setText(pc.getDetails().get("FWGOBHHID")!=null?pc.getDetails().get("FWGOBHHID"):"");
         viewHolder.jvitahhid.setText(pc.getDetails().get("FWJIVHHID")!=null?pc.getDetails().get("FWJIVHHID"):"");
-        viewHolder.village.setText((humanize((pc.getDetails().get("location_name")!=null?pc.getDetails().get("location_name"):"").replace("+","_"))));
+        viewHolder.village.setText((humanize((pc.getDetails().get("existing_Mauzapara")!=null?pc.getDetails().get("existing_Mauzapara"):"").replace("+","_"))));
         viewHolder.headofhouseholdname.setText(pc.getDetails().get("FWHOHFNAME")!=null?pc.getDetails().get("FWHOHFNAME"):"");
         viewHolder.no_of_mwra.setText(pc.getDetails().get("ELCO")!=null?pc.getDetails().get("ELCO"):"");
         Date lastdate = null;

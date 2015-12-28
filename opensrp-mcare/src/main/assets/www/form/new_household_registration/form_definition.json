@@ -9,10 +9,6 @@
         "shouldLoadValue": true
       },
       {
-        "name": "location_name",
-        "bind": "/model/instance/FWNewHH/existing_Mauzapara"
-      },
-      {
         "name": "existing_location",
         "bind": "/model/instance/FWNewHH/existing_location"
       },

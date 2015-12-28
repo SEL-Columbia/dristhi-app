@@ -23,7 +23,6 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -50,7 +49,7 @@ public class FormUtils {
         return instance;
     }
 
-    public FormSubmission generateFormSubmisionFromXMLString(String entity_id, String formData, String formName, Map<String, String> overrides) throws Exception{
+    public FormSubmission generateFormSubmisionFromXMLString(String entity_id, String formData, String formName, JSONObject overrides) throws Exception{
         JSONObject formSubmission = XML.toJSONObject(formData);
         System.out.println(formSubmission);
 
@@ -93,7 +92,7 @@ public class FormUtils {
                 //how do you tell which id originally belonged to a particular edited subform !!!!
                 List<String> ids = retrieveRelationalIdForSubForm(childTableName, entity_id);
                 for (int i = 0; i < subFormData.length(); i++){
-                    String relationalId = ids.isEmpty() || ids.size() >= i ? null : ids.get(i);
+                    String relationalId = ids.isEmpty() && ids.size() > i ? null : ids.get(i);
                     JSONObject subFormInstance = getFieldValuesForSubFormDefinition(subFormDefinition, relationalId, subFormData.getJSONObject(i), overrides);
                     subFormInstances.put(i,subFormInstance);
                 }
@@ -119,7 +118,7 @@ public class FormUtils {
     private List<String> retrieveRelationalIdForSubForm(String childTableName, String entityId) throws  Exception{
         List<String> ids = new ArrayList<String>();
         if (entityId != null){
-            String sql = "select * from " + childTableName + " where relationalid ='" + entityId + "'";
+            String sql = "select * from " + childTableName + " where relationalid='" + entityId + "'";
             String dbEntity = theAppContext.formDataRepository().queryList(sql);
 
             JSONArray entityJson = new JSONArray();
@@ -407,7 +406,7 @@ public class FormUtils {
         return object.has(path[i]) ? object.get(path[i]) : null;
     }
 
-    public JSONArray getPopulatedFieldsForArray(JSONObject fieldsDefinition, String entityId, JSONObject jsonObject, Map<String, String> overrides) throws  Exception{
+    public JSONArray getPopulatedFieldsForArray(JSONObject fieldsDefinition, String entityId, JSONObject jsonObject, JSONObject overrides) throws  Exception{
         String bindPath = fieldsDefinition.getString("bind_type");
         String sql = "select * from " + bindPath + " where id='" + entityId + "'";
         String dbEntity = theAppContext.formDataRepository().queryUniqueResult(sql);
@@ -429,25 +428,113 @@ public class FormUtils {
                 String[] path = pathSting.split("/");
                 String value = getValueForPath(path, jsonObject);
                 item.put("value", value);
-                item.remove("bind");
+
             }
 
-            item.put("source", bindPath + "." +  item.getString("name"));
+            if (item.has("shouldLoadValue") && item.getBoolean("shouldLoadValue") && overrides.has(item.getString("name"))){
+                if (!item.has("value")) // if the value is not set use the value in the overrides filed
+                    item.put("value", overrides.getString(item.getString("name")));
+            }
+
+            // map the id field for child elements
+            if (item.has("source") && item.getString("source").split("\\.").length > 2){ // e.g ibu.anak.id
+                String value = null;
+                if (entityJson.length() > 0 && item.has("shouldLoadValue") && item.getBoolean("shouldLoadValue")){
+                    //retrieve the child attributes
+                    value = retrieveValueForLinkedRecord(item.getString("source"), entityJson);
+                }
+                // generate uuid if its still not available
+                if (item.getString("source").endsWith(".id") && value == null){
+                    value = generateRandomUUIDString();
+                }
+
+                if (value != null && !item.has("value"))
+                    item.put("value", value);
+            }
+
+            // add source property if not available
+            if (!item.has("source")){
+                item.put("source", bindPath + "." +  item.getString("name"));
+            }
 
             if (item.has("name") && item.getString("name").equalsIgnoreCase("id")){
                 String id = entityJson.has("id") ? entityJson.getString("id") : generateRandomUUIDString();
                 item.put("value", id);
             }
-
-//            // temp hack for existing location field
-//            if (item.has("name") && item.getString("name").equalsIgnoreCase("existing_location")){
-//                if (overrides.containsKey("existing_location")){
-//                    item.put("value", overrides.get("existing_location"));
-//                }else
-//                    item.put("value", "4ccd5a33-c462-4b53-b8c1-a1ad1c3ba0cf");
-//            }
         }
         return fieldsArray;
+    }
+
+    public String retrieveValueForLinkedRecord(String link, JSONObject entityJson) {
+        try {
+            String entityRelationships = readFileFromAssetsFolder("www/form/entity_relationship.json");
+            JSONArray json = new JSONArray(entityRelationships);
+            Log.logInfo(json.toString());
+
+            JSONObject rJson = null;
+            if ((rJson = retrieveRelationshipJsonForLink(link, json)) != null) {
+                String[] path = link.split("\\.");
+                String parentTable = path[0];
+                String childTable = path[1];
+
+                String joinValueKey = parentTable.equals(rJson.getString("parent")) ? rJson.getString("from") : rJson.getString("to");
+                joinValueKey = joinValueKey.contains(".") ? joinValueKey.substring(joinValueKey.lastIndexOf(".") + 1) : joinValueKey;
+
+                String val = entityJson.getString(joinValueKey);
+
+                String joinField = parentTable.equals(rJson.getString("parent")) ? rJson.getString("to") : rJson.getString("from");
+                String sql = "select * from " + childTable + " where " + joinField + "='" + val + "'";
+                Log.logInfo(sql);
+                String dbEntity = theAppContext.formDataRepository().queryUniqueResult(sql);
+                JSONObject linkedEntityJson = new JSONObject();
+                if (dbEntity != null && !dbEntity.isEmpty()){
+                    linkedEntityJson = new JSONObject(dbEntity);
+                }
+
+                //finally retrieve the value from the child entity, need to improve or remove entirely these hacks
+                String sourceKey = link.substring(link.lastIndexOf(".") + 1);
+                if (linkedEntityJson.has(sourceKey)){
+                    return linkedEntityJson.getString(sourceKey);
+                }
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static JSONObject retrieveRelationshipJsonForLink(String link,JSONArray array) throws Exception{
+        for(int i = 0; i < array.length(); i++){
+            JSONObject object = array.getJSONObject(i);
+            if (relationShipExist(link, object)) {
+                System.out.println("Relationship found ##");
+                return object;
+            }
+        }
+        return null;
+    }
+
+    private static boolean relationShipExist(String link, JSONObject json){
+        try {
+            String[] path = link.split("\\.");
+            String parentTable = path[0];
+            String childTable = path[1];
+
+            String jsonParentTableString = json.getString("parent");
+            String jsonChildTableString = json.getString("child");
+
+            boolean parentToChildExist = jsonParentTableString.equals(parentTable) && jsonChildTableString.equals(childTable);
+            boolean childToParentExist = jsonParentTableString.equals(childTable) && jsonChildTableString.equals(parentTable);
+
+            if ( parentToChildExist || childToParentExist) {
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public JSONArray getFieldsArrayForSubFormDefinition(JSONObject fieldsDefinition) throws  Exception{
@@ -462,14 +549,20 @@ public class FormUtils {
             if (!item.has("name"))
                 continue; // skip elements without name
             field.put("name", item.getString("name"));
-            field.put("source", bindPath + "." +  item.getString("name"));
+
+            if (!item.has("source")){
+                field.put("source", bindPath + "." +  item.getString("name"));
+            }else{
+                field.put("source", bindPath + "." +  item.getString("source"));
+            }
+
             subFormFieldsArray.put(i, field);
         }
 
         return subFormFieldsArray;
     }
 
-    public JSONObject getFieldValuesForSubFormDefinition(JSONObject fieldsDefinition, String entityId, JSONObject jsonObject, Map<String, String> overrides) throws  Exception{
+    public JSONObject getFieldValuesForSubFormDefinition(JSONObject fieldsDefinition, String entityId, JSONObject jsonObject, JSONObject overrides) throws  Exception{
 
         JSONArray fieldsArray = fieldsDefinition.getJSONArray("fields");
 
@@ -485,8 +578,8 @@ public class FormUtils {
                 String[] path = pathSting.split("/");
 
                 //check if we need to override this val
-                if (overrides.containsKey(item.getString("name"))){
-                    fieldsValues.put(item.getString("name"), overrides.get(item.getString("name")));
+                if (overrides.has(item.getString("name"))){
+                    fieldsValues.put(item.getString("name"), overrides.getString(item.getString("name")));
                 }
                 else{
                     String value = getValueForPath(path, jsonObject);

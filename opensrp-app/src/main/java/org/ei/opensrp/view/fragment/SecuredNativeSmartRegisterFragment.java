@@ -118,9 +118,10 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        this.getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         View view = inflater.inflate(R.layout.smart_register_activity, container, false);
         mView = view;
-        this.getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         onInitialization();
         setupViews(view);
         onResumption();
@@ -164,9 +165,11 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
             @Override
             protected void onPostExecute(Void result) {
                 clientsView.setAdapter(clientsAdapter);
-                paginationViewHandler.refresh();
-                clientsProgressView.setVisibility(View.GONE);
-                clientsView.setVisibility(VISIBLE);
+                if(isAdded()) {
+                    paginationViewHandler.refresh();
+                    clientsProgressView.setVisibility(View.GONE);
+                    clientsView.setVisibility(VISIBLE);
+                }
 
             }
         }.executeOnExecutor(THREAD_POOL_EXECUTOR);

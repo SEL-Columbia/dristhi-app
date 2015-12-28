@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -166,6 +167,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     }
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
+        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
@@ -175,6 +177,8 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
                     displayFormFragment.setFormData(data);
                     displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
+                    displayFormFragment.setFieldOverides(metaData);
+
                 }
             }
 
@@ -241,7 +245,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         // save the form
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
-            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, new HashMap<String, String>());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
 
             org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
             ZiggyService ziggyService = context.ziggyService();

@@ -1,15 +1,16 @@
 package org.ei.opensrp.view.fragment;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
@@ -17,10 +18,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.ei.opensrp.R;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -28,11 +27,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by Geoffrey Koros on 9/12/2015.
@@ -133,12 +127,13 @@ public class DisplayFormFragment extends Fragment {
 
         // inject the model and form into html template
         script = script.replace("$model_string_placeholder", modelString);
-        header = header.replace("<!-- $script_placeholder >", script);
+        footer = footer.replace("<!-- $script_placeholder >", script);
 
         StringBuilder sb = new StringBuilder();
         sb.append(header).append(form).append(footer);
-
         webView.loadDataWithBaseURL("file:///android_asset/web/forms/", sb.toString(), "text/html", "utf-8", null);
+
+        resizeForm();
     }
 
     public String readFileAssets(String fileName) {
@@ -168,6 +163,13 @@ public class DisplayFormFragment extends Fragment {
         if (data != null){
             this.formData = data;
         }
+    }
+
+    /**
+     * Explicitly call this function to nullify/clear the form data
+     **/
+    public void nullifyFormData(){
+        this.formData = null;
     }
 
     public void loadFormData(){
@@ -258,4 +260,37 @@ public class DisplayFormFragment extends Fragment {
         }
     }
 
+    private void resizeForm() {
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                int landWidthPixels = 0;
+                int landHeightPixels = 0;
+
+                WindowManager w = getActivity().getWindowManager();
+                Display d = w.getDefaultDisplay();
+
+                if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17) {
+                    try {
+                        landWidthPixels = (Integer) Display.class.getMethod("getRawWidth").invoke(d);
+                        landHeightPixels = (Integer) Display.class.getMethod("getRawHeight").invoke(d);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if(Build.VERSION.SDK_INT > 17) {
+                    try {
+                        Point realSize = new Point();
+                        Display.class.getMethod("getRealSize", Point.class).invoke(d, realSize);
+                        landWidthPixels = realSize.x;
+                        landHeightPixels = realSize.y;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                webView.setLayoutParams(new RelativeLayout.LayoutParams(landHeightPixels, landWidthPixels));
+            }
+        });
+    }
 }
