@@ -1,6 +1,10 @@
 package org.ei.telemedicine.provider;
 
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.activity.SecuredActivity;
@@ -20,11 +24,7 @@ import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 import org.ei.telemedicine.view.viewHolder.ProfilePhotoLoader;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
 
@@ -99,13 +99,13 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     public SmartRegisterClients getClients() {
         NameSort nameSortOption = new NameSort();
         FilterOption filterOption = getFPFilterOptionBasedOnDialogTab(currentServiceModeOption);
-        return controller.getClients("condom").applyFilterWithFP(currentServiceModeOption, nameSortOption, filterOption);
+        return controller.getClients().applyFilterWithFP(currentServiceModeOption, nameSortOption, filterOption);
     }
 
     @Override
     public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                                               FilterOption searchFilter, SortOption sortOption) {
-        return controller.getClients("condom").applyFilterWithFP(serviceModeOption, sortOption, villageFilter, searchFilter, getFPFilterOptionBasedOnDialogTab(serviceModeOption));
+        return controller.getClients().applyFilterWithFP(serviceModeOption, sortOption, villageFilter, searchFilter, getFPFilterOptionBasedOnDialogTab(serviceModeOption));
     }
 
     private FilterOption getFPFilterOptionBasedOnDialogTab(ServiceModeOption serviceModeOption) {
