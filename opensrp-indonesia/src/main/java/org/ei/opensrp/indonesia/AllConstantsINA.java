@@ -27,8 +27,8 @@ public class AllConstantsINA {
     // Flurry Bidan Testing
     // public static final String FLURRY_KEY = "SNRSKHM2HK6XMFSYBR7Z";
 
-    // Flurry Bidan Prototype 2
-    public static final String FLURRY_KEY = "HCZF47NFBDPXGJTZMQ7P";
+    // Flurry Key Bidan Prototype
+    public static final String FLURRY_KEY = "GVDTK3B4S92Y7D96NJ63";
 
     public class KeluargaBerencanaFields {
         public static final String CONTRACEPTION_METHOD = "jenisKontrasepsi";
