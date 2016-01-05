@@ -3,7 +3,6 @@ package org.ei.telemedicine.test.view.contract;
 import org.ei.telemedicine.util.DateUtil;
 import org.ei.telemedicine.view.contract.ECClient;
 import org.joda.time.LocalDate;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -11,19 +10,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ECClientTest {
 
-    @Before
-    public void setUp() throws Exception {
-        initMocks(this);
-    }
-
-/*    private ECClient getClient() {
-        return new ECClient("0", "heigh", "1", "1", "0", "2013-05-25","1","1","0","sudheer","ypl");
-    }*/
 
     @Test
     public void testShouldReturnTrueForIsBPLWhenEconomicStatusIsBPL() throws Exception {

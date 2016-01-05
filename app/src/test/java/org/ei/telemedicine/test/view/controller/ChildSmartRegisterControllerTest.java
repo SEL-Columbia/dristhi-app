@@ -2,10 +2,12 @@ package org.ei.telemedicine.test.view.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.ei.telemedicine.view.contract.SmartRegisterClients;
-import org.ei.telemedicine.view.controller.ChildSmartRegisterController;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.ei.telemedicine.domain.*;
+
+import org.ei.telemedicine.domain.Alert;
+import org.ei.telemedicine.domain.Child;
+import org.ei.telemedicine.domain.EligibleCouple;
+import org.ei.telemedicine.domain.Mother;
+import org.ei.telemedicine.domain.ServiceProvided;
 import org.ei.telemedicine.repository.AllBeneficiaries;
 import org.ei.telemedicine.repository.AllEligibleCouples;
 import org.ei.telemedicine.service.AlertService;
@@ -14,10 +16,13 @@ import org.ei.telemedicine.util.Cache;
 import org.ei.telemedicine.view.contract.AlertDTO;
 import org.ei.telemedicine.view.contract.ChildClient;
 import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
+import org.ei.telemedicine.view.contract.SmartRegisterClients;
+import org.ei.telemedicine.view.controller.ChildSmartRegisterController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Collections;
 import java.util.List;

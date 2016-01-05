@@ -1,38 +1,17 @@
 package org.ei.telemedicine.test.view.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.ei.telemedicine.view.contract.pnc.PNCClient;
-import org.ei.telemedicine.view.controller.PNCSmartRegisterController;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.apache.commons.lang3.tuple.Pair;
-import org.ei.telemedicine.domain.*;
-import org.ei.telemedicine.domain.Child;
 import org.ei.telemedicine.repository.AllBeneficiaries;
 import org.ei.telemedicine.repository.AllEligibleCouples;
 import org.ei.telemedicine.service.AlertService;
 import org.ei.telemedicine.service.ServiceProvidedService;
-import org.ei.telemedicine.util.Cache;
-import org.ei.telemedicine.view.contract.*;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.ei.telemedicine.view.contract.AlertDTO;
+import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
+import org.ei.telemedicine.view.contract.pnc.PNCClient;
+import org.ei.telemedicine.view.controller.PNCSmartRegisterController;
 import org.mockito.Mock;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
-
-import static java.util.Arrays.asList;
-import static java.util.Collections.EMPTY_LIST;
-import static junit.framework.Assert.assertEquals;
-import static org.ei.telemedicine.dto.AlertStatus.normal;
-import static org.ei.telemedicine.util.EasyMap.create;
-import static org.ei.telemedicine.util.EasyMap.mapOf;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 //@RunWith(MockitoJUnitRunner.class)
 public class PNCSmartRegisterControllerTest {

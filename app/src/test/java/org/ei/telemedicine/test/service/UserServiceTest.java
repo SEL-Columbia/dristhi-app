@@ -1,6 +1,7 @@
 package org.ei.telemedicine.test.service;
 
 import org.ei.telemedicine.DristhiConfiguration;
+import org.ei.telemedicine.domain.LoginResponse;
 import org.ei.telemedicine.repository.AllAlerts;
 import org.ei.telemedicine.repository.AllEligibleCouples;
 import org.ei.telemedicine.repository.AllSettings;
@@ -16,6 +17,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
@@ -56,11 +58,10 @@ public class UserServiceTest {
     @Test
     public void testShouldUseHttpAgentToDoRemoteLoginCheck() {
         when(configuration.dristhiBaseURL()).thenReturn("http://dristhi_base_url");
+        when(configuration.dristhiDjangoBaseURL()).thenReturn("http://dristhi_django_base_url");
+        LoginResponse loginResponse = userService.isValidRemoteLogin("userX", "password Y");
+        assertEquals(loginResponse, httpAgent.urlCanBeAccessWithGivenCredentials("http://dristhi_django_base_url/auth?userid=userX&pwd=password Y", "userX", "password Y"));
 
-        userService.isValidRemoteLogin("userX", "password Y");
-
-        //verify(httpAgent).urlCanBeAccessWithGivenCredentials("http://dristhi_base_url/anm-villages?anm-id=userX", "userX", "password Y");
-        verify(httpAgent).urlCanBeAccessWithGivenCredentials("null/auth/?userid=userX&pwd=password Y", "userX", "password Y");
     }
 
    /* @Test

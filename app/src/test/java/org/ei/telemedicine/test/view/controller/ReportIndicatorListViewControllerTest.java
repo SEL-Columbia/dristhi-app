@@ -1,7 +1,9 @@
 package org.ei.telemedicine.test.view.controller;
 
 import android.content.Context;
+
 import com.google.gson.Gson;
+
 import org.ei.telemedicine.domain.Report;
 import org.ei.telemedicine.dto.MonthSummaryDatum;
 import org.ei.telemedicine.repository.AllReports;

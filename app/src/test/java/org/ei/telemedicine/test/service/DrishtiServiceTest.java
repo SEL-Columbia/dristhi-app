@@ -1,7 +1,5 @@
 package org.ei.telemedicine.test.service;
 
-import android.test.AndroidTestCase;
-
 import org.apache.commons.io.IOUtils;
 import org.ei.telemedicine.domain.Response;
 import org.ei.telemedicine.domain.ResponseStatus;

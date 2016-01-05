@@ -1,10 +1,9 @@
 package org.ei.telemedicine.test.view.controller;
 
 import android.content.Context;
+
 import com.google.gson.Gson;
 
-import org.ei.telemedicine.view.controller.EligibleCoupleDetailController;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.ei.telemedicine.domain.EligibleCouple;
 import org.ei.telemedicine.domain.TimelineEvent;
 import org.ei.telemedicine.repository.AllEligibleCouples;
@@ -13,11 +12,13 @@ import org.ei.telemedicine.util.DateUtil;
 import org.ei.telemedicine.view.contract.Child;
 import org.ei.telemedicine.view.contract.CoupleDetails;
 import org.ei.telemedicine.view.contract.ECDetail;
+import org.ei.telemedicine.view.controller.EligibleCoupleDetailController;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,4 +72,6 @@ public class EligibleCoupleDetailControllerTest {
     private org.ei.telemedicine.view.contract.TimelineEvent eventFor(TimelineEvent pregnancyEvent, String expectedRelativeTime) {
         return new org.ei.telemedicine.view.contract.TimelineEvent(pregnancyEvent.type(), pregnancyEvent.title(), new String[]{pregnancyEvent.detail1(), pregnancyEvent.detail2()}, expectedRelativeTime);
     }
+
+
 }
