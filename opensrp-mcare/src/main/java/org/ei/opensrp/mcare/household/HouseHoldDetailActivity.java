@@ -63,10 +63,11 @@ public class HouseHoldDetailActivity extends Activity {
     private SmartRegisterPaginatedAdapter clientsAdapter;
     private final PaginationViewHandler paginationViewHandler = new PaginationViewHandler();
     ListView Clientsview;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Context context = Context.getInstance();
+        context = Context.getInstance();
         setContentView(R.layout.household_detail_activity);
 
         TextView householdhead_name = (TextView)findViewById(R.id.name_household_head);
@@ -199,7 +200,8 @@ public class HouseHoldDetailActivity extends Activity {
                     entityid = ((CommonPersonObjectClient)view.getTag()).entityId();
                     bindobject = "elco";
                     mImageView = (ImageView)view;
-                    dispatchTakePictureIntent((ImageView)view);
+                    mImageView.setTag("womanpic");
+                    dispatchTakePictureIntent((ImageView) view);
                     break;
                 case R.id.registerlink:
                     startActivity(new Intent(HouseHoldDetailActivity.this, ElcoSmartRegisterActivity.class));
@@ -272,6 +274,7 @@ public class HouseHoldDetailActivity extends Activity {
         }
     }
 
+
     private void dispatchTakePictureIntentforNId(View imageView) {
 //        mImageView = imageView;
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -309,8 +312,10 @@ public class HouseHoldDetailActivity extends Activity {
 //            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
 //            mImageView.setImageBitmap(bitmap);
 //            setImagetoHolder(this,currentfile.getAbsolutePath(),mImageView,R.drawable.householdload);
-            setImagetoHolderFromUri(this,currentfile.getAbsolutePath(),mImageView, R.mipmap.householdload);
-
+            Log.v("see imageview",""+(String)mImageView.getTag());
+            Log.v("see imageview", "" + currentfile.getAbsolutePath());
+            setImagetoHolderFromUri(this, currentfile.getAbsolutePath(), mImageView, R.mipmap.householdload);
+            recalladapterinitialization();
         }else  if (requestCode == REQUEST_TAKE_PHOTO_NID && resultCode == RESULT_OK) {
 
 //            Bundle extras = data.getExtras();
@@ -319,6 +324,8 @@ public class HouseHoldDetailActivity extends Activity {
             HashMap <String,String> details = new HashMap<String,String>();
             details.put("nidImage",currentfile.getAbsolutePath());
             saveimagereferenceforNID(bindobject,entityid,details);
+            recalladapterinitialization();
+
 //            BitmapFactory.Options options = new BitmapFactory.Options();
 //            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 //            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
@@ -364,9 +371,11 @@ public class HouseHoldDetailActivity extends Activity {
 
     }
     public static void setImagetoHolderFromUri(Activity activity,String file, ImageView view, int placeholder){
+        view.setImageDrawable(activity.getResources().getDrawable(placeholder));
         File externalFile = new File(file);
         Uri external = Uri.fromFile(externalFile);
         view.setImageURI(external);
+
 
     }
 
@@ -377,5 +386,30 @@ public class HouseHoldDetailActivity extends Activity {
         overridePendingTransition(0, 0);
 
 
+    }
+    public void recalladapterinitialization(){
+        Clientsview = null;
+        Clientsview = (ListView)findViewById(R.id.list);
+        paginationViewHandler.addPagination(Clientsview);
+
+        householdcontroller = new CommonPersonObjectController(Context.getInstance().allCommonsRepositoryobjects("elco"), Context.getInstance().allBeneficiaries(),context.listCache(),
+                context.personObjectClientsCache(),"FWWOMFNAME","elco","relationalid",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelationalid,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+        clientsAdapter = adapter();
+            clientsAdapter = adapter();
+        clientsAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                paginationViewHandler.refresh();
+            }
+        });
+        Clientsview.setAdapter(clientsAdapter);
+        Log.v("view size", "" + householdcontroller.getClients().size());
+        if(householdcontroller.getClients().size()<1){
+
+            Clientsview.setVisibility(INVISIBLE);
+        }
+        if(!(clientsAdapter.getCount()>1)){
+            paginationViewHandler.footerView.setVisibility(INVISIBLE);
+        }
     }
 }
