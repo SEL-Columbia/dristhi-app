@@ -190,7 +190,7 @@ public class DisplayFormFragment extends Fragment {
                         }
                     });
 
-                }catch(Exception doNothing){}
+                }catch(Exception doNothing){   doNothing.printStackTrace();}
 
 
 

@@ -1,6 +1,8 @@
 package org.ei.opensrp.commonregistry;
 
 
+import android.content.ContentValues;
+
 import org.ei.opensrp.repository.AlertRepository;
 import org.ei.opensrp.repository.TimelineEventRepository;
 
@@ -52,5 +54,20 @@ public class AllCommonsRepository {
 
     public void mergeDetails(String entityId, Map<String, String> details) {
         personRepository.mergeDetails(entityId, details);
+    }
+
+    public void update(String tableName,ContentValues contentValues,String caseId){
+
+        personRepository.updateColumn(tableName, contentValues, caseId);
+    }
+
+    public List<CommonPersonObject> customQuery(String sql , String[] selections , String tableName){
+        return personRepository.customQuery(sql,selections,tableName);
+
+    }
+
+    public List<CommonPersonObject> customQueryForCompleteRow(String sql , String[] selections , String tableName){
+        return personRepository.customQueryForCompleteRow(sql,selections,tableName);
+
     }
 }

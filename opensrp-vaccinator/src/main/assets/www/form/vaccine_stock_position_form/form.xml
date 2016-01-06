@@ -1,0 +1,324 @@
+
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="vaccine_stock_position">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo"> </section>
+   <h3 id="form-title">Vaccine Stock Position</h3>
+   <select id="form-languages" data-default-lang="en">
+      <option value="ur">urdu</option>
+      <option value="en">english</option>
+   </select>
+
+
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/provider_location_note:label">City: <span class="or-output" data-value=" /vaccine_stock_position/provider_city ">
+      </span> ; Town: <span class="or-output" data-value=" /vaccine_stock_position/provider_town ">
+      </span> ; UC: <span class="or-output" data-value=" /vaccine_stock_position/provider_uc ">
+      </span> ; Center Name: <span class="or-output" data-value=" /vaccine_stock_position/provider_location_name ">
+      </span>
+      </span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/provider_location_note:label">City: <span class="or-output" data-value=" /vaccine_stock_position/provider_city ">
+      </span> ; Town: <span class="or-output" data-value=" /vaccine_stock_position/provider_town ">
+      </span> ; UC: <span class="or-output" data-value=" /vaccine_stock_position/provider_uc ">
+      </span> ; Center Name: <span class="or-output" data-value=" /vaccine_stock_position/provider_location_name ">
+      </span>
+      </span>
+      <input type="text" name="/vaccine_stock_position/provider_location_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/vaccinator_name:label">
+         <span class="or-output" data-value=" /vaccine_stock_position/provider_id ">
+         </span>
+      </span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/vaccinator_name:label">
+         <span class="or-output" data-value=" /vaccine_stock_position/provider_id ">
+         </span>
+      </span>
+      <input type="text" name="/vaccine_stock_position/vaccinator_name" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/center_name:label">Center Name: <span class="or-output" data-value=" /vaccine_stock_position/provider_location_name ">
+      </span>
+      </span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/center_name:label">Center Name: <span class="or-output" data-value=" /vaccine_stock_position/provider_location_name ">
+      </span>
+      </span>
+      <input type="text" name="/vaccine_stock_position/center_name" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/today_note:label">Date: <span class="or-output" data-value=" /vaccine_stock_position/date_formatted ">
+      </span>
+      </span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/today_note:label">Date: <span class="or-output" data-value=" /vaccine_stock_position/date_formatted ">
+      </span>
+      </span>
+      <span lang="ur" class="or-hint " data-itext-id="/vaccine_stock_position/today_note:hint">-</span>
+      <span lang="en" class="or-hint active" data-itext-id="/vaccine_stock_position/today_note:hint">day-month-year</span>
+      <input type="text" name="/vaccine_stock_position/today_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/report:label">Report</span>
+            <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/report:label">Report</span>
+            <span class="required">*</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/vaccine_stock_position/report" data-name="/vaccine_stock_position/report" value="daily" required="required" data-type-xml="select1"/>
+               <span lang="ur" class="option-label " data-itext-id="/vaccine_stock_position/report/daily:label">Daily</span>
+               <span lang="en" class="option-label active" data-itext-id="/vaccine_stock_position/report/daily:label">Daily</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/vaccine_stock_position/report" data-name="/vaccine_stock_position/report" value="monthly" required="required" data-type-xml="select1"/>
+               <span lang="ur" class="option-label " data-itext-id="/vaccine_stock_position/report/monthly:label">Monthly</span>
+               <span lang="en" class="option-label active" data-itext-id="/vaccine_stock_position/report/monthly:label">Monthly</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/Target_assigned_for_vaccination_at_each_month:label">Monthly Target</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/Target_assigned_for_vaccination_at_each_month:label">Monthly Target</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/Target_assigned_for_vaccination_at_each_month" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/Target_assigned_for_vaccination_for_the_year:label">Yearly Target</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/Target_assigned_for_vaccination_for_the_year:label">Yearly Target</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/Target_assigned_for_vaccination_for_the_year" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/bcg_balance_in_hand:label">BCG balance in hand</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/bcg_balance_in_hand:label">BCG balance in hand</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/bcg_balance_in_hand" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/bcg_received:label">BCG received</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/bcg_received:label">BCG received</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/bcg_received" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/bcg_wasted:label">BCG wasted</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/bcg_wasted:label">BCG wasted</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/bcg_wasted" required="required" data-relevant="selected( /vaccine_stock_position/report , 'daily')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/opv_balance_in_hand:label">OPV balance in hand</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/opv_balance_in_hand:label">OPV balance in hand</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/opv_balance_in_hand" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/opv_received:label">OPV received</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/opv_received:label">OPV received</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/opv_received" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/opv_wasted:label">OPV wasted</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/opv_wasted:label">OPV wasted</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/opv_wasted" required="required" data-relevant="selected( /vaccine_stock_position/report , 'daily')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/ipv_balance_in_hand:label">IPV balance in hand</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/ipv_balance_in_hand:label">IPV balance in hand</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/ipv_balance_in_hand" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/ipv_received:label">IPV received</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/ipv_received:label">IPV received</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/ipv_received" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/ipv_wasted:label">IPV wasted</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/ipv_wasted:label">IPV wasted</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/ipv_wasted" required="required" data-relevant="selected( /vaccine_stock_position/report , 'daily')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/pcv_balance_in_hand:label">PCV balance in hand</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/pcv_balance_in_hand:label">PCV balance in hand</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/pcv_balance_in_hand" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/pcv_received:label">PCV received</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/pcv_received:label">PCV received</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/pcv_received" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/pcv_wasted:label">PCV wasted</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/pcv_wasted:label">PCV wasted</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/pcv_wasted" required="required" data-relevant="selected( /vaccine_stock_position/report , 'daily')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/penta_balance_in_hand:label">Penta balance in hand</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/penta_balance_in_hand:label">Penta balance in hand</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/penta_balance_in_hand" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/penta_received:label">Penta received</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/penta_received:label">Penta received</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/penta_received" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/penta_wasted:label">Penta wasted</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/penta_wasted:label">Penta wasted</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/penta_wasted" required="required" data-relevant="selected( /vaccine_stock_position/report , 'daily')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/measles_balance_in_hand:label">Measles balance in hand</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/measles_balance_in_hand:label">Measles balance in hand</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/measles_balance_in_hand" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/measles_received:label">Measles received</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/measles_received:label">Measles received</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/measles_received" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/mesles_wasted:label">Measles wasted</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/mesles_wasted:label">Measles wasted</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/mesles_wasted" required="required" data-relevant="selected( /vaccine_stock_position/report , 'daily')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/tt_balance_in_hand:label">TT balance in hand</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/tt_balance_in_hand:label">TT balance in hand</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/tt_balance_in_hand" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/tt_received:label">TT received</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/tt_received:label">TT received</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/tt_received" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/tt_wasted:label">TT wasted</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/tt_wasted:label">TT wasted</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/tt_wasted" required="required" data-relevant="selected( /vaccine_stock_position/report , 'daily')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/dilutants_balance_in_hand:label">Dilutants balance in hand</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/dilutants_balance_in_hand:label">Dilutants balance in hand</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/dilutants_balance_in_hand" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/dilutants_received:label">Dilutants received</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/dilutants_received:label">Dilutants received</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/dilutants_received" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/dilutants_wasted:label">Dilutants wasted</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/dilutants_wasted:label">Dilutants wasted</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/dilutants_wasted" required="required" data-relevant="selected( /vaccine_stock_position/report , 'daily')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/syringes_balance_in_hand:label">Syringes balance in hand</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/syringes_balance_in_hand:label">Syringes balance in hand</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/syringes_balance_in_hand" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/syringes_received:label">Syringes received</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/syringes_received:label">Syringes received</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/syringes_received" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/syringes_wasted:label">Syringes wasted</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/syringes_wasted:label">Syringes wasted</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/syringes_wasted" required="required" data-relevant="selected( /vaccine_stock_position/report , 'daily')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/safety_boxes_balance_in_hand:label">Safety boxes balance in hand</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/safety_boxes_balance_in_hand:label">Safety boxes balance in hand</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/safety_boxes_balance_in_hand" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/safety_boxes_received:label">Safety boxes received</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/safety_boxes_received:label">Safety boxes received</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/safety_boxes_received" required="required" data-relevant="selected( /vaccine_stock_position/report , 'monthly')" data-type-xml="int"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/vaccine_stock_position/safety_boxes_wasted:label">Safety boxes wasted</span>
+      <span lang="en" class="question-label active" data-itext-id="/vaccine_stock_position/safety_boxes_wasted:label">Safety boxes wasted</span>
+      <span class="required">*</span>
+      <input type="number" name="/vaccine_stock_position/safety_boxes_wasted" required="required" data-relevant="selected( /vaccine_stock_position/report , 'daily')" data-type-xml="int"/>
+   </label>
+
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/today" data-preload="date" data-preload-params="today" data-type-xml="date"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/subscriberid" data-preload="property" data-preload-params="subscriberid" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/subscriber_id" data-preload="property" data-preload-params="subscriberid" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/sim_serial" data-preload="property" data-preload-params="simserial" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/phone_number" data-preload="property" data-preload-params="phonenumber" data-type-xml="string"/>
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/date_formatted" data-calculate="format-date( /vaccine_stock_position/today , '%e-%n-%Y')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/total_wasted" data-calculate=" /vaccine_stock_position/bcg_wasted + /vaccine_stock_position/opv_wasted + /vaccine_stock_position/ipv_wasted + /vaccine_stock_position/pcv_wasted + /vaccine_stock_position/penta_wasted + /vaccine_stock_position/mesles_wasted + /vaccine_stock_position/tt_wasted + /vaccine_stock_position/dilutants_wasted + /vaccine_stock_position/syringes_wasted + /vaccine_stock_position/safety_boxes_wasted " data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/total_received" data-calculate=" /vaccine_stock_position/bcg_received + /vaccine_stock_position/opv_received + /vaccine_stock_position/ipv_received + /vaccine_stock_position/pcv_received + /vaccine_stock_position/penta_received + /vaccine_stock_position/measles_received + /vaccine_stock_position/tt_received + /vaccine_stock_position/dilutants_received + /vaccine_stock_position/syringes_received + /vaccine_stock_position/safety_boxes_received " data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/total_balanceInHand" data-calculate=" /vaccine_stock_position/bcg_balance_in_hand + /vaccine_stock_position/opv_balance_in_hand + /vaccine_stock_position/ipv_balance_in_hand + /vaccine_stock_position/pcv_balance_in_hand + /vaccine_stock_position/penta_balance_in_hand + /vaccine_stock_position/measles_balance_in_hand + /vaccine_stock_position/tt_balance_in_hand + /vaccine_stock_position/dilutants_balance_in_hand + /vaccine_stock_position/syringes_balance_in_hand + /vaccine_stock_position/safety_boxes_balance_in_hand " data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/vaccine_stock_position/formhub/uuid" data-calculate="'22826e7367a24b1899b7ce3c33a50f97'" data-type-xml="string"/>
+      </label>
+   </fieldset>
+</form>

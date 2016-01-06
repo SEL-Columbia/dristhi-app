@@ -1,0 +1,599 @@
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="child_followup_vaccination_register">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo"> </section>
+   <h3 id="form-title">&#x641;&#x627;&#x644;&#x648; &#x627;&#x67E; &#x631;&#x62C;&#x633;&#x679;&#x631; &#x628;&#x631;&#x627;&#x626;&#x6D2; &#x679;&#x6CC;&#x6A9;&#x627;&#x62C;&#x627;&#x62A;</h3>
+   <select id="form-languages" data-default-lang="en">
+      <option value="ur">urdu</option>
+      <option value="openmrs_code">openmrs_code</option>
+      <option value="en">english</option>
+   </select>
+
+
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/provider_location_note:label">&#x634;&#x6C1;&#x631;: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/provider_city ">
+      </span> ; &#x679;&#x627;&#x626;&#x648;&#x646;: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/provider_town ">
+      </span> ; &#x6CC;&#x648;&#x633;&#x6CC;: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/provider_uc ">
+      </span> ; &#x633;&#x6CC;&#x646;&#x679;&#x631;&#x6A9;&#x627; &#x646;&#x627;&#x645;: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/provider_location_name ">
+      </span>
+      </span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/provider_location_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/provider_location_note:label">City: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/provider_city ">
+      </span> ; Town: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/provider_town ">
+      </span> ; UC: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/provider_uc ">
+      </span> ; Center Name: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/provider_location_name ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/provider_location_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/existing_child_reg_date_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_child_reg_date ">
+         </span>:&#x67E;&#x631;&#x648;&#x6AF;&#x631;&#x627;&#x645; &#x645;&#x6CC;&#x6BA; &#x627;&#x646;&#x62F;&#x631;&#x627;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/existing_child_reg_date_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/existing_child_reg_date_note:label">Child Registeration date: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_child_reg_date ">
+      </span>
+      </span>
+      <span lang="ur" class="or-hint " data-itext-id="/Child_Followup_Vaccination_Register/existing_child_reg_date_note:hint">&#x62C;&#x633; &#x62F;&#x646; &#x628;&#x686;&#x6D2; &#x6A9;&#x648; &#x679;&#x6CC;&#x6A9;&#x6C1; &#x644;&#x6AF;&#x627;</span>
+      <span lang="openmrs_code" class="or-hint " data-itext-id="/Child_Followup_Vaccination_Register/existing_child_reg_date_note:hint">-</span>
+      <span lang="en" class="or-hint active" data-itext-id="/Child_Followup_Vaccination_Register/existing_child_reg_date_note:hint">date on which child was vaccinated</span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/existing_child_reg_date_note" required="required" data-constraint=".&lt;= /Child_Followup_Vaccination_Register/today " data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/program_client_id_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_program_client_id ">
+         </span>:&#x6A9;&#x644;&#x627;&#x626;&#x646;&#x679; &#x6A9;&#x6CC; &#x67E;&#x631;&#x648;&#x6AF;&#x631;&#x627;&#x645; &#x627;&#x626;&#x6CC; &#x688;&#x6CC;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/program_client_id_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/program_client_id_note:label">Program Client ID: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_program_client_id ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/program_client_id_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/card_number_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_card_number ">
+         </span>: &#x6A9;&#x627;&#x631;&#x688; &#x646;&#x645;&#x628;&#x631;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/card_number_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/card_number_note:label">Card Number: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_card_number ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/card_number_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/first_name_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_first_name ">
+         </span>: &#x646;&#x627;&#x645;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/first_name_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/first_name_note:label">Name: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_first_name ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/first_name_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/second_name_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_first_name ">
+         </span>: &#x646;&#x627;&#x645; &#x6A9;&#x627; &#x628;&#x642;&#x6CC;&#x6C1; &#x62D;&#x635;&#x6C1;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/second_name_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/second_name_note:label">Last name: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_second_name ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/second_name_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/chid_dob_note:label">&#x645;&#x6C1;&#x6CC;&#x646;&#x6D2; <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_chid_dob ">
+      </span> (<span class="or-output" data-value=" /Child_Followup_Vaccination_Register/child_age ">
+      </span>): &#x628;&#x686;&#x6D2; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x626;&#x634;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/chid_dob_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/chid_dob_note:label">Child dob: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_chid_dob ">
+      </span> (<span class="or-output" data-value=" /Child_Followup_Vaccination_Register/child_age ">
+      </span>) months</span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/chid_dob_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/gender_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_gender ">
+         </span>: &#x62C;&#x646;&#x633;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/gender_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/gender_note:label">Gender :<span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_gender ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/gender_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/father_name_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_father_name ">
+         </span>: &#x648;&#x627;&#x644;&#x62F; &#x6A9;&#x627; &#x646;&#x627;&#x645;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/father_name_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/father_name_note:label">Father's Name: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_father_name ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/father_name_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/mother_name_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_mother_name ">
+         </span>: &#x645;&#x627;&#x6BA; &#x6A9;&#x627; &#x646;&#x627;&#x645;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/mother_name_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/mother_name_note:label">Mother's Name: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_mother_name ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/mother_name_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/exisiting_ethnicity_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_ethnicity ">
+         </span>: &#x642;&#x648;&#x645;&#x6CC;&#x62A;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/exisiting_ethnicity_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/exisiting_ethnicity_note:label">Ethnicity: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_ethnicity ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/exisiting_ethnicity_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/existing_house_number_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_house_number ">
+         </span>: &#x6AF;&#x6BE;&#x631; &#x6A9;&#x627; &#x646;&#x645;&#x628;&#x631;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/existing_house_number_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/existing_house_number_note:label">House Number: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_house_number ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/existing_house_number_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/exisitng_street_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_street ">
+         </span>: &#x6AF;&#x644;&#x6CC;/&#x6A9;&#x627;&#x644;&#x648;&#x646;&#x6CC;/&#x645;&#x62D;&#x644;&#x6C1;&#x631;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/exisitng_street_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/exisitng_street_note:label">Street: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_street ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/exisitng_street_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/union_council_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_union_council ">
+         </span>: &#x6CC;&#x648;&#x646;&#x6CC;&#x646; &#x6A9;&#x648;&#x646;&#x633;&#x644;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/union_council_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/union_council_note:label">Union Council: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_union_council ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/union_council_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/town_note:label">
+         <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_town ">
+         </span>: &#x679;&#x627;&#x626;&#x648;&#x646;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/town_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/town_note:label">Town: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_town ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/town_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="question non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/center_gps:label">GPS &#x6A9;&#x627;&#x631;&#x688;&#x6CC;&#x646;&#x6CC;&#x679; &#x6A9;&#x627; &#x622;&#x646;&#x62F;&#x631;&#x627;&#x62C; &#x6A9;&#x631;&#x6CC;&#x6BA;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/center_gps:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/center_gps:label">Collect GPS coordinates of Data entry location:</span>
+      <span lang="" class="or-hint active">GPS coordinates can only be collected when outside.</span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/center_gps" data-type-xml="geopoint"/>
+   </label>
+   <label class="question or-appearance-minimal ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines:label">&#x67E;&#x686;&#x6BE;&#x644;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x62C;&#x628; &#x679;&#x6CC;&#x6A9;&#x6C1; &#x644;&#x6AF;&#x648;&#x627;&#x6CC;&#x627; &#x6AF;&#x6CC;&#x627; &#x6CC;&#x627; &#x642;&#x637;&#x631;&#x6D2; &#x62C;&#x648; &#x6A9;&#x633;&#x6CC; &#x62F;&#x648;&#x633;&#x631;&#x6D2; &#x633;&#x6CC;&#x646;&#x679;&#x631; &#x67E;&#x644;&#x627;&#x626;&#x6D2; &#x6AF;&#x626;&#x6D2;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines:label">Retro vaccines</span>
+      <select multiple="multiple" name="/Child_Followup_Vaccination_Register/vaccines" data-type-xml="select">
+         <option class="itemset-template" value="" data-items-path="instance('vaccines')/root/item[name != if(  /Child_Followup_Vaccination_Register/e_bcg  != '', 'bcg' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_opv0  != '', 'opv_0' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_penta2  != '', 'pentavalent_2' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_penta1  != '', 'pentavalent_1' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_penta3  != '', 'pentavalent_3' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_opv1  != '', 'opv_1' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_opv2  != '', 'opv_2' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_opv3  != '', 'opv_3' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_pcv1  != '', 'pcv_1' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_pcv2  != '', 'pcv_2' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_pcv3  != '', 'pcv_3' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_measles1  != '', 'measles_1' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_measles2  != '', 'measles_2' , '')]">...</option>
+      </select>
+      <span class="or-option-translations" style="display:none;">
+      </span>
+      <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-0">&#x628;&#x6CC; &#x633;&#x6CC; &#x62C;&#x6CC;</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-0">1570AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-0">BCG</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-1">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC; 0</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-1">783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-1">OPV 0</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-2">&#x67E;&#x6CC; &#x633;&#x6CC; &#x648;&#x6CC; 1</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-2">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-2">PCV1</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-3">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC;1</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-3">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-3">OPV 1</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-4">&#x67E;&#x646;&#x679;&#x627; &#x648;&#x644;&#x6CC;&#x646;&#x679; 1</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-4">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-4">Pentavalent 1</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-5">&#x67E;&#x6CC; &#x633;&#x6CC; &#x648;&#x6CC; 2</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-5">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-5">PCV2</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-6">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC;2</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-6">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-6">OPV 2</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-7">&#x67E;&#x646;&#x679;&#x627; &#x648;&#x644;&#x6CC;&#x646;&#x679; 2</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-7">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-7">Pentavalent 2</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-8">&#x67E;&#x6CC; &#x633;&#x6CC; &#x648;&#x6CC; 3</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-8">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-8">PCV3</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-9">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC;3</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-9">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-9">OPV 3</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-10">&#x67E;&#x646;&#x679;&#x627; &#x648;&#x644;&#x6CC;&#x646;&#x679; 3</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-10">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-10">Pentavalent 3</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-11">&#x62E;&#x633;&#x631;&#x6C1; 1</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-11">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-11">Measles 1</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-12">&#x62E;&#x633;&#x631;&#x6C1; 2</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-12">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-12">Measles2</span>
+      </span>
+   </label>
+   <section class="or-group-data " name="/Child_Followup_Vaccination_Register/vaccines_group">
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/bcg_retro:label">&#x628;&#x6CC; &#x633;&#x6CC; &#x62C;&#x6CC;</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/bcg_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/bcg_retro:label">BCG</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/bcg_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'bcg')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_0_retro:label">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC; 0</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_0_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_0_retro:label">OPV 0</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/opv_0_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'opv_0')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pcv_1_retro:label">&#x67E;&#x6CC; &#x633;&#x6CC; &#x648;&#x6CC; 1</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pcv_1_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pcv_1_retro:label">PCV1</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/pcv_1_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pcv_1')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_1_retro:label">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC;1</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_1_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_1_retro:label">OPV 1</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/opv_1_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'opv_1')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_1_retro:label">&#x67E;&#x646;&#x679;&#x627; &#x648;&#x644;&#x6CC;&#x646;&#x679; 1</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_1_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_1_retro:label">Pentavalent 1</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_1_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pentavalent_1')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pcv_2_retro:label">&#x67E;&#x6CC; &#x633;&#x6CC; &#x648;&#x6CC; 2</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pcv_2_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pcv_2_retro:label">PCV2</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/pcv_2_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pcv_2')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_2_retro:label">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC; 2</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_2_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_2_retro:label">OPV 2</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/opv_2_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'opv_2')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_2_retro:label">&#x67E;&#x646;&#x679;&#x627; &#x648;&#x644;&#x6CC;&#x646;&#x679; 2</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_2_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_2_retro:label">Pentavalent 2</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_2_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pentavalent_2')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pcv_3_retro:label">&#x67E;&#x6CC; &#x633;&#x6CC; &#x648;&#x6CC; 3</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pcv_3_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pcv_3_retro:label">PCV3</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/pcv_3_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pcv_3')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_3_retro:label">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC;3</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_3_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/opv_3_retro:label">OPV 3</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/opv_3_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'opv_3')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_3_retro:label">&#x67E;&#x646;&#x679;&#x627; &#x648;&#x644;&#x6CC;&#x646;&#x679; 3</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_3_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_3_retro:label">Pentavalent 3</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_3_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pentavalent_3')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/measles_1_retro:label">&#x62E;&#x633;&#x631;&#x6C1; 1</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/measles_1_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/measles_1_retro:label">Measles 1</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/measles_1_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'measles_1')" data-type-xml="date"/>
+      </label>
+      <label class="question or-branch pre-init non-select ">
+         <span lang="" class="or-constraint-msg active">&#x6CC;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x60C; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x67E;&#x6CC;&#x62F;&#x627;&#x6CC;&#x626;&#x634; &#x633;&#x6D2; &#x6A9;&#x645; &#x627;&#x648;&#x631; &#x622;&#x62C; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x633;&#x6D2; &#x632;&#x6CC;&#x627;&#x62F;&#x6C1; &#x646;&#x6C1;&#x6CC;&#x6BA; &#x6C1;&#x648;&#x633;&#x6A9;&#x62A;&#x6CC;</span>
+         <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/measles_2_retro:label">&#x62E;&#x633;&#x631;&#x6C1; 2</span>
+         <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/measles_2_retro:label">-</span>
+         <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_group/measles_2_retro:label">Measles2</span>
+         <input type="date" name="/Child_Followup_Vaccination_Register/vaccines_group/measles_2_retro" data-constraint=".&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today " data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'measles_2')" data-type-xml="date"/>
+      </label>
+   </section>
+   <!--end of group -->
+   <label class="question or-appearance-minimal ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_2:label">&#x645;&#x648;&#x62C;&#x648;&#x62F;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x62C;&#x628; &#x679;&#x6CC;&#x6A9;&#x6C1; &#x644;&#x6AF;&#x648;&#x627;&#x6CC;&#x627; &#x6AF;&#x6CC;&#x627; &#x6CC;&#x627; &#x642;&#x637;&#x631;&#x6D2; &#x6C1;&#x644;&#x627;&#x626;&#x6D2; &#x6AF;&#x626;&#x6D2;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccines_2:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccines_2:label">Vaccine administered</span>
+      <span class="required">*</span>
+      <select multiple="multiple" name="/Child_Followup_Vaccination_Register/vaccines_2" required="required" data-constraint="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'bcg') or selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_0') , .&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today , if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_1') or selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_1'), .&gt;=  /Child_Followup_Vaccination_Register/six_weeks  and .&lt;= /Child_Followup_Vaccination_Register/today , if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_2') or selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_2'), .&gt;= /Child_Followup_Vaccination_Register/ten_weeks  and .&lt;= /Child_Followup_Vaccination_Register/today , if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_3') or selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_3'), .&gt;= /Child_Followup_Vaccination_Register/forteen_weeks  and .&lt;= /Child_Followup_Vaccination_Register/today , if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'measles1'), .&gt;= /Child_Followup_Vaccination_Register/nine_months  and .&lt;= /Child_Followup_Vaccination_Register/today , if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'measles2'), .&gt;=  /Child_Followup_Vaccination_Register/fifteen_months  and .&lt;= /Child_Followup_Vaccination_Register/today ))))))" data-type-xml="select">
+         <option class="itemset-template" value="" data-items-path="instance('vaccines')/root/item[name != if(  /Child_Followup_Vaccination_Register/e_bcg  != '', 'bcg' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_opv0  != '', 'opv_0' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_penta2  != '', 'pentavalent_2' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_penta1  != '', 'pentavalent_1' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_penta3  != '', 'pentavalent_3' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_opv1  != '', 'opv_1' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_opv2  != '', 'opv_2' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_opv3  != '', 'opv_3' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_pcv1  != '', 'pcv_1' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_pcv2  != '', 'pcv_2' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_pcv3  != '', 'pcv_3' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_measles1  != '', 'measles_1' , '') and  name != if(  /Child_Followup_Vaccination_Register/e_measles2  != '', 'measles_2' , '')]">...</option>
+      </select>
+      <span class="or-option-translations" style="display:none;">
+      </span>
+      <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-0">&#x628;&#x6CC; &#x633;&#x6CC; &#x62C;&#x6CC;</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-0">1570AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-0">BCG</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-1">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC; 0</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-1">783AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-1">OPV 0</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-2">&#x67E;&#x6CC; &#x633;&#x6CC; &#x648;&#x6CC; 1</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-2">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-2">PCV1</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-3">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC;1</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-3">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-3">OPV 1</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-4">&#x67E;&#x646;&#x679;&#x627; &#x648;&#x644;&#x6CC;&#x646;&#x679; 1</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-4">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-4">Pentavalent 1</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-5">&#x67E;&#x6CC; &#x633;&#x6CC; &#x648;&#x6CC; 2</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-5">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-5">PCV2</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-6">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC;2</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-6">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-6">OPV 2</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-7">&#x67E;&#x646;&#x679;&#x627; &#x648;&#x644;&#x6CC;&#x646;&#x679; 2</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-7">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-7">Pentavalent 2</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-8">&#x67E;&#x6CC; &#x633;&#x6CC; &#x648;&#x6CC; 3</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-8">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-8">PCV3</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-9">&#x627;&#x648; &#x67E;&#x6CC; &#x648;&#x6CC;3</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-9">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-9">OPV 3</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-10">&#x67E;&#x646;&#x679;&#x627; &#x648;&#x644;&#x6CC;&#x646;&#x679; 3</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-10">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-10">Pentavalent 3</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-11">&#x62E;&#x633;&#x631;&#x6C1; 1</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-11">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-11">Measles 1</span>
+         <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-12">&#x62E;&#x633;&#x631;&#x6C1; 2</span>
+         <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-12">-</span>
+         <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-12">Measles2</span>
+      </span>
+   </label>
+   <label class="question non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccination_date:label">&#x62A;&#x627;&#x631;&#x6CC;&#x62E;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/vaccination_date:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/vaccination_date:label">Vaccination date?</span>
+      <span class="required">*</span>
+      <input type="date" name="/Child_Followup_Vaccination_Register/vaccination_date" required="required" data-constraint="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'bcg') or selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_0') , .&gt;=  /Child_Followup_Vaccination_Register/existing_chid_dob  and .&lt;= /Child_Followup_Vaccination_Register/today , if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_1') or selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_1'), .&gt;=  /Child_Followup_Vaccination_Register/six_weeks  and .&lt;= /Child_Followup_Vaccination_Register/today , if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_2') or selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_2'), .&gt;= /Child_Followup_Vaccination_Register/ten_weeks  and .&lt;= /Child_Followup_Vaccination_Register/today , if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_3') or selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_3'), .&gt;= /Child_Followup_Vaccination_Register/forteen_weeks  and .&lt;= /Child_Followup_Vaccination_Register/today , if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'measles1'), .&gt;= /Child_Followup_Vaccination_Register/nine_months  and .&lt;= /Child_Followup_Vaccination_Register/today , if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'measles2'), .&gt;=  /Child_Followup_Vaccination_Register/fifteen_months  and .&lt;= /Child_Followup_Vaccination_Register/today ))))))" data-type-xml="date"/>
+   </label>
+   <label class="note non-select or-appearance-minimal ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/child_was_suffering_from_a_disease_at_birth_note:label">&#x628;&#x686;&#x6C1; &#x67E;&#x6CC;&#x62F;&#x627;&#x626;&#x634; &#x67E;&#x631;&#x6A9;&#x633;&#x6CC; &#x645;&#x631;&#x636; &#x645;&#x6CC;&#x6BA; &#x645;&#x628;&#x637;&#x644;&#x639; &#x62A;&#x6BE;&#x627;: {existing_child_was_suffering_from_a_disease_at_birth}$</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/child_was_suffering_from_a_disease_at_birth_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/child_was_suffering_from_a_disease_at_birth_note:label">Child was suffering from a disease at birth: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_child_was_suffering_from_a_disease_at_birth ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/child_was_suffering_from_a_disease_at_birth_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="question non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/the_temporary_side-effects_of_immunization_shots_AEFI:label">&#x62D;&#x641;&#x627;&#x638;&#x62A;&#x6CC; &#x679;&#x6CC;&#x6A9;&#x648;&#x6BA; &#x6A9;&#x6D2; &#x636;&#x645;&#x646;&#x6CC; &#x627;&#x62B;&#x631;&#x627;&#x62A;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/the_temporary_side-effects_of_immunization_shots_AEFI:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/the_temporary_side-effects_of_immunization_shots_AEFI:label">The temporary side-effects of immunization shots AEFI</span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/the_temporary_side-effects_of_immunization_shots_AEFI" data-type-xml="string"/>
+   </label>
+   <label class="question or-appearance-minimal ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/existing_reminders_approval:label">&#x6A9;&#x6CC;&#x627; &#x622;&#x67E; &#x627;&#x67E;&#x646;&#x6D2; &#x628;&#x686;&#x6D2; &#x6A9;&#x6CC; &#x627;&#x6AF;&#x644;&#x6CC; &#x648;&#x6CC;&#x6A9;&#x633;&#x6CC;&#x646; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x6A9;&#x6D2; &#x628;&#x627;&#x631;&#x6D2; &#x645;&#x6CC;&#x6BA; SMS &#x645;&#x648;&#x635;&#x648;&#x644; &#x6A9;&#x631;&#x646;&#x627; &#x686;&#x627;&#x6C1;&#x6CC;&#x6BA; &#x6AF;&#x6D2;&#x61F; {existing_reminders_approval}$</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/existing_reminders_approval:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/existing_reminders_approval:label">Are you willing to receive sms reminders for your next visit? <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_reminders_approval ">
+      </span>
+      </span>
+      <span class="required">*</span>
+      <select name="/Child_Followup_Vaccination_Register/existing_reminders_approval" data-name="/Child_Followup_Vaccination_Register/existing_reminders_approval" required="required" data-type-xml="select1">
+         <option value="">...</option>
+         <option value="yes">Yes</option>
+         <option value="no">No</option>
+      </select>
+      <span class="or-option-translations" style="display:none;">
+         <span data-option-value="yes" lang="ur">&#x6C1;&#x627;&#x6BA;</span>
+         <span data-option-value="yes" lang="openmrs_code">-</span>
+         <span data-option-value="yes" lang="en">Yes</span>
+         <span data-option-value="no" lang="ur">&#x646;&#x6C1;&#x6CC;&#x6BA;</span>
+         <span data-option-value="no" lang="openmrs_code">-</span>
+         <span data-option-value="no" lang="en">No</span>
+      </span>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/existing_contact_phone_number:label">&#x645;&#x648;&#x628;&#x627;&#x626;&#x644; &#x646;&#x645;&#x628;&#x631;:{existing_contact_phone_number}$</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/existing_contact_phone_number:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/existing_contact_phone_number:label">Contact phone number: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/existing_contact_phone_number ">
+      </span>
+      </span>
+      <input type="number" name="/Child_Followup_Vaccination_Register/existing_contact_phone_number" data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-relevant=" /Child_Followup_Vaccination_Register/existing_reminders_approval ='yes'" data-type-xml="int"/>
+   </label>
+   <label class="note or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/contact_phone_number_rounded:label">&#x645;&#x648;&#x628;&#x627;&#x626;&#x644; &#x646;&#x645;&#x628;&#x631;: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/contact_phone_number_calculate ">
+      </span>
+      </span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Child_Followup_Vaccination_Register/contact_phone_number_rounded:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Child_Followup_Vaccination_Register/contact_phone_number_rounded:label">Contact phone number: <span class="or-output" data-value=" /Child_Followup_Vaccination_Register/contact_phone_number_calculate ">
+      </span>
+      </span>
+      <input type="text" name="/Child_Followup_Vaccination_Register/contact_phone_number_rounded" data-relevant=" /Child_Followup_Vaccination_Register/existing_reminders_approval ='yes'" data-type-xml="string" readonly="readonly"/>
+   </label>
+
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/today" data-preload="date" data-preload-params="today" data-type-xml="date"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/subscriberid" data-preload="property" data-preload-params="subscriberid" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string"/>
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/child_age" data-calculate="int(( /Child_Followup_Vaccination_Register/today  -  /Child_Followup_Vaccination_Register/existing_chid_dob ) div 30.42)" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/six_weeks" data-calculate=" /Child_Followup_Vaccination_Register/existing_chid_dob  + 42" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/ten_weeks" data-calculate=" /Child_Followup_Vaccination_Register/existing_chid_dob  + 70" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/forteen_weeks" data-calculate=" /Child_Followup_Vaccination_Register/existing_chid_dob  + 98" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/nine_months" data-calculate=" /Child_Followup_Vaccination_Register/existing_chid_dob  + 245" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/fifteen_months" data-calculate=" /Child_Followup_Vaccination_Register/existing_chid_dob  + 458" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/opv_0_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'opv_0')" data-calculate="0" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/pcv_1_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pcv_1')" data-calculate="1" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/opv_1_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'opv_1')" data-calculate="1" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_1_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pentavalent_1')" data-calculate="1" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/pcv_2_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pcv_2')" data-calculate="2" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/opv_2_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'opv_2')" data-calculate="2" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_2_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pentavalent_2')" data-calculate="2" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/pcv_3_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pentavalent_2')" data-calculate="3" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/opv_3_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'opv_3')" data-calculate="3" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/pentavalent_3_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'pentavalent_3')" data-calculate="3" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/measles_1_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'measles_1')" data-calculate="1" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/vaccines_group/measles_2_dose" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines , 'measles_2')" data-calculate="2" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/contact_phone_number_calculate" data-calculate="concat('0', contact_phone_number)" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/bcg" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'bcg'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/opv_0" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_0'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/opv_0_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_0')" data-calculate="0" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pcv_1" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pcv_1'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pcv_1_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pcv_1')" data-calculate="1" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/opv_1" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_1'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/opv_1_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_1')" data-calculate="1" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pentavalent_1" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_1'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pentavalent_1_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_1')" data-calculate="1" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pcv_2" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pcv_2'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pcv_2_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pcv_2')" data-calculate="2" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/opv_2" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_2'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/opv_2_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_2')" data-calculate="2" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pentavalent_2" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_2'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pentavalent_2_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_2')" data-calculate="2" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pcv_3" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pcv_3'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pcv_3_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pcv_3')" data-calculate="3" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/opv_3" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_3'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/opv_3_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'opv_3')" data-calculate="3" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pentavalent_3" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_3'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/pentavalent_3_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'pentavalent_3')" data-calculate="3" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/measles_1" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'measles_1'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/measles_1_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'measles_1')" data-calculate="1" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/measles_2" data-calculate="if(selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'measles_2'), /Child_Followup_Vaccination_Register/vaccination_date ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/measles_2_dose_today" data-relevant="selected( /Child_Followup_Vaccination_Register/vaccines_2 , 'measles_2')" data-calculate="2" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Child_Followup_Vaccination_Register/formhub/uuid" data-calculate="'3b0122054d334319baa367d0ecdf1aa7'" data-type-xml="string"/>
+      </label>
+   </fieldset>
+</form>

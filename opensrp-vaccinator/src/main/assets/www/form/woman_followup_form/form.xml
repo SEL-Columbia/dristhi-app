@@ -1,0 +1,473 @@
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="woman_follow_up_register">
+   <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+   <section class="form-logo"> </section>
+   <h3 id="form-title">&#x62E;&#x648;&#x627;&#x62A;&#x6CC;&#x646; &#x641;&#x627;&#x644;&#x648;&#x627;&#x67E; &#x631;&#x62C;&#x633;&#x679;&#x631; &#x628;&#x631;&#x627;&#x626;&#x6D2; &#x679;&#x6CC;&#x6A9;&#x627;&#x62C;&#x627;&#x62A;</h3>
+   <select id="form-languages" data-default-lang="en">
+      <option value="ur">urdu</option>
+      <option value="openmrs_code">openmrs_code</option>
+      <option value="en">english</option>
+   </select>
+
+
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/provider_location_note:label">&#x634;&#x6C1;&#x631;: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/provider_city ">
+      </span> ; &#x679;&#x627;&#x626;&#x648;&#x646;: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/provider_town ">
+      </span> ; &#x6CC;&#x648;&#x633;&#x6CC;: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/provider_uc ">
+      </span> ; &#x633;&#x6CC;&#x646;&#x679;&#x631;&#x6A9;&#x627; &#x646;&#x627;&#x645;: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/provider_location_name ">
+      </span>
+      </span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/provider_location_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/provider_location_note:label">City: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/provider_city ">
+      </span> ; Town: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/provider_town ">
+      </span> ; UC: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/provider_uc ">
+      </span> ; Center Name: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/provider_location_name ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/provider_location_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/client_reg_date_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_client_reg_date ">
+         </span>:&#x6A9;&#x644;&#x627;&#x626;&#x646;&#x679; &#x6A9;&#x6D2; &#x62F;&#x627;&#x62E;&#x644;&#x6D2; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/client_reg_date_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/client_reg_date_note:label">Client Registeration date: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_client_reg_date ">
+      </span>
+      </span>
+      <span lang="ur" class="or-hint " data-itext-id="/Woman_TT_Follow_up_form/client_reg_date_note:hint">&#x62C;&#x633; &#x62F;&#x646; &#x628;&#x686;&#x6D2; &#x6A9;&#x648; &#x679;&#x6CC;&#x6A9;&#x6C1; &#x644;&#x6AF;&#x627;</span>
+      <span lang="openmrs_code" class="or-hint " data-itext-id="/Woman_TT_Follow_up_form/client_reg_date_note:hint">-</span>
+      <span lang="en" class="or-hint active" data-itext-id="/Woman_TT_Follow_up_form/client_reg_date_note:hint">date on which client was vaccinated</span>
+      <input type="text" name="/Woman_TT_Follow_up_form/client_reg_date_note" required="required" data-constraint=".&lt;= /Woman_TT_Follow_up_form/today " data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/program_client_id_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_program_client_id ">
+         </span>:&#x6A9;&#x644;&#x627;&#x626;&#x646;&#x679; &#x6A9;&#x6CC; ID</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/program_client_id_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/program_client_id_note:label">Program Client ID: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_program_client_id ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/program_client_id_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/epi_card_number_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_epi_card_number ">
+         </span>:&#x6A9;&#x627;&#x631;&#x688; &#x646;&#x645;&#x628;&#x631;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/epi_card_number_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/epi_card_number_note:label">EPI Card Number: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_epi_card_number ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/epi_card_number_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/first_name_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_first_name ">
+         </span>:&#x646;&#x627;&#x645;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/first_name_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/first_name_note:label">First Name: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_first_name ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/first_name_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/last_name_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_last_name ">
+         </span>:&#x646;&#x627;&#x645; &#x6A9;&#x627; &#x628;&#x642;&#x6CC;&#x6C1; &#x62D;&#x635;&#x6C1;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/last_name_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/last_name_note:label">Last name: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_last_name ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/last_name_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/client_birth_date_note:label">&#x6A9;&#x644;&#x627;&#x626;&#x646;&#x679; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;&#x650; &#x67E;&#x6CC;&#x62F;&#x627;&#x626;&#x634; : {existing_client_birth_date}$</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/client_birth_date_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/client_birth_date_note:label">Client birth date: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_client_birth_date ">
+      </span> (<span class="or-output" data-value=" /Woman_TT_Follow_up_form/client_age ">
+      </span>) years</span>
+      <input type="text" name="/Woman_TT_Follow_up_form/client_birth_date_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/gender_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_gender ">
+         </span>: &#x62C;&#x646;&#x633;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/gender_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/gender_note:label">Gender: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_gender ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/gender_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/father_name_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_father_name ">
+         </span>: &#x648;&#x627;&#x644;&#x62F;&#x6CC;&#x62A;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/father_name_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/father_name_note:label">Father's Name: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_father_name ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/father_name_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="question non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/husband_name:label">&#x634;&#x648;&#x6C1;&#x631; &#x6A9;&#x627; &#x646;&#x627;&#x645;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/husband_name:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/husband_name:label">Husband's name</span>
+      <input type="text" name="/Woman_TT_Follow_up_form/husband_name" data-type-xml="string"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/ethnicity_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_ethnicity ">
+         </span>: &#x642;&#x648;&#x645;&#x6CC;&#x62A;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/ethnicity_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/ethnicity_note:label">Ethnicity: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_ethnicity ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/ethnicity_note" required="required" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_house_number_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_house_number ">
+         </span>: &#x6AF;&#x6BE;&#x631; &#x6A9;&#x627; &#x646;&#x645;&#x628;&#x631;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_house_number_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/existing_house_number_note:label">House Number: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_house_number ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/existing_house_number_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/exiting_street_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_street ">
+         </span>: &#x6AF;&#x644;&#x6CC;/&#x6A9;&#x627;&#x644;&#x648;&#x646;&#x6CC;/&#x645;&#x62D;&#x644;&#x6C1;&#x631;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/exiting_street_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/exiting_street_note:label">Street: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_street ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/exiting_street_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_union_council_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_union_council ">
+         </span>: &#x6CC;&#x648;&#x646;&#x6CC;&#x646; &#x6A9;&#x648;&#x646;&#x633;&#x644;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_union_council_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/existing_union_council_note:label">Union Council: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_union_council ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/existing_union_council_note" data-calculate=" /Woman_TT_Follow_up_form/provider_uc " data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_town_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_town ">
+         </span>: &#x679;&#x627;&#x626;&#x648;&#x646;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_town_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/existing_town_note:label">Town: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_town ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/existing_town_note" data-calculate=" /Woman_TT_Follow_up_form/provider_town " data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_city_village_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_city_village ">
+         </span>: &#x634;&#x6C1;&#x631;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_city_village_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/existing_city_village_note:label">City: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_city_village ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/existing_city_village_note" data-calculate=" /Woman_TT_Follow_up_form/provider_city " data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_province_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_province ">
+         </span>:&#x635;&#x648;&#x628;&#x6C1;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_province_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/existing_province_note:label">Province: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_province ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/existing_province_note" data-calculate=" /Woman_TT_Follow_up_form/provider_province " data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_landmark_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_landmark ">
+         </span>: &#x642;&#x631;&#x6CC;&#x628;&#x6CC; &#x645;&#x634;&#x6C1;&#x648;&#x631; &#x62C;&#x6AF;&#x6C1;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/existing_landmark_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/existing_landmark_note:label">Land Mark: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/existing_landmark ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/existing_landmark_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <label class="question non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/center_gps:label">GPS &#x6A9;&#x627;&#x631;&#x688;&#x6CC;&#x646;&#x6CC;&#x679; &#x6A9;&#x627; &#x622;&#x646;&#x62F;&#x631;&#x627;&#x62C; &#x6A9;&#x631;&#x6CC;&#x6BA;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/center_gps:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/center_gps:label">Collect GPS coordinates of Data entry location</span>
+      <span lang="" class="or-hint active">GPS coordinates can only be collected when outside.</span>
+      <input type="text" name="/Woman_TT_Follow_up_form/center_gps" data-type-xml="geopoint"/>
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/pregnant:label">&#x6A9;&#x6CC;&#x627; &#x62E;&#x627; &#x62A;&#x648;&#x646; &#x62D;&#x627;&#x645;&#x644;&#x6C1; &#x6C1;&#x6D2;</span>
+            <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/pregnant:label">-</span>
+            <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/pregnant:label">Is female pregnant?</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Woman_TT_Follow_up_form/pregnant" data-name="/Woman_TT_Follow_up_form/pregnant" value="yes" data-type-xml="select1"/>
+               <span lang="ur" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/pregnant/yes:label">&#x6C1;&#x627;&#x6BA;</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/pregnant/yes:label">-</span>
+               <span lang="en" class="option-label active" data-itext-id="/Woman_TT_Follow_up_form/pregnant/yes:label">Yes</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Woman_TT_Follow_up_form/pregnant" data-name="/Woman_TT_Follow_up_form/pregnant" value="no" data-type-xml="select1"/>
+               <span lang="ur" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/pregnant/no:label">&#x646;&#x6C1;&#x6CC;&#x6BA;</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/pregnant/no:label">-</span>
+               <span lang="en" class="option-label active" data-itext-id="/Woman_TT_Follow_up_form/pregnant/no:label">No</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Woman_TT_Follow_up_form/pregnant" data-name="/Woman_TT_Follow_up_form/pregnant" value="maybe" data-type-xml="select1"/>
+               <span lang="ur" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/pregnant/maybe:label">&#x633;&#x627;&#x6CC;&#x62F;</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/pregnant/maybe:label">-</span>
+               <span lang="en" class="option-label active" data-itext-id="/Woman_TT_Follow_up_form/pregnant/maybe:label">Maybe</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/edd_lmp:label">&#x6A9;&#x6CC;&#x627; &#x627;&#x67E; &#x6A9;&#x648; &#x627;&#x67E;&#x646;&#x6CC; &#x632;&#x686;&#x6AF;&#x6CC; &#x6A9;&#x6CC; &#x645;&#x62A;&#x648;&#x642;&#x639; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;, &#x67E;&#x686;&#x6BE;&#x644;&#x6CC; &#x645;&#x627;&#x6C1;&#x648;&#x627;&#x631;&#x6CC; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x6CC;&#x627; &#x627;&#x644;&#x679;&#x631;&#x627; &#x633;&#x627;&#x626;&#x648;&#x646;&#x688; &#x6A9;&#x6D2;&#x628;&#x627;&#x631;&#x6D2; &#x645;&#x6CC;&#x6BA; &#x6A9;&#x686;&#x6BE; &#x6CC;&#x627;&#x62F; &#x6C1;&#x6D2;&#x61F;</span>
+            <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/edd_lmp:label">-</span>
+            <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/edd_lmp:label">Do you know your LMP, EDD or last Ultrasound information?</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="">
+               <input type="radio" name="/Woman_TT_Follow_up_form/edd_lmp" data-name="/Woman_TT_Follow_up_form/edd_lmp" value="edd" data-type-xml="select1"/>
+               <span lang="ur" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/edd:label">&#x632;&#x686;&#x6AF;&#x6CC; &#x6A9;&#x6CC; &#x645;&#x62A;&#x648;&#x642;&#x639; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/edd:label">-</span>
+               <span lang="en" class="option-label active" data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/edd:label">EDD</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Woman_TT_Follow_up_form/edd_lmp" data-name="/Woman_TT_Follow_up_form/edd_lmp" value="lmp" data-type-xml="select1"/>
+               <span lang="ur" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/lmp:label">&#x67E;&#x686;&#x6BE;&#x644;&#x6CC; &#x645;&#x627;&#x6C1;&#x648;&#x627;&#x631;&#x6CC; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/lmp:label">-</span>
+               <span lang="en" class="option-label active" data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/lmp:label">LMP</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Woman_TT_Follow_up_form/edd_lmp" data-name="/Woman_TT_Follow_up_form/edd_lmp" value="ultrasound" data-type-xml="select1"/>
+               <span lang="ur" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/ultrasound:label">&#x627;&#x644;&#x679;&#x631;&#x627; &#x633;&#x627;&#x626;&#x648;&#x646;&#x688; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/ultrasound:label">-</span>
+               <span lang="en" class="option-label active" data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/ultrasound:label">Ultrasound</span>
+            </label>
+            <label class="">
+               <input type="radio" name="/Woman_TT_Follow_up_form/edd_lmp" data-name="/Woman_TT_Follow_up_form/edd_lmp" value="neither" data-type-xml="select1"/>
+               <span lang="ur" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/neither:label">&#x6A9;&#x686;&#x6BE; &#x628;&#x6BE;&#x6CC; &#x646;&#x6C1;&#x6CC;&#x6BA;</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/neither:label">-</span>
+               <span lang="en" class="option-label active" data-itext-id="/Woman_TT_Follow_up_form/edd_lmp/neither:label">Neither</span>
+            </label>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/edd:label">&#x632;&#x686;&#x6AF;&#x6CC; &#x6A9;&#x6CC; &#x645;&#x62A;&#x648;&#x642;&#x639; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/edd:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/edd:label">EDD</span>
+      <input type="date" name="/Woman_TT_Follow_up_form/edd" data-relevant="selected ( /Woman_TT_Follow_up_form/edd_lmp , 'edd')" data-type-xml="date"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/lmp:label">&#x67E;&#x686;&#x6BE;&#x644;&#x6CC; &#x645;&#x627;&#x6C1;&#x648;&#x627;&#x631;&#x6CC; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/lmp:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/lmp:label">LMP</span>
+      <input type="date" name="/Woman_TT_Follow_up_form/lmp" data-relevant="selected ( /Woman_TT_Follow_up_form/edd_lmp , 'lmp')" data-type-xml="date"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/ultrasound_date:label">&#x627;&#x644;&#x679;&#x631;&#x627; &#x633;&#x627;&#x626;&#x648;&#x646;&#x688; &#x6A9;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/ultrasound_date:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/ultrasound_date:label">Ultrasound Date</span>
+      <input type="date" name="/Woman_TT_Follow_up_form/ultrasound_date" data-relevant="selected ( /Woman_TT_Follow_up_form/edd_lmp , 'ultrasound')" data-type-xml="date"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/ultrasound_weeks:label">&#x627;&#x644;&#x679;&#x631;&#x627; &#x633;&#x627;&#x626;&#x648;&#x646;&#x688; &#x6A9;&#x6D2; &#x6C1;&#x641;&#x62A;&#x6D2;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/ultrasound_weeks:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/ultrasound_weeks:label">Ultrasound Weeks</span>
+      <input type="number" name="/Woman_TT_Follow_up_form/ultrasound_weeks" data-relevant="selected ( /Woman_TT_Follow_up_form/edd_lmp , 'ultrasound')" data-type-xml="int"/>
+   </label>
+   <label class="note non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/final_edd_note:label">
+         <span class="or-output" data-value=" /Woman_TT_Follow_up_form/final_edd ">
+         </span>: &#x632;&#x686;&#x6AF;&#x6CC; &#x6A9;&#x6CC; &#x645;&#x62A;&#x648;&#x642;&#x639; &#x62A;&#x627;&#x631;&#x6CC;&#x62E;</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/final_edd_note:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/final_edd_note:label">EDD: <span class="or-output" data-value=" /Woman_TT_Follow_up_form/final_edd ">
+      </span>
+      </span>
+      <input type="text" name="/Woman_TT_Follow_up_form/final_edd_note" data-type-xml="string" readonly="readonly"/>
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/vaccines:label">&#x67E;&#x686;&#x6BE;&#x644;&#x6CC; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x62C;&#x628; &#x679;&#x6CC;&#x6A9;&#x6C1; &#x6A9;&#x633;&#x6CC; &#x62F;&#x648;&#x633;&#x631;&#x6D2; &#x633;&#x6CC;&#x646;&#x679;&#x631;&#x633;&#x6D2; &#x644;&#x6AF;&#x648;&#x627;&#x6CC;&#x627; &#x6AF;&#x6CC;&#x627;</span>
+            <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/vaccines:label">-</span>
+            <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/vaccines:label">Retro vaccines</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="itemset-template" data-items-path="instance('vaccines')/root/item[name != if(  /Woman_TT_Follow_up_form/e_tt1  != '', 'TT1' , '') and  name != if(  /Woman_TT_Follow_up_form/e_tt2  != '', 'TT2' , '') and  name != if(  /Woman_TT_Follow_up_form/e_tt3  != '', 'TT3' , '') and  name != if(  /Woman_TT_Follow_up_form/e_tt4  != '', 'TT4' , '') and  name != if(  /Woman_TT_Follow_up_form/e_tt5  != '', 'TT5' , '')]">
+               <input type="checkbox" name="/Woman_TT_Follow_up_form/vaccines" data-type-xml="select" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+               <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-0">&#x679;&#x6CC; &#x679;&#x6CC; 1</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-0">-</span>
+               <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-0">TT1</span>
+               <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-1">&#x679;&#x6CC; &#x679;&#x6CC; 2</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-1">-</span>
+               <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-1">TT2</span>
+               <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-2">&#x679;&#x6CC; &#x679;&#x6CC; 3</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-2">-</span>
+               <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-2">TT3</span>
+               <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-3">&#x679;&#x6CC; &#x679;&#x6CC; 4</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-3">-</span>
+               <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-3">TT4</span>
+               <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-4">&#x679;&#x6CC; &#x679;&#x6CC; 5</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-4">-</span>
+               <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-4">TT5</span>
+            </span>
+         </div>
+      </fieldset>
+   </fieldset>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/tt1_retro:label">&#x679;&#x6CC; &#x679;&#x6CC; 1</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/tt1_retro:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/tt1_retro:label">TT1</span>
+      <input type="date" name="/Woman_TT_Follow_up_form/tt1_retro" data-constraint="(.&lt;= /Woman_TT_Follow_up_form/today  and .&lt;= /Woman_TT_Follow_up_form/existing_client_reg_date )" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines ,'TT1')" data-type-xml="date"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/tt2_retro:label">&#x679;&#x6CC; &#x679;&#x6CC; 2</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/tt2_retro:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/tt2_retro:label">TT2</span>
+      <input type="date" name="/Woman_TT_Follow_up_form/tt2_retro" data-constraint="(.&lt;= /Woman_TT_Follow_up_form/today  and .&gt;= /Woman_TT_Follow_up_form/tt1_retro )" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines ,'TT2')" data-type-xml="date"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/tt3_retro:label">&#x679;&#x6CC; &#x679;&#x6CC; 3</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/tt3_retro:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/tt3_retro:label">TT3</span>
+      <input type="date" name="/Woman_TT_Follow_up_form/tt3_retro" data-constraint="(.&lt;= /Woman_TT_Follow_up_form/today  and .&gt;= /Woman_TT_Follow_up_form/tt2_retro  and if((selected( /Woman_TT_Follow_up_form/pregnant , 'no'))))" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines ,'TT3')" data-type-xml="date"/>
+   </label>
+   <label class="question or-branch pre-init non-select ">
+      <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/tt4_retro:label">&#x679;&#x6CC; &#x679;&#x6CC; 4</span>
+      <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/tt4_retro:label">-</span>
+      <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/tt4_retro:label">TT4</span>
+      <input type="date" name="/Woman_TT_Follow_up_form/tt4_retro" data-constraint="(.&lt;= /Woman_TT_Follow_up_form/today  and .&gt;= /Woman_TT_Follow_up_form/tt3_retro  and if((selected( /Woman_TT_Follow_up_form/pregnant , 'no'))))" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines ,'TT4')" data-type-xml="date"/>
+   </label>
+   <fieldset class="question ">
+      <fieldset>
+         <legend>
+            <span lang="ur" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/vaccines_2:label">&#x645;&#x648;&#x62C;&#x648;&#x62F;&#x6C1; &#x62A;&#x627;&#x631;&#x6CC;&#x62E; &#x62C;&#x628; &#x679;&#x6CC;&#x6A9;&#x6C1; &#x644;&#x6AF;&#x648;&#x627;&#x6CC;&#x627; &#x6AF;&#x6CC;&#x627;</span>
+            <span lang="openmrs_code" class="question-label " data-itext-id="/Woman_TT_Follow_up_form/vaccines_2:label">-</span>
+            <span lang="en" class="question-label active" data-itext-id="/Woman_TT_Follow_up_form/vaccines_2:label">Vaccine administered today</span>
+            <span class="required">*</span>
+         </legend>
+         <div class="option-wrapper">
+            <label class="itemset-template" data-items-path="instance('vaccines')/root/item[name != if(  /Woman_TT_Follow_up_form/e_tt1  != '', 'TT1' , '') and  name != if(  /Woman_TT_Follow_up_form/e_tt2  != '', 'TT2' , '') and  name != if(  /Woman_TT_Follow_up_form/e_tt3  != '', 'TT3' , '') and  name != if(  /Woman_TT_Follow_up_form/e_tt4  != '', 'TT4' , '') and  name != if(  /Woman_TT_Follow_up_form/e_tt5  != '', 'TT5' , '')]">
+               <input type="checkbox" name="/Woman_TT_Follow_up_form/vaccines_2" required="required" data-type-xml="select" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+               <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-0">&#x679;&#x6CC; &#x679;&#x6CC; 1</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-0">-</span>
+               <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-0">TT1</span>
+               <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-1">&#x679;&#x6CC; &#x679;&#x6CC; 2</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-1">-</span>
+               <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-1">TT2</span>
+               <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-2">&#x679;&#x6CC; &#x679;&#x6CC; 3</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-2">-</span>
+               <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-2">TT3</span>
+               <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-3">&#x679;&#x6CC; &#x679;&#x6CC; 4</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-3">-</span>
+               <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-3">TT4</span>
+               <span lang="ur" class="option-label " data-itext-id="static_instance-vaccines-4">&#x679;&#x6CC; &#x679;&#x6CC; 5</span>
+               <span lang="openmrs_code" class="option-label " data-itext-id="static_instance-vaccines-4">-</span>
+               <span lang="en" class="option-label active" data-itext-id="static_instance-vaccines-4">TT5</span>
+            </span>
+         </div>
+      </fieldset>
+   </fieldset>
+
+   <fieldset id="or-preload-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/today" data-preload="date" data-preload-params="today" data-type-xml="date"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/subscriberid" data-preload="property" data-preload-params="subscriberid" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string"/>
+      </label>
+   </fieldset>
+   <fieldset id="or-calculated-items" style="display:none;">
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/client_age" data-calculate="date( today() - ( /Woman_TT_Follow_up_form/existing_client_birth_date  div 365))" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/edd_calc_lmp" data-calculate="date( /Woman_TT_Follow_up_form/lmp +280)" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/edd_calc_ultrasound" data-calculate="date((280-( /Woman_TT_Follow_up_form/ultrasound_weeks *7)+ /Woman_TT_Follow_up_form/ultrasound_date  ))" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/final_edd" data-calculate="if( /Woman_TT_Follow_up_form/edd_lmp ='lmp', /Woman_TT_Follow_up_form/edd_calc_lmp ,if( /Woman_TT_Follow_up_form/edd_lmp ='edd', /Woman_TT_Follow_up_form/edd  ,if( /Woman_TT_Follow_up_form/edd_lmp ='ultrasound', /Woman_TT_Follow_up_form/edd_calc_ultrasound ,'')))" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt_1_dose" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines ,'TT1')" data-calculate="1" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt_2_dose" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines ,'TT2')" data-calculate="2" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt_3_dose" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines ,'TT3')" data-calculate="3" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt_4_dose" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines ,'TT4')" data-calculate="4" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt1" data-calculate="if(selected( /Woman_TT_Follow_up_form/vaccines_2 , 'TT1'), /Woman_TT_Follow_up_form/today ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt_1_dose_today" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines_2 ,'TT1')" data-calculate="1" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt2" data-calculate="if(selected( /Woman_TT_Follow_up_form/vaccines_2 , 'TT2'), /Woman_TT_Follow_up_form/today ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt_2_dose_today" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines_2 ,'TT2')" data-calculate="2" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt3" data-calculate="if(selected( /Woman_TT_Follow_up_form/vaccines_2 , 'TT3'), /Woman_TT_Follow_up_form/today ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt_3_dose_today" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines_2 ,'TT3')" data-calculate="3" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt4" data-calculate="if(selected( /Woman_TT_Follow_up_form/vaccines_2 , 'TT4'), /Woman_TT_Follow_up_form/today ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt_4_dose_today" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines_2 ,'TT4')" data-calculate="4" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt5" data-calculate="if(selected( /Woman_TT_Follow_up_form/vaccines_2 , 'TT5'), /Woman_TT_Follow_up_form/today ,'')" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/tt_5_dose_today" data-relevant="selected( /Woman_TT_Follow_up_form/vaccines_2 ,'TT5')" data-calculate="5" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+      </label>
+      <label class="calculation non-select ">
+         <input type="hidden" name="/Woman_TT_Follow_up_form/formhub/uuid" data-calculate="'6b3111fa1a5846fbaf18af992beb60ab'" data-type-xml="string"/>
+      </label>
+   </fieldset>
+</form>
