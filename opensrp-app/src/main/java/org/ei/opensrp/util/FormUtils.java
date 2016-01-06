@@ -92,7 +92,7 @@ public class FormUtils {
                 //how do you tell which id originally belonged to a particular edited subform !!!!
                 List<String> ids = retrieveRelationalIdForSubForm(childTableName, entity_id);
                 for (int i = 0; i < subFormData.length(); i++){
-                    String relationalId = ids.isEmpty() && ids.size() > i ? null : ids.get(i);
+                    String relationalId = !ids.isEmpty() && ids.size() > i ? ids.get(i) : null;
                     JSONObject subFormInstance = getFieldValuesForSubFormDefinition(subFormDefinition, relationalId, subFormData.getJSONObject(i), overrides);
                     subFormInstances.put(i,subFormInstance);
                 }
