@@ -93,7 +93,7 @@ public class AllFormVersionSyncService {
                     int repoVersion = Integer.parseInt(formDefinitionVersion.getVersion());
                     int pulledVersion = Integer.parseInt(form.getVersion());
 
-                    if (pulledVersion != repoVersion) {
+                    if (pulledVersion > repoVersion) {
                         formsVersionRepository.updateServerVersion(form.getFormDirName(), form.getVersion());
                         formsVersionRepository.updateSyncStatus(form.getFormDirName(), SyncStatus.PENDING);
                         status = FetchStatus.fetched;
