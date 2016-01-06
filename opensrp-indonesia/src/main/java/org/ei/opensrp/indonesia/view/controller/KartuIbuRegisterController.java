@@ -18,6 +18,7 @@ import org.ei.opensrp.service.ServiceProvidedService;
 import org.ei.opensrp.util.Cache;
 import org.ei.opensrp.util.CacheableData;
 import org.ei.opensrp.util.EasyMap;
+import org.ei.opensrp.util.Log;
 import org.ei.opensrp.view.contract.AlertDTO;
 import org.ei.opensrp.view.contract.ServiceProvidedDTO;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -30,6 +31,7 @@ import java.util.List;
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.opensrp.domain.ServiceProvided.ANC_1_SERVICE_PROVIDED_NAME;
 import static org.ei.opensrp.domain.ServiceProvided.ANC_2_SERVICE_PROVIDED_NAME;
 import static org.ei.opensrp.domain.ServiceProvided.ANC_3_SERVICE_PROVIDED_NAME;
@@ -209,7 +211,17 @@ public class KartuIbuRegisterController  extends CommonController{
         sort(children, new Comparator<Anak>() {
             @Override
             public int compare(Anak child, Anak anotherChild) {
-                return LocalDate.parse(child.getDateOfBirth()).compareTo(LocalDate.parse(anotherChild.getDateOfBirth()));
+                if(isBlank(child.getDateOfBirth())) {
+                    return 0;
+                } else {
+                    try {
+                        return LocalDate.parse(child.getDateOfBirth()).compareTo(LocalDate.parse(anotherChild.getDateOfBirth()));
+                    }catch (Exception e) {
+                        Log.logError("date format error : " + child.getDateOfBirth());
+                        return 0;
+                    }
+
+                }
             }
         });
     }
