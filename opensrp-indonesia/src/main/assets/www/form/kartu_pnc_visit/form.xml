@@ -369,7 +369,7 @@
         <span class="or-hint " data-itext-id="/PNC_visit_reviewed/vitaminA2jamPP:hint" lang="en">
             Enter date of receiving vitamin A
         </span>
-        <input name="/PNC_visit_reviewed/vitaminA2jamPP" data-relevant=" /PNC_visit_reviewed/pelayanan_vita  = '2_jam_pp'"
+        <input name="/PNC_visit_reviewed/vitaminA2jamPP" data-relevant="selected( /PNC_visit_reviewed/pelayanan_vita , '2_jam_pp')"
             data-type-xml="date"
             type="date" />
     </label>
@@ -386,7 +386,7 @@
         <span class="or-hint " data-itext-id="/PNC_visit_reviewed/vitaminA24jamPP:hint" lang="en">
             Enter date of receiving vitamin A
         </span>
-        <input name="/PNC_visit_reviewed/vitaminA24jamPP" data-relevant=" /PNC_visit_reviewed/pelayanan_vita  = '24_jam_pp'"
+        <input name="/PNC_visit_reviewed/vitaminA24jamPP" data-relevant="selected( /PNC_visit_reviewed/pelayanan_vita , '24_jam_pp')"
             data-type-xml="date"
             type="date" />
     </label>
@@ -918,6 +918,9 @@
             <input name="/PNC_visit_reviewed/high_risk_post-partum_maternal_sepsis" data-calculate="(if(selected( /PNC_visit_reviewed/komplikasi ,'post-partum_sepsis'), 'yes','no'))"
                 data-type-xml="string"
                 type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/PNC_visit_reviewed/reg_date" data-calculate=" /PNC_visit_reviewed/today " data-type-xml="date" />
         </label>
         <label class="calculation non-select ">
             <input name="/PNC_visit_reviewed/high_risk_post-partum_Hemorrhage" data-calculate="(if(selected( /PNC_visit_reviewed/komplikasi ,'perdarahan_post-partum'), 'yes','no'))"
