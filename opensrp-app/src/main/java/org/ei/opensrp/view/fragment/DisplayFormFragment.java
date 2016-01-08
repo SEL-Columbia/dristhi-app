@@ -265,7 +265,7 @@ public class DisplayFormFragment extends Fragment {
 
         @JavascriptInterface
         public void savePartialFormData(String partialData){
-            Toast.makeText(mContext, "saving un-submitted form data", Toast.LENGTH_LONG).show();
+            //Toast.makeText(mContext, "saving un-submitted form data", Toast.LENGTH_LONG).show();
             ((SecuredNativeSmartRegisterActivity)getActivity()).savePartialFormData(partialData, recordId, formName, getFormFieldsOverrides());
         }
 
