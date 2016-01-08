@@ -177,11 +177,17 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
-        Log.v("fieldoverride",metaData);
+        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
-                String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+                String data = null;
+                //check if there is previously saved data for the form
+                data = getPreviouslySavedDataForForm(formName, metaData, entityId);
+                if (data == null){
+                    data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+                }
+
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
                 if (displayFormFragment != null) {
                     displayFormFragment.setFormData(data);
@@ -235,6 +241,7 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     @Override
     public void onBackPressed() {
         if (currentPage != 0){
+            retrieveAndSaveUnsubmittedFormData();
             switchToBaseFragment(null);
         }else if (currentPage == 0) {
             super.onBackPressed(); // allow back key only if we are
@@ -251,8 +258,20 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         return formNames.toArray(new String[formNames.size()]);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        retrieveAndSaveUnsubmittedFormData();
+    }
 
+    public void retrieveAndSaveUnsubmittedFormData(){
+        if (currentActivityIsShowingForm()){
+            DisplayFormFragment formFragment = getDisplayFormFragmentAtIndex(currentPage);
+            formFragment.saveCurrentFormData();
+        }
+    }
 
-
-
+    private boolean currentActivityIsShowingForm(){
+        return currentPage != 0;
+    }
 }
