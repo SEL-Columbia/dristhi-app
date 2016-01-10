@@ -1683,7 +1683,7 @@ select[multiple].input-sm, .input-group-sm > select[multiple].form-control,
   height: 31px;
   min-height: 31px;
   padding: 6px 10px;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.5; }
 
 .input-lg, .input-group-lg > .form-control,
@@ -1713,7 +1713,7 @@ select[multiple].input-lg, .input-group-lg > select[multiple].form-control,
 .form-group-lg .form-control, .form-group-lg .modal-dialog input, .modal-dialog .form-group-lg input {
   height: 48px;
   padding: 10px 16px;
-  font-size: 19px;
+  font-size: 22px;
   line-height: 1.3333333;
   border-radius: 6px; }
 
@@ -8673,12 +8673,12 @@ input[type="file"].transparent {
 
 input[type=text], input[type=password], input[type=url], input[type=email], input[type=file], input[type=date], input[type=time], input[type=datetime], input[type=number], select, textarea {
   display: block;
-  height: 34px;
+  height: 40px;
   padding: 6px 12px;
   font-family: 'OpenSansRegular', Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.25;
   color: #555555;
   background-color: white;
