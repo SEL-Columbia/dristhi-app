@@ -110,7 +110,7 @@ public class ElcoDetailActivity extends Activity {
         final ImageView householdview = (ImageView) findViewById(R.id.householdprofileview);
 
         if (Elcoclient.getDetails().get("profilepic") != null) {
-            setImagetoHolder(ElcoDetailActivity.this, Elcoclient.getDetails().get("profilepic"), householdview, R.mipmap.woman_placeholder);
+            setImagetoHolder(ElcoDetailActivity.this, Elcoclient.getDetails().get("profilepic"), householdview, R.mipmap.womanimageload);
         }
 //        householdview.setOnClickListener(new View.OnClickListener() {
 //            @Override

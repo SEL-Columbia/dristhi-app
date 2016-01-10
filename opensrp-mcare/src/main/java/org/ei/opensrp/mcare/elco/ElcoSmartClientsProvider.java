@@ -93,7 +93,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
         final CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
 
         if(pc.getDetails().get("profilepic")!=null){
-            HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.woman_placeholder);
+            HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.womanimageload);
         }
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
