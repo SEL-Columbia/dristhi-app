@@ -101,7 +101,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
         spousename.setText(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):"");
         gobhhid.setText(pc.getDetails().get("GOBHHID")!=null?pc.getDetails().get("GOBHHID"):"");
         jivitahhid.setText(pc.getDetails().get("JiVitAHHID")!=null?pc.getDetails().get("JiVitAHHID"):"");
-        village.setText(humanize((pc.getDetails().get("location_name") != null ? pc.getDetails().get("location_name") : "").replace("+", "_")));
+        village.setText((humanize((pc.getDetails().get("FWWOMMAUZA_PARA") != null ? pc.getDetails().get("FWWOMMAUZA_PARA") : "").replace("+", "_"))));
 
 
 

@@ -204,7 +204,7 @@ public class LoginActivity extends Activity {
 
     private void showErrorDialog(String message) {
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(getString(org.ei.opensrp.R.string.login_failed_dialog_title))
+                .setTitle(getString(R.string.login_failed_dialog_title))
                 .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override

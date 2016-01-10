@@ -8,8 +8,8 @@
     <string name="spacer">spacer</string>
     <string name="loggin_in_dialog_title">Logging in…</string>
     <string name="loggin_in_dialog_message">Please wait</string>
-    <string name="login_failed_dialog_title">Log in failed</string>
-    <string name="login_failed_dialog_message">Please check the credentials</string>
+    <string name="login_failed_dialog_title">লগ ইন হয়নি, অনুগ্রহ করে কিছুক্ষন পর পূণরায় চেষ্টা করুন</string>
+    <string name="login_failed_dialog_message">অনুগ্রহ করে নাম ও পাসওয়ার্ড চেক করুন</string>
     <string name="home_hh_label">খানা </string>
     <string name="home_ec_label">সক্ষম দম্পত্তি</string>
     <string name="home_child_label">শিশু</string>

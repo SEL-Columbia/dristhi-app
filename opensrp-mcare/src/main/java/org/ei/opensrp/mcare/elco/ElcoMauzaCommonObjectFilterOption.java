@@ -43,11 +43,11 @@ public class ElcoMauzaCommonObjectFilterOption implements FilterOption {
                 AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("household");
                 CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
                 String location = "";
-                if(householdparent.getDetails().get("location_name") != null) {
-                    location = householdparent.getDetails().get("location_name");
+                if(householdparent.getDetails().get("existing_Mauzapara") != null) {
+                    location = householdparent.getDetails().get("existing_Mauzapara");
                     Log.v("location", location);
                 }
-                return location.toLowerCase().contains(criteria.toLowerCase());
+                return location.replace("+"," ").toLowerCase().contains(criteria.toLowerCase());
         }
         return false;
     }

@@ -97,8 +97,8 @@ public class ElcoDetailActivity extends Activity {
         AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("household");
         CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
         String location = "";
-        if(householdparent.getDetails().get("location_name") != null) {
-            location = householdparent.getDetails().get("location_name");
+        if(householdparent.getDetails().get("existing_Mauzapara") != null) {
+            location = householdparent.getDetails().get("existing_Mauzapara");
         }
         village.setText(getString(R.string.elco_details_mauza)+humanize(location));
 
