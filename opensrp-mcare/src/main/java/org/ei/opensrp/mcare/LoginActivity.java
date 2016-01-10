@@ -43,7 +43,10 @@ import java.util.zip.ZipFile;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
+import static org.ei.opensrp.domain.LoginResponse.NO_INTERNET_CONNECTIVITY;
 import static org.ei.opensrp.domain.LoginResponse.SUCCESS;
+import static org.ei.opensrp.domain.LoginResponse.UNAUTHORIZED;
+import static org.ei.opensrp.domain.LoginResponse.UNKNOWN_RESPONSE;
 import static org.ei.opensrp.util.Log.logError;
 import static org.ei.opensrp.util.Log.logVerbose;
 
@@ -184,7 +187,14 @@ public class LoginActivity extends Activity {
                     if (loginResponse == null) {
                         showErrorDialog("Login failed. Unknown reason. Try Again");
                     } else {
-                        showErrorDialog(loginResponse.message());
+                        if(loginResponse == NO_INTERNET_CONNECTIVITY){
+                            showErrorDialog(getResources().getString(R.string.no_internet_connectivity));
+                        }else if (loginResponse == UNKNOWN_RESPONSE){
+                            showErrorDialog(getResources().getString(R.string.unknown_response));
+                        }else if (loginResponse == UNAUTHORIZED){
+                            showErrorDialog(getResources().getString(R.string.unauthorized));
+                        }
+//                        showErrorDialog(loginResponse.message());
                     }
                     view.setClickable(true);
                 }

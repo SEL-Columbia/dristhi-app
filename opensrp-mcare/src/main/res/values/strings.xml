@@ -356,6 +356,9 @@
     <string name="anc2form">ANC Visit 2 Form</string>
     <string name="anc1form">ANC Visit 1 Form</string>
     <string name="mcare_ANC_register_title_in_short">ANC Register</string>
+    <string name="unauthorized">Please check the credentials</string>
+    <string name="unknown_response">login failed. Try later</string>
+    <string name="no_internet_connectivity">No internet connection. Please ensure data connectivity</string>
 
 
 </resources>
