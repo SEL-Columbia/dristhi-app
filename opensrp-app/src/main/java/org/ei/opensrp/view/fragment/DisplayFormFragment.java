@@ -213,6 +213,10 @@ public class DisplayFormFragment extends Fragment {
         return fieldOverides;
     }
 
+    public void saveCurrentFormData() {
+        webView.loadUrl("javascript:savePartialData()");
+    }
+
     public class AppWebViewClient extends WebViewClient {
         private View progressBar;
 
@@ -258,6 +262,13 @@ public class DisplayFormFragment extends Fragment {
             //Toast.makeText(mContext, "Javascript loaded", Toast.LENGTH_LONG).show();
             javascriptLoaded = true;
         }
+
+        @JavascriptInterface
+        public void savePartialFormData(String partialData){
+            //Toast.makeText(mContext, "saving un-submitted form data", Toast.LENGTH_LONG).show();
+            ((SecuredNativeSmartRegisterActivity)getActivity()).savePartialFormData(partialData, recordId, formName, getFormFieldsOverrides());
+        }
+
     }
 
     private void resizeForm() {
