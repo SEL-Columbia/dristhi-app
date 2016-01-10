@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/remainingFormsToSyncMenuItem"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
         android:orderInCategory="100"
         android:visible="false"/>
     <item
         android:id="@+id/updateMenuItem"
         android:icon="@drawable/refresh"
-        android:showAsAction="always"
-        android:orderInCategory="100"/>
+        app:showAsAction="always"
+        android:orderInCategory="100"
+        android:title="" />
     <item
         android:id="@+id/help"
-        android:showAsAction="always"
+        app:showAsAction="always"
         android:orderInCategory="101"
-        android:icon="@mipmap/info"/>
+        android:icon="@mipmap/info"
+        android:title="" />
     <item
         android:id="@+id/switchLanguageMenuItem"
         android:title="@string/str_switch_language"

@@ -10,6 +10,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -141,7 +142,9 @@ public class LoginActivity extends Activity {
 
     private void initializeLoginFields() {
         userNameEditText = ((EditText) findViewById(org.ei.opensrp.R.id.login_userNameText));
+        userNameEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
         passwordEditText = ((EditText) findViewById(org.ei.opensrp.R.id.login_passwordText));
+        passwordEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
     }
 
     private void setDoneActionHandlerOnPasswordField() {

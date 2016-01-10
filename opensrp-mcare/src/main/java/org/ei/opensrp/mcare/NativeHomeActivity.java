@@ -119,6 +119,7 @@ public class NativeHomeActivity extends SecuredActivity {
 
     @Override
     protected void onResumption() {
+        LoginActivity.setLanguage();
         updateRegisterCounts();
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
@@ -181,6 +182,7 @@ public class NativeHomeActivity extends SecuredActivity {
                 String newLanguagePreference = LoginActivity.switchLanguagePreference();
                 LoginActivity.setLanguage();
                 Toast.makeText(this, "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
+                this.recreate();
                 return true;
             case R.id.help:
                 startActivity(new Intent(this, tutorialCircleViewFlow.class));
