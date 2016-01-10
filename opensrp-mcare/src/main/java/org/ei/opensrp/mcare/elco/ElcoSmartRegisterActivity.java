@@ -172,14 +172,19 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
-                String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+                String data = null;
+                //check if there is previously saved data for the form
+                data = getPreviouslySavedDataForForm(formName, metaData, entityId);
+                if (data == null){
+                    data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+                }
+
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
                 if (displayFormFragment != null) {
                     displayFormFragment.setFormData(data);
                     displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
                     displayFormFragment.setFieldOverides(metaData);
-
                 }
             }
 
@@ -287,6 +292,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     @Override
     public void onBackPressed() {
         if (currentPage != 0){
+            retrieveAndSaveUnsubmittedFormData();
             switchToBaseFragment(null);
         }else if (currentPage == 0) {
             super.onBackPressed(); // allow back key only if we are
@@ -314,5 +320,21 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
             }
         }
+    }
+
+    public void retrieveAndSaveUnsubmittedFormData(){
+        if (currentActivityIsShowingForm()){
+            DisplayFormFragment formFragment = getDisplayFormFragmentAtIndex(currentPage);
+            formFragment.saveCurrentFormData();
+        }
+    }
+
+    private boolean currentActivityIsShowingForm(){
+        return currentPage != 0;
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        retrieveAndSaveUnsubmittedFormData();
     }
 }
