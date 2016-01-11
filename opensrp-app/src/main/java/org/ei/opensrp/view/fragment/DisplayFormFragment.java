@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ei.opensrp.R;
@@ -253,15 +255,24 @@ public class DisplayFormFragment extends Fragment {
         @JavascriptInterface
         public void showFormErrorToast(){
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
             builder.setMessage(formInputErrorMessage)
                     .setCancelable(false)
                     .setPositiveButton(okMessage, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             //do things
+
                         }
                     });
-            AlertDialog alert = builder.create();
-            alert.show();
+
+//            AlertDialog alert = builder.create();
+//
+//            alert.show();
+            AlertDialog dialog = builder.show();
+            TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
+            messageText.setGravity(Gravity.CENTER);
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
 //            Toast.makeText(mContext, formInputErrorMessage, Toast.LENGTH_LONG).show();
         }
 
