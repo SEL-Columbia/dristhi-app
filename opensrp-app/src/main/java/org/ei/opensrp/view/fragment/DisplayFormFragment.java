@@ -1,6 +1,8 @@
 package org.ei.opensrp.view.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,13 +38,14 @@ public class DisplayFormFragment extends Fragment {
     WebView webView;
     ProgressBar progressBar;
 
-    private String formInputErrorMessage = "Form contains errors please try again";// externalize this
+    public static String formInputErrorMessage = "Form contains errors please try again";// externalize this
 
     private static final String headerTemplate = "web/forms/header";
     private static final String footerTemplate = "web/forms/footer";
     private static final String scriptFile = "web/forms/js_include.js";
 
     private String formName;
+    public static String okMessage = "ok";
 
     public String getFormName() {
         return formName;
@@ -249,7 +252,17 @@ public class DisplayFormFragment extends Fragment {
 
         @JavascriptInterface
         public void showFormErrorToast(){
-            Toast.makeText(mContext, formInputErrorMessage, Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setMessage(formInputErrorMessage)
+                    .setCancelable(false)
+                    .setPositiveButton(okMessage, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //do things
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+//            Toast.makeText(mContext, formInputErrorMessage, Toast.LENGTH_LONG).show();
         }
 
         @JavascriptInterface

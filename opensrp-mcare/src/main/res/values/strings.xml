@@ -359,6 +359,8 @@
     <string name="unauthorized">Please check the credentials</string>
     <string name="unknown_response">login failed. Try later</string>
     <string name="no_internet_connectivity">No internet connection. Please ensure data connectivity</string>
+    <string name="forminputerror">Please check the form for any error/missing input marked in Red box</string>
+    <string name="okforminputerror">ok</string>
 
 
 </resources>

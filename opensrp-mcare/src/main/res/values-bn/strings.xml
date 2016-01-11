@@ -78,4 +78,6 @@
     <string name="unauthorized">অনুগ্রহ করে নাম ও পাসওয়ার্ড চেক করুন</string>
     <string name="unknown_response">লগ ইন হয়নি, অনুগ্রহ করে কিছুক্ষন পর পূণরায় চেষ্টা করুন</string>
     <string name="no_internet_connectivity">ইন্টারনেট কানেকশন নেই, অনুগ্রহ করে ডাটা কানেক্টিভিটি চেক করুন</string>
+    <string name="forminputerror">অনুগ্রহ করে ফর্মটি চেক করে দেখুন, লাল চিহ্নিত ঘরগুলোতে কোন তথ্য বাদ গিয়েছে কিনা অথবা কোন তথ্য ভুল হয়েছে কিনা</string>
+    <string name="okforminputerror">ঠিক আছে</string>
 </resources>
