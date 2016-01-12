@@ -3,6 +3,7 @@ package org.ei.opensrp.view.customControls;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
 
 import org.ei.opensrp.R;
@@ -28,6 +29,12 @@ public class OpenSRPWebView extends WebView{
     }
 
     @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        disableLongClick();
+    }
+
+    @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         if (hasWindowFocus){
             post(new Runnable() {
@@ -38,5 +45,15 @@ public class OpenSRPWebView extends WebView{
                 }
             });
         }
+    }
+
+    public void disableLongClick(){
+        this.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return true;
+            }
+        });
+        this.setLongClickable(false);
     }
 }
