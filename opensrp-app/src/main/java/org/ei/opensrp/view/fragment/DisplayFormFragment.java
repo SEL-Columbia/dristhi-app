@@ -33,6 +33,8 @@ import java.io.InputStream;
  */
 public class DisplayFormFragment extends Fragment {
 
+    public static final String TAG = "DisplayFormFragment";
+
     WebView webView;
     ProgressBar progressBar;
 
@@ -191,15 +193,12 @@ public class DisplayFormFragment extends Fragment {
                     });
 
                 }catch(Exception doNothing){}
-
-
-
             }
         }).start();
 
     }
 
-    public static final String TAG = "DisplayFormFragment";
+
 
     private void dismissProgressDialog(){
         //dialog.dismiss();
@@ -215,6 +214,16 @@ public class DisplayFormFragment extends Fragment {
 
     public void saveCurrentFormData() {
         webView.loadUrl("javascript:savePartialData()");
+    }
+
+    public void reloadDateWidget() {
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("javascript:refreshDateFields()");
+                Log.d(TAG, "date widgets reloaded");
+            }
+        });
     }
 
     public class AppWebViewClient extends WebViewClient {

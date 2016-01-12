@@ -315,7 +315,6 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
                 dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"location_name", ElcoMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
-
             }
         }
     }

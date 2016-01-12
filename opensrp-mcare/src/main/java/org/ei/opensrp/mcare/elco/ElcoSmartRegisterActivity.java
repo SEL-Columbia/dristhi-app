@@ -337,4 +337,12 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         super.onPause();
         retrieveAndSaveUnsubmittedFormData();
     }
+
+    @Override
+    public void notifyDisplayFormFragmentToReloadDateWidget(){
+        if (currentActivityIsShowingForm()){
+            DisplayFormFragment formFragment = getDisplayFormFragmentAtIndex(currentPage);
+            formFragment.reloadDateWidget();
+        }
+    }
 }

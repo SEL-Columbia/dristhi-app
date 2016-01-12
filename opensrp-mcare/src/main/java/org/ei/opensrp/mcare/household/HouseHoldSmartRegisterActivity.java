@@ -74,6 +74,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
+    public static final String TAG = "HouseHoldActivity";
     @Bind(R.id.view_pager)
     SampleViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
@@ -273,5 +274,13 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
     private boolean currentActivityIsShowingForm(){
         return currentPage != 0;
+    }
+
+    @Override
+    public void notifyDisplayFormFragmentToReloadDateWidget(){
+        if (currentActivityIsShowingForm()){
+            DisplayFormFragment formFragment = getDisplayFormFragmentAtIndex(currentPage);
+            formFragment.reloadDateWidget();
+        }
     }
 }
