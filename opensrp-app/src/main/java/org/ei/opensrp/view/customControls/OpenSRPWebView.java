@@ -6,8 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 
-import org.ei.opensrp.R;
-
 /**
  * Created by koros on 1/12/16.
  */

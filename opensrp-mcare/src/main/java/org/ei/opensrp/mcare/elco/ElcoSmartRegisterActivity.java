@@ -137,22 +137,6 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     public void startRegistration() {
     }
 
-
-
-
-//    public DialogOption[] getEditOptions() {
-//        return new DialogOption[]{
-//
-//                new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController)
-//        };
-//    }
-
-
-
-
-
-
-
     public DialogOption[] getEditOptions(CommonPersonObjectClient elco) {
         AllCommonsRepository allelcoRepository = context.getInstance().allCommonsRepositoryobjects("elco");
         CommonPersonObject elcoobject = allelcoRepository.findByCaseID(elco.entityId());

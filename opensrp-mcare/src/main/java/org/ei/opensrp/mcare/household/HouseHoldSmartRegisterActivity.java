@@ -96,7 +96,7 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
-        mPager.setOffscreenPageLimit(getEditOptions().length);
+        mPager.setOffscreenPageLimit(formNames.length);
         mPager.setAdapter(mPagerAdapter);
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -132,9 +132,6 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     public void startRegistration() {
     }
 
-
-
-
     public DialogOption[] getEditOptions() {
         HashMap <String,String> overridemap = new HashMap<String,String>();
         overridemap.put("existing_ELCO", "ELCO");
@@ -145,16 +142,6 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         };
 
     }
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
