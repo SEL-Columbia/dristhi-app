@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:gravity="center">
 
             <TableRow
@@ -301,7 +301,7 @@
             android:drawableLeft="@drawable/ic_reporting"
             android:drawablePadding="5dp"
             android:paddingLeft="185dp"
-            android:paddingRight="185dp"
+            android:paddingRight="175dp"
             android:text="@string/str_reporting" />
 
         <LinearLayout

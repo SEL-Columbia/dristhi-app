@@ -24,9 +24,9 @@ public class DoctorPNCScreenActivityTest  extends ActivityUnitTestCase<DoctorPNC
     TextView tv_difficuties, tv_vaginal_difficulties, tv_breast_difficulties, tv_kop_feel_hot, tv_urinating_problems, tv_abdominal_problems;
 
 
-    String pnc_number_string = "pnc_number";
-    String wife_name_string = "wife_name";
-    String pnc_visit_date_string = "pnc_visit_date";
+    String pnc_number_string = "pnc,number";
+    String wife_name_string = "wife,name";
+    String pnc_visit_date_string = "pnc, visit,, date";
     String bp_sys_string = "bp_sys";
     String bp_dia_string = "bp_dia";
     String temp_data_string = "temp_data";

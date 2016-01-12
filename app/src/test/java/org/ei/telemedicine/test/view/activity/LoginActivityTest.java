@@ -50,7 +50,6 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
         userService.assertOrderOfCalls("remote", "login");
     }
 
-    /*
     @MediumTest
     public void testIgnoreTestShouldAllowLoginWithoutCheckingRemoteLoginWhenLocalLoginSucceeds() throws Exception {
         userService.setupFor("user", "password", true, true, UNKNOWN_RESPONSE);
@@ -73,17 +72,17 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
                 (Button) solo.getCurrentActivity().findViewById(R.id.login_loginButton);
 
 
-        solo.assertCannotLogin("user", "password",btn, user, pass);
+        solo.assertCannotLogin("user", "password");
 
         userService.assertOrderOfCalls("remote");
     }
 
-    /*
+
     @MediumTest
     public void testIgnoreTestShouldNotTryRemoteLoginWhenRegisteredUserExistsEvenIfLocalLoginFails() throws Exception {
         userService.setupFor("user", "password", true, false, SUCCESS);
 
-        solo.assertCannotLogin("user", "password");
+        solo.assertCannotLogin("ayanfe", "damilare");
         userService.assertOrderOfCalls("local");
     }
 
@@ -95,7 +94,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
         userService.assertOrderOfCalls("remote", "login");
     }
 
-   */
+
 
 
     @Override

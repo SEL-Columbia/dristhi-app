@@ -56,7 +56,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageBtn1"
+            android:id="@+id/img_btn1"
             android:layout_gravity="bottom"
             android:layout_weight="5.00"
             android:src="@drawable/pickcall"
@@ -65,7 +65,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageBtn2"
+            android:id="@+id/img_btn2"
             android:layout_gravity="bottom"
             android:layout_weight="5.00"
             android:src="@drawable/dropcall"

@@ -15,7 +15,7 @@ import org.ei.telemedicine.doctor.DoctorPlanofCareActivity;
 
 public class DoctorPlanofCareActivityTest extends ActivityInstrumentationTestCase2<DoctorPlanofCareActivity> {
 
-    public String CALLER_URL="http://202.153.34.169:8004/call?id=%s&peer_id=%s";
+    public String CALLER_URL = "http://202.153.34.169:8004/call?id=%s&peer_id=%s";
     private DoctorPlanofCareActivity poc;
     private Solo solo;
 
@@ -31,13 +31,15 @@ public class DoctorPlanofCareActivityTest extends ActivityInstrumentationTestCas
         solo = new Solo(getInstrumentation(),getActivity());
     }
 
+
     public void testBroswerCall() {
+        // register next activity that need to be monitored.
         Instrumentation.ActivityMonitor activityMonitor = getInstrumentation().addMonitor(DoctorPlanofCareActivity.class.getName(), null, false);
 
         // open current activity.
-        DoctorPlanofCareActivity planofCareActivity = getActivity();
-        final ImageButton button = (ImageButton) planofCareActivity.findViewById(R.id.iv_anm_logo);
-        planofCareActivity.runOnUiThread(new Runnable() {
+        DoctorPlanofCareActivity myActivity = getActivity();
+        final ImageButton button = (ImageButton) myActivity.findViewById(R.id.iv_anm_logo);
+        myActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 // click button and open next activity.
@@ -46,16 +48,18 @@ public class DoctorPlanofCareActivityTest extends ActivityInstrumentationTestCas
         });
 
         //testIfBrowserCallIsInitiated.
-        String caller_url = String.format(CALLER_URL,"tony","goke");
+        String caller_url = String.format(CALLER_URL,"user","password");
         Uri url = Uri.parse(caller_url);
-        Intent _broswer = new Intent(Intent.ACTION_VIEW,url);
-        assertNotNull(_broswer);
+        Intent _browser = new Intent(Intent.ACTION_VIEW,url);
+        assertNotNull(_browser);
     }
-
 
     public void testCurrentAcitivity() {
-        solo.assertCurrentActivity("Check acitivity", DoctorPlanofCareActivity.class);
+        assertNull("Check acitivity", DoctorPlanofCareActivity.class);
     }
+
+
+
 
     @Override
     protected void tearDown() throws Exception {

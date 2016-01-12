@@ -27,9 +27,9 @@ public class DrishtiSolo extends Solo {
         return this;
     }
 
-    public DrishtiSolo assertCannotLogin(String userName, String password, Button btn,EditText user,EditText pass) {
-        enterText(user, userName);
-        enterText(pass, password);
+    public DrishtiSolo assertCannotLogin(String userName, String password) {
+        enterText(0, userName);
+        enterText(1, password);
         clickOnButton(0);
         waitForActivity(LoginActivity.class.getSimpleName());
         Wait.waitForFilteringToFinish();

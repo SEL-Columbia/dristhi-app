@@ -23,8 +23,8 @@ public class DoctorANCScreenActivityTest extends ActivityUnitTestCase<DoctorANCS
     String et_anc_num_string = "et_anc_num_string";
     String et_woman_name_string = "et_woman_name_string";
     String et_anc_visit_date_string = "et_anc_visit_date_string";
-    String et_bp_sys__string = "et_bp_sys__string";
-    String et_temp_string = "et_temp";
+    String et_bp_sys__string = "et_bp_sys__string";;
+    String et_temp_string = "Not Captured";
     String bp_dia_string = "bp_dia";
     String et_bloodGlucose_string = "et_bloodGlucose";
     String et_fetal_string = "et_fetal";
@@ -43,12 +43,12 @@ public class DoctorANCScreenActivityTest extends ActivityUnitTestCase<DoctorANCS
         solo = new Solo(getInstrumentation(),getActivity());
 
 
-        //mLaunchIntent = new Intent(getInstrumentation().getTargetContext(), DoctorANCScreenActivity.class);
-        //mLaunchIntent.putExtras(getBundleExtra());
-        //startActivity(mLaunchIntent, null, null);
+        mLaunchIntent = new Intent(getInstrumentation().getTargetContext(), DoctorANCScreenActivity.class);
+        mLaunchIntent.putExtras(getBundleExtra());
+        startActivity(mLaunchIntent, null, null);
 
-        //doctorANCScreenActivity = getActivity();
-        //setUpViews();
+        doctorANCScreenActivity = getActivity();
+        setUpViews();
 
     }
 
@@ -89,30 +89,30 @@ public class DoctorANCScreenActivityTest extends ActivityUnitTestCase<DoctorANCS
 
     }
 
-    /*
+
     @MediumTest
     public void testDataSetToViews(){
-        //assertEquals("hello", "hello");
-        solo.assertCurrentActivity("Check acitivity", DoctorANCScreenActivity.class);
-        //assertEquals(et_anc_num.getText().toString(), "Visit No " + et_anc_num_string);
+        assertEquals("hello", "hello");
+
         //assertEquals(et_woman_name.getText().toString(),et_woman_name_string);
-        //assertEquals(et_anc_visit_date.getText().toString(),et_anc_visit_date_string);
-        //assertEquals(et_bp_sys.getText().toString(),et_bp_sys__string);
-        //assertEquals(et_bp_dia.getText().toString(),bp_dia_string);
-        //assertEquals(et_temp.getText().toString(),et_temp_string);
-        //assertEquals(et_bloodGlucose.getText().toString(),et_bloodGlucose_string);
-        //assertEquals(et_fetal.getText().toString(),et_fetal_string);
-        //assertEquals(tv_risks.getText().toString(),risk_symptoms_string);
+        assertEquals(et_woman_name_string,et_woman_name_string);
+
+        /*assertEquals(et_anc_num.getText().toString(), "Visit No " + et_anc_num_string);
+
+        assertEquals(et_woman_name.getText().toString(),et_woman_name_string);
+        assertEquals(et_anc_visit_date.getText().toString(),et_anc_visit_date_string);
+        assertEquals(et_bp_sys.getText().toString(),et_bp_sys__string);
+        assertEquals(et_bp_dia.getText().toString(),bp_dia_string);
+        assertEquals(et_temp.getText().toString(),et_temp_string);
+        assertEquals(et_bloodGlucose.getText().toString(),et_bloodGlucose_string);
+        assertEquals(et_fetal.getText().toString(),et_fetal_string);
+        assertEquals(tv_risks.getText().toString(),risk_symptoms_string);
+        */
     }
-    */
-    public void testMyFirstTestTextView_labelText() {
-        final String expected =
-                solo.getCurrentActivity().getString(R.string.hello_world);
-        final String actual = "Hello world!";//caller.getText().toString();
-
-        assertEquals(expected, actual);
 
 
+    public void testCurrentAcitivity() {
+        solo.assertCurrentActivity("Check acitivity", DoctorANCScreenActivity.class);
     }
 
 
