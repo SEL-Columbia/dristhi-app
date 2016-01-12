@@ -275,12 +275,4 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private boolean currentActivityIsShowingForm(){
         return currentPage != 0;
     }
-
-    @Override
-    public void notifyDisplayFormFragmentToReloadDateWidget(){
-        if (currentActivityIsShowingForm()){
-            DisplayFormFragment formFragment = getDisplayFormFragmentAtIndex(currentPage);
-            formFragment.reloadDateWidget();
-        }
-    }
 }

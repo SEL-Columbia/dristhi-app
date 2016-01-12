@@ -596,25 +596,4 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
         return null;
     }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        //super.onWindowFocusChanged(hasFocus);
-        String tag = this.getLocalClassName().substring(0, 22);
-        if (hasFocus){
-            Log.d(tag, "Window focus received");
-            notifyDisplayFormFragmentToReloadDateWidget();
-        }
-    }
-
-    /**
-     * notifies the display form fragment to reload the date widget
-     * to resolve cases where the datepicker is dismissed via back key
-     *
-     * Override this method in the child class
-     */
-    public void notifyDisplayFormFragmentToReloadDateWidget(){
-        Log.d("SecuredNativeActivity", "Override this method in the child class");
-    }
 }
