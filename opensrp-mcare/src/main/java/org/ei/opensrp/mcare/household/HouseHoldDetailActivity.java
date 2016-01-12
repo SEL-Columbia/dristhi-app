@@ -87,7 +87,7 @@ public class HouseHoldDetailActivity extends Activity {
 
 
         householdhead_name.setText(householdclient.getDetails().get("FWHOHFNAME"));
-        mauza.setText(humanize((householdclient.getDetails().get("location_name") != null ? householdclient.getDetails().get("location_name") : "").replace("+", "_")));
+        mauza.setText(humanize((householdclient.getDetails().get("existing_Mauzapara") != null ? householdclient.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
         household_hhid.setText(getResources().getString(R.string.hhid_gob)+ householdclient.getDetails().get("FWGOBHHID"));
         household_hhid_jivita.setText(getResources().getString(R.string.hhid_jivita) + householdclient.getDetails().get("FWJIVHHID"));
         final ImageView householdview = (ImageView)findViewById(R.id.householdprofileview);
@@ -200,7 +200,7 @@ public class HouseHoldDetailActivity extends Activity {
                     entityid = ((CommonPersonObjectClient)view.getTag()).entityId();
                     bindobject = "elco";
                     mImageView = (ImageView)view;
-                    mImageView.setTag("womanpic");
+//                    mImageView.setTag("womanpic");
                     dispatchTakePictureIntent((ImageView) view);
                     break;
                 case R.id.registerlink:
@@ -312,7 +312,7 @@ public class HouseHoldDetailActivity extends Activity {
 //            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
 //            mImageView.setImageBitmap(bitmap);
 //            setImagetoHolder(this,currentfile.getAbsolutePath(),mImageView,R.drawable.householdload);
-            Log.v("see imageview",""+(String)mImageView.getTag());
+//            Log.v("see imageview",""+(String)mImageView.getTag());
             Log.v("see imageview", "" + currentfile.getAbsolutePath());
             setImagetoHolderFromUri(this, currentfile.getAbsolutePath(), mImageView, R.mipmap.householdload);
             recalladapterinitialization();

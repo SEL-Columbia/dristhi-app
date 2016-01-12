@@ -24,6 +24,7 @@ import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
 import org.ei.opensrp.mcare.household.HHMWRAEXISTFilterOption;
+import org.ei.opensrp.mcare.household.HHMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.household.HHSearchOption;
 import org.ei.opensrp.mcare.household.HouseHoldDetailActivity;
 import org.ei.opensrp.mcare.household.HouseHoldServiceModeOption;
@@ -322,7 +323,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new CommonObjectFilterOption(name,"existing_Mauzapara", CommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+                dialogOptionslist.add(new HHMauzaCommonObjectFilterOption(name,"existing_Mauzapara", HHMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
 
             }
         }

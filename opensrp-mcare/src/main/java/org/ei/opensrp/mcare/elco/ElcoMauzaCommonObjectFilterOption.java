@@ -8,6 +8,8 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.dialog.FilterOption;
 
+import static org.ei.opensrp.util.StringUtil.humanize;
+
 public class ElcoMauzaCommonObjectFilterOption implements FilterOption {
     private final String criteria;
     public final String fieldname;
@@ -45,6 +47,7 @@ public class ElcoMauzaCommonObjectFilterOption implements FilterOption {
                 String location = "";
                 if(householdparent.getDetails().get("existing_Mauzapara") != null) {
                     location = householdparent.getDetails().get("existing_Mauzapara");
+                    location = humanize(location.replace("+", "_"));
                     Log.v("location", location);
                 }
                 return location.replace("+"," ").toLowerCase().contains(criteria.toLowerCase());

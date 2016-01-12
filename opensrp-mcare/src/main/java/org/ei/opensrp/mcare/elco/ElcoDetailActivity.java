@@ -100,7 +100,7 @@ public class ElcoDetailActivity extends Activity {
         if(householdparent.getDetails().get("existing_Mauzapara") != null) {
             location = householdparent.getDetails().get("existing_Mauzapara");
         }
-        village.setText(getString(R.string.elco_details_mauza)+humanize(location));
+        village.setText(getString(R.string.elco_details_mauza)+humanize(location.replace("+","_")));
 
 
         mw_reg_date.setText((Elcoclient.getDetails().get("WomanREGDATE") != null ? Elcoclient.getDetails().get("WomanREGDATE") : ""));

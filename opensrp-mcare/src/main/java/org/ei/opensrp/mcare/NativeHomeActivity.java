@@ -22,6 +22,7 @@ import org.ei.opensrp.view.activity.SecuredActivity;
 import org.ei.opensrp.view.contract.HomeContext;
 import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
+import org.ei.opensrp.view.fragment.DisplayFormFragment;
 
 import static android.widget.Toast.LENGTH_SHORT;
 import static java.lang.String.valueOf;
@@ -82,6 +83,8 @@ public class NativeHomeActivity extends SecuredActivity {
         navigationController = new McareNavigationController(this,anmController);
         setupViews();
         initialize();
+        DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
+        DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
     }
 
     private void setupViews() {
