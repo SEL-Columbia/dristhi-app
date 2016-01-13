@@ -34,6 +34,7 @@ import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.fragment.HouseHoldSmartRegisterFragment;
 import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
@@ -70,13 +71,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import util.AsyncTask;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.ei.opensrp.mcare.R.string.form_back_confirm_dialog_message;
-import static org.ei.opensrp.mcare.R.string.form_back_confirm_dialog_title;
-import static org.ei.opensrp.mcare.R.string.no_button_label;
-import static org.ei.opensrp.mcare.R.string.yes_button_label;
 
 public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -236,24 +234,49 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     public void onBackPressed() {
         if (currentPage != 0){
             retrieveAndSaveUnsubmittedFormData();
-            new AlertDialog.Builder(this)
-                    .setMessage(form_back_confirm_dialog_message)
-                    .setTitle(form_back_confirm_dialog_title)
-                    .setCancelable(false)
-                    .setPositiveButton(yes_button_label,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int whichButton) {
-                                    switchToBaseFragment(null);
-                                }
-                            })
-                    .setNegativeButton(no_button_label,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int whichButton) {
-                                }
-                            })
-                    .show();
+            String BENGALI_LOCALE = "bn";
+            AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(Context.getInstance().applicationContext()));
+
+            String preferredLocale = allSharedPreferences.fetchLanguagePreference();
+            if (BENGALI_LOCALE.equals(preferredLocale)) {
+                new AlertDialog.Builder(this)
+                        .setMessage("আপনি কি নিশ্চিত যে আপনি ফর্ম থেকে বের হয়ে যেতে চান? ")
+                        .setTitle("ফর্ম বন্ধ নিশ্চিত করুন ")
+                        .setCancelable(false)
+                        .setPositiveButton("হাঁ",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        switchToBaseFragment(null);
+                                    }
+                                })
+                        .setNegativeButton("না",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                    }
+                                })
+                        .show();
+            }else{
+                new AlertDialog.Builder(this)
+                        .setMessage(R.string.mcareform_back_confirm_dialog_message)
+                        .setTitle(R.string.mcareform_back_confirm_dialog_title)
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.mcareyes_button_label,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        switchToBaseFragment(null);
+                                    }
+                                })
+                        .setNegativeButton(R.string.mcareno_button_label,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                    }
+                                })
+                        .show();
+            }
 
         }else if (currentPage == 0) {
             super.onBackPressed(); // allow back key only if we are

@@ -80,9 +80,4 @@
     <string name="no_internet_connectivity">ইন্টারনেট কানেকশন নেই, অনুগ্রহ করে ডাটা কানেক্টিভিটি চেক করুন</string>
     <string name="forminputerror">অনুগ্রহ করে ফর্মটি চেক করে দেখুন, লাল চিহ্নিত ঘরগুলোতে কোন তথ্য বাদ গিয়েছে কিনা অথবা কোন তথ্য ভুল হয়েছে কিনা</string>
     <string name="okforminputerror">ঠিক আছে</string>
-    <string name="form_back_confirm_dialog_message">আপনি কি নিশ্চিতভাবে ব্যাক বাটনে ক্লিক করেছেন? তবে জেনে রাখুন, আপনি এই ফর্মে যে তথ্যগুলো নিয়েছিলেন সব মুছে যাবে
-    </string>
-    <string name="form_back_confirm_dialog_title">ফর্ম বন্ধ নিশ্চিত করুন </string>
-    <string name="yes_button_label">হাঁ</string>
-    <string name="no_button_label">না</string>
-</resources>
+   </resources>

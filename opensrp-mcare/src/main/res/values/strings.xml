@@ -10,12 +10,10 @@
     <string name="loggin_in_dialog_message">Please wait</string>
     <string name="login_failed_dialog_title">Log in failed</string>
     <string name="login_failed_dialog_message">Please check the credentials</string>
-    <string name="form_back_confirm_dialog_message">Are you sure you want to go back? All the data you have entered in
-        this form will be cleared.
-    </string>
-    <string name="form_back_confirm_dialog_title">Confirm form close</string>
-    <string name="yes_button_label">Yes</string>
-    <string name="no_button_label">No</string>
+    <string name="mcareform_back_confirm_dialog_message">Are you sure you want to go back?</string>
+    <string name="mcareform_back_confirm_dialog_title">Confirm form close</string>
+    <string name="mcareyes_button_label">Yes</string>
+    <string name="mcareno_button_label">No</string>
     <string name="home_hh_label">Household</string>
     <string name="home_ec_label">ELCO</string>
     <string name="home_fp_label">FP</string>
