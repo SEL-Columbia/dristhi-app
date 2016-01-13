@@ -280,6 +280,7 @@ public class DisplayFormFragment extends Fragment {
             AlertDialog dialog = builder.show();
             TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
             messageText.setGravity(Gravity.CENTER);
+            messageText.setPadding(20,20,20,20);
             dialog.show();
             dialog.setCanceledOnTouchOutside(true);
 //            Toast.makeText(mContext, formInputErrorMessage, Toast.LENGTH_LONG).show();
