@@ -288,19 +288,25 @@ public class FormUtils {
     private String retrieveValueForNodeName(String nodeName, JSONObject entityJson, JSONObject formDefinition){
         try{
             if (entityJson != null && entityJson.length() > 0){
-                if (entityJson.has(nodeName)){
-                    return entityJson.get(nodeName).toString();
-                }else{
-                    JSONObject fieldsObject = formDefinition.has("form") ? formDefinition.getJSONObject("form") :
-                            formDefinition.has("sub_forms") ? formDefinition.getJSONObject("sub_forms") : formDefinition;
-                    if (fieldsObject.has("fields")){
-                        JSONArray fields = fieldsObject.getJSONArray("fields");
-                        for (int i = 0; i < fields.length(); i++){
-                            JSONObject field = fields.getJSONObject(i);
-                            String bindPath = field.has("bind") ? field.getString("bind") : null;
-                            String name = field.has("name") ? field.getString("name") : null;
-                            if (bindPath != null && name != null && bindPath.endsWith(nodeName) && entityJson.has(name)){
-                                return entityJson.getString(name);
+                JSONObject fieldsObject = formDefinition.has("form") ? formDefinition.getJSONObject("form") :
+                        formDefinition.has("sub_forms") ? formDefinition.getJSONObject("sub_forms") : formDefinition;
+                if (fieldsObject.has("fields")){
+                    JSONArray fields = fieldsObject.getJSONArray("fields");
+                    for (int i = 0; i < fields.length(); i++){
+                        JSONObject field = fields.getJSONObject(i);
+                        String bindPath = field.has("bind") ? field.getString("bind") : null;
+                        String name = field.has("name") ? field.getString("name") : null;
+
+                        boolean matchingNodeFound = bindPath != null && name != null && bindPath.endsWith(nodeName)
+                                || name != null && name.equals(nodeName);
+
+                        if (matchingNodeFound){
+                            if (field.has("shouldLoadValue") && field.getBoolean("shouldLoadValue")){
+                                String keyName = entityJson.has(nodeName) ? nodeName : name;
+                                return entityJson.getString(keyName);
+                            }else{
+                                // the shouldLoadValue flag isnt set
+                                return "";
                             }
                         }
                     }
