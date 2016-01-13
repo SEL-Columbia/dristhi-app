@@ -1,5 +1,7 @@
 package org.ei.opensrp.indonesia.view.contract;
 
+import org.ei.opensrp.indonesia.Context;
+import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.util.IntegerUtil;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 
@@ -27,11 +29,11 @@ public interface SmartRegisterClientINA extends SmartRegisterClient {
                 return -1;
             }
 
-            if (kartuIbuClient.getDueEdd().equalsIgnoreCase("Sudah melahirkan")) {
+            if (kartuIbuClient.getDueEdd().equalsIgnoreCase(Context.getInstance().getStringResource(R.string.delivered))) {
                 return 1;
             }
 
-            if (anotherKartuIbuClient.getDueEdd().equalsIgnoreCase("Sudah melahirkan")) {
+            if (anotherKartuIbuClient.getDueEdd().equalsIgnoreCase(Context.getInstance().getStringResource(R.string.delivered))) {
                 return -1;
             }
 
@@ -106,19 +108,10 @@ public interface SmartRegisterClientINA extends SmartRegisterClient {
     Comparator<SmartRegisterClient> NO_IBU_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            KartuIbuClient kartuIbuClient = (KartuIbuClient) client;
-            KartuIbuClient kartuIbuClient1 = (KartuIbuClient) anotherClient;
-            if(kartuIbuClient.getNoIbu().equalsIgnoreCase("-") && kartuIbuClient1.getNoIbu().equalsIgnoreCase("-")) {
-                return 0;
-            }
-            if(kartuIbuClient.getNoIbu().equalsIgnoreCase("-")) {
-                return 1;
-            }
-            if(kartuIbuClient1.getNoIbu().equalsIgnoreCase("-")) {
-                return -1;
-            }
-            return IntegerUtil.compare(Integer.parseInt(kartuIbuClient.getNoIbu()),
-                    Integer.parseInt(kartuIbuClient1.getNoIbu()));
+            KartuIbuClient object1 = (KartuIbuClient) client;
+            KartuIbuClient object2 = (KartuIbuClient) anotherClient;
+
+            return IntegerUtil.compare(object1.getNoIbuInteger(),object2.getNoIbuInteger());
         }
     };
 

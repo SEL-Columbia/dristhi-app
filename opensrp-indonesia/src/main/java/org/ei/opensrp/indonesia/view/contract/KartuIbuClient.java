@@ -193,6 +193,19 @@ public class KartuIbuClient extends BidanSmartRegisterClient implements KISmartR
         return Strings.isNullOrEmpty(noIbu) ? "-" : noIbu;
     }
 
+    public int getNoIbuInteger() {
+        int noIbu = 0;
+        try {
+            noIbu = Integer.parseInt(getNoIbu());
+        } catch (Exception e) {
+            e.printStackTrace();
+            noIbu = Integer.MAX_VALUE;
+            return noIbu;
+        }
+
+        return noIbu;
+    }
+
     public String getUniqueId() {
         return Strings.isNullOrEmpty(uniqueId) ? "-" : uniqueId;
     }
