@@ -1,5 +1,7 @@
 package org.ei.opensrp.mcare.elco;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -63,6 +65,10 @@ import util.AsyncTask;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.ei.opensrp.mcare.R.string.form_back_confirm_dialog_message;
+import static org.ei.opensrp.mcare.R.string.form_back_confirm_dialog_title;
+import static org.ei.opensrp.mcare.R.string.no_button_label;
+import static org.ei.opensrp.mcare.R.string.yes_button_label;
 
 public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -277,7 +283,25 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     public void onBackPressed() {
         if (currentPage != 0){
             retrieveAndSaveUnsubmittedFormData();
-            switchToBaseFragment(null);
+            new AlertDialog.Builder(this)
+                    .setMessage(form_back_confirm_dialog_message)
+                    .setTitle(form_back_confirm_dialog_title)
+                    .setCancelable(false)
+                    .setPositiveButton(yes_button_label,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                    switchToBaseFragment(null);
+                                }
+                            })
+                    .setNegativeButton(no_button_label,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                }
+                            })
+                    .show();
+//            switchToBaseFragment(null);
         }else if (currentPage == 0) {
             super.onBackPressed(); // allow back key only if we are
         }
