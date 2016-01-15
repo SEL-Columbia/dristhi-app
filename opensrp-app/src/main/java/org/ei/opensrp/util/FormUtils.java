@@ -37,10 +37,6 @@ public class FormUtils {
     Context mContext;
     org.ei.opensrp.Context theAppContext;
 
-    private static final String shouldLoadValueKey = "shouldLoadValue";
-    private static final String relationalIdKey = "relationalid";
-    private static final String databaseIdKey = "_id";
-
     public FormUtils(Context context){
         mContext = context;
         theAppContext = org.ei.opensrp.Context.getInstance();
@@ -61,12 +57,6 @@ public class FormUtils {
         String formDefinitionJson = readFileFromAssetsFolder("www/form/" + formName + "/form_definition.json");
         JSONObject formDefinition = new JSONObject(formDefinitionJson);
 
-        String rootNodeKey = formSubmission.keys().next();
-
-        //retrieve the id, if it fails use the provided value by the param
-        entity_id = formSubmission.getJSONObject(rootNodeKey).has(databaseIdKey) ? formSubmission.getJSONObject(rootNodeKey).getString(databaseIdKey) : entity_id;
-        assert entity_id != null;
-
         //String bindPath = formDefinition.getJSONObject("form").getString("bind_type");
         JSONObject fieldsDefinition = formDefinition.getJSONObject("form");
         JSONArray populatedFieldsArray = getPopulatedFieldsForArray(fieldsDefinition, entity_id, formSubmission, overrides);
@@ -79,6 +69,7 @@ public class FormUtils {
             JSONObject subFormDefinition = formDefinition.getJSONObject("form").getJSONArray("sub_forms").getJSONObject(0);
             //get the bind path for the sub-form helps us to locate the node that holds the data in the corresponding data json
             String bindPath = subFormDefinition.getString("default_bind_path");
+            String childTableName = subFormDefinition.getString("bind_type");
 
             //get the actual sub-form data
             JSONArray subForms = new JSONArray();
@@ -86,25 +77,23 @@ public class FormUtils {
             if(subFormDataObject instanceof JSONObject){
                 JSONObject subFormData = (JSONObject)subFormDataObject;
                 JSONArray subFormFields = getFieldsArrayForSubFormDefinition(subFormDefinition);
-                String relationalId = subFormData.has(relationalIdKey) ? subFormData.getString(relationalIdKey) : entity_id;
-                String id = subFormData.has(databaseIdKey) ? subFormData.getString(databaseIdKey) : null;
-                JSONObject subFormInstance = getFieldValuesForSubFormDefinition(subFormDefinition, relationalId, id, subFormData, overrides);
+                List<String> ids = retrieveRelationalIdForSubForm(childTableName, entity_id);
+                String relationalId = ids.isEmpty() ? null : ids.get(0);
+                JSONObject subFormInstance = getFieldValuesForSubFormDefinition(subFormDefinition, relationalId, subFormData, overrides);
                 JSONArray subFormInstances = new JSONArray();
                 subFormInstances.put(0,subFormInstance);
                 subFormDefinition.put("instances", subFormInstances);
                 subFormDefinition.put("fields", subFormFields);
                 subForms.put(0, subFormDefinition);
             }else if (subFormDataObject instanceof JSONArray){
-                JSONArray subFormDataArray = (JSONArray)subFormDataObject;
+                JSONArray subFormData = (JSONArray)subFormDataObject;
                 JSONArray subFormFields = getFieldsArrayForSubFormDefinition(subFormDefinition);
                 JSONArray subFormInstances = new JSONArray();
-
-                // the id of each subform is contained in the attribute of the enclosing element
-                for (int i = 0; i < subFormDataArray.length(); i++){
-                    JSONObject subFormData = subFormDataArray.getJSONObject(i);
-                    String relationalId = subFormData.has(relationalIdKey) ? subFormData.getString(relationalIdKey) : entity_id;
-                    String id = subFormData.has(databaseIdKey) ? subFormData.getString(databaseIdKey) : null;
-                    JSONObject subFormInstance = getFieldValuesForSubFormDefinition(subFormDefinition, relationalId, id, subFormData, overrides);
+                //how do you tell which id originally belonged to a particular edited subform !!!!
+                List<String> ids = retrieveRelationalIdForSubForm(childTableName, entity_id);
+                for (int i = 0; i < subFormData.length(); i++){
+                    String relationalId = !ids.isEmpty() && ids.size() > i ? ids.get(i) : null;
+                    JSONObject subFormInstance = getFieldValuesForSubFormDefinition(subFormDefinition, relationalId, subFormData.getJSONObject(i), overrides);
                     subFormInstances.put(i,subFormInstance);
                 }
                 subFormDefinition.put("instances", subFormInstances);
@@ -191,7 +180,7 @@ public class FormUtils {
                 Node n = entries.item(i);
                 if (n instanceof Element){
                     Element node = (Element)n;
-                    writeXML(node, serializer, fieldOverrides, formDefinition, entityJson, null);
+                    writeXML(node, serializer, fieldOverrides, formDefinition, entityJson);
                 }
             }
 
@@ -212,16 +201,15 @@ public class FormUtils {
         return "";
     }
 
-    private void writeXML(Element node, XmlSerializer serializer, JSONObject fieldOverrides, JSONObject formDefinition, JSONObject entityJson, String parentId){
+    private void writeXML(Element node, XmlSerializer serializer, JSONObject fieldOverrides, JSONObject formDefinition, JSONObject entityJson){
         try {
             String nodeName = node.getNodeName();
-            String entityId = entityJson.has("id") ? entityJson.getString("id") : generateRandomUUIDString();
-            String relationalId = entityJson.has(relationalIdKey) ? entityJson.getString(relationalIdKey) : parentId;
+            String entityId = entityJson.has("id") ? entityJson.getString("id") : null;
 
             serializer.startTag("", nodeName);
 
             // write the xml attributes
-            writeXMLAttributes(node, serializer, entityId, relationalId);
+            writeXMLAttributes(node, serializer);
 
             String nodeValue = retrieveValueForNodeName(nodeName, entityJson, formDefinition);
             //overwrite the node value with contents from overrides map
@@ -250,26 +238,13 @@ public class FormUtils {
                         JSONArray subForms = formDefinition.getJSONObject("form").getJSONArray("sub_forms");
                         JSONObject subFormDefinition = retriveSubformDefinitionForBindPath(subForms, fieldName);
                         if (subFormDefinition != null){
-
                             String childTableName = subFormDefinition.getString("bind_type");
                             String sql = "select * from '" + childTableName + "' where relationalid = '" + entityId + "'";
-                            String childRecordsString = theAppContext.formDataRepository().queryList(sql);
-                            JSONArray childRecords = new JSONArray(childRecordsString);
-
-                            JSONArray fieldsArray = subFormDefinition.getJSONArray("fields");
-                            // check whether we are supposed to load the id of the child record
-                            JSONObject idFieldDefn = getJsonFieldFromArray("id", fieldsArray);
-
-                            // definition for id
-                            boolean shouldLoadId = idFieldDefn.has(shouldLoadValueKey) && idFieldDefn.getBoolean(shouldLoadValueKey);
-
-                            if (shouldLoadId && childRecords != null && childRecords.length() > 0){
-                                for (int k = 0; k < childRecords.length(); k++){
-                                    JSONObject childEntityJson = childRecords.getJSONObject(k);
-                                    writeXML(child, serializer, fieldOverrides, subFormDefinition, childEntityJson, entityId);
-                                }
-                            }else{
-                                writeXML(child, serializer, fieldOverrides, subFormDefinition, new JSONObject(), entityId);
+                            String childTablesStr = theAppContext.formDataRepository().queryList(sql);
+                            JSONArray childTables = new JSONArray(childTablesStr);
+                            for (int k = 0; k < childTables.length(); k++){
+                                JSONObject childEntityJson = childTables.getJSONObject(k);
+                                writeXML(child, serializer, fieldOverrides, subFormDefinition, childEntityJson);
                             }
                         }
                     }
@@ -278,7 +253,7 @@ public class FormUtils {
                         //its not a sub-form element write its value
                         serializer.startTag("", fieldName);
                         // write the xml attributes
-                        writeXMLAttributes(child, serializer, null, null); // a value node doesn't have id or relationaId fields
+                        writeXMLAttributes(child, serializer);
                         //write the node value
                         String value = retrieveValueForNodeName(fieldName, entityJson, formDefinition);
                         //write the node value
@@ -287,7 +262,7 @@ public class FormUtils {
                         }
 
                         //overwrite the node value with contents from overrides map
-                        if (fieldOverrides.has(fieldName)) {
+                        if (fieldOverrides.has(fieldName)){
                             serializer.text(fieldOverrides.getString(fieldName));
                         }
 
@@ -301,30 +276,6 @@ public class FormUtils {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    /**
-     * Iterate through the provided array and retrieve a json object whose name attribute matches the name supplied
-     *
-     * @param fieldName
-     * @param array
-     * @return
-     */
-    private JSONObject getJsonFieldFromArray(String fieldName, JSONArray array){
-        try{
-            if (array != null){
-                for (int i = 0; i < array.length(); i++){
-                    JSONObject field = array.getJSONObject(i);
-                    String name = field.has("name") ? field.getString("name") : null;
-                    if (name.equals(fieldName)){
-                        return field;
-                    }
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
     }
 
     /**
@@ -352,11 +303,7 @@ public class FormUtils {
                         if (matchingNodeFound){
                             if (field.has("shouldLoadValue") && field.getBoolean("shouldLoadValue")){
                                 String keyName = entityJson.has(nodeName) ? nodeName : name;
-                                if (entityJson.has(keyName)){
-                                    return entityJson.getString(keyName);
-                                }else{
-                                    return "";
-                                }
+                                return entityJson.getString(keyName);
                             }else{
                                 // the shouldLoadValue flag isnt set
                                 return "";
@@ -412,21 +359,13 @@ public class FormUtils {
         return null;
     }
 
-    private void writeXMLAttributes(Element node, XmlSerializer serializer, String id, String relationalId){
+    private void writeXMLAttributes(Element node, XmlSerializer serializer){
         try {
             // get a map containing the attributes of this node
             NamedNodeMap attributes = node.getAttributes();
 
             // get the number of nodes in this map
             int numAttrs = attributes.getLength();
-
-            if (id != null){
-                serializer.attribute("", databaseIdKey, id);
-            }
-
-            if (relationalId != null){
-                serializer.attribute("", relationalIdKey, relationalId);
-            }
 
             for (int i = 0; i < numAttrs; i++) {
                 Attr attr = (Attr) attributes.item(i);
@@ -525,9 +464,8 @@ public class FormUtils {
             }
 
             if (item.has("name") && item.getString("name").equalsIgnoreCase("id")){
-                //String id = entityJson.has("id") ? entityJson.getString("id") : generateRandomUUIDString();
-                assert entityId != null;
-                item.put("value", entityId);
+                String id = entityJson.has("id") ? entityJson.getString("id") : generateRandomUUIDString();
+                item.put("value", id);
             }
         }
         return fieldsArray;
@@ -630,7 +568,7 @@ public class FormUtils {
         return subFormFieldsArray;
     }
 
-    public JSONObject getFieldValuesForSubFormDefinition(JSONObject fieldsDefinition,String relationalId, String entityId, JSONObject jsonObject, JSONObject overrides) throws  Exception{
+    public JSONObject getFieldValuesForSubFormDefinition(JSONObject fieldsDefinition, String entityId, JSONObject jsonObject, JSONObject overrides) throws  Exception{
 
         JSONArray fieldsArray = fieldsDefinition.getJSONArray("fields");
 
@@ -659,11 +597,6 @@ public class FormUtils {
             if (item.has("name") && item.getString("name").equalsIgnoreCase("id")){
                 String id = entityId != null ? entityId : generateRandomUUIDString();
                 fieldsValues.put(item.getString("name"), id);
-            }
-
-            //TODO: generate the relational for the record
-            if (item.has("name") && item.getString("name").equalsIgnoreCase(relationalIdKey)){
-                fieldsValues.put(item.getString("name"), relationalId);
             }
         }
         return fieldsValues;
