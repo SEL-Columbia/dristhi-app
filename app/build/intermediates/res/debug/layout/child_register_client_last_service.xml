@@ -16,4 +16,4 @@
             android:layout_height="wrap_content"
             android:text="name"
             style="@style/CustomFontTextViewStyle.ListView.Normal"/>
-</LinearLayout><!-- From: file:/C:/Users/Beloved/AndroidStudioProjects/dristhi-app/app/src/main/res/layout/child_register_client_last_service.xml -->
+</LinearLayout><!-- From: file:/D:/Android/dhanush/dristhi-app/app/src/main/res/layout/child_register_client_last_service.xml -->

@@ -25,4 +25,4 @@
             android:paddingRight="30dp"
             android:gravity="center_horizontal|right"
             android:src="@drawable/ic_chevron_right"/>
-</LinearLayout><!-- From: file:/C:/Users/Beloved/AndroidStudioProjects/dristhi-app/app/src/main/res/layout/smart_register_dialog_list_item.xml -->
+</LinearLayout><!-- From: file:/D:/Android/dhanush/dristhi-app/app/src/main/res/layout/smart_register_dialog_list_item.xml -->

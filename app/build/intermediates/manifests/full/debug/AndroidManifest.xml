@@ -55,6 +55,10 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="16" />
+
     <application
         android:name="org.ei.telemedicine.view.activity.DrishtiApplication"
         android:clearTaskOnLaunch="true"
@@ -214,7 +218,8 @@
         <activity
             android:name="org.ei.telemedicine.view.activity.ActionActivity"
             android:label="@string/title_activity_action"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
         </activity>
     </application>
 

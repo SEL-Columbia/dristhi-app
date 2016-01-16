@@ -3,8 +3,6 @@ package org.ei.telemedicine.test.view.controller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.ei.telemedicine.view.controller.ECSmartRegisterController;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.ei.telemedicine.domain.Child;
 import org.ei.telemedicine.domain.EligibleCouple;
 import org.ei.telemedicine.domain.Mother;
@@ -14,10 +12,12 @@ import org.ei.telemedicine.util.Cache;
 import org.ei.telemedicine.view.contract.ECChildClient;
 import org.ei.telemedicine.view.contract.ECClient;
 import org.ei.telemedicine.view.contract.ECClients;
+import org.ei.telemedicine.view.controller.ECSmartRegisterController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Collections;
 import java.util.List;
@@ -57,11 +57,9 @@ public class ECSmartRegisterControllerTest {
         ECClient expectedClient2 = createECClient("entity id 2", "Woman B", "Husband B", "kavalu_hosur", 2);
         ECClient expectedClient3 = createECClient("entity id 3", "Woman C", "Husband C", "Bherya", 3);
 
-        String clients = controller.get();
+        ECClients clients = controller.getClients();
 
-        List<ECClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ECClient>>() {
-        }.getType());
-        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), actualClients);
+        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3).get(0).name(), clients.get(0).name());
     }
 
     private ECClient createECClient(String entityId, String name, String husbandName, String village, Integer ecNumber) {

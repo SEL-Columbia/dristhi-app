@@ -1,11 +1,9 @@
 package org.ei.telemedicine.test.view.controller;
 
 import android.content.Context;
+
 import com.google.gson.Gson;
 
-import org.ei.telemedicine.view.contract.pnc.PNCDetail;
-import org.ei.telemedicine.view.controller.PNCDetailController;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.ei.telemedicine.domain.EligibleCouple;
 import org.ei.telemedicine.domain.Mother;
 import org.ei.telemedicine.domain.TimelineEvent;
@@ -16,11 +14,14 @@ import org.ei.telemedicine.util.DateUtil;
 import org.ei.telemedicine.view.contract.CoupleDetails;
 import org.ei.telemedicine.view.contract.LocationDetails;
 import org.ei.telemedicine.view.contract.PregnancyOutcomeDetails;
+import org.ei.telemedicine.view.contract.pnc.PNCDetail;
+import org.ei.telemedicine.view.controller.PNCDetailController;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.HashMap;
 

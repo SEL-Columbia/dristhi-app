@@ -1,8 +1,5 @@
 package org.ei.telemedicine.test.service;
 
-import android.test.AndroidTestCase;
-import android.test.InstrumentationTestCase;
-
 import org.ei.telemedicine.domain.Response;
 import org.ei.telemedicine.domain.ResponseStatus;
 import org.ei.telemedicine.dto.Action;
@@ -18,8 +15,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;

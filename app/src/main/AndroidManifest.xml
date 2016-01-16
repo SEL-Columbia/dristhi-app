@@ -5,8 +5,6 @@
     android:versionCode="33"
     android:versionName="3.0.2">
 
- 
-
     <compatible-screens>
         <screen
             android:screenDensity="ldpi"
@@ -223,7 +221,8 @@
         <activity
             android:name=".view.activity.ActionActivity"
             android:label="@string/title_activity_action"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
         </activity>       
 
 

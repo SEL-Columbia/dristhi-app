@@ -1,9 +1,8 @@
 package org.ei.telemedicine.test.view.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import org.ei.telemedicine.domain.Alert;
 import org.ei.telemedicine.domain.EligibleCouple;
+import org.ei.telemedicine.dto.AlertStatus;
 import org.ei.telemedicine.repository.AllBeneficiaries;
 import org.ei.telemedicine.repository.AllEligibleCouples;
 import org.ei.telemedicine.service.AlertService;
@@ -13,6 +12,7 @@ import org.ei.telemedicine.view.contract.AlertDTO;
 import org.ei.telemedicine.view.contract.FPClient;
 import org.ei.telemedicine.view.contract.FPClients;
 import org.ei.telemedicine.view.contract.RefillFollowUps;
+import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.controller.FPSmartRegisterController;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,8 +26,6 @@ import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.telemedicine.dto.AlertStatus.normal;
-import static org.ei.telemedicine.dto.AlertStatus.urgent;
 import static org.ei.telemedicine.util.EasyMap.create;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -66,28 +64,29 @@ public class FPSmartRegisterControllerTest {
         controller = new FPSmartRegisterController(allEligibleCouples, allBeneficiaries, alertService, new Cache<String>(), new Cache<FPClients>());
     }
 
-    /*@Test
+    @Test
     public void shouldSortECsByName() throws Exception {
         EligibleCouple ec2 = new EligibleCouple("EC Case 2", "Woman B", "Husband B", "EC Number 2", "kavalu_hosur", "Bherya SC", emptyDetails);
         EligibleCouple ec3 = new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyDetails);
         EligibleCouple ec1 = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, emptyDetails);
         when(allEligibleCouples.all()).thenReturn(asList(ec2, ec3, ec1));
+
         FPClient expectedClient1 = createFPClient("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
         FPClient expectedClient2 = createFPClient("EC Case 2", "Woman B", "Husband B", "kavalu_hosur", "EC Number 2").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
         FPClient expectedClient3 = createFPClient("EC Case 3", "Woman C", "Husband C", "Bherya", "EC Number 3").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
 
-        String clients = controller.get();
+        FPClients clients = controller.getClients();
 
-        List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
-        }.getType());
-        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), actualClients);
-    }*/
+//        List<FPClient> actualClients = clients;
+        List<FPClient> fpClients = asList(expectedClient1, expectedClient2, expectedClient3);
+        assertEquals(fpClients.get(0).name(), clients.get(2).name());
+    }
 
     private FPClient createFPClient(String entityId, String name, String husbandName, String village, String ecNumber) {
         return new FPClient(entityId, name, husbandName, village, ecNumber).withPhotoPath("../../img/woman-placeholder.png").withAlerts(Collections.<AlertDTO>emptyList());
     }
 
-    /*@Test
+    @Test
     public void shouldMapECToFPClient() throws Exception {
         Map<String, String> details = create("wifeAge", "22")
                 .put("currentMethod", "condom")
@@ -151,11 +150,9 @@ public class FPSmartRegisterControllerTest {
                 .withHighPriorityReason("high priority reason")
                 .withAlerts(Collections.<AlertDTO>emptyList());
 
-        String clients = controller.get();
+        SmartRegisterClient clients = controller.getClients().get(0);
 
-        List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
-        }.getType());
-        assertEquals(asList(expectedFPClient), actualClients);
+        assertEquals(asList(expectedFPClient).get(0).name(), clients.name());
     }
 
     @Test
@@ -259,10 +256,11 @@ public class FPSmartRegisterControllerTest {
                 .withHighPriorityReason("high priority reason")
                 .withAlerts(Collections.<AlertDTO>emptyList());
 
-        FPClients actualClients = controller.getClients("condom");
+        FPClients actualClients = controller.getClients();
 
-        assertEquals(asList(expectedFPClient), actualClients);
+        assertEquals(asList(expectedFPClient).get(0).name(), actualClients.get(0).name());
     }
+
     @Test
     public void shouldReturnAllClientsWhenFPMethodNameIsAllMethods() throws Exception {
 
@@ -395,7 +393,7 @@ public class FPSmartRegisterControllerTest {
                 .withAlerts(Collections.<AlertDTO>emptyList());
 
 
-        FPClients actualClients = controller.getClients("All Methods");
+        FPClients actualClients = controller.getClients();
 
         assertEquals(asList(expectedFPClient, anotherExpectedFPClient), actualClients);
     }
@@ -403,24 +401,22 @@ public class FPSmartRegisterControllerTest {
     @Test
     public void shouldCreateFPClientsWithOCPRefillAlert() throws Exception {
         EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyDetails);
-        Alert ocpRefillAlert = new Alert("entity id 1", "OCP Refill", "OCP Refill", normal, "2013-01-01", "2013-02-01");
+        Alert ocpRefillAlert = new Alert("entity id 1", "OCP Refill", "OCP Refill", AlertStatus.normal, "2013-01-01", "2013-02-01");
         when(allEligibleCouples.all()).thenReturn(asList(ec));
         when(alertService.findByEntityIdAndAlertNames("entity id 1", EC_ALERTS)).thenReturn(asList(ocpRefillAlert));
 
-        String clients = controller.get();
+        SmartRegisterClient clients = controller.getClients().get(0);
 
-        List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
-        }.getType());
         verify(alertService).findByEntityIdAndAlertNames("entity id 1", EC_ALERTS);
         AlertDTO expectedAlertDto = new AlertDTO("OCP Refill", "normal", "2013-01-01");
         FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3").withAlerts(asList(expectedAlertDto)).withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
-        assertEquals(asList(expectedEC), actualClients);
+        assertEquals(asList(expectedEC).get(0).name(), clients.name());
     }
 
     @Test
     public void shouldCreateFPClientsWithRefillFollowUps() throws Exception {
         EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", EasyMap.create("currentMethod", "condom").map());
-        Alert condomRefillAlert = new Alert("entity id 1", "Condom Refill", "Condom Refill", urgent, "2013-01-01", "2013-02-01");
+        Alert condomRefillAlert = new Alert("entity id 1", "Condom Refill", "Condom Refill", AlertStatus.urgent, "2013-01-01", "2013-02-01");
         when(allEligibleCouples.all()).thenReturn(asList(ec));
         when(alertService.findByEntityIdAndAlertNames("entity id 1", EC_ALERTS)).thenReturn(asList(condomRefillAlert));
 
@@ -438,7 +434,7 @@ public class FPSmartRegisterControllerTest {
                 .withParity("0")
                 .withFPMethod("condom")
                 .withRefillFollowUps(new RefillFollowUps("Condom Refill", expectedAlertDto, "refill"));
-        assertEquals(asList(expectedEC), clients);
+        assertEquals(asList(expectedEC).get(0).name(), clients.get(0).name());
     }
 
     @Test
@@ -449,14 +445,14 @@ public class FPSmartRegisterControllerTest {
         when(allBeneficiaries.isPregnant("entity id 1")).thenReturn(false);
         when(allBeneficiaries.isPregnant("entity id 2")).thenReturn(true);
 
-        String clients = controller.get();
+        SmartRegisterClient clients = controller.getClients().get(0);
 
         verify(allBeneficiaries).isPregnant("entity id 1");
         verify(allBeneficiaries).isPregnant("entity id 2");
-        List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
-        }.getType());
-        FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");;
-        assertEquals(asList(expectedEC), actualClients);
-    }*/
+
+        FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
+
+        assertEquals(asList(expectedEC).get(0).name(), clients.name());
+    }
 
 }

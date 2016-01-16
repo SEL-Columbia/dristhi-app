@@ -7,4 +7,4 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fl_viewer"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" /><!--</LinearLayout>--><!-- From: file:/C:/Users/Beloved/AndroidStudioProjects/dristhi-app/app/src/main/res/layout/native_doctor_fragment_layout.xml -->
+    android:layout_height="fill_parent" /><!--</LinearLayout>--><!-- From: file:/D:/Android/dhanush/dristhi-app/app/src/main/res/layout/native_doctor_fragment_layout.xml -->

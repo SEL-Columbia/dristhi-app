@@ -1,7 +1,5 @@
 package org.ei.telemedicine.test.service;
 
-import android.test.AndroidTestCase;
-
 import org.ei.telemedicine.repository.FormDataRepository;
 import org.ei.telemedicine.service.PendingFormSubmissionService;
 import org.junit.Before;

@@ -1,7 +1,5 @@
 package org.ei.telemedicine.test.service;
 
-import android.test.AndroidTestCase;
-
 import org.ei.telemedicine.domain.Child;
 import org.ei.telemedicine.domain.Mother;
 import org.ei.telemedicine.domain.ServiceProvided;

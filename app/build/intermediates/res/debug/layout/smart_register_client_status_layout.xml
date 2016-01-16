@@ -33,4 +33,4 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout="@layout/smart_register_client_status_pnc_and_fp"/>
-</org.ei.telemedicine.view.customControls.ClientStatusView><!-- From: file:/C:/Users/Beloved/AndroidStudioProjects/dristhi-app/app/src/main/res/layout/smart_register_client_status_layout.xml -->
+</org.ei.telemedicine.view.customControls.ClientStatusView><!-- From: file:/D:/Android/dhanush/dristhi-app/app/src/main/res/layout/smart_register_client_status_layout.xml -->

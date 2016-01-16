@@ -83,7 +83,7 @@ public class DoctorPlanofCareActivity extends Activity {
     private String TAG = "DoctorPlanOfCareActivity";
     String visitType, visitNumber;
     String documentId, formData, phoneNumber;
-    public String CALLER_URL="http://202.153.34.169:8004/call?id=%s&peer_id=%s";
+    public String CALLER_URL= AllConstants.CALLING_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

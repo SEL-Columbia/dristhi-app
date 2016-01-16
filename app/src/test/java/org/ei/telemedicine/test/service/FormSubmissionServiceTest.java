@@ -1,7 +1,5 @@
 package org.ei.telemedicine.test.service;
 
-import android.test.AndroidTestCase;
-
 import com.google.gson.Gson;
 
 import org.ei.telemedicine.domain.form.FormSubmission;
@@ -99,7 +97,7 @@ public class FormSubmissionServiceTest {
                         .put("sync_status", SYNCED.value())
                         .map());
         InOrder inOrder = inOrder(ziggyService, allSettings, formDataRepository);
-        inOrder.verify(ziggyService, times(0)).saveForm(paramsForFirstSubmission, "{}");
+        inOrder.verify(ziggyService, times(1)).saveForm(paramsForFirstSubmission, "{}");
         inOrder.verify(formDataRepository).updateServerVersion("instance id 1", "0", "");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("0");
         inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");

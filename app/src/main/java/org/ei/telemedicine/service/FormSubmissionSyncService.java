@@ -163,8 +163,6 @@ public class FormSubmissionSyncService {
                                         jsonData.put("value", response);
                                         fieldsJsonArray.put(i, jsonData);
                                     }
-                                } else {
-                                    return;
                                 }
                             }
                         }

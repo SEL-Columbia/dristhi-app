@@ -1,7 +1,5 @@
 package org.ei.telemedicine.test.service.formSubmissionHandler;
 
-import android.test.AndroidTestCase;
-
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.repository.FormDataRepository;

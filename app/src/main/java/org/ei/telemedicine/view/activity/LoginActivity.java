@@ -25,6 +25,7 @@ import org.ei.telemedicine.R;
 import org.ei.telemedicine.doctor.NativeDoctorActivity;
 import org.ei.telemedicine.domain.LoginResponse;
 import org.ei.telemedicine.event.Listener;
+
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.view.BackgroundAction;
 import org.ei.telemedicine.view.LockingBackgroundTask;
@@ -74,7 +75,7 @@ public class LoginActivity extends Activity {
     private void start() {
 
 
-        final String wsuri = "ws://202.153.34.166:8004/wslogin?id=%s";
+        final String wsuri = AllConstants.WEBSOCKET;
         try {
             mConnection.connect(String.format(wsuri,getUsern()), new WebSocketHandler() {
 
@@ -98,7 +99,7 @@ public class LoginActivity extends Activity {
                         boolean response = (status.equals(match));
                         if (response)
                         {
-                            Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(),"call started",Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), ActionActivity.class);
                             i.putExtra(CALLER, caller);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -114,7 +115,7 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onClose(int code, String reason) {
                     Log.d(TAG, "Connection lost.");
-                    Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"closed",Toast.LENGTH_SHORT).show();
                     try {
                         Thread.sleep(waitTime);
                         waitTime = waitTime*2;
@@ -292,7 +293,8 @@ public class LoginActivity extends Activity {
         goToHome(userRole);
         start();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
-            }
+        //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+    }
 
 
     private String getFromJson(String jsonStr, String keyValue) {
@@ -328,6 +330,8 @@ public class LoginActivity extends Activity {
         goToHome(userRole);
         start();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
+
+        //DrishtiCallScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void goToHome(String userRole) {

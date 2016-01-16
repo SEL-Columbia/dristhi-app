@@ -1,7 +1,5 @@
 package org.ei.telemedicine.test.service;
 
-import android.test.AndroidTestCase;
-
 import org.ei.telemedicine.domain.TimelineEvent;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.repository.AllBeneficiaries;

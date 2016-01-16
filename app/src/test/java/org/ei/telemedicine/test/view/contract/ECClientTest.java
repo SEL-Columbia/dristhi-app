@@ -53,7 +53,7 @@ public class ECClientTest {
 
         final int age = getClient().withDateOfBirth(new LocalDate(1980, 4, 4).toString()).age();
 
-        assertEquals(34, age);
+        assertEquals(35, age);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class ECClientTest {
 
         int age = getClient().withDateOfBirth(new LocalDate(2014, 4, 4).toString()).age();
 
-        assertEquals(0, age);
+        assertEquals(1, age);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ECClientTest {
 
         final int age = getClient().withDateOfBirth(new LocalDate(2013, 4, 18).toString()).age();
 
-        assertEquals(1, age);
+        assertEquals(2, age);
     }
 
     @Test
