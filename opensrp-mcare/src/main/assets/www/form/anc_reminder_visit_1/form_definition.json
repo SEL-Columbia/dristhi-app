@@ -17,32 +17,39 @@
         "bind": "/model/instance/ANC_Reminder_Visit_1/changes"
       },
       {
-        "name": "existing_gobhhid",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_gobhhid"
+        "name": "GOBHHID",
+        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_gobhhid",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_jivhhid",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_jivhhid"
+        "name": "JiVitAHHID",
+        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_jivhhid",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_wom_bid",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_wom_bid"
+        "name": "FWWOMBID",
+        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_wom_bid",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_wom_nid",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_wom_nid"
+        "name": "FWWOMNID",
+        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_wom_nid",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_first_name",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_first_name"
+        "name": "FWWOMFNAME",
+        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_first_name",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_husname",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_husname"
+        "name": "FWHUSNAME",
+        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_husname",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_psrlmp",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_psrlmp"
+        "name": "FWPSRLMP",
+        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_psrlmp",
+        "shouldLoadValue": true
       },
       {
         "name": "existing_riskfactor",

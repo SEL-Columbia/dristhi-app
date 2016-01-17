@@ -245,7 +245,7 @@ public class NativeHomeActivity extends SecuredActivity {
                     break;
 
                 case R.id.btn_anc_register:
-//                    navigationController.startANCSmartRegistry();
+                    navigationController.startANCSmartRegistry();
                     break;
 
                 case R.id.btn_pnc_register:
