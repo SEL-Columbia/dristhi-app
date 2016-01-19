@@ -20,6 +20,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -504,7 +506,7 @@ public class FormUtils {
             }
 
             // map the id field for child elements
-            if (item.has("source") && item.getString("source").split("\\.").length > 2){ // e.g ibu.anak.id
+            if (isForeignIdPath(item)){
                 String value = null;
                 if (entityJson.length() > 0 && item.has("shouldLoadValue") && item.getBoolean("shouldLoadValue")){
                     //retrieve the child attributes
@@ -524,13 +526,28 @@ public class FormUtils {
                 item.put("source", bindPath + "." +  item.getString("name"));
             }
 
-            if (item.has("name") && item.getString("name").equalsIgnoreCase("id")){
+            if (item.has("name") && item.getString("name").equalsIgnoreCase("id") && !isForeignIdPath(item)){
                 //String id = entityJson.has("id") ? entityJson.getString("id") : generateRandomUUIDString();
                 assert entityId != null;
                 item.put("value", entityId);
             }
+
+            if (item.has("name") && item.getString("name").equalsIgnoreCase("end")){
+                try {
+                    Format formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+                    Date date = new Date();
+                    String formatedDate = formatter.format(date);
+                    item.put("value", formatedDate);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
         }
         return fieldsArray;
+    }
+
+    private boolean isForeignIdPath(JSONObject item) throws Exception{
+        return item.has("source") && item.getString("source").split("\\.").length > 2;  // e.g ibu.anak.id
     }
 
     public String retrieveValueForLinkedRecord(String link, JSONObject entityJson) {
