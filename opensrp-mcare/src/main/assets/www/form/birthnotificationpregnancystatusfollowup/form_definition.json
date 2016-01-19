@@ -1,5 +1,5 @@
 {
-  "form_data_definition_version": "1",
+  "form_data_definition_version": "2",
   "form": {
     "default_bind_path": "/model/instance/BirthNotificationPregnancyStatusFollowUp",
     "bind_type": "mcaremother",
@@ -13,32 +13,39 @@
         "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/changes"
       },
       {
-        "name": "existing_gobhhid",
-        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_gobhhid"
+        "name": "GOBHHID",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_gobhhid",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_jivhhid",
-        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_jivhhid"
+        "name": "JiVitAHHID",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_jivhhid",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_wom_bid",
-        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_wom_bid"
+        "name": "FWWOMBID",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_wom_bid",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_wom_nid",
-        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_wom_nid"
+        "name": "FWWOMNID",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_wom_nid",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_first_name",
-        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_first_name"
+        "name": "FWWOMFNAME",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_first_name",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_husname",
-        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_husname"
+        "name": "FWHUSNAME",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_husname",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_psrlmp",
-        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_psrlmp"
+        "name": "FWPSRLMP",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/existing_psrlmp",
+        "shouldLoadValue": true
       },
       {
         "name": "existing_location",
