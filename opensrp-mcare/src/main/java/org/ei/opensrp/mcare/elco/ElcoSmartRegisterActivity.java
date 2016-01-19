@@ -20,6 +20,7 @@ import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.mcare.R;
@@ -144,14 +145,34 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         CommonPersonObject elcoobject = allelcoRepository.findByCaseID(elco.entityId());
         AllCommonsRepository householdrep = context.getInstance().allCommonsRepositoryobjects("household");
         CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
+        String alertstate = "";
+        alertstate = getalertstateofelco(elco);
         HashMap<String,String> overridemap = new HashMap<String,String>();
 
         overridemap.put("existing_ELCO", householdparent.getDetails().get("ELCO"));
+        overridemap.put("current_formStatus", alertstate);
         return new DialogOption[]{
 
                 new OpenFormOption(getResources().getString(R.string.psrfform), "psrf_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)
         };
     }
+
+    private String getalertstateofelco(CommonPersonObjectClient elco) {
+        List<Alert> alertlist_for_client = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(elco.entityId(), "ELCO PSRF");
+        String alertstate = "";
+        if(alertlist_for_client.size() == 0 ){
+
+        }else {
+            for (int i = 0; i < alertlist_for_client.size(); i++) {
+//           psrfdue.setText(alertlist_for_client.get(i).expiryDate());
+                Log.v("printing alertlist", alertlist_for_client.get(i).status().value());
+                alertstate = alertlist_for_client.get(i).status().value();
+
+            }
+        }
+        return alertstate;
+    }
+
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
         Log.v("fieldoverride", metaData);

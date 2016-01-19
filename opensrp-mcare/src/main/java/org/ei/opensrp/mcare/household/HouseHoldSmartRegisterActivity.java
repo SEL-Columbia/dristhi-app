@@ -28,6 +28,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClients;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
@@ -137,14 +138,35 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     }
 
     public DialogOption[] getEditOptions() {
+
         HashMap <String,String> overridemap = new HashMap<String,String>();
-        overridemap.put("existing_ELCO", "ELCO");
-        overridemap.put("existing_location", "existing_location");
+        CommonPersonObjectClient pc = HouseHoldDetailActivity.householdclient;
+        String alertstate = "";
+        alertstate = getalertstateforcensus(pc);
+        overridemap.put("existing_ELCO", pc.getDetails().get("ELCO"));
+        overridemap.put("existing_location", pc.getDetails().get("existing_location"));
+        overridemap.put("current_formStatus", alertstate);
         return new DialogOption[]{
 
-                new OpenFormOption(getResources().getString(R.string.censusenrollmentform), "census_enrollment_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.byDetails)
+                new OpenFormOption(getResources().getString(R.string.censusenrollmentform), "census_enrollment_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)
         };
 
+    }
+
+    private String getalertstateforcensus(CommonPersonObjectClient pc) {
+        List<Alert> alertlist_for_client = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "FW CENSUS");
+        String alertstate = "";
+        if(alertlist_for_client.size() == 0 ){
+
+        }else {
+            for (int i = 0; i < alertlist_for_client.size(); i++) {
+//           psrfdue.setText(alertlist_for_client.get(i).expiryDate());
+                Log.v("printing alertlist", alertlist_for_client.get(i).status().value());
+                alertstate = alertlist_for_client.get(i).status().value();
+
+            }
+        }
+        return alertstate;
     }
 
     @Override
@@ -286,10 +308,11 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
         formNames.add("new_household_registration");
-        DialogOption[] options = getEditOptions();
-        for (int i = 0; i < options.length; i++){
-            formNames.add(((OpenFormOption) options[i]).getFormName());
-        }
+        formNames.add("census_enrollment_form");
+//        DialogOption[] options = getEditOptions();
+//        for (int i = 0; i < options.length; i++){
+//            formNames.add(((OpenFormOption) options[i]).getFormName());
+//        }
         return formNames.toArray(new String[formNames.size()]);
     }
 

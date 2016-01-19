@@ -227,6 +227,8 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
                     getActivity().finish();
                     break;
                 case R.id.hh_due_date:
+                    HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
+
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
             }
