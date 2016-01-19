@@ -98,24 +98,8 @@
         "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/ELCO"
       },
       {
-        "name": "FWVG",
-        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/FWVG"
-      },
-      {
-        "name": "FWHRP",
-        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/FWHRP"
-      },
-      {
-        "name": "FWHR_PSR",
-        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/FWHR_PSR"
-      },
-      {
-        "name": "FWFLAGVALUE",
-        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/FWFLAGVALUE"
-      },
-      {
-        "name": "FWSORTVALUE",
-        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/FWSORTVALUE"
+        "name": "current_formStatus",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/current_formStatus"
       },
       {
         "name": "user_type",
@@ -274,6 +258,31 @@
       {
         "name": "FWPSRMUAC",
         "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/psrf_met/psrf_pregnant/FWPSRMUAC"
+      },
+      {
+        "name": "FWVG",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/psrf_met/psrf_pregnant/FWVG",
+        "source": "elco.mcaremother.FWVG"
+      },
+      {
+        "name": "FWHRP",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/psrf_met/psrf_pregnant/FWHRP",
+        "source": "elco.mcaremother.FWHRP"
+      },
+      {
+        "name": "FWHR_PSR",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/psrf_met/psrf_pregnant/FWHR_PSR",
+        "source": "elco.mcaremother.FWHR_PSR"
+      },
+      {
+        "name": "FWFLAGVALUE",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/psrf_met/psrf_pregnant/FWFLAGVALUE",
+        "source": "elco.mcaremother.FWFLAGVALUE"
+      },
+      {
+        "name": "FWSORTVALUE",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/psrf_met/psrf_pregnant/FWSORTVALUE",
+        "source": "elco.mcaremother.FWSORTVALUE"
       },
       {
         "name": "FWPSRPHONE",

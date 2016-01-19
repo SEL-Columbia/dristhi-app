@@ -1,5 +1,5 @@
 {
-  "form_data_definition_version": "14",
+  "form_data_definition_version": "15",
   "form": {
     "default_bind_path": "/model/instance/FWNewHH",
     "bind_type": "household",
@@ -135,6 +135,10 @@
       {
         "name": "ELCO",
         "bind": "/model/instance/FWNewHH/ELCO"
+      },
+      {
+        "name": "current_formStatus",
+        "bind": "/model/instance/FWNewHH/current_formStatus"
       },
       {
         "name": "user_type",
