@@ -170,20 +170,20 @@
             "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/display_age"
           },
           {
-            "name": "FWNHWOMSTRMEN",
-            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWNHWOMSTRMEN"
+            "name": "FWCWOMSTRMEN",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWCWOMSTRMEN"
           },
           {
-            "name": "FWNHWOMHUSALV",
-            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWNHWOMHUSALV"
+            "name": "FWCWOMHUSALV",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWCWOMHUSALV"
           },
           {
-            "name": "FWNHWOMHUSLIV",
-            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWNHWOMHUSLIV"
+            "name": "FWCWOMHUSLIV",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWCWOMHUSLIV"
           },
           {
-            "name": "FWNHWOMHUSSTR",
-            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWNHWOMHUSSTR"
+            "name": "FWCWOMHUSSTR",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWCWOMHUSSTR"
           },
           {
             "name": "FWELIGIBLE",

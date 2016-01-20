@@ -200,20 +200,20 @@
             "bind": "/model/instance/FWNewHH/woman/display_age"
           },
           {
-            "name": "FWNHWOMSTRMEN",
-            "bind": "/model/instance/FWNewHH/woman/FWNHWOMSTRMEN"
+            "name": "FWCWOMSTRMEN",
+            "bind": "/model/instance/FWNewHH/woman/FWCWOMSTRMEN"
           },
           {
-            "name": "FWNHWOMHUSALV",
-            "bind": "/model/instance/FWNewHH/woman/FWNHWOMHUSALV"
+            "name": "FWCWOMHUSALV",
+            "bind": "/model/instance/FWNewHH/woman/FWCWOMHUSALV"
           },
           {
-            "name": "FWNHWOMHUSLIV",
-            "bind": "/model/instance/FWNewHH/woman/FWNHWOMHUSLIV"
+            "name": "FWCWOMHUSLIV",
+            "bind": "/model/instance/FWNewHH/woman/FWCWOMHUSLIV"
           },
           {
-            "name": "FWNHWOMHUSSTR",
-            "bind": "/model/instance/FWNewHH/woman/FWNHWOMHUSSTR"
+            "name": "FWCWOMHUSSTR",
+            "bind": "/model/instance/FWNewHH/woman/FWCWOMHUSSTR"
           },
           {
             "name": "FWELIGIBLE",

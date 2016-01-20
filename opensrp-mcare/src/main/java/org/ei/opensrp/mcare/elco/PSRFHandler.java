@@ -33,6 +33,7 @@ public class PSRFHandler implements FormSubmissionHandler {
         AllCommonsRepository householdrep = Context.getInstance().allCommonsRepositoryobjects("household");
         Map<String, String> ElcoDetails = new HashMap<String, String>();
         ElcoDetails.put("ELCO",submission.getFieldValue("ELCO"));
+//        ElcoDetails.put("FWELIGIBLE",submission.getFieldValue("FWELIGIBLE"));
         householdrep.mergeDetails(elcoobject.getRelationalId(),ElcoDetails);
 //        submission.getFieldValue("ELCO");
     }

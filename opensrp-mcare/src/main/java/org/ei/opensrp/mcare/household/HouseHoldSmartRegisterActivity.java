@@ -113,6 +113,7 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     }
     public void onPageChanged(int page){
         setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        LoginActivity.setLanguage();
     }
 
     @Override
@@ -142,31 +143,36 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         HashMap <String,String> overridemap = new HashMap<String,String>();
         CommonPersonObjectClient pc = HouseHoldDetailActivity.householdclient;
         String alertstate = "";
-        alertstate = getalertstateforcensus(pc);
-        overridemap.put("existing_ELCO", pc.getDetails().get("ELCO"));
-        overridemap.put("existing_location", pc.getDetails().get("existing_location"));
-        overridemap.put("current_formStatus", alertstate);
-        return new DialogOption[]{
-
-                new OpenFormOption(getResources().getString(R.string.censusenrollmentform), "census_enrollment_form", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)
-        };
+        if(pc!=null) {
+            alertstate = getalertstateforcensus(pc);
+            overridemap.put("existing_ELCO", pc.getDetails().get("ELCO"));
+            overridemap.put("existing_location", pc.getDetails().get("existing_location"));
+            overridemap.put("current_formStatus", alertstate);
+        }
+            return new DialogOption[]{
+                    new OpenFormOption(getResources().getString(R.string.censusenrollmentform), "census_enrollment_form", formController, overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)
+            };
 
     }
 
     private String getalertstateforcensus(CommonPersonObjectClient pc) {
-        List<Alert> alertlist_for_client = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "FW CENSUS");
-        String alertstate = "";
-        if(alertlist_for_client.size() == 0 ){
+        try {
+            List<Alert> alertlist_for_client = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "FW CENSUS");
+            String alertstate = "";
+            if (alertlist_for_client.size() == 0) {
 
-        }else {
-            for (int i = 0; i < alertlist_for_client.size(); i++) {
+            } else {
+                for (int i = 0; i < alertlist_for_client.size(); i++) {
 //           psrfdue.setText(alertlist_for_client.get(i).expiryDate());
-                Log.v("printing alertlist", alertlist_for_client.get(i).status().value());
-                alertstate = alertlist_for_client.get(i).status().value();
+                    Log.v("printing alertlist", alertlist_for_client.get(i).status().value());
+                    alertstate = alertlist_for_client.get(i).status().value();
 
+                }
             }
+            return alertstate;
+        }catch (Exception e){
+            return "";
         }
-        return alertstate;
     }
 
     @Override
