@@ -201,6 +201,9 @@ public class Context {
 
 
     public static Context getInstance() {
+        if (context == null){
+            context = new Context();
+        }
         return context;
     }
 
