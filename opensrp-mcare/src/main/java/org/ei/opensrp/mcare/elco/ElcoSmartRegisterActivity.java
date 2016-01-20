@@ -23,11 +23,13 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.fragment.ElcoSmartRegisterFragment;
 import org.ei.opensrp.mcare.fragment.HouseHoldSmartRegisterFragment;
 import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
@@ -63,6 +65,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import util.AsyncTask;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
@@ -112,6 +115,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
     public void onPageChanged(int page){
         setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        LoginActivity.setLanguage();
     }
     @Override
     protected SmartRegisterPaginatedAdapter adapter() {
@@ -300,24 +304,49 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     public void onBackPressed() {
         if (currentPage != 0){
             retrieveAndSaveUnsubmittedFormData();
-            new AlertDialog.Builder(this)
-                    .setMessage(R.string.mcareform_back_confirm_dialog_message)
-                    .setTitle(R.string.mcareform_back_confirm_dialog_title)
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.mcareyes_button_label,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int whichButton) {
-                                    switchToBaseFragment(null);
-                                }
-                            })
-                    .setNegativeButton(R.string.mcareno_button_label,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int whichButton) {
-                                }
-                            })
-                    .show();
+            String BENGALI_LOCALE = "bn";
+            AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(Context.getInstance().applicationContext()));
+
+            String preferredLocale = allSharedPreferences.fetchLanguagePreference();
+            if (BENGALI_LOCALE.equals(preferredLocale)) {
+                new AlertDialog.Builder(this)
+                        .setMessage("আপনি কি নিশ্চিত যে আপনি ফর্ম থেকে বের হয়ে যেতে চান? ")
+                        .setTitle("ফর্ম বন্ধ নিশ্চিত করুন ")
+                        .setCancelable(false)
+                        .setPositiveButton("হাঁ",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        switchToBaseFragment(null);
+                                    }
+                                })
+                        .setNegativeButton("না",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                    }
+                                })
+                        .show();
+            }else{
+                new AlertDialog.Builder(this)
+                        .setMessage(R.string.mcareform_back_confirm_dialog_message)
+                        .setTitle(R.string.mcareform_back_confirm_dialog_title)
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.mcareyes_button_label,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        switchToBaseFragment(null);
+                                    }
+                                })
+                        .setNegativeButton(R.string.mcareno_button_label,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                    }
+                                })
+                        .show();
+            }
 //            switchToBaseFragment(null);
         }else if (currentPage == 0) {
             super.onBackPressed(); // allow back key only if we are
