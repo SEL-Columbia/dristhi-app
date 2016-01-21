@@ -263,13 +263,14 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
-
             org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
             ZiggyService ziggyService = context.ziggyService();
             ziggyService.saveForm(getParams(submission), submission.instance());
             Log.v("we are here", "hhregister");
             //switch to forms list fragmentstregi
-            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
+            switchToBaseFragment(formSubmission);
+ 
+            // Unnecessary!! passing on data
 
         }catch (Exception e){
             e.printStackTrace();
