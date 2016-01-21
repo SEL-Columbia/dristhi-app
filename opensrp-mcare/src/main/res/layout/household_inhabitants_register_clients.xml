@@ -82,12 +82,12 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/abc_action_bar_stacked_tab_max_width"
         android:layout_height="@dimen/list_item_height"
         android:text="@string/take_nid_picture"
         android:id="@+id/nidpic_capture"
         android:layout_gravity="center_vertical|right"
-        android:layout_marginTop="2dp"
-        android:background="@color/alert_urgent_red" />
+        android:background="@color/alert_urgent_red"
+        android:layout_margin="5dp" />
 
 </LinearLayout>

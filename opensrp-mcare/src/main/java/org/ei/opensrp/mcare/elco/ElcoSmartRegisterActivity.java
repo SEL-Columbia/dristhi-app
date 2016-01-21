@@ -61,6 +61,8 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     private String[] formNames = new String[]{};
     private android.support.v4.app.Fragment mBaseFragment = null;
 
+    ZiggyService ziggyService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +85,8 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
                 onPageChanged(position);
             }
         });
+
+        ziggyService = context.ziggyService();
     }
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
@@ -244,8 +248,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
-            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
-            ZiggyService ziggyService = context.ziggyService();
+
             ziggyService.saveForm(getParams(submission), submission.instance());
             Log.v("we are here", "hhregister");
             //switch to forms list fragmentstregi
@@ -254,6 +257,11 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             // Unnecessary!! passing on data
 
         }catch (Exception e){
+            // TODO: show error dialog on the formfragment if the submission fails
+            DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
+            if (displayFormFragment != null) {
+                displayFormFragment.hideTranslucentProgressDialog();
+            }
             e.printStackTrace();
         }
     }

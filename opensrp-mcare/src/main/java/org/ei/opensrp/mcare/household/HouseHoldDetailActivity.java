@@ -3,6 +3,10 @@ package org.ei.opensrp.mcare.household;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -64,6 +68,8 @@ public class HouseHoldDetailActivity extends Activity {
     private final PaginationViewHandler paginationViewHandler = new PaginationViewHandler();
     ListView Clientsview;
     Context context;
+    public Button nidbutton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -210,6 +216,7 @@ public class HouseHoldDetailActivity extends Activity {
                     entityid = ((CommonPersonObjectClient)view.getTag()).entityId();
                     bindobject = "elco";
 //                    mImageView = (ImageView)view;
+                    nidbutton = (Button)view;
                     dispatchTakePictureIntentforNId(view);
                     break;
 
@@ -346,8 +353,19 @@ public class HouseHoldDetailActivity extends Activity {
         String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
         ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("nidImage"), ImageRepository.TYPE_Unsynced,"nidImage");
         ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
+        try {
+            nidbutton.setText("");
+            nidbutton.setBackground(getDrawableFromPath(details.get("nidImage")));
+        }catch (Exception e){
+
+        }
 //                householdclient.entityId();
 //        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
+    }
+    public Drawable getDrawableFromPath(String filePath) {
+        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+        //Here you can make logic for decode bitmap for ignore oom error.
+        return new BitmapDrawable(bitmap);
     }
     public static void setImagetoHolder(Activity activity,String file, ImageView view, int placeholder){
          String TAG = "ImageGridFragment";

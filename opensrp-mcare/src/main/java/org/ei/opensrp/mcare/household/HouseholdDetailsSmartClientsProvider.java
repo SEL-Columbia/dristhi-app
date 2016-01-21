@@ -2,7 +2,11 @@ package org.ei.opensrp.mcare.household;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +76,13 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
                 HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.womanimageload);
             }
             if (pc.getDetails().get("nidImage") != null) {
-               edit_form.setVisibility(View.INVISIBLE);
+//               edit_form.setVisibility(View.INVISIBLE);
+                try {
+                    edit_form.setBackground(getDrawableFromPath(pc.getDetails().get("nidImage")));
+                    edit_form.setText("");
+                }catch (Exception e){
+
+                }
             }
             registerlink.setOnClickListener(onClickListener);
             registerlink.setTag(smartRegisterClient);
@@ -132,6 +142,11 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
     @Override
     public OnClickFormLauncher newFormLauncher(String formName, String entityId, String metaData) {
         return null;
+    }
+    public Drawable getDrawableFromPath(String filePath) {
+        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+        //Here you can make logic for decode bitmap for ignore oom error.
+        return new BitmapDrawable(bitmap);
     }
 
     public LayoutInflater inflater() {
