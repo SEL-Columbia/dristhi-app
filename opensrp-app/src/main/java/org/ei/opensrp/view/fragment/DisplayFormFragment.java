@@ -1,6 +1,7 @@
 package org.ei.opensrp.view.fragment;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
@@ -13,6 +14,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
@@ -50,6 +52,7 @@ public class DisplayFormFragment extends Fragment {
 
     private String formName;
     public static String okMessage = "ok";
+    Dialog progressDialog;
 
     public String getFormName() {
         return formName;
@@ -99,6 +102,7 @@ public class DisplayFormFragment extends Fragment {
         progressBar = (ProgressBar)view.findViewById(R.id.progressBar);
         initWebViewSettings();
         loadHtml();
+        initProgressDialog();
         return view;
     }
 
@@ -165,18 +169,38 @@ public class DisplayFormFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
     }
 
+    private void dismissProgressDialog(){
+        //dialog.dismiss();
+        webView.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+        //loadFormData();
+    }
+
+    public void showTranslucentProgressDialog(){
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.show();
+            }
+        });
+    }
+
+    public void hideTranslucentProgressDialog(){
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                if (progressDialog.isShowing()) {
+                    progressDialog.hide();
+                }
+            }
+        });
+    }
+
     String formData;
     public void setFormData(String data){
         if (data != null){
             this.formData = data;
         }
-    }
-
-    /**
-     * Explicitly call this function to nullify/clear the form data
-     **/
-    public void nullifyFormData(){
-        this.formData = null;
     }
 
     public void loadFormData(){
@@ -201,15 +225,6 @@ public class DisplayFormFragment extends Fragment {
             }
         }).start();
 
-    }
-
-
-
-    private void dismissProgressDialog(){
-        //dialog.dismiss();
-        webView.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.INVISIBLE);
-        //loadFormData();
     }
 
     //override this on tha child classes to override specific fields
@@ -280,7 +295,7 @@ public class DisplayFormFragment extends Fragment {
             AlertDialog dialog = builder.show();
             TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
             messageText.setGravity(Gravity.CENTER);
-            messageText.setPadding(20,20,20,20);
+            messageText.setPadding(20, 20, 20, 20);
             dialog.show();
             dialog.setCanceledOnTouchOutside(true);
 //            Toast.makeText(mContext, formInputErrorMessage, Toast.LENGTH_LONG).show();
@@ -288,6 +303,7 @@ public class DisplayFormFragment extends Fragment {
 
         @JavascriptInterface
         public void processFormSubmission(String formSubmission){
+            showTranslucentProgressDialog();
             ((SecuredNativeSmartRegisterActivity)getActivity()).saveFormSubmission(formSubmission, recordId, formName, getFormFieldsOverrides());
         }
 
@@ -337,5 +353,11 @@ public class DisplayFormFragment extends Fragment {
                 webView.setLayoutParams(new RelativeLayout.LayoutParams(landHeightPixels, landWidthPixels));
             }
         });
+    }
+
+    private void initProgressDialog() {
+        progressDialog = new Dialog(getActivity(), R.style.progress_dialog_theme);
+        progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        progressDialog.setContentView(R.layout.progress_dialog);
     }
 }
