@@ -48,6 +48,9 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private String[] formNames = new String[]{};
     private android.support.v4.app.Fragment mBaseFragment = null;
 
+
+    ZiggyService ziggyService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +73,8 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
                 onPageChanged(position);
             }
         });
+
+        ziggyService = context.ziggyService();
     }
     public void onPageChanged(int page){
         setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -143,8 +148,6 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
 
-            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
-            ZiggyService ziggyService = context.ziggyService();
             ziggyService.saveForm(getParams(submission), submission.instance());
 
             //switch to forms list fragment
