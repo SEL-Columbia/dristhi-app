@@ -50,22 +50,22 @@ public class FormSubmissionSyncService {
     }
 
     public void pushToServer() {
-//        List<FormSubmission> pendingFormSubmissions = formDataRepository.getPendingFormSubmissions();
-//        if (pendingFormSubmissions.isEmpty()) {
-//            return;
-//        }
-//        String jsonPayload = mapToFormSubmissionDTO(pendingFormSubmissions);
-//        Response<String> response = httpAgent.post(
-//                format("{0}/{1}",
-//                        configuration.dristhiBaseURL(),
-//                        FORM_SUBMISSIONS_PATH),
-//                jsonPayload);
-//        if (response.isFailure()) {
-//            logError(format("Form submissions sync failed. Submissions:  {0}", pendingFormSubmissions));
-//            return;
-//        }
-//        formDataRepository.markFormSubmissionsAsSynced(pendingFormSubmissions);
-//        logInfo(format("Form submissions sync successfully. Submissions:  {0}", pendingFormSubmissions));
+        List<FormSubmission> pendingFormSubmissions = formDataRepository.getPendingFormSubmissions();
+        if (pendingFormSubmissions.isEmpty()) {
+            return;
+        }
+        String jsonPayload = mapToFormSubmissionDTO(pendingFormSubmissions);
+        Response<String> response = httpAgent.post(
+                format("{0}/{1}",
+                        configuration.dristhiBaseURL(),
+                        FORM_SUBMISSIONS_PATH),
+                jsonPayload);
+        if (response.isFailure()) {
+            logError(format("Form submissions sync failed. Submissions:  {0}", pendingFormSubmissions));
+            return;
+        }
+        formDataRepository.markFormSubmissionsAsSynced(pendingFormSubmissions);
+        logInfo(format("Form submissions sync successfully. Submissions:  {0}", pendingFormSubmissions));
     }
 
     public FetchStatus pullFromServer() {
