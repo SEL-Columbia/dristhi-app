@@ -154,6 +154,11 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
         }catch (Exception e){
+            // TODO: show error dialog on the formfragment if the submission fails
+            DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
+            if (displayFormFragment != null) {
+                displayFormFragment.hideTranslucentProgressDialog();
+            }
             e.printStackTrace();
         }
     }

@@ -47,8 +47,8 @@ public abstract class SecuredActivity extends ActionBarActivity {
         ON_LOGOUT.addListener(logoutListener);
 
         if (context.IsUserLoggedOut()) {
-            startActivity(new Intent(this, LoginActivity.class));
-            context.userService().logoutSession();
+            DrishtiApplication application = (DrishtiApplication)getApplication();
+            application.logoutCurrentUser();
             return;
         }
         formController = new FormController(this);

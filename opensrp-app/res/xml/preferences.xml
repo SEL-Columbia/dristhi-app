@@ -8,7 +8,7 @@
             android:summary="Defines the base server url that handles requests"
             android:dialogTitle="OpenSRP base URL"
             android:dialogMessage="Enter Base Server Url"    
-            android:defaultValue="http://27.147.129.50:9979"
+            android:defaultValue="http://46.101.51.199:8080/oweb"
             android:persistent="true"/>
        
        <EditTextPreference 
@@ -17,7 +17,7 @@
             android:summary="Defines the host url of application"
             android:dialogTitle="Host Url"
             android:dialogMessage="Enter Host Url"    
-            android:defaultValue="http://27.147.129.50"
+            android:defaultValue="http://46.101.51.199"
             android:persistent="true"/>
        
        <EditTextPreference 
@@ -26,7 +26,7 @@
             android:summary="Defines the port of base server url"
             android:dialogTitle="Port"
             android:dialogMessage="Enter port"    
-            android:defaultValue="9979"
+            android:defaultValue="8080"
             android:persistent="true"/>
     </PreferenceCategory>
 </PreferenceScreen>

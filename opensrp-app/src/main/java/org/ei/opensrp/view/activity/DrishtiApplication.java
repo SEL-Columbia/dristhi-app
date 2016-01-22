@@ -1,7 +1,10 @@
 package org.ei.opensrp.view.activity;
 
 import android.app.Application;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.util.Log;
+
 import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
@@ -22,8 +25,10 @@ import static org.ei.opensrp.util.Log.logInfo;
         mode = ReportingInteractionMode.SILENT
 )
 public class DrishtiApplication extends Application {
-    private Locale locale = null;
-    private Context context;
+    protected Locale locale = null;
+    protected Context context;
+
+    private static final String TAG = "DrishtiApplication";
 
     @Override
     public void onCreate() {
@@ -63,4 +68,9 @@ public class DrishtiApplication extends Application {
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
     }
+
+    public void logoutCurrentUser(){
+        Log.e(TAG, "Child classes should implement this function");
+    }
+
 }
