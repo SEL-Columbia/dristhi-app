@@ -61,8 +61,8 @@ public abstract class SecuredActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         if (context.IsUserLoggedOut()) {
-            context.userService().logoutSession();
-            startActivity(new Intent(this, LoginActivity.class));
+            DrishtiApplication application = (DrishtiApplication)getApplication();
+            application.logoutCurrentUser();
             return;
         }
 
@@ -80,11 +80,6 @@ public abstract class SecuredActivity extends ActionBarActivity {
         } else {
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    public void logoutUser() {
-        context.userService().logout();
-        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
