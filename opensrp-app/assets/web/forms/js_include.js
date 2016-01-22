@@ -1,5 +1,6 @@
 <script type="text/javascript">
          var loadDraft; // our function to initialize a form with passed data
+         var savePartialData; // function to be triggered when user is exits the form to save the partially filled form
          var settings = {};
          settings['supportEmail'] = 'support@enketo.org';
          settings['serverURL'] = 'https://ona.io/opensrp';

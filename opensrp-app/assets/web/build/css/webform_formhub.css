@@ -1,3 +1,5 @@
+@font-face { font-family: 'Kannada Sangam MN'; src: url("../fonts/Kannada Sangam MN.ttc"); }
+@font-face { font-family: 'enketo-icons'; src: url("../fonts/enketo-icons-v2.woff") format("woff"), url("../font/enketo-icons-v2.ttf") format("truetype"), url("../font/enketo-icons-v2.svg#enketo-icons") format("svg"); font-weight: normal; font-style: normal; }
 @font-face {
   font-family: 'OpenSansRegular';
   src: url("../../fonts/OpenSans-Regular-webfont.woff") format("woff"), url("../../fonts/OpenSans-Regular-webfont.ttf") format("truetype"), url("../../fonts/OpenSans-Regular-webfont.svg#OpenSansRegular") format("svg");
@@ -242,7 +244,7 @@ th {
     border-collapse: collapse !important; }
     .table td,
     .table th {
-      background-color: #fff !important; }
+      background-color: #000 !important; }
   .table-bordered th,
   .table-bordered td {
     border: 1px solid #ddd !important; } }
@@ -259,7 +261,7 @@ th {
   box-sizing: border-box; }
 
 html {
-  font-size: 10px;
+  font-size: 15px;
   -webkit-tap-highlight-color: transparent; }
 
 body {
@@ -403,24 +405,17 @@ h6, .h6 {
   .h6 .small {
     font-size: 75%; }
 
-h1, .h1 {
-  font-size: 39px; }
+h1, .h1 { font-size: 57px; }
 
-h2, .h2 {
-  font-size: 32px; }
+h2, .h2 { font-size: 47px; }
 
-h3, .h3 {
-  font-size: 26px; }
+h3, .h3 { font-size: 38px; }
 
-h4, .h4 {
-  font-size: 19px; }
+h4, .question.or-appearance-list-nolabel ~ .note, .question.or-appearance-label ~ .note, .h4 { font-size: 28px; }
 
-h5, .h5 {
-  font-size: 15px; }
+h5, .h5 { font-size: 22px; }
 
-h6, .h6 {
-  font-size: 13px; }
-
+h6, .h6 { font-size: 19px; }
 p {
   margin: 0 0 9px; }
 
@@ -1688,7 +1683,7 @@ select[multiple].input-sm, .input-group-sm > select[multiple].form-control,
   height: 31px;
   min-height: 31px;
   padding: 6px 10px;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.5; }
 
 .input-lg, .input-group-lg > .form-control,
@@ -1718,7 +1713,7 @@ select[multiple].input-lg, .input-group-lg > select[multiple].form-control,
 .form-group-lg .form-control, .form-group-lg .modal-dialog input, .modal-dialog .form-group-lg input {
   height: 48px;
   padding: 10px 16px;
-  font-size: 19px;
+  font-size: 22px;
   line-height: 1.3333333;
   border-radius: 6px; }
 
@@ -4235,7 +4230,7 @@ tbody.collapse.in {
   font-size: 75%;
   font-weight: bold;
   line-height: 1;
-  color: #fff;
+  color: #000;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
@@ -4248,7 +4243,7 @@ tbody.collapse.in {
 
 a.label:hover,
 a.label:focus {
-  color: #fff;
+  color: #000;
   text-decoration: none;
   cursor: pointer; }
 
@@ -5835,7 +5830,7 @@ body {
   display: block;
   line-height: 16px;
   font-weight: normal;
-  font-size: 11px;
+  font-size: 17px;
   font-style: italic;
   padding-top: 5px; }
   .or-hint.active ~ br {
@@ -5895,9 +5890,10 @@ body {
   border-top: none; }
 
 .question {
-  font-family: 'OpenSansBold', Arial, sans-serif;
-  font-weight: normal;
+  font-family: "Helvetica Neue", "Kannada Sangam MN", Helvetica, Arial, sans-serif;
+  font-weight: bold;
   font-style: normal;
+  color: #000;
   display: block;
   margin: 0 0 9px 0;
   padding-top: 15px;
@@ -5944,7 +5940,7 @@ body {
     margin-bottom: 18px; }
 
 label, legend, .note {
-  font-size: 15px; }
+  font-size: 25px; }
 
 .or img, .or audio, .or video {
   display: block;
@@ -6187,7 +6183,7 @@ select {
         font-style: normal;
         padding-top: 0px;
         padding-left: 0px;
-        font-size: 15px; }
+        font-size: 20px; }
         .bootstrap-select .dropdown-toggle ~ .dropdown-menu .option-wrapper label input[type="checkbox"], .bootstrap-select .dropdown-toggle ~ .dropdown-menu .option-wrapper label input[type="radio"] {
           margin: 4px 10px 1px 0; }
         .bootstrap-select .dropdown-toggle ~ .dropdown-menu .option-wrapper label:hover {
@@ -6246,7 +6242,7 @@ select {
   margin: 2px 0 0;
   list-style: none;
   font-size: 15px;
-  background-color: #fff;
+  background-color: #000;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -6278,7 +6274,7 @@ select {
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
-  color: #fff;
+  color: #000;
   text-decoration: none;
   outline: 0;
   background-color: #337ab7; }
@@ -6500,7 +6496,7 @@ select {
     .geopicker label.geo.alt, .geopicker label.geo.acc {
       min-height: 70px;
       line-height: 50px;
-      font-size: 11.25px; }
+      font-size: 15px; }
   .geopicker input[name="lat"], .geopicker input[name="long"], .geopicker textarea[name="kml"] {
     float: none;
     -moz-box-sizing: border-box;
@@ -6997,7 +6993,7 @@ select {
 /* layers control */
 .leaflet-control-layers {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-  background: #fff;
+  background: #000;
   border-radius: 5px; }
 
 .leaflet-control-layers-toggle {
@@ -7024,7 +7020,7 @@ select {
 .leaflet-control-layers-expanded {
   padding: 6px 10px 6px 6px;
   color: #333;
-  background: #fff; }
+  background: #000; }
 
 .leaflet-control-layers-selector {
   margin-top: 2px;
@@ -7041,7 +7037,7 @@ select {
 
 /* attribution and scale controls */
 .leaflet-container .leaflet-control-attribution {
-  background: #fff;
+  background: #000;
   background: rgba(255, 255, 255, 0.7);
   margin: 0; }
 
@@ -7076,7 +7072,7 @@ select {
   overflow: hidden;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  background: #fff;
+  background: #000;
   background: rgba(255, 255, 255, 0.5); }
 
 .leaflet-control-scale-line:not(:first-child) {
@@ -7354,7 +7350,7 @@ select {
         border-color: #ddd; }
       .bootstrap-timepicker-widget table td a i {
         margin-top: 2px;
-        font-size: 18px; }
+        font-size: 22px; }
     .bootstrap-timepicker-widget table td input {
       width: 42px;
       margin: 0;
@@ -7817,7 +7813,7 @@ select {
   background: #eeeeee; }
 
 .datepicker .cw {
-  font-size: 10px;
+  font-size: 15px;
   width: 12px;
   padding: 0 2px 0 5px;
   vertical-align: middle; }
@@ -7956,7 +7952,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact input, .question.or-appearance-quickcompact input {
   display: none; }
   .question.or-appearance-compact input:checked ~ img.active, .question.or-appearance-compact input:checked ~ img.active:hover, .question.or-appearance-quickcompact input:checked ~ img.active, .question.or-appearance-quickcompact input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-1 legend {
   border: none; }
@@ -7983,7 +7979,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact-1 input {
   display: none; }
   .question.or-appearance-compact-1 input:checked ~ img.active, .question.or-appearance-compact-1 input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-1 .option-wrapper > label {
   width: 100%; }
@@ -8016,7 +8012,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact-2 input {
   display: none; }
   .question.or-appearance-compact-2 input:checked ~ img.active, .question.or-appearance-compact-2 input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-2 .option-wrapper > label {
   width: 50%; }
@@ -8049,7 +8045,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact-3 input {
   display: none; }
   .question.or-appearance-compact-3 input:checked ~ img.active, .question.or-appearance-compact-3 input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-3 .option-wrapper > label {
   width: 33.3333333333%; }
@@ -8082,7 +8078,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact-4 input {
   display: none; }
   .question.or-appearance-compact-4 input:checked ~ img.active, .question.or-appearance-compact-4 input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-4 .option-wrapper > label {
   width: 25%; }
@@ -8115,7 +8111,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact-5 input {
   display: none; }
   .question.or-appearance-compact-5 input:checked ~ img.active, .question.or-appearance-compact-5 input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-5 .option-wrapper > label {
   width: 20%; }
@@ -8148,7 +8144,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact-6 input {
   display: none; }
   .question.or-appearance-compact-6 input:checked ~ img.active, .question.or-appearance-compact-6 input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-6 .option-wrapper > label {
   width: 16.6666666667%; }
@@ -8181,7 +8177,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact-7 input {
   display: none; }
   .question.or-appearance-compact-7 input:checked ~ img.active, .question.or-appearance-compact-7 input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-7 .option-wrapper > label {
   width: 14.2857142857%; }
@@ -8214,7 +8210,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact-8 input {
   display: none; }
   .question.or-appearance-compact-8 input:checked ~ img.active, .question.or-appearance-compact-8 input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-8 .option-wrapper > label {
   width: 12.5%; }
@@ -8247,7 +8243,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact-9 input {
   display: none; }
   .question.or-appearance-compact-9 input:checked ~ img.active, .question.or-appearance-compact-9 input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-9 .option-wrapper > label {
   width: 11.1111111111%; }
@@ -8280,7 +8276,7 @@ table th[class*="col-"] {
 .question.or-appearance-compact-10 input {
   display: none; }
   .question.or-appearance-compact-10 input:checked ~ img.active, .question.or-appearance-compact-10 input:checked ~ img.active:hover {
-    border-color: #ce4f07; }
+    border-color: #000; }
 
 .question.or-appearance-compact-10 .option-wrapper > label {
   width: 10%; }
@@ -8392,7 +8388,7 @@ input[type="file"].transparent {
       margin-top: -8.5px;
       padding-top: 15px;
       border-top: 3px solid #cccccc;
-      font-size: 12px;
+      font-size: 15px;
       font-family: 'OpenSansRegular', Arial, sans-serif;
       font-weight: normal;
       font-style: normal; }
@@ -8677,12 +8673,12 @@ input[type="file"].transparent {
 
 input[type=text], input[type=password], input[type=url], input[type=email], input[type=file], input[type=date], input[type=time], input[type=datetime], input[type=number], select, textarea {
   display: block;
-  height: 34px;
+  height: 40px;
   padding: 6px 12px;
   font-family: 'OpenSansRegular', Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.25;
   color: #555555;
   background-color: white;
@@ -8813,7 +8809,7 @@ fieldset[disabled] input[type="checkbox"] {
   .question label .option-label:not(img):not(video):not(audio) {
     margin-left: 0; }
   .question label .option-label::before {
-    font-size: 20px;
+    font-size: 25px;
     width: 20px;
     margin-right: 10px;
     border-radius: 10px; }
