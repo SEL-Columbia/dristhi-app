@@ -1,5 +1,6 @@
 package org.ei.opensrp.vaccinator.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.UUID;
 
 import util.ClientlessOpenFormOption;
 import util.barcode.Barcode;
@@ -136,9 +138,6 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
                         new WomanDateSort(WomanDateSort.ByColumnAndByDetails.byDetails, "client_dob_confirm"),
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "first_name", getResources().getString(R.string.woman_alphabetical_sort)),
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "program_client_id", getResources().getString(R.string.woman_id_sort))
-
-//""
-//                        new CommonObjectSort(true,false,true,"age")
                 };
             }
 
@@ -167,10 +166,7 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
                     CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails);
 
         }
-        //formController=new FormController();
-
         context.formSubmissionRouter().getHandlerMap().put("woman_followup_form", new WomanFollowupHandler(new WomanService(context.allTimelineEvents(), context.allCommonsRepositoryobjects("pkwoman"), context.alertService())));
-
         dialogOptionMapper = new DialogOptionMapper();
     }//end of method
 
@@ -183,13 +179,8 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
     protected void startRegistration() {
         Intent intent = new Intent(Barcode.BARCODE_INTENT);
         intent.putExtra(Barcode.SCAN_MODE, Barcode.QR_MODE);
-
         startActivityForResult(intent, Barcode.BARCODE_REQUEST_CODE);
     }//end of method
-
-
-
-
 
     @Override
     protected void onResumption() {
@@ -344,13 +335,6 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
                         super.onPostExecute(o);
                     }
                 }).execute();
-//                currentSearchFilter = new HHSearchOption(cs.toString());
-//                clientsAdapter
-//                        .refreshList(currentVillageFilter, currentServiceModeOption,
-//                                currentSearchFilter, currentSortOption);
-//
-//                searchCancelView.setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
-
 
             }
 
@@ -360,22 +344,6 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
             }
         });
     }//end of method
-
-
-
-  /*  private DialogOption[] getEditOptions( HashMap<String,String> overridemap ) {
-
-        return new DialogOption[]{
-
-                new ClientlessOpenFormOption("Enrollment", "woman_enrollment_form", formController,overridemap, ClientlessOpenFormOption.ByColumnAndByDetails.bydefault)
-                //    new ClientlessOpenFormOption("Followup", "child_followup_fake_form", formController,overridemap, ClientlessOpenFormOption.ByColumnAndByDetails.byDetails)
-        };
-    }*/
-
-
-
-
-
 
     private String getLocationNameByAttribute(LocationTree locationTree, String tag) {
 
@@ -400,7 +368,6 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
                 }
 
                 //location.getAttributes().get(s).toString().equalsIgnoreCase(attribute);
-
             }
         }
 
@@ -408,11 +375,6 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
 
         return null;
     }
-
-
-
-
-
 
     public void addChildToList(ArrayList<DialogOption> dialogOptionslist, Map<String, TreeNode<String, Location>> locationMap) {
         for (Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
@@ -510,43 +472,48 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         org.ei.opensrp.util.Log.logDebug("Result Coode"+resultCode);
-        if(resultCode==-1)
+        if(resultCode == Activity.RESULT_OK)
         {
-
             Bundle extras =data.getExtras();
-            String qrcode= (String)    extras.get(Barcode.SCAN_RESULT);
+            String qrcode =  (String) extras.get(Barcode.SCAN_RESULT);
+
+            onQRCodeSucessfullyScanned(qrcode);
+
+        }
 
 
-            //    Toast.makeText(this, "QrCode is : " + qrcode, Toast.LENGTH_LONG).show();
+    }//end of the method
+
+    private void onQRCodeSucessfullyScanned(String qrCode){
+        //    Toast.makeText(this, "QrCode is : " + qrcode, Toast.LENGTH_LONG).show();
        /*
        #TODO:after reading the code , app first search for that id in database if he it is there , that client appears  on register only . if it doesnt then it shows two options
-
        */
-            //controller.getClients().
-            org.ei.opensrp.util.Log.logDebug("ANM DETAILS"+context.anmController().get());
-            String locationjson = context.anmLocationController().get();
-            LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
+        //controller.getClients().
+        org.ei.opensrp.util.Log.logDebug("ANM DETAILS"+context.anmController().get());
+        String locationjson = context.anmLocationController().get();
+        LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
 
-            Map<String,TreeNode<String, Location>> locationMap =
-                    locationTree.getLocationsHierarchy();
+        Map<String,TreeNode<String, Location>> locationMap =
+                locationTree.getLocationsHierarchy();
 
-            addChildToList(locationMap,"Country");
-            addChildToList(locationMap,"province");
-            addChildToList(locationMap,"city");
-            addChildToList(locationMap,"town");
-            addChildToList(locationMap,"uc");
-            if(getfilteredClients(qrcode)<= 0){
+        addChildToList(locationMap,"Country");
+        addChildToList(locationMap,"province");
+        addChildToList(locationMap,"city");
+        addChildToList(locationMap,"town");
+        addChildToList(locationMap,"uc");
+        if(getfilteredClients(qrCode)<= 0){
 
-                HashMap<String , String> map=new HashMap<String,String>();
-                map.put("provider_uc",locations.get("uc"));
-                map.put("provider_town",locations.get("town"));
-                map.put("provider_city",locations.get("city"));
-                map.put("provider_province",locations.get("province"));
-                map.put("existing_program_client_id",qrcode);
-                map.put("provider_location_id",locations.get("uc"));
-                map.put("gender","female");
-                map.put("provider_location_name", locations.get("uc"));
-                map.put("provider_id",context.anmService().fetchDetails().name());/*
+            HashMap<String , String> map=new HashMap<String,String>();
+            map.put("provider_uc",locations.get("uc"));
+            map.put("provider_town",locations.get("town"));
+            map.put("provider_city",locations.get("city"));
+            map.put("provider_province",locations.get("province"));
+            map.put("existing_program_client_id",qrCode);
+            map.put("provider_location_id",locations.get("uc"));
+            map.put("gender","female");
+            map.put("provider_location_name", locations.get("uc"));
+            map.put("provider_id",context.anmService().fetchDetails().name());/*
                 HashMap<String , String> map=new HashMap<String,String>();
                 map.put("provider_uc",uc);
                 map.put("provider_id","demotest");
@@ -556,28 +523,20 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
                 map.put("existing_program_client_id",qrcode);
                 map.put("provider_location_id",center);
                 map.put("provider_location_name", center);*/
-                //map.put("","");
-                //       setOverrides(map);
+            //map.put("","");
+            //       setOverrides(map);
 
-                //  map.put("provider_id", anmController.get());
-                //  map.put("program_client_id",qrcode);
-                //showFragmentDialog(new EditDialogOptionModel(getOverrides()));
+            //  map.put("provider_id", anmController.get());
+            //  map.put("program_client_id",qrcode);
+            //showFragmentDialog(new EditDialogOptionModel(getOverrides()));
 
-                showFragmentDialog(new EditDialogOptionModel(map),null);
-            }else {
-                getSearchView().setText(qrcode);
-
-            }
-
-
-            //          controller.getClients();
-
-
+            showFragmentDialog(new EditDialogOptionModel(map),null);
+        }else {
+            getSearchView().setText(qrCode);
 
         }
 
-
-    }//end of the method
+    }
 
     private int getfilteredClients(String filterString) {
         int i = 0;
@@ -608,8 +567,6 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
                         return;
                     }
                 }
-
-
             }
             if (!tagFound) {
                 if (entry.getValue().getChildren() != null) {

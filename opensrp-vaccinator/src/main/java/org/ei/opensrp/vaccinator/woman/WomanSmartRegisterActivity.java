@@ -61,8 +61,10 @@ public class WomanSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        getWindow().getDecorView().setBackgroundDrawable(null);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-      this.formControllerown =new FormController(this);
+        this.formControllerown =new FormController(this);
         formNames = this.buildFormNameList();
         mBaseFragment = new WomanSmartRegisterFragment(this.formControllerown);
 

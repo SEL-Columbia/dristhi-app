@@ -28,9 +28,9 @@ public class DristhiConfiguration {
         preferences=Context.getInstance().allSharedPreferences();
         try {
             properties.load(assetManager.open("app.properties"));
-            InputStream dummyNameFile = assetManager.open("dummy_name.json");
-            dummyData = IOUtils.toString(dummyNameFile);
-            IOUtils.closeQuietly(dummyNameFile);
+            //InputStream dummyNameFile = assetManager.open("dummy_name.json");
+            //dummyData = IOUtils.toString(dummyNameFile);
+            //IOUtils.closeQuietly(dummyNameFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -278,7 +278,7 @@ public class DisplayFormFragment extends Fragment {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                } else if(Build.VERSION.SDK_INT > 17) {
+                } else if(Build.VERSION.SDK_INT >= 17) {
                     try {
                         Point realSize = new Point();
                         Display.class.getMethod("getRealSize", Point.class).invoke(d, realSize);
