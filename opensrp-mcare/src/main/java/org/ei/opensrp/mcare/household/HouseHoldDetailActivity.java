@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,13 +21,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.ei.opensrp.mcare.R;
-
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.domain.ProfileImage;
+import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
+import org.ei.opensrp.repository.ImageRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import util.ImageCache;
 import util.ImageFetcher;
@@ -48,13 +52,10 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 public class HouseHoldDetailActivity extends Activity {
 
     //image retrieving
-    private static final String TAG = "ImageGridFragment";
-    private static final String IMAGE_CACHE_DIR = "thumbs";
 
-    private static int mImageThumbSize;
-    private static int mImageThumbSpacing;
 
-    private static ImageFetcher mImageFetcher;
+
+//    private static ImageFetcher mImageFetcher;
 
 
 
@@ -66,10 +67,13 @@ public class HouseHoldDetailActivity extends Activity {
     private SmartRegisterPaginatedAdapter clientsAdapter;
     private final PaginationViewHandler paginationViewHandler = new PaginationViewHandler();
     ListView Clientsview;
+    Context context;
+    public Button nidbutton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Context context = Context.getInstance();
+        context = Context.getInstance();
         setContentView(R.layout.household_detail_activity);
 
         TextView householdhead_name = (TextView)findViewById(R.id.name_household_head);
@@ -89,13 +93,26 @@ public class HouseHoldDetailActivity extends Activity {
 
 
         householdhead_name.setText(householdclient.getDetails().get("FWHOHFNAME"));
-        mauza.setText(humanize((householdclient.getDetails().get("location_name") != null ? householdclient.getDetails().get("location_name") : "").replace("+", "_")));
+        mauza.setText(humanize((householdclient.getDetails().get("existing_Mauzapara") != null ? householdclient.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
         household_hhid.setText(getResources().getString(R.string.hhid_gob)+ householdclient.getDetails().get("FWGOBHHID"));
         household_hhid_jivita.setText(getResources().getString(R.string.hhid_jivita) + householdclient.getDetails().get("FWJIVHHID"));
         final ImageView householdview = (ImageView)findViewById(R.id.householdprofileview);
 
         if(householdclient.getDetails().get("profilepic")!= null){
-            setImagetoHolder(HouseHoldDetailActivity.this,householdclient.getDetails().get("profilepic"),householdview, R.mipmap.household_profile_thumb);
+            if((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("2")) {
+
+                setImagetoHolderFromUri(HouseHoldDetailActivity.this, householdclient.getDetails().get("profilepic"), householdview, R.mipmap.womanimageload);
+            } else if ((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("1")){
+                setImagetoHolderFromUri(HouseHoldDetailActivity.this, householdclient.getDetails().get("profilepic"), householdview, R.mipmap.householdload);
+
+            }
+        }else{
+
+            if((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("2")){
+                householdview.setImageDrawable(getResources().getDrawable(R.drawable.woman_placeholder));
+            }else if ((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("1")){
+                householdview.setImageDrawable(getResources().getDrawable(R.mipmap.household_profile_thumb));
+            }
         }
         householdview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,9 +163,9 @@ public class HouseHoldDetailActivity extends Activity {
 
         private void addPagination(ListView clientsView) {
             footerView = getPaginationView();
-            nextPageView = (Button) footerView.findViewById(org.ei.opensrp.R.id.btn_next_page);
-            previousPageView = (Button) footerView.findViewById(org.ei.opensrp.R.id.btn_previous_page);
-            pageInfoView = (TextView) footerView.findViewById(org.ei.opensrp.R.id.txt_page_info);
+            nextPageView = (Button) footerView.findViewById(R.id.btn_next_page);
+            previousPageView = (Button) footerView.findViewById(R.id.btn_previous_page);
+            pageInfoView = (TextView) footerView.findViewById(R.id.txt_page_info);
 
             nextPageView.setOnClickListener(this);
             previousPageView.setOnClickListener(this);
@@ -179,20 +196,28 @@ public class HouseHoldDetailActivity extends Activity {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case org.ei.opensrp.R.id.btn_next_page:
+                case R.id.btn_next_page:
                     gotoNextPage();
                     break;
-                case org.ei.opensrp.R.id.btn_previous_page:
+                case R.id.btn_previous_page:
                     goBackToPreviousPage();
                     break;
                 case R.id.profilepic:
                     entityid = ((CommonPersonObjectClient)view.getTag()).entityId();
                     bindobject = "elco";
                     mImageView = (ImageView)view;
-                    dispatchTakePictureIntent((ImageView)view);
+//                    mImageView.setTag("womanpic");
+                    dispatchTakePictureIntent((ImageView) view);
                     break;
                 case R.id.registerlink:
                     startActivity(new Intent(HouseHoldDetailActivity.this, ElcoSmartRegisterActivity.class));
+                    break;
+                case R.id.nidpic_capture:
+                    entityid = ((CommonPersonObjectClient)view.getTag()).entityId();
+                    bindobject = "elco";
+//                    mImageView = (ImageView)view;
+                    nidbutton = (Button)view;
+                    dispatchTakePictureIntentforNId(view);
                     break;
 
             }
@@ -228,6 +253,7 @@ public class HouseHoldDetailActivity extends Activity {
         return image;
     }
     static final int REQUEST_TAKE_PHOTO = 1;
+    static final int REQUEST_TAKE_PHOTO_NID = 9000;
    static ImageView mImageView;
     static File currentfile;
     static String bindobject;
@@ -255,6 +281,30 @@ public class HouseHoldDetailActivity extends Activity {
         }
     }
 
+
+    private void dispatchTakePictureIntentforNId(View imageView) {
+//        mImageView = imageView;
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                currentfile = photoFile;
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO_NID);
+            }
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
@@ -264,42 +314,87 @@ public class HouseHoldDetailActivity extends Activity {
             HashMap <String,String> details = new HashMap<String,String>();
             details.put("profilepic",currentfile.getAbsolutePath());
             saveimagereference(bindobject,entityid,details);
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
-            mImageView.setImageBitmap(bitmap);
+//            BitmapFactory.Options options = new BitmapFactory.Options();
+//            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
+//            mImageView.setImageBitmap(bitmap);
+//            setImagetoHolder(this,currentfile.getAbsolutePath(),mImageView,R.drawable.householdload);
+//            Log.v("see imageview",""+(String)mImageView.getTag());
+            Log.v("see imageview", "" + currentfile.getAbsolutePath());
+            setImagetoHolderFromUri(this, currentfile.getAbsolutePath(), mImageView, R.mipmap.householdload);
+            recalladapterinitialization();
+        }else  if (requestCode == REQUEST_TAKE_PHOTO_NID && resultCode == RESULT_OK) {
+
+//            Bundle extras = data.getExtras();
+//            String imageBitmap = (String) extras.get(MediaStore.EXTRA_OUTPUT);
+//            Toast.makeText(this,imageBitmap,Toast.LENGTH_LONG).show();
+            HashMap <String,String> details = new HashMap<String,String>();
+            details.put("nidImage",currentfile.getAbsolutePath());
+            saveimagereferenceforNID(bindobject,entityid,details);
+            recalladapterinitialization();
+
+//            BitmapFactory.Options options = new BitmapFactory.Options();
+//            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
+//            mImageView.setImageBitmap(bitmap);
+//            setImagetoHolder(this,currentfile.getAbsolutePath(),mImageView,R.drawable.householdload);
         }
     }
     public void saveimagereference(String bindobject,String entityid,Map<String,String> details){
         Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityid,details);
+        String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+        ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("profilepic"), ImageRepository.TYPE_Unsynced,"dp");
+        ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
 //                householdclient.entityId();
 //        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
     }
+    public void saveimagereferenceforNID(String bindobject,String entityid,Map<String,String> details){
+        Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityid,details);
+        String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+        ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("nidImage"), ImageRepository.TYPE_Unsynced,"nidImage");
+        ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
+        try {
+            nidbutton.setText("");
+            nidbutton.setBackground(getDrawableFromPath(details.get("nidImage")));
+        }catch (Exception e){
+
+        }
+//                householdclient.entityId();
+//        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
+    }
+    public Drawable getDrawableFromPath(String filePath) {
+        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+        //Here you can make logic for decode bitmap for ignore oom error.
+        return new BitmapDrawable(bitmap);
+    }
     public static void setImagetoHolder(Activity activity,String file, ImageView view, int placeholder){
+         String TAG = "ImageGridFragment";
+         String IMAGE_CACHE_DIR = "thumbs";
+
+        int mImageThumbSize;
+        int mImageThumbSpacing;
+
         mImageThumbSize = 300;
         mImageThumbSpacing = Context.getInstance().applicationContext().getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
 
 
         ImageCache.ImageCacheParams cacheParams =
                 new ImageCache.ImageCacheParams(activity, IMAGE_CACHE_DIR);
-             cacheParams.setMemCacheSizePercent(0.50f); // Set memory cache to 25% of app memory
-        mImageFetcher = new ImageFetcher(activity, mImageThumbSize);
+             cacheParams.setMemCacheSizePercent(0.80f); // Set memory cache to 25% of app memory
+        ImageFetcher mImageFetcher = new ImageFetcher(activity, mImageThumbSize);
         mImageFetcher.setLoadingImage(placeholder);
         mImageFetcher.addImageCache(activity.getFragmentManager(), cacheParams);
 //        Toast.makeText(activity,file,Toast.LENGTH_LONG).show();
         mImageFetcher.loadImage("file:///"+file,view);
 
-//        Uri.parse(new File("/sdcard/cats.jpg")
+    }
+    public static void setImagetoHolderFromUri(Activity activity,String file, ImageView view, int placeholder){
+        view.setImageDrawable(activity.getResources().getDrawable(placeholder));
+        File externalFile = new File(file);
+        Uri external = Uri.fromFile(externalFile);
+        view.setImageURI(external);
 
 
-
-
-
-
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-//        Bitmap bitmap = BitmapFactory.decodeFile(file, options);
-//        view.setImageBitmap(bitmap);
     }
 
     @Override
@@ -309,5 +404,30 @@ public class HouseHoldDetailActivity extends Activity {
         overridePendingTransition(0, 0);
 
 
+    }
+    public void recalladapterinitialization(){
+        Clientsview = null;
+        Clientsview = (ListView)findViewById(R.id.list);
+        paginationViewHandler.addPagination(Clientsview);
+
+        householdcontroller = new CommonPersonObjectController(Context.getInstance().allCommonsRepositoryobjects("elco"), Context.getInstance().allBeneficiaries(),context.listCache(),
+                context.personObjectClientsCache(),"FWWOMFNAME","elco","relationalid",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelationalid,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+        clientsAdapter = adapter();
+            clientsAdapter = adapter();
+        clientsAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                paginationViewHandler.refresh();
+            }
+        });
+        Clientsview.setAdapter(clientsAdapter);
+        Log.v("view size", "" + householdcontroller.getClients().size());
+        if(householdcontroller.getClients().size()<1){
+
+            Clientsview.setVisibility(INVISIBLE);
+        }
+        if(!(clientsAdapter.getCount()>1)){
+            paginationViewHandler.footerView.setVisibility(INVISIBLE);
+        }
     }
 }

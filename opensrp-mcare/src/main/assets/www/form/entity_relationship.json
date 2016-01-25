@@ -9,11 +9,19 @@
   },
   {
     "parent": "elco",
-    "child": "child",
+    "child": "mcaremother",
     "field": "child",
     "kind": "one_to_many",
     "from": "elco.id",
-    "to": "child.motherCaseId"
+    "to": "mcaremother.relationalid"
+  },
+  {
+    "parent": "mcaremother",
+    "child": "mcarechild",
+    "field": "child",
+    "kind": "one_to_many",
+    "from": "mcaremother.id",
+    "to": "mcarechild.relationalid"
   },
   {
     "parent": "eligible_couple",

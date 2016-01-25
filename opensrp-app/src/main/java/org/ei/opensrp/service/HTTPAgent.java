@@ -18,22 +18,29 @@ import org.apache.http.conn.ssl.AbstractVerifier;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.ei.opensrp.DristhiConfiguration;
 import org.ei.opensrp.R;
 import org.ei.opensrp.client.GZipEncodingHttpClient;
 import org.ei.opensrp.domain.DownloadStatus;
 import org.ei.opensrp.domain.LoginResponse;
+import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.domain.Response;
 import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.opensrp.repository.AllSettings;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.util.DownloadForm;
+import org.ei.opensrp.util.FileUtilities;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
@@ -90,7 +97,10 @@ public class HTTPAgent {
         try {
             setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
             HttpPost httpPost = new HttpPost(postURLPath);
-            Log.v("jsonpayload",jsonPayload);
+            Log.v("jsonpayload", jsonPayload);
+            FileUtilities fu = new FileUtilities();
+            fu.write("jsonpayload.txt", jsonPayload);
+
             StringEntity entity = new StringEntity(jsonPayload, HTTP.UTF_8);
             entity.setContentType("application/json; charset=utf-8");
             httpPost.setEntity(entity);
@@ -163,5 +173,38 @@ public class HTTPAgent {
         } catch (Exception e) {
             throw new AssertionError(e);
         }
+    }
+    public String httpImagePost(String url,ProfileImage image){
+
+        String responseString = "";
+        try {
+            setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
+
+            HttpPost httpost = new HttpPost(url);
+
+            httpost.setHeader("Accept", "multipart/form-data");
+            File filetoupload = new File(image.getFilepath());
+            Log.v("file to upload",""+filetoupload.length());
+            MultipartEntity entity = new MultipartEntity();
+            entity.addPart("anm-id", new StringBody(image.getAnmId()));
+            entity.addPart("entity-id", new StringBody(image.getEntityID()));
+            entity.addPart("content-type", new StringBody(image.getContenttype()));
+            entity.addPart("file-category", new StringBody(image.getFilecategory()));
+            entity.addPart("file", new FileBody(new File(image.getFilepath())));
+            httpost.setEntity(entity);
+            String authToken = null;
+            HttpResponse response = httpClient.postContent(httpost);
+            responseString = EntityUtils.toString(response.getEntity());
+            Log.v("response so many",responseString);
+            int RESPONSE_OK = 200;
+            int RESPONSE_OK_ = 201;
+
+            if (response.getStatusLine().getStatusCode() != RESPONSE_OK_ && response.getStatusLine().getStatusCode() != RESPONSE_OK) {
+            }
+
+        }catch (Exception e){
+
+        }
+        return responseString;
     }
 }

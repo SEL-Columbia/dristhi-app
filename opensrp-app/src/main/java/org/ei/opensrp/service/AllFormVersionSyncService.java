@@ -76,29 +76,32 @@ public class AllFormVersionSyncService {
 
         if(forms.size() > 0) {
             for (FormDefinitionVersion form : forms) {
-                if (!formsVersionRepository.formExists(form.getFormDirName())) {
+                try {
+                    if (!formsVersionRepository.formExists(form.getFormDirName())) {
                 /* Form not exist yet, add it to repository */
-                    form.setSyncStatus(PENDING);
-                    formsVersionRepository.addFormVersionFromObject(form);
-                } else {
+                        form.setSyncStatus(PENDING);
+                        formsVersionRepository.addFormVersionFromObject(form);
+                    } else {
                     /* Form is exist, update it */
-                    FormDefinitionVersion formDefinitionVersion =
-                            formsVersionRepository.getFormByFormDirName(form.getFormDirName());
+                        FormDefinitionVersion formDefinitionVersion =
+                                formsVersionRepository.getFormByFormDirName(form.getFormDirName());
 
                     /* If form name is not equal, then update it */
-                    if (!formDefinitionVersion.getFormName().equals(form.getFormName())) {
-                        formsVersionRepository.updateFormName(form.getFormDirName(), form.getFormName());
-                    }
 
-                    int repoVersion = Integer.parseInt(formDefinitionVersion.getVersion());
-                    int pulledVersion = Integer.parseInt(form.getVersion());
+                        if (!formDefinitionVersion.getFormName().equals(form.getFormName())) {
+                            formsVersionRepository.updateFormName(form.getFormDirName(), form.getFormName());
+                        }
 
-                    if (pulledVersion > repoVersion) {
-                        formsVersionRepository.updateServerVersion(form.getFormDirName(), form.getVersion());
-                        formsVersionRepository.updateSyncStatus(form.getFormDirName(), SyncStatus.PENDING);
-                        status = FetchStatus.fetched;
+                        int repoVersion = Integer.parseInt(formDefinitionVersion.getVersion());
+                        int pulledVersion = Integer.parseInt(form.getVersion());
+
+                        if (pulledVersion > repoVersion) {
+                            formsVersionRepository.updateServerVersion(form.getFormDirName(), form.getVersion());
+                            formsVersionRepository.updateSyncStatus(form.getFormDirName(), SyncStatus.PENDING);
+                            status = FetchStatus.fetched;
+                        }
                     }
-                }
+                }catch (Exception e){}
             }
         }
 

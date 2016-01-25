@@ -2,7 +2,11 @@ package org.ei.opensrp.mcare.household;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +15,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.ei.opensrp.mcare.R;
-
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
@@ -48,7 +51,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
-                (int) context.getResources().getDimension(R.dimen.list_item_height));
+                (int) context.getResources().getDimension(org.ei.opensrp.R.dimen.list_item_height));
         txtColorBlack = context.getResources().getColor(R.color.text_black);
     }
 
@@ -67,10 +70,19 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
 
 
 
-            Button edit_form = (Button) itemView.findViewById(R.id.edit_forms);
+            Button edit_form = (Button) itemView.findViewById(R.id.nidpic_capture);
             ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
             if(pc.getDetails().get("profilepic")!=null){
-                HouseHoldDetailActivity.setImagetoHolder((Activity)context,pc.getDetails().get("profilepic"),profilepic, R.drawable.woman_placeholder);
+                HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.womanimageload);
+            }
+            if (pc.getDetails().get("nidImage") != null) {
+//               edit_form.setVisibility(View.INVISIBLE);
+                try {
+                    edit_form.setBackground(getDrawableFromPath(pc.getDetails().get("nidImage")));
+                    edit_form.setText("");
+                }catch (Exception e){
+
+                }
             }
             registerlink.setOnClickListener(onClickListener);
             registerlink.setTag(smartRegisterClient);
@@ -91,8 +103,8 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
             TextView age = (TextView) itemView.findViewById(R.id.age);
             ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
 
-            if(pc.getDetails().get("profilepic")!=null){
-                HouseHoldDetailActivity.setImagetoHolder((Activity)context,pc.getDetails().get("profilepic"),profilepic, R.drawable.woman_placeholder);
+            if (pc.getDetails().get("profilepic") != null) {
+                HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.womanimageload);
             }
 
             profilepic.setOnClickListener(onClickListener);
@@ -130,6 +142,11 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
     @Override
     public OnClickFormLauncher newFormLauncher(String formName, String entityId, String metaData) {
         return null;
+    }
+    public Drawable getDrawableFromPath(String filePath) {
+        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+        //Here you can make logic for decode bitmap for ignore oom error.
+        return new BitmapDrawable(bitmap);
     }
 
     public LayoutInflater inflater() {

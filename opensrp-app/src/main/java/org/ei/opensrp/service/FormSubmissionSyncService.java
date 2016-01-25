@@ -2,6 +2,8 @@ package org.ei.opensrp.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.ei.opensrp.Context;
 import org.ei.opensrp.DristhiConfiguration;
 import org.ei.opensrp.domain.FetchStatus;
 import org.ei.opensrp.domain.Response;
@@ -10,6 +12,7 @@ import org.ei.drishti.dto.form.FormSubmissionDTO;
 import org.ei.opensrp.repository.AllSettings;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.repository.FormDataRepository;
+import org.ei.opensrp.repository.ImageRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +45,7 @@ public class FormSubmissionSyncService {
 
     public FetchStatus sync() {
         pushToServer();
+        new ImageUploadSyncService((ImageRepository) Context.imageRepository());
         return pullFromServer();
     }
 

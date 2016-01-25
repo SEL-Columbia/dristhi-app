@@ -24,13 +24,18 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.repository.AllSharedPreferences;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 
 public class ImageAdapter extends BaseAdapter {
     public Context context;
 	private LayoutInflater mInflater;
-	private static final int[] ids = {R.mipmap.addform, R.mipmap.searchoption, R.mipmap.fileterselect};
+	private static final int[] ids = {R.mipmap.tutoria1, R.mipmap.tutorial2, R.mipmap.tutorial3};
+	private static final int[] bengaliids = {R.mipmap.tutorial1bangla, R.mipmap.tutorial2bangla, R.mipmap.tutorialbangla3};
 
 	public ImageAdapter(Context context) {
 		mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -57,16 +62,24 @@ public class ImageAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.image_item, null);
 		}
-		((ImageView) convertView.findViewById(R.id.imgView)).setImageResource(ids[position]);
+		AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(org.ei.opensrp.Context.getInstance().applicationContext()));
+
+		String preferredLocale = allSharedPreferences.fetchLanguagePreference();
+		if (LoginActivity.ENGLISH_LOCALE.equals(preferredLocale)) {
+			((ImageView) convertView.findViewById(R.id.imgView)).setImageResource(ids[position]);
+		}else if (LoginActivity.BENGALI_LOCALE.equals(preferredLocale)){
+			((ImageView) convertView.findViewById(R.id.imgView)).setImageResource(bengaliids[position]);
+
+		}
         Button dismiss = ((Button) convertView.findViewById(R.id.dismiss));
         if(position == 2){
             dismiss.setVisibility(View.VISIBLE);
             dismiss.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((Activity)(context)).finish();
-                }
-            });
+				@Override
+				public void onClick(View view) {
+					((Activity) (context)).finish();
+				}
+			});
         }else{
             dismiss.setVisibility(View.INVISIBLE);
 

@@ -24,6 +24,7 @@ import org.ei.opensrp.repository.DrishtiRepository;
 import org.ei.opensrp.repository.EligibleCoupleRepository;
 import org.ei.opensrp.repository.FormDataRepository;
 import org.ei.opensrp.repository.FormsVersionRepository;
+import org.ei.opensrp.repository.ImageRepository;
 import org.ei.opensrp.repository.MotherRepository;
 import org.ei.opensrp.repository.ReportRepository;
 import org.ei.opensrp.repository.Repository;
@@ -123,6 +124,8 @@ public class Context {
     private AllReports allReports;
     private AllServicesProvided allServicesProvided;
     private AllCommonsRepository allCommonPersonObjectsRepository;
+    private static ImageRepository imageRepository;
+
 
     private DrishtiService drishtiService;
     private ActionService actionService;
@@ -440,7 +443,7 @@ public class Context {
         return ancInvestigationsHandler;
     }
 
-    private ZiggyService ziggyService() {
+    public ZiggyService ziggyService() {
         initRepository();
         if (ziggyService == null) {
             ziggyService = new ZiggyService(ziggyFileLoader(), formDataRepository(), formSubmissionRouter());
@@ -483,6 +486,7 @@ public class Context {
             drishtireposotorylist.add(formDataRepository());
             drishtireposotorylist.add(serviceProvidedRepository());
             drishtireposotorylist.add(formsVersionRepository());
+            drishtireposotorylist.add(imageRepository());
             for(int i = 0;i < bindtypes.size();i++){
                 drishtireposotorylist.add(commonrepository(bindtypes.get(i).getBindtypename()));
             }
@@ -624,6 +628,12 @@ public class Context {
             formsVersionRepository = new FormsVersionRepository();
         }
         return formsVersionRepository;
+    }
+    public static DrishtiRepository imageRepository() {
+        if (imageRepository == null) {
+            imageRepository = new ImageRepository();
+        }
+        return imageRepository;
     }
 
     public UserService userService() {
@@ -902,6 +912,10 @@ public class Context {
             }
         }
         return returnString.toString();
+    }
+
+    public HTTPAgent getHttpAgent() {
+        return httpAgent;
     }
 
 

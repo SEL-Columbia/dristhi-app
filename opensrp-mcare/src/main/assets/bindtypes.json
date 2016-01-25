@@ -1,12 +1,28 @@
 {
-    "bindobjects":
- [
+  "bindobjects": [
     {
       "name": "household",
-      "columns" : [ ]
-    },{
-            "name": "elco",
-            "columns" : [ ]
-          }
- ]
+      "columns": [
+
+      ]
+    },
+    {
+      "name": "elco",
+      "columns": [
+
+      ]
+    },
+    {
+      "name": "mcaremother",
+      "columns": [
+
+      ]
+    },
+    {
+      "name": "mcarechild",
+      "columns": [
+
+      ]
+    }
+  ]
 }

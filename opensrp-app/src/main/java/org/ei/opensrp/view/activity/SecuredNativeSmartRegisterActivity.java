@@ -2,26 +2,33 @@ package org.ei.opensrp.view.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.*;
+import com.google.gson.Gson;
 import org.ei.opensrp.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.domain.ReportMonth;
+import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.customControls.CustomFontTextView;
 import org.ei.opensrp.view.customControls.FontVariant;
 import org.ei.opensrp.view.dialog.*;
 import org.joda.time.LocalDate;
+import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 import static android.view.View.INVISIBLE;
@@ -29,7 +36,14 @@ import static android.view.View.VISIBLE;
 import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.ei.opensrp.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.opensrp.AllConstants.FORM_NAME_PARAM;
+import static org.ei.opensrp.AllConstants.INSTANCE_ID_PARAM;
 import static org.ei.opensrp.AllConstants.SHORT_DATE_FORMAT;
+import static org.ei.opensrp.AllConstants.SYNC_STATUS;
+import static org.ei.opensrp.AllConstants.VERSION_PARAM;
+import static org.ei.opensrp.domain.SyncStatus.PENDING;
+import static org.ei.opensrp.util.EasyMap.create;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity {
 
@@ -345,11 +359,11 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         finish();
     }
 
-    void showFragmentDialog(DialogOptionModel dialogOptionModel) {
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel) {
         showFragmentDialog(dialogOptionModel, null);
     }
 
-    protected void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
         if (dialogOptionModel.getDialogOptions().length <= 0) {
             return;
         }
@@ -374,7 +388,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract void onInitialization();
 
-    protected abstract void startRegistration();
+    public abstract void startRegistration();
 
     private class FilterDialogOptionModel implements DialogOptionModel {
         @Override
@@ -507,5 +521,79 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         private void clearSearchText() {
             searchView.setText("");
         }
+    }
+    protected String getParams(FormSubmission submission) {
+        return new Gson().toJson(
+                create(INSTANCE_ID_PARAM, submission.instanceId())
+                        .put(ENTITY_ID_PARAM, submission.entityId())
+                        .put(FORM_NAME_PARAM, submission.formName())
+                        .put(VERSION_PARAM, submission.version())
+                        .put(SYNC_STATUS, PENDING.value())
+                        .map());
+    }
+
+    public void saveFormSubmission(String formSubmision, String id, String formName, JSONObject fieldOverrides){
+    }
+
+    public void savePartialFormData(String formData, String id, String formName, JSONObject fieldOverrides){
+        try {
+            //Save the current form data into shared preferences
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            String savedDataKey = formName + "savedPartialData";
+            editor.putString(savedDataKey, formData);
+
+            String overridesKey = formName + "overrides";
+            editor.putString(overridesKey, fieldOverrides.toString());
+
+            String idKey = formName + "id";
+            if (id != null){
+                editor.putString(idKey, id);
+            }
+
+            editor.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public String getPreviouslySavedDataForForm(String formName, String overridesStr, String id){
+        try {
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            String savedDataKey = formName + "savedPartialData";
+            String overridesKey = formName + "overrides";
+            String idKey = formName + "id";
+
+            JSONObject overrides = new JSONObject();
+
+            if (overrides != null){
+                JSONObject json = new JSONObject(overridesStr);
+                String s = json.getString("fieldOverrides");
+                overrides = new JSONObject(s);
+            }
+
+            boolean idIsConsistent = id == null && !sharedPref.contains(idKey) ||
+                    id != null && sharedPref.contains(idKey) && sharedPref.getString(idKey, null).equals(id);
+
+            if (sharedPref.contains(savedDataKey) && sharedPref.contains(overridesKey) && idIsConsistent){
+                String savedDataStr = sharedPref.getString(savedDataKey, null);
+                String savedOverridesStr = sharedPref.getString(overridesKey, null);
+
+
+                // the previously saved data is only returned if the overrides and id are the same ones used previously
+                if (savedOverridesStr.equals(overrides.toString())) {
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    //after retrieving the value delete it from shared pref.
+                    editor.remove(savedDataKey);
+                    editor.remove(overridesKey);
+                    editor.remove(idKey);
+                    editor.apply();
+                    return savedDataStr;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -14,15 +14,15 @@ dependencies {
     compile project(':opensrp-app')
 }
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
 
     defaultConfig {
         applicationId "org.ei.opensrp.mcare"
         minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 21
+        versionCode 18
+        versionName "18.0"
     }
     buildTypes {
         release {
@@ -41,6 +41,9 @@ android {
         exclude 'META-INF/license.txt'
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
+    }
+    lintOptions {
+        disable 'MissingTranslation'
     }
 }
 

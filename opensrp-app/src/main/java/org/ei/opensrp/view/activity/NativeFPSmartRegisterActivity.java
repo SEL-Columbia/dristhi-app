@@ -137,7 +137,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
         FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
         startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }

@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_weight="9">
 
@@ -72,7 +72,7 @@
         android:gravity="center"
         android:layout_margin="2dp"
         android:layout_weight="1"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <Button
             android:layout_width="wrap_content"
@@ -80,5 +80,14 @@
             android:id="@+id/edit_forms"
             android:background="@drawable/ic_pencil" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="@dimen/abc_action_bar_stacked_tab_max_width"
+        android:layout_height="@dimen/list_item_height"
+        android:text="@string/take_nid_picture"
+        android:id="@+id/nidpic_capture"
+        android:layout_gravity="center_vertical|right"
+        android:background="@color/alert_urgent_red"
+        android:layout_margin="5dp" />
 
 </LinearLayout>

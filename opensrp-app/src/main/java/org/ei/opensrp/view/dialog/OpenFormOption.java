@@ -1,5 +1,7 @@
 package org.ei.opensrp.view.dialog;
 
+import android.util.Log;
+
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -38,7 +40,9 @@ public class OpenFormOption implements EditOption {
     public String name() {
         return name;
     }
-
+    public String getFormName(){
+                return formName;
+            }
     @Override
     public void doEdit(SmartRegisterClient client) {
 
@@ -65,6 +69,7 @@ public class OpenFormOption implements EditOption {
 
             }
             FieldOverrides fieldOverrides = new FieldOverrides(overridejsonobject.toString());
+            Log.v("in edit form optopn",overridejsonobject.toString());
             formController.startFormActivity(formName, client.entityId(), fieldOverrides.getJSONString());
         }
     }

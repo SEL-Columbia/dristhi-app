@@ -1,7 +1,9 @@
 package org.ei.opensrp.mcare;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +12,10 @@ import android.widget.Toast;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
+import org.ei.opensrp.mcare.elco.PSRFHandler;
+import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
+import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
@@ -18,6 +24,7 @@ import org.ei.opensrp.view.activity.SecuredActivity;
 import org.ei.opensrp.view.contract.HomeContext;
 import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
+import org.ei.opensrp.view.fragment.DisplayFormFragment;
 
 import static android.widget.Toast.LENGTH_SHORT;
 import static java.lang.String.valueOf;
@@ -78,6 +85,11 @@ public class NativeHomeActivity extends SecuredActivity {
         navigationController = new McareNavigationController(this,anmController);
         setupViews();
         initialize();
+        DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
+        DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
+        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form",new CensusEnrollmentHandler());
+        context.formSubmissionRouter().getHandlerMap().put("psrf_form", new PSRFHandler());
+
     }
 
     private void setupViews() {
@@ -103,12 +115,11 @@ public class NativeHomeActivity extends SecuredActivity {
         SYNC_COMPLETED.addListener(onSyncCompleteListener);
         FORM_SUBMITTED.addListener(onFormSubmittedListener);
         ACTION_HANDLED.addListener(updateANMDetailsListener);
-        ActionBar actionBar = getActionBar();
-        getActionBar().setTitle("");
-        getActionBar().setIcon(getResources().getDrawable(R.drawable.logo));
-        actionBar.setLogo(R.drawable.logo);
-        actionBar.setDisplayUseLogoEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setIcon(getResources().getDrawable(org.ei.opensrp.mcare.R.mipmap.logo));
+        getSupportActionBar().setLogo(org.ei.opensrp.mcare.R.mipmap.logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         LoginActivity.setLanguage();
 //        getActionBar().setBackgroundDrawable(getReso
 // urces().getDrawable(R.color.action_bar_background));
@@ -116,6 +127,7 @@ public class NativeHomeActivity extends SecuredActivity {
 
     @Override
     protected void onResumption() {
+        LoginActivity.setLanguage();
         updateRegisterCounts();
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
@@ -138,14 +150,23 @@ public class NativeHomeActivity extends SecuredActivity {
         CommonPersonObjectController elcocontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-
+        CommonPersonObjectController anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
+                context.allBeneficiaries(), context.listCache(),
+                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
 
         ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
-        ancRegisterClientCountView.setText(valueOf(homeContext.ancCount()));
+        ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
         pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
         fpRegisterClientCountView.setText(valueOf(elcocontroller.getClients().size()));
         childRegisterClientCountView.setText(valueOf(homeContext.childCount()));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
@@ -169,6 +190,10 @@ public class NativeHomeActivity extends SecuredActivity {
                 String newLanguagePreference = LoginActivity.switchLanguagePreference();
                 LoginActivity.setLanguage();
                 Toast.makeText(this, "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
+                this.recreate();
+                return true;
+            case R.id.help:
+                startActivity(new Intent(this, tutorialCircleViewFlow.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -229,11 +254,11 @@ public class NativeHomeActivity extends SecuredActivity {
                     break;
 
                 case R.id.btn_pnc_register:
-                    navigationController.startPNCSmartRegistry();
+//                    navigationController.startPNCSmartRegistry();
                     break;
 
                 case R.id.btn_child_register:
-                    navigationController.startChildSmartRegistry();
+//                    navigationController.startChildSmartRegistry();
                     break;
 
                 case R.id.btn_fp_register:
@@ -249,11 +274,11 @@ public class NativeHomeActivity extends SecuredActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btn_reporting:
-                    navigationController.startReports();
+//                    navigationController.startReports();
                     break;
 
                 case R.id.btn_videos:
-                    navigationController.startVideos();
+//                    navigationController.startVideos();
                     break;
             }
         }
