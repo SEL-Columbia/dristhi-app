@@ -213,7 +213,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvid
         if(lastdate!= null){
             GregorianCalendar calendar = new GregorianCalendar();
             calendar.setTime(lastdate);
-            calendar.add(Calendar.DATE, 84);
+            calendar.add(Calendar.DATE, 56);//8 weeks
             lastdate.setTime(calendar.getTime().getTime());
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //            String result = String.format(Locale.ENGLISH, format.format(lastdate) );

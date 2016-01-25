@@ -58,7 +58,7 @@
     <string name="hhiid_jivita_elco_label"> জীবিতা খানা আইডি  :</string>
     <string name="hhid_gob_elco_label">সরকারী খানা আই ডি :</string>
     <string name="elco_details_mauza">মৌজা :</string>
-
+    <string name="label_village">,মৌজা :</string>
     <string name="home_report_label">Reporting</string>
     <string name="register_label">নিবন্ধন</string>
     <string name="home_videos_label">Videos</string>

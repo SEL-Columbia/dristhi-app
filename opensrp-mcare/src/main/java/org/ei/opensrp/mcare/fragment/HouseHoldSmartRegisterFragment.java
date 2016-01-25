@@ -197,6 +197,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         getDefaultOptionsProvider();
 
         super.setupViews(view);
+        view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
 
         setServiceModeViewDrawableRight(null);
         updateSearchView();
