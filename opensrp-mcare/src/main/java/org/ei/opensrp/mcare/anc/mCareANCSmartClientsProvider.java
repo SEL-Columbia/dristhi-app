@@ -234,25 +234,25 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
     }
 
     private void constructRiskFlagView(CommonPersonObjectClient pc, ViewGroup itemView) {
-        AllCommonsRepository allancRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcaremother");
-        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
-        AllCommonsRepository allelcorep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
-        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getRelationalId());
+//        AllCommonsRepository allancRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcaremother");
+//        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
+//        AllCommonsRepository allelcorep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
+//        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getRelationalId());
 
         ImageView hrp = (ImageView)itemView.findViewById(R.id.hrp);
         ImageView hp = (ImageView)itemView.findViewById(R.id.hr);
         ImageView vg = (ImageView)itemView.findViewById(R.id.vg);
-        if(elcoparent.getDetails().get("FWVG") != null && elcoparent.getDetails().get("FWVG").equalsIgnoreCase("1")){
+        if(pc.getDetails().get("FWVG") != null && pc.getDetails().get("FWVG").equalsIgnoreCase("1")){
 
         }else{
             vg.setVisibility(View.GONE);
         }
-        if(elcoparent.getDetails().get("FWHRP") != null && elcoparent.getDetails().get("FWHRP").equalsIgnoreCase("1")){
+        if(pc.getDetails().get("FWHRP") != null && pc.getDetails().get("FWHRP").equalsIgnoreCase("1")){
 
         }else{
             hrp.setVisibility(View.GONE);
         }
-        if(elcoparent.getDetails().get("FWHR_PSR") != null && elcoparent.getDetails().get("FWHR_PSR").equalsIgnoreCase("1")){
+        if(pc.getDetails().get("FWHR_PSR") != null && pc.getDetails().get("FWHR_PSR").equalsIgnoreCase("1")){
 
         }else{
             hp.setVisibility(View.GONE);
