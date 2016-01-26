@@ -1,13 +1,16 @@
 package org.ei.opensrp.indonesia.view.activity;
 
 import android.app.Application;
+import android.content.Intent;
 import android.content.res.Configuration;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.lib.ErrorReportingFacade;
 import org.ei.opensrp.indonesia.view.receiver.SyncBidanBroadcastReceiver;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
+import org.ei.opensrp.view.activity.DrishtiApplication;
 
 import java.util.Locale;
 
@@ -16,7 +19,7 @@ import static org.ei.opensrp.util.Log.logInfo;
 /**
  * Created by Dimas Ciputra on 9/18/15.
  */
-public class BidanApplication extends Application {
+public class BidanApplication extends DrishtiApplication {
     private Locale locale = null;
     private Context context;
 
@@ -61,5 +64,13 @@ public class BidanApplication extends Application {
         Locale.setDefault(locale);
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
+    }
+
+    @Override
+    public void logoutCurrentUser(){
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getApplicationContext().startActivity(intent);
+        //context.userService().logoutSession();
     }
 }
