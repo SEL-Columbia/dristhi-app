@@ -11,6 +11,8 @@
             <simserial />
             <phonenumber />
             <nomortelpon />
+            <Lokasi_periksa />
+            <Keterangan_k1k4 />
             <nomor_telpon_hp />
             <anc_date />
             <hpht />

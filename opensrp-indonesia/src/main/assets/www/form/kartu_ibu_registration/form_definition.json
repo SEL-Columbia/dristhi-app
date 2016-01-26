@@ -9,6 +9,10 @@
         "shouldLoadValue": true
       },
       {
+        "name": "lokasiPeriksa",
+        "bind": "/model/instance/Kartu_ibu/Lokasi_periksa"
+      },
+      {
         "name": "unique_id",
         "bind": "/model/instance/Kartu_ibu/unique_id",
         "shouldLoadValue" : true
@@ -22,6 +26,10 @@
         "name": "Province",
         "bind": "/model/instance/Kartu_ibu/Province",
         "shouldLoadValue": true
+      },
+      {
+        "name": "nik",
+        "bind": "/model/instance/Kartu_ibu/nik"
       },
       {
         "name": "Sub-district",

@@ -11,6 +11,7 @@
             <simserial />
             <phonenumber />
             <neonatal />
+            <Lokasi_periksa />
             <saat_lahir_sd_5_jam_meninggal />
             <saat_lahir_sd_5_jam_kondisi_bayi />
             <jenis_pelayanan_yang_diberikan_saat_lahir />

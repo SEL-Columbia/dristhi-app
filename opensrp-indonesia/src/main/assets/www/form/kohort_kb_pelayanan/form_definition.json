@@ -13,6 +13,10 @@
         "bind": "/model/instance/tambah_kb_1/tanggal_kunjungan"
       },
       {
+        "name": "lokasiPeriksa",
+        "bind": "/model/instance/tambah_kb_1/Lokasi_periksa"
+      },
+      {
         "name": "tanggalLahir",
         "bind": "/model/instance/tambah_kb_1/tanggal_lahir",
         "shouldLoadValue": true

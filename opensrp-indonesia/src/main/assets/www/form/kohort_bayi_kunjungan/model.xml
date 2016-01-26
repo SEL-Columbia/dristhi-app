@@ -13,6 +13,8 @@
             <tanggal_lahir />
             <tanggal_kunjungan_bayi_perbulan />
             <baby_age />
+            <Lokasi_periksa />
+            <hasil_pengukuran_tinggi_bayi />
             <kunjungan_bayi_ke />
             <berat_badan_bayi_setiap_kunjungan_bayi_perbulan />
             <indikator_berat_bedan_bayi />

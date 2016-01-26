@@ -13,6 +13,10 @@
                 "bind": "/model/instance/rencana_persalinan_reviewed/tanggal"
 			},
             {
+                "name": "lokasiPeriksa",
+                "bind": "/model/instance/rencana_persalinan_reviewed/Lokasi_periksa"
+            },
+            {
                 "name": "rencanaPenolongPersalinan",
                 "bind": "/model/instance/rencana_persalinan_reviewed/rencana_penolong_persalinan"
 			},

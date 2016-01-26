@@ -11,6 +11,7 @@
             <simserial />
             <phonenumber />
             <tanggal />
+            <Lokasi_periksa />
             <rencana_penolong_persalinan />
             <tempat_rencana_persalinan />
             <rencana_pendamping_persalinan />
