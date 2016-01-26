@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,10 +48,11 @@ public abstract class SecuredActivity extends ActionBarActivity {
         ON_LOGOUT.addListener(logoutListener);
 
         if (context.IsUserLoggedOut()) {
-            startActivity(new Intent(this, LoginActivity.class));
-            context.userService().logoutSession();
+            DrishtiApplication application = (DrishtiApplication)getApplication();
+            application.logoutCurrentUser();
             return;
         }
+
         formController = new FormController(this);
         anmController = context.anmController();
         navigationController = new NavigationController(this, anmController);
@@ -61,8 +63,8 @@ public abstract class SecuredActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         if (context.IsUserLoggedOut()) {
-            context.userService().logoutSession();
-            startActivity(new Intent(this, LoginActivity.class));
+            DrishtiApplication application = (DrishtiApplication)getApplication();
+            application.logoutCurrentUser();
             return;
         }
 
@@ -80,11 +82,6 @@ public abstract class SecuredActivity extends ActionBarActivity {
         } else {
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    public void logoutUser() {
-        context.userService().logout();
-        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
