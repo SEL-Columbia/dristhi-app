@@ -9,6 +9,9 @@
         "shouldLoadValue": true
       },
       {
+        "name": "anc4_current_formStatus"
+      },
+      {
         "name": "version",
         "bind": "/model/instance/ANC_Reminder_Visit_4/version"
       },

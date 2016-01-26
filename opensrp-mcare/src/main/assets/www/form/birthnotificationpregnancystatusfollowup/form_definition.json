@@ -9,6 +9,9 @@
         "shouldLoadValue": true
       },
       {
+        "name": "current_formStatus"
+      },
+      {
         "name": "changes",
         "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/changes"
       },

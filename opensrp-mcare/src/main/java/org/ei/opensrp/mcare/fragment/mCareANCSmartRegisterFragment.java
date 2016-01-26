@@ -205,8 +205,8 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
     private DialogOption[] getEditOptions() {
         return ((mCareANCSmartRegisterActivity)getActivity()).getEditOptions();
     }
-    private DialogOption[] getEditOptionsforanc(String ancvisittext) {
-        return ((mCareANCSmartRegisterActivity)getActivity()).getEditOptionsforanc(ancvisittext);
+    private DialogOption[] getEditOptionsforanc(String ancvisittext,String ancvisitstatus) {
+        return ((mCareANCSmartRegisterActivity)getActivity()).getEditOptionsforanc(ancvisittext,ancvisitstatus);
     }
 
 
@@ -226,7 +226,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
                 case R.id.anc_reminder_due_date:
                     CustomFontTextView ancreminderDueDate = (CustomFontTextView)view.findViewById(R.id.anc_reminder_due_date);
                     Log.v("do as you will", (String) view.getTag(R.id.textforAncRegister));
-                    showFragmentDialog(new EditDialogOptionModelForANC((String)view.getTag(R.id.textforAncRegister)), view.getTag(R.id.clientobject));
+                    showFragmentDialog(new EditDialogOptionModelForANC((String)view.getTag(R.id.textforAncRegister),(String)view.getTag(R.id.AlertStatustextforAncRegister)), view.getTag(R.id.clientobject));
                     break;
             }
         }
@@ -247,14 +247,16 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
         }
     }
     private class EditDialogOptionModelForANC implements DialogOptionModel {
-        String ancvisittext ;
-        public EditDialogOptionModelForANC(String text) {
+        String ancvisittext ;;
+        String Ancvisitstatus;
+        public EditDialogOptionModelForANC(String text,String status) {
             ancvisittext = text;
+            Ancvisitstatus = status;
         }
 
         @Override
         public DialogOption[] getDialogOptions() {
-            return getEditOptionsforanc(ancvisittext);
+            return getEditOptionsforanc(ancvisittext,Ancvisitstatus);
         }
 
         @Override

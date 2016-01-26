@@ -1,5 +1,5 @@
 {
-  "form_data_definition_version": "13",
+  "form_data_definition_version": "15",
   "form": {
     "default_bind_path": "/model/instance/PregnancySurveillanceAndRegistrationForm",
     "bind_type": "elco",

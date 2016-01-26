@@ -5,4 +5,5 @@
     <item name="tree_items" type="id" />
     <item name="clientobject" type="id">client</item>
     <item name="textforAncRegister" type="id">textforAncRegister</item>
+    <item name="AlertStatustextforAncRegister" type="id">idforalertstatus</item>
 </resources>
