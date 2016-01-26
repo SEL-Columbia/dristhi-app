@@ -12,6 +12,7 @@
                 <span class="question-label active" data-itext-id="/kunjungan_balita_reviewed/Lokasi_periksa:label"
                     lang="Bahasa">Lokasi Periksa
                 </span>
+                <span class="required">*</span>
                 <span class="question-label " data-itext-id="/kunjungan_balita_reviewed/Lokasi_periksa:label" lang="en">
                     Location of Service
                 </span>
@@ -19,7 +20,7 @@
             <div class="option-wrapper">
                 <label class="">
                     <input name="/kunjungan_balita_reviewed/Lokasi_periksa" data-name="/kunjungan_balita_reviewed/Lokasi_periksa" data-type-xml="select1"
-                        type="radio" value="1" />
+                        type="radio" value="1" required="required" />
                     <span class="option-label active" data-itext-id="/kunjungan_balita_reviewed/Lokasi_periksa/Posyandu:label"
                         lang="Bahasa">Posyandu
                     </span>
@@ -29,7 +30,7 @@
                 </label>
                 <label class="">
                     <input name="/kunjungan_balita_reviewed/Lokasi_periksa" data-name="/kunjungan_balita_reviewed/Lokasi_periksa" data-type-xml="select1"
-                        type="radio" value="2" />
+                        type="radio" value="2" required="required" />
                     <span class="option-label active" data-itext-id="/kunjungan_balita_reviewed/Lokasi_periksa/Polindes:label"
                         lang="Bahasa">Polindes
                     </span>

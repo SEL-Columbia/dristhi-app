@@ -13,6 +13,7 @@
                 <span class="question-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa:label"
                     lang="Bahasa">Lokasi Periksa
                 </span>
+                <span class="required">*</span>
                 <span class="question-label " data-itext-id="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa:label" lang="en">
                     Location of Service
                 </span>
@@ -20,7 +21,7 @@
             <div class="option-wrapper">
                 <label class="">
                     <input name="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa" data-name="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa" data-type-xml="select1"
-                        type="radio" value="1" />
+                        type="radio" value="1" required="required" />
                     <span class="option-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa/Posyandu:label"
                         lang="Bahasa">Posyandu
                     </span>
@@ -30,7 +31,7 @@
                 </label>
                 <label class="">
                     <input name="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa" data-name="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa" data-type-xml="select1"
-                        type="radio" value="2" />
+                        type="radio" value="2" required="required" />
                     <span class="option-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa/Polindes:label"
                         lang="Bahasa">Polindes
                     </span>
@@ -163,6 +164,16 @@
         </span>
         <input name="/kunjungan_anc_reviewed_anc_visit/anc_ke" data-constraint=".&gt;0 and .&lt;5" data-type-xml="int"
             required="required" type="number" />
+    </label>
+    <label class="note non-select ">
+        <span class="question-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/generated_note_name_9:label"
+            lang="Bahasa"> K1 standar - kunjungan pertama kurang atau sama dg 12 minggu. K1 akses - kunjungan pertama pada semua usia kehamilan.
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_anc_reviewed_anc_visit/generated_note_name_9:label"
+            lang="en"> K1 standar - kunjungan pertama kurang atau sama dg 12 minggu. K1 akses - kunjungan pertama pada semua usia kehamilan.
+        </span>
+        <input name="/kunjungan_anc_reviewed_anc_visit/generated_note_name_9" data-type-xml="string" readonly="readonly"
+            type="text" />
     </label>
     <fieldset class="question ">
         <fieldset>
