@@ -14,8 +14,8 @@
         "source": "ibu.anak.id"
       },
       {
-        "name": "hpht",
-        "bind": "/model/instance/dok_persalinan_reviewed/hpht",
+        "name": "tanggalHPHT",
+        "bind": "/model/instance/dok_persalinan_reviewed/tanggalHPHT",
         "source": "ibu.tanggalHPHT",
         "shouldLoadValue": true
       },

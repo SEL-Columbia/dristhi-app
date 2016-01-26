@@ -14,6 +14,10 @@
         "shouldLoadValue": true
       },
       {
+        "name": "lokasiPeriksa",
+        "bind": "/model/instance/anc_registration/Lokasi_periksa"
+      },
+      {
         "name": "referenceDate",
         "bind": "/model/instance/anc_registration/tanggal_periksa",
         "source": "kartu_ibu.ibu.referenceDate"

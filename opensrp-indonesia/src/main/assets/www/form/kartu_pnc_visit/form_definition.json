@@ -19,6 +19,14 @@
         "source": "ibu.anak.id"
       },
       {
+        "name": "lokasiPeriksa",
+        "bind": "/model/instance/PNC_visit_reviewed/Lokasi_periksa"
+      },
+      {
+        "name": "Nik",
+        "bind": "/model/instance/PNC_visit_reviewed/nik"
+      },
+      {
         "name": "referenceDate",
         "bind": "/model/instance/PNC_visit_reviewed/tanggal_kunjungan"
       },

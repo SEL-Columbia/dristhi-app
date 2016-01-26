@@ -13,8 +13,16 @@
                 "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_kunjungan_bayi_perbulan"
             },
             {
+                "name": "lokasiPeriksa",
+                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/Lokasi_periksa"
+            },
+            {
                 "name": "beratBadanBayiSetiapKunjunganBayiPerbulan",
                 "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/berat_badan_bayi_setiap_kunjungan_bayi_perbulan"
+            },
+            {
+                "name": "hasilPengukuranTinggiBayi",
+                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/hasil_pengukuran_tinggi_bayi"
             },
             {
                 "name": "indikatorBeratBedanBayi",

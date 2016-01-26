@@ -13,6 +13,10 @@
                 "bind": "/model/instance/kunjungan_balita_reviewed/tanggal_pemeriksaan_anak_balita"
             },
             {
+                "name": "lokasiPeriksa",
+                "bind": "/model/instance/kunjungan_balita_reviewed/Lokasi_periksa"
+            },
+            {
                 "name": "beratBadanBayiSetiapKunjunganBayiPerbulan",
                 "bind": "/model/instance/kunjungan_balita_reviewed/hasil_penimbangan_anak_balita"
             },

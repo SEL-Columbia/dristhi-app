@@ -9,6 +9,7 @@
             <deviceid />
             <simserial />
             <phonenumber />
+            <Lokasi_periksa/>
             <tanggal_pemberian_imunisasi_hb_07 />
             <tanggal_pemberian_imunisasi_bcg_dan_Polio1 />
             <tanggal_pemberian_imunisasi_dpthb1Polio2 />

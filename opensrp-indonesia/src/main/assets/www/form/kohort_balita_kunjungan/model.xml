@@ -11,6 +11,7 @@
             <simserial />
             <phonenumber />
             <tanggal_lahir />
+            <Lokasi_periksa />
             <baby_age />
             <tanggal_pemeriksaan_anak_balita />
             <hasil_penimbangan_anak_balita />

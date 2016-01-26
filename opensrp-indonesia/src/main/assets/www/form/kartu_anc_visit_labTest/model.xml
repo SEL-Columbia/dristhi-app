@@ -10,6 +10,7 @@
             <deviceid />
             <simserial />
             <phonenumber />
+            <Lokasi_periksa />
             <reference_date />
             <generated_note_name_8 />
             <laboratorium_periksa_hb_hasil />

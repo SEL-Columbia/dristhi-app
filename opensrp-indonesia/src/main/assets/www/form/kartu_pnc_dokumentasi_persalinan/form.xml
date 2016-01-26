@@ -1163,13 +1163,13 @@
                 data-type-xml="dateTime" type="hidden" />
         </label>
         <label class="calculation non-select ">
-            <input name="/dok_persalinan_reviewed/hpht" data-preload="date" data-preload-params="tanggalHPHT"
+            <input name="/dok_persalinan_reviewed/tanggalHPHT" data-preload="date" data-preload-params="tanggalHPHT"
                 data-type-xml="dateTime" type="hidden" />
         </label>
     </fieldset>
     <fieldset style="display:none;" id="or-calculated-items">
         <label class="calculation non-select ">
-            <input name="/dok_persalinan_reviewed/usiakehamilan" data-calculate="int((( /dok_persalinan_reviewed/today  -  /dok_persalinan_reviewed/hpht ) div 7)+1)"
+            <input name="/dok_persalinan_reviewed/usiakehamilan" data-calculate="int((( /dok_persalinan_reviewed/today  -  /dok_persalinan_reviewed/tanggalHPHT ) div 7)+1)"
                 data-type-xml="string"
                 type="hidden" />
         </label>

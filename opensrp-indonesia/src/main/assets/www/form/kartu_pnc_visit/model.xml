@@ -11,6 +11,8 @@
             <deviceid />
             <simserial />
             <phonenumber />
+            <nik />
+            <Lokasi_periksa />
             <tanggal_kunjungan />
             <tanggal_lahir_anak />
             <generated_note_name_9 />

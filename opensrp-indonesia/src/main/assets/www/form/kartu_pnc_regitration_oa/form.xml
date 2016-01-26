@@ -7,7 +7,40 @@
         <option value="en">English</option>
     </select>
 
-
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/register_pnc_reviewed/Lokasi_periksa:label"
+                    lang="Bahasa">Lokasi Entry
+                </span>
+                <span class="question-label " data-itext-id="/register_pnc_reviewed/Lokasi_periksa:label" lang="en">
+                    Location of Service
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/register_pnc_reviewed/Lokasi_periksa" data-name="/register_pnc_reviewed/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="1" />
+                    <span class="option-label active" data-itext-id="/register_pnc_reviewed/Lokasi_periksa/Posyandu:label"
+                        lang="Bahasa">Posyandu
+                    </span>
+                    <span class="option-label " data-itext-id="/register_pnc_reviewed/Lokasi_periksa/Posyandu:label"
+                        lang="en">Posyandu
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/register_pnc_reviewed/Lokasi_periksa" data-name="/register_pnc_reviewed/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="2" />
+                    <span class="option-label active" data-itext-id="/register_pnc_reviewed/Lokasi_periksa/Polindes:label"
+                        lang="Bahasa">Polindes
+                    </span>
+                    <span class="option-label " data-itext-id="/register_pnc_reviewed/Lokasi_periksa/Polindes:label"
+                        lang="en">Polindes
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
     <label class="note non-select ">
         <span class="question-label active" data-itext-id="/register_pnc_reviewed/generated_note_name_12:label"
             lang="Bahasa">Unique ID:
@@ -21,23 +54,48 @@
             readonly="readonly" type="text" />
     </label>
     <label class="question non-select ">
-        <span class="question-label active" data-itext-id="/register_pnc_reviewed/puskesmas:label"
-            lang="Bahasa">Puskesmas
+        <span class="question-label active" data-itext-id="/register_pnc_reviewed/nik:label" lang="Bahasa">
+            NIK
         </span>
-        <span class="question-label " data-itext-id="/register_pnc_reviewed/puskesmas:label"
-            lang="en">Primary Health Center (PHC)
+        <span class="question-label " data-itext-id="/register_pnc_reviewed/nik:label" lang="en">Mother's
+            National ID
         </span>
-        <span class="required">*</span>
-        <span class="or-hint active" data-itext-id="/register_pnc_reviewed/puskesmas:hint"
-            lang="Bahasa">Nama puskesmas tempat ibu
-            melakukan pemeriksaan
-        </span>
-        <span class="or-hint " data-itext-id="/register_pnc_reviewed/puskesmas:hint" lang="en">Name
-            of primary health center where mother does a check-up
-        </span>
-        <input name="/register_pnc_reviewed/puskesmas" data-type-xml="string" required="required"
-            type="text" />
+        <input name="/register_pnc_reviewed/nik" data-type-xml="int" type="number" />
     </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/register_pnc_reviewed/puskesmas:label"
+                    lang="Bahasa">Puskesmas
+                </span>
+                <span class="question-label " data-itext-id="/register_pnc_reviewed/puskesmas:label" lang="en">
+                    Primary Health Center (PHC)
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/register_pnc_reviewed/puskesmas" data-name="/register_pnc_reviewed/puskesmas" data-type-xml="select1"
+                        type="radio" value="Sengkol" />
+                    <span class="option-label active" data-itext-id="/register_pnc_reviewed/puskesmas/Sengkol:label"
+                        lang="Bahasa">Sengkol
+                    </span>
+                    <span class="option-label " data-itext-id="/register_pnc_reviewed/puskesmas/Sengkol:label"
+                        lang="en">Sengkol
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/register_pnc_reviewed/puskesmas" data-name="/register_pnc_reviewed/puskesmas" data-type-xml="select1"
+                        type="radio" value="Janapria" />
+                    <span class="option-label active" data-itext-id="/register_pnc_reviewed/puskesmas/Janapria:label"
+                        lang="Bahasa">Janapria
+                    </span>
+                    <span class="option-label " data-itext-id="/register_pnc_reviewed/puskesmas/Janapria:label"
+                        lang="en">Janapria
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
     <label class="question non-select ">
         <span class="question-label active" data-itext-id="/register_pnc_reviewed/no_ibu:label"
             lang="Bahasa">No. Ibu
@@ -259,28 +317,6 @@
                 </span>
             </legend>
             <div class="option-wrapper">
-                <label class="">
-                    <input name="/register_pnc_reviewed/gakin_tidak" data-name="/register_pnc_reviewed/gakin_tidak"
-                        data-type-xml="select1" type="radio"
-                        value="Ya" />
-                    <span class="option-label active" data-itext-id="/register_pnc_reviewed/gakin_tidak/Ya:label"
-                        lang="Bahasa">Ya
-                    </span>
-                    <span class="option-label " data-itext-id="/register_pnc_reviewed/gakin_tidak/Ya:label"
-                        lang="en">Yes
-                    </span>
-                </label>
-                <label class="">
-                    <input name="/register_pnc_reviewed/gakin_tidak" data-name="/register_pnc_reviewed/gakin_tidak"
-                        data-type-xml="select1" type="radio"
-                        value="Tidak" />
-                    <span class="option-label active" data-itext-id="/register_pnc_reviewed/gakin_tidak/Tidak:label"
-                        lang="Bahasa">Tidak
-                    </span>
-                    <span class="option-label " data-itext-id="/register_pnc_reviewed/gakin_tidak/Tidak:label"
-                        lang="en">No
-                    </span>
-                </label>
                 <label class="">
                     <input name="/register_pnc_reviewed/gakin_tidak" data-name="/register_pnc_reviewed/gakin_tidak"
                         data-type-xml="select1" type="radio"

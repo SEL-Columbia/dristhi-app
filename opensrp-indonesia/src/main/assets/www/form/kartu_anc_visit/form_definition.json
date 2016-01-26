@@ -14,6 +14,14 @@
         "source": "ibu.kartu_ibu.id"
       },
       {
+        "name": "lokasiPeriksa",
+        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa"
+      },
+      {
+        "name": "Keterangan_k1k4",
+        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4"
+      },
+      {
         "name": "referenceDate",
         "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/ref_date"
       },
