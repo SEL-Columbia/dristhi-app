@@ -43,7 +43,8 @@ public class FormUtils {
     private static final String relationalIdKey = "relationalid";
     private static final String databaseIdKey = "_id";
 
-    Format formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public FormUtils(Context context){
         mContext = context;
@@ -535,11 +536,18 @@ public class FormUtils {
                 item.put("value", entityId);
             }
 
-            if (itemName.equalsIgnoreCase("end")){
+            if(itemName.equalsIgnoreCase("start") || itemName.equalsIgnoreCase("end")){
                 try {
-                    Date date = new Date();
-                    String formatedDate = formatter.format(date);
-                    item.put("value", formatedDate);
+                    boolean isEndTime = itemName.equalsIgnoreCase("end");
+                    String val = item.has("value") ? item.getString("value") : sdf.format(new Date());
+                    if (isEndTime){
+                        val = formatter.format(new Date());
+                    }else{
+                        Date d = sdf.parse(val);
+                        //parse the date to match OpenMRS format
+                        val = formatter.format(d);
+                    }
+                    item.put("value", val);
                 }catch(Exception e){
                     e.printStackTrace();
                 }
