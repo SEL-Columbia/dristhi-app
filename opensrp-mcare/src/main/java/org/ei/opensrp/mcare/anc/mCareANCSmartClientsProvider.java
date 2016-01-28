@@ -160,6 +160,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
 
                 }else if(pc.getDetails().get("anc1_current_formStatus").equalsIgnoreCase("urgent")){
                     anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                    anc1text.setText("urgent");
                 }
             }
         }else{
@@ -368,6 +369,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
         }
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("expired")){
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
+            customFontTextView.setText("expired");
             customFontTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
