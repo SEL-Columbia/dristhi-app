@@ -202,7 +202,7 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
-//        Log.v("fieldoverride", metaData);
+        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
