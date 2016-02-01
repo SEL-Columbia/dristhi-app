@@ -192,10 +192,10 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
     private void checkAnc2StatusAndform(TextView anc2tick, TextView anc2text, CommonPersonObjectClient pc) {
         if(pc.getDetails().get("FWANC2DATE")!=null){
             anc2text.setText("ANC2-"+pc.getDetails().get("FWANC2DATE"));
-            if(pc.getDetails().get("anc2_current_formStatus")!=null){
-                if(pc.getDetails().get("anc2_current_formStatus").equalsIgnoreCase("upcoming")){
+            if(pc.getDetails().get("ANC2_current_formStatus")!=null){
+                if(pc.getDetails().get("ANC2_current_formStatus").equalsIgnoreCase("upcoming")){
 
-                }else if(pc.getDetails().get("anc2_current_formStatus").equalsIgnoreCase("urgent")){
+                }else if(pc.getDetails().get("ANC2_current_formStatus").equalsIgnoreCase("urgent")){
                     anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                 }
             }
@@ -228,10 +228,10 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
     private void checkAnc3StatusAndform(TextView anc3tick, TextView anc3text, CommonPersonObjectClient pc) {
         if(pc.getDetails().get("FWANC3DATE")!=null){
             anc3text.setText("ANC3-"+pc.getDetails().get("FWANC3DATE"));
-            if(pc.getDetails().get("anc3_current_formStatus")!=null){
-                if(pc.getDetails().get("anc3_current_formStatus").equalsIgnoreCase("upcoming")){
+            if(pc.getDetails().get("ANC3_current_formStatus")!=null){
+                if(pc.getDetails().get("ANC3_current_formStatus").equalsIgnoreCase("upcoming")){
 
-                }else if(pc.getDetails().get("anc3_current_formStatus").equalsIgnoreCase("urgent")){
+                }else if(pc.getDetails().get("ANC3_current_formStatus").equalsIgnoreCase("urgent")){
                     anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                 }
             }
@@ -264,10 +264,10 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
     private void checkAnc4StatusAndform(TextView anc4tick, TextView anc4text, CommonPersonObjectClient pc) {
         if(pc.getDetails().get("FWANC4DATE")!=null){
             anc4text.setText("ANC4-"+pc.getDetails().get("FWANC4DATE"));
-            if(pc.getDetails().get("anc4_current_formStatus")!=null){
-                if(pc.getDetails().get("anc4_current_formStatus").equalsIgnoreCase("upcoming")){
+            if(pc.getDetails().get("ANC4_current_formStatus")!=null){
+                if(pc.getDetails().get("ANC4_current_formStatus").equalsIgnoreCase("upcoming")){
 
-                }else if(pc.getDetails().get("anc4_current_formStatus").equalsIgnoreCase("urgent")){
+                }else if(pc.getDetails().get("ANC4_current_formStatus").equalsIgnoreCase("urgent")){
                     anc4tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                 }
             }

@@ -102,17 +102,33 @@
         "name": "FWBNFLB",
         "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNFLB"
       },
-      {
-        "name": "FWBNFGEN",
-        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFGEN"
-      },
-      {
-        "name": "FWBNFCHLDVITSTS",
-        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFCHLDVITSTS"
-      },
-      {
+       {
         "name": "FWBNFSMSRSN",
         "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNFSMSRSN"
+      }
+    ],"sub_forms": [
+      {
+        "name": "child_registration",
+        "bind_type": "mcarechild",
+        "default_bind_path": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/",
+        "fields": [
+          {
+            "name": "id",
+            "shouldLoadValue": true
+          },
+          {
+            "name": "relationalid",
+            "shouldLoadValue": true
+          },
+          {
+            "name": "FWBNFGEN",
+            "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFGEN"
+          },
+          {
+            "name": "FWBNFCHLDVITSTS",
+            "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFCHLDVITSTS"
+          }
+        ]
       }
     ]
   }

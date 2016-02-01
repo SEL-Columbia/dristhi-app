@@ -154,14 +154,14 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
 
         if (ancvisittext.contains("ANC4")) {
-            overridemap.put("anc4_current_formStatus", alertstatus);
+            overridemap.put("ANC4_current_formStatus", alertstatus);
             return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc4form), "anc_reminder_visit_4", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
         } else if (ancvisittext.contains("ANC3")) {
             Log.v("anc3 form status",alertstatus);
-            overridemap.put("anc3_current_formStatus", alertstatus);
+            overridemap.put("ANC3_current_formStatus", alertstatus);
             return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc3form), "anc_reminder_visit_3", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
         } else if (ancvisittext.contains("ANC2")) {
-            overridemap.put("anc2_current_formStatus", alertstatus);
+            overridemap.put("ANC2_current_formStatus", alertstatus);
             return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc2form), "anc_reminder_visit_2", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
         } else if (ancvisittext.contains("ANC1")) {
             Log.v("anc1 form status",alertstatus);
@@ -202,7 +202,7 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
-        Log.v("fieldoverride", metaData);
+//        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
