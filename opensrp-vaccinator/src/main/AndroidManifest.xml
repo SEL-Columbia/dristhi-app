@@ -12,6 +12,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".application.VaccinatorApplication"
         android:label="@string/app_name" >
         <activity
             android:name=".LoginActivity"
