@@ -7,7 +7,51 @@
         <option value="en">English</option>
     </select>
 
-
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa:label"
+                    lang="Bahasa">Lokasi Periksa
+                </span>
+                <span class="required">*</span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa:label" lang="en">
+                    Location of Service
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="1" required="required" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Posyandu:label"
+                        lang="Bahasa">Posyandu
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Posyandu:label"
+                        lang="en">Posyandu
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="2" required="required" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Polindes:label"
+                        lang="Bahasa">Polindes
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Polindes:label"
+                        lang="en">Polindes
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="3" required="required" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Rumah_ibu:label"
+                        lang="Bahasa">Rumah Ibu
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Rumah_ibu:label"
+                        lang="en">Mother House
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
     <fieldset class="question ">
         <fieldset>
             <legend>

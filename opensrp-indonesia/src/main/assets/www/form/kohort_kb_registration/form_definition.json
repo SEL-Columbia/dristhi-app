@@ -43,6 +43,14 @@
         "shouldLoadValue": true
       },
       {
+        "name": "lokasiPeriksa",
+        "bind": "/model/instance/tambah_kb_oa_reviewed/Lokasi_periksa"
+      },
+      {
+        "name": "nik",
+        "bind": "/model/instance/tambah_kb_oa_reviewed/nik"
+      },
+      {
         "name": "provinsi",
         "bind": "/model/instance/tambah_kb_oa_reviewed/provinsi"
       },

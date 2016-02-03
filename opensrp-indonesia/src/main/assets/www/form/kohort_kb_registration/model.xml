@@ -7,6 +7,7 @@
             <start/>
             <today/>
             <deviceid/>
+            <nik/>
             <simserial/>
             <phonenumber/>
             <Kabupaten/>
@@ -14,6 +15,7 @@
             <Desa/>
             <Dusun/>
             <unique_id/>
+            <Lokasi_periksa/>
             <generated_note_name_12/>
             <puskesmas/>
             <no_ibu/>

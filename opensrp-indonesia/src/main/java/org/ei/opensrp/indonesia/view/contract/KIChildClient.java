@@ -5,8 +5,11 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.opensrp.util.DateUtil;
+import org.ei.opensrp.util.Log;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
+
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 public class KIChildClient {
     private final String entityId;
@@ -28,7 +31,17 @@ public class KIChildClient {
     }
 
     public int getAgeInDays() {
-        return StringUtils.isBlank(dateOfBirth) ? 0 : Days.daysBetween(LocalDate.parse(dateOfBirth), DateUtil.today()).getDays();
+        if(isBlank(dateOfBirth)) {
+            return 0;
+        } else {
+            try {
+                return StringUtils.isBlank(dateOfBirth) ? 0 : Days.daysBetween(LocalDate.parse(dateOfBirth), DateUtil.today()).getDays();
+            } catch (Exception e) {
+                Log.logError("date format error : " + dateOfBirth);
+                return 0;
+            }
+        }
+
     }
 
     public String getAgeInString() {

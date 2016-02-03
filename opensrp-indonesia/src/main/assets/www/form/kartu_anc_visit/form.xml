@@ -7,7 +7,41 @@
         <option value="en">English</option>
     </select>
 
-
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa:label"
+                    lang="Bahasa">Lokasi Periksa
+                </span>
+                <span class="required">*</span>
+                <span class="question-label " data-itext-id="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa:label" lang="en">
+                    Location of Service
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa" data-name="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="1" required="required" />
+                    <span class="option-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa/Posyandu:label"
+                        lang="Bahasa">Posyandu
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa/Posyandu:label"
+                        lang="en">Posyandu
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa" data-name="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="2" required="required" />
+                    <span class="option-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa/Polindes:label"
+                        lang="Bahasa">Polindes
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa/Polindes:label"
+                        lang="en">Polindes
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -131,6 +165,53 @@
         <input name="/kunjungan_anc_reviewed_anc_visit/anc_ke" data-constraint=".&gt;0 and .&lt;5" data-type-xml="int"
             required="required" type="number" />
     </label>
+    <label class="note non-select ">
+        <span class="question-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/generated_note_name_9:label"
+            lang="Bahasa"> K1 standar - kunjungan pertama kurang atau sama dg 12 minggu. K1 akses - kunjungan pertama pada semua usia kehamilan.
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_anc_reviewed_anc_visit/generated_note_name_9:label"
+            lang="en"> K1 standar - kunjungan pertama kurang atau sama dg 12 minggu. K1 akses - kunjungan pertama pada semua usia kehamilan.
+        </span>
+        <input name="/kunjungan_anc_reviewed_anc_visit/generated_note_name_9" data-type-xml="string" readonly="readonly"
+            type="text" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4:label"
+                    lang="Bahasa">Keterangan K1/K4?
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4:label"
+                    lang="en">-
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4" data-name="/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4"
+                        data-type-xml="select1" type="radio"
+                        value="standar" />
+                    <span class="option-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4/standar:label"
+                        lang="Bahasa">standar
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4/standar:label"
+                        lang="en">standard
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4" data-name="/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4"
+                        data-type-xml="select1" type="radio"
+                        value="standar" />
+                    <span class="option-label active" data-itext-id="/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4/standar:label"
+                        lang="Bahasa">
+                        akses
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4/standar:label"
+                        lang="en">accessible
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
     <fieldset class="question ">
         <fieldset>
             <legend>

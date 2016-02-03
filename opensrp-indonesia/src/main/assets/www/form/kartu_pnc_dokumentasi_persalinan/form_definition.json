@@ -14,8 +14,12 @@
         "source": "ibu.anak.id"
       },
       {
-        "name": "hpht",
-        "bind": "/model/instance/dok_persalinan_reviewed/hpht",
+        "name": "lokasiPeriksa",
+        "bind": "/model/instance/dok_persalinan_reviewed/Lokasi_periksa"
+      },
+      {
+        "name": "tanggalHPHT",
+        "bind": "/model/instance/dok_persalinan_reviewed/tanggalHPHT",
         "source": "ibu.tanggalHPHT",
         "shouldLoadValue": true
       },

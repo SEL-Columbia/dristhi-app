@@ -9,6 +9,10 @@
         "shouldLoadValue": true
       },
       {
+        "name": "lokasiPeriksa",
+        "bind": "/model/instance/kohort_pelayanan_kb_reviewed/Lokasi_periksa"
+      },
+      {
         "name": "tanggalkunjungan",
         "bind": "/model/instance/kohort_pelayanan_kb_reviewed/tanggal_kunjungan"
       },

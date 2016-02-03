@@ -10,6 +10,7 @@
             <deviceid />
             <simserial />
             <phonenumber />
+            <Lokasi_periksa />
             <reference_date />
             <generated_note_name_8 />
             <integrasi_program_pmtct_vct />

@@ -14,6 +14,11 @@
 		
             },
             {
+              "name": "lokasiPeriksa",
+              "bind": "/model/instance/kunjungan_neonatal_reviewed/Lokasi_periksa"
+            },
+
+            {
                 "name": "saatLahirsd5JamKondisibayi",
                 "bind": "/model/instance/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi" 
 		

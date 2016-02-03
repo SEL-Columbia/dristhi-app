@@ -10,6 +10,7 @@
             <deviceid />
             <simserial />
             <phonenumber />
+            <Lokasi_periksa />
             <tanggal_kunjungan />
             <keterangan_tentang_peserta_kb />
             <jenis_kontrasepsi_yang_digunakan />

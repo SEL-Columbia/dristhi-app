@@ -12,6 +12,7 @@
             <tanggal_kunjungan />
             <tanggal_lahir />
             <umur />
+            <Lokasi_periksa />
             <generated_note_name_10 />
             <paritas />
             <td_sistolik />

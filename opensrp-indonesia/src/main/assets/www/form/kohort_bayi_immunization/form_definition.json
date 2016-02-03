@@ -9,6 +9,10 @@
                 "shouldLoadValue": true
             },
             {
+                "name": "lokasiPeriksa",
+                "bind": "/model/instance/Baby_Immunization.xls/Lokasi_periksa"
+            },
+            {
                 "name": "tanggalpemberianimunisasiHb07",
                 "bind": "/model/instance/Baby_Immunization.xls/tanggal_pemberian_imunisasi_hb_07",
                 "shouldLoadValue": true

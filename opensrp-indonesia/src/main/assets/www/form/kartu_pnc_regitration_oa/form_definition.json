@@ -14,6 +14,10 @@
         "shouldLoadValue": true
       },
       {
+        "name": "lokasiPeriksa",
+        "bind": "/model/instance/register_pnc_reviewed/Lokasi_periksa"
+      },
+      {
         "name": "childId",
         "shouldLoadValue": true,
         "source": "kartu_ibu.ibu.anak.id"
@@ -22,6 +26,10 @@
         "name": "unique_id",
         "bind": "/model/instance/register_pnc_reviewed/unique_id",
         "shouldLoadValue" : true
+      },
+      {
+        "name": "nik",
+        "bind": "/model/instance/register_pnc_reviewed/nik"
       },
 	  {
         "name": "Village",

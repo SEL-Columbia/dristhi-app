@@ -9,6 +9,10 @@
                 "shouldLoadValue": true
             },
             {
+                "name": "lokasiPeriksa",
+                "bind": "/model/instance/balita_kunjungan/Lokasi_periksa"
+            },
+            {
                 "name": "tanggalKunjunganBayiPerbulan",
                 "bind": "/model/instance/balita_kunjungan/B05010"
             },

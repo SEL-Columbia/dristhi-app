@@ -14,6 +14,7 @@
             <Desa/>
             <Dusun/>
             <unique_id/>
+            <Lokasi_periksa />
             <generated_note_name_12/>
             <puskesmas/>
             <no_ibu/>
@@ -49,6 +50,7 @@
             <jam__plasenta_lahir/>
             <perdarahan_kala_iv_2_jam_postpartum/>
             <persentasi/>
+            <nik/>
             <tempat/>
             <penolong/>
             <penolong_lain_lain/>
