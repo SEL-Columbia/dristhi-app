@@ -190,7 +190,7 @@ public class Context {
     private ANMController anmController;
     private ANMLocationController anmLocationController;
 
-    private DristhiConfiguration configuration;
+    protected DristhiConfiguration configuration;
 
     ///////////////////common bindtypes///////////////
     public static ArrayList<CommonRepositoryInformationHolder> bindtypes;

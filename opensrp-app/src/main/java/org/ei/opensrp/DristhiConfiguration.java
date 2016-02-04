@@ -13,24 +13,21 @@ import java.util.Properties;
 
 public class DristhiConfiguration {
 
-    private static final String DRISHTI_BASE_URL = "DRISHTI_BASE_URL";
-    private static final String HOST = "HOST";
-    private static final String PORT = "PORT";
-    private static final String SHOULD_VERIFY_CERTIFICATE = "SHOULD_VERIFY_CERTIFICATE";
-    private static final String SYNC_DOWNLOAD_BATCH_SIZE = "SYNC_DOWNLOAD_BATCH_SIZE";
-    private static final String APP_NAME = "APP_NAME";
-    private static final String SYNC_FORM = "SYNC_FORM";
-    public static AllSharedPreferences preferences;
-    private Properties properties = new Properties();
-    private String dummyData = null;
+    protected static final String DRISHTI_BASE_URL = "DRISHTI_BASE_URL";
+    protected static final String HOST = "HOST";
+    protected static final String PORT = "PORT";
+    protected static final String SHOULD_VERIFY_CERTIFICATE = "SHOULD_VERIFY_CERTIFICATE";
+    protected static final String SYNC_DOWNLOAD_BATCH_SIZE = "SYNC_DOWNLOAD_BATCH_SIZE";
+    protected static final String APP_NAME = "APP_NAME";
+    protected static final String SYNC_FORM = "SYNC_FORM";
+    protected static AllSharedPreferences preferences;
+    protected Properties properties = new Properties();
+    protected String dummyData = null;
 
     public DristhiConfiguration(AssetManager assetManager) {
         preferences=Context.getInstance().allSharedPreferences();
         try {
             properties.load(assetManager.open("app.properties"));
-            //InputStream dummyNameFile = assetManager.open("dummy_name.json");
-            //dummyData = IOUtils.toString(dummyNameFile);
-            //IOUtils.closeQuietly(dummyNameFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
