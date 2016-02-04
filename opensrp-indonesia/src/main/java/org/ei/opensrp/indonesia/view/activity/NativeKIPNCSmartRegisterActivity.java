@@ -178,6 +178,11 @@ public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartReg
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
         }catch (Exception e){
+            // TODO: show error dialog on the formfragment if the submission fails
+            DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
+            if (displayFormFragment != null) {
+                displayFormFragment.hideTranslucentProgressDialog();
+            }
             e.printStackTrace();
         }
     }
@@ -196,6 +201,7 @@ public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartReg
                 //hack reset the form
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
                 if (displayFormFragment != null) {
+                    displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
                     displayFormFragment.loadFormData();
                 }
