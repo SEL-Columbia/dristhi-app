@@ -180,8 +180,8 @@
         "source": "elco.mcaremother.FWWOMVALID"
       },
       {
-        "name": "FWPSRWOMPREGWTD",
-        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/psrf_met/psrf_pregnant/FWPSRWOMPREGWTD"
+        "name": "FWPSRPREGWTD",
+        "bind": "/model/instance/PregnancySurveillanceAndRegistrationForm/psrf_met/psrf_pregnant/FWPSRPREGWTD"
       },
       {
         "name": "FWPSRHUSPREGWTD",
