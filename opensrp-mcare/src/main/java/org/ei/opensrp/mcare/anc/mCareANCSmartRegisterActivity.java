@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 
+import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.form.FormSubmission;
@@ -19,6 +20,7 @@ import org.ei.opensrp.mcare.elco.ElcoSearchOption;
 import org.ei.opensrp.mcare.fragment.mCareANCSmartRegisterFragment;
 import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
@@ -39,6 +41,7 @@ import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.TreeNode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +49,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import util.AsyncTask;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
@@ -141,18 +145,28 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 new OpenFormOption(getResources().getString(R.string.nbnf), "birthnotificationpregnancystatusfollowup", formController)
         };
     }
-    public DialogOption[] getEditOptionsforanc(String visittext) {
+    public DialogOption[] getEditOptionsforanc(String visittext,String alertstatus) {
         String ancvisittext = "Not Synced";
+        String ancalertstatus = alertstatus;
         ancvisittext = visittext;
 
+        HashMap<String,String> overridemap = new HashMap<String,String>();
+
+
         if (ancvisittext.contains("ANC4")) {
-            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc4form), "anc_reminder_visit_4", formController)};
+            overridemap.put("ANC4_current_formStatus", alertstatus);
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc4form), "anc_reminder_visit_4", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
         } else if (ancvisittext.contains("ANC3")) {
-            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc3form), "anc_reminder_visit_3", formController)};
+            Log.v("anc3 form status",alertstatus);
+            overridemap.put("ANC3_current_formStatus", alertstatus);
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc3form), "anc_reminder_visit_3", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
         } else if (ancvisittext.contains("ANC2")) {
-            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc2form), "anc_reminder_visit_2", formController)};
+            overridemap.put("ANC2_current_formStatus", alertstatus);
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc2form), "anc_reminder_visit_2", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
         } else if (ancvisittext.contains("ANC1")) {
-            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc1form), "anc_reminder_visit_1", formController)};
+            Log.v("anc1 form status",alertstatus);
+            overridemap.put("anc1_current_formStatus", alertstatus);
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc1form), "anc_reminder_visit_1", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
         }else {
             return new DialogOption[]{};
         }
@@ -170,13 +184,15 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
     private class EditDialogOptionModelForANC implements DialogOptionModel {
         String ancvisittext ;
-        public EditDialogOptionModelForANC(String text) {
+        String ancvisitstatus;
+        public EditDialogOptionModelForANC(String text,String status) {
             ancvisittext = text;
+            ancvisitstatus = status;
         }
 
         @Override
         public DialogOption[] getDialogOptions() {
-            return getEditOptionsforanc(ancvisittext);
+            return getEditOptionsforanc(ancvisittext,ancvisitstatus);
         }
 
         @Override
@@ -279,6 +295,10 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
         }catch (Exception e){
+            DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
+            if (displayFormFragment != null) {
+                displayFormFragment.hideTranslucentProgressDialog();
+            }
             e.printStackTrace();
         }
     }
@@ -298,6 +318,7 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 //hack reset the form
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
                 if (displayFormFragment != null) {
+                    displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
                     displayFormFragment.loadFormData();
                 }
@@ -311,25 +332,50 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     public void onBackPressed() {
         if (currentPage != 0){
             retrieveAndSaveUnsubmittedFormData();
-            new AlertDialog.Builder(this)
-                    .setMessage(R.string.mcareform_back_confirm_dialog_message)
-                    .setTitle(R.string.mcareform_back_confirm_dialog_title)
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.mcareyes_button_label,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int whichButton) {
-                                    switchToBaseFragment(null);
-                                }
-                            })
-                    .setNegativeButton(R.string.mcareno_button_label,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int whichButton) {
-                                }
-                            })
-                    .show();
-//            switchToBaseFragment(null);
+            String BENGALI_LOCALE = "bn";
+            AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(Context.getInstance().applicationContext()));
+
+            String preferredLocale = allSharedPreferences.fetchLanguagePreference();
+            if (BENGALI_LOCALE.equals(preferredLocale)) {
+                new AlertDialog.Builder(this)
+                        .setMessage("আপনি কি নিশ্চিত যে আপনি ফর্ম থেকে বের হয়ে যেতে চান? ")
+                        .setTitle("ফর্ম বন্ধ নিশ্চিত করুন ")
+                        .setCancelable(false)
+                        .setPositiveButton("হাঁ",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        switchToBaseFragment(null);
+                                    }
+                                })
+                        .setNegativeButton("না",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                    }
+                                })
+                        .show();
+            }else{
+                new AlertDialog.Builder(this)
+                        .setMessage(R.string.mcareform_back_confirm_dialog_message)
+                        .setTitle(R.string.mcareform_back_confirm_dialog_title)
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.mcareyes_button_label,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        switchToBaseFragment(null);
+                                    }
+                                })
+                        .setNegativeButton(R.string.mcareno_button_label,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                    }
+                                })
+                        .show();
+            }
+
         }else if (currentPage == 0) {
             super.onBackPressed(); // allow back key only if we are
         }

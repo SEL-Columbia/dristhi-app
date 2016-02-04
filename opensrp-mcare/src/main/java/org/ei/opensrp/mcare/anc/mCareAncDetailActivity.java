@@ -206,6 +206,11 @@ public class mCareAncDetailActivity extends Activity {
                 String status = alertlist.get(i).status().value();
                 String text = ecclient.getDetails().get("FWANC4DATE")!=null?ecclient.getDetails().get("FWANC4DATE"):"";
                 TextView anc1date = (TextView)findViewById(R.id.anc4date);
+                if((ecclient.getDetails().get("ANC4_current_formStatus")!=null?ecclient.getDetails().get("ANC4_current_formStatus"):"").equalsIgnoreCase("upcoming")){
+                    anc1date.setTextColor(getResources().getColor(R.color.alert_complete_green));
+                }else if((ecclient.getDetails().get("ANC4_current_formStatus")!=null?ecclient.getDetails().get("ANC4_current_formStatus"):"").equalsIgnoreCase("urgent")){
+                    anc1date.setTextColor(getResources().getColor(R.color.alert_urgent_red));
+                }
                 anc1date.setText(text);
 
             }
@@ -222,6 +227,11 @@ public class mCareAncDetailActivity extends Activity {
                 String status = alertlist.get(i).status().value();
                 String text = ecclient.getDetails().get("FWANC3DATE")!=null?ecclient.getDetails().get("FWANC3DATE"):"";
                 TextView anc1date = (TextView)findViewById(R.id.anc3date);
+                if((ecclient.getDetails().get("ANC3_current_formStatus")!=null?ecclient.getDetails().get("ANC3_current_formStatus"):"").equalsIgnoreCase("upcoming")){
+                    anc1date.setTextColor(getResources().getColor(R.color.alert_complete_green));
+                }else if((ecclient.getDetails().get("ANC3_current_formStatus")!=null?ecclient.getDetails().get("ANC3_current_formStatus"):"").equalsIgnoreCase("urgent")){
+                    anc1date.setTextColor(getResources().getColor(R.color.alert_urgent_red));
+                }
                 anc1date.setText(text);
 
             }
@@ -239,6 +249,11 @@ public class mCareAncDetailActivity extends Activity {
                 String status = alertlist.get(i).status().value();
                 String text = ecclient.getDetails().get("FWANC2DATE")!=null?ecclient.getDetails().get("FWANC2DATE"):"";
                 TextView anc1date = (TextView)findViewById(R.id.anc2date);
+                if((ecclient.getDetails().get("ANC2_current_formStatus")!=null?ecclient.getDetails().get("ANC2_current_formStatus"):"").equalsIgnoreCase("upcoming")){
+                    anc1date.setTextColor(getResources().getColor(R.color.alert_complete_green));
+                }else if((ecclient.getDetails().get("ANC2_current_formStatus")!=null?ecclient.getDetails().get("ANC2_current_formStatus"):"").equalsIgnoreCase("urgent")){
+                    anc1date.setTextColor(getResources().getColor(R.color.alert_urgent_red));
+                }
                 anc1date.setText(text);
 
             }
@@ -256,6 +271,11 @@ public class mCareAncDetailActivity extends Activity {
                 String status = alertlist.get(i).status().value();
                 String text = ecclient.getDetails().get("FWANC1DATE")!=null?ecclient.getDetails().get("FWANC1DATE"):"";
                 TextView anc1date = (TextView)findViewById(R.id.anc1date);
+                if((ecclient.getDetails().get("anc1_current_formStatus")!=null?ecclient.getDetails().get("anc1_current_formStatus"):"").equalsIgnoreCase("upcoming")){
+                    anc1date.setTextColor(getResources().getColor(R.color.alert_complete_green));
+                }else if((ecclient.getDetails().get("anc1_current_formStatus")!=null?ecclient.getDetails().get("anc1_current_formStatus"):"").equalsIgnoreCase("urgent")){
+                    anc1date.setTextColor(getResources().getColor(R.color.alert_urgent_red));
+                }
                 anc1date.setText(text);
 
             }

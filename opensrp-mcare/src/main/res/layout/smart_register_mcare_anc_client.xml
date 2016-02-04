@@ -184,7 +184,6 @@
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:id="@+id/ga" />
     </LinearLayout>
@@ -200,6 +199,108 @@
         android:layout_weight="1.5"
         android:layout_gravity="center" >
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✔"
+                android:id="@+id/anc1tick"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:layout_margin="1dp"
+                android:textColor="@color/alert_complete_green" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:text="anc1text"
+                android:id="@+id/anc1text"
+                android:layout_margin="1dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✔"
+                android:id="@+id/anc2tick"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:layout_margin="1dp"
+                android:textColor="@color/alert_complete_green" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:text="anc1text"
+                android:id="@+id/anc2text"
+                android:layout_margin="1dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✔"
+                android:id="@+id/anc3tick"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:layout_margin="1dp"
+                android:textColor="@color/alert_complete_green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="anc1text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:id="@+id/anc3text"
+                android:layout_margin="1dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✔"
+                android:id="@+id/anc4tick"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:layout_margin="1dp"
+                android:textColor="@color/alert_complete_green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="anc1text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:id="@+id/anc4text"
+                android:layout_margin="1dp" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <ImageView
