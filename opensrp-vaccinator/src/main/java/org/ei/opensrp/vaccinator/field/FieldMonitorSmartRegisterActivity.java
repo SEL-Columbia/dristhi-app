@@ -145,7 +145,7 @@ if(sortbymonth) {
         return clientProvider;
     }
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
         //embedding data for testing purpose
 
 

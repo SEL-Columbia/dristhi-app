@@ -130,7 +130,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
     }
 
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
 
     }
 
@@ -234,7 +234,7 @@ public class NativeKISmartRegisterActivity extends BidanSecuredNativeSmartRegist
                 //hack reset the form
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
                 if (displayFormFragment != null) {
-                    displayFormFragment.nullifyFormData();
+                    displayFormFragment.setFormData(null);
                     displayFormFragment.loadFormData();
                 }
 

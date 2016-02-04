@@ -24,7 +24,6 @@ import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
-import org.ei.opensrp.view.viewpager.SampleViewPager;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -107,7 +106,7 @@ public class NativeKIPNCSmartRegisterActivity extends BidanSecuredNativeSmartReg
     }
 
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
 
     }
 

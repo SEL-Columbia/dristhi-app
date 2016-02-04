@@ -41,7 +41,7 @@ import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
-import org.ei.opensrp.view.viewpager.SampleViewPager;
+import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.*;
 public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity {
 
     @Bind(R.id.view_pager)
-    SampleViewPager mPager;
+    OpenSRPViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
     private int currentPage;
 
@@ -172,7 +172,7 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
     }
 
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
         // if OA form needed again, uncomment this
         // FieldOverrides fieldOverrides = new FieldOverrides(context.anmLoc
         // ationController().getLocationJSON());

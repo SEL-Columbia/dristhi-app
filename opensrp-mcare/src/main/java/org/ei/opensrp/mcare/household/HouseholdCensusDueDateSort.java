@@ -1,11 +1,10 @@
 package org.ei.opensrp.mcare.household;
 
 
-import org.ei.opensrp.mcare.R;
-
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
 import org.ei.opensrp.view.dialog.SortOption;
@@ -105,7 +104,7 @@ public class HouseholdCensusDueDateSort implements SortOption {
                 return -1;
             }
             else{
-                return 0;
+                return 1;
             }
 
 

@@ -25,9 +25,11 @@
         android:ems="10"
         android:typeface="sans"
         android:singleLine="true"
+        android:textCursorDrawable="@null"
         android:background="@drawable/rounded_corner_edittext"
         android:paddingLeft="8dp"
         android:width="260dp"
+        android:cursorVisible="true"
         android:layout_gravity="center"
         android:textColorHint="#bfbfbf"
         android:textColor="#666666"/>
@@ -45,8 +47,10 @@
         android:singleLine="true"
         android:width="260dp"
         android:layout_marginTop="10dp"
+        android:textCursorDrawable="@null"
         android:layout_gravity="center"
-        android:textColorHint="#bfbfbf"
+        android:cursorVisible="true"
+        android:textColorHint="#666666"
         android:textColor="#666666"/>
 
     <Button

@@ -79,7 +79,7 @@ public class LocationSelectorDialogFragment extends DialogFragment {
         LocationTree locationTree = EntityUtils.fromJson(getArguments().getString(LocationJSONString), LocationTree.class);
 
         Map<String,org.opensrp.api.util.TreeNode<String, Location>> locationMap =
-               locationTree.getLocationsHierarchy();
+                locationTree.getLocationsHierarchy();
 
         // creating the tree
         locationTreeToTreNode(root, locationMap, getArguments().getString(FormName));

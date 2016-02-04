@@ -2,9 +2,8 @@ package org.ei.opensrp.mcare.elco;
 
 import android.view.View;
 
-import org.ei.opensrp.mcare.R;
-
 import org.ei.opensrp.Context;
+import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.view.contract.ANCSmartRegisterClient;
 import org.ei.opensrp.view.contract.ChildSmartRegisterClient;

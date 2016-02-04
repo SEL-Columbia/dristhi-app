@@ -54,7 +54,7 @@ import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
-import org.ei.opensrp.view.viewpager.SampleViewPager;
+import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -76,7 +76,7 @@ import static com.google.common.collect.Iterables.toArray;
 public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegisterActivity  implements LocationSelectorDialogFragment.OnLocationSelectedListener {
 
     @Bind(R.id.view_pager)
-    SampleViewPager mPager;
+    OpenSRPViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
     private int currentPage;
 
@@ -160,7 +160,7 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
     }
 
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
 
     }
 

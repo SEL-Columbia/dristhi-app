@@ -1,15 +1,20 @@
 package org.ei.opensrp.view.fragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
@@ -19,6 +24,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ei.opensrp.R;
@@ -33,16 +39,20 @@ import java.io.InputStream;
  */
 public class DisplayFormFragment extends Fragment {
 
+    public static final String TAG = "DisplayFormFragment";
+
     WebView webView;
     ProgressBar progressBar;
 
-    private String formInputErrorMessage = "Form contains errors please try again";// externalize this
+    public static String formInputErrorMessage = "Form contains errors please try again";// externalize this
 
     private static final String headerTemplate = "web/forms/header";
     private static final String footerTemplate = "web/forms/footer";
     private static final String scriptFile = "web/forms/js_include.js";
 
     private String formName;
+    public static String okMessage = "ok";
+    Dialog progressDialog;
 
     public String getFormName() {
         return formName;
@@ -92,6 +102,7 @@ public class DisplayFormFragment extends Fragment {
         progressBar = (ProgressBar)view.findViewById(R.id.progressBar);
         initWebViewSettings();
         loadHtml();
+        initProgressDialog();
         return view;
     }
 
@@ -158,18 +169,38 @@ public class DisplayFormFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
     }
 
+    private void dismissProgressDialog(){
+        //dialog.dismiss();
+        webView.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+        //loadFormData();
+    }
+
+    public void showTranslucentProgressDialog(){
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.show();
+            }
+        });
+    }
+
+    public void hideTranslucentProgressDialog(){
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                if (progressDialog.isShowing()) {
+                    progressDialog.hide();
+                }
+            }
+        });
+    }
+
     String formData;
     public void setFormData(String data){
         if (data != null){
             this.formData = data;
         }
-    }
-
-    /**
-     * Explicitly call this function to nullify/clear the form data
-     **/
-    public void nullifyFormData(){
-        this.formData = null;
     }
 
     public void loadFormData(){
@@ -190,27 +221,29 @@ public class DisplayFormFragment extends Fragment {
                         }
                     });
 
-                }catch(Exception doNothing){   doNothing.printStackTrace();}
-
-
-
+                }catch(Exception doNothing){}
             }
         }).start();
 
     }
 
-    public static final String TAG = "DisplayFormFragment";
-
-    private void dismissProgressDialog(){
-        //dialog.dismiss();
-        webView.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.INVISIBLE);
-        //loadFormData();
-    }
-
     //override this on tha child classes to override specific fields
     public JSONObject getFormFieldsOverrides(){
         return fieldOverides;
+    }
+
+    public void saveCurrentFormData() {
+        webView.loadUrl("javascript:savePartialData()");
+    }
+
+    public void reloadDateWidget() {
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("javascript:refreshDateFields()");
+                Log.d(TAG, "date widgets reloaded");
+            }
+        });
     }
 
     public class AppWebViewClient extends WebViewClient {
@@ -245,11 +278,32 @@ public class DisplayFormFragment extends Fragment {
 
         @JavascriptInterface
         public void showFormErrorToast(){
-            Toast.makeText(mContext, formInputErrorMessage, Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+            builder.setMessage(formInputErrorMessage)
+                    .setCancelable(false)
+                    .setPositiveButton(okMessage, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //do things
+
+                        }
+                    });
+
+//            AlertDialog alert = builder.create();
+//
+//            alert.show();
+            AlertDialog dialog = builder.show();
+            TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
+            messageText.setGravity(Gravity.CENTER);
+            messageText.setPadding(20, 20, 20, 20);
+            dialog.show();
+            dialog.setCanceledOnTouchOutside(true);
+//            Toast.makeText(mContext, formInputErrorMessage, Toast.LENGTH_LONG).show();
         }
 
         @JavascriptInterface
         public void processFormSubmission(String formSubmission){
+            showTranslucentProgressDialog();
             ((SecuredNativeSmartRegisterActivity)getActivity()).saveFormSubmission(formSubmission, recordId, formName, getFormFieldsOverrides());
         }
 
@@ -258,6 +312,13 @@ public class DisplayFormFragment extends Fragment {
             //Toast.makeText(mContext, "Javascript loaded", Toast.LENGTH_LONG).show();
             javascriptLoaded = true;
         }
+
+        @JavascriptInterface
+        public void savePartialFormData(String partialData){
+            //Toast.makeText(mContext, "saving un-submitted form data", Toast.LENGTH_LONG).show();
+            ((SecuredNativeSmartRegisterActivity)getActivity()).savePartialFormData(partialData, recordId, formName, getFormFieldsOverrides());
+        }
+
     }
 
     private void resizeForm() {
@@ -278,7 +339,7 @@ public class DisplayFormFragment extends Fragment {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                } else if(Build.VERSION.SDK_INT >= 17) {
+                } else if(Build.VERSION.SDK_INT > 17) {
                     try {
                         Point realSize = new Point();
                         Display.class.getMethod("getRealSize", Point.class).invoke(d, realSize);
@@ -292,5 +353,11 @@ public class DisplayFormFragment extends Fragment {
                 webView.setLayoutParams(new RelativeLayout.LayoutParams(landHeightPixels, landWidthPixels));
             }
         });
+    }
+
+    private void initProgressDialog() {
+        progressDialog = new Dialog(getActivity(), R.style.progress_dialog_theme);
+        progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        progressDialog.setContentView(R.layout.progress_dialog);
     }
 }

@@ -43,6 +43,9 @@ public class FormUtils {
     private static final String relationalIdKey = "relationalid";
     private static final String databaseIdKey = "_id";
 
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     public FormUtils(Context context){
         mContext = context;
         theAppContext = org.ei.opensrp.Context.getInstance();
@@ -67,7 +70,6 @@ public class FormUtils {
 
         //retrieve the id, if it fails use the provided value by the param
         entity_id = formSubmission.getJSONObject(rootNodeKey).has(databaseIdKey) ? formSubmission.getJSONObject(rootNodeKey).getString(databaseIdKey) : generateRandomUUIDString();
-        assert entity_id != null;
 
         //String bindPath = formDefinition.getJSONObject("form").getString("bind_type");
         JSONObject fieldsDefinition = formDefinition.getJSONObject("form");
@@ -491,16 +493,19 @@ public class FormUtils {
             JSONObject item = fieldsArray.getJSONObject(i);
             if (!item.has("name"))
                 continue; // skip elements without name
+
+            String itemName = item.getString("name");
+            boolean shouldLoadValue = item.has("shouldLoadValue") && item.getBoolean("shouldLoadValue");
+
             if (item.has("bind")){
                 String pathSting = item.getString("bind");
                 pathSting = pathSting.startsWith("/") ? pathSting.substring(1) : pathSting;
                 String[] path = pathSting.split("/");
                 String value = getValueForPath(path, jsonObject);
                 item.put("value", value);
-
             }
 
-            if (item.has("shouldLoadValue") && item.getBoolean("shouldLoadValue") && overrides.has(item.getString("name"))){
+            if (shouldLoadValue && overrides.has(item.getString("name"))){
                 if (!item.has("value")) // if the value is not set use the value in the overrides filed
                     item.put("value", overrides.getString(item.getString("name")));
             }
@@ -508,7 +513,7 @@ public class FormUtils {
             // map the id field for child elements
             if (isForeignIdPath(item)){
                 String value = null;
-                if (entityJson.length() > 0 && item.has("shouldLoadValue") && item.getBoolean("shouldLoadValue")){
+                if (entityJson.length() > 0 && shouldLoadValue){
                     //retrieve the child attributes
                     value = retrieveValueForLinkedRecord(item.getString("source"), entityJson);
                 }
@@ -526,18 +531,23 @@ public class FormUtils {
                 item.put("source", bindPath + "." +  item.getString("name"));
             }
 
-            if (item.has("name") && item.getString("name").equalsIgnoreCase("id") && !isForeignIdPath(item)){
-                //String id = entityJson.has("id") ? entityJson.getString("id") : generateRandomUUIDString();
+            if (itemName.equalsIgnoreCase("id") && !isForeignIdPath(item)){
                 assert entityId != null;
                 item.put("value", entityId);
             }
 
-            if (item.has("name") && item.getString("name").equalsIgnoreCase("end")){
+            if(itemName.equalsIgnoreCase("start") || itemName.equalsIgnoreCase("end")){
                 try {
-                    Format formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-                    Date date = new Date();
-                    String formatedDate = formatter.format(date);
-                    item.put("value", formatedDate);
+                    boolean isEndTime = itemName.equalsIgnoreCase("end");
+                    String val = item.has("value") ? item.getString("value") : sdf.format(new Date());
+                    if (isEndTime){
+                        val = formatter.format(new Date());
+                    }else{
+                        Date d = sdf.parse(val);
+                        //parse the date to match OpenMRS format
+                        val = formatter.format(d);
+                    }
+                    item.put("value", val);
                 }catch(Exception e){
                     e.printStackTrace();
                 }

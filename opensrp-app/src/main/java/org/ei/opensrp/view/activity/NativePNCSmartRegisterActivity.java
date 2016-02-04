@@ -128,7 +128,7 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     }
 
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
         FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
         startFormActivity(PNC_REGISTRATION_OA, null, fieldOverrides.getJSONString());
     }

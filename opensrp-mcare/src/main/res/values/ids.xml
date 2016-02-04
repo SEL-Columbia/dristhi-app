@@ -3,4 +3,6 @@
     <item name="node_header" type="id" />
     <item name="node_items" type="id" />
     <item name="tree_items" type="id" />
+    <item name="clientobject" type="id">client</item>
+    <item name="textforAncRegister" type="id">textforAncRegister</item>
 </resources>

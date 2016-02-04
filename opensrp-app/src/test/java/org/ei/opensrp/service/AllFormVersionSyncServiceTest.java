@@ -26,6 +26,7 @@ import java.util.Map;
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 import static org.ei.opensrp.domain.FetchStatus.fetched;
+import static org.ei.opensrp.domain.FetchStatus.nothingFetched;
 import static org.ei.opensrp.domain.ResponseStatus.success;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -179,5 +180,23 @@ public class AllFormVersionSyncServiceTest {
         verify(formsVersionRepository).formExists("ec_dir");
         verify(formsVersionRepository).updateServerVersion("ec_dir", "3");
         verify(formsVersionRepository).updateSyncStatus("ec_dir", SyncStatus.PENDING);
+    }
+
+    @Test
+    public void shouldNotUpdateIfLocalFormIsTheLatestVersion() throws Exception {
+        String jsonObject = "{\"formVersions\" : [{\"formName\": \"EC_ENGKAN\", \"formDirName\": \"ec_dir\", \"formDataDefinitionVersion\": \"2\"}] }";
+        when(httpAgent.fetch("http://opensrp_base_url/form/latest-form-versions")).thenReturn(new Response<String>(success,jsonObject));
+
+        List<FormDefinitionVersion> repoForm = asList(new FormDefinitionVersion("form_ec", "ec_dir", "3"));
+
+        when(formsVersionRepository.formExists("ec_dir")).thenReturn(true);
+        when(formsVersionRepository.getAllFormWithSyncStatus(SyncStatus.PENDING))
+                .thenReturn(repoForm);
+        when(formsVersionRepository.getFormByFormDirName("ec_dir")).thenReturn(new FormDefinitionVersion("EC_ENGAN", "ec_dir", "3"));
+        when(formsVersionRepository.getVersion("ec_dir")).thenReturn("3");
+
+        FetchStatus fetchStatus = service.pullFormDefinitionFromServer();
+
+        assertEquals(nothingFetched, fetchStatus);
     }
 }

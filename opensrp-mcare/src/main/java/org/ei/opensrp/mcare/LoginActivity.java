@@ -10,6 +10,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.ei.opensrp.Context;
@@ -41,7 +43,10 @@ import java.util.zip.ZipFile;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
+import static org.ei.opensrp.domain.LoginResponse.NO_INTERNET_CONNECTIVITY;
 import static org.ei.opensrp.domain.LoginResponse.SUCCESS;
+import static org.ei.opensrp.domain.LoginResponse.UNAUTHORIZED;
+import static org.ei.opensrp.domain.LoginResponse.UNKNOWN_RESPONSE;
 import static org.ei.opensrp.util.Log.logError;
 import static org.ei.opensrp.util.Log.logVerbose;
 
@@ -75,15 +80,16 @@ public class LoginActivity extends Activity {
 
         }
         setContentView(org.ei.opensrp.R.layout.login);
-
+        ImageView loginglogo = (ImageView)findViewById(R.id.login_logo);
+        loginglogo.setImageDrawable(getResources().getDrawable(R.mipmap.login_logo));
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         initializeLoginFields();
         initializeBuildDetails();
         setDoneActionHandlerOnPasswordField();
         initializeProgressDialog();
         getActionBar().setTitle("");
-        getActionBar().setIcon(getResources().getDrawable(org.ei.opensrp.R.drawable.logo));
-        getActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.action_bar_background));
+        getActionBar().setIcon(getResources().getDrawable(org.ei.opensrp.mcare.R.mipmap.logo));
+        getActionBar().setBackgroundDrawable(getResources().getDrawable(org.ei.opensrp.mcare.R.color.action_bar_background));
         setLanguage();
 
     }
@@ -139,7 +145,9 @@ public class LoginActivity extends Activity {
 
     private void initializeLoginFields() {
         userNameEditText = ((EditText) findViewById(org.ei.opensrp.R.id.login_userNameText));
+        userNameEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
         passwordEditText = ((EditText) findViewById(org.ei.opensrp.R.id.login_passwordText));
+        passwordEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
     }
 
     private void setDoneActionHandlerOnPasswordField() {
@@ -179,7 +187,14 @@ public class LoginActivity extends Activity {
                     if (loginResponse == null) {
                         showErrorDialog("Login failed. Unknown reason. Try Again");
                     } else {
-                        showErrorDialog(loginResponse.message());
+                        if(loginResponse == NO_INTERNET_CONNECTIVITY){
+                            showErrorDialog(getResources().getString(R.string.no_internet_connectivity));
+                        }else if (loginResponse == UNKNOWN_RESPONSE){
+                            showErrorDialog(getResources().getString(R.string.unknown_response));
+                        }else if (loginResponse == UNAUTHORIZED){
+                            showErrorDialog(getResources().getString(R.string.unauthorized));
+                        }
+//                        showErrorDialog(loginResponse.message());
                     }
                     view.setClickable(true);
                 }
@@ -189,7 +204,7 @@ public class LoginActivity extends Activity {
 
     private void showErrorDialog(String message) {
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(getString(org.ei.opensrp.R.string.login_failed_dialog_title))
+                .setTitle(getString(R.string.login_failed_dialog_title))
                 .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override

@@ -132,7 +132,7 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
     }
 
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
         FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
         startFormActivity(AllConstants.FormNames.CHILD_REGISTRATION_OA, null, fieldOverrides.getJSONString());
     }

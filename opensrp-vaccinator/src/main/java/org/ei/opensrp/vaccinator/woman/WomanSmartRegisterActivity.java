@@ -22,7 +22,7 @@ import org.ei.opensrp.view.controller.FormController;
 import org.ei.opensrp.view.dialog.DialogOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
-import org.ei.opensrp.view.viewpager.SampleViewPager;
+import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
 import org.json.JSONObject;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.TreeNode;
@@ -42,7 +42,7 @@ import util.ClientlessOpenFormOption;
 public class WomanSmartRegisterActivity extends SecuredNativeSmartRegisterActivity  {
 
     @Bind(R.id.view_pager)
-    SampleViewPager mPager;
+    OpenSRPViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
     private int currentPage;
 
@@ -134,7 +134,7 @@ Log.d("form open","enrollments form by activity");
                   };
     }
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
 
     }//end of method
 

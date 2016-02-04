@@ -91,7 +91,7 @@
     <string name="filter_by_all_label">All</string>
     <string name="filter_by_out_of_area_label">O/A</string>
     <string name="filter_by_leave_the_place_label">L/P</string>
-    <string name="ec_register_title_in_short">EC:</string>
+    <string name="ec_register_title_in_short">EC</string>
 
     <string name="str_register_anc_form">Register ANC</string>
     <string name="str_register_fp_form">Register FP</string>

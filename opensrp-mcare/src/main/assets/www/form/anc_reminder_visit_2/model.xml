@@ -1,0 +1,66 @@
+<model>
+    <instance>
+        <ANC_Reminder_Visit_2 encounter_type="ANC Reminder Visit 2" id="ANCReminderVisit2" version="201509140926">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <version/>
+          <changes/>
+          <existing_gobhhid/>
+          <existing_jivhhid/>
+          <existing_wom_bid/>
+          <existing_wom_nid/>
+          <existing_first_name/>
+          <existing_husname/>
+          <existing_psrlmp/>
+          <existing_riskfactor/>
+          <existing_dangervalue/>
+          <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
+          <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+          <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+          <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+          <FWANC2DATE openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWCONFIRMATION/>
+          <FWGESTATIONALAGE/>
+          <FWEDD/>
+          <FWANC2REMSTS openmrs_entity="concept" openmrs_entity_id="161641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWANC2INT/>
+          <DISPLAYTEXT2/>
+          <FWANC2KNWPRVDR/>
+          <DISPLAYTEXT3/>
+          <FWANC2PREGCOND openmrs_entity="concept" openmrs_entity_id="160079AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <DISPLAYTEXT4/>
+          <FWANC2PROB openmrs_entity="concept" openmrs_entity_id="1889AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWDISPLAYTEXT5/>
+          <FWANC2DNGRSIGN openmrs_entity="concept" openmrs_entity_id="160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWDISPLAYTEXT6/>
+          <FWDISPLAYTEXT7/>
+          <FWDISPLAYTEXT8/>
+          <FWDISPLAYTEXT9/>
+          <FWDISPLAYTEXT10/>
+          <FWDISPLAYTEXT11/>
+          <FWBPC2LOCOFDEL openmrs_entity="concept" openmrs_entity_id="159758AAAAAAAAAA"/>
+          <FWBPC2DISPLAYTEXT1/>
+          <FWBPC2DISPLAYTEXT2/>
+          <FWBPC2DISPLAYTEXT3/>
+          <FWBPC2ASSTLAB/>
+          <FWBPC2DISPLAYTEXT4/>
+          <FWBPC2DISPLAYTEXT5/>
+          <FWBPC2TRNSPRT/>
+          <FWBPC2DISPLAYTEXT6/>
+          <FWBPC2DISPLAYTEXT7/>
+          <FWBPC2BLDGRP/>
+          <FWBPC2DISPLAYTEXT8/>
+          <FWBPC2DISPLAYTEXT9/>
+          <FWBPC2BLDDNR/>
+          <FWBPC2DISPLAYTEXT10/>
+          <FWBPC2DISPLAYTEXT11/>
+          <FWBPC2FINARGMT openmrs_entity="concept" openmrs_entity_id="161006AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWBPC2DISPLAYTEXT12/>
+          <FWBPC2DISPLAYTEXT13/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </ANC_Reminder_Visit_2>
+      </instance>
+  </model>

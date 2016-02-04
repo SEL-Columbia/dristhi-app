@@ -39,7 +39,6 @@ import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
-import org.ei.opensrp.view.viewpager.SampleViewPager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -130,7 +129,7 @@ public class NativeKIAnakSmartRegisterActivity extends BidanSecuredNativeSmartRe
     }
 
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
     }
 
     public DialogOption[] getEditOptions() {

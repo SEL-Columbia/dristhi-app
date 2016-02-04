@@ -18,7 +18,7 @@ import org.ei.opensrp.view.controller.NavigationController;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.SmartRegisterDialogFragment;
-import org.ei.opensrp.view.viewpager.SampleViewPager;
+import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
 
 import butterknife.Bind;
 
@@ -31,7 +31,7 @@ public abstract class BidanSecuredNativeSmartRegisterActivity extends SecuredNat
     protected NavigationControllerINA navigationControllerINA;
 
     @Bind(R.id.view_pager)
-    public SampleViewPager mPager;
+    public OpenSRPViewPager mPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

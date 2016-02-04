@@ -186,7 +186,7 @@ public class ChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
     }
 
     @Override
-    protected void startRegistration() {
+    public void startRegistration() {
         Intent intent = new Intent(Barcode.BARCODE_INTENT);
         intent.putExtra(Barcode.SCAN_MODE, Barcode.QR_MODE);
         startActivityForResult(intent, Barcode.BARCODE_REQUEST_CODE);

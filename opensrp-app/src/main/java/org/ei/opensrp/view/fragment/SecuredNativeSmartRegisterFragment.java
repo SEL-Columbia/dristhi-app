@@ -1,6 +1,5 @@
 package org.ei.opensrp.view.fragment;
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
@@ -102,7 +101,7 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
     private FilterOption currentVillageFilter;
     private SortOption currentSortOption;
 
-    private View mView;
+    public View mView;
 
     public void setCurrentSearchFilter(FilterOption currentSearchFilter) {
         this.currentSearchFilter = currentSearchFilter;

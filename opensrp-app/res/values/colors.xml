@@ -30,5 +30,6 @@
     <color name="hb_level_normal">#43ae23</color>
     <color name="hb_level_dangerous">#d13f3f</color>
     <color name="hb_level_high">#edca00</color>
+    <color name="transparent">#00000000</color>
 
 </resources>

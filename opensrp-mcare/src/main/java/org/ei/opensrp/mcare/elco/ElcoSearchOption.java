@@ -1,9 +1,8 @@
 package org.ei.opensrp.mcare.elco;
 
-import org.ei.opensrp.mcare.R;
-
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
+import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.dialog.FilterOption;
 

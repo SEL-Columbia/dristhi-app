@@ -1,0 +1,72 @@
+<model>
+    <instance>
+        <ANC_Reminder_Visit_1 encounter_type="ANC Reminder Visit 1" id="ANCReminderVisit1" version="201509131021">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <version/>
+          <changes/>
+          <existing_gobhhid/>
+          <existing_jivhhid/>
+          <existing_wom_bid/>
+          <existing_wom_nid/>
+          <existing_first_name/>
+          <existing_husname/>
+          <existing_psrlmp/>
+          <existing_riskfactor/>
+          <existing_dangervalue/>
+          <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
+          <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+          <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+          <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+          <FWANC1DATE openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWCONFIRMATION/>
+          <FWGESTATIONALAGE/>
+          <FWEDD/>
+          <FWANC1REMSTS openmrs_entity="concept" openmrs_entity_id="161641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWANC1INT/>
+          <DISPLAYTEXT2/>
+          <FWANC1KNWPRVDR/>
+          <DISPLAYTEXT3/>
+          <risk_group openmrs_entity="concept" openmrs_entity_id="160079AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+            <yn_dk_label/>
+            <FDPSRANM openmrs_entity="concept" openmrs_entity_id="161544AAAAAAAAAA AAAAAAAAAAAAAAAA"/>
+            <FDPSRHBP openmrs_entity="concept" openmrs_entity_id="156639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <FDPSRDBT openmrs_entity="concept" openmrs_entity_id="119481AAAAAAAAAA AAAAAAAAAAAAAAAA"/>
+            <FDPSRTHY openmrs_entity="concept"/>
+          </risk_group>
+          <DISPLAYTEXT4/>
+          <FWANC1PROB openmrs_entity="concept" openmrs_entity_id="1889AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWDISPLAYTEXT5/>
+          <FWANC1DNGRSIGN openmrs_entity="concept" openmrs_entity_id="160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWDISPLAYTEXT6/>
+          <FWDISPLAYTEXT7/>
+          <FWDISPLAYTEXT8/>
+          <FWDISPLAYTEXT9/>
+          <FWDISPLAYTEXT10/>
+          <FWDISPLAYTEXT11/>
+          <FWBPC1LOCOFDEL openmrs_entity="concept" openmrs_entity_id="159758AAAAAAAAAA"/>
+          <FWBPC1DISPLAYTEXT1/>
+          <FWBPC1DISPLAYTEXT2/>
+          <FWBPC1DISPLAYTEXT3/>
+          <FWBPC1ASSTLAB/>
+          <FWBPC1DISPLAYTEXT4/>
+          <FWBPC1DISPLAYTEXT5/>
+          <FWBPC1TRNSPRT/>
+          <FWBPC1DISPLAYTEXT6/>
+          <FWBPC1DISPLAYTEXT7/>
+          <FWBPC1BLDGRP/>
+          <FWBPC1DISPLAYTEXT8/>
+          <FWBPC1DISPLAYTEXT9/>
+          <FWBPC1BLDDNR/>
+          <FWBPC1DISPLAYTEXT10/>
+          <FWBPC1DISPLAYTEXT11/>
+          <FWBPC1FINARGMT openmrs_entity="concept" openmrs_entity_id="161006AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWBPC1DISPLAYTEXT12/>
+          <FWBPC1DISPLAYTEXT13/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </ANC_Reminder_Visit_1>
+      </instance>
+  </model>
