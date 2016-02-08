@@ -1,9 +1,10 @@
 <model>
   <instance>
-    <BirthNotificationPregnancyStatusFollowUp encounter_type="Birth Notification Followup form" id="BirthNotificationFollowUp" version="201509141245">
+    <BirthNotificationPregnancyStatusFollowUp encounter_type="Birth Notification Followup form" id="BirthNotificationFollowUp" version="201602081222">
       <formhub>
         <uuid/>
       </formhub>
+      <version/>
       <changes/>
       <existing_gobhhid/>
       <existing_jivhhid/>
@@ -33,6 +34,7 @@
         </FWBNCHLDVITSTS>
         <FWBNFSMSRSN/>
       </outcome_occured>
+      <Is_PNC/>
       <meta>
         <instanceID/>
       </meta>
