@@ -10,6 +10,7 @@ import org.ei.opensrp.util.CacheableData;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.dialog.SortOption;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,8 @@ public class CommonPersonObjectController {
     ByColumnAndByDetails byColumnAndByDetails;
     ByColumnAndByDetails byColumnAndByDetailsNullcheck;
     SortOption sortOption;
+
+    ArrayList <ControllerFilterMap> filtermap;
 
     public enum ByColumnAndByDetails{
         byColumn,byDetails,byrelationalid;
@@ -116,6 +119,21 @@ public class CommonPersonObjectController {
         this.byColumnAndByDetailsNullcheck = byColumnAndByDetailsNullcheck;
         this.sortOption = sortOption;
     }
+    public CommonPersonObjectController(AllCommonsRepository allpersons,
+                                        AllBeneficiaries allBeneficiaries, Cache<String> cache,
+                                        Cache<CommonPersonObjectClients> personClientsCache, String nameString, String bindtype,ArrayList <ControllerFilterMap> filtermap,ByColumnAndByDetails byColumnAndByDetails,String null_check_key,ByColumnAndByDetails byColumnAndByDetailsNullcheck,SortOption sortOption ) {
+        this.allpersonobjects = allpersons;
+        this.allBeneficiaries = allBeneficiaries;
+        this.cache = cache;
+        this.personObjectClientsCache = personClientsCache;
+        this.person_CLIENTS_LIST = bindtype+"_"+filterkey+"_"+filtervalue+"ClientsList";
+        this.nameString = nameString;
+        this.filtermap = filtermap;
+        this.byColumnAndByDetails = byColumnAndByDetails;
+        this.null_check_key = null_check_key;
+        this.byColumnAndByDetailsNullcheck = byColumnAndByDetailsNullcheck;
+        this.sortOption = sortOption;
+    }
 
     public String get() {
         return cache.get(person_CLIENTS_LIST, new CacheableData<String>() {
@@ -123,10 +141,13 @@ public class CommonPersonObjectController {
             public String fetch() {
                 List<CommonPersonObject> p = allpersonobjects.all();
                 CommonPersonObjectClients pClients = new CommonPersonObjectClients();
-                if(filterkey == null){
+                if(filterkey == null) {
+                    if(filtermap != null){
+                     checkfiltermap_and_add(p,pClients,filtermap) ;
+                    }else{
                     for (CommonPersonObject personinlist : p) {
 
-                        if(!isnull(personinlist)) {
+                        if (!isnull(personinlist)) {
                             CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
 //                    pClient.entityID = personinlist.getCaseId();
                             pClient.setColumnmaps(personinlist.getColumnmaps());
@@ -134,6 +155,7 @@ public class CommonPersonObjectController {
                         }
 
                     }
+                 }
                 }else{
                     switch (byColumnAndByDetails){
                         case byColumn:
@@ -186,6 +208,50 @@ public class CommonPersonObjectController {
                 return new Gson().toJson(pClients);
             }
         });
+    }
+
+    private void checkfiltermap_and_add(List<CommonPersonObject> p, CommonPersonObjectClients pClients, ArrayList<ControllerFilterMap> filtermap) {
+        switch (byColumnAndByDetails){
+            case byColumn:
+                for (CommonPersonObject personinlist : p) {
+                    if(!isnull(personinlist)) {
+                        boolean isinFilter = false;
+                        for(int i = 0;i<filtermap.size();i++) {
+                            if (personinlist.getColumnmaps().get(filtermap.get(i).filterkey) != null) {
+                                if (personinlist.getColumnmaps().get(filtermap.get(i).filterkey).equalsIgnoreCase(filtermap.get(i).filtervalue) == filtermap.get(i).filterbool) {
+                                    isinFilter = true;
+                                }
+                            }
+                        }
+                        if(isinFilter){
+                            CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
+                            pClient.setColumnmaps(personinlist.getColumnmaps());
+                            pClients.add(pClient);
+                        }
+                    }
+                }
+                break;
+            case byDetails:
+                for (CommonPersonObject personinlist : p) {
+                    if(!isnull(personinlist)) {
+                        boolean isinFilter = false;
+                        for(int i = 0;i<filtermap.size();i++) {
+                            if (personinlist.getDetails().get(filtermap.get(i).filterkey) != null) {
+                                if (personinlist.getDetails().get(filtermap.get(i).filterkey).equalsIgnoreCase(filtermap.get(i).filtervalue) == filtermap.get(i).filterbool) {
+                                    isinFilter = true;
+                                }
+                            }
+                        }
+                        if(isinFilter){
+                            CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
+                            pClient.setColumnmaps(personinlist.getColumnmaps());
+                            pClients.add(pClient);
+                        }
+                    }
+                }
+                break;
+        }
+
     }
 
     //#TODO: Remove duplication
@@ -289,6 +355,18 @@ public class CommonPersonObjectController {
                 break;
         }
         return isnull;
+    }
+
+    class ControllerFilterMap{
+        public String filterkey;
+       public  String filtervalue;
+       public boolean filterbool;
+
+        public ControllerFilterMap(String filterkey, String filtervalue, boolean filterbool) {
+            this.filterkey = filterkey;
+            this.filtervalue = filtervalue;
+            this.filterbool = filterbool;
+        }
     }
 
 }
