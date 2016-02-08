@@ -43,12 +43,14 @@
         "shouldLoadValue": true
       },
       {
-        "name": "existing_doo",
-        "bind": "/model/instance/PNC_Reminder_Visit_3/existing_doo"
+        "name": "FWBNFDTOO",
+        "bind": "/model/instance/PNC_Reminder_Visit_3/existing_doo",
+        "shouldLoadValue": true
       },
       {
-        "name": "existing_outcome_status",
-        "bind": "/model/instance/PNC_Reminder_Visit_3/existing_outcome_status"
+        "name": "FWBNFSTS",
+        "bind": "/model/instance/PNC_Reminder_Visit_3/existing_outcome_status",
+        "shouldLoadValue": true
       },
       {
         "name": "existing_location",
@@ -157,6 +159,10 @@
       {
         "name": "FWPNC3DELCOMP",
         "bind": "/model/instance/PNC_Reminder_Visit_3/pnc3group/FWPNC3DELCOMP"
+      },
+      {
+        "name": "pnc3_current_formStatus",
+        "bind": "/model/instance/PNC_Reminder_Visit_3/pnc3group/pnc3_current_formStatus"
       }
     ]
   }

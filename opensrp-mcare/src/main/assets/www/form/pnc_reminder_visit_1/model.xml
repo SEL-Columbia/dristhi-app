@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <PNC_Reminder_Visit_1 encounter_type="PNC Reminder Visit 1" id="PNC_Reminder_Visit_1" version="201512200507">
+        <PNC_Reminder_Visit_1 encounter_type="PNC Reminder Visit 1" id="PNC_Reminder_Visit_1" version="201602080722">
             <formhub>
                 <uuid/>
             </formhub>
@@ -46,6 +46,7 @@
                 <FWPNC1DELCOMP openmrs_entity="concept" openmrs_entity_id="1669AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                 <DISPLAYTEXT5/>
                 <DISPLAYTEXT6/>
+                <pnc1_current_formStatus/>
             </pnc1group>
             <meta>
                 <instanceID/>

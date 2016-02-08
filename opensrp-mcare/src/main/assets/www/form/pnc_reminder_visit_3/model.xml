@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <PNC_Reminder_Visit_3 encounter_type="PNC Reminder Visit 3" id="PNC_Reminder_Visit_3" version="201512200508">
+        <PNC_Reminder_Visit_3 encounter_type="PNC Reminder Visit 3" id="PNC_Reminder_Visit_3" version="201602080721">
             <formhub>
                 <uuid/>
             </formhub>
@@ -42,6 +42,7 @@
                 <DISPLAY_FECDIS/>
                 <DISPLAY_URNBRN/>
                 <FWPNC3DELCOMP/>
+                <pnc3_current_formStatus/>
             </pnc3group>
             <meta>
                 <instanceID/>
