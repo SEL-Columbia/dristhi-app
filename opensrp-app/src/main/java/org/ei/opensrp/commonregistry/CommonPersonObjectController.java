@@ -155,11 +155,25 @@ public class CommonPersonObjectController {
             public String fetch() {
                 List<CommonPersonObject> p = allpersonobjects.all();
                 CommonPersonObjectClients pClients = new CommonPersonObjectClients();
-                if(filterkey == null) {
-                    if(filtermap != null){
-                        Log.v("is filtermap ", ""+filtermap.size());
-                     checkfiltermap_and_add(p, pClients, filtermap) ;
-                    }else{
+                if(filtermap != null){
+                    for (CommonPersonObject personinlist : p) {
+                        boolean filter = false;
+                        Log.v("is filtermap ", "" + filtermap.size());
+                        for(int k = 0;k<filtermap.size();k++) {
+                            filter = filtermap.get(k).filtermapLogic(personinlist);
+                        }
+
+                        if (!isnull(personinlist) && filter) {
+                            CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
+//                    pClient.entityID = personinlist.getCaseId();
+                            pClient.setColumnmaps(personinlist.getColumnmaps());
+                            pClients.add(pClient);
+
+                        }
+                    }
+                }
+                else if(filterkey == null) {
+
                     for (CommonPersonObject personinlist : p) {
                         Log.v("is filtermap ", "wrong place");
                         if (!isnull(personinlist)) {
@@ -170,7 +184,7 @@ public class CommonPersonObjectController {
                         }
 
                     }
-                 }
+
                 }else{
                     switch (byColumnAndByDetails){
                         case byColumn:
@@ -225,54 +239,6 @@ public class CommonPersonObjectController {
         });
     }
 
-    private void checkfiltermap_and_add(List<CommonPersonObject> p, CommonPersonObjectClients pClients, ArrayList<ControllerFilterMap> filtermap) {
-        switch (byColumnAndByDetails){
-            case byColumn:
-                for (CommonPersonObject personinlist : p) {
-                    if(!isnull(personinlist)) {
-                        boolean isinFilter = false;
-                        for(int i = 0;i<filtermap.size();i++) {
-                            if (personinlist.getColumnmaps().get(filtermap.get(i).filterkey) != null) {
-                                if (personinlist.getColumnmaps().get(filtermap.get(i).filterkey).equalsIgnoreCase(filtermap.get(i).filtervalue) == filtermap.get(i).filterbool) {
-                                    isinFilter = true;
-                                }else{
-                                    isinFilter = false;
-                                }
-                            }
-                        }
-                        if(isinFilter){
-                            CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
-                            pClient.setColumnmaps(personinlist.getColumnmaps());
-                            pClients.add(pClient);
-                        }
-                    }
-                }
-                break;
-            case byDetails:
-                for (CommonPersonObject personinlist : p) {
-                    if(!isnull(personinlist)) {
-                        boolean isinFilter = false;
-                        for(int i = 0;i<filtermap.size();i++) {
-                            if (personinlist.getDetails().get(filtermap.get(i).filterkey) != null) {
-                                if (personinlist.getDetails().get(filtermap.get(i).filterkey).equalsIgnoreCase(filtermap.get(i).filtervalue) == filtermap.get(i).filterbool) {
-                                    isinFilter = true;
-                                }else{
-                                    isinFilter = false;
-                                }
-                            }
-                        }
-                        if(isinFilter){
-                            CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
-                            pClient.setColumnmaps(personinlist.getColumnmaps());
-                            pClients.add(pClient);
-                        }
-                    }
-                }
-                break;
-        }
-
-    }
-
     //#TODO: Remove duplication
     public CommonPersonObjectClients getClients() {
         return personObjectClientsCache.get(person_CLIENTS_LIST, new CacheableData<CommonPersonObjectClients>() {
@@ -282,12 +248,26 @@ public class CommonPersonObjectController {
             public CommonPersonObjectClients fetch() {
                 List<CommonPersonObject> p = allpersonobjects.all();
                 CommonPersonObjectClients pClients = new CommonPersonObjectClients();
-                if(filterkey == null){
+                if(filtermap != null){
                     for (CommonPersonObject personinlist : p) {
-                        if(filtermap != null){
-                            Log.v("is filtermap ", ""+filtermap.size());
-                            checkfiltermap_and_add(p, pClients, filtermap) ;
-                        }else {
+                        boolean filter = false;
+                            Log.v("is filtermap ", "" + filtermap.size());
+                            for(int k = 0;k<filtermap.size();k++) {
+                                filter = filtermap.get(k).filtermapLogic(personinlist);
+                            }
+
+                            if (!isnull(personinlist) && filter) {
+                                CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
+//                    pClient.entityID = personinlist.getCaseId();
+                                pClient.setColumnmaps(personinlist.getColumnmaps());
+                                pClients.add(pClient);
+
+                            }
+                        }
+                }
+                else  if(filterkey == null){
+                    for (CommonPersonObject personinlist : p) {
+
                             if (!isnull(personinlist)) {
                                 CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
 //                    pClient.entityID = personinlist.getCaseId();
@@ -295,7 +275,7 @@ public class CommonPersonObjectController {
                                 pClients.add(pClient);
                             }
                         }
-                    }
+
                 }else{
                     switch (byColumnAndByDetails){
                         case byColumn:
