@@ -10,8 +10,10 @@ import android.widget.ImageButton;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.commonregistry.ControllerFilterMap;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.anc.mCareANCServiceModeOption;
@@ -159,9 +161,15 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
     @Override
     protected void onInitialization() {
+        ArrayList <ControllerFilterMap> controllerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
+
+        ancControllerfiltermap filtermap = new ancControllerfiltermap();
+
+        controllerFilterMapArrayList.add(filtermap);
+//        controllerFilterMapArrayList.add(filterforpnc);
         controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
                 context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 //                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
         villageController = new VillageController(context.allEligibleCouples(),
@@ -328,6 +336,26 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
                 dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name", ElcoMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
 
             }
+        }
+    }
+    class ancControllerfiltermap extends ControllerFilterMap{
+
+        @Override
+        public boolean filtermapLogic(CommonPersonObject commonPersonObject) {
+            boolean returnvalue = false;
+            if(commonPersonObject.getDetails().get("FWWOMVALID") != null){
+                if(commonPersonObject.getDetails().get("FWWOMVALID").equalsIgnoreCase("1")){
+                    returnvalue = true;
+                    if(commonPersonObject.getDetails().get("Is_PNC")!=null){
+                        if(commonPersonObject.getDetails().get("Is_PNC").equalsIgnoreCase("1")){
+                            returnvalue = false;
+                        }
+
+                    }
+                }
+            }
+            Log.v("the filter",""+returnvalue);
+            return returnvalue;
         }
     }
 

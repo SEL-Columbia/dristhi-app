@@ -91,6 +91,10 @@
         "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/FWDISPLAYTEXT1"
       },
       {
+        "name": "Is_PNC",
+        "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/Is_PNC"
+      },
+      {
         "name": "FWBNFWOMVITSTS",
         "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNFWOMVITSTS"
       },
