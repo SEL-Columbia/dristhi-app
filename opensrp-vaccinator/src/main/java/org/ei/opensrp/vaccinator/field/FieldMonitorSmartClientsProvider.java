@@ -48,28 +48,28 @@ public class FieldMonitorSmartClientsProvider implements SmartRegisterClientsPro
     //private CommonRepository commonRepository=new CommonRepository();
     private org.ei.opensrp.Context context1;
     ByMonthANDByDAILY byMonthlyAndByDaily;
-    public enum  ByMonthANDByDAILY{ ByMonth , ByDaily;}
+
+    public enum ByMonthANDByDAILY {ByMonth, ByDaily;}
 
 
     protected CommonPersonObjectController controller;
 
 
     public FieldMonitorSmartClientsProvider(Context context,
-                                            OnClickListener onClickListener,CommonPersonObjectController controller,
-                                            AlertService alertService , ByMonthANDByDAILY byMonthlyAndByDaily ,org.ei.opensrp.Context context1) {
+                                            OnClickListener onClickListener, CommonPersonObjectController controller,
+                                            AlertService alertService, ByMonthANDByDAILY byMonthlyAndByDaily, org.ei.opensrp.Context context1) {
         this.onClickListener = onClickListener;
         this.controller = controller;
         this.context = context;
-        this.context1=context1;
+        this.context1 = context1;
         this.alertService = alertService;
-        this.byMonthlyAndByDaily=byMonthlyAndByDaily;
+        this.byMonthlyAndByDaily = byMonthlyAndByDaily;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
                 (int) context.getResources().getDimension(org.ei.opensrp.R.dimen.list_item_height));
         txtColorBlack = context.getResources().getColor(org.ei.opensrp.R.color.text_black);
     }
-
 
     @Override
     public View getView(SmartRegisterClient client, View parentView, ViewGroup viewGroup) {
@@ -80,33 +80,29 @@ public class FieldMonitorSmartClientsProvider implements SmartRegisterClientsPro
         if (ByMonthANDByDAILY.ByMonth.equals(byMonthlyAndByDaily)) {
 
             if (parentView == null) {
-            parentView = (ViewGroup) inflater().inflate(R.layout.smart_register_field_client, null);
+                parentView = (ViewGroup) inflater().inflate(R.layout.smart_register_field_client, null);
+                viewHolder = new ViewHolder();
+                viewHolder.daymonthTextView = (TextView) parentView.findViewById(R.id.field_daymonth);
+                viewHolder.daymonthLayout = (LinearLayout) parentView.findViewById(R.id.field_daymonth_layout);
+
+                viewHolder.monthTargetTextView = (TextView) parentView.findViewById(R.id.field_month_target);
+                viewHolder.monthTargetLayout = (LinearLayout) parentView.findViewById(R.id.field_month_target_layout);
+
+                viewHolder.monthreceivedTextView = (TextView) parentView.findViewById(R.id.field_vaccine_recieved);
+                viewHolder.monthreceivedLayout = (LinearLayout) parentView.findViewById(R.id.field_vaccine_recieved_layout);
 
 
-            viewHolder = new ViewHolder();
+                viewHolder.monthusedTextView = (TextView) parentView.findViewById(R.id.field_vaccine_used);
+                viewHolder.monthusedLayout = (LinearLayout) parentView.findViewById(R.id.field_vaccine_used_layout);
 
-            viewHolder.daymonthTextView = (TextView) parentView.findViewById(R.id.field_daymonth);
-            viewHolder.daymonthLayout = (LinearLayout) parentView.findViewById(R.id.field_daymonth_layout);
+                viewHolder.monthwastedTextView = (TextView) parentView.findViewById(R.id.field_vaccine_wasted);
+                viewHolder.monthwastedLayout = (LinearLayout) parentView.findViewById(R.id.field_vaccine_wasted_layout);
+                parentView.setTag(viewHolder);
 
-            viewHolder.monthTargetTextView = (TextView) parentView.findViewById(R.id.field_month_target);
-            viewHolder.monthTargetLayout = (LinearLayout) parentView.findViewById(R.id.field_month_target_layout);
+            } else {
+                viewHolder = (ViewHolder) parentView.getTag();
 
-            viewHolder.monthreceivedTextView = (TextView) parentView.findViewById(R.id.field_vaccine_recieved);
-            viewHolder.monthreceivedLayout = (LinearLayout) parentView.findViewById(R.id.field_vaccine_recieved_layout);
-
-
-            viewHolder.monthusedTextView = (TextView) parentView.findViewById(R.id.field_vaccine_used);
-            viewHolder.monthusedLayout = (LinearLayout) parentView.findViewById(R.id.field_vaccine_used_layout);
-
-            viewHolder.monthwastedTextView = (TextView) parentView.findViewById(R.id.field_vaccine_wasted);
-            viewHolder.monthwastedLayout = (LinearLayout) parentView.findViewById(R.id.field_vaccine_wasted_layout);
-
-
-        } else {
-            viewHolder = (ViewHolder) parentView.getTag();
-
-        }
-
+            }
 
 
             viewHolder.daymonthLayout.setOnClickListener(onClickListener);
@@ -114,7 +110,7 @@ public class FieldMonitorSmartClientsProvider implements SmartRegisterClientsPro
             String date_entered = pc.getDetails().get("date_formatted");
 
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            Date date= null;
+            Date date = null;
             try {
                 date = format.parse(date_entered);
             } catch (ParseException e) {
@@ -162,82 +158,76 @@ public class FieldMonitorSmartClientsProvider implements SmartRegisterClientsPro
                         "(select count(*) c from pkchild where pentavalent_3 between '" + startDate + "' and '" + endDate + "') pentavalent_3 " +
                         "from pkchild limit 1 ;";
 
-                String sqlWasted="select sum (total_wasted)as total_wasted from field where date between '" + startDate + "' and '" + endDate + "'";
+                String sqlWasted = "select sum (total_wasted)as total_wasted from field where date between '" + startDate + "' and '" + endDate + "'";
                 List<CommonPersonObject> ttVaccinesUsed = null;
                 List<CommonPersonObject> childVaccinesUsed = null;
                 List<CommonPersonObject> wastedVaccines = null;
 
                 int totalTTUsed = 0;
                 int totalChildVaccinesUsed = 0;
-                int totalWasted=0;
+                int totalWasted = 0;
                 if (context1 != null) {
 
 
+                    ttVaccinesUsed = context1.allCommonsRepositoryobjects("pkwoman").customQuery(sqlWoman, new String[]{}, "pkwoman");
+                    childVaccinesUsed = context1.allCommonsRepositoryobjects("pkchild").customQuery(sqlChild, new String[]{}, "pkchild");
+                    wastedVaccines = context1.allCommonsRepositoryobjects("field").customQuery(sqlWasted, new String[]{}, "field");
+                    Map<String, Integer> usedmap = new HashMap<String, Integer>();
+                    Map<String, Integer> wastedmap = new HashMap<String, Integer>();
 
-                        ttVaccinesUsed = context1.allCommonsRepositoryobjects("pkwoman").customQuery(sqlWoman, new String[]{}, "pkwoman");
-                        childVaccinesUsed = context1.allCommonsRepositoryobjects("pkchild").customQuery(sqlChild, new String[]{}, "pkchild");
-                        wastedVaccines = context1.allCommonsRepositoryobjects("field").customQuery(sqlWasted, new String[]{}, "field");
-                Map<String,Integer> usedmap=new HashMap<String,Integer>();
-                    Map<String,Integer> wastedmap=new HashMap<String,Integer>();
-
-                   //Log.d("TT Vaccines",  ttVaccinesUsed.size() +"tt vaccines used");
+                    //Log.d("TT Vaccines",  ttVaccinesUsed.size() +"tt vaccines used");
                     //Log.d("child Vaccines",  childVaccinesUsed.size() +"tt vaccines used");
                     for (String s : ttVaccinesUsed.get(0).getColumnmaps().keySet()) {
-                                               totalTTUsed =totalTTUsed + Integer.parseInt(ttVaccinesUsed.get(0).getColumnmaps().get(s));
-                        usedmap.put(s,Integer.parseInt(ttVaccinesUsed.get(0).getColumnmaps().get(s)));
+                        totalTTUsed = totalTTUsed + Integer.parseInt(ttVaccinesUsed.get(0).getColumnmaps().get(s));
+                        usedmap.put(s, Integer.parseInt(ttVaccinesUsed.get(0).getColumnmaps().get(s)));
                     }
 
                     for (String s : childVaccinesUsed.get(0).getColumnmaps().keySet()) {
-                          totalChildVaccinesUsed =totalChildVaccinesUsed+ Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s));
+                        totalChildVaccinesUsed = totalChildVaccinesUsed + Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s));
                         Log.d("child Vaccines-", s);
-                     //   Log.d("child Vaccines", wastedVaccines.get(i).getColumnmaps().get(s) + " -wasted vaccines used");
+                        //   Log.d("child Vaccines", wastedVaccines.get(i).getColumnmaps().get(s) + " -wasted vaccines used");
 
-                        if(usedmap.containsKey(s))
-                        {
+                        if (usedmap.containsKey(s)) {
 
 
-                            usedmap.put(s,usedmap.get(s)+Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s)));
-                        }else{
+                            usedmap.put(s, usedmap.get(s) + Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s)));
+                        } else {
 
-                            usedmap.put(s,Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s)));
+                            usedmap.put(s, Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s)));
 
                         }
 
                     }
-                    for(int i=0;i<wastedVaccines.size();i++) {
+                    for (int i = 0; i < wastedVaccines.size(); i++) {
                         for (String s : wastedVaccines.get(i).getColumnmaps().keySet()) {
 
                             Log.d("child Vaccines-", s);
                             Log.d("child Vaccines", wastedVaccines.get(i).getColumnmaps().get(s) + " -wasted vaccines used");
 
-                                totalWasted = totalWasted + Integer.parseInt(wastedVaccines.get(i).getColumnmaps().get(s));
-                            wastedmap.put(s,Integer.parseInt(wastedVaccines.get(i).getColumnmaps().get(s)));
+                            totalWasted = totalWasted + Integer.parseInt(wastedVaccines.get(i).getColumnmaps().get(s));
+                            wastedmap.put(s, Integer.parseInt(wastedVaccines.get(i).getColumnmaps().get(s)));
                         }
 
                     }
-                    HashMap<String ,String > map2=new HashMap<String,String>();
-                    for(Map.Entry<String, Integer> entry: usedmap.entrySet())
-                    {
+                    HashMap<String, String> map2 = new HashMap<String, String>();
+                    for (Map.Entry<String, Integer> entry : usedmap.entrySet()) {
 
                         map2.put(entry.getKey(), String.valueOf(entry.getValue()));
                     }
 
-                    HashMap<String ,String > wastedmap2=new HashMap<String,String>();
-                    for(Map.Entry<String, Integer> entry: wastedmap.entrySet())
-                    {
+                    HashMap<String, String> wastedmap2 = new HashMap<String, String>();
+                    for (Map.Entry<String, Integer> entry : wastedmap.entrySet()) {
 
                         map2.put(entry.getKey(), String.valueOf(entry.getValue()));
                     }
-                    viewHolder.daymonthLayout.setTag(R.id.field_daymonth,pc);
-                   viewHolder.daymonthLayout.setTag(R.id.field_daymonth_layout,map2);
-                    viewHolder.daymonthLayout.setTag(R.id.field_month_target_layout,wastedmap2);
+                    viewHolder.daymonthLayout.setTag(R.id.field_daymonth, pc);
+                    viewHolder.daymonthLayout.setTag(R.id.field_daymonth_layout, map2);
+                    viewHolder.daymonthLayout.setTag(R.id.field_month_target_layout, wastedmap2);
 
                 }
 
 
-
-
-                viewHolder.daymonthTextView.setText(fmt.format("%tB %tY", cal,cal).toString());
+                viewHolder.daymonthTextView.setText(fmt.format("%tB %tY", cal, cal).toString());
 
                 viewHolder.monthTargetTextView.setText(pc.getDetails().get("Target_assigned_for_vaccination_at_each_month") != null ? pc.getDetails().get("Target_assigned_for_vaccination_at_each_month") : "Not Defined");
                 viewHolder.monthreceivedTextView.setText(pc.getDetails().get("Target_assigned_for_vaccination_at_each_month") != null ? pc.getDetails().get("Target_assigned_for_vaccination_at_each_month") : "Not Defined");
@@ -288,10 +278,8 @@ public class FieldMonitorSmartClientsProvider implements SmartRegisterClientsPro
 
 
             }
-        }
-        else {
-                //#TODO instiante  views for daily
-
+        } else {
+            //#TODO instiante  views for daily
 
 
             if (parentView == null) {
@@ -300,38 +288,35 @@ public class FieldMonitorSmartClientsProvider implements SmartRegisterClientsPro
 
                 viewHolder = new ViewHolder();
 
-                viewHolder.dateTextView=(TextView)parentView.findViewById(R.id.field_day);
-                viewHolder.dateLayout=(LinearLayout)parentView.findViewById(R.id.field_day_layout);
+                viewHolder.dateTextView = (TextView) parentView.findViewById(R.id.field_day);
+                viewHolder.dateLayout = (LinearLayout) parentView.findViewById(R.id.field_day_layout);
 
-                viewHolder.dailyUsedTextView=(TextView)parentView.findViewById(R.id.field_date_used);
-                viewHolder.dailyUsedLayout=(LinearLayout)parentView.findViewById(R.id.field_date_used_layout);
+                viewHolder.dailyUsedTextView = (TextView) parentView.findViewById(R.id.field_date_used);
+                viewHolder.dailyUsedLayout = (LinearLayout) parentView.findViewById(R.id.field_date_used_layout);
 
-                viewHolder.dailyWastedTextView =(TextView)parentView.findViewById(R.id.field_date_vaccine_wasted);
-                viewHolder.dailyWastedLayout=(LinearLayout)parentView.findViewById(R.id.field_date_vaccine_wasted_layout);
+                viewHolder.dailyWastedTextView = (TextView) parentView.findViewById(R.id.field_date_vaccine_wasted);
+                viewHolder.dailyWastedLayout = (LinearLayout) parentView.findViewById(R.id.field_date_vaccine_wasted_layout);
+                parentView.setTag(viewHolder);
 
-
-
-
-            }
-            else {
+            } else {
                 viewHolder = (ViewHolder) parentView.getTag();
 
             }
 
             viewHolder.dateLayout.setOnClickListener(onClickListener);
-            viewHolder.dateLayout.setTag(R.id.field_day,client);
-            String totalWaste=pc.getColumnmaps().get("total_wasted")!=null?pc.getColumnmaps().get("total_wasted"):"0";
+            viewHolder.dateLayout.setTag(R.id.field_day, client);
+            String totalWaste = pc.getColumnmaps().get("total_wasted") != null ? pc.getColumnmaps().get("total_wasted") : "0";
             viewHolder.dailyWastedTextView.setText(totalWaste);
 
-            String date =pc.getColumnmaps().get("date")!=null?pc.getColumnmaps().get("date"):"";
+            String date = pc.getColumnmaps().get("date") != null ? pc.getColumnmaps().get("date") : "";
             viewHolder.dateTextView.setText(date);
 
             String sqlWomanforDaily = "select (" +
-                    "select count(*) c from pkwoman where tt1 =  '"+date+ "') tt1," +
-                    "(select count(*) c from pkwoman where tt2 = '" +date+ "') tt2," +
-                    "(select count(*) c from pkwoman where tt3 = '" + date+ "') tt3," +
+                    "select count(*) c from pkwoman where tt1 =  '" + date + "') tt1," +
+                    "(select count(*) c from pkwoman where tt2 = '" + date + "') tt2," +
+                    "(select count(*) c from pkwoman where tt3 = '" + date + "') tt3," +
                     "(select count(*) c from pkwoman where tt4 = '" + date + "') tt4," +
-                    "(select count(*) c from pkwoman where tt5 = '" +date + "') tt5 " +
+                    "(select count(*) c from pkwoman where tt5 = '" + date + "') tt5 " +
                     "from pkwoman limit 1; ";
 
 
@@ -362,43 +347,40 @@ public class FieldMonitorSmartClientsProvider implements SmartRegisterClientsPro
 
             //Log.d("TT Vaccines",  ttVaccinesUsed.size() +"tt vaccines used");
             //Log.d("child Vaccines",  childVaccinesUsed.size() +"tt vaccines used");
-            HashMap<String,Integer> map=new HashMap<String ,Integer>();
+            HashMap<String, Integer> map = new HashMap<String, Integer>();
 
             for (String s : ttVaccinesUsed.get(0).getColumnmaps().keySet()) {
-                totalTTUsed =totalTTUsed + Integer.parseInt(ttVaccinesUsed.get(0).getColumnmaps().get(s));
+                totalTTUsed = totalTTUsed + Integer.parseInt(ttVaccinesUsed.get(0).getColumnmaps().get(s));
 
-                map.put(s,Integer.parseInt(ttVaccinesUsed.get(0).getColumnmaps().get(s)));
+                map.put(s, Integer.parseInt(ttVaccinesUsed.get(0).getColumnmaps().get(s)));
             }
 
             for (String s : childVaccinesUsed.get(0).getColumnmaps().keySet()) {
-                totalChildVaccinesUsed =totalChildVaccinesUsed+ Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s));
-                if(map.containsKey(s))
-                {
+                totalChildVaccinesUsed = totalChildVaccinesUsed + Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s));
+                if (map.containsKey(s)) {
 
-                  map.put(s,map.get(s)+Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s)));
-                }else{
+                    map.put(s, map.get(s) + Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s)));
+                } else {
 
-                    map.put(s,Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s)));
+                    map.put(s, Integer.parseInt(childVaccinesUsed.get(0).getColumnmaps().get(s)));
 
                 }
             }
-            HashMap<String ,String > map2=new HashMap<String,String>();
-            for(Map.Entry<String, Integer> entry: map.entrySet())
-            {
+            HashMap<String, String> map2 = new HashMap<String, String>();
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
 
                 map2.put(entry.getKey(), String.valueOf(entry.getValue()));
             }
 
-            viewHolder.dailyUsedTextView.setText(String.valueOf(totalChildVaccinesUsed+totalTTUsed));
-            viewHolder.dateLayout.setTag(R.id.field_day_layout,map2);
+            viewHolder.dailyUsedTextView.setText(String.valueOf(totalChildVaccinesUsed + totalTTUsed));
+            viewHolder.dateLayout.setTag(R.id.field_day_layout, map2);
 
         }
 
 
-
-            parentView.setLayoutParams(clientViewLayoutParams);
-            return parentView;
-        }
+        parentView.setLayoutParams(clientViewLayoutParams);
+        return parentView;
+    }
 
 
     @Override
@@ -441,7 +423,6 @@ public class FieldMonitorSmartClientsProvider implements SmartRegisterClientsPro
         LinearLayout monthwastedLayout;
 
 
-
         //for daily
         TextView dateTextView;
         TextView dailyUsedTextView;
@@ -452,35 +433,34 @@ public class FieldMonitorSmartClientsProvider implements SmartRegisterClientsPro
         LinearLayout dailyWastedLayout;
 
 
-
     }
 
-    private int calculateVaccineUsed(String date){
-       int totalUsed=0;
-        String sql ="select * from pkchild where date like  ?";
-    //    List<CommonPersonObject> used=null;
+    private int calculateVaccineUsed(String date) {
+        int totalUsed = 0;
+        String sql = "select * from pkchild where date like  ?";
+        //    List<CommonPersonObject> used=null;
 
-           // Log.d("Vaccinator", "Context is not null");
+        // Log.d("Vaccinator", "Context is not null");
 
-                Log.d("Vaccinator", "Pk child repo not null");
+        Log.d("Vaccinator", "Pk child repo not null");
         List<CommonPersonObject> used = context1.allCommonsRepositoryobjects("pkchild").customQuery(sql, new String[]{date + "%"}, "pkchild");
 
-            for (CommonPersonObject o : used) {
-                totalUsed += Integer.parseInt(o.getColumnmaps().get("total_used"));
+        for (CommonPersonObject o : used) {
+            totalUsed += Integer.parseInt(o.getColumnmaps().get("total_used"));
 
-            }
-        String sql1 ="select * from pkwoman where date like  ?";
-        List<CommonPersonObject> used1 =context1.allCommonsRepositoryobjects("pkwoman").customQuery(sql1, new String[]{date + "%"}, "pkwoman");
+        }
+        String sql1 = "select * from pkwoman where date like  ?";
+        List<CommonPersonObject> used1 = context1.allCommonsRepositoryobjects("pkwoman").customQuery(sql1, new String[]{date + "%"}, "pkwoman");
 
         for (CommonPersonObject o : used1) {
             totalUsed += Integer.parseInt(o.getColumnmaps().get("total_used"));
 
         }
 
-        String sqlEvents ="select * from TimelineEvent where date like  ?";
+        String sqlEvents = "select * from TimelineEvent where date like  ?";
 
         // #TODO include TimeLineevent table data also .
-     //  TimelineEvent time= context1.allCommonsRepositoryobjects("TimelineEvent").customQuery(sqlEvents,new String[]{},"TimelineEvent");
+        //  TimelineEvent time= context1.allCommonsRepositoryobjects("TimelineEvent").customQuery(sqlEvents,new String[]{},"TimelineEvent");
 
         return totalUsed;
     }

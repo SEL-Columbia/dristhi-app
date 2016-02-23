@@ -15,11 +15,12 @@ public class FieldSort implements SortOption {
 
     String field;
     ByMonthANDByDAILY byMonthlyAndByDaily;
-    public enum  ByMonthANDByDAILY{ ByMonth , ByDaily;}
 
-    public FieldSort(ByMonthANDByDAILY byMonthlyAndByDaily , String field){
-        this.field=field;
-        this.byMonthlyAndByDaily=byMonthlyAndByDaily;
+    public enum ByMonthANDByDAILY {ByMonth, ByDaily;}
+
+    public FieldSort(ByMonthANDByDAILY byMonthlyAndByDaily, String field) {
+        this.field = field;
+        this.byMonthlyAndByDaily = byMonthlyAndByDaily;
 
     }
 
@@ -39,21 +40,20 @@ public class FieldSort implements SortOption {
     Comparator<SmartRegisterClient> commoncomparator = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient oneClient, SmartRegisterClient anotherClient2) {
- /*           CommonPersonObjectClient commonPersonObjectClient = (CommonPersonObjectClient) oneClient;
+            CommonPersonObjectClient commonPersonObjectClient = (CommonPersonObjectClient) oneClient;
             CommonPersonObjectClient commonPersonObjectClient2 = (CommonPersonObjectClient) anotherClient2;
-            switch (byMonthlyAndByDaily){
+            switch (byMonthlyAndByDaily) {
                 case ByMonth:
                     commonPersonObjectClient.getDetails().get(field).equalsIgnoreCase("monthly");
                     commonPersonObjectClient2.getDetails().get(field).equalsIgnoreCase("monthly");
-                   return 1;// commonPersonObjectClient.getDetails().get(field).equalsIgnoreCase("monthly");
-                 break;
+                    return 0;// commonPersonObjectClient.getDetails().get(field).equalsIgnoreCase("monthly");
+
                 case ByDaily:
                     commonPersonObjectClient.getDetails().get(field).equalsIgnoreCase("daily");
                     return 1;
-                    break;
 
 
-            }*/
+            }
             return 0;
         }
     };

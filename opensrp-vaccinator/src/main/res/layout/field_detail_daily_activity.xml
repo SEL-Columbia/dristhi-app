@@ -84,8 +84,8 @@
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/vaccination_summery"
-            android:id="@+id/fielddetail_vaccination_summery"
+            android:text="@string/vaccination_summary"
+            android:id="@+id/fielddetail_vaccination_summary"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:layout_gravity="center_vertical"
             android:textColor="@color/text_black"

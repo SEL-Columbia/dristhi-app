@@ -46,18 +46,10 @@ public class VaccineReport extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vaccine_report);
-        context=Context.getInstance();
-
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        context = Context.getInstance();
 
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
-       Date date=new Date();
+        Date date = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         int year = cal.get(Calendar.YEAR);
@@ -72,127 +64,134 @@ public class VaccineReport extends AppCompatActivity {
         String endDate = year + "-" + month + "-" + cal.get(Calendar.DAY_OF_MONTH);
 
 
-        String childTablesql="select (select count(*) c from pkchild where bcg between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1  ) bcg_0," +
-                "(select count(*) c from pkchild where bcg between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) bcg_1," +
-                "(select count(*) c from pkchild where bcg between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) bcg_2," +
-                "(select count(*) c from pkchild where opv_0 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1  ) opv0_0," +
-                "(select count(*) c from pkchild where opv_0 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) opv0_1," +
-                "(select count(*) c from pkchild where opv_0 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) opv0_2," +
-                "(select count(*) c from pkchild where opv_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1  ) opv1_0," +
-                "(select count(*) c from pkchild where opv_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) opv1_1," +
-                "(select count(*) c from pkchild where opv_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) opv1_2," +
-                "(select count(*) c from pkchild where opv_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1  ) opv2_0," +
-                "(select count(*) c from pkchild where opv_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) opv2_1," +
-                "(select count(*) c from pkchild where opv_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) opv2_2," +
-                "(select count(*) c from pkchild where opv_3 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1  ) opv3_0," +
-                "(select count(*) c from pkchild where opv_3 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) opv3_1," +
-                "(select count(*) c from pkchild where opv_3 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) opv3_2," +
-                "(select count(*) c from pkchild where pcv_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1  ) pcv1_0," +
-                "(select count(*) c from pkchild where pcv_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) pcv1_1," +
-                "(select count(*) c from pkchild where pcv_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) pcv1_2," +
-                "(select count(*) c from pkchild where pcv_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1  ) pcv2_0," +
-                "(select count(*) c from pkchild where pcv_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) pcv2_1," +
-                "(select count(*) c from pkchild where pcv_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) pcv2_2," +
-                "(select count(*) c from pkchild where pcv_3 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1  ) pcv3_0," +
-                "(select count(*) c from pkchild where pcv_3 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) pcv3_1," +
-                "(select count(*) c from pkchild where pcv_3 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) pcv3_2," +
-                "(select count(*) c from pkchild where pentavalent_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1 )pentavalent1_0," +
-                "(select count(*) c from pkchild where pentavalent_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) pentavalent1_1," +
-                "(select count(*) c from pkchild where pentavalent_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) pentavalent1_2," +
-                "(select count(*) c from pkchild where pentavalent_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1 )pentavalent2_0," +
-                "(select count(*) c from pkchild where pentavalent_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) pentavalent2_1," +
-                "(select count(*) c from pkchild where pentavalent_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) pentavalent2_2," +
-                "(select count(*) c from pkchild where measles_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1  ) measles1_0," +
-                "(select count(*) c from pkchild where measles_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) measles1_1," +
-                "(select count(*) c from pkchild where measles_1 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) measles1_2," +
-                "(select count(*) c from pkchild where measles_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)<1  ) measles2_0," +
-                "(select count(*) c from pkchild where measles_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)=1  ) measles2_1," +
-                "(select count(*) c from pkchild where measles_2 between '"+startDate+"' and '"+endDate+"' and (date('now')-dob)>2  ) measles2_2  from pkchild limit 1;";
-     List<CommonPersonObject> childList= context.allCommonsRepositoryobjects("pkchild").customQuery(childTablesql, new String[]{}, "pkchild");
-        if(childList.size()<1) {
-            childObject=null;
-        }else{
+        String childTablesql = "select (select count(*) c from pkchild where bcg between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1  ) bcg_0," +
+                "(select count(*) c from pkchild where bcg between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) bcg_1," +
+                "(select count(*) c from pkchild where bcg between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) bcg_2," +
+                "(select count(*) c from pkchild where opv_0 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1  ) opv0_0," +
+                "(select count(*) c from pkchild where opv_0 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) opv0_1," +
+                "(select count(*) c from pkchild where opv_0 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) opv0_2," +
+                "(select count(*) c from pkchild where opv_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1  ) opv1_0," +
+                "(select count(*) c from pkchild where opv_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) opv1_1," +
+                "(select count(*) c from pkchild where opv_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) opv1_2," +
+                "(select count(*) c from pkchild where opv_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1  ) opv2_0," +
+                "(select count(*) c from pkchild where opv_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) opv2_1," +
+                "(select count(*) c from pkchild where opv_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) opv2_2," +
+                "(select count(*) c from pkchild where opv_3 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1  ) opv3_0," +
+                "(select count(*) c from pkchild where opv_3 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) opv3_1," +
+                "(select count(*) c from pkchild where opv_3 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) opv3_2," +
+                "(select count(*) c from pkchild where pcv_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1  ) pcv1_0," +
+                "(select count(*) c from pkchild where pcv_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) pcv1_1," +
+                "(select count(*) c from pkchild where pcv_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) pcv1_2," +
+                "(select count(*) c from pkchild where pcv_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1  ) pcv2_0," +
+                "(select count(*) c from pkchild where pcv_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) pcv2_1," +
+                "(select count(*) c from pkchild where pcv_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) pcv2_2," +
+                "(select count(*) c from pkchild where pcv_3 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1  ) pcv3_0," +
+                "(select count(*) c from pkchild where pcv_3 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) pcv3_1," +
+                "(select count(*) c from pkchild where pcv_3 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) pcv3_2," +
+                "(select count(*) c from pkchild where pentavalent_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1 )pentavalent1_0," +
+                "(select count(*) c from pkchild where pentavalent_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) pentavalent1_1," +
+                "(select count(*) c from pkchild where pentavalent_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) pentavalent1_2," +
+                "(select count(*) c from pkchild where pentavalent_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1 )pentavalent2_0," +
+                "(select count(*) c from pkchild where pentavalent_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) pentavalent2_1," +
+                "(select count(*) c from pkchild where pentavalent_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) pentavalent2_2," +
+                "(select count(*) c from pkchild where measles_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1  ) measles1_0," +
+                "(select count(*) c from pkchild where measles_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) measles1_1," +
+                "(select count(*) c from pkchild where measles_1 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) measles1_2," +
+                "(select count(*) c from pkchild where measles_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)<1  ) measles2_0," +
+                "(select count(*) c from pkchild where measles_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)=1  ) measles2_1," +
+                "(select count(*) c from pkchild where measles_2 between '" + startDate + "' and '" + endDate + "' and (date('now')-dob)>2  ) measles2_2  from pkchild limit 1;";
+        List<CommonPersonObject> childList = context.allCommonsRepositoryobjects("pkchild").customQuery(childTablesql, new String[]{}, "pkchild");
+        if (childList.size() < 1) {
+            childObject = null;
+        } else {
 
-            childObject =childList.get(0);
+            childObject = childList.get(0);
         }
 //select * from field where field.date like '2015-12%' and report=='monthly'
-        String womanVaccineSQlForField="select " +
-                "(select count(*) c from pkwoman where tt1 between '"+startDate+"' and '"+endDate+"' ) tt1," +
-                "(select count(*) c from pkwoman where tt2 between '"+startDate+"' and '"+endDate+"' ) tt2," +
-                "(select count(*) c from pkwoman where tt3 between '"+startDate+"' and '"+endDate+"' ) tt3," +
-                "(select count(*) c from pkwoman where tt4 between '"+startDate+"' and '"+endDate+"' ) tt4," +
-                "(select count(*) c from pkwoman where tt5 between '"+startDate+"' and '"+endDate+"' ) tt5 " +
+        String womanVaccineSQlForField = "select " +
+                "(select count(*) c from pkwoman where tt1 between '" + startDate + "' and '" + endDate + "' ) tt1," +
+                "(select count(*) c from pkwoman where tt2 between '" + startDate + "' and '" + endDate + "' ) tt2," +
+                "(select count(*) c from pkwoman where tt3 between '" + startDate + "' and '" + endDate + "' ) tt3," +
+                "(select count(*) c from pkwoman where tt4 between '" + startDate + "' and '" + endDate + "' ) tt4," +
+                "(select count(*) c from pkwoman where tt5 between '" + startDate + "' and '" + endDate + "' ) tt5 " +
                 "from pkwoman limit 1;";
-        List<CommonPersonObject> womanVaccineListForField= context.allCommonsRepositoryobjects("pkwoman").customQuery(womanVaccineSQlForField, new String[]{}, "pkwoman");
-    if(womanVaccineListForField.size()<1) {
-        womanVaccineObjectForField=null;
-    }else{
+        List<CommonPersonObject> womanVaccineListForField = context.allCommonsRepositoryobjects("pkwoman").customQuery(womanVaccineSQlForField, new String[]{}, "pkwoman");
+        if (womanVaccineListForField.size() < 1) {
+            womanVaccineObjectForField = null;
+        } else {
 
-        womanVaccineObjectForField =womanVaccineListForField.get(0);
+            womanVaccineObjectForField = womanVaccineListForField.get(0);
 
-    }
-        String reportMonth=year + "-" + month + "-";
-        String fieldVaccineSQL="select * from field where field.date like '"+reportMonth+"%' and report=='monthly'";
+        }
+        String reportMonth = year + "-" + month + "-";
+        String fieldVaccineSQL = "select * from field where field.date like '" + reportMonth + "%' and report=='monthly'";
 
-        List<CommonPersonObject>  fieldVaccineListForField= context.allCommonsRepositoryobjects("field").customQueryForCompleteRow(fieldVaccineSQL, new String[]{}, "field");
-        if(fieldVaccineListForField.size()<1) {
-            fieldVaccineObjectForField=null;
-        }else{
+        List<CommonPersonObject> fieldVaccineListForField = context.allCommonsRepositoryobjects("field").customQueryForCompleteRow(fieldVaccineSQL, new String[]{}, "field");
+        if (fieldVaccineListForField.size() < 1) {
+            fieldVaccineObjectForField = null;
+        } else {
 
-            fieldVaccineObjectForField =fieldVaccineListForField.get(0);
+            fieldVaccineObjectForField = fieldVaccineListForField.get(0);
 
         }
         //fieldVaccineObjectForField= context.allCommonsRepositoryobjects("field").customQueryForCompleteRow(fieldVaccineSQL, new String[]{}, "field").get(0);
 
-String childVaccineForFieldSQL= "select (" +
-        "select count(*) c from pkchild where bcg between '" + startDate + "' and '" + endDate + "') bcg," +
-        "(select count(*) c from pkchild where opv_0 between '" + startDate + "' and '" + endDate + "') opv_0," +
-        "(select count(*) c from pkchild where opv_1 between '" + startDate + "' and '" + endDate + "') opv_1," +
-        "(select count(*) c from pkchild where opv_2 between '" + startDate + "' and '" + endDate + "') opv_2," +
-        "(select count(*) c from pkchild where opv_3 between '" + startDate + "' and '" + endDate + "') opv_3, " +
-        "(select count(*) c from pkchild where pcv_1 between '" + startDate + "' and '" + endDate + "') pcv_1," +
-        "(select count(*) c from pkchild where pcv_2 between '" + startDate + "' and '" + endDate + "') pcv_2," +
-        "(select count(*) c from pkchild where pcv_3 between '" + startDate + "' and '" + endDate + "') pcv_3, " +
-        "(select count(*) c from pkchild where measles_1 between '" + startDate + "' and '" + endDate + "') measles_1, " +
-        "(select count(*) c from pkchild where measles_2 between '" + startDate + "' and '" + endDate + "') measles_2," +
-        "(select count(*) c from pkchild where pentavalent_1 between '" + startDate + "' and '" + endDate + "') pentavalent_1," +
-        "(select count(*) c from pkchild where pentavalent_2 between '" + startDate + "' and '" + endDate + "') pentavalent_2," +
-        "(select count(*) c from pkchild where pentavalent_3 between '" + startDate + "' and '" + endDate + "') pentavalent_3 " +
-        "from pkchild limit 1 ;";
+        String childVaccineForFieldSQL = "select (" +
+                "select count(*) c from pkchild where bcg between '" + startDate + "' and '" + endDate + "') bcg," +
+                "(select count(*) c from pkchild where opv_0 between '" + startDate + "' and '" + endDate + "') opv_0," +
+                "(select count(*) c from pkchild where opv_1 between '" + startDate + "' and '" + endDate + "') opv_1," +
+                "(select count(*) c from pkchild where opv_2 between '" + startDate + "' and '" + endDate + "') opv_2," +
+                "(select count(*) c from pkchild where opv_3 between '" + startDate + "' and '" + endDate + "') opv_3, " +
+                "(select count(*) c from pkchild where pcv_1 between '" + startDate + "' and '" + endDate + "') pcv_1," +
+                "(select count(*) c from pkchild where pcv_2 between '" + startDate + "' and '" + endDate + "') pcv_2," +
+                "(select count(*) c from pkchild where pcv_3 between '" + startDate + "' and '" + endDate + "') pcv_3, " +
+                "(select count(*) c from pkchild where measles_1 between '" + startDate + "' and '" + endDate + "') measles_1, " +
+                "(select count(*) c from pkchild where measles_2 between '" + startDate + "' and '" + endDate + "') measles_2," +
+                "(select count(*) c from pkchild where pentavalent_1 between '" + startDate + "' and '" + endDate + "') pentavalent_1," +
+                "(select count(*) c from pkchild where pentavalent_2 between '" + startDate + "' and '" + endDate + "') pentavalent_2," +
+                "(select count(*) c from pkchild where pentavalent_3 between '" + startDate + "' and '" + endDate + "') pentavalent_3 " +
+                "from pkchild limit 1 ;";
 
 
+        List<CommonPersonObject> childVaccineListForField = context.allCommonsRepositoryobjects("pkchild").customQuery(childVaccineForFieldSQL, new String[]{}, "pkchild");
+        if (childVaccineListForField.size() < 1) {
+            childVaccineForFieldObject = null;
 
-        List<CommonPersonObject>  childVaccineListForField=context.allCommonsRepositoryobjects("pkchild").customQuery(childVaccineForFieldSQL, new String[]{}, "pkchild");
-        if(fieldVaccineListForField.size()<1) {
-            childVaccineForFieldObject=null;
+        } else {
 
-        }else{
-
-            childVaccineForFieldObject =childVaccineListForField.get(0);
-
-        }
-       // childVaccineForFieldObject=context.allCommonsRepositoryobjects("pkchild").customQuery(childVaccineForFieldSQL, new String[]{}, "pkchild").get(0);
-
-       String pregnantWomanSQL="select " +
-               "(select count(*) c from pkwoman where tt1 between '" + startDate + "' and '" + endDate + "' and pregnant='yes') tt1," +
-               "(select count(*) c from pkwoman where tt2 between '" + startDate + "' and '" + endDate + "' and pregnant='yes') tt2," +
-               "(select count(*) c from pkwoman where tt3 between '" + startDate + "' and '" + endDate + "' and pregnant='yes') tt3," +
-               "(select count(*) c from pkwoman where tt4 between '" + startDate + "' and '" + endDate + "' and pregnant='yes') tt4," +
-               "(select count(*) c from pkwoman where tt5 between '" + startDate + "' and '" + endDate + "' and pregnant='yes') tt5 " +
-               "from pkwoman limit 1;    ";
-        List<CommonPersonObject>  pregnantVaccineList=context.allCommonsRepositoryobjects("pkwoman").customQuery(pregnantWomanSQL, new String[]{}, "pkwoman");
-        if(pregnantVaccineList.size()<1) {
-
-            pregnantWomanObject=null;
-        }else{
-
-            pregnantWomanObject =pregnantVaccineList.get(0);
+            childVaccineForFieldObject = childVaccineListForField.get(0);
 
         }
+        // childVaccineForFieldObject=context.allCommonsRepositoryobjects("pkchild").customQuery(childVaccineForFieldSQL, new String[]{}, "pkchild").get(0);
 
-     //  pregnantWomanObject=context.allCommonsRepositoryobjects("pkwoman").customQuery(pregnantWomanSQL, new String[]{}, "pkwoman").get(0);
+        String pregnantWomanSQL = "select " +
+                "(select count(*) c from pkwoman where tt1 between '" + startDate + "' and '" + endDate + "' and pregnant='yes') tt1," +
+                "(select count(*) c from pkwoman where tt2 between '" + startDate + "' and '" + endDate + "' and pregnant='yes') tt2," +
+                "(select count(*) c from pkwoman where tt3 between '" + startDate + "' and '" + endDate + "' and pregnant='yes') tt3," +
+                "(select count(*) c from pkwoman where tt4 between '" + startDate + "' and '" + endDate + "' and pregnant='yes') tt4," +
+                "(select count(*) c from pkwoman where tt5 between '" + startDate + "' and '" + endDate + "' and pregnant='yes') tt5 " +
+                "from pkwoman limit 1;    ";
+        List<CommonPersonObject> pregnantVaccineList = context.allCommonsRepositoryobjects("pkwoman").customQuery(pregnantWomanSQL, new String[]{}, "pkwoman");
+        if (pregnantVaccineList.size() < 1) {
 
-        Log.logDebug("Reached fieldVaccineObjectForField " );
+            pregnantWomanObject = null;
+        } else {
+
+            pregnantWomanObject = pregnantVaccineList.get(0);
+
+        }
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+        //  pregnantWomanObject=context.allCommonsRepositoryobjects("pkwoman").customQuery(pregnantWomanSQL, new String[]{}, "pkwoman").get(0);
+
+        Log.logDebug("Reached fieldVaccineObjectForField ");
     }
 
 
@@ -211,7 +210,7 @@ String childVaccineForFieldSQL= "select (" +
             new ChildVaccineTable(childObject);
 
         }*/
-            int id = item.getItemId();
+        int id = item.getItemId();
 
         if (id == R.id.action_settings) {
             return true;
@@ -221,7 +220,7 @@ String childVaccineForFieldSQL= "select (" +
     }
 
 
-   public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -231,22 +230,21 @@ String childVaccineForFieldSQL= "select (" +
         public Fragment getItem(int position) {
 
 
-        if(position==0)
-        {
+            if (position == 0) {
 
-            return new ChildVaccineTable(childObject);
-        }else if(position==1){
+                return new ChildVaccineTable(childObject);
+            } else if (position == 1) {
+                return new WomanVaccineTable(pregnantWomanObject);
 
-            return new WomanVaccineTable(pregnantWomanObject);
+            } else if (position == 2) {
+                //return new WomanVaccineTable(pregnantWomanObject);
+                return new FieldStockVaccineTable(fieldVaccineObjectForField, childVaccineForFieldObject, womanVaccineObjectForField);
 
-        }
-        else if(position==2) {
-            return new FieldStockVaccineTable(fieldVaccineObjectForField, childVaccineForFieldObject, womanVaccineObjectForField);
+            } /*else {
+                return PlaceholderFragment.newInstance(position + 1);
 
-        }else {
-            return PlaceholderFragment.newInstance(position + 1);
-
-        }
+            }*/
+            return null;
         }
 
         @Override
@@ -268,10 +266,10 @@ String childVaccineForFieldSQL= "select (" +
         }
     }
 
-   public static class PlaceholderFragment extends Fragment {
-     private static final String ARG_SECTION_NUMBER = "section_number";
+    public static class PlaceholderFragment extends Fragment {
+        private static final String ARG_SECTION_NUMBER = "section_number";
 
-      public static PlaceholderFragment newInstance(int sectionNumber) {
+        public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);

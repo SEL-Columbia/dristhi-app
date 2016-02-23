@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Window;
 
 import org.ei.opensrp.commonregistry.CommonObjectFilterOption;
+import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
+import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.ZiggyService;
@@ -18,6 +21,7 @@ import org.ei.opensrp.vaccinator.R;
 import org.ei.opensrp.vaccinator.fragment.WomanSmartRegisterFragment;
 import org.ei.opensrp.vaccinator.pageadapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.controller.FormController;
 import org.ei.opensrp.view.dialog.DialogOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
@@ -56,6 +60,7 @@ public class WomanSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -117,7 +122,7 @@ public class WomanSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
         formNames.add("woman_enrollment_form");
-
+        formNames.add("woman_followup_form");
         DialogOption[] options = getEditOptions(null);
         for (int i = 0; i < options.length; i++){
             formNames.add(((ClientlessOpenFormOption) options[i]). getFormName());
@@ -196,7 +201,7 @@ Log.d("form open","enrollments form by activity");
         byColumn,byDetails,bydefault;
     }
 */
-   /* private void startFollowupForms(String formName,SmartRegisterClient client ,HashMap<String , String> overrideStringmap , ByColumnAndByDetails byColumnAndByDetails) {
+    private void startFollowupForms(String formName,SmartRegisterClient client ,HashMap<String , String> overrideStringmap , WomanDateSort.ByColumnAndByDetails byColumnAndByDetails) {
 
 
         if(overrideStringmap == null) {
@@ -213,7 +218,7 @@ Log.d("form open","enrollments form by activity");
                         case byColumn:
                             overridejsonobject.put(entry.getKey() , ((CommonPersonObjectClient)client).getColumnmaps().get(entry.getValue()));
                             break;
-                        case bydefault:
+                        default:
                             overridejsonobject.put(entry.getKey() ,entry.getValue());
                             break;
                     }
@@ -227,7 +232,7 @@ Log.d("form open","enrollments form by activity");
             org.ei.opensrp.util.Log.logDebug("fieldOverrides data is : " + fieldOverrides.getJSONString());
             startFormActivity(formName, client.entityId(), fieldOverrides.getJSONString());
         }
-    }*/
+    }
 
     private Map<String,String> locations =new HashMap<String,String>();
 

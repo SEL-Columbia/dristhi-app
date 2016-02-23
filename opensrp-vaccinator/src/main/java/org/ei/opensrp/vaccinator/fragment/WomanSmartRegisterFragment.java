@@ -79,7 +79,7 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
 
     public WomanSmartRegisterFragment(FormController formController) {
         super();
-        this.formController1=formController;
+        this.formController1 = formController;
 
     }
 
@@ -196,7 +196,7 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
             switch (view.getId()) {
                 case R.id.woman_profile_info_layout:
                     WomanDetailActivity.womanclient = (CommonPersonObjectClient) view.getTag();
-                    Intent intent = new Intent(((WomanSmartRegisterActivity)getActivity()), WomanDetailActivity.class);
+                    Intent intent = new Intent(((WomanSmartRegisterActivity) getActivity()), WomanDetailActivity.class);
                     startActivity(intent);
                     getActivity().finish();
 
@@ -234,7 +234,6 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
                     map.put("existing_city_village", client.getDetails().get("city_village") != null ? client.getDetails().get("city_village") : "");
                     map.put("existing_province", client.getDetails().get("province") != null ? client.getDetails().get("province") : "");
                     map.put("existing_landmark", client.getDetails().get("landmark") != null ? client.getDetails().get("landmark") : "");
-                    //        map.put("existing_street",client.getDetails().get("existing_program_client_id")!=null?client.getDetails().get("existing_program_client_id"):"");
 
                     map.put("existing_first_name", client.getDetails().get("first_name") != null ? client.getDetails().get("first_name") : "");
                     map.put("existing_last_name", client.getDetails().get("last_name") != null ? client.getDetails().get("last_name") : "");
@@ -244,10 +243,9 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
                     map.put("existing_client_reg_date", client.getDetails().get("client_reg_date") != null ? client.getDetails().get("client_reg_date") : "");
                     map.put("existing_epi_card_number", client.getDetails().get("epi_card_number") != null ? client.getDetails().get("epi_card_number") : "");
                     map.putAll(getPreloadVaccineData(client));
-                    //setOverrides(map);
+                    setOverrides(map);
                     startFollowupForms("woman_followup_form", (SmartRegisterClient) view.getTag(), map, ByColumnAndByDetails.bydefault);
 
-                    // showFragmentDialog(new EditDialogOptionModel(map), view.getTag());
                     break;
             }
         }
@@ -413,7 +411,7 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
                         case byColumn:
                             overridejsonobject.put(entry.getKey(), ((CommonPersonObjectClient) client).getColumnmaps().get(entry.getValue()));
                             break;
-                        case bydefault:
+                        default:
                             overridejsonobject.put(entry.getKey(), entry.getValue());
                             break;
                     }
@@ -429,30 +427,31 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
         }
     }
 
-    private DialogOption[] getEditOptions( HashMap<String,String> overridemap ) {
-        Log.d("form open ","enrollments form by Fragment");
+    private DialogOption[] getEditOptions(HashMap<String, String> overridemap) {
+        Log.d("form open ", "enrollments form by Fragment");
         return new DialogOption[]{
 
-                new ClientlessOpenFormOption("Enrollment", "woman_enrollment_form", formController1,overridemap, ClientlessOpenFormOption.ByColumnAndByDetails.bydefault)
+                new ClientlessOpenFormOption("Enrollment", "woman_enrollment_form", formController1, overridemap, ClientlessOpenFormOption.ByColumnAndByDetails.bydefault)
                 //    new ClientlessOpenFormOption("Followup", "child_followup_fake_form", formController,overridemap, ClientlessOpenFormOption.ByColumnAndByDetails.byDetails)
         };
     }
 
-    public HashMap<String,String> getOverrides() {
+    public HashMap<String, String> getOverrides() {
         return overrides;
     }//end of method
-    public void setOverrides(HashMap<String,String>  overrides ){
 
-        this.overrides=overrides;
+    public void setOverrides(HashMap<String, String> overrides) {
+
+        this.overrides = overrides;
     }//end of method
 
-    private  HashMap<String,String> overrides1;
+    private HashMap<String, String> overrides1;
 
     private class EditDialogOptionModel implements DialogOptionModel {
-        private  HashMap<String,String> overrides1;
+        private HashMap<String, String> overrides1;
 
-        public EditDialogOptionModel(HashMap<String,String> overrides1) {
-            this.overrides1=overrides1;
+        public EditDialogOptionModel(HashMap<String, String> overrides1) {
+            this.overrides1 = overrides1;
         }
 
         @Override
@@ -471,11 +470,10 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        org.ei.opensrp.util.Log.logDebug("Result Coode"+resultCode);
-        if(resultCode == Activity.RESULT_OK)
-        {
-            Bundle extras =data.getExtras();
-            String qrcode =  (String) extras.get(Barcode.SCAN_RESULT);
+        org.ei.opensrp.util.Log.logDebug("Result Coode" + resultCode);
+        if (resultCode == Activity.RESULT_OK) {
+            Bundle extras = data.getExtras();
+            String qrcode = (String) extras.get(Barcode.SCAN_RESULT);
 
             onQRCodeSucessfullyScanned(qrcode);
 
@@ -484,54 +482,40 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
 
     }//end of the method
 
-    private void onQRCodeSucessfullyScanned(String qrCode){
+    private void onQRCodeSucessfullyScanned(String qrCode) {
         //    Toast.makeText(this, "QrCode is : " + qrcode, Toast.LENGTH_LONG).show();
        /*
        #TODO:after reading the code , app first search for that id in database if he it is there , that client appears  on register only . if it doesnt then it shows two options
        */
         //controller.getClients().
-        org.ei.opensrp.util.Log.logDebug("ANM DETAILS"+context.anmController().get());
+        org.ei.opensrp.util.Log.logDebug("ANM DETAILS" + context.anmController().get());
         String locationjson = context.anmLocationController().get();
         LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
 
-        Map<String,TreeNode<String, Location>> locationMap =
+        Map<String, TreeNode<String, Location>> locationMap =
                 locationTree.getLocationsHierarchy();
 
-        addChildToList(locationMap,"Country");
-        addChildToList(locationMap,"province");
-        addChildToList(locationMap,"city");
-        addChildToList(locationMap,"town");
-        addChildToList(locationMap,"uc");
-        if(getfilteredClients(qrCode)<= 0){
+        addChildToList(locationMap, "Country");
+        addChildToList(locationMap, "province");
+        addChildToList(locationMap, "city");
+        addChildToList(locationMap, "town");
+        addChildToList(locationMap, "uc");
+        if (getfilteredClients(qrCode) <= 0) {
 
-            HashMap<String , String> map=new HashMap<String,String>();
-            map.put("provider_uc",locations.get("uc"));
-            map.put("provider_town",locations.get("town"));
-            map.put("provider_city",locations.get("city"));
-            map.put("provider_province",locations.get("province"));
-            map.put("existing_program_client_id",qrCode);
-            map.put("provider_location_id",locations.get("uc"));
-            map.put("gender","female");
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("provider_uc", locations.get("uc"));
+            map.put("provider_town", locations.get("town"));
+            map.put("provider_city", locations.get("city"));
+            map.put("provider_province", locations.get("province"));
+            map.put("existing_program_client_id", qrCode);
+            map.put("provider_location_id", locations.get("uc"));
+            map.put("gender", "female");
             map.put("provider_location_name", locations.get("uc"));
-            map.put("provider_id",context.anmService().fetchDetails().name());/*
-                HashMap<String , String> map=new HashMap<String,String>();
-                map.put("provider_uc",uc);
-                map.put("provider_id","demotest");
-                map.put("provider_town",town);
-                map.put("provider_city",city);
-                map.put("provider_province",province);
-                map.put("existing_program_client_id",qrcode);
-                map.put("provider_location_id",center);
-                map.put("provider_location_name", center);*/
-            //map.put("","");
-            //       setOverrides(map);
+            map.put("provider_id", context.anmService().fetchDetails().name());
 
-            //  map.put("provider_id", anmController.get());
-            //  map.put("program_client_id",qrcode);
-            //showFragmentDialog(new EditDialogOptionModel(getOverrides()));
 
-            showFragmentDialog(new EditDialogOptionModel(map),null);
-        }else {
+            showFragmentDialog(new EditDialogOptionModel(map), null);
+        } else {
             getSearchView().setText(qrCode);
 
         }
@@ -551,7 +535,6 @@ public class WomanSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
 
 
     private Map<String, String> locations = new HashMap<String, String>();
-
 
 
     public void addChildToList(Map<String, TreeNode<String, Location>> locationMap, String locationTag) {

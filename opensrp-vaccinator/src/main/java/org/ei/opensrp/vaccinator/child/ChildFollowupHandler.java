@@ -9,9 +9,11 @@ import org.ei.opensrp.service.formSubmissionHandler.FormSubmissionHandler;
 public class ChildFollowupHandler implements FormSubmissionHandler {
 
     private ChildService childService;
+
     public ChildFollowupHandler(ChildService childService) {
         this.childService = childService;
     }
+
     @Override
     public void handle(FormSubmission submission) {
         childService.followup(submission);

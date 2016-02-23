@@ -4,8 +4,11 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -23,9 +26,14 @@ import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.form.FieldOverrides;
+import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.vaccinator.R;
+import org.ei.opensrp.vaccinator.fragment.ChildSmartRegisterFragment;
+import org.ei.opensrp.vaccinator.pageadapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.contract.ECClient;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -44,6 +52,9 @@ import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SmartRegisterDialogFragment;
 import org.ei.opensrp.view.dialog.SortOption;
+import org.ei.opensrp.view.fragment.DisplayFormFragment;
+import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
+import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
 import org.json.JSONObject;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.EntityUtils;
@@ -52,8 +63,11 @@ import org.opensrp.api.util.TreeNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import util.ClientlessOpenFormOption;
 import util.barcode.Barcode;
 import util.barcode.BarcodeIntentResult;
@@ -74,188 +88,189 @@ public class ChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
     private CommonPersonObjectController controller;
     private VillageController villageController;
     private DialogOptionMapper dialogOptionMapper;
-    private  HashMap<String,String> overrides;
-    private final ClientActionHandler clientActionHandler = new ClientActionHandler();
+    private HashMap<String, String> overrides;
 
-    @Override
+    private android.support.v4.app.Fragment mBaseFragment = null;
+    private android.support.v4.app.Fragment mProfileFragment = null;
+    private FormController formControllerown;
+    private String[] formNames = new String[]{};
+
+    @Bind(R.id.view_pager)
+    OpenSRPViewPager mPager;
+    private FragmentPagerAdapter mPagerAdapter;
+    private int currentPage;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+        // setContentView( R.layout.smart_register_activity_customized);
+        ButterKnife.bind(this);
+
+        getWindow().getDecorView().setBackgroundDrawable(null);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        this.formControllerown = new FormController(this);
+        formNames = this.buildFormNameList();
+        mBaseFragment = new ChildSmartRegisterFragment(this.formControllerown);
+
+
+        // Instantiate a ViewPager and a PagerAdapter.
+        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
+        mPager.setOffscreenPageLimit(getEditOptions(null).length);
+        mPager.setAdapter(mPagerAdapter);
+        mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+                onPageChanged(position);
+            }
+        });
+    }
+
+    public void onPageChanged(int page) {
+        setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    /*@Override
     protected SmartRegisterPaginatedAdapter adapter() {
         return new SmartRegisterPaginatedAdapter(clientsProvider());
-    }
+    }*/
 
     @Override
     protected DefaultOptionsProvider getDefaultOptionsProvider() {
-        return new DefaultOptionsProvider() {
-
-            @Override
-            public ServiceModeOption serviceMode() {
-                return new ChildServiceModeOption(clientsProvider());
-            }
-
-            @Override
-            public FilterOption villageFilter() {
-                return new AllClientsFilter();
-            }
-
-            @Override
-            public SortOption sortOption() {
-                return new ChildDateSort(ChildDateSort.ByColumnAndByDetails.byDetails,"first_name");
-
-            }
-
-            @Override
-            public String nameInShortFormForTitle() {
-                return Context.getInstance().getStringResource(R.string.child_title);
-            }
-        };
+        return null;
     }
 
     @Override
     protected NavBarOptionsProvider getNavBarOptionsProvider() {
-        return new NavBarOptionsProvider() {
-
-            @Override
-            public DialogOption[] filterOptions() {
-
-                return new DialogOption[]{};
-            }
-
-            @Override
-            public DialogOption[] serviceModeOptions() {
-                return new DialogOption[]{};
-            }
-
-            @Override
-            public DialogOption[] sortingOptions() {
-                return new DialogOption[]{
-
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"first_name",getResources().getString(R.string.child_alphabetical_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"program_client_id",getResources().getString(R.string.child_id_sort))
-                };
-            }
-
-
-
-            @Override
-            public String searchHint() {
-                return getResources().getString(R.string.child_search_hint);
-            }
-        };
+        return null;
     }
 
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
-        if (clientProvider == null) {
-            clientProvider = new ChildSmartClientsProvider(
-                    this,clientActionHandler , controller,context.alertService());
+        return null;
+    }
+
+    private String[] buildFormNameList() {
+        List<String> formNames = new ArrayList<String>();
+        formNames.add("child_enrollment_form");
+        formNames.add("child_followup_form");
+        DialogOption[] options = getEditOptions(null);
+        for (int i = 0; i < options.length; i++) {
+            formNames.add(((ClientlessOpenFormOption) options[i]).getFormName());
         }
-        return clientProvider;
+        return formNames.toArray(new String[formNames.size()]);
     }
 
 
     @Override
     protected void onCreation() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        super.onCreation();
-        setContentView(R.layout.smart_register_activity_customized);
 
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-        onInitialization();
-
-        defaultOptionProvider = getDefaultOptionsProvider();
-        navBarOptionsProvider = getNavBarOptionsProvider();
-
-        setupViews();
     }
 
 
     @Override
     protected void onInitialization() {
 
-       controller= new CommonPersonObjectController(context.allCommonsRepositoryobjects("pkchild"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(), "first_name", "pkchild", "child_reg_date",
-                CommonPersonObjectController.ByColumnAndByDetails.byDetails );
-
-        String locationjson = context.anmLocationController().get();
-
-
-        context.formSubmissionRouter().getHandlerMap().put("child_followup_form",new ChildFollowupHandler(new ChildService(context.allBeneficiaries(),context.allTimelineEvents(), context.allCommonsRepositoryobjects("pkchild"),context.alertService())));
-        dialogOptionMapper = new DialogOptionMapper();
-
     }
 
     @Override
     public void startRegistration() {
-        Intent intent = new Intent(Barcode.BARCODE_INTENT);
-        intent.putExtra(Barcode.SCAN_MODE, Barcode.QR_MODE);
-        startActivityForResult(intent, Barcode.BARCODE_REQUEST_CODE);
-    }
 
+    }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides) {
+        Log.v("fieldoverride", fieldOverrides.toString());
+        // save the form
+        try {
+            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
 
-        super.onActivityResult(requestCode, resultCode, data);
-            if(resultCode==RESULT_OK)
-            {
+            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
+            ZiggyService ziggyService = context.ziggyService();
+            ziggyService.saveForm(getParams(submission), submission.instance());
 
-                Bundle extras =data.getExtras();
-                String qrcode= (String)    extras.get(Barcode.SCAN_RESULT);
-                org.ei.opensrp.util.Log.logDebug("ANM DETAILS"+context.anmController().get());
-                String locationjson = context.anmLocationController().get();
-                LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
+            //switch to forms list fragment
+            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
-                Map<String,TreeNode<String, Location>> locationMap =
-                        locationTree.getLocationsHierarchy();
+        } catch (Exception e) {
+            // TODO: show error dialog on the formfragment if the submission fails
+            DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
+            if (displayFormFragment != null) {
+                displayFormFragment.hideTranslucentProgressDialog();
+            }
+            e.printStackTrace();
+        }
+    }
 
-                addChildToList(locationMap,"Country");
-                addChildToList(locationMap,"province");
-                addChildToList(locationMap,"city");
-                addChildToList(locationMap,"town");
-                addChildToList(locationMap,"uc");
-                if(getfilteredClients(qrcode)<= 0){
+    @Override
+    public void startFormActivity(String formName, String entityId, String metaData) {
+        Log.v("fieldoverride", metaData);
 
-                    HashMap<String , String> map=new HashMap<String,String>();
-                    map.put("provider_uc",locations.get("uc"));
-                    map.put("provider_town",locations.get("town"));
-                    map.put("provider_city",locations.get("city"));
-                    map.put("provider_province",locations.get("province"));
-                    map.put("existing_program_client_id",qrcode);
-                    map.put("provider_location_id",locations.get("uc"));
-                    map.put("gender","female");
-                    map.put("provider_location_name", locations.get("uc"));
-                    map.put("provider_id",context.anmService().fetchDetails().name());                   // map.put("e_bcg",)
+        try {
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
 
-                    setOverrides(map);
-                    showFragmentDialog(new EditDialogOptionModel(map),null);
-                }else {
-                 getSearchView().setText(qrcode);
-   // startFormActivity();
-             }
+            if (entityId != null || metaData != null) {
+                String data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
+
+                if (displayFormFragment != null) {
 
 
-                     //          controller.getClients();
+                    displayFormFragment.setFormData(data);
+                    displayFormFragment.loadFormData();
+                    displayFormFragment.setRecordId(entityId);
+                    displayFormFragment.setFieldOverides(metaData);
 
-
-
+                    Log.v("in activity ", "startFormActivity method start");
+                }
             }
 
+            mPager.setCurrentItem(formIndex, false); //Don't animate the view on orientation change the view disapears
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void switchToBaseFragment(final String data) {
+        final int prevPageIndex = currentPage;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mPager.setCurrentItem(0, false);
+                SecuredNativeSmartRegisterFragment registerFragment = (SecuredNativeSmartRegisterFragment) findFragmentByPosition(0);
+                if (registerFragment != null && data != null) {
+                    registerFragment.refreshListView();
+                }
+
+                //hack reset the form
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.hideTranslucentProgressDialog();
+                    displayFormFragment.setFormData(null);
+                    displayFormFragment.loadFormData();
+                }
+
+                displayFormFragment.setRecordId(null);
+            }
+        });
 
     }
 
 
-
-
-
-    private DialogOption[] getEditOptions( HashMap<String,String> overridemap ) {
+    private DialogOption[] getEditOptions(HashMap<String, String> overridemap) {
      /*//  = new HashMap<String,String>();
         overridemap.put("existing_MWRA","MWRA");
         overridemap.put("existing_location", "existing_location");*/
         return new DialogOption[]{
 
-                new ClientlessOpenFormOption("Enrollment", "child_enrollment_form", formController,overridemap, ClientlessOpenFormOption.ByColumnAndByDetails.bydefault)
-            //    new ClientlessOpenFormOption("Followup", "child_followup_fake_form", formController,overridemap, ClientlessOpenFormOption.ByColumnAndByDetails.byDetails)
+                new ClientlessOpenFormOption("Enrollment", "child_enrollment_form", formController, overridemap, ClientlessOpenFormOption.ByColumnAndByDetails.bydefault)
+                //    new ClientlessOpenFormOption("Followup", "child_followup_fake_form", formController,overridemap, ClientlessOpenFormOption.ByColumnAndByDetails.byDetails)
         };
     }
 
@@ -264,7 +279,7 @@ public class ChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
 
     
 
-    private class EditDialogOptionModel implements DialogOptionModel {
+   /* private class EditDialogOptionModel implements DialogOptionModel {
         private  HashMap<String,String> overrides1;
 
         public EditDialogOptionModel(HashMap<String,String> overrides1) {
@@ -282,187 +297,50 @@ public class ChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
 
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
         }
-    }
+    }*/
 
-    public HashMap<String,String> getOverrides() {
+    public HashMap<String, String> getOverrides() {
         return overrides;
     }
-    public void setOverrides(HashMap<String,String>  overrides ){
 
-        this.overrides=overrides;
+    public void setOverrides(HashMap<String, String> overrides) {
+
+        this.overrides = overrides;
     }
-
-
 
 
     @Override
     protected void onResumption() {
-        super.onResumption();
-        getDefaultOptionsProvider();
-        updateSearchView();
     }
-
-    private class ClientActionHandler implements View.OnClickListener {
-
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.child_profilepic:
-
-                    ChildDetailActivity.childclient=(CommonPersonObjectClient)view.getTag();
-                    Intent intent =new Intent(ChildSmartRegisterActivity.this,ChildDetailActivity.class);
-                    startActivity(intent);
-                    finish();
-                    break;
-                case R.id.child_next_visit_holder:
-                    CommonPersonObjectClient client=(CommonPersonObjectClient)view.getTag();
-                    org.ei.opensrp.util.Log.logDebug("ANM DETAILS"+context.anmController().get());
-                    String locationjson = context.anmLocationController().get();
-                    LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
-
-                    Map<String,TreeNode<String, Location>> locationMap =
-                            locationTree.getLocationsHierarchy();
-
-                    addChildToList(locationMap,"Country");
-                    addChildToList(locationMap,"province");
-                    addChildToList(locationMap,"city");
-                    addChildToList(locationMap, "town");
-                    addChildToList(locationMap, "uc");
-
-
-                        HashMap<String , String> preloadmap=new HashMap<String,String>();
-                        preloadmap.put("provider_uc",locations.get("uc"));
-                        preloadmap.put("provider_town",locations.get("town"));
-                        preloadmap.put("provider_city",locations.get("city"));
-                        preloadmap.put("provider_province",locations.get("province"));
-                    preloadmap.put("provider_id",context.anmService().fetchDetails().name());
-                    preloadmap.put("existing_program_client_id",client.getDetails().get("existing_program_client_id")!=null?client.getDetails().get("existing_program_client_id"):"");
-                    preloadmap.put("provider_location_id",locations.get("uc"));
-                    preloadmap.put("gender",client.getDetails().get("gender"));
-                    preloadmap.put("provider_location_name", locations.get("uc"));
-
-
-                    preloadmap.put("existing_house_number",client.getDetails().get("house_number")!=null?client.getDetails().get("house_number"):"");
-                    preloadmap.put("existing_street",client.getDetails().get("street")!=null?client.getDetails().get("street"):"");
-                    preloadmap.put("existing_union_council",client.getDetails().get("union_council")!=null?client.getDetails().get("union_council"):"");
-                    preloadmap.put("existing_town",client.getDetails().get("town")!=null?client.getDetails().get("town"):"");
-                    preloadmap.put("existing_city_village",client.getDetails().get("city_village")!=null?client.getDetails().get("city_village"):"");
-                    preloadmap.put("existing_province",client.getDetails().get("province")!=null?client.getDetails().get("province"):"");
-                    preloadmap.put("existing_landmark",client.getDetails().get("landmark")!=null?client.getDetails().get("landmark"):"");
-                    preloadmap.put("existing_gender",client.getDetails().get("gender")!=null?client.getDetails().get("gender"):"");
-
-                    preloadmap.put("existing_first_name",client.getDetails().get("first_name")!=null?client.getDetails().get("first_name"):"");
-                    preloadmap.put("existing_second_name",client.getDetails().get("last_name")!=null?client.getDetails().get("last_name"):"");
-                    preloadmap.put("existing_father_name",client.getDetails().get("father_name")!=null?client.getDetails().get("father_name"):"");
-                    preloadmap.put("existing_mother_name",client.getDetails().get("mother_name")!=null?client.getDetails().get("mother_name"):"");
-
-                    preloadmap.put("existing_chid_dob",client.getDetails().get("chid_dob_confirm")!=null?client.getDetails().get("chid_dob_confirm"):"");
-                    preloadmap.put("existing_ethnicity",client.getDetails().get("ethnicity")!=null?client.getDetails().get("ethnicity"):"");
-                    preloadmap.put("existing_child_reg_date",client.getDetails().get("child_reg_date")!=null?client.getDetails().get("child_reg_date"):"");
-                    preloadmap.put("existing_card_number",client.getDetails().get("epi_card_number")!=null?client.getDetails().get("epi_card_number"):"");
-                    preloadmap.put("existing_child_was_suffering_from_a_disease_at_birth",client.getDetails().get("child_was_suffering_from_a_disease_at_birth")!=null?client.getDetails().get("child_was_suffering_from_a_disease_at_birth"):"");
-
-                        preloadmap.putAll(getPreloadVaccinesData(client));
-                    setOverrides(preloadmap);
-
-
-                    startFollowupForms("child_followup_form", (SmartRegisterClient) view.getTag(), preloadmap, ByColumnAndByDetails.bydefault);
-                    break;
-            }
-        }
-
-    }
-
-
 
 
     @Override
     public void setupViews() {
-        getDefaultOptionsProvider();
-
-        super.setupViews();
-
-        setServiceModeViewDrawableRight(null);
-        updateSearchView();
-
 
     }
 
 
-
-    public void updateSearchView(){
-        getSearchView().addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            @Override
-            public void onTextChanged(final CharSequence cs, int start, int before, int count) {
-                (new AsyncTask() {
-                    SmartRegisterClients filteredClients;
-
-                    @Override
-                    protected Object doInBackground(Object[] params) {
-//                        currentSearchFilter =
-                        setCurrentSearchFilter(new ChildSearchOption(cs.toString()));
-                        filteredClients = getClientsAdapter().getListItemProvider()
-                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
-                                        getCurrentSearchFilter(), getCurrentSortOption());
+    private Map<String, String> locations = new HashMap<String, String>();
 
 
-                        return null;
-                    }
+    public void addChildToList(Map<String, TreeNode<String, Location>> locationMap, String locationTag) {
+        for (Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
+            boolean tagFound = false;
+            if (entry.getValue() != null) {
+                Location l = entry.getValue().getNode();
 
-                    @Override
-                    protected void onPostExecute(Object o) {
-//                        clientsAdapter
-//                                .refreshList(currentVillageFilter, currentServiceModeOption,
-//                                        currentSearchFilter, currentSortOption);
-                        getClientsAdapter().refreshClients(filteredClients);
-                        getClientsAdapter().notifyDataSetChanged();
-                        getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
-                        super.onPostExecute(o);
-                    }
-                }).execute();
-//                currentSearchFilter = new HHSearchOption(cs.toString());
-//                clientsAdapter
-//                        .refreshList(currentVillageFilter, currentServiceModeOption,
-//                                currentSearchFilter, currentSortOption);
-//
-//                searchCancelView.setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-    }
-
-    private Map<String,String> locations =new HashMap<String,String>();
-
-
-    public void addChildToList(Map<String,TreeNode<String, Location>> locationMap, String locationTag){
-        for(Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
-            boolean tagFound=false;
-            if(entry.getValue() != null) {
-                Location l= entry.getValue().getNode();
-
-                for(String s:l.getTags()){
-                    if(s.equalsIgnoreCase(locationTag))
-                    {
-                        locations.put(locationTag,l.getName());
-                        tagFound=true;
+                for (String s : l.getTags()) {
+                    if (s.equalsIgnoreCase(locationTag)) {
+                        locations.put(locationTag, l.getName());
+                        tagFound = true;
                         return;
                     }
                 }
 
 
-
             }
-            if(!tagFound){
-                if(entry.getValue().getChildren()!=null) {
+            if (!tagFound) {
+                if (entry.getValue().getChildren() != null) {
                     addChildToList(entry.getValue().getChildren(), locationTag);
                 }
             }
@@ -470,45 +348,46 @@ public class ChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
     }
 
 
-    private int getfilteredClients(String filterString){
-    int i=0;
+    private int getfilteredClients(String filterString) {
+        int i = 0;
         setCurrentSearchFilter(new ChildSearchOption(filterString));
-        SmartRegisterClients  filteredClients = getClientsAdapter().getListItemProvider()
+        SmartRegisterClients filteredClients = getClientsAdapter().getListItemProvider()
                 .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
                         getCurrentSearchFilter(), getCurrentSortOption());
-        i=filteredClients.size();
+        i = filteredClients.size();
 
-    return i;
+        return i;
     }
 
 
-    public enum ByColumnAndByDetails{
-        byColumn,byDetails,bydefault;
+    public enum ByColumnAndByDetails {
+        byColumn, byDetails, bydefault;
     }
-    private void startFollowupForms(String formName,SmartRegisterClient client ,HashMap<String , String> overrideStringmap , ByColumnAndByDetails byColumnAndByDetails) {
+
+    private void startFollowupForms(String formName, SmartRegisterClient client, HashMap<String, String> overrideStringmap, ByColumnAndByDetails byColumnAndByDetails) {
 
 
-        if(overrideStringmap == null) {
+        if (overrideStringmap == null) {
             org.ei.opensrp.util.Log.logDebug("overrides data is null");
             formController.startFormActivity(formName, client.entityId(), null);
-        }else{
+        } else {
             JSONObject overridejsonobject = new JSONObject();
             try {
                 for (Map.Entry<String, String> entry : overrideStringmap.entrySet()) {
-                    switch (byColumnAndByDetails){
+                    switch (byColumnAndByDetails) {
                         case byDetails:
-                            overridejsonobject.put(entry.getKey() , ((CommonPersonObjectClient)client).getDetails().get(entry.getValue()));
+                            overridejsonobject.put(entry.getKey(), ((CommonPersonObjectClient) client).getDetails().get(entry.getValue()));
                             break;
                         case byColumn:
-                            overridejsonobject.put(entry.getKey() , ((CommonPersonObjectClient)client).getColumnmaps().get(entry.getValue()));
+                            overridejsonobject.put(entry.getKey(), ((CommonPersonObjectClient) client).getColumnmaps().get(entry.getValue()));
                             break;
-                        case bydefault:
-                            overridejsonobject.put(entry.getKey() ,entry.getValue());
+                        default:
+                            overridejsonobject.put(entry.getKey(), entry.getValue());
                             break;
                     }
                 }
 //                overridejsonobject.put("existing_MWRA", );
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             // org.ei.opensrp.util.Log.logDebug("overrides data is : " + overrideStringmap);
@@ -518,128 +397,122 @@ public class ChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
         }
     }
 
-    //use to get columns and get date of vaccines submitted
-    private HashMap getPreloadVaccinesData(CommonPersonObjectClient client){
-        HashMap<String , String > map=new HashMap<String ,String>();
-        for(String s :client.getColumnmaps().keySet()){
-            if(s.contains("bcg"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+    /*//use to get columns and get date of vaccines submitted
+    private HashMap getPreloadVaccinesData(CommonPersonObjectClient client) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        for (String s : client.getColumnmaps().keySet()) {
+            if (s.contains("bcg")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_bcg", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_bcg","");
+                } else {
+                    map.put("e_bcg", "");
 
                 }
-            }else   if(s.contains("opv_0"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("opv_0")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_opv0", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_opv0","");
+                } else {
+                    map.put("e_opv0", "");
 
                 }
-            }
-            else   if(s.contains("opv_1"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("opv_1")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_opv1", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_opv1","");
+                } else {
+                    map.put("e_opv1", "");
 
                 }
-            }
-            else   if(s.contains("opv_2"))
-            {
-                if( client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("opv_2")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_opv2", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_opv2","");
+                } else {
+                    map.put("e_opv2", "");
 
                 }
-            }
-            else   if(s.contains("opv_3"))
-            {
-                if( client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("opv_3")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_opv3", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_opv3","");
+                } else {
+                    map.put("e_opv3", "");
 
                 }
-            }
-            else   if(s.contains("pcv_1"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("pcv_1")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_pcv1", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_pcv1","");
+                } else {
+                    map.put("e_pcv1", "");
 
                 }
-            }
-            else   if(s.contains("pcv_2"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("pcv_2")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_pcv2", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_pcv2","");
+                } else {
+                    map.put("e_pcv2", "");
 
                 }
-            }
-            else   if(s.contains("pcv_3"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("pcv_3")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_pcv3", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_pcv3","");
+                } else {
+                    map.put("e_pcv3", "");
 
                 }
-            }
-            else   if(s.contains("pentavalent_1"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("pentavalent_1")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_penta1", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_penta1","");
+                } else {
+                    map.put("e_penta1", "");
 
                 }
-            }
-            else   if(s.contains("pentavalent_2"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("pentavalent_2")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_penta2", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_penta2","");
+                } else {
+                    map.put("e_penta2", "");
 
                 }
-            }
-            else   if(s.contains("pentavalent_3"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("pentavalent_3")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_penta3", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_penta3","");
+                } else {
+                    map.put("e_penta3", "");
 
                 }
-            }
-            else   if(s.contains("measles_1"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("measles_1")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_measles1", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_measles1","");
+                } else {
+                    map.put("e_measles1", "");
 
                 }
-            }
-            else   if(s.contains("measles_2"))
-            {
-                if(client.getColumnmaps().get(s)!=null && client.getColumnmaps().get(s).toString()!=null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
+            } else if (s.contains("measles_2")) {
+                if (client.getColumnmaps().get(s) != null && client.getColumnmaps().get(s).toString() != null && !client.getColumnmaps().get(s).toString().equalsIgnoreCase("")) {
                     map.put("e_measles2", client.getColumnmaps().get(s));
-                }else{
-                    map.put("e_measles2","");
+                } else {
+                    map.put("e_measles2", "");
 
                 }
             }
         }
         return map;
 
+    }*/
+
+    public android.support.v4.app.Fragment findFragmentByPosition(int position) {
+        FragmentPagerAdapter fragmentPagerAdapter = mPagerAdapter;
+        return getSupportFragmentManager().findFragmentByTag("android:switcher:" + mPager.getId() + ":" + fragmentPagerAdapter.getItemId(position));
+    }
+
+    public DisplayFormFragment getDisplayFormFragmentAtIndex(int index) {
+        return  (DisplayFormFragment)findFragmentByPosition(index);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currentPage != 0) {
+            switchToBaseFragment(null);
+        } else if (currentPage == 0) {
+            super.onBackPressed(); // allow back key only if we are
+        }
     }
 }

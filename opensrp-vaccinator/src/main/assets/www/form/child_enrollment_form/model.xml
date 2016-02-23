@@ -30,7 +30,7 @@
             <child_age/>
             <child_dob/>
             <child_dob_formatted/>
-            <chid_dob_confirm openmrs_entity="person" openmrs_entity_id="birthdate"/>
+            <child_dob_confirm openmrs_entity="person" openmrs_entity_id="birthdate"/>
             <child_dob_estimated openmrs_entity="person" openmrs_entity_id="birthdate_estimated"/>
             <child_birth_date_note/>
             <gender openmrs_entity="person" openmrs_entity_id="gender"/>

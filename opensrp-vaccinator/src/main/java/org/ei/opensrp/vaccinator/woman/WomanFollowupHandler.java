@@ -8,9 +8,10 @@ import org.ei.opensrp.service.formSubmissionHandler.FormSubmissionHandler;
  */
 public class WomanFollowupHandler implements FormSubmissionHandler {
 
-   private WomanService womanService;
-    public WomanFollowupHandler(WomanService womanService){
-        this.womanService=womanService;
+    private WomanService womanService;
+
+    public WomanFollowupHandler(WomanService womanService) {
+        this.womanService = womanService;
 
     }
 
