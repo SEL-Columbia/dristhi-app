@@ -205,7 +205,8 @@ public class ChildSmartClientsProvider implements SmartRegisterClientsProvider {
             }
         }
 
-
+        viewHolder.next_visit_date_holder.setOnClickListener(onClickListener);
+        viewHolder.next_visit_date_holder.setTag(client);
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
     }
