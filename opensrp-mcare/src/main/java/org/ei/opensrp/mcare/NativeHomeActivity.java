@@ -2,6 +2,7 @@ package org.ei.opensrp.mcare;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import org.ei.opensrp.mcare.anc.nbnfhandler;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
+import org.ei.opensrp.mcare.household.HouseholdCensusDueDateSort;
 import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
@@ -83,6 +85,10 @@ public class NativeHomeActivity extends SecuredActivity {
     private TextView pncRegisterClientCountView;
     private TextView fpRegisterClientCountView;
     private TextView childRegisterClientCountView;
+    public static CommonPersonObjectController hhcontroller;
+    public static CommonPersonObjectController anccontroller;
+    public static CommonPersonObjectController elcocontroller;
+    public static CommonPersonObjectController childcontroller;
 
     @Override
     protected void onCreation() {
@@ -131,6 +137,19 @@ public class NativeHomeActivity extends SecuredActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         LoginActivity.setLanguage();
+        hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
+                context.allBeneficiaries(), context.listCache(),
+                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+         elcocontroller =  new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
+                 context.allBeneficiaries(), context.listCache(),
+                 context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
+        anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
+                context.allBeneficiaries(), context.listCache(),
+                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+        childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcarechild"),
+                context.allBeneficiaries(), context.listCache(),
+                context.personObjectClientsCache(),"FWBNFGEN","mcarechild","FWBNFGEN", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+
 //        getActionBar().setBackgroundDrawable(getReso
 // urces().getDrawable(R.color.action_bar_background));
     }
@@ -154,22 +173,11 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void updateRegisterCounts(HomeContext homeContext) {
-        CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        CommonPersonObjectController elcocontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        CommonPersonObjectController anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        CommonPersonObjectController childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcarechild"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWBNFGEN","mcarechild","FWBNFGEN", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
 
-        ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
-        ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
+
+            ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
+           ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
         pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
         fpRegisterClientCountView.setText(valueOf(elcocontroller.getClients().size()));
         childRegisterClientCountView.setText(valueOf(childcontroller.getClients().size()));
@@ -267,7 +275,7 @@ public class NativeHomeActivity extends SecuredActivity {
                     break;
 
                 case R.id.btn_pnc_register:
-//                    navigationController.startPNCSmartRegistry();
+                    navigationController.startPNCSmartRegistry();
                     break;
 
                 case R.id.btn_child_register:

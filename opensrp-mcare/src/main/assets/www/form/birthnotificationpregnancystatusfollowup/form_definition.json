@@ -114,7 +114,7 @@
       {
         "name": "child_registration",
         "bind_type": "mcarechild",
-        "default_bind_path": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/",
+        "default_bind_path": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS",
         "fields": [
           {
             "name": "id",
