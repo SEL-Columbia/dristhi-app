@@ -60,6 +60,10 @@ public class FormUtils {
 
     public FormSubmission generateFormSubmisionFromXMLString(String entity_id, String formData, String formName, JSONObject overrides) throws Exception{
         JSONObject formSubmission = XML.toJSONObject(formData);
+
+        FileUtilities fu = new FileUtilities();
+        fu.write("xmlform.txt", formData);
+        fu.write("xmlformsubmission.txt", formSubmission.toString());
         System.out.println(formSubmission);
 
         // use the form_definition.json to iterate through fields

@@ -12,6 +12,11 @@ import android.widget.Toast;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.mcare.anc.anc1handler;
+import org.ei.opensrp.mcare.anc.anc2handler;
+import org.ei.opensrp.mcare.anc.anc3handler;
+import org.ei.opensrp.mcare.anc.anc4handler;
+import org.ei.opensrp.mcare.anc.nbnfhandler;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
@@ -89,6 +94,11 @@ public class NativeHomeActivity extends SecuredActivity {
         DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
         context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form",new CensusEnrollmentHandler());
         context.formSubmissionRouter().getHandlerMap().put("psrf_form", new PSRFHandler());
+        context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_1", new anc1handler());
+        context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_2", new anc2handler());
+        context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_3", new anc3handler());
+        context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_4", new anc4handler());
+        context.formSubmissionRouter().getHandlerMap().put("birthnotificationpregnancystatusfollowup", new nbnfhandler());
 
     }
 
@@ -153,13 +163,16 @@ public class NativeHomeActivity extends SecuredActivity {
         CommonPersonObjectController anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+        CommonPersonObjectController childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcarechild"),
+                context.allBeneficiaries(), context.listCache(),
+                context.personObjectClientsCache(),"FWBNFGEN","mcarechild","FWBNFGEN", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
 
         ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
         ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
         pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
         fpRegisterClientCountView.setText(valueOf(elcocontroller.getClients().size()));
-        childRegisterClientCountView.setText(valueOf(homeContext.childCount()));
+        childRegisterClientCountView.setText(valueOf(childcontroller.getClients().size()));
     }
 
     @Override
