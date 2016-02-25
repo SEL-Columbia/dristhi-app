@@ -49,8 +49,8 @@ public class mCarePNCServiceModeOption extends ServiceModeOption {
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
-                        R.string.elco_profile, R.string.elco_unique_id, R.string.anc_edd_ga,
-                        R.string.anc_reminder_status,R.string.anc_reminder_due,R.string.anc_nbnf_due_date};
+                        R.string.elco_profile, R.string.elco_unique_id, R.string.pnc_outcome,
+                        R.string.pnc_date_of_outcome,R.string.pnc_reminder_status,R.string.pnc_reminder_due};
             }
         };
     }

@@ -24,6 +24,7 @@ import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
 import org.ei.opensrp.mcare.elco.ElcoSearchOption;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
+import org.ei.opensrp.mcare.pnc.mCarePNCServiceModeOption;
 import org.ei.opensrp.mcare.pnc.mCarePNCSmartClientsProvider;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
@@ -79,7 +80,7 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
             @Override
             public ServiceModeOption serviceMode() {
-                return new mCareANCServiceModeOption(clientsProvider());
+                return new mCarePNCServiceModeOption(clientsProvider());
             }
 
             @Override
@@ -95,7 +96,7 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
             @Override
             public String nameInShortFormForTitle() {
-                return getResources().getString(R.string.mcare_ANC_register_title_in_short);
+                return getResources().getString(R.string.mcare_PNC_register_title_in_short);
             }
         };
     }
