@@ -25,7 +25,7 @@ public class mCarePNCServiceModeOption extends ServiceModeOption {
 
     @Override
     public String name() {
-        return Context.getInstance().applicationContext().getResources().getString(R.string.all_mcare_anc);
+        return Context.getInstance().applicationContext().getResources().getString(R.string.all_mcare_pnc);
     }
 
     @Override

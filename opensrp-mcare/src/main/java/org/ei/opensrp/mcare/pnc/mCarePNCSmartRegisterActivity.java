@@ -95,11 +95,9 @@ public class mCarePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
-        formNames.add("anc_reminder_visit_1");
-        formNames.add("anc_reminder_visit_2");
-        formNames.add("anc_reminder_visit_3");
-        formNames.add("anc_reminder_visit_4");
-        formNames.add("birthnotificationpregnancystatusfollowup");
+        formNames.add("pnc_reminder_visit_1");
+        formNames.add("pnc_reminder_visit_2");
+        formNames.add("pnc_reminder_visit_3");
 
 
 
@@ -146,7 +144,7 @@ public class mCarePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 new OpenFormOption(getResources().getString(R.string.nbnf), "birthnotificationpregnancystatusfollowup", formController)
         };
     }
-    public DialogOption[] getEditOptionsforanc(String visittext,String alertstatus) {
+    public DialogOption[] getEditOptionsforpnc(String visittext,String alertstatus) {
         String ancvisittext = "Not Synced";
         String ancalertstatus = alertstatus;
         ancvisittext = visittext;
@@ -154,20 +152,16 @@ public class mCarePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         HashMap<String,String> overridemap = new HashMap<String,String>();
 
 
-        if (ancvisittext.contains("ANC4")) {
-            overridemap.put("ANC4_current_formStatus", alertstatus);
-            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc4form), "anc_reminder_visit_4", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
-        } else if (ancvisittext.contains("ANC3")) {
-            Log.v("anc3 form status",alertstatus);
-            overridemap.put("ANC3_current_formStatus", alertstatus);
-            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc3form), "anc_reminder_visit_3", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
-        } else if (ancvisittext.contains("ANC2")) {
-            overridemap.put("ANC2_current_formStatus", alertstatus);
-            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc2form), "anc_reminder_visit_2", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
-        } else if (ancvisittext.contains("ANC1")) {
-            Log.v("anc1 form status",alertstatus);
-            overridemap.put("anc1_current_formStatus", alertstatus);
-            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.anc1form), "anc_reminder_visit_1", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
+        if (ancvisittext.contains("PNC3")) {
+            Log.v("pnc3 form status",alertstatus);
+            overridemap.put("pnc3_current_formStatus", alertstatus);
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.pnc3form), "pnc_reminder_visit_3", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
+        } else if (ancvisittext.contains("PNC2")) {
+            overridemap.put("pnc2_current_formStatus", alertstatus);
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.pnc2form), "pnc_reminder_visit_2", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
+        } else if (ancvisittext.contains("PNC1")) {
+            overridemap.put("pnc1_current_formStatus", alertstatus);
+            return new DialogOption[]{new OpenFormOption(getResources().getString(R.string.pnc1form), "pnc_reminder_visit_1", formController,overridemap, OpenFormOption.ByColumnAndByDetails.bydefault)};
         }else {
             return new DialogOption[]{};
         }
@@ -183,17 +177,17 @@ public class mCarePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
         }
     }
-    private class EditDialogOptionModelForANC implements DialogOptionModel {
+    private class EditDialogOptionModelForPNC implements DialogOptionModel {
         String ancvisittext ;
         String ancvisitstatus;
-        public EditDialogOptionModelForANC(String text,String status) {
+        public EditDialogOptionModelForPNC(String text,String status) {
             ancvisittext = text;
             ancvisitstatus = status;
         }
 
         @Override
         public DialogOption[] getDialogOptions() {
-            return getEditOptionsforanc(ancvisittext,ancvisitstatus);
+            return getEditOptionsforpnc(ancvisittext,ancvisitstatus);
         }
 
         @Override

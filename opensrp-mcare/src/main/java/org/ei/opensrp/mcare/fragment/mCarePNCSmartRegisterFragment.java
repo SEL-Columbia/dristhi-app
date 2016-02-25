@@ -15,6 +15,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.ControllerFilterMap;
 import org.ei.opensrp.mcare.LoginActivity;
+import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.anc.mCareANCServiceModeOption;
 import org.ei.opensrp.mcare.anc.mCareANCSmartClientsProvider;
@@ -26,6 +27,7 @@ import org.ei.opensrp.mcare.elco.ElcoSearchOption;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.pnc.mCarePNCServiceModeOption;
 import org.ei.opensrp.mcare.pnc.mCarePNCSmartClientsProvider;
+import org.ei.opensrp.mcare.pnc.mCarePNCSmartRegisterActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -159,16 +161,17 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
     @Override
     protected void onInitialization() {
-        ArrayList <ControllerFilterMap> controllerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
-
-        pncControllerfiltermap filtermap = new pncControllerfiltermap();
-
-        controllerFilterMapArrayList.add(filtermap);
+//        ArrayList <ControllerFilterMap> controllerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
+//
+//        pncControllerfiltermap filtermap = new pncControllerfiltermap();
+//
+//        controllerFilterMapArrayList.add(filtermap);
 //        controllerFilterMapArrayList.add(filterforpnc);
-        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-//                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+        controller = NativeHomeActivity.pnccontroller;
+//                new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
+//                context.allBeneficiaries(), context.listCache(),
+//                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+////                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
         villageController = new VillageController(context.allEligibleCouples(),
                 context.listCache(), context.villagesCache());
@@ -211,8 +214,8 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
     private DialogOption[] getEditOptions() {
         return ((mCareANCSmartRegisterActivity)getActivity()).getEditOptions();
     }
-    private DialogOption[] getEditOptionsforanc(String ancvisittext,String ancvisitstatus) {
-        return ((mCareANCSmartRegisterActivity)getActivity()).getEditOptionsforanc(ancvisittext,ancvisitstatus);
+    private DialogOption[] getEditOptionsforanc(String pncvisittext,String pncvisitstatus) {
+        return ((mCarePNCSmartRegisterActivity)getActivity()).getEditOptionsforpnc(pncvisittext, pncvisitstatus);
     }
 
 
@@ -226,13 +229,10 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
                     Intent intent = new Intent(getActivity(),mCareAncDetailActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.nbnf_due_date:
-                    showFragmentDialog(new EditDialogOptionModelfornbnf(), view.getTag(R.id.clientobject));
-                    break;
-                case R.id.anc_reminder_due_date:
-                    CustomFontTextView ancreminderDueDate = (CustomFontTextView)view.findViewById(R.id.anc_reminder_due_date);
-                    Log.v("do as you will", (String) view.getTag(R.id.textforAncRegister));
-                    showFragmentDialog(new EditDialogOptionModelForANC((String)view.getTag(R.id.textforAncRegister),(String)view.getTag(R.id.AlertStatustextforAncRegister)), view.getTag(R.id.clientobject));
+                case R.id.pnc_reminder_due_date:
+                    CustomFontTextView pncreminderDueDate = (CustomFontTextView)view.findViewById(R.id.pnc_reminder_due_date);
+                    Log.v("do as you will", (String) view.getTag(R.id.textforPncRegister));
+                    showFragmentDialog(new EditDialogOptionModelForPNC((String)view.getTag(R.id.textforPncRegister),(String)view.getTag(R.id.AlertStatustextforPncRegister)), view.getTag(R.id.clientobject));
                     break;
             }
         }
@@ -252,17 +252,17 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
         }
     }
-    private class EditDialogOptionModelForANC implements DialogOptionModel {
-        String ancvisittext ;;
-        String Ancvisitstatus;
-        public EditDialogOptionModelForANC(String text,String status) {
-            ancvisittext = text;
-            Ancvisitstatus = status;
+    private class EditDialogOptionModelForPNC implements DialogOptionModel {
+        String pncvisittext ;;
+        String pncvisitstatus;
+        public EditDialogOptionModelForPNC(String text,String status) {
+            pncvisittext = text;
+            pncvisitstatus = status;
         }
 
         @Override
         public DialogOption[] getDialogOptions() {
-            return getEditOptionsforanc(ancvisittext,Ancvisitstatus);
+            return getEditOptionsforanc(pncvisittext,pncvisitstatus);
         }
 
         @Override

@@ -6,4 +6,6 @@
     <item name="clientobject" type="id">client</item>
     <item name="textforAncRegister" type="id">textforAncRegister</item>
     <item name="AlertStatustextforAncRegister" type="id">idforalertstatus</item>
+    <item name="textforPncRegister" type="id">textforPncRegister</item>
+    <item name="AlertStatustextforPncRegister" type="id">AlertStatustextforPncRegister</item>
 </resources>

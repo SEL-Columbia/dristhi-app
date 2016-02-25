@@ -364,6 +364,12 @@
     <string name="pnc_reminder_status">PNC Reminder Status</string>
     <string name="pnc_reminder_due">PNC Reminder Due</string>
     <string name="mcare_PNC_register_title_in_short">PNC Register</string>
+    <string name="mcare_pnc_liveBirth">live birth</string>
+    <string name="mcare_pnc_Stillbirth">Stillbirth</string>
+    <string name="all_mcare_pnc">Postnatal Women</string>
+    <string name="pnc3form">PNC visit 3 form</string>
+    <string name="pnc2form">PNC visit 2 form</string>
+    <string name="pnc1form">PNC visit 1 form</string>
 
 
 </resources>

@@ -3,6 +3,7 @@ package org.ei.opensrp.mcare;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.commonregistry.ControllerFilterMap;
 import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.mcare.anc.anc1handler;
 import org.ei.opensrp.mcare.anc.anc2handler;
@@ -32,6 +35,8 @@ import org.ei.opensrp.view.contract.HomeContext;
 import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
+
+import java.util.ArrayList;
 
 import static android.widget.Toast.LENGTH_SHORT;
 import static java.lang.String.valueOf;
@@ -89,6 +94,7 @@ public class NativeHomeActivity extends SecuredActivity {
     public static CommonPersonObjectController anccontroller;
     public static CommonPersonObjectController elcocontroller;
     public static CommonPersonObjectController childcontroller;
+    public static CommonPersonObjectController pnccontroller;
 
     @Override
     protected void onCreation() {
@@ -137,6 +143,11 @@ public class NativeHomeActivity extends SecuredActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         LoginActivity.setLanguage();
+        ArrayList<ControllerFilterMap> controllerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
+
+        pncControllerfiltermap filtermap = new pncControllerfiltermap();
+
+        controllerFilterMapArrayList.add(filtermap);
         hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
@@ -146,7 +157,12 @@ public class NativeHomeActivity extends SecuredActivity {
         anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcarechild"),
+        pnccontroller =new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
+                context.allBeneficiaries(), context.listCache(),
+                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+//                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+
+                childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcarechild"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWBNFGEN","mcarechild","FWBNFGEN", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
@@ -178,7 +194,7 @@ public class NativeHomeActivity extends SecuredActivity {
 
             ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
            ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
-        pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
+        pncRegisterClientCountView.setText(valueOf(pnccontroller.getClients().size()));
         fpRegisterClientCountView.setText(valueOf(elcocontroller.getClients().size()));
         childRegisterClientCountView.setText(valueOf(childcontroller.getClients().size()));
     }
@@ -304,4 +320,26 @@ public class NativeHomeActivity extends SecuredActivity {
             }
         }
     };
+    class pncControllerfiltermap extends ControllerFilterMap {
+
+        @Override
+        public boolean filtermapLogic(CommonPersonObject commonPersonObject) {
+            boolean returnvalue = false;
+            if(commonPersonObject.getDetails().get("FWWOMVALID") != null){
+                if(commonPersonObject.getDetails().get("FWWOMVALID").equalsIgnoreCase("1")){
+                    returnvalue = true;
+                    if(commonPersonObject.getDetails().get("Is_PNC")!=null){
+                        if(commonPersonObject.getDetails().get("Is_PNC").equalsIgnoreCase("1")){
+                            returnvalue = true;
+                        }
+
+                    }else{
+                        returnvalue = false;
+                    }
+                }
+            }
+            Log.v("the filter", "" + returnvalue);
+            return returnvalue;
+        }
+    }
 }
