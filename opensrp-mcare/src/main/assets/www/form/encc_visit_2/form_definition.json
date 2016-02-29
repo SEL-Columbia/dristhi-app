@@ -2,7 +2,7 @@
   "form_data_definition_version": "1",
   "form": {
     "default_bind_path": "/model/instance/EssentialNewbornCareChecklist2",
-    "bind_type": "child",
+    "bind_type": "mcarechild",
     "fields": [
       {
         "name": "id",

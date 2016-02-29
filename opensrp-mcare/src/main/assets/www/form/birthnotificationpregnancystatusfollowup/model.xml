@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <BirthNotificationPregnancyStatusFollowUp encounter_type="Birth Notification Followup form" id="BirthNotificationFollowUp" version="201602081222">
+    <BirthNotificationPregnancyStatusFollowUp encounter_type="Birth Notification Followup form" id="BirthNotificationFollowUp" version="201602280846">
       <formhub>
         <uuid/>
       </formhub>
@@ -15,26 +15,30 @@
       <existing_psrlmp/>
       <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
       <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
-      <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
-      <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+      <start openmrs_entity="concept" openmrs_entity_id="163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <end openmrs_entity="concept" openmrs_entity_id="163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWBNFDATE openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWCONFIRMATION/>
-      <FWGESTATIONALAGE/>
-      <FWEDD/>
+      <FWGESTATIONALAGE openmrs_entity="concept" openmrs_entity_id="1438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <FWEDD openmrs_entity="concept" openmrs_entity_id="5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWBNFSTS openmrs_entity="concept" openmrs_entity_id="161641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWDISPLAYTEXT1/>
       <outcome_occured>
         <FWBNFWOMVITSTS openmrs_entity="concept" openmrs_entity_id="1856AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
         <FWBNFDTOO openmrs_entity="concept" openmrs_entity_id="5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-        <FWBNFLB openmrs_entity="concept"/>
+        <FWBNFLB openmrs_entity="concept" openmrs_entity_id="160601AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
         <FWBNCHLDVITSTS template="" openmrs_entity="person" openmrs_entity_id="Child Vital Status">
           <FWBNFGEN openmrs_entity="concept" openmrs_entity_id="1587AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           <FWBNFCHLDVITSTS openmrs_entity="concept" openmrs_entity_id="159926AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           <add_child/>
         </FWBNCHLDVITSTS>
-        <FWBNFSMSRSN/>
+        <FWBNFSMSRSN openmrs_entity="concept" openmrs_entity_id="162953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       </outcome_occured>
       <Is_PNC/>
+      <user_type openmrs_entity="concept" openmrs_entity_id="163229AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">FWA</user_type>
+      <external_user_ID openmrs_entity="concept" openmrs_entity_id="163161AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <relationalid/>
+      <bnf_current_formStatus/>
       <meta>
         <instanceID/>
       </meta>
