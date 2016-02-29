@@ -10,7 +10,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="2.5"
+        android:layout_weight="4"
         android:id="@+id/profile_info_layout">
 
         <FrameLayout
@@ -21,7 +21,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:id="@+id/profilepic"
-                android:src="@drawable/woman_placeholder"
+                android:src="@drawable/child_boy_infant"
                 android:scaleType="fitXY"
                 android:layout_marginLeft="5dp" />
 
@@ -53,9 +53,10 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="5dp">
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp">
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -63,7 +64,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
-                android:id="@+id/name" />
+                android:id="@+id/mother_name" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -72,7 +73,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
                 android:textSize="12sp"
-                android:id="@+id/spousename" />
+                android:id="@+id/father_name" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -126,7 +127,6 @@
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:text="00"
             android:id="@+id/age"
-            android:layout_weight="1"
             android:gravity="right"
             android:layout_marginRight="1dp" />
 
@@ -179,28 +179,7 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
-            android:id="@+id/deliveryoutcome" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="@dimen/smart_register_client_divider_height"
-        android:layout_height="fill_parent"
-        android:src="@color/smart_register_client_divider_color"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="1.5">
-
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="New Button"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
-            android:id="@+id/date_of_outcome"
-            android:background="@color/status_bar_text_almost_white" />
-
+            android:id="@+id/dateofbirth" />
     </LinearLayout>
 
     <ImageView
@@ -224,7 +203,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="✔"
-                android:id="@+id/pnc1tick"
+                android:id="@+id/encc1tick"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_margin="1dp"
@@ -236,7 +215,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:text="pnc1text"
-                android:id="@+id/pnc1text"
+                android:id="@+id/encc1text"
                 android:layout_margin="1dp" />
         </LinearLayout>
 
@@ -249,7 +228,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="✔"
-                android:id="@+id/pnc2tick"
+                android:id="@+id/encc2tick"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_margin="1dp"
@@ -261,7 +240,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:text="anc1text"
-                android:id="@+id/pnc2text"
+                android:id="@+id/encc2text"
                 android:layout_margin="1dp" />
 
         </LinearLayout>
@@ -275,7 +254,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="✔"
-                android:id="@+id/pnc3tick"
+                android:id="@+id/encc3tick"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_margin="1dp"
@@ -287,7 +266,7 @@
                 android:text="pnc1text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle.ListView.Small"
-                android:id="@+id/pnc3text"
+                android:id="@+id/encc3text"
                 android:layout_margin="1dp" />
 
         </LinearLayout>
@@ -311,7 +290,7 @@
             android:layout_height="match_parent"
             android:text="New Button"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
-            android:id="@+id/pnc_reminder_due_date"
+            android:id="@+id/encc_reminder_due_date"
             android:background="@color/status_bar_text_almost_white" />
     </LinearLayout>
 
