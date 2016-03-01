@@ -8,4 +8,6 @@
     <item name="AlertStatustextforAncRegister" type="id">idforalertstatus</item>
     <item name="textforPncRegister" type="id">textforPncRegister</item>
     <item name="AlertStatustextforPncRegister" type="id">AlertStatustextforPncRegister</item>
+    <item name="AlertStatustextforEnccRegister" type="id">AlertStatustextforEnccRegister</item>
+    <item name="textforEnccRegister" type="id">textforEnccRegister</item>
 </resources>

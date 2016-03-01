@@ -295,7 +295,7 @@ public class NativeHomeActivity extends SecuredActivity {
                     break;
 
                 case R.id.btn_child_register:
-//                    navigationController.startChildSmartRegistry();
+                    navigationController.startChildSmartRegistry();
                     break;
 
                 case R.id.btn_fp_register:

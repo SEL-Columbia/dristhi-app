@@ -91,4 +91,12 @@
     <string name="pnc3form">PNC visit 1 form</string>
     <string name="pnc2form">PNC visit 2 form</string>
     <string name="pnc1form">PNC visit 3 form</string>
+    <string name="mcarechild_dob">DoB</string>
+    <string name="encc_reminder_status">ENCC Reminder Status</string>
+    <string name="encc_due_date">ENCC Due Date</string>
+    <string name="child_mother_unique_id">Mother\'s Unique ID</string>
+    <string name="mcare_Child_register_title_in_short">Child Register</string>
+    <string name="encc3form">ENCC Visit Form 3</string>
+    <string name="encc2form">ENCC Visit Form 2</string>
+    <string name="encc1form">ENCC Visit Form 1</string>
 </resources>

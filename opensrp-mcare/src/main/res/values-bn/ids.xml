@@ -2,4 +2,6 @@
 <resources>
     <item name="textforPncRegister" type="id">091234</item>
     <item name="AlertStatustextforPncRegister" type="id">AlertStatustextforPncRegister</item>
+    <item name="AlertStatustextforEnccRegister" type="id">AlertStatustextforEnccRegister</item>
+    <item name="textforEnccRegister" type="id">textforEnccRegister</item>
 </resources>

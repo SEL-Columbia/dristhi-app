@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
+import org.ei.opensrp.mcare.child.mCareChildSmartRegisterActivity;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.household.HouseHoldSmartRegisterActivity;
 import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
@@ -47,6 +48,9 @@ public class McareNavigationController extends org.ei.opensrp.view.controller.Na
     }
     public void startPNCSmartRegistry() {
         activity.startActivity(new Intent(activity, mCarePNCSmartRegisterActivity.class));
+    }
+    public void startChildSmartRegistry() {
+        activity.startActivity(new Intent(activity, mCareChildSmartRegisterActivity.class));
     }
 
 
