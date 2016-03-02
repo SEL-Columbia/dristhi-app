@@ -38,7 +38,8 @@
             />
         <activity
             android:name=".child.ChildDetailActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:theme="@style/AppThemeNoTitle"/>
         <activity
             android:name=".field.FieldMonitorSmartRegisterActivity"
             android:screenOrientation="landscape"
@@ -47,10 +48,12 @@
             />
         <activity
             android:name=".field.FieldMonitorDailyDetailActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:theme="@style/AppThemeNoTitle"/>
         <activity
             android:name=".field.FieldMonitorMonthlyDetailActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:theme="@style/AppThemeNoTitle"/>
         <activity
             android:name=".woman.WomanSmartRegisterActivity"
             android:screenOrientation="landscape"
@@ -59,7 +62,8 @@
             />
         <activity
             android:name=".woman.WomanDetailActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:theme="@style/AppThemeNoTitle"/>
         <activity
             android:name=".report.VaccineReport"
             android:label="@string/title_activity_vaccine_report"
