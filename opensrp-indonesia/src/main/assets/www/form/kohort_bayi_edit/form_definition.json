@@ -9,11 +9,6 @@
                 "shouldLoadValue": true
             },
             {
-                "name": "kiId",
-                "source": "anak.ibu.kartu_ibu.id",
-                "shouldLoadValue": true
-            },
-            {
                 "name": "motherId",
                 "source": "anak.ibu.id",
                 "shouldLoadValue": true
