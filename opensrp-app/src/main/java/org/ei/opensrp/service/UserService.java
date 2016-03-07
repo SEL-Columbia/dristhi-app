@@ -2,6 +2,7 @@ package org.ei.opensrp.service;
 
 import android.util.Log;
 
+import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.DristhiConfiguration;
 import org.ei.opensrp.domain.LoginResponse;
 import org.ei.opensrp.domain.Response;
@@ -45,7 +46,10 @@ public class UserService {
     }
 
     public LoginResponse isValidRemoteLogin(String userName, String password) {
-        String requestURL = configuration.dristhiBaseURL() + OPENSRP_AUTH_USER_URL_PATH;
+        String requestURL;
+
+        requestURL = configuration.dristhiBaseURL() + OPENSRP_AUTH_USER_URL_PATH;
+
         return httpAgent.urlCanBeAccessWithGivenCredentials(requestURL, userName, password);
     }
 

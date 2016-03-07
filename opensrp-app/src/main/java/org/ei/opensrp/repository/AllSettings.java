@@ -8,8 +8,8 @@ public class AllSettings {
     private static final String ANM_LOCATION = "anmLocation";
     private static final String USER_INFORMATION = "userInformation";
 
-    private AllSharedPreferences preferences;
-    private SettingsRepository settingsRepository;
+    protected AllSharedPreferences preferences;
+    protected SettingsRepository settingsRepository;
 
     public AllSettings(AllSharedPreferences preferences, SettingsRepository settingsRepository) {
         this.preferences = preferences;

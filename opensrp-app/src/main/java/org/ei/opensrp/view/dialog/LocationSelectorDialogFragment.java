@@ -1,5 +1,6 @@
 package org.ei.opensrp.view.dialog;
 
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +12,6 @@ import com.google.common.base.Strings;
 
 import org.ei.opensrp.R;
 import org.ei.opensrp.domain.form.FieldOverrides;
-import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.json.JSONObject;
 import org.opensrp.api.domain.Location;
@@ -24,37 +24,44 @@ import atv.holder.SelectableItemHolder;
 import atv.model.TreeNode;
 import atv.view.AndroidTreeView;
 
-import static org.ei.opensrp.AllConstants.FormNames.EC_REGISTRATION;
-import static org.ei.opensrp.util.StringUtil.humanize;
+import static org.ei.opensrp.util.StringUtil.*;
 
 public class LocationSelectorDialogFragment extends DialogFragment {
 
-    private final SecuredNativeSmartRegisterActivity parentActivity;
-    private final DialogOption[] options;
-    private final DialogOptionModel dialogOptionModel;
-    private final String locationJSONString;
+    private static final String LocationJSONString = "locationJSONString";
+    private static final String FormName = "formName";
+
     public static String savestate ;
     AndroidTreeView tView;
-    public String formname;
-    // private final Object tag;
 
-    private LocationSelectorDialogFragment(SecuredNativeSmartRegisterActivity activity,
-                                           DialogOptionModel dialogOptionModel,
-                                           String locationJSONString
-            ,String formname) {
-        this.formname = formname;
-        this.parentActivity = activity;
-        this.options = dialogOptionModel.getDialogOptions();
-        this.dialogOptionModel = dialogOptionModel;
-        this.locationJSONString = locationJSONString;
-        // this.tag = tag;
+    OnLocationSelectedListener mCallback;
+
+
+    public interface OnLocationSelectedListener {
+        public void OnLocationSelected(String locationSelected);
     }
 
     public static LocationSelectorDialogFragment newInstance(
             SecuredNativeSmartRegisterActivity activity,
             DialogOptionModel dialogOptionModel,
             String locationJSONString,String formname) {
-        return new LocationSelectorDialogFragment(activity, dialogOptionModel, locationJSONString,formname);
+
+        LocationSelectorDialogFragment lsd = new LocationSelectorDialogFragment();
+        Bundle bundle = new Bundle(2);
+        bundle.putString(LocationJSONString, locationJSONString);
+        bundle.putString(FormName, formname);
+        lsd.setArguments(bundle);
+        return lsd;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mCallback = (OnLocationSelectedListener)activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnLocationSelectedListener.");
+        }
     }
 
     @Override
@@ -69,13 +76,13 @@ public class LocationSelectorDialogFragment extends DialogFragment {
         ViewGroup dialogView = new LinearLayout(getActivity());
         TreeNode root = TreeNode.root();
 
-        LocationTree locationTree = EntityUtils.fromJson(locationJSONString, LocationTree.class);
+        LocationTree locationTree = EntityUtils.fromJson(getArguments().getString(LocationJSONString), LocationTree.class);
 
         Map<String,org.opensrp.api.util.TreeNode<String, Location>> locationMap =
                 locationTree.getLocationsHierarchy();
 
         // creating the tree
-        locationTreeToTreNode(root, locationMap);
+        locationTreeToTreNode(root, locationMap, getArguments().getString(FormName));
 
         tView = new AndroidTreeView(getActivity(), root);
         tView.setDefaultContainerStyle(R.style.TreeNodeStyle);
@@ -90,10 +97,10 @@ public class LocationSelectorDialogFragment extends DialogFragment {
         return dialogView;
     }
 
-    public TreeNode createNode(String locationlevel, String locationname){
+    public TreeNode createNode(String locationlevel, String locationname, String formName){
         TreeNode node = new TreeNode(locationname,locationlevel).setViewHolder(new SelectableItemHolder(getActivity(),locationlevel+": "));
         node.setSelectable(false);
-        addselectlistener(node, "");
+        addselectlistener(node, formName);
         return node;
     }
 
@@ -103,52 +110,26 @@ public class LocationSelectorDialogFragment extends DialogFragment {
         }
     }
 
-    //    public void addselectlistener (TreeNode node,final String id){
-//        node.setClickListener(new TreeNode.TreeNodeClickListener() {
-//            @Override
-//            public void onClick(TreeNode node, Object value) {
-//                if(node.isLeaf()){
-//                    node.getParent().getName();
-//                    JSONObject locationjson = new JSONObject();
-//                    TreeNode traversingnode = node;
-//                   try {
-//                       locationjson.put("location_name", traversingnode.getName().replace(" ","_"));
-//                       locationjson.put("existing_location", id);
-//                   }catch (Exception e){
-//
-//                   }
-//                    FieldOverrides fieldOverrides = new FieldOverrides(locationjson.toString());
-//                    //  Toast.makeText(getActivity(),fieldOverrides.getJSONString(),Toast.LENGTH_LONG).show();
-//                    parentActivity.startFormActivity(formname, null, fieldOverrides.getJSONString());
-//                    savestate = tView.getSaveState();
-//                    dismiss();
-//                }
-//            }
-//        });
-//    }
-    public void addselectlistener (TreeNode node,final String id){
+    public void addselectlistener (TreeNode node, final String formName){
         node.setClickListener(new TreeNode.TreeNodeClickListener() {
             @Override
             public void onClick(TreeNode node, Object value) {
                 if(node.isLeaf()){
                     JSONObject locationjson = new JSONObject();
-                    try {
-                        locationjson.put("location_name", node.getName().replace(" ","_"));
-                        locationjson.put("existing_location", id);
-                    }catch (Exception e){
-
-                    }
                     TreeNode traversingnode = node;
                     while(!traversingnode.isRoot()){
                         try {
-                            locationjson.put("existing_"+traversingnode.getlocationlevel(), traversingnode.getName());
+                            locationjson.put(traversingnode.getlocationlevel(), traversingnode.getName());
                         }catch(Exception e){
 
                         }
                         traversingnode = traversingnode.getParent();
                     }
-                    FieldOverrides fieldOverrides = new FieldOverrides(locationjson.toString());
-                    parentActivity.startFormActivity(formname, null, fieldOverrides.getJSONString());
+                    if(mCallback != null) {
+                        mCallback.OnLocationSelected(locationjson.toString());
+                        // FieldOverrides fieldOverrides = new FieldOverrides(locationjson.toString());
+                        // ((SecuredNativeSmartRegisterActivity)getActivity()).startFormActivity(formName, null, fieldOverrides.getJSONString());
+                    }
                     savestate = tView.getSaveState();
                     dismiss();
                 }
@@ -156,17 +137,17 @@ public class LocationSelectorDialogFragment extends DialogFragment {
         });
     }
 
-    public void locationTreeToTreNode(TreeNode node, Map<String,org.opensrp.api.util.TreeNode<String, Location>> location) {
+    public void locationTreeToTreNode(TreeNode node, Map<String,org.opensrp.api.util.TreeNode<String, Location>> location, String formName) {
 
         for(Map.Entry<String, org.opensrp.api.util.TreeNode<String, Location>> entry : location.entrySet()) {
             String locationTag = entry.getValue().getNode().getTags().iterator().next();
             TreeNode tree = createNode(
                     Strings.isNullOrEmpty(locationTag)?"-":humanize(locationTag),
-                    humanize(entry.getValue().getLabel()));
+                    humanize(entry.getValue().getLabel()),
+                    formName);
             node.addChild(tree);
-            addselectlistener(tree, entry.getValue().getId());
             if(entry.getValue().getChildren() != null) {
-                locationTreeToTreNode(tree, entry.getValue().getChildren());
+                locationTreeToTreNode(tree, entry.getValue().getChildren(), formName);
             }
         }
     }

@@ -1,0 +1,27 @@
+<model>
+    <instance>
+        <penutupan_pnc_reviewed encounter_type="Penutupan PNC" id="penutupan_pnc"
+            version="201511240656">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <pnc_close_reason />
+            <death_date />
+            <maternal_death_cause />
+            <other_maternal_death_cause />
+            <place_of_death />
+            <other_place_of_death />
+            <not_maternal_death_cause />
+            <confirm_pnc_close />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </penutupan_pnc_reviewed>
+    </instance>
+</model>

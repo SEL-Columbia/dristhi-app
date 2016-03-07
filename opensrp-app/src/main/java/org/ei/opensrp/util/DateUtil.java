@@ -3,6 +3,7 @@ package org.ei.opensrp.util;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
+import org.joda.time.Weeks;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -77,6 +78,23 @@ public class DateUtil {
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    public static int weekDifference(LocalDate startDate, LocalDate endDate) {
+        try {
+            return Math.abs(Weeks.weeksBetween(startDate, endDate).getWeeks());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public static boolean isValidDate(String dateString) {
+        if(dateString==null||dateString.length() != "yyyy-MM-dd".length()) {
+            return false;
+        }
+
+        return dateString.matches("\\d{4}-\\d{2}-\\d{2}");
+
     }
 
 }

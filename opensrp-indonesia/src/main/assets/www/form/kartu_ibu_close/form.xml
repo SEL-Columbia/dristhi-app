@@ -1,0 +1,428 @@
+<form autocomplete="off" class="or clearfix" id="penutupan_ibu" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Penutupan Ibu</h3>
+    <select data-default-lang="Bahasa" id="form-languages">
+        <option value="Bahasa">Bahasa</option>
+        <option value="en">English</option>
+    </select>
+
+
+    <label class="question or-appearance-minimal ">
+        <span class="question-label active" data-itext-id="/penutupan_ibu_reviewed/close_reason:label"
+            lang="Bahasa">Alasan penutupan Kartu Ibu?
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_ibu_reviewed/close_reason:label"
+            lang="en">Reason for Mother Card's
+            closure?
+        </span>
+        <span class="required">*</span>
+        <span class="or-hint active" data-itext-id="/penutupan_ibu_reviewed/close_reason:hint"
+            lang="Bahasa">Pilihlah salah satu alasan
+            yang tersedia
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_ibu_reviewed/close_reason:hint" lang="en">
+            Select one of reasons available
+        </span>
+        <select name="/penutupan_ibu_reviewed/close_reason"
+            data-name="/penutupan_ibu_reviewed/close_reason" data-type-xml="select1"
+            required="required">
+            <option value="">...</option>
+            <option value="relocation_temporary">Relokasi (sementara)</option>
+            <option value="relocation_permanent">Relokasi (permanen)</option>
+            <option value="age_morethan_49">Umur ibu &gt; 49 tahun</option>
+            <option value="wrong_entry">Kesalahan entry</option>
+            <option value="Penyebab langsung">Kematian Ibu karena Penyebab langsung</option>
+            <option value="Penyebab tidak langsung">Kematian Ibu karena Penyebab tidak langsung
+            </option>
+            <option value="others">Lainnya</option>
+        </select>
+        <span style="display:none;" class="or-option-translations">
+            <span data-option-value="relocation_temporary" lang="Bahasa">Relokasi (sementara)</span>
+            <span data-option-value="relocation_temporary" lang="en">Relocation (temporary)</span>
+            <span data-option-value="relocation_permanent" lang="Bahasa">Relokasi (permanen)</span>
+            <span data-option-value="relocation_permanent" lang="en">Relocation (permanent)</span>
+            <span data-option-value="age_morethan_49" lang="Bahasa">Umur ibu &gt; 49 tahun</span>
+            <span data-option-value="age_morethan_49" lang="en">Mother's age &gt; 49 years old
+            </span>
+            <span data-option-value="wrong_entry" lang="Bahasa">Kesalahan entry</span>
+            <span data-option-value="wrong_entry" lang="en">Wrong entry</span>
+            <span data-option-value="Penyebab langsung" lang="Bahasa">Kematian Ibu karena Penyebab
+                langsung
+            </span>
+            <span data-option-value="Penyebab langsung" lang="en">Direct cause</span>
+            <span data-option-value="Penyebab tidak langsung" lang="Bahasa">Kematian Ibu karena
+                Penyebab tidak langsung
+            </span>
+            <span data-option-value="Penyebab tidak langsung" lang="en">Indirect cause</span>
+            <span data-option-value="others" lang="Bahasa">Lainnya</span>
+            <span data-option-value="others" lang="en">Other</span>
+        </span>
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/penutupan_ibu_reviewed/close_reason_other:label"
+            lang="Bahasa">Lainnya
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_ibu_reviewed/close_reason_other:label"
+            lang="en">Other
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_ibu_reviewed/close_reason_other:hint"
+            lang="Bahasa">Sebutkan alasan lainnya
+            jika ada
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_ibu_reviewed/close_reason_other:hint"
+            lang="en">Write other reason, if
+            available
+        </span>
+        <input name="/penutupan_ibu_reviewed/close_reason_other" data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'others'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="or-constraint-msg active" data-itext-id="/penutupan_ibu_reviewed/maternal_death_date:jr:constraintMsg"
+            lang="Bahasa">Tanggal
+            kematian ibu hari ini atau hari-hari sebelumnya
+        </span>
+        <span class="or-constraint-msg " data-itext-id="/penutupan_ibu_reviewed/maternal_death_date:jr:constraintMsg"
+            lang="en">Date of
+            mother's death today or the days before
+        </span>
+        <span class="question-label active" data-itext-id="/penutupan_ibu_reviewed/maternal_death_date:label"
+            lang="Bahasa">Tanggal kematian ibu?
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_ibu_reviewed/maternal_death_date:label"
+            lang="en">Date of maternal
+            death?
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_ibu_reviewed/maternal_death_date:hint"
+            lang="Bahasa">Masukkan tanggal
+            kematian Ibu
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_ibu_reviewed/maternal_death_date:hint"
+            lang="en">Enter date of maternal
+            death
+        </span>
+        <input name="/penutupan_ibu_reviewed/maternal_death_date" data-constraint=".&lt;= /penutupan_ibu_reviewed/today "
+            data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab langsung' or  /penutupan_ibu_reviewed/close_reason  = 'Penyebab tidak langsung'"
+            data-type-xml="date"
+            type="date" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/penutupan_ibu_reviewed/place_of_death:label"
+                    lang="Bahasa">Tempat kematian
+                </span>
+                <span class="question-label " data-itext-id="/penutupan_ibu_reviewed/place_of_death:label"
+                    lang="en">Place of death
+                </span>
+                <span class="or-hint active" data-itext-id="/penutupan_ibu_reviewed/place_of_death:hint"
+                    lang="Bahasa">Tempat kematian Ibu
+                </span>
+                <span class="or-hint " data-itext-id="/penutupan_ibu_reviewed/place_of_death:hint"
+                    lang="en">Place of mother's
+                    death
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/penutupan_ibu_reviewed/place_of_death" data-name="/penutupan_ibu_reviewed/place_of_death"
+                        data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab langsung'"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="Rumah sendiri/keluarga" />
+                    <span class="option-label active" data-itext-id="/penutupan_ibu_reviewed/place_of_death/Rumah sendiri/keluarga:label"
+                        lang="Bahasa">
+                        Rumah sendiri/keluarga
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_ibu_reviewed/place_of_death/Rumah sendiri/keluarga:label"
+                        lang="en">
+                        Mother/family's house
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/penutupan_ibu_reviewed/place_of_death" data-name="/penutupan_ibu_reviewed/place_of_death"
+                        data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab langsung'" data-type-xml="select1"
+                        type="radio"
+                        value="Rumah dukun" />
+                    <span class="option-label active" data-itext-id="/penutupan_ibu_reviewed/place_of_death/Rumah dukun:label"
+                        lang="Bahasa">
+                        Rumah dukun
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_ibu_reviewed/place_of_death/Rumah dukun:label"
+                        lang="en">
+                        Traditional birth attendant's house
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/penutupan_ibu_reviewed/place_of_death" data-name="/penutupan_ibu_reviewed/place_of_death"
+                        data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab langsung'" data-type-xml="select1"
+                        type="radio"
+                        value="Polindes" />
+                    <span class="option-label active" data-itext-id="/penutupan_ibu_reviewed/place_of_death/Polindes:label"
+                        lang="Bahasa">
+                        Polindes
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_ibu_reviewed/place_of_death/Polindes:label"
+                        lang="en">
+                        Community-based health post
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/penutupan_ibu_reviewed/place_of_death" data-name="/penutupan_ibu_reviewed/place_of_death"
+                        data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab langsung'" data-type-xml="select1"
+                        type="radio"
+                        value="Pustu" />
+                    <span class="option-label active" data-itext-id="/penutupan_ibu_reviewed/place_of_death/Pustu:label"
+                        lang="Bahasa">Pustu
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_ibu_reviewed/place_of_death/Pustu:label"
+                        lang="en">
+                        Sub-center
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/penutupan_ibu_reviewed/place_of_death" data-name="/penutupan_ibu_reviewed/place_of_death"
+                        data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab langsung'" data-type-xml="select1"
+                        type="radio"
+                        value="Rumah bidan" />
+                    <span class="option-label active" data-itext-id="/penutupan_ibu_reviewed/place_of_death/Rumah bidan:label"
+                        lang="Bahasa">
+                        Rumah bidan
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_ibu_reviewed/place_of_death/Rumah bidan:label"
+                        lang="en">
+                        Midwife's house
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/penutupan_ibu_reviewed/place_of_death" data-name="/penutupan_ibu_reviewed/place_of_death"
+                        data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab langsung'" data-type-xml="select1"
+                        type="radio"
+                        value="Puskesmas" />
+                    <span class="option-label active" data-itext-id="/penutupan_ibu_reviewed/place_of_death/Puskesmas:label"
+                        lang="Bahasa">
+                        Puskesmas
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_ibu_reviewed/place_of_death/Puskesmas:label"
+                        lang="en">
+                        Primary Health Center
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/penutupan_ibu_reviewed/place_of_death" data-name="/penutupan_ibu_reviewed/place_of_death"
+                        data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab langsung'"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="Dalam perjalanan ke fasilitas" />
+                    <span class="option-label active" data-itext-id="/penutupan_ibu_reviewed/place_of_death/Dalam perjalanan ke fasilitas:label"
+                        lang="Bahasa">
+                        Dalam perjalanan ke fasilitas
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_ibu_reviewed/place_of_death/Dalam perjalanan ke fasilitas:label"
+                        lang="en">
+                        On the way to facility
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/penutupan_ibu_reviewed/place_of_death" data-name="/penutupan_ibu_reviewed/place_of_death"
+                        data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab langsung'" data-type-xml="select1"
+                        type="radio"
+                        value="Lainnya" />
+                    <span class="option-label active" data-itext-id="/penutupan_ibu_reviewed/place_of_death/Lainnya:label"
+                        lang="Bahasa">Lainnya
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_ibu_reviewed/place_of_death/Lainnya:label"
+                        lang="en">Other
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/penutupan_ibu_reviewed/other_place_of_death:label"
+            lang="Bahasa">Tempat kematian
+            lainnya
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_ibu_reviewed/other_place_of_death:label"
+            lang="en">Other
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_ibu_reviewed/other_place_of_death:hint"
+            lang="Bahasa">Sebutkan tempat
+            kematian lainnya jika ada
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_ibu_reviewed/other_place_of_death:hint"
+            lang="en">Mention other mother's
+            place of death, if available
+        </span>
+        <input name="/penutupan_ibu_reviewed/other_place_of_death" data-relevant=" /penutupan_ibu_reviewed/place_of_death  = 'Lainnya'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/penutupan_ibu_reviewed/not_maternal_death_cause:label"
+            lang="Bahasa">Penyebab kematian
+            tidak langsung?
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_ibu_reviewed/not_maternal_death_cause:label"
+            lang="en">Cause of indirect
+            maternal death
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_ibu_reviewed/not_maternal_death_cause:hint"
+            lang="Bahasa">Masukkan penyebab
+            kematian
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_ibu_reviewed/not_maternal_death_cause:hint"
+            lang="en">Write cause of the
+            death
+        </span>
+        <input name="/penutupan_ibu_reviewed/not_maternal_death_cause" data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab tidak langsung'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" data-itext-id="/penutupan_ibu_reviewed/maternal_death_cause:label"
+            lang="Bahasa">Penyebab kematian
+            langsung?
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_ibu_reviewed/maternal_death_cause:label"
+            lang="en">Direct cause of
+            maternal death?
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_ibu_reviewed/maternal_death_cause:hint"
+            lang="Bahasa">Pilihlah salah satu
+            jawaban yang tersedia
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_ibu_reviewed/maternal_death_cause:hint"
+            lang="en">Select one of answers
+            available
+        </span>
+        <select name="/penutupan_ibu_reviewed/maternal_death_cause"
+            data-name="/penutupan_ibu_reviewed/maternal_death_cause"
+            data-relevant=" /penutupan_ibu_reviewed/close_reason  = 'Penyebab langsung'"
+            data-type-xml="select1">
+            <option value="">...</option>
+            <option value="early_pregnancy_bleeding">PERDARAHAN HAMIL MUDA ( Abortus,KET,Mola )
+            </option>
+            <option value="hemorrhage">PENDARAHAN ( APB, HPP )</option>
+            <option value="infection">INFEKSI ( P.Kasep,KPD, Sepsis,Puerperalis,P. Lama )</option>
+            <option value="hypertention_in_pregnancy">HDK ( HT Kronis,HT dg Protein
+                Urin,Eklampsia,Syndrom HELLP)
+            </option>
+            <option value="embolism">EMBOLI ( Pulmonal,air ketuban )</option>
+            <option value="other">LAIN-LAIN ( diluar penyebab yang diatas )</option>
+        </select>
+        <span style="display:none;" class="or-option-translations">
+            <span data-option-value="early_pregnancy_bleeding" lang="Bahasa">PERDARAHAN HAMIL MUDA (
+                Abortus,KET,Mola )
+            </span>
+            <span data-option-value="early_pregnancy_bleeding" lang="en">Early Pregnancy Bleeding
+                (Abortion/Miscarriage, Ectopic Pregnancy, Mola)
+            </span>
+            <span data-option-value="hemorrhage" lang="Bahasa">PENDARAHAN ( APB, HPP )</span>
+            <span data-option-value="hemorrhage" lang="en">Hemorrhage (APB, PPH)</span>
+            <span data-option-value="infection" lang="Bahasa">INFEKSI ( P.Kasep,KPD,
+                Sepsis,Puerperalis,P. Lama )
+            </span>
+            <span data-option-value="infection" lang="en">Infection (prolonged labor with
+                complication, early membrane rupture, sepsis puerperalis, prolonged labor)
+            </span>
+            <span data-option-value="hypertention_in_pregnancy" lang="Bahasa">HDK ( HT Kronis,HT dg
+                Protein Urin,Eklampsia,Syndrom HELLP)
+            </span>
+            <span data-option-value="hypertention_in_pregnancy" lang="en">Hypertention in Pregnancy
+                (Chronic Hypertention, Hypertention with protein urinea, Syndrom HELLP)
+            </span>
+            <span data-option-value="embolism" lang="Bahasa">EMBOLI ( Pulmonal,air ketuban )</span>
+            <span data-option-value="embolism" lang="en">Embolism (Pulmonary, Amniotic fluid)</span>
+            <span data-option-value="other" lang="Bahasa">LAIN-LAIN ( diluar penyebab yang diatas
+                )
+            </span>
+            <span data-option-value="other" lang="en">Other</span>
+        </span>
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/penutupan_ibu_reviewed/other_maternal_death_cause:label"
+            lang="Bahasa">Lainnya
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_ibu_reviewed/other_maternal_death_cause:label"
+            lang="en">Other
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_ibu_reviewed/other_maternal_death_cause:hint"
+            lang="Bahasa">Sebutkan alasan
+            lainnya jika ada
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_ibu_reviewed/other_maternal_death_cause:hint"
+            lang="en">Write other
+            reason, if available
+        </span>
+        <input name="/penutupan_ibu_reviewed/other_maternal_death_cause" data-relevant=" /penutupan_ibu_reviewed/maternal_death_cause  = 'others'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/penutupan_ibu_reviewed/confirm_ec_close:label"
+                    lang="Bahasa">Konfirmasi
+                    penutupan Kartu Ibu?
+                </span>
+                <span class="question-label " data-itext-id="/penutupan_ibu_reviewed/confirm_ec_close:label"
+                    lang="en">Confirmation of
+                    Mother Card's closure?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/penutupan_ibu_reviewed/confirm_ec_close" data-name="/penutupan_ibu_reviewed/confirm_ec_close"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="yes" />
+                    <span class="option-label active" data-itext-id="/penutupan_ibu_reviewed/confirm_ec_close/yes:label"
+                        lang="Bahasa">Ya
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_ibu_reviewed/confirm_ec_close/yes:label"
+                        lang="en">Yes
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/penutupan_ibu_reviewed/start" data-preload="timestamp" data-preload-params="start"
+                data-type-xml="dateTime" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_ibu_reviewed/today" data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_ibu_reviewed/deviceid" data-preload="property" data-preload-params="deviceid"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_ibu_reviewed/simserial" data-preload="property" data-preload-params="simserial"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_ibu_reviewed/phonenumber" data-preload="property" data-preload-params="phonenumber"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_ibu_reviewed/end" data-preload="timestamp" data-preload-params="end"
+                data-type-xml="dateTime" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/penutupan_ibu_reviewed/meta/instanceID" data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_ibu_reviewed/formhub/uuid" data-calculate="'1baf901932b945118afea7af37f39c21'"
+                data-type-xml="string" type="hidden" />
+        </label>
+    </fieldset>
+</form>

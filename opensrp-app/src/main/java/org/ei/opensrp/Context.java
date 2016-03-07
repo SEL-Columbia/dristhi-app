@@ -190,7 +190,7 @@ public class Context {
     private ANMController anmController;
     private ANMLocationController anmLocationController;
 
-    private DristhiConfiguration configuration;
+    protected DristhiConfiguration configuration;
 
     ///////////////////common bindtypes///////////////
     public static ArrayList<CommonRepositoryInformationHolder> bindtypes;
@@ -204,6 +204,9 @@ public class Context {
 
 
     public static Context getInstance() {
+        if (context == null){
+            context = new Context();
+        }
         return context;
     }
 
@@ -465,14 +468,17 @@ public class Context {
         return formSubmissionSyncService;
     }
 
-    private HTTPAgent httpAgent() {
+    protected HTTPAgent httpAgent() {
         if (httpAgent == null) {
             httpAgent = new HTTPAgent(applicationContext, allSettings(), allSharedPreferences(), configuration());
         }
         return httpAgent;
     }
 
-    private Repository initRepository() {
+    protected Repository initRepository() {
+        if(configuration().appName().equals(AllConstants.APP_NAME_INDONESIA)) {
+            return null;
+        }
         if (repository == null) {
             assignbindtypes();
             ArrayList<DrishtiRepository> drishtireposotorylist = new ArrayList<DrishtiRepository>();
@@ -567,14 +573,14 @@ public class Context {
         return eligibleCoupleRepository;
     }
 
-    private AlertRepository alertRepository() {
+    protected AlertRepository alertRepository() {
         if (alertRepository == null) {
             alertRepository = new AlertRepository();
         }
         return alertRepository;
     }
 
-    private SettingsRepository settingsRepository() {
+    protected SettingsRepository settingsRepository() {
         if (settingsRepository == null) {
             settingsRepository = new SettingsRepository();
         }
@@ -595,7 +601,7 @@ public class Context {
         return motherRepository;
     }
 
-    private TimelineEventRepository timelineEventRepository() {
+    protected TimelineEventRepository timelineEventRepository() {
         if (timelineEventRepository == null) {
             timelineEventRepository = new TimelineEventRepository();
         }
@@ -616,14 +622,14 @@ public class Context {
         return formDataRepository;
     }
 
-    private ServiceProvidedRepository serviceProvidedRepository() {
+    protected ServiceProvidedRepository serviceProvidedRepository() {
         if (serviceProvidedRepository == null) {
             serviceProvidedRepository = new ServiceProvidedRepository();
         }
         return serviceProvidedRepository;
     }
 
-    private FormsVersionRepository formsVersionRepository() {
+    protected FormsVersionRepository formsVersionRepository() {
         if (formsVersionRepository == null) {
             formsVersionRepository = new FormsVersionRepository();
         }
@@ -914,10 +920,21 @@ public class Context {
         return returnString.toString();
     }
 
+    protected void setApplicationContext(android.content.Context applicationContext) {
+        this.applicationContext = applicationContext;
+    }
+
+    protected Repository getRepository() {
+        return repository;
+    }
+
+    protected void setRepository(Repository repository) {
+        this.repository = repository;
+    }
+
     public HTTPAgent getHttpAgent() {
         return httpAgent;
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////
 }

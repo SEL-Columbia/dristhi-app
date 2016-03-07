@@ -1,0 +1,53 @@
+<model>
+    <instance>
+        <PNC_visit_reviewed encounter_type="Kunjungan PNC" id="kunjungan_pnc"
+            version="201511160708">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <reg_date />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <nik />
+            <Lokasi_periksa />
+            <tanggal_kunjungan />
+            <tanggal_lahir_anak />
+            <generated_note_name_9 />
+            <hari_ke__kf />
+            <tanda_vital_td_sistolik />
+            <tanda_vital_td_diastolik />
+            <tanda_vital_suhu />
+            <pelayanan_catat_di_buku_kia />
+            <pelayananfe />
+            <jumlah_fe />
+            <pelayanan_vita />
+            <vitaminA2jamPP />
+            <vitaminA24jamPP />
+            <ProgramIntegration />
+            <integrasi_program_cd4 />
+            <integrasi_program_anti_malaria />
+            <integrasi_program_anti_tb />
+            <integrasi_program_foto_thorax />
+            <komplikasi />
+            <komplikasi_lainnya />
+            <rujukan />
+            <dirujuk_ke />
+            <dirujukkelainnya />
+            <keadaan_tiba />
+            <keadaan_pulang />
+            <keterangan />
+            <high_risk_post-partum_infection />
+            <high_risk_post-partum_PIH />
+            <high_risk_post-partum_maternal_sepsis />
+            <high_risk_post-partum_Hemorrhage />
+            <high_risk_post-partum_Mastitis />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </PNC_visit_reviewed>
+    </instance>
+</model>

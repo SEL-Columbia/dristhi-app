@@ -1,0 +1,1095 @@
+<form autocomplete="off" class="or clearfix" id="kunjungan_neonatal" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Kunjungan neonatal</h3>
+    <select data-default-lang="Bahasa" id="form-languages">
+        <option value="Bahasa">Bahasa</option>
+        <option value="en">English</option>
+    </select>
+
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa:label"
+                    lang="Bahasa">Lokasi Periksa
+                </span>
+                <span class="required">*</span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa:label" lang="en">
+                    Location of Service
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="1" required="required" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Posyandu:label"
+                        lang="Bahasa">Posyandu
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Posyandu:label"
+                        lang="en">Posyandu
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="2" required="required" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Polindes:label"
+                        lang="Bahasa">Polindes
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Polindes:label"
+                        lang="en">Polindes
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-name="/kunjungan_neonatal_reviewed/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="3" required="required" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Rumah_ibu:label"
+                        lang="Bahasa">Rumah Ibu
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/Lokasi_periksa/Rumah_ibu:label"
+                        lang="en">Mother House
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/neonatal:label"
+                    lang="Bahasa">Kunjungan Neonatal
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/neonatal:label"
+                    lang="en">Neonatal Period
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/neonatal:hint"
+                    lang="Bahasa">Menunjukkan jenis
+                    kunjungan bayi Neonatal yang sedang dilakukan
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/neonatal:hint"
+                    lang="en">Indicating types of
+                    Neonatal check-up provided
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/neonatal" data-name="/kunjungan_neonatal_reviewed/neonatal"
+                        data-type-xml="select1" type="radio"
+                        value="5_jam_pertama" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/neonatal/5_jam_pertama:label"
+                        lang="Bahasa">
+                        Saat Lahir &lt; 5 jam
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/neonatal/5_jam_pertama:label"
+                        lang="en">
+                        After delivery &lt; 5 hours
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/neonatal" data-name="/kunjungan_neonatal_reviewed/neonatal"
+                        data-type-xml="select1" type="radio"
+                        value="Pertama" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/neonatal/Pertama:label"
+                        lang="Bahasa">Pertama
+                        (6 - 48 jam)
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/neonatal/Pertama:label"
+                        lang="en">first
+                        neonatal check-up 6-48 hous
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/neonatal" data-name="/kunjungan_neonatal_reviewed/neonatal"
+                        data-type-xml="select1" type="radio"
+                        value="Kedua" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/neonatal/Kedua:label"
+                        lang="Bahasa">Kedua (3 -
+                        7 hari)
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/neonatal/Kedua:label"
+                        lang="en">second
+                        neonatal check-up day 3-7 (date of check-up)
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/neonatal" data-name="/kunjungan_neonatal_reviewed/neonatal"
+                        data-type-xml="select1" type="radio"
+                        value="Ketiga" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/neonatal/Ketiga:label"
+                        lang="Bahasa">Ketiga (8
+                        - 28 hari)
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/neonatal/Ketiga:label"
+                        lang="en">third
+                        neonatal check-up day 8 - 28 (date of check-up )
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal:label"
+                    lang="Bahasa">
+                    Hidup atau tidak saat lahir
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal:label"
+                    lang="en">
+                    After delivery Alive or Not
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal:hint"
+                    lang="Bahasa">
+                    Menunjukkan apakah bayi meninggal/hidup dalam durasi 5 jam pertama setelah
+                    kelahiran
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal:hint"
+                    lang="en">
+                    Indicating whether the baby is dead/alive within the first 5 hours after birth
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal"
+                        data-name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'5_jam_pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="ya" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal/ya:label"
+                        lang="Bahasa">
+                        ya
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal/ya:label"
+                        lang="en">
+                        Yes
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal"
+                        data-name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'5_jam_pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="tidak" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal/tidak:label"
+                        lang="Bahasa">
+                        tidak
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal/tidak:label"
+                        lang="en">
+                        No
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi:label"
+                    lang="Bahasa">
+                    Kondisi bayi saat lahir
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi:label"
+                    lang="en">
+                    Baby's condition
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi:hint"
+                    lang="Bahasa">
+                    Menunjukkan kondisi bayi dari setelah kelahiran hingga 5 jam pertama
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi:hint"
+                    lang="en">
+                    Indicating baby's condition from birth to the first 5 hours
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi"
+                        data-name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'5_jam_pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="normal" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi/normal:label"
+                        lang="Bahasa">
+                        Normal (N)
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi/normal:label"
+                        lang="en">
+                        Normal (N)
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi"
+                        data-name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'5_jam_pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="komplikasi" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi/komplikasi:label"
+                        lang="Bahasa">
+                        Komplikasi (K)
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi/komplikasi:label"
+                        lang="en">
+                        Complication (C)
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir:label"
+                    lang="Bahasa">
+                    Jenis pelayanan yang diberikan saat lahir
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir:label"
+                    lang="en">
+                    Treatment given to baby after delivery
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir:hint"
+                    lang="Bahasa">
+                    Menunjukkan jenis pelayanan yang diberikan kepada bayi dalam 5 jam pertama
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir:hint"
+                    lang="en">
+                    Indicating types of services provided to the baby within the first 5 hours
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'5_jam_pertama')"
+                        data-type-xml="select"
+                        type="checkbox"
+                        value="first_breast_feeding" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir/first_breast_feeding:label"
+                        lang="Bahasa">
+                        First Breast feeding (IMD)
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir/first_breast_feeding:label"
+                        lang="en">
+                        First Breast feeding
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'5_jam_pertama')"
+                        data-type-xml="select"
+                        type="checkbox"
+                        value="vit-k_injection" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir/vit-k_injection:label"
+                        lang="Bahasa">
+                        Vit-K Injection (Vit-k)
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir/vit-k_injection:label"
+                        lang="en">
+                        Vit-K Injection (Vit-k)
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'5_jam_pertama')"
+                        data-type-xml="select"
+                        type="checkbox"
+                        value="salep_mata" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir/salep_mata:label"
+                        lang="Bahasa">
+                        Salep Mata
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/jenis_pelayanan_yang_diberikan_saat_lahir/salep_mata:label"
+                        lang="en">
+                        Eye ointment
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan:label"
+                    lang="Bahasa">
+                    Imunisasi HB0 jika dilakukan saat lahir
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan:label"
+                    lang="en">
+                    HB0 Immunization was given after baby's birth
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan:hint"
+                    lang="Bahasa">
+                    Menunjukkan apakah bayi diberikan imunisasi Hb dalam durasi 5 jam pertama
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan:hint"
+                    lang="en">
+                    Indicating whether baby receives Hb immunization within the first 5 hours
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan"
+                        data-name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'5_jam_pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="ya" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan/ya:label"
+                        lang="Bahasa">
+                        ya
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan/ya:label"
+                        lang="en">
+                        Yes
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan"
+                        data-name="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'5_jam_pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="tidak" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan/tidak:label"
+                        lang="Bahasa">
+                        tidak
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_pemberian_imunisasi_hb_jika_dilakukan/tidak:label"
+                        lang="en">
+                        No
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/komplikasi:label"
+                    lang="Bahasa">
+                    Klasifikasi/Diagnosis jika lahir dengan komplikasi
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/komplikasi:label"
+                    lang="en">
+                    Classification/Diagnose if the baby is born with complication
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/komplikasi:hint"
+                    lang="Bahasa">Diisi dengan
+                    klasifikasi/diagnosis jika lahir dengan komplikasi
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/komplikasi:hint"
+                    lang="en">Fill in the
+                    classification/diagnose if the baby is born with complication
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/komplikasi" data-name="/kunjungan_neonatal_reviewed/komplikasi"
+                        data-relevant=" /kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi  = 'komplikasi'" data-type-xml="select1"
+                        type="radio"
+                        value="asfiksia" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/komplikasi/asfiksia:label"
+                        lang="Bahasa">
+                        Asfiksia
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/komplikasi/asfiksia:label"
+                        lang="en">
+                        Asphyxia
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/komplikasi" data-name="/kunjungan_neonatal_reviewed/komplikasi"
+                        data-relevant=" /kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi  = 'komplikasi'" data-type-xml="select1"
+                        type="radio"
+                        value="trauma_lahir" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/komplikasi/trauma_lahir:label"
+                        lang="Bahasa">
+                        Trauma Lahir
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/komplikasi/trauma_lahir:label"
+                        lang="en">
+                        Birth Trauma
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/komplikasi" data-name="/kunjungan_neonatal_reviewed/komplikasi"
+                        data-relevant=" /kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi  = 'komplikasi'" data-type-xml="select1"
+                        type="radio"
+                        value="infeksi" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/komplikasi/infeksi:label"
+                        lang="Bahasa">
+                        Infeksi
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/komplikasi/infeksi:label"
+                        lang="en">
+                        Infection
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/komplikasi" data-name="/kunjungan_neonatal_reviewed/komplikasi"
+                        data-relevant=" /kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi  = 'komplikasi'"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="kelainan_kongenital" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/komplikasi/kelainan_kongenital:label"
+                        lang="Bahasa">
+                        Kelainan Kongenital
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/komplikasi/kelainan_kongenital:label"
+                        lang="en">
+                        Congenital Abnormality
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/komplikasi" data-name="/kunjungan_neonatal_reviewed/komplikasi"
+                        data-relevant=" /kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_kondisi_bayi  = 'komplikasi'" data-type-xml="select1"
+                        type="radio"
+                        value="hipotermi" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/komplikasi/hipotermi:label"
+                        lang="Bahasa">
+                        Hipotermi
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/komplikasi/hipotermi:label"
+                        lang="en">
+                        Hypothermia
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="or-constraint-msg active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam_tanggal_dan_bulan_kunjungan:jr:constraintMsg"
+            lang="Bahasa">
+            diisi dengan tanggal hari ini atau sebelumnya
+        </span>
+        <span class="or-constraint-msg " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam_tanggal_dan_bulan_kunjungan:jr:constraintMsg"
+            lang="en">
+            Fill in the date of today or the days before
+        </span>
+        <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam_tanggal_dan_bulan_kunjungan:label"
+            lang="Bahasa">
+            Tanggal kunjungan pertama
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam_tanggal_dan_bulan_kunjungan:label"
+            lang="en">
+            First neonatal check-up 6-48 hours (date of check-up)
+        </span>
+        <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam_tanggal_dan_bulan_kunjungan:hint"
+            lang="Bahasa">
+            Menunjukkan tanggal kunjungan Neonatal pertama dilakukan
+        </span>
+        <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam_tanggal_dan_bulan_kunjungan:hint"
+            lang="en">
+            Indicating the date of the first Neonatal check-up
+        </span>
+        <input name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam_tanggal_dan_bulan_kunjungan"
+            data-constraint=".&lt;= /kunjungan_neonatal_reviewed/today "
+            data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Pertama')"
+            data-type-xml="date"
+            type="date" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb:label"
+                    lang="Bahasa">
+                    Imunisasi HB0 kunjungan pertama
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb:label"
+                    lang="en">
+                    first neonatal check-up 6-48 hours (HB0 vaccine)
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb:hint"
+                    lang="Bahasa">
+                    Menunjukkan apakah bayi diberikan imunisasi HB dalam rentang 6 jam hingga 48 jam
+                    setelah kelahiran
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb:hint"
+                    lang="en">
+                    Indicating whether baby receives HB immunization within 6 to 48 hours after
+                    birth
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb"
+                        data-name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="ya" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb/ya:label"
+                        lang="Bahasa">
+                        Imunisasi Hb diberikan
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb/ya:label"
+                        lang="en">
+                        Provide HB Immunization
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb"
+                        data-name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="tidak" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb/tidak:label"
+                        lang="Bahasa">
+                        Imunisasi Hb tidak diberikan
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb/tidak:label"
+                        lang="en">
+                        Doesn't provide HB Immunization
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam:label"
+                    lang="Bahasa">
+                    Keadaan Neonatal kunjungan pertama
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam:label"
+                    lang="en">
+                    first neonatal check-up 6-48 hours (neonate condition)
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam:hint"
+                    lang="Bahasa">
+                    Diisi dengan data keadaan umum bayi dari 6 jam hingga 48 jam setelah kelahiran
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam:hint"
+                    lang="en">
+                    Fill in the general condition of the baby within 6 to 48 hours after birth
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam"
+                        data-name="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="sehat" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam/sehat:label"
+                        lang="Bahasa">
+                        Sehat
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam/sehat:label"
+                        lang="en">
+                        Healthy
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam"
+                        data-name="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="sakit" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam/sakit:label"
+                        lang="Bahasa">
+                        Sakit
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam/sakit:label"
+                        lang="en">
+                        Sick
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam"
+                        data-name="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Pertama')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="meninggal" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam/meninggal:label"
+                        lang="Bahasa">
+                        Meninggal
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam/meninggal:label"
+                        lang="en">
+                        Dead
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_pertama:label"
+            lang="Bahasa">Alasan
+            sakit
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_pertama:label"
+            lang="en">Cause
+            of illness
+        </span>
+        <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_pertama:hint"
+            lang="Bahasa">Diisi
+            dengan alasan, penyebab atau informasi yang terkait sakit yang diderita bayi
+        </span>
+        <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_pertama:hint"
+            lang="en">Fill in
+            the reason, cause or other information regarding the baby's illness
+        </span>
+        <input name="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_pertama" data-relevant=" /kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam  = 'sakit'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_pertama:label"
+            lang="Bahasa">
+            Alasan meninggal
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_pertama:label"
+            lang="en">
+            Cause of death
+        </span>
+        <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_pertama:hint"
+            lang="Bahasa">
+            Diisi dengan alasan, penyebab atau informasi yang terkait meninggalnya bayi
+        </span>
+        <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_pertama:hint"
+            lang="en">
+            Fill in the reason, cause or other information regarding the baby's death
+        </span>
+        <input name="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_pertama" data-relevant=" /kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam  = 'meninggal'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="or-constraint-msg active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__tanggal_kunjungan:jr:constraintMsg"
+            lang="Bahasa">
+            diisi dengan tanggal hari ini atau sebelumnya
+        </span>
+        <span class="or-constraint-msg " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__tanggal_kunjungan:jr:constraintMsg"
+            lang="en">
+            Fill in the date of today or the days before
+        </span>
+        <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__tanggal_kunjungan:label"
+            lang="Bahasa">
+            Tanggal kunjungan kedua
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__tanggal_kunjungan:label"
+            lang="en">
+            second neonatal check-up day 3-7 (date of check-up)
+        </span>
+        <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__tanggal_kunjungan:hint"
+            lang="Bahasa">
+            Menunjukkan tanggal kunjungan Neonatal kedua dilakukan
+        </span>
+        <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__tanggal_kunjungan:hint"
+            lang="en">
+            Indicating the date of the second Neonatal check-up
+        </span>
+        <input name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__tanggal_kunjungan"
+            data-constraint=".&lt;= /kunjungan_neonatal_reviewed/today "
+            data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Kedua')"
+            data-type-xml="date"
+            type="date" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi:label"
+                    lang="Bahasa">
+                    Imunisasi HB0 kunjungan kedua
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi:label"
+                    lang="en">
+                    HB0 Immunization on second visit
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi:hint"
+                    lang="Bahasa">
+                    Menunjukkan apakah bayi diberikan imunisasi HB dalam rentang hari ke 3 hingga
+                    hari ke 7 setelah kelahiran
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi:hint"
+                    lang="en">
+                    Indicating whether baby receives HB immunization within 3 to 7 days after birth
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi"
+                        data-name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Kedua')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="ya" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi/ya:label"
+                        lang="Bahasa">
+                        Imunisasi Hb diberikan
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi/ya:label"
+                        lang="en">
+                        Provide HB Immunization
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi"
+                        data-name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Kedua')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="tidak" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi/tidak:label"
+                        lang="Bahasa">
+                        Imunisasi Hb tidak diberikan
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_kedua_hari_ke_3_sd_7__bayi_diberikan_imunisasi/tidak:label"
+                        lang="en">
+                        Doesn't provide HB Immunization
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari:label"
+                    lang="Bahasa">
+                    Keadaan Neonatal kunjungan kedua
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari:label"
+                    lang="en">
+                    first neonatal check-up day 3-7 (baby condition)
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari:hint"
+                    lang="Bahasa">
+                    Diisi dengan data keadaan umum bayi dari hari ke 3 hingga hari ke 7 setelah
+                    kelahiran
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari:hint"
+                    lang="en">
+                    Fill in the general condition of the baby within 3 to 7 days after birth
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari"
+                        data-name="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Kedua')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="sehat" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari/sehat:label"
+                        lang="Bahasa">
+                        Sehat
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari/sehat:label"
+                        lang="en">
+                        Healthy
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari"
+                        data-name="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Kedua')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="sakit" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari/sakit:label"
+                        lang="Bahasa">
+                        Sakit
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari/sakit:label"
+                        lang="en">
+                        Sick
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari"
+                        data-name="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Kedua')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="meninggal" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari/meninggal:label"
+                        lang="Bahasa">
+                        Meninggal
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari/meninggal:label"
+                        lang="en">
+                        Dead
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_kedua:label"
+            lang="Bahasa">Alasan
+            sakit
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_kedua:label"
+            lang="en">Cause of
+            illness
+        </span>
+        <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_kedua:hint"
+            lang="Bahasa">Diisi
+            dengan alasan, penyebab atau informasi yang terkait sakit yang diderita bayi
+        </span>
+        <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_kedua:hint"
+            lang="en">Fill in
+            the reason, cause or other information regarding the baby's illness
+        </span>
+        <input name="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_kedua" data-relevant=" /kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari  = 'sakit'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_kedua:label"
+            lang="Bahasa">
+            Alasan meninggal
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_kedua:label"
+            lang="en">
+            Cause of death
+        </span>
+        <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_kedua:hint"
+            lang="Bahasa">Diisi
+            dengan alasan, penyebab atau informasi yang terkait meninggalnya bayi
+        </span>
+        <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_kedua:hint"
+            lang="en">Fill
+            in the reason, cause or other information regarding the baby's death
+        </span>
+        <input name="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_kedua" data-relevant=" /kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari  = 'meninggal'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="or-constraint-msg active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__tanggal_kunjungan:jr:constraintMsg"
+            lang="Bahasa">
+            diisi dengan tanggal hari ini atau sebelumnya
+        </span>
+        <span class="or-constraint-msg " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__tanggal_kunjungan:jr:constraintMsg"
+            lang="en">
+            Fill in the date of today or the days before
+        </span>
+        <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__tanggal_kunjungan:label"
+            lang="Bahasa">
+            Tanggal kunjungan ketiga
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__tanggal_kunjungan:label"
+            lang="en">
+            third neonatal check-up day 8 - 28 (date of check-up )
+        </span>
+        <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__tanggal_kunjungan:hint"
+            lang="Bahasa">
+            Menunjukkan tanggal kunjungan Neonatal ketiga dilakukan
+        </span>
+        <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__tanggal_kunjungan:hint"
+            lang="en">
+            Indicating the date of the third Neonatal check-up
+        </span>
+        <input name="/kunjungan_neonatal_reviewed/kunjungan_neonatal_ketiga_hari_ke_8_sd_28__tanggal_kunjungan"
+            data-constraint=".&lt;= /kunjungan_neonatal_reviewed/today "
+            data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Ketiga')"
+            data-type-xml="date"
+            type="date" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari:label"
+                    lang="Bahasa">
+                    Keadaan Neonatal kunjungan ketiga
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari:label"
+                    lang="en">
+                    third neonatal check-up day 8 - 28 (baby condition )
+                </span>
+                <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari:hint"
+                    lang="Bahasa">
+                    Diisi dengan data keadaan umum bayi dari hari ke 8 hingga hari ke 28 setelah
+                    kelahiran
+                </span>
+                <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari:hint"
+                    lang="en">
+                    Fill in the general condition of the baby within 8 to 28 days after birth
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari"
+                        data-name="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Ketiga')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="sehat" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari/sehat:label"
+                        lang="Bahasa">
+                        Sehat
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari/sehat:label"
+                        lang="en">
+                        Healthy
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari"
+                        data-name="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Ketiga')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="sakit" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari/sakit:label"
+                        lang="Bahasa">
+                        Sakit
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari/sakit:label"
+                        lang="en">
+                        Sick
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari"
+                        data-name="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari"
+                        data-relevant="selected( /kunjungan_neonatal_reviewed/neonatal ,'Ketiga')"
+                        data-type-xml="select1"
+                        type="radio"
+                        value="meninggal" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari/meninggal:label"
+                        lang="Bahasa">
+                        Meninggal
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari/meninggal:label"
+                        lang="en">
+                        Dead
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_ketiga:label"
+            lang="Bahasa">Alasan
+            sakit
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_ketiga:label"
+            lang="en">Cause
+            of illness
+        </span>
+        <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_ketiga:hint"
+            lang="Bahasa">Diisi
+            dengan alasan, penyebab atau informasi yang terkait sakit yang diderita bayi
+        </span>
+        <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_ketiga:hint"
+            lang="en">Fill in
+            the reason, cause or other information regarding the baby's illness
+        </span>
+        <input name="/kunjungan_neonatal_reviewed/alasan_sakit_kunjungan_ketiga" data-relevant=" /kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari  = 'sakit'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_ketiga:label"
+            lang="Bahasa">
+            Alasan meninggal
+        </span>
+        <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_ketiga:label"
+            lang="en">
+            Cause of death
+        </span>
+        <span class="or-hint active" data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_ketiga:hint"
+            lang="Bahasa">
+            Diisi dengan alasan, penyebab atau informasi yang terkait meninggalnya bayi
+        </span>
+        <span class="or-hint " data-itext-id="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_ketiga:hint"
+            lang="en">Fill
+            in the reason, cause or other information regarding the baby's death
+        </span>
+        <input name="/kunjungan_neonatal_reviewed/alasan_meninggal_kunjungan_ketiga" data-relevant=" /kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari  = 'meninggal'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/kunjungan_neonatal_reviewed/confirm_of_death:label"
+                    lang="Bahasa">Konfirmasi
+                    Kematian anak dan lanjutkan ke Close anak form
+                </span>
+                <span class="question-label " data-itext-id="/kunjungan_neonatal_reviewed/confirm_of_death:label"
+                    lang="en">Confirmation
+                    of infant's death and continue to Child Regsiter's Closure
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/confirm_of_death" data-name="/kunjungan_neonatal_reviewed/confirm_of_death"
+                        data-relevant=" /kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal ='Ya' or  /kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam ='meninggal' or  /kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari ='meninggal' or  /kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari ='meninggal'" data-type-xml="select1"
+                        required="required"
+                        type="radio"
+                        value="ya" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/confirm_of_death/ya:label"
+                        lang="Bahasa">ya
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/confirm_of_death/ya:label"
+                        lang="en">Yes
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/kunjungan_neonatal_reviewed/confirm_of_death" data-name="/kunjungan_neonatal_reviewed/confirm_of_death"
+                        data-relevant=" /kunjungan_neonatal_reviewed/saat_lahir_sd_5_jam_meninggal ='Ya' or  /kunjungan_neonatal_reviewed/keadaan_neonatal_6_sd_48_jam ='meninggal' or  /kunjungan_neonatal_reviewed/keadaan_neonatal_3_sd_7_hari ='meninggal' or  /kunjungan_neonatal_reviewed/keadaan_neonatal_8_sd_28_hari ='meninggal'" data-type-xml="select1"
+                        required="required"
+                        type="radio"
+                        value="tidak" />
+                    <span class="option-label active" data-itext-id="/kunjungan_neonatal_reviewed/confirm_of_death/tidak:label"
+                        lang="Bahasa">
+                        tidak
+                    </span>
+                    <span class="option-label " data-itext-id="/kunjungan_neonatal_reviewed/confirm_of_death/tidak:label"
+                        lang="en">No
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/kunjungan_neonatal_reviewed/start" data-preload="timestamp" data-preload-params="start"
+                data-type-xml="dateTime" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/kunjungan_neonatal_reviewed/today" data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/kunjungan_neonatal_reviewed/deviceid" data-preload="property"
+                data-preload-params="deviceid" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/kunjungan_neonatal_reviewed/simserial" data-preload="property"
+                data-preload-params="simserial" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/kunjungan_neonatal_reviewed/phonenumber" data-preload="property"
+                data-preload-params="phonenumber" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/kunjungan_neonatal_reviewed/end" data-preload="timestamp" data-preload-params="end"
+                data-type-xml="dateTime" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/kunjungan_neonatal_reviewed/meta/instanceID" data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/kunjungan_neonatal/formhub/uuid" data-calculate="'cce10963830b4819bb1e4670433a1256'"
+                data-type-xml="string" type="hidden" />
+        </label>
+    </fieldset>
+</form>
