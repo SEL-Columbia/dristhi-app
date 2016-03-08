@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:layout_gravity="center_vertical"
+    android:layout_height="wrap_content"
+    android:minHeight="45dp"
+    android:background="@android:color/white">
+
+
+    <ImageView
+        android:id="@+id/img_hp_badge"
+        android:layout_width="@dimen/client_profile_badge_width"
+        android:layout_height="@dimen/client_profile_badge_height"
+        android:layout_marginLeft="12dp"
+        android:scaleType="fitStart"
+        android:layout_weight="3"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/flag_yellow_rt"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_rtp_badge"
+        android:layout_width="@dimen/client_profile_badge_width"
+        android:layout_height="@dimen/client_profile_badge_height"
+        android:layout_marginLeft="12dp"
+        android:scaleType="fitStart"
+        android:layout_weight="3"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/flag_orange_rtp"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_rtk_badge"
+        android:layout_width="@dimen/client_profile_badge_width"
+        android:layout_height="@dimen/client_profile_badge_height"
+        android:layout_marginLeft="12dp"
+        android:scaleType="fitStart"
+        android:layout_weight="3"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/flag_red_rtk"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_hrpp_badge"
+        android:layout_width="@dimen/client_profile_badge_width"
+        android:layout_height="@dimen/client_profile_badge_height"
+        android:layout_marginLeft="12dp"
+        android:scaleType="fitStart"
+        android:layout_weight="3"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/flag_orange_rtpp"
+        android:visibility="gone"/>
+
+
+    <TextView
+        android:layout_width="180dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="16sp"
+        tools:text="Mother too young"
+        android:layout_weight="1"
+        android:id="@+id/text_view_reason"
+        android:layout_marginRight="12dp"
+        android:gravity="right"/>
+
+
+</RelativeLayout>

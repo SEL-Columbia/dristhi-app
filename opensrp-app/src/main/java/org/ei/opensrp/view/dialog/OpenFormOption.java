@@ -23,6 +23,10 @@ public class OpenFormOption implements EditOption {
         byColumn,byDetails,bydefault;
     }
 
+    public String getFormName(){
+        return formName;
+    }
+
     public OpenFormOption(String name, String formName, FormController formController,   HashMap<String,String> overrideStringmap,ByColumnAndByDetails byColumnAndByDetails) {
         this.name = name;
         this.formName = formName;
@@ -40,9 +44,7 @@ public class OpenFormOption implements EditOption {
     public String name() {
         return name;
     }
-    public String getFormName(){
-                return formName;
-            }
+
     @Override
     public void doEdit(SmartRegisterClient client) {
 
@@ -72,5 +74,10 @@ public class OpenFormOption implements EditOption {
             Log.v("in edit form optopn",overridejsonobject.toString());
             formController.startFormActivity(formName, client.entityId(), fieldOverrides.getJSONString());
         }
+    }
+
+    @Override
+    public void doEditWithMetadata(SmartRegisterClient client, String metadata) {
+        formController.startFormActivity(formName, client.entityId(), metadata);
     }
 }

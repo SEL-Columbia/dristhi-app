@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <include layout="@layout/detail_ki_nav_bar"/>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/detail_card_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/CardViewContainerPadding">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp">
+
+                <it.gmariotti.cardslib.library.view.CardViewNative
+                    android:id="@+id/detail_list_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    card:card_layout_resourceID="@layout/native_cardwithlist_layout"
+                    style="@style/card_external"
+                    />
+
+                <it.gmariotti.cardslib.library.view.CardViewNative
+                    android:id="@+id/risk_flags_list_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    card:card_layout_resourceID="@layout/native_cardwithlist_layout"
+                    style="@style/card_external"
+                    />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</LinearLayout>

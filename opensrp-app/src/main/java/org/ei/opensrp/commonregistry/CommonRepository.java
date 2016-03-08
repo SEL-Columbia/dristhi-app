@@ -170,4 +170,80 @@ public class CommonRepository extends DrishtiRepository {
         cursor.close();
         return detailsList;
     }
+
+
+    public void updateColumn(String tableName,ContentValues contentValues,String caseId){
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        database.update(tableName, contentValues, ID_COLUMN + " = ?", new String[]{caseId});
+    }
+
+    public  List<CommonPersonObject> customQuery(String sql ,String[] selections,String tableName){
+
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(sql,selections);
+        // database.
+        return readAllcommonForField(cursor, tableName);
+    }
+
+
+    private List<CommonPersonObject> readAllcommonForField(Cursor cursor ,String tableName) {
+        List<CommonPersonObject> commons = new ArrayList<CommonPersonObject>();
+        try {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                int columncount = cursor.getColumnCount();
+                HashMap<String, String> columns = new HashMap<String, String>();
+                for (int i = 0; i < columncount; i++) {
+                    columns.put(cursor.getColumnName(i), String.valueOf(cursor.getInt(i)));
+                }
+                CommonPersonObject common = new CommonPersonObject("1","0", null, tableName);
+                common.setColumnmaps(columns);
+
+                commons.add(common);
+                cursor.moveToNext();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            cursor.close();
+        }
+
+        return commons;
+    }
+
+    public  List<CommonPersonObject> customQueryForCompleteRow(String sql ,String[] selections,String tableName){
+
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(sql,selections);
+        // database.
+        return readAllcommonFor(cursor, tableName);
+    }
+
+    private List<CommonPersonObject> readAllcommonFor(Cursor cursor ,String tableName) {
+        List<CommonPersonObject> commons = new ArrayList<CommonPersonObject>();
+        try {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                int columncount = cursor.getColumnCount();
+                HashMap<String, String> columns = new HashMap<String, String>();
+                for (int i = 3; i < columncount; i++) {
+                    columns.put(additionalcolumns[i - 3], cursor.getString(i));
+                }
+                CommonPersonObject common = new CommonPersonObject("1","0", new Gson().<Map<String, String>>fromJson(cursor.getString(cursor.getColumnIndex("details")), new TypeToken<Map<String, String>>() {
+                }.getType()), tableName);
+                common.setColumnmaps(columns);
+
+                commons.add(common);
+                cursor.moveToNext();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            cursor.close();
+        }
+
+        return commons;
+    }
 }

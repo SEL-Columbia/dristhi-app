@@ -1,0 +1,28 @@
+<model>
+    <instance>
+        <rencana_persalinan_reviewed encounter_type="rencana persalinan" id="rencana_persalinan"
+            version="201511160658">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <tanggal />
+            <Lokasi_periksa />
+            <rencana_penolong_persalinan />
+            <tempat_rencana_persalinan />
+            <rencana_pendamping_persalinan />
+            <transportasi />
+            <pendonor />
+            <kondisi_rumah />
+            <persediaan_perlengkapan_persalinan />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </rencana_persalinan_reviewed>
+    </instance>
+</model>

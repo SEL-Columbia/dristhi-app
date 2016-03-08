@@ -23,6 +23,7 @@
     <application
             android:label="@string/app_name"
             android:icon="@drawable/opensrp_logo"
+            android:clearTaskOnLaunch="true"
             android:largeHeap="true">
 
         <activity
@@ -30,39 +31,39 @@
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.ReportsActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.VideosActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.ReportIndicatorListViewActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.ReportIndicatorDetailActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.ReportIndicatorCaseListActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.EligibleCoupleDetailActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.ANCDetailActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.PNCDetailActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.ChildDetailActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.CameraLaunchActivity"
@@ -70,27 +71,27 @@
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.ECSmartRegisterActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.FPSmartRegisterActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.ANCSmartRegisterActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.PNCSmartRegisterActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.ChildSmartRegisterActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="landscape"/>
         <activity
                 android:name=".view.activity.FormActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:theme="@style/AppThemeNoTitle"
                 android:screenOrientation="portrait"/>
         <activity
                 android:name=".view.activity.MicroFormActivity"
@@ -99,28 +100,28 @@
         <activity
                 android:name=".view.activity.NativeECSmartRegisterActivity"
                 android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+                android:theme="@style/AppThemeNoTitle"/>
 
         <activity
                 android:name=".view.activity.NativeChildSmartRegisterActivity"
                 android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+                android:theme="@style/AppThemeNoTitle"/>
 
         <activity
                 android:name=".view.activity.NativeFPSmartRegisterActivity"
                 android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+                android:theme="@style/AppThemeNoTitle"/>
 
         <activity
                 android:name=".view.activity.NativeANCSmartRegisterActivity"
                 android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+                android:theme="@style/AppThemeNoTitle"/>
 
 
         <activity
                 android:name=".view.activity.NativePNCSmartRegisterActivity"
                 android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+                android:theme="@style/AppThemeNoTitle"/>
 
 
         <activity android:name=".view.activity.NativeHomeActivity"

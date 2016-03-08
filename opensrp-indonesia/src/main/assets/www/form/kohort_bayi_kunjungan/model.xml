@@ -1,0 +1,40 @@
+<model>
+    <instance>
+        <kohort_kunjungan_bayi_reviewed encounter_type="Kohort Kunjungan Bayi Perbulan"
+            id="kohort_kunjungan_bayi_perbulan" version="201512040559">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <tanggal_lahir />
+            <tanggal_kunjungan_bayi_perbulan />
+            <baby_age />
+            <Lokasi_periksa />
+            <hasil_pengukuran_tinggi_bayi />
+            <kunjungan_bayi_ke />
+            <berat_badan_bayi_setiap_kunjungan_bayi_perbulan />
+            <indikator_berat_bedan_bayi />
+            <pemberian_asi_eksklusif />
+            <status_gizi />
+            <hasil_dilakukannya_kpsp />
+            <kpsp_penyimpangan />
+            <pelayanan_vita />
+            <dilakukan_imunisasi />
+            <tanggal_pemberian_imunisasi_HB_0_7_hari />
+            <tanggal_pemberian_imunisasi_bcg_dan_Polio1 />
+            <tanggal_pemberian_imunisasi_dpthb1Polio2 />
+            <tanggal_pemberian_imunisasi_dpthb2Polio3 />
+            <tanggal_pemberian_imunisasi_dpthb3Polio4 />
+            <tanggal_pemberian_imunisasi_campak />
+            <keterangan />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </kohort_kunjungan_bayi_reviewed>
+    </instance>
+</model>

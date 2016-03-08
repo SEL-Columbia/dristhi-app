@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import org.ei.opensrp.event.Listener;
-import org.ei.opensrp.view.receiver.SyncBroadcastReceiver;
 
 import static java.text.MessageFormat.format;
 import static org.ei.opensrp.event.Event.ON_LOGOUT;
@@ -19,13 +18,18 @@ public class DrishtiSyncScheduler {
     public static final int SYNC_INTERVAL = 2 * MILLIS_PER_MINUTE;
     public static final int SYNC_START_DELAY = 5 * MILLIS_PER_SECOND;
     private static Listener<Boolean> logoutListener;
+    private static Object ReceiverClass;
+
+    public static void setReceiverClass(Class receiverClass) {
+        ReceiverClass = receiverClass;
+    }
 
     public static void start(final Context context) {
         if (org.ei.opensrp.Context.getInstance().IsUserLoggedOut()) {
             return;
         }
 
-        PendingIntent syncBroadcastReceiverIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, SyncBroadcastReceiver.class), 0);
+        PendingIntent syncBroadcastReceiverIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, (Class)ReceiverClass), 0);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.setRepeating(
@@ -61,7 +65,7 @@ public class DrishtiSyncScheduler {
     }
 
     public static void stop(Context context) {
-        PendingIntent syncBroadcastReceiverIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, SyncBroadcastReceiver.class), 0);
+        PendingIntent syncBroadcastReceiverIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, (Class)ReceiverClass), 0);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(syncBroadcastReceiverIntent);

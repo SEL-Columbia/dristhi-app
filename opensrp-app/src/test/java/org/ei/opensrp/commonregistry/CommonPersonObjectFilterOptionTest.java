@@ -43,7 +43,7 @@ public class CommonPersonObjectFilterOptionTest {
     @Test
     public void shouldFilterCommonObjectsByColumnName() throws Exception {
 
-        commonObjectFilterOption = new CommonObjectFilterOption("name","Woman A","name", CommonObjectFilterOption.ByColumnAndByDetails.byColumn);
+        commonObjectFilterOption = new CommonObjectFilterOption("name","Woman A", CommonObjectFilterOption.ByColumnAndByDetails.byColumn,"name");
 
          Map<String, String> column1 = create("name", "Woman A").map();
         Map<String, String> column2 = create("name","Woman B").map();
@@ -68,7 +68,7 @@ public class CommonPersonObjectFilterOptionTest {
     public void shouldFilterCommonObjectsByDetailName() throws Exception {
 
 
-        commonObjectFilterOption = new CommonObjectFilterOption("name","Woman A","name", CommonObjectFilterOption.ByColumnAndByDetails.byDetails);
+        commonObjectFilterOption = new CommonObjectFilterOption("name","Woman A", CommonObjectFilterOption.ByColumnAndByDetails.byDetails, "name");
 
 
         Map<String, String> detail1 = create("name", "Woman A").map();

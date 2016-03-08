@@ -1,0 +1,185 @@
+<form autocomplete="off" class="or clearfix" id="Baby_Immunization" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Baby Immunization</h3>
+    <select data-default-lang="Bahasa" id="form-languages">
+        <option value="Bahasa">Bahasa</option>
+        <option value="en">English</option>
+    </select>
+
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/Baby_Immunization.xls/Lokasi_periksa:label"
+                    lang="Bahasa">Lokasi Periksa
+                </span>
+                <span class="required">*</span>
+                <span class="question-label " data-itext-id="/Baby_Immunization.xls/Lokasi_periksa:label" lang="en">
+                    Location of Service
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Baby_Immunization.xls/Lokasi_periksa" data-name="/Baby_Immunization.xls/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="1" required="required" />
+                    <span class="option-label active" data-itext-id="/Baby_Immunization.xls/Lokasi_periksa/Posyandu:label"
+                        lang="Bahasa">Posyandu
+                    </span>
+                    <span class="option-label " data-itext-id="/Baby_Immunization.xls/Lokasi_periksa/Posyandu:label"
+                        lang="en">Posyandu
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/Baby_Immunization.xls/Lokasi_periksa" data-name="/Baby_Immunization.xls/Lokasi_periksa" data-type-xml="select1"
+                        type="radio" value="2" required="required" />
+                    <span class="option-label active" data-itext-id="/Baby_Immunization.xls/Lokasi_periksa/Polindes:label"
+                        lang="Bahasa">Polindes
+                    </span>
+                    <span class="option-label " data-itext-id="/Baby_Immunization.xls/Lokasi_periksa/Polindes:label"
+                        lang="en">Polindes
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question non-select ">
+        <span class="or-constraint-msg active" lang="">diisi dengan tanggal hari ini atau
+            sebelumnya
+        </span>
+        <span class="question-label active" data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_hb_07:label"
+            lang="Bahasa">Tanggal
+            pemberian imunisasi Hb 0-7 hari
+        </span>
+        <span class="question-label " data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_hb_07:label"
+            lang="en">Date of
+            HB immunization 0-7 days
+        </span>
+        <span class="or-hint active" lang="">Tanggal dan bulan diberikan imunisasi HB 0</span>
+        <input name="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_hb_07" data-constraint=".&lt;=  /Baby_Immunization.xls/today "
+            data-type-xml="date" type="date" />
+    </label>
+    <label class="question non-select ">
+        <span class="or-constraint-msg active" lang="">diisi dengan tanggal hari ini atau
+            sebelumnya
+        </span>
+        <span class="question-label active" data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_bcg_dan_Polio1:label"
+            lang="Bahasa">
+            Tanggal pemberian imunisasi BCG dan Polio 1
+        </span>
+        <span class="question-label " data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_bcg_dan_Polio1:label"
+            lang="en">
+            Date of BCG and Polio 1 immunization
+        </span>
+        <span class="or-hint active" lang="">Tanggal dan bulan pemberian imunisasi BCG dan polio 1
+        </span>
+        <input name="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_bcg_dan_Polio1" data-constraint=".&lt;=  /Baby_Immunization.xls/today "
+            data-type-xml="date" type="date" />
+    </label>
+    <label class="question non-select ">
+        <span class="or-constraint-msg active" lang="">diisi dengan tanggal hari ini atau
+            sebelumnya
+        </span>
+        <span class="question-label active" data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_dpthb1Polio2:label"
+            lang="Bahasa">
+            Tanggal pemberian imunisasi DPT/HB1/Polio 2
+        </span>
+        <span class="question-label " data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_dpthb1Polio2:label"
+            lang="en">
+            Date of DPT/HB1/ Polio 2 immunization
+        </span>
+        <span class="or-hint active" lang="">Tanggal dan bulan pemberian imunisasi DPT 1, HB1 dan
+            Polio 2
+        </span>
+        <input name="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_dpthb1Polio2" data-constraint=".&lt;=  /Baby_Immunization.xls/today "
+            data-type-xml="date" type="date" />
+    </label>
+    <label class="question non-select ">
+        <span class="or-constraint-msg active" lang="">diisi dengan tanggal hari ini atau
+            sebelumnya
+        </span>
+        <span class="question-label active" data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_dpthb2Polio3:label"
+            lang="Bahasa">
+            Tanggal pemberian imunisasi DPT/HB2/Polio 3
+        </span>
+        <span class="question-label " data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_dpthb2Polio3:label"
+            lang="en">
+            Date of DPT/HB2/ Polio 3 immunization
+        </span>
+        <span class="or-hint active" lang="">Tanggal dan bulan pemberian imunisasi DPT 2, HB2 dan
+            Polio 3
+        </span>
+        <input name="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_dpthb2Polio3" data-constraint=".&lt;=  /Baby_Immunization.xls/today "
+            data-type-xml="date" type="date" />
+    </label>
+    <label class="question non-select ">
+        <span class="or-constraint-msg active" lang="">diisi dengan tanggal hari ini atau
+            sebelumnya
+        </span>
+        <span class="question-label active" data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_dpthb3Polio4:label"
+            lang="Bahasa">
+            Tanggal pemberian imunisasi DPT/HB3/Polio 4
+        </span>
+        <span class="question-label " data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_dpthb3Polio4:label"
+            lang="en">
+            Date of DPT/HB3/ Polio 4 immunization
+        </span>
+        <span class="or-hint active" lang="">Tanggal dan bulan pemberian imunisasi DPT 3, HB3 dan
+            Polio 4
+        </span>
+        <input name="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_dpthb3Polio4" data-constraint=".&lt;=  /Baby_Immunization.xls/today "
+            data-type-xml="date" type="date" />
+    </label>
+    <label class="question non-select ">
+        <span class="or-constraint-msg active" lang="">diisi dengan tanggal hari ini atau
+            sebelumnya
+        </span>
+        <span class="question-label active" data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_campak:label"
+            lang="Bahasa">Tanggal
+            pemberian imunisasi Campak
+        </span>
+        <span class="question-label " data-itext-id="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_campak:label"
+            lang="en">Date of
+            measles immunization
+        </span>
+        <span class="or-hint active" lang="">Tanggal dan bulan pemberian imunisasi campak</span>
+        <input name="/Baby_Immunization.xls/tanggal_pemberian_imunisasi_campak" data-constraint=".&lt;=  /Baby_Immunization.xls/today "
+            data-type-xml="date" type="date" />
+    </label>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/Baby_Immunization.xls/start" data-preload="timestamp" data-preload-params="start"
+                data-type-xml="dateTime" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Baby_Immunization.xls/today" data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Baby_Immunization.xls/deviceid" data-preload="property" data-preload-params="deviceid"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Baby_Immunization.xls/simserial" data-preload="property" data-preload-params="simserial"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Baby_Immunization.xls/phonenumber" data-preload="property" data-preload-params="phonenumber"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Baby_Immunization.xls/end" data-preload="timestamp" data-preload-params="end"
+                data-type-xml="dateTime" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/Baby_Immunization.xls/meta/instanceID" data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Baby_Immunization/formhub/uuid" data-calculate="'a372ae75c7b44dc0bf088683f1dbbeab'"
+                data-type-xml="string" type="hidden" />
+        </label>
+    </fieldset>
+</form>

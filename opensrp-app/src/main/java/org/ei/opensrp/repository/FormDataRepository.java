@@ -22,6 +22,7 @@ import static java.lang.System.currentTimeMillis;
 import static java.util.Arrays.asList;
 import static java.util.UUID.randomUUID;
 import static net.sqlcipher.DatabaseUtils.longForQuery;
+import static org.ei.opensrp.AllConstants.APP_NAME_INDONESIA;
 import static org.ei.opensrp.AllConstants.ENTITY_ID_FIELD_NAME;
 import static org.ei.opensrp.AllConstants.ENTITY_ID_PARAM;
 import static org.ei.opensrp.AllConstants.INSTANCE_ID_PARAM;
@@ -54,11 +55,15 @@ public class FormDataRepository extends DrishtiRepository {
         TABLE_COLUMN_MAP.put(MotherRepository.MOTHER_TABLE_NAME, MotherRepository.MOTHER_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(ChildRepository.CHILD_TABLE_NAME, ChildRepository.CHILD_TABLE_COLUMNS);
 
-//        TABLE_COLUMN_MAP.put(PersonRepository.person_TABLE_NAME, PersonRepository.person_TABLE_COLUMNS);
+        if(Context.getInstance().configuration().appName().equals(APP_NAME_INDONESIA)) return;
+
         for(int i = 0;i< Context.bindtypes.size();i++){
             TABLE_COLUMN_MAP.put(Context.bindtypes.get(i).getBindtypename(), Context.getInstance().commonrepository(Context.bindtypes.get(i).getBindtypename()).common_TABLE_COLUMNS);
         }
-//        TABLE_COLUMN_MAP.put("user",PersonRepository.person_TABLE_COLUMNS);
+    }
+
+    public void addTableColumnMap(String key, String[] val) {
+        TABLE_COLUMN_MAP.put(key, val);
     }
 
     @Override

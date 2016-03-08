@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="73">
+
+    <org.ei.opensrp.view.customControls.CustomFontTextView
+        android:id="@+id/txt_ibu_ki_no"
+        style="@style/CustomFontTextViewStyle.ListView.Medium"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="10" />
+
+    <ImageView
+        android:layout_width="@dimen/smart_register_client_divider_height"
+        android:layout_height="fill_parent"
+        android:src="@color/smart_register_client_divider_color" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="17">
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/lbl_anak_register_dob"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/dob_title"
+            android:textStyle="normal" />
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/anak_register_dob"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/lbl_anak_register_dob" />
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/lbl_tempat_lahir"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/lbl_anak_register_dob"
+            android:text="@string/birth_place_title"
+            android:textStyle="normal" />
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/tempat_lahir"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_anak_register_dob"
+            android:layout_toRightOf="@id/lbl_tempat_lahir"
+            android:text="Puskesmas"
+            android:textStyle="normal" />
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/lbl_berat_lahir"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/lbl_tempat_lahir"
+            android:text="@string/birth_weight_title"
+            android:textStyle="normal" />
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/berat_lahir"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_tempat_lahir"
+            android:layout_toRightOf="@id/lbl_berat_lahir"
+            android:text="3300"
+            android:textStyle="normal" />
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/lbl_tipe_lahir"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/lbl_berat_lahir"
+            android:text="Type : " />
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/tipe_lahir"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_berat_lahir"
+            android:layout_toRightOf="@id/lbl_tipe_lahir"
+            android:text="Normal"
+            android:textStyle="normal" />
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="@dimen/smart_register_client_divider_height"
+        android:layout_height="fill_parent"
+        android:src="@color/smart_register_client_divider_color" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="15">
+
+        <ImageView
+            android:id="@+id/icon_imd_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_no_small"
+            />
+
+        <ImageView
+            android:id="@+id/icon_imd_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_yes_small"
+            android:visibility="gone" />
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/is_imd"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:text="IMD" />
+
+        <ImageView
+            android:id="@+id/icon_immuni_hb_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/is_imd"
+            android:src="@drawable/ic_yes_small"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/icon_immuni_hb_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/is_imd"
+            android:src="@drawable/ic_no_small"
+            />
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/is_immuni_hb"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/is_imd"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:text="Immuni HB" />
+
+        <ImageView
+            android:id="@+id/icon_vit_k_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/is_immuni_hb"
+            android:src="@drawable/ic_yes_small"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/icon_vit_k_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/is_immuni_hb"
+            android:src="@drawable/ic_no_small"
+            />
+
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/is_vit_k"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/is_immuni_hb"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:text="Vit K" />
+
+        <ImageView
+            android:id="@+id/icon_salep_mata_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/is_vit_k"
+            android:src="@drawable/ic_yes_small"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/icon_salep_mata_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/is_vit_k"
+            android:src="@drawable/ic_no_small"
+            />
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/is_salep_mata"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/is_vit_k"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:text="Salep Mata" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="@dimen/smart_register_client_divider_height"
+        android:layout_height="fill_parent"
+        android:src="@color/smart_register_client_divider_color" />
+
+    <include
+        layout="@layout/anak_register_client_birth_status"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="@integer/child_list_sick_status_view_weight" />
+
+    <ImageView
+        android:layout_width="@dimen/smart_register_client_divider_height"
+        android:layout_height="fill_parent"
+        android:src="@color/smart_register_client_divider_color" />
+
+    <ImageButton
+        android:id="@+id/btn_edit"
+        android:layout_width="@dimen/list_edit_icon_view_width"
+        android:layout_height="fill_parent"
+        android:layout_margin="5dp"
+        android:layout_weight="@integer/child_list_edit_icon_view_weight"
+        android:background="@drawable/edit_button_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:scaleType="center" />
+
+    <include
+        layout="@layout/anak_register_client_last_service"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="@integer/child_list_last_service_view_weight" />
+</LinearLayout>

@@ -1,0 +1,27 @@
+<model>
+    <instance>
+        <kohort_pelayanan_kb_reviewed encounter_type="Kohort Pelayanan KB" id="kohort_pelayanan_kb"
+            version="201511160713">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <Lokasi_periksa />
+            <tanggal_kunjungan />
+            <keterangan_tentang_peserta_kb />
+            <jenis_kontrasepsi_yang_digunakan />
+            <keterangan_tentang_peserta_kb_2 />
+            <keterangan_ganti_cara />
+            <keterangan_efek_samping />
+            <keterangan_komplikasi />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </kohort_pelayanan_kb_reviewed>
+    </instance>
+</model>

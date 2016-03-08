@@ -1,0 +1,22 @@
+<model>
+    <instance>
+        <postpartum_kb_reviewed encounter_type="Post-partum KB" id="post-partum_kb"
+            version="201511160705">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <metode_kontrasepsi />
+            <rencana />
+            <pelaksanaan_kb />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </postpartum_kb_reviewed>
+    </instance>
+</model>

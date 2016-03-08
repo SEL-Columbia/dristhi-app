@@ -355,6 +355,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         editOption.doEdit(client);
     }
 
+    protected void onEditSelectionWithMetadata(EditOption editOption, SmartRegisterClient client, String metadata) {
+        editOption.doEditWithMetadata(client, metadata);
+    }
+
     private void goBack() {
         finish();
     }
@@ -522,6 +526,11 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             searchView.setText("");
         }
     }
+
+    public void saveFormSubmission(String formSubmision, String id, String formName, JSONObject fieldOverrides){
+        Log.e("saveFormSubmission()", "Override this method in child class");
+    }
+
     protected String getParams(FormSubmission submission) {
         return new Gson().toJson(
                 create(INSTANCE_ID_PARAM, submission.instanceId())
@@ -530,9 +539,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                         .put(VERSION_PARAM, submission.version())
                         .put(SYNC_STATUS, PENDING.value())
                         .map());
-    }
-
-    public void saveFormSubmission(String formSubmision, String id, String formName, JSONObject fieldOverrides){
     }
 
     public void savePartialFormData(String formData, String id, String formName, JSONObject fieldOverrides){
@@ -596,4 +602,5 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
         return null;
     }
+
 }

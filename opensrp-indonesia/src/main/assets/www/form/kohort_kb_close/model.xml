@@ -1,0 +1,25 @@
+<model>
+    <instance>
+        <penutupan_kb_reviewed encounter_type="Penutupan KB" id="Penutupan_KB"
+            version="201511160713">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <kb_close_reason />
+            <keterangan_do />
+            <keterangan_gagal />
+            <keterangan_gagal_lainnya />
+            <death_date />
+            <confirm_kb_close />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </penutupan_kb_reviewed>
+    </instance>
+</model>

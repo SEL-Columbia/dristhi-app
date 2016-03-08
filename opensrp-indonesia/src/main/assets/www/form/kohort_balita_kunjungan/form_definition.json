@@ -1,0 +1,57 @@
+{
+    "form_data_definition_version": "2",
+    "form": {
+        "bind_type": "anak",
+        "default_bind_path": "/model/instance/kunjungan_balita_reviewed/",
+        "fields": [
+            {
+                "name": "id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "tanggalKunjunganBayiPerbulan",
+                "bind": "/model/instance/kunjungan_balita_reviewed/tanggal_pemeriksaan_anak_balita"
+            },
+            {
+                "name": "lokasiPeriksa",
+                "bind": "/model/instance/kunjungan_balita_reviewed/Lokasi_periksa"
+            },
+            {
+                "name": "beratBadanBayiSetiapKunjunganBayiPerbulan",
+                "bind": "/model/instance/kunjungan_balita_reviewed/hasil_penimbangan_anak_balita"
+            },
+            {
+                "name": "hasilPengukuranTinggiAnakBalita",
+                "bind": "/model/instance/kunjungan_balita_reviewed/hasil_pengukuran_tinggi_anak_balita"
+            },
+            {
+                "name": "IndikatorberatBadanBayi",
+                "bind": "/model/instance/kunjungan_balita_reviewed/Indikator_berat_badan_bayi"
+            },
+            {
+                "name": "hasilDilakukannyaKpsp",
+                "bind": "/model/instance/kunjungan_balita_reviewed/hasil_dilakukannya_kpsp"
+            },
+            {
+                "name": "kpspPenyimpangan",
+                "bind": "/model/instance/kunjungan_balita_reviewed/kpsp_penyimpangan"
+            },
+            {
+                "name": "pelayananVita",
+                "bind": "/model/instance/kunjungan_balita_reviewed/pelayanan_vita"
+            },
+            {
+                "name": "keterangan",
+                "bind": "/model/instance/kunjungan_balita_reviewed/keterangan"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/kunjungan_balita_reviewed/today"
+            },
+            {
+                "name": "registrationDate",
+                "bind": "/model/instance/kunjungan_balita_reviewed/reg_date"
+            }
+        ]
+    }
+}

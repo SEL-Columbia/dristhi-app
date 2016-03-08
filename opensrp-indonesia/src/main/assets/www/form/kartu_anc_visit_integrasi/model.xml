@@ -1,0 +1,34 @@
+<model>
+    <instance>
+        <kunjungan_anc_reviewed_integrasi encounter_type="Kunjungan ANC integrasi"
+            id="kunjungan_anc_integrasi" version="201511160653">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <Lokasi_periksa />
+            <reference_date />
+            <generated_note_name_8 />
+            <integrasi_program_pmtct_vct />
+            <integrasi_program_pmtct_periksa_darah />
+            <integrasi_program_pmtct_serologi />
+            <integrasi_program_pmtct_arv />
+            <integrasi_program_malaria_periksa_darah />
+            <integrasi_program_malaria_obat />
+            <integrasi_program_malaria_kelambu />
+            <integrasi_program_tb_dahak />
+            <integrasi_program_tb_obat />
+            <resiko_terdeksi_pertama_kali />
+            <High_Risk_TBC />
+            <High_Risk_malaria />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </kunjungan_anc_reviewed_integrasi>
+    </instance>
+</model>
