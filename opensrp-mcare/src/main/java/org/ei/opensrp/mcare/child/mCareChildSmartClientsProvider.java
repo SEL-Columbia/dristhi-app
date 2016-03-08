@@ -94,18 +94,12 @@ public class mCareChildSmartClientsProvider implements SmartRegisterClientsProvi
         gobhhid.setText(mcaremotherObject.getDetails().get("GOBHHID")!=null?mcaremotherObject.getDetails().get("GOBHHID"):"");
         jivitahhid.setText(mcaremotherObject.getDetails().get("JiVitAHHID")!=null?mcaremotherObject.getDetails().get("JiVitAHHID"):"");
         village.setText(humanize((mcaremotherObject.getDetails().get("mauza") != null ? mcaremotherObject.getDetails().get("mauza") : "").replace("+", "_")));
-//
-//
-//
         age.setText(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"");
         dateofbirth.setText(mcaremotherObject.getDetails().get("FWBNFDTOO")!=null?mcaremotherObject.getDetails().get("FWBNFDTOO"):"");
 
-
-//        delivery_outcome.setText(pc.getDetails().get("FWBNFSTS")!=null?pc.getDetails().get("FWBNFSTS"):"");
-
-
         nid.setText("NID :" +(mcaremotherObject.getDetails().get("FWWOMNID")!=null?mcaremotherObject.getDetails().get("FWWOMNID"):""));
         brid.setText("BRID :" +(mcaremotherObject.getDetails().get("FWWOMBID")!=null?mcaremotherObject.getDetails().get("FWWOMBID"):""));
+
 
 
         constructRiskFlagView(pc,mcaremotherObject,itemView);

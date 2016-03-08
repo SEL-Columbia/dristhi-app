@@ -76,7 +76,7 @@
         "shouldLoadValue": true
       },
       {
-        "name": "existing_FWHR_PSR",
+        "name": "FWHR_PSR",
         "bind": "/model/instance/ANC_Reminder_Visit_2/existing_FWHR_PSR",
         "shouldLoadValue": true
       },

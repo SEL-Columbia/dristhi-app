@@ -144,10 +144,13 @@ public class NativeHomeActivity extends SecuredActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         LoginActivity.setLanguage();
         ArrayList<ControllerFilterMap> controllerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
-
         pncControllerfiltermap filtermap = new pncControllerfiltermap();
-
         controllerFilterMapArrayList.add(filtermap);
+
+        ArrayList<ControllerFilterMap> anccontrollerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
+        ancControllerfiltermap ancfiltermap = new ancControllerfiltermap();
+        anccontrollerFilterMapArrayList.add(ancfiltermap);
+
         hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
@@ -156,7 +159,7 @@ public class NativeHomeActivity extends SecuredActivity {
                  context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
         anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
                 context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",anccontrollerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
         pnccontroller =new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
@@ -339,6 +342,26 @@ public class NativeHomeActivity extends SecuredActivity {
                 }
             }
             Log.v("the filter", "" + returnvalue);
+            return returnvalue;
+        }
+    }
+    class ancControllerfiltermap extends ControllerFilterMap{
+
+        @Override
+        public boolean filtermapLogic(CommonPersonObject commonPersonObject) {
+            boolean returnvalue = false;
+            if(commonPersonObject.getDetails().get("FWWOMVALID") != null){
+                if(commonPersonObject.getDetails().get("FWWOMVALID").equalsIgnoreCase("1")){
+                    returnvalue = true;
+                    if(commonPersonObject.getDetails().get("Is_PNC")!=null){
+                        if(commonPersonObject.getDetails().get("Is_PNC").equalsIgnoreCase("1")){
+                            returnvalue = false;
+                        }
+
+                    }
+                }
+            }
+            Log.v("the filter",""+returnvalue);
             return returnvalue;
         }
     }

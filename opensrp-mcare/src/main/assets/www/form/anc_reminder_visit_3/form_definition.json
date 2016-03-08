@@ -91,6 +91,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "FWHR_PSR",
+        "bind": "/model/instance/ANC_Reminder_Visit_3/existing_FWHR_PSR",
+        "shouldLoadValue": true
+      },
+      {
         "name": "existing_ELCO",
         "bind": "/model/instance/ANC_Reminder_Visit_3/existing_ELCO"
       },
