@@ -6,6 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
+import org.ei.opensrp.commonregistry.CommonPersonObject;
+import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
+import org.ei.opensrp.commonregistry.CommonRepository;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
+
 /**
  * Created by raihan on 3/9/16.
  */
@@ -27,6 +32,11 @@ public class SmartRegisterPaginatedCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+        CommonRepository commonRepository = new CommonRepository("household",new String []{});
+        CommonPersonObject personinlist = commonRepository.readAllcommonforCursorAdapter(cursor);
+        CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get("FWHOHFNAME"));
+        pClient.setColumnmaps(personinlist.getColumnmaps());
+       listItemProvider.getView(pClient,view);
 
     }
 

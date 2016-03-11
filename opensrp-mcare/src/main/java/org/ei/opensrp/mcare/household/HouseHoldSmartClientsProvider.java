@@ -17,6 +17,7 @@ import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -42,7 +43,7 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 /**
  * Created by user on 2/12/15.
  */
-public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvider {
+public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
 
     private final LayoutInflater inflater;
     private final Context context;
@@ -57,9 +58,9 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvid
 
     public HouseHoldSmartClientsProvider(Context context,
                                          View.OnClickListener onClickListener,
-                                         CommonPersonObjectController controller, AlertService alertService) {
+                                          AlertService alertService) {
         this.onClickListener = onClickListener;
-        this.controller = controller;
+//        this.controller = controller;
         this.context = context;
         this.alertService = alertService;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -71,11 +72,11 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvid
     }
 
     @Override
-    public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
+    public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
 
         ViewHolder viewHolder;
-        if (convertView == null){
-           convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_household_client, null);
+//        if (convertView == null){
+//           convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_household_client, null);
             viewHolder = new ViewHolder();
             viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
             viewHolder.gobhhid = (TextView)convertView.findViewById(R.id.gobhhid);
@@ -92,10 +93,10 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvid
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
             viewHolder.warnbutton = (Button)convertView.findViewById(R.id.warnbutton);
             convertView.setTag(viewHolder);
-        }else{
-            viewHolder = (ViewHolder) convertView.getTag();
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
-        }
+//        }else{
+//            viewHolder = (ViewHolder) convertView.getTag();
+//            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
+//        }
 
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
@@ -224,9 +225,9 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvid
 
 
         convertView.setLayoutParams(clientViewLayoutParams);
-        return convertView;
+//        return convertView;
     }
-    CommonPersonObjectController householdelcocontroller;
+//    CommonPersonObjectController householdelcocontroller;
     private boolean getIfHouseholdHasElcoWithoutNationalID(CommonPersonObjectClient pc) {
         boolean toreturn = true;
 
@@ -245,7 +246,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvid
         return toreturn;
     }
 
-    @Override
+//    @Override
     public SmartRegisterClients getClients() {
         return controller.getClients();
     }
@@ -270,7 +271,14 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvid
         return inflater;
     }
 
-     class ViewHolder {
+    @Override
+    public View inflatelayoutForCursorAdapter() {
+        View View = (ViewGroup) inflater().inflate(R.layout.smart_register_household_client, null);
+        return View;
+    }
+
+
+    class ViewHolder {
 
          TextView gobhhid ;
          TextView jvitahhid ;

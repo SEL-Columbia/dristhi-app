@@ -3,6 +3,8 @@ package org.ei.opensrp.mcare.fragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
@@ -20,6 +23,8 @@ import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClients;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.commonregistry.CommonRepository;
+import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
@@ -83,10 +88,10 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         //
     }
 
-    @Override
-    protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(clientsProvider());
-    }
+//    @Override
+//    protected SmartRegisterPaginatedAdapter adapter() {
+//        return new SmartRegisterPaginatedAdapter(clientsProvider());
+//    }
 
     @Override
     protected SecuredNativeSmartRegisterActivity.DefaultOptionsProvider getDefaultOptionsProvider() {
@@ -170,11 +175,11 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
-        if (clientProvider == null) {
-            clientProvider = new HouseHoldSmartClientsProvider(
-                    getActivity(),clientActionHandler , controller,context.alertService());
-        }
-        return clientProvider;
+//        if (clientProvider == null) {
+//            clientProvider = new HouseHoldSmartClientsProvider(
+//                    getActivity(),clientActionHandler , context.alertService());
+//        }
+        return null;
     }
 
     private DialogOption[] getEditOptions() {
@@ -189,7 +194,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         villageController = new VillageController(context.allEligibleCouples(),
                 context.listCache(), context.villagesCache());
         dialogOptionMapper = new DialogOptionMapper();
-        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form",new CensusEnrollmentHandler());
+        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
     }
 
     @Override
@@ -198,9 +203,15 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-
-        setServiceModeViewDrawableRight(null);
-        updateSearchView();
+        ListView list = (ListView) view.findViewById(R.id.list);
+        list.setVisibility(View.VISIBLE);
+//        list.setBackgroundColor(Color.RED);
+        CommonRepository commonRepository = context.commonrepository("household");
+        Cursor c = commonRepository.CustomQueryForAdapter(null,null,"household");
+        HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        list.setAdapter(new SmartRegisterPaginatedCursorAdapter(getActivity(),c,hhscp));
+//        setServiceModeViewDrawableRight(null);
+//        updateSearchView();
 //        checkforNidMissing(view);
     }
 
@@ -254,16 +265,16 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 
     @Override
     protected void onResumption() {
-        super.onResumption();
+//        super.onResumption();
         getDefaultOptionsProvider();
-        updateSearchView();
-        checkforNidMissing(mView);
-
-        try{
-            LoginActivity.setLanguage();
-        }catch (Exception e){
-
-        }
+//        updateSearchView();
+//        checkforNidMissing(mView);
+//
+//        try{
+//            LoginActivity.setLanguage();
+//        }catch (Exception e){
+//
+//        }
 
     }
 

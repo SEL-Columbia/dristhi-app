@@ -15,7 +15,7 @@ import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
  * Created by raihan on 3/9/16.
  */
 public interface SmartRegisterCLientsProviderForCursorAdapter  {
-    public View getView(SmartRegisterClient client, View parentView, ViewGroup viewGroup);
+    public void getView(SmartRegisterClient client,View view);
     SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                                        FilterOption searchFilter, SortOption sortOption);
     void onServiceModeSelected(ServiceModeOption serviceModeOption);
