@@ -134,25 +134,6 @@ public class FormUtils {
         return fs;
     }
 
-    private List<String> retrieveRelationalIdForSubForm(String childTableName, String entityId) throws  Exception{
-        List<String> ids = new ArrayList<String>();
-        if (entityId != null){
-            String sql = "select * from " + childTableName + " where relationalid='" + entityId + "'";
-            String dbEntity = theAppContext.formDataRepository().queryList(sql);
-
-            JSONArray entityJson = new JSONArray();
-            if (dbEntity != null && !dbEntity.isEmpty()){
-                entityJson = new JSONArray(dbEntity);
-                for (int i = 0; i < entityJson.length(); i++){
-                    if (entityJson.getJSONObject(i).has("id")){
-                        ids.add(entityJson.getJSONObject(i).getString("id"));
-                    }
-                }
-            }
-        }
-        return ids;
-    }
-
     public String generateXMLInputForFormWithEntityId(String entityId, String formName, String overrides){
         try
         {
@@ -716,11 +697,18 @@ public class FormUtils {
             }
             i++;
         }
-        if(object.has(path[i]) && object.get(path[i]) instanceof JSONObject && ((JSONObject) object.get(path[i])).has("content")){
+        Object valueObject = object.has(path[i]) ? object.get(path[i]) : null;
+
+        if (valueObject == null)
+            return value;
+        if(valueObject instanceof JSONObject && ((JSONObject) valueObject).has("content")){
             value = ((JSONObject) object.get(path[i])).getString("content");
         }
-        else if(object.has(path[i]) && !(object.get(path[i]) instanceof JSONObject)){
-            value = object.has(path[i]) ? object.get(path[i]).toString() : null;
+        else if(valueObject instanceof JSONArray){
+            value = ((JSONArray)valueObject).get(0).toString();
+        }
+        else if(!(valueObject instanceof JSONObject) ){
+            value = valueObject.toString();
         }
         return value;
     }
