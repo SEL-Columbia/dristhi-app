@@ -151,10 +151,10 @@ public class NativeHomeActivity extends SecuredActivity {
         ancControllerfiltermap ancfiltermap = new ancControllerfiltermap();
         anccontrollerFilterMapArrayList.add(ancfiltermap);
 
-        hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
+        hhcontroller =  new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
                 context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-         elcocontroller =  new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
+                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new HouseholdCensusDueDateSort());
+               elcocontroller =  new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
                  context.allBeneficiaries(), context.listCache(),
                  context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
         anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
