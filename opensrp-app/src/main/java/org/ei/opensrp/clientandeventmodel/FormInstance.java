@@ -1,28 +1,48 @@
-package org.ei.opensrp.domain.form;
+package org.ei.opensrp.clientandeventmodel;
+
+import java.util.List;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 public class FormInstance {
+    @JsonProperty
     private String form_data_definition_version;
+
+    @JsonProperty
     private FormData form;
 
-    public FormInstance(FormData form, String formDataDefinitionVersion) {
+    public FormInstance() {
+    }
+
+    public FormInstance(FormData form) {
         this.form = form;
-        this.form_data_definition_version = formDataDefinitionVersion;
     }
 
     public FormData form() {
         return form;
     }
 
-    public String getFieldValue(String name) {
-        return form.getFieldValue(name);
+    public String getField(String name) {
+        return form.getField(name);
     }
 
-    public SubForm getSubFormByName(String name) {
+    public String bindType() {
+        return form.bindType();
+    }
+
+    public String defaultBindPath() {
+        return form.defaultBindPath();
+    }
+
+    public SubFormData getSubFormByName(String name) {
         return form.getSubFormByName(name);
+    }
+
+    public List<SubFormData> subForms() {
+        return form.subForms();
     }
 
     @Override
@@ -40,6 +60,14 @@ public class FormInstance {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    public String getForm_data_definition_version() {
+        return form_data_definition_version;
+    }
+
+    public void setForm_data_definition_version(String form_data_definition_version) {
+        this.form_data_definition_version = form_data_definition_version;
+    }
+
     public FormData getForm() {
         return form;
     }
@@ -48,11 +76,4 @@ public class FormInstance {
         this.form = form;
     }
 
-    public String getForm_data_definition_version() {
-        return form_data_definition_version;
-    }
-
-    public void setForm_data_definition_version(String form_data_definition_version) {
-        this.form_data_definition_version = form_data_definition_version;
-    }
 }

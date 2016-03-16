@@ -3,9 +3,22 @@ package org.ei.opensrp.util;
 import android.content.Context;
 import android.util.Xml;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.ei.opensrp.clientandeventmodel.Client;
+import org.ei.opensrp.clientandeventmodel.Event;
+import org.ei.opensrp.clientandeventmodel.FormAttributeParser;
+import org.ei.opensrp.clientandeventmodel.FormData;
+import org.ei.opensrp.clientandeventmodel.FormEntityConverter;
+import org.ei.opensrp.clientandeventmodel.FormField;
+import org.ei.opensrp.clientandeventmodel.FormInstance;
+import org.ei.opensrp.clientandeventmodel.SubFormData;
 import org.ei.opensrp.domain.SyncStatus;
 import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.domain.form.SubForm;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 import org.w3c.dom.Attr;
@@ -20,6 +33,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,9 +60,13 @@ public class FormUtils {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    FormEntityConverter formEntityConverter;
+
     public FormUtils(Context context){
         mContext = context;
         theAppContext = org.ei.opensrp.Context.getInstance();
+        FormAttributeParser formAttributeParser = new FormAttributeParser(context);
+        formEntityConverter = new FormEntityConverter(formAttributeParser);
     }
 
     public static FormUtils getInstance(Context ctx){
@@ -61,9 +79,9 @@ public class FormUtils {
     public FormSubmission generateFormSubmisionFromXMLString(String entity_id, String formData, String formName, JSONObject overrides) throws Exception{
         JSONObject formSubmission = XML.toJSONObject(formData);
 
-        FileUtilities fu = new FileUtilities();
-        fu.write("xmlform.txt", formData);
-        fu.write("xmlformsubmission.txt", formSubmission.toString());
+        //FileUtilities fu = new FileUtilities();
+        //fu.write("xmlform.txt", formData);
+        //fu.write("xmlformsubmission.txt", formSubmission.toString());
         System.out.println(formSubmission);
 
         // use the form_definition.json to iterate through fields
@@ -85,40 +103,20 @@ public class FormUtils {
         //get the subforms
         if (formDefinition.getJSONObject("form").has("sub_forms")){
             JSONObject subFormDefinition = formDefinition.getJSONObject("form").getJSONArray("sub_forms").getJSONObject(0);
-            //get the bind path for the sub-form helps us to locate the node that holds the data in the corresponding data json
+            //get the bind path for the sub-form, helps us to locate the node that holds the data in the corresponding data json
             String bindPath = subFormDefinition.getString("default_bind_path");
 
             //get the actual sub-form data
-            JSONArray subForms = new JSONArray();
+            JSONArray subFormDataArray = new JSONArray();
             Object subFormDataObject = getObjectAtPath(bindPath.split("/"), formSubmission);
             if(subFormDataObject instanceof JSONObject){
                 JSONObject subFormData = (JSONObject)subFormDataObject;
-                JSONArray subFormFields = getFieldsArrayForSubFormDefinition(subFormDefinition);
-                String relationalId = subFormData.has(relationalIdKey) ? subFormData.getString(relationalIdKey) : entity_id;
-                String id = subFormData.has(databaseIdKey) ? subFormData.getString(databaseIdKey) : generateRandomUUIDString();
-                JSONObject subFormInstance = getFieldValuesForSubFormDefinition(subFormDefinition, relationalId, id, subFormData, overrides);
-                JSONArray subFormInstances = new JSONArray();
-                subFormInstances.put(0,subFormInstance);
-                subFormDefinition.put("instances", subFormInstances);
-                subFormDefinition.put("fields", subFormFields);
-                subForms.put(0, subFormDefinition);
+                subFormDataArray.put(0, subFormData);
             }else if (subFormDataObject instanceof JSONArray){
-                JSONArray subFormDataArray = (JSONArray)subFormDataObject;
-                JSONArray subFormFields = getFieldsArrayForSubFormDefinition(subFormDefinition);
-                JSONArray subFormInstances = new JSONArray();
-
-                // the id of each subform is contained in the attribute of the enclosing element
-                for (int i = 0; i < subFormDataArray.length(); i++){
-                    JSONObject subFormData = subFormDataArray.getJSONObject(i);
-                    String relationalId = subFormData.has(relationalIdKey) ? subFormData.getString(relationalIdKey) : entity_id;
-                    String id = subFormData.has(databaseIdKey) ? subFormData.getString(databaseIdKey) : generateRandomUUIDString();
-                    JSONObject subFormInstance = getFieldValuesForSubFormDefinition(subFormDefinition, relationalId, id, subFormData, overrides);
-                    subFormInstances.put(i,subFormInstance);
-                }
-                subFormDefinition.put("instances", subFormInstances);
-                subFormDefinition.put("fields", subFormFields);
-                subForms.put(0, subFormDefinition);
+                subFormDataArray = (JSONArray)subFormDataObject;
             }
+
+            JSONArray subForms = getSubForms(subFormDataArray, entity_id, subFormDefinition, overrides);
 
             // replace the subforms field with real data
             formDefinition.getJSONObject("form").put("sub_forms", subForms);
@@ -131,26 +129,93 @@ public class FormUtils {
         String clientVersion = String.valueOf(new Date().getTime());
         String instance = formDefinition.toString();
         FormSubmission fs = new FormSubmission(instanceId, entityId, formName, instance, clientVersion, SyncStatus.PENDING, formDefinitionVersionString);
+
+
+        generateClientAndEventModelsForFormSubmission(fs, formName);
+
         return fs;
     }
 
-    private List<String> retrieveRelationalIdForSubForm(String childTableName, String entityId) throws  Exception{
-        List<String> ids = new ArrayList<String>();
-        if (entityId != null){
-            String sql = "select * from " + childTableName + " where relationalid='" + entityId + "'";
-            String dbEntity = theAppContext.formDataRepository().queryList(sql);
+    private void generateClientAndEventModelsForFormSubmission(FormSubmission formSubmission, String formName) {
+        org.ei.opensrp.clientandeventmodel.FormSubmission v2FormSubmission;
 
-            JSONArray entityJson = new JSONArray();
-            if (dbEntity != null && !dbEntity.isEmpty()){
-                entityJson = new JSONArray(dbEntity);
-                for (int i = 0; i < entityJson.length(); i++){
-                    if (entityJson.getJSONObject(i).has("id")){
-                        ids.add(entityJson.getJSONObject(i).getString("id"));
-                    }
-                }
-            }
+        String anmId = "dummyANMID";
+        String instanceId = formSubmission.instanceId();
+        String entityId = formSubmission.entityId();
+        Long clientVersion = new Date().getTime();
+        String formDataDefinitionVersion = formSubmission.formDataDefinitionVersion();
+
+        String bind_type = formSubmission.getFormInstance().getForm().getBind_type();
+        String default_bind_path = formSubmission.getFormInstance().getForm().getDefault_bind_path();
+
+        List< FormField > fields = convertFormFields(formSubmission.getFormInstance().getForm().getFields());
+
+        List<SubFormData> sub_forms = new ArrayList<SubFormData>();
+        List<SubForm> subForms = formSubmission.getFormInstance().getForm().getSub_forms();
+        for (SubForm sf : subForms){
+            SubFormData sd = new SubFormData();
+            sd.setDefault_bind_path(sf.getDefault_bind_path());
+            sd.setBind_type(sf.getBind_type());
+
+            List< FormField > subFormFields = convertFormFields(sf.getFields());
+            sd.setFields(subFormFields);
+
+            sd.setInstances(sf.getInstances());
+            sd.setName(sf.getName());
+            sub_forms.add(sd);
         }
-        return ids;
+
+        FormData formData = new FormData(bind_type, default_bind_path, fields, sub_forms);
+
+        FormInstance formInstance = new FormInstance(formData);
+        formInstance.setForm_data_definition_version(formDataDefinitionVersion);
+
+        v2FormSubmission = new org.ei.opensrp.clientandeventmodel.FormSubmission(anmId, instanceId, formName, entityId, clientVersion, formDataDefinitionVersion, formInstance, clientVersion);
+
+        // retrieve client and events
+        Client c = formEntityConverter.getClientFromFormSubmission(v2FormSubmission);
+        Event e = formEntityConverter.getEventFromFormSubmission(v2FormSubmission);
+
+        Log.logDebug("============== CLIENT ================");
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
+        String clientJson = gson.toJson(c);
+        Log.logDebug(clientJson);
+        Log.logDebug("============== CLIENT ================");
+
+        Log.logDebug("============== EVENT ================");
+        String eventJson = gson.toJson(e);
+        Log.logDebug(eventJson);
+        Log.logDebug("============== EVENT ================");
+    }
+
+    List< FormField > convertFormFields(List<org.ei.opensrp.domain.form.FormField> formFields){
+        List< FormField > fields = new ArrayList<FormField>();
+        for (org.ei.opensrp.domain.form.FormField ff : formFields){
+            FormField f = new FormField(ff.getName(), ff.getValue(), ff.getSource());
+            fields.add(f);
+        }
+        return fields;
+    }
+
+    private JSONArray getSubForms(JSONArray subFormDataArray, String entity_id, JSONObject subFormDefinition, JSONObject overrides) throws Exception {
+        JSONArray subForms = new JSONArray();
+
+        JSONArray subFormFields = getFieldsArrayForSubFormDefinition(subFormDefinition);
+        JSONArray subFormInstances = new JSONArray();
+
+        // the id of each subform is contained in the attribute of the enclosing element
+        for (int i = 0; i < subFormDataArray.length(); i++) {
+            JSONObject subFormData = subFormDataArray.getJSONObject(i);
+            String relationalId = subFormData.has(relationalIdKey) ? subFormData.getString(relationalIdKey) : entity_id;
+            String id = subFormData.has(databaseIdKey) ? subFormData.getString(databaseIdKey) : generateRandomUUIDString();
+            JSONObject subFormInstance = getFieldValuesForSubFormDefinition(subFormDefinition, relationalId, id, subFormData, overrides);
+            subFormInstances.put(i,subFormInstance);
+        }
+
+        subFormDefinition.put("instances", subFormInstances);
+        subFormDefinition.put("fields", subFormFields);
+        subForms.put(0, subFormDefinition);
+        return subForms;
     }
 
     public String generateXMLInputForFormWithEntityId(String entityId, String formName, String overrides){

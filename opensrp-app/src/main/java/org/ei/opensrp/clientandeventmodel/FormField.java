@@ -1,13 +1,20 @@
-package org.ei.opensrp.domain.form;
+package org.ei.opensrp.clientandeventmodel;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 public class FormField {
+    @JsonProperty
     private String name;
+    @JsonProperty
     private String value;
+    @JsonProperty
     private String source;
+
+    public FormField() {
+    }
 
     public FormField(String name, String value, String source) {
         this.name = name;
@@ -23,6 +30,10 @@ public class FormField {
         return value;
     }
 
+    public String source() {
+        return source;
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
@@ -36,29 +47,5 @@ public class FormField {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
     }
 }
