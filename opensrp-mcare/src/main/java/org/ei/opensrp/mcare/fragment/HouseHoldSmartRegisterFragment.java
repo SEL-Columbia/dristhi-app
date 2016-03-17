@@ -26,6 +26,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClients;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
+import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
@@ -211,7 +212,12 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 
 //        list.setBackgroundColor(Color.RED);
         CommonRepository commonRepository = context.commonrepository("household");
-        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
+
+        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household",new String []{"relationalid","details"},null,"FW CENSUS");
+
+//        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
+        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.limitandOffset(20,0)));
         HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
         clientadapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp);
         list.setAdapter(clientadapter);
@@ -228,9 +234,13 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
     }
 
     public void gotoNextPage() {
+        currentoffset = currentoffset+ currentlimit;
         CommonRepository commonRepository = context.commonrepository("household");
-        currentoffset = currentoffset+currentlimit;
-        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
+        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household",new String []{"relationalid","details"},null,"FW CENSUS");
+
+//        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
+        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.limitandOffset(currentlimit, currentoffset)));
 
         clientadapter.swapCursor(c);
         return;

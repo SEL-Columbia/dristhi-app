@@ -255,6 +255,13 @@ public class CommonRepository extends DrishtiRepository {
 
         return cursor;
     }
+    public Cursor RawCustomQueryForAdapter(String query){
+
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(query,null);
+
+        return cursor;
+    }
     public CommonPersonObject readAllcommonforCursorAdapter (Cursor cursor) {
 
 
