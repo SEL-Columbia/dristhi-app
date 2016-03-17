@@ -446,7 +446,7 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
         clientsAdapter.notifyDataSetChanged();
     }
 
-    private void goBackToPreviousPage() {
+    public void goBackToPreviousPage() {
         clientsAdapter.previousPage();
         clientsAdapter.notifyDataSetChanged();
     }

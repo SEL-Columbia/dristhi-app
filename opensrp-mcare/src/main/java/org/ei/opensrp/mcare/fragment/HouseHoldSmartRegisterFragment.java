@@ -28,6 +28,7 @@ import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
+import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
 import org.ei.opensrp.mcare.household.HHMWRAEXISTFilterOption;
@@ -192,12 +193,12 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 
     @Override
     protected void onInitialization() {
-        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new HouseholdCensusDueDateSort());
-        villageController = new VillageController(context.allEligibleCouples(),
-                context.listCache(), context.villagesCache());
-        dialogOptionMapper = new DialogOptionMapper();
+//        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
+//                context.allBeneficiaries(), context.listCache(),
+//                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new HouseholdCensusDueDateSort());
+//        villageController = new VillageController(context.allEligibleCouples(),
+//                context.listCache(), context.villagesCache());
+//        dialogOptionMapper = new DialogOptionMapper();
         context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
     }
 
@@ -214,7 +215,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         CommonRepository commonRepository = context.commonrepository("household");
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household",new String []{"relationalid","details"},null,"FW CENSUS");
+        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid", "details"}, null, "FW CENSUS");
 
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
         Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.limitandOffset(20,0)));
@@ -228,15 +229,39 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 
     @Override
     public void gotoNextPage() {
-        currentoffset = currentoffset+ currentlimit;
-        CommonRepository commonRepository = context.commonrepository("household");
-        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household",new String []{"relationalid","details"},null,"FW CENSUS");
+
+            currentoffset = currentoffset + currentlimit;
+        if(currentoffset< NativeHomeActivity.hhcount) {
+            CommonRepository commonRepository = context.commonrepository("household");
+            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+            queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid", "details"}, null, "FW CENSUS");
 
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.limitandOffset(currentlimit, currentoffset)));
+            Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.limitandOffset(currentlimit, currentoffset)));
 
-        clientadapter.swapCursor(c);
+            clientadapter.swapCursor(c);
+        }else{
+            currentoffset = currentoffset - currentlimit;
+        }
+        return;
+    }
+    @Override
+    public void goBackToPreviousPage() {
+        if(currentoffset>=currentlimit) {
+            currentoffset = currentoffset - currentlimit;
+            CommonRepository commonRepository = context.commonrepository("household");
+            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+            queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid", "details"}, null, "FW CENSUS");
+
+//        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
+            Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.limitandOffset(currentlimit, currentoffset)));
+
+            clientadapter.swapCursor(c);
+        }
+        if(currentoffset <currentlimit){
+            currentoffset = 0;
+        }
+
         return;
     }
     @Override

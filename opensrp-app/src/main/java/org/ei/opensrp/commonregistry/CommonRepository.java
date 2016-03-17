@@ -251,7 +251,7 @@ public class CommonRepository extends DrishtiRepository {
     public Cursor CustomQueryForAdapter(String[] columns,String tableName,String limit,String offset){
 
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-    Cursor cursor = database.query(tableName,columns,null,null,null,null,null,offset+","+limit);
+    Cursor cursor = database.query(tableName, columns, null, null, null, null, null, offset + "," + limit);
 
         return cursor;
     }
@@ -259,8 +259,7 @@ public class CommonRepository extends DrishtiRepository {
 
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(query,null);
-
-        return cursor;
+          return cursor;
     }
     public CommonPersonObject readAllcommonforCursorAdapter (Cursor cursor) {
 

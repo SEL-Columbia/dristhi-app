@@ -85,6 +85,7 @@ public class NativeHomeActivity extends SecuredActivity {
     private TextView pncRegisterClientCountView;
     private TextView fpRegisterClientCountView;
     private TextView childRegisterClientCountView;
+    public static int hhcount;
 
     @Override
     protected void onCreation() {
@@ -162,8 +163,12 @@ public class NativeHomeActivity extends SecuredActivity {
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
         Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household","household.details NOT LIKE '%\"FWHOHFNAME\":\"\"%'"));
         hhcountcursor.moveToFirst();
-        int hhcount= hhcountcursor.getInt(0);
+        hhcount= hhcountcursor.getInt(0);
         hhcountcursor.close();
+        Cursor elcocountcursor = context.commonrepository("elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("elco","elco.details NOT LIKE '%\"FWWOMFNAME\":\"\"%' AND elco.details  LIKE '%\"FWELIGIBLE\":\"1\"%'"));
+        elcocountcursor.moveToFirst();
+        int elcocount= elcocountcursor.getInt(0);
+        elcocountcursor.close();
         CommonPersonObjectController elcocontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
@@ -178,7 +183,7 @@ public class NativeHomeActivity extends SecuredActivity {
         ecRegisterClientCountView.setText(valueOf(hhcount));
         ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
         pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
-        fpRegisterClientCountView.setText(valueOf(elcocontroller.getClients().size()));
+        fpRegisterClientCountView.setText(valueOf(elcocount));
         childRegisterClientCountView.setText(valueOf(childcontroller.getClients().size()));
     }
 
