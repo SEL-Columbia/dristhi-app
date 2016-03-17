@@ -35,6 +35,8 @@ public abstract class SecuredActivity extends ActionBarActivity {
     protected NavigationController navigationController;
     private String metaData;
 
+    public static final String LOG_TAG = "SecuredActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,4 +149,22 @@ public abstract class SecuredActivity extends ActionBarActivity {
     private boolean hasMetadata() {
         return this.metaData != null && !this.metaData.equalsIgnoreCase("undefined");
     }
+
+    /**
+     * Called by ClientsEventModel when it receives a replication complete callback.
+     * ClientsEventModel takes care of calling this on the main thread.
+     */
+    public void replicationComplete() {
+        Toast.makeText(getApplicationContext(), "Replication Complete", Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * Called by TasksModel when it receives a replication error callback.
+     * TasksModel takes care of calling this on the main thread.
+     */
+    public void replicationError() {
+        Log.e(LOG_TAG, "error()");
+        Toast.makeText(getApplicationContext(), "Replication Error", Toast.LENGTH_LONG).show();
+    }
+
 }

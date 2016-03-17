@@ -14,6 +14,7 @@ import org.ei.opensrp.clientandeventmodel.FormEntityConverter;
 import org.ei.opensrp.clientandeventmodel.FormField;
 import org.ei.opensrp.clientandeventmodel.FormInstance;
 import org.ei.opensrp.clientandeventmodel.SubFormData;
+import org.ei.opensrp.cloudant.models.ClientEventModel;
 import org.ei.opensrp.domain.SyncStatus;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.domain.form.SubForm;
@@ -39,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -61,6 +63,7 @@ public class FormUtils {
     Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     FormEntityConverter formEntityConverter;
+    private static ClientEventModel sClientEventModel;
 
     public FormUtils(Context context){
         mContext = context;
@@ -175,6 +178,21 @@ public class FormUtils {
         // retrieve client and events
         Client c = formEntityConverter.getClientFromFormSubmission(v2FormSubmission);
         Event e = formEntityConverter.getEventFromFormSubmission(v2FormSubmission);
+        org.ei.opensrp.cloudant.models.Event event = new org.ei.opensrp.cloudant.models.Event(e);
+        createNewEventDocument(event);
+
+        org.ei.opensrp.cloudant.models.Client client = new org.ei.opensrp.cloudant.models.Client(c);
+        createNewClientDocument(client);
+
+        Map<String, Map<String, Object>> dep = formEntityConverter.getDependentClientsFromFormSubmission(v2FormSubmission);
+        for (Map<String, Object> cm : dep.values()) {
+            Client cin = (Client)cm.get("client");
+            Event evin = (Event)cm.get("event");
+            event = new org.ei.opensrp.cloudant.models.Event(evin);
+            createNewEventDocument(event);
+            client = new org.ei.opensrp.cloudant.models.Client(cin);
+            createNewClientDocument(client);
+        }
 
         Log.logDebug("============== CLIENT ================");
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
@@ -816,4 +834,11 @@ public class FormUtils {
         return -1;
     }
 
+    private void createNewEventDocument(org.ei.opensrp.cloudant.models.Event event) {
+        sClientEventModel.createEventDocument(event);
+    }
+
+    private void createNewClientDocument(org.ei.opensrp.cloudant.models.Client client) {
+        sClientEventModel.createClientDocument(client);
+    }
 }

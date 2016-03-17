@@ -48,7 +48,7 @@ android {
     }
 
     defaultConfig {
-        // multiDexEnabled = true
+        multiDexEnabled = true
         //applicationId "org.ei.opensrp"
         minSdkVersion 16
         targetSdkVersion 21
@@ -104,25 +104,29 @@ task copyTestResources() {
 assembleDebug.dependsOn(copyTestResources)
 
 configurations.all {
-    resolutionStrategy.force 'commons-codec:commons-codec:1.6'
+    resolutionStrategy.force 'commons-codec:commons-codec:1.10'
 }
 
 dependencies {
     compile 'org.ei.drishti:drishti-interface:0.1-SNAPSHOT'
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile "org.apache.httpcomponents:httpmime:4.2.3"
-    compile 'commons-io:commons-io:2.1'
     compile 'com.google.code.gson:gson:2.3'
     compile 'org.apache.commons:commons-lang3:3.1'
+
+    compile group: 'commons-codec', name: 'commons-codec', version:'1.10'
+    compile group: 'com.google.guava', name: 'guava', version:'15.0'
+    compile group: 'commons-io', name: 'commons-io', version:'2.4'
+
     compile 'org.mozilla:rhino:1.7R4'
     compile 'com.ocpsoft:ocpsoft-pretty-time:1.0.7'
     compile 'joda-time:joda-time:2.3'
     compile 'com.github.bmelnychuk:atv:1.2.+'
     compile 'com.github.johnkil.print:print:1.2.3'
     compile 'ch.acra:acra:4.5.0'
-    compile 'com.google.guava:guava:18.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
+    compile project(':cloudant-sync-datastore-core')
+    compile project(':cloudant-sync-datastore-android')
 }
 
 dependencies {
