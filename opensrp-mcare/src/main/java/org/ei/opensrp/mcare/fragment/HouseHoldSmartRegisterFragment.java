@@ -221,18 +221,12 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
         clientadapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp);
         list.setAdapter(clientadapter);
-        Button nextPageView = (Button) view.findViewById(org.ei.opensrp.R.id.btn_next_page);
-        nextPageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoNextPage();
-            }
-        });
 //        setServiceModeViewDrawableRight(null);
 //        updateSearchView();
 //        checkforNidMissing(view);
     }
 
+    @Override
     public void gotoNextPage() {
         currentoffset = currentoffset+ currentlimit;
         CommonRepository commonRepository = context.commonrepository("household");
