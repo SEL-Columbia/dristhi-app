@@ -439,15 +439,16 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
             }
         }
 
-        public void gotoNextPage() {
-            clientsAdapter.nextPage();
-            clientsAdapter.notifyDataSetChanged();
-        }
+    }
 
-        private void goBackToPreviousPage() {
-            clientsAdapter.previousPage();
-            clientsAdapter.notifyDataSetChanged();
-        }
+    public void gotoNextPage() {
+        clientsAdapter.nextPage();
+        clientsAdapter.notifyDataSetChanged();
+    }
+
+    private void goBackToPreviousPage() {
+        clientsAdapter.previousPage();
+        clientsAdapter.notifyDataSetChanged();
     }
 
     public class NavBarActionsHandler implements View.OnClickListener {
