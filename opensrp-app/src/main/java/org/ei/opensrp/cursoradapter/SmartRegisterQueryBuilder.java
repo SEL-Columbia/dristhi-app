@@ -26,7 +26,7 @@ public class SmartRegisterQueryBuilder {
         return Selectquery;
     }
     public String limitandOffset(int limit,int offset){
-        return Selectquery + "Limit" +offset+","+limit;
+        return Selectquery + " Limit" +offset+","+limit;
     }
     public  String Endquery(String selectquery){
         return selectquery+";";
