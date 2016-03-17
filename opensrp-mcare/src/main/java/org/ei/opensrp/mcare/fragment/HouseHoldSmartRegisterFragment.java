@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -82,7 +83,9 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
     private String locationDialogTAG = "locationDialogTAG";
-
+    public SmartRegisterPaginatedCursorAdapter clientadapter;
+    public static int currentlimit = 20;
+    public static int currentoffset = 0;
     @Override
     protected void onCreation() {
         //
@@ -205,16 +208,33 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
         ListView list = (ListView) view.findViewById(R.id.list);
         list.setVisibility(View.VISIBLE);
+
 //        list.setBackgroundColor(Color.RED);
         CommonRepository commonRepository = context.commonrepository("household");
-        Cursor c = commonRepository.CustomQueryForAdapter(null,null,"household");
+        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
         HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        list.setAdapter(new SmartRegisterPaginatedCursorAdapter(getActivity(),c,hhscp));
+        clientadapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp);
+        list.setAdapter(clientadapter);
+        Button nextPageView = (Button) view.findViewById(org.ei.opensrp.R.id.btn_next_page);
+        nextPageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoNextPage();
+            }
+        });
 //        setServiceModeViewDrawableRight(null);
 //        updateSearchView();
 //        checkforNidMissing(view);
     }
 
+    public void gotoNextPage() {
+        CommonRepository commonRepository = context.commonrepository("household");
+        currentoffset = currentoffset+currentlimit;
+        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
+
+        clientadapter.swapCursor(c);
+        return;
+    }
     @Override
     public void startRegistration() {
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
@@ -347,7 +367,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         LinearLayout titlelayout = (LinearLayout)view.findViewById(org.ei.opensrp.R.id.title_layout);
         if(anyNIdmissing(controller)) {
             try {
-                titlelayout.removeView(getActivity().findViewById(900)) ;
+                titlelayout.removeView(getActivity().findViewById(R.id.warnid)) ;
 
             }catch(Exception e){
 
@@ -356,7 +376,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
             warn.setImageDrawable(getResources().getDrawable(R.mipmap.warning));
             warn.setScaleType(ImageView.ScaleType.FIT_CENTER);
             warn.setBackground(null);
-            warn.setId(900);
+            warn.setId(R.id.warnid);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.gravity = Gravity.CENTER;
 
@@ -372,7 +392,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
                 }
             });
         }else{
-            titlelayout.removeView(getActivity().findViewById(900));
+            titlelayout.removeView(getActivity().findViewById(R.id.warnid));
         }
     }
 

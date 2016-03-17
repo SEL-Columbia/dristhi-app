@@ -439,7 +439,7 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
             }
         }
 
-        private void gotoNextPage() {
+        public void gotoNextPage() {
             clientsAdapter.nextPage();
             clientsAdapter.notifyDataSetChanged();
         }

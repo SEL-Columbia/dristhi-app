@@ -248,15 +248,11 @@ public class CommonRepository extends DrishtiRepository {
 
         return commons;
     }
-    public Cursor CustomQueryForAdapter(String selectionString ,String[] selections,String tableName){
+    public Cursor CustomQueryForAdapter(String[] columns,String tableName,String limit,String offset){
 
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-//        Cursor cursor = database.rawQuery("SELECT id as _id , relationalid , details from household;", null);
-      Cursor cursor = database.query("household",new String[]{"id as _id","relationalid","details"},null,null,null,null,null,"0,10");;
-//        builder.setProjectionMap();
-//        Cursor cursor = database.query(true,"household","SELECT id as _id , relationalid , details from household;", null);
-//        Cursor cursor = database.query(true,tableName,null,selectionString,selections,null,null,null,null);
-        // database.
+    Cursor cursor = database.query(tableName,columns,null,null,null,null,null,offset+","+limit);
+
         return cursor;
     }
     public CommonPersonObject readAllcommonforCursorAdapter (Cursor cursor) {
