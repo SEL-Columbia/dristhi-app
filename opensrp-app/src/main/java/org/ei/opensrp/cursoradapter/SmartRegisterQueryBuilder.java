@@ -25,8 +25,16 @@ public class SmartRegisterQueryBuilder {
                 "Else alerts.status END ASC";
         return Selectquery;
     }
+    public String queryForCountOnRegisters(String tablename,String condition){
+        String Selectquery = "Select Count (*) ";
+        Selectquery= Selectquery+ " From " + tablename;
+        if(condition != null){
+            Selectquery= Selectquery+ " Where " + condition ;
+        }
+        return Selectquery;
+    }
     public String limitandOffset(int limit,int offset){
-        return Selectquery + " Limit" +offset+","+limit;
+        return Selectquery + " Limit " +offset+","+limit;
     }
     public  String Endquery(String selectquery){
         return selectquery+";";
