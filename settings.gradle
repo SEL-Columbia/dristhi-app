@@ -2,6 +2,5 @@ rootProject.name = 'opensrp-app-parent'
 include ':opensrp-app', ':opensrp-drishti', ':opensrp-mcare','opensrp-indonesia', ':opensrp-vaccinator'
 include 'cloudant-sync-datastore-core'
 include 'cloudant-sync-datastore-android'
-include 'cloudant-sync-datastore-android-encryption'
 
 project(':opensrp-app').projectDir = "$rootDir/opensrp-app" as File
