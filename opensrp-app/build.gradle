@@ -112,6 +112,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile "org.apache.httpcomponents:httpmime:4.2.3"
     compile 'com.google.code.gson:gson:2.3'
+    compile group: 'commons-codec', name: 'commons-codec', version:'1.10'
+    compile group: 'com.google.guava', name: 'guava', version:'15.0'
+    compile group: 'commons-io', name: 'commons-io', version:'2.4'
     compile 'org.apache.commons:commons-lang3:3.2'
     compile 'org.mozilla:rhino:1.7R4'
     compile 'com.ocpsoft:ocpsoft-pretty-time:1.0.7'
@@ -120,8 +123,6 @@ dependencies {
     compile 'com.github.johnkil.print:print:1.2.3'
     compile 'ch.acra:acra:4.5.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':cloudant-sync-datastore-core')
-    compile project(':cloudant-sync-datastore-android')
 }
 
 dependencies {
