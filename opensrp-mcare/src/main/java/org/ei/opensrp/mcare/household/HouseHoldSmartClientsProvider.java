@@ -55,7 +55,6 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
     protected CommonPersonObjectController controller;
 
     AlertService alertService;
-
     public HouseHoldSmartClientsProvider(Context context,
                                          View.OnClickListener onClickListener,
                                           AlertService alertService) {
@@ -128,10 +127,10 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             viewHolder.warnbutton.setVisibility(View.INVISIBLE);
         }
 //
-        viewHolder.gobhhid.setText(pc.getDetails().get("FWGOBHHID")!=null?pc.getDetails().get("FWGOBHHID"):"");
-        viewHolder.jvitahhid.setText(pc.getDetails().get("FWJIVHHID")!=null?pc.getDetails().get("FWJIVHHID"):"");
+        viewHolder.gobhhid.setText(pc.getColumnmaps().get("FWGOBHHID")!=null?pc.getColumnmaps().get("FWGOBHHID"):"");
+        viewHolder.jvitahhid.setText(pc.getColumnmaps().get("FWJIVHHID")!=null?pc.getColumnmaps().get("FWJIVHHID"):"");
         viewHolder.village.setText((humanize((pc.getDetails().get("existing_Mauzapara")!=null?pc.getDetails().get("existing_Mauzapara"):"").replace("+","_"))));
-        viewHolder.headofhouseholdname.setText(pc.getDetails().get("FWHOHFNAME")!=null?pc.getDetails().get("FWHOHFNAME"):"");
+        viewHolder.headofhouseholdname.setText(pc.getColumnmaps().get("FWHOHFNAME")!=null?pc.getColumnmaps().get("FWHOHFNAME"):"");
         viewHolder.no_of_mwra.setText(pc.getDetails().get("ELCO")!=null?pc.getDetails().get("ELCO"):"");
         Date lastdate = null;
         if(pc.getDetails().get("FWNHREGDATE")!= null && pc.getDetails().get("FWCENDATE")!= null) {

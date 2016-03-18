@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -88,6 +89,11 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
     public SmartRegisterPaginatedCursorAdapter clientadapter;
     public static int currentlimit = 20;
     public static int currentoffset = 0;
+
+    String mainSelect;
+    String filters;
+    String Sortqueries;
+    String currentquery;
     @Override
     protected void onCreation() {
         //
@@ -215,10 +221,12 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         CommonRepository commonRepository = context.commonrepository("household");
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid", "details"}, null, "FW CENSUS");
+        
+
+        currentquery  =queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
 
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.limitandOffset(20,0)));
+        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
         clientadapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp);
         list.setAdapter(clientadapter);
@@ -234,10 +242,8 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         if(currentoffset< NativeHomeActivity.hhcount) {
             CommonRepository commonRepository = context.commonrepository("household");
             SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-            queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid", "details"}, null, "FW CENSUS");
-
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-            Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.limitandOffset(currentlimit, currentoffset)));
+            Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, currentlimit, currentoffset)));
 
             clientadapter.swapCursor(c);
         }else{
@@ -251,10 +257,8 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
             currentoffset = currentoffset - currentlimit;
             CommonRepository commonRepository = context.commonrepository("household");
             SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-            queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid", "details"}, null, "FW CENSUS");
-
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-            Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.limitandOffset(currentlimit, currentoffset)));
+            Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, currentlimit, currentoffset)));
 
             clientadapter.swapCursor(c);
         }
@@ -298,6 +302,50 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         private void showProfileView(ECClient client) {
             navigationController.startEC(client.entityId());
         }
+    }
+    @Override
+    public void onSortSelection(SortOption sortBy) {
+        appliedSortView.setText(sortBy.name());
+        if(sortBy.name().equalsIgnoreCase(getResources().getString(R.string.hh_alphabetical_sort))){
+            householdSortByName();
+        }
+        if(sortBy.name().equalsIgnoreCase(getResources().getString(R.string.hh_fwGobhhid_sort))){
+            householdSortByFWGOBHHID();
+        }
+        if(sortBy.name().equalsIgnoreCase(getResources().getString(R.string.hh_fwJivhhid_sort))){
+            householdSortByFWJIVHHID();
+        }
+    }
+
+    private void householdSortByName() {
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        sqb.SelectInitiateMainTable("household", new String[]{"relationalid", "details", "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID"});
+        sqb.addCondition("FWHOHFNAME not null");
+        currentquery =  sqb.orderbyCondition(" FWHOHFNAME ASC");
+        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,20,0));
+        CommonRepository commonRepository = context.commonrepository("household");
+        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
+        clientadapter.swapCursor(c);
+    }
+    private void householdSortByFWGOBHHID(){
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        sqb.SelectInitiateMainTable("household", new String[]{"relationalid", "details", "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID"});
+        sqb.addCondition("FWHOHFNAME not null");
+        currentquery =  sqb.orderbyCondition(" FWGOBHHID ASC");
+        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,20,0));
+        CommonRepository commonRepository = context.commonrepository("household");
+        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
+        clientadapter.swapCursor(c);
+    }
+    private void householdSortByFWJIVHHID(){
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        sqb.SelectInitiateMainTable("household", new String[]{"relationalid", "details", "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID"});
+        sqb.addCondition("FWHOHFNAME not null");
+        currentquery =  sqb.orderbyCondition(" FWJIVHHID ASC");
+        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,20,0));
+        CommonRepository commonRepository = context.commonrepository("household");
+        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
+        clientadapter.swapCursor(c);
     }
 
     private class EditDialogOptionModel implements DialogOptionModel {

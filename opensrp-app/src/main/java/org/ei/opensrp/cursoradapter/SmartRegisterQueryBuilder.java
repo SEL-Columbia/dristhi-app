@@ -5,6 +5,13 @@ package org.ei.opensrp.cursoradapter;
  */
 public class SmartRegisterQueryBuilder {
     String Selectquery;
+
+
+    /*
+    This method takes in @param tablename and columns other than ID. Any special conditions
+    for sorting if required can also be added in condition string and if not you can pass null.
+    Alertname is the name of the alert you would like to sort this by.
+     */
     public  String queryForRegisterSortBasedOnRegisterAndAlert(String tablename,String[]columns,String condition,String AlertName){
         Selectquery = "Select id as _id";
         for(int i = 0;i<columns.length;i++){
@@ -33,10 +40,34 @@ public class SmartRegisterQueryBuilder {
         }
         return Selectquery;
     }
+    public String addlimitandOffset(String selectquery,int limit,int offset){
+        return selectquery + " Limit " +offset+","+limit;
+    }
     public String limitandOffset(int limit,int offset){
         return Selectquery + " Limit " +offset+","+limit;
     }
     public  String Endquery(String selectquery){
         return selectquery+";";
+    }
+    public String SelectInitiateMainTable(String tablename,String [] columns){
+        Selectquery = "Select id as _id";
+        for(int i = 0;i<columns.length;i++){
+            Selectquery= Selectquery + " , " + columns[i];
+        }
+        Selectquery= Selectquery+ " From " + tablename;
+        return Selectquery;
+    }
+    public String addCondition(String condition){
+        Selectquery= Selectquery+ " Where " + condition ;
+        return Selectquery;
+    }
+    public String orderbyCondition(String condition){
+        Selectquery= Selectquery + " ORDER BY " + condition;
+        return Selectquery;
+    }
+    public String joinwithALerts(String tablename){
+        Selectquery = Selectquery+ " LEFT JOIN alerts ";
+        Selectquery = Selectquery+ " ON "+ tablename +".id = alerts.caseID";
+        return Selectquery;
     }
 }

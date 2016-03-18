@@ -3,7 +3,7 @@
     {
       "name": "household",
       "columns": [
-
+        {"name":"FWHOHFNAME"}, {"name":"FWGOBHHID"},{"name":"FWJIVHHID"}
       ]
     },
     {
