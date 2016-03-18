@@ -93,7 +93,10 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
             client.setAddresses((List<Address>) map.get(adresses_key));
             client.setAttributes((Map<String, Object>) map.get(attributes_key));
             client.setBaseEntityId((String) map.get(base_entity_id_key));
-            client.setBirthdate((Date) map.get(birth_date_key));
+            //the date is being saved as long
+            Long timestamp = (Long) map.get(birth_date_key);
+            if (timestamp != null)
+                client.setBirthdate(new Date(timestamp));
             client.setBirthdateApprox((Boolean) map.get(birth_date_approx_key));
             client.setCreator((User) map.get(creator_key));
             client.setDateCreated((Date) map.get(date_created_key));

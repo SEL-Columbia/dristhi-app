@@ -63,13 +63,15 @@ public class FormUtils {
     Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     FormEntityConverter formEntityConverter;
-    private static ClientEventModel sClientEventModel;
+    private ClientEventModel mClientEventModel;
 
     public FormUtils(Context context){
         mContext = context;
         theAppContext = org.ei.opensrp.Context.getInstance();
         FormAttributeParser formAttributeParser = new FormAttributeParser(context);
         formEntityConverter = new FormEntityConverter(formAttributeParser);
+        // Protect creation of static variable.
+        mClientEventModel = ClientEventModel.getInstance(context.getApplicationContext());
     }
 
     public static FormUtils getInstance(Context ctx){
@@ -142,7 +144,7 @@ public class FormUtils {
     private void generateClientAndEventModelsForFormSubmission(FormSubmission formSubmission, String formName) {
         org.ei.opensrp.clientandeventmodel.FormSubmission v2FormSubmission;
 
-        String anmId = "dummyANMID";
+        String anmId = org.ei.opensrp.Context.getInstance().anmService().fetchDetails().name();
         String instanceId = formSubmission.instanceId();
         String entityId = formSubmission.entityId();
         Long clientVersion = new Date().getTime();
@@ -153,6 +155,68 @@ public class FormUtils {
 
         List< FormField > fields = convertFormFields(formSubmission.getFormInstance().getForm().getFields());
 
+        List<SubFormData> sub_forms = getSubFormList(formSubmission);
+        FormData formData = new FormData(bind_type, default_bind_path, fields, sub_forms);
+
+        FormInstance formInstance = new FormInstance(formData);
+        formInstance.setForm_data_definition_version(formDataDefinitionVersion);
+
+        v2FormSubmission = new org.ei.opensrp.clientandeventmodel.FormSubmission(anmId, instanceId, formName, entityId, clientVersion, formDataDefinitionVersion, formInstance, clientVersion);
+
+        // retrieve client and events
+        Client c = formEntityConverter.getClientFromFormSubmission(v2FormSubmission);
+        printClient(c);
+        Event e = formEntityConverter.getEventFromFormSubmission(v2FormSubmission);
+        printEvent(e);
+        org.ei.opensrp.cloudant.models.Event event = new org.ei.opensrp.cloudant.models.Event(e);
+        createNewEventDocument(event);
+
+        org.ei.opensrp.cloudant.models.Client client = new org.ei.opensrp.cloudant.models.Client(c);
+        createNewClientDocument(client);
+
+        Map<String, Map<String, Object>> dep = formEntityConverter.getDependentClientsFromFormSubmission(v2FormSubmission);
+        for (Map<String, Object> cm : dep.values()) {
+            Client cin = (Client)cm.get("client");
+            Event evin = (Event)cm.get("event");
+            event = new org.ei.opensrp.cloudant.models.Event(evin);
+            createNewEventDocument(event);
+            client = new org.ei.opensrp.cloudant.models.Client(cin);
+            createNewClientDocument(client);
+            printEvent(evin);
+            printClient(cin);
+        }
+
+        startPushReplicationOnBackgroundThread();
+    }
+
+    private void printClient(Client client){
+        Log.logDebug("============== CLIENT ================");
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
+        String clientJson = gson.toJson(client);
+        Log.logDebug(clientJson);
+        Log.logDebug("============== CLIENT ================");
+
+    }
+
+    private void printEvent(Event event){
+        Log.logDebug("============== EVENT ================");
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
+        String eventJson = gson.toJson(event);
+        Log.logDebug(eventJson);
+        Log.logDebug("============== EVENT ================");
+    }
+
+    private void startPushReplicationOnBackgroundThread(){
+        //start a push replication
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mClientEventModel.startPushReplication();
+            }
+        }).start();
+    }
+
+    private List<SubFormData> getSubFormList(FormSubmission formSubmission){
         List<SubFormData> sub_forms = new ArrayList<SubFormData>();
         List<SubForm> subForms = formSubmission.getFormInstance().getForm().getSub_forms();
         for (SubForm sf : subForms){
@@ -168,45 +232,10 @@ public class FormUtils {
             sub_forms.add(sd);
         }
 
-        FormData formData = new FormData(bind_type, default_bind_path, fields, sub_forms);
-
-        FormInstance formInstance = new FormInstance(formData);
-        formInstance.setForm_data_definition_version(formDataDefinitionVersion);
-
-        v2FormSubmission = new org.ei.opensrp.clientandeventmodel.FormSubmission(anmId, instanceId, formName, entityId, clientVersion, formDataDefinitionVersion, formInstance, clientVersion);
-
-        // retrieve client and events
-        Client c = formEntityConverter.getClientFromFormSubmission(v2FormSubmission);
-        Event e = formEntityConverter.getEventFromFormSubmission(v2FormSubmission);
-        org.ei.opensrp.cloudant.models.Event event = new org.ei.opensrp.cloudant.models.Event(e);
-        createNewEventDocument(event);
-
-        org.ei.opensrp.cloudant.models.Client client = new org.ei.opensrp.cloudant.models.Client(c);
-        createNewClientDocument(client);
-
-        Map<String, Map<String, Object>> dep = formEntityConverter.getDependentClientsFromFormSubmission(v2FormSubmission);
-        for (Map<String, Object> cm : dep.values()) {
-            Client cin = (Client)cm.get("client");
-            Event evin = (Event)cm.get("event");
-            event = new org.ei.opensrp.cloudant.models.Event(evin);
-            createNewEventDocument(event);
-            client = new org.ei.opensrp.cloudant.models.Client(cin);
-            createNewClientDocument(client);
-        }
-
-        Log.logDebug("============== CLIENT ================");
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
-        String clientJson = gson.toJson(c);
-        Log.logDebug(clientJson);
-        Log.logDebug("============== CLIENT ================");
-
-        Log.logDebug("============== EVENT ================");
-        String eventJson = gson.toJson(e);
-        Log.logDebug(eventJson);
-        Log.logDebug("============== EVENT ================");
+        return sub_forms;
     }
 
-    List< FormField > convertFormFields(List<org.ei.opensrp.domain.form.FormField> formFields){
+    private List< FormField > convertFormFields(List<org.ei.opensrp.domain.form.FormField> formFields){
         List< FormField > fields = new ArrayList<FormField>();
         for (org.ei.opensrp.domain.form.FormField ff : formFields){
             FormField f = new FormField(ff.getName(), ff.getValue(), ff.getSource());
@@ -735,7 +764,7 @@ public class FormUtils {
             if (!item.has("source")){
                 field.put("source", bindPath + "." +  item.getString("name"));
             }else{
-                field.put("source", bindPath + "." +  item.getString("source"));
+                field.put("source", bindPath + "." + item.getString("source"));
             }
 
             subFormFieldsArray.put(i, field);
@@ -835,10 +864,10 @@ public class FormUtils {
     }
 
     private void createNewEventDocument(org.ei.opensrp.cloudant.models.Event event) {
-        sClientEventModel.createEventDocument(event);
+        mClientEventModel.createEventDocument(event);
     }
 
     private void createNewClientDocument(org.ei.opensrp.cloudant.models.Client client) {
-        sClientEventModel.createClientDocument(client);
+        mClientEventModel.createClientDocument(client);
     }
 }

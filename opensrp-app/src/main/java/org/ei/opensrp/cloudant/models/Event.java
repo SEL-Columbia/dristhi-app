@@ -116,25 +116,44 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
         // this could also be done by a fancy object mapper
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put(type_key, type);
-        map.put(date_created_key, getDateCreated());
-        map.put(voided_key, getVoided());
-        map.put(base_entity_id_key, getBaseEntityId());
-        map.put(editor_key, getEditor());
-        map.put(creator_key, getCreator());
-        map.put(date_edited_key, getDateEdited());
-        map.put(voider_key, getVoider());
-        map.put(date_voided_key, getDateVoided());
-        map.put(void_reason_key, getVoidReason());
-        map.put(details_key, getDetails());
-        map.put(entity_type_key, getEntityType());
-        map.put(form_submission_id_key, getFormSubmissionId());
-        map.put(location_id_key, getLocationId());
-        map.put(event_date_key, getEventDate());
-        map.put(event_type_key, getEventType());
-        map.put(event_id_key, getEventId());
-        map.put(obs_key, getObs());
-        map.put(provider_key, getProviderId());
-        map.put(version_key, getVersion());
+        if (getDateCreated() != null)
+            map.put(date_created_key, getDateCreated());
+        if (getVoided() != null)
+            map.put(voided_key, getVoided());
+        if (getBaseEntityId() != null)
+            map.put(base_entity_id_key, getBaseEntityId());
+        if (getEditor() != null)
+            map.put(editor_key, getEditor());
+        if (getCreator() != null)
+            map.put(creator_key, getCreator());
+        if (getDateEdited() != null)
+            map.put(date_edited_key, getDateEdited());
+        if (getVoider() != null)
+            map.put(voider_key, getVoider());
+        if (getDateVoided() != null)
+            map.put(date_voided_key, getDateVoided());
+        if (getVoidReason() != null)
+            map.put(void_reason_key, getVoidReason());
+        if (getDetails() != null)
+            map.put(details_key, getDetails());
+        if (getEntityType() != null)
+            map.put(entity_type_key, getEntityType());
+        if (getFormSubmissionId() != null)
+            map.put(form_submission_id_key, getFormSubmissionId());
+        if (getLocationId() != null)
+            map.put(location_id_key, getLocationId());
+        if (getEventDate() != null)
+            map.put(event_date_key, getEventDate());
+        if (getEventType() != null)
+            map.put(event_type_key, getEventType());
+        if (getEventId() != null)
+            map.put(event_id_key, getEventId());
+        if (getObs() != null)
+            map.put(obs_key, getObs());
+        if (getProviderId() != null)
+            map.put(provider_key, getProviderId());
+        if (getProviderId() != null)
+            map.put(version_key, getProviderId());
         return map;
     }
 }

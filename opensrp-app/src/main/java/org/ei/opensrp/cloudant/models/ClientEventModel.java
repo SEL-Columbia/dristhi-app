@@ -45,7 +45,16 @@ public class ClientEventModel {
     private final Handler mHandler;
     private SecuredActivity mListener;
 
-    private final String dbURL="http://46.101.51.199:5984/cloudanttest";
+    private final String dbURL="http://46.101.51.199:5984/test_db";
+
+    private static ClientEventModel instance;
+
+    public static ClientEventModel getInstance(Context context){
+        if (instance == null){
+            instance = new ClientEventModel(context);
+        }
+        return instance;
+    }
 
     public ClientEventModel(Context context) {
 
@@ -237,7 +246,7 @@ public class ClientEventModel {
      */
     private URI createServerURI() throws URISyntaxException {
         // We recommend always using HTTPS to talk to Cloudant.
-        return new URI(dbURL, null, null);
+        return new URI(dbURL);
     }
 
     //
