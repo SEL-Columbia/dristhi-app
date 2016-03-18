@@ -91,7 +91,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
     public static int currentoffset = 0;
 
     String mainSelect;
-    String filters;
+    String filters = "";
     String Sortqueries;
     String currentquery;
     @Override
@@ -141,7 +141,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
 
                 dialogOptionslist.add(new AllClientsFilter());
-                dialogOptionslist.add( new NOHHMWRAEXISTFilterOption("0","ELCO", NOHHMWRAEXISTFilterOption.ByColumnAndByDetails.byDetails));
+                dialogOptionslist.add(new NOHHMWRAEXISTFilterOption("0","ELCO", NOHHMWRAEXISTFilterOption.ByColumnAndByDetails.byDetails));
                 dialogOptionslist.add(new HHMWRAEXISTFilterOption("0","ELCO", HHMWRAEXISTFilterOption.ByColumnAndByDetails.byDetails));
 
                 String locationjson = context.anmLocationController().get();
@@ -216,23 +216,36 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
         ListView list = (ListView) view.findViewById(R.id.list);
         list.setVisibility(View.VISIBLE);
-
+        clientsProgressView.setVisibility(View.INVISIBLE);
 //        list.setBackgroundColor(Color.RED);
         CommonRepository commonRepository = context.commonrepository("household");
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        
-
-        currentquery  =queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
-
+        queryBUilder.SelectInitiateMainTable("household", new String[]{"relationalid", "details", "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID"});
+        queryBUilder.joinwithALerts("household");
+        mainSelect = queryBUilder.mainCondition(" FWHOHFNAME is not null and alerts.scheduleName = 'FW CENSUS' ");
+        queryBUilder.addCondition(filters);
+        Sortqueries = sortByAlertmethod();
+        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+//        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
         Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
         clientadapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp);
         list.setAdapter(clientadapter);
 //        setServiceModeViewDrawableRight(null);
-//        updateSearchView();
+        updateSearchView();
 //        checkforNidMissing(view);
+    }
+
+    private String sortByAlertmethod() {
+       return " CASE WHEN alerts.status = 'urgent' THEN '1'"
+         +
+        "WHEN alerts.status = 'upcoming' THEN '2'\n" +
+                "WHEN alerts.status = 'normal' THEN '3'\n" +
+                "WHEN alerts.status = 'expired' THEN '4'\n" +
+                "WHEN alerts.status is Null THEN '5'\n" +
+                "Else alerts.status END ASC";
     }
 
     @Override
@@ -241,7 +254,9 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
             currentoffset = currentoffset + currentlimit;
         if(currentoffset< NativeHomeActivity.hhcount) {
             CommonRepository commonRepository = context.commonrepository("household");
-            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(mainSelect);
+            queryBUilder.addCondition(filters);
+            currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
             Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, currentlimit, currentoffset)));
 
@@ -256,7 +271,9 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
         if(currentoffset>=currentlimit) {
             currentoffset = currentoffset - currentlimit;
             CommonRepository commonRepository = context.commonrepository("household");
-            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(mainSelect);
+            queryBUilder.addCondition(filters);
+            currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
             Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, currentlimit, currentoffset)));
 
@@ -316,36 +333,49 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
             householdSortByFWJIVHHID();
         }
     }
+    @Override
+    public void onFilterSelection(FilterOption filter) {
+        if(filter.name().equalsIgnoreCase(getString(R.string.hh_has_mwra))){
+            filters ="and details not LIKE '%\"ELCO\":\"0\"%'";
+            filterandSortExecute();
+        }
+        else if(filter.name().equalsIgnoreCase(getString(R.string.hh_no_mwra))){
+            filters = " and details not LIKE '%\"ELCO\":\"1\"%'";
+            filterandSortExecute();
+        }
+        else if(filter.name().equalsIgnoreCase(getString(R.string.filter_by_all_label))){
+            filters = "";
+            filterandSortExecute();
+        }else{
+            HHMauzaCommonObjectFilterOption mauzafilter = (HHMauzaCommonObjectFilterOption)filter;
+            String criteria = mauzafilter.criteria;
+            filters = " and details LIKE '%"+criteria+"%'";
+            filterandSortExecute();
+        }
+
+    }
+
+    private void filterandSortExecute() {
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
+        sqb.addCondition(filters);
+        currentquery =  sqb.orderbyCondition(Sortqueries);
+        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,20,0));
+        CommonRepository commonRepository = context.commonrepository("household");
+        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
+        clientadapter.swapCursor(c);
+    }
 
     private void householdSortByName() {
-        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
-        sqb.SelectInitiateMainTable("household", new String[]{"relationalid", "details", "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID"});
-        sqb.addCondition("FWHOHFNAME not null");
-        currentquery =  sqb.orderbyCondition(" FWHOHFNAME ASC");
-        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,20,0));
-        CommonRepository commonRepository = context.commonrepository("household");
-        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
-        clientadapter.swapCursor(c);
+        Sortqueries = " FWHOHFNAME ASC";
+        filterandSortExecute();
     }
     private void householdSortByFWGOBHHID(){
-        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
-        sqb.SelectInitiateMainTable("household", new String[]{"relationalid", "details", "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID"});
-        sqb.addCondition("FWHOHFNAME not null");
-        currentquery =  sqb.orderbyCondition(" FWGOBHHID ASC");
-        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,20,0));
-        CommonRepository commonRepository = context.commonrepository("household");
-        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
-        clientadapter.swapCursor(c);
+        Sortqueries = " FWGOBHHID ASC";
+        filterandSortExecute();
     }
     private void householdSortByFWJIVHHID(){
-        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
-        sqb.SelectInitiateMainTable("household", new String[]{"relationalid", "details", "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID"});
-        sqb.addCondition("FWHOHFNAME not null");
-        currentquery =  sqb.orderbyCondition(" FWJIVHHID ASC");
-        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,20,0));
-        CommonRepository commonRepository = context.commonrepository("household");
-        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
-        clientadapter.swapCursor(c);
+        Sortqueries = " FWJIVHHID ASC";
+       filterandSortExecute();
     }
 
     private class EditDialogOptionModel implements DialogOptionModel {
@@ -389,12 +419,12 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
                     @Override
                     protected Object doInBackground(Object[] params) {
 //                        currentSearchFilter =
-                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
-                        filteredClients = getClientsAdapter().getListItemProvider()
-                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
-                                        getCurrentSearchFilter(), getCurrentSortOption());
-
-
+//                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
+//                        filteredClients = getClientsAdapter().getListItemProvider()
+//                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
+//                                        getCurrentSearchFilter(), getCurrentSortOption());
+//
+                        filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' " ;
                         return null;
                     }
 
@@ -403,9 +433,10 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 //                        clientsAdapter
 //                                .refreshList(currentVillageFilter, currentServiceModeOption,
 //                                        currentSearchFilter, currentSortOption);
-                        getClientsAdapter().refreshClients(filteredClients);
-                        getClientsAdapter().notifyDataSetChanged();
+//                        getClientsAdapter().refreshClients(filteredClients);
+//                        getClientsAdapter().notifyDataSetChanged();
                         getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                        filterandSortExecute();
                         super.onPostExecute(o);
                     }
                 }).execute();

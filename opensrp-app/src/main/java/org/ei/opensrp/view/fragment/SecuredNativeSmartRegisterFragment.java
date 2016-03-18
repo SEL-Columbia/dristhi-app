@@ -214,7 +214,7 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
         setReportDates(reportMonthStartView);
     }
 
-    private void setupSearchView(View view) {
+    public void setupSearchView(View view) {
         searchView = (EditText) view.findViewById(R.id.edt_search);
         searchView.setHint(getNavBarOptionsProvider().searchHint());
         searchView.addTextChangedListener(new TextWatcher() {

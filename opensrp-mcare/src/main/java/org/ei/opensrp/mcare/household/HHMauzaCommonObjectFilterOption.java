@@ -7,7 +7,7 @@ import org.ei.opensrp.view.dialog.FilterOption;
 import static org.ei.opensrp.util.StringUtil.humanize;
 
 public class HHMauzaCommonObjectFilterOption implements FilterOption {
-    private final String criteria;
+    public final String criteria;
     public final String fieldname;
     private final String filterOptionName;
     ByColumnAndByDetails byColumnAndByDetails;

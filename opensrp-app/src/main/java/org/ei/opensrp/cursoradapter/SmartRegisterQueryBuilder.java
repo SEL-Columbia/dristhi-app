@@ -6,12 +6,18 @@ package org.ei.opensrp.cursoradapter;
 public class SmartRegisterQueryBuilder {
     String Selectquery;
 
+    public SmartRegisterQueryBuilder(String selectquery) {
+        Selectquery = selectquery;
+    }
+
+    public SmartRegisterQueryBuilder() {
+    }
 
     /*
-    This method takes in @param tablename and columns other than ID. Any special conditions
-    for sorting if required can also be added in condition string and if not you can pass null.
-    Alertname is the name of the alert you would like to sort this by.
-     */
+            This method takes in @param tablename and columns other than ID. Any special conditions
+            for sorting if required can also be added in condition string and if not you can pass null.
+            Alertname is the name of the alert you would like to sort this by.
+             */
     public  String queryForRegisterSortBasedOnRegisterAndAlert(String tablename,String[]columns,String condition,String AlertName){
         Selectquery = "Select id as _id";
         for(int i = 0;i<columns.length;i++){
@@ -57,8 +63,12 @@ public class SmartRegisterQueryBuilder {
         Selectquery= Selectquery+ " From " + tablename;
         return Selectquery;
     }
-    public String addCondition(String condition){
+    public String mainCondition(String condition){
         Selectquery= Selectquery+ " Where " + condition ;
+        return Selectquery;
+    }
+    public String addCondition(String condition){
+        Selectquery= Selectquery + condition ;
         return Selectquery;
     }
     public String orderbyCondition(String condition){
