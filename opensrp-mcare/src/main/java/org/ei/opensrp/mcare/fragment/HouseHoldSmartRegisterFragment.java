@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,6 +54,7 @@ import org.ei.opensrp.view.dialog.AllClientsFilter;
 import org.ei.opensrp.view.dialog.DialogOption;
 import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
+import org.ei.opensrp.view.dialog.ECSearchOption;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
@@ -340,7 +342,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
             filterandSortExecute();
         }
         else if(filter.name().equalsIgnoreCase(getString(R.string.hh_no_mwra))){
-            filters = " and details not LIKE '%\"ELCO\":\"1\"%'";
+            filters = " and details LIKE '%\"ELCO\":\"0\"%'";
             filterandSortExecute();
         }
         else if(filter.name().equalsIgnoreCase(getString(R.string.filter_by_all_label))){
@@ -404,6 +406,54 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 //        }
 
     }
+    @Override
+    public void setupSearchView(View view) {
+        searchView = (EditText) view.findViewById(org.ei.opensrp.R.id.edt_search);
+        searchView.setHint(getNavBarOptionsProvider().searchHint());
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            }
+
+            @Override
+            public void onTextChanged(final CharSequence cs, int start, int before, int count) {
+
+                (new AsyncTask() {
+                    SmartRegisterClients filteredClients;
+
+                    @Override
+                    protected Object doInBackground(Object[] params) {
+//                        currentSearchFilter =
+//                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
+//                        filteredClients = getClientsAdapter().getListItemProvider()
+//                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
+//                                        getCurrentSearchFilter(), getCurrentSortOption());
+//
+                        filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' " ;
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Object o) {
+//                        clientsAdapter
+//                                .refreshList(currentVillageFilter, currentServiceModeOption,
+//                                        currentSearchFilter, currentSortOption);
+//                        getClientsAdapter().refreshClients(filteredClients);
+//                        getClientsAdapter().notifyDataSetChanged();
+                        getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                        filterandSortExecute();
+                        super.onPostExecute(o);
+                    }
+                }).execute();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        searchCancelView = view.findViewById(org.ei.opensrp.R.id.btn_search_cancel);
+//        searchCancelView.setOnClickListener(searchCancelHandler);
+    }
 
     public void updateSearchView(){
         getSearchView().addTextChangedListener(new TextWatcher() {
@@ -424,7 +474,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' " ;
+                        filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' or household.id in (Select elco.relationalid from elco where details Like '%"+cs.toString()+"%' )";
                         return null;
                     }
 
