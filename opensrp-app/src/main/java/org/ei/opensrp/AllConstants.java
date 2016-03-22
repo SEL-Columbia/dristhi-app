@@ -317,4 +317,22 @@ public class AllConstants {
         public static final String DELIVERY_FACILITY_SDH_VALUE = "sdh";
         public static final String DELIVERY_FACILITY_DH_VALUE = "dh";
     }
+    public static final String DATASTORE_MANAGER_DIR = "data";
+
+    public static class Replication {
+
+        public static final String ACTION_DATABASE_CREATED = "org.ei.opensrp.DATABASE_CREATED_ACTION";
+        public static final String ACTION_REPLICATION_ERROR = "org.ei.opensrp.REPLICATION_ERROR_ACTION";
+        public static final String ACTION_REPLICATION_COMPLETED = "org.ei.opensrp.REPLICATION_COMPLETED_ACTION";
+        public static final String REPLICATION_ERROR = "REPLICATION_ERROR";
+        public static final String DOCUMENTS_REPLICATED = "DOCUMENTS_REPLICATED";
+        public static final String BATCHES_REPLICATED = "BATCHES_REPLICATED";
+
+    }
+    public static class SyncFilters {
+        //these pull filters must be defined in your couchDB server for them to work
+        public static final String FILTER_TIMESTAMP_NOT_EMPTY = "syncfilters/timestampnotemptyfilter";
+        public static final String FILTER_LOCATION_ID = "syncfilters/locationidfilter";
+        public static final String FILTER_TYPE_AND_LOCATION_ID="syncfilters/typeandlocationidfilter";
+    }
 }

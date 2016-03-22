@@ -1,6 +1,8 @@
 package org.ei.opensrp.view.activity;
 
 import android.app.Application;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import org.ei.opensrp.Context;
@@ -21,6 +23,12 @@ public class DrishtiApplication extends Application {
 
     public void logoutCurrentUser(){
         Log.e(TAG, "Child classes should implement this function");
+    }
+
+    @Override
+    protected void attachBaseContext(android.content.Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
 }
