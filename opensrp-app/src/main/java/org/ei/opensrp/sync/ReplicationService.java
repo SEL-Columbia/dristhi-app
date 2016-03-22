@@ -21,7 +21,7 @@ import java.util.concurrent.CountDownLatch;
  */
 
 public class ReplicationService {
-    private final Context mContext;
+    protected final Context mContext;
 
     protected Datastore dataStore;
     private static final String TAG = ReplicationService.class.getCanonicalName();

@@ -305,4 +305,7 @@
     <string name="ic_keyboard_arrow_right">&#xe0c7;</string>
     <string name="ic_keyboard_arrow_up">&#xe0c8;</string>
 
+    <string name="event_fields_extractor">{       \"obs\": [         {\"name\":\"father_name\"}       ],       \"attributes\" : [         {\"name\":\"voided\"},{\"name\":\"providerId\"}       ]     }</string>
+    <string name="client_fields_extractor">{       \"property\": [         {\"name\":\"father_name\"}       ],       \"attributes\" : [        ]     }</string>
+
 </resources>
