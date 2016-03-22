@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.util.Log;
 
 import org.ei.opensrp.AllConstants;
-import org.ei.opensrp.sync.Constants;
 import org.ei.opensrp.view.activity.SecuredActivity;
 
 
