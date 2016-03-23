@@ -27,6 +27,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClients;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
+import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
@@ -79,7 +80,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 /**
  * Created by koros on 10/12/15.
  */
-public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFragment {
+public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAdapterFragment {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private CommonPersonObjectController controller;
@@ -89,13 +90,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFr
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
     private String locationDialogTAG = "locationDialogTAG";
     public SmartRegisterPaginatedCursorAdapter clientadapter;
-    public static int currentlimit = 20;
-    public static int currentoffset = 0;
-
-    String mainSelect;
-    String filters = "";
-    String Sortqueries;
-    String currentquery;
     @Override
     protected void onCreation() {
         //
