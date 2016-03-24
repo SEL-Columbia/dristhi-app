@@ -1,0 +1,69 @@
+{
+  "client_type": [
+    {
+      "type": "household",
+      "rule": {
+        "lookup": "event",
+        "fields": [
+          {
+            "data_segment": "obs",
+            "fieldCode": "162699AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "value": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ]
+      }
+    },
+    {
+      "type": "elco",
+      "rule": {
+        "lookup": "event",
+        "fields": [
+          {
+            "data_segment": "obs",
+            "fieldCode": "162699AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "value": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ]
+      }
+    },
+    {
+      "type": "anc",
+      "rule": {
+        "lookup": "event",
+        "fields": [
+          {
+            "data_segment": "obs",
+            "fieldCode": "162942AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "value": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ]
+      }
+    },
+    {
+      "type": "pnc",
+      "rule": {
+        "lookup": "event",
+        "fields": [
+          {
+            "data_segment": "obs",
+            "fieldCode": "?",
+            "value": "?"
+          }
+        ]
+      }
+    },
+    {
+      "type": "pnc",
+      "rule": {
+        "lookup": "event",
+        "fields": [
+          {
+            "data_segment": "obs",
+            "fieldCode": "?",
+            "value": "?"
+          }
+        ]
+      }
+    }
+  ]
+}

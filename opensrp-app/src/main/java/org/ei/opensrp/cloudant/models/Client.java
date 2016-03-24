@@ -33,7 +33,6 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
     }
 
     public Client(){
-
     }
 
     public Client(org.ei.opensrp.clientandeventmodel.Client client){

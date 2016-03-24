@@ -1,6 +1,7 @@
 package org.ei.opensrp.clientandeventmodel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.codehaus.jackson.annotate.JsonProperty;
-import org.joda.time.DateTime;
 
 public class Event extends BaseDataObject{
 
@@ -20,7 +20,7 @@ public class Event extends BaseDataObject{
     @JsonProperty
     private String locationId;
     @JsonProperty
-    private DateTime eventDate;
+    private Date eventDate;
     @JsonProperty
     private String eventType;
     @JsonProperty
@@ -40,7 +40,7 @@ public class Event extends BaseDataObject{
         this.version = System.currentTimeMillis();
     }
 
-    public Event(String baseEntityId, String eventId, String eventType, DateTime eventDate, String entityType,
+    public Event(String baseEntityId, String eventId, String eventType, Date eventDate, String entityType,
                  String providerId, String locationId, String formSubmissionId) {
         this.baseEntityId = baseEntityId;
         this.eventId = eventId;
@@ -90,11 +90,11 @@ public class Event extends BaseDataObject{
         this.locationId = locationId;
     }
 
-    public DateTime getEventDate() {
+    public Date getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(DateTime eventDate) {
+    public void setEventDate(Date eventDate) {
         this.eventDate = eventDate;
     }
 
@@ -171,7 +171,7 @@ public class Event extends BaseDataObject{
         return this;
     }
 
-    public Event withEventDate(DateTime eventDate) {
+    public Event withEventDate(Date eventDate) {
         this.eventDate = eventDate;
         return this;
     }

@@ -12,6 +12,7 @@ import com.cloudant.sync.query.QueryResult;
 import org.ei.opensrp.R;
 import org.ei.opensrp.clientandeventmodel.processor.ClientsProcessor;
 import org.ei.opensrp.clientandeventmodel.processor.EventsProcessor;
+import org.ei.opensrp.cloudant.models.Client;
 import org.ei.opensrp.repository.ClientRepository;
 import org.ei.opensrp.repository.EventRepository;
 import org.json.JSONException;
@@ -22,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
@@ -32,14 +34,26 @@ import java.util.concurrent.CountDownLatch;
 
 public class CloudantDataHandler extends ReplicationService {
     private static final String TAG = CloudantDataHandler.class.getCanonicalName();
+    private static CloudantDataHandler instance;
+
+    public CloudantDataHandler(Context context) throws Exception {
+        this(context, null);
+        instance = this;
+    }
 
     public CloudantDataHandler(Context context, ReplicationListenerCallback _callback) throws Exception {
-
         super(context, _callback);
+        instance = this;
     }
 
     private CountDownLatch latch = null;
 
+    public static CloudantDataHandler getInstance(Context context) throws Exception {
+        if (instance == null){
+            instance = new CloudantDataHandler(context);
+        }
+        return instance;
+    }
 
     public void getClients() throws Exception {
 
@@ -123,6 +137,23 @@ public class CloudantDataHandler extends ReplicationService {
                 e.printStackTrace();
             }
         }
+    }
+
+    public Client getClientByBaseEntityId(String baseEntityId){
+        Map<String, Object> query = new HashMap<String, Object>();
+        query.put("type", "Client");
+        query.put("base_entity_id", baseEntityId);
+        int querysize = indexManager.find(query).size();
+        Log.v("TAG TAG", "" + querysize);
+        QueryResult result = indexManager.find(query);
+
+        Iterator<DocumentRevision> it = result.iterator();
+        if (it.hasNext()){
+            DocumentRevision rev = it.next();
+            Client client = Client.fromRevision((BasicDocumentRevision)rev);
+            return client;
+        }
+        return null;
     }
 
 }

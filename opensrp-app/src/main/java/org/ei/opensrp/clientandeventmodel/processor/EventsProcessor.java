@@ -1,6 +1,6 @@
 package org.ei.opensrp.clientandeventmodel.processor;
 
-import org.ei.opensrp.clientandeventmodel.processor.model.Events;
+import org.ei.opensrp.clientandeventmodel.processor.model.Event;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,8 +50,8 @@ public class EventsProcessor {
             e.printStackTrace();
         }
     }
-    public Events createEventObject(){
-        Events event = new Events(baseEntityID,attributesDetailsMap,attributesColumnsMap,ObsColumnsMap,ObsDetailsMap);
+    public Event createEventObject(){
+        Event event = new Event(baseEntityID,attributesDetailsMap,attributesColumnsMap,ObsColumnsMap,ObsDetailsMap);
         return event;
     }
     private void ProcessObservations(JSONArray obsColumns, JSONArray observationsInForm) {

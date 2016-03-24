@@ -34,7 +34,6 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
     }
 
     public Event(){
-
     }
 
     public Event(org.ei.opensrp.clientandeventmodel.Event event){
@@ -101,7 +100,7 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
             event.setEntityType((String) map.get(entity_type_key));
             event.setFormSubmissionId((String) map.get(form_submission_id_key));
             event.setLocationId((String) map.get(location_id_key));
-            event.setEventDate((DateTime) map.get(event_date_key));
+            event.setEventDate((Date) map.get(event_date_key));
             event.setEventType((String) map.get(event_type_key));
             event.setEventId((String) map.get(event_id_key));
             event.setObs((List<Obs>) map.get(map.get(obs_key)));

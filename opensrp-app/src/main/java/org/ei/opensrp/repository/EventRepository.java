@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.google.gson.Gson;
 
-import org.ei.opensrp.clientandeventmodel.processor.model.Events;
+import org.ei.opensrp.clientandeventmodel.processor.model.Event;
 
 import java.util.Map;
 
@@ -49,7 +49,7 @@ public class EventRepository extends SQLiteOpenHelper {
 
     }
 
-    public ContentValues createValuesFor(Events common) {
+    public ContentValues createValuesFor(Event common) {
         ContentValues values = new ContentValues();
         values.put(Relational_ID, common.getBaseEntityID());
         values.put(obsDETAILS_COLUMN, new Gson().toJson(common.getObsDetailsMap()));
@@ -69,7 +69,7 @@ public class EventRepository extends SQLiteOpenHelper {
         return values;
     }
     public void insertValues(ContentValues values){
-        getWritableDatabase().insert("Events",null,values);
+        getWritableDatabase().insert("Event",null,values);
     }
 
 

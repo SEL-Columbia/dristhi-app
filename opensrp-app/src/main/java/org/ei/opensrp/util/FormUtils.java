@@ -186,7 +186,7 @@ public class FormUtils {
             printClient(cin);
         }
 
-        startPushReplicationOnBackgroundThread();
+        //startPushReplicationOnBackgroundThread();
     }
 
     private void printClient(Client client){
@@ -219,19 +219,20 @@ public class FormUtils {
     private List<SubFormData> getSubFormList(FormSubmission formSubmission){
         List<SubFormData> sub_forms = new ArrayList<SubFormData>();
         List<SubForm> subForms = formSubmission.getFormInstance().getForm().getSub_forms();
-        for (SubForm sf : subForms){
-            SubFormData sd = new SubFormData();
-            sd.setDefault_bind_path(sf.getDefault_bind_path());
-            sd.setBind_type(sf.getBind_type());
+        if (subForms != null){
+            for (SubForm sf : subForms){
+                SubFormData sd = new SubFormData();
+                sd.setDefault_bind_path(sf.getDefault_bind_path());
+                sd.setBind_type(sf.getBind_type());
 
-            List< FormField > subFormFields = convertFormFields(sf.getFields());
-            sd.setFields(subFormFields);
+                List< FormField > subFormFields = convertFormFields(sf.getFields());
+                sd.setFields(subFormFields);
 
-            sd.setInstances(sf.getInstances());
-            sd.setName(sf.getName());
-            sub_forms.add(sd);
+                sd.setInstances(sf.getInstances());
+                sd.setName(sf.getName());
+                sub_forms.add(sd);
+            }
         }
-
         return sub_forms;
     }
 
@@ -865,6 +866,7 @@ public class FormUtils {
 
     private void createNewEventDocument(org.ei.opensrp.cloudant.models.Event event) {
         mClientEventModel.createEventDocument(event);
+
     }
 
     private void createNewClientDocument(org.ei.opensrp.cloudant.models.Client client) {

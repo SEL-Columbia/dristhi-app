@@ -5,14 +5,14 @@ import java.util.Map;
 /**
  * Created by raihan on 3/15/16.
  */
-public class Events {
+public class Event {
     String baseEntityID;
     Map<String,String> attributesDetailsMap;
     Map<String,String> attributesColumnsMap;
     Map<String,String> ObsColumnsMap;
     Map<String,String> ObsDetailsMap;
 
-    public Events(String baseEntityID, Map<String, String> attributesDetailsMap, Map<String, String> attributesColumnsMap, Map<String, String> obsColumnsMap, Map<String, String> obsDetailsMap) {
+    public Event(String baseEntityID, Map<String, String> attributesDetailsMap, Map<String, String> attributesColumnsMap, Map<String, String> obsColumnsMap, Map<String, String> obsDetailsMap) {
         this.baseEntityID = baseEntityID;
         this.attributesDetailsMap = attributesDetailsMap;
         this.attributesColumnsMap = attributesColumnsMap;
