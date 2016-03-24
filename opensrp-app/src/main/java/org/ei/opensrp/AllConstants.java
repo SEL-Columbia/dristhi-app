@@ -9,6 +9,8 @@ public class AllConstants {
     public static final String INDICATOR = "indicator";
     public static final String CASE_ID = "caseId";
     public static final String APP_NAME_INDONESIA = "OpenSRPIndonesia";
+    public static final String DATABASE_NAME="drishti.db";
+    public static final int DATABASE_VERSION=1;
 
     public static final String LANGUAGE_PREFERENCE_KEY = "locale";
     public static final String ENGLISH_LOCALE = "en";

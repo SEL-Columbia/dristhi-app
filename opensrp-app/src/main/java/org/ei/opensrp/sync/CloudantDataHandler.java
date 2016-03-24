@@ -1,6 +1,8 @@
 package org.ei.opensrp.sync;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.cloudant.sync.datastore.BasicDocumentRevision;
@@ -9,17 +11,22 @@ import com.cloudant.sync.datastore.DocumentRevision;
 import com.cloudant.sync.query.IndexManager;
 import com.cloudant.sync.query.QueryResult;
 
+import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.R;
 import org.ei.opensrp.clientandeventmodel.processor.ClientsProcessor;
 import org.ei.opensrp.clientandeventmodel.processor.EventsProcessor;
 import org.ei.opensrp.cloudant.models.Client;
+import org.ei.opensrp.cloudant.models.Event;
 import org.ei.opensrp.repository.ClientRepository;
 import org.ei.opensrp.repository.EventRepository;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -49,7 +56,7 @@ public class CloudantDataHandler extends ReplicationService {
     private CountDownLatch latch = null;
 
     public static CloudantDataHandler getInstance(Context context) throws Exception {
-        if (instance == null){
+        if (instance == null) {
             instance = new CloudantDataHandler(context);
         }
         return instance;
@@ -75,6 +82,24 @@ public class CloudantDataHandler extends ReplicationService {
             // the object. You cannot project certain fields in the
             // current implementation.
         }
+    }
+
+    public org.ei.opensrp.clientandeventmodel.Event getEvents() throws Exception {
+
+
+        Map<String, Object> query = new HashMap<String, Object>();
+        query.put("type", "org.ei.opensrp.cloudant.models.Event");
+
+        QueryResult result = indexManager.find(query);
+
+        Iterator<DocumentRevision> it = result.iterator();
+        if (it.hasNext()) {
+            DocumentRevision rev = it.next();
+            org.ei.opensrp.clientandeventmodel.Event event = Event.fromRevision((BasicDocumentRevision) rev);
+
+            return event;
+        }
+        return null;
     }
 
     public void getUpdatedDocs() throws Exception {
@@ -103,7 +128,7 @@ public class CloudantDataHandler extends ReplicationService {
 
     }
 
-    public void syncEventsToSqlite() throws Exception{
+    public void syncEventsToSqlite() throws Exception {
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("type", "Event");
         QueryResult result = indexManager.find(query);
@@ -120,7 +145,7 @@ public class CloudantDataHandler extends ReplicationService {
         }
     }
 
-    public void syncClientsToSqlite() throws Exception{
+    public void syncClientsToSqlite() throws Exception {
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("type", "Client");
         int querysize = indexManager.find(query).size();
@@ -139,7 +164,7 @@ public class CloudantDataHandler extends ReplicationService {
         }
     }
 
-    public Client getClientByBaseEntityId(String baseEntityId){
+    public Client getClientByBaseEntityId(String baseEntityId) {
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("type", "Client");
         query.put("base_entity_id", baseEntityId);
@@ -148,12 +173,49 @@ public class CloudantDataHandler extends ReplicationService {
         QueryResult result = indexManager.find(query);
 
         Iterator<DocumentRevision> it = result.iterator();
-        if (it.hasNext()){
+        if (it.hasNext()) {
             DocumentRevision rev = it.next();
-            Client client = Client.fromRevision((BasicDocumentRevision)rev);
+            Client client = Client.fromRevision((BasicDocumentRevision) rev);
             return client;
         }
         return null;
     }
+
+    public List<JSONObject> getUpdatedEvents() throws Exception {
+        List<JSONObject> events = new ArrayList<JSONObject>();
+        SQLiteDatabase db = loadDatabase();
+        Cursor cursor = db.rawQuery("select json from revs where updated_at is not null and json like '%\"type\":\"org.ei.opensrp.cloudant.models.Event\"%' ", null);
+
+
+        while (cursor.moveToNext()) {
+            byte[] json = (cursor.getBlob(0));
+            String jsonEventStr = new String(json, "UTF-8");
+            JSONObject jsonObectEvent = new JSONObject(jsonEventStr);
+            events.add(jsonObectEvent);
+        }
+        return events;
+    }
+
+    //load cloudant db
+    public SQLiteDatabase loadDatabase() {
+        SQLiteDatabase db = null;
+        try {
+            String dataStoreName = mContext.getString(R.string.datastore_name);
+            // data directory.
+            File path = mContext.getDir(
+                    AllConstants.DATASTORE_MANAGER_DIR,
+                    android.content.Context.MODE_PRIVATE
+            );
+            String dbpath = path.getAbsolutePath().concat(File.separator).concat(dataStoreName).concat(File.separator).concat("db.sync");
+            db = SQLiteDatabase.openDatabase(dbpath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+            // ((HelloCloudantApplication) this.getApplication()).setCloudantDB(db);
+
+
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+        return db;
+    }
+
 
 }

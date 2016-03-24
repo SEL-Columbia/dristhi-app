@@ -35,7 +35,7 @@ public class OpenSRPClientBroadCastReceiver extends BroadcastReceiver {
                ((SecuredActivity) activity).showToast("TIMEZONE CHANGED");
                 Log.d(TAG, "timezonechanged");
             } else if (action.equals(AllConstants.Replication.ACTION_DATABASE_CREATED)) {
-                ((SecuredActivity) activity).loadDatabase();
+              //  ((SecuredActivity) activity).loadDatabase();
             } else if (action.equals(AllConstants.Replication.ACTION_REPLICATION_COMPLETED)) {
                 Integer docsReplicated=intent.getIntExtra(AllConstants.Replication.DOCUMENTS_REPLICATED, 0);
                 ((SecuredActivity) activity).showToast("Replication completed. Documents replicated: " + docsReplicated);

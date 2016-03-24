@@ -197,6 +197,14 @@ public class FormUtils {
         Log.logDebug("============== CLIENT ================");
 
     }
+    public String getEventAsJsonString(Event event){
+        Log.logDebug("============== EVENT ================");
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
+        String eventJson = gson.toJson(event);
+        Log.logDebug(eventJson);
+        Log.logDebug("============== EVENT ================");
+        return eventJson;
+    }
 
     private void printEvent(Event event){
         Log.logDebug("============== EVENT ================");

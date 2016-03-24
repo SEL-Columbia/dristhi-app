@@ -23,7 +23,7 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
     }
 
     static final String DOC_TYPE = "org.ei.opensrp.cloudant.models.Event";
-    private String type = DOC_TYPE;
+    private transient String type = DOC_TYPE;
 
     public String getType() {
         return type;
@@ -85,8 +85,8 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
         event.rev = rev;
         // this could also be done by a fancy object mapper
         Map<String, Object> map = rev.asMap();
-        if(map.containsKey(type_key) && map.get(type_key).equals(Client.DOC_TYPE)) {
-            event.setType((String) map.get(type_key));
+        if(map.containsKey(type_key) && map.get(type_key).equals(Event.DOC_TYPE)) {
+           // event.setType((String) map.get(type_key));
             event.setDateCreated((Date) map.get(date_created_key));
             event.setVoided((Boolean) map.get(voided_key));
             event.setBaseEntityId((String) map.get(base_entity_id_key));
@@ -100,12 +100,12 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
             event.setEntityType((String) map.get(entity_type_key));
             event.setFormSubmissionId((String) map.get(form_submission_id_key));
             event.setLocationId((String) map.get(location_id_key));
-            event.setEventDate((Date) map.get(event_date_key));
+           // event.setEventDate((Date) map.get(event_date_key));
             event.setEventType((String) map.get(event_type_key));
             event.setEventId((String) map.get(event_id_key));
             event.setObs((List<Obs>) map.get(map.get(obs_key)));
             event.setProviderId((String) map.get(provider_key));
-            event.setVersion((Long) map.get(version_key));
+           // event.setVersion((String) map.get(version_key));
             return event;
         }
         return null;

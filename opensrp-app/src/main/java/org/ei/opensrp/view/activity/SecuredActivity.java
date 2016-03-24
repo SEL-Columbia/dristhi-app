@@ -20,15 +20,20 @@ import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.R;
 import org.ei.opensrp.broadcastreceivers.OpenSRPClientBroadCastReceiver;
+import org.ei.opensrp.cloudant.models.Event;
 import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.service.intentservices.ReplicationIntentService;
+import org.ei.opensrp.sync.ClientProcessor;
+import org.ei.opensrp.sync.CloudantDataHandler;
 import org.ei.opensrp.view.controller.ANMController;
 import org.ei.opensrp.view.controller.FormController;
 import org.ei.opensrp.view.controller.NavigationController;
+import org.json.JSONObject;
 
 import android.support.v7.app.ActionBarActivity;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -70,8 +75,10 @@ public abstract class SecuredActivity extends ActionBarActivity {
         anmController = context.anmController();
         navigationController = new NavigationController(this, anmController);
         onCreation();
-//        Intent replicationServiceIntent = new Intent(this, ReplicationIntentService.class);
-//        startService(replicationServiceIntent);
+        
+
+       // Intent replicationServiceIntent = new Intent(this, ReplicationIntentService.class);
+        //startService(replicationServiceIntent);
     }
 
     @Override
@@ -200,27 +207,6 @@ public abstract class SecuredActivity extends ActionBarActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(openSRPClientBroadCastReceiver, opensrpClientIntentFilter);
     }
 
-    //load cloudant db
-    public SQLiteDatabase loadDatabase() {
-        SQLiteDatabase db = null;
-        try {
-            String dataStoreName = this.getString(R.string.datastore_name);
-            // Set up our tasks datastore within its own folder in the applications
-            // data directory.
-            File path = this.getApplicationContext().getDir(
-                    AllConstants.DATASTORE_MANAGER_DIR,
-                    android.content.Context.MODE_PRIVATE
-            );
-            String dbpath = path.getAbsolutePath().concat(File.separator).concat(dataStoreName).concat(File.separator).concat("db.sync");
-            db = SQLiteDatabase.openDatabase(dbpath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
-            // ((HelloCloudantApplication) this.getApplication()).setCloudantDB(db);
-
-
-        } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
-        }
-        return db;
-    }
 
     public void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
