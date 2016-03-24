@@ -67,6 +67,15 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     public String filters = "";
     public String Sortqueries;
     public String currentquery;
+    private String tablename;
+    public String countSelect;
+    public String getTablename() {
+        return tablename;
+    }
+
+    public void setTablename(String tablename) {
+        this.tablename = tablename;
+    }
 
     public EditText getSearchView() {
         return searchView;
@@ -100,7 +109,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         this.clientAdapter = clientsAdapter;
     }
 
-    private SmartRegisterPaginatedCursorAdapter clientAdapter;
+    public SmartRegisterPaginatedCursorAdapter clientAdapter;
 
     private FilterOption currentVillageFilter;
     private SortOption currentSortOption;
@@ -358,11 +367,13 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
             onServiceModeSelection((ServiceModeOption) option, mView);
         }
     }
+    private TextView pageInfoView;
+    private Button nextPageView;
+    private Button previousPageView;
 
     private class PaginationViewHandler implements View.OnClickListener {
-        private Button nextPageView;
-        private Button previousPageView;
-        private TextView pageInfoView;
+
+
 
         private void addPagination(ListView clientsView) {
             ViewGroup footerView = getPaginationView();
@@ -378,24 +389,16 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
                     (int) getResources().getDimension(R.dimen.pagination_bar_height)));
 
             clientsView.addFooterView(footerView);
+            refresh();
         }
 
         private ViewGroup getPaginationView() {
             return (ViewGroup) getActivity().getLayoutInflater().inflate(R.layout.smart_register_pagination, null);
         }
 
-        private int getCurrentPageCount() {
-            return clientsAdapter.currentPage() + 1 > clientsAdapter.pageCount() ? clientsAdapter.pageCount() : clientsAdapter.currentPage() + 1;
-        }
 
-        public void refresh() {
-            pageInfoView.setText(
-                    format(getResources().getString(R.string.str_page_info),
-                            (getCurrentPageCount()),
-                            (clientsAdapter.pageCount())));
-            nextPageView.setVisibility(clientsAdapter.hasNextPage() ? VISIBLE : INVISIBLE);
-            previousPageView.setVisibility(clientsAdapter.hasPreviousPage() ? VISIBLE : INVISIBLE);
-        }
+
+
 
         @Override
         public void onClick(View view) {
@@ -410,26 +413,69 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         }
 
     }
+    private int getCurrentPageCount() {
+        if(currentoffset != 0) {
+            return totalcount / currentoffset;
+        }else{
+            return 0;
+        }
+    }
+    public void refresh() {
+        pageInfoView.setText(
+                format(getResources().getString(R.string.str_page_info),
+                        (getCurrentPageCount()),
+                        (totalcount)));
+        nextPageView.setVisibility(hasNextPage() ? VISIBLE : INVISIBLE);
+        previousPageView.setVisibility(hasPreviousPage() ? VISIBLE : INVISIBLE);
+    }
+
+    private boolean hasNextPage() {
+
+        return (!(totalcount>currentoffset+currentlimit));
+    }
+
+    private boolean hasPreviousPage() {
+        return currentoffset!=0;
+    }
 
     public void gotoNextPage() {
-        clientsAdapter.nextPage();
-        clientsAdapter.notifyDataSetChanged();
+        if(!(currentoffset+currentlimit>totalcount)){
+            currentoffset = currentoffset+currentlimit;
+            filterandSortExecute();
+        }
     }
 
     public void goBackToPreviousPage() {
-        clientsAdapter.previousPage();
-        clientsAdapter.notifyDataSetChanged();
+        if(currentoffset>0){
+            currentoffset = currentoffset-currentlimit;
+            filterandSortExecute();
+        }
     }
 
-    private void filterandSortExecute(String tablename) {
+    public void filterandSortExecute() {
+        refresh();
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
         sqb.addCondition(filters);
         currentquery =  sqb.orderbyCondition(Sortqueries);
-        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,20,0));
+        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,currentlimit,currentoffset));
         CommonRepository commonRepository = context.commonrepository(tablename);
         Cursor c = commonRepository.RawCustomQueryForAdapter(query);
-        clientadapter.swapCursor(c);
+        clientAdapter.swapCursor(c);
     }
+    public void CountExecute(){
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(countSelect);
+        sqb.addCondition(filters);
+        currentquery =  sqb.orderbyCondition(Sortqueries);
+        String query = sqb.Endquery(currentquery);
+        CommonRepository commonRepository = context.commonrepository(tablename);
+        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
+        c.moveToFirst();
+        totalcount= c.getInt(0);
+        currentlimit = 20;
+        currentoffset = 0;
+        c.close();
+    }
+
     public class NavBarActionsHandler implements View.OnClickListener {
 
         @Override

@@ -89,7 +89,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
     private String locationDialogTAG = "locationDialogTAG";
-    public SmartRegisterPaginatedCursorAdapter clientadapter;
     @Override
     protected void onCreation() {
         //
@@ -215,6 +214,13 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         clientsProgressView.setVisibility(View.INVISIBLE);
 //        list.setBackgroundColor(Color.RED);
         CommonRepository commonRepository = context.commonrepository("household");
+        setTablename("household");
+        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
+        countqueryBUilder.SelectInitiateMainTableCounts("household");
+        countqueryBUilder.joinwithALerts("household");
+        countSelect = countqueryBUilder.mainCondition(" FWHOHFNAME is not null and alerts.scheduleName = 'FW CENSUS' ");
+        CountExecute();
+
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("household", new String[]{"relationalid", "details", "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID"});
@@ -223,12 +229,14 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         queryBUilder.addCondition(filters);
         Sortqueries = sortByAlertmethod();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+
+
 //        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
         Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientadapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp);
-        list.setAdapter(clientadapter);
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("household",new String []{"FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}));
+        list.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
 //        checkforNidMissing(view);
@@ -244,43 +252,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
                 "Else alerts.status END ASC";
     }
 
-    @Override
-    public void gotoNextPage() {
 
-            currentoffset = currentoffset + currentlimit;
-        if(currentoffset< NativeHomeActivity.hhcount) {
-            CommonRepository commonRepository = context.commonrepository("household");
-            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(mainSelect);
-            queryBUilder.addCondition(filters);
-            currentquery  = queryBUilder.orderbyCondition(Sortqueries);
-//        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-            Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, currentlimit, currentoffset)));
-
-            clientadapter.swapCursor(c);
-        }else{
-            currentoffset = currentoffset - currentlimit;
-        }
-        return;
-    }
-    @Override
-    public void goBackToPreviousPage() {
-        if(currentoffset>=currentlimit) {
-            currentoffset = currentoffset - currentlimit;
-            CommonRepository commonRepository = context.commonrepository("household");
-            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(mainSelect);
-            queryBUilder.addCondition(filters);
-            currentquery  = queryBUilder.orderbyCondition(Sortqueries);
-//        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-            Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, currentlimit, currentoffset)));
-
-            clientadapter.swapCursor(c);
-        }
-        if(currentoffset <currentlimit){
-            currentoffset = 0;
-        }
-
-        return;
-    }
     @Override
     public void startRegistration() {
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
@@ -351,15 +323,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
     }
 
-    private void filterandSortExecute() {
-        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
-        sqb.addCondition(filters);
-        currentquery =  sqb.orderbyCondition(Sortqueries);
-        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,20,0));
-        CommonRepository commonRepository = context.commonrepository("household");
-        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
-        clientadapter.swapCursor(c);
-    }
 
     private void householdSortByName() {
         Sortqueries = " FWHOHFNAME ASC";

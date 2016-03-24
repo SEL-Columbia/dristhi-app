@@ -63,6 +63,11 @@ public class SmartRegisterQueryBuilder {
         Selectquery= Selectquery+ " From " + tablename;
         return Selectquery;
     }
+    public String SelectInitiateMainTableCounts(String tablename){
+        Selectquery = "Select Count(*)";
+        Selectquery= Selectquery+ " From " + tablename;
+        return Selectquery;
+    }
     public String mainCondition(String condition){
         Selectquery= Selectquery+ " Where " + condition ;
         return Selectquery;
