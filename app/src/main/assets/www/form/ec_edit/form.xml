@@ -1,0 +1,491 @@
+<form autocomplete="off" class="or clearfix" id="EC_Edit_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">EC Edit</h3>
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Edit password</span>
+        <input name="/EC_Edit_EngKan/edit_password" autocomplete="off" data-type-xml="string"
+            type="password" />
+    </label>
+    <section name="/EC_Edit_EngKan/ec_edit_group" class="or-group-data or-branch pre-init "
+        data-relevant=" /EC_Edit_EngKan/edit_password  = /EC_Edit_EngKan/ec_edit_group/pwd">
+
+        <fieldset name="/EC_Edit_EngKan/ec_edit_group/phc_note" class="trigger ">
+            <span class="question-label active" lang="">PHC
+                <span class="or-output"
+                    data-value=" /EC_Edit_EngKan/ec_edit_group/case_phc "></span>
+            </span>
+        </fieldset>
+        <fieldset name="/EC_Edit_EngKan/ec_edit_group/sub_center_note" class="trigger ">
+            <span class="question-label active" lang="">Sub Center
+                <span class="or-output"
+                    data-value=" /EC_Edit_EngKan/ec_edit_group/case_sub_center "></span>
+            </span>
+
+        </fieldset>
+        <fieldset name="/EC_Edit_EngKan/ec_edit_group/village_note" class="trigger ">
+            <span class="question-label active" lang="">Village
+                <span class="or-output"
+                    data-value=" /EC_Edit_EngKan/ec_edit_group/case_village "></span>
+            </span>
+        </fieldset>
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Household number</span>
+            <input name="/EC_Edit_EngKan/ec_edit_group/hh_number" autocomplete="off"
+                data-type-xml="int" type="number" />
+        </label>
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Household address</span>
+            <input name="/EC_Edit_EngKan/ec_edit_group/hh_address" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Head of household name
+            </span>
+            <input name="/EC_Edit_EngKan/ec_edit_group/hh_head" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Woman's name</span>
+            <span class="required">*</span>
+            <input name="/EC_Edit_EngKan/ec_edit_group/woman_name" autocomplete="off"
+                data-type-xml="string" required="required" type="text" />
+        </label>
+        <label class="question or-appearance-minimal ">
+            <span class="question-label active" lang="">Woman's ID Type?</span>
+            <select name="/EC_Edit_EngKan/ec_edit_group/woman_id_type"
+                data-name="/EC_Edit_EngKan/ec_edit_group/woman_id_type" data-type-xml="select1">
+                <option value="">...</option>
+                <option value="national_id">National ID</option>
+                <option value="passport">Passport</option>
+                <option value="others">Others</option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+
+        <label class="question non-select ">
+            <span class="question-label active" lang="">ID Number
+            </span>
+            <input name="/EC_Edit_EngKan/ec_edit_group/id_number" autocomplete="off"
+                data-type-xml="text" type="text" />
+
+        </label>
+
+        <label class="question non-select">
+            <span class="question-label active" lang="">Woman age
+            </span>
+            <span class="required">*</span>
+            <input name="/EC_Edit_EngKan/ec_edit_group/wife_age" autocomplete="off"
+                data-constraint=".&lt;=(/EC_Edit_EngKan/ec_edit_group/wife_max_age) and .&gt;=(/EC_Edit_EngKan/ec_edit_group/wife_min_age)"
+                data-type-xml="int" required="required" type="number" />
+        </label>
+
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Husband's name</span>
+            <input name="/EC_Edit_EngKan/ec_edit_group/husband_name" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Husband's age</span>
+            <input name="/EC_Edit_EngKan/ec_edit_group/husband_age" autocomplete="off"
+                data-constraint=". &gt;= 15" data-type-xml="int" type="number" />
+        </label>
+
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Contact phone number
+            </span>
+            <span class="or-hint active" lang="">Without country code.
+            </span>
+            <span class="required">*</span>
+            <input name="/EC_Edit_EngKan/ec_edit_group/phone_no" autocomplete="off"
+                data-constraint=".&gt; 99999999 and .&lt; 10000000000000" data-type-xml="int"
+                type="number" />
+        </label>
+
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Religion</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/EC_Edit_EngKan/ec_edit_group/religion" autocomplete="off"
+                            data-name="/EC_Edit_EngKan/ec_edit_group/religion"
+                            data-type-xml="select1" type="radio" value="hindu" />
+                        <span class="option-label active" lang="">Hindu</span>
+                    </label>
+                    <label class="">
+                        <input name="/EC_Edit_EngKan/ec_edit_group/religion" autocomplete="off"
+                            data-name="/EC_Edit_EngKan/ec_edit_group/religion"
+                            data-type-xml="select1" type="radio" value="muslim" />
+                        <span class="option-label active" lang="">Muslim</span>
+                    </label>
+                    <label class="">
+                        <input name="/EC_Edit_EngKan/ec_edit_group/religion" autocomplete="off"
+                            data-name="/EC_Edit_EngKan/ec_edit_group/religion"
+                            data-type-xml="select1" type="radio" value="christian" />
+                        <span class="option-label active" lang="">Christian</span>
+                    </label>
+                    <label class="">
+                        <input name="/EC_Edit_EngKan/ec_edit_group/religion" autocomplete="off"
+                            data-name="/EC_Edit_EngKan/ec_edit_group/religion"
+                            data-type-xml="select1" type="radio" value="r_others" />
+                        <span class="option-label active" lang="">Others</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="question or-appearance-minimal ">
+            <span class="question-label active" lang="">Woman's education level?
+            </span>
+            <select name="/EC_Edit_EngKan/ec_edit_group/woman_education_level"
+                data-name="/EC_Edit_EngKan/ec_edit_group/woman_education_level"
+                data-type-xml="select1">
+                <option value="">...</option>
+                <option value="illiterate">Illiterate</option>
+                <option value="literate">Literate</option>
+                <option value="primary">Primary School</option>
+                <option value="middle">Middle School</option>
+                <option value="high">High School</option>
+                <option value="puc">PUC</option>
+                <option value="graduate">Graduate and above</option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+        <label class="question or-appearance-minimal ">
+            <span class="question-label active" lang="">Husband's education level?</span>
+            <select name="/EC_Edit_EngKan/ec_edit_group/husband_education_level"
+                data-name="/EC_Edit_EngKan/ec_edit_group/husband_education_level"
+                data-type-xml="select1">
+                <option value="">...</option>
+                <option value="illiterate">Illiterate</option>
+                <option value="literate">Literate</option>
+                <option value="primary">Primary School</option>
+                <option value="middle">Middle School</option>
+                <option value="high">High School</option>
+                <option value="puc">PUC</option>
+                <option value="graduate">Graduate and above</option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+        <label class="question or-appearance-minimal ">
+            <span class="question-label active" lang="">Number of times woman has been pregnant?
+            </span>
+            <span class="required">*</span>
+            <select name="/EC_Edit_EngKan/ec_edit_group/num_pregnancies"
+                data-name="/EC_Edit_EngKan/ec_edit_group/num_pregnancies" data-type-xml="select1"
+                required="required">
+                <option value="">...</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="999">More than 8
+                </option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+        <label class="question or-appearance-minimal  or-branch pre-init ">
+            <span class="question-label active" lang="">Number of abortions/Miscarriages?
+            </span>
+            <span class="required">*</span>
+            <select name="/EC_Edit_EngKan/ec_edit_group/num_abortions1"
+                data-constraint=".&lt;=  /EC_Edit_EngKan/ec_edit_group/num_pregnancies "
+                data-name="/EC_Edit_EngKan/ec_edit_group/num_abortions1"
+                data-relevant=" /EC_Edit_EngKan/ec_edit_group/num_pregnancies  &gt; 0"
+                data-type-xml="select1" required="required">
+                <option value="">...</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="999">More than 8
+                </option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+        <label class="question or-appearance-minimal  or-branch pre-init ">
+            <span class="question-label active" lang="">Number of spontaneous abortions?
+            </span>
+            <span class="required">*</span>
+            <select name="/EC_Edit_EngKan/ec_edit_group/num_abortions_spontaneous1"
+                data-constraint=".&lt;=  /EC_Edit_EngKan/ec_edit_group/num_abortions "
+                data-name="/EC_Edit_EngKan/ec_edit_group/num_abortions_spontaneous1"
+                data-relevant=" /EC_Edit_EngKan/ec_edit_group/num_abortions  &gt; 0"
+                data-type-xml="select1" required="required">
+                <option value="">...</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="999">More than 8
+                </option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+        <label class="question or-appearance-minimal  or-branch pre-init ">
+            <span class="question-label active" lang="">Number of live births?
+            </span>
+            <span class="required">*</span>
+            <select name="/EC_Edit_EngKan/ec_edit_group/num_livebirths1"
+                data-constraint=".&lt;=( /EC_Edit_EngKan/ec_edit_group/num_pregnancies  -  /EC_Edit_EngKan/ec_edit_group/num_abortions )"
+                data-name="/EC_Edit_EngKan/ec_edit_group/num_livebirths1"
+                data-relevant="( /EC_Edit_EngKan/ec_edit_group/num_pregnancies  -  /EC_Edit_EngKan/ec_edit_group/num_abortions ) &gt; 0"
+                data-type-xml="select1" required="required">
+                <option value="">...</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="999">More than 8
+                </option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+        <label class="question or-appearance-minimal  or-branch pre-init ">
+            <span class="question-label active" lang="">Number of still births?
+            </span>
+            <span class="required">*</span>
+            <select name="/EC_Edit_EngKan/ec_edit_group/num_stillbirths1"
+                data-constraint=".&lt;=( /EC_Edit_EngKan/ec_edit_group/num_pregnancies  -  /EC_Edit_EngKan/ec_edit_group/num_livebirths  -  /EC_Edit_EngKan/ec_edit_group/num_abortions )"
+                data-name="/EC_Edit_EngKan/ec_edit_group/num_stillbirths1"
+                data-relevant="( /EC_Edit_EngKan/ec_edit_group/num_pregnancies  -  /EC_Edit_EngKan/ec_edit_group/num_livebirths  -  /EC_Edit_EngKan/ec_edit_group/num_abortions ) &gt; 0"
+                data-type-xml="select1" required="required">
+                <option value="">...</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="999">More than 8
+                </option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+        <label class="question or-appearance-minimal  or-branch pre-init ">
+            <span class="question-label active" lang="">Number of living children?
+            </span>
+            <span class="required">*</span>
+            <select name="/EC_Edit_EngKan/ec_edit_group/num_livingchildren1"
+                data-name="/EC_Edit_EngKan/ec_edit_group/num_livingchildren1"
+                data-relevant=" /EC_Edit_EngKan/ec_edit_group/num_livebirths  &gt; 0"
+                data-type-xml="select1" required="required">
+                <option value="">...</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="999">More than 8
+                </option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+        <label class="question or-appearance-minimal  or-branch pre-init ">
+            <span class="question-label active" lang="">Number of male living children?
+            </span>
+            <span class="required">*</span>
+            <select name="/EC_Edit_EngKan/ec_edit_group/num_livingchildren_male"
+                data-constraint=".&lt;= /EC_Edit_EngKan/ec_edit_group/num_livingchildren "
+                data-name="/EC_Edit_EngKan/ec_edit_group/num_livingchildren_male"
+                data-relevant=" /EC_Edit_EngKan/ec_edit_group/num_livingchildren  &gt; 0"
+                data-type-xml="select1" required="required">
+                <option value="">...</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="999">More than 8
+                </option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+        <fieldset name="/EC_Edit_EngKan/ec_edit_group/high_priority_message"
+            class="trigger or-branch pre-init"
+            data-relevant=" /EC_Edit_EngKan/ec_edit_group/is_high_priority1  = 'yes'">
+            <span class="question-label active" lang="">
+                <span class="or-output"
+                    data-value=" /EC_Edit_EngKan/ec_edit_group/woman_name "></span>should be
+                prioritized for family planning because of,
+                <span class="or-output"
+                    data-value=" /EC_Edit_EngKan/ec_edit_group/woman_name "></span>
+
+                <span class="or-output"
+                    data-value=" /EC_Edit_EngKan/ec_edit_group/high_priority_reason "></span>
+            </span>
+        </fieldset>
+        <fieldset class="question or-branch pre-init ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Do you want to mark as HP (High
+                        Priority)?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/EC_Edit_EngKan/ec_edit_group/is_high_priority"
+                            autocomplete="off"
+                            data-name="/EC_Edit_EngKan/ec_edit_group/is_high_priority"
+                            data-relevant=" /EC_Edit_EngKan/ec_edit_group/case_familyplanning_method  != 'male_sterilization' and  /EC_Edit_EngKan/ec_edit_group/case_familyplanning_method  != 'female_sterilization'"
+                            data-type-xml="select1" type="radio" value="yes" />
+                        <span class="option-label active" lang="">Yes</span>
+                    </label>
+                    <label class="">
+                        <input name="/EC_Edit_EngKan/ec_edit_group/is_high_priority"
+                            autocomplete="off"
+                            data-name="/EC_Edit_EngKan/ec_edit_group/is_high_priority"
+                            data-relevant=" /EC_Edit_EngKan/ec_edit_group/case_familyplanning_method  != 'male_sterilization' and  /EC_Edit_EngKan/ec_edit_group/case_familyplanning_method  != 'female_sterilization'"
+                            data-type-xml="select1" type="radio" value="no" />
+                        <span class="option-label active" lang="">No</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+    </section>
+    <!--end of group -->
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/today" autocomplete="off" data-preload="date"
+                data-preload-params="today" data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/phone_num" autocomplete="off"
+                data-calculate="concat( /EC_Edit_EngKan/ec_edit_group/country_code, /EC_Edit_EngKan/ec_edit_group/phone_no)"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/woman_date_of_birth" autocomplete="off"
+                data-calculate="format-date(date( /EC_Edit_EngKan/today -( /EC_Edit_EngKan/ec_edit_group/wife_age *365.25)), '%Y-%n-%e')"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/husband_date_of_birth" autocomplete="off"
+                data-calculate="format-date(date( /EC_Edit_EngKan/today -( /EC_Edit_EngKan/ec_edit_group/husband_age *365.25)), '%Y-%n-%e')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/num_abortions" autocomplete="off"
+                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/num_abortions1  = '', 0,  /EC_Edit_EngKan/ec_edit_group/num_abortions1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/num_abortions_spontaneous" autocomplete="off"
+                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/num_abortions_spontaneous1  = '', 0,  /EC_Edit_EngKan/ec_edit_group/num_abortions_spontaneous1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/num_abortions_induced" autocomplete="off"
+                data-calculate=" /EC_Edit_EngKan/ec_edit_group/num_abortions  -  /EC_Edit_EngKan/ec_edit_group/num_abortions_spontaneous "
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/num_livebirths" autocomplete="off"
+                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/num_livebirths1  = '', 0,  /EC_Edit_EngKan/ec_edit_group/num_livebirths1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/num_stillbirths" autocomplete="off"
+                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/num_stillbirths1  = '', 0,  /EC_Edit_EngKan/ec_edit_group/num_stillbirths1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/parity" autocomplete="off"
+                data-calculate=" /EC_Edit_EngKan/ec_edit_group/num_livebirths  +  /EC_Edit_EngKan/ec_edit_group/num_stillbirths "
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/num_livingchildren" autocomplete="off"
+                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/num_livingchildren1  = '', 0,  /EC_Edit_EngKan/ec_edit_group/num_livingchildren1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/num_livingchildren_female" autocomplete="off"
+                data-calculate=" /EC_Edit_EngKan/ec_edit_group/num_livingchildren  -  /EC_Edit_EngKan/ec_edit_group/num_livingchildren_male "
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/abortion_risk" autocomplete="off"
+                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/num_abortions  &gt;= 3, 'Abortion_history','')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/parity_risk_priority" autocomplete="off"
+                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/parity  &gt;= 3, 'Parity_3_or_more', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/age_risk_priority" autocomplete="off"
+                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/wife_age  &lt; 18 or  /EC_Edit_EngKan/ec_edit_group/wife_age  &gt;=35, 'Age', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/would_be_high_risk" autocomplete="off"
+                data-calculate="if( /EC_Edit_EngKan/ec_edit_group/case_youngchild_risk_priority  != '' or  /EC_Edit_EngKan/ec_edit_group/parity_risk_priority  != '' or  /EC_Edit_EngKan/ec_edit_group/age_risk_priority  != '' or  /EC_Edit_EngKan/ec_edit_group/abortion_risk  != '', 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/would_be_high_risk_reason" autocomplete="off"
+                data-calculate="concat( /EC_Edit_EngKan/ec_edit_group/case_youngchild_risk_priority , ' ',  /EC_Edit_EngKan/ec_edit_group/parity_risk_priority  , ' ',  /EC_Edit_EngKan/ec_edit_group/age_risk_priority , ' ',  /EC_Edit_EngKan/ec_edit_group/abortion_risk )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/is_high_priority1" autocomplete="off"
+                data-calculate="if(( /EC_Edit_EngKan/ec_edit_group/case_youngchild_risk_priority  != '' or  /EC_Edit_EngKan/ec_edit_group/parity_risk_priority  != '' or  /EC_Edit_EngKan/ec_edit_group/age_risk_priority  != '') and ( /EC_Edit_EngKan/ec_edit_group/case_familyplanning_method  != 'male_sterilization' and  /EC_Edit_EngKan/ec_edit_group/case_familyplanning_method  != 'female_sterilization'), 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/ec_edit_group/high_priority_reason" autocomplete="off"
+                data-calculate="concat( /EC_Edit_EngKan/ec_edit_group/case_youngchild_risk_priority , ' ',  /EC_Edit_EngKan/ec_edit_group/parity_risk_priority , ' ',  /EC_Edit_EngKan/ec_edit_group/age_risk_priority )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Edit_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'768ddd251adc44c788585cb0322ef789'" data-type-xml="string"
+                type="hidden" />
+        </label>
+    </fieldset>
+</form>

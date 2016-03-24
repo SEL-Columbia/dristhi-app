@@ -1,0 +1,613 @@
+<form autocomplete="off" class="or clearfix" id="ANC_Visit_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">ANC Visit</h3>
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">ANC Number</span>
+        <input name="/ANC_Visit_EngKan/anc_reg_num" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <input name="/ANC_Visit_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman Name</span>
+        <input name="/ANC_Visit_EngKan/case_woman_name" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+    <!--<label class="question non-select ">-->
+    <!--<span class="question-label active" lang="">ANC Visit Number:</span>-->
+    <!--<input name="/ANC_Visit_EngKan/this_anc_number" autocomplete="off" data-type-xml="string"-->
+    <!--disabled="disabled" type="text" />-->
+    <!--</label>-->
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Which ANC visit is this?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/this_anc_number"
+                        data-name="/ANC_Visit_EngKan/this_anc_number" data-type-xml="select1"
+                        required="required" type="radio" value="1" />
+                    <span class="option-label active" lang="">ANC 1</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/this_anc_number"
+                        data-name="/ANC_Visit_EngKan/this_anc_number" data-type-xml="select1"
+                        required="required" type="radio" value="2" />
+                    <span class="option-label active" lang="">ANC 2</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/this_anc_number"
+                        data-name="/ANC_Visit_EngKan/this_anc_number" data-type-xml="select1"
+                        required="required" type="radio" value="3" />
+                    <span class="option-label active" lang="">ANC 3</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/this_anc_number"
+                        data-name="/ANC_Visit_EngKan/this_anc_number" data-type-xml="select1"
+                        required="required" type="radio" value="4" />
+                    <span class="option-label active" lang="">ANC 4</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/this_anc_number"
+                        data-name="/ANC_Visit_EngKan/this_anc_number" data-type-xml="select1"
+                        required="required" type="radio" value="5" />
+                    <span class="option-label active" lang="">Other ANC Visits
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">ANC visit date?</span>
+        <span class="required">*</span>
+        <input name="/ANC_Visit_EngKan/anc_visit_date"
+            data-constraint=".&lt;= /ANC_Visit_EngKan/today " data-type-xml="date"
+            required="required" type="date" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Place of ANC visit?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/anc_visit_place"
+                        data-name="/ANC_Visit_EngKan/anc_visit_place" data-type-xml="select1"
+                        required="required" type="radio" value="sub_center" />
+                    <span class="option-label active" lang="">My Sub Center</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/anc_visit_place"
+                        data-name="/ANC_Visit_EngKan/anc_visit_place" data-type-xml="select1"
+                        required="required" type="radio" value="phc" />
+                    <span class="option-label active" lang="">My PHC</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/anc_visit_place"
+                        data-name="/ANC_Visit_EngKan/anc_visit_place" data-type-xml="select1"
+                        required="required" type="radio" value="elsewhere" />
+                    <span class="option-label active" lang="">Elsewhere
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Who did ANC visit?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/anc_visit_person"
+                        data-name="/ANC_Visit_EngKan/anc_visit_person" data-type-xml="select1"
+                        required="required" type="radio" value="anm" />
+                    <span class="option-label active" lang="">ANM
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/anc_visit_person"
+                        data-name="/ANC_Visit_EngKan/anc_visit_person" data-type-xml="select1"
+                        required="required" type="radio" value="sn" />
+                    <span class="option-label active" lang="">SN</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/anc_visit_person"
+                        data-name="/ANC_Visit_EngKan/anc_visit_person" data-type-xml="select1"
+                        required="required" type="radio" value="lhv" />
+                    <span class="option-label active" lang="">LHV</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/anc_visit_person"
+                        data-name="/ANC_Visit_EngKan/anc_visit_person" data-type-xml="select1"
+                        required="required" type="radio" value="mo" />
+                    <span class="option-label active" lang="">MO</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/anc_visit_person"
+                        data-name="/ANC_Visit_EngKan/anc_visit_person" data-type-xml="select1"
+                        required="required" type="radio" value="others" />
+                    <span class="option-label active" lang="">Others</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Does the woman have any risk symptoms?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/risk_observed"
+                        data-constraint="(selected(., 'none') and (count-selected(.) = 1) or (not(selected(., 'none'))))"
+                        data-type-xml="select" type="checkbox" value="pallor" />
+                    <span class="option-label active" lang="">Pallor</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/risk_observed"
+                        data-constraint="(selected(., 'none') and (count-selected(.) = 1) or (not(selected(., 'none'))))"
+                        data-type-xml="select" type="checkbox" value="swelling" />
+                    <span class="option-label active" lang="">Swelling / Edema</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/risk_observed"
+                        data-constraint="(selected(., 'none') and (count-selected(.) = 1) or (not(selected(., 'none'))))"
+                        data-type-xml="select" type="checkbox" value="bleeding" />
+                    <span class="option-label active" lang="">Bleeding</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/risk_observed"
+                        data-constraint="(selected(., 'none') and (count-selected(.) = 1) or (not(selected(., 'none'))))"
+                        data-type-xml="select" type="checkbox" value="jaundice" />
+                    <span class="option-label active" lang="">Jaundice</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/risk_observed"
+                        data-constraint="(selected(., 'none') and (count-selected(.) = 1) or (not(selected(., 'none'))))"
+                        data-type-xml="select" type="checkbox" value="convulsions" />
+                    <span class="option-label active" lang="">Fits / Convulsions</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/risk_observed"
+                        data-constraint="(selected(., 'none') and (count-selected(.) = 1) or (not(selected(., 'none'))))"
+                        data-type-xml="select" type="checkbox" value="none" />
+                    <span class="option-label active" lang="">No risk symptoms observed</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/risk_observed"
+                        data-constraint="(selected(., 'none') and (count-selected(.) = 1) or (not(selected(., 'none'))))"
+                        data-type-xml="select" type="checkbox" value="others" />
+                    <span class="option-label active" lang="">Others</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">What other risk symptom do you observe?
+        </span>
+        <input name="/ANC_Visit_EngKan/other_risk_observed"
+            data-relevant="selected( /ANC_Visit_EngKan/risk_observed , 'others')"
+            data-type-xml="string" type="text" />
+    </label>
+
+    <!--<fieldset class="question ">-->
+    <!--<fieldset>-->
+    <!--<legend>-->
+    <!--<span lang="" class="question-label active">Which vital measurements were taken?-->
+    <!--</span>-->
+    <!--</legend>-->
+    <!--<div class="option-wrapper">-->
+    <!--<label class="">-->
+    <!--<input type="checkbox" name="/ANC_Visit_EngKan/vitals_taken" value="bp" data-type-xml="select"/>-->
+    <!--<span lang="" class="option-label active">BP </span>-->
+    <!--</label>-->
+    <!--<label class="">-->
+    <!--<input type="checkbox" name="/ANC_Visit_EngKan/vitals_taken" value="pulse_rate"-->
+    <!--data-type-xml="select"/>-->
+    <!--<span lang="" class="option-label active">Pulse rate </span>-->
+    <!--</label>-->
+    <!--<label class="">-->
+    <!--<input type="checkbox" name="/ANC_Visit_EngKan/vitals_taken" value="temperature"-->
+    <!--data-type-xml="select"/>-->
+    <!--<span lang="" class="option-label active">Temperature-->
+    <!--</span>-->
+    <!--</label>-->
+    <!--<label class="">-->
+    <!--<input type="checkbox" name="/ANC_Visit_EngKan/vitals_taken" value="weight" data-type-xml="select"/>-->
+    <!--<span lang="" class="option-label active">Weight </span>-->
+    <!--</label>-->
+    <!--</div>-->
+    <!--</fieldset>-->
+    <!--</fieldset>-->
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">BP (systolic)
+        </span>
+        <input name="/ANC_Visit_EngKan/bp_systolic" data-constraint=".&gt;0"
+            data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'bp')" data-type-xml="int"
+            type="number" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">BP (diastolic)
+        </span>
+        <input name="/ANC_Visit_EngKan/bp_diastolic" data-constraint=".&gt;0"
+            data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'bp')" data-type-xml="int"
+            type="number" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Pulse rate</span>
+        <input name="/ANC_Visit_EngKan/pulse_rate" data-constraint=".&gt;0"
+            data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'pulse_rate')"
+            data-type-xml="int" type="number" />
+    </label>
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">Temperature (F)-->
+    <!--</span>-->
+    <!--<input name="/ANC_Visit_EngKan/temperature" data-constraint=".&gt;0"-->
+    <!--data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'temperature')"-->
+    <!--data-type-xml="decimal" step="any" type="number" />-->
+    <!--</label>-->
+    <section name="/ANC_Visit_EngKan/weight_group" class="or-group-data or-branch pre-init "
+        data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'weight')">
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Weight (in kgs)
+            </span>
+            <input name="/ANC_Visit_EngKan/weight_group/weight" data-constraint=".&gt;0"
+                data-type-xml="decimal" step="any" type="number" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Weight gain since last visit,
+                <span class="or-output"
+                    data-value=" /ANC_Visit_EngKan/weight_group/weight_change "></span>
+                kgs
+            </span>
+            <input name="/ANC_Visit_EngKan/weight_group/weight_change_message"
+                data-relevant=" /ANC_Visit_EngKan/weight_group/case_weight  != ''"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+    </section>
+    <!--end of group -->
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Abdominal measurements taken?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/abdominals_observed"
+                        data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 112"
+                        data-type-xml="select" type="checkbox" value="abdominal_height" />
+                    <span class="option-label active" lang="">Abdominal Height</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/abdominals_observed"
+                        data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 112"
+                        data-type-xml="select" type="checkbox" value="fetal_heart_rate" />
+                    <span class="option-label active" lang="">Fetal heart rate</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/abdominals_observed"
+                        data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 112"
+                        data-type-xml="select" type="checkbox" value="fetal_movement" />
+                    <span class="option-label active" lang="">Fetal movement</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Any abdominal measurements abnormal?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/abdominals_abnormal"
+                        data-relevant=" /ANC_Visit_EngKan/abdominals_observed  != ''"
+                        data-type-xml="select" type="checkbox" value="abdominal_height" />
+                    <span class="option-label active" lang="">Abdominal Height</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/abdominals_abnormal"
+                        data-relevant=" /ANC_Visit_EngKan/abdominals_observed  != ''"
+                        data-type-xml="select" type="checkbox" value="fetal_heart_rate" />
+                    <span class="option-label active" lang="">Fetal heart rate</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/abdominals_abnormal"
+                        data-relevant=" /ANC_Visit_EngKan/abdominals_observed  != ''"
+                        data-type-xml="select" type="checkbox" value="fetal_movement" />
+                    <span class="option-label active" lang="">Fetal movement</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Multiple pregnancy (twins, triplets)?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/multiple_pregnancy"
+                        data-name="/ANC_Visit_EngKan/multiple_pregnancy"
+                        data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 140"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/multiple_pregnancy"
+                        data-name="/ANC_Visit_EngKan/multiple_pregnancy"
+                        data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 140"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Malpresentation of the fetus?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/malpresentation_of_fetus"
+                        data-name="/ANC_Visit_EngKan/malpresentation_of_fetus"
+                        data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 224"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/malpresentation_of_fetus"
+                        data-name="/ANC_Visit_EngKan/malpresentation_of_fetus"
+                        data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 224"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="note or-branch pre-init non-select ">
+        <span class="question-label active" lang="">
+            <span class="or-output" data-value=" /ANC_Visit_EngKan/woman_name "></span>
+            is at risk
+            because of,
+            <span class="or-output" data-value=" /ANC_Visit_EngKan/woman_name "></span>
+
+            <span class="or-output" data-value=" /ANC_Visit_EngKan/high_risk_reason "></span>
+        </span>
+        <input name="/ANC_Visit_EngKan/high_risk_note"
+            data-relevant=" /ANC_Visit_EngKan/is_high_risk1  = 'yes'" data-type-xml="string"
+            readonly="readonly" type="text" />
+    </label>
+
+    <fieldset class="question">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Do you want to Consult Doctor?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/is_consult_doctor"
+                        data-name="/ANC_Visit_EngKan/is_consult_doctor" data-type-xml="select1"
+                        required="required" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/is_consult_doctor"
+                        data-name="/ANC_Visit_EngKan/is_consult_doctor" data-type-xml="select1"
+                        required="required" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">Reason1 ?-->
+    <!--</span>-->
+    <!--<span class="required">*</span>-->
+    <!--<input name="/ANC_Visit_EngKan/is_consult_doctor_no_reason2" autocomplete="off"-->
+    <!--data-relevant=" /ANC_Visit_EngKan/is_consult_doctor  = 'yes'" data-type-xml="date"-->
+    <!--required="required" type="date" />-->
+    <!--</label>-->
+
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Reason ?
+        </span>
+        <span class="required">*</span>
+        <input name="/ANC_Visit_EngKan/is_consult_doctor_no_reason" autocomplete="off"
+            data-relevant=" /ANC_Visit_EngKan/is_consult_doctor  = 'no' and /ANC_Visit_EngKan/having_risks  = 'yes'"
+            data-type-xml="string" required="required" type="text" />
+    </label>
+
+
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Do you want to mark as HRP?
+
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/is_high_risk"
+                        data-name="/ANC_Visit_EngKan/is_high_risk" data-type-xml="select1"
+                        type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/ANC_Visit_EngKan/is_high_risk"
+                        data-name="/ANC_Visit_EngKan/is_high_risk" data-type-xml="select1"
+                        type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="note or-branch pre-init non-select ">
+        <span class="question-label active" lang="">
+            <span class="or-output" data-value=" /ANC_Visit_EngKan/woman_name "></span>is
+            <span class="or-output" data-value=" /ANC_Visit_EngKan/num_weeks "></span>
+            weeks pregnant. Complete Delivery Plan form now.
+            <span class="or-output" data-value=" /ANC_Visit_EngKan/woman_name "></span>
+            <span class="or-output" data-value=" /ANC_Visit_EngKan/num_weeks "></span>
+
+        </span>
+        <input name="/ANC_Visit_EngKan/birth_plan_message"
+            data-relevant=" /ANC_Visit_EngKan/num_weeks  &gt;= 34 and  /ANC_Visit_EngKan/case_birth_planning  = ''"
+            data-type-xml="string" readonly="readonly" type="text" />
+    </label>
+
+
+    <fieldset style="display:none;" id="or-preload-items">
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/today" data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/reason_for_no" autocomplete="off"
+                data-calculate=" /ANC_Visit_EngKan/is_consult_doctor" data-type-xml="string"
+                type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/woman_name"
+                data-calculate="concat( /ANC_Visit_EngKan/case_woman_name , ' ')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/weight_group/weight_change"
+                data-calculate=" /ANC_Visit_EngKan/weight_group/weight  -  /ANC_Visit_EngKan/weight_group/case_weight "
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/num_days_since_lmp"
+                data-calculate="int(date( /ANC_Visit_EngKan/today ) - date( /ANC_Visit_EngKan/case_lmp ))"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/jaundice"
+                data-calculate="if(selected( /ANC_Visit_EngKan/risk_observed , 'jaundice'), 'Jaundice', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/having_risks"
+                data-calculate=" if(not(selected( /ANC_Visit_EngKan/risk_observed , 'none')) and string(/ANC_Visit_EngKan/risk_observed )!='','yes','no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/pih"
+                data-calculate="if( /ANC_Visit_EngKan/case_pih  = '', if( /ANC_Visit_EngKan/bp_systolic  &gt;= 140 or  /ANC_Visit_EngKan/bp_diastolic  &gt;= 90, 'PIH', ''), if( /ANC_Visit_EngKan/bp_systolic  &lt; 140 and  /ANC_Visit_EngKan/bp_diastolic  &lt; 90, '', 'PIH'))"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/multiple_preg"
+                data-calculate="if( /ANC_Visit_EngKan/multiple_pregnancy  = 'yes', 'Multiple_Pregnancy', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/malpresentation"
+                data-calculate="if( /ANC_Visit_EngKan/malpresentation_of_fetus  = 'yes', 'Malpresentation', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/is_high_risk_till_delivery"
+                data-calculate="if( /ANC_Visit_EngKan/case_is_high_risk_till_delivery  = 'yes', 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/is_high_risk_till_delivery_reason"
+                data-calculate=" /ANC_Visit_EngKan/case_is_high_risk_till_delivery_reason "
+                data-type-xml="string" type="hidden" />
+        </label>
+
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/is_high_risk1"
+                data-calculate="if( /ANC_Visit_EngKan/pih  != '' or  /ANC_Visit_EngKan/jaundice  != '' or  /ANC_Visit_EngKan/is_high_risk_till_delivery  = 'yes' or  /ANC_Visit_EngKan/case_is_high_risk_till_pnc_close  = 'yes' or  /ANC_Visit_EngKan/multiple_preg  != '' or  /ANC_Visit_EngKan/malpresentation  != '' or  /ANC_Visit_EngKan/case_anaemic_status  != '', 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/high_risk_reason"
+                data-calculate="concat( /ANC_Visit_EngKan/case_anaemic_status , ' ',  /ANC_Visit_EngKan/is_high_risk_till_delivery_reason , ' ',  /ANC_Visit_EngKan/case_is_high_risk_till_pnc_close_reason , ' ',  /ANC_Visit_EngKan/pih , ' ',  /ANC_Visit_EngKan/jaundice , ' ',  /ANC_Visit_EngKan/multiple_preg , ' ',  /ANC_Visit_EngKan/malpresentation )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/num_weeks"
+                data-calculate="int( /ANC_Visit_EngKan/num_days_since_lmp  div 7)"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/meta/instanceID" data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/formhub/uuid"
+                data-calculate="'564bb56d55e04b97b45573baeadd3096'" data-type-xml="string"
+                type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/bp_systolic" data-calculate="0" data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/bp_diastolic" data-calculate="0" data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/pstechoscope_data" data-calculate="0"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/temperature" data-calculate="0.0" data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/fetal_data" data-calculate="0" data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/blood_glucose_data" data-calculate="0.0"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/anm_poc" data-calculate="" data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Visit_EngKan/poc_info" data-calculate="" data-type-xml="string"
+                type="hidden" />
+        </label>
+
+    </fieldset>
+</form>

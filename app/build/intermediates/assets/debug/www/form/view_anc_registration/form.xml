@@ -1,0 +1,87 @@
+<form autocomplete="off" class="or clearfix" id="ANC_Registration_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">View ANC</h3>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">EC Number:</span>
+        <input name="/ANC_Registration_EngKan/ec_num" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Women Name:</span>
+        <input name="/ANC_Registration_EngKan/woman_name" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Registration date:</span>
+        <input name="/ANC_Registration_EngKan/reg_date" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Registration place:</span>
+        <input name="/ANC_Registration_EngKan/reg_place" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">ANC Number:</span>
+        <input name="/ANC_Registration_EngKan/anc_number" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">LMP:</span>
+        <input name="/ANC_Registration_EngKan/lmp_date" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">EDD:</span>
+        <input name="/ANC_Registration_EngKan/edd_formatted" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Linked facility for delivery:</span>
+        <input name="/ANC_Registration_EngKan/linked_facility_delivery" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Name of facility:</span>
+        <input name="/ANC_Registration_EngKan/name_facility" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Had complications in any previous pregnancy:
+        </span>
+        <input name="/ANC_Registration_EngKan/complication" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman medical conditions:
+        </span>
+        <span class="or-output" data-value=" /ANC_Registration_EngKan/medical_histories "></span>
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman's blood group:</span>
+        <input name="/ANC_Registration_EngKan/w_blood_group" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Height (in cms):</span>
+        <input name="/ANC_Registration_EngKan/height" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Weight at start of pregnancy (in kgs):</span>
+        <input name="/ANC_Registration_EngKan/weight_startofpregnancy" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">High priority:</span>
+        <input name="/ANC_Registration_EngKan/is_high_risk" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+</form>

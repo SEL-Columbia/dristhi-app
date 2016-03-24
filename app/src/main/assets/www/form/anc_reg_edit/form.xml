@@ -1,0 +1,530 @@
+<form autocomplete="off" class="or clearfix" id="ANC_Registration_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Edit ANC Registration</h3>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Edit password</span>
+        <input name="/ANC_Registration_EngKan/edit_password" autocomplete="off"
+            data-type-xml="string" type="password" />
+    </label>
+    <section name="/ANC_Registration_EngKan/anc_edit_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /ANC_Registration_EngKan/edit_password  = /ANC_Registration_EngKan/anc_edit_group/pwd">
+
+        <label class="note  non-select ">
+            <span class="question-label active" lang="">EC Number
+                <span class="or-output"
+                    data-value=" /ANC_Registration_EngKan/anc_edit_group/ec_num"></span>
+            </span>
+
+        </label>
+
+        <label class="note  non-select ">
+            <span class="question-label active" lang="">Woman Name
+                <span class="or-output"
+                    data-value=" /ANC_Registration_EngKan/anc_edit_group/woman_name"></span>
+            </span>
+        </label>
+
+        <label class="note  non-select ">
+            <span class="question-label active" lang="">Husband Name
+                <span class="or-output"
+                    data-value=" /ANC_Registration_EngKan/anc_edit_group/husband_name"></span>
+            </span>
+        </label>
+
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Registration date
+            </span>
+            <span class="required">*</span>
+            <input name="/ANC_Registration_EngKan/anc_edit_group/reg_date" autocomplete="off"
+                data-constraint=".&lt;= /ANC_Registration_EngKan/anc_edit_group/today "
+                data-type-xml="date" required="required" type="date" />
+        </label>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Registration place</span>
+                    <span class="required">*</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/reg_place"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/reg_place"
+                            data-type-xml="select1" required="required" type="radio"
+                            value="sub_center" />
+                        <span class="option-label active" lang="">My Sub Center</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/reg_place"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/reg_place"
+                            data-type-xml="select1" required="required" type="radio" value="phc" />
+                        <span class="option-label active" lang="">My PHC</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/reg_place"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/reg_place"
+                            data-type-xml="select1" required="required" type="radio"
+                            value="elsewhere" />
+                        <span class="option-label active" lang="">Elsewhere
+                        </span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+
+        <!--<label class="question non-select ">-->
+        <!--<span lang="" class="question-label active">Thayi card number, -->
+        <!--</span>-->
+        <!--<span class="required">*</span>-->
+        <!--<input autocomplete="off" type="number" name="/ANC_Registration_EngKan/anc_edit_group/thayi_no" required="required"-->
+        <!--data-constraint=".&gt; 999999 and .&lt; 10000000" data-type-xml="int"/>-->
+        <!--</label>-->
+
+        <label class="note non-select ">
+            <span class="question-label active" lang="">ANC Number
+                <span class="or-output"
+                    data-value=" /ANC_Registration_EngKan/anc_edit_group/anc_number"></span>
+            </span>
+        </label>
+        <!--<fieldset class="question ">-->
+        <!--<fieldset>-->
+        <!--<legend>-->
+        <!--<span lang="" class="question-label active">JSY beneficiary? -->
+        <!--</span>-->
+        <!--<span class="required">*</span>-->
+        <!--</legend>-->
+        <!--<div class="option-wrapper">-->
+        <!--<label class="">-->
+        <!--<input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/anc_edit_group/jsy_beneficiary"-->
+        <!--data-name="/ANC_Registration_EngKan/anc_edit_group/jsy_beneficiary" value="yes" required="required"-->
+        <!--data-type-xml="select1"/>-->
+        <!--<span lang="" class="option-label active">Yes </span>-->
+        <!--</label>-->
+        <!--<label class="">-->
+        <!--<input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/anc_edit_group/jsy_beneficiary"-->
+        <!--data-name="/ANC_Registration_EngKan/anc_edit_group/jsy_beneficiary" value="no" required="required"-->
+        <!--data-type-xml="select1"/>-->
+        <!--<span lang="" class="option-label active">No </span>-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--</fieldset>-->
+        <!--</fieldset>-->
+        <!--<label class="question non-select ">-->
+        <!--<span lang="" class="question-label active">Asha name, </span>-->
+        <!--<input autocomplete="off" type="text" name="/ANC_Registration_EngKan/anc_edit_group/asha_name" data-type-xml="string"/>-->
+        <!--</label>-->
+        <!--<label class="question non-select ">-->
+        <!--<span lang="" class="question-label active">Asha phone number, -->
+        <!--</span>-->
+        <!--<input autocomplete="off" type="number" name="/ANC_Registration_EngKan/anc_edit_group/asha_phone_number"-->
+        <!--data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-type-xml="int"/>-->
+        <!--</label>-->
+        <fieldset class="question">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">LMP is known?
+                    </span>
+                    <span class="required">*</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/is_lmp_known"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/is_lmp_known"
+                            data-type-xml="select1" required="required" type="radio" value="yes" />
+                        <span class="option-label active" lang="">Yes</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/is_lmp_known"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/is_lmp_known"
+                            data-type-xml="select1" required="required" type="radio" value="no" />
+                        <span class="option-label active" lang="">No</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+
+
+        <label class="question or-branch">
+            <span class="question-label active" lang="">LMP Date
+            </span>
+            <span class="required">*</span>
+            <input name="/ANC_Registration_EngKan/anc_edit_group/lmp_in_date" autocomplete="off"
+                data-relevant=" /ANC_Registration_EngKan/anc_edit_group/is_lmp_known  = 'yes'"
+                data-type-xml="date" required="required" type="date" />
+        </label>
+
+        <label class="question or-branch pre-init non-select">
+            <span class="question-label active" lang="">LMP In Weeks
+            </span>
+            <span class="required">*</span>
+            <input name="/ANC_Registration_EngKan/anc_edit_group/lmp_in_week" autocomplete="off"
+                data-relevant=" /ANC_Registration_EngKan/anc_edit_group/is_lmp_known  = 'no'"
+                data-type-xml="int" required="required" type="number" />
+        </label>
+
+        <label class="note non-select ">
+            <span class="question-label active" lang="">EDD
+                <span class="or-output"
+                    data-value=" /ANC_Registration_EngKan/anc_edit_group/edd_formatted "></span>
+            </span>
+            <input name="/ANC_Registration_EngKan/anc_edit_group/edd_note" autocomplete="off"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Linked facility for delivery?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input
+                            name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            data-type-xml="select1" type="radio" value="sub_center" />
+                        <span class="option-label active" lang="">Sub Center</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            data-type-xml="select1" type="radio" value="phc" />
+                        <span class="option-label active" lang="">PHC</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            data-type-xml="select1" type="radio" value="chc" />
+                        <span class="option-label active" lang="">CHC</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            data-type-xml="select1" type="radio" value="sdh" />
+                        <span class="option-label active" lang="">SDH</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            data-type-xml="select1" type="radio" value="dh" />
+                        <span class="option-label active" lang="">DH</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery"
+                            data-type-xml="select1" type="radio" value="private" />
+                        <span class="option-label active" lang="">Private</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Name of facility?
+            </span>
+            <input name="/ANC_Registration_EngKan/anc_edit_group/name_facility" autocomplete="off"
+                data-relevant=" /ANC_Registration_EngKan/anc_edit_group/linked_facility_delivery  != ''"
+                data-type-xml="string" type="text" />
+        </label>
+        <fieldset class="question or-branch pre-init ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Had complications in any previous
+                        pregnancy?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/complication"
+                            autocomplete="off"
+                            data-relevant=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  &gt; 0"
+                            data-type-xml="select" type="checkbox" value="APH; " />
+                        <span class="option-label active" lang="">APH</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/complication"
+                            autocomplete="off"
+                            data-relevant=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  &gt; 0"
+                            data-type-xml="select" type="checkbox" value="PIH; " />
+                        <span class="option-label active" lang="">PIH</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/complication"
+                            autocomplete="off"
+                            data-relevant=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  &gt; 0"
+                            data-type-xml="select" type="checkbox"
+                            value="Preeclampsia Eclampsia; " />
+                        <span class="option-label active" lang="">Pre-eclampsia / Eclampsia</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/complication"
+                            autocomplete="off"
+                            data-relevant=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  &gt; 0"
+                            data-type-xml="select" type="checkbox"
+                            value="Pregnancy with Tumors; " />
+                        <span class="option-label active" lang="">Pregnancy with Tumors</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/complication"
+                            autocomplete="off"
+                            data-relevant=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  &gt; 0"
+                            data-type-xml="select" type="checkbox"
+                            value="Prolonged Obstructed Labor; " />
+                        <span class="option-label active" lang="">Prolonged / Obstructed Labor
+                        </span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/complication"
+                            autocomplete="off"
+                            data-relevant=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  &gt; 0"
+                            data-type-xml="select" type="checkbox"
+                            value="Intrauterine Growth Retardation; " />
+                        <span class="option-label active" lang="">Intrauterine Growth Retardation
+                        </span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/complication"
+                            autocomplete="off"
+                            data-relevant=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  &gt; 0"
+                            data-type-xml="select" type="checkbox" value="PPH; " />
+                        <span class="option-label active" lang="">PPH</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/complication"
+                            autocomplete="off"
+                            data-relevant=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  &gt; 0"
+                            data-type-xml="select" type="checkbox" value="Cesarean; " />
+                        <span class="option-label active" lang="">Cesarean</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/complication"
+                            autocomplete="off"
+                            data-relevant=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  &gt; 0"
+                            data-type-xml="select" type="checkbox" value="Still Birth; " />
+                        <span class="option-label active" lang="">Still Birth</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/complication"
+                            autocomplete="off"
+                            data-relevant=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  &gt; 0"
+                            data-type-xml="select" type="checkbox" value="Spontaneous Abortion; " />
+                        <span class="option-label active" lang="">Spontaneous Abortion</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Does woman have any of the following
+                        medical conditions?
+
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/medical_histories"
+                            autocomplete="off" data-type-xml="select" type="checkbox"
+                            value="TB; " />
+                        <span class="option-label active" lang="">TB</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/medical_histories"
+                            autocomplete="off" data-type-xml="select" type="checkbox"
+                            value="Hypertension; " />
+                        <span class="option-label active" lang="">Hypertension</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/medical_histories"
+                            autocomplete="off" data-type-xml="select" type="checkbox"
+                            value="Heart Related Diseases; " />
+                        <span class="option-label active" lang="">Heart-related diseases</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/medical_histories"
+                            autocomplete="off" data-type-xml="select" type="checkbox"
+                            value="Diabetes; " />
+                        <span class="option-label active" lang="">Diabetes</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="question or-appearance-minimal ">
+            <span class="question-label active" lang="">Woman's blood group?
+            </span>
+            <select name="/ANC_Registration_EngKan/anc_edit_group/w_blood_group"
+                data-name="/ANC_Registration_EngKan/anc_edit_group/w_blood_group"
+                data-type-xml="select1">
+                <option value="">...</option>
+                <option value="a_positive">A+</option>
+                <option value="a_negative">A-</option>
+                <option value="b_positive">B+</option>
+                <option value="b_negative">B-</option>
+                <option value="ab_positive">AB+</option>
+                <option value="ab_negative">AB-</option>
+                <option value="o_positive">O+</option>
+                <option value="o_negative">O-</option>
+            </select>
+            <span style="display:none;" class="or-option-translations"></span>
+        </label>
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Height (in cms)
+            </span>
+            <input name="/ANC_Registration_EngKan/anc_edit_group/height" autocomplete="off"
+                data-type-xml="decimal" step="any" type="number" />
+        </label>
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Weight at start of pregnancy (in kgs)
+            </span>
+            <input name="/ANC_Registration_EngKan/anc_edit_group/weight_startofpregnancy"
+                autocomplete="off" data-type-xml="decimal" step="any" type="number" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="or-output"
+                data-value=" /ANC_Registration_EngKan/anc_edit_group/risk_value "></span>
+            <input name="/ANC_Registration_EngKan/anc_edit_group/high_risk_note" autocomplete="off"
+                data-relevant=" /ANC_Registration_EngKan/anc_edit_group/is_high_risk1  = 'yes'"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Do you want to mark as HRP?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/is_high_risk"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/is_high_risk"
+                            data-type-xml="select1" type="radio" value="yes" />
+                        <span class="option-label active" lang="">Yes</span>
+                    </label>
+                    <label class="">
+                        <input name="/ANC_Registration_EngKan/anc_edit_group/is_high_risk"
+                            autocomplete="off"
+                            data-name="/ANC_Registration_EngKan/anc_edit_group/is_high_risk"
+                            data-type-xml="select1" type="radio" value="no" />
+                        <span class="option-label active" lang="">No</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+    </section>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/today" autocomplete="off"
+                data-preload="date" data-preload-params="today" data-type-xml="date"
+                type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/anc_number1" autocomplete="off"
+                data-calculate=" /ANC_Registration_EngKan/anc_edit_group/anc_number"
+                data-type-xml="int" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/woman_name" autocomplete="off"
+                data-calculate="concat( /ANC_Registration_EngKan/anc_edit_group/case_woman_name , ' ')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/risk_value" autocomplete="off"
+                data-calculate="concat( /ANC_Registration_EngKan/anc_edit_group/woman_name , ' is at risk because of ',/ANC_Registration_EngKan/anc_edit_group/high_risk_reason)"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/num_pregnancies" autocomplete="off"
+                data-calculate=" /ANC_Registration_EngKan/anc_edit_group/case_num_pregnancies  + 1"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/lmp_date"
+                data-calculate="if( /ANC_Registration_EngKan/anc_edit_group/is_lmp_known  = 'yes',  date( /ANC_Registration_EngKan/anc_edit_group/lmp_in_date),date( /ANC_Registration_EngKan/anc_edit_group/today - /ANC_Registration_EngKan/anc_edit_group/lmp_in_week * 7))"
+                data-type-xml="date" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/edd"
+                data-calculate="if( /ANC_Registration_EngKan/anc_edit_group/is_lmp_known  = 'yes',  date( /ANC_Registration_EngKan/anc_edit_group/lmp_in_date + 280),date( /ANC_Registration_EngKan/anc_edit_group/today - /ANC_Registration_EngKan/anc_edit_group/lmp_in_week * 7 + 280))"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/edd_formatted" autocomplete="off"
+                data-calculate="format-date( /ANC_Registration_EngKan/anc_edit_group/edd , '%Y-%n-%e')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/weight_risk" autocomplete="off"
+                data-calculate="if( /ANC_Registration_EngKan/anc_edit_group/weight_startofpregnancy  &lt; 45 or  /ANC_Registration_EngKan/anc_edit_group/weight_startofpregnancy  &gt;= 90, 'Weight', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/height_risk" autocomplete="off"
+                data-calculate="if( /ANC_Registration_EngKan/anc_edit_group/height  &lt;= 145, 'Height', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/is_high_risk_till_delivery"
+                autocomplete="off"
+                data-calculate="if( /ANC_Registration_EngKan/anc_edit_group/case_would_be_high_risk  = 'yes' or  /ANC_Registration_EngKan/anc_edit_group/weight_risk  != '' or  /ANC_Registration_EngKan/anc_edit_group/height_risk  != '' or  /ANC_Registration_EngKan/anc_edit_group/complication  != '', 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/is_high_risk_till_delivery_reason"
+                autocomplete="off"
+                data-calculate="concat( /ANC_Registration_EngKan/anc_edit_group/case_would_be_high_risk_reason , ' ',  /ANC_Registration_EngKan/anc_edit_group/weight_risk , ' ',  /ANC_Registration_EngKan/anc_edit_group/height_risk , ' ', string( /ANC_Registration_EngKan/anc_edit_group/complication ))"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/is_high_risk_till_pnc_close"
+                autocomplete="off"
+                data-calculate="if( /ANC_Registration_EngKan/anc_edit_group/medical_histories  != '', 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/is_high_risk_till_pnc_close_reason"
+                autocomplete="off"
+                data-calculate="string( /ANC_Registration_EngKan/anc_edit_group/medical_histories )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/is_high_risk1" autocomplete="off"
+                data-calculate="if( /ANC_Registration_EngKan/anc_edit_group/is_high_risk_till_delivery  = 'yes' or  /ANC_Registration_EngKan/anc_edit_group/is_high_risk_till_pnc_close  = 'yes', 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/high_risk_reason"
+                autocomplete="off"
+                data-calculate="concat( /ANC_Registration_EngKan/anc_edit_group/is_high_risk_till_delivery_reason , ' ',  /ANC_Registration_EngKan/anc_edit_group/is_high_risk_till_pnc_close_reason )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_EngKan/anc_edit_group/formhub/uuid" autocomplete="off"
+                data-calculate="'698bfaa8efe244e591896db01ff5693b'" data-type-xml="string"
+                type="hidden" />
+        </label>
+    </fieldset>
+</form>

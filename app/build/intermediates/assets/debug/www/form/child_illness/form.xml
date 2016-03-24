@@ -1,0 +1,708 @@
+<form autocomplete="off" class="or clearfix" id="Child_Sick_Visit_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Child Illness</h3>
+
+    <label class="question non-select ">
+
+        <input name="/Child_Sick_Visit_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Mother Name</span>
+        <input name="/Child_Sick_Visit_EngKan/mother_name" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Select one
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Child_Sick_Visit_EngKan/sick_visit_option" autocomplete="off"
+                        data-name="/Child_Sick_Visit_EngKan/sick_visit_option"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="report_child_disease" />
+                    <span class="option-label active" lang="">Report Child Disease</span>
+                </label>
+                <label class="">
+                    <input name="/Child_Sick_Visit_EngKan/sick_visit_option" autocomplete="off"
+                        data-name="/Child_Sick_Visit_EngKan/sick_visit_option"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="child_sickness_management" />
+                    <span class="option-label active" lang="">Child Sickness Management</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <section name="/Child_Sick_Visit_EngKan/child_sickness_management_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /Child_Sick_Visit_EngKan/sick_visit_option  = 'child_sickness_management'">
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Date of sickness visit?
+            </span>
+            <span class="required">*</span>
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/sick_visit_date"
+                autocomplete="off"
+                data-constraint=".&gt;=  /Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date  and .&lt;= /Child_Sick_Visit_EngKan/today "
+                data-type-xml="date" required="required" type="date" />
+        </label>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Child's problems?
+                    </span>
+                    <span class="required">*</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs"
+                            autocomplete="off" data-type-xml="select" required="required"
+                            type="checkbox" value="cough" />
+                        <span class="option-label active" lang="">Cough</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs"
+                            autocomplete="off" data-type-xml="select" required="required"
+                            type="checkbox" value="diarrhea" />
+                        <span class="option-label active" lang="">Diarrhea
+                        </span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs"
+                            autocomplete="off" data-type-xml="select" required="required"
+                            type="checkbox" value="fever" />
+                        <span class="option-label active" lang="">Fever</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs"
+                            autocomplete="off" data-type-xml="select" required="required"
+                            type="checkbox" value="convulsions" />
+                        <span class="option-label active" lang="">Convulsions</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs"
+                            autocomplete="off" data-type-xml="select" required="required"
+                            type="checkbox" value="difficulty_drinking_feeding" />
+                        <span class="option-label active" lang="">Difficulty drinking or feeding
+                        </span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs"
+                            autocomplete="off" data-type-xml="select" required="required"
+                            type="checkbox" value="vomiting" />
+                        <span class="option-label active" lang="">Vomiting</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs"
+                            autocomplete="off" data-type-xml="select" required="required"
+                            type="checkbox" value="chest_indrawing" />
+                        <span class="option-label active" lang="">Chest indrawing</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs"
+                            autocomplete="off" data-type-xml="select" required="required"
+                            type="checkbox" value="sleepy_unconscious" />
+                        <span class="option-label active" lang="">Unusually sleepy or unconscious
+                        </span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs"
+                            autocomplete="off" data-type-xml="select" required="required"
+                            type="checkbox" value="swelling_both_feet" />
+                        <span class="option-label active" lang="">Swelling of both feet</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs"
+                            autocomplete="off" data-type-xml="select" required="required"
+                            type="checkbox" value="others" />
+                        <span class="option-label active" lang="">Others</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Others</span>
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs_other"
+                autocomplete="off"
+                data-relevant="selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'others')"
+                data-type-xml="string" type="text" />
+        </label>
+        <section name="/Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group"
+            class="or-group-data or-branch pre-init "
+            data-relevant="selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'cough')">
+            <label class="question non-select ">
+                <span class="question-label active" lang="">Number of days of cough?
+                </span>
+                <input
+                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/days_of_cough"
+                    autocomplete="off" data-type-xml="int" type="number" />
+            </label>
+            <label class="question non-select ">
+                <span class="question-label active" lang="">Count number of breaths per minute.
+                </span>
+                <input
+                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/breaths_per_minute"
+                    autocomplete="off" data-type-xml="int" type="number" />
+            </label>
+        </section>
+        <!--end of group -->
+        <section name="/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group"
+            class="or-group-data or-branch pre-init "
+            data-relevant="selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'diarrhea')">
+            <label class="question non-select ">
+                <span class="question-label active" lang="">Number of days of diarrhea?
+                </span>
+                <span class="or-hint active" lang="">Diarrhea is 3 or more loose stools in 24 hours.
+                    24
+                </span>
+                <input
+                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/days_of_diarrhea"
+                    autocomplete="off" data-type-xml="int" type="number" />
+            </label>
+            <fieldset class="question ">
+                <fieldset>
+                    <legend>
+                        <span class="question-label active" lang="">Blood in stool?
+                        </span>
+                    </legend>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input
+                                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/blood_in_stool"
+                                autocomplete="off"
+                                data-name="/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/blood_in_stool"
+                                data-type-xml="select1" type="radio" value="yes" />
+                            <span class="option-label active" lang="">Yes</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/blood_in_stool"
+                                autocomplete="off"
+                                data-name="/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/blood_in_stool"
+                                data-type-xml="select1" type="radio" value="no" />
+                            <span class="option-label active" lang="">No</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </fieldset>
+        </section>
+        <!--end of group -->
+        <section name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group"
+            class="or-group-data or-branch pre-init "
+            data-relevant="selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'fever')">
+            <label class="question non-select ">
+                <span class="question-label active" lang="">Number of days of fever?
+                </span>
+                <input
+                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group/days_of_fever"
+                    autocomplete="off" data-type-xml="int" type="number" />
+            </label>
+        </section>
+        <!--end of group -->
+        <fieldset class="question or-branch pre-init ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Is the child not able to drink or
+                        eat anything?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/drink_feed_nothing"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/child_sickness_management_group/drink_feed_nothing"
+                            data-relevant="selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'difficulty_drinking_feeding')"
+                            data-type-xml="select1" type="radio" value="yes" />
+                        <span class="option-label active" lang="">Yes</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/drink_feed_nothing"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/child_sickness_management_group/drink_feed_nothing"
+                            data-relevant="selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'difficulty_drinking_feeding')"
+                            data-type-xml="select1" type="radio" value="no" />
+                        <span class="option-label active" lang="">No</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="question or-branch pre-init ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Is the child vomiting everything?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/vomiting_everything"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/child_sickness_management_group/vomiting_everything"
+                            data-relevant="selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'vomiting')"
+                            data-type-xml="select1" type="radio" value="yes" />
+                        <span class="option-label active" lang="">Yes</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/child_sickness_management_group/vomiting_everything"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/child_sickness_management_group/vomiting_everything"
+                            data-relevant="selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'vomiting')"
+                            data-type-xml="select1" type="radio" value="no" />
+                        <span class="option-label active" lang="">No</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Child has following danger sign(s)
+                <span class="or-output"
+                    data-value=" /Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral_reason "></span>
+                . Refer immediately to nearest health facility!
+            </span>
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral_message"
+                autocomplete="off"
+                data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral  != ''"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">If child can drink fluids, start ORS right
+                now!
+            </span>
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea_message"
+                autocomplete="off"
+                data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea  != ''"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Child needs antimalarial drugs right now!
+                Consult with MO for
+                treatment.
+            </span>
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever_message"
+                autocomplete="off"
+                data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever  != ''"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Child needs antibiotics right now! Consult
+                with MO for
+                treatment.
+            </span>
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing_message"
+                autocomplete="off"
+                data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing  != ''"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Care for child at home. Make ORS solution
+                for child. Give
+                caregiver 2 ORS packets and instruct on how to prepare.
+            </span>
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_message"
+                autocomplete="off"
+                data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea  = '' and  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_blood_in_stool  = '' and selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'diarrhea')"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Refer the child for a malaria test.
+            </span>
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_message"
+                autocomplete="off"
+                data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever  = '' and selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'fever')"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Child needs antibiotics. Consult with MO for
+                treatment.
+            </span>
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fast_breathing_message"
+                autocomplete="off"
+                data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing  = '' and  /Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/fast_breathing  != ''"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Tell caregiver to give more fluids and
+                continue feeding. Tell
+                caregiver danger signs to look for. Tell caregiver to go to facility immediately if
+                child becomes
+                sicker.
+            </span>
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/home_care_message"
+                autocomplete="off"
+                data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral  = '' and  /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs  != ''"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <!--<fieldset class="question ">-->
+        <!--<fieldset>-->
+        <!--<legend>-->
+        <!--<span class="question-label active" lang="">Do you want to Consult Doctor?-->
+        <!--</span>-->
+        <!--<span class="required">*</span>-->
+        <!--</legend>-->
+        <!--<div class="option-wrapper">-->
+        <!--<label class="">-->
+        <!--<input-->
+        <!--name="/Child_Sick_Visit_EngKan/child_sickness_management_group/is_sick_consult_doctor"-->
+        <!--data-name="/Child_Sick_Visit_EngKan/child_sickness_management_group/is_sick_consult_doctor"-->
+        <!--data-type-xml="select1" required="required" type="radio" value="yes" />-->
+        <!--<span class="option-label active" lang="">Yes</span>-->
+        <!--</label>-->
+        <!--<label class="">-->
+        <!--<input-->
+        <!--name="/Child_Sick_Visit_EngKan/child_sickness_management_group/is_sick_consult_doctor"-->
+        <!--data-name="/Child_Sick_Visit_EngKan/child_sickness_management_group/is_sick_consult_doctor"-->
+        <!--data-type-xml="select1" required="required" type="radio" value="no" />-->
+        <!--<span class="option-label active" lang="">No</span>-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--</fieldset>-->
+
+        <!--</fieldset>-->
+
+    </section>
+    <!--end of group -->
+    <section name="/Child_Sick_Visit_EngKan/report_child_disease_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /Child_Sick_Visit_EngKan/sick_visit_option  = 'report_child_disease'">
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Select child disease to report
+                    </span>
+                    <span class="required">*</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            data-type-xml="select1" required="required" type="radio"
+                            value="measles" />
+                        <span class="option-label active" lang="">Measles</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            data-type-xml="select1" required="required" type="radio"
+                            value="diarrhea_dehydration" />
+                        <span class="option-label active" lang="">Diarrhea and Dehydration</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            data-type-xml="select1" required="required" type="radio"
+                            value="malaria" />
+                        <span class="option-label active" lang="">Malaria</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            data-type-xml="select1" required="required" type="radio" value="ari" />
+                        <span class="option-label active" lang="">Acute Respiratory Infection (ARI)
+                        </span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            data-type-xml="select1" required="required" type="radio" value="sam" />
+                        <span class="option-label active" lang="">Severe Acute Malnutrition</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease"
+                            data-type-xml="select1" required="required" type="radio"
+                            value="others" />
+                        <span class="option-label active" lang="">Others</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Others</span>
+            <input
+                name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_other"
+                autocomplete="off"
+                data-relevant=" /Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease  = 'others'"
+                data-type-xml="string" type="text" />
+        </label>
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Reporting date?
+            </span>
+            <span class="required">*</span>
+            <input
+                name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_date"
+                autocomplete="off"
+                data-constraint=".&gt;=  /Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date  and .&lt;= /Child_Sick_Visit_EngKan/today "
+                data-type-xml="date" required="required" type="date" />
+        </label>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Reporting place?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_place"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_place"
+                            data-type-xml="select1" type="radio" value="sub_center" />
+                        <span class="option-label active" lang="">My Sub Center</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_place"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_place"
+                            data-type-xml="select1" type="radio" value="phc" />
+                        <span class="option-label active" lang="">My PHC</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_place"
+                            autocomplete="off"
+                            data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_place"
+                            data-type-xml="select1" type="radio" value="elsewhere" />
+                        <span class="option-label active" lang="">Elsewhere
+                        </span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">How many ORS packets did you give?
+            </span>
+            <input name="/Child_Sick_Visit_EngKan/report_child_disease_group/number_ors_given"
+                autocomplete="off" data-constraint=".&gt;=0"
+                data-relevant=" /Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease  = 'diarrhea_dehydration'"
+                data-type-xml="int" type="number" />
+        </label>
+        <!--<fieldset class="question ">-->
+        <!--<fieldset>-->
+        <!--<legend>-->
+        <!--<span class="question-label active" lang="">Do you want to refer child?-->
+        <!--</span>-->
+        <!--</legend>-->
+        <!--<div class="option-wrapper">-->
+        <!--<label class="">-->
+        <!--<input-->
+        <!--name="/Child_Sick_Visit_EngKan/report_child_disease_group/child_referral"-->
+        <!--autocomplete="off"-->
+        <!--data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/child_referral"-->
+        <!--data-type-xml="select1" type="radio" value="yes" />-->
+        <!--<span class="option-label active" lang="">Yes</span>-->
+        <!--</label>-->
+        <!--<label class="">-->
+        <!--<input-->
+        <!--name="/Child_Sick_Visit_EngKan/report_child_disease_group/child_referral"-->
+        <!--autocomplete="off"-->
+        <!--data-name="/Child_Sick_Visit_EngKan/report_child_disease_group/child_referral"-->
+        <!--data-type-xml="select1" type="radio" value="no" />-->
+        <!--<span class="option-label active" lang="">No</span>-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--</fieldset>-->
+        <!--</fieldset>-->
+
+
+    </section>
+    <!--end of group -->
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Do you want to Consult Doctor?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Child_Sick_Visit_EngKan/is_consult_doctor"
+                        data-name="/Child_Sick_Visit_EngKan/is_consult_doctor"
+                        data-type-xml="select1" required="required" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Child_Sick_Visit_EngKan/is_consult_doctor"
+                        data-name="/Child_Sick_Visit_EngKan/is_consult_doctor"
+                        data-type-xml="select1" required="required" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+
+    </fieldset>
+
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Reason ?
+        </span>
+        <span class="required">*</span>
+        <input name="/Child_Sick_Visit_EngKan/is_consult_doctor_no_reason" autocomplete="off"
+            data-relevant=" /Child_Sick_Visit_EngKan/reason_for_no  = 'no'" data-type-xml="string"
+            required="required" type="text" />
+    </label>
+
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/today" autocomplete="off" data-preload="date"
+                data-preload-params="today" data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+
+
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/reason_for_no" autocomplete="off"
+                data-calculate=" /Child_Sick_Visit_EngKan/is_consult_doctor" data-type-xml="string"
+                type="hidden" />
+        </label>
+
+
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_age"
+                autocomplete="off"
+                data-calculate="int(( /Child_Sick_Visit_EngKan/child_sickness_management_group/sick_visit_date  -  /Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date ) div 30.42)"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/fast_breathing"
+                autocomplete="off"
+                data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_age  &lt; 12 and  /Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/breaths_per_minute  &gt;= 50, 'yes', if( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_age  &gt;=12 and  /Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/breaths_per_minute  &gt;= 40, 'yes', ''))"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_cough"
+                autocomplete="off"
+                data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/days_of_cough  &gt;= 21, 'Cough_for_21_days_or_more', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea"
+                autocomplete="off"
+                data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/days_of_diarrhea  &gt;= 14, 'Diarrhea_for_14_days_or_more', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_blood_in_stool"
+                autocomplete="off"
+                data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/blood_in_stool  = 'yes', 'Blood_in_stool', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever"
+                autocomplete="off"
+                data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group/days_of_fever  &gt;= 7, 'Fever_for_7_days_or_more', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_convulsions"
+                autocomplete="off"
+                data-calculate="if(selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'convulsions'), 'Convulsions', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_not_able_drink_feed"
+                autocomplete="off"
+                data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/drink_feed_nothing  = 'yes', 'Not_able_to_drink_or_feed_anything', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_vomiting_everything"
+                autocomplete="off"
+                data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/vomiting_everything  = 'yes', 'Vomiting_everything', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing"
+                autocomplete="off"
+                data-calculate="if(selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'chest_indrawing'), 'Chest_indrawing', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/temperature" data-calculate="0"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_sleepy_unconscious"
+                autocomplete="off"
+                data-calculate="if(selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'sleepy_unconscious'), 'Unusually_sleepy_or_unconscious', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_swelling_feet"
+                autocomplete="off"
+                data-calculate="if(selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'swelling_both_feet'), 'Swelling_of_both_feet', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral"
+                autocomplete="off"
+                data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_cough  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_blood_in_stool  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_convulsions  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_not_able_drink_feed  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_vomiting_everything  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_sleepy_unconscious  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_swelling_feet  != '', 'yes', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input
+                name="/Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral_reason"
+                autocomplete="off"
+                data-calculate="concat( /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_cough , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_blood_in_stool , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_convulsions , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_not_able_drink_feed , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_vomiting_everything , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_sleepy_unconscious , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_swelling_feet )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/anm_poc" data-calculate="" data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Child_Sick_Visit_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'407004fdbaf34751b2983f0d63b2f2a6'" data-type-xml="string"
+                type="hidden" />
+        </label>
+    </fieldset>
+</form>

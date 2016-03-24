@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--android:orientation="horizontal" >-->
+
+<!--&lt;!&ndash;<ListView&ndash;&gt;--><!--&lt;!&ndash;android:id="@+id/lt_records"&ndash;&gt;--><!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;--><!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;--><!--&lt;!&ndash;android:layout_weight="1" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;<View&ndash;&gt;--><!--&lt;!&ndash;android:layout_width="1dp"&ndash;&gt;--><!--&lt;!&ndash;android:layout_height="fill_parent"&ndash;&gt;--><!--&lt;!&ndash;android:background="@android:color/darker_gray" />&ndash;&gt;-->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_viewer"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" /><!--</LinearLayout>-->

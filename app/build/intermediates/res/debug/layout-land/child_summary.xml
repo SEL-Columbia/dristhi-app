@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/boarder">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+
+        <LinearLayout
+            android:id="@+id/child_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                android:id="@+id/child_summary_priority"
+                style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="left"
+                android:text="High Risk"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/child_summary_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/child_summary"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+
+            <LinearLayout
+                android:id="@+id/age_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/child_age"
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:gravity="left"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/child_age_title"
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pregnency_time"
+                    android:layout_margin="3dp"
+                    android:gravity="left"
+                    android:text="Age"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dob_summary"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/age_summary"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/child_date_of_birth"
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:gravity="center"
+                    android:text="04-05-2016"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/child_date_of_birth_title"
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edd_summary_date"
+                    android:layout_margin="3dp"
+                    android:gravity="center"
+                    android:text="Date of Birth"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView><!-- From: file:/D:/Android/dhanush/dristhi-app/app/src/main/res/layout-land/child_summary.xml -->

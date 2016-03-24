@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\gradle-2.9\bin\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.1\860340562250678d1a344907ac75754e259cdb14\hamcrest-core-1.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="860340562250678d1a344907ac75754e259cdb14">
+        <dex dex="D:\Android\dhanush\dristhi-app\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-core-1.1-9b29214b5a43afe9423fcfe9690621c170d04946.jar" />
+    </item>
+    <item
+        jar="D:\gradle-2.9\bin\caches\modules-2\files-2.1\org.hamcrest\hamcrest-library\1.1\b988c01468e3398d46678a2eb48aeb5bde271e9f\hamcrest-library-1.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="b988c01468e3398d46678a2eb48aeb5bde271e9f">
+        <dex dex="D:\Android\dhanush\dristhi-app\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-library-1.1-e2a3f5675a786d9590a85a4fd82e77dd7131a2c6.jar" />
+    </item>
+
+</items>

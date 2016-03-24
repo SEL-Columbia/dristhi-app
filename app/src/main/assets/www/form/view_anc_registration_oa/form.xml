@@ -1,0 +1,162 @@
+<form autocomplete="off" class="or clearfix" id="ANC_Registration_OA_EngKan"
+    novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">View ANC Registration - Out of Area</h3>
+    <select style="display:none;" data-default-lang="" id="form-languages">
+        <option value="">default</option>
+    </select>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Registration date:</span>
+        <input name="/ANC_Registration_OA_EngKan/out_of_area_reg_date" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Anc Number:</span>
+        <input name="/ANC_Registration_OA_EngKan/anc_number" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Household address:</span>
+        <input name="/ANC_Registration_OA_EngKan/hh_address" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman Name:</span>
+        <input name="/ANC_Registration_OA_EngKan/woman_name" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman ID :</span>
+        <input name="/ANC_Registration_OA_EngKan/woman_id_type" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">ID Number:</span>
+        <input name="/ANC_Registration_OA_EngKan/aadhaar_number" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman Date of Birth:</span>
+        <input name="/ANC_Registration_OA_EngKan/wife_dob" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Husband Name:</span>
+        <input name="/ANC_Registration_OA_EngKan/husband_name" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Husband Age:</span>
+        <input name="/ANC_Registration_OA_EngKan/husband_age" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Phone No:</span>
+        <input name="/ANC_Registration_OA_EngKan/phone_no" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Phone Owner:</span>
+        <input name="/ANC_Registration_OA_EngKan/phone_owner" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Another Phone No:</span>
+        <input name="/ANC_Registration_OA_EngKan/phone_no2" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Another Phone Owner:</span>
+        <input name="/ANC_Registration_OA_EngKan/phone_owner2" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of previous pregnancies:</span>
+        <input name="/ANC_Registration_OA_EngKan/num_pregnancies1" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of abortions/Miscarriages:</span>
+        <input name="/ANC_Registration_OA_EngKan/num_abortions" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of live births:</span>
+        <input name="/ANC_Registration_OA_EngKan/num_livebirths" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of still births:</span>
+        <input name="/ANC_Registration_OA_EngKan/num_stillbirths1" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Number of living children:</span>
+        <input name="/ANC_Registration_OA_EngKan/num_livingchildren" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Complications in any previous pregnancy:</span>
+        <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/complication "></span>
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Other problem in previous pregnancy:</span>
+        <input name="/ANC_Registration_OA_EngKan/other_complication" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman medical conditions:</span>
+        <input name="/ANC_Registration_OA_EngKan/medical_histories" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman's blood group:</span>
+        <input name="/ANC_Registration_OA_EngKan/w_blood_group" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Height (in cms):</span>
+        <input name="/ANC_Registration_OA_EngKan/height" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Weight at start of pregnancy (in kgs):</span>
+        <input name="/ANC_Registration_OA_EngKan/weight_startofpregnancy" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">EDD:</span>
+        <input name="/ANC_Registration_OA_EngKan/edd" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+
+
+    <fieldset style="display:none;" id="or-calculated-items">
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_OA_EngKan/edd_formatted"
+                data-calculate="format-date( /ANC_Registration_OA_EngKan/edd , '%Y-%n-%e')"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+    </fieldset>
+</form>

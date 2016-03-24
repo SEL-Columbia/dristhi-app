@@ -1,0 +1,59 @@
+<model>
+    <instance>
+        <ANC_Registration_EngKan id="ANC_Registration_EngKan">
+            <formhub>
+                <uuid />
+            </formhub>
+            <edit_password />
+            <anc_edit_group>
+                <pwd />
+                <today />
+                <ec_num />
+                <village />
+                <case_woman_name />
+                <woman_name />
+                <husband_name />
+                <case_num_pregnancies />
+                <num_pregnancies />
+                <reg_date />
+                <reg_place />
+                <thayi_no />
+
+                <anc_number />
+                <anc_number1 />
+
+                <lmp_date />
+                <is_lmp_known />
+                <lmp_in_date />
+                <lmp_in_week />
+
+                <edd />
+                <edd_formatted />
+                <edd_note />
+                <linked_facility_delivery />
+                <name_facility />
+                <complication />
+                <medical_histories />
+                <w_blood_group />
+                <height />
+                <weight_startofpregnancy />
+                <case_would_be_high_risk />
+                <case_would_be_high_risk_reason />
+                <weight_risk />
+                <risk_value />
+                <height_risk />
+                <is_high_risk_till_delivery />
+                <is_high_risk_till_delivery_reason />
+                <is_high_risk_till_pnc_close />
+                <is_high_risk_till_pnc_close_reason />
+                <is_high_risk1 />
+                <high_risk_reason />
+                <high_risk_note />
+                <is_high_risk />
+            </anc_edit_group>
+            <meta>
+                <instanceID />
+            </meta>
+        </ANC_Registration_EngKan>
+    </instance>
+</model>

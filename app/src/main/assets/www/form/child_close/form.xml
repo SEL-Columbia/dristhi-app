@@ -1,0 +1,240 @@
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="Child_Close_EngKan">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Child Close</h3>
+
+    <label class="question non-select ">
+        <input name="/Child_Close_EngKan/village" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="hidden" />
+    </label>
+
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span lang="" class="question-label active">Reason for closing?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/Child_Close_EngKan/close_reason"
+                           data-name="/Child_Close_EngKan/close_reason" value="child_over5" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Child &gt; 5 years of age </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/Child_Close_EngKan/close_reason"
+                           data-name="/Child_Close_EngKan/close_reason" value="permanent_relocation" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Relocation (permanent)
+                    </span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/Child_Close_EngKan/close_reason"
+                           data-name="/Child_Close_EngKan/close_reason" value="death_of_child" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Child died </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <section class="or-group-data or-branch pre-init " name="/Child_Close_EngKan/death_child_group"
+             data-relevant=" /Child_Close_EngKan/close_reason  = 'death_of_child'">
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span lang="" class="question-label active">Was death due to child immunization?
+                    </span>
+                    <span class="required">*</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_immunization"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_immunization" value="yes"
+                               required="required" data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Yes </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_immunization"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_immunization" value="no"
+                               required="required" data-type-xml="select1"/>
+                        <span lang="" class="option-label active">No </span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="question or-branch pre-init ">
+            <fieldset>
+                <legend>
+                    <span lang="" class="question-label active">Cause of child's death?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="within_24hrs"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Within 24 hrs of birth </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="sepsis"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Sepsis </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="asphyxia"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Asphyxia </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="lbw"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Low birth weight (&lt; 2.5 kg)
+                        </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="pneumonia"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Pneumonia </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="diarrhea"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Diarrhea
+                            </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="fever_related"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Fever - related </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="measles"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Measles </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="malnutrition"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Malnutrition </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="ari"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Acute Respiratory Infection (ARI)
+                        </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="malaria"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Malaria </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               value="cause_not_identified"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Cause not identified </span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/Child_Close_EngKan/death_child_group/child_death_cause"
+                               data-name="/Child_Close_EngKan/death_child_group/child_death_cause" value="others"
+                               data-relevant=" /Child_Close_EngKan/death_child_group/child_death_immunization  = 'no'"
+                               data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Others </span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="question or-branch pre-init non-select ">
+            <span lang="" class="question-label active">Others </span>
+            <input autocomplete="off" type="text" name="/Child_Close_EngKan/death_child_group/child_death_cause_other"
+                   data-relevant=" /Child_Close_EngKan/death_child_group/child_death_cause  = 'others'"
+                   data-type-xml="string"/>
+        </label>
+        <label class="question non-select ">
+            <span lang="" class="question-label active">Date of child's death?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date" name="/Child_Close_EngKan/death_child_group/child_death_date"
+                   required="required" data-constraint=".&lt;= /Child_Close_EngKan/today " data-type-xml="date"/>
+        </label>
+    </section>
+    <!--end of group -->
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span lang="" class="question-label active">Confirm child close?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/Child_Close_EngKan/confirm_child_close"
+                           data-name="/Child_Close_EngKan/confirm_child_close" value="yes" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Yes </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Child_Close_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
+    <fieldset id="or-calculated-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Child_Close_EngKan/death_child_group/num_livingchildren"
+                   data-calculate=" /Child_Close_EngKan/death_child_group/case_num_livingchildren  - 1"
+                   data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Child_Close_EngKan/meta/instanceID"
+                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Child_Close_EngKan/formhub/uuid"
+                   data-calculate="'563ba030f0484cc3b34ce2fe52334c67'" data-type-xml="string"/>
+        </label>
+    </fieldset>
+</form>

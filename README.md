@@ -1,17 +1,18 @@
-![Dristhi](dristhi-app/res/drawable-xhdpi/icon.png)
+# dristhi-app
 
-To run this project, you need to do this:
-========================================
+<a href="https://travis-ci.org/DhanushInfotech/dristhi-app"> 
+<img src="https://travis-ci.org/DhanushInfotech/dristhi-app.svg?branch=doctor-diagnosis" >  </img> </a>
 
-1. Set the ANDROID\_HOME environment variable to point to the location of your installed Android SDK 4.1.2 API level 16. For more information, look at [the documentation of maven-android-plugin](http://code.google.com/p/maven-android-plugin/wiki/GettingStarted).
+Android app for rural nurse midwives (Dristhi project).
 
-2. Start an Android Virtual Device. Normally, this means you need to run "android avd" and then start one of the devices there.
+To run test classes
 
-Then, you can run "mvn clean install" in the main directory.
-
-Tips and tricks (to be completed):
-=================================
-
-* How to setup your Android SDK so that Maven finds it: http://pivotal.github.com/robolectric/maven-quick-start.html
-
-* Adding an external Android library (apklib) as a submodule, and making it work with both Maven and IntelliJ. Write about "mvn clean" trick.
+1. Open AndroidStudio
+2. Goto RUN menu 
+3. Select "Edit Configurations"
+4. Add new configuration (Android Tests)
+5. Name it and apply changes
+6. Goto Run configuration
+7. Select with the name created
+8. Select the device from "Device Chooser"
+9. Look for the result in run console

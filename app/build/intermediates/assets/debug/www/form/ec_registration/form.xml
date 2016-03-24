@@ -1,0 +1,1053 @@
+<form autocomplete="off" class="or clearfix" id="EC_Registration_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">EC Registration</h3>
+    <select style="display:none;" data-default-lang="default" id="form-languages">
+        <option value="default">default</option>
+    </select>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">PHC
+        </span>
+        <input name="/EC_Registration_EngKan/phc" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Sub Center
+        </span>
+        <input name="/EC_Registration_EngKan/sub_center" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Village
+        </span>
+        <input name="/EC_Registration_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Household number</span>
+        <input name="/EC_Registration_EngKan/hh_number" autocomplete="off" data-type-xml="int"
+            type="number" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Household address</span>
+        <input name="/EC_Registration_EngKan/hh_address" autocomplete="off" data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Head of household name
+        </span>
+        <input name="/EC_Registration_EngKan/hh_head" autocomplete="off" data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">EC number
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/ec_number" autocomplete="off"
+            data-calculate="/EC_Registration_EngKan/reg_no" data-constraint=".&gt;0"
+            data-type-xml="string" disabled="disabled" required="required" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman's name
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/woman_name" autocomplete="off" data-type-xml="string"
+            required="required" type="text" />
+    </label>
+
+
+    <label class="question or-appearance-minimal ">
+        <span class="question-label active" lang="">Woman's ID Type?</span>
+        <select name="/EC_Registration_EngKan/woman_id_type"
+            data-name="/EC_Registration_EngKan/woman_id_type" data-type-xml="select1">
+            <option value="">...</option>
+            <option value="national_id">National ID</option>
+            <option value="passport">Passport</option>
+            <option value="others">Others</option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">ID Number
+        </span>
+        <input name="/EC_Registration_EngKan/id_number" autocomplete="off" data-type-xml="text"
+            type="text" />
+
+    </label>
+    <fieldset class="question">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">DOB is known?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/is_dob_known"
+                        data-name="/EC_Registration_EngKan/is_dob_known" data-type-xml="select1"
+                        required="required" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/is_dob_known"
+                        data-name="/EC_Registration_EngKan/is_dob_known" data-type-xml="select1"
+                        required="required" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <label class="question or-branch pre-init non-select">
+        <span class="question-label active" lang="">Woman age in years
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/wife_age1" autocomplete="off"
+            data-constraint=".&lt;=(/EC_Registration_EngKan/wife_max_age) and .&gt;=(/EC_Registration_EngKan/wife_min_age)"
+            data-relevant=" /EC_Registration_EngKan/is_dob_known  = 'no'" data-type-xml="int"
+            required="required" type="number" />
+    </label>
+
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Date of Birth?
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/wife_dob" autocomplete="off"
+            data-constraint=".&lt;= ( /EC_Registration_EngKan/today  - /EC_Registration_EngKan/wife_min_age * 365) and .&gt;= ( /EC_Registration_EngKan/today  - /EC_Registration_EngKan/wife_max_age* 365)"
+            data-relevant="/EC_Registration_EngKan/is_dob_known  = 'yes'" data-type-xml="date"
+            required="required" type="date" />
+    </label>
+
+    <label class="note or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Woman's age is
+            <span class="or-output" data-value=" /EC_Registration_EngKan/woman_age ">Years</span>
+        </span>
+        <input name="/EC_Registration_EngKan/wife_age_note" autocomplete="off"
+            data-relevant=" /EC_Registration_EngKan/wife_dob  &gt; 0 " data-type-xml="string"
+            readonly="readonly" type="text" />
+    </label>
+
+    <!--<label class="question non-select ">-->
+    <!--<span class="question-label active" lang="">Date of Birth?</span>-->
+    <!--<span class="required">*</span>-->
+    <!--<input name="/EC_Registration_EngKan/dob" data-type-xml="date" required="required"-->
+    <!--type="date" />-->
+    <!--</label>-->
+
+    <!--<label class="question non-select ">-->
+    <!--<span class="question-label active" lang="">Woman's age-->
+    <!--</span>-->
+    <!--<span class="required">*</span>-->
+    <!--<input name="/EC_Registration_EngKan/woman_age" autocomplete="off"-->
+    <!--data-constraint=". &gt;= 15 and . &lt; 50" data-type-xml="int"-->
+    <!--data-value=" /EC_Registration_EngKan/woman_age " required="required" type="number" />-->
+    <!--</label>-->
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Husband's name
+        </span>
+        <input name="/EC_Registration_EngKan/husband_name" autocomplete="off" data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Husband's age
+        </span>
+        <input name="/EC_Registration_EngKan/husband_age" autocomplete="off"
+            data-constraint=".&gt;=/EC_Registration_EngKan/husband_min_age and .&lt;=/EC_Registration_EngKan/husband_max_age"
+            data-type-xml="int" type="number" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Contact phone number
+        </span>
+        <span class="or-hint active" lang="">Without country code.
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/phone_no" autocomplete="off"
+            data-constraint=".&gt; 99999999 and .&lt; 10000000000000" data-type-xml="int"
+            required="required" type="number" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Who owns this phone?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/phone_owner" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/phone_owner"
+                        data-relevant=" /EC_Registration_EngKan/phone_no  != ''"
+                        data-type-xml="select1" type="radio" value="wife" />
+                    <span class="option-label active" lang="">Wife</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/phone_owner" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/phone_owner"
+                        data-relevant=" /EC_Registration_EngKan/phone_no  != ''"
+                        data-type-xml="select1" type="radio" value="husband" />
+                    <span class="option-label active" lang="">Husband</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/phone_owner" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/phone_owner"
+                        data-relevant=" /EC_Registration_EngKan/phone_no  != ''"
+                        data-type-xml="select1" type="radio" value="relative" />
+                    <span class="option-label active" lang="">Relative</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/phone_owner" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/phone_owner"
+                        data-relevant=" /EC_Registration_EngKan/phone_no  != ''"
+                        data-type-xml="select1" type="radio" value="neighbor" />
+                    <span class="option-label active" lang="">Neighbor</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/phone_owner" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/phone_owner"
+                        data-relevant=" /EC_Registration_EngKan/phone_no  != ''"
+                        data-type-xml="select1" type="radio" value="others" />
+                    <span class="option-label active" lang="">Others
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Alternative phone number
+        </span>
+        <input name="/EC_Registration_EngKan/phone_no2" autocomplete="off"
+            data-constraint=".&gt; 99999999 and .&lt; 10000000000000"
+            data-relevant=" /EC_Registration_EngKan/phone_no  != ''" data-type-xml="int"
+            type="number" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Religion
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/religion" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/religion" data-type-xml="select1"
+                        type="radio" value="hindu" />
+                    <span class="option-label active" lang="">Hindu</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/religion" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/religion" data-type-xml="select1"
+                        type="radio" value="muslim" />
+                    <span class="option-label active" lang="">Muslim
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/religion" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/religion" data-type-xml="select1"
+                        type="radio" value="christian" />
+                    <span class="option-label active" lang="">Christian</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/religion" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/religion" data-type-xml="select1"
+                        type="radio" value="r_others" />
+                    <span class="option-label active" lang="">Others
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-appearance-minimal ">
+        <span class="question-label active" lang="">Woman's education level?
+        </span>
+        <select name="/EC_Registration_EngKan/woman_education_level"
+            data-name="/EC_Registration_EngKan/woman_education_level" data-type-xml="select1">
+            <option value="">...</option>
+            <option value="illiterate">Illiterate</option>
+            <option value="literate">Literate</option>
+            <option value="primary">Primary School</option>
+            <option value="middle">Middle School</option>
+            <option value="high">High School</option>
+            <option value="puc">PUC</option>
+            <option value="graduate">Graduate and above</option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <label class="question or-appearance-minimal ">
+        <span class="question-label active" lang="">Husband's education level?
+        </span>
+        <select name="/EC_Registration_EngKan/husband_education_level"
+            data-name="/EC_Registration_EngKan/husband_education_level" data-type-xml="select1">
+            <option value="">...</option>
+            <option value="illiterate">Illiterate</option>
+            <option value="literate">Literate</option>
+            <option value="primary">Primary School</option>
+            <option value="middle">Middle School</option>
+            <option value="high">High School</option>
+            <option value="puc">PUC</option>
+            <option value="graduate">Graduate and above</option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <label class="question or-appearance-minimal ">
+        <span class="question-label active" lang="">Number of times woman has been pregnant?
+        </span>
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_pregnancies"
+            data-name="/EC_Registration_EngKan/num_pregnancies" data-type-xml="select1"
+            required="required">
+            <option value="">...</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="999">More than 8
+            </option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" lang="">Number of abortions/Miscarriages?
+        </span>
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_abortions1"
+            data-constraint=".&lt;=  /EC_Registration_EngKan/num_pregnancies "
+            data-name="/EC_Registration_EngKan/num_abortions1"
+            data-relevant=" /EC_Registration_EngKan/num_pregnancies  &gt; 0" data-type-xml="select1"
+            required="required">
+            <option value="">...</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="999">More than 8
+            </option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" lang="">Number of spontaneous abortions?
+        </span>
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_abortions_spontaneous1"
+            data-constraint=".&lt;=  /EC_Registration_EngKan/num_abortions "
+            data-name="/EC_Registration_EngKan/num_abortions_spontaneous1"
+            data-relevant=" /EC_Registration_EngKan/num_abortions  &gt; 0" data-type-xml="select1"
+            required="required">
+            <option value="">...</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="999">More than 8
+            </option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" lang="">Number of live births?
+        </span>
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_livebirths1"
+            data-constraint=".&lt;=( /EC_Registration_EngKan/num_pregnancies  -  /EC_Registration_EngKan/num_abortions )"
+            data-name="/EC_Registration_EngKan/num_livebirths1"
+            data-relevant="( /EC_Registration_EngKan/num_pregnancies  -  /EC_Registration_EngKan/num_abortions ) &gt; 0"
+            data-type-xml="select1" required="required">
+            <option value="">...</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="999">More than 8
+            </option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" lang="">Number of still births?
+        </span>
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_stillbirths1"
+            data-constraint=".&lt;=( /EC_Registration_EngKan/num_pregnancies  -  /EC_Registration_EngKan/num_livebirths  -  /EC_Registration_EngKan/num_abortions )"
+            data-name="/EC_Registration_EngKan/num_stillbirths1"
+            data-relevant="( /EC_Registration_EngKan/num_pregnancies  -  /EC_Registration_EngKan/num_livebirths  -  /EC_Registration_EngKan/num_abortions ) &gt; 0"
+            data-type-xml="select1" required="required">
+            <option value="">...</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="999">More than 8
+            </option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" lang="">Number of living children?
+        </span>
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_livingchildren1"
+            data-name="/EC_Registration_EngKan/num_livingchildren1"
+            data-relevant=" /EC_Registration_EngKan/num_livebirths  &gt; 0" data-type-xml="select1"
+            required="required">
+            <option value="">...</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="999">More than 8
+            </option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" lang="">Number of male living children?
+        </span>
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_livingchildren_male"
+            data-constraint=".&lt;= /EC_Registration_EngKan/num_livingchildren "
+            data-name="/EC_Registration_EngKan/num_livingchildren_male"
+            data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0"
+            data-type-xml="select1" required="required">
+            <option value="">...</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="999">More than 8
+            </option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Youngest child DOB
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/youngestchild_date_of_birth" autocomplete="off"
+            data-constraint=".&lt;= /EC_Registration_EngKan/today  and .&gt;= ( /EC_Registration_EngKan/today  - 6570)"
+            data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="date"
+            required="required" type="date" />
+    </label>
+
+    <label class="note or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Age of the youngest child
+            <span class="or-output" data-value=" /EC_Registration_EngKan/youngestchild_age "></span>
+            months
+        </span>
+        <input name="/EC_Registration_EngKan/youngestchild_age_note" autocomplete="off"
+            data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0"
+            data-type-xml="string" readonly="readonly" type="text" />
+    </label>
+
+
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Which FP method is the couple using?
+
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_1"
+                        data-type-xml="select1" required="required" type="radio" value="condom" />
+                    <span class="option-label active" lang="">Condom</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_1"
+                        data-type-xml="select1" required="required" type="radio" value="ocp" />
+                    <span class="option-label active" lang="">OCP</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_1"
+                        data-type-xml="select1" required="required" type="radio" value="iud" />
+                    <span class="option-label active" lang="">IUCD
+
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_1"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="female_sterilization" />
+                    <span class="option-label active" lang="">Female Sterilization</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_1"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="male_sterilization" />
+                    <span class="option-label active" lang="">Male Sterilization</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_1"
+                        data-type-xml="select1" required="required" type="radio" value="others" />
+                    <span class="option-label active" lang="">Others
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_1"
+                        data-type-xml="select1" required="required" type="radio" value="none" />
+                    <span class="option-label active" lang="">None</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_1"
+                        data-type-xml="select1" required="required" type="radio" value="none_ps" />
+                    <span class="option-label active" lang="">None - PS</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_1" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_1"
+                        data-type-xml="select1" required="required" type="radio" value="none_ss" />
+                    <span class="option-label active" lang="">None - SS</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Which other method is the couple using?
+
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_other"
+                        autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_other"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="traditional_methods" />
+                    <span class="option-label active" lang="">Traditional methods</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_other"
+                        autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_other"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="dmpa_injectable" />
+                    <span class="option-label active" lang="">DMPA / Injectable</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/familyplanning_method_other"
+                        autocomplete="off"
+                        data-name="/EC_Registration_EngKan/familyplanning_method_other"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
+                        data-type-xml="select1" required="required" type="radio"
+                        value="centchroman" />
+                    <span class="option-label active" lang="">Centchroman</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Date on which FP method accepted?
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/date_familyplanningstart" autocomplete="off"
+            data-constraint=".&lt;= /EC_Registration_EngKan/today "
+            data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"
+            data-type-xml="date" required="required" type="date" />
+    </label>
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">LMP-->
+    <!--</span>-->
+    <!--<input name="/EC_Registration_EngKan/lmp_date" autocomplete="off"-->
+    <!--data-constraint=".&lt;= /EC_Registration_EngKan/today "-->
+    <!--data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"-->
+    <!--data-type-xml="date" type="date" />-->
+    <!--</label>-->
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">UPT result?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/upt_result" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/upt_result"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"
+                        data-type-xml="select1" type="radio" value="positive" />
+                    <span class="option-label active" lang="">Positive</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/upt_result" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/upt_result"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"
+                        data-type-xml="select1" type="radio" value="negative" />
+                    <span class="option-label active" lang="">Negative</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Place where IUCD was given?</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/iud_place" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/iud_place"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="sub_center" />
+                    <span class="option-label active" lang="">My Sub Center</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/iud_place" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/iud_place"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="phc" />
+                    <span class="option-label active" lang="">My PHC</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/iud_place" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/iud_place"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="elsewhere" />
+                    <span class="option-label active" lang="">Elsewhere
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Who inserted IUCD?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/iud_person" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/iud_person"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="anm" />
+                    <span class="option-label active" lang="">ANM
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/iud_person" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/iud_person"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="sn" />
+                    <span class="option-label active" lang="">SN</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/iud_person" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/iud_person"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="lhv" />
+                    <span class="option-label active" lang="">LHV</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/iud_person" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/iud_person"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="mo" />
+                    <span class="option-label active" lang="">MO</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/iud_person" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/iud_person"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
+                        data-type-xml="select1" type="radio" value="others" />
+                    <span class="option-label active" lang="">Others
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Type of sterilization?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/male_sterilization_type" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/male_sterilization_type"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'male_sterilization'"
+                        data-type-xml="select1" type="radio" value="nsv" />
+                    <span class="option-label active" lang="">No-Scalpel Vasectomy (NSV)</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/male_sterilization_type" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/male_sterilization_type"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'male_sterilization'"
+                        data-type-xml="select1" type="radio" value="conventional_vasectomy" />
+                    <span class="option-label active" lang="">Conventional Vasectomy</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Type of sterilization?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/female_sterilization_type"
+                        autocomplete="off"
+                        data-name="/EC_Registration_EngKan/female_sterilization_type"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'female_sterilization'"
+                        data-type-xml="select1" type="radio" value="minilap" />
+                    <span class="option-label active" lang="">Minilap</span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/female_sterilization_type"
+                        autocomplete="off"
+                        data-name="/EC_Registration_EngKan/female_sterilization_type"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'female_sterilization'"
+                        data-type-xml="select1" type="radio" value="laparoscopic" />
+                    <span class="option-label active" lang="">Laparoscopic</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Last DMPA injection date?
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/injectable_date" autocomplete="off"
+            data-constraint=".&lt;= /EC_Registration_EngKan/today "
+            data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'dmpa_injectable'"
+            data-type-xml="date" required="required" type="date" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Number of condoms given?
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/num_condoms" autocomplete="off"
+            data-constraint=".&gt;= 0"
+            data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'condom'"
+            data-type-xml="int" required="required" type="number" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Number of OCP strips given?
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/num_ocp_strips" autocomplete="off"
+            data-constraint=".&gt;= 0"
+            data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'ocp'"
+            data-type-xml="int" required="required" type="number" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Number of Centchroman strips given?
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/num_centchroman_pills" autocomplete="off"
+            data-constraint=".&gt;= 0"
+            data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'centchroman'"
+            data-type-xml="int" required="required" type="number" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Date the couple will start new supply?
+        </span>
+        <span class="required">*</span>
+        <input name="/EC_Registration_EngKan/refill_date1" autocomplete="off"
+            data-relevant=" /EC_Registration_EngKan/num_ocp_strips  &gt; 0" data-type-xml="date"
+            required="required" type="date" />
+    </label>
+    <label class="note or-branch pre-init non-select ">
+        <span class="question-label active" lang="">
+            <span class="or-output" data-value=" /EC_Registration_EngKan/woman_name2 "></span>should
+            be prioritized for family planning because of,
+            <span class="or-output" data-value=" /EC_Registration_EngKan/woman_name2 "></span>
+
+            <span class="or-output"
+                data-value=" /EC_Registration_EngKan/high_priority_reason "></span>
+        </span>
+        <input name="/EC_Registration_EngKan/high_priority_message" autocomplete="off"
+            data-relevant=" /EC_Registration_EngKan/is_high_priority1  = 'yes'"
+            data-type-xml="string" readonly="readonly" type="text" />
+    </label>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Do you want to mark as HP (High
+                    Priority)?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/EC_Registration_EngKan/is_high_priority" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/is_high_priority"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'male_sterilization' and  /EC_Registration_EngKan/familyplanning_method  != 'female_sterilization'"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/EC_Registration_EngKan/is_high_priority" autocomplete="off"
+                        data-name="/EC_Registration_EngKan/is_high_priority"
+                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'male_sterilization' and  /EC_Registration_EngKan/familyplanning_method  != 'female_sterilization'"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <section name="/EC_Registration_EngKan/field1_group" class="or-group-data or-branch pre-init "
+        data-relevant=" /EC_Registration_EngKan/field1  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/EC_Registration_EngKan/field1" />
+            <input name="/EC_Registration_EngKan/field1_group/field1_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/EC_Registration_EngKan/field2_group" class="or-group-data or-branch pre-init "
+        data-relevant=" /EC_Registration_EngKan/field2  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/EC_Registration_EngKan/field2" />
+            <input name="/EC_Registration_EngKan/field2_group/field2_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/EC_Registration_EngKan/field3_group" class="or-group-data or-branch pre-init "
+        data-relevant=" /EC_Registration_EngKan/field3  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/EC_Registration_EngKan/field3" />
+            <input name="/EC_Registration_EngKan/field3_group/field3_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/EC_Registration_EngKan/field4_group" class="or-group-data or-branch pre-init "
+        data-relevant=" /EC_Registration_EngKan/field4  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/EC_Registration_EngKan/field4" />
+            <input name="/EC_Registration_EngKan/field4_group/field4_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+
+    <section name="/EC_Registration_EngKan/field5_group" class="or-group-data or-branch pre-init "
+        data-relevant=" /EC_Registration_EngKan/field5  != ''">
+        <label class="question non-select ">
+            <span class="or-output" data-value="/EC_Registration_EngKan/field5" />
+            <input name="/EC_Registration_EngKan/field5_group/field5_val" autocomplete="off"
+                data-type-xml="string" type="text" />
+        </label>
+    </section>
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/today" autocomplete="off" data-preload="date"
+                data-preload-params="today" data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/phone_num" autocomplete="off"
+                data-calculate="concat( /EC_Registration_EngKan/country_code, /EC_Registration_EngKan/phone_no)"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/phone_num2" autocomplete="off"
+                data-calculate="concat( /EC_Registration_EngKan/country_code, /EC_Registration_EngKan/phone_no2)"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/reg_date" autocomplete="off"
+                data-calculate=" /EC_Registration_EngKan/today " data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/woman_name2" autocomplete="off"
+                data-calculate="concat( /EC_Registration_EngKan/woman_name , ' ')"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/husband_date_of_birth" autocomplete="off"
+                data-calculate="format-date(date( /EC_Registration_EngKan/today -( /EC_Registration_EngKan/husband_age *365.25)), '%Y-%n-%e')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/num_abortions" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/num_abortions1  = '', 0,  /EC_Registration_EngKan/num_abortions1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/num_abortions_spontaneous" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/num_abortions_spontaneous1  = '', 0,  /EC_Registration_EngKan/num_abortions_spontaneous1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/num_abortions_induced" autocomplete="off"
+                data-calculate=" /EC_Registration_EngKan/num_abortions  -  /EC_Registration_EngKan/num_abortions_spontaneous "
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/num_livebirths" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/num_livebirths1  = '', 0,  /EC_Registration_EngKan/num_livebirths1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/num_stillbirths" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/num_stillbirths1  = '', 0,  /EC_Registration_EngKan/num_stillbirths1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/parity" autocomplete="off"
+                data-calculate=" /EC_Registration_EngKan/num_livebirths  +  /EC_Registration_EngKan/num_stillbirths "
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/num_livingchildren" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/num_livingchildren1  = '', 0,  /EC_Registration_EngKan/num_livingchildren1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/num_livingchildren_female" autocomplete="off"
+                data-calculate=" /EC_Registration_EngKan/num_livingchildren  -  /EC_Registration_EngKan/num_livingchildren_male "
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/woman_age" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/wife_dob  = '', '', int(( /EC_Registration_EngKan/today  -  /EC_Registration_EngKan/wife_dob) div 365))"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/woman_date_of_birth" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/wife_dob  = '', format-date(date( /EC_Registration_EngKan/today -( /EC_Registration_EngKan/wife_age *365.25)), '%Y-%n-%e'),/EC_Registration_EngKan/wife_dob)"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/wife_age" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/woman_age= '', /EC_Registration_EngKan/wife_age1, /EC_Registration_EngKan/woman_age)"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/youngestchild_age" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/youngestchild_date_of_birth  = '', '', int(( /EC_Registration_EngKan/today  -  /EC_Registration_EngKan/youngestchild_date_of_birth ) div 30))"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/youngestchild_under2" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/youngestchild_age  &gt;= 0 and  /EC_Registration_EngKan/youngestchild_age  &lt; 24, 'yes', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/familyplanning_method" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/familyplanning_method_1  = 'others',  /EC_Registration_EngKan/familyplanning_method_other ,  /EC_Registration_EngKan/familyplanning_method_1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/refill_date" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/injectable_date  != '',  /EC_Registration_EngKan/injectable_date ,  /EC_Registration_EngKan/refill_date1 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/abortion_risk" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/num_abortions  &gt;= 3, 'Abortion_history','')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/parity_risk_priority" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/parity  &gt;= 3, 'Parity_3_or_more', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/age_risk_priority" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/wife_age  &lt; /EC_Registration_EngKan/wife_min_age or  /EC_Registration_EngKan/wife_age  &gt;=/EC_Registration_EngKan/wife_max_age, 'Age', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/youngchild_risk_priority" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/youngestchild_under2  = 'yes', 'Child_under_2', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/would_be_high_risk" autocomplete="off"
+                data-calculate="if( /EC_Registration_EngKan/youngchild_risk_priority  != '' or  /EC_Registration_EngKan/parity_risk_priority  != '' or  /EC_Registration_EngKan/age_risk_priority  != '' or  /EC_Registration_EngKan/abortion_risk  != '', 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/would_be_high_risk_reason" autocomplete="off"
+                data-calculate="concat( /EC_Registration_EngKan/youngchild_risk_priority , ' ',  /EC_Registration_EngKan/parity_risk_priority  , ' ',  /EC_Registration_EngKan/age_risk_priority , ' ',  /EC_Registration_EngKan/abortion_risk )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/is_high_priority1" autocomplete="off"
+                data-calculate="if(( /EC_Registration_EngKan/youngchild_risk_priority  != '' or  /EC_Registration_EngKan/parity_risk_priority  != '' or  /EC_Registration_EngKan/age_risk_priority  != '') and ( /EC_Registration_EngKan/familyplanning_method  != 'male_sterilization' and  /EC_Registration_EngKan/familyplanning_method  != 'female_sterilization'), 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/high_priority_reason" autocomplete="off"
+                data-calculate="concat( /EC_Registration_EngKan/youngchild_risk_priority , ' ',  /EC_Registration_EngKan/parity_risk_priority , ' ',  /EC_Registration_EngKan/age_risk_priority )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/EC_Registration_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'41bd74238498421eaf926255009c4220'" data-type-xml="string"
+                type="hidden" />
+        </label>
+    </fieldset>
+</form>

@@ -1,0 +1,929 @@
+<form autocomplete="off" class="or clearfix" id="PNC_Visit_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">PNC Visit</h3>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">PNC Number</span>
+        <input name="/PNC_Visit_EngKan/pnc_num" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <input name="/PNC_Visit_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Discharge date from delivery facility?</span>
+        <span class="required">*</span>
+        <input name="/PNC_Visit_EngKan/discharge_date"
+            data-constraint=".&lt;= /PNC_Visit_EngKan/today "
+            data-relevant="( /PNC_Visit_EngKan/case_place_delivery  != 'home' and  /PNC_Visit_EngKan/case_discharge_date  = '')"
+            data-type-xml="date" required="required" type="date" />
+    </label>
+    <label class="question non-select ">
+        <span class="question-label active" lang="">PNC visit date?</span>
+        <span class="required">*</span>
+        <input name="/PNC_Visit_EngKan/pnc_visit_date"
+            data-constraint=".&lt;= /PNC_Visit_EngKan/today " data-type-xml="date"
+            required="required" type="date" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Place of PNC visit?</span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/PNC_Visit_EngKan/pnc_visit_place"
+                        data-name="/PNC_Visit_EngKan/pnc_visit_place" data-type-xml="select1"
+                        required="required" type="radio" value="home" />
+                    <span class="option-label active" lang="">Home</span>
+                </label>
+                <label class="">
+                    <input name="/PNC_Visit_EngKan/pnc_visit_place"
+                        data-name="/PNC_Visit_EngKan/pnc_visit_place" data-type-xml="select1"
+                        required="required" type="radio" value="sub_center" />
+                    <span class="option-label active" lang="">My Sub Center</span>
+                </label>
+                <label class="">
+                    <input name="/PNC_Visit_EngKan/pnc_visit_place"
+                        data-name="/PNC_Visit_EngKan/pnc_visit_place" data-type-xml="select1"
+                        required="required" type="radio" value="phc" />
+                    <span class="option-label active" lang="">My PHC</span>
+                </label>
+                <label class="">
+                    <input name="/PNC_Visit_EngKan/pnc_visit_place"
+                        data-name="/PNC_Visit_EngKan/pnc_visit_place" data-type-xml="select1"
+                        required="required" type="radio" value="elsewhere" />
+                    <span class="option-label active" lang="">Elsewhere</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Who did PNC visit?</span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/PNC_Visit_EngKan/pnc_visit_person"
+                        data-name="/PNC_Visit_EngKan/pnc_visit_person" data-type-xml="select1"
+                        required="required" type="radio" value="anm" />
+                    <span class="option-label active" lang="">ANM</span>
+                </label>
+                <!--<label class="">-->
+                <!--<input name="/PNC_Visit_EngKan/pnc_visit_person"-->
+                <!--data-name="/PNC_Visit_EngKan/pnc_visit_person" data-type-xml="select1"-->
+                <!--required="required" type="radio" value="asha" />-->
+                <!--<span class="option-label active" lang="">ASHA</span>-->
+                <!--</label>-->
+                <label class="">
+                    <input name="/PNC_Visit_EngKan/pnc_visit_person"
+                        data-name="/PNC_Visit_EngKan/pnc_visit_person" data-type-xml="select1"
+                        required="required" type="radio" value="aww" />
+                    <span class="option-label active" lang="">AWW</span>
+                </label>
+                <label class="">
+                    <input name="/PNC_Visit_EngKan/pnc_visit_person"
+                        data-name="/PNC_Visit_EngKan/pnc_visit_person" data-type-xml="select1"
+                        required="required" type="radio" value="others" />
+                    <span class="option-label active" lang="">Others</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <section name="/PNC_Visit_EngKan/pnc_mother_group" class="or-group-data or-branch pre-init "
+        data-relevant="( /PNC_Visit_EngKan/case_woman_survived  = 'yes' or  /PNC_Visit_EngKan/case_mother_survived  = 'yes')">
+        <label class="note non-select ">
+            <span class="question-label active" lang="">Mother check-up </span>
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_group_message"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Any of the following difficulties?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="difficult_breathing" />
+                        <span class="option-label active" lang="">Difficulty breathing</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="bad_headache" />
+                        <span class="option-label active" lang="">Bad headache</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="blurred_vision" />
+                        <span class="option-label active" lang="">Blurred vision</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="no_problems" />
+                        <span class="option-label active" lang="">No problems</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Any abdominal problems?</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input
+                            name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="uterus_is_soft_or_tender" />
+                        <span class="option-label active" lang="">Uterus is soft or tender</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="abdominal_pain" />
+                        <span class="option-label active" lang="">Abdominal pain</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="no_problems" />
+                        <span class="option-label active" lang="">No problems</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Any vaginal problems?</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="heavy_bleeding_per_vaginum" />
+                        <span class="option-label active" lang="">Heavy bleeding per vaginum</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="bad_smelling_lochea" />
+                        <span class="option-label active" lang="">Bad-smelling lochea</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="infected_perineum_suture" />
+                        <span class="option-label active" lang="">Infected perineum suture</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="no_problems" />
+                        <span class="option-label active" lang="">No problems</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Any difficulties with urinating?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="difficulty_passing_urine" />
+                        <span class="option-label active" lang="">Difficulty passing urine</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="burning_sensation_when_urinating" />
+                        <span class="option-label active" lang="">Burning sensation when urinating
+                        </span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="no_problems" />
+                        <span class="option-label active" lang="">No difficulties</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Any breast problems?</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="breast_hardness" />
+                        <span class="option-label active" lang="">Breast hardness</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="nipple_hardness" />
+                        <span class="option-label active" lang="">Nipple hardness</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems"
+                            data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                            data-type-xml="select" type="checkbox" value="no_problems" />
+                        <span class="option-label active" lang="">No problems</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="question or-branch pre-init ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">How is the Cesarean incision area?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area"
+                            data-constraint="(selected(., 'normal') and (count-selected(.) = 1) or (not(selected(., 'normal'))))"
+                            data-relevant=" /PNC_Visit_EngKan/case_type_delivery  = 'cesarean'"
+                            data-type-xml="select" type="checkbox" value="normal" />
+                        <span class="option-label active" lang="">Normal</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area"
+                            data-constraint="(selected(., 'normal') and (count-selected(.) = 1) or (not(selected(., 'normal'))))"
+                            data-relevant=" /PNC_Visit_EngKan/case_type_delivery  = 'cesarean'"
+                            data-type-xml="select" type="checkbox"
+                            value="cesarean_incision_is_red" />
+                        <span class="option-label active" lang="">Looks red</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area"
+                            data-constraint="(selected(., 'normal') and (count-selected(.) = 1) or (not(selected(., 'normal'))))"
+                            data-relevant=" /PNC_Visit_EngKan/case_type_delivery  = 'cesarean'"
+                            data-type-xml="select" type="checkbox"
+                            value="cesarean_incision_is_indurated" />
+                        <span class="option-label active" lang="">Indurated</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area"
+                            data-constraint="(selected(., 'normal') and (count-selected(.) = 1) or (not(selected(., 'normal'))))"
+                            data-relevant=" /PNC_Visit_EngKan/case_type_delivery  = 'cesarean'"
+                            data-type-xml="select" type="checkbox"
+                            value="cesarean_incision_filled_with_pus" />
+                        <span class="option-label active" lang="">Filled with pus</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Does
+                        <span class="or-output"
+                            data-value=" /PNC_Visit_EngKan/case_woman_name "></span>
+                        feel hot or have the chills?
+                        <span class="or-output"
+                            data-value=" /PNC_Visit_EngKan/case_woman_name "></span>
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input
+                            name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms"
+                            data-name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms"
+                            data-type-xml="select1" type="radio" value="yes" />
+                        <span class="option-label active" lang="">Yes</span>
+                    </label>
+                    <label class="">
+                        <input
+                            name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms"
+                            data-name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms"
+                            data-type-xml="select1" type="radio" value="no" />
+                        <span class="option-label active" lang="">No</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <!--<label class="question non-select ">-->
+        <!--<span lang="" class="question-label active">Temperature (F) </span>-->
+        <!--<input type="number" name="/PNC_Visit_EngKan/pnc_mother_group/temperature" data-type-xml="decimal"-->
+        <!--step="any"/>-->
+        <!--</label>-->
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Pulse rate</span>
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/pulse_rate" data-type-xml="int"
+                type="number" />
+        </label>
+        <!--<label class="question non-select ">-->
+        <!--<span lang="" class="question-label active">BP (systolic) </span>-->
+        <!--<input type="number" name="/PNC_Visit_EngKan/pnc_mother_group/bp_systolic" data-type-xml="int"/>-->
+        <!--</label>-->
+        <!--<label class="question non-select ">-->
+        <!--<span lang="" class="question-label active">BP (diastolic)</span>-->
+        <!--<input type="number" name="/PNC_Visit_EngKan/pnc_mother_group/bp_diastolic" data-type-xml="int"/>-->
+        <!--</label>-->
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Hb level (g/dl)</span>
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/hb_level" data-type-xml="decimal"
+                step="any" type="number" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">
+                <span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name "></span>is
+                anaemic!
+                <span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name "></span>
+            </span>
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/anaemic_message"
+                data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/hb_level  &gt;= 7 and  /PNC_Visit_EngKan/pnc_mother_group/hb_level  &lt; 11"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">
+                <span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name "></span>is
+                severely anaemic!
+                <span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name "></span>
+            </span>
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/severely_anaemic_message"
+                data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/hb_level  &lt; 7"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <label class="question non-select ">
+            <span class="question-label active" lang="">Number of IFA tablets given?</span>
+            <span class="or-hint active" lang="">If not given, please enter 0.
+            </span>
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/ifa_tablets_given" data-type-xml="int"
+                type="number" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">
+                <span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name "></span>has
+                following danger signs:
+                <span class="or-output"
+                    data-value=" /PNC_Visit_EngKan/pnc_mother_group/immediate_referral_reason "></span>
+                .
+                <!--<span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name "></span>:-->
+                Refer immediately to health facility!
+            </span>
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral_note"
+                data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/immediate_referral  = 'yes'"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Woman is still at risk because of,
+                <span class="or-output"
+                    data-value=" /PNC_Visit_EngKan/pnc_mother_group/high_risk_reason "></span>
+            </span>
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/high_risk_note_mother"
+                data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/is_high_risk1  = 'yes'"
+                data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+
+
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Do you want to Consult Doctor?
+                    </span>
+                    <span class="required">*</span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor"
+                            data-name="/PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor"
+                            data-type-xml="select1" required="required" type="radio" value="yes" />
+                        <span class="option-label active" lang="">Yes</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor"
+                            data-name="/PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor"
+                            data-type-xml="select1" required="required" type="radio" value="no" />
+                        <span class="option-label active" lang="">No</span>
+                    </label>
+                </div>
+            </fieldset>
+
+        </fieldset>
+
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Reason ?
+            </span>
+            <span class="required">*</span>
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor_no_reason"
+                autocomplete="off"
+                data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/reason_for_no  = 'no'"
+                data-type-xml="string" required="required" type="text" />
+        </label>
+
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Do you want to mark as HR (High
+                        Risk)?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/is_high_risk"
+                            data-name="/PNC_Visit_EngKan/pnc_mother_group/is_high_risk"
+                            data-type-xml="select1" type="radio" value="yes" />
+                        <span class="option-label active" lang="">Yes</span>
+                    </label>
+                    <label class="">
+                        <input name="/PNC_Visit_EngKan/pnc_mother_group/is_high_risk"
+                            data-name="/PNC_Visit_EngKan/pnc_mother_group/is_high_risk"
+                            data-type-xml="select1" type="radio" value="no" />
+                        <span class="option-label active" lang="">No</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+    </section>
+    <label class="calculation non-select ">
+        <input name="/PNC_Visit_EngKan/pnc_mother_group/bp_systolic" data-calculate="0"
+            data-type-xml="string" type="hidden" />
+    </label>
+
+    <label class="calculation non-select ">
+        <input name="/PNC_Visit_EngKan/pnc_mother_group/reason_for_no" autocomplete="off"
+            data-calculate=" /PNC_Visit_EngKan/pnc_mother_group/is_consult_doctor"
+            data-type-xml="string" type="hidden" />
+    </label>
+
+    <label class="calculation non-select ">
+        <input name="/PNC_Visit_EngKan/pnc_mother_group/bp_diastolic" data-calculate="0"
+            data-type-xml="string" type="hidden" />
+    </label>
+    <label class="calculation non-select ">
+        <input name="/PNC_Visit_EngKan/pnc_mother_group/temperature" data-calculate="0"
+            data-type-xml="string" type="hidden" />
+    </label>
+    <label class="calculation non-select ">
+        <input name="/PNC_Visit_EngKan/pnc_mother_group/fetal_data" data-calculate="0"
+            data-type-xml="string" type="hidden" />
+    </label>
+    <label class="calculation non-select ">
+        <input name="/PNC_Visit_EngKan/pnc_mother_group/blood_glucose_data" data-calculate="0.0"
+            data-type-xml="string" type="hidden" />
+    </label>
+    <!--end of group -->
+    <section name="/PNC_Visit_EngKan/pnc_child_repeat" class="or-group-data or-branch pre-init "
+        data-relevant=" /PNC_Visit_EngKan/case_delivery_outcome  = 'live_birth'">
+        <section name="/PNC_Visit_EngKan/pnc_child_repeat" class="or-repeat ">
+            <label class="note non-select ">
+                <span class="question-label active" lang="">Baby check-up </span>
+                <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_group_message"
+                    data-type-xml="string" readonly="readonly" type="text" />
+            </label>
+            <label class="note non-select ">
+                <span class="question-label active" lang="">Sex
+                    <span class="or-output"
+                        data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_sex_child "></span>
+                    Birth weight :
+                    <span class="or-output"
+                        data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_birthweight "></span>
+                    Birth immunizations :
+                    <span class="or-output"
+                        data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_immunizations_atbirth "></span>
+                </span>
+                <input name="/PNC_Visit_EngKan/pnc_child_repeat/child_info_recap"
+                    data-type-xml="string" readonly="readonly" type="text" />
+            </label>
+            <fieldset class="question ">
+                <fieldset>
+                    <legend>
+                        <span class="question-label active" lang="">Is child having any of the
+                            following?
+                        </span>
+                    </legend>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="not_passing_urine" />
+                            <span class="option-label active" lang="">Not passing urine</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="not_passing_stool" />
+                            <span class="option-label active" lang="">Not passing stool</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="diarrhea" />
+                            <span class="option-label active" lang="">Diarrhea</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="vomiting" />
+                            <span class="option-label active" lang="">Vomiting</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="looks_blue" />
+                            <span class="option-label active" lang="">Looks blue</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="feels_cold" />
+                            <span class="option-label active" lang="">Feels cold</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="no_problems" />
+                            <span class="option-label active" lang="">No problems</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <label class="question or-branch pre-init non-select ">
+                <span class="question-label active" lang="">Number of days of diarrhea?</span>
+                <input name="/PNC_Visit_EngKan/pnc_child_repeat/days_of_diarrhea"
+                    data-relevant="selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems , 'diarrhea')"
+                    data-type-xml="int" type="number" />
+            </label>
+            <fieldset class="question or-branch pre-init ">
+                <fieldset>
+                    <legend>
+                        <span class="question-label active" lang="">Blood in stool?</span>
+                    </legend>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input name="/PNC_Visit_EngKan/pnc_child_repeat/blood_in_stool"
+                                data-name="/PNC_Visit_EngKan/pnc_child_repeat/blood_in_stool"
+                                data-relevant="selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems , 'diarrhea')"
+                                data-type-xml="select1" type="radio" value="yes" />
+                            <span class="option-label active" lang="">Yes</span>
+                        </label>
+                        <label class="">
+                            <input name="/PNC_Visit_EngKan/pnc_child_repeat/blood_in_stool"
+                                data-name="/PNC_Visit_EngKan/pnc_child_repeat/blood_in_stool"
+                                data-relevant="selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems , 'diarrhea')"
+                                data-type-xml="select1" type="radio" value="no" />
+                            <span class="option-label active" lang="">No</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <fieldset class="question ">
+                <fieldset>
+                    <legend>
+                        <span class="question-label active" lang="">Any activity problems?</span>
+                    </legend>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="convulsions" />
+                            <span class="option-label active" lang="">Convulsions</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox"
+                                value="slow_activity_lethargic" />
+                            <span class="option-label active" lang="">Slow activity / lethargic
+                            </span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="not_feeding" />
+                            <span class="option-label active" lang="">Not feeding</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="no_problems" />
+                            <span class="option-label active" lang="">No problems</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <fieldset class="question ">
+                <fieldset>
+                    <legend>
+                        <span class="question-label active" lang="">Any breathing problems?</span>
+                    </legend>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="rib_indrawing" />
+                            <span class="option-label active" lang="">Rib indrawing</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="breathing_too_fast" />
+                            <span class="option-label active" lang="">Breathing too fast</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="breathing_too_slow" />
+                            <span class="option-label active" lang="">Breathing too slow</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox"
+                                value="grunting_noises_while_breathing" />
+                            <span class="option-label active" lang="">Grunting noises while
+                                breathing
+                            </span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="no_problems" />
+                            <span class="option-label active" lang="">No problems</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <label class="question non-select ">
+                <span class="question-label active" lang="">Respiration rate?</span>
+                <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_respiration_rate"
+                    data-type-xml="int" type="number" />
+            </label>
+            <fieldset class="question ">
+                <fieldset>
+                    <legend>
+                        <span class="question-label active" lang="">Any skin problems?</span>
+                    </legend>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="jaundice" />
+                            <span class="option-label active" lang="">Jaundice</span>
+                        </label>
+                        <label class="">
+                            <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox"
+                                value="infected_umbilical_cord" />
+                            <span class="option-label active" lang="">Umbilical cord is infected
+                            </span>
+                        </label>
+                        <label class="">
+                            <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="skin_eruptions" />
+                            <span class="option-label active" lang="">Skin blisters</span>
+                        </label>
+                        <label class="">
+                            <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems"
+                                data-constraint="(selected(., 'no_problems') and (count-selected(.) = 1) or (not(selected(., 'no_problems'))))"
+                                data-type-xml="select" type="checkbox" value="no_problems" />
+                            <span class="option-label active" lang="">No problems</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <fieldset class="question ">
+                <fieldset>
+                    <legend>
+                        <span class="question-label active" lang="">Does child feel hot or have the
+                            chills?
+                        </span>
+                    </legend>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms"
+                                data-name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms"
+                                data-type-xml="select1" type="radio" value="yes" />
+                            <span class="option-label active" lang="">Yes</span>
+                        </label>
+                        <label class="">
+                            <input
+                                name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms"
+                                data-name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms"
+                                data-type-xml="select1" type="radio" value="no" />
+                            <span class="option-label active" lang="">No</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <!--<label class="question non-select ">-->
+            <!--<span class="question-label active" lang="">Bady temperature</span>-->
+            <!--<input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature"-->
+            <!--data-type-xml="decimal" step="any" type="number" />-->
+            <!--</label>-->
+            <fieldset class="question ">
+                <fieldset>
+                    <legend>
+                        <span class="question-label active" lang="">Is baby exclusively
+                            breastfeeding?
+                        </span>
+                    </legend>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf"
+                                data-name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf"
+                                data-type-xml="select1" type="radio" value="yes" />
+                            <span class="option-label active" lang="">Yes</span>
+                        </label>
+                        <label class="">
+                            <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf"
+                                data-name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf"
+                                data-type-xml="select1" type="radio" value="no" />
+                            <span class="option-label active" lang="">No</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <label class="note or-branch pre-init non-select ">
+                <span class="question-label active" lang="">Counsel mother on importance of
+                    exclusively breastfeeding
+                    baby for 6 months.
+                </span>
+                <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf_message"
+                    data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf  = 'no'"
+                    data-type-xml="string" readonly="readonly" type="text" />
+            </label>
+            <label class="note or-branch pre-init non-select ">
+                <span class="question-label active" lang="">Child has following danger signs
+                    <span class="or-output"
+                        data-value=" /PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_reason_baby "></span>
+                    . Refer immediately to health facility!
+                </span>
+                <input name="/PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_note_baby"
+                    data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_baby  = 'yes'"
+                    data-type-xml="string" readonly="readonly" type="text" />
+            </label>
+            <fieldset class="question ">
+                <fieldset>
+                    <legend>
+                        <span class="question-label active" lang="">Do you want to mark child as HR
+                            (High Risk)?
+                        </span>
+                    </legend>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input name="/PNC_Visit_EngKan/pnc_child_repeat/is_high_risk_baby"
+                                data-name="/PNC_Visit_EngKan/pnc_child_repeat/is_high_risk_baby"
+                                data-type-xml="select1" type="radio" value="yes" />
+                            <span class="option-label active" lang="">Yes</span>
+                        </label>
+                        <label class="">
+                            <input name="/PNC_Visit_EngKan/pnc_child_repeat/is_high_risk_baby"
+                                data-name="/PNC_Visit_EngKan/pnc_child_repeat/is_high_risk_baby"
+                                data-type-xml="select1" type="radio" value="no" />
+                            <span class="option-label active" lang="">No</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </fieldset>
+        </section>
+        <!--end of repeat fieldset with name /PNC_Visit_EngKan/pnc_child_repeat-->
+    </section>
+    <!--end of group -->
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/today" data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/woman_name"
+                data-calculate="concat( /PNC_Visit_EngKan/case_woman_name , ' ')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_visit_day"
+                data-calculate="int( /PNC_Visit_EngKan/pnc_visit_date  -  /PNC_Visit_EngKan/case_delivery_date )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever"
+                data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/temperature  &gt;= 100.4 or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms  = 'yes', 'High_fever', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate"
+                data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/pulse_rate  &gt; 100, 'Rapid_heart_rate', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure"
+                data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/bp_systolic  &lt; 90 or  /PNC_Visit_EngKan/pnc_mother_group/bp_diastolic  &lt; 60, 'Very_low_blood_pressure', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral"
+                data-calculate="if(( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area , 'normal'))) or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms  = 'yes' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure  != '', 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral_reason"
+                data-calculate="concat(if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area , 'normal')), string( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area ), ''), ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/anaemic_status"
+                data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/hb_level  = '',  /PNC_Visit_EngKan/pnc_mother_group/case_anaemic_status , if( /PNC_Visit_EngKan/pnc_mother_group/hb_level  &lt; 7, 'Severe_Anaemia', if( /PNC_Visit_EngKan/pnc_mother_group/hb_level  &gt;= 7 and  /PNC_Visit_EngKan/pnc_mother_group/hb_level  &lt; 11, 'Anaemia', '')))"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/pih"
+                data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/case_pih  = '', '', if( /PNC_Visit_EngKan/pnc_mother_group/bp_systolic  &lt; 140 and  /PNC_Visit_EngKan/pnc_mother_group/bp_diastolic  &lt; 90, '', 'Hypertension'))"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/pre_eclampsia"
+                data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/case_pre_eclampsia  = '', '', if( /PNC_Visit_EngKan/pnc_mother_group/bp_systolic  &lt; 140 and  /PNC_Visit_EngKan/pnc_mother_group/bp_diastolic  &lt; 90, '', 'Pre_eclampsia'))"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature"
+                data-type-xml="decimal" step="any" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/is_high_risk1"
+                data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/anaemic_status  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pih  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pre_eclampsia  != '' or  /PNC_Visit_EngKan/pnc_mother_group/case_is_high_risk_till_pnc_close  = 'yes', 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_mother_group/high_risk_reason"
+                data-calculate="concat( /PNC_Visit_EngKan/pnc_mother_group/anaemic_status , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pih , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pre_eclampsia , ' ',  /PNC_Visit_EngKan/pnc_mother_group/case_is_high_risk_till_pnc_close_reason )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever"
+                data-calculate="if( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature  &gt;= 100.4 or  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms  = 'yes', 'High_fever', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_baby"
+                data-calculate="if(( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems , 'no_problems'))) or  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms  = 'yes' or  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever  != '', 'yes', 'no')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_reason_baby"
+                data-calculate="concat(if(not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems ), ''), ' ', if(not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems , 'no_problems')), string( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems ), ''), ' ',  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/meta/instanceID" data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/anm_poc" data-calculate="" data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/PNC_Visit_EngKan/formhub/uuid"
+                data-calculate="'a97997c61c5d49ca89cf9a71aa38139b'" data-type-xml="string"
+                type="hidden" />
+        </label>
+    </fieldset>
+</form>

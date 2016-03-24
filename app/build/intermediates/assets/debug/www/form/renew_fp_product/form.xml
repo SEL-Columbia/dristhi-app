@@ -1,0 +1,319 @@
+<form autocomplete="off" class="or clearfix" id="Family_Planning_Refill_Method"
+    novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Refill FP Product</h3>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">EC Number</span>
+        <input name="/Family_Planning_Refill_Method_EngKan/ec_num" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+
+        <input name="/Family_Planning_Refill_Method_EngKan/village" autocomplete="off"
+            data-type-xml="string" disabled="disabled" type="hidden" />
+    </label>
+
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Woman Name</span>
+        <input name="/Family_Planning_Refill_Method_EngKan/woman_name" autocomplete="off"
+            data-type-xml="string" disabled="disabled"
+            type="text" />
+    </label>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">Refill FP method visit date?</span>
+        <span class="required">*</span>
+        <input name="/Family_Planning_Refill_Method_EngKan/fp_renew_method_visit_date" autocomplete="off"
+            data-constraint=".&lt;= /Family_Planning_Refill_Method_EngKan/today "
+            data-type-xml="date"
+            required="required"
+            type="date" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Did you renew method?</span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Family_Planning_Refill_Method_EngKan/able_to_renew_method" autocomplete="off"
+                        data-name="/Family_Planning_Refill_Method_EngKan/able_to_renew_method"
+                        data-type-xml="select1"
+                        required="required" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Family_Planning_Refill_Method_EngKan/able_to_renew_method" autocomplete="off"
+                        data-name="/Family_Planning_Refill_Method_EngKan/able_to_renew_method"
+                        data-type-xml="select1"
+                        required="required" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <section name="/Family_Planning_Refill_Method_EngKan/renewed_method_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /Family_Planning_Refill_Method_EngKan/able_to_renew_method  = 'yes'">
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">DMPA / Injectable date?</span>
+            <span class="required">*</span>
+            <input name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/injectable_date" autocomplete="off"
+                data-constraint=".&lt;= /Family_Planning_Refill_Method_EngKan/today "
+                data-relevant=" /Family_Planning_Refill_Method_EngKan/case_familyplanning_method  = 'dmpa_injectable'"
+                data-type-xml="date"
+                required="required"
+                type="date" />
+        </label>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Number of condoms given?</span>
+            <span class="required">*</span>
+            <input name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/num_condoms" autocomplete="off"
+                data-constraint=".&gt;= 0"
+                data-relevant=" /Family_Planning_Refill_Method_EngKan/case_familyplanning_method  = 'condom'" data-type-xml="int"
+                required="required"
+                type="number" />
+        </label>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Number of OCP strips given?</span>
+            <span class="required">*</span>
+            <input name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/num_ocp_strips" autocomplete="off"
+                data-constraint=".&gt;= 0"
+                data-relevant=" /Family_Planning_Refill_Method_EngKan/case_familyplanning_method  = 'ocp'" data-type-xml="int"
+                required="required"
+                type="number" />
+        </label>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Number of Centchroman strips given?</span>
+            <span class="required">*</span>
+            <input name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/num_centchroman_pills" autocomplete="off"
+                data-constraint=".&gt;= 0"
+                data-relevant=" /Family_Planning_Refill_Method_EngKan/case_familyplanning_method  = 'centchroman'" data-type-xml="int"
+                required="required"
+                type="number" />
+        </label>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Date the couple will start new supply?
+            </span>
+            <span class="required">*</span>
+            <input name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/refill_date1" autocomplete="off"
+                data-constraint=".&gt;= /Family_Planning_Refill_Method_EngKan/fp_renew_method_visit_date "
+                data-relevant=" /Family_Planning_Refill_Method_EngKan/renewed_method_group/num_ocp_strips  &gt; 0"
+                data-type-xml="date"
+                required="required"
+                type="date" />
+        </label>
+    </section>
+    <!--end of group -->
+    <section name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /Family_Planning_Refill_Method_EngKan/able_to_renew_method  = 'no'">
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Why could you not renew method?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason" autocomplete="off"
+                            data-name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
+                            data-type-xml="select1"
+                            type="radio" value="stock_out" />
+                        <span class="option-label active" lang="">Stock out</span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason" autocomplete="off"
+                            data-name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
+                            data-type-xml="select1"
+                            type="radio" value="could_not_locate_couple" />
+                        <span class="option-label active" lang="">Could not locate couple</span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason" autocomplete="off"
+                            data-name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
+                            data-type-xml="select1"
+                            type="radio" value="couple_refused_method" />
+                        <span class="option-label active" lang="">Couple didn't want method
+                            renewal
+                        </span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason" autocomplete="off"
+                            data-name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
+                            data-type-xml="select1"
+                            type="radio" value="others" />
+                        <span class="option-label active" lang="">Others</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Others </span>
+            <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason_other" autocomplete="off"
+                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'others'"
+                data-type-xml="string"
+                type="text" />
+        </label>
+        <fieldset class="question or-branch pre-init ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Why did couple not want renewal?
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason" autocomplete="off"
+                            data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                            data-type-xml="select"
+                            type="checkbox"
+                            value="couple_wants_pregnancy" />
+                        <span class="option-label active" lang="">Couple wants to become pregnant
+                        </span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason" autocomplete="off"
+                            data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                            data-type-xml="select"
+                            type="checkbox"
+                            value="woman_husband_having_side_effects" />
+                        <span class="option-label active" lang="">Woman / husband was having
+                            side-effects from the
+                            method
+                        </span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason" autocomplete="off"
+                            data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                            data-type-xml="select"
+                            type="checkbox"
+                            value="husband_objects_to_fp" />
+                        <span class="option-label active" lang="">Husband does not want wife to use
+                            family planning
+                        </span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason" autocomplete="off"
+                            data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                            data-type-xml="select"
+                            type="checkbox"
+                            value="family_members_object_to_fp" />
+                        <span class="option-label active" lang="">Family members do not want couple
+                            to use family
+                            planning
+                        </span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason" autocomplete="off"
+                            data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                            data-type-xml="select"
+                            type="checkbox"
+                            value="husband_away" />
+                        <span class="option-label active" lang="">Husband is away</span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason" autocomplete="off"
+                            data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                            data-type-xml="select"
+                            type="checkbox"
+                            value="infrequent_sex" />
+                        <span class="option-label active" lang="">Having infrequent or no sex</span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason" autocomplete="off"
+                            data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                            data-type-xml="select"
+                            type="checkbox"
+                            value="postpartum_amenorrhea" />
+                        <span class="option-label active" lang="">Postpartum amenorrhea</span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason" autocomplete="off"
+                            data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                            data-type-xml="select"
+                            type="checkbox"
+                            value="currently_breastfeeding" />
+                        <span class="option-label active" lang="">Currently breastfeeding</span>
+                    </label>
+                    <label class="">
+                        <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason" autocomplete="off"
+                            data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                            data-type-xml="select"
+                            type="checkbox"
+                            value="others" />
+                        <span class="option-label active" lang="">Others</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="question or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Others </span>
+            <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason_other" autocomplete="off"
+                data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'others')"
+                data-type-xml="string"
+                type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">Please report FP side-effects in Record FP
+                Complication form.
+            </span>
+            <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/side_effects_message" autocomplete="off"
+                data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'woman_husband_having_side_effects')"
+                data-type-xml="string"
+                readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">If there are any misconceptions about family
+                planning methods,
+                please talk to the couple about real and unreal side-effects. Use Dristhi's video
+                library to counsel
+                them on appropriate FP methods.
+            </span>
+            <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/fp_objection_message" autocomplete="off"
+                data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'husband_objects_to_fp') or selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'family_members_object_to_fp')"
+                data-type-xml="string"
+                readonly="readonly" type="text" />
+        </label>
+        <label class="note or-branch pre-init non-select ">
+            <span class="question-label active" lang="">If couple wants to stop or change methods,
+                please go to Change
+                FP Method form.
+            </span>
+            <input name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/couple_refused_message" autocomplete="off"
+                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                data-type-xml="string"
+                readonly="readonly" type="text" />
+        </label>
+    </section>
+    <!--end of group -->
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/Family_Planning_Refill_Method_EngKan/today" autocomplete="off"
+                data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/refill_date" autocomplete="off"
+                data-calculate="if( /Family_Planning_Refill_Method_EngKan/renewed_method_group/injectable_date  != '',  /Family_Planning_Refill_Method_EngKan/renewed_method_group/injectable_date ,  /Family_Planning_Refill_Method_EngKan/renewed_method_group/refill_date1 )"
+                data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Family_Planning_Refill_Method_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Family_Planning_Refill_Method_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'97b2873bacbe4bc3b97bde2a8f5ba1b0'"
+                data-type-xml="string" type="hidden" />
+        </label>
+    </fieldset>
+</form>

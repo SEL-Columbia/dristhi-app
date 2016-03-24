@@ -1,0 +1,35 @@
+language: android
+jdk: oraclejdk7
+
+android:
+  components:
+    # The BuildTools version used by your project
+    - build-tools-23.0.0
+    # The SDK version used to compile your project
+    - android-21
+    # Additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-19
+    # Specify at least one system image,
+    # if you need to run emulator(s) during your tests
+    - sys-img-armeabi-v7a-android-19
+
+before_script:
+  # Emulator Management: Create, Start and Wait
+  - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - adb wait-for-device
+  - adb shell input keyevent 82 &
+
+script: 
+  - echo "Travis branch is $TRAVIS_BRANCH"
+  - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
+  - chmod 755 gradlew
+  - ls -la
+  # Enable the line below once we get all the test passing, currently most of the tests are failing 
+  # so we'll just if the project compiles 
+  #- ./gradlew connectedAndroidTest
+  - ./gradlew clean assembleDebug
+  - ./gradlew clean test

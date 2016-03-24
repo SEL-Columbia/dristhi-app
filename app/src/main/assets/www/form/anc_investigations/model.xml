@@ -1,0 +1,29 @@
+<model>
+    <instance>
+        <ANC_Investigations_EngKan id="ANC_Investigations_EngKan">
+            <formhub>
+                <uuid />
+            </formhub>
+            <today />
+            <anc_reg_num />
+            <village />
+            <test_date />
+            <test_results_to_enter />
+            <w_blood_group />
+            <rh_incompatible_couple />
+            <tests_result_positive />
+            <bile_salts />
+            <bile_pigments />
+
+            <bp_systolic />
+            <bp_diastolic />
+            <temperature />
+            <fetal_data />
+            <blood_glucose_data />
+
+            <meta>
+                <instanceID />
+            </meta>
+        </ANC_Investigations_EngKan>
+    </instance>
+</model>

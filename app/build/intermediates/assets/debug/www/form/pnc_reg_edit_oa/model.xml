@@ -1,0 +1,360 @@
+<model>
+    <instance>
+        <PNC_Child_Registration_EngKan id="PNC_Child_Registration_EngKan">
+            <formhub>
+                <uuid />
+            </formhub>
+            <edit_password />
+            <today />
+            <pnc_edit_group>
+                <pwd />
+                <pnc_reg_date />
+                <district />
+                <pnc_number />
+                <woman_id_type />
+                <id_number />
+                <dob />
+
+                <wife_dob />
+                <woman_age />
+                <is_dob_known />
+                <wife_age1 />
+                <wife_age />
+                <wife_age_note />
+                <woman_date_of_birth />
+
+                <phone_num />
+                <country_code />
+
+                <wife_min_age />
+                <wife_max_age />
+                <husband_min_age />
+                <husband_max_age />
+
+                <phc />
+                <sub_center />
+                <district_value />
+                <phc_value />
+                <sub_center_value />
+                <district_note />
+                <phc_note />
+                <sub_center_note />
+                <village />
+                <hh_address />
+                <woman_name />
+
+
+                <husband_name />
+                <phone_no />
+                <phone_owner />
+                <religion />
+                <delivery_date />
+                <place_delivery />
+                <name_delivery_facility />
+                <skilled_delivery />
+                <type_delivery />
+                <delivery_outcome />
+                <still_birth_group>
+                    <cause_of_still_birth />
+                    <other_cause_of_still_birth />
+                </still_birth_group>
+                <child template="">
+                    <sex_child />
+                    <birthweight />
+                    <child_blood_group />
+                    <immunizations_atbirth />
+                    <lbw />
+                    <vlbw />
+                    <is_child_high_risk1 />
+                    <child_high_risk_reasons />
+                    <high_risk_note_child />
+                    <is_child_high_risk />
+                    <addl_pnc_visit_message />
+                </child>
+                <breastfeeding_postbirth />
+                <had_delivery_complications />
+                <complications />
+                <delivery_complications_other />
+                <is_high_risk />
+                <high_risk_reason />
+                <stay_in_area />
+                <woman_survived />
+
+
+                <field1 />
+                <field1_group>
+                    <field1_val />
+                </field1_group>
+
+                <field2 />
+                <field2_group>
+                    <field2_val />
+                </field2_group>
+
+                <field3 />
+                <field3_group>
+                    <field3_val />
+                </field3_group>
+
+                <field4 />
+                <field4_group>
+                    <field4_val />
+                </field4_group>
+
+                <field5 />
+                <field5_group>
+                    <field5_val />
+                </field5_group>
+
+            </pnc_edit_group>
+
+            <meta>
+                <instanceID />
+            </meta>
+        </PNC_Child_Registration_EngKan>
+    </instance>
+    <instance id="delivery_outcome">
+        <root>
+            <item>
+                <itextId>static_instance-delivery_outcome-0</itextId>
+                <name>live_birth</name>
+            </item>
+            <item>
+                <itextId>static_instance-delivery_outcome-1</itextId>
+                <name>still_birth</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="place_delivery">
+        <root>
+            <item>
+                <itextId>static_instance-place_delivery-0</itextId>
+                <name>home</name>
+            </item>
+            <item>
+                <itextId>static_instance-place_delivery-1</itextId>
+                <name>subcenter</name>
+            </item>
+            <item>
+                <itextId>static_instance-place_delivery-2</itextId>
+                <name>phc</name>
+            </item>
+            <item>
+                <itextId>static_instance-place_delivery-3</itextId>
+                <name>chc</name>
+            </item>
+            <item>
+                <itextId>static_instance-place_delivery-4</itextId>
+                <name>sdh</name>
+            </item>
+            <item>
+                <itextId>static_instance-place_delivery-5</itextId>
+                <name>dh</name>
+            </item>
+            <item>
+                <itextId>static_instance-place_delivery-6</itextId>
+                <name>private_facility</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="immunizations">
+        <root>
+            <item>
+                <itextId>static_instance-immunizations-0</itextId>
+                <name>bcg</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-1</itextId>
+                <name>opv_0</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-2</itextId>
+                <name>hepb_0</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="child_sex">
+        <root>
+            <item>
+                <itextId>static_instance-child_sex-0</itextId>
+                <name>female</name>
+            </item>
+            <item>
+                <itextId>static_instance-child_sex-1</itextId>
+                <name>male</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="blood_group">
+        <root>
+            <item>
+                <itextId>static_instance-blood_group-0</itextId>
+                <name>a_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-1</itextId>
+                <name>a_negative</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-2</itextId>
+                <name>b_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-3</itextId>
+                <name>b_negative</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-4</itextId>
+                <name>ab_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-5</itextId>
+                <name>ab_negative</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-6</itextId>
+                <name>o_positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-blood_group-7</itextId>
+                <name>o_negative</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="type_delivery">
+        <root>
+            <item>
+                <itextId>static_instance-type_delivery-0</itextId>
+                <name>normal</name>
+            </item>
+            <item>
+                <itextId>static_instance-type_delivery-1</itextId>
+                <name>cesarean</name>
+            </item>
+            <item>
+                <itextId>static_instance-type_delivery-2</itextId>
+                <name>instrumental_forcep</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="phone_owner">
+        <root>
+            <item>
+                <itextId>static_instance-phone_owner-0</itextId>
+                <name>woman_self</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-1</itextId>
+                <name>parent</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-2</itextId>
+                <name>relative</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-3</itextId>
+                <name>neighbor</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-4</itextId>
+                <name>others</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="still_birth_cause">
+        <root>
+            <item>
+                <itextId>static_instance-still_birth_cause-0</itextId>
+                <name>infection_during_preg</name>
+            </item>
+            <item>
+                <itextId>static_instance-still_birth_cause-1</itextId>
+                <name>gest_hypertension</name>
+            </item>
+            <item>
+                <itextId>static_instance-still_birth_cause-2</itextId>
+                <name>gest_diabetes</name>
+            </item>
+            <item>
+                <itextId>static_instance-still_birth_cause-3</itextId>
+                <name>fetal_growth_restriction</name>
+            </item>
+            <item>
+                <itextId>static_instance-still_birth_cause-4</itextId>
+                <name>birth_defects</name>
+            </item>
+            <item>
+                <itextId>static_instance-still_birth_cause-5</itextId>
+                <name>unknown</name>
+            </item>
+            <item>
+                <itextId>static_instance-still_birth_cause-6</itextId>
+                <name>others</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="stay">
+        <root>
+            <item>
+                <itextId>static_instance-stay-0</itextId>
+                <name>less_6mos</name>
+            </item>
+            <item>
+                <itextId>static_instance-stay-1</itextId>
+                <name>less_1yr</name>
+            </item>
+            <item>
+                <itextId>static_instance-stay-2</itextId>
+                <name>more_1yr</name>
+            </item>
+            <item>
+                <itextId>static_instance-stay-3</itextId>
+                <name>dont_know</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="delivery_complications">
+        <root>
+            <item>
+                <itextId>static_instance-delivery_complications-0</itextId>
+                <name>hemorrhage</name>
+            </item>
+            <item>
+                <itextId>static_instance-delivery_complications-1</itextId>
+                <name>placenta_previa</name>
+            </item>
+            <item>
+                <itextId>static_instance-delivery_complications-2</itextId>
+                <name>cord_prolapse</name>
+            </item>
+            <item>
+                <itextId>static_instance-delivery_complications-3</itextId>
+                <name>prolonged_labor</name>
+            </item>
+            <item>
+                <itextId>static_instance-delivery_complications-4</itextId>
+                <name>abnormal_presentation</name>
+            </item>
+            <item>
+                <itextId>static_instance-delivery_complications-5</itextId>
+                <name>perineal_tear</name>
+            </item>
+            <item>
+                <itextId>static_instance-delivery_complications-6</itextId>
+                <name>others</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="yes_no">
+        <root>
+            <item>
+                <itextId>static_instance-yes_no-0</itextId>
+                <name>yes</name>
+            </item>
+            <item>
+                <itextId>static_instance-yes_no-1</itextId>
+                <name>no</name>
+            </item>
+        </root>
+    </instance>
+</model>

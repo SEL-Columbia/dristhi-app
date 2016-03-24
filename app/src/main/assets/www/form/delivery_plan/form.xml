@@ -1,0 +1,721 @@
+<form autocomplete="off" class="or clearfix" id="Delivery_Plan_EngKan" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Delivery Plan</h3>
+
+    <label class="question non-select ">
+        <span class="question-label active" lang="">ANC Number</span>
+        <input name="/Delivery_Plan_EngKan/anc_reg_num" autocomplete="off" data-type-xml="int"
+            disabled="disabled" type="text" />
+    </label>
+    <label class="question non-select ">
+        <input name="/Delivery_Plan_EngKan/village" autocomplete="off" data-type-xml="string"
+            disabled="disabled" type="hidden" />
+    </label>
+
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Is there a family member who can join
+                    this discussion?
+
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/family_member" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/family_member" data-type-xml="select1"
+                        type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/family_member" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/family_member" data-type-xml="select1"
+                        type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">The family plays an important role in
+                    preparing for a safe
+                    delivery. Is there a family member who can join this discussion?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/family_member2" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/family_member2"
+                        data-relevant=" /Delivery_Plan_EngKan/family_member  = 'no'"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/family_member2" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/family_member2"
+                        data-relevant=" /Delivery_Plan_EngKan/family_member  = 'no'"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Is contact number still<span
+                    class="or-output" data-value=" /Delivery_Plan_EngKan/entity_phone_no "></span>?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/same_phone_no" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/same_phone_no"
+                        data-relevant=" /Delivery_Plan_EngKan/entity_phone_no  != ''"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/same_phone_no" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/same_phone_no"
+                        data-relevant=" /Delivery_Plan_EngKan/entity_phone_no  != ''"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">What is the new phone number?
+        </span>
+        <input name="/Delivery_Plan_EngKan/new_phone_no" autocomplete="off"
+            data-constraint=".&gt; 99999999 and .&lt; 10000000000000"
+            data-relevant=" /Delivery_Plan_EngKan/same_phone_no  = 'no'" data-type-xml="int"
+            type="number" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Contact phone number?
+        </span>
+        <span class="or-hint active" lang="">Without country code.
+        </span>
+        <span class="required">*</span>
+        <input name="/Delivery_Plan_EngKan/phone_no1" autocomplete="off"
+            data-constraint=".&gt; 999999999 and .&lt; 10000000000"
+            data-relevant=" /Delivery_Plan_EngKan/entity_phone_no  = ''" data-type-xml="int"
+            type="number" />
+    </label>
+    <!--<fieldset class="question or-branch pre-init ">-->
+    <!--<fieldset>-->
+    <!--<legend>-->
+    <!--<span class="question-label active" lang="">Is ASHA phone number still,-->
+    <!--<span class="or-output"-->
+    <!--data-value=" /Delivery_Plan_EngKan/entity_asha_phone_number "></span>?-->
+    <!--</span>-->
+    <!--</legend>-->
+    <!--<div class="option-wrapper">-->
+    <!--<label class="">-->
+    <!--<input name="/Delivery_Plan_EngKan/same_asha_phone_number" autocomplete="off"-->
+    <!--data-name="/Delivery_Plan_EngKan/same_asha_phone_number"-->
+    <!--data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''" data-type-xml="select1"-->
+    <!--type="radio"-->
+    <!--value="yes" />-->
+    <!--<span class="option-label active" lang="">Yes</span>-->
+    <!--</label>-->
+    <!--<label class="">-->
+    <!--<input name="/Delivery_Plan_EngKan/same_asha_phone_number" autocomplete="off"-->
+    <!--data-name="/Delivery_Plan_EngKan/same_asha_phone_number"-->
+    <!--data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''" data-type-xml="select1"-->
+    <!--type="radio"-->
+    <!--value="no" />-->
+    <!--<span class="option-label active" lang="">No</span>-->
+    <!--</label>-->
+    <!--</div>-->
+    <!--</fieldset>-->
+    <!--</fieldset>-->
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">What is new ASHA phone number?-->
+    <!--</span>-->
+    <!--<input name="/Delivery_Plan_EngKan/new_asha_phone_number" autocomplete="off" data-constraint=".&gt; 999999999 and .&lt; 10000000000"-->
+    <!--data-relevant=" /Delivery_Plan_EngKan/same_asha_phone_number  = 'no'"-->
+    <!--data-type-xml="int"-->
+    <!--type="number" />-->
+    <!--</label>-->
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">ASHA phone number?-->
+    <!--</span>-->
+    <!--<input name="/Delivery_Plan_EngKan/asha_phone_number1" autocomplete="off" data-constraint=".&gt; 999999999 and .&lt; 10000000000"-->
+    <!--data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  = ''"-->
+    <!--data-type-xml="int"-->
+    <!--type="number" />-->
+    <!--</label>-->
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" lang="">Woman's blood group?
+        </span>
+        <select name="/Delivery_Plan_EngKan/w_blood_group"
+            data-name="/Delivery_Plan_EngKan/w_blood_group"
+            data-relevant=" /Delivery_Plan_EngKan/entity_w_blood_group  = ''"
+            data-type-xml="select1">
+            <option value="">...</option>
+            <option value="a_positive">A+</option>
+            <option value="a_negative">A-</option>
+            <option value="b_positive">B+</option>
+            <option value="b_negative">B-</option>
+            <option value="ab_positive">AB+</option>
+            <option value="ab_negative">AB-</option>
+            <option value="o_positive">O+</option>
+            <option value="o_negative">O-</option>
+        </select>
+        <span style="display:none;" class="or-option-translations"></span>
+    </label>
+    <label class="note or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Have blood group tested. She may need a blood
+            transfusion during or
+            after delivery.
+        </span>
+        <input name="/Delivery_Plan_EngKan/blood_group_message" autocomplete="off"
+            data-relevant=" /Delivery_Plan_EngKan/w_blood_group  = '' and  /Delivery_Plan_EngKan/entity_w_blood_group  = ''"
+            data-type-xml="string" readonly="readonly" type="text" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Is there a family member who can donate
+                    blood in case
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+                    requires a transfusion at the hospital?
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/blood_donor_available" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/blood_donor_available"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/blood_donor_available" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/blood_donor_available"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">This pregnancy is high risk because of,
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_high_risk_reason "></span>. Did
+                    you review the high risk reasons with
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+                    and her family? .
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/reviewed_hrp_status1" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/reviewed_hrp_status1"
+                        data-relevant=" /Delivery_Plan_EngKan/entity_is_high_risk  = 'yes'"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/reviewed_hrp_status1" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/reviewed_hrp_status1"
+                        data-relevant=" /Delivery_Plan_EngKan/entity_is_high_risk  = 'yes'"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">It is very important for the family to
+                    understand reasons
+                    for high risk pregnancy, so they can be ready for delivery complications. Did
+                    you review high risk
+                    reasons with them?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/reviewed_hrp_status2" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/reviewed_hrp_status2"
+                        data-relevant=" /Delivery_Plan_EngKan/reviewed_hrp_status1  != 'yes'"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/reviewed_hrp_status2" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/reviewed_hrp_status2"
+                        data-relevant=" /Delivery_Plan_EngKan/reviewed_hrp_status1  != 'yes'"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">What facility is
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+                    planning to deliver at?
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
+                        required="required" type="radio" value="home" />
+                    <span class="option-label active" lang="">Home</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
+                        required="required" type="radio" value="sub_center" />
+                    <span class="option-label active" lang="">Sub Center</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
+                        required="required" type="radio" value="phc" />
+                    <span class="option-label active" lang="">PHC</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
+                        required="required" type="radio" value="chc" />
+                    <span class="option-label active" lang="">CHC</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
+                        required="required" type="radio" value="sdh" />
+                    <span class="option-label active" lang="">SDH</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
+                        required="required" type="radio" value="dh" />
+                    <span class="option-label active" lang="">DH</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/delivery_facility" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/delivery_facility" data-type-xml="select1"
+                        required="required" type="radio" value="private_facility" />
+                    <span class="option-label active" lang="">Private</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Name of delivery place?
+        </span>
+        <span class="required">*</span>
+        <input name="/Delivery_Plan_EngKan/name_delivery_facility" autocomplete="off"
+            data-relevant=" /Delivery_Plan_EngKan/delivery_facility  != 'home'"
+            data-type-xml="string" required="required" type="text" />
+    </label>
+    <label class="note or-branch pre-init non-select ">
+        <span class="question-label active" lang="">
+            <span class="or-output" data-value=" /Delivery_Plan_EngKan/woman_name "></span>has high
+            risk pregnancy. Tell her to deliver at SDH or DH for her safety and safety of child!
+            <!--<span class="or-output" data-value=" /Delivery_Plan_EngKan/woman_name "></span>-->
+
+        </span>
+        <input name="/Delivery_Plan_EngKan/hrp_delivery_facility_message" autocomplete="off"
+            data-relevant="( /Delivery_Plan_EngKan/entity_is_high_risk  = 'yes' and  /Delivery_Plan_EngKan/entity_anaemic_status  != 'Severe_Anaemia') and ( /Delivery_Plan_EngKan/delivery_facility  != 'dh' and  /Delivery_Plan_EngKan/delivery_facility  != 'sdh')"
+            data-type-xml="string" readonly="readonly" type="text" />
+    </label>
+    <label class="note or-branch pre-init non-select ">
+        <span class="question-label active" lang="">
+            <span class="or-output" data-value=" /Delivery_Plan_EngKan/woman_name "></span>is high
+            risk and severely anaemic. Tell her and her family to deliver at SDH or DH. She may need
+            blood transfusion before labor starts.
+            <span class="or-output" data-value=" /Delivery_Plan_EngKan/woman_name "></span>
+
+        </span>
+        <input name="/Delivery_Plan_EngKan/severe_anaemia_delivery_facility_message"
+            autocomplete="off"
+            data-relevant=" /Delivery_Plan_EngKan/entity_anaemic_status  = 'Severe_Anaemia' and ( /Delivery_Plan_EngKan/delivery_facility  != 'dh' and  /Delivery_Plan_EngKan/delivery_facility  != 'sdh')"
+            data-type-xml="string" readonly="readonly" type="text" />
+    </label>
+    <label class="note or-branch pre-init non-select ">
+        <span class="question-label active" lang="">Tell
+            <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+            to deliver at PHC. Tell her that complications can happen in any delivery, even if she
+            is not high risk.
+
+            <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+
+        </span>
+        <input name="/Delivery_Plan_EngKan/normal_delivery_facility_message" autocomplete="off"
+            data-relevant="( /Delivery_Plan_EngKan/delivery_facility  = 'home' or  /Delivery_Plan_EngKan/delivery_facility  = 'sub_center') and ( /Delivery_Plan_EngKan/entity_is_high_risk  = 'no' and  /Delivery_Plan_EngKan/entity_anaemic_status  != 'Severe_Anaemia')"
+            data-type-xml="string" readonly="readonly" type="text" />
+    </label>
+    <section name="/Delivery_Plan_EngKan/home_delivery_group"
+        class="or-group-data or-branch pre-init "
+        data-relevant=" /Delivery_Plan_EngKan/delivery_facility  = 'home'">
+        <fieldset class="question ">
+            <fieldset>
+                <legend>
+                    <span class="question-label active" lang="">Does
+                        <span class="or-output"
+                            data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+                        know the five 'cleans' for home delivery?
+                        <span class="or-output"
+                            data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+
+                    </span>
+                    <span class="or-hint active" lang="">1. Clean surface
+                        2. Clean hands with soap
+
+                        3. New blade
+                        4. New thread for tying umbilical cord and do not apply anything to
+                        umbilical cord
+                        5. Clean cloth for newborn
+                    </span>
+                </legend>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input name="/Delivery_Plan_EngKan/home_delivery_group/five_delivery_cleans"
+                            autocomplete="off"
+                            data-name="/Delivery_Plan_EngKan/home_delivery_group/five_delivery_cleans"
+                            data-type-xml="select1" type="radio" value="yes" />
+                        <span class="option-label active" lang="">Yes</span>
+                    </label>
+                    <label class="">
+                        <input name="/Delivery_Plan_EngKan/home_delivery_group/five_delivery_cleans"
+                            autocomplete="off"
+                            data-name="/Delivery_Plan_EngKan/home_delivery_group/five_delivery_cleans"
+                            data-type-xml="select1" type="radio" value="no" />
+                        <span class="option-label active" lang="">No</span>
+                    </label>
+                </div>
+            </fieldset>
+        </fieldset>
+        <label class="note non-select ">
+            <span class="question-label active" lang="">Provide family with contact information and
+                instructions for
+                24/7 facility in case of delivery complications.
+            </span>
+            <input name="/Delivery_Plan_EngKan/home_delivery_group/nearest_24_7_facility_message"
+                autocomplete="off" data-type-xml="string" readonly="readonly" type="text" />
+        </label>
+    </section>
+    <!--end of group -->
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Does
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+                    have a transportation plan?
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/transportation_plan1" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/transportation_plan1"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/transportation_plan1" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/transportation_plan1"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Transportation plan?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/transportation_plan" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/transportation_plan"
+                        data-relevant=" /Delivery_Plan_EngKan/transportation_plan1  = 'yes'"
+                        data-type-xml="select1" type="radio" value="family_vehicle" />
+                    <span class="option-label active" lang="">Family Vehicle</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/transportation_plan" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/transportation_plan"
+                        data-relevant=" /Delivery_Plan_EngKan/transportation_plan1  = 'yes'"
+                        data-type-xml="select1" type="radio" value="borrowed_vehicle" />
+                    <span class="option-label active" lang="">Borrowed Vehicle</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/transportation_plan" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/transportation_plan"
+                        data-relevant=" /Delivery_Plan_EngKan/transportation_plan1  = 'yes'"
+                        data-type-xml="select1" type="radio" value="hired_vehicle" />
+                    <span class="option-label active" lang="">Hired Vehicle</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/transportation_plan" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/transportation_plan"
+                        data-relevant=" /Delivery_Plan_EngKan/transportation_plan1  = 'yes'"
+                        data-type-xml="select1" type="radio" value="ambulance" />
+                    <span class="option-label active" lang="">Ambulance
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/transportation_plan" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/transportation_plan"
+                        data-relevant=" /Delivery_Plan_EngKan/transportation_plan1  = 'yes'"
+                        data-type-xml="select1" type="radio" value="others" />
+                    <span class="option-label active" lang="">Others</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Does the family have money set aside for
+                    the delivery?
+
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/money_for_transport" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/money_for_transport"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/money_for_transport" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/money_for_transport"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Does the woman have a birth companion?
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/birth_companion" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/birth_companion" data-type-xml="select1"
+                        type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/birth_companion" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/birth_companion" data-type-xml="select1"
+                        type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="note non-select ">
+        <span class="question-label active" lang="">Tell
+            <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+            her options for family planning after delivery, including sterilization and IUCD
+            insertion.
+            <!--<span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>-->
+
+        </span>
+        <input name="/Delivery_Plan_EngKan/pp_fp_message" autocomplete="off" data-type-xml="string"
+            readonly="readonly" type="text" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Is
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+                    ready to select a postpartum FP method?
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/ready_to_select_pp_fp" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/ready_to_select_pp_fp"
+                        data-type-xml="select1" type="radio" value="yes" />
+                    <span class="option-label active" lang="">Yes</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/ready_to_select_pp_fp" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/ready_to_select_pp_fp"
+                        data-type-xml="select1" type="radio" value="no" />
+                    <span class="option-label active" lang="">No</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <fieldset class="question or-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" lang="">Which method will
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+                    use after delivery?
+                    <span class="or-output"
+                        data-value=" /Delivery_Plan_EngKan/entity_woman_name "></span>
+
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/pp_fp_method"
+                        data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                        data-type-xml="select1" type="radio" value="ocp" />
+                    <span class="option-label active" lang="">OCP</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/pp_fp_method"
+                        data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                        data-type-xml="select1" type="radio" value="iud" />
+                    <span class="option-label active" lang="">IUCD
+
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/pp_fp_method"
+                        data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                        data-type-xml="select1" type="radio" value="condom" />
+                    <span class="option-label active" lang="">Condom</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/pp_fp_method"
+                        data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                        data-type-xml="select1" type="radio" value="male_sterilization" />
+                    <span class="option-label active" lang="">Male Sterilization</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/pp_fp_method"
+                        data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                        data-type-xml="select1" type="radio" value="female_sterilization" />
+                    <span class="option-label active" lang="">Female Sterilization</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/pp_fp_method"
+                        data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                        data-type-xml="select1" type="radio" value="dmpa_injectable" />
+                    <span class="option-label active" lang="">DMPA / Injectable</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/pp_fp_method"
+                        data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                        data-type-xml="select1" type="radio" value="traditional_methods" />
+                    <span class="option-label active" lang="">Traditional Methods</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/pp_fp_method"
+                        data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                        data-type-xml="select1" type="radio" value="lam" />
+                    <span class="option-label active" lang="">LAM</span>
+                </label>
+                <label class="">
+                    <input name="/Delivery_Plan_EngKan/pp_fp_method" autocomplete="off"
+                        data-name="/Delivery_Plan_EngKan/pp_fp_method"
+                        data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                        data-type-xml="select1" type="radio" value="centchroman" />
+                    <span class="option-label active" lang="">Centchroman</span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/Delivery_Plan_EngKan/today" autocomplete="off" data-preload="date"
+                data-preload-params="today" data-type-xml="date" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/Delivery_Plan_EngKan/woman_name" autocomplete="off"
+                data-calculate="concat( /Delivery_Plan_EngKan/entity_woman_name , ' ')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Delivery_Plan_EngKan/phone_no2" autocomplete="off"
+                data-calculate="if( /Delivery_Plan_EngKan/same_phone_no  = 'no', concat( /Delivery_Plan_EngKan/country_code, /Delivery_Plan_EngKan/new_phone_no) ,  /Delivery_Plan_EngKan/entity_phone_no )"
+                data-relevant=" /Delivery_Plan_EngKan/entity_phone_no  != ''" data-type-xml="string"
+                type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Delivery_Plan_EngKan/phone_no" autocomplete="off"
+                data-calculate="if( /Delivery_Plan_EngKan/entity_phone_no  = '',  /Delivery_Plan_EngKan/phone_no1 ,  /Delivery_Plan_EngKan/phone_no2 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Delivery_Plan_EngKan/asha_phone_number2" autocomplete="off"
+                data-calculate="if( /Delivery_Plan_EngKan/same_asha_phone_number  = 'no',  /Delivery_Plan_EngKan/new_asha_phone_number ,  /Delivery_Plan_EngKan/entity_asha_phone_number )"
+                data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Delivery_Plan_EngKan/asha_phone_number" autocomplete="off"
+                data-calculate="if( /Delivery_Plan_EngKan/entity_asha_phone_number  = '',  /Delivery_Plan_EngKan/asha_phone_number1 ,  /Delivery_Plan_EngKan/asha_phone_number2 )"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Delivery_Plan_EngKan/reviewed_hrp_status" autocomplete="off"
+                data-calculate="if( /Delivery_Plan_EngKan/reviewed_hrp_status1  = 'yes' or  /Delivery_Plan_EngKan/reviewed_hrp_status2  = 'yes', 'yes', '')"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Delivery_Plan_EngKan/birth_planning" autocomplete="off"
+                data-calculate="&quot;yes&quot;" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Delivery_Plan_EngKan/meta/instanceID" autocomplete="off"
+                data-calculate="concat('uuid:', uuid())" data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/Delivery_Plan_EngKan/formhub/uuid" autocomplete="off"
+                data-calculate="'26ca96d4d5244eacbffca410bf404082'" data-type-xml="string"
+                type="hidden" />
+        </label>
+    </fieldset>
+</form>

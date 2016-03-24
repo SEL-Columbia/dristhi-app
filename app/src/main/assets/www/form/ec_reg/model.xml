@@ -1,0 +1,346 @@
+<model>
+    <instance>
+        <EC_Registration_EngKan id="EC_Registration_EngKan">
+            <formhub>
+                <uuid />
+            </formhub>
+            <today />
+            <reg_date />
+            <district />
+            <phc />
+            <village />
+            <sub_center />
+
+            <hh_number />
+            <hh_address />
+            <hh_head />
+            <ec_number />
+            <woman_name />
+            <woman_name2 />
+            <woman_id_type />
+            <aadhaar_number />
+
+            <dob />
+            <woman_dob_note />
+            <woman_age />
+            <valid_age />
+            <wife_dob />
+            <wife_age />
+            <wife_age_note />
+
+            <husband_name />
+            <husband_age />
+            <husband_date_of_birth />
+            <phone_no />
+            <phone_owner />
+            <phone_no2 />
+            <economic_status />
+            <bpl_card_number />
+            <religion />
+            <caste />
+            <woman_date_of_birth />
+            <woman_education_level />
+            <husband_education_level />
+            <num_pregnancies />
+            <num_abortions1 />
+            <num_abortions />
+            <num_abortions_spontaneous1 />
+            <num_abortions_spontaneous />
+            <num_abortions_induced />
+            <num_livebirths1 />
+            <num_livebirths />
+            <num_stillbirths1 />
+            <num_stillbirths />
+            <parity />
+            <num_livingchildren1 />
+            <num_livingchildren />
+            <num_livingchildren_male />
+            <num_livingchildren_female />
+            <youngestchild_date_of_birth />
+            <youngestchild_age />
+            <youngestchild_age_note />
+            <youngestchild_under2 />
+            <familyplanning_method_1 />
+            <familyplanning_method_other />
+            <familyplanning_method />
+            <date_familyplanningstart />
+            <lmp_date />
+            <upt_result />
+            <iud_place />
+            <iud_person />
+            <male_sterilization_type />
+            <female_sterilization_type />
+            <injectable_date />
+            <num_condoms />
+            <num_ocp_strips />
+            <num_centchroman_pills />
+            <refill_date1 />
+            <refill_date />
+            <abortion_risk />
+            <parity_risk_priority />
+            <age_risk_priority />
+            <youngchild_risk_priority />
+            <would_be_high_risk />
+            <would_be_high_risk_reason />
+            <is_high_priority1 />
+            <high_priority_reason />
+            <high_priority_message />
+            <is_high_priority />
+            <meta>
+                <instanceID />
+            </meta>
+        </EC_Registration_EngKan>
+    </instance>
+    <instance id="positive_negative">
+        <root>
+            <item>
+                <itextId>static_instance-positive_negative-0</itextId>
+                <name>positive</name>
+            </item>
+            <item>
+                <itextId>static_instance-positive_negative-1</itextId>
+                <name>negative</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="phone_owner">
+        <root>
+            <item>
+                <itextId>static_instance-phone_owner-0</itextId>
+                <name>wife</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-1</itextId>
+                <name>husband</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-2</itextId>
+                <name>relative</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-3</itextId>
+                <name>neighbor</name>
+            </item>
+            <item>
+                <itextId>static_instance-phone_owner-4</itextId>
+                <name>others</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="education">
+        <root>
+            <item>
+                <itextId>static_instance-education-0</itextId>
+                <name>illiterate</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-1</itextId>
+                <name>literate</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-2</itextId>
+                <name>primary</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-3</itextId>
+                <name>middle</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-4</itextId>
+                <name>high</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-5</itextId>
+                <name>puc</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-6</itextId>
+                <name>graduate</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="male_sterilization">
+        <root>
+            <item>
+                <itextId>static_instance-male_sterilization-0</itextId>
+                <name>nsv</name>
+            </item>
+            <item>
+                <itextId>static_instance-male_sterilization-1</itextId>
+                <name>conventional_vasectomy</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="religion">
+        <root>
+            <item>
+                <itextId>static_instance-religion-0</itextId>
+                <name>hindu</name>
+            </item>
+            <item>
+                <itextId>static_instance-religion-1</itextId>
+                <name>muslim</name>
+            </item>
+            <item>
+                <itextId>static_instance-religion-2</itextId>
+                <name>christian</name>
+            </item>
+            <item>
+                <itextId>static_instance-religion-3</itextId>
+                <name>r_others</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="iud_place">
+        <root>
+            <item>
+                <itextId>static_instance-iud_place-0</itextId>
+                <name>sub_center</name>
+            </item>
+            <item>
+                <itextId>static_instance-iud_place-1</itextId>
+                <name>phc</name>
+            </item>
+            <item>
+                <itextId>static_instance-iud_place-2</itextId>
+                <name>elsewhere</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="numbers">
+        <root>
+            <item>
+                <itextId>static_instance-numbers-0</itextId>
+                <name>0</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-1</itextId>
+                <name>1</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-2</itextId>
+                <name>2</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-3</itextId>
+                <name>3</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-4</itextId>
+                <name>4</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-5</itextId>
+                <name>5</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-6</itextId>
+                <name>6</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-7</itextId>
+                <name>7</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-8</itextId>
+                <name>8</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-9</itextId>
+                <name>999</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="fp_method_other">
+        <root>
+            <item>
+                <itextId>static_instance-fp_method_other-0</itextId>
+                <name>traditional_methods</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method_other-1</itextId>
+                <name>dmpa_injectable</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method_other-2</itextId>
+                <name>centchroman</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="fp_method">
+        <root>
+            <item>
+                <itextId>static_instance-fp_method-0</itextId>
+                <name>condom</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-1</itextId>
+                <name>ocp</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-2</itextId>
+                <name>iud</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-3</itextId>
+                <name>female_sterilization</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-4</itextId>
+                <name>male_sterilization</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-5</itextId>
+                <name>others</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-6</itextId>
+                <name>none</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-7</itextId>
+                <name>none_ps</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-8</itextId>
+                <name>none_ss</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="iud_person">
+        <root>
+            <item>
+                <itextId>static_instance-iud_person-0</itextId>
+                <name>anm</name>
+            </item>
+            <item>
+                <itextId>static_instance-iud_person-1</itextId>
+                <name>sn</name>
+            </item>
+            <item>
+                <itextId>static_instance-iud_person-2</itextId>
+                <name>lhv</name>
+            </item>
+            <item>
+                <itextId>static_instance-iud_person-3</itextId>
+                <name>mo</name>
+            </item>
+            <item>
+                <itextId>static_instance-iud_person-4</itextId>
+                <name>others</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="yes_no">
+        <root>
+            <item>
+                <itextId>static_instance-yes_no-0</itextId>
+                <name>yes</name>
+            </item>
+            <item>
+                <itextId>static_instance-yes_no-1</itextId>
+                <name>no</name>
+            </item>
+        </root>
+    </instance>
+</model>

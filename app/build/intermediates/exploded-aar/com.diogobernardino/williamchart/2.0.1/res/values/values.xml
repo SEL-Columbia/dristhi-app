@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BarChartAttrs"><attr format="dimension" name="chart_barSpacing"/><attr format="dimension" name="chart_setSpacing"/></declare-styleable>
+    <declare-styleable name="ChartAttrs"><attr format="dimension" name="chart_axisThickness"/><attr format="reference|color" name="chart_axisColor"/><attr format="dimension" name="chart_axisBorderSpacing"/><attr format="dimension" name="chart_axisTopSpacing"/><attr format="boolean" name="chart_labels"/><attr format="reference|color" name="chart_labelColor"/><attr format="dimension" name="chart_fontSize"/><attr format="string" name="chart_typeface"/><attr format="reference|color" name="chart_shadowColor"/><attr format="dimension" name="chart_shadowDx"/><attr format="dimension" name="chart_shadowDy"/><attr format="dimension" name="chart_shadowRadius"/></declare-styleable>
+    <!-- From: file:/Users/diogobernardino/Documents/AndroidWorkspace/WilliamChart/library/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="axis_dist_from_label">5dp</dimen>
+    <dimen name="axis_thickness">2dp</dimen>
+    <dimen name="bar_spacing">6dp</dimen>
+    <dimen name="dot_region_radius">18dp</dimen>
+    <dimen name="font_size">10dp</dimen>
+    <dimen name="grid_thickness">1dp</dimen>
+    <dimen name="set_spacing">3dp</dimen>
+</resources>
