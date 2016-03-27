@@ -239,6 +239,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         list.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
+        refresh();
 //        checkforNidMissing(view);
     }
 

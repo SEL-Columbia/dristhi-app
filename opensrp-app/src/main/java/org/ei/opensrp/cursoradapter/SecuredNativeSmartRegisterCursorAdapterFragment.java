@@ -415,7 +415,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     }
     private int getCurrentPageCount() {
         if(currentoffset != 0) {
-            return totalcount / currentoffset;
+            return (totalcount / currentlimit)-((totalcount-currentoffset)/currentlimit);
         }else{
             return 0;
         }
@@ -424,14 +424,14 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         pageInfoView.setText(
                 format(getResources().getString(R.string.str_page_info),
                         (getCurrentPageCount()),
-                        (totalcount)));
+                        (totalcount/currentlimit)));
         nextPageView.setVisibility(hasNextPage() ? VISIBLE : INVISIBLE);
         previousPageView.setVisibility(hasPreviousPage() ? VISIBLE : INVISIBLE);
     }
 
     private boolean hasNextPage() {
 
-        return (!(totalcount>currentoffset+currentlimit));
+        return ((totalcount>(currentoffset+currentlimit)));
     }
 
     private boolean hasPreviousPage() {
@@ -471,6 +471,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         Cursor c = commonRepository.RawCustomQueryForAdapter(query);
         c.moveToFirst();
         totalcount= c.getInt(0);
+        Log.v("total count here",""+totalcount);
         currentlimit = 20;
         currentoffset = 0;
         c.close();
