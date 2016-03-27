@@ -1,15 +1,23 @@
 package org.ei.opensrp.mcare.fragment;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
+
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.commonregistry.CommonRepository;
+import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
+import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
+import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.elco.ElcoDetailActivity;
@@ -20,6 +28,7 @@ import org.ei.opensrp.mcare.elco.ElcoServiceModeOption;
 import org.ei.opensrp.mcare.elco.ElcoSmartClientsProvider;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
+import org.ei.opensrp.mcare.household.HouseHoldSmartClientsProvider;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -53,7 +62,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 /**
  * Created by koros on 11/2/15.
  */
-public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragment {
+public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAdapterFragment {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private CommonPersonObjectController controller;
@@ -143,22 +152,22 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
         if (clientProvider == null) {
-            clientProvider = new ElcoSmartClientsProvider(
-                    getActivity(),clientActionHandler , controller);
+//            clientProvider = new ElcoSmartClientsProvider(
+//                    getActivity(),clientActionHandler , controller);
         }
         return clientProvider;
     }
 
     @Override
     protected void onInitialization() {
-        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
-//                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-
-        villageController = new VillageController(context.allEligibleCouples(),
-                context.listCache(), context.villagesCache());
-        dialogOptionMapper = new DialogOptionMapper();
+//        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
+//                context.allBeneficiaries(), context.listCache(),
+//                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
+////                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+//
+//        villageController = new VillageController(context.allEligibleCouples(),
+//                context.listCache(), context.villagesCache());
+//        dialogOptionMapper = new DialogOptionMapper();
         context.formSubmissionRouter().getHandlerMap().put("psrf_form", new PSRFHandler());
     }
 
@@ -185,15 +194,96 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
     @Override
     public void setupViews(View view) {
+//        super.setupViews(view);
+//
+//        view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+//
+//        ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
+//        startregister.setVisibility(View.GONE);
+//        setServiceModeViewDrawableRight(null);
+//        updateSearchView();
+        getDefaultOptionsProvider();
+
         super.setupViews(view);
-
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        ListView list = (ListView) view.findViewById(R.id.list);
+        list.setVisibility(View.VISIBLE);
+        clientsProgressView.setVisibility(View.INVISIBLE);
+//        list.setBackgroundColor(Color.RED);
+        CommonRepository commonRepository = context.commonrepository("elco");
+        setTablename("elco");
+        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
+        countqueryBUilder.SelectInitiateMainTableCounts("elco");
+        countqueryBUilder.joinwithALerts("elco");
+        countSelect = countqueryBUilder.mainCondition(" FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' and alerts.scheduleName = 'ELCO PSRF' ");
+        CountExecute();
 
-        ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
-        startregister.setVisibility(View.GONE);
-        setServiceModeViewDrawableRight(null);
+
+        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+        queryBUilder.SelectInitiateMainTable("elco", new String[]{"relationalid", "details", "FWWOMFNAME", "JiVitAHHID", "GOBHHID"});
+        queryBUilder.joinwithALerts("elco");
+        mainSelect = queryBUilder.mainCondition(" FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' and alerts.scheduleName = 'ELCO PSRF' ");
+        queryBUilder.addCondition(filters);
+        Sortqueries = sortByAlertmethod();
+        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+
+
+//        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
+//        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
+        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+        ElcoSmartClientsProvider hhscp = new ElcoSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("elco",new String []{ "FWWOMFNAME", "JiVitAHHID", "GOBHHID"}));
+        list.setAdapter(clientAdapter);
+//        setServiceModeViewDrawableRight(null);
         updateSearchView();
+        refresh();
     }
+    @Override
+    public void onSortSelection(SortOption sortBy) {
+        appliedSortView.setText(sortBy.name());
+        if(sortBy.name().equalsIgnoreCase(Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort))){
+            householdSortByName();
+        }
+        if(sortBy.name().equalsIgnoreCase( Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort))){
+            householdSortByFWGOBHHID();
+        }
+        if(sortBy.name().equalsIgnoreCase(Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort))){
+            householdSortByFWJIVHHID();
+        }
+        if(sortBy.name().equalsIgnoreCase(Context.getInstance().applicationContext().getString(R.string.due_status))){
+            Sortqueries = sortByAlertmethod();
+            filterandSortExecute();
+        }
+    }
+    @Override
+    public void onFilterSelection(FilterOption filter) {
+
+       if(filter.name().equalsIgnoreCase(getString(R.string.filter_by_all_label))){
+            filters = "";
+            CountExecute();
+            filterandSortExecute();
+        }else{
+           ElcoMauzaCommonObjectFilterOption mauzafilter = (ElcoMauzaCommonObjectFilterOption)filter;
+            String criteria = mauzafilter.criteria;
+            CountExecute();
+            filters = " and details LIKE '%"+criteria+"%'";
+            filterandSortExecute();
+        }
+
+    }
+    private void householdSortByName() {
+        Sortqueries = " FWWOMFNAME ASC";
+        filterandSortExecute();
+    }
+    private void householdSortByFWGOBHHID(){
+        Sortqueries = " GOBHHID ASC";
+        filterandSortExecute();
+    }
+    private void householdSortByFWJIVHHID(){
+        Sortqueries = " JiVitAHHID ASC";
+        filterandSortExecute();
+    }
+
 
     private DialogOption[] getEditOptions(CommonPersonObjectClient tag) {
         return ((ElcoSmartRegisterActivity)getActivity()).getEditOptions(tag);
@@ -236,6 +326,55 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
         }
     }
+    @Override
+    public void setupSearchView(View view) {
+        searchView = (EditText) view.findViewById(org.ei.opensrp.R.id.edt_search);
+        searchView.setHint(getNavBarOptionsProvider().searchHint());
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            }
+
+            @Override
+            public void onTextChanged(final CharSequence cs, int start, int before, int count) {
+
+                (new AsyncTask() {
+                    SmartRegisterClients filteredClients;
+
+                    @Override
+                    protected Object doInBackground(Object[] params) {
+//                        currentSearchFilter =
+//                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
+//                        filteredClients = getClientsAdapter().getListItemProvider()
+//                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
+//                                        getCurrentSearchFilter(), getCurrentSortOption());
+//
+                        filters = "and FWWOMFNAME Like '%"+cs.toString()+"%' or GOBHHID Like '%"+cs.toString()+"%'  or JiVitAHHID Like '%"+cs.toString()+"%' " ;
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Object o) {
+//                        clientsAdapter
+//                                .refreshList(currentVillageFilter, currentServiceModeOption,
+//                                        currentSearchFilter, currentSortOption);
+//                        getClientsAdapter().refreshClients(filteredClients);
+//                        getClientsAdapter().notifyDataSetChanged();
+                        getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                        CountExecute();
+                        filterandSortExecute();
+                        super.onPostExecute(o);
+                    }
+                }).execute();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        searchCancelView = view.findViewById(org.ei.opensrp.R.id.btn_search_cancel);
+//        searchCancelView.setOnClickListener(searchCancelHandler);
+    }
     public void updateSearchView(){
         getSearchView().addTextChangedListener(new TextWatcher() {
             @Override
@@ -249,12 +388,13 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
                     @Override
                     protected Object doInBackground(Object[] params) {
-                        setCurrentSearchFilter(new ElcoSearchOption(cs.toString()));
-                        filteredClients = getClientsAdapter().getListItemProvider()
-                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
-                                        getCurrentSearchFilter(), getCurrentSortOption());
-
-
+//                        currentSearchFilter =
+//                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
+//                        filteredClients = getClientsAdapter().getListItemProvider()
+//                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
+//                                        getCurrentSearchFilter(), getCurrentSortOption());
+//
+                        filters = "and FWWOMFNAME Like '%"+cs.toString()+"%' or GOBHHID Like '%"+cs.toString()+"%'  or JiVitAHHID Like '%"+cs.toString()+"%' " ;
                         return null;
                     }
 
@@ -263,9 +403,10 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 //                        clientsAdapter
 //                                .refreshList(currentVillageFilter, currentServiceModeOption,
 //                                        currentSearchFilter, currentSortOption);
-                        getClientsAdapter().refreshClients(filteredClients);
-                        getClientsAdapter().notifyDataSetChanged();
+//                        getClientsAdapter().refreshClients(filteredClients);
+//                        getClientsAdapter().notifyDataSetChanged();
                         getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                        filterandSortExecute();
                         super.onPostExecute(o);
                     }
                 }).execute();
@@ -298,6 +439,15 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
             }
         }
+    }
+    private String sortByAlertmethod() {
+        return " CASE WHEN alerts.status = 'urgent' THEN '1'"
+                +
+                "WHEN alerts.status = 'upcoming' THEN '2'\n" +
+                "WHEN alerts.status = 'normal' THEN '3'\n" +
+                "WHEN alerts.status = 'expired' THEN '4'\n" +
+                "WHEN alerts.status is Null THEN '5'\n" +
+                "Else alerts.status END ASC";
     }
 
 }

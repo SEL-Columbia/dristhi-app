@@ -301,23 +301,31 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         if(sortBy.name().equalsIgnoreCase(getResources().getString(R.string.hh_fwJivhhid_sort))){
             householdSortByFWJIVHHID();
         }
+        if(sortBy.name().equalsIgnoreCase(getResources().getString(R.string.due_status))){
+            Sortqueries = sortByAlertmethod();
+            filterandSortExecute();
+        }
     }
     @Override
     public void onFilterSelection(FilterOption filter) {
         if(filter.name().equalsIgnoreCase(getString(R.string.hh_has_mwra))){
             filters ="and details not LIKE '%\"ELCO\":\"0\"%'";
+            CountExecute();
             filterandSortExecute();
         }
         else if(filter.name().equalsIgnoreCase(getString(R.string.hh_no_mwra))){
             filters = " and details LIKE '%\"ELCO\":\"0\"%'";
+            CountExecute();
             filterandSortExecute();
         }
         else if(filter.name().equalsIgnoreCase(getString(R.string.filter_by_all_label))){
             filters = "";
+            CountExecute();
             filterandSortExecute();
         }else{
             HHMauzaCommonObjectFilterOption mauzafilter = (HHMauzaCommonObjectFilterOption)filter;
             String criteria = mauzafilter.criteria;
+            CountExecute();
             filters = " and details LIKE '%"+criteria+"%'";
             filterandSortExecute();
         }
@@ -399,6 +407,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 //                        getClientsAdapter().refreshClients(filteredClients);
 //                        getClientsAdapter().notifyDataSetChanged();
                         getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                        CountExecute();
                         filterandSortExecute();
                         super.onPostExecute(o);
                     }
@@ -432,7 +441,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' or household.id in (Select elco.relationalid from elco where details Like '%"+cs.toString()+"%' )";
+                        filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' or household.id in (Select elco.relationalid from elco where FWWOMFNAME Like '%"+cs.toString()+"%' )";
                         return null;
                     }
 

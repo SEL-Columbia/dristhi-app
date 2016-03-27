@@ -9,7 +9,7 @@
     {
       "name": "elco",
       "columns": [
-
+        {"name":"FWWOMFNAME"}, {"name":"JiVitAHHID"},{"name":"GOBHHID"}
       ]
     },
     {

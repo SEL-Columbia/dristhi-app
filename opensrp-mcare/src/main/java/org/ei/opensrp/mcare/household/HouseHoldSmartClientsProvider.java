@@ -121,6 +121,8 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         }
 
         boolean noNIDPic = getIfHouseholdHasElcoWithoutNationalID(pc);
+//        boolean noNIDPic = false;
+
         if(!noNIDPic){
             viewHolder.warnbutton.setVisibility(View.VISIBLE);
         }else{
