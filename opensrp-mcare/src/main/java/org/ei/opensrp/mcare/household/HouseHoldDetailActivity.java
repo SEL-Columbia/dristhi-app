@@ -92,10 +92,10 @@ public class HouseHoldDetailActivity extends Activity {
         });
 
 
-        householdhead_name.setText(householdclient.getDetails().get("FWHOHFNAME"));
+        householdhead_name.setText(householdclient.getColumnmaps().get("FWHOHFNAME"));
         mauza.setText(humanize((householdclient.getDetails().get("existing_Mauzapara") != null ? householdclient.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
-        household_hhid.setText(getResources().getString(R.string.hhid_gob)+ householdclient.getDetails().get("FWGOBHHID"));
-        household_hhid_jivita.setText(getResources().getString(R.string.hhid_jivita) + householdclient.getDetails().get("FWJIVHHID"));
+        household_hhid.setText(getResources().getString(R.string.hhid_gob) + householdclient.getColumnmaps().get("FWGOBHHID"));
+        household_hhid_jivita.setText(getResources().getString(R.string.hhid_jivita) + householdclient.getColumnmaps().get("FWJIVHHID"));
         final ImageView householdview = (ImageView)findViewById(R.id.householdprofileview);
 
         if(householdclient.getDetails().get("profilepic")!= null){
