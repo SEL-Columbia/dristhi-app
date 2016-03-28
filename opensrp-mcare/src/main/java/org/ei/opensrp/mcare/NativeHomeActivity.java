@@ -161,11 +161,11 @@ public class NativeHomeActivity extends SecuredActivity {
 //                context.allBeneficiaries(), context.listCache(),
 //                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
-        Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household","household.details NOT LIKE '%\"FWHOHFNAME\":\"\"%'"));
+        Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household","household.FWHOHFNAME NOT Null and household.FWHOHFNAME != ''"));
         hhcountcursor.moveToFirst();
         hhcount= hhcountcursor.getInt(0);
         hhcountcursor.close();
-        Cursor elcocountcursor = context.commonrepository("elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("elco","elco.details NOT LIKE '%\"FWWOMFNAME\":\"\"%' AND elco.details  LIKE '%\"FWELIGIBLE\":\"1\"%'"));
+        Cursor elcocountcursor = context.commonrepository("elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("elco","elco.FWWOMFNAME NOT NULL and elco.FWWOMFNAME !=''  AND elco.details  LIKE '%\"FWELIGIBLE\":\"1\"%'"));
         elcocountcursor.moveToFirst();
         int elcocount= elcocountcursor.getInt(0);
         elcocountcursor.close();
