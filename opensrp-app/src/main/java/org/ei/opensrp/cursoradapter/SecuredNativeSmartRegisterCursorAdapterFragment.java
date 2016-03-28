@@ -125,7 +125,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
 
     private final PaginationViewHandler paginationViewHandler = new PaginationViewHandler();
     private final NavBarActionsHandler navBarActionsHandler = new NavBarActionsHandler();
-    private final SearchCancelHandler searchCancelHandler = new SearchCancelHandler();
+    public final SearchCancelHandler searchCancelHandler = new SearchCancelHandler();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

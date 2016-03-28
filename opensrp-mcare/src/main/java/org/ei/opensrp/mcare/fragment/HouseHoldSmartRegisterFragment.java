@@ -217,15 +217,15 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         setTablename("household");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("household");
-        countqueryBUilder.joinwithALerts("household");
-        countSelect = countqueryBUilder.mainCondition(" FWHOHFNAME is not null and alerts.scheduleName = 'FW CENSUS' ");
+        countqueryBUilder.joinwithALerts("household","FW CENSUS");
+        countSelect = countqueryBUilder.mainCondition(" FWHOHFNAME is not null ");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("household", new String[]{"relationalid", "details", "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID"});
-        queryBUilder.joinwithALerts("household");
-        mainSelect = queryBUilder.mainCondition(" FWHOHFNAME is not null and alerts.scheduleName = 'FW CENSUS' ");
+        queryBUilder.joinwithALerts("household","FW CENSUS");
+        mainSelect = queryBUilder.mainCondition(" FWHOHFNAME is not null ");
         queryBUilder.addCondition(filters);
         Sortqueries = sortByAlertmethod();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
@@ -395,7 +395,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' " ;
+                        filters = "and FWHOHFNAME Like '%" + cs.toString() + "%' or FWGOBHHID Like '%" + cs.toString() + "%'  or FWJIVHHID Like '%" + cs.toString() + "%' ";
                         return null;
                     }
 
@@ -419,7 +419,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
             }
         });
         searchCancelView = view.findViewById(org.ei.opensrp.R.id.btn_search_cancel);
-//        searchCancelView.setOnClickListener(searchCancelHandler);
+        searchCancelView.setOnClickListener(searchCancelHandler);
     }
 
     public void updateSearchView(){

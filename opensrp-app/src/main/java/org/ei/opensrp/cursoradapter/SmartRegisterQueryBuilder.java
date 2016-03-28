@@ -80,9 +80,9 @@ public class SmartRegisterQueryBuilder {
         Selectquery= Selectquery + " ORDER BY " + condition;
         return Selectquery;
     }
-    public String joinwithALerts(String tablename){
+    public String joinwithALerts(String tablename,String alertname){
         Selectquery = Selectquery+ " LEFT JOIN alerts ";
-        Selectquery = Selectquery+ " ON "+ tablename +".id = alerts.caseID";
+        Selectquery = Selectquery+ " ON "+ tablename +".id = alerts.caseID and  alerts.scheduleName = '"+alertname+"'" ;
         return Selectquery;
     }
 }

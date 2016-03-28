@@ -194,17 +194,17 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
 
     @Override
     public void setupViews(View view) {
-//        super.setupViews(view);
+        super.setupViews(view);
 //
-//        view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
 //
-//        ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
-//        startregister.setVisibility(View.GONE);
-//        setServiceModeViewDrawableRight(null);
+        ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
+        startregister.setVisibility(View.GONE);
+        setServiceModeViewDrawableRight(null);
 //        updateSearchView();
         getDefaultOptionsProvider();
 
-        super.setupViews(view);
+//        super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
         ListView list = (ListView) view.findViewById(R.id.list);
         list.setVisibility(View.VISIBLE);
@@ -214,15 +214,15 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         setTablename("elco");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("elco");
-        countqueryBUilder.joinwithALerts("elco");
-        countSelect = countqueryBUilder.mainCondition(" FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' and alerts.scheduleName = 'ELCO PSRF' ");
+        countqueryBUilder.joinwithALerts("elco","ELCO PSRF");
+        countSelect = countqueryBUilder.mainCondition(" FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' ");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("elco", new String[]{"relationalid", "details", "FWWOMFNAME", "JiVitAHHID", "GOBHHID"});
-        queryBUilder.joinwithALerts("elco");
-        mainSelect = queryBUilder.mainCondition(" FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' and alerts.scheduleName = 'ELCO PSRF' ");
+        queryBUilder.joinwithALerts("elco","ELCO PSRF");
+        mainSelect = queryBUilder.mainCondition(" FWWOMFNAME != \"\"  and FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' ");
         queryBUilder.addCondition(filters);
         Sortqueries = sortByAlertmethod();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
@@ -235,7 +235,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("elco",new String []{ "FWWOMFNAME", "JiVitAHHID", "GOBHHID"}));
         list.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
-        updateSearchView();
+//        updateSearchView();
         refresh();
     }
     @Override
@@ -349,8 +349,12 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and FWWOMFNAME Like '%"+cs.toString()+"%' or GOBHHID Like '%"+cs.toString()+"%'  or JiVitAHHID Like '%"+cs.toString()+"%' " ;
-                        return null;
+                        if(cs.toString().equalsIgnoreCase("")){
+                            filters = "";
+                        }else {
+                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                        }
+                            return null;
                     }
 
                     @Override
@@ -373,7 +377,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
             }
         });
         searchCancelView = view.findViewById(org.ei.opensrp.R.id.btn_search_cancel);
-//        searchCancelView.setOnClickListener(searchCancelHandler);
+        searchCancelView.setOnClickListener(searchCancelHandler);
     }
     public void updateSearchView(){
         getSearchView().addTextChangedListener(new TextWatcher() {
@@ -394,8 +398,12 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and FWWOMFNAME Like '%"+cs.toString()+"%' or GOBHHID Like '%"+cs.toString()+"%'  or JiVitAHHID Like '%"+cs.toString()+"%' " ;
-                        return null;
+                        if(cs.toString().equalsIgnoreCase("")){
+                            filters = "";
+                        }else {
+                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                        }
+                            return null;
                     }
 
                     @Override
