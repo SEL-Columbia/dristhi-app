@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.google.gson.Gson;
 
+import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.clientandeventmodel.processor.model.Client;
 
 import java.util.Map;
@@ -22,15 +23,17 @@ public class ClientRepository extends SQLiteOpenHelper {
     public static final String attributeDETAILS_COLUMN = "attributedetails";
     public String TABLE_NAME = "Clients";
     public String[] additionalcolumns;
+
     public ClientRepository(Context context, String[] columns) {
         super(context, "test_convert", null, 1);
         additionalcolumns = columns;
-        common_SQL = "CREATE TABLE IF NOT EXISTS "+ TABLE_NAME + "(_id INTEGER PRIMARY KEY AUTOINCREMENT,baseEntityId VARCHAR,";
-        for(int i = 0;i<columns.length;i++){
-            common_SQL = common_SQL+ columns[i] + " VARCHAR,";
+        common_SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(_id INTEGER PRIMARY KEY AUTOINCREMENT,baseEntityId VARCHAR,";
+        for (int i = 0; i < columns.length; i++) {
+            common_SQL = common_SQL + columns[i] + " VARCHAR,";
         }
-        common_SQL = common_SQL +"attributedetails VARCHAR, propertydetails VARCHAR)";
+        common_SQL = common_SQL + "attributedetails VARCHAR, propertydetails VARCHAR)";
     }
+
     @Override
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
@@ -53,24 +56,24 @@ public class ClientRepository extends SQLiteOpenHelper {
         values.put(Relational_ID, common.getBaseEntityID());
         values.put(propertyDETAILS_COLUMN, new Gson().toJson(common.getPropertyDetailsMap()));
         values.put(attributeDETAILS_COLUMN, new Gson().toJson(common.getAttributesDetailsMap()));
-        for (Map.Entry<String,String> entry : common.getAttributesColumnsMap().entrySet()) {
+        for (Map.Entry<String, String> entry : common.getAttributesColumnsMap().entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            values.put(key,value);
+            values.put(key, value);
             // do stuff
         }
-        for (Map.Entry<String,String> entry : common.getPropertyColumnMap().entrySet()) {
+        for (Map.Entry<String, String> entry : common.getPropertyColumnMap().entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            values.put(key,value);
+            values.put(key, value);
             // do stuff
         }
         return values;
     }
-    public void insertValues(ContentValues values){
-        getWritableDatabase().insert(TABLE_NAME,null,values);
-    }
 
+    public void insertValues(ContentValues values) {
+        getWritableDatabase().insert(TABLE_NAME, null, values);
+    }
 
 
 }

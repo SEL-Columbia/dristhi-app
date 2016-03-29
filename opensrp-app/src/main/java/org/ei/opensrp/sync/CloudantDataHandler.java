@@ -164,20 +164,25 @@ public class CloudantDataHandler extends ReplicationService {
         }
     }
 
-    public Client getClientByBaseEntityId(String baseEntityId) {
+    public JSONObject getClientByBaseEntityId(String baseEntityId) throws Exception{
         Map<String, Object> query = new HashMap<String, Object>();
-        query.put("type", "Client");
+        query.put("type", "org.ei.opensrp.cloudant.models.Client");
         query.put("base_entity_id", baseEntityId);
-        int querysize = indexManager.find(query).size();
-        Log.v("TAG TAG", "" + querysize);
-        QueryResult result = indexManager.find(query);
+        List<String> documentIds = indexManager.find(query).documentIds();
 
-        Iterator<DocumentRevision> it = result.iterator();
-        if (it.hasNext()) {
-            DocumentRevision rev = it.next();
-            Client client = Client.fromRevision((BasicDocumentRevision) rev);
-            return client;
+        if (documentIds != null && !documentIds.isEmpty()) {
+            SQLiteDatabase db = loadDatabase();
+            Cursor cursor = db.rawQuery("select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + documentIds.get(0)+"'", null);
+            if (cursor != null && cursor.moveToFirst()) {
+                byte[] json = (cursor.getBlob(0));
+                String jsonEventStr = new String(json, "UTF-8");
+                JSONObject jsonObectClient = new JSONObject(jsonEventStr);
+                return jsonObectClient;
+
+            }
         }
+
+
         return null;
     }
 

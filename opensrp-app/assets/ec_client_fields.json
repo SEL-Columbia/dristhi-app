@@ -1,0 +1,110 @@
+{
+  "bindobjects": [
+    {
+      "name": "household",
+      "columns": [
+        {"column_name": "FWGOBHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "GoB_HHID"
+          }
+        },
+        {"column_name": "FWJIVHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "JiVitA_HHID"
+          }
+        },
+        {"column_name": "existing_Mauzapara",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "adresses",
+            "field_name" : "cityVillage"
+          }
+        },
+        {"column_name": "FWHOHFNAME",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "first_name"
+          }
+        }
+      ]
+    },
+    {
+      "name": "elco",
+      "columns": [
+        {"column_name": "GOBHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "GoB_HHID"
+          }
+        },
+        {"column_name": "JiVitAHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "JiVitA_HHID"
+          }
+        },
+        {"column_name": "FWWOMFNAME",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "first_name"
+          }
+        },
+        {"column_name": "FWWOMFNAME",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"161135AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWWOMFNAME",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" :"adresses",
+            "field_name" :"address4"
+          }
+        },
+        {"column_name": "FWWOMAGE",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWWOMNID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" :"identifiers",
+            "field_name" :"NID"
+          }
+        },
+        {"column_name": "FWWOMBID",
+          "document_type" : "",
+          "json_mapping": {
+            "data_segment" :"",
+            "field_name" :""
+          }
+        }
+      ]
+    },
+    {
+      "name": "mcaremother",
+      "columns": [
+      ]
+    },
+    {
+      "name": "mcarechild",
+      "columns": [
+      ]
+    }
+  ]
+}
