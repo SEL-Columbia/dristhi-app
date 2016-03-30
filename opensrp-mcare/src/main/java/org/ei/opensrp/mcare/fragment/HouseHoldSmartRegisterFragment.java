@@ -209,10 +209,23 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-        ListView list = (ListView) view.findViewById(R.id.list);
+        list = (ListView) view.findViewById(R.id.list);
         list.setVisibility(View.VISIBLE);
         clientsProgressView.setVisibility(View.INVISIBLE);
 //        list.setBackgroundColor(Color.RED);
+        initializeQueries();
+    }
+    ListView list;
+    private String sortByAlertmethod() {
+       return " CASE WHEN alerts.status = 'urgent' THEN '1'"
+         +
+        "WHEN alerts.status = 'upcoming' THEN '2'\n" +
+                "WHEN alerts.status = 'normal' THEN '3'\n" +
+                "WHEN alerts.status = 'expired' THEN '4'\n" +
+                "WHEN alerts.status is Null THEN '5'\n" +
+                "Else alerts.status END ASC";
+    }
+    public void initializeQueries(){
         CommonRepository commonRepository = context.commonrepository("household");
         setTablename("household");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
@@ -241,16 +254,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         updateSearchView();
         refresh();
 //        checkforNidMissing(view);
-    }
 
-    private String sortByAlertmethod() {
-       return " CASE WHEN alerts.status = 'urgent' THEN '1'"
-         +
-        "WHEN alerts.status = 'upcoming' THEN '2'\n" +
-                "WHEN alerts.status = 'normal' THEN '3'\n" +
-                "WHEN alerts.status = 'expired' THEN '4'\n" +
-                "WHEN alerts.status is Null THEN '5'\n" +
-                "Else alerts.status END ASC";
     }
 
 
@@ -334,7 +338,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
 
     private void householdSortByName() {
-        Sortqueries = " FWHOHFNAME ASC";
+        Sortqueries = " FWHOHFNAME COLLATE NOCASE ASC";
         filterandSortExecute();
     }
     private void householdSortByFWGOBHHID(){
@@ -362,14 +366,15 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
     protected void onResumption() {
 //        super.onResumption();
         getDefaultOptionsProvider();
+        initializeQueries();
 //        updateSearchView();
 //        checkforNidMissing(mView);
 //
-//        try{
-//            LoginActivity.setLanguage();
-//        }catch (Exception e){
-//
-//        }
+        try{
+            LoginActivity.setLanguage();
+        }catch (Exception e){
+
+        }
 
     }
     @Override
@@ -523,27 +528,36 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
     private boolean anyNIdmissing(CommonPersonObjectController controller) {
         boolean toreturn = false;
-        List<CommonPersonObject> allchildelco = null;
-        CommonPersonObjectClients clients = controller.getClients();
-        ArrayList<String> list = new ArrayList<String>();
-        AllCommonsRepository allElcoRepository = Context.getInstance().allCommonsRepositoryobjects("elco");
+//        List<CommonPersonObject> allchildelco = null;
+//        CommonPersonObjectClients clients = controller.getClients();
+//        ArrayList<String> list = new ArrayList<String>();
+//        AllCommonsRepository allElcoRepository = Context.getInstance().allCommonsRepositoryobjects("elco");
+//
+//        for(int i = 0;i <clients.size();i++) {
+//
+//            list.add((clients.get(i).entityId()));
+//
+//        }
+//        allchildelco = allElcoRepository.findByRelationalIDs(list);
+//
+//        if(allchildelco != null) {
+//            for (int i = 0; i < allchildelco.size(); i++) {
+//                if (allchildelco.get(i).getDetails().get("FWELIGIBLE").equalsIgnoreCase("1")) {
+//                    if (allchildelco.get(i).getDetails().get("nidImage") == null) {
+//                        toreturn = true;
+//                    }
+//                }
+//            }
+//        }
+        CommonRepository commonRepository = context.commonrepository("household");
+        setTablename("household");
+        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
+        countqueryBUilder.SelectInitiateMainTableCounts("household");
+        countqueryBUilder.joinwithALerts("household", "FW CENSUS");
+        countqueryBUilder.mainCondition(" FWHOHFNAME is not null ");
+        String nidfilters = "and household.id in (Select elco.relationalid from elco where FWWOMFNAME Like '%"+cs.toString()+"%' )";
 
-        for(int i = 0;i <clients.size();i++) {
-
-            list.add((clients.get(i).entityId()));
-
-        }
-        allchildelco = allElcoRepository.findByRelationalIDs(list);
-
-        if(allchildelco != null) {
-            for (int i = 0; i < allchildelco.size(); i++) {
-                if (allchildelco.get(i).getDetails().get("FWELIGIBLE").equalsIgnoreCase("1")) {
-                    if (allchildelco.get(i).getDetails().get("nidImage") == null) {
-                        toreturn = true;
-                    }
-                }
-            }
-        }
+        countqueryBUilder.addCondition("details is ");
         return toreturn;
 //        return false;
     }

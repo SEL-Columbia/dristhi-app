@@ -129,7 +129,7 @@ public class HouseHoldDetailActivity extends Activity {
         paginationViewHandler.addPagination(Clientsview);
 
         householdcontroller = new CommonPersonObjectController(Context.getInstance().allCommonsRepositoryobjects("elco"), Context.getInstance().allBeneficiaries(),context.listCache(),
-                context.personObjectClientsCache(),"FWELIGIBLE","elco","relationalid",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelationalid,"FWELIGIBLE", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+                context.personObjectClientsCache(),"FWWOMFNAME","elco","relationalid",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelationalid,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byColumn);
                 clientsAdapter = adapter();
         clientsAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
