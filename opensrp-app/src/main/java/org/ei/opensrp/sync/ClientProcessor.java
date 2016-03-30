@@ -1,11 +1,15 @@
 package org.ei.opensrp.sync;
 
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
 import android.util.Log;
 
 import org.ei.opensrp.cloudant.models.Client;
 import org.ei.opensrp.cloudant.models.Event;
+import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.util.AssetHandler;
 import org.ei.opensrp.util.FormUtils;
 import org.json.JSONArray;
@@ -95,17 +99,17 @@ public class ClientProcessor {
 
                             if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) && responseValues.contains(docSegmentResponseValue)) {
                                 //this is the event obs we're interested in put it in the respective bucket specified by type variable
-                                if (type.equalsIgnoreCase("household")) {
+                                if (type.equalsIgnoreCase("ec_household")) {
                                     //populate household bucket
-                                    processCaseModel(event, client, "household");
-                                } else if (type.equalsIgnoreCase("elco")) {
+                                    processCaseModel(event, client, "ec_household");
+                                } else if (type.equalsIgnoreCase("ec_elco")) {
                                     //populate elco bucket
-                                    processCaseModel(event, client, "elco");
-                                } else if (type.equalsIgnoreCase("anc")) {
+                                    processCaseModel(event, client, "ec_elco");
+                                } else if (type.equalsIgnoreCase("ec_anc")) {
                                     //populate anc bucket
-                                } else if (type.equalsIgnoreCase("pnc")) {
+                                } else if (type.equalsIgnoreCase("ec_pnc")) {
                                     //populate pnc bucket
-                                } else if (type.equalsIgnoreCase("child")) {
+                                } else if (type.equalsIgnoreCase("ec_child")) {
                                     //populate child bucket
                                 }
 
@@ -122,17 +126,17 @@ public class ClientProcessor {
                         if (docSegmentFieldValue.equalsIgnoreCase(fieldValue)) {
 
                             //this is the event obs we're interested in put it in the respective bucket specified by type variable
-                            if (type.equalsIgnoreCase("household")) {
+                            if (type.equalsIgnoreCase("ec_household")) {
                                 //populate household bucket
-                                processCaseModel(event, client, "household");
-                            } else if (type.equalsIgnoreCase("elco")) {
+                                processCaseModel(event, client, "ec_household");
+                            } else if (type.equalsIgnoreCase("ec_elco")) {
                                 //populate elco bucket
-                                processCaseModel(event, client, "elco");
-                            } else if (type.equalsIgnoreCase("anc")) {
+                                processCaseModel(event, client, "ec_elco");
+                            } else if (type.equalsIgnoreCase("ec_anc")) {
                                 //populate anc bucket
-                            } else if (type.equalsIgnoreCase("pnc")) {
+                            } else if (type.equalsIgnoreCase("ec_pnc")) {
                                 //populate pnc bucket
-                            } else if (type.equalsIgnoreCase("child")) {
+                            } else if (type.equalsIgnoreCase("ec_child")) {
                                 //populate child bucket
                             }
                         }
@@ -148,6 +152,8 @@ public class ClientProcessor {
             JSONObject columnMappings = getColumnMappings(clientType);
             JSONArray columns = columnMappings.getJSONArray("columns");
 
+            ContentValues contentValues = new ContentValues();
+
             for (int i = 0; i < columns.length(); i++) {
                 JSONObject colObject = columns.getJSONObject(i);
                 String docType = colObject.getString("document_type");
@@ -158,8 +164,7 @@ public class ClientProcessor {
                 String fieldValue = jsonMapping.has("field_value") ? jsonMapping.getString("field_value") : null;
                 String responseKey = jsonMapping.has("response_key") ? jsonMapping.getString("response_key") : null;
 
-                String columnValue = "";
-
+                String columnValue = null;
 
                 JSONObject jsonDocument = docType.equalsIgnoreCase("Event") ? event : client;
 
@@ -173,6 +178,11 @@ public class ClientProcessor {
                     //else the use the main doc as the doc segment
                     jsonDocSegment = jsonDocument;
 
+                }
+
+                //special handler needed to process address,
+                if (dataSegment!= null && dataSegment.equalsIgnoreCase("adresses")){
+                    continue;
                 }
 
                 if (jsonDocSegment instanceof JSONArray) {
@@ -203,15 +213,30 @@ public class ClientProcessor {
 
                 }
 
+                // after successfully retrieving the column name and value store it in Content value
+                if (columnValue != null){
+                    contentValues.put(columnName, columnValue);
+                }
 
             }
 
+            // save the values to db
+            Long id = executeInsertStatement(contentValues, clientType);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
+    }
+
+    /**
+     * Insert the a new record to the database and returns its id
+     **/
+    private Long executeInsertStatement(ContentValues values, String tableName) {
+        CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
+        Long id = cr.executeInsertStatement(values, tableName);
+        return id;
     }
 
     private JSONObject getColumnMappings(String registerName) {

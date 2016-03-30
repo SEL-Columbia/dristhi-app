@@ -2,6 +2,7 @@ package org.ei.opensrp.commonregistry;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.provider.BaseColumns;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -172,7 +173,7 @@ public class CommonRepository extends DrishtiRepository {
     }
 
 
-    public void updateColumn(String tableName,ContentValues contentValues,String caseId){
+    public void updateColumn(String tableName, ContentValues contentValues, String caseId){
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.update(tableName, contentValues, ID_COLUMN + " = ?", new String[]{caseId});
     }
@@ -245,5 +246,14 @@ public class CommonRepository extends DrishtiRepository {
         }
 
         return commons;
+    }
+
+    /**
+     * Insert the a new record to the database and returns its id
+     **/
+    public Long executeInsertStatement(ContentValues values, String tableName) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        Long id = database.insertWithOnConflict(tableName, BaseColumns._ID, values, android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE);
+        return id;
     }
 }

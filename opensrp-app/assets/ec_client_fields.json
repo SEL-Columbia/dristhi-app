@@ -1,7 +1,7 @@
 {
   "bindobjects": [
     {
-      "name": "household",
+      "name": "ec_household",
       "columns": [
         {"column_name": "FWGOBHHID",
           "document_type" : "Client",
@@ -27,13 +27,13 @@
         {"column_name": "FWHOHFNAME",
           "document_type" : "Client",
           "json_mapping": {
-            "field_name" : "first_name"
+            "field_name" : "firstname"
           }
         }
       ]
     },
     {
-      "name": "elco",
+      "name": "ec_elco",
       "columns": [
         {"column_name": "GOBHHID",
           "document_type" : "Client",
@@ -52,10 +52,10 @@
         {"column_name": "FWWOMFNAME",
           "document_type" : "Client",
           "json_mapping": {
-            "field_name" : "first_name"
+            "field_name" : "firstname"
           }
         },
-        {"column_name": "FWWOMFNAME",
+        {"column_name": "FWHUSNAME",
           "document_type" : "Event",
           "json_mapping": {
             "data_segment" :"obs",
@@ -64,7 +64,7 @@
             "response_key" : "value"
           }
         },
-        {"column_name": "FWWOMFNAME",
+        {"column_name": "FWWOMMAUZA_PARA",
           "document_type" : "Client",
           "json_mapping": {
             "data_segment" :"adresses",
@@ -86,23 +86,16 @@
             "data_segment" :"identifiers",
             "field_name" :"NID"
           }
-        },
-        {"column_name": "FWWOMBID",
-          "document_type" : "",
-          "json_mapping": {
-            "data_segment" :"",
-            "field_name" :""
-          }
         }
       ]
     },
     {
-      "name": "mcaremother",
+      "name": "ec_mcaremother",
       "columns": [
       ]
     },
     {
-      "name": "mcarechild",
+      "name": "ec_mcarechild",
       "columns": [
       ]
     }

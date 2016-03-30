@@ -864,10 +864,12 @@ public class Context {
 
         return  MapOfCommonRepository.get(tablename);
     }
+
     public void assignbindtypes(){
         bindtypes = new ArrayList<CommonRepositoryInformationHolder>();
         AssetManager assetManager = getInstance().applicationContext().getAssets();
-
+        // create common repository definition for the ec models
+        getEcBindtypes();
         try {
             String str = ReadFromfile("bindtypes.json",getInstance().applicationContext);
             JSONObject jsonObject = new JSONObject(str);
@@ -885,9 +887,33 @@ public class Context {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public void getEcBindtypes(){
+        try {
+            AssetManager assetManager = getInstance().applicationContext().getAssets();
+            String str = ReadFromfile("ec_client_fields.json", getInstance().applicationContext);
+            JSONObject jsonObject = new JSONObject(str);
+            JSONArray bindtypeObjects = jsonObject.getJSONArray("bindobjects");
+
+            for(int i = 0 ; i < bindtypeObjects.length(); i++){
+                JSONObject columnDefinitionObject = bindtypeObjects.getJSONObject(i);
+                String bindname = columnDefinitionObject.getString("name");
+                JSONArray columnsJsonArray = columnDefinitionObject.getJSONArray("columns");
+                String [] columnNames = new String[columnsJsonArray.length()];
+                for(int j = 0 ; j < columnNames.length; j++){
+                    JSONObject columnObject = columnsJsonArray.getJSONObject(j);
+                    columnNames[j] =  columnObject.getString("column_name");
+                }
+                bindtypes.add(new CommonRepositoryInformationHolder(bindname, columnNames));
+                Log.v("bind type logs", bindname);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
+
     public String ReadFromfile(String fileName, android.content.Context context) {
         StringBuilder returnString = new StringBuilder();
         InputStream fIn = null;

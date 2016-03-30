@@ -1,7 +1,7 @@
 {
   "client_type": [
     {
-      "type": "household",
+      "type": "ec_household",
       "rule": {
         "lookup": "event",
         "fields": [
@@ -14,7 +14,7 @@
       }
     },
     {
-      "type": "elco",
+      "type": "ec_elco",
       "rule": {
         "lookup": "event",
         "fields": [
@@ -29,7 +29,7 @@
       }
     },
     {
-      "type": "anc",
+      "type": "ec_anc",
       "rule": {
         "lookup": "event",
         "fields": [
@@ -44,7 +44,7 @@
       }
     },
     {
-      "type": "pnc",
+      "type": "ec_pnc",
       "rule": {
         "lookup": "event",
         "fields": [
@@ -59,7 +59,7 @@
       }
     },
     {
-      "type": "child",
+      "type": "ec_child",
       "rule": {
         "lookup": "event",
         "fields": [
