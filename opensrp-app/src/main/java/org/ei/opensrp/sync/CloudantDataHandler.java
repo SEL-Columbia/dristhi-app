@@ -178,10 +178,23 @@ public class CloudantDataHandler extends ReplicationService {
                 String jsonEventStr = new String(json, "UTF-8");
                 JSONObject jsonObectClient = new JSONObject(jsonEventStr);
                 return jsonObectClient;
-
             }
         }
 
+        return null;
+    }
+
+    public Client getClientDocumentByBaseEntityId(String baseEntityId) throws Exception{
+        Map<String, Object> query = new HashMap<String, Object>();
+        query.put("type", "org.ei.opensrp.cloudant.models.Client");
+        query.put("base_entity_id", baseEntityId);
+        Iterator<DocumentRevision> iterator = indexManager.find(query).iterator();
+
+        if (iterator.hasNext()){
+            DocumentRevision rev = iterator.next();
+            Client c = Client.fromRevision((BasicDocumentRevision) rev);
+            return c;
+        }
 
         return null;
     }

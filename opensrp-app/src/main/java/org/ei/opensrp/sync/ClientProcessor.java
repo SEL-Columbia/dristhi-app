@@ -151,8 +151,11 @@ public class ClientProcessor {
         try {
             JSONObject columnMappings = getColumnMappings(clientType);
             JSONArray columns = columnMappings.getJSONArray("columns");
+            String baseEntityId = client.getString("base_entity_id");
 
             ContentValues contentValues = new ContentValues();
+            //Add the base_entity_id
+            contentValues.put("base_entity_id", baseEntityId);
 
             for (int i = 0; i < columns.length(); i++) {
                 JSONObject colObject = columns.getJSONObject(i);

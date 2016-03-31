@@ -186,7 +186,7 @@ public class FormUtils {
             printClient(cin);
         }
 
-        //startPushReplicationOnBackgroundThread();
+        startPushReplicationOnBackgroundThread();
     }
 
     private void printClient(Client client){
@@ -194,16 +194,8 @@ public class FormUtils {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
         String clientJson = gson.toJson(client);
         Log.logDebug(clientJson);
-        Log.logDebug("============== CLIENT ================");
+        Log.logDebug("====================================");
 
-    }
-    public String getEventAsJsonString(Event event){
-        Log.logDebug("============== EVENT ================");
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
-        String eventJson = gson.toJson(event);
-        Log.logDebug(eventJson);
-        Log.logDebug("============== EVENT ================");
-        return eventJson;
     }
 
     private void printEvent(Event event){
@@ -211,7 +203,7 @@ public class FormUtils {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
         String eventJson = gson.toJson(event);
         Log.logDebug(eventJson);
-        Log.logDebug("============== EVENT ================");
+        Log.logDebug("====================================");
     }
 
     private void startPushReplicationOnBackgroundThread(){

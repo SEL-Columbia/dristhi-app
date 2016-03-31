@@ -19,7 +19,9 @@ import com.cloudant.sync.replication.Replicator;
 import com.cloudant.sync.replication.ReplicatorBuilder;
 import com.google.common.eventbus.Subscribe;
 
+import org.ei.opensrp.sync.CloudantDataHandler;
 import org.ei.opensrp.view.activity.SecuredActivity;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.net.URI;
@@ -48,6 +50,8 @@ public class ClientEventModel {
     private final String dbURL="http://46.101.51.199:5984/test_db";
 
     private static ClientEventModel instance;
+
+    private CloudantDataHandler mCloudantDataHandler;
 
     public static ClientEventModel getInstance(Context context){
         if (instance == null){
@@ -83,6 +87,12 @@ public class ClientEventModel {
         // the main thread so the UI can update safely.
         this.mHandler = new Handler(Looper.getMainLooper());
 
+        try {
+            this.mCloudantDataHandler = CloudantDataHandler.getInstance(mContext.getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Log.d(LOG_TAG, "ClientEventModel set up " + path.getAbsolutePath());
     }
 
@@ -110,11 +120,23 @@ public class ClientEventModel {
         MutableDocumentRevision rev = new MutableDocumentRevision();
         rev.body = DocumentBodyFactory.create(client.asMap());
         try {
-            BasicDocumentRevision created = this.mDatastore.createDocumentFromRevision(rev);
-            return Client.fromRevision(created);
-        } catch (DocumentException de) {
-            return null;
+            //save the model only once if it already exist ignore, or merge the document
+            Client c = mCloudantDataHandler.getClientDocumentByBaseEntityId(client.getBaseEntityId());
+
+            if (c == null){
+                BasicDocumentRevision created = this.mDatastore.createDocumentFromRevision(rev);
+                return Client.fromRevision(created);
+            }
+            else{
+                //TODO: merge/update the client document
+                return c;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        return null;
     }
 
     /**
