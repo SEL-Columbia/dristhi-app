@@ -99,4 +99,5 @@
     <string name="encc3form">ENCC Visit Form 3</string>
     <string name="encc2form">ENCC Visit Form 2</string>
     <string name="encc1form">ENCC Visit Form 1</string>
+    <string name="NID">NID</string>
 </resources>

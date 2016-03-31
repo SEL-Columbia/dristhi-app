@@ -52,7 +52,7 @@
     <string name="str_pnc_search_hint">Search PNC Register</string>
     <string name="str_child_search_hint">Search Child Register</string>
     <string name="label_sorted_by">Sorted By:</string>
-    <string name="label_village">, Village:</string>
+    <string name="label_village">, Filtered By:</string>
     <string name="ec_register_wife_age">({0})</string>
 
     <string name="ec_register_male_child">Male\n{0}</string>
@@ -311,7 +311,7 @@
     <string name="household_entries">All Household Entries</string>
     <string name="hh_register_title_in_short">HH</string>
 
-    <string name="elco_profile">Profile;</string>
+    <string name="elco_profile">Profile</string>
     <string name="elco_unique_id">Unique ID</string>
     <string name="elco_lmp">LMP</string>
     <string name="elco_psrf_due_date">PSRF Due Date</string>
@@ -338,10 +338,10 @@
     <string name="hhid_gob_elco_label">HHID-Government :</string>
     <string name="elco_details_mauza">Mauza :</string>
     <string name="elco_alphabetical_sort">Alphabetical (Woman name)</string>
-    <string name="anc_nbnf_due_date">NBNF due date</string>
-    <string name="anc_reminder_status">ANC reminder Status</string>
+    <string name="anc_nbnf_due_date">Birth Notification due date</string>
+    <string name="anc_reminder_status">ANC Reminder Status</string>
     <string name="anc_edd_ga">EDD and GA</string>
-    <string name="anc_reminder_due">ANC reminder due</string>
+    <string name="anc_reminder_due">ANC Reminder Due</string>
     <string name="take_nid_picture">Take Picture-NID/BRID</string>
     <string name="censusenrollmentform">Census New Woman Registration Form</string>
     <string name="psrfform">Pregnancy Surveillance And Registration Form</string>
@@ -378,6 +378,7 @@
     <string name="encc3form">ENCC Visit Form 3</string>
     <string name="encc2form">ENCC Visit Form 2</string>
     <string name="encc1form">ENCC Visit Form 1</string>
+    <string name="NID">NID :</string>
 
 
 </resources>

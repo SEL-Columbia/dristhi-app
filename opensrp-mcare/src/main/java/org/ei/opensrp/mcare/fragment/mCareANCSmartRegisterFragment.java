@@ -145,7 +145,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
             @Override
             public String searchHint() {
-                return getString(org.ei.opensrp.R.string.str_ec_search_hint);
+                return getString(org.ei.opensrp.R.string.str_anc_search_hint);
             }
         };
     }
