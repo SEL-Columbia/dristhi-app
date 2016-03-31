@@ -329,8 +329,9 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         }else{
             HHMauzaCommonObjectFilterOption mauzafilter = (HHMauzaCommonObjectFilterOption)filter;
             String criteria = mauzafilter.criteria;
-            CountExecute();
+
             filters = " and details LIKE '%"+criteria+"%'";
+            CountExecute();
             filterandSortExecute();
         }
 
@@ -368,7 +369,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         getDefaultOptionsProvider();
         initializeQueries();
 //        updateSearchView();
-//        checkforNidMissing(mView);
+        checkforNidMissing(mView);
 //
         try{
             LoginActivity.setLanguage();
@@ -516,9 +517,14 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
             warn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getClientsAdapter()
-                            .refreshList(new noNIDFilter(), getCurrentServiceModeOption(),
-                                    getCurrentSearchFilter(), getCurrentSortOption());
+//                    getClientsAdapter()
+//                            .refreshList(new noNIDFilter(), getCurrentServiceModeOption(),
+//                                    getCurrentSearchFilter(), getCurrentSortOption());
+                    filters = "and household.id in (Select elco.relationalid from elco where details not Like '%nidImage%' and details LIKE '%\"FWELIGIBLE\":\"1\"%' )";
+
+                    CountExecute();
+                    filterandSortExecute();
+
                 }
             });
         }else{
@@ -555,9 +561,16 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         countqueryBUilder.SelectInitiateMainTableCounts("household");
         countqueryBUilder.joinwithALerts("household", "FW CENSUS");
         countqueryBUilder.mainCondition(" FWHOHFNAME is not null ");
-        String nidfilters = "and household.id in (Select elco.relationalid from elco where FWWOMFNAME Like '%"+cs.toString()+"%' )";
+        String nidfilters = "and household.id in (Select elco.relationalid from elco where details not Like '%nidImage%' and details LIKE '%\"FWELIGIBLE\":\"1\"%' )";
 
-        countqueryBUilder.addCondition("details is ");
+        countqueryBUilder.addCondition(nidfilters);
+        Cursor c = commonRepository.RawCustomQueryForAdapter(countqueryBUilder.Endquery(countqueryBUilder.toString()));
+        c.moveToFirst();
+        int missingnidCount = c.getInt(0);
+        c.close();
+        if(missingnidCount>0){
+            toreturn = true;
+        }
         return toreturn;
 //        return false;
     }

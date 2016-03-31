@@ -85,4 +85,8 @@ public class SmartRegisterQueryBuilder {
         Selectquery = Selectquery+ " ON "+ tablename +".id = alerts.caseID and  alerts.scheduleName = '"+alertname+"'" ;
         return Selectquery;
     }
+    @Override
+    public String toString(){
+        return Selectquery;
+    }
 }
