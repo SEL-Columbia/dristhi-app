@@ -29,7 +29,7 @@
       }
     },
     {
-      "type": "ec_anc",
+      "type": "ec_mcaremother",
       "rule": {
         "lookup": "event",
         "fields": [

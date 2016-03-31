@@ -105,12 +105,15 @@ public class ClientProcessor {
                                 } else if (type.equalsIgnoreCase("ec_elco")) {
                                     //populate elco bucket
                                     processCaseModel(event, client, "ec_elco");
-                                } else if (type.equalsIgnoreCase("ec_anc")) {
+                                } else if (type.equalsIgnoreCase("ec_mcaremother")) {
                                     //populate anc bucket
+                                    processCaseModel(event, client, "ec_mcaremother");
                                 } else if (type.equalsIgnoreCase("ec_pnc")) {
                                     //populate pnc bucket
+                                    processCaseModel(event, client, "ec_pnc");
                                 } else if (type.equalsIgnoreCase("ec_child")) {
                                     //populate child bucket
+                                    processCaseModel(event, client, "ec_child");
                                 }
 
 
@@ -132,12 +135,15 @@ public class ClientProcessor {
                             } else if (type.equalsIgnoreCase("ec_elco")) {
                                 //populate elco bucket
                                 processCaseModel(event, client, "ec_elco");
-                            } else if (type.equalsIgnoreCase("ec_anc")) {
+                            } else if (type.equalsIgnoreCase("ec_mcaremother")) {
                                 //populate anc bucket
+                                processCaseModel(event, client, "ec_mcaremother");
                             } else if (type.equalsIgnoreCase("ec_pnc")) {
                                 //populate pnc bucket
+                                processCaseModel(event, client, "ec_pnc");
                             } else if (type.equalsIgnoreCase("ec_child")) {
                                 //populate child bucket
+                                processCaseModel(event, client, "ec_child");
                             }
                         }
 
