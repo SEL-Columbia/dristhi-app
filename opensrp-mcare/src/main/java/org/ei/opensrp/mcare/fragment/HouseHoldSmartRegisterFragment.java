@@ -209,13 +209,12 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-        list = (ListView) view.findViewById(R.id.list);
-        list.setVisibility(View.VISIBLE);
+        clientsView.setVisibility(View.VISIBLE);
         clientsProgressView.setVisibility(View.INVISIBLE);
 //        list.setBackgroundColor(Color.RED);
         initializeQueries();
     }
-    ListView list;
+
     private String sortByAlertmethod() {
        return " CASE WHEN alerts.status = 'urgent' THEN '1'"
          +
@@ -249,7 +248,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
         clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("household",new String []{"FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}));
-        list.setAdapter(clientAdapter);
+        clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
         refresh();
