@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -165,20 +166,21 @@ public class CloudantDataHandler extends ReplicationService {
     }
 
     public JSONObject getClientByBaseEntityId(String baseEntityId) throws Exception{
-        Map<String, Object> query = new HashMap<String, Object>();
-        query.put("type", "org.ei.opensrp.cloudant.models.Client");
-        query.put("base_entity_id", baseEntityId);
-        List<String> documentIds = indexManager.find(query).documentIds();
+        try {
+            Client client=getClientDocumentByBaseEntityId(baseEntityId);
 
-        if (documentIds != null && !documentIds.isEmpty()) {
-            SQLiteDatabase db = loadDatabase();
-            Cursor cursor = db.rawQuery("select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + documentIds.get(0)+"'", null);
-            if (cursor != null && cursor.moveToFirst()) {
-                byte[] json = (cursor.getBlob(0));
-                String jsonEventStr = new String(json, "UTF-8");
-                JSONObject jsonObectClient = new JSONObject(jsonEventStr);
-                return jsonObectClient;
+            if (client != null ) {
+                SQLiteDatabase db = loadDatabase();
+                Cursor cursor = db.rawQuery("select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + client.getDocumentRevision().getId()+"'", null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    byte[] json = (cursor.getBlob(0));
+                    String jsonEventStr = new String(json, "UTF-8");
+                    JSONObject jsonObectClient = new JSONObject(jsonEventStr);
+                    return jsonObectClient;
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return null;
@@ -190,7 +192,7 @@ public class CloudantDataHandler extends ReplicationService {
         query.put("base_entity_id", baseEntityId);
         Iterator<DocumentRevision> iterator = indexManager.find(query).iterator();
 
-        if (iterator.hasNext()){
+        if (iterator!=null && iterator.hasNext()){
             DocumentRevision rev = iterator.next();
             Client c = Client.fromRevision((BasicDocumentRevision) rev);
             return c;
