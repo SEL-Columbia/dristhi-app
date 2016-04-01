@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.DristhiConfiguration;
+import org.ei.opensrp.cloudant.models.ClientEventModel;
 import org.ei.opensrp.domain.FetchStatus;
 import org.ei.opensrp.domain.Response;
 import org.ei.opensrp.domain.form.FormSubmission;
@@ -44,6 +45,9 @@ public class FormSubmissionSyncService {
     }
 
     public FetchStatus sync() {
+        ClientEventModel mClientEventModel = ClientEventModel.getInstance(Context.getInstance().applicationContext());
+        mClientEventModel.startPullReplication();;
+        mClientEventModel.startPushReplication();
         pushToServer();
         new ImageUploadSyncService((ImageRepository) Context.imageRepository());
         return pullFromServer();

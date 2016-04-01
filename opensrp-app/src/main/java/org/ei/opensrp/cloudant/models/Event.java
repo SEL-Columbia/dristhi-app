@@ -87,23 +87,40 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
         Map<String, Object> map = rev.asMap();
         if(map.containsKey(type_key) && map.get(type_key).equals(Event.DOC_TYPE)) {
            // event.setType((String) map.get(type_key));
+            if(map.get(date_created_key)!=null)
             event.setDateCreated((Date) map.get(date_created_key));
+            if(map.get(voided_key)!=null)
             event.setVoided((Boolean) map.get(voided_key));
+            if(map.get(base_entity_id_key)!=null)
             event.setBaseEntityId((String) map.get(base_entity_id_key));
+            if(map.get(editor_key)!=null)
             event.setEditor((User) map.get(editor_key));
+            if(map.get(creator_key)!=null)
             event.setCreator((User) map.get(creator_key));
+            if(map.get(date_edited_key)!=null)
             event.setDateEdited((Date) map.get(date_edited_key));
+            if(map.get(voider_key)!=null)
             event.setVoider((User) map.get(voider_key));
+            if(map.get(date_voided_key)!=null)
             event.setDateVoided((Date) map.get(date_voided_key));
+            if(map.get(void_reason_key)!=null)
             event.setVoidReason((String) map.get(void_reason_key));
+            if(map.get(details_key)!=null)
             event.setDetails((Map<String, String>) map.get(details_key));
+            if(map.get(entity_type_key)!=null)
             event.setEntityType((String) map.get(entity_type_key));
+            if(map.get(form_submission_id_key)!=null)
             event.setFormSubmissionId((String) map.get(form_submission_id_key));
+            if(map.get(location_id_key)!=null)
             event.setLocationId((String) map.get(location_id_key));
+            if(map.get(event_type_key)!=null)
            // event.setEventDate((Date) map.get(event_date_key));
             event.setEventType((String) map.get(event_type_key));
+            if(map.get(event_id_key)!=null)
             event.setEventId((String) map.get(event_id_key));
+            if(map.get(obs_key)!=null)
             event.setObs((List<Obs>) map.get(map.get(obs_key)));
+            if(map.get(provider_key)!=null)
             event.setProviderId((String) map.get(provider_key));
            // event.setVersion((String) map.get(version_key));
             return event;

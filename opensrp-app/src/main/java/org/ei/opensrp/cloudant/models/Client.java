@@ -36,6 +36,7 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
     }
 
     public Client(org.ei.opensrp.clientandeventmodel.Client client){
+
         setAddresses(client.getAddresses());
         setAttributes(client.getAttributes());
         setBaseEntityId(client.getBaseEntityId());
@@ -89,28 +90,48 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
         Map<String, Object> map = rev.asMap();
         if(map.containsKey(type_key) && map.get(type_key).equals(Client.DOC_TYPE)) {
             client.setType((String) map.get(type_key));
-            client.setAddresses((List<Address>) map.get(adresses_key));
+            if(map.get(adresses_key)!=null)
+                client.setAddresses((List<Address>) map.get(adresses_key));
+            if(map.get(attributes_key)!=null)
             client.setAttributes((Map<String, Object>) map.get(attributes_key));
+
+            if(map.get(base_entity_id_key)!=null)
             client.setBaseEntityId((String) map.get(base_entity_id_key));
             //the date is being saved as long
             Long timestamp = (Long) map.get(birth_date_key);
             if (timestamp != null)
                 client.setBirthdate(new Date(timestamp));
-            client.setBirthdateApprox((Boolean) map.get(birth_date_approx_key));
-            client.setCreator((User) map.get(creator_key));
-            client.setDateCreated((Date) map.get(date_created_key));
-            client.setDateVoided((Date) map.get(date_voided_key));
-            client.setDateEdited((Date) map.get(date_edited_key));
-            client.setDeathdate((Date) map.get(death_date_key));
-            client.setFirstName((String) map.get(firstname_key));
-            client.setIdentifiers((Map<String, String>) map.get(identifiers_key));
-            client.setGender((String) map.get(gender_key));
-            client.setLastName((String) map.get(lastname_key));
-            client.setMiddleName((String) map.get(middlename_key));
-            client.setVoider((User) map.get(voider_key));
-            client.setVoidReason((String) map.get(void_reason_key));
-            client.setEditor((User) map.get(editor_key));
-            client.setDeathdateApprox((Boolean) map.get(death_date_approx_key));
+            if(map.get(birth_date_approx_key)!=null)
+                client.setBirthdateApprox((Boolean) map.get(birth_date_approx_key));
+            if(map.get(creator_key)!=null)
+                client.setCreator((User) map.get(creator_key));
+            if(map.get(date_created_key)!=null)
+                client.setDateCreated((Date) map.get(date_created_key));
+            if(map.get(date_voided_key)!=null)
+                client.setDateVoided((Date) map.get(date_voided_key));
+            if(map.get(date_edited_key)!=null)
+                client.setDateEdited((Date) map.get(date_edited_key));
+            if(map.get(death_date_key)!=null)
+                client.setDeathdate((Date) map.get(death_date_key));
+            if(map.get(firstname_key)!=null)
+                client.setFirstName((String) map.get(firstname_key));
+            if(map.get(identifiers_key)!=null)
+                client.setIdentifiers((Map<String, String>) map.get(identifiers_key));
+            if(map.get(gender_key)!=null)
+                client.setGender((String) map.get(gender_key));
+            if( map.get(lastname_key)!=null)
+                client.setLastName((String) map.get(lastname_key));
+            if(map.get(middlename_key)!=null)
+                client.setMiddleName((String) map.get(middlename_key));
+            if(map.get(voider_key)!=null)
+                client.setVoider((User) map.get(voider_key));
+            if(map.get(void_reason_key)!=null)
+                client.setVoidReason((String) map.get(void_reason_key));
+            if(map.get(editor_key)!=null)
+                client.setEditor((User) map.get(editor_key));
+            if(map.get(death_date_approx_key)!=null)
+                client.setDeathdateApprox((Boolean) map.get(death_date_approx_key));
+            if( map.get(voided_key)!=null)
             client.setVoided((Boolean) map.get(voided_key));
             return client;
         }
