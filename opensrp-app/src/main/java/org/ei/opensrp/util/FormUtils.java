@@ -141,6 +141,7 @@ public class FormUtils {
         return fs;
     }
 
+
     private void generateClientAndEventModelsForFormSubmission(FormSubmission formSubmission, String formName) {
         org.ei.opensrp.clientandeventmodel.FormSubmission v2FormSubmission;
 
@@ -265,6 +266,7 @@ public class FormUtils {
         subForms.put(0, subFormDefinition);
         return subForms;
     }
+
 
     public String generateXMLInputForFormWithEntityId(String entityId, String formName, String overrides){
         try
@@ -829,11 +831,18 @@ public class FormUtils {
             }
             i++;
         }
-        if(object.has(path[i]) && object.get(path[i]) instanceof JSONObject && ((JSONObject) object.get(path[i])).has("content")){
+        Object valueObject = object.has(path[i]) ? object.get(path[i]) : null;
+
+        if (valueObject == null)
+            return value;
+        if(valueObject instanceof JSONObject && ((JSONObject) valueObject).has("content")){
             value = ((JSONObject) object.get(path[i])).getString("content");
         }
-        else if(object.has(path[i]) && !(object.get(path[i]) instanceof JSONObject)){
-            value = object.has(path[i]) ? object.get(path[i]).toString() : null;
+        else if(valueObject instanceof JSONArray){
+            value = ((JSONArray)valueObject).get(0).toString();
+        }
+        else if(!(valueObject instanceof JSONObject) ){
+            value = valueObject.toString();
         }
         return value;
     }

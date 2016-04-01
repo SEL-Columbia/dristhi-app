@@ -15,6 +15,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.ControllerFilterMap;
 import org.ei.opensrp.mcare.LoginActivity;
+import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.anc.mCareANCServiceModeOption;
 import org.ei.opensrp.mcare.anc.mCareANCSmartClientsProvider;
@@ -144,7 +145,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
             @Override
             public String searchHint() {
-                return getString(org.ei.opensrp.R.string.str_ec_search_hint);
+                return getString(org.ei.opensrp.R.string.str_anc_search_hint);
             }
         };
     }
@@ -167,9 +168,10 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
         controllerFilterMapArrayList.add(filtermap);
 //        controllerFilterMapArrayList.add(filterforpnc);
-        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+        controller = NativeHomeActivity.anccontroller;
+//                new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
+//                context.allBeneficiaries(), context.listCache(),
+//                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 //                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
         villageController = new VillageController(context.allEligibleCouples(),

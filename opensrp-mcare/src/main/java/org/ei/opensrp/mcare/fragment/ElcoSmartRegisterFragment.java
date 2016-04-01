@@ -11,6 +11,7 @@ import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.mcare.LoginActivity;
+import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.elco.ElcoDetailActivity;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
@@ -151,10 +152,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
     @Override
     protected void onInitialization() {
-        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
-//                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+        controller = NativeHomeActivity.elcocontroller;//                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
         villageController = new VillageController(context.allEligibleCouples(),
                 context.listCache(), context.villagesCache());

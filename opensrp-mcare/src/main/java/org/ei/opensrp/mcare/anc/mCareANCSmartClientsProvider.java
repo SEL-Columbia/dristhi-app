@@ -160,7 +160,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
 
                 }else if(pc.getDetails().get("anc1_current_formStatus").equalsIgnoreCase("urgent")){
                     anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc1text.setText("urgent");
+//                    anc1text.setText("urgent");
                 }
             }
         }else{
@@ -305,6 +305,9 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
             alerttextstatus = setAlertStatus("",alertlist);
         }else{
             alerttextstatus = new alertTextandStatus("Not synced","not synced");
+        }
+        if(alerttextstatus.alertText.length()>0){
+            alerttextstatus.setAlertText(alerttextstatus.alertText.substring(1));
         }
         CustomFontTextView NBNFDueDate = (CustomFontTextView)itemView.findViewById(R.id.nbnf_due_date);
         setalerttextandColorInView(NBNFDueDate, alerttextstatus, pc);

@@ -58,6 +58,8 @@ public class ElcoDetailActivity extends Activity {
         setContentView(R.layout.elco_detail_activity);
         TextView name = (TextView) findViewById(R.id.name);
         TextView brid = (TextView) findViewById(R.id.brid);
+        TextView nid = (TextView) findViewById(R.id.womannid);
+
         TextView husbandname = (TextView) findViewById(R.id.husbandname);
         TextView age = (TextView) findViewById(R.id.age);
         TextView jivitahhid = (TextView) findViewById(R.id.jivitahhid);
@@ -83,6 +85,8 @@ public class ElcoDetailActivity extends Activity {
         name.setText(humanize((Elcoclient.getDetails().get("FWWOMFNAME") != null ? Elcoclient.getDetails().get("FWWOMFNAME") : "").replace("+", "_")));
 
         brid.setText(getString(R.string.BRID) +humanize((Elcoclient.getDetails().get("FWWOMBID") != null ? Elcoclient.getDetails().get("FWWOMBID") : "").replace("+", "_")));
+        nid.setText(getString(R.string.NID) +humanize((Elcoclient.getDetails().get("FWWOMNID") != null ? Elcoclient.getDetails().get("FWWOMNID") : "").replace("+", "_")));
+
         husbandname.setText(getString(R.string.elco_details_husband_name_label)+(Elcoclient.getDetails().get("FWHUSNAME") != null ? Elcoclient.getDetails().get("FWHUSNAME") : ""));
         age.setText(getString(R.string.elco_age_label) + (Elcoclient.getDetails().get("FWWOMAGE") != null ? Elcoclient.getDetails().get("FWWOMAGE") : ""));
         jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(Elcoclient.getDetails().get("JiVitAHHID") != null ? Elcoclient.getDetails().get("JiVitAHHID") : ""));
