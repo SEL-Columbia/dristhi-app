@@ -3,13 +3,13 @@
     {
       "name": "household",
       "columns": [
-
+        {"name":"FWHOHFNAME"}, {"name":"FWGOBHHID"},{"name":"FWJIVHHID"}
       ]
     },
     {
       "name": "elco",
       "columns": [
-
+        {"name":"FWWOMFNAME"}, {"name":"JiVitAHHID"},{"name":"GOBHHID"}
       ]
     },
     {

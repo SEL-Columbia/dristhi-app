@@ -2,11 +2,13 @@ package org.ei.opensrp.commonregistry;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteQueryBuilder;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.ei.opensrp.repository.DrishtiRepository;
@@ -35,11 +37,18 @@ public class CommonRepository extends DrishtiRepository {
         additionalcolumns = columns;
         common_TABLE_COLUMNS = ArrayUtils.addAll(common_TABLE_COLUMNS, columns);
         TABLE_NAME = tablename;
-        common_SQL = "CREATE TABLE "+ TABLE_NAME + "(id VARCHAR PRIMARY KEY,relationalid VARCHAR,";
+        common_SQL = "CREATE TABLE "+ TABLE_NAME + "(id VARCHAR PRIMARY KEY,relationalid VARCHAR,details VARCHAR";
         for(int i = 0;i<columns.length;i++){
-            common_SQL = common_SQL+ columns[i] + " VARCHAR,";
+            if(i ==0){
+                common_SQL = common_SQL + ", ";
+            }
+            if(i!=columns.length-1) {
+                common_SQL = common_SQL + columns[i] + " VARCHAR,";
+            }else{
+                common_SQL = common_SQL + columns[i] + " VARCHAR ";
+            }
         }
-        common_SQL = common_SQL +"details VARCHAR)";
+        common_SQL = common_SQL +")";
     }
 
     @Override
@@ -186,7 +195,7 @@ public class CommonRepository extends DrishtiRepository {
     }
 
 
-    private List<CommonPersonObject> readAllcommonForField(Cursor cursor ,String tableName) {
+    public List<CommonPersonObject> readAllcommonForField(Cursor cursor ,String tableName) {
         List<CommonPersonObject> commons = new ArrayList<CommonPersonObject>();
         try {
             cursor.moveToFirst();
@@ -245,5 +254,33 @@ public class CommonRepository extends DrishtiRepository {
         }
 
         return commons;
+    }
+    public Cursor CustomQueryForAdapter(String[] columns,String tableName,String limit,String offset){
+
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+    Cursor cursor = database.query(tableName, columns, null, null, null, null, null, offset + "," + limit);
+
+        return cursor;
+    }
+    public Cursor RawCustomQueryForAdapter(String query){
+
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(query,null);
+          return cursor;
+    }
+    public CommonPersonObject readAllcommonforCursorAdapter (Cursor cursor) {
+
+
+            int columncount = cursor.getColumnCount();
+            HashMap <String, String> columns = new HashMap<String, String>();
+            for (int i = 3;i < columncount;i++ ){
+                columns.put(additionalcolumns[i-3],cursor.getString(i));
+            }
+            CommonPersonObject common = new CommonPersonObject(cursor.getString(0),cursor.getString(1),new Gson().<Map<String, String>>fromJson(cursor.getString(2), new TypeToken<Map<String, String>>() {
+            }.getType()),TABLE_NAME);
+            common.setColumnmaps(columns);
+
+
+        return common;
     }
 }

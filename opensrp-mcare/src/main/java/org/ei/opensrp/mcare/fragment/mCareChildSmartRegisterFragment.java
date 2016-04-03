@@ -319,7 +319,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterF
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name", ElcoMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name",name));
 
             }
         }

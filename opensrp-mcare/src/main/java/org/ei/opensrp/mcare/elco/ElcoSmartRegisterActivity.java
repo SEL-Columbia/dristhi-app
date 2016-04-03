@@ -361,7 +361,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"existing_Mauzapara", ElcoMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"existing_Mauzapara",name));
 
             }
         }

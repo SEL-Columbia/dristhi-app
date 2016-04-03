@@ -10,4 +10,5 @@
     <item name="AlertStatustextforPncRegister" type="id">AlertStatustextforPncRegister</item>
     <item name="AlertStatustextforEnccRegister" type="id">AlertStatustextforEnccRegister</item>
     <item name="textforEnccRegister" type="id">textforEnccRegister</item>
+    <item name="warnid" type="id">warnid</item>
 </resources>

@@ -82,15 +82,15 @@ public class ElcoDetailActivity extends Activity {
             }
         });
 
-        name.setText(humanize((Elcoclient.getDetails().get("FWWOMFNAME") != null ? Elcoclient.getDetails().get("FWWOMFNAME") : "").replace("+", "_")));
+        name.setText(humanize((Elcoclient.getColumnmaps().get("FWWOMFNAME") != null ? Elcoclient.getColumnmaps().get("FWWOMFNAME") : "").replace("+", "_")));
 
         brid.setText(getString(R.string.BRID) +humanize((Elcoclient.getDetails().get("FWWOMBID") != null ? Elcoclient.getDetails().get("FWWOMBID") : "").replace("+", "_")));
         nid.setText(getString(R.string.NID) +humanize((Elcoclient.getDetails().get("FWWOMNID") != null ? Elcoclient.getDetails().get("FWWOMNID") : "").replace("+", "_")));
 
         husbandname.setText(getString(R.string.elco_details_husband_name_label)+(Elcoclient.getDetails().get("FWHUSNAME") != null ? Elcoclient.getDetails().get("FWHUSNAME") : ""));
         age.setText(getString(R.string.elco_age_label) + (Elcoclient.getDetails().get("FWWOMAGE") != null ? Elcoclient.getDetails().get("FWWOMAGE") : ""));
-        jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(Elcoclient.getDetails().get("JiVitAHHID") != null ? Elcoclient.getDetails().get("JiVitAHHID") : ""));
-        godhhid.setText(getString(R.string.hhid_gob_elco_label)+(Elcoclient.getDetails().get("GOBHHID") != null ? Elcoclient.getDetails().get("GOBHHID") : ""));
+        jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(Elcoclient.getColumnmaps().get("JiVitAHHID") != null ? Elcoclient.getColumnmaps().get("JiVitAHHID") : ""));
+        godhhid.setText(getString(R.string.hhid_gob_elco_label)+(Elcoclient.getColumnmaps().get("GOBHHID") != null ? Elcoclient.getColumnmaps().get("GOBHHID") : ""));
         psf_due_date.setText(Elcoclient.getDetails().get("FWPSRDATE") != null ? Elcoclient.getDetails().get("FWPSRDATE") : "");
 
 
