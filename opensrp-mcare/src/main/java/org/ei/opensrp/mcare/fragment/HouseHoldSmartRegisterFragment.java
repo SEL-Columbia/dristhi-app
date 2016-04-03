@@ -27,6 +27,10 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClients;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
+import org.ei.opensrp.cursoradapter.CursorFilterOption;
+import org.ei.opensrp.cursoradapter.CursorSortOption;
 import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
@@ -135,9 +139,9 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
 
-                dialogOptionslist.add(new AllClientsFilter());
-                dialogOptionslist.add(new NOHHMWRAEXISTFilterOption("0","ELCO", NOHHMWRAEXISTFilterOption.ByColumnAndByDetails.byDetails));
-                dialogOptionslist.add(new HHMWRAEXISTFilterOption("0","ELCO", HHMWRAEXISTFilterOption.ByColumnAndByDetails.byDetails));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),filterStringForAll()));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_no_mwra),filterStringForNoElco()));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_has_mwra),filterStringForOneOrMoreElco()));
 
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
@@ -163,10 +167,10 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
-                        new HouseholdCensusDueDateSort(),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"FWHOHFNAME",getResources().getString(R.string.hh_alphabetical_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"FWGOBHHID",getResources().getString(R.string.hh_fwGobhhid_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"FWJIVHHID",getResources().getString(R.string.hh_fwJivhhid_sort))
+                        new CursorCommonObjectSort(getResources().getString(R.string.due_status),sortByAlertmethod()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.hh_alphabetical_sort),householdSortByName()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
 //""
 //                        new CommonObjectSort(true,false,true,"age")
                 };
@@ -292,62 +296,25 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
             navigationController.startEC(client.entityId());
         }
     }
-    @Override
-    public void onSortSelection(SortOption sortBy) {
-        appliedSortView.setText(sortBy.name());
-        if(sortBy.name().equalsIgnoreCase(getResources().getString(R.string.hh_alphabetical_sort))){
-            householdSortByName();
-        }
-        if(sortBy.name().equalsIgnoreCase(getResources().getString(R.string.hh_fwGobhhid_sort))){
-            householdSortByFWGOBHHID();
-        }
-        if(sortBy.name().equalsIgnoreCase(getResources().getString(R.string.hh_fwJivhhid_sort))){
-            householdSortByFWJIVHHID();
-        }
-        if(sortBy.name().equalsIgnoreCase(getResources().getString(R.string.due_status))){
-            Sortqueries = sortByAlertmethod();
-            filterandSortExecute();
-        }
-    }
-    @Override
-    public void onFilterSelection(FilterOption filter) {
-        if(filter.name().equalsIgnoreCase(getString(R.string.hh_has_mwra))){
-            filters ="and details not LIKE '%\"ELCO\":\"0\"%'";
-            CountExecute();
-            filterandSortExecute();
-        }
-        else if(filter.name().equalsIgnoreCase(getString(R.string.hh_no_mwra))){
-            filters = " and details LIKE '%\"ELCO\":\"0\"%'";
-            CountExecute();
-            filterandSortExecute();
-        }
-        else if(filter.name().equalsIgnoreCase(getString(R.string.filter_by_all_label))){
-            filters = "";
-            CountExecute();
-            filterandSortExecute();
-        }else{
-            HHMauzaCommonObjectFilterOption mauzafilter = (HHMauzaCommonObjectFilterOption)filter;
-            String criteria = mauzafilter.criteria;
-
-            filters = " and details LIKE '%"+criteria+"%'";
-            CountExecute();
-            filterandSortExecute();
-        }
-
-    }
 
 
-    private void householdSortByName() {
-        Sortqueries = " FWHOHFNAME COLLATE NOCASE ASC";
-        filterandSortExecute();
+    private String filterStringForOneOrMoreElco(){
+        return "and details not LIKE '%\"ELCO\":\"0\"%'";
     }
-    private void householdSortByFWGOBHHID(){
-        Sortqueries = " FWGOBHHID ASC";
-        filterandSortExecute();
+    private String filterStringForNoElco(){
+        return " and details LIKE '%\"ELCO\":\"0\"%'";
     }
-    private void householdSortByFWJIVHHID(){
-        Sortqueries = " FWJIVHHID ASC";
-       filterandSortExecute();
+    private String filterStringForAll(){
+        return "";
+    }
+    private String householdSortByName() {
+        return " FWHOHFNAME COLLATE NOCASE ASC";
+    }
+    private String householdSortByFWGOBHHID(){
+        return " FWGOBHHID ASC";
+    }
+    private String householdSortByFWJIVHHID(){
+      return " FWJIVHHID ASC";
     }
 
     private class EditDialogOptionModel implements DialogOptionModel {
@@ -487,7 +454,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new HHMauzaCommonObjectFilterOption(name,"existing_Mauzapara", HHMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+                dialogOptionslist.add(new HHMauzaCommonObjectFilterOption(name,"existing_Mauzapara", name));
 
             }
         }

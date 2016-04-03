@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -296,13 +297,17 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     }
 
 
-
+    @Override
     public void onSortSelection(SortOption sortBy) {
-
+        appliedSortView.setText(sortBy.name());
+        Sortqueries = ((CursorSortOption)sortBy).sort();
+        filterandSortExecute();
     }
-
+    @Override
     public void onFilterSelection(FilterOption filter) {
-
+        filters = ((CursorFilterOption)filter).filter() ;
+        CountExecute();
+        filterandSortExecute();
     }
 
     protected void onEditSelection(EditOption editOption, SmartRegisterClient client) {
