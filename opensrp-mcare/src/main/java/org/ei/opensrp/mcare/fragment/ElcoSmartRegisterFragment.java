@@ -15,6 +15,8 @@ import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
 import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
@@ -111,7 +113,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
             @Override
             public DialogOption[] filterOptions() {
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
-                dialogOptionslist.add(new AllClientsFilter());
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),""));
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
 
@@ -134,10 +136,10 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
             @Override
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{
-                        new ElcoPSRFDueDateSort(),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"FWWOMFNAME", Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"GOBHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"JiVitAHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort))
+                        new CursorCommonObjectSort(getString(R.string.due_status),sortByAlertmethod()),
+                        new CursorCommonObjectSort(getString(R.string.elco_alphabetical_sort),householdSortByName()),
+                         new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
+                        new CursorCommonObjectSort( Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
 
 //                        new CommonObjectSort(true,false,true,"age")
                 };
@@ -212,50 +214,14 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
 //        list.setBackgroundColor(Color.RED);
         initializeQueries();
     }
-    @Override
-    public void onSortSelection(SortOption sortBy) {
-        appliedSortView.setText(sortBy.name());
-        if(sortBy.name().equalsIgnoreCase(Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort))){
-            householdSortByName();
-        }
-        if(sortBy.name().equalsIgnoreCase( Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort))){
-            householdSortByFWGOBHHID();
-        }
-        if(sortBy.name().equalsIgnoreCase(Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort))){
-            householdSortByFWJIVHHID();
-        }
-        if(sortBy.name().equalsIgnoreCase(Context.getInstance().applicationContext().getString(R.string.due_status))){
-            Sortqueries = sortByAlertmethod();
-            filterandSortExecute();
-        }
+    private String householdSortByName() {
+        return " FWWOMFNAME COLLATE NOCASE ASC";
     }
-    @Override
-    public void onFilterSelection(FilterOption filter) {
-
-       if(filter.name().equalsIgnoreCase(getString(R.string.filter_by_all_label))){
-            filters = "";
-            CountExecute();
-            filterandSortExecute();
-        }else{
-           ElcoMauzaCommonObjectFilterOption mauzafilter = (ElcoMauzaCommonObjectFilterOption)filter;
-            String criteria = mauzafilter.criteria;
-            CountExecute();
-            filters = " and details LIKE '%"+criteria+"%'";
-            filterandSortExecute();
-        }
-
+    private String householdSortByFWGOBHHID(){
+        return " GOBHHID ASC";
     }
-    private void householdSortByName() {
-        Sortqueries = " FWWOMFNAME COLLATE NOCASE ASC";
-        filterandSortExecute();
-    }
-    private void householdSortByFWGOBHHID(){
-        Sortqueries = " GOBHHID ASC";
-        filterandSortExecute();
-    }
-    private void householdSortByFWJIVHHID(){
-        Sortqueries = " JiVitAHHID ASC";
-        filterandSortExecute();
+    private String householdSortByFWJIVHHID(){
+        return " JiVitAHHID ASC";
     }
 
 
@@ -417,7 +383,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name", ElcoMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name",name));
 
             }
         }
