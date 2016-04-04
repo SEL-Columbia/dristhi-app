@@ -98,6 +98,7 @@ public class NativeHomeActivity extends SecuredActivity {
     public static CommonPersonObjectController childcontroller;
     public static CommonPersonObjectController pnccontroller;
     public static int hhcount;
+
     @Override
     protected void onCreation() {
         setContentView(R.layout.smart_registers_home);
@@ -117,7 +118,14 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void setupViews() {
+        findViewById(R.id.btn_ec_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_pnc_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_anc_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_fp_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_child_register).setOnClickListener(onRegisterStartListener);
 
+        findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
+        findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
 
         ecRegisterClientCountView = (TextView) findViewById(R.id.txt_ec_register_client_count);
         pncRegisterClientCountView = (TextView) findViewById(R.id.txt_pnc_register_client_count);
@@ -146,7 +154,13 @@ public class NativeHomeActivity extends SecuredActivity {
         ancControllerfiltermap ancfiltermap = new ancControllerfiltermap();
         anccontrollerFilterMapArrayList.add(ancfiltermap);
 
-                anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
+        hhcontroller =  new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
+                context.allBeneficiaries(), context.listCache(),
+                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new HouseholdCensusDueDateSort());
+               elcocontroller =  new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
+                 context.allBeneficiaries(), context.listCache(),
+                 context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
+        anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",anccontrollerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
         pnccontroller =new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
@@ -181,11 +195,9 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void updateRegisterCounts(HomeContext homeContext) {
-
-//        CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
-//                context.allBeneficiaries(), context.listCache(),
-//                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
+        pncRegisterClientCountView.setText(valueOf(pnccontroller.getClients().size()));
+              SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
         Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household","household.FWHOHFNAME NOT Null and household.FWHOHFNAME != ''"));
         hhcountcursor.moveToFirst();
         hhcount= hhcountcursor.getInt(0);
@@ -194,17 +206,6 @@ public class NativeHomeActivity extends SecuredActivity {
         elcocountcursor.moveToFirst();
         int elcocount= elcocountcursor.getInt(0);
         elcocountcursor.close();
-        CommonPersonObjectController elcocontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        CommonPersonObjectController anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        CommonPersonObjectController childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcarechild"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWBNFGEN","mcarechild","FWBNFGEN", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-
-
         ecRegisterClientCountView.setText(valueOf(hhcount));
         ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
         pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
