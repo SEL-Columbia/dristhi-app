@@ -1,0 +1,77 @@
+{
+  "client_type": [
+    {
+      "type": "ec_household",
+      "rule": {
+        "lookup": "event",
+        "fields": [
+          {
+            "field_name":"event_type",
+            "field_value": "New Household Registration"
+
+          }
+        ]
+      }
+    },
+    {
+      "type": "ec_elco",
+      "rule": {
+        "lookup": "event",
+        "fields": [
+          {
+            "data_segment": "obs",
+            "field_name":"fieldCode",
+            "field_value": "162699AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key":"value",
+            "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+          }
+        ]
+      }
+    },
+    {
+      "type": "ec_mcaremother",
+      "rule": {
+        "lookup": "event",
+        "fields": [
+          {
+            "data_segment": "obs",
+            "field_name":"fieldCode",
+            "field_value": "162942AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key":"value",
+            "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+          }
+        ]
+      }
+    },
+    {
+      "type": "ec_pnc",
+      "rule": {
+        "lookup": "event",
+        "fields": [
+          {
+            "data_segment": "obs",
+            "field_name":"fieldCode",
+            "field_value": "163088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key":"value",
+            "response_value":["162961AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+          }
+        ]
+      }
+    },
+    {
+      "type": "ec_child",
+      "rule": {
+        "lookup": "event",
+        "fields": [
+          {
+            "data_segment": "obs",
+            "field_name":"fieldCode",
+            "field_value": "",
+            "response_key":"value",
+            "response_value":[""]
+          }
+        ]
+      }
+    }
+  ]
+}

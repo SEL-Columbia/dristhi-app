@@ -1,0 +1,375 @@
+{
+  "bindobjects": [
+    {
+      "name": "ec_household",
+      "columns": [
+        {"column_name": "base_entity_id",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "base_entity_id"
+          }
+        },
+        {"column_name": "FWGOBHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "GoB_HHID"
+          }
+        },
+        {"column_name": "FWJIVHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "JiVitA_HHID"
+          }
+        },
+        {"column_name": "existing_Mauzapara",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "adresses",
+            "field_name" : "cityVillage"
+          }
+        },
+        {"column_name": "FWHOHFNAME",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "firstname"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_elco",
+      "columns": [
+        {"column_name": "base_entity_id",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "base_entity_id"
+          }
+        },
+        {"column_name": "GOBHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "GoB_HHID"
+          }
+        },
+        {"column_name": "JiVitAHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "JiVitA_HHID"
+          }
+        },
+        {"column_name": "FWWOMFNAME",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "firstname"
+          }
+        },
+        {"column_name": "FWHUSNAME",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"161135AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWWOMMAUZA_PARA",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" :"adresses",
+            "field_name" :"address4"
+          }
+        },
+        {"column_name": "FWWOMAGE",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWWOMNID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" :"identifiers",
+            "field_name" :"NID"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_mcaremother",
+      "columns": [
+        {"column_name": "base_entity_id",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "base_entity_id"
+          }
+        },
+        {"column_name": "FWWOMFNAME",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "firstname"
+          }
+        },
+        {"column_name": "FWHUSNAME",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"161135AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "GOBHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "GoB_HHID"
+          }
+        },
+        {"column_name": "JiVitAHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "JiVitA_HHID"
+          }
+        },
+        {"column_name": "mauza",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" :"adresses",
+            "field_name" :"address4"
+          }
+        },
+        {"column_name": "FWWOMAGE",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWWOMNID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" :"identifiers",
+            "field_name" :"NID"
+          }
+        },
+        {"column_name": "FWPSRLMP",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWVG",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"163090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWHRP",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"163092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWHR_PSR",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"163091AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWANC1DATE",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWANC2DATE",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWANC3DATE",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        }
+      ]
+    },{
+      "name": "ec_pnc",
+      "columns": [
+        {"column_name": "base_entity_id",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "base_entity_id"
+          }
+        },
+        {"column_name": "FWWOMFNAME",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "firstname"
+          }
+        },
+        {"column_name": "FWHUSNAME",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"161135AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "GOBHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "GoB_HHID"
+          }
+        },
+        {"column_name": "JiVitAHHID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" : "attributes",
+            "field_name" : "JiVitA_HHID"
+          }
+        },
+        {"column_name": "mauza",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" :"adresses",
+            "field_name" :"address4"
+          }
+        },
+        {"column_name": "FWWOMAGE",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWBNFDTOO",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWBNFSTS",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"161641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWWOMNID",
+          "document_type" : "Client",
+          "json_mapping": {
+            "data_segment" :"identifiers",
+            "field_name" :"NID"
+          }
+        },
+        {"column_name": "FWVG",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"163090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWHRP",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"163092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWHR_PSR",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"163091AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWPNC1DATE",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },
+        {"column_name": "FWPNC2DATE",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        },{"column_name": "FWPNC3DATE",
+          "document_type" : "Event",
+          "json_mapping": {
+            "data_segment" :"obs",
+            "field_name" :"fieldCode",
+            "field_value" :"160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key" : "value"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_mcarechild",
+      "columns": [
+        {"column_name": "base_entity_id",
+          "document_type" : "Client",
+          "json_mapping": {
+            "field_name" : "base_entity_id"
+          }
+        }
+      ]
+    }
+  ]
+}
