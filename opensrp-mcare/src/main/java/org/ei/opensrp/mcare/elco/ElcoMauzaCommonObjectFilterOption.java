@@ -5,25 +5,25 @@ import android.util.Log;
 import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
+import org.ei.opensrp.cursoradapter.CursorFilterOption;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.dialog.FilterOption;
 
 import static org.ei.opensrp.util.StringUtil.humanize;
 
-public class ElcoMauzaCommonObjectFilterOption implements FilterOption {
-    private final String criteria;
+public class ElcoMauzaCommonObjectFilterOption implements CursorFilterOption {
+    public final String criteria;
     public final String fieldname;
     private final String filterOptionName;
-    ByColumnAndByDetails byColumnAndByDetails;
 
-    public enum ByColumnAndByDetails{
-        byColumn,byDetails;
+    @Override
+    public String filter() {
+        return  " and details LIKE '%"+criteria+"%'";
     }
 
-    public ElcoMauzaCommonObjectFilterOption(String criteria, String fieldname, ByColumnAndByDetails byColumnAndByDetails, String filteroptionname) {
+    public ElcoMauzaCommonObjectFilterOption(String criteria, String fieldname, String filteroptionname) {
         this.criteria = criteria;
         this.fieldname = fieldname;
-        this.byColumnAndByDetails= byColumnAndByDetails;
         this.filterOptionName = filteroptionname;
     }
 
@@ -34,24 +34,7 @@ public class ElcoMauzaCommonObjectFilterOption implements FilterOption {
 
     @Override
     public boolean filter(SmartRegisterClient client) {
-        switch (byColumnAndByDetails){
-            case byColumn:
-                return ((CommonPersonObjectClient)client).getColumnmaps().get(fieldname).contains(criteria);
-            case byDetails:
-                AllCommonsRepository allelcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
 
-                CommonPersonObject elcoobject = allelcoRepository.findByCaseID(((CommonPersonObjectClient)client).entityId());
-
-                AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("household");
-                CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
-                String location = "";
-                if(householdparent.getDetails().get("existing_Mauzapara") != null) {
-                    location = householdparent.getDetails().get("existing_Mauzapara");
-                    location = humanize(location.replace("+", "_"));
-                    Log.v("location", location);
-                }
-                return location.replace("+"," ").toLowerCase().contains(criteria.toLowerCase());
-        }
         return false;
     }
 }

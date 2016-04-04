@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.ControllerFilterMap;
+import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.mcare.anc.anc1handler;
 import org.ei.opensrp.mcare.anc.anc2handler;
@@ -95,6 +97,7 @@ public class NativeHomeActivity extends SecuredActivity {
     public static CommonPersonObjectController elcocontroller;
     public static CommonPersonObjectController childcontroller;
     public static CommonPersonObjectController pnccontroller;
+    public static int hhcount;
 
     @Override
     protected void onCreation() {
@@ -192,13 +195,21 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void updateRegisterCounts(HomeContext homeContext) {
-
-
-
-            ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
-           ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
+        ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
         pncRegisterClientCountView.setText(valueOf(pnccontroller.getClients().size()));
-        fpRegisterClientCountView.setText(valueOf(elcocontroller.getClients().size()));
+              SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household","household.FWHOHFNAME NOT Null and household.FWHOHFNAME != ''"));
+        hhcountcursor.moveToFirst();
+        hhcount= hhcountcursor.getInt(0);
+        hhcountcursor.close();
+        Cursor elcocountcursor = context.commonrepository("elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("elco","elco.FWWOMFNAME NOT NULL and elco.FWWOMFNAME !=''  AND elco.details  LIKE '%\"FWELIGIBLE\":\"1\"%'"));
+        elcocountcursor.moveToFirst();
+        int elcocount= elcocountcursor.getInt(0);
+        elcocountcursor.close();
+        ecRegisterClientCountView.setText(valueOf(hhcount));
+        ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
+        pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
+        fpRegisterClientCountView.setText(valueOf(elcocount));
         childRegisterClientCountView.setText(valueOf(childcontroller.getClients().size()));
     }
 

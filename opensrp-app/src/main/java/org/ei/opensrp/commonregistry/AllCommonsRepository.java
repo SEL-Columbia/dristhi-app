@@ -57,17 +57,14 @@ public class AllCommonsRepository {
     }
 
     public void update(String tableName,ContentValues contentValues,String caseId){
-
         personRepository.updateColumn(tableName, contentValues, caseId);
     }
 
     public List<CommonPersonObject> customQuery(String sql , String[] selections , String tableName){
         return personRepository.customQuery(sql,selections,tableName);
-
     }
 
     public List<CommonPersonObject> customQueryForCompleteRow(String sql , String[] selections , String tableName){
         return personRepository.customQueryForCompleteRow(sql,selections,tableName);
-
     }
 }
