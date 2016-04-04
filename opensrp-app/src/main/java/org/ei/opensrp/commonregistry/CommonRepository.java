@@ -275,16 +275,29 @@ public class CommonRepository extends DrishtiRepository {
 
             int columncount = cursor.getColumnCount();
             HashMap <String, String> columns = new HashMap<String, String>();
-            for (int i = 3;i < columncount;i++ ){
-                columns.put(additionalcolumns[i-3],cursor.getString(i));
+            for (int i = 0; i < columncount; i++ ){
+                String columnName = cursor.getColumnName(i);
+                String value = cursor.getString(cursor.getColumnIndex(columnName));
+                columns.put(columnName, value);
             }
-            CommonPersonObject common = new CommonPersonObject(cursor.getString(0),cursor.getString(1),new Gson().<Map<String, String>>fromJson(cursor.getString(2), new TypeToken<Map<String, String>>() {
-            }.getType()),TABLE_NAME);
+            //CommonPersonObject common = new CommonPersonObject(cursor.getString(0),cursor.getString(1),new Gson().<Map<String, String>>fromJson(cursor.getString(2), new TypeToken<Map<String, String>>() {
+            //}.getType()),TABLE_NAME);
+            CommonPersonObject common = getCommonPersonObjectFromCursor(cursor);
             common.setColumnmaps(columns);
 
 
         return common;
     }
+
+    public CommonPersonObject getCommonPersonObjectFromCursor(Cursor cursor){
+        CommonPersonObject commonPersonObject = null;
+        String caseId = cursor.getString(cursor.getColumnIndex("_id"));
+        String relationalid = cursor.getString(cursor.getColumnIndex("relationalid"));
+        Map<String, String> details = sqliteRowToMap(cursor);
+        commonPersonObject = new CommonPersonObject(caseId, relationalid, details, TABLE_NAME);
+        return commonPersonObject;
+    }
+
     /**
      * Insert the a new record to the database and returns its id
      **/
