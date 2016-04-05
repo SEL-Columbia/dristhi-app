@@ -16,10 +16,12 @@ import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.household.HouseHoldDetailActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.util.DateUtil;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
@@ -43,7 +45,7 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 /**
  * Created by user on 2/12/15.
  */
-public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvider {
+public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
 
     private final LayoutInflater inflater;
     private final Context context;
@@ -53,12 +55,11 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
     private final AbsListView.LayoutParams clientViewLayoutParams;
 
     protected CommonPersonObjectController controller;
-
+    AlertService alertService;
     public mCareANCSmartClientsProvider(Context context,
-                                        View.OnClickListener onClickListener,
-                                        CommonPersonObjectController controller) {
+                                        View.OnClickListener onClickListener,AlertService alertService) {
         this.onClickListener = onClickListener;
-        this.controller = controller;
+        this.alertService = alertService;
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -68,10 +69,10 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
     }
 
     @Override
-    public View getView(final SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
-        ViewGroup itemView;
-
-        itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_anc_client, null);
+    public void getView(final SmartRegisterClient smartRegisterClient, View convertView) {
+        View itemView;
+        itemView = convertView;
+//        itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_anc_client, null);
         LinearLayout profileinfolayout = (LinearLayout)itemView.findViewById(R.id.profile_info_layout);
 
 //        ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
@@ -130,7 +131,11 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
 
 
         itemView.setLayoutParams(clientViewLayoutParams);
-        return itemView;
+    }
+
+    @Override
+    public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption, FilterOption searchFilter, SortOption sortOption) {
+        return null;
     }
 
     private void constructAncVisitStatusBlock(CommonPersonObjectClient pc, View itemview) {
@@ -298,7 +303,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
         }
     }
 
-    private void constructNBNFDueBlock(CommonPersonObjectClient pc, ViewGroup itemView) {
+    private void constructNBNFDueBlock(CommonPersonObjectClient pc, View itemView) {
         alertTextandStatus alerttextstatus = null;
         List <Alert>alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(),"BirthNotificationPregnancyStatusFollowUp");
         if(alertlist.size() != 0){
@@ -314,7 +319,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
 
     }
 
-    private void constructANCReminderDueBlock(CommonPersonObjectClient pc, ViewGroup itemView) {
+    private void constructANCReminderDueBlock(CommonPersonObjectClient pc, View itemView) {
         alertTextandStatus alerttextstatus = null;
         List <Alert>alertlist4 = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(),"ancrv_4");
         if(alertlist4.size() != 0){
@@ -404,7 +409,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
         return alts;
     }
 
-    private void constructRiskFlagView(CommonPersonObjectClient pc, ViewGroup itemView) {
+    private void constructRiskFlagView(CommonPersonObjectClient pc, View itemView) {
 //        AllCommonsRepository allancRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcaremother");
 //        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
 //        AllCommonsRepository allelcorep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
@@ -432,17 +437,12 @@ public class mCareANCSmartClientsProvider implements SmartRegisterClientsProvide
 //        if(pc.getDetails().get("FWWOMAGE")!=null &&)
 
     }
-
     @Override
-    public SmartRegisterClients getClients() {
-        return controller.getClients();
+    public View inflatelayoutForCursorAdapter() {
+        View View = (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_anc_client, null);
+        return View;
     }
 
-    @Override
-    public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
-                                              FilterOption searchFilter, SortOption sortOption) {
-        return getClients().applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
-    }
 
     @Override
     public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
