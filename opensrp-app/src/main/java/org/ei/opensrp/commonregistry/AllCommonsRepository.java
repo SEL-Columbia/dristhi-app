@@ -31,6 +31,10 @@ public class AllCommonsRepository {
         return personRepository.findByCaseID(caseId);
     }
 
+    public CommonPersonObject findHHByGOBHHID(String gobhhid) {
+        return personRepository.findHHByGOBHHID(gobhhid);
+    }
+
     public long count() {
         return personRepository.count();
     }

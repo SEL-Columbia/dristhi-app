@@ -121,6 +121,17 @@ public class CommonRepository extends DrishtiRepository {
         return commons.get(0);
     }
 
+    public CommonPersonObject findHHByGOBHHID(String caseId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(TABLE_NAME, common_TABLE_COLUMNS, "FWGOBHHID" + " = ?", new String[]{caseId},
+                null, null, null, null);
+        List<CommonPersonObject> commons = readAllcommon(cursor);
+        if (commons.isEmpty()) {
+            return null;
+        }
+        return commons.get(0);
+    }
+
     public long count() {
         return longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + TABLE_NAME
                 , new String[0]);
@@ -329,7 +340,7 @@ public class CommonRepository extends DrishtiRepository {
     public Map<String, String> sqliteRowToMap(Cursor cursor) {
         int totalColumn = cursor.getColumnCount();
         Map<String, String> rowObject = new HashMap<String, String>();
-        if (cursor != null && cursor.moveToFirst()){
+        if (cursor != null ){
             for (int i = 0; i < totalColumn; i++) {
                 if (cursor.getColumnName(i) != null) {
                     try {
@@ -342,4 +353,6 @@ public class CommonRepository extends DrishtiRepository {
         }
         return rowObject;
     }
+
+
 }
