@@ -17,7 +17,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class ClientProcessor {
 
@@ -191,6 +194,10 @@ public class ClientProcessor {
 
                 //special handler needed to process address,
                 if (dataSegment!= null && dataSegment.equalsIgnoreCase("adresses")){
+                    Map<String, String> addressMap = getClientAddressAsMap(client);
+                    if (addressMap.containsKey(fieldName)){
+                        contentValues.put(columnName, addressMap.get(fieldName).toString());
+                    }
                     continue;
                 }
 
@@ -211,7 +218,6 @@ public class ClientProcessor {
                                 columnValue = jsonDocObject.getString(responseKey);
                             }
                         }
-
 
                     }
 
@@ -237,6 +243,43 @@ public class ClientProcessor {
         }
 
 
+    }
+
+
+    public Map<String, String> getClientAddressAsMap(JSONObject client){
+        Map<String, String> addressMap = new HashMap<String, String>();
+        try {
+            String addressFieldsKey = "addressFields";
+            String adressesKey = "adresses";
+
+            if (client.has(adressesKey)){
+                JSONObject addressJson = client.getJSONArray(adressesKey).getJSONObject(0);
+                if (addressJson.has(addressFieldsKey)){
+                    JSONObject addressFields = addressJson.getJSONObject(addressFieldsKey);
+                    Iterator<String> it = addressFields.keys();
+                    while (it.hasNext()){
+                        String key = it.next();
+                        String value = addressFields.getString(key);
+                        addressMap.put(key, value);
+                    }
+                }
+
+                //retrieve the other fields as well
+                Iterator<String> it = addressJson.keys();
+                while (it.hasNext()){
+                    String key = it.next();
+                    boolean shouldSkipNode = addressJson.get(key) instanceof JSONArray || addressJson.get(key) instanceof JSONObject;
+                    if (!shouldSkipNode){
+                        String value = addressJson.getString(key);
+                        addressMap.put(key, value);
+                    }
+                }
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return addressMap;
     }
 
     /**

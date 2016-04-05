@@ -31,7 +31,7 @@
           "document_type": "Client",
           "json_mapping": {
             "data_segment": "adresses",
-            "field_name": "cityVillage"
+            "field_name": "address4"
           }
         },
         {
