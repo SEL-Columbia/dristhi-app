@@ -367,7 +367,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         }
     }
     public String ancMainSelectWithJoins(){
-        return "Select id as _id,relationalid,details,FWWOMFNAME,FWPSRLMP,FWSORTVALUE,JiVitAHHID,GOBHHID,Is_PNC,FWBNFSTS,FWBNFDTOO, alerts.status as ancstatus,alerts2.status as nbnfstatus\n" +
+        return "Select id as _id,relationalid,details,FWWOMFNAME,FWPSRLMP,FWSORTVALUE,JiVitAHHID,GOBHHID,Is_PNC,FWBNFSTS,FWBNFDTOO \n" +
                 "from mcaremother\n" +
                 "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
                 "Left Join alerts as alerts2 on alerts2.caseID = mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
@@ -377,12 +377,12 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         setTablename("mcaremother");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("mcaremother");
-        countSelect = countqueryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not NUll  AND mcaremother.details  LIKE '%\\\"FWWOMVALID\\\":\\\"1\\\"%'");
+        countSelect = countqueryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not NUll  AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
-        mainSelect = queryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not NUll  AND mcaremother.details  LIKE '%\\\"FWWOMVALID\\\":\\\"1\\\"%'");
+        mainSelect = queryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not NUll  AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
 
         queryBUilder.addCondition(filters);
         Sortqueries = sortBySortValue();
