@@ -94,7 +94,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
             profilepic.setOnClickListener(onClickListener);
             profilepic.setTag(smartRegisterClient);
 
-            name.setText(pc.getDetails().get("FWWOMFNAME") != null ? pc.getDetails().get("FWWOMFNAME") : "");
+            name.setText(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : "");
             age.setText(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "");
         }else{
 
@@ -116,7 +116,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
             editform.setTag(smartRegisterClient);
 
 
-            name.setText(pc.getDetails().get("FWWOMFNAME") != null ? pc.getDetails().get("FWWOMFNAME") : "");
+            name.setText(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : "");
             age.setText(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "");
         }
         itemView.setLayoutParams(clientViewLayoutParams);
