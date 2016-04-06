@@ -420,6 +420,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
                 "WHEN alerts.status = 'normal' THEN '3'\n" +
                 "WHEN alerts.status = 'expired' THEN '4'\n" +
                 "WHEN alerts.status is Null THEN '5'\n" +
+                "WHEN alerts.status = 'complete' THEN '6'\n" +
                 "Else alerts.status END ASC";
     }
 
