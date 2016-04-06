@@ -100,6 +100,7 @@ public class NativeHomeActivity extends SecuredActivity {
     public static int hhcount;
     private int elcocount;
     private int anccount;
+    private int pnccount;
 
     @Override
     protected void onCreation() {
@@ -195,6 +196,11 @@ public class NativeHomeActivity extends SecuredActivity {
         anccountcursor.moveToFirst();
         anccount= anccountcursor.getInt(0);
         anccountcursor.close();
+        Cursor pnccountcursor = context.commonrepository("mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcaremother","mcaremother.Is_PNC = '1' and mcaremother.FWWOMFNAME is not NUll  AND mcaremother.FWWOMFNAME != \"\"      AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'"));
+        pnccountcursor.moveToFirst();
+        pnccount= pnccountcursor.getInt(0);
+        pnccountcursor.close();
+        pncRegisterClientCountView.setText(valueOf(pnccount));
         ecRegisterClientCountView.setText(valueOf(hhcount));
         ancRegisterClientCountView.setText(valueOf(anccount));
         fpRegisterClientCountView.setText(valueOf(elcocount));
