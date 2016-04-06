@@ -136,6 +136,9 @@ public class FormAttributeParser {
         return document;
     }
 
+    private String jsonFilePath;
+    private String xmlFilePath;
+
     /**
      * The method returns the field name in form submission mapped with custom attributes given as attributeMap.
      * Ex: What is the field name in given form submission that is mapped with entity=person
@@ -152,7 +155,7 @@ public class FormAttributeParser {
     public String getFieldName(Map<String, String> attributeMap,FormSubmission formSubmission) throws JsonSyntaxException, IOException, XPathExpressionException, ParserConfigurationException, SAXException
     {
         String fieldName = "";
-        Node fieldTag = getFieldTagFromModel(attributeMap, formSubmission);
+        Node fieldTag = getFieldTagFromModel(attributeMap,formSubmission);
         String bind =getXPath(fieldTag);
         fieldName = getFieldNameFromFormDefinition(bind,formSubmission.formName());
         return fieldName;
@@ -521,7 +524,7 @@ public class FormAttributeParser {
      * @param fieldVal
      * @param subform
      * @param jsonForm
-     * @param 
+     * @param
      * @return
      * @throws IOException
      * @throws JsonSyntaxException
@@ -685,7 +688,7 @@ public class FormAttributeParser {
      * Gets the bind path of specified field for given subform in given form submission
      * @param subformName
      * @param field
-     * @param
+     * @param 
      * @return
      * @throws JsonSyntaxException
      * @throws IOException

@@ -1,6 +1,8 @@
 package org.ei.opensrp.clientandeventmodel;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +28,8 @@ public class Client extends BaseEntity {
     private Boolean deathdateApprox;
     @JsonProperty
     private String gender;
+    @JsonProperty
+    private Map<String, List<String>> relationships;
 
     protected Client() {
 
@@ -144,6 +148,14 @@ public class Client extends BaseEntity {
         this.gender = gender;
     }
 
+    public Map<String, List<String>> getRelationships() {
+        return relationships;
+    }
+
+    public void setRelationships(Map<String, List<String>> relationships) {
+        this.relationships = relationships;
+    }
+
     public Client withFirstName(String firstName) {
         this.firstName = firstName;
         return this;
@@ -187,6 +199,45 @@ public class Client extends BaseEntity {
     public Client withGender(Gender gender) {
         this.gender = gender.name();
         return this;
+    }
+
+    /**
+     * Overrides the existing data
+     */
+    public Client withRelationships(Map<String, List<String>> relationships) {
+        this.relationships = relationships;
+        return this;
+    }
+
+    public List<String> findRelatives(String relationshipType) {
+        if(relationships == null){
+            relationships = new HashMap<>();
+        }
+
+        return relationships.get(relationshipType);
+    }
+
+    public void addRelationship(String relationType, String relativeEntityId) {
+        if(relationships == null){
+            relationships = new HashMap<>();
+        }
+
+        List<String> relatives = findRelatives(relationType);
+        if(relatives == null){
+            relatives = new ArrayList<>();
+        }
+        relatives.add(relativeEntityId);
+        relationships.put(relationType, relatives);
+    }
+
+    public List<String> getRelationships(String relativeEntityId) {
+        List<String> relations = new ArrayList<String>();
+        for (Map.Entry<String, List<String>> rl : relationships.entrySet()) {
+            if(rl.getValue().toString().equalsIgnoreCase(relativeEntityId)){
+                relations.add(rl.getKey());
+            }
+        }
+        return relations;
     }
 
     @Override

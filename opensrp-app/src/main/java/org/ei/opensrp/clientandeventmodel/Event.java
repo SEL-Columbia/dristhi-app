@@ -28,6 +28,22 @@ public class Event extends BaseDataObject{
     @JsonProperty
     private String providerId;
     @JsonProperty
+    private String status;
+    @JsonProperty
+    private Map<String, Date> statusHistory;
+    @JsonProperty
+    private String priority;
+    @JsonProperty
+    private List<String>  episodeOfCare;
+    @JsonProperty
+    private List<String> referrals;
+    @JsonProperty
+    private String category;
+    @JsonProperty
+    private int duration;
+    @JsonProperty
+    private String reason;
+    @JsonProperty
     private List<Obs> obs;
     @JsonProperty
     private String entityType;
@@ -35,6 +51,8 @@ public class Event extends BaseDataObject{
     private Map<String, String> details;
     @JsonProperty
     private long version;
+    @JsonProperty
+    private List<Photo> photos;
 
     public Event() {
         this.version = System.currentTimeMillis();
@@ -228,7 +246,6 @@ public class Event extends BaseDataObject{
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
-
 
 }
 

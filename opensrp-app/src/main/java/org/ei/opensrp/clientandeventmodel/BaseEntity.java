@@ -21,6 +21,10 @@ public class BaseEntity extends BaseDataObject {
     private List<Address> addresses;
     @JsonProperty
     private Map<String, Object> attributes;
+    @JsonProperty
+    private List<ContactPoint> contactPoints;
+    @JsonProperty
+    private List<Photo> photos;
 
     protected BaseEntity() {}
 
@@ -59,7 +63,19 @@ public class BaseEntity extends BaseDataObject {
     }
 
     public List<Address> getAddresses() {
+        if (addresses == null) {
+            addresses = new ArrayList<>();
+        }
         return addresses;
+    }
+
+    public Address getAddress(String addressType) {
+        for (Address address : addresses) {
+            if(address.getAddressType().equalsIgnoreCase(addressType)){
+                return address;
+            }
+        }
+        return null;
     }
 
     /**
@@ -80,6 +96,9 @@ public class BaseEntity extends BaseDataObject {
     }
 
     public Map<String, Object> getAttributes() {
+        if (attributes == null) {
+            attributes = new HashMap<>();
+        }
         return attributes;
     }
 
@@ -118,6 +137,9 @@ public class BaseEntity extends BaseDataObject {
     }
 
     public Map<String, String> getIdentifiers() {
+        if(identifiers == null){
+            identifiers = new HashMap<>();
+        }
         return identifiers;
     }
 
@@ -223,5 +245,4 @@ public class BaseEntity extends BaseDataObject {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
-
 }
