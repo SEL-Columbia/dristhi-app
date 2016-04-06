@@ -98,6 +98,8 @@ public class NativeHomeActivity extends SecuredActivity {
     public static CommonPersonObjectController childcontroller;
     public static CommonPersonObjectController pnccontroller;
     public static int hhcount;
+    private int elcocount;
+    private int anccount;
 
     @Override
     protected void onCreation() {
@@ -153,27 +155,12 @@ public class NativeHomeActivity extends SecuredActivity {
         ArrayList<ControllerFilterMap> anccontrollerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
         ancControllerfiltermap ancfiltermap = new ancControllerfiltermap();
         anccontrollerFilterMapArrayList.add(ancfiltermap);
-
-        hhcontroller =  new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new HouseholdCensusDueDateSort());
-               elcocontroller =  new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
-                 context.allBeneficiaries(), context.listCache(),
-                 context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new ElcoPSRFDueDateSort());
-        anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",anccontrollerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
         pnccontroller =new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-//                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-
-                childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcarechild"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWBNFGEN","mcarechild","FWBNFGEN", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-
-//        getActionBar().setBackgroundDrawable(getReso
-// urces().getDrawable(R.color.action_bar_background));
+        context.allBeneficiaries(), context.listCache(),
+        context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+        childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcarechild"),
+        context.allBeneficiaries(), context.listCache(),
+        context.personObjectClientsCache(),"FWBNFGEN","mcarechild","FWBNFGEN", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
     }
 
     @Override
@@ -195,20 +182,21 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void updateRegisterCounts(HomeContext homeContext) {
-        ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
-        pncRegisterClientCountView.setText(valueOf(pnccontroller.getClients().size()));
-              SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
-        Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household","household.FWHOHFNAME NOT Null and household.FWHOHFNAME != ''"));
+               SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household", "household.FWHOHFNAME NOT Null and household.FWHOHFNAME != ''"));
         hhcountcursor.moveToFirst();
         hhcount= hhcountcursor.getInt(0);
         hhcountcursor.close();
         Cursor elcocountcursor = context.commonrepository("elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("elco","elco.FWWOMFNAME NOT NULL and elco.FWWOMFNAME !=''  AND elco.details  LIKE '%\"FWELIGIBLE\":\"1\"%'"));
         elcocountcursor.moveToFirst();
-        int elcocount= elcocountcursor.getInt(0);
+        elcocount= elcocountcursor.getInt(0);
         elcocountcursor.close();
+        Cursor anccountcursor = context.commonrepository("mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcaremother","(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not NUll  AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'"));
+        anccountcursor.moveToFirst();
+        anccount= anccountcursor.getInt(0);
+        anccountcursor.close();
         ecRegisterClientCountView.setText(valueOf(hhcount));
-        ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
-        pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
+        ancRegisterClientCountView.setText(valueOf(anccount));
         fpRegisterClientCountView.setText(valueOf(elcocount));
         childRegisterClientCountView.setText(valueOf(childcontroller.getClients().size()));
     }
