@@ -305,6 +305,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     }
     @Override
     public void onFilterSelection(FilterOption filter) {
+        appliedVillageFilterView.setText(filter.name());
         filters = ((CursorFilterOption)filter).filter() ;
         CountExecute();
         filterandSortExecute();
