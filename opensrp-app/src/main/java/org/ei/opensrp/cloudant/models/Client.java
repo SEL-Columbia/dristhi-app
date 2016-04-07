@@ -57,6 +57,8 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
         setVoidReason(client.getVoidReason());
         setVoided(client.getVoided());
         setEditor(client.getEditor());
+        setRelationalBaseEntityId(client.getRelationalBaseEntityId());
+        setRelationships(client.getRelationships());
         setType(type);
     }
 
@@ -81,7 +83,8 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
     public static final String editor_key = "editor";
     public static final String death_date_approx_key = "death_date_approx";
     public static final String voided_key = "voided";
-
+    public static final String relationships_key = "relationships";
+    public static final String relational_base_entityId_key = "relational_base_entityId";
 
     public static Client fromRevision(BasicDocumentRevision rev) {
         Client client = new Client();
@@ -93,10 +96,10 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
             if(map.get(adresses_key)!=null)
                 client.setAddresses((List<Address>) map.get(adresses_key));
             if(map.get(attributes_key)!=null)
-            client.setAttributes((Map<String, Object>) map.get(attributes_key));
+                client.setAttributes((Map<String, Object>) map.get(attributes_key));
 
             if(map.get(base_entity_id_key)!=null)
-            client.setBaseEntityId((String) map.get(base_entity_id_key));
+                client.setBaseEntityId((String) map.get(base_entity_id_key));
             //the date is being saved as long
             Long timestamp = (Long) map.get(birth_date_key);
             if (timestamp != null)
@@ -112,7 +115,7 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
             if(map.get(date_edited_key)!=null)
                 client.setDateEdited((Date) map.get(date_edited_key));
             if(map.get(death_date_key)!=null)
-                client.setDeathdate((Date) map.get(death_date_key));
+                client.setDeathdate(new Date((Long) map.get(death_date_key)));
             if(map.get(firstname_key)!=null)
                 client.setFirstName((String) map.get(firstname_key));
             if(map.get(identifiers_key)!=null)
@@ -132,7 +135,11 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
             if(map.get(death_date_approx_key)!=null)
                 client.setDeathdateApprox((Boolean) map.get(death_date_approx_key));
             if( map.get(voided_key)!=null)
-            client.setVoided((Boolean) map.get(voided_key));
+                client.setVoided((Boolean) map.get(voided_key));
+            if (map.get(relationships_key) != null)
+                client.setRelationships((Map<String, List<String>>) map.get(relationships_key));
+            if (map.get(relational_base_entityId_key) != null)
+                client.setRelationalBaseEntityId((String) map.get(relational_base_entityId_key));
             return client;
         }
         return null;
@@ -182,6 +189,10 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
             map.put(death_date_approx_key, getDeathdateApprox());
         if (getVoided() != null)
             map.put(voided_key, getVoided());
+        if (getRelationships() != null)
+            map.put(relationships_key, getRelationships());
+        if (getRelationalBaseEntityId() != null)
+            map.put(relational_base_entityId_key, getRelationalBaseEntityId());
         return map;
     }
 

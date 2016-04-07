@@ -13,6 +13,10 @@
         "bind": "/model/instance/FWNewHH/existing_location"
       },
       {
+        "name": "injectedBaseEntityId",
+        "shouldLoadValue": true
+      },
+      {
         "name": "existing_Country",
         "bind": "/model/instance/FWNewHH/existing_Country"
       },
@@ -161,6 +165,10 @@
           },
           {
             "name": "relationalid",
+            "shouldLoadValue": true
+          },
+          {
+            "name": "injectedBaseEntityId",
             "shouldLoadValue": true
           },
           {

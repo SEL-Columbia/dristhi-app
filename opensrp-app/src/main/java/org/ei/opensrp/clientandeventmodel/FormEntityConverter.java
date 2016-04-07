@@ -357,8 +357,9 @@ public class FormEntityConverter {
                 .withMiddleName(middleName)
                 .withLastName(lastName)
                 .withBirthdate(birthdate.toDate(), birthdateApprox)
-                .withDeathdate(deathdate.toDate(), deathdateApprox)
+                .withDeathdate(deathdate != null ? deathdate.toDate() : null, deathdateApprox)
                 .withGender(gender);
+        c.setRelationalBaseEntityId(fs.getFieldValue("injectedBaseEntityId"));
 
         c.withAddresses(addresses)
                 .withAttributes(extractAttributes(fs))
@@ -416,6 +417,7 @@ public class FormEntityConverter {
                 .withBirthdate(new DateTime(birthdate).toDate(), birthdateApprox)
                 .withDeathdate(new DateTime(deathdate).toDate(), deathdateApprox)
                 .withGender(gender);
+        c.setRelationalBaseEntityId(subf.getFieldValue("injectedBaseEntityId"));
 
         c.withAddresses(addresses)
                 .withAttributes(extractAttributes(subf))

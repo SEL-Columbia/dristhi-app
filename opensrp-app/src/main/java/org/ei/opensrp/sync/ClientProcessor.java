@@ -3,11 +3,13 @@ package org.ei.opensrp.sync;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
 
 import org.ei.opensrp.cloudant.models.Client;
+import org.ei.opensrp.cloudant.models.ClientEventModel;
 import org.ei.opensrp.cloudant.models.Event;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.util.AssetHandler;
@@ -166,6 +168,8 @@ public class ClientProcessor {
             //Add the base_entity_id
             contentValues.put("base_entity_id", baseEntityId);
 
+            Map<String, List<String>> relationshipMap = getRelationshipMap(baseEntityId);
+
             for (int i = 0; i < columns.length(); i++) {
                 JSONObject colObject = columns.getJSONObject(i);
                 String docType = colObject.getString("document_type");
@@ -245,6 +249,57 @@ public class ClientProcessor {
 
     }
 
+    public Map<String, List<String>> getRelationshipMap(String baseEntityId) throws Exception {
+        Client client = mCloudantDataHandler.getClientDocumentByBaseEntityId(baseEntityId);
+        Map<String, List<String>> relationshipMap = client.getRelationships();
+        if (relationshipMap == null)
+            relationshipMap = new HashMap<String, List<String>>();
+        try {
+            String relationalBaseEntityId = client.getRelationalBaseEntityId();
+            if (relationalBaseEntityId != null && !relationalBaseEntityId.equals(client.getBaseEntityId())){ // by default the relationalBaseEntityId is the same as the baseEntityId
+                //Build the relationship map
+                String clienClassificationStr = getFileContents("ec_client_classification.json");
+                JSONObject clientClassificationJson = new JSONObject(clienClassificationStr);
+                JSONArray clientTypes = clientClassificationJson.getJSONArray("client_type");
+                for (int i = 0; i < clientTypes.length(); i++){
+                    JSONObject obj = clientTypes.getJSONObject(i);
+                    String tableName = obj.getString("type");
+                    List<String> relationalIds = relationshipMap.get(tableName) != null ? relationshipMap.get(tableName) : new ArrayList<String>();
+                    String query = "select * from " + tableName + " where base_entity_id = '" + relationalBaseEntityId + "'";
+                    String base_entity_id = queryTableForColumnValue(query, tableName, "base_entity_id");
+                    if (base_entity_id != null && !relationalIds.contains(base_entity_id)){ // entity exists in table
+                        relationalIds.add(base_entity_id);
+                    }
+                    relationshipMap.put(tableName, relationalIds);
+                }
+            }
+            client.setRelationships(relationshipMap);
+            mCloudantDataHandler.updateDocument(client);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return client.getRelationships();
+    }
+
+    public String queryTableForColumnValue(String query, String tableName, String column){
+        String columnValue = null;
+        Cursor cursor = null;
+        try {
+            cursor = queryTable(query, tableName);
+            if (cursor != null && cursor.moveToFirst()){ // entity exists in table
+                columnValue = cursor.getString(cursor.getColumnIndex(column));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            //close the cursor
+            if (cursor != null){
+                cursor.close();
+            }
+        }
+        return columnValue;
+    }
 
     public Map<String, String> getClientAddressAsMap(JSONObject client){
         Map<String, String> addressMap = new HashMap<String, String>();
@@ -253,7 +308,7 @@ public class ClientProcessor {
             String adressesKey = "adresses";
 
             if (client.has(adressesKey)){
-                JSONObject addressJson = client.getJSONArray(adressesKey).getJSONObject(0);
+                JSONObject addressJson = client.getJSONArray(adressesKey).getJSONObject(0);// Need to handle multiple addresses as well
                 if (addressJson.has(addressFieldsKey)){
                     JSONObject addressFields = addressJson.getJSONObject(addressFieldsKey);
                     Iterator<String> it = addressFields.keys();
@@ -289,6 +344,12 @@ public class ClientProcessor {
         CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
         Long id = cr.executeInsertStatement(values, tableName);
         return id;
+    }
+
+    private Cursor queryTable(String sql, String tableName){
+        CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
+        Cursor c = cr.queryTable(sql);
+        return c;
     }
 
     private JSONObject getColumnMappings(String registerName) {

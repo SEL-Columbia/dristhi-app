@@ -49,18 +49,17 @@ import javax.xml.parsers.DocumentBuilderFactory;
  */
 public class FormUtils {
 
-    static FormUtils instance;
-    Context mContext;
-    org.ei.opensrp.Context theAppContext;
+    private static FormUtils instance;
+    private Context mContext;
+    private org.ei.opensrp.Context theAppContext;
 
     private static final String shouldLoadValueKey = "shouldLoadValue";
     private static final String relationalIdKey = "relationalid";
     private static final String databaseIdKey = "_id";
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-    Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-    FormEntityConverter formEntityConverter;
+    private static final String injectedBaseEntityIdKey = "injectedBaseEntityId";
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private FormEntityConverter formEntityConverter;
     private ClientEventModel mClientEventModel;
 
     public FormUtils(Context context) {
@@ -651,6 +650,11 @@ public class FormUtils {
                 item.put("value", entityId);
             }
 
+            if (itemName.equalsIgnoreCase(injectedBaseEntityIdKey)) {
+                assert entityId != null;
+                item.put("value", entityId);
+            }
+
             if (itemName.equalsIgnoreCase("start") || itemName.equalsIgnoreCase("end")) {
                 try {
                     boolean isEndTime = itemName.equalsIgnoreCase("end");
@@ -804,6 +808,11 @@ public class FormUtils {
 
             //TODO: generate the relational for the record
             if (item.has("name") && item.getString("name").equalsIgnoreCase(relationalIdKey)) {
+                fieldsValues.put(item.getString("name"), relationalId);
+            }
+
+            //TODO: generate the injectedBaseEntityIdKey for the record
+            if (item.has("name") && item.getString("name").equalsIgnoreCase(injectedBaseEntityIdKey)) {
                 fieldsValues.put(item.getString("name"), relationalId);
             }
         }

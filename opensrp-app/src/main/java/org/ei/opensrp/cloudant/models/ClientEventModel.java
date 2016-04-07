@@ -156,24 +156,6 @@ public class ClientEventModel {
     }
 
     /**
-     * Updates a Client document within the datastore.
-     * @param client client to update
-     * @return the updated revision of the Client
-     * @throws ConflictException if the client passed in has a rev which doesn't
-     *      match the current rev in the datastore.
-     */
-    public Client updateDocument(Client client) throws ConflictException {
-        MutableDocumentRevision rev = client.getDocumentRevision().mutableCopy();
-        rev.body = DocumentBodyFactory.create(client.asMap());
-        try {
-            BasicDocumentRevision updated = this.mDatastore.updateDocumentFromRevision(rev);
-            return Client.fromRevision(updated);
-        } catch (DocumentException de) {
-            return null;
-        }
-    }
-
-    /**
      * Deletes a Client document within the datastore.
      * @param client client to delete
      * @throws ConflictException if the client passed in has a rev which doesn't

@@ -354,5 +354,10 @@ public class CommonRepository extends DrishtiRepository {
         return rowObject;
     }
 
+    public Cursor queryTable(String query){
+        SQLiteDatabase db = masterRepository.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
 
 }

@@ -6,8 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.cloudant.sync.datastore.BasicDocumentRevision;
+import com.cloudant.sync.datastore.ConflictException;
 import com.cloudant.sync.datastore.DocumentBody;
+import com.cloudant.sync.datastore.DocumentBodyFactory;
+import com.cloudant.sync.datastore.DocumentException;
 import com.cloudant.sync.datastore.DocumentRevision;
+import com.cloudant.sync.datastore.MutableDocumentRevision;
 import com.cloudant.sync.query.IndexManager;
 import com.cloudant.sync.query.QueryResult;
 
@@ -237,5 +241,21 @@ public class CloudantDataHandler extends ReplicationService {
         return db;
     }
 
-
+    /**
+     * Updates a Client document within the datastore.
+     * @param client client to update
+     * @return the updated revision of the Client
+     * @throws ConflictException if the client passed in has a rev which doesn't
+     *      match the current rev in the datastore.
+     */
+    public Client updateDocument(Client client) throws ConflictException {
+        MutableDocumentRevision rev = client.getDocumentRevision().mutableCopy();
+        rev.body = DocumentBodyFactory.create(client.asMap());
+        try {
+            BasicDocumentRevision updated = dataStore.updateDocumentFromRevision(rev);
+            return Client.fromRevision(updated);
+        } catch (DocumentException de) {
+            return null;
+        }
+    }
 }

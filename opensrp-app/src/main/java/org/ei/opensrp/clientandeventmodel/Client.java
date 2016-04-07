@@ -31,6 +31,18 @@ public class Client extends BaseEntity {
     @JsonProperty
     private Map<String, List<String>> relationships;
 
+    //This is an id field used to link a client to other clients or parent
+    @JsonProperty
+    private String relationalBaseEntityId;
+
+    public String getRelationalBaseEntityId() {
+        return relationalBaseEntityId;
+    }
+
+    public void setRelationalBaseEntityId(String relationalBaseEntityId) {
+        this.relationalBaseEntityId = relationalBaseEntityId;
+    }
+
     protected Client() {
 
     }

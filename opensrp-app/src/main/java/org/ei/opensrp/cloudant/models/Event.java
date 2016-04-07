@@ -122,7 +122,7 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
             event.setObs((List<Obs>) map.get(map.get(obs_key)));
             if(map.get(provider_key)!=null)
             event.setProviderId((String) map.get(provider_key));
-           // event.setVersion((String) map.get(version_key));
+           //event.setVersion((String) map.get(version_key));
             return event;
         }
         return null;
@@ -168,8 +168,7 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
             map.put(obs_key, getObs());
         if (getProviderId() != null)
             map.put(provider_key, getProviderId());
-        if (getProviderId() != null)
-            map.put(version_key, getProviderId());
+        map.put(version_key, getVersion());
         return map;
     }
 }
