@@ -16,6 +16,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.commonregistry.ControllerFilterMap;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
 import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
 import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
@@ -116,7 +117,11 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             @Override
             public DialogOption[] filterOptions() {
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
-                dialogOptionslist.add(new AllClientsFilter());
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),""));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_pncrv1),filterStringForPNCRV1()));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_pncrv2),filterStringForPNCRV2()));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_pncrv3),filterStringForPNCRV3()));
+
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
 
@@ -144,7 +149,8 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                         new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort),sortByFWWOMFNAME()),
                         new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort),sortByGOBHHID()),
                         new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort),sortByJiVitAHHID()),
-                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.pnc_date_of_outcome),sortByDateOfOutcome())
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.pnc_date_of_outcome),sortByDateOfOutcome()),
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.pnc_outcome),sortByOutcomeStatis())
 
 //                        new CommonObjectSort(true,false,true,"age")
                 };
@@ -277,32 +283,25 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
                     @Override
                     protected Object doInBackground(Object[] params) {
-                        setCurrentSearchFilter(new ElcoSearchOption(cs.toString()));
-                        filteredClients = getClientsAdapter().getListItemProvider()
-                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
-                                        getCurrentSearchFilter(), getCurrentSortOption());
 
-
+//
+                        if(cs.toString().equalsIgnoreCase("")){
+                            filters = "";
+                        }else {
+                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                        }
                         return null;
                     }
 
                     @Override
                     protected void onPostExecute(Object o) {
-//                        clientsAdapter
-//                                .refreshList(currentVillageFilter, currentServiceModeOption,
-//                                        currentSearchFilter, currentSortOption);
-                        getClientsAdapter().refreshClients(filteredClients);
-                        getClientsAdapter().notifyDataSetChanged();
+//
                         getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                        CountExecute();
+                        filterandSortExecute();
                         super.onPostExecute(o);
                     }
                 }).execute();
-//                currentSearchFilter = new HHSearchOption(cs.toString());
-//                clientsAdapter
-//                        .refreshList(currentVillageFilter, currentServiceModeOption,
-//                                currentSearchFilter, currentSortOption);
-//
-//                searchCancelView.setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
 
 
             }
@@ -405,6 +404,22 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     }
     private String sortByDateOfOutcome(){
         return " FWBNFDTOO ASC";
+    }
+
+    private String sortByOutcomeStatis() {
+        return " CASE WHEN mcaremother.FWBNFSTS = '3' THEN '1'"
+                +
+                "WHEN mcaremother.FWBNFSTS = '4' THEN '2'\n" +
+                "Else mcaremother.FWBNFSTS END ASC";
+    }
+    private String filterStringForPNCRV1(){
+        return "and alerts.visitCode LIKE '%pncrv_1%'";
+    }
+    private String filterStringForPNCRV2(){
+        return "and alerts.visitCode LIKE '%pncrv_2%'";
+    }
+    private String filterStringForPNCRV3(){
+        return "and alerts.visitCode LIKE '%pncrv_3%'";
     }
 
 
