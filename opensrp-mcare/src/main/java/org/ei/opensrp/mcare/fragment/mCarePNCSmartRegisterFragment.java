@@ -1,6 +1,7 @@
 package org.ei.opensrp.mcare.fragment;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -13,7 +14,12 @@ import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.commonregistry.ControllerFilterMap;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
+import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
+import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
+import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
@@ -62,7 +68,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 /**
  * Created by koros on 11/2/15.
  */
-public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFragment {
+public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAdapterFragment {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private CommonPersonObjectController controller;
@@ -134,9 +140,11 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{
 //                        new ElcoPSRFDueDateSort(),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"FWWOMFNAME", Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"GOBHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"JiVitAHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort))
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.due_status),sortByAlertmethod()),
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort),sortByFWWOMFNAME()),
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort),sortByGOBHHID()),
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort),sortByJiVitAHHID()),
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.pnc_date_of_outcome),sortByDateOfOutcome())
 
 //                        new CommonObjectSort(true,false,true,"age")
                 };
@@ -151,32 +159,14 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
-        if (clientProvider == null) {
-            clientProvider = new mCarePNCSmartClientsProvider(
-                    getActivity(),clientActionHandler , controller);
-        }
-        return clientProvider;
+
+        return null;
     }
 
 
     @Override
     protected void onInitialization() {
-//        ArrayList <ControllerFilterMap> controllerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
-//
-//        pncControllerfiltermap filtermap = new pncControllerfiltermap();
-//
-//        controllerFilterMapArrayList.add(filtermap);
-//        controllerFilterMapArrayList.add(filterforpnc);
-        controller = NativeHomeActivity.pnccontroller;
-//                new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-//                context.allBeneficiaries(), context.listCache(),
-//                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-////                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
-        villageController = new VillageController(context.allEligibleCouples(),
-                context.listCache(), context.villagesCache());
-        dialogOptionMapper = new DialogOptionMapper();
-//        context.formSubmissionRouter().getHandlerMap().put("psrf_form",new PSRFHandler());
     }
 
     @Override
@@ -191,7 +181,7 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        updateSearchView();
+        initializeQueries();
         try{
             LoginActivity.setLanguage();
         }catch (Exception e){
@@ -204,11 +194,12 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
     public void setupViews(View view) {
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-
         ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
         startregister.setVisibility(View.GONE);
+        clientsView.setVisibility(View.VISIBLE);
+        clientsProgressView.setVisibility(View.INVISIBLE);
         setServiceModeViewDrawableRight(null);
-        updateSearchView();
+        initializeQueries();
     }
 
     private DialogOption[] getEditOptions() {
@@ -354,9 +345,68 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterFra
                     }
                 }
             }
-            Log.v("the filter",""+returnvalue);
+            Log.v("the filter", "" + returnvalue);
             return returnvalue;
         }
     }
+
+    public String pncMainSelectWithJoins(){
+        return "Select id as _id,relationalid,details,FWWOMFNAME,FWPSRLMP,FWSORTVALUE,JiVitAHHID,GOBHHID,Is_PNC,FWBNFSTS,FWBNFDTOO \n" +
+                "from mcaremother\n" +
+                "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Post Natal Care Reminder Visit' ";
+    }
+    public String pncMainCountWithJoins(){
+        return "Select Count(*) \n" +
+                "from mcaremother\n" +
+                "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'";
+    }
+    public void initializeQueries(){
+        CommonRepository commonRepository = context.commonrepository("mcaremother");
+        setTablename("mcaremother");
+        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(pncMainCountWithJoins());
+        countSelect = countqueryBUilder.mainCondition(" mcaremother.Is_PNC = '1'  and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
+        CountExecute();
+
+
+        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(pncMainSelectWithJoins());
+        mainSelect = queryBUilder.mainCondition(" mcaremother.Is_PNC = '1'  and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
+
+        queryBUilder.addCondition(filters);
+        Sortqueries = sortByAlertmethod();
+        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+        mCarePNCSmartClientsProvider hhscp = new mCarePNCSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("mcaremother",new String []{"FWWOMFNAME","FWPSRLMP","FWSORTVALUE","JiVitAHHID","GOBHHID","Is_PNC","FWBNFSTS","FWBNFDTOO"}));
+        clientsView.setAdapter(clientAdapter);
+        updateSearchView();
+        refresh();
+
+    }
+    private String sortByAlertmethod() {
+        return " CASE WHEN alerts.status = 'urgent' THEN '1'"
+                +
+                "WHEN alerts.status = 'upcoming' THEN '2'\n" +
+                "WHEN alerts.status = 'normal' THEN '3'\n" +
+                "WHEN alerts.status = 'expired' THEN '4'\n" +
+                "WHEN alerts.status is Null THEN '5'\n" +
+                "WHEN alerts.status = 'complete' THEN '6'\n" +
+                "Else alerts.status END ASC";
+    }
+    private String sortBySortValue(){
+        return " FWSORTVALUE ASC";
+    }
+    private String sortByFWWOMFNAME(){
+        return " FWWOMFNAME ASC";
+    }
+    private String sortByJiVitAHHID(){  return " JiVitAHHID ASC";
+    }
+    private String sortByGOBHHID(){
+        return " GOBHHID ASC";
+    }
+    private String sortByDateOfOutcome(){
+        return " FWBNFDTOO ASC";
+    }
+
+
 
 }

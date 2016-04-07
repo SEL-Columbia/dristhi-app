@@ -16,6 +16,8 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.commonregistry.ControllerFilterMap;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
 import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
@@ -117,7 +119,12 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             @Override
             public DialogOption[] filterOptions() {
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
-                dialogOptionslist.add(new AllClientsFilter());
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),""));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_anc1),filterStringForANCRV1()));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_anc2),filterStringForANCRV2()));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_anc3),filterStringForANCRV3()));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_anc4),filterStringForANCRV4()));
+
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
 
@@ -141,9 +148,11 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{
 //                        new ElcoPSRFDueDateSort(),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"FWWOMFNAME", Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"GOBHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"JiVitAHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort))
+                        new CursorCommonObjectSort(getString(R.string.due_status),sortByAlertmethod()),
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort),sortByFWWOMFNAME()),
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort),sortByGOBHHID()),
+                        new CursorCommonObjectSort( Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort),sortByJiVitAHHID()),
+                        new CursorCommonObjectSort( Context.getInstance().applicationContext().getString(R.string.sortbyLmp),sortByLmp())
 
 //                        new CommonObjectSort(true,false,true,"age")
                 };
@@ -165,22 +174,8 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
     @Override
     protected void onInitialization() {
-//        ArrayList <ControllerFilterMap> controllerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
-//
-//        ancControllerfiltermap filtermap = new ancControllerfiltermap();
-//
-//        controllerFilterMapArrayList.add(filtermap);
-////        controllerFilterMapArrayList.add(filterforpnc);
-//        controller = NativeHomeActivity.anccontroller;
-////                new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-////                context.allBeneficiaries(), context.listCache(),
-////                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-////                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-//
-//        villageController = new VillageController(context.allEligibleCouples(),
-//                context.listCache(), context.villagesCache());
-//        dialogOptionMapper = new DialogOptionMapper();
-////        context.formSubmissionRouter().getHandlerMap().put("psrf_form",new PSRFHandler());
+
+        context.formSubmissionRouter().getHandlerMap().put("psrf_form",new PSRFHandler());
     }
 
     @Override
@@ -296,12 +291,17 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
                     @Override
                     protected Object doInBackground(Object[] params) {
-                        setCurrentSearchFilter(new ElcoSearchOption(cs.toString()));
-                        filteredClients = getClientsAdapter().getListItemProvider()
-                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
-                                        getCurrentSearchFilter(), getCurrentSortOption());
-
-
+//                        currentSearchFilter =
+//                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
+//                        filteredClients = getClientsAdapter().getListItemProvider()
+//                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
+//                                        getCurrentSearchFilter(), getCurrentSortOption());
+//
+                        if(cs.toString().equalsIgnoreCase("")){
+                            filters = "";
+                        }else {
+                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                        }
                         return null;
                     }
 
@@ -310,18 +310,14 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                        clientsAdapter
 //                                .refreshList(currentVillageFilter, currentServiceModeOption,
 //                                        currentSearchFilter, currentSortOption);
-                        getClientsAdapter().refreshClients(filteredClients);
-                        getClientsAdapter().notifyDataSetChanged();
+//                        getClientsAdapter().refreshClients(filteredClients);
+//                        getClientsAdapter().notifyDataSetChanged();
                         getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                        CountExecute();
+                        filterandSortExecute();
                         super.onPostExecute(o);
                     }
                 }).execute();
-//                currentSearchFilter = new HHSearchOption(cs.toString());
-//                clientsAdapter
-//                        .refreshList(currentVillageFilter, currentServiceModeOption,
-//                                currentSearchFilter, currentSortOption);
-//
-//                searchCancelView.setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
 
 
             }
@@ -372,17 +368,22 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                 "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
                 "Left Join alerts as alerts2 on alerts2.caseID = mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
+    public String ancMainCountWithJoins(){
+        return "Select Count(*) \n" +
+                "from mcaremother\n" +
+                "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
+                "Left Join alerts as alerts2 on alerts2.caseID = mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
+    }
     public void initializeQueries(){
         CommonRepository commonRepository = context.commonrepository("mcaremother");
         setTablename("mcaremother");
-        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
-        countqueryBUilder.SelectInitiateMainTableCounts("mcaremother");
-        countSelect = countqueryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not NUll  AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
+        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
+        countSelect = countqueryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
-        mainSelect = queryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not NUll  AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
+        mainSelect = queryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
 
         queryBUilder.addCondition(filters);
         Sortqueries = sortBySortValue();
@@ -398,15 +399,62 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     private String sortBySortValue(){
         return " FWSORTVALUE ASC";
     }
+    private String sortByFWWOMFNAME(){
+        return " FWWOMFNAME ASC";
+    }
+    private String sortByJiVitAHHID(){
+        return " JiVitAHHID ASC";
+    }
+    private String sortByLmp(){
+        return " FWPSRLMP ASC";
+    }
+    private String filterStringForANCRV1(){
+        return "and alerts.visitCode LIKE '%ancrv_1%'";
+    }
+    private String filterStringForANCRV2(){
+        return "and alerts.visitCode LIKE '%ancrv_2%'";
+    }
+    private String filterStringForANCRV3(){
+        return "and alerts.visitCode LIKE '%ancrv_3%'";
+    }
+    private String filterStringForANCRV4(){
+        return "and alerts.visitCode LIKE '%ancrv_4%'";
+    }
+
+    private String sortByGOBHHID(){
+        return " GOBHHID ASC";
+    }
 
 
     private String sortByAlertmethod() {
-        return " CASE WHEN alerts.status = 'urgent' and alerts.status = '' THEN '1'"
+        return " CASE WHEN alerts.status = 'urgent' and alerts2.status = 'urgent' THEN 1 "
                 +
-                "WHEN alerts.status = 'upcoming' THEN '2'\n" +
-                "WHEN alerts.status = 'normal' THEN '3'\n" +
-                "WHEN alerts.status = 'expired' THEN '4'\n" +
-                "WHEN alerts.status is Null THEN '5'\n" +
+                "WHEN alerts.status = 'upcoming' and alerts2.status = 'urgent' THEN  2\n" +
+                "WHEN alerts.status = 'normal' and alerts2.status = 'urgent' THEN 3\n" +
+                "WHEN alerts.status = 'expired' and alerts2.status = 'urgent' THEN 4\n" +
+                "WHEN alerts.status is null and alerts2.status = 'urgent' THEN 5\n" +
+
+                "WHEN alerts.status = 'urgent' and alerts2.status = 'upcoming' THEN 6\n" +
+                "WHEN alerts.status = 'upcoming' and alerts2.status = 'upcoming' THEN 7\n" +
+                "WHEN alerts.status = 'normal' and alerts2.status = 'upcoming' THEN 8\n" +
+                "WHEN alerts.status = 'expired' and alerts2.status = 'upcoming' THEN 9\n" +
+                "WHEN alerts.status is null and alerts2.status = 'upcoming' THEN 10\n" +
+
+                "WHEN alerts.status = 'urgent' and alerts2.status = 'normal' THEN 11\n" +
+                "WHEN alerts.status = 'upcoming' and alerts2.status = 'normal' THEN 12\n" +
+                "WHEN alerts.status = 'normal' and alerts2.status = 'normal' THEN 13\n" +
+                "WHEN alerts.status = 'expired' and alerts2.status = 'normal' THEN 14\n" +
+                "WHEN alerts.status is null and alerts2.status = 'normal' THEN 15\n" +
+
+                "WHEN alerts.status = 'urgent' and alerts2.status = 'expired' THEN 16\n" +
+                "WHEN alerts.status = 'upcoming' and alerts2.status = 'expired' THEN 17\n" +
+                "WHEN alerts.status = 'normal' and alerts2.status = 'expired' THEN 18\n" +
+                "WHEN alerts.status = 'expired' and alerts2.status = 'expired' THEN 19\n" +
+                "WHEN alerts.status is null and alerts2.status = 'expired' THEN 20\n" +
+
+                "WHEN alerts2.status is null THEN 9999\n" +
+                "WHEN alerts.status = \"\" THEN 99999\n" +
+//                "WHEN alerts2.status is null THEN '18'\n" +
                 "Else alerts.status END ASC";
     }
 }

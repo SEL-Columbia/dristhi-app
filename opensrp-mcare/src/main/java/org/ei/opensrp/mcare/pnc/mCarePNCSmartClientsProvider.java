@@ -11,9 +11,11 @@ import android.widget.TextView;
 
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
 import org.ei.opensrp.view.customControls.CustomFontTextView;
@@ -35,7 +37,7 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 /**
  * Created by user on 2/12/15.
  */
-public class mCarePNCSmartClientsProvider implements SmartRegisterClientsProvider {
+public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
 
     private final LayoutInflater inflater;
     private final Context context;
@@ -43,27 +45,28 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterClientsProvide
 
     private final int txtColorBlack;
     private final AbsListView.LayoutParams clientViewLayoutParams;
+    private final AlertService alertService;
 
-    protected CommonPersonObjectController controller;
 
     public mCarePNCSmartClientsProvider(Context context,
                                         View.OnClickListener onClickListener,
-                                        CommonPersonObjectController controller) {
+                                        AlertService alertService) {
         this.onClickListener = onClickListener;
-        this.controller = controller;
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        this.alertService = alertService;
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
                 (int) context.getResources().getDimension(org.ei.opensrp.R.dimen.list_item_height));
         txtColorBlack = context.getResources().getColor(org.ei.opensrp.R.color.text_black);
     }
 
     @Override
-    public View getView(final SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
-        ViewGroup itemView;
+    public void getView(final SmartRegisterClient smartRegisterClient, View convertView) {
+        View itemView;
 
-        itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_pnc_client, null);
+        itemView = convertView;
+
+//        itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_pnc_client, null);
         LinearLayout profileinfolayout = (LinearLayout)itemView.findViewById(R.id.profile_info_layout);
 
 //        ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
@@ -92,17 +95,17 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterClientsProvide
 //        }
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
-        name.setText(pc.getDetails().get("FWWOMFNAME")!=null?pc.getDetails().get("FWWOMFNAME"):"");
+        name.setText(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):"");
         spousename.setText(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):"");
-        gobhhid.setText(pc.getDetails().get("GOBHHID")!=null?pc.getDetails().get("GOBHHID"):"");
-        jivitahhid.setText(pc.getDetails().get("JiVitAHHID")!=null?pc.getDetails().get("JiVitAHHID"):"");
+        gobhhid.setText(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):"");
+        jivitahhid.setText(pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):"");
         village.setText(humanize((pc.getDetails().get("mauza") != null ? pc.getDetails().get("mauza") : "").replace("+", "_")));
 //
 //
 //
         age.setText(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"");
-        dateofdelivery.setText(pc.getDetails().get("FWBNFDTOO")!=null?pc.getDetails().get("FWBNFDTOO"):"");
-        String outcomevalue = pc.getDetails().get("FWBNFSTS")!=null?pc.getDetails().get("FWBNFSTS"):"";
+        dateofdelivery.setText(pc.getColumnmaps().get("FWBNFDTOO")!=null?pc.getColumnmaps().get("FWBNFDTOO"):"");
+        String outcomevalue = pc.getColumnmaps().get("FWBNFSTS")!=null?pc.getColumnmaps().get("FWBNFSTS"):"";
 
         if(outcomevalue.equalsIgnoreCase("3")){
             delivery_outcome.setText(context.getString(R.string.mcare_pnc_liveBirth));
@@ -118,7 +121,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterClientsProvide
         brid.setText("BRID :" +(pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):""));
 
           try {
-                    dateofdelivery.setText("DOO :" + (pc.getDetails().get("FWBNFDTOO") != null ? pc.getDetails().get("FWBNFDTOO") : "").split("T")[0]);
+                    dateofdelivery.setText("DOO :" + (pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : "").split("T")[0]);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -132,7 +135,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterClientsProvide
 
 
         itemView.setLayoutParams(clientViewLayoutParams);
-        return itemView;
+//        return itemView;
     }
 
     private void constructPncVisitStatusBlock(CommonPersonObjectClient pc, View itemview) {
@@ -263,7 +266,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterClientsProvide
         }
     }
 
-    private void constructPNCReminderDueBlock(CommonPersonObjectClient pc, ViewGroup itemView) {
+    private void constructPNCReminderDueBlock(CommonPersonObjectClient pc, View itemView) {
         alertTextandStatus alerttextstatus = null;
             List<Alert> alertlist3 = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "pncrv_3");
             if(alertlist3.size() != 0){
@@ -349,7 +352,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterClientsProvide
         return alts;
     }
 
-    private void constructRiskFlagView(CommonPersonObjectClient pc, ViewGroup itemView) {
+    private void constructRiskFlagView(CommonPersonObjectClient pc, View itemView) {
 //        AllCommonsRepository allancRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcaremother");
 //        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
 //        AllCommonsRepository allelcorep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
@@ -378,15 +381,12 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterClientsProvide
 
     }
 
-    @Override
-    public SmartRegisterClients getClients() {
-        return controller.getClients();
-    }
+
 
     @Override
     public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                                               FilterOption searchFilter, SortOption sortOption) {
-        return getClients().applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
+        return null;
     }
 
     @Override
@@ -401,6 +401,11 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterClientsProvide
 
     public LayoutInflater inflater() {
         return inflater;
+    }
+
+    @Override
+    public View inflatelayoutForCursorAdapter() {
+        return (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_pnc_client, null);
     }
 
     class alertTextandStatus{

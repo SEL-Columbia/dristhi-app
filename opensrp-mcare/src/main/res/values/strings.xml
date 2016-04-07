@@ -379,6 +379,11 @@
     <string name="encc2form">ENCC Visit Form 2</string>
     <string name="encc1form">ENCC Visit Form 1</string>
     <string name="NID">NID :</string>
+    <string name="sortbyLmp">LMP</string>
+    <string name="filter_by_anc1">ANCRV-1</string>
+    <string name="filter_by_anc2">ANCRV-2</string>
+    <string name="filter_by_anc3">ANCRV-3</string>
+    <string name="filter_by_anc4">ANCRV-4</string>
 
 
 </resources>

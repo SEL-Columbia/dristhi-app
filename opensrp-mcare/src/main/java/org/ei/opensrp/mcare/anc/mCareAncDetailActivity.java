@@ -87,15 +87,15 @@ public class mCareAncDetailActivity extends Activity {
             }
         });
 
-        name.setText(humanize((ancclient.getDetails().get("FWWOMFNAME") != null ? ancclient.getDetails().get("FWWOMFNAME") : "").replace("+", "_")));
+        name.setText(humanize((ancclient.getColumnmaps().get("FWWOMFNAME") != null ? ancclient.getColumnmaps().get("FWWOMFNAME") : "").replace("+", "_")));
 
         brid.setText(getString(R.string.BRID) +humanize((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").replace("+", "_")));
         nid.setText(getString(R.string.NID) +humanize((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").replace("+", "_")));
 
         husbandname.setText(getString(R.string.elco_details_husband_name_label)+(ancclient.getDetails().get("FWHUSNAME") != null ? ancclient.getDetails().get("FWHUSNAME") : ""));
         age.setText(getString(R.string.elco_age_label) + (ancclient.getDetails().get("FWWOMAGE") != null ? ancclient.getDetails().get("FWWOMAGE") : ""));
-        jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(ancclient.getDetails().get("JiVitAHHID") != null ? ancclient.getDetails().get("JiVitAHHID") : ""));
-        godhhid.setText(getString(R.string.hhid_gob_elco_label) + (ancclient.getDetails().get("GOBHHID") != null ? ancclient.getDetails().get("GOBHHID") : ""));
+        jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(ancclient.getColumnmaps().get("JiVitAHHID") != null ? ancclient.getColumnmaps().get("JiVitAHHID") : ""));
+        godhhid.setText(getString(R.string.hhid_gob_elco_label) + (ancclient.getColumnmaps().get("GOBHHID") != null ? ancclient.getColumnmaps().get("GOBHHID") : ""));
 //        psf_due_date.setText(Elcoclient.getDetails().get("FWPSRDATE") != null ? Elcoclient.getDetails().get("FWPSRDATE") : "");
 
 
@@ -157,7 +157,7 @@ public class mCareAncDetailActivity extends Activity {
         TextView edd = (TextView)findViewById(R.id.edd_date);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date edd_date = format.parse(ancclient.getDetails().get("FWPSRLMP")!=null?ancclient.getDetails().get("FWPSRLMP"):"");
+            Date edd_date = format.parse(ancclient.getColumnmaps().get("FWPSRLMP")!=null?ancclient.getColumnmaps().get("FWPSRLMP"):"");
             GregorianCalendar calendar = new GregorianCalendar();
             calendar.setTime(edd_date);
             calendar.add(Calendar.DATE, 259);
