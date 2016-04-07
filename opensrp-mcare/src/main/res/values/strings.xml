@@ -387,6 +387,9 @@
     <string name="filter_by_pncrv1">PNCRV-1</string>
     <string name="filter_by_pncrv2">PNCRV-2</string>
     <string name="filter_by_pncrv3">PNCRV-3</string>
+    <string name="filter_by_encc1">ENCC-1</string>
+    <string name="filter_by_encc2">ENCC-2</string>
+    <string name="filter_by_encc3">ENCC-3</string>
 
 
 </resources>

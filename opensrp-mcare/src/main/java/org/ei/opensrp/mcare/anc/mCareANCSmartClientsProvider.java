@@ -123,7 +123,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             e.printStackTrace();
         }
         constructRiskFlagView(pc,itemView);
-        constructANCReminderDueBlock(pc, itemView);
+        constructANCReminderDueBlock(pc.getColumnmaps().get("FWPSRLMP")!=null?pc.getColumnmaps().get("FWPSRLMP"):"",pc, itemView);
         constructNBNFDueBlock(pc, itemView);
         constructAncVisitStatusBlock(pc,itemView);
 
@@ -307,7 +307,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         alertTextandStatus alerttextstatus = null;
         List <Alert>alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(),"BirthNotificationPregnancyStatusFollowUp");
         if(alertlist.size() != 0){
-            alerttextstatus = setAlertStatus("",alertlist);
+            alerttextstatus = setAlertStatus("","",alertlist);
         }else{
             alerttextstatus = new alertTextandStatus("Not synced","not synced");
         }
@@ -319,23 +319,23 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 
     }
 
-    private void constructANCReminderDueBlock(CommonPersonObjectClient pc, View itemView) {
+    private void constructANCReminderDueBlock(String lmpdate,CommonPersonObjectClient pc, View itemView) {
         alertTextandStatus alerttextstatus = null;
         List <Alert>alertlist4 = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(),"ancrv_4");
         if(alertlist4.size() != 0){
-            alerttextstatus = setAlertStatus("ANC4",alertlist4);
+            alerttextstatus = setAlertStatus(lmpdate,"ANC4",alertlist4);
         }else {
             List<Alert> alertlist3 = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "ancrv_3");
             if(alertlist3.size() != 0){
-                alerttextstatus = setAlertStatus("ANC3",alertlist3);
+                alerttextstatus = setAlertStatus(lmpdate,"ANC3",alertlist3);
             }else{
                 List<Alert> alertlist2 = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "ancrv_2");
                 if(alertlist2.size()!=0){
-                    alerttextstatus = setAlertStatus("ANC2",alertlist2);
+                    alerttextstatus = setAlertStatus(lmpdate,"ANC2",alertlist2);
                 }else{
                     List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "ancrv_1");
                     if(alertlist.size()!=0){
-                        alerttextstatus = setAlertStatus("ANC1",alertlist);
+                        alerttextstatus = setAlertStatus(lmpdate,"ANC1",alertlist);
 
                     }else{
                         alerttextstatus = new alertTextandStatus("Not synced","not synced");
@@ -401,10 +401,23 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         }
     }
 
-    private alertTextandStatus setAlertStatus(String anc, List<Alert> alertlist) {
+    private alertTextandStatus setAlertStatus(String lmpdate,String anc, List<Alert> alertlist) {
         alertTextandStatus alts = null;
         for(int i = 0;i<alertlist.size();i++){
-            alts = new alertTextandStatus(anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value());
+            if(anc.equalsIgnoreCase("ANC1")){
+                alts = new alertTextandStatus(anc+ "-"+ ancdate(lmpdate, 51),alertlist.get(i).status().value());
+            }
+            else if(anc.equalsIgnoreCase("ANC2")){
+                alts = new alertTextandStatus(anc+ "-"+ ancdate(lmpdate,163),alertlist.get(i).status().value());
+            }
+            else if(anc.equalsIgnoreCase("ANC3")){
+                alts = new alertTextandStatus(anc+ "-"+ ancdate(lmpdate,219),alertlist.get(i).status().value());
+            }
+            else if(anc.equalsIgnoreCase("ANC4")){
+                alts = new alertTextandStatus(anc+ "-"+ ancdate(lmpdate,247),alertlist.get(i).status().value());
+            }else {
+                alts = new alertTextandStatus(anc + "-" + alertlist.get(i).startDate(), alertlist.get(i).status().value());
+            }
             }
         return alts;
     }
@@ -458,6 +471,23 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         return inflater;
     }
 
+    public String ancdate(String date,int day){
+        String ancdate = "";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date anc_date = format.parse(date);
+            GregorianCalendar calendar = new GregorianCalendar();
+            calendar.setTime(anc_date);
+            calendar.add(Calendar.DATE, day);
+            anc_date.setTime(calendar.getTime().getTime());
+            ancdate = format.format(anc_date);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ancdate = "";
+        }
+        return ancdate;
+    }
+
     class alertTextandStatus{
         String alertText ,alertstatus;
 
@@ -482,4 +512,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             this.alertstatus = alertstatus;
         }
     }
+
+
+
 }
