@@ -13,10 +13,6 @@
         "bind": "/model/instance/FWNewHH/existing_location"
       },
       {
-        "name": "injectedBaseEntityId",
-        "shouldLoadValue": true
-      },
-      {
         "name": "existing_Country",
         "bind": "/model/instance/FWNewHH/existing_Country"
       },
@@ -302,6 +298,11 @@
           {
             "name": "FWWOMGPS",
             "bind": "/model/instance/FWNewHH/woman/eligible/FWWOMGPS"
+          },
+          {
+            "name": "household_head_entity_id",
+            "source": "household.id",
+            "shouldLoadValue": true
           }
         ]
       }

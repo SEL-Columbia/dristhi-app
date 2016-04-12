@@ -19,6 +19,7 @@ import org.ei.opensrp.domain.SyncStatus;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.domain.form.SubForm;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 import org.w3c.dom.Attr;
@@ -57,6 +58,8 @@ public class FormUtils {
     private static final String relationalIdKey = "relationalid";
     private static final String databaseIdKey = "_id";
     private static final String injectedBaseEntityIdKey = "injectedBaseEntityId";
+    public  static  final String ecClientRelationships="ec_client_relationships.json";
+
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     private Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private FormEntityConverter formEntityConverter;
@@ -66,7 +69,7 @@ public class FormUtils {
         mContext = context;
         theAppContext = org.ei.opensrp.Context.getInstance();
         FormAttributeParser formAttributeParser = new FormAttributeParser(context);
-        formEntityConverter = new FormEntityConverter(formAttributeParser);
+        formEntityConverter = new FormEntityConverter(formAttributeParser,mContext);
         // Protect creation of static variable.
         mClientEventModel = ClientEventModel.getInstance(context.getApplicationContext());
     }
@@ -122,6 +125,7 @@ public class FormUtils {
 
             // replace the subforms field with real data
             formDefinition.getJSONObject("form").put("sub_forms", subForms);
+            //throw new Exception();
         }
 
         String instanceId = generateRandomUUIDString();
@@ -266,6 +270,7 @@ public class FormUtils {
         subFormDefinition.put("instances", subFormInstances);
         subFormDefinition.put("fields", subFormFields);
         subForms.put(0, subFormDefinition);
+
         return subForms;
     }
 
@@ -815,8 +820,39 @@ public class FormUtils {
             if (item.has("name") && item.getString("name").equalsIgnoreCase(injectedBaseEntityIdKey)) {
                 fieldsValues.put(item.getString("name"), relationalId);
             }
+            populateRelationField(item, fieldsValues, relationalId);
         }
         return fieldsValues;
+    }
+
+    private String getECClientRelationships() {
+        return AssetHandler.readFileFromAssetsFolder(ecClientRelationships, mContext);
+    }
+
+    /**
+     * see if the current field is a person_relationship field, if so set it's value to the relationid since that's the parent base_entity_id
+     * @param fieldItem
+     * @param fieldsValues
+     * @param relationalId
+     */
+    private void populateRelationField(JSONObject fieldItem, JSONObject fieldsValues, String relationalId) {
+        try {
+            if (fieldItem.has("name")) {
+
+                String fieldName = fieldItem.getString("name");
+                String relationships = getECClientRelationships();
+                JSONArray jsonArray = new JSONArray(relationships);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject rObject = jsonArray.getJSONObject(i);
+                    if (rObject.has("field")&&rObject.getString("field").equalsIgnoreCase(fieldName)) {
+                        fieldsValues.put(fieldName, relationalId);
+                    }
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getValueForPath(String[] path, JSONObject jsonObject) throws Exception {

@@ -145,6 +145,11 @@
           {
             "name": "FWBNFCHLDVITSTS",
             "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFCHLDVITSTS"
+          },
+          {
+            "name": "mother_entity_id",
+            "source": "mcaremother.id",
+            "shouldLoadValue": true
           }
         ]
       }

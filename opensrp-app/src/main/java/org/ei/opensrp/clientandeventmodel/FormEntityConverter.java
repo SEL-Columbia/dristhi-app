@@ -1,5 +1,7 @@
 package org.ei.opensrp.clientandeventmodel;
 
+import android.content.Context;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -13,10 +15,15 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.ei.opensrp.util.AssetHandler;
+import org.ei.opensrp.util.FormUtils;
 import org.joda.time.DateTime;
 import org.ei.opensrp.clientandeventmodel.FormEntityConstants.Encounter;
 import org.ei.opensrp.clientandeventmodel.FormEntityConstants.FormEntity;
 import org.ei.opensrp.clientandeventmodel.FormEntityConstants.Person;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xml.sax.SAXException;
 
 import com.google.gson.JsonIOException;
@@ -25,13 +32,16 @@ import com.google.gson.JsonSyntaxException;
 public class FormEntityConverter {
 
     private FormAttributeParser formAttributeParser;
+    private Context mContext;
 
-    public FormEntityConverter(FormAttributeParser formAttributeParser) {
+    public FormEntityConverter(FormAttributeParser formAttributeParser, Context _context) {
         this.formAttributeParser = formAttributeParser;
+        mContext = _context;
     }
 
     /**
      * Whether form submission is an openmrs form. The xlsform made openmrs form by mapping to an encounter_type in settings in xlsform.
+     *
      * @param fs
      * @return
      */
@@ -42,6 +52,7 @@ public class FormEntityConverter {
 
     /**
      * Extract Event from given form submission
+     *
      * @param fs
      * @return
      * @throws ParseException
@@ -69,13 +80,13 @@ public class FormEntityConverter {
 
         for (FormFieldMap fl : fields) {
             Map<String, String> fat = fl.fieldAttributes();
-            if(!fl.values().isEmpty() && !StringUtils.isEmpty(fl.values().get(0))
+            if (!fl.values().isEmpty() && !StringUtils.isEmpty(fl.values().get(0))
                     && fat.containsKey("openmrs_entity")
-                    && fat.get("openmrs_entity").equalsIgnoreCase("concept")){
+                    && fat.get("openmrs_entity").equalsIgnoreCase("concept")) {
                 List<Object> vall = new ArrayList<>();
                 for (String vl : fl.values()) {
-                    String val = fl.valueCodes(vl)==null?null:fl.valueCodes(vl).get("openmrs_code");
-                    val = StringUtils.isEmpty(val)?vl:val;
+                    String val = fl.valueCodes(vl) == null ? null : fl.valueCodes(vl).get("openmrs_code");
+                    val = StringUtils.isEmpty(val) ? vl : val;
                     vall.add(val);
                 }
                 e.addObs(new Obs("concept", fl.type(), fat.get("openmrs_entity_id"),
@@ -85,7 +96,7 @@ public class FormEntityConverter {
         return e;
     }
 
-    public Event getEventFromFormSubmission(FormSubmission fs) throws IllegalStateException{
+    public Event getEventFromFormSubmission(FormSubmission fs) throws IllegalStateException {
         try {
             return getEventFromFormSubmission(formAttributeParser.createFormSubmissionMap(fs));
         } catch (JsonIOException | JsonSyntaxException
@@ -97,6 +108,7 @@ public class FormEntityConverter {
 
     /**
      * Extract Event for given subform with given data mapped to specified Encounter Type.
+     *
      * @param fs
      * @param
      * @param eventType
@@ -110,6 +122,7 @@ public class FormEntityConverter {
 
     /**
      * Get field name for specified openmrs entity in given form submission
+     *
      * @param en
      * @param fs
      * @return
@@ -120,6 +133,7 @@ public class FormEntityConverter {
 
     /**
      * Get field name for specified openmrs entity in given form submission for given subform
+     *
      * @param en
      * @param
      * @param
@@ -131,9 +145,9 @@ public class FormEntityConverter {
 
     String getFieldName(FormEntity en, List<FormFieldMap> fields) {
         for (FormFieldMap f : fields) {
-            if(f.fieldAttributes().containsKey("openmrs_entity") &&
+            if (f.fieldAttributes().containsKey("openmrs_entity") &&
                     f.fieldAttributes().get("openmrs_entity").equalsIgnoreCase(en.entity())
-                    && f.fieldAttributes().get("openmrs_entity_id").equalsIgnoreCase(en.entityId())){
+                    && f.fieldAttributes().get("openmrs_entity_id").equalsIgnoreCase(en.entityId())) {
                 return f.name();
             }
         }
@@ -142,6 +156,7 @@ public class FormEntityConverter {
 
     /**
      * Get field name for specified openmrs attribute mappings in given form submission
+     *
      * @param entity
      * @param entityId
      * @param entityParentId
@@ -155,12 +170,13 @@ public class FormEntityConverter {
     String getFieldName(String entity, String entityId, String entityParentId, SubformMap subf) {
         return getFieldName(entity, entityId, entityParentId, subf.fields());
     }
+
     String getFieldName(String entity, String entityId, String entityParentId, List<FormFieldMap> fields) {
         for (FormFieldMap f : fields) {
-            if(f.fieldAttributes().containsKey("openmrs_entity") &&
+            if (f.fieldAttributes().containsKey("openmrs_entity") &&
                     f.fieldAttributes().get("openmrs_entity").equalsIgnoreCase(entity)
                     && f.fieldAttributes().get("openmrs_entity_id").equalsIgnoreCase(entityId)
-                    && f.fieldAttributes().get("openmrs_entity_parent").equalsIgnoreCase(entityParentId)){
+                    && f.fieldAttributes().get("openmrs_entity_parent").equalsIgnoreCase(entityParentId)) {
                 return f.name();
             }
         }
@@ -185,63 +201,50 @@ public class FormEntityConverter {
 
     void fillAddressFields(FormFieldMap fl, Map<String, Address> addresses) throws ParseException {
         Map<String, String> att = fl.fieldAttributes();
-        if(att.containsKey("openmrs_entity") && att.get("openmrs_entity").equalsIgnoreCase("person_address")){
+        if (att.containsKey("openmrs_entity") && att.get("openmrs_entity").equalsIgnoreCase("person_address")) {
             String addressType = att.get("openmrs_entity_parent");
             String addressField = att.get("openmrs_entity_id");
             Address ad = addresses.get(addressType);
-            if(ad == null){
+            if (ad == null) {
                 ad = new Address(addressType, null, null, null, null, null, null, null, null);
             }
 
-            if(addressField.equalsIgnoreCase("startDate")||addressField.equalsIgnoreCase("start_date")){
+            if (addressField.equalsIgnoreCase("startDate") || addressField.equalsIgnoreCase("start_date")) {
                 ad.setStartDate(DateUtil.parseDate(fl.value()));
-            }
-            else if(addressField.equalsIgnoreCase("endDate")||addressField.equalsIgnoreCase("end_date")){
+            } else if (addressField.equalsIgnoreCase("endDate") || addressField.equalsIgnoreCase("end_date")) {
                 ad.setEndDate(DateUtil.parseDate(fl.value()));
-            }
-            else if(addressField.equalsIgnoreCase("latitude")){
+            } else if (addressField.equalsIgnoreCase("latitude")) {
                 ad.setLatitude(fl.value());
-            }
-            else if(addressField.equalsIgnoreCase("longitute")){
+            } else if (addressField.equalsIgnoreCase("longitute")) {
                 ad.setLongitude(fl.value());
-            }
-            else if(addressField.equalsIgnoreCase("geopoint")){
+            } else if (addressField.equalsIgnoreCase("geopoint")) {
                 // example geopoint 34.044494 -84.695704 4 76 = lat lon alt prec
                 String geopoint = fl.value();
-                if(!StringUtils.isEmpty(geopoint)){
+                if (!StringUtils.isEmpty(geopoint)) {
                     String[] g = geopoint.split(" ");
                     ad.setLatitude(g[0]);
                     ad.setLongitude(g[1]);
                     ad.setGeopoint(geopoint);
                 }
-            }
-            else if(addressField.equalsIgnoreCase("postal_code")||addressField.equalsIgnoreCase("postalCode")){
+            } else if (addressField.equalsIgnoreCase("postal_code") || addressField.equalsIgnoreCase("postalCode")) {
                 ad.setPostalCode(fl.value());
-            }
-            else if(addressField.equalsIgnoreCase("sub_town") || addressField.equalsIgnoreCase("subTown")){
+            } else if (addressField.equalsIgnoreCase("sub_town") || addressField.equalsIgnoreCase("subTown")) {
                 ad.setSubTown(fl.value());
-            }
-            else if(addressField.equalsIgnoreCase("town")){
+            } else if (addressField.equalsIgnoreCase("town")) {
                 ad.setTown(fl.value());
-            }
-            else if(addressField.equalsIgnoreCase("sub_district") || addressField.equalsIgnoreCase("subDistrict")){
+            } else if (addressField.equalsIgnoreCase("sub_district") || addressField.equalsIgnoreCase("subDistrict")) {
                 ad.setSubDistrict(fl.value());
-            }
-            else if(addressField.equalsIgnoreCase("district") || addressField.equalsIgnoreCase("county")
-                    || addressField.equalsIgnoreCase("county_district") || addressField.equalsIgnoreCase("countyDistrict")){
+            } else if (addressField.equalsIgnoreCase("district") || addressField.equalsIgnoreCase("county")
+                    || addressField.equalsIgnoreCase("county_district") || addressField.equalsIgnoreCase("countyDistrict")) {
                 ad.setCountyDistrict(fl.value());
-            }
-            else if(addressField.equalsIgnoreCase("city") || addressField.equalsIgnoreCase("village")
-                    || addressField.equalsIgnoreCase("cityVillage") || addressField.equalsIgnoreCase("city_village")){
+            } else if (addressField.equalsIgnoreCase("city") || addressField.equalsIgnoreCase("village")
+                    || addressField.equalsIgnoreCase("cityVillage") || addressField.equalsIgnoreCase("city_village")) {
                 ad.setCityVillage(fl.value());
-            }
-            else if(addressField.equalsIgnoreCase("state")||addressField.equalsIgnoreCase("state_province")||addressField.equalsIgnoreCase("stateProvince")){
+            } else if (addressField.equalsIgnoreCase("state") || addressField.equalsIgnoreCase("state_province") || addressField.equalsIgnoreCase("stateProvince")) {
                 ad.setStateProvince(fl.value());
-            }
-            else if(addressField.equalsIgnoreCase("country")){
+            } else if (addressField.equalsIgnoreCase("country")) {
                 ad.setCountry(fl.value());
-            }
-            else {
+            } else {
                 ad.addAddressField(addressField, fl.value());
             }
             addresses.put(addressType, ad);
@@ -263,10 +266,10 @@ public class FormEntityConverter {
 
     void fillIdentifiers(Map<String, String> pids, List<FormFieldMap> fields) {
         for (FormFieldMap fl : fields) {
-            if(fl.values().size() < 2 && !StringUtils.isEmpty(fl.value())){
+            if (fl.values().size() < 2 && !StringUtils.isEmpty(fl.value())) {
                 Map<String, String> att = fl.fieldAttributes();
 
-                if(att.containsKey("openmrs_entity") && att.get("openmrs_entity").equalsIgnoreCase("person_identifier")){
+                if (att.containsKey("openmrs_entity") && att.get("openmrs_entity").equalsIgnoreCase("person_identifier")) {
                     pids.put(att.get("openmrs_entity_id"), fl.value());
                 }
             }
@@ -287,9 +290,9 @@ public class FormEntityConverter {
 
     Map<String, Object> fillAttributes(Map<String, Object> pattributes, List<FormFieldMap> fields) {
         for (FormFieldMap fl : fields) {
-            if(fl.values().size() < 2 && !StringUtils.isEmpty(fl.value())){
+            if (fl.values().size() < 2 && !StringUtils.isEmpty(fl.value())) {
                 Map<String, String> att = fl.fieldAttributes();
-                if(att.containsKey("openmrs_entity") && att.get("openmrs_entity").equalsIgnoreCase("person_attribute")){
+                if (att.containsKey("openmrs_entity") && att.get("openmrs_entity").equalsIgnoreCase("person_attribute")) {
                     pattributes.put(att.get("openmrs_entity_id"), fl.value());
                 }
             }
@@ -299,6 +302,7 @@ public class FormEntityConverter {
 
     /**
      * Extract Client from given form submission
+     *
      * @param
      * @return
      * @throws ParseException
@@ -323,30 +327,30 @@ public class FormEntityConverter {
         String middleName = fs.getFieldValue(getFieldName(Person.middle_name, fs));
         String lastName = fs.getFieldValue(getFieldName(Person.last_name, fs));
         String bd = fs.getFieldValue(getFieldName(Person.birthdate, fs));
-        DateTime birthdate = bd==null?null:new DateTime(bd).withTimeAtStartOfDay();
+        DateTime birthdate = bd == null ? null : new DateTime(bd).withTimeAtStartOfDay();
         String dd = fs.getFieldValue(getFieldName(Person.deathdate, fs));
-        DateTime deathdate = dd==null?null:new DateTime(dd).withTimeAtStartOfDay();
+        DateTime deathdate = dd == null ? null : new DateTime(dd).withTimeAtStartOfDay();
         String aproxbd = fs.getFieldValue(getFieldName(Person.birthdate_estimated, fs));
         Boolean birthdateApprox = false;
-        if(!StringUtils.isEmpty(aproxbd) && NumberUtils.isNumber(aproxbd)){
+        if (!StringUtils.isEmpty(aproxbd) && NumberUtils.isNumber(aproxbd)) {
             int bde = 0;
             try {
                 bde = Integer.parseInt(aproxbd);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            birthdateApprox = bde > 0 ? true:false;
+            birthdateApprox = bde > 0 ? true : false;
         }
         String aproxdd = fs.getFieldValue(getFieldName(Person.deathdate_estimated, fs));
         Boolean deathdateApprox = false;
-        if(!StringUtils.isEmpty(aproxdd) && NumberUtils.isNumber(aproxdd)){
+        if (!StringUtils.isEmpty(aproxdd) && NumberUtils.isNumber(aproxdd)) {
             int dde = 0;
             try {
                 dde = Integer.parseInt(aproxdd);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            deathdateApprox = dde > 0 ? true:false;
+            deathdateApprox = dde > 0 ? true : false;
         }
         String gender = fs.getFieldValue(getFieldName(Person.gender, fs));
 
@@ -356,7 +360,7 @@ public class FormEntityConverter {
                 .withFirstName(firstName)
                 .withMiddleName(middleName)
                 .withLastName(lastName)
-                .withBirthdate(birthdate.toDate(), birthdateApprox)
+                .withBirthdate((birthdate != null ? birthdate.toDate() : null), birthdateApprox)
                 .withDeathdate(deathdate != null ? deathdate.toDate() : null, deathdateApprox)
                 .withGender(gender);
         c.setRelationalBaseEntityId(fs.getFieldValue("injectedBaseEntityId"));
@@ -373,9 +377,9 @@ public class FormEntityConverter {
         String bb = subf.getFieldValue(getFieldName(Person.birthdate, subf));
 
         Map<String, String> idents = extractIdentifiers(subf);
-        if(StringUtils.isEmpty(firstName)
+        if (StringUtils.isEmpty(firstName)
                 && StringUtils.isEmpty(bb)
-                && idents.size() < 1 && StringUtils.isEmpty(gender)){//we need to ignore uuid of entity
+                && idents.size() < 1 && StringUtils.isEmpty(gender)) {//we need to ignore uuid of entity
             // if empty repeat group leave this entry and move to next
             return null;
         }
@@ -384,28 +388,28 @@ public class FormEntityConverter {
         String lastName = subf.getFieldValue(getFieldName(Person.last_name, subf));
         DateTime birthdate = new DateTime(bb).withTimeAtStartOfDay();
         String dd = subf.getFieldValue(getFieldName(Person.deathdate, subf));
-        DateTime deathdate = dd==null?null:new DateTime(dd).withTimeAtStartOfDay();
+        DateTime deathdate = dd == null ? null : new DateTime(dd).withTimeAtStartOfDay();
         String aproxbd = subf.getFieldValue(getFieldName(Person.birthdate_estimated, subf));
         Boolean birthdateApprox = false;
-        if(!StringUtils.isEmpty(aproxbd) && NumberUtils.isNumber(aproxbd)){
+        if (!StringUtils.isEmpty(aproxbd) && NumberUtils.isNumber(aproxbd)) {
             int bde = 0;
             try {
                 bde = Integer.parseInt(aproxbd);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            birthdateApprox = bde > 0 ? true:false;
+            birthdateApprox = bde > 0 ? true : false;
         }
         String aproxdd = subf.getFieldValue(getFieldName(Person.deathdate_estimated, subf));
         Boolean deathdateApprox = false;
-        if(!StringUtils.isEmpty(aproxdd) && NumberUtils.isNumber(aproxdd)){
+        if (!StringUtils.isEmpty(aproxdd) && NumberUtils.isNumber(aproxdd)) {
             int dde = 0;
             try {
                 dde = Integer.parseInt(aproxdd);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            deathdateApprox = dde > 0 ? true:false;
+            deathdateApprox = dde > 0 ? true : false;
         }
 
         List<Address> addresses = new ArrayList<>(extractAddressesForSubform(subf).values());
@@ -423,11 +427,39 @@ public class FormEntityConverter {
                 .withAttributes(extractAttributes(subf))
                 .withIdentifiers(idents);
 
+
+        addRelationship(subf,c);
+
         return c;
     }
+
+    private void addRelationship(SubformMap subformMap, Client client) {
+        try {
+            String relationships = AssetHandler.readFileFromAssetsFolder(FormUtils.ecClientRelationships, mContext);
+            JSONArray jsonArray = null;
+
+            jsonArray = new JSONArray(relationships);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject rObject = jsonArray.getJSONObject(i);
+                if (rObject.has("field")) {
+                    //is this a new child registration, add person relationships -mother
+                    if (subformMap.getField(rObject.getString("field")) != null) {
+
+                        client.addRelationship(rObject.getString("person_relationship"), subformMap.getField(rObject.getString("field")).value());
+
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Extract Client and Event from given form submission for entities dependent on main beneficiary (excluding main beneficiary).
      * The dependent entities are specified via subforms (repeat groups) in xls forms.
+     *
      * @param
      * @return The clients and events Map with id of dependent entity as key. Each entry in Map contains an
      * internal map that holds Client and Event info as "client" and "event" respectively for that
@@ -445,14 +477,14 @@ public class FormEntityConverter {
             Map<String, Map<String, Object>> map = new HashMap<>();
             for (SubformMap sbf : fs.subforms()) {
                 Map<String, String> att = sbf.formAttributes();
-                if(att.containsKey("openmrs_entity")
+                if (att.containsKey("openmrs_entity")
                         && att.get("openmrs_entity").equalsIgnoreCase("person")
-                        ){
+                        ) {
                     Map<String, Object> cne = new HashMap<>();
 
                     Client subformClient = createSubformClient(sbf);
 
-                    if(subformClient != null){
+                    if (subformClient != null) {
                         cne.put("client", subformClient);
                         cne.put("event", getEventForSubform(fs, att.get("openmrs_entity_id"), sbf));
 
