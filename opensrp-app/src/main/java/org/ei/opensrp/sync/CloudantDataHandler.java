@@ -175,7 +175,7 @@ public class CloudantDataHandler extends ReplicationService {
 
             if (client != null ) {
                 SQLiteDatabase db = loadDatabase();
-                Cursor cursor = db.rawQuery("select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + client.getDocumentRevision().getId()+"'", null);
+                Cursor cursor = db.rawQuery("select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + client.getDocumentRevision().getId()+"' and json not like '{}' order by updated_at desc", null);
                 if (cursor != null && cursor.moveToFirst()) {
                     byte[] json = (cursor.getBlob(0));
                     String jsonEventStr = new String(json, "UTF-8");
@@ -208,7 +208,7 @@ public class CloudantDataHandler extends ReplicationService {
     public List<JSONObject> getUpdatedEvents() throws Exception {
         List<JSONObject> events = new ArrayList<JSONObject>();
         SQLiteDatabase db = loadDatabase();
-        Cursor cursor = db.rawQuery("select json from revs where updated_at is not null and json like '%\"type\":\"org.ei.opensrp.cloudant.models.Event\"%' ", null);
+        Cursor cursor = db.rawQuery("select json from revs where updated_at is not null and json not like '{}' and json like '%\"type\":\"org.ei.opensrp.cloudant.models.Event\"%' ", null);
 
 
         while (cursor.moveToNext()) {

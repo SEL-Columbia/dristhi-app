@@ -197,9 +197,9 @@ public class ClientProcessor {
                 }
 
                 //special handler needed to process address,
-                if (dataSegment!= null && dataSegment.equalsIgnoreCase("adresses")){
+                if (dataSegment != null && dataSegment.equalsIgnoreCase("adresses")) {
                     Map<String, String> addressMap = getClientAddressAsMap(client);
-                    if (addressMap.containsKey(fieldName)){
+                    if (addressMap.containsKey(fieldName)) {
                         contentValues.put(columnName, addressMap.get(fieldName).toString());
                     }
                     continue;
@@ -228,12 +228,12 @@ public class ClientProcessor {
                 } else {
                     //e.g client attributes section
                     JSONObject jsonDocSegmentObject = (JSONObject) jsonDocSegment;
-                    columnValue = jsonDocSegmentObject.getString(fieldName);
+                    columnValue = jsonDocSegmentObject.has(fieldName) ? jsonDocSegmentObject.getString(fieldName) : "";
 
                 }
 
                 // after successfully retrieving the column name and value store it in Content value
-                if (columnValue != null){
+                if (columnValue != null) {
                     contentValues.put(columnName, columnValue);
                 }
 
@@ -256,18 +256,18 @@ public class ClientProcessor {
             relationshipMap = new HashMap<String, List<String>>();
         try {
             String relationalBaseEntityId = client.getRelationalBaseEntityId();
-            if (relationalBaseEntityId != null && !relationalBaseEntityId.equals(client.getBaseEntityId())){ // by default the relationalBaseEntityId is the same as the baseEntityId
+            if (relationalBaseEntityId != null && !relationalBaseEntityId.equals(client.getBaseEntityId())) { // by default the relationalBaseEntityId is the same as the baseEntityId
                 //Build the relationship map
                 String clienClassificationStr = getFileContents("ec_client_classification.json");
                 JSONObject clientClassificationJson = new JSONObject(clienClassificationStr);
                 JSONArray clientTypes = clientClassificationJson.getJSONArray("client_type");
-                for (int i = 0; i < clientTypes.length(); i++){
+                for (int i = 0; i < clientTypes.length(); i++) {
                     JSONObject obj = clientTypes.getJSONObject(i);
                     String tableName = obj.getString("type");
                     List<String> relationalIds = relationshipMap.get(tableName) != null ? relationshipMap.get(tableName) : new ArrayList<String>();
                     String query = "select * from " + tableName + " where base_entity_id = '" + relationalBaseEntityId + "'";
                     String base_entity_id = queryTableForColumnValue(query, tableName, "base_entity_id");
-                    if (base_entity_id != null && !relationalIds.contains(base_entity_id)){ // entity exists in table
+                    if (base_entity_id != null && !relationalIds.contains(base_entity_id)) { // entity exists in table
                         relationalIds.add(base_entity_id);
                     }
                     relationshipMap.put(tableName, relationalIds);
@@ -275,63 +275,65 @@ public class ClientProcessor {
             }
             client.setRelationships(relationshipMap);
             mCloudantDataHandler.updateDocument(client);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return client.getRelationships();
     }
 
-    public String queryTableForColumnValue(String query, String tableName, String column){
+    public String queryTableForColumnValue(String query, String tableName, String column) {
         String columnValue = null;
         Cursor cursor = null;
         try {
             cursor = queryTable(query, tableName);
-            if (cursor != null && cursor.moveToFirst()){ // entity exists in table
+            if (cursor != null && cursor.moveToFirst()) { // entity exists in table
                 columnValue = cursor.getString(cursor.getColumnIndex(column));
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             //close the cursor
-            if (cursor != null){
+            if (cursor != null) {
                 cursor.close();
             }
         }
         return columnValue;
     }
 
-    public Map<String, String> getClientAddressAsMap(JSONObject client){
+    public Map<String, String> getClientAddressAsMap(JSONObject client) {
         Map<String, String> addressMap = new HashMap<String, String>();
         try {
             String addressFieldsKey = "addressFields";
             String adressesKey = "adresses";
 
-            if (client.has(adressesKey)){
-                JSONObject addressJson = client.getJSONArray(adressesKey).getJSONObject(0);// Need to handle multiple addresses as well
-                if (addressJson.has(addressFieldsKey)){
-                    JSONObject addressFields = addressJson.getJSONObject(addressFieldsKey);
-                    Iterator<String> it = addressFields.keys();
-                    while (it.hasNext()){
-                        String key = it.next();
-                        String value = addressFields.getString(key);
-                        addressMap.put(key, value);
+            if (client.has(adressesKey)) {
+                JSONArray addressJsonArray = client.getJSONArray(adressesKey);
+                if (addressJsonArray != null && addressJsonArray.length() > 0) {
+                    JSONObject addressJson = addressJsonArray.getJSONObject(0);// Need to handle multiple addresses as well
+                    if (addressJson.has(addressFieldsKey)) {
+                        JSONObject addressFields = addressJson.getJSONObject(addressFieldsKey);
+                        Iterator<String> it = addressFields.keys();
+                        while (it.hasNext()) {
+                            String key = it.next();
+                            String value = addressFields.getString(key);
+                            addressMap.put(key, value);
+                        }
                     }
-                }
 
-                //retrieve the other fields as well
-                Iterator<String> it = addressJson.keys();
-                while (it.hasNext()){
-                    String key = it.next();
-                    boolean shouldSkipNode = addressJson.get(key) instanceof JSONArray || addressJson.get(key) instanceof JSONObject;
-                    if (!shouldSkipNode){
-                        String value = addressJson.getString(key);
-                        addressMap.put(key, value);
+                    //retrieve the other fields as well
+                    Iterator<String> it = addressJson.keys();
+                    while (it.hasNext()) {
+                        String key = it.next();
+                        boolean shouldSkipNode = addressJson.get(key) instanceof JSONArray || addressJson.get(key) instanceof JSONObject;
+                        if (!shouldSkipNode) {
+                            String value = addressJson.getString(key);
+                            addressMap.put(key, value);
+                        }
                     }
                 }
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return addressMap;
@@ -346,7 +348,7 @@ public class ClientProcessor {
         return id;
     }
 
-    private Cursor queryTable(String sql, String tableName){
+    private Cursor queryTable(String sql, String tableName) {
         CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
         Cursor c = cr.queryTable(sql);
         return c;
