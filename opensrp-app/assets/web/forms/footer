@@ -20,6 +20,8 @@
 	</article>
 </div>
 
+<!-- $script_placeholder >
+
 <script type="text/javascript">
     $('input[type=date]').attr("min", "1910-01-01");
     $('input[type=date]').attr("max", "2100-01-01");
@@ -28,7 +30,5 @@
 <!-- all the scripts -->
 <!-- IMPORTANT: leave the minified script in the committed index.html, to not throw off enketo-core-performance-monitor -->
 <script type="text/javascript" src="../build/js/enketo-bundle.min.js"></script>
-
-
 </body></html>
 
