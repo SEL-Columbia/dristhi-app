@@ -104,22 +104,7 @@ public class ClientProcessor {
 
                             if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) && responseValues.contains(docSegmentResponseValue)) {
                                 //this is the event obs we're interested in put it in the respective bucket specified by type variable
-                                if (type.equalsIgnoreCase("ec_household")) {
-                                    //populate household bucket
-                                    processCaseModel(event, client, "ec_household");
-                                } else if (type.equalsIgnoreCase("ec_elco")) {
-                                    //populate elco bucket
-                                    processCaseModel(event, client, "ec_elco");
-                                } else if (type.equalsIgnoreCase("ec_mcaremother")) {
-                                    //populate anc bucket
-                                    processCaseModel(event, client, "ec_mcaremother");
-                                } else if (type.equalsIgnoreCase("ec_pnc")) {
-                                    //populate pnc bucket
-                                    processCaseModel(event, client, "ec_pnc");
-                                } else if (type.equalsIgnoreCase("ec_child")) {
-                                    //populate child bucket
-                                    processCaseModel(event, client, "ec_child");
-                                }
+                                    processCaseModel(event, client, type);
 
 
                             }
@@ -133,23 +118,7 @@ public class ClientProcessor {
 
                         if (docSegmentFieldValue.equalsIgnoreCase(fieldValue)) {
 
-                            //this is the event obs we're interested in put it in the respective bucket specified by type variable
-                            if (type.equalsIgnoreCase("ec_household")) {
-                                //populate household bucket
-                                processCaseModel(event, client, "ec_household");
-                            } else if (type.equalsIgnoreCase("ec_elco")) {
-                                //populate elco bucket
-                                processCaseModel(event, client, "ec_elco");
-                            } else if (type.equalsIgnoreCase("ec_mcaremother")) {
-                                //populate anc bucket
-                                processCaseModel(event, client, "ec_mcaremother");
-                            } else if (type.equalsIgnoreCase("ec_pnc")) {
-                                //populate pnc bucket
-                                processCaseModel(event, client, "ec_pnc");
-                            } else if (type.equalsIgnoreCase("ec_child")) {
-                                //populate child bucket
-                                processCaseModel(event, client, "ec_child");
-                            }
+                                processCaseModel(event, client, type);
                         }
 
                     }
@@ -160,13 +129,18 @@ public class ClientProcessor {
 
     private void processCaseModel(JSONObject event, JSONObject client, String clientType) {
         try {
+
             JSONObject columnMappings = getColumnMappings(clientType);
             JSONArray columns = columnMappings.getJSONArray("columns");
             String baseEntityId = client.getString("base_entity_id");
 
             ContentValues contentValues = new ContentValues();
-            //Add the base_entity_id
-            contentValues.put("base_entity_id", baseEntityId);
+            //TODO FIX ME
+            if (clientType.equalsIgnoreCase("ec_mcarechild")) {
+            } else {
+                //Add the base_entity_id
+                contentValues.put("base_entity_id", baseEntityId);
+            }
 
             Map<String, List<String>> relationshipMap = getRelationshipMap(baseEntityId);
 

@@ -59,16 +59,13 @@
       }
     },
     {
-      "type": "ec_child",
+      "type": "ec_mcarechild",
       "rule": {
         "lookup": "event",
         "fields": [
           {
-            "data_segment": "obs",
-            "field_name":"fieldCode",
-            "field_value": "",
-            "response_key":"value",
-            "response_value":[""]
+            "field_name":"event_type",
+            "field_value": "Birth Notification Followup form"
           }
         ]
       }
