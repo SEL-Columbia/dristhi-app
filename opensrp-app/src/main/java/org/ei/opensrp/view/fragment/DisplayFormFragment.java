@@ -143,6 +143,7 @@ public class DisplayFormFragment extends Fragment {
         StringBuilder sb = new StringBuilder();
         sb.append(header).append(form).append(footer);
         webView.loadDataWithBaseURL("file:///android_asset/web/forms/", sb.toString(), "text/html", "utf-8", null);
+        //webView.loadUrl("file:///android_asset/web/template.html");
 
         resizeForm();
     }
