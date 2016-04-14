@@ -37,12 +37,12 @@ public class AllKartuIbuServiceMode extends ServiceModeOption {
 
             @Override
             public int weightSum() {
-                return 997;
+                return 1004;
             }
 
             @Override
             public int[] weights() {
-                return new int[]{244, 75, 110, 120, 160, 218, 80};
+                return new int[]{244, 75, 110, 125, 160, 205, 75};
             }
 
             @Override

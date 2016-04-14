@@ -54,7 +54,7 @@ public class AnakOverviewServiceMode extends BidanServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{26, 10, 16, 15, 23, 8};
+                return new int[]{26, 10, 17, 15, 23, 8};
             }
 
             @Override

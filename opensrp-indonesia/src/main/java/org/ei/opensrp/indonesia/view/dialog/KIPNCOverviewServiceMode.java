@@ -50,7 +50,7 @@ public class KIPNCOverviewServiceMode extends BidanServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{244, 75, 125, 140, 120, 175, 122};
+                return new int[]{244, 75, 125, 145, 125, 175, 122};
             }
 
             @Override
