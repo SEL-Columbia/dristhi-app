@@ -101,6 +101,7 @@ public class NativeHomeActivity extends SecuredActivity {
     private int elcocount;
     private int anccount;
     private int pnccount;
+    private int childcount;
 
     @Override
     protected void onCreation() {
@@ -149,19 +150,6 @@ public class NativeHomeActivity extends SecuredActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         LoginActivity.setLanguage();
-        ArrayList<ControllerFilterMap> controllerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
-        pncControllerfiltermap filtermap = new pncControllerfiltermap();
-        controllerFilterMapArrayList.add(filtermap);
-
-        ArrayList<ControllerFilterMap> anccontrollerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
-        ancControllerfiltermap ancfiltermap = new ancControllerfiltermap();
-        anccontrollerFilterMapArrayList.add(ancfiltermap);
-        pnccontroller =new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-        context.allBeneficiaries(), context.listCache(),
-        context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcarechild"),
-        context.allBeneficiaries(), context.listCache(),
-        context.personObjectClientsCache(),"FWBNFGEN","mcarechild","FWBNFGEN", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
     }
 
     @Override
@@ -200,11 +188,15 @@ public class NativeHomeActivity extends SecuredActivity {
         pnccountcursor.moveToFirst();
         pnccount= pnccountcursor.getInt(0);
         pnccountcursor.close();
+        Cursor childcountcursor = context.commonrepository("mcarechild").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcarechild"," mcarechild.FWBNFGEN is not NUll "));
+        childcountcursor.moveToFirst();
+        childcount= childcountcursor.getInt(0);
+        childcountcursor.close();
         pncRegisterClientCountView.setText(valueOf(pnccount));
         ecRegisterClientCountView.setText(valueOf(hhcount));
         ancRegisterClientCountView.setText(valueOf(anccount));
         fpRegisterClientCountView.setText(valueOf(elcocount));
-        childRegisterClientCountView.setText(valueOf(childcontroller.getClients().size()));
+        childRegisterClientCountView.setText(valueOf(childcount));
     }
 
     @Override

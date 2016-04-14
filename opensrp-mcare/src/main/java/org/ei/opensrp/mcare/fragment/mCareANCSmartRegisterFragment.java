@@ -420,12 +420,9 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     private String filterStringForANCRV4(){
         return "and alerts.visitCode LIKE '%ancrv_4%'";
     }
-
     private String sortByGOBHHID(){
         return " GOBHHID ASC";
     }
-
-
     private String sortByAlertmethod() {
         return " CASE WHEN alerts.status = 'urgent' and alerts2.status = 'urgent' THEN 1 "
                 +

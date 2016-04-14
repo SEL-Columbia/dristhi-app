@@ -13,9 +13,11 @@ import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
 import org.ei.opensrp.view.customControls.CustomFontTextView;
@@ -32,7 +34,7 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 /**
  * Created by user on 2/12/15.
  */
-public class mCareChildSmartClientsProvider implements SmartRegisterClientsProvider {
+public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
 
     private final LayoutInflater inflater;
     private final Context context;
@@ -40,14 +42,14 @@ public class mCareChildSmartClientsProvider implements SmartRegisterClientsProvi
 
     private final int txtColorBlack;
     private final AbsListView.LayoutParams clientViewLayoutParams;
+    private final AlertService alertService;
 
-    protected CommonPersonObjectController controller;
 
     public mCareChildSmartClientsProvider(Context context,
                                           View.OnClickListener onClickListener,
-                                          CommonPersonObjectController controller) {
+                                          AlertService alertService) {
         this.onClickListener = onClickListener;
-        this.controller = controller;
+        this.alertService = alertService;
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -57,10 +59,9 @@ public class mCareChildSmartClientsProvider implements SmartRegisterClientsProvi
     }
 
     @Override
-    public View getView(final SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
-        ViewGroup itemView;
+    public void getView(final SmartRegisterClient smartRegisterClient, View convertView) {
+        View itemView = convertView;
 
-        itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_child_client, null);
         LinearLayout profileinfolayout = (LinearLayout)itemView.findViewById(R.id.profile_info_layout);
 
 //        ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
@@ -89,13 +90,13 @@ public class mCareChildSmartClientsProvider implements SmartRegisterClientsProvi
 
         final CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
 
-        mothername.setText(mcaremotherObject.getDetails().get("FWWOMFNAME")!=null?mcaremotherObject.getDetails().get("FWWOMFNAME"):"");
+        mothername.setText(mcaremotherObject.getColumnmaps().get("FWWOMFNAME")!=null?mcaremotherObject.getColumnmaps().get("FWWOMFNAME"):"");
         fathername.setText(mcaremotherObject.getDetails().get("FWHUSNAME")!=null?mcaremotherObject.getDetails().get("FWHUSNAME"):"");
-        gobhhid.setText(mcaremotherObject.getDetails().get("GOBHHID")!=null?mcaremotherObject.getDetails().get("GOBHHID"):"");
-        jivitahhid.setText(mcaremotherObject.getDetails().get("JiVitAHHID")!=null?mcaremotherObject.getDetails().get("JiVitAHHID"):"");
+        gobhhid.setText(mcaremotherObject.getColumnmaps().get("GOBHHID")!=null?mcaremotherObject.getColumnmaps().get("GOBHHID"):"");
+        jivitahhid.setText(mcaremotherObject.getColumnmaps().get("JiVitAHHID")!=null?mcaremotherObject.getColumnmaps().get("JiVitAHHID"):"");
         village.setText(humanize((mcaremotherObject.getDetails().get("mauza") != null ? mcaremotherObject.getDetails().get("mauza") : "").replace("+", "_")));
         age.setText(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"");
-        dateofbirth.setText(mcaremotherObject.getDetails().get("FWBNFDTOO")!=null?mcaremotherObject.getDetails().get("FWBNFDTOO"):"");
+        dateofbirth.setText(mcaremotherObject.getColumnmaps().get("FWBNFDTOO")!=null?mcaremotherObject.getColumnmaps().get("FWBNFDTOO"):"");
 
         nid.setText("NID :" +(mcaremotherObject.getDetails().get("FWWOMNID")!=null?mcaremotherObject.getDetails().get("FWWOMNID"):""));
         brid.setText("BRID :" +(mcaremotherObject.getDetails().get("FWWOMBID")!=null?mcaremotherObject.getDetails().get("FWWOMBID"):""));
@@ -111,7 +112,6 @@ public class mCareChildSmartClientsProvider implements SmartRegisterClientsProvi
 
 
         itemView.setLayoutParams(clientViewLayoutParams);
-        return itemView;
     }
 
     private void constructENCCVisitStatusBlock(CommonPersonObjectClient pc, View itemview) {
@@ -240,7 +240,7 @@ public class mCareChildSmartClientsProvider implements SmartRegisterClientsProvi
         }
     }
 
-    private void constructENCCReminderDueBlock(CommonPersonObjectClient pc, ViewGroup itemView) {
+    private void constructENCCReminderDueBlock(CommonPersonObjectClient pc, View itemView) {
         alertTextandStatus alerttextstatus = null;
             List<Alert> alertlist3 = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "enccrv_3");
             if(alertlist3.size() != 0){
@@ -326,7 +326,7 @@ public class mCareChildSmartClientsProvider implements SmartRegisterClientsProvi
         return alts;
     }
 
-    private void constructRiskFlagView(CommonPersonObjectClient pc, CommonPersonObject mcaremotherObject, ViewGroup itemView) {
+    private void constructRiskFlagView(CommonPersonObjectClient pc, CommonPersonObject mcaremotherObject, View itemView) {
 //        AllCommonsRepository allancRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcaremother");
 //        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
 //        AllCommonsRepository allelcorep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
@@ -355,15 +355,11 @@ public class mCareChildSmartClientsProvider implements SmartRegisterClientsProvi
 
     }
 
-    @Override
-    public SmartRegisterClients getClients() {
-        return controller.getClients();
-    }
 
     @Override
     public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                                               FilterOption searchFilter, SortOption sortOption) {
-        return getClients().applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
+        return null;
     }
 
     @Override
@@ -378,6 +374,11 @@ public class mCareChildSmartClientsProvider implements SmartRegisterClientsProvi
 
     public LayoutInflater inflater() {
         return inflater;
+    }
+
+    @Override
+    public View inflatelayoutForCursorAdapter() {
+        return (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_child_client, null);
     }
 
     class alertTextandStatus{
