@@ -66,6 +66,8 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
     private String kartuIbuCaseId;
     private String ancVisitNumber;
     private Visits ancVisits;
+    private String ancDate;
+    private String kunjunganKe;
 
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
@@ -357,6 +359,33 @@ public class KIANCClient extends BidanSmartRegisterClient implements KIANCSmartR
 
     public void setLILA(String LILA) {
         this.LILA = LILA;
+    }
+
+    public void setAncDate(String ancDate) {
+        this.ancDate = ancDate;
+    }
+
+    public String getAncDate() {
+        return "Last Date Visit : "+DateUtil.formatDate(ancDate, "dd MMM YYYY");
+    }
+
+    public void setKunjunganKe(String kunjunganKe) {
+        this.kunjunganKe = kunjunganKe;
+    }
+
+    public String getKunjunganKe() {
+       // return "Visit Number : "+kunjunganKe;
+        return Strings.isNullOrEmpty(kunjunganKe) ? "Visit Number : - " : StringUtil.humanize("Visit Number : "+ kunjunganKe);
+    }
+
+
+    public void setAncNumber(String ancNumber) {
+        this.ancNumber = ancNumber;
+    }
+
+    public String getAncNumber() {
+        //return "Number : ANC "+ ancNumber;
+        return Strings.isNullOrEmpty(ancNumber) ? "ANC Visit : - " : StringUtil.humanize("ANC Visit : ANC "+ ancNumber);
     }
 
     public String getPenyakitKronis() {

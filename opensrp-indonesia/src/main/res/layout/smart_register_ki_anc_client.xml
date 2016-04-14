@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/list_item_height"
-              android:weightSum="@integer/ec_list_item_weight_count"
-              android:background="#ffffff">
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height"
+    android:weightSum="@integer/ec_list_item_weight_count"
+    android:background="#ffffff">
 
     <include
-            android:id="@+id/profile_info_layout_ki"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="@integer/ec_list_profile_box_weight"
-            layout="@layout/smart_register_client_profile_ki"/>
+        android:id="@+id/profile_info_layout_ki"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="@integer/ec_list_profile_box_weight"
+        layout="@layout/smart_register_client_profile_ki"/>
 
     <ImageView
-            android:layout_width="@dimen/smart_register_client_divider_height"
-            android:layout_height="fill_parent"
-            android:src="@color/smart_register_client_divider_color"/>
+        android:layout_width="@dimen/smart_register_client_divider_height"
+        android:layout_height="fill_parent"
+        android:src="@color/smart_register_client_divider_color"/>
 
     <RelativeLayout
         android:id="@+id/id_detail_layout"
@@ -176,44 +176,61 @@
         >
 
         <LinearLayout
-            android:id="@+id/layout_resiko_anc"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/status_bar_text_almost_white"
             android:orientation="vertical">
 
             <!--<org.ei.bidan.view.customControls.CustomFontTextView-->
-                <!--android:id="@+id/lbl_ki_anc_penyakit_kronis"-->
-                <!--style="@style/CustomFontTextViewStyle.ListView.VerySmall"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Penyakit Kronis :"/>-->
+            <!--android:id="@+id/lbl_ki_anc_penyakit_kronis"-->
+            <!--style="@style/CustomFontTextViewStyle.ListView.VerySmall"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Penyakit Kronis :"/>-->
 
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:id="@+id/txt_ki_anc_penyakit_kronis"
+                android:id="@+id/txt_tanggal_kunjungan_anc"
                 android:layout_marginTop="-2dp"
                 style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:text="Something something asdasd"/>
+                android:text="Something "/>
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/txt_anc_number"
+                android:layout_marginTop="-2dp"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Something "/>
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/txt_kunjugan_ke"
+                android:layout_marginTop="-2dp"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Something "/>
 
             <!--<org.ei.bidan.view.customControls.CustomFontTextView-->
-                <!--android:id="@+id/lbl_ki_anc_alergi"-->
-                <!--style="@style/CustomFontTextViewStyle.ListView.VerySmall"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Alergi :"/>-->
+            <!--android:id="@+id/lbl_ki_anc_alergi"-->
+            <!--style="@style/CustomFontTextViewStyle.ListView.VerySmall"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Alergi :"/>-->
 
 
             <!--<org.ei.bidan.view.customControls.CustomFontTextView-->
-                <!--android:id="@+id/txt_ki_anc_alergi"-->
-                <!--android:layout_marginTop="-2dp"-->
-                <!--style="@style/CustomFontTextViewStyle.ListView.Small"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="alergi apa aja"/>-->
+            <!--android:id="@+id/txt_ki_anc_alergi"-->
+            <!--android:layout_marginTop="-2dp"-->
+            <!--style="@style/CustomFontTextViewStyle.ListView.Small"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="alergi apa aja"/>-->
         </LinearLayout>
 
     </LinearLayout>

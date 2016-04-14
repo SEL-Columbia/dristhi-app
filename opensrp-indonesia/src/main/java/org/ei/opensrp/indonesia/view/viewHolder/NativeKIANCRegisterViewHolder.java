@@ -19,8 +19,8 @@ public class NativeKIANCRegisterViewHolder {
     private final TextView ancStatusHtp;
     private final TextView pemeriksaanLILA;
     private final TextView pemeriksaanBB;
-    private final TextView penyakitKronis;
-    private final ViewGroup layoutResikoANC;
+    //  private final TextView penyakitKronis;
+    //  private final ViewGroup layoutResikoANC;
     private final ImageButton editButton;
     private final RelativeLayout ancStatusLayout;
     private final TextView statusText;
@@ -29,6 +29,9 @@ public class NativeKIANCRegisterViewHolder {
     private final TextView alertStatusText;
 
     private final RelativeLayout detailIdLayout;
+    private final TextView tanggalKunjunganAnc;
+    private final TextView ancNumber;
+    private final TextView kunjunganKe;
     private TextView txtNoIbu;
     private TextView txtUniqueId;
 
@@ -44,8 +47,10 @@ public class NativeKIANCRegisterViewHolder {
         this.ancStatusHtp = (TextView) itemView.findViewById(R.id.txt_htpt);
         this.pemeriksaanLILA = (TextView) itemView.findViewById(R.id.txt_ki_lila_bb);
         this.pemeriksaanBB = (TextView) itemView.findViewById(R.id.txt_ki_beratbadan_tb);
-        this.penyakitKronis = (TextView) itemView.findViewById(R.id.txt_ki_anc_penyakit_kronis);
-        this.layoutResikoANC = (ViewGroup) itemView.findViewById(R.id.layout_resiko_anc);
+        this.tanggalKunjunganAnc = (TextView) itemView.findViewById(R.id.txt_tanggal_kunjungan_anc);
+        this.ancNumber = (TextView) itemView.findViewById(R.id.txt_anc_number);
+        this.kunjunganKe = (TextView) itemView.findViewById(R.id.txt_kunjugan_ke);
+        //  this.layoutResikoANC = (ViewGroup) itemView.findViewById(R.id.layout_resiko_anc);txt_anc_number
         this.editButton = (ImageButton) itemView.findViewById(R.id.btn_edit);
 
         this.ancStatusLayout = (RelativeLayout) itemView.findViewById(R.id.anc_status_layout);
@@ -70,16 +75,26 @@ public class NativeKIANCRegisterViewHolder {
         return pemeriksaanBB;
     }
 
-    public ViewGroup getLayoutResikoANC() {
-        return layoutResikoANC;
-    }
+    //  public ViewGroup getLayoutResikoANC() {
+    //      return layoutResikoANC;
+    //  }
     public TextView txtNoIbu() { return txtNoIbu; }
     public TextView txtUniqueId() { return txtUniqueId; }
 
-    public TextView getPenyakitKronis() {
-        return penyakitKronis;
+    //  public TextView getPenyakitKronis() {
+    //     return penyakitKronis;
+    // }
+
+    public TextView getTanggalKunjunganAnc(){
+        return tanggalKunjunganAnc;
     }
 
+    public TextView getAncNumber(){
+        return ancNumber;
+    }
+    public TextView getkunjunganKe(){
+        return kunjunganKe;
+    }
     public TextView getLabelDateStatus() {
         return labelDateStatus;
     }

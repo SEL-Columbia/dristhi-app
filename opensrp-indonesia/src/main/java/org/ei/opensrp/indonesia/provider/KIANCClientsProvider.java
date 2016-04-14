@@ -93,6 +93,7 @@ public class KIANCClientsProvider implements SmartRegisterClientsProvider {
         setupResikoView(kartuIbuClient, viewHolder);
         setupEditView(kartuIbuClient, viewHolder);
         setupStatusView(kartuIbuClient, viewHolder);
+        setupHistoryAnc(kartuIbuClient, viewHolder);
 
         itemView.setLayoutParams(clientViewLayoutParams);
         return itemView;
@@ -146,6 +147,12 @@ public class KIANCClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.getPemeriksaanLILA().setText(client.getLILA());
     }
 
+    private void setupHistoryAnc(KIANCClient client, NativeKIANCRegisterViewHolder viewHolder) {
+                viewHolder.getTanggalKunjunganAnc().setText(client.getAncDate());
+                viewHolder.getAncNumber().setText(client.getAncNumber());
+                viewHolder.getkunjunganKe().setText(client.getKunjunganKe());
+            }
+
     private void setupResikoView(KIANCClient client, NativeKIANCRegisterViewHolder viewHolder) {
         List<String> allRisks = new ArrayList<>();
         allRisks.addAll(client.highRiskReason());
@@ -162,13 +169,13 @@ public class KIANCClientsProvider implements SmartRegisterClientsProvider {
         String penyakit = StringUtils.join(allRisks, ',') +
                 (!alergi.equalsIgnoreCase("NA") && !Strings.isNullOrEmpty(alergi) ? "(Alergi : " + alergi + " )" : "");
 
-        viewHolder.getPenyakitKronis().setText(Strings.isNullOrEmpty(penyakit) ? "" : penyakit);
+      //  viewHolder.getPenyakitKronis().setText(Strings.isNullOrEmpty(penyakit) ? "" : penyakit);
 
-        if(!Strings.isNullOrEmpty(penyakit) || !Strings.isNullOrEmpty(alergi)) {
-            viewHolder.getLayoutResikoANC().setBackgroundColor(Color.parseColor("#FAD5D5"));
-        } else {
-            viewHolder.getLayoutResikoANC().setBackgroundColor(Color.parseColor("#CCFFCC"));
-        }
+      //  if(!Strings.isNullOrEmpty(penyakit) || !Strings.isNullOrEmpty(alergi)) {
+      ///      viewHolder.getLayoutResikoANC().setBackgroundColor(Color.parseColor("#FAD5D5"));
+      //  } else {
+      //      viewHolder.getLayoutResikoANC().setBackgroundColor(Color.parseColor("#CCFFCC"));
+      //  }
     }
 
     private void setupEditView(KIANCClient client, NativeKIANCRegisterViewHolder viewHolder) {

@@ -406,4 +406,7 @@
     <string name="cohort_child">ANAK</string>
     <string name="cohort_mother">KOHORT IBU</string>
     <string name="cohort_fp">KOHORT KB</string>
+    <string name="anc_visit_date">Tanggal Kunjungan ANC :</string>
+    <string name="anc_visit_number">ANC terakhir :</string>
+    <string name="header_history_anc">Kunjungan Terakhir</string>
 </resources>

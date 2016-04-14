@@ -129,6 +129,9 @@ public class KIANCRegisterController extends CommonController {
                     kartuIbuClient.setKartuIbuCaseId(anc.getKartuIbuId());
                     kartuIbuClient.setBB(anc.getDetail(WEIGHT_BEFORE));
                     kartuIbuClient.setTB(anc.getDetail(HEIGHT));
+                    kartuIbuClient.setAncDate(anc.getDetail("ancDate"));
+                    kartuIbuClient.setAncNumber(anc.getDetail("ancKe"));
+                    kartuIbuClient.setKunjunganKe(anc.getDetail("kunjunganKe"));
                     kartuIbuClient.setLILA(anc.getDetail(LILA_CHECK_RESULT));
                     kartuIbuClient.setBeratBadan(anc.getDetail(WEIGHT_CHECK_RESULT));
                     kartuIbuClient.setPenyakitKronis(anc.getDetail(CHRONIC_DISEASE));

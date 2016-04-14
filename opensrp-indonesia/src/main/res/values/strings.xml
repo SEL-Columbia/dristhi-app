@@ -358,6 +358,7 @@
     <string name="header_tanda_vital">Vital Sign</string>
     <string name="header_status_b">Status</string>
     <string name="header_resiko">Risk</string>
+    <string name="header_history_anc">Visit History</string>
     <string name="header_rencana">Plan</string>
     <string name="header_pnc_plan">PLAN</string>
     <string name="header_pemeriksaan">Examination</string>
@@ -395,5 +396,8 @@
     <string name="cohort_child">CHILD</string>
     <string name="cohort_mother">MOTHER</string>
     <string name="cohort_fp">FP</string>
+    <string name="anc_visit_date">ANC Visit Date:</string>
+    <string name="anc_visit_number">ANC Number:</string>
+
 
 </resources>
