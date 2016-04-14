@@ -105,8 +105,6 @@ public class ClientProcessor {
                             if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) && responseValues.contains(docSegmentResponseValue)) {
                                 //this is the event obs we're interested in put it in the respective bucket specified by type variable
                                     processCaseModel(event, client, type);
-
-
                             }
 
                         }
@@ -133,10 +131,14 @@ public class ClientProcessor {
             JSONObject columnMappings = getColumnMappings(clientType);
             JSONArray columns = columnMappings.getJSONArray("columns");
             String baseEntityId = client.getString("base_entity_id");
+            String expectedEncounterType = event.has("event_type")?event.getString("event_type"):null;
 
             ContentValues contentValues = new ContentValues();
             //TODO FIX ME
             if (clientType.equalsIgnoreCase("ec_mcarechild")) {
+                contentValues.put("base_entity_id", baseEntityId);
+                contentValues.put("relationalid", baseEntityId);
+
             } else {
                 //Add the base_entity_id
                 contentValues.put("base_entity_id", baseEntityId);
@@ -153,6 +155,7 @@ public class ClientProcessor {
                 String fieldName = jsonMapping.getString("field_name");
                 String fieldValue = jsonMapping.has("field_value") ? jsonMapping.getString("field_value") : null;
                 String responseKey = jsonMapping.has("response_key") ? jsonMapping.getString("response_key") : null;
+                String encounterType = jsonMapping.has("event_type") ? jsonMapping.getString("event_type") : null;
 
                 String columnValue = null;
 
@@ -192,24 +195,32 @@ public class ClientProcessor {
                         } else {
                             //this means field_value and response_key are not null e.g when retrieving some value in the events obs section
                             String expectedFieldValue = jsonDocObject.getString(fieldName);
-                            if (expectedFieldValue.equalsIgnoreCase(fieldValue)) {
+                            //some events can only be differentiated by the event_type value eg pnc1,pnc2, anc1,anc2
+                            //check if encountertype (the one in ec_client_fields.json) is null or it matches the encounter type from the ec doc we're processing
+                            boolean encounterTypeMatches=(encounterType==null) || (encounterType!=null  && encounterType.equalsIgnoreCase(expectedEncounterType));
+
+                            if (encounterTypeMatches && expectedFieldValue.equalsIgnoreCase(fieldValue) ) {
                                 columnValue = jsonDocObject.getString(responseKey);
                             }
                         }
-
+                        // after successfully retrieving the column name and value store it in Content value
+                        if (columnValue != null) {
+                            contentValues.put(columnName, columnValue);
+                        }
                     }
 
                 } else {
                     //e.g client attributes section
                     JSONObject jsonDocSegmentObject = (JSONObject) jsonDocSegment;
                     columnValue = jsonDocSegmentObject.has(fieldName) ? jsonDocSegmentObject.getString(fieldName) : "";
+                    // after successfully retrieving the column name and value store it in Content value
+                    if (columnValue != null) {
+                        contentValues.put(columnName, columnValue);
+                    }
 
                 }
 
-                // after successfully retrieving the column name and value store it in Content value
-                if (columnValue != null) {
-                    contentValues.put(columnName, columnValue);
-                }
+
 
             }
 

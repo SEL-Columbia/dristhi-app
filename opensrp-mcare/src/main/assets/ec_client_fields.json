@@ -269,6 +269,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
+            "event_type":"ANC Reminder Visit 1",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -279,6 +280,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
+            "event_type":"ANC Reminder Visit 2",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -289,6 +291,18 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
+            "event_type":"ANC Reminder Visit 3",
+            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key": "value"
+          }
+        },
+        {
+          "column_name": "FWANC4DATE",
+          "document_type": "Event",
+          "json_mapping": {
+            "data_segment": "obs",
+            "field_name": "fieldCode",
+            "event_type":"ANC Reminder Visit 4",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -420,6 +434,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
+            "event_type":"PNC Reminder Visit 1",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -430,6 +445,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
+            "event_type":"PNC Reminder Visit 2",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -440,6 +456,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
+            "event_type":"PNC Reminder Visit 3",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -472,6 +489,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
+            "event_type": "Essential Newborn Care 1",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -482,6 +500,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
+            "event_type": "Essential Newborn Care 2",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -492,6 +511,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
+            "event_type": "Essential Newborn Care 3",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
