@@ -39,6 +39,20 @@
             "field_value": "162942AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key":"value",
             "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+          },
+          {
+            "field_name":"event_type",
+            "field_value": "ANC Reminder Visit 1"
+          }, {
+            "field_name":"event_type",
+            "field_value": "ANC Reminder Visit 2"
+          },
+          {
+            "field_name":"event_type",
+            "field_value": "ANC Reminder Visit 3"
+          },{
+            "field_name":"event_type",
+            "field_value": "ANC Reminder Visit 4"
           }
         ]
       }
@@ -54,21 +68,40 @@
             "field_value": "163088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key":"value",
             "response_value":["162961AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+          },
+          {
+            "field_name":"event_type",
+            "field_value": "PNC Reminder Visit 1"
+          }, {
+            "field_name":"event_type",
+            "field_value": "PNC Reminder Visit 2"
+          },
+          {
+            "field_name":"event_type",
+            "field_value": "PNC Reminder Visit 3"
           }
         ]
       }
     },
     {
-      "type": "ec_child",
+      "type": "ec_mcarechild",
       "rule": {
         "lookup": "event",
         "fields": [
           {
-            "data_segment": "obs",
-            "field_name":"fieldCode",
-            "field_value": "",
-            "response_key":"value",
-            "response_value":[""]
+            "field_name":"event_type",
+            "field_value": "Birth Notification Followup form"
+          },
+          {
+            "field_name":"event_type",
+            "field_value": "Essential Newborn Care 1"
+          }, {
+            "field_name":"event_type",
+            "field_value": "Essential Newborn Care 2"
+          },
+          {
+            "field_name":"event_type",
+            "field_value": "Essential Newborn Care 3"
           }
         ]
       }
