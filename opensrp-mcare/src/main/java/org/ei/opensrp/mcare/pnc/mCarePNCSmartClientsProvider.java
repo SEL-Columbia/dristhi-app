@@ -127,7 +127,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
             e.printStackTrace();
         }
         constructRiskFlagView(pc,itemView);
-        constructPNCReminderDueBlock(pc, itemView);
+        constructPNCReminderDueBlock((pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : "").split("T")[0],pc, itemView);
 //        constructNBNFDueBlock(pc, itemView);s
         constructPncVisitStatusBlock(pc,itemView);
 
@@ -266,19 +266,19 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         }
     }
 
-    private void constructPNCReminderDueBlock(CommonPersonObjectClient pc, View itemView) {
+    private void constructPNCReminderDueBlock(String dateofoutcome,CommonPersonObjectClient pc, View itemView) {
         alertTextandStatus alerttextstatus = null;
             List<Alert> alertlist3 = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "pncrv_3");
             if(alertlist3.size() != 0){
-                alerttextstatus = setAlertStatus("PNC3",alertlist3);
+                alerttextstatus = setAlertStatus(dateofoutcome,"PNC3",alertlist3);
             }else{
                 List<Alert> alertlist2 = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "pncrv_2");
                 if(alertlist2.size()!=0){
-                    alerttextstatus = setAlertStatus("PNC2",alertlist2);
+                    alerttextstatus = setAlertStatus(dateofoutcome,"PNC2",alertlist2);
                 }else{
                     List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "pncrv_1");
                     if(alertlist.size()!=0){
-                        alerttextstatus = setAlertStatus("PNC1",alertlist);
+                        alerttextstatus = setAlertStatus(dateofoutcome,"PNC1",alertlist);
 
                     }else{
                         alerttextstatus = new alertTextandStatus("Not synced","not synced");
@@ -344,19 +344,23 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         }
     }
 
-    private alertTextandStatus setAlertStatus(String anc, List<Alert> alertlist) {
+    private alertTextandStatus setAlertStatus(String dateofoutcome,String pnc, List<Alert> alertlist) {
         alertTextandStatus alts = null;
         for(int i = 0;i<alertlist.size();i++){
-            alts = new alertTextandStatus(anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value());
+            if(pnc.equalsIgnoreCase("PNC1")){
+                alts = new alertTextandStatus(pnc+ "-"+pncdate(dateofoutcome,0),alertlist.get(i).status().value());
+            }else  if(pnc.equalsIgnoreCase("PNC2")){
+                alts = new alertTextandStatus(pnc+ "-"+pncdate(dateofoutcome,2),alertlist.get(i).status().value());
+            }else  if(pnc.equalsIgnoreCase("PNC3")){
+                alts = new alertTextandStatus(pnc+ "-"+pncdate(dateofoutcome,6),alertlist.get(i).status().value());
+            }
+//            alts = new alertTextandStatus(pnc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value());
             }
         return alts;
     }
 
     private void constructRiskFlagView(CommonPersonObjectClient pc, View itemView) {
-//        AllCommonsRepository allancRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcaremother");
-//        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
-//        AllCommonsRepository allelcorep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
-//        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getRelationalId());
+
 
         ImageView hrp = (ImageView)itemView.findViewById(R.id.hrp);
         ImageView hp = (ImageView)itemView.findViewById(R.id.hr);
@@ -406,6 +410,22 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
     @Override
     public View inflatelayoutForCursorAdapter() {
         return (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_pnc_client, null);
+    }
+    public String pncdate(String date,int day){
+        String pncdate = "";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date pnc_date = format.parse(date);
+            GregorianCalendar calendar = new GregorianCalendar();
+            calendar.setTime(pnc_date);
+            calendar.add(Calendar.DATE, day);
+            pnc_date.setTime(calendar.getTime().getTime());
+            pncdate = format.format(pnc_date);
+        } catch (Exception e) {
+            e.printStackTrace();
+            pncdate = "";
+        }
+        return pncdate;
     }
 
     class alertTextandStatus{

@@ -1,6 +1,7 @@
 package org.ei.opensrp.mcare.fragment;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -13,7 +14,13 @@ import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.commonregistry.ControllerFilterMap;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
+import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
+import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
+import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
@@ -25,6 +32,7 @@ import org.ei.opensrp.mcare.child.mCareChildSmartRegisterActivity;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
 import org.ei.opensrp.mcare.elco.ElcoSearchOption;
+import org.ei.opensrp.mcare.elco.ElcoSmartClientsProvider;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.pnc.mCarePNCServiceModeOption;
 import org.ei.opensrp.mcare.pnc.mCarePNCSmartClientsProvider;
@@ -63,7 +71,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 /**
  * Created by koros on 11/2/15.
  */
-public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterFragment {
+public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAdapterFragment {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private CommonPersonObjectController controller;
@@ -111,7 +119,11 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterF
             @Override
             public DialogOption[] filterOptions() {
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
-                dialogOptionslist.add(new AllClientsFilter());
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),""));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_encc1),filterStringForENCCRV1()));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_encc2),filterStringForENCCRV2()));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_encc3),filterStringForENCCRV3()));
+
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
 
@@ -135,9 +147,10 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterF
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{
 //                        new ElcoPSRFDueDateSort(),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"FWWOMFNAME", Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"GOBHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"JiVitAHHID", Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort))
+                        new CursorCommonObjectSort(getString(R.string.due_status),sortByAlertmethod()),
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.elco_alphabetical_sort),sortByFWWOMFNAME()),
+                        new CursorCommonObjectSort(Context.getInstance().applicationContext().getString(R.string.hh_fwGobhhid_sort),sortByGOBHHID()),
+                        new CursorCommonObjectSort( Context.getInstance().applicationContext().getString(R.string.hh_fwJivhhid_sort),sortByJiVitAHHID()),
 
 //                        new CommonObjectSort(true,false,true,"age")
                 };
@@ -152,32 +165,14 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterF
 
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
-        if (clientProvider == null) {
-            clientProvider = new mCareChildSmartClientsProvider(
-                    getActivity(),clientActionHandler , controller);
-        }
-        return clientProvider;
+
+        return null;
     }
 
 
     @Override
     protected void onInitialization() {
-//        ArrayList <ControllerFilterMap> controllerFilterMapArrayList = new ArrayList<ControllerFilterMap>();
-//
-//        pncControllerfiltermap filtermap = new pncControllerfiltermap();
-//
-//        controllerFilterMapArrayList.add(filtermap);
-//        controllerFilterMapArrayList.add(filterforpnc);
-        controller = NativeHomeActivity.childcontroller;
-//                new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-//                context.allBeneficiaries(), context.listCache(),
-//                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother",controllerFilterMapArrayList, CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-////                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
-        villageController = new VillageController(context.allEligibleCouples(),
-                context.listCache(), context.villagesCache());
-        dialogOptionMapper = new DialogOptionMapper();
-//        context.formSubmissionRouter().getHandlerMap().put("psrf_form",new PSRFHandler());
     }
 
     @Override
@@ -192,6 +187,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterF
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
+        initializeQueries();
         updateSearchView();
         try{
             LoginActivity.setLanguage();
@@ -208,7 +204,10 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterF
 
         ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
         startregister.setVisibility(View.GONE);
+        clientsView.setVisibility(View.VISIBLE);
+        clientsProgressView.setVisibility(View.INVISIBLE);
         setServiceModeViewDrawableRight(null);
+        initializeQueries();
         updateSearchView();
     }
 
@@ -274,12 +273,17 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterF
 
                     @Override
                     protected Object doInBackground(Object[] params) {
-                        setCurrentSearchFilter(new ElcoSearchOption(cs.toString()));
-                        filteredClients = getClientsAdapter().getListItemProvider()
-                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
-                                        getCurrentSearchFilter(), getCurrentSortOption());
-
-
+//                        currentSearchFilter =
+//                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
+//                        filteredClients = getClientsAdapter().getListItemProvider()
+//                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
+//                                        getCurrentSearchFilter(), getCurrentSortOption());
+//
+                        if(cs.toString().equalsIgnoreCase("")){
+                            filters = "";
+                        }else {
+                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                        }
                         return null;
                     }
 
@@ -288,18 +292,16 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterF
 //                        clientsAdapter
 //                                .refreshList(currentVillageFilter, currentServiceModeOption,
 //                                        currentSearchFilter, currentSortOption);
-                        getClientsAdapter().refreshClients(filteredClients);
-                        getClientsAdapter().notifyDataSetChanged();
+//                        getClientsAdapter().refreshClients(filteredClients);
+//                        getClientsAdapter().notifyDataSetChanged();
                         getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                        CountExecute();
+                        filterandSortExecute();
                         super.onPostExecute(o);
                     }
                 }).execute();
-//                currentSearchFilter = new HHSearchOption(cs.toString());
-//                clientsAdapter
-//                        .refreshList(currentVillageFilter, currentServiceModeOption,
-//                                currentSearchFilter, currentSortOption);
-//
-//                searchCancelView.setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+
+
 
 
             }
@@ -319,7 +321,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterF
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name",name));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(name,"and mcaremother.details like '%"+name +"%'"));
 
             }
         }
@@ -342,9 +344,79 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterF
                     }
                 }
             }
-            Log.v("the filter",""+returnvalue);
+            Log.v("the filter", "" + returnvalue);
             return returnvalue;
         }
+    }
+    public void initializeQueries(){
+        CommonRepository commonRepository = context.commonrepository("mcarechild");
+        setTablename("mcarechild");
+        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(childMainCountWithJoins());
+        countSelect = countqueryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
+        CountExecute();
+
+
+        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(childMainSelectWithJoins());
+        mainSelect = queryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
+        queryBUilder.addCondition(filters);
+        Sortqueries = sortBySortValue();
+        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+
+
+//        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
+//        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
+        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+        mCareChildSmartClientsProvider hhscp = new mCareChildSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("mcarechild",new String []{ "FWBNFGEN"}));
+        clientsView.setAdapter(clientAdapter);
+//        setServiceModeViewDrawableRight(null);
+//        updateSearchView();
+        refresh();
+
+    }
+    private String sortByAlertmethod() {
+        return " CASE WHEN alerts.status = 'urgent' THEN '1'"
+                +
+                "WHEN alerts.status = 'upcoming' THEN '2'\n" +
+                "WHEN alerts.status = 'normal' THEN '3'\n" +
+                "WHEN alerts.status = 'expired' THEN '4'\n" +
+                "WHEN alerts.status is Null THEN '5'\n" +
+                "WHEN alerts.status = 'complete' THEN '6'\n" +
+                "Else alerts.status END ASC";
+    }
+    public String childMainSelectWithJoins(){
+        return "Select mcarechild.id as _id,mcarechild.relationalid,mcarechild.details,mcarechild.FWBNFGEN \n" +
+                "from mcarechild\n" +
+                "Left Join mcaremother on mcarechild.relationalid = mcaremother.id \n" +
+                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist'";
+    }
+    public String childMainCountWithJoins() {
+        return "Select Count(*) \n" +
+                "from mcarechild\n" +
+                "Left Join mcaremother on mcarechild.relationalid = mcaremother.id \n" +
+                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist'";
+    }
+
+    private String sortBySortValue(){
+        return " FWSORTVALUE ASC";
+    }
+    private String sortByFWWOMFNAME(){
+        return " FWWOMFNAME ASC";
+    }
+    private String sortByJiVitAHHID(){
+        return " JiVitAHHID ASC";
+    }
+    private String sortByGOBHHID(){
+        return " GOBHHID ASC";
+    }
+    private String filterStringForENCCRV1(){
+        return "and alerts.visitCode LIKE '%enccrv_1%'";
+    }
+    private String filterStringForENCCRV2(){
+        return "and alerts.visitCode LIKE '%enccrv_2%'";
+    }
+    private String filterStringForENCCRV3(){
+        return "and alerts.visitCode LIKE '%enccrv_3%'";
     }
 
 }

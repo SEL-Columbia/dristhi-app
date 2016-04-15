@@ -21,7 +21,7 @@
     {
       "name": "mcarechild",
       "columns": [
-
+        {"name":"FWBNFGEN"}
       ]
     }
   ]
