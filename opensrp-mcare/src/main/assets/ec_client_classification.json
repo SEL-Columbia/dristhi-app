@@ -71,6 +71,10 @@
           },
           {
             "field_name":"event_type",
+            "field_value": "Birth Notification Followup form"
+          },
+          {
+            "field_name":"event_type",
             "field_value": "PNC Reminder Visit 1"
           }, {
             "field_name":"event_type",
@@ -90,7 +94,7 @@
         "fields": [
           {
             "field_name":"event_type",
-            "field_value": "Birth Notification Followup form"
+            "field_value": "Child Vital Status"
           },
           {
             "field_name":"event_type",

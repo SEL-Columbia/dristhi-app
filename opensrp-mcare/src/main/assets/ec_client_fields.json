@@ -74,6 +74,14 @@
           }
         },
         {
+          "column_name": "relational_id",
+          "document_type": "Client",
+          "json_mapping": {
+            "data_segment": "relationships",
+            "field_name": "household_head"
+          }
+        },
+        {
           "column_name": "GOBHHID",
           "document_type": "Client",
           "json_mapping": {
@@ -269,7 +277,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
-            "event_type":"ANC Reminder Visit 1",
+            "event_type": "ANC Reminder Visit 1",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -280,7 +288,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
-            "event_type":"ANC Reminder Visit 2",
+            "event_type": "ANC Reminder Visit 2",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -291,7 +299,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
-            "event_type":"ANC Reminder Visit 3",
+            "event_type": "ANC Reminder Visit 3",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -302,7 +310,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
-            "event_type":"ANC Reminder Visit 4",
+            "event_type": "ANC Reminder Visit 4",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -434,7 +442,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
-            "event_type":"PNC Reminder Visit 1",
+            "event_type": "PNC Reminder Visit 1",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -445,7 +453,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
-            "event_type":"PNC Reminder Visit 2",
+            "event_type": "PNC Reminder Visit 2",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -456,7 +464,7 @@
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
-            "event_type":"PNC Reminder Visit 3",
+            "event_type": "PNC Reminder Visit 3",
             "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "value"
           }
@@ -474,13 +482,44 @@
           }
         },
         {
+          "column_name": "relational_id",
+          "document_type": "Client",
+          "json_mapping": {
+            "data_segment": "relationships",
+            "field_name": "mother"
+          }
+        },
+        {
           "column_name": "FWBNFDTOO",
+          "document_type": "Client",
+          "json_mapping": {
+            "field_name": "birth_date"
+          }
+        },
+        {
+          "column_name": "FWBNFCHLDVITSTS",
           "document_type": "Event",
           "json_mapping": {
             "data_segment": "obs",
             "field_name": "fieldCode",
-            "field_value": "5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field_value": "159926AAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key": "values"
+          }
+        },
+        {
+          "column_name": "FWBNFGEN",
+          "document_type": "Event",
+          "json_mapping": {
+            "data_segment": "obs",
+            "field_name": "fieldCode",
+            "field_value": "1587AAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key": "values",
+            "concept_mappings": {
+              "1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "MALE",
+              "1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "FEMALE",
+              "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "Unknown",
+              "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "Other"
+            }
           }
         },
         {

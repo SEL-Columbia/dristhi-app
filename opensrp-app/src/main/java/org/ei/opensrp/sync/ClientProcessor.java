@@ -104,7 +104,7 @@ public class ClientProcessor {
 
                             if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) && responseValues.contains(docSegmentResponseValue)) {
                                 //this is the event obs we're interested in put it in the respective bucket specified by type variable
-                                    processCaseModel(event, client, type);
+                                processCaseModel(event, client, type);
                             }
 
                         }
@@ -116,7 +116,7 @@ public class ClientProcessor {
 
                         if (docSegmentFieldValue.equalsIgnoreCase(fieldValue)) {
 
-                                processCaseModel(event, client, type);
+                            processCaseModel(event, client, type);
                         }
 
                     }
@@ -131,20 +131,12 @@ public class ClientProcessor {
             JSONObject columnMappings = getColumnMappings(clientType);
             JSONArray columns = columnMappings.getJSONArray("columns");
             String baseEntityId = client.getString("base_entity_id");
-            String expectedEncounterType = event.has("event_type")?event.getString("event_type"):null;
+            String expectedEncounterType = event.has("event_type") ? event.getString("event_type") : null;
 
             ContentValues contentValues = new ContentValues();
-            //TODO FIX ME
-            if (clientType.equalsIgnoreCase("ec_mcarechild")) {
-                contentValues.put("base_entity_id", baseEntityId);
-                contentValues.put("relationalid", baseEntityId);
+            //Add the base_entity_id
+            contentValues.put("base_entity_id", baseEntityId);
 
-            } else {
-                //Add the base_entity_id
-                contentValues.put("base_entity_id", baseEntityId);
-            }
-
-            Map<String, List<String>> relationshipMap = getRelationshipMap(baseEntityId);
 
             for (int i = 0; i < columns.length(); i++) {
                 JSONObject colObject = columns.getJSONObject(i);
@@ -156,6 +148,7 @@ public class ClientProcessor {
                 String fieldValue = jsonMapping.has("field_value") ? jsonMapping.getString("field_value") : null;
                 String responseKey = jsonMapping.has("response_key") ? jsonMapping.getString("response_key") : null;
                 String encounterType = jsonMapping.has("event_type") ? jsonMapping.getString("event_type") : null;
+                JSONObject conceptMappings = jsonMapping.has("concept_mappings") ? jsonMapping.getJSONObject("concept_mappings") : null;
 
                 String columnValue = null;
 
@@ -181,6 +174,17 @@ public class ClientProcessor {
                     }
                     continue;
                 }
+                //special handler for relationalid
+                if (dataSegment != null && dataSegment.equalsIgnoreCase("relationships")) {
+                    JSONObject relationshipsObject = jsonDocument.getJSONObject("relationships");
+                    JSONArray relationshipsArray = relationshipsObject.getJSONArray(fieldName);
+                    if (relationshipsArray != null && relationshipsArray.length() > 0) {
+                        List<String> relationalIds = getValues(relationshipsArray);
+                        contentValues.put(columnName, relationalIds.get(0));
+
+                    }
+                    continue;
+                }
 
                 if (jsonDocSegment instanceof JSONArray) {
 
@@ -197,14 +201,15 @@ public class ClientProcessor {
                             String expectedFieldValue = jsonDocObject.getString(fieldName);
                             //some events can only be differentiated by the event_type value eg pnc1,pnc2, anc1,anc2
                             //check if encountertype (the one in ec_client_fields.json) is null or it matches the encounter type from the ec doc we're processing
-                            boolean encounterTypeMatches=(encounterType==null) || (encounterType!=null  && encounterType.equalsIgnoreCase(expectedEncounterType));
+                            boolean encounterTypeMatches = (encounterType == null) || (encounterType != null && encounterType.equalsIgnoreCase(expectedEncounterType));
 
-                            if (encounterTypeMatches && expectedFieldValue.equalsIgnoreCase(fieldValue) ) {
-                                columnValue = jsonDocObject.getString(responseKey);
+                            if (encounterTypeMatches && expectedFieldValue.equalsIgnoreCase(fieldValue)) {
+                                columnValue = jsonDocObject.get(responseKey).toString();
                             }
                         }
                         // after successfully retrieving the column name and value store it in Content value
                         if (columnValue != null) {
+                            columnValue = humanizeConceptResponse(columnValue, conceptMappings);
                             contentValues.put(columnName, columnValue);
                         }
                     }
@@ -215,11 +220,11 @@ public class ClientProcessor {
                     columnValue = jsonDocSegmentObject.has(fieldName) ? jsonDocSegmentObject.getString(fieldName) : "";
                     // after successfully retrieving the column name and value store it in Content value
                     if (columnValue != null) {
+                        columnValue = humanizeConceptResponse(columnValue, conceptMappings);
                         contentValues.put(columnName, columnValue);
                     }
 
                 }
-
 
 
             }
@@ -234,36 +239,37 @@ public class ClientProcessor {
 
     }
 
-    public Map<String, List<String>> getRelationshipMap(String baseEntityId) throws Exception {
-        Client client = mCloudantDataHandler.getClientDocumentByBaseEntityId(baseEntityId);
-        Map<String, List<String>> relationshipMap = client.getRelationships();
-        if (relationshipMap == null)
-            relationshipMap = new HashMap<String, List<String>>();
-        try {
-            String relationalBaseEntityId = client.getRelationalBaseEntityId();
-            if (relationalBaseEntityId != null && !relationalBaseEntityId.equals(client.getBaseEntityId())) { // by default the relationalBaseEntityId is the same as the baseEntityId
-                //Build the relationship map
-                String clienClassificationStr = getFileContents("ec_client_classification.json");
-                JSONObject clientClassificationJson = new JSONObject(clienClassificationStr);
-                JSONArray clientTypes = clientClassificationJson.getJSONArray("client_type");
-                for (int i = 0; i < clientTypes.length(); i++) {
-                    JSONObject obj = clientTypes.getJSONObject(i);
-                    String tableName = obj.getString("type");
-                    List<String> relationalIds = relationshipMap.get(tableName) != null ? relationshipMap.get(tableName) : new ArrayList<String>();
-                    String query = "select * from " + tableName + " where base_entity_id = '" + relationalBaseEntityId + "'";
-                    String base_entity_id = queryTableForColumnValue(query, tableName, "base_entity_id");
-                    if (base_entity_id != null && !relationalIds.contains(base_entity_id)) { // entity exists in table
-                        relationalIds.add(base_entity_id);
-                    }
-                    relationshipMap.put(tableName, relationalIds);
-                }
-            }
-            client.setRelationships(relationshipMap);
-            mCloudantDataHandler.updateDocument(client);
-        } catch (Exception e) {
-            e.printStackTrace();
+    /**
+     * convert concept responses to human readable values
+     *
+     * @param value
+     * @param conceptMappings
+     * @return
+     * @throws Exception
+     */
+    private String humanizeConceptResponse(String value, JSONObject conceptMappings) throws Exception {
+        if (conceptMappings == null) {
+            return value;
         }
-        return client.getRelationships();
+        String humanReadableValue = null;
+        if (value.startsWith("[")) {
+            JSONArray jsonArray = new JSONArray(value);
+            if (jsonArray.length() == 1) {
+                value = jsonArray.get(0).toString();
+                humanReadableValue = conceptMappings.has(value) ? conceptMappings.getString(value) : null;
+
+            } else {
+                JSONArray humanReadableValues = new JSONArray();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    String val = conceptMappings.has(jsonArray.get(i).toString()) ? conceptMappings.getString(jsonArray.get(i).toString()) : null;
+                    humanReadableValues.put(val);
+                }
+                humanReadableValue = humanReadableValues.toString();
+            }
+        } else {
+            humanReadableValue = conceptMappings.has(value) ? conceptMappings.getString(value) : null;
+        }
+        return humanReadableValue;
     }
 
     public String queryTableForColumnValue(String query, String tableName, String column) {
