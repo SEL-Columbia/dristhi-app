@@ -1,16 +1,11 @@
 {
   "form_data_definition_version": "2",
   "form": {
-    "bind_type": "ibu",
+    "bind_type": "anak",
     "default_bind_path": "/model/instance/registrasi_gizi/",
     "fields": [
       {
         "name": "id",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "childid",
-        "source": "ibu.anak.id",
         "shouldLoadValue": true
       },
       {
@@ -23,22 +18,21 @@
       },
       {
         "name": "namaBayi",
-        "bind": "/model/instance/registrasi_gizi/nama_anak",
-        "source": "ibu.anak.namaBayi"
+        "bind": "/model/instance/registrasi_gizi/nama_anak"
+
       },
       {
-        "name": "namaBayi",
+        "name": "namaOrtu",
         "bind": "/model/instance/registrasi_gizi/nama_ortu"
       },
       {
         "name": "tanggalLahir",
-        "bind": "/model/instance/registrasi_gizi/tanggal_lahir",
-        "source": "ibu.anak.tanggalLahir"
+        "bind": "/model/instance/registrasi_gizi/tanggal_lahir"
+
       },
       {
         "name": "jenisKelamin",
-        "bind": "/model/instance/registrasi_gizi/jenis_kelamin",
-        "source": "ibu.anak.jenisKelamin"
+        "bind": "/model/instance/registrasi_gizi/jenis_kelamin"
       },
       {
         "name": "today",
