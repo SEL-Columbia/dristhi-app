@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" dir="ltr" id="registrasi_gizi">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo" />
+    <h3 id="form-title">Registrasi Gizi</h3>
+    <select id="form-languages" data-default-lang="Bahasa">
+        <option value="Bahasa">Bahasa</option>
+        <option value="en">English</option>
+    </select>
+    <label class="question non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/posyandu:label">Posyandu</span>
+        <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/posyandu:label">Health Post</span>
+        <span class="required">*</span>
+        <span lang="Bahasa" class="or-hint active" data-itext-id="/registrasi_gizi/posyandu:hint">Nama posyandu</span>
+        <span lang="en" class="or-hint " data-itext-id="/registrasi_gizi/posyandu:hint">name of health post</span>
+        <input type="text" name="/registrasi_gizi/posyandu" required="required" data-type-xml="string" />
+        <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
+        <span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span>
+    </label>
+    <label class="question non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/desa:label">Desa</span>
+        <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/desa:label">village</span>
+        <span class="required">*</span>
+        <span lang="Bahasa" class="or-hint active" data-itext-id="/registrasi_gizi/desa:hint">Desa tempat pelayanan posyandu</span>
+        <span lang="en" class="or-hint " data-itext-id="/registrasi_gizi/desa:hint">name of village where Health Post service is given</span>
+        <input type="text" name="/registrasi_gizi/desa" required="required" data-type-xml="string" />
+        <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
+        <span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span>
+    </label>
+    <label class="question non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/nama_anak:label">Nama Anak</span>
+        <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/nama_anak:label">name of baby/child</span>
+        <span class="required">*</span>
+        <span lang="Bahasa" class="or-hint active" data-itext-id="/registrasi_gizi/nama_anak:hint">Nama bayi/balita yang datang ke Posyandu</span>
+        <span lang="en" class="or-hint " data-itext-id="/registrasi_gizi/nama_anak:hint">name of baby/child checking-up at Health Post</span>
+        <input type="text" name="/registrasi_gizi/nama_anak" required="required" data-type-xml="string" />
+        <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
+        <span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span>
+    </label>
+    <label class="question non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/nama_ortu:label">Nama Ortu</span>
+        <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/nama_ortu:label">name of parents</span>
+        <span lang="Bahasa" class="or-hint active" data-itext-id="/registrasi_gizi/nama_ortu:hint">Nama Orang Tua dari anak yang memeriksakan anak ke posyandu</span>
+        <span lang="en" class="or-hint " data-itext-id="/registrasi_gizi/nama_ortu:hint">name of baby/child's parents Checking-up at Health Post</span>
+        <input type="text" name="/registrasi_gizi/nama_ortu" data-type-xml="string" />
+        <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
+    </label>
+    <label class="question non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/tanggal_lahir:label">Tgl lahir</span>
+        <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/tanggal_lahir:label">DOB</span>
+        <span lang="Bahasa" class="or-hint active" data-itext-id="/registrasi_gizi/tanggal_lahir:hint">tanggal/bulan/ tahun dimana bayi/balita lahir</span>
+        <span lang="en" class="or-hint " data-itext-id="/registrasi_gizi/tanggal_lahir:hint">DOB of Baby/ child</span>
+        <input type="date" name="/registrasi_gizi/tanggal_lahir" data-type-xml="date" />
+        <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
+    </label>
+    <fieldset class="question simple-select ">
+        <fieldset>
+            <legend>
+                <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/jenis_kelamin:label">JK</span>
+                <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/jenis_kelamin:label">gender</span>
+                <span class="required">*</span>
+                <span lang="Bahasa" class="or-hint active" data-itext-id="/registrasi_gizi/jenis_kelamin:hint">Jenis kelamin bayi/balita</span>
+                <span lang="en" class="or-hint " data-itext-id="/registrasi_gizi/jenis_kelamin:hint">gender of baby/child</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input type="radio" name="/registrasi_gizi/jenis_kelamin" data-name="/registrasi_gizi/jenis_kelamin" value="laki-laki" required="required" data-type-xml="select1" />
+                    <span lang="Bahasa" class="option-label active" data-itext-id="/registrasi_gizi/jenis_kelamin/laki-laki:label">Laki-laki</span>
+                    <span lang="en" class="option-label " data-itext-id="/registrasi_gizi/jenis_kelamin/laki-laki:label">Male</span>
+                </label>
+                <label class="">
+                    <input type="radio" name="/registrasi_gizi/jenis_kelamin" data-name="/registrasi_gizi/jenis_kelamin" value="perempuan" required="required" data-type-xml="select1" />
+                    <span lang="Bahasa" class="option-label active" data-itext-id="/registrasi_gizi/jenis_kelamin/perempuan:label">Perempuan</span>
+                    <span lang="en" class="option-label " data-itext-id="/registrasi_gizi/jenis_kelamin/perempuan:label">Female</span>
+                </label>
+            </div>
+        </fieldset>
+        <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
+        <span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span>
+    </fieldset>
+    <fieldset id="or-calculated-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input type="hidden" name="/registrasi_gizi/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string" />
+        </label>
+        <label class="calculation non-select ">
+            <input type="hidden" name="/registrasi_gizi/formhub/uuid" data-calculate="'0645a1b690904a639da4d90c61eb104a'" data-type-xml="string" />
+        </label>
+    </fieldset>
+</form>
