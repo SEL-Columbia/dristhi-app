@@ -150,7 +150,6 @@ public class ClientProcessor {
                 String encounterType = jsonMapping.has("event_type") ? jsonMapping.getString("event_type") : null;
                 JSONObject conceptMappings = jsonMapping.has("concept_mappings") ? jsonMapping.getJSONObject("concept_mappings") : null;
 
-                String columnValue = null;
 
                 JSONObject jsonDocument = docType.equalsIgnoreCase("Event") ? event : client;
 
@@ -192,7 +191,7 @@ public class ClientProcessor {
 
                     for (int j = 0; j < jsonDocSegmentArray.length(); j++) {
                         JSONObject jsonDocObject = jsonDocSegmentArray.getJSONObject(j);
-
+                        String columnValue=null;
                         if (fieldValue == null) {
                             //this means field_value and response_key are null so pick the value from the json object for the field_name
                             columnValue = jsonDocObject.getString(fieldName);
@@ -216,6 +215,7 @@ public class ClientProcessor {
 
                 } else {
                     //e.g client attributes section
+                    String columnValue=null;
                     JSONObject jsonDocSegmentObject = (JSONObject) jsonDocSegment;
                     columnValue = jsonDocSegmentObject.has(fieldName) ? jsonDocSegmentObject.getString(fieldName) : "";
                     // after successfully retrieving the column name and value store it in Content value

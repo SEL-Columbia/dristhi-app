@@ -77,7 +77,7 @@ public class SmartRegisterQueryBuilder {
         return Selectquery;
     }
     public String mainCondition(String condition){
-        Selectquery= Selectquery+ " Where " + condition ;
+        Selectquery= Selectquery+(!condition.isEmpty()? " Where " + condition:"" );
         return Selectquery;
     }
     public String addCondition(String condition){
@@ -85,7 +85,7 @@ public class SmartRegisterQueryBuilder {
         return Selectquery;
     }
     public String orderbyCondition(String condition){
-        Selectquery= Selectquery + " ORDER BY " + condition;
+        Selectquery= Selectquery + (condition!=null && !condition.isEmpty()? " ORDER BY " + condition:"");
         return Selectquery;
     }
     public String joinwithALerts(String tablename,String alertname){

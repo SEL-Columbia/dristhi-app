@@ -395,7 +395,16 @@
             "data_segment": "obs",
             "field_name": "fieldCode",
             "field_value": "161641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "response_key": "value",
+            "concept_mappings": {
+              "1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "1",
+              "1899AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "2",
+              "151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "3",
+              "125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "4",
+              "128453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "6",
+              "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "7",
+              "148629AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "9"
+            }
           }
         },
         {
@@ -515,9 +524,9 @@
             "field_value": "1587AAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key": "values",
             "concept_mappings": {
-              "1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "MALE",
-              "1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "FEMALE",
-              "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "Unknown",
+              "1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "1",
+              "1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "2",
+              "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "9",
               "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "Other"
             }
           }
