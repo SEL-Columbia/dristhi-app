@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 
 
 //import org.ei.opensrp.gizi.test.TestSmartRegisterActivity;
+import org.ei.opensrp.gizi.gizi.GiziSmartRegisterActivity;
 import org.ei.opensrp.view.controller.ANMController;
 
 
@@ -39,6 +40,11 @@ public class GiziNavigationController extends org.ei.opensrp.view.controller.Nav
     @Override
     public void startANCSmartRegistry() {
        // activity.startActivity(new Intent(activity, TestSmartRegisterActivity.class));
+    }
+
+    @Override
+    public void startChildSmartRegistry() {
+         activity.startActivity(new Intent(activity, GiziSmartRegisterActivity.class));
     }
 
 }

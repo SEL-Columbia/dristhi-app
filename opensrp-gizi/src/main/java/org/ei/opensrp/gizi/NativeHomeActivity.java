@@ -85,7 +85,7 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void setupViews() {
-        findViewById(R.id.btn_test_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_gizi_register).setOnClickListener(onRegisterStartListener);
        // findViewById(R.id.btn_test2_register).setOnClickListener(onRegisterStartListener);
 
         findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
@@ -223,9 +223,9 @@ public class NativeHomeActivity extends SecuredActivity {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.btn_test_register:
-                    navigationController.startECSmartRegistry();
-                    break;
+            //    case R.id.btn_gizi_register:
+            //        navigationController.startECSmartRegistry();
+            //        break;
 
               //  case R.id.btn_test2_register:
             //        navigationController.startANCSmartRegistry();
@@ -234,14 +234,14 @@ public class NativeHomeActivity extends SecuredActivity {
                 case R.id.btn_pnc_register:
 //                    navigationController.startPNCSmartRegistry();
                     break;
-
-                case R.id.btn_child_register:
-//                    navigationController.startChildSmartRegistry();
+*/
+                case R.id.btn_gizi_register:
+                   navigationController.startChildSmartRegistry();
                     break;
 
-                case R.id.btn_fp_register:
-                 //   navigationController.startFPSmartRegistry();
-                    break; */
+        //        case R.id.btn_fp_register:
+       //          //   navigationController.startFPSmartRegistry();
+       //             break;
             }
         }
     };

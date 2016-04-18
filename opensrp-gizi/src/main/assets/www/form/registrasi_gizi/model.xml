@@ -1,18 +1,18 @@
 <model>
     <instance>
         <registrasi_gizi id="registrasi_gizi" version="201604060701">
-            <formhub>
-                <uuid/>
-            </formhub>
-            <posyandu/>
-            <desa/>
-            <nama_anak/>
-            <nama_ortu/>
-            <tanggal_lahir/>
-            <jenis_kelamin/>
-            <meta>
-                <instanceID/>
-            </meta>
+          <formhub>
+            <uuid/>
+          </formhub>
+          <posyandu/>
+          <desa/>
+          <nama_anak/>
+          <nama_ortu/>
+          <tanggal_lahir/>
+          <jenis_kelamin/>
+          <meta>
+            <instanceID/>
+          </meta>
         </registrasi_gizi>
-    </instance>
-</model>
+      </instance>
+  </model>

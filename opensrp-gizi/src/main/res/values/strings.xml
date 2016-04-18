@@ -361,6 +361,9 @@
     <string name="no_internet_connectivity">No internet connection. Please ensure data connectivity</string>
     <string name="forminputerror">Please check the form for any error/missing input marked in Red box</string>
     <string name="okforminputerror">ok</string>
+    <string name="child_profile">Child Profile</string>
+    <string name="anthopometri">Anthopometry</string>
+    <string name="status">Nutrition Status</string>
 
 
 </resources>

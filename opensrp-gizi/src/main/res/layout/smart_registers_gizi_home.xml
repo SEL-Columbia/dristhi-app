@@ -26,7 +26,7 @@
                     android:layout_weight="1">
 
                 <ImageButton
-                        android:id="@+id/btn_test_register"
+                        android:id="@+id/btn_gizi_register"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/register_child"

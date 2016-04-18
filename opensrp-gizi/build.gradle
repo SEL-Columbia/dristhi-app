@@ -21,8 +21,8 @@ android {
         applicationId "org.ei.opensrp.gizi"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 26
-        versionName "26.04"
+        versionCode 1
+        versionName "Beta01"
         multiDexEnabled true
     }
     buildTypes {
