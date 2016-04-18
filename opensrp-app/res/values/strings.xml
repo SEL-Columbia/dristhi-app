@@ -247,6 +247,7 @@
     <string name="anc_register_title_in_short">ANC:</string>
     <string name="str_bp">BP</string>
     <string name="str_weight">Wt.</string>
+    <string name="str_weight1">Weight</string>
     <string name="str_anc_search_hint">Search ANC Register</string>
     <string name="anc_service_mode_overview">Overview</string>
     <string name="anc_service_mode_anc_visits">ANC Visits</string>

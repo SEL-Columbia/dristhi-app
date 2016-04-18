@@ -104,7 +104,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
     public DialogOption[] getEditOptions() {
             return new DialogOption[]{
-             //   new OpenFormOption("kartu_ibu_registration", "kartu_ibu_registration", formController)
+                new OpenFormOption("Kunjungan Gizi", "kunjungan_gizi", formController)
 
             };
 
@@ -231,6 +231,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
        formNames.add("registrasi_gizi");
+        formNames.add("kunjungan_gizi");
      //   formNames.add("census_enrollment_form");
 //        DialogOption[] options = getEditOptions();
 //        for (int i = 0; i < options.length; i++){

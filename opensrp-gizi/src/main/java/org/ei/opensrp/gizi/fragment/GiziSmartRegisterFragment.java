@@ -143,7 +143,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
             @Override
             public String searchHint() {
-                return getResources().getString(R.string.hh_search_hint);
+                return getResources().getString(R.string.str_child_search_hint);
             }
         };
     }

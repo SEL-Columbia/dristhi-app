@@ -75,12 +75,13 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.height = (TextView)convertView.findViewById(R.id.txt_child_height);
             viewHolder.weight = (TextView)convertView.findViewById(R.id.txt_child_weight);
             viewHolder.underweight = (TextView)convertView.findViewById(R.id.txt_child_underweight);
-            viewHolder.stunting_status = (TextView)convertView.findViewById(R.id.txt_child_stunting);
-            viewHolder.wasting_status = (TextView)convertView.findViewById(R.id.txt_child_wasting);
+         //   viewHolder.stunting_status = (TextView)convertView.findViewById(R.id.txt_child_stunting);
+          //  viewHolder.wasting_status = (TextView)convertView.findViewById(R.id.txt_child_wasting);
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
 
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy_infant));
+         //
+
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
@@ -98,18 +99,45 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
 
+        //set image
+        if(pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")){
+            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy_infant));
+        }
+        else{
+            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_girl_infant));
+        }
+
 
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
-        viewHolder.parentname.setText(pc.getDetails().get("nama_ortu")!=null?pc.getDetails().get("nama_ortu"):"");
+        viewHolder.parentname.setText(pc.getDetails().get("namaOrtu")!=null?pc.getDetails().get("namaOrtu"):"");
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):"");
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin")!=null?pc.getDetails().get("jenisKelamin"):"");
 
-        viewHolder.visitDate.setText(pc.getDetails().get("suami")!=null?pc.getDetails().get("suami"):"");
-        viewHolder.height.setText(pc.getDetails().get("suami")!=null?pc.getDetails().get("suami"):"");
-        viewHolder.weight.setText(pc.getDetails().get("suami")!=null?pc.getDetails().get("suami"):"");
-        viewHolder.underweight.setText(pc.getDetails().get("suami")!=null?pc.getDetails().get("suami"):"");
-        viewHolder.stunting_status.setText(pc.getDetails().get("suami")!=null?pc.getDetails().get("suami"):"");
-        viewHolder.wasting_status.setText(pc.getDetails().get("suami")!=null?pc.getDetails().get("suami"):"");
+
+            viewHolder.visitDate.setText("tanggal Kunjungan : " + (pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
+            viewHolder.height.setText("Tinggi Badan : "+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-"));
+            viewHolder.weight.setText("Berat Badan : " + (pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"-"));
+
+
+        if(pc.getDetails().get("status_gizi")!=null) {
+            if(pc.getDetails().get("status_gizi").equalsIgnoreCase("N")) {
+                viewHolder.underweight.setText("Status Gizi : Naik");
+            }
+            if(pc.getDetails().get("status_gizi").equalsIgnoreCase("T")) {
+                viewHolder.underweight.setText("Status Gizi : Tidak Naik");
+            }
+            if(pc.getDetails().get("status_gizi").equalsIgnoreCase("B")) {
+                viewHolder.underweight.setText("Status Gizi : Baru");
+            }
+            if(pc.getDetails().get("status_gizi").equalsIgnoreCase("O")) {
+                viewHolder.underweight.setText("Status Gizi : Tidak Hadir bulan lalu");
+            }
+        }
+        else{
+            viewHolder.underweight.setText("Status Gizi : ");
+        }
+    //    viewHolder.stunting_status.setText(pc.getDetails().get("suami")!=null?pc.getDetails().get("suami"):"");
+    //    viewHolder.wasting_status.setText(pc.getDetails().get("suami")!=null?pc.getDetails().get("suami"):"");
 
 
 
