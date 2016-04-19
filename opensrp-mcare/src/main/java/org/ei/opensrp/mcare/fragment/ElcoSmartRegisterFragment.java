@@ -233,9 +233,10 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    ElcoDetailActivity.Elcoclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(getActivity(), ElcoDetailActivity.class);
-                    startActivity(intent);
+//                    ElcoDetailActivity.Elcoclient = (CommonPersonObjectClient)view.getTag();
+//                    Intent intent = new Intent(getActivity(), ElcoDetailActivity.class);
+//                    startActivity(intent);
+                    showFragmentDialog(new EditDialogOptionModel((CommonPersonObjectClient)view.getTag()), view.getTag());
                     break;
                 case R.id.psrf_due_date:
                     showFragmentDialog(new EditDialogOptionModel((CommonPersonObjectClient)view.getTag()), view.getTag());
@@ -397,7 +398,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ec_elco", new String[]{"relationalid", "details", "FWWOMFNAME", "JiVitAHHID", "GOBHHID","base_entity_id","FWHUSNAME","FWWOMAGE","FWWOMNID","FWPSRDATE","FWPSRPREGSTS"});
+        queryBUilder.SelectInitiateMainTable("ec_elco", new String[]{"relationalid", "relational_id", "details", "FWWOMFNAME", "JiVitAHHID", "GOBHHID","base_entity_id","FWHUSNAME","FWWOMAGE","FWWOMNID","FWPSRDATE","FWPSRPREGSTS"});
         queryBUilder.joinwithALerts("ec_elco","ELCO PSRF");
         mainSelect = queryBUilder.mainCondition(" FWWOMFNAME != \"\"  and FWWOMFNAME is not null ");
         queryBUilder.addCondition(filters);
@@ -409,7 +410,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
         Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         EcElcoSmartClientsProvider hhscp = new EcElcoSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("ec_elco",new String []{ "FWWOMFNAME", "JiVitAHHID", "GOBHHID"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("ec_elco",new String []{ "FWWOMFNAME","relational_id", "JiVitAHHID", "GOBHHID"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
 //        updateSearchView();

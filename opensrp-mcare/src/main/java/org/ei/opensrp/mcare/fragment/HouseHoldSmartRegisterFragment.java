@@ -274,7 +274,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
                 .newInstance((HouseHoldSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "new_household_registration")
                 .show(ft, locationDialogTAG);
     }
-
+    
     private class ClientActionHandler implements View.OnClickListener {
         @Override
         public void onClick(View view) {

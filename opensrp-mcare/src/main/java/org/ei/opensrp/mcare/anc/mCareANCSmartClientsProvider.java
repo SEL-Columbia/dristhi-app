@@ -113,13 +113,16 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date edd_date = format.parse(pc.getColumnmaps().get("FWPSRLMP")!=null?pc.getColumnmaps().get("FWPSRLMP"):"");
-            GregorianCalendar calendar = new GregorianCalendar();
+            String lmpDate = pc.getColumnmaps().get("FWPSRLMP")!=null ? pc.getColumnmaps().get("FWPSRLMP") : "";
+            if(!lmpDate.isEmpty()){
+                Date edd_date = format.parse(lmpDate);
+                GregorianCalendar calendar = new GregorianCalendar();
                 calendar.setTime(edd_date);
                 calendar.add(Calendar.DATE, 259);
                 edd_date.setTime(calendar.getTime().getTime());
-            edd.setText("EDD :" + format.format(edd_date));
-        } catch (ParseException e) {
+                edd.setText("EDD :" + format.format(edd_date));
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
         constructRiskFlagView(pc,itemView);

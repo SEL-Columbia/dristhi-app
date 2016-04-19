@@ -3,6 +3,7 @@ package org.ei.opensrp.mcare.elco;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -15,6 +16,7 @@ import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
+import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.mcare.LoginActivity;
@@ -130,15 +132,31 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     }
 
     public DialogOption[] getEditOptions(CommonPersonObjectClient elco) {
-        AllCommonsRepository allelcoRepository = context.getInstance().allCommonsRepositoryobjects("elco");
-        CommonPersonObject elcoobject = allelcoRepository.findByCaseID(elco.entityId());
-        AllCommonsRepository householdrep = context.getInstance().allCommonsRepositoryobjects("household");
-        CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
+        //AllCommonsRepository allelcoRepository = context.getInstance().allCommonsRepositoryobjects("elco");
+        //CommonPersonObject elcoobject = allelcoRepository.findByCaseID(elco.entityId());
+        //AllCommonsRepository householdrep = context.getInstance().allCommonsRepositoryobjects("household");
+        //CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
         String alertstate = "";
         alertstate = getalertstateofelco(elco);
         HashMap<String,String> overridemap = new HashMap<String,String>();
 
-        overridemap.put("existing_ELCO", householdparent.getDetails().get("ELCO"));
+        Cursor cursor = null;
+        Integer numberOfElcos = 0;
+        try {
+            String tableName = "ec_elco";
+            String sql = "select * from " + tableName + " where relational_id = '" + elco.getDetails().get("relational_id") + "'";
+            CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
+            cursor = cr.queryTable(sql);
+            numberOfElcos = cursor.getCount();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            if (cursor != null){
+                cursor.close();
+            }
+        }
+        overridemap.put("existing_ELCO", numberOfElcos.toString());
         overridemap.put("current_formStatus", alertstate);
         return new DialogOption[]{
 

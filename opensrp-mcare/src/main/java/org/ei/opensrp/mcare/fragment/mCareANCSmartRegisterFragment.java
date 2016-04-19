@@ -363,34 +363,34 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         }
     }
     public String ancMainSelectWithJoins(){
-        return "Select id as _id,relationalid,details,FWWOMFNAME,FWPSRLMP,FWSORTVALUE,JiVitAHHID,GOBHHID,Is_PNC,FWBNFSTS,FWBNFDTOO \n" +
-                "from mcaremother\n" +
-                "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
-                "Left Join alerts as alerts2 on alerts2.caseID = mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
+        return "Select ec_elco.id as _id, ec_mcaremother.relationalid,ec_elco.FWWOMNID, ec_elco.FWWOMFNAME, ec_elco.FWWOMMAUZA_PARA as mauza, ec_mcaremother.FWPSRLMP, ec_elco.JiVitAHHID, ec_elco.GOBHHID \n" +
+                "from ec_mcaremother, ec_elco \n" +
+                "Left Join alerts on alerts.caseID = ec_mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
+                "Left Join alerts as alerts2 on alerts2.caseID = ec_mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
     public String ancMainCountWithJoins(){
         return "Select Count(*) \n" +
-                "from mcaremother\n" +
-                "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
-                "Left Join alerts as alerts2 on alerts2.caseID = mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
+                "from ec_mcaremother, ec_elco \n" +
+                "Left Join alerts on alerts.caseID = ec_mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
+                "Left Join alerts as alerts2 on alerts2.caseID = ec_mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
     public void initializeQueries(){
-        CommonRepository commonRepository = context.commonrepository("mcaremother");
-        setTablename("mcaremother");
+        CommonRepository commonRepository = context.commonrepository("ec_mcaremother");
+        setTablename("ec_mcaremother");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
-        countSelect = countqueryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
+        countSelect = countqueryBUilder.mainCondition(" ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
-        mainSelect = queryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
+        mainSelect = queryBUilder.mainCondition(" ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
 
         queryBUilder.addCondition(filters);
-        Sortqueries = sortBySortValue();
+        Sortqueries = sortByFWWOMFNAME();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
         Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         mCareANCSmartClientsProvider hhscp = new mCareANCSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("mcaremother",new String []{"FWWOMFNAME","FWPSRLMP","FWSORTVALUE","JiVitAHHID","GOBHHID","Is_PNC","FWBNFSTS","FWBNFDTOO"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("ec_mcaremother",new String []{"FWWOMFNAME","FWWOMNID","mauza","FWPSRLMP","JiVitAHHID","GOBHHID"}));
         clientsView.setAdapter(clientAdapter);
         updateSearchView();
         refresh();
@@ -400,7 +400,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         return " FWSORTVALUE ASC";
     }
     private String sortByFWWOMFNAME(){
-        return " FWWOMFNAME ASC";
+        return " ec_elco.FWWOMFNAME ASC";
     }
     private String sortByJiVitAHHID(){
         return " JiVitAHHID ASC";

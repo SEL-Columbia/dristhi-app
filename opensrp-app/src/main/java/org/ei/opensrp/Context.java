@@ -19,6 +19,7 @@ import org.ei.opensrp.repository.AllSettings;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.repository.AllTimelineEvents;
 import org.ei.opensrp.repository.ChildRepository;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.repository.DrishtiRepository;
 import org.ei.opensrp.repository.EligibleCoupleRepository;
 import org.ei.opensrp.repository.FormDataRepository;
@@ -107,6 +108,7 @@ public class Context {
     private AlertRepository alertRepository;
     private SettingsRepository settingsRepository;
     private ChildRepository childRepository;
+    private DetailsRepository detailsRepository;
     private MotherRepository motherRepository;
     private TimelineEventRepository timelineEventRepository;
     private ReportRepository reportRepository;
@@ -492,6 +494,7 @@ public class Context {
             drishtireposotorylist.add(serviceProvidedRepository());
             drishtireposotorylist.add(formsVersionRepository());
             drishtireposotorylist.add(imageRepository());
+            drishtireposotorylist.add(detailsRepository());
             for(int i = 0;i < bindtypes.size();i++){
                 drishtireposotorylist.add(commonrepository(bindtypes.get(i).getBindtypename()));
             }
@@ -591,6 +594,13 @@ public class Context {
             childRepository = new ChildRepository();
         }
         return childRepository;
+    }
+
+    private DetailsRepository detailsRepository(){
+        if (detailsRepository == null){
+            detailsRepository = new DetailsRepository();
+        }
+        return detailsRepository;
     }
 
     private MotherRepository motherRepository() {
