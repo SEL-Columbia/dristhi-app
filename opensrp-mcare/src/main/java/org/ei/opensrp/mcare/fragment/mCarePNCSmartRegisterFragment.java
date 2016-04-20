@@ -411,15 +411,15 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     }
 
     private String sortByFWWOMFNAME() {
-        return " FWWOMFNAME ASC";
+        return " elco.FWWOMFNAME ASC";
     }
 
     private String sortByJiVitAHHID() {
-        return " JiVitAHHID ASC";
+        return " hh.FWJIVHHID ASC";
     }
 
     private String sortByGOBHHID() {
-        return " GOBHHID ASC";
+        return " hh.FWGOBHHID ASC";
     }
 
     private String sortByDateOfOutcome() {

@@ -56,12 +56,12 @@ public class DetailsRepository extends DrishtiRepository {
         return null;
     }
 
-    public Map<String, String> getAllDetailsForClient(String base_entity_id) {
+    public Map<String, String> getAllDetailsForClient(String baseEntityId) {
         Cursor mCursor = null;
         Map<String, String> clientDetails = new HashMap<String, String>();
         try {
             SQLiteDatabase db = masterRepository.getReadableDatabase();
-            mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ", null);
+            mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id='"+baseEntityId+"'", null);
             if (mCursor != null && mCursor.moveToFirst()){
                 do {
                     String key = mCursor.getString(mCursor.getColumnIndex("key"));
