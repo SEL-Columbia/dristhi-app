@@ -596,7 +596,7 @@ public class Context {
         return childRepository;
     }
 
-    private DetailsRepository detailsRepository(){
+    public DetailsRepository detailsRepository(){
         if (detailsRepository == null){
             detailsRepository = new DetailsRepository();
         }

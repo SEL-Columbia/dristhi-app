@@ -12,6 +12,7 @@ import org.ei.opensrp.cloudant.models.Client;
 import org.ei.opensrp.cloudant.models.ClientEventModel;
 import org.ei.opensrp.cloudant.models.Event;
 import org.ei.opensrp.commonregistry.CommonRepository;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.util.AssetHandler;
 import org.ei.opensrp.util.FormUtils;
 import org.json.JSONArray;
@@ -137,6 +138,7 @@ public class ClientProcessor {
             //Add the base_entity_id
             contentValues.put("base_entity_id", baseEntityId);
 
+            updateClientDetailsTable(event, client);
 
             for (int i = 0; i < columns.length(); i++) {
                 JSONObject colObject = columns.getJSONObject(i);
@@ -236,7 +238,115 @@ public class ClientProcessor {
             e.printStackTrace();
         }
 
+    }
 
+    /**
+     * Update the details table with the new info, All the obs are extracted and saved as key value <br/>
+     * with the key being the formSubmissionField and value being the value field <br/>
+     * If the key value already exists then the row will simply be updated with the value if the event date is most recent
+     *
+     * @param event
+     * @param client
+     */
+    public void updateClientDetailsTable(JSONObject event, JSONObject client) {
+        try {
+            String baseEntityId = client.getString("base_entity_id");
+            Long timestamp = event.getLong("event_date");
+
+            Map<String, String> addressInfo = getClientAddressAsMap(client);
+            saveClientDetails(baseEntityId, addressInfo, timestamp);
+
+            Map<String, String> attributes = getClientAttributes(client);
+            saveClientDetails(baseEntityId, attributes, timestamp);
+
+            Map<String, String> obs = getObsFromEvent(event);
+            saveClientDetails(baseEntityId, obs, timestamp);
+
+            //save the other misc, client info date of birth...
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Retrieve the obs as key value pair <br/>
+     * Key being the formSubmissionField and value being entered value
+     *
+     * @param event
+     * @return
+     */
+    private Map<String, String> getObsFromEvent(JSONObject event) {
+        Map<String, String> obs = new HashMap<String, String>();
+        try {
+            String obsKey = "obs";
+            if (event.has(obsKey)) {
+                JSONArray obsArray = event.getJSONArray(obsKey);
+                if (obsArray != null && obsArray.length() > 0) {
+                    for (int i = 0; i < obsArray.length(); i++){
+                        JSONObject object = obsArray.getJSONObject(i);
+                        String key = object.has("formSubmissionField") ? object.getString("formSubmissionField") : null;
+                        String value = object.has("value") ? object.getString("value") :
+                                object.has("values") ? object.get("values").toString() : null;
+                        if (key != null && value != null){
+                            obs.put(key, value);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return obs;
+    }
+
+    private Map<String, String> getClientAttributes(JSONObject client) {
+        Map<String, String> attributes = new HashMap<String, String>();
+        try {
+            String attributesKey = "attributes";
+            if (client.has(attributesKey)) {
+                JSONObject attributesJson = client.getJSONObject(attributesKey);
+                if (attributesJson != null && attributesJson.length() > 0) {
+                    //retrieve the other fields as well
+                    Iterator<String> it = attributesJson.keys();
+                    while (it.hasNext()) {
+                        String key = it.next();
+                        boolean shouldSkipNode = attributesJson.get(key) instanceof JSONArray || attributesJson.get(key) instanceof JSONObject;
+                        if (!shouldSkipNode) {
+                            String value = attributesJson.getString(key);
+                            attributes.put(key, value);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return attributes;
+    }
+
+    private void saveClientDetails(String baseEntityId, Map<String, String> values, Long timestamp){
+        Iterator<String> it = values.keySet().iterator();
+        if (it != null){
+            while(it.hasNext()){
+                String key = it.next();
+                String value = values.get(key);
+                saveClientDetails(baseEntityId, key, value, timestamp);
+            }
+        }
+    }
+
+    /**
+     * Save a single details row to the db
+     *
+     * @param baseEntityId
+     * @param key
+     * @param value
+     * @param timestamp
+     */
+    private void saveClientDetails(String baseEntityId, String key, String value, Long timestamp){
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.add(baseEntityId, key, value, timestamp);
     }
 
     /**

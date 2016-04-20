@@ -36,6 +36,7 @@ public class DetailsRepository extends DrishtiRepository {
         values.put("key", key);
         values.put("value", value);
         values.put("event_date", timestamp);
+        //TODO if the value is like this: 1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, convert to human readable
         Long id = database.insertWithOnConflict(TABLE_NAME, BaseColumns._ID, values, android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE);
     }
 
@@ -43,7 +44,7 @@ public class DetailsRepository extends DrishtiRepository {
         Cursor mCursor = null;
         try {
             SQLiteDatabase db = masterRepository.getWritableDatabase();
-            mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id = '" + baseEntityId + "' AND key ='" + key + "' AND value='" + value + "' LIMIT 1", null);
+            mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id = '" + baseEntityId + "' AND key ='" + key + "' LIMIT 1", null);
             if (mCursor != null && mCursor.moveToFirst()){
                 return mCursor.getLong(mCursor.getColumnIndex("_id"));
             }
