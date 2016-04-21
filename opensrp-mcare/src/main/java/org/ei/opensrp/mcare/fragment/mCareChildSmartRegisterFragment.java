@@ -386,9 +386,10 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
     }
     public String childMainSelectWithJoins(){
         return "Select mcarechild.id as _id,mcarechild.relational_id as relationalid,mcarechild.details,mcarechild.FWBNFGEN \n" +
-                " ,elco.FWWOMFNAME,elco.GOBHHID,elco.FWHUSNAME,hh.FWJIVHHID,hh.existing_mauzapara,elco.FWWOMAGE,mcarechild.FWBNFDTOO,elco.FWWOMNID from ec_mcarechild mcarechild\n" +
+                " ,elco.FWWOMFNAME,elco.GOBHHID,elco.FWHUSNAME,elco.FWWOMBID,hh.FWJIVHHID,hh.existing_mauzapara,elco.FWWOMAGE,pnc.FWBNFDTOO,elco.FWWOMNID from ec_mcarechild mcarechild\n" +
                 "Left Join ec_elco elco on mcarechild.relational_id = elco.id \n" +
                 "Left Join ec_household hh on hh.id=elco.relational_id "+
+                "Left Join ec_pnc pnc on pnc.id=mcarechild.relational_id "+
                 "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist'";
     }
     public String childMainCountWithJoins() {
@@ -406,10 +407,10 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
         return " FWWOMFNAME ASC";
     }
     private String sortByJiVitAHHID(){
-        return " JiVitAHHID ASC";
+        return " hh.FWJIVHHID ASC";
     }
     private String sortByGOBHHID(){
-        return " GOBHHID ASC";
+        return " elco.GOBHHID ASC";
     }
     private String filterStringForENCCRV1(){
         return "and alerts.visitCode LIKE '%enccrv_1%'";

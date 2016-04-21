@@ -377,12 +377,13 @@ public class FormEntityConverter {
         String bb = subf.getFieldValue(getFieldName(Person.birthdate, subf));
 
         Map<String, String> idents = extractIdentifiers(subf);
-        if (StringUtils.isEmpty(firstName)
-                && StringUtils.isEmpty(bb)
-                && idents.size() < 1 && StringUtils.isEmpty(gender)) {//we need to ignore uuid of entity
-            // if empty repeat group leave this entry and move to next
-            return null;
-        }
+        //these bunch of lines are making it impossible to create a child model since a child doesnt have a firstname but only gender
+//        if (StringUtils.isEmpty(firstName)
+//                && StringUtils.isEmpty(bb)
+//                && idents.size() < 1 && StringUtils.isEmpty(gender)) {//we need to ignore uuid of entity
+//            // if empty repeat group leave this entry and move to next
+//            return null;
+//        }
 
         String middleName = subf.getFieldValue(getFieldName(Person.middle_name, subf));
         String lastName = subf.getFieldValue(getFieldName(Person.last_name, subf));

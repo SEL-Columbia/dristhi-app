@@ -398,7 +398,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ec_elco", new String[]{"relationalid", "relational_id", "details", "FWWOMFNAME", "JiVitAHHID", "GOBHHID","base_entity_id","FWHUSNAME","FWWOMAGE","FWWOMNID","FWPSRDATE","FWPSRPREGSTS"});
+        queryBUilder.SelectInitiateMainTable("ec_elco", new String[]{"relationalid", "relational_id", "details", "FWWOMFNAME", "JiVitAHHID", "GOBHHID","base_entity_id","FWHUSNAME","FWWOMAGE","FWWOMNID","FWWOMBID","FWPSRDATE","FWPSRPREGSTS"});
         queryBUilder.joinwithALerts("ec_elco","ELCO PSRF");
         mainSelect = queryBUilder.mainCondition(" FWWOMFNAME != \"\"  and FWWOMFNAME is not null ");
         queryBUilder.addCondition(filters);

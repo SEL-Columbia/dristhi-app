@@ -97,13 +97,9 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         jivitahhid.setText(pc.getColumnmaps().get("FWJIVHHID") != null ? pc.getColumnmaps().get("FWJIVHHID") : "");
         village.setText(humanize((pc.getColumnmaps().get("existing_Mauzapara") != null ? pc.getColumnmaps().get("existing_Mauzapara") : "").replace("+", "_")));
         age.setText(pc.getColumnmaps().get("FWWOMAGE") != null ? pc.getColumnmaps().get("FWWOMAGE") : "");
-        String dobTimestamp = pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : null;
-        if (dobTimestamp != null) {
-            Date date= new Date(Long.valueOf(dobTimestamp));
-            String dob=new SimpleDateFormat("yyyy-MM-dd").format(date);
-            dateofbirth.setText(dob);
-        }
+        String dob = pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : null;
 
+        dateofbirth.setText(dob);
         nid.setText("NID :" + (pc.getColumnmaps().get("FWWOMNID") != null ? pc.getColumnmaps().get("FWWOMNID") : ""));
         brid.setText("BRID :" + (pc.getColumnmaps().get("FWWOMBID") != null ? pc.getColumnmaps().get("FWWOMBID") : ""));
 
