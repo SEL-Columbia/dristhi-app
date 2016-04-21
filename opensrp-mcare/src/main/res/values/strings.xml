@@ -52,7 +52,7 @@
     <string name="str_pnc_search_hint">Search PNC Register</string>
     <string name="str_child_search_hint">Search Child Register</string>
     <string name="label_sorted_by">Sorted By:</string>
-    <string name="label_village">, Village:</string>
+    <string name="label_village">, Filtered By:</string>
     <string name="ec_register_wife_age">({0})</string>
 
     <string name="ec_register_male_child">Male\n{0}</string>
@@ -311,7 +311,7 @@
     <string name="household_entries">All Household Entries</string>
     <string name="hh_register_title_in_short">HH</string>
 
-    <string name="elco_profile">Profile;</string>
+    <string name="elco_profile">Profile</string>
     <string name="elco_unique_id">Unique ID</string>
     <string name="elco_lmp">LMP</string>
     <string name="elco_psrf_due_date">PSRF Due Date</string>
@@ -338,10 +338,10 @@
     <string name="hhid_gob_elco_label">HHID-Government :</string>
     <string name="elco_details_mauza">Mauza :</string>
     <string name="elco_alphabetical_sort">Alphabetical (Woman name)</string>
-    <string name="anc_nbnf_due_date">NBNF due date</string>
-    <string name="anc_reminder_status">ANC reminder Status</string>
+    <string name="anc_nbnf_due_date">Birth Notification due date</string>
+    <string name="anc_reminder_status">ANC Reminder Status</string>
     <string name="anc_edd_ga">EDD and GA</string>
-    <string name="anc_reminder_due">ANC reminder due</string>
+    <string name="anc_reminder_due">ANC Reminder Due</string>
     <string name="take_nid_picture">Take Picture-NID/BRID</string>
     <string name="censusenrollmentform">Census New Woman Registration Form</string>
     <string name="psrfform">Pregnancy Surveillance And Registration Form</string>
@@ -359,6 +359,37 @@
     <string name="no_internet_connectivity">No internet connection. Please ensure data connectivity</string>
     <string name="forminputerror">Please check the form for any error/missing input marked in Red box</string>
     <string name="okforminputerror">ok</string>
+    <string name="pnc_outcome">Outcome</string>
+    <string name="pnc_date_of_outcome">Date of Outcome</string>
+    <string name="pnc_reminder_status">PNC Reminder Status</string>
+    <string name="pnc_reminder_due">PNC Reminder Due</string>
+    <string name="mcare_PNC_register_title_in_short">PNC Register</string>
+    <string name="mcare_pnc_liveBirth">live birth</string>
+    <string name="mcare_pnc_Stillbirth">Stillbirth</string>
+    <string name="all_mcare_pnc">Postnatal Women</string>
+    <string name="pnc3form">PNC visit 3 form</string>
+    <string name="pnc2form">PNC visit 2 form</string>
+    <string name="pnc1form">PNC visit 1 form</string>
+    <string name="mcarechild_dob">DoB</string>
+    <string name="encc_reminder_status">ENCC Reminder Status</string>
+    <string name="encc_due_date">ENCC Due Date</string>
+    <string name="child_mother_unique_id">Mother\'s Unique ID</string>
+    <string name="mcare_Child_register_title_in_short">Child Register</string>
+    <string name="encc3form">ENCC Visit Form 3</string>
+    <string name="encc2form">ENCC Visit Form 2</string>
+    <string name="encc1form">ENCC Visit Form 1</string>
+    <string name="NID">NID :</string>
+    <string name="sortbyLmp">LMP</string>
+    <string name="filter_by_anc1">ANCRV-1</string>
+    <string name="filter_by_anc2">ANCRV-2</string>
+    <string name="filter_by_anc3">ANCRV-3</string>
+    <string name="filter_by_anc4">ANCRV-4</string>
+    <string name="filter_by_pncrv1">PNCRV-1</string>
+    <string name="filter_by_pncrv2">PNCRV-2</string>
+    <string name="filter_by_pncrv3">PNCRV-3</string>
+    <string name="filter_by_encc1">ENCC-1</string>
+    <string name="filter_by_encc2">ENCC-2</string>
+    <string name="filter_by_encc3">ENCC-3</string>
 
 
 </resources>

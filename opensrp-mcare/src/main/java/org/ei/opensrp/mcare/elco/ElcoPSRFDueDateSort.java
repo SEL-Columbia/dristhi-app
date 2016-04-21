@@ -83,6 +83,9 @@ public class ElcoPSRFDueDateSort implements SortOption {
             Log.v("alertclient1", alertforclient1);
             Log.v("alertclient2", alertforclient2);
             if(alertforclient1.equalsIgnoreCase(alertforclient2)){
+                if(commonPersonObjectClient.getDetails().get("JiVitAHHID").equalsIgnoreCase("")||commonPersonObjectClient2.getDetails().get("JiVitAHHID").equalsIgnoreCase("")){
+                    return new Integer("0").compareTo(new Integer("0"));
+                }
                 return (new Integer(commonPersonObjectClient.getDetails().get("JiVitAHHID")!=null?commonPersonObjectClient.getDetails().get("JiVitAHHID"):"0").compareTo(new Integer(commonPersonObjectClient2.getDetails().get("JiVitAHHID")!=null?commonPersonObjectClient2.getDetails().get("JiVitAHHID"):"0")));
 
             }

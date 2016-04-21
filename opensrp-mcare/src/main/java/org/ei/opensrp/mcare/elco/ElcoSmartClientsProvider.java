@@ -16,10 +16,12 @@ import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.household.HouseHoldDetailActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.util.DateUtil;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
@@ -43,7 +45,7 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 /**
  * Created by user on 2/12/15.
  */
-public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
+public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
 
     private final LayoutInflater inflater;
     private final Context context;
@@ -53,25 +55,24 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
     private final AbsListView.LayoutParams clientViewLayoutParams;
 
     protected CommonPersonObjectController controller;
-
+    AlertService alertService;
     public ElcoSmartClientsProvider(Context context,
                                     View.OnClickListener onClickListener,
-                                    CommonPersonObjectController controller) {
+                                    AlertService alertService) {
         this.onClickListener = onClickListener;
-        this.controller = controller;
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        this.alertService = alertService;
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
                 (int) context.getResources().getDimension(org.ei.opensrp.R.dimen.list_item_height));
         txtColorBlack = context.getResources().getColor(org.ei.opensrp.R.color.text_black);
     }
 
     @Override
-    public View getView(final SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
-        ViewGroup itemView;
+    public void getView(final SmartRegisterClient smartRegisterClient, View convertView) {
+        View itemView;
 
-        itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_elco_client, null);
+        itemView = convertView;
         LinearLayout elcodetails = (LinearLayout)itemView.findViewById(R.id.profile_info_layout);
         ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
         TextView name = (TextView)itemView.findViewById(R.id.name);
@@ -97,10 +98,10 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
         }
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
-        name.setText(pc.getDetails().get("FWWOMFNAME")!=null?pc.getDetails().get("FWWOMFNAME"):"");
+        name.setText(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):"");
         spousename.setText(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):"");
-        gobhhid.setText(pc.getDetails().get("GOBHHID")!=null?pc.getDetails().get("GOBHHID"):"");
-        jivitahhid.setText(pc.getDetails().get("JiVitAHHID")!=null?pc.getDetails().get("JiVitAHHID"):"");
+        gobhhid.setText(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):"");
+        jivitahhid.setText(pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):"");
         village.setText((humanize((pc.getDetails().get("FWWOMMAUZA_PARA") != null ? pc.getDetails().get("FWWOMMAUZA_PARA") : "").replace("+", "_"))));
 
 
@@ -271,7 +272,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
 //        current.setText("(10 mo)");
         //check if woman is pregnant and if so then block the button
         if(pc.getDetails().get("FWPSRSTS")!=null && pc.getDetails().get("psrf_schedule_logic")!=null ){
-            if( ((pc.getDetails().get("psrf_schedule_logic").equalsIgnoreCase("0")) || pc.getDetails().get("FWPSRSTS").equalsIgnoreCase("01"))){
+            if( ((pc.getDetails().get("psrf_schedule_logic").equalsIgnoreCase("0")) && pc.getDetails().get("FWPSRSTS").equalsIgnoreCase("01"))){
                 Log.v("printing alertlist","yoo hoo");
                 psrfdue.setText(pc.getDetails().get("FWPSRDATE"));
                 psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
@@ -284,19 +285,14 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
             }
         }
         itemView.setLayoutParams(clientViewLayoutParams);
-        return itemView;
+        ;
     }
 
     @Override
-    public SmartRegisterClients getClients() {
-        return controller.getClients();
+    public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption, FilterOption searchFilter, SortOption sortOption) {
+        return null;
     }
 
-    @Override
-    public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
-                                              FilterOption searchFilter, SortOption sortOption) {
-        return getClients().applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
-    }
 
     @Override
     public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
@@ -310,5 +306,10 @@ public class ElcoSmartClientsProvider implements SmartRegisterClientsProvider {
 
     public LayoutInflater inflater() {
         return inflater;
+    }
+    @Override
+    public View inflatelayoutForCursorAdapter() {
+        View View = (ViewGroup) inflater().inflate(R.layout.smart_register_elco_client, null);
+        return View;
     }
 }

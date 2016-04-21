@@ -21,8 +21,10 @@ android {
         applicationId "org.ei.opensrp.mcare"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 21
-        versionName "21.0"
+
+        versionCode 26
+        versionName "26.04"
+
         multiDexEnabled true
     }
     buildTypes {
@@ -44,7 +46,10 @@ android {
         exclude 'META-INF/LGPL2.1'
     }
     lintOptions {
+        checkReleaseBuilds false
         disable 'MissingTranslation'
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
