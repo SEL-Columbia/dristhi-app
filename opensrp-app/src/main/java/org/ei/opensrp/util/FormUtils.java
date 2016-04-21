@@ -6,6 +6,7 @@ import android.util.Xml;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.clientandeventmodel.Client;
 import org.ei.opensrp.clientandeventmodel.Event;
 import org.ei.opensrp.clientandeventmodel.FormAttributeParser;
@@ -38,6 +39,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -55,7 +57,7 @@ public class FormUtils {
     private org.ei.opensrp.Context theAppContext;
 
     private static final String shouldLoadValueKey = "shouldLoadValue";
-    private static final String relationalIdKey = "relationalid";
+    private static final String relationalIdKey = "relational_id";
     private static final String databaseIdKey = "_id";
     private static final String injectedBaseEntityIdKey = "injectedBaseEntityId";
     public  static  final String ecClientRelationships="ec_client_relationships.json";
@@ -288,14 +290,16 @@ public class FormUtils {
             // use the form_definition.json to get the form mappings
             String formDefinitionJson = readFileFromAssetsFolder("www/form/" + formName + "/form_definition.json");
             JSONObject formDefinition = new JSONObject(formDefinitionJson);
-            String bindPath = formDefinition.getJSONObject("form").getString("bind_type");
+            String ec_bind_path = formDefinition.getJSONObject("form").getString("ec_bind_type");
 
-            String sql = "select * from " + bindPath + " where id='" + entityId + "'";
-            String dbEntity = theAppContext.formDataRepository().queryUniqueResult(sql);
+            String sql = "select * from " + ec_bind_path + " where base_entity_id='" + entityId + "'";
+            Map<String, String> dbEntity = theAppContext.formDataRepository().getMapFromSQLQuery(sql);
+            Map<String, String> detailsMap = theAppContext.detailsRepository().getAllDetailsForClient(entityId);
+            detailsMap.putAll(dbEntity);
 
             JSONObject entityJson = new JSONObject();
-            if (dbEntity != null && !dbEntity.isEmpty()) {
-                entityJson = new JSONObject(dbEntity);
+            if (detailsMap != null && !detailsMap.isEmpty()) {
+                entityJson = new JSONObject(detailsMap);
             }
 
             //read the xml form model, the expected form model that is passed to the form mirrors it
@@ -377,8 +381,8 @@ public class FormUtils {
                         JSONObject subFormDefinition = retriveSubformDefinitionForBindPath(subForms, fieldName);
                         if (subFormDefinition != null) {
 
-                            String childTableName = subFormDefinition.getString("bind_type");
-                            String sql = "select * from '" + childTableName + "' where relationalid = '" + entityId + "'";
+                            String childTableName = subFormDefinition.getString("ec_bind_type");
+                            String sql = "select * from '" + childTableName + "' where relational_id = '" + entityId + "'";
                             String childRecordsString = theAppContext.formDataRepository().queryList(sql);
                             JSONArray childRecords = new JSONArray(childRecordsString);
 
@@ -392,6 +396,7 @@ public class FormUtils {
                             if (shouldLoadId && childRecords != null && childRecords.length() > 0) {
                                 for (int k = 0; k < childRecords.length(); k++) {
                                     JSONObject childEntityJson = childRecords.getJSONObject(k);
+                                    JSONObject obj = getCombinedJsonObjectForObject(childEntityJson);
                                     writeXML(child, serializer, fieldOverrides, subFormDefinition, childEntityJson, entityId);
                                 }
                             } else {
@@ -425,6 +430,30 @@ public class FormUtils {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Retrieve additional details for this record from the details Table.
+     * @param entityJson
+     * @return
+     */
+    private JSONObject getCombinedJsonObjectForObject(JSONObject entityJson) {
+        try {
+            String baseEntityId = entityJson.getString("base_entity_id");
+            Map<String, String> map = theAppContext.detailsRepository().getAllDetailsForClient(baseEntityId);
+            Iterator<String> it = map.keySet().iterator();
+            if (it != null){
+                while(it.hasNext()){
+                    String key = it.next();
+                    if (!entityJson.has(key)){
+                        entityJson.put(key, map.get(key));
+                    }
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return entityJson;
     }
 
     /**
