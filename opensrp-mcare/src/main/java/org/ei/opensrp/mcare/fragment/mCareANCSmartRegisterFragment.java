@@ -378,12 +378,12 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         CommonRepository commonRepository = context.commonrepository("ec_mcaremother");
         setTablename("ec_mcaremother");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
-        countSelect = countqueryBUilder.mainCondition(" ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
+        countSelect = countqueryBUilder.mainCondition(" ec_elco.base_entity_id=ec_mcaremother.base_entity_id AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
-        mainSelect = queryBUilder.mainCondition(" ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
+        mainSelect = queryBUilder.mainCondition(" ec_elco.base_entity_id=ec_mcaremother.base_entity_id AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
 
         queryBUilder.addCondition(filters);
         Sortqueries = sortByFWWOMFNAME();

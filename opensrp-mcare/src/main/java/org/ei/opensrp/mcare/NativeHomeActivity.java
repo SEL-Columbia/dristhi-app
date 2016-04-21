@@ -29,6 +29,7 @@ import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
 import org.ei.opensrp.mcare.household.HouseholdCensusDueDateSort;
 import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
 import org.ei.opensrp.service.PendingFormSubmissionService;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
 import org.ei.opensrp.sync.UpdateActionsTask;
@@ -172,23 +173,23 @@ public class NativeHomeActivity extends SecuredActivity {
 
     private void updateRegisterCounts(HomeContext homeContext) {
                SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
-        Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household", "household.FWHOHFNAME NOT Null and household.FWHOHFNAME != ''"));
+        Cursor hhcountcursor = context.commonrepository("ec_household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_household", null));
         hhcountcursor.moveToFirst();
         hhcount= hhcountcursor.getInt(0);
         hhcountcursor.close();
-        Cursor elcocountcursor = context.commonrepository("elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("elco","elco.FWWOMFNAME NOT NULL and elco.FWWOMFNAME !=''  AND elco.details  LIKE '%\"FWELIGIBLE\":\"1\"%'"));
+        Cursor elcocountcursor = context.commonrepository("ec_elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_elco", null));
         elcocountcursor.moveToFirst();
         elcocount= elcocountcursor.getInt(0);
         elcocountcursor.close();
-        Cursor anccountcursor = context.commonrepository("mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcaremother","(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME is not NUll  AND mcaremother.FWWOMFNAME != \"\"      AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'"));
+        Cursor anccountcursor = context.commonrepository("ec_mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_mcaremother", null));
         anccountcursor.moveToFirst();
         anccount= anccountcursor.getInt(0);
         anccountcursor.close();
-        Cursor pnccountcursor = context.commonrepository("mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcaremother","mcaremother.Is_PNC = '1' and mcaremother.FWWOMFNAME is not NUll  AND mcaremother.FWWOMFNAME != \"\"      AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'"));
+        Cursor pnccountcursor = context.commonrepository("ec_pnc").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_pnc",null));
         pnccountcursor.moveToFirst();
         pnccount= pnccountcursor.getInt(0);
         pnccountcursor.close();
-        Cursor childcountcursor = context.commonrepository("mcarechild").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcarechild"," mcarechild.FWBNFGEN is not NUll "));
+        Cursor childcountcursor = context.commonrepository("ec_mcarechild").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_mcarechild"," ec_mcarechild.FWBNFGEN is not NUll "));
         childcountcursor.moveToFirst();
         childcount= childcountcursor.getInt(0);
         childcountcursor.close();
