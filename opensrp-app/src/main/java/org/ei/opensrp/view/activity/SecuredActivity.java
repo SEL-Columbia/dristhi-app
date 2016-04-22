@@ -20,8 +20,10 @@ import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.R;
 import org.ei.opensrp.broadcastreceivers.OpenSRPClientBroadCastReceiver;
+import org.ei.opensrp.cloudant.models.ClientEventModel;
 import org.ei.opensrp.cloudant.models.Event;
 import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.service.intentservices.ReplicationIntentService;
 import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.sync.CloudantDataHandler;
@@ -49,6 +51,8 @@ public abstract class SecuredActivity extends ActionBarActivity {
     protected NavigationController navigationController;
     private String metaData;
     private OpenSRPClientBroadCastReceiver openSRPClientBroadCastReceiver;
+    protected ClientEventModel mClientEventModel;
+    protected ZiggyService ziggyService;
 
     public static final String LOG_TAG = "SecuredActivity";
 
@@ -56,7 +60,11 @@ public abstract class SecuredActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mClientEventModel = ClientEventModel.getInstance(getApplicationContext());
+        mClientEventModel.setReplicationListener(this);
+
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        ziggyService = context.ziggyService();
 
         logoutListener = new Listener<Boolean>() {
             public void onEvent(Boolean data) {

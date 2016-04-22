@@ -26,6 +26,7 @@ import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -63,8 +64,6 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     private String[] formNames = new String[]{};
     private android.support.v4.app.Fragment mBaseFragment = null;
 
-    ZiggyService ziggyService;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +87,6 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             }
         });
 
-        ziggyService = context.ziggyService();
     }
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
@@ -266,13 +264,9 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
-
             ziggyService.saveForm(getParams(submission), submission.instance());
-            Log.v("we are here", "hhregister");
-            //switch to forms list fragmentstregi
+            ClientProcessor.getInstance(getApplicationContext()).processClient();
             switchToBaseFragment(formSubmission);
- 
-            // Unnecessary!! passing on data
 
         }catch (Exception e){
             // TODO: show error dialog on the formfragment if the submission fails

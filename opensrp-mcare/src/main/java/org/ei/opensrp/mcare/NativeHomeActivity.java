@@ -171,6 +171,12 @@ public class NativeHomeActivity extends SecuredActivity {
         });
     }
 
+    @Override
+    public void replicationComplete() {
+        super.replicationComplete();
+        updateRegisterCounts();
+    }
+
     private void updateRegisterCounts(HomeContext homeContext) {
                SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
         Cursor hhcountcursor = context.commonrepository("ec_household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_household", null));

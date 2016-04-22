@@ -289,9 +289,6 @@ public class DisplayFormFragment extends Fragment {
                         }
                     });
 
-//            AlertDialog alert = builder.create();
-//
-//            alert.show();
             AlertDialog dialog = builder.show();
             TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
             messageText.setGravity(Gravity.CENTER);

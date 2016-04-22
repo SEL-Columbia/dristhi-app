@@ -46,11 +46,11 @@ public class FormSubmissionSyncService {
 
     public FetchStatus sync() {
         ClientEventModel mClientEventModel = ClientEventModel.getInstance(Context.getInstance().applicationContext());
-        mClientEventModel.startPullReplication();;
+        mClientEventModel.startPullReplication();
         mClientEventModel.startPushReplication();
-        pushToServer();
+        //pushToServer();
         new ImageUploadSyncService((ImageRepository) Context.imageRepository());
-        return pullFromServer();
+        return FetchStatus.fetched;
     }
 
     public void pushToServer() {

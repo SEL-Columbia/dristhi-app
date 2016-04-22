@@ -19,6 +19,7 @@ import com.cloudant.sync.replication.Replicator;
 import com.cloudant.sync.replication.ReplicatorBuilder;
 import com.google.common.eventbus.Subscribe;
 
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.sync.CloudantDataHandler;
 import org.ei.opensrp.view.activity.SecuredActivity;
 import org.json.JSONObject;
@@ -133,7 +134,7 @@ public class ClientEventModel {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(LOG_TAG, e.toString(), e);
         }
 
         return null;
@@ -263,6 +264,12 @@ public class ClientEventModel {
      */
     @Subscribe
     public void complete(ReplicationCompleted rc) {
+        // Call the logic to break down CE into case models
+        try{
+            ClientProcessor.getInstance(mContext.getApplicationContext()).processClient();
+        }catch (Exception e){
+            Log.e(LOG_TAG, e.toString(), e);
+        }
         mHandler.post(new Runnable() {
             @Override
             public void run() {

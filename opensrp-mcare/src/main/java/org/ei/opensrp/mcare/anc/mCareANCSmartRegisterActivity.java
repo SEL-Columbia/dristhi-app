@@ -22,6 +22,7 @@ import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -99,14 +100,6 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         formNames.add("anc_reminder_visit_3");
         formNames.add("anc_reminder_visit_4");
         formNames.add("birthnotificationpregnancystatusfollowup");
-
-
-
-
-//        DialogOption[] options = getEditOptions();
-//        for (int i = 0; i < options.length; i++){
-//            formNames.add(((OpenFormOption) options[i]).getFormName());
-//        }
         return formNames.toArray(new String[formNames.size()]);
     }
     public void onPageChanged(int page){
@@ -286,14 +279,9 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
-
-            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
-            ZiggyService ziggyService = context.ziggyService();
             ziggyService.saveForm(getParams(submission), submission.instance());
-            Log.v("we are here", "hhregister");
-            //switch to forms list fragmentstregi
-            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
-
+            ClientProcessor.getInstance(getApplicationContext()).processClient();
+            switchToBaseFragment(formSubmission);
         }catch (Exception e){
             DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
             if (displayFormFragment != null) {
