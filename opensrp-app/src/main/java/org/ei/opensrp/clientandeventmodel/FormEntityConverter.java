@@ -84,13 +84,20 @@ public class FormEntityConverter {
                     && fat.containsKey("openmrs_entity")
                     && fat.get("openmrs_entity").equalsIgnoreCase("concept")) {
                 List<Object> vall = new ArrayList<>();
+                List<Object> humanReadableValues = new ArrayList<>();
                 for (String vl : fl.values()) {
                     String val = fl.valueCodes(vl) == null ? null : fl.valueCodes(vl).get("openmrs_code");
+                   // String hval=fl.getValues()==null?null:fl.getValues();
                     val = StringUtils.isEmpty(val) ? vl : val;
                     vall.add(val);
+
+                    if(fl.valueCodes(vl)!=null && fl.valueCodes(vl).get("openmrs_code")!=null){// this value is in concept id form
+                        String hval=fl.getValues()==null?null:fl.getValues().get(0);
+                        humanReadableValues.add(hval);
+                    }
                 }
                 e.addObs(new Obs("concept", fl.type(), fat.get("openmrs_entity_id"),
-                        fat.get("openmrs_entity_parent"), vall, null, fl.name()));
+                        fat.get("openmrs_entity_parent"), vall,humanReadableValues, null, fl.name()));
             }
         }
         return e;
@@ -363,7 +370,6 @@ public class FormEntityConverter {
                 .withBirthdate((birthdate != null ? birthdate.toDate() : null), birthdateApprox)
                 .withDeathdate(deathdate != null ? deathdate.toDate() : null, deathdateApprox)
                 .withGender(gender);
-        c.setRelationalBaseEntityId(fs.getFieldValue("injectedBaseEntityId"));
 
         c.withAddresses(addresses)
                 .withAttributes(extractAttributes(fs))
@@ -422,7 +428,6 @@ public class FormEntityConverter {
                 .withBirthdate(new DateTime(birthdate).toDate(), birthdateApprox)
                 .withDeathdate(new DateTime(deathdate).toDate(), deathdateApprox)
                 .withGender(gender);
-        c.setRelationalBaseEntityId(subf.getFieldValue("injectedBaseEntityId"));
 
         c.withAddresses(addresses)
                 .withAttributes(extractAttributes(subf))
