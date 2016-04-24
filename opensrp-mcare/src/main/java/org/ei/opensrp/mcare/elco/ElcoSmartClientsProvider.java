@@ -272,7 +272,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
 //        current.setText("(10 mo)");
         //check if woman is pregnant and if so then block the button
         if(pc.getDetails().get("FWPSRSTS")!=null && pc.getDetails().get("psrf_schedule_logic")!=null ){
-            if( ((pc.getDetails().get("psrf_schedule_logic").equalsIgnoreCase("0")) || pc.getDetails().get("FWPSRSTS").equalsIgnoreCase("01"))){
+            if( ((pc.getDetails().get("psrf_schedule_logic").equalsIgnoreCase("0")) && pc.getDetails().get("FWPSRSTS").equalsIgnoreCase("01"))){
                 Log.v("printing alertlist","yoo hoo");
                 psrfdue.setText(pc.getDetails().get("FWPSRDATE"));
                 psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));

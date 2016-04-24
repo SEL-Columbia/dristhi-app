@@ -15,13 +15,13 @@
     {
       "name": "mcaremother",
       "columns": [
-
+        {"name":"FWWOMFNAME"},{"name":"FWPSRLMP"},{"name":"FWSORTVALUE"},{"name":"JiVitAHHID"},{"name":"GOBHHID"},{"name":"Is_PNC"},{"name":"FWBNFSTS"},{"name":"FWBNFDTOO"}
       ]
     },
     {
       "name": "mcarechild",
       "columns": [
-
+        {"name":"FWBNFGEN"}
       ]
     }
   ]
