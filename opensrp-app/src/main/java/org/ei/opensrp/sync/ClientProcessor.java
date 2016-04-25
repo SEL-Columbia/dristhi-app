@@ -150,7 +150,6 @@ public class ClientProcessor {
                 String fieldValue = jsonMapping.has("field_value") ? jsonMapping.getString("field_value") : null;
                 String responseKey = jsonMapping.has("response_key") ? jsonMapping.getString("response_key") : null;
                 String encounterType = jsonMapping.has("event_type") ? jsonMapping.getString("event_type") : null;
-                JSONObject conceptMappings = jsonMapping.has("concept_mappings") ? jsonMapping.getJSONObject("concept_mappings") : null;
 
 
                 JSONObject jsonDocument = docType.equalsIgnoreCase("Event") ? event : client;
@@ -193,7 +192,7 @@ public class ClientProcessor {
 
                     for (int j = 0; j < jsonDocSegmentArray.length(); j++) {
                         JSONObject jsonDocObject = jsonDocSegmentArray.getJSONObject(j);
-                        String columnValue=null;
+                        String columnValue = null;
                         if (fieldValue == null) {
                             //this means field_value and response_key are null so pick the value from the json object for the field_name
                             columnValue = jsonDocObject.getString(fieldName);
@@ -210,19 +209,19 @@ public class ClientProcessor {
                         }
                         // after successfully retrieving the column name and value store it in Content value
                         if (columnValue != null) {
-                            columnValue = humanizeConceptResponse(columnValue, conceptMappings);
+                            columnValue = getHumanReadableConceptResponse(columnValue, jsonDocObject);
                             contentValues.put(columnName, columnValue);
                         }
                     }
 
                 } else {
                     //e.g client attributes section
-                    String columnValue=null;
+                    String columnValue = null;
                     JSONObject jsonDocSegmentObject = (JSONObject) jsonDocSegment;
                     columnValue = jsonDocSegmentObject.has(fieldName) ? jsonDocSegmentObject.getString(fieldName) : "";
                     // after successfully retrieving the column name and value store it in Content value
                     if (columnValue != null) {
-                        columnValue = humanizeConceptResponse(columnValue, conceptMappings);
+                        columnValue = getHumanReadableConceptResponse(columnValue, jsonDocSegmentObject);
                         contentValues.put(columnName, columnValue);
                     }
 
@@ -264,7 +263,7 @@ public class ClientProcessor {
 
             //save the other misc, client info date of birth...
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -283,12 +282,13 @@ public class ClientProcessor {
             if (event.has(obsKey)) {
                 JSONArray obsArray = event.getJSONArray(obsKey);
                 if (obsArray != null && obsArray.length() > 0) {
-                    for (int i = 0; i < obsArray.length(); i++){
+                    for (int i = 0; i < obsArray.length(); i++) {
                         JSONObject object = obsArray.getJSONObject(i);
                         String key = object.has("formSubmissionField") ? object.getString("formSubmissionField") : null;
                         String value = object.has("value") ? object.getString("value") :
                                 object.has("values") ? object.get("values").toString() : null;
-                        if (key != null && value != null){
+                        value = getHumanReadableConceptResponse(value, object);
+                        if (key != null && value != null) {
                             obs.put(key, value);
                         }
                     }
@@ -325,10 +325,10 @@ public class ClientProcessor {
         return attributes;
     }
 
-    private void saveClientDetails(String baseEntityId, Map<String, String> values, Long timestamp){
+    private void saveClientDetails(String baseEntityId, Map<String, String> values, Long timestamp) {
         Iterator<String> it = values.keySet().iterator();
-        if (it != null){
-            while(it.hasNext()){
+        if (it != null) {
+            while (it.hasNext()) {
                 String key = it.next();
                 String value = values.get(key);
                 saveClientDetails(baseEntityId, key, value, timestamp);
@@ -344,13 +344,35 @@ public class ClientProcessor {
      * @param value
      * @param timestamp
      */
-    private void saveClientDetails(String baseEntityId, String key, String value, Long timestamp){
+    private void saveClientDetails(String baseEntityId, String key, String value, Long timestamp) {
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
         detailsRepository.add(baseEntityId, key, value, timestamp);
     }
 
     /**
-     * convert concept responses to human readable values
+     * Get human readable values from the json doc humanreadablevalues key if the key is empty return value
+     *
+     * @param value
+     * @param jsonDocObject
+     * @return
+     * @throws Exception
+     */
+    private String getHumanReadableConceptResponse(String value, JSONObject jsonDocObject) throws Exception {
+
+        JSONArray humanReadableValues = jsonDocObject.has("humanReadableValues") ? jsonDocObject.getJSONArray("humanReadableValues") : null;
+
+        if (jsonDocObject == null || humanReadableValues == null || humanReadableValues.length() == 0) {
+            return value;
+        }
+
+        String humanReadableValue = humanReadableValues.length() == 1 ? humanReadableValues.get(0).toString() : humanReadableValues.toString();
+
+        return humanReadableValue;
+    }
+
+    /**
+     * convert concept responses to human readable values based on the concept mappings values
+     * attached to the column json mappings in ec_client_fields.json
      *
      * @param value
      * @param conceptMappings
