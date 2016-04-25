@@ -178,7 +178,7 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void updateRegisterCounts(HomeContext homeContext) {
-               SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
         Cursor hhcountcursor = context.commonrepository("ec_household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_household", null));
         hhcountcursor.moveToFirst();
         hhcount= hhcountcursor.getInt(0);

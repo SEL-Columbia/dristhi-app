@@ -363,7 +363,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             });
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
         }
-        if(alerttextstatus.getAlertstatus().equalsIgnoreCase("upcoming")){
+        if(true /* alerttextstatus.getAlertstatus().equalsIgnoreCase("upcoming") */){
             customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
             customFontTextView.setOnClickListener(onClickListener);
             customFontTextView.setTag(R.id.clientobject, pc);

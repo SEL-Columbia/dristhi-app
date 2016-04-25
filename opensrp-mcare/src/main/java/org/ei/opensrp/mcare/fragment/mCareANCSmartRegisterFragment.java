@@ -375,25 +375,33 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                 "Left Join alerts as alerts2 on alerts2.caseID = ec_mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
     public void initializeQueries(){
-        CommonRepository commonRepository = context.commonrepository("ec_mcaremother");
-        setTablename("ec_mcaremother");
-        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
-        countSelect = countqueryBUilder.mainCondition(" ec_elco.base_entity_id=ec_mcaremother.base_entity_id AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
-        CountExecute();
+        Cursor cursor = null;
+        try {
+            CommonRepository commonRepository = context.commonrepository("ec_mcaremother");
+            setTablename("ec_mcaremother");
+            SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
+            countSelect = countqueryBUilder.mainCondition(" ec_elco.base_entity_id=ec_mcaremother.base_entity_id AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
+            CountExecute();
 
 
-        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
-        mainSelect = queryBUilder.mainCondition(" ec_elco.base_entity_id=ec_mcaremother.base_entity_id AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
+            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
+            mainSelect = queryBUilder.mainCondition(" ec_elco.base_entity_id=ec_mcaremother.base_entity_id AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
 
-        queryBUilder.addCondition(filters);
-        Sortqueries = sortByFWWOMFNAME();
-        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
-        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
-        mCareANCSmartClientsProvider hhscp = new mCareANCSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("ec_mcaremother",new String []{"FWWOMFNAME","FWWOMNID","mauza","FWPSRLMP","JiVitAHHID","GOBHHID"}));
-        clientsView.setAdapter(clientAdapter);
-        updateSearchView();
-        refresh();
+            queryBUilder.addCondition(filters);
+            Sortqueries = sortByFWWOMFNAME();
+            currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+            cursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+            mCareANCSmartClientsProvider hhscp = new mCareANCSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), cursor, hhscp, new CommonRepository("ec_mcaremother",new String []{"FWWOMFNAME","FWWOMNID","mauza","FWPSRLMP","JiVitAHHID","GOBHHID"}));
+            clientsView.setAdapter(clientAdapter);
+            updateSearchView();
+            refresh();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+
+        }
 
     }
     private String sortBySortValue(){

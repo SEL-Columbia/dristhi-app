@@ -230,34 +230,43 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
                 "Else alerts.status END ASC";
     }
     public void initializeQueries(){
-        CommonRepository commonRepository = context.commonrepository("ec_household");
-        setTablename("ec_household");
-        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
-        countqueryBUilder.SelectInitiateMainTableCounts("ec_household");
-        countqueryBUilder.joinwithALerts("ec_household","FW CENSUS");
-        countSelect = countqueryBUilder.mainCondition(" FWHOHFNAME is not null ");
-        CountExecute();
+        Cursor cursor = null;
+        try {
+            CommonRepository commonRepository = context.commonrepository("ec_household");
+            setTablename("ec_household");
+            SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
+            countqueryBUilder.SelectInitiateMainTableCounts("ec_household");
+            countqueryBUilder.joinwithALerts("ec_household","FW CENSUS");
+            countSelect = countqueryBUilder.mainCondition(" FWHOHFNAME is not null ");
+            CountExecute();
 
+            String elcoCountSubQuery = "(Select count(*)  from ec_elco where ec_elco.relational_id = ec_household.base_entity_id) as ELCO";
 
-        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ec_household", new String[]{"relationalid", "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID", "existing_Mauzapara"});
-        queryBUilder.joinwithALerts("ec_household","FW CENSUS");
-        mainSelect = queryBUilder.mainCondition(" FWHOHFNAME is not null ");
-        queryBUilder.addCondition(filters);
-        Sortqueries = sortByAlertmethod();
-        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+            queryBUilder.SelectInitiateMainTable("ec_household", new String[]{"relationalid", elcoCountSubQuery, "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID", "existing_Mauzapara"});
+            queryBUilder.joinwithALerts("ec_household","FW CENSUS");
+            mainSelect = queryBUilder.mainCondition(" FWHOHFNAME is not null ");
+            queryBUilder.addCondition(filters);
+            Sortqueries = sortByAlertmethod();
+            currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
 
 //        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
-        HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("ec_household",new String []{"FWHOHFNAME", "FWGOBHHID","FWJIVHHID","existing_Mauzapara"}));
-        clientsView.setAdapter(clientAdapter);
+            cursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+            HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), cursor, hhscp, new CommonRepository("ec_household",new String []{"FWHOHFNAME", "FWGOBHHID","FWJIVHHID","existing_Mauzapara", "ELCO"}));
+            clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
-        updateSearchView();
-        refresh();
+            updateSearchView();
+            refresh();
 //        checkforNidMissing(view);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+        }
+
 
     }
 

@@ -357,7 +357,7 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
     public String pncMainSelectWithJoins() {
         //FWSORTVALUE
-        return "Select  pnc.id as _id,pnc.base_entity_id as relationalid,pnc.details,elco.FWWOMFNAME,elco.FWWOMNID,elco.FWWOMBID,mother.FWPSRLMP,hh.FWJIVHHID,hh.FWGOBHHID,FWBNFSTS,FWBNFDTOO \n" +
+        return "Select  pnc.id as _id,pnc.base_entity_id as relationalid,pnc.details,elco.FWWOMFNAME,hh.existing_Mauzapara as mauza,elco.FWWOMNID,elco.FWWOMBID,mother.FWPSRLMP,hh.FWJIVHHID as JiVitAHHID,hh.FWGOBHHID as GOBHHID,FWBNFSTS,FWBNFDTOO \n" +
                 " from ec_pnc pnc\n" +
                 " Left Join alerts on alerts.caseID = pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'   \n" +
                 " Left Join ec_elco elco on elco.id=pnc.base_entity_id   \n" +
@@ -372,26 +372,36 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     }
 
     public void initializeQueries() {
-        CommonRepository commonRepository = context.commonrepository("ec_pnc");
-        setTablename("ec_pnc");
-        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(pncMainCountWithJoins());
-        countSelect = countqueryBUilder.mainCondition("");
-        CountExecute();
+        Cursor cursor = null;
+        try {
+            CommonRepository commonRepository = context.commonrepository("ec_pnc");
+            setTablename("ec_pnc");
+            SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(pncMainCountWithJoins());
+            countSelect = countqueryBUilder.mainCondition("");
+            CountExecute();
 
 
-        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(pncMainSelectWithJoins());
-        mainSelect = queryBUilder.mainCondition("");
+            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(pncMainSelectWithJoins());
+            mainSelect = queryBUilder.mainCondition("");
 
-        queryBUilder.addCondition(filters);
-        Sortqueries = sortByAlertmethod();
-        currentquery = queryBUilder.orderbyCondition(Sortqueries);
-        Cursor cursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+            queryBUilder.addCondition(filters);
+            Sortqueries = sortByAlertmethod();
+            currentquery = queryBUilder.orderbyCondition(Sortqueries);
+            cursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
 
-        mCarePNCSmartClientsProvider hhscp = new mCarePNCSmartClientsProvider(getActivity(), clientActionHandler, context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), cursor, hhscp, new CommonRepository("ec_pnc", new String[]{"FWWOMFNAME", "FWPSRLMP", "JiVitAHHID", "GOBHHID", "FWBNFSTS", "FWBNFDTOO"}));
-        clientsView.setAdapter(clientAdapter);
-        updateSearchView();
-        refresh();
+            mCarePNCSmartClientsProvider hhscp = new mCarePNCSmartClientsProvider(getActivity(), clientActionHandler, context.alertService());
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), cursor, hhscp, new CommonRepository("ec_pnc", new String[]{"FWWOMFNAME", "FWPSRLMP", "JiVitAHHID", "GOBHHID", "FWBNFSTS", "FWBNFDTOO"}));
+            clientsView.setAdapter(clientAdapter);
+            updateSearchView();
+            refresh();
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+
+        }
 
     }
 
