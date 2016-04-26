@@ -15,6 +15,7 @@ import com.cloudant.sync.datastore.DocumentException;
 import com.cloudant.sync.datastore.MutableDocumentRevision;
 import com.cloudant.sync.notifications.ReplicationCompleted;
 import com.cloudant.sync.notifications.ReplicationErrored;
+import com.cloudant.sync.query.IndexManager;
 import com.cloudant.sync.replication.Replicator;
 import com.cloudant.sync.replication.ReplicatorBuilder;
 import com.google.common.eventbus.Subscribe;
@@ -62,39 +63,32 @@ public class ClientEventModel {
     }
 
     public ClientEventModel(Context context) {
-
         this.mContext = context;
-
-        // Set up our datastore within its own folder in the applications
-        // data directory.
-        File path = this.mContext.getApplicationContext().getDir(DATASTORE_MANGER_DIR, Context.MODE_PRIVATE);
-        DatastoreManager manager = new DatastoreManager(path.getAbsolutePath());
-        try {
-            this.mDatastore = manager.openDatastore(DATASTORE_NAME);
-        } catch (DatastoreNotCreatedException dnce) {
-            Log.e(LOG_TAG, "Unable to open Datastore", dnce);
-        }
-
-        Log.d(LOG_TAG, "Set up database at " + path.getAbsolutePath());
-
-        // Set up the replicator objects from the app's settings.
-        try {
-            this.reloadReplicationSettings();
-        } catch (URISyntaxException e) {
-            Log.e(LOG_TAG, "Unable to construct remote URI from configuration", e);
-        }
-
         // Allow us to switch code called by the ReplicationListener into
         // the main thread so the UI can update safely.
         this.mHandler = new Handler(Looper.getMainLooper());
-
         try {
+            // Set up our datastore within its own folder in the applications data directory.
+            File path = this.mContext.getApplicationContext().getDir(DATASTORE_MANGER_DIR, Context.MODE_PRIVATE);
+            DatastoreManager manager = new DatastoreManager(path.getAbsolutePath());
+            this.mDatastore = manager.openDatastore(DATASTORE_NAME);
+            IndexManager indexManager = new IndexManager(mDatastore);
+            List<Object> indexFields = new ArrayList<>();
+            indexFields.add("version");
+            indexManager.ensureIndexed(indexFields, "eventdocindex");
+
+            this.reloadReplicationSettings();
             this.mCloudantDataHandler = CloudantDataHandler.getInstance(mContext.getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
+            Log.d(LOG_TAG, "Set up database at " + path.getAbsolutePath());
+
+        }catch (URISyntaxException e) {
+            Log.e(LOG_TAG, "Unable to construct remote URI from configuration", e);
+        }catch (DatastoreNotCreatedException dnce) {
+            Log.e(LOG_TAG, "Unable to open Datastore", dnce);
+        }catch (Exception e) {
+            Log.e(LOG_TAG, "Exception While setting up datastore", e);
         }
 
-        Log.d(LOG_TAG, "ClientEventModel set up " + path.getAbsolutePath());
     }
 
     //

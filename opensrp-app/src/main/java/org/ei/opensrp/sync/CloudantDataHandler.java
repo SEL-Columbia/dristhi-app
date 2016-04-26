@@ -151,19 +151,18 @@ public class CloudantDataHandler extends ReplicationService {
         query.put("version", filterByVersion);
         query.put("type", "org.ei.opensrp.cloudant.models.Event");
 
-
         List<String> fields = Arrays.asList("obs", "event_date", "event_type", "form_submission_id", "provider", "base_entity_id", "type", "entity_type", "version");
-        List<Object> indexFields = new ArrayList<>();
-        indexFields.add("version");
-        final String eventdocindex = indexManager.ensureIndexed(indexFields, "eventdocindex");
         QueryResult result = indexManager.find(query, 0, 0, fields, sortDocument);
 
-        for (DocumentRevision rev : result) {
-            DocumentBody doc = rev.getBody();
-            String docstr = doc.toString();
-            JSONObject object = new JSONObject(docstr);
-            events.add(object);
+        if (result != null){
+            for (DocumentRevision rev : result) {
+                DocumentBody doc = rev.getBody();
+                String docstr = doc.toString();
+                JSONObject object = new JSONObject(docstr);
+                events.add(object);
+            }
         }
+
         return events;
     }
 
