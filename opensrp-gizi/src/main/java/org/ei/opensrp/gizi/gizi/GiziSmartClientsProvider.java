@@ -75,8 +75,8 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.height = (TextView)convertView.findViewById(R.id.txt_child_height);
             viewHolder.weight = (TextView)convertView.findViewById(R.id.txt_child_weight);
             viewHolder.underweight = (TextView)convertView.findViewById(R.id.txt_child_underweight);
-         //   viewHolder.stunting_status = (TextView)convertView.findViewById(R.id.txt_child_stunting);
-          //  viewHolder.wasting_status = (TextView)convertView.findViewById(R.id.txt_child_wasting);
+            viewHolder.stunting_status = (TextView)convertView.findViewById(R.id.txt_child_stunting);
+            viewHolder.wasting_status = (TextView)convertView.findViewById(R.id.txt_child_wasting);
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
 
@@ -113,12 +113,11 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):"");
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin")!=null?pc.getDetails().get("jenisKelamin"):"");
 
+            viewHolder.visitDate.setText(context.getString(R.string.tanggal) + (pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
+            viewHolder.height.setText(context.getString(R.string.weight)+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-"));
+            viewHolder.weight.setText(context.getString(R.string.height) + (pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"-"));
 
-            viewHolder.visitDate.setText("tanggal Kunjungan : " + (pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
-            viewHolder.height.setText("Tinggi Badan : "+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-"));
-            viewHolder.weight.setText("Berat Badan : " + (pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"-"));
-
-
+    /*
         if(pc.getDetails().get("status_gizi")!=null) {
             if(pc.getDetails().get("status_gizi").equalsIgnoreCase("N")) {
                 viewHolder.underweight.setText("Status Gizi : Naik");
@@ -136,8 +135,11 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         else{
             viewHolder.underweight.setText("Status Gizi : ");
         }
-    //    viewHolder.stunting_status.setText(pc.getDetails().get("suami")!=null?pc.getDetails().get("suami"):"");
-    //    viewHolder.wasting_status.setText(pc.getDetails().get("suami")!=null?pc.getDetails().get("suami"):"");
+        */
+        viewHolder.underweight.setText(context.getString(R.string.underweight) + (pc.getDetails().get("underweight_status")!=null?pc.getDetails().get("underweight_status"):"-"));
+
+        viewHolder.stunting_status.setText(context.getString(R.string.stunting) + (pc.getDetails().get("Stunting_status")!=null?pc.getDetails().get("Stunting_status"):"-"));
+        viewHolder.wasting_status.setText(context.getString(R.string.wasting) + (pc.getDetails().get("wasting_status")!=null?pc.getDetails().get("wasting_status"):"-"));
 
 
 

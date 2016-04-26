@@ -243,7 +243,7 @@
     <string name="str_weeks">weeks</string>
     <string name="anc_register_title_in_short">ANC:</string>
     <string name="str_bp">BP</string>
-    <string name="str_weight">Wt.</string>
+    <string name="str_weight">Weight : </string>
     <string name="str_anc_search_hint">Search ANC Register</string>
     <string name="anc_service_mode_overview">Overview</string>
     <string name="anc_service_mode_anc_visits">ANC Visits</string>
@@ -364,6 +364,12 @@
     <string name="child_profile">Child Profile</string>
     <string name="anthopometri">Anthopometry</string>
     <string name="status">Nutrition Status</string>
+    <string name="tanggal">Visit Date : </string>
+    <string name="height">Height : </string>
+    <string name="stunting">Stunting : </string>
+    <string name="wasting">Wasting : </string>
+    <string name="underweight">Underweight : </string>
+    <string name="weight">Weight :</string>
 
 
 </resources>

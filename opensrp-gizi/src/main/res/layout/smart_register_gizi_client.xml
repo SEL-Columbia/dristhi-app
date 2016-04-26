@@ -100,17 +100,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-                android:text="Medium Text"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:text="Last Visit :"
                 android:id="@+id/txt_child_visit_date"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-                android:text="Medium Text"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:text="Weight :"
                 android:id="@+id/txt_child_height"
                 android:textSize="16sp" />
 
@@ -118,8 +118,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-                android:text="Medium Text"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:text="Height :"
                 android:id="@+id/txt_child_weight"
                 android:textSize="16sp" />
 
@@ -151,9 +151,23 @@
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="UnderWeight"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:id="@+id/txt_child_underweight"
+                android:layout_marginLeft="5dp" />
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  :"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:id="@+id/txt_child_stunting"
+                android:layout_marginLeft="5dp" />
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wasting"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:id="@+id/txt_child_wasting"
                 android:layout_marginLeft="5dp" />
 
         </LinearLayout>
