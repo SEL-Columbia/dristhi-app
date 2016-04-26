@@ -1,20 +1,20 @@
 {
-  "client_type": [
+  "case_classification_rules": [
     {
-      "type": "ec_household",
+      "comment": "HOUSEHOLD: This rule checks whether a given case belongs to Household register",
       "rule": {
         "lookup": "event",
         "fields": [
           {
             "field_name":"event_type",
-            "field_value": "New Household Registration"
-
+            "field_value": "New Household Registration",
+            "opens_case":["ec_household"]
           }
         ]
       }
     },
     {
-      "type": "ec_elco",
+      "comment": "ELCO: This rule checks whether a given case belongs to ELCO register",
       "rule": {
         "lookup": "event",
         "fields": [
@@ -24,13 +24,14 @@
             "field_value": "162699AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key":"value",
             "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
-            "closes_case":["ec_pnc"]
+            "closes_case":["ec_pnc"],
+            "opens_case":["ec_elco"]
           }
         ]
       }
     },
     {
-      "type": "ec_mcaremother",
+      "comment": "ANC: This rule checks whether a given case belongs to ANC register",
       "rule": {
         "lookup": "event",
         "fields": [
@@ -40,33 +41,38 @@
             "field_value": "162942AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key":"value",
             "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
-            "closes_case":["ec_elco","ec_pnc"]
+            "closes_case":["ec_elco","ec_pnc"],
+            "opens_case":["ec_mcaremother"]
           },
           {
             "field_name":"event_type",
             "field_value": "ANC Reminder Visit 1",
-            "closes_case":["ec_elco"]
+            "closes_case":["ec_elco"],
+            "opens_case":["ec_mcaremother"]
           },
           {
             "field_name":"event_type",
             "field_value": "ANC Reminder Visit 2",
-            "closes_case":["ec_elco","ec_pnc"]
+            "closes_case":["ec_elco","ec_pnc"],
+            "opens_case":["ec_mcaremother"]
           },
           {
             "field_name":"event_type",
             "field_value": "ANC Reminder Visit 3",
-            "closes_case":["ec_elco","ec_pnc"]
+            "closes_case":["ec_elco","ec_pnc"],
+            "opens_case":["ec_mcaremother"]
           },
           {
             "field_name":"event_type",
             "field_value": "ANC Reminder Visit 4",
-            "closes_case":["ec_elco","ec_pnc"]
+            "closes_case":["ec_elco","ec_pnc"],
+            "opens_case":["ec_mcaremother"]
           }
         ]
       }
     },
     {
-      "type": "ec_pnc",
+      "comment": "PNC: This rule checks whether a given case belongs to PNC register",
       "rule": {
         "lookup": "event",
         "fields": [
@@ -76,49 +82,58 @@
             "field_value": "163088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key":"value",
             "response_value":["151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,48AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
-            "closes_case":["ec_elco","ec_mcaremother"]
+            "closes_case":["ec_elco","ec_mcaremother"],
+            "opens_case":["ec_pnc"]
           },
           {
             "field_name":"event_type",
             "field_value": "Birth Notification Followup form",
-            "closes_case":["ec_elco","ec_mcaremother"]
+            "closes_case":["ec_elco","ec_mcaremother"],
+            "opens_case":["ec_pnc"]
           },
           {
             "field_name":"event_type",
             "field_value": "PNC Reminder Visit 1",
-            "closes_case":["ec_elco","ec_mcaremother"]
+            "closes_case":["ec_elco","ec_mcaremother"],
+            "opens_case":["ec_pnc"]
           }, {
             "field_name":"event_type",
             "field_value": "PNC Reminder Visit 2",
-            "closes_case":["ec_elco","ec_mcaremother"]
+            "closes_case":["ec_elco","ec_mcaremother"],
+            "opens_case":["ec_pnc"]
           },
           {
             "field_name":"event_type",
             "field_value": "PNC Reminder Visit 3",
-            "closes_case":["ec_elco","ec_mcaremother"]
+            "closes_case":["ec_elco","ec_mcaremother"],
+            "opens_case":["ec_pnc"]
           }
         ]
       }
     },
     {
-      "type": "ec_mcarechild",
+      "comment": "CHILD: This rule checks whether a given case belongs to Child register",
       "rule": {
         "lookup": "event",
         "fields": [
           {
             "field_name":"event_type",
-            "field_value": "Child Vital Status"
+            "field_value": "Child Vital Status",
+            "opens_case":["ec_mcarechild"]
           },
           {
             "field_name":"event_type",
-            "field_value": "Essential Newborn Care 1"
+            "field_value": "Essential Newborn Care 1",
+            "opens_case":["ec_mcarechild"]
           }, {
             "field_name":"event_type",
-            "field_value": "Essential Newborn Care 2"
+            "field_value": "Essential Newborn Care 2",
+            "opens_case":["ec_mcarechild"]
           },
           {
             "field_name":"event_type",
-            "field_value": "Essential Newborn Care 3"
+            "field_value": "Essential Newborn Care 3",
+            "opens_case":["ec_mcarechild"]
           }
         ]
       }
