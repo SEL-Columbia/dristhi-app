@@ -23,7 +23,8 @@
             "field_name":"fieldCode",
             "field_value": "162699AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key":"value",
-            "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+            "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "closes_case":["ec_pnc"]
           }
         ]
       }
@@ -38,21 +39,28 @@
             "field_name":"fieldCode",
             "field_value": "162942AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key":"value",
-            "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+            "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "closes_case":["ec_elco","ec_pnc"]
           },
           {
             "field_name":"event_type",
-            "field_value": "ANC Reminder Visit 1"
-          }, {
-            "field_name":"event_type",
-            "field_value": "ANC Reminder Visit 2"
+            "field_value": "ANC Reminder Visit 1",
+            "closes_case":["ec_elco"]
           },
           {
             "field_name":"event_type",
-            "field_value": "ANC Reminder Visit 3"
-          },{
+            "field_value": "ANC Reminder Visit 2",
+            "closes_case":["ec_elco","ec_pnc"]
+          },
+          {
             "field_name":"event_type",
-            "field_value": "ANC Reminder Visit 4"
+            "field_value": "ANC Reminder Visit 3",
+            "closes_case":["ec_elco","ec_pnc"]
+          },
+          {
+            "field_name":"event_type",
+            "field_value": "ANC Reminder Visit 4",
+            "closes_case":["ec_elco","ec_pnc"]
           }
         ]
       }
@@ -67,22 +75,27 @@
             "field_name":"fieldCode",
             "field_value": "163088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "response_key":"value",
-            "response_value":["151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,48AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+            "response_value":["151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,48AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "closes_case":["ec_elco","ec_mcaremother"]
           },
           {
             "field_name":"event_type",
-            "field_value": "Birth Notification Followup form"
+            "field_value": "Birth Notification Followup form",
+            "closes_case":["ec_elco","ec_mcaremother"]
           },
           {
             "field_name":"event_type",
-            "field_value": "PNC Reminder Visit 1"
+            "field_value": "PNC Reminder Visit 1",
+            "closes_case":["ec_elco","ec_mcaremother"]
           }, {
             "field_name":"event_type",
-            "field_value": "PNC Reminder Visit 2"
+            "field_value": "PNC Reminder Visit 2",
+            "closes_case":["ec_elco","ec_mcaremother"]
           },
           {
             "field_name":"event_type",
-            "field_value": "PNC Reminder Visit 3"
+            "field_value": "PNC Reminder Visit 3",
+            "closes_case":["ec_elco","ec_mcaremother"]
           }
         ]
       }

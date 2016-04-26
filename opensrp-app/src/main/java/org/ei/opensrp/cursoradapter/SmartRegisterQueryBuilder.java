@@ -71,6 +71,24 @@ public class SmartRegisterQueryBuilder {
         Selectquery= Selectquery+ " From " + tablename;
         return Selectquery;
     }
+
+    public String SelectInitiateMainTable(String tablenames[],String [] columns){
+        Selectquery = "Select " + tablenames[0] + ".id as _id";
+        for(int i = 0;i<columns.length;i++){
+            Selectquery= Selectquery + " , " + columns[i];
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (String str : tablenames){
+            sb.append(str).append(",");
+        }
+        //remove trailing ,
+        sb.deleteCharAt(sb.length() - 1);
+
+        Selectquery= Selectquery+ " From " + sb.toString();
+        return Selectquery;
+    }
+
     public String SelectInitiateMainTableCounts(String tablename){
         Selectquery = "Select Count(*)";
         Selectquery= Selectquery+ " From " + tablename;

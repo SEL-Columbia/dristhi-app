@@ -57,26 +57,43 @@ public class DetailsRepository extends DrishtiRepository {
     }
 
     public Map<String, String> getAllDetailsForClient(String baseEntityId) {
-        Cursor mCursor = null;
+        Cursor cursor = null;
         Map<String, String> clientDetails = new HashMap<String, String>();
         try {
             SQLiteDatabase db = masterRepository.getReadableDatabase();
-            mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id='"+baseEntityId+"'", null);
-            if (mCursor != null && mCursor.moveToFirst()){
+            cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id='"+baseEntityId+"'", null);
+            if (cursor != null && cursor.moveToFirst()){
                 do {
-                    String key = mCursor.getString(mCursor.getColumnIndex("key"));
-                    String value = mCursor.getString(mCursor.getColumnIndex("value"));
+                    String key = cursor.getString(cursor.getColumnIndex("key"));
+                    String value = cursor.getString(cursor.getColumnIndex("value"));
                     clientDetails.put(key, value);
-                }while (mCursor.moveToNext());
+                }while (cursor.moveToNext());
             }
             return clientDetails;
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            if (mCursor != null) mCursor.close();
+            if (cursor != null) cursor.close();
         }
         return clientDetails;
     }
 
+    /**
+     * Closes a case with the given baseEntityId
+     * @param baseEntityId
+     */
+    public void closeCase(String baseEntityId, String tableName){
+        try {
+            StringBuilder sql = new StringBuilder().append("UPDATE ")
+                    .append(tableName)
+                    .append("SET is_closed = 1 WHERE base_entity_id = '")
+                    .append(baseEntityId)
+                    .append("'");
+            SQLiteDatabase db = masterRepository.getWritableDatabase();
+            db.execSQL(sql.toString());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }

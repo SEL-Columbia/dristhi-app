@@ -138,8 +138,6 @@ public class ClientProcessor {
             //Add the base_entity_id
             contentValues.put("base_entity_id", baseEntityId);
 
-            updateClientDetailsTable(event, client);
-
             for (int i = 0; i < columns.length(); i++) {
                 JSONObject colObject = columns.getJSONObject(i);
                 String docType = colObject.getString("document_type");
@@ -232,12 +230,35 @@ public class ClientProcessor {
 
             // save the values to db
             Long id = executeInsertStatement(contentValues, clientType);
+            Long timestamp = event.getLong("event_date");
+            addContentValuesToDetailsTable(contentValues, timestamp);
+            updateClientDetailsTable(event, client);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
+
+    /**
+     * Save the populated content values to details table
+     * @param values
+     * @param eventDate
+     */
+    private void addContentValuesToDetailsTable(ContentValues values, Long eventDate){
+        try {
+            String baseEntityId = values.getAsString("base_entity_id");
+            Iterator<String> it = values.keySet().iterator();
+            while(it.hasNext()){
+                String key = it.next();
+                String value = values.getAsString(key);
+                saveClientDetails(baseEntityId, key, value, eventDate);
+            }
+        }catch (Exception e) {
+            Log.e(TAG, e.toString(), e);
+        }
+    }
+
 
     /**
      * Update the details table with the new info, All the obs are extracted and saved as key value <br/>
