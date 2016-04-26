@@ -390,13 +390,13 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
                 "Left Join ec_elco elco on mcarechild.relational_id = elco.id \n" +
                 "Left Join ec_household hh on hh.id=elco.relational_id "+
                 "Left Join ec_pnc pnc on pnc.id=mcarechild.relational_id "+
-                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist'";
+                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and mcarechild.is_closed=0";
     }
     public String childMainCountWithJoins() {
         return "Select Count(*) \n" +
                 "from ec_mcarechild mcarechild\n" +
                 "Left Join ec_elco elco on mcarechild.relational_id = elco.id \n" +
-                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist'";
+                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and mcarechild.is_closed=0";
     }
 
     private String sortBySortValue(){

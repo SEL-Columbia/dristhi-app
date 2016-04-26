@@ -53,7 +53,7 @@ public class ClientProcessor {
     public void processClient() throws Exception {
         CloudantDataHandler handler = CloudantDataHandler.getInstance(mContext);
         //this seems to be easy for now cloudant json to events model is crazy
-        List<JSONObject> events = handler.getUpdatedEvents();
+        List<JSONObject> events = handler.getUpdatedEventsDocs();
         String clienClassificationStr = getFileContents("ec_client_classification.json");
         JSONObject clientClassificationJson = new JSONObject(clienClassificationStr);
         //iterate through the events
@@ -71,10 +71,9 @@ public class ClientProcessor {
             JSONObject eventJsonObject = event;
 
             //get the client type classification
-            JSONArray clientClasses = clientClassificationJson.getJSONArray("client_type");
+            JSONArray clientClasses = clientClassificationJson.getJSONArray("case_classification_rules");
             for (int i = 0; i < clientClasses.length(); i++) {
                 JSONObject object = clientClasses.getJSONObject(i);
-                String type = object.getString("type");
 
                 JSONObject ruleObject = object.getJSONObject("rule");
                 JSONArray fields = ruleObject.getJSONArray("fields");
@@ -87,6 +86,8 @@ public class ClientProcessor {
                     String fieldValue = fieldJson.has("field_value") ? fieldJson.getString("field_value") : null;
                     String responseKey = fieldJson.has("response_key") ? fieldJson.getString("response_key") : null;
                     JSONArray responseValue = fieldJson.has("response_value") ? fieldJson.getJSONArray("response_value") : null;
+                    JSONArray opensCase = fieldJson.has("opens_case") ? fieldJson.getJSONArray("opens_case") : null;
+                    JSONArray closesCase = fieldJson.has("closes_case") ? fieldJson.getJSONArray("closes_case") : null;
 
                     List<String> responseValues = getValues(responseValue);
 
@@ -105,7 +106,8 @@ public class ClientProcessor {
 
                             if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) && responseValues.contains(docSegmentResponseValue)) {
                                 //this is the event obs we're interested in put it in the respective bucket specified by type variable
-                                processCaseModel(event, client, type);
+                                processCaseModel(event, client, opensCase);
+                                closeCase(client, closesCase);
                             }
 
                         }
@@ -117,7 +119,8 @@ public class ClientProcessor {
 
                         if (docSegmentFieldValue.equalsIgnoreCase(fieldValue)) {
 
-                            processCaseModel(event, client, type);
+                            processCaseModel(event, client, opensCase);
+                            closeCase(client,closesCase);
                         }
 
                     }
@@ -126,114 +129,141 @@ public class ClientProcessor {
         }
     }
 
-    private void processCaseModel(JSONObject event, JSONObject client, String clientType) {
+    private void closeCase(JSONObject client, JSONArray closesCase) {
+        try {
+            if(closesCase==null || closesCase.length()==0){
+                return;
+            }
+            String baseEntityId = client.getString("base_entity_id");
+
+            for (int i = 0; i < closesCase.length(); i++) {
+                String tableName=closesCase.getString(i);
+                CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
+                cr.closeCase(baseEntityId,tableName);
+            }
+        }
+
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void processCaseModel(JSONObject event, JSONObject client, JSONArray opensCases) {
         try {
 
-            JSONObject columnMappings = getColumnMappings(clientType);
-            JSONArray columns = columnMappings.getJSONArray("columns");
-            String baseEntityId = client.getString("base_entity_id");
-            String expectedEncounterType = event.has("event_type") ? event.getString("event_type") : null;
+            if(opensCases==null || opensCases.length()==0){
+                return;
+            }
+            for (int openCase = 0; openCase < opensCases.length(); openCase++) {
 
-            ContentValues contentValues = new ContentValues();
-            //Add the base_entity_id
-            contentValues.put("base_entity_id", baseEntityId);
+                String clientType = opensCases.getString(openCase);
 
-            for (int i = 0; i < columns.length(); i++) {
-                JSONObject colObject = columns.getJSONObject(i);
-                String docType = colObject.getString("document_type");
-                String columnName = colObject.getString("column_name");
-                JSONObject jsonMapping = colObject.getJSONObject("json_mapping");
-                String dataSegment = jsonMapping.has("data_segment") ? jsonMapping.getString("data_segment") : null;
-                String fieldName = jsonMapping.getString("field_name");
-                String fieldValue = jsonMapping.has("field_value") ? jsonMapping.getString("field_value") : null;
-                String responseKey = jsonMapping.has("response_key") ? jsonMapping.getString("response_key") : null;
-                String encounterType = jsonMapping.has("event_type") ? jsonMapping.getString("event_type") : null;
+                JSONObject columnMappings = getColumnMappings(clientType);
+                JSONArray columns = columnMappings.getJSONArray("columns");
+                String baseEntityId = client.getString("base_entity_id");
+                String expectedEncounterType = event.has("event_type") ? event.getString("event_type") : null;
+
+                ContentValues contentValues = new ContentValues();
+                //Add the base_entity_id
+                contentValues.put("base_entity_id", baseEntityId);
+                contentValues.put("is_closed", 0);
+
+                for (int i = 0; i < columns.length(); i++) {
+                    JSONObject colObject = columns.getJSONObject(i);
+                    String docType = colObject.getString("document_type");
+                    String columnName = colObject.getString("column_name");
+                    JSONObject jsonMapping = colObject.getJSONObject("json_mapping");
+                    String dataSegment = jsonMapping.has("data_segment") ? jsonMapping.getString("data_segment") : null;
+                    String fieldName = jsonMapping.getString("field_name");
+                    String fieldValue = jsonMapping.has("field_value") ? jsonMapping.getString("field_value") : null;
+                    String responseKey = jsonMapping.has("response_key") ? jsonMapping.getString("response_key") : null;
+                    String encounterType = jsonMapping.has("event_type") ? jsonMapping.getString("event_type") : null;
 
 
-                JSONObject jsonDocument = docType.equalsIgnoreCase("Event") ? event : client;
+                    JSONObject jsonDocument = docType.equalsIgnoreCase("Event") ? event : client;
 
-                Object jsonDocSegment = null;
+                    Object jsonDocSegment = null;
 
-                if (dataSegment != null) {
-                    //pick data from a specific section of the doc
-                    jsonDocSegment = jsonDocument.get(dataSegment);
+                    if (dataSegment != null) {
+                        //pick data from a specific section of the doc
+                        jsonDocSegment = jsonDocument.get(dataSegment);
 
-                } else {
-                    //else the use the main doc as the doc segment
-                    jsonDocSegment = jsonDocument;
-
-                }
-
-                //special handler needed to process address,
-                if (dataSegment != null && dataSegment.equalsIgnoreCase("adresses")) {
-                    Map<String, String> addressMap = getClientAddressAsMap(client);
-                    if (addressMap.containsKey(fieldName)) {
-                        contentValues.put(columnName, addressMap.get(fieldName).toString());
-                    }
-                    continue;
-                }
-                //special handler for relationalid
-                if (dataSegment != null && dataSegment.equalsIgnoreCase("relationships")) {
-                    JSONObject relationshipsObject = jsonDocument.getJSONObject("relationships");
-                    JSONArray relationshipsArray = relationshipsObject.getJSONArray(fieldName);
-                    if (relationshipsArray != null && relationshipsArray.length() > 0) {
-                        List<String> relationalIds = getValues(relationshipsArray);
-                        contentValues.put(columnName, relationalIds.get(0));
+                    } else {
+                        //else the use the main doc as the doc segment
+                        jsonDocSegment = jsonDocument;
 
                     }
-                    continue;
-                }
 
-                if (jsonDocSegment instanceof JSONArray) {
+                    //special handler needed to process address,
+                    if (dataSegment != null && dataSegment.equalsIgnoreCase("adresses")) {
+                        Map<String, String> addressMap = getClientAddressAsMap(client);
+                        if (addressMap.containsKey(fieldName)) {
+                            contentValues.put(columnName, addressMap.get(fieldName).toString());
+                        }
+                        continue;
+                    }
+                    //special handler for relationalid
+                    if (dataSegment != null && dataSegment.equalsIgnoreCase("relationships")) {
+                        JSONObject relationshipsObject = jsonDocument.getJSONObject("relationships");
+                        JSONArray relationshipsArray = relationshipsObject.getJSONArray(fieldName);
+                        if (relationshipsArray != null && relationshipsArray.length() > 0) {
+                            List<String> relationalIds = getValues(relationshipsArray);
+                            contentValues.put(columnName, relationalIds.get(0));
 
-                    JSONArray jsonDocSegmentArray = (JSONArray) jsonDocSegment;
+                        }
+                        continue;
+                    }
 
-                    for (int j = 0; j < jsonDocSegmentArray.length(); j++) {
-                        JSONObject jsonDocObject = jsonDocSegmentArray.getJSONObject(j);
-                        String columnValue = null;
-                        if (fieldValue == null) {
-                            //this means field_value and response_key are null so pick the value from the json object for the field_name
-                            columnValue = jsonDocObject.getString(fieldName);
-                        } else {
-                            //this means field_value and response_key are not null e.g when retrieving some value in the events obs section
-                            String expectedFieldValue = jsonDocObject.getString(fieldName);
-                            //some events can only be differentiated by the event_type value eg pnc1,pnc2, anc1,anc2
-                            //check if encountertype (the one in ec_client_fields.json) is null or it matches the encounter type from the ec doc we're processing
-                            boolean encounterTypeMatches = (encounterType == null) || (encounterType != null && encounterType.equalsIgnoreCase(expectedEncounterType));
+                    if (jsonDocSegment instanceof JSONArray) {
 
-                            if (encounterTypeMatches && expectedFieldValue.equalsIgnoreCase(fieldValue)) {
-                                columnValue = jsonDocObject.get(responseKey).toString();
+                        JSONArray jsonDocSegmentArray = (JSONArray) jsonDocSegment;
+
+                        for (int j = 0; j < jsonDocSegmentArray.length(); j++) {
+                            JSONObject jsonDocObject = jsonDocSegmentArray.getJSONObject(j);
+                            String columnValue = null;
+                            if (fieldValue == null) {
+                                //this means field_value and response_key are null so pick the value from the json object for the field_name
+                                columnValue = jsonDocObject.getString(fieldName);
+                            } else {
+                                //this means field_value and response_key are not null e.g when retrieving some value in the events obs section
+                                String expectedFieldValue = jsonDocObject.getString(fieldName);
+                                //some events can only be differentiated by the event_type value eg pnc1,pnc2, anc1,anc2
+                                //check if encountertype (the one in ec_client_fields.json) is null or it matches the encounter type from the ec doc we're processing
+                                boolean encounterTypeMatches = (encounterType == null) || (encounterType != null && encounterType.equalsIgnoreCase(expectedEncounterType));
+
+                                if (encounterTypeMatches && expectedFieldValue.equalsIgnoreCase(fieldValue)) {
+                                    columnValue = jsonDocObject.get(responseKey).toString();
+                                }
+                            }
+                            // after successfully retrieving the column name and value store it in Content value
+                            if (columnValue != null) {
+                                columnValue = getHumanReadableConceptResponse(columnValue, jsonDocObject);
+                                contentValues.put(columnName, columnValue);
                             }
                         }
+
+                    } else {
+                        //e.g client attributes section
+                        String columnValue = null;
+                        JSONObject jsonDocSegmentObject = (JSONObject) jsonDocSegment;
+                        columnValue = jsonDocSegmentObject.has(fieldName) ? jsonDocSegmentObject.getString(fieldName) : "";
                         // after successfully retrieving the column name and value store it in Content value
                         if (columnValue != null) {
-                            columnValue = getHumanReadableConceptResponse(columnValue, jsonDocObject);
+                            columnValue = getHumanReadableConceptResponse(columnValue, jsonDocSegmentObject);
                             contentValues.put(columnName, columnValue);
                         }
+
                     }
 
-                } else {
-                    //e.g client attributes section
-                    String columnValue = null;
-                    JSONObject jsonDocSegmentObject = (JSONObject) jsonDocSegment;
-                    columnValue = jsonDocSegmentObject.has(fieldName) ? jsonDocSegmentObject.getString(fieldName) : "";
-                    // after successfully retrieving the column name and value store it in Content value
-                    if (columnValue != null) {
-                        columnValue = getHumanReadableConceptResponse(columnValue, jsonDocSegmentObject);
-                        contentValues.put(columnName, columnValue);
-                    }
 
                 }
 
-
+                // save the values to db
+                Long id = executeInsertStatement(contentValues, clientType);
+                Long timestamp = event.getLong("event_date");
+                addContentValuesToDetailsTable(contentValues, timestamp);
+                updateClientDetailsTable(event, client);
             }
-
-            // save the values to db
-            Long id = executeInsertStatement(contentValues, clientType);
-            Long timestamp = event.getLong("event_date");
-            addContentValuesToDetailsTable(contentValues, timestamp);
-            updateClientDetailsTable(event, client);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -242,19 +272,20 @@ public class ClientProcessor {
 
     /**
      * Save the populated content values to details table
+     *
      * @param values
      * @param eventDate
      */
-    private void addContentValuesToDetailsTable(ContentValues values, Long eventDate){
+    private void addContentValuesToDetailsTable(ContentValues values, Long eventDate) {
         try {
             String baseEntityId = values.getAsString("base_entity_id");
             Iterator<String> it = values.keySet().iterator();
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 String key = it.next();
                 String value = values.getAsString(key);
                 saveClientDetails(baseEntityId, key, value, eventDate);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             Log.e(TAG, e.toString(), e);
         }
     }

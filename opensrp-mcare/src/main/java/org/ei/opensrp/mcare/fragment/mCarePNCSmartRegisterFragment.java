@@ -362,13 +362,13 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                 " Left Join alerts on alerts.caseID = pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'   \n" +
                 " Left Join ec_elco elco on elco.id=pnc.base_entity_id   \n" +
                 " Left Join ec_household hh on hh.id=elco.relational_id\n" +
-                " Left Join ec_mcaremother mother on mother.base_entity_id=pnc.base_entity_id";
+                " Left Join ec_mcaremother mother on mother.base_entity_id=pnc.base_entity_id where pnc.is_closed=0";
     }
 
     public String pncMainCountWithJoins() {
         return "Select Count(*) \n" +
                 "from ec_pnc pnc\n" +
-                "Left Join alerts on alerts.caseID = pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'";
+                "Left Join alerts on alerts.caseID = pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit' and pnc.is_closed=0";
     }
 
     public void initializeQueries() {

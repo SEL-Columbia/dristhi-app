@@ -366,4 +366,21 @@ public class CommonRepository extends DrishtiRepository {
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
+    /**
+     * Closes a case with the given baseEntityId
+     * @param baseEntityId
+     */
+    public void closeCase(String baseEntityId, String tableName){
+        try {
+            StringBuilder sql = new StringBuilder().append("UPDATE ")
+                    .append(tableName)
+                    .append(" SET is_closed = 1 WHERE base_entity_id = '")
+                    .append(baseEntityId)
+                    .append("'");
+            SQLiteDatabase db = masterRepository.getWritableDatabase();
+            db.execSQL(sql.toString());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

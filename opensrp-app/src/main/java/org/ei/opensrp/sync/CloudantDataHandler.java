@@ -133,6 +133,40 @@ public class CloudantDataHandler extends ReplicationService {
 
     }
 
+    public List<JSONObject> getUpdatedEventsDocs() throws Exception {
+
+        List<JSONObject> events = new ArrayList<JSONObject>();
+
+        Map<String, Object> query = new HashMap<String, Object>();
+
+        List<Map<String, String>> sortDocument = new ArrayList<Map<String, String>>();
+
+        Map<String, String> sortByVersion = new HashMap<String, String>();
+        sortByVersion.put("version", "asc");
+        sortDocument.add(sortByVersion);
+
+        Map<String, Object> filterByVersion = new HashMap<String, Object>();
+        filterByVersion.put("$gt", 0);
+
+        query.put("version", filterByVersion);
+        query.put("type", "org.ei.opensrp.cloudant.models.Event");
+
+
+        List<String> fields = Arrays.asList("obs", "event_date", "event_type", "form_submission_id", "provider", "base_entity_id", "type", "entity_type", "version");
+        List<Object> indexFields = new ArrayList<>();
+        indexFields.add("version");
+        final String eventdocindex = indexManager.ensureIndexed(indexFields, "eventdocindex");
+        QueryResult result = indexManager.find(query, 0, 0, fields, sortDocument);
+
+        for (DocumentRevision rev : result) {
+            DocumentBody doc = rev.getBody();
+            String docstr = doc.toString();
+            JSONObject object = new JSONObject(docstr);
+            events.add(object);
+        }
+        return events;
+    }
+
     public void syncEventsToSqlite() throws Exception {
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("type", "Event");
@@ -169,13 +203,13 @@ public class CloudantDataHandler extends ReplicationService {
         }
     }
 
-    public JSONObject getClientByBaseEntityId(String baseEntityId) throws Exception{
+    public JSONObject getClientByBaseEntityId(String baseEntityId) throws Exception {
         try {
-            Client client=getClientDocumentByBaseEntityId(baseEntityId);
+            Client client = getClientDocumentByBaseEntityId(baseEntityId);
 
-            if (client != null ) {
+            if (client != null) {
                 SQLiteDatabase db = loadDatabase();
-                Cursor cursor = db.rawQuery("select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + client.getDocumentRevision().getId()+"' and json not like '{}' order by updated_at desc", null);
+                Cursor cursor = db.rawQuery("select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + client.getDocumentRevision().getId() + "' and json not like '{}' order by updated_at desc", null);
                 if (cursor != null && cursor.moveToFirst()) {
                     byte[] json = (cursor.getBlob(0));
                     String jsonEventStr = new String(json, "UTF-8");
@@ -190,13 +224,13 @@ public class CloudantDataHandler extends ReplicationService {
         return null;
     }
 
-    public Client getClientDocumentByBaseEntityId(String baseEntityId) throws Exception{
+    public Client getClientDocumentByBaseEntityId(String baseEntityId) throws Exception {
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("type", "org.ei.opensrp.cloudant.models.Client");
         query.put("base_entity_id", baseEntityId);
         Iterator<DocumentRevision> iterator = indexManager.find(query).iterator();
 
-        if (iterator!=null && iterator.hasNext()){
+        if (iterator != null && iterator.hasNext()) {
             DocumentRevision rev = iterator.next();
             Client c = Client.fromRevision((BasicDocumentRevision) rev);
             return c;
@@ -208,7 +242,7 @@ public class CloudantDataHandler extends ReplicationService {
     public List<JSONObject> getUpdatedEvents() throws Exception {
         List<JSONObject> events = new ArrayList<JSONObject>();
         SQLiteDatabase db = loadDatabase();
-        Cursor cursor = db.rawQuery("select json from revs where updated_at is not null and json not like '{}' and json like '%\"type\":\"org.ei.opensrp.cloudant.models.Event\"%' ", null);
+        Cursor cursor = db.rawQuery("select json from revs where updated_at is not null and json not like '{}' and json like '%\"type\":\"org.ei.opensrp.cloudant.models.Event\"%' order by updated_at asc ", null);
 
 
         while (cursor.moveToNext()) {
@@ -243,10 +277,11 @@ public class CloudantDataHandler extends ReplicationService {
 
     /**
      * Updates a Client document within the datastore.
+     *
      * @param client client to update
      * @return the updated revision of the Client
      * @throws ConflictException if the client passed in has a rev which doesn't
-     *      match the current rev in the datastore.
+     *                           match the current rev in the datastore.
      */
     public Client updateDocument(Client client) throws ConflictException {
         MutableDocumentRevision rev = client.getDocumentRevision().mutableCopy();

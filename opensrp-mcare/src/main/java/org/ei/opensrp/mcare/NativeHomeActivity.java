@@ -179,23 +179,23 @@ public class NativeHomeActivity extends SecuredActivity {
 
     private void updateRegisterCounts(HomeContext homeContext) {
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
-        Cursor hhcountcursor = context.commonrepository("ec_household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_household", null));
+        Cursor hhcountcursor = context.commonrepository("ec_household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_household", " ec_household.is_closed=0"));
         hhcountcursor.moveToFirst();
         hhcount= hhcountcursor.getInt(0);
         hhcountcursor.close();
-        Cursor elcocountcursor = context.commonrepository("ec_elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_elco", null));
+        Cursor elcocountcursor = context.commonrepository("ec_elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_elco", " ec_elco.is_closed=0"));
         elcocountcursor.moveToFirst();
         elcocount= elcocountcursor.getInt(0);
         elcocountcursor.close();
-        Cursor anccountcursor = context.commonrepository("ec_mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_mcaremother", null));
+        Cursor anccountcursor = context.commonrepository("ec_mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_mcaremother", " ec_mcaremother.is_closed=0"));
         anccountcursor.moveToFirst();
         anccount= anccountcursor.getInt(0);
         anccountcursor.close();
-        Cursor pnccountcursor = context.commonrepository("ec_pnc").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_pnc",null));
+        Cursor pnccountcursor = context.commonrepository("ec_pnc").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_pnc"," ec_pnc.is_closed=0"));
         pnccountcursor.moveToFirst();
         pnccount= pnccountcursor.getInt(0);
         pnccountcursor.close();
-        Cursor childcountcursor = context.commonrepository("ec_mcarechild").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_mcarechild"," ec_mcarechild.FWBNFGEN is not NUll "));
+        Cursor childcountcursor = context.commonrepository("ec_mcarechild").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_mcarechild"," ec_mcarechild.is_closed=0 and ec_mcarechild.FWBNFGEN is not NUll "));
         childcountcursor.moveToFirst();
         childcount= childcountcursor.getInt(0);
         childcountcursor.close();
