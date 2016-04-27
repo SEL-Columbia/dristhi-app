@@ -73,23 +73,13 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_reporting"
-                android:drawablePadding="5dp"
-                android:paddingLeft="185dp"
-                android:paddingRight="185dp"
+                android:drawablePadding="0dp"
+                android:paddingLeft="400dp"
+                android:paddingRight="400dp"
                 android:text="@string/str_reporting"
                 style="@style/CustomFontTextViewStyle.Home.Buttons"/>
 
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:id="@+id/btn_videos"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_tv"
-                android:drawablePadding="5dp"
-                android:paddingLeft="200dp"
-                android:paddingRight="200dp"
-                android:text="@string/str_videos"
-                style="@style/CustomFontTextViewStyle.Home.Buttons"/>
+
 
     </LinearLayout>
 
