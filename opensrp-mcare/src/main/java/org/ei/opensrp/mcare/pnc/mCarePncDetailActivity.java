@@ -70,14 +70,6 @@ public class mCarePncDetailActivity extends Activity {
         TextView jivitahhid = (TextView) findViewById(R.id.jivitahhid);
         TextView godhhid = (TextView) findViewById(R.id.gobhhid);
         TextView village = (TextView) findViewById(R.id.village);
-//        TextView mw_reg_date = (TextView) findViewById(R.id.mw_reg_date);
-//        TextView psf_due_date = (TextView) findViewById(R.id.last_psf_date);
-
-
-
-
-
-
 
         ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
@@ -96,59 +88,22 @@ public class mCarePncDetailActivity extends Activity {
         age.setText(getString(R.string.elco_age_label) + (ancclient.getDetails().get("FWWOMAGE") != null ? ancclient.getDetails().get("FWWOMAGE") : ""));
         jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(ancclient.getColumnmaps().get("JiVitAHHID") != null ? ancclient.getColumnmaps().get("JiVitAHHID") : ""));
         godhhid.setText(getString(R.string.hhid_gob_elco_label) + (ancclient.getColumnmaps().get("GOBHHID") != null ? ancclient.getColumnmaps().get("GOBHHID") : ""));
-//        psf_due_date.setText(Elcoclient.getDetails().get("FWPSRDATE") != null ? Elcoclient.getDetails().get("FWPSRDATE") : "");
-
-
         village.setText(humanize(ancclient.getDetails().get("location_name") != null ? ancclient.getDetails().get("location_name") : ""));
-            /////from househld
-        AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("mcaremother");
+       AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("mcaremother");
         CommonPersonObject ancobject = allancRepository.findByCaseID(ancclient.entityId());
         AllCommonsRepository allelcorep = Context.getInstance().allCommonsRepositoryobjects("elco");
         CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getRelationalId());
-
-//
-        checkPnc1view(ancclient);
+       checkPnc1view(ancclient);
         checkPnc2view(ancclient);
         checkAnc3view(ancclient);
         checktempView(ancclient);
-//        numberofChildrenView(elcoparent);
-//        numberofstillbirthview(elcoparent);
-//        historyofmr(elcoparent);
-//        historyofsb(elcoparent);
-//        pregnancyin2years(elcoparent);
-        doolay(ancclient);
-
-
-
-//        AllCommonsRepository allelcoRepository = Context.getInstance().allCommonsRepositoryobjects("elco");
-//        CommonPersonObject elcoobject = allelcoRepository.findByCaseID(Elcoclient.entityId());
-//        AllCommonsRepository householdrep = Context.getInstance().allCommonsRepositoryobjects("household");
-//        CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
-//        String location = "";
-//        if(householdparent.getDetails().get("location_name") != null) {
-//            location = householdparent.getDetails().get("location_name");
-//        }
-//        village.setText(getString(R.string.elco_details_mauza)+humanize(location));
-
-
-//        mw_reg_date.setText((Elcoclient.getDetails().get("WomanREGDATE") != null ? Elcoclient.getDetails().get("WomanREGDATE") : ""));
-        ///////////////////////////////////////////////////
-
-
+       doolay(ancclient);
         final ImageView householdview = (ImageView) findViewById(R.id.householdprofileview);
 
         if (ancclient.getDetails().get("profilepic") != null) {
             setImagetoHolder(mCarePncDetailActivity.this, ancclient.getDetails().get("profilepic"), householdview, R.mipmap.woman_placeholder);
         }
-//        householdview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                bindobject = "household";
-//                entityid = Elcoclient.entityId();
-//                dispatchTakePictureIntent(householdview);
-//
-//            }
-//        });
+
 
 
     }
