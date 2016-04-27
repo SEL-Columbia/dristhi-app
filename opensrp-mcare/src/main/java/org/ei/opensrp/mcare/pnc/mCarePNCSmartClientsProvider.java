@@ -69,7 +69,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 //        itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_pnc_client, null);
         LinearLayout profileinfolayout = (LinearLayout)itemView.findViewById(R.id.profile_info_layout);
 
-//        ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
+        ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
         TextView name = (TextView)itemView.findViewById(R.id.name);
         TextView spousename = (TextView)itemView.findViewById(R.id.spousename);
         TextView gobhhid = (TextView)itemView.findViewById(R.id.gobhhid);
@@ -85,10 +85,11 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 ////        Button due_visit_date = (Button)itemView.findViewById(R.id.hh_due_date);
 //
 //        ImageButton follow_up = (ImageButton)itemView.findViewById(R.id.btn_edit);
-        profileinfolayout.setOnClickListener(onClickListener);
-        profileinfolayout.setTag(smartRegisterClient);
+
 
         final CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
+        profileinfolayout.setOnClickListener(onClickListener);
+        profileinfolayout.setTag(pc);
 
 //        if(pc.getDetails().get("profilepic")!=null){
 //            HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.woman_placeholder);

@@ -6,7 +6,7 @@
               android:orientation="vertical"
               android:background="@color/client_list_header_dark_grey">
 
-    <include layout="@layout/ancdetail_nav_bar"
+    <include layout="@layout/pncdetail_nav_bar"
          />
 
     <ImageView
@@ -132,7 +132,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
                         android:id="@+id/date_of_outcome"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/text_black"
@@ -168,7 +167,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
                         android:id="@+id/preganancy_outcome"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/text_black"
@@ -205,7 +203,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
                         android:id="@+id/preganancy_type_of_delivery"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/text_black"
@@ -255,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_margin="2dp"
-                    android:id="@+id/anc1_layout">
+                    android:id="@+id/pnc1_layout">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -292,7 +289,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_margin="2dp"
-                    android:id="@+id/anc2_layout">
+                    android:id="@+id/pnc2_layout">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -330,7 +327,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_margin="2dp"
-                    android:id="@+id/anc3_layout">
+                    android:id="@+id/pnc3_layout">
 
                     <ImageView
                         android:layout_width="50dp"

@@ -35,6 +35,7 @@ import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.pnc.mCarePNCServiceModeOption;
 import org.ei.opensrp.mcare.pnc.mCarePNCSmartClientsProvider;
 import org.ei.opensrp.mcare.pnc.mCarePNCSmartRegisterActivity;
+import org.ei.opensrp.mcare.pnc.mCarePncDetailActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -222,8 +223,8 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    mCareAncDetailActivity.ancclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(getActivity(),mCareAncDetailActivity.class);
+                    mCarePncDetailActivity.ancclient = (CommonPersonObjectClient)view.getTag();
+                    Intent intent = new Intent(getActivity(),mCarePncDetailActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.pnc_reminder_due_date:

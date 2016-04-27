@@ -111,4 +111,5 @@
     <string name="filter_by_encc1">ENCC-1</string>
     <string name="filter_by_encc2">ENCC-2</string>
     <string name="filter_by_encc3">ENCC-3</string>
+    <string name="mcare_pnc_woman_details">Postnatal Woman Details</string>
 </resources>
