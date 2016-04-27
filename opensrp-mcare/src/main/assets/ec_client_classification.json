@@ -26,6 +26,16 @@
             "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
             "closes_case":["ec_pnc"],
             "opens_case":["ec_elco"]
+          },
+          {
+            "data_segment": "obs",
+            "field_name":"fieldCode",
+            "field_value": "163088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key":"value",
+            "response_value": ["5990AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","5276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","162959AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "163007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "128453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "159AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "5561AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "closes_case":["ec_elco"]
           }
         ]
       }
@@ -43,6 +53,15 @@
             "response_value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
             "closes_case":["ec_elco","ec_pnc"],
             "opens_case":["ec_mcaremother"]
+          },
+          {
+            "data_segment": "obs",
+            "field_name":"fieldCode",
+            "field_value": "161641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "response_key":"value",
+            "response_value": ["125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "closes_case":["ec_mcaremother"],
+            "opens_case":["ec_elco"]
           },
           {
             "field_name":"event_type",
