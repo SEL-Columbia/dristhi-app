@@ -370,6 +370,18 @@
     <string name="wasting">Wasting : </string>
     <string name="underweight">Underweight : </string>
     <string name="weight">Weight :</string>
+    <string name="child_name">Child Name : </string>
+    <string name="mother_name">Mother Name : </string>
+    <string name="father_name">Father Name : </string>
+    <string name="posyandu">Posyandu : </string>
+    <string name="village">Village : </string>
+    <string name="birth_date">Birth Date : </string>
+    <string name="gender">Gender : </string>
+    <string name="nutrition_status">Nutrition Status :</string>
+    <string name="bgm">BGM :</string>
+    <string name="dua_t">2T :</string>
+    <string name="under_yellow_line">Under Yellow Line :</string>
+    <string name="asi">Exclusve Breastfeeding :</string>
 
 
 </resources>

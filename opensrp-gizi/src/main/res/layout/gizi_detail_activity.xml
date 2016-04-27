@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+    android:weightSum="1">
+
+    <include layout="@layout/gizidetail_nav_bar"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/smart_register_client_divider_height"
+        android:src="@color/smart_register_client_divider_color"
+        android:id="@+id/imageView5" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Child Identity"
+            android:id="@+id/header_name"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:textStyle="bold"
+            android:textSize="22sp" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linierDivider"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="vertical">
+
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/smart_register_client_divider_height"
+        android:src="@color/smart_register_client_divider_color"
+        android:id="@+id/imageView4" />
+
+    <include
+        layout="@layout/gizi_detail_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.40" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/smart_register_client_divider_height"
+        android:src="@color/smart_register_client_divider_color"
+        android:id="@+id/imageView3" />
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/smart_register_client_divider_height"
+            android:src="@color/smart_register_client_divider_color"/>
+
+
+</LinearLayout>

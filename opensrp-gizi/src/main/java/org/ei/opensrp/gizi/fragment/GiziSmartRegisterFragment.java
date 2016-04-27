@@ -2,14 +2,17 @@ package org.ei.opensrp.gizi.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.gizi.LoginActivity;
+import org.ei.opensrp.gizi.gizi.ChildDetailActivity;
 import org.ei.opensrp.gizi.gizi.GiziSearchOption;
 import org.ei.opensrp.gizi.gizi.GiziServiceModeOption;
 import org.ei.opensrp.gizi.gizi.GiziSmartClientsProvider;
@@ -207,10 +210,10 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-               /*     HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(getActivity(),HouseHoldDetailActivity.class);
+                    ChildDetailActivity.childclient = (CommonPersonObjectClient)view.getTag();
+                    Intent intent = new Intent(getActivity(),ChildDetailActivity.class);
                     startActivity(intent);
-                    getActivity().finish(); */
+                    getActivity().finish();
                     break;
 
                 //untuk follow up button

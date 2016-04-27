@@ -89,7 +89,7 @@ public class NativeHomeActivity extends SecuredActivity {
        // findViewById(R.id.btn_test2_register).setOnClickListener(onRegisterStartListener);
 
         findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
-        findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
+//        findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
 
         ecRegisterClientCountView = (TextView) findViewById(R.id.txt_child_register_client_count);
 
