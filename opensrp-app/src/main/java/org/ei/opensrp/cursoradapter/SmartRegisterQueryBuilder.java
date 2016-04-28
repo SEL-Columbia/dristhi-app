@@ -6,6 +6,14 @@ package org.ei.opensrp.cursoradapter;
 public class SmartRegisterQueryBuilder {
     String Selectquery;
 
+    public String getSelectquery() {
+        return Selectquery;
+    }
+
+    public void setSelectquery(String selectquery) {
+        Selectquery = selectquery;
+    }
+
     public SmartRegisterQueryBuilder(String selectquery) {
         Selectquery = selectquery;
     }
@@ -83,6 +91,11 @@ public class SmartRegisterQueryBuilder {
     public String joinwithALerts(String tablename,String alertname){
         Selectquery = Selectquery+ " LEFT JOIN alerts ";
         Selectquery = Selectquery+ " ON "+ tablename +".id = alerts.caseID and  alerts.scheduleName = '"+alertname+"'" ;
+        return Selectquery;
+    }
+    public String joinwithALerts(String tablename){
+        Selectquery = Selectquery+ " LEFT JOIN alerts ";
+        Selectquery = Selectquery+ " ON "+ tablename +".id = alerts.caseID " ;
         return Selectquery;
     }
     @Override

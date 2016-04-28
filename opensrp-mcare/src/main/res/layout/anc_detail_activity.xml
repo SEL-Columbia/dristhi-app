@@ -135,7 +135,8 @@
                         android:text="Medium Text"
                         android:id="@+id/edd_date"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -171,7 +172,8 @@
                         android:text="Medium Text"
                         android:id="@+id/anc1date"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -208,7 +210,8 @@
                         android:text="Medium Text"
                         android:id="@+id/anc2date"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -244,7 +247,8 @@
                         android:text="Medium Text"
                         android:id="@+id/anc3date"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -280,7 +284,8 @@
                         android:text="Medium Text"
                         android:id="@+id/anc4date"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -302,7 +307,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="number of alive children"
+                        android:text="Number of Alive Children"
                         android:id="@+id/textView18"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
@@ -315,7 +320,8 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/livechildren"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -337,7 +343,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="number of still births"
+                        android:text="Number of Stillbirths"
                         android:id="@+id/textView8"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
@@ -350,7 +356,8 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/stillbirths"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -375,7 +382,8 @@
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/text_black"
                     android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:layout_marginRight="5dp" />
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -413,7 +421,8 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/history_of_mr"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
 
                 </LinearLayout>
 
@@ -441,7 +450,8 @@
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
                         android:id="@+id/history_of_sb"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -468,7 +478,8 @@
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
                         android:id="@+id/number_of_pregnancy"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
                 </LinearLayout>
             </LinearLayout>
 

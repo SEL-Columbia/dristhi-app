@@ -2,6 +2,8 @@ package org.ei.opensrp.mcare;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,7 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.commonregistry.ControllerFilterMap;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.mcare.anc.anc1handler;
@@ -22,6 +26,7 @@ import org.ei.opensrp.mcare.anc.nbnfhandler;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
+import org.ei.opensrp.mcare.household.HouseholdCensusDueDateSort;
 import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
@@ -32,6 +37,8 @@ import org.ei.opensrp.view.contract.HomeContext;
 import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
+
+import java.util.ArrayList;
 
 import static android.widget.Toast.LENGTH_SHORT;
 import static java.lang.String.valueOf;
@@ -85,7 +92,16 @@ public class NativeHomeActivity extends SecuredActivity {
     private TextView pncRegisterClientCountView;
     private TextView fpRegisterClientCountView;
     private TextView childRegisterClientCountView;
+    public static CommonPersonObjectController hhcontroller;
+    public static CommonPersonObjectController anccontroller;
+    public static CommonPersonObjectController elcocontroller;
+    public static CommonPersonObjectController childcontroller;
+    public static CommonPersonObjectController pnccontroller;
     public static int hhcount;
+    private int elcocount;
+    private int anccount;
+    private int pnccount;
+    private int childcount;
 
     @Override
     protected void onCreation() {
@@ -134,8 +150,6 @@ public class NativeHomeActivity extends SecuredActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         LoginActivity.setLanguage();
-//        getActionBar().setBackgroundDrawable(getReso
-// urces().getDrawable(R.color.action_bar_background));
     }
 
     @Override
@@ -157,34 +171,32 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void updateRegisterCounts(HomeContext homeContext) {
-//        CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
-//                context.allBeneficiaries(), context.listCache(),
-//                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
-        Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household","household.FWHOHFNAME NOT Null and household.FWHOHFNAME != ''"));
+               SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household", "household.FWHOHFNAME NOT Null and household.FWHOHFNAME != ''"));
         hhcountcursor.moveToFirst();
         hhcount= hhcountcursor.getInt(0);
         hhcountcursor.close();
         Cursor elcocountcursor = context.commonrepository("elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("elco","elco.FWWOMFNAME NOT NULL and elco.FWWOMFNAME !=''  AND elco.details  LIKE '%\"FWELIGIBLE\":\"1\"%'"));
         elcocountcursor.moveToFirst();
-        int elcocount= elcocountcursor.getInt(0);
+        elcocount= elcocountcursor.getInt(0);
         elcocountcursor.close();
-        CommonPersonObjectController elcocontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("elco"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","elco","FWELIGIBLE","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        CommonPersonObjectController anccontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcaremother"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","mcaremother","FWWOMVALID","1", CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        CommonPersonObjectController childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mcarechild"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWBNFGEN","mcarechild","FWBNFGEN", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-
-
+        Cursor anccountcursor = context.commonrepository("mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcaremother","(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME is not NUll  AND mcaremother.FWWOMFNAME != \"\"      AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'"));
+        anccountcursor.moveToFirst();
+        anccount= anccountcursor.getInt(0);
+        anccountcursor.close();
+        Cursor pnccountcursor = context.commonrepository("mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcaremother","mcaremother.Is_PNC = '1' and mcaremother.FWWOMFNAME is not NUll  AND mcaremother.FWWOMFNAME != \"\"      AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'"));
+        pnccountcursor.moveToFirst();
+        pnccount= pnccountcursor.getInt(0);
+        pnccountcursor.close();
+        Cursor childcountcursor = context.commonrepository("mcarechild").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcarechild"," mcarechild.FWBNFGEN is not NUll "));
+        childcountcursor.moveToFirst();
+        childcount= childcountcursor.getInt(0);
+        childcountcursor.close();
+        pncRegisterClientCountView.setText(valueOf(pnccount));
         ecRegisterClientCountView.setText(valueOf(hhcount));
-        ancRegisterClientCountView.setText(valueOf(anccontroller.getClients().size()));
-        pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
+        ancRegisterClientCountView.setText(valueOf(anccount));
         fpRegisterClientCountView.setText(valueOf(elcocount));
-        childRegisterClientCountView.setText(valueOf(childcontroller.getClients().size()));
+        childRegisterClientCountView.setText(valueOf(childcount));
     }
 
     @Override
@@ -279,11 +291,11 @@ public class NativeHomeActivity extends SecuredActivity {
                     break;
 
                 case R.id.btn_pnc_register:
-//                    navigationController.startPNCSmartRegistry();
+                    navigationController.startPNCSmartRegistry();
                     break;
 
                 case R.id.btn_child_register:
-//                    navigationController.startChildSmartRegistry();
+                    navigationController.startChildSmartRegistry();
                     break;
 
                 case R.id.btn_fp_register:
@@ -308,4 +320,46 @@ public class NativeHomeActivity extends SecuredActivity {
             }
         }
     };
+    class pncControllerfiltermap extends ControllerFilterMap {
+
+        @Override
+        public boolean filtermapLogic(CommonPersonObject commonPersonObject) {
+            boolean returnvalue = false;
+            if(commonPersonObject.getDetails().get("FWWOMVALID") != null){
+                if(commonPersonObject.getDetails().get("FWWOMVALID").equalsIgnoreCase("1")){
+                    returnvalue = true;
+                    if(commonPersonObject.getDetails().get("Is_PNC")!=null){
+                        if(commonPersonObject.getDetails().get("Is_PNC").equalsIgnoreCase("1")){
+                            returnvalue = true;
+                        }
+
+                    }else{
+                        returnvalue = false;
+                    }
+                }
+            }
+            Log.v("the filter", "" + returnvalue);
+            return returnvalue;
+        }
+    }
+    class ancControllerfiltermap extends ControllerFilterMap{
+
+        @Override
+        public boolean filtermapLogic(CommonPersonObject commonPersonObject) {
+            boolean returnvalue = false;
+            if(commonPersonObject.getDetails().get("FWWOMVALID") != null){
+                if(commonPersonObject.getDetails().get("FWWOMVALID").equalsIgnoreCase("1")){
+                    returnvalue = true;
+                    if(commonPersonObject.getDetails().get("Is_PNC")!=null){
+                        if(commonPersonObject.getDetails().get("Is_PNC").equalsIgnoreCase("1")){
+                            returnvalue = false;
+                        }
+
+                    }
+                }
+            }
+            Log.v("the filter",""+returnvalue);
+            return returnvalue;
+        }
+    }
 }

@@ -80,4 +80,35 @@
     <string name="no_internet_connectivity">ইন্টারনেট কানেকশন নেই, অনুগ্রহ করে ডাটা কানেক্টিভিটি চেক করুন</string>
     <string name="forminputerror">অনুগ্রহ করে ফর্মটি চেক করে দেখুন, লাল চিহ্নিত ঘরগুলোতে কোন তথ্য বাদ গিয়েছে কিনা অথবা কোন তথ্য ভুল হয়েছে কিনা</string>
     <string name="okforminputerror">ঠিক আছে</string>
-   </resources>
+    <string name="pnc_outcome">Outcome</string>
+    <string name="pnc_date_of_outcome">Date of Outcome</string>
+    <string name="pnc_reminder_status">PNC Reminder Status</string>
+    <string name="pnc_reminder_due">PNC Reminder Due</string>
+    <string name="mcare_PNC_register_title_in_short">PNC Register</string>
+    <string name="mcare_pnc_liveBirth">জীবিত বাচ্চা জন্ম দিয়েছেন</string>
+    <string name="mcare_pnc_Stillbirth">গর্ভনষ্ট হয়েছে / মৃতবাচ্চা প্রসব হয়েছে</string>
+    <string name="all_mcare_pnc">Postnatal Women</string>
+    <string name="pnc3form">PNC visit 1 form</string>
+    <string name="pnc2form">PNC visit 2 form</string>
+    <string name="pnc1form">PNC visit 3 form</string>
+    <string name="mcarechild_dob">DoB</string>
+    <string name="encc_reminder_status">ENCC Reminder Status</string>
+    <string name="encc_due_date">ENCC Due Date</string>
+    <string name="child_mother_unique_id">Mother\'s Unique ID</string>
+    <string name="mcare_Child_register_title_in_short">Child Register</string>
+    <string name="encc3form">ENCC Visit Form 3</string>
+    <string name="encc2form">ENCC Visit Form 2</string>
+    <string name="encc1form">ENCC Visit Form 1</string>
+    <string name="NID">NID</string>
+    <string name="sortbyLmp">LMP</string>
+    <string name="filter_by_anc1">ANCRV-1</string>
+    <string name="filter_by_anc2">ANCRV-2</string>
+    <string name="filter_by_anc3">ANCRV-3</string>
+    <string name="filter_by_anc4">ANCRV-4</string>
+    <string name="filter_by_pncrv1">PNCRV-1</string>
+    <string name="filter_by_pncrv2">PNCRV-2</string>
+    <string name="filter_by_pncrv3">PNCRV-3</string>
+    <string name="filter_by_encc1">ENCC-1</string>
+    <string name="filter_by_encc2">ENCC-2</string>
+    <string name="filter_by_encc3">ENCC-3</string>
+</resources>
