@@ -63,6 +63,9 @@
         <activity android:name=".pnc.mCarePncDetailActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape"/>
+        <activity android:name=".child.ChildDetailActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape"/>
 
     </application>
 

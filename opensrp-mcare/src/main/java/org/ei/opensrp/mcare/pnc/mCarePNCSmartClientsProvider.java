@@ -128,7 +128,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
             e.printStackTrace();
         }
         constructRiskFlagView(pc,itemView);
-        constructPNCReminderDueBlock((pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : "").split("T")[0],pc, itemView);
+        constructPNCReminderDueBlock((pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : ""),pc, itemView);
 //        constructNBNFDueBlock(pc, itemView);s
         constructPncVisitStatusBlock(pc,itemView);
 

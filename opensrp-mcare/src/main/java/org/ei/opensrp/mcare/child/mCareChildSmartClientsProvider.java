@@ -26,6 +26,10 @@ import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -95,8 +99,8 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         gobhhid.setText(mcaremotherObject.getColumnmaps().get("GOBHHID")!=null?mcaremotherObject.getColumnmaps().get("GOBHHID"):"");
         jivitahhid.setText(mcaremotherObject.getColumnmaps().get("JiVitAHHID")!=null?mcaremotherObject.getColumnmaps().get("JiVitAHHID"):"");
         village.setText(humanize((mcaremotherObject.getDetails().get("mauza") != null ? mcaremotherObject.getDetails().get("mauza") : "").replace("+", "_")));
-        age.setText(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"");
-        dateofbirth.setText(mcaremotherObject.getColumnmaps().get("FWBNFDTOO")!=null?mcaremotherObject.getColumnmaps().get("FWBNFDTOO"):"");
+        age.setText(""+age(pc)+ "d");
+        dateofbirth.setText(pc.getDetails().get("FWBNFDOB")!=null?pc.getDetails().get("FWBNFDOB"):"");
 
         nid.setText("NID :" +(mcaremotherObject.getDetails().get("FWWOMNID")!=null?mcaremotherObject.getDetails().get("FWWOMNID"):""));
         brid.setText("BRID :" +(mcaremotherObject.getDetails().get("FWWOMBID")!=null?mcaremotherObject.getDetails().get("FWWOMBID"):""));
@@ -125,6 +129,27 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         checkEncc2StatusAndform(encc2tick, encc2text, pc);
         checkEncc3StatusAndform(encc3tick, encc3text, pc);
 
+
+    }
+
+    private Long age(CommonPersonObjectClient ancclient) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date edd_date = format.parse(ancclient.getDetails().get("FWBNFDOB")!=null?ancclient.getDetails().get("FWBNFDOB") :"");
+            Calendar thatDay = Calendar.getInstance();
+            thatDay.setTime(edd_date);
+
+            Calendar today = Calendar.getInstance();
+
+            long diff = today.getTimeInMillis() - thatDay.getTimeInMillis();
+
+            long days = diff / (24 * 60 * 60 * 1000);
+
+            return days;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
 
     }
 

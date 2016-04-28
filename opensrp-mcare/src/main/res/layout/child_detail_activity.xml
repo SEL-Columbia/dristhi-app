@@ -137,41 +137,6 @@
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
                 </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_margin="2dp"
-                    android:id="@+id/pregnancy_outcome_layout">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/imageView89"
-                        android:src="@mipmap/icon_event_child"
-                        android:layout_margin="10dp" />
-
-                    <org.ei.opensrp.view.customControls.CustomFontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="Pregnancy Outcome"
-                        android:id="@+id/pregnancy_outcome_label"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/preganancy_outcome"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_marginRight="5dp" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -208,42 +173,6 @@
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
                 </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_margin="2dp"
-                    android:id="@+id/temperature_layout">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/imageView800"
-                        android:src="@mipmap/thermometer"
-                        android:layout_margin="10dp" />
-
-                    <org.ei.opensrp.view.customControls.CustomFontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="Temperature"
-                        android:id="@+id/temperature_level"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
-                        android:id="@+id/temperature"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_marginRight="5dp" />
-                </LinearLayout>
 
 
                 <LinearLayout
@@ -252,7 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_margin="2dp"
-                    android:id="@+id/pnc1_layout">
+                    android:id="@+id/encc1_layout">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -266,7 +195,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="PNCRV1"
+                        android:text="ENCC1"
                         android:id="@+id/textView10"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
@@ -277,7 +206,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Medium Text"
-                        android:id="@+id/pnc1date"
+                        android:id="@+id/encc1date"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
@@ -289,7 +218,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_margin="2dp"
-                    android:id="@+id/pnc2_layout">
+                    android:id="@+id/encc2_layout">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -303,7 +232,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="PNCRV2"
+                        android:text="ENCC2"
                         android:id="@+id/textView12"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
@@ -315,7 +244,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Medium Text"
-                        android:id="@+id/pnc2date"
+                        android:id="@+id/encc2date"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
@@ -327,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_margin="2dp"
-                    android:id="@+id/pnc3_layout">
+                    android:id="@+id/encc3_layout">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -341,7 +270,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="PNCRV3"
+                        android:text="ENCC3"
                         android:id="@+id/textView14"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
@@ -352,7 +281,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
                         android:text="Medium Text"
-                        android:id="@+id/pnc3date"
+                        android:id="@+id/encc3date"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
