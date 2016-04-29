@@ -49,7 +49,7 @@ public class AllKBServiceMode extends ServiceModeOption {
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
-                        R.string.header_nama, R.string.header_no_ibu, R.string.header_obsetri,
+                        R.string.header_nama, R.string.header_id, R.string.header_obsetri,
                         R.string.header_kb_method, R.string.header_risk_factors, R.string.header_update_refill,
                         R.string.header_edit};
             }

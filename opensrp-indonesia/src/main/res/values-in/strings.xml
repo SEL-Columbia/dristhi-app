@@ -41,14 +41,14 @@
     <string name="header_status">Status</string>
     <string name="header_edit"></string>
 
-    <string name="header_anak">Anak</string>
-    <string name="header_nama">Nama</string>
+    <string name="header_anak">ANAK</string>
+    <string name="header_nama">NAMA</string>
     <string name="header_tgl_periksa">Tgl Periksa</string>
     <string name="header_edd">HTP</string>
-    <string name="header_kunjungan">Kunjungan</string>
-    <string name="header_no_ibu">No Ibu</string>
-    <string name="header_status_b">Status</string>
-    <string name="header_obsetri">Obsetri</string>
+    <string name="header_kunjungan">KUNJUNGAN</string>
+    <string name="header_no_ibu">NO Ibu</string>
+    <string name="header_status_b">STATUS</string>
+    <string name="header_obsetri">OBSETRI</string>
 
     <string name="kartu_ibu_selection">Kartu Ibu</string>
     <string name="kb_selection">KB</string>
@@ -129,11 +129,11 @@
     <string name="header_trimester">Trimester</string>
     <string name="header_tt_imunisasi">Imunisasi</string>
     <string name="header_tt_usia_klinis">Usia Klinis</string>
-    <string name="header_komplikasi">Komplikasi</string>
-    <string name="header_kontrasepsi">Kondisi</string>
+    <string name="header_komplikasi">COMPLICATION</string>
+    <string name="header_kontrasepsi">KONDISI</string>
     <string name="header_rencana">Dok Persalinan</string>
-    <string name="header_tanda_vital">Tanda Vital</string>
-    <string name="header_pemeriksaan">Pemeriksaan</string>
+    <string name="header_tanda_vital">TANDA VITAL</string>
+    <string name="header_pemeriksaan">PEMERIKSAAN</string>
 
     <string name="str_delivery_at">Persalinan Di</string>
     <string name="videos_cannot_play_video_dialog_title">Tidak bisa memutar video.</string>
@@ -143,13 +143,13 @@
     <string name="str_pnc_close_form">Tutup PNC</string>
     <string name="edd_label">"HTP : "</string>
     <string name="fp_register_service_mode_all_methods"></string>
-    <string name="header_kb_method">Kontrasepsi</string>
+    <string name="header_kb_method">KONTRASEPSI</string>
     <string name="header_last_service">Pelayanan</string>
     <string name="header_method">Metode</string>
     <string name="header_risk_factors">Faktor Risk</string>
     <string name="str_pnc_dob_label">Tanggal Lahir</string>
     <string name="header_dob">Tgl Lahir</string>
-    <string name="header_dok_persalinan">Dok Prsalinan</string>
+    <string name="header_dok_persalinan">DOK PERSALINAN</string>
 
     <string name="app_name">Bidan</string>
 
@@ -256,7 +256,7 @@
     <string name="service_type_dpt_booster_1_short">DPT B1</string>
     <string name="service_type_dpt_booster_2_short">DPT B2</string>
     <string name="pentavalent_short">Pentav</string>
-    <string name="header_birth_status">Status</string>
+    <string name="header_birth_status">STATUS</string>
 
     <string name="fp_register_title_in_short">FP:</string>
     <string name="pnc_register_title_in_short">PNC:</string>
@@ -367,12 +367,12 @@
     <string name="str_child_illness_sam">sam</string>
     <string name="str_pnc_visit_button_label">PNC Visit</string>
 
-    <string name="header_imunisasi_hb07">Hb</string>
-    <string name="header_imunisasi_bcg_polio1">BCG/Pol1</string>
-    <string name="header_imunisasi_dpt_hb1_polio2">DPT/HB1/Pol2</string>
-    <string name="header_imunisasi_dpt_hb2_polio3">DPT/HB2/Pol3</string>
-    <string name="header_imunisasi_dpt_hb3_polio4">DPT/HB3/Pol4</string>
-    <string name="header_imunisasi_campak">Campak</string>
+    <string name="header_imunisasi_hb07">HB</string>
+    <string name="header_imunisasi_bcg_polio1">BCG/POL1</string>
+    <string name="header_imunisasi_dpt_hb1_polio2">DPT/HB1/POL2</string>
+    <string name="header_imunisasi_dpt_hb2_polio3">DPT/HB2/POL3</string>
+    <string name="header_imunisasi_dpt_hb3_polio4">DPT/HB3/POL4</string>
+    <string name="header_imunisasi_campak">CAMPAK</string>
 
 
     <string name="title_double_selection">"Pilih nama lagi"</string>
@@ -408,5 +408,5 @@
     <string name="cohort_fp">KOHORT KB</string>
     <string name="anc_visit_date">Tanggal Kunjungan ANC :</string>
     <string name="anc_visit_number">ANC terakhir :</string>
-    <string name="header_history_anc">Kunjungan Terakhir</string>
+    <string name="header_history_anc">KUNJUNGAN TERAKHIR</string>
 </resources>
