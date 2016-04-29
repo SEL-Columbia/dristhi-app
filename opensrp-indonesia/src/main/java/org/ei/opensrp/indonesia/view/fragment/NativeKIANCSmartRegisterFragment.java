@@ -27,6 +27,7 @@ import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 
+import static android.view.View.INVISIBLE;
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
 
@@ -130,6 +131,8 @@ public class NativeKIANCSmartRegisterFragment extends BidanSecuredNativeSmartReg
         super.setupViews(view);
         ImageButton registerButton = (ImageButton) view.findViewById(org.ei.opensrp.R.id.register_client);
         registerButton.setVisibility(View.GONE);
+        view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
     }
 
     private class ClientActionHandler implements View.OnClickListener {

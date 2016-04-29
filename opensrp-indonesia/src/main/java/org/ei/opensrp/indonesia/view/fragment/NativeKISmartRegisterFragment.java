@@ -36,6 +36,7 @@ import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 
+import static android.view.View.INVISIBLE;
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_REGISTRATION;
@@ -105,6 +106,8 @@ public class NativeKISmartRegisterFragment extends BidanSecuredNativeSmartRegist
     @Override
     protected void setupViews(View view) {
         super.setupViews(view);
+        view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
     }
 
     @Override

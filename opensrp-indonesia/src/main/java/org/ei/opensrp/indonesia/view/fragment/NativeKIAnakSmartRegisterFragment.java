@@ -29,6 +29,7 @@ import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 
+import static android.view.View.INVISIBLE;
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.BAYI_IMUNISASI;
@@ -134,6 +135,7 @@ public class NativeKIAnakSmartRegisterFragment extends BidanSecuredNativeSmartRe
         super.setupViews(view);
         ImageButton registerButton = (ImageButton) view.findViewById(org.ei.opensrp.R.id.register_client);
         registerButton.setVisibility(View.GONE);
+        view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
     }
 
     @Override

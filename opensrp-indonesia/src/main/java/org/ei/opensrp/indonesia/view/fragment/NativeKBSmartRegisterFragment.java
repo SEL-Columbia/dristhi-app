@@ -39,6 +39,7 @@ import org.json.JSONObject;
 
 import java.util.Iterator;
 
+import static android.view.View.INVISIBLE;
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_REGISTER;
@@ -88,6 +89,12 @@ public class NativeKBSmartRegisterFragment extends BidanSecuredNativeSmartRegist
         };
     }
 
+    @Override
+    protected void setupViews(View view) {
+        super.setupViews(view);
+        view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
+    }
     @Override
     protected SecuredNativeSmartRegisterActivity.NavBarOptionsProvider getNavBarOptionsProvider() {
         return new SecuredNativeSmartRegisterActivity.NavBarOptionsProvider() {
