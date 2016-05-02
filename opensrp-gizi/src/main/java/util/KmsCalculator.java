@@ -5,13 +5,19 @@ package util;
  */
 public class KmsCalculator {
     public String cek2T(KmsPerson bayi){
-        String currentDate = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date());
-        int tahun = Integer.parseInt(currentDate.substring(0,4))-Integer.parseInt(bayi.getLastVisitDate().substring(0,4));
-        int bulan = Integer.parseInt(currentDate.substring(5,7))-Integer.parseInt(bayi.getLastVisitDate().substring(5,7));
+        if(!bayi.getLastVisitDate().equalsIgnoreCase("0")) {
+            String currentDate = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date());
+            int tahun = Integer.parseInt(currentDate.substring(0, 4)) - Integer.parseInt(bayi.getLastVisitDate().substring(0, 4));
+            int bulan = Integer.parseInt(currentDate.substring(5, 7)) - Integer.parseInt(bayi.getLastVisitDate().substring(5, 7));
 
-        bayi.Tidak2Kali = (tahun*12 + bulan) > 2;
-        return " "+(bayi.Tidak2Kali ? "ya":"tidak");
-        //System.out.println("Tidak naik timbangan 2 kali :"+(bayi.Tidak2Kali ? "ya":"tidak"));
+            bayi.Tidak2Kali = (tahun * 12 + bulan) > 2;
+            return " " + (bayi.Tidak2Kali ? "ya" : "tidak");
+            //System.out.println("Tidak naik timbangan 2 kali :"+(bayi.Tidak2Kali ? "ya":"tidak"));
+        }
+        else {
+        return "Belum dikunjungi";
+        }
+
     }
 
     public String cekWeightStatus(KmsPerson bayi){

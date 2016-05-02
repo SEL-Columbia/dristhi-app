@@ -28,6 +28,8 @@ import java.util.Map;
 
 import util.ImageCache;
 import util.ImageFetcher;
+import util.KmsCalculator;
+import util.KmsPerson;
 
 import static org.ei.opensrp.util.StringUtil.humanize;
 
@@ -42,7 +44,7 @@ public class ChildDetailActivity extends Activity {
 
     private static int mImageThumbSize;
     private static int mImageThumbSpacing;
-
+    private static String showbgm;
     private static ImageFetcher mImageFetcher;
 
 
@@ -106,9 +108,27 @@ public class ChildDetailActivity extends Activity {
 
 
         nutrition_status.setText(getString(R.string.nutrition_status) +" "+ (childclient.getDetails().get("status_gizi") != null ? childclient.getDetails().get("status_gizi") : "-"));
-        bgm.setText(getString(R.string.bgm) +" "+ (childclient.getDetails().get("bgm") != null ? childclient.getDetails().get("bgm") : "-"));
-        dua_t.setText(getString(R.string.dua_t) +" "+ (childclient.getDetails().get("dua_t") != null ? childclient.getDetails().get("dua_t") : "-"));
-        under_yellow_line.setText(getString(R.string.under_yellow_line) +" "+ (childclient.getDetails().get("garis_kuning_bawah") != null ? childclient.getDetails().get("garis_kuning_bawah") : "-"));
+
+
+        //KMS calculation
+        boolean jenisKelamin = childclient.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")? true:false;
+        int umur = Integer.parseInt(childclient.getDetails().get("umur") != null ? childclient.getDetails().get("umur") : "0");
+        double berat= Double.parseDouble(childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan") : "0");
+        double beraSebelum = Double.parseDouble(childclient.getDetails().get("beratSebelumnya") != null ? childclient.getDetails().get("beratSebelumnya") : "0");
+
+
+        KmsPerson data = new KmsPerson(jenisKelamin, //boolean gender
+                            umur,  //age(month)
+                            berat, //curent weight
+                            beraSebelum, //previous weight
+                            childclient.getDetails().get("tanggalPenimbangan")!= null ? childclient.getDetails().get("tanggalPenimbangan") :"0"); // last visit date
+
+        KmsCalculator calculator = new KmsCalculator();
+
+
+        bgm.setText(getString(R.string.bgm) +calculator.cekBGM(data));
+        dua_t.setText(getString(R.string.dua_t) +calculator.cek2T(data) );
+        under_yellow_line.setText(getString(R.string.under_yellow_line)+calculator.cekBawahKuning(data));
         breast_feeding.setText(getString(R.string.asi) +" "+ (childclient.getDetails().get("asi_eksklusif") != null ? childclient.getDetails().get("asi_eksklusif") : "-"));
 
        // final ImageView householdview = (ImageView) findViewById(R.id.childprofileview);
@@ -116,7 +136,7 @@ public class ChildDetailActivity extends Activity {
       //  if (childclient.getDetails().get("profilepic") != null) {
        //     setImagetoHolder(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.child_boy_infant);
       //  }
-//        childview.setOnClickListener(new View.OnClickListener() {
+//        childview.setOnClickListener(new View.OnClickListener() {.
 //            @Override
 //            public void onClick(View v) {
 //                bindobject = "anak";
