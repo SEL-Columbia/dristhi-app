@@ -146,9 +146,16 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         TextView anc2text = (TextView)itemview.findViewById(R.id.pnc2text);
         TextView anc3tick = (TextView)itemview.findViewById(R.id.pnc3tick);
         TextView anc3text = (TextView)itemview.findViewById(R.id.pnc3text);
+
+        anc1tick.setVisibility(View.GONE);
+        anc1text.setVisibility(View.GONE);
+        anc2tick.setVisibility(View.GONE);
+        anc2text.setVisibility(View.GONE);
+        anc3tick.setVisibility(View.GONE);
+        anc3text.setVisibility(View.GONE);
 //        TextView anc4tick = (TextView)itemview.findViewById(R.id.pnc4tick);
 //        TextView anc4text = (TextView)itemview.findViewById(R.id.pnc4text);
-        checkPnc1StatusAndform(anc1tick,anc1text,pc);
+        checkPnc1StatusAndform(anc1tick, anc1text, pc);
         checkPnc2StatusAndform(anc2tick, anc2text, pc);
         checkPnc3StatusAndform(anc3tick, anc3text, pc);
 
@@ -162,10 +169,14 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
             anc1text.setText("PNC1-"+pc.getDetails().get("FWPNC1DATE"));
             if(pc.getDetails().get("pnc1_current_formStatus")!=null){
                 if(pc.getDetails().get("pnc1_current_formStatus").equalsIgnoreCase("upcoming")){
-
+                    anc1tick.setVisibility(View.VISIBLE);
+                    anc1text.setVisibility(View.VISIBLE);
+                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                 }else if(pc.getDetails().get("pnc1_current_formStatus").equalsIgnoreCase("urgent")){
                     anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc1text.setText("urgent");
+                    anc1tick.setVisibility(View.VISIBLE);
+                    anc1text.setVisibility(View.VISIBLE);
                 }
             }
         }else{
@@ -183,6 +194,8 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc1tick.setText("✘");
                     anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc1text.setText( "PNC1-" + alertDate);
+                    anc1tick.setVisibility(View.VISIBLE);
+                    anc1text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
                 }else {
                     anc1text.setVisibility(View.GONE);
@@ -199,9 +212,15 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
             anc2text.setText("PNC2-"+pc.getDetails().get("FWPNC2DATE"));
             if(pc.getDetails().get("pnc2_current_formStatus")!=null){
                 if(pc.getDetails().get("pnc2_current_formStatus").equalsIgnoreCase("upcoming")){
+                    anc2tick.setVisibility(View.VISIBLE);
+                    anc2text.setVisibility(View.VISIBLE);
+                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
+
 
                 }else if(pc.getDetails().get("pnc2_current_formStatus").equalsIgnoreCase("urgent")){
                     anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                    anc2tick.setVisibility(View.VISIBLE);
+                    anc2text.setVisibility(View.VISIBLE);
                 }
             }
         }else{
@@ -219,6 +238,8 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc2tick.setText("✘");
                     anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc2text.setText( "PNC2-" + alertDate);
+                    anc2tick.setVisibility(View.VISIBLE);
+                    anc2text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
                 }else {
                     anc2text.setVisibility(View.GONE);
@@ -235,9 +256,15 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
             anc3text.setText("PNC3-"+pc.getDetails().get("FWPNC3DATE"));
             if(pc.getDetails().get("pnc3_current_formStatus")!=null){
                 if(pc.getDetails().get("pnc3_current_formStatus").equalsIgnoreCase("upcoming")){
+                    anc3tick.setVisibility(View.VISIBLE);
+                    anc3text.setVisibility(View.VISIBLE);
+                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
+
 
                 }else if(pc.getDetails().get("pnc3_current_formStatus").equalsIgnoreCase("urgent")){
                     anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                    anc3tick.setVisibility(View.VISIBLE);
+                    anc3text.setVisibility(View.VISIBLE);
                 }
             }
         }else{
@@ -255,6 +282,8 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc3tick.setText("✘");
                     anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc3text.setText( "PNC3-" + alertDate);
+                    anc3tick.setVisibility(View.VISIBLE);
+                    anc3text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
                 }else {
                     anc3text.setVisibility(View.GONE);
