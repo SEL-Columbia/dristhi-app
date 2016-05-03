@@ -378,7 +378,7 @@
     <string name="child_service_mode_immunization">Immunization</string>
     <string name="anc_visit_labtest">ANC Lab Test Visit</string>
     <string name="anc_visit_integrasi">ANC Integration Visit</string>
-    <string name="anc_edit">Edit ANC</string>
+    <string name="anc_edit">Edit ANC Visit</string>
     <string name="months_away" translatable="false">months away</string>
     <string name="this_month" translatable="false">this month</string>
     <string name="delivered">delivered</string>

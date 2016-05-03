@@ -119,7 +119,7 @@
     <string name="str_anak_neonatal">Kunjungan Neonatal</string>
 
     <string name="str_kunjungan_anak">Kunjungan</string>
-    <string name="anc_edit">Edit ANC</string>
+    <string name="anc_edit">Edit ANC Visit</string>
     <string name="pnc_edit">Edit PNC</string>
     <string name="pnc_visit">PNC Visit</string>
     <string name="pnc_pospartum_kb">Postpartum KB</string>

@@ -18,6 +18,10 @@
         "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa"
       },
       {
+        "name": "nomorTelpon",
+        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/nomortelpon"
+      },
+      {
         "name": "Keterangan_k1k4",
         "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4"
       },
@@ -43,6 +47,10 @@
         "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/trimester_ke"
       },
       {
+        "name": "kunjunganKe",
+        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/Kunjungan_ke"
+      },
+      {
         "name": "ancKe",
         "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/anc_ke"
       },
@@ -64,13 +72,11 @@
       },
       {
         "name": "tandaVitalTDSistolik",
-        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/td_sistolik",
-        "source": "ibu.kartu_ibu.tandaVitalTDSistolik"
+        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/td_sistolik"
       },
       {
         "name": "tandaVitalTDDiastolik",
-        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/td_diastolik",
-        "source": "ibu.kartu_ibu.tandaVitalTDDiastolik"
+        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/td_diastolik"
       },
       {
         "name": "hasilPemeriksaanLILA",
@@ -130,7 +136,7 @@
       },
       {
         "name": "komplikasidalamKehamilan",
-        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/jumlah_fe"
+        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/komplikasi_dalam_kehamilan"
       },
       {
         "name": "rujukan",

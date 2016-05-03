@@ -90,7 +90,7 @@ public class AllConstantsINA {
         public static final String KARTU_IBU_ANC_REGISTRATION = "kartu_anc_registration";
         public static final String KARTU_IBU_ANC_OA="kartu_anc_registration_oa";
         public static final String KARTU_IBU_ANC_RENCANA_PERSALINAN = "kartu_anc_rencana_persalinan";
-        public static final String KARTU_IBU_ANC_EDIT="kartu_anc_edit";
+        public static final String KARTU_IBU_ANC_EDIT="kartu_anc_visit_edit";
         public static final String KARTU_IBU_ANC_CLOSE="kartu_anc_close";
         public static final String KARTU_IBU_ANC_VISIT="kartu_anc_visit";
         public static final String KARTU_IBU_ANC_VISIT_INTEGRASI = "kartu_anc_visit_integrasi";
