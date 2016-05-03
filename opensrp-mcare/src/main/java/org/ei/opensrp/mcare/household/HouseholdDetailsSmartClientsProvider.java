@@ -114,6 +114,15 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
 
             name.setText(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : "");
             age.setText(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "");
+
+            LinearLayout child_parent_carrier = (LinearLayout)itemView.findViewById(R.id.child_parent_holder);
+            ArrayList<String> stringList = new ArrayList<String>();
+            stringList.add(pc.getCaseId());
+            List <CommonPersonObject> commonPersonObjects = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcaremother").findByRelationalIDs(stringList);
+            if(commonPersonObjects.size()>0) {
+                CommonPersonObject mcaremother = commonPersonObjects.get(0);
+                addchildrenifany(child_parent_carrier,mcaremother);
+            }
         }else{
             ArrayList<String> stringList = new ArrayList<String>();
             stringList.add(pc.getCaseId());
