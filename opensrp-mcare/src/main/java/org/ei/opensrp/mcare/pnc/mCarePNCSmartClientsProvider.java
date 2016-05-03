@@ -119,7 +119,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 
 
         nid.setText("NID :" +(pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):""));
-        brid.setText("BRID :" +(pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):""));
+        brid.setText("BRID :" + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : ""));
 
           try {
                     dateofdelivery.setText("DOO :" + (pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : "").split("T")[0]);
@@ -127,7 +127,8 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         } catch (Exception e) {
             e.printStackTrace();
         }
-        constructRiskFlagView(pc,itemView);
+        itemView.setLayoutParams(clientViewLayoutParams);
+        constructRiskFlagView(pc, itemView);
         constructPNCReminderDueBlock((pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : ""),pc, itemView);
 //        constructNBNFDueBlock(pc, itemView);s
         constructPncVisitStatusBlock(pc,itemView);
@@ -135,7 +136,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 
 
 
-        itemView.setLayoutParams(clientViewLayoutParams);
+
 //        return itemView;
     }
 
@@ -147,12 +148,12 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         TextView anc3tick = (TextView)itemview.findViewById(R.id.pnc3tick);
         TextView anc3text = (TextView)itemview.findViewById(R.id.pnc3text);
 
-        anc1tick.setVisibility(View.GONE);
-        anc1text.setVisibility(View.GONE);
-        anc2tick.setVisibility(View.GONE);
-        anc2text.setVisibility(View.GONE);
-        anc3tick.setVisibility(View.GONE);
-        anc3text.setVisibility(View.GONE);
+//        anc1tick.setVisibility(View.GONE);
+//        anc1text.setVisibility(View.GONE);
+//        anc2tick.setVisibility(View.GONE);
+//        anc2text.setVisibility(View.GONE);
+//        anc3tick.setVisibility(View.GONE);
+//        anc3text.setVisibility(View.GONE);
 //        TextView anc4tick = (TextView)itemview.findViewById(R.id.pnc4tick);
 //        TextView anc4text = (TextView)itemview.findViewById(R.id.pnc4text);
         checkPnc1StatusAndform(anc1tick, anc1text, pc);
