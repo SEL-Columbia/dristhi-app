@@ -214,6 +214,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
         clientsView.setVisibility(View.VISIBLE);
         clientsProgressView.setVisibility(View.INVISIBLE);
 //        list.setBackgroundColor(Color.RED);

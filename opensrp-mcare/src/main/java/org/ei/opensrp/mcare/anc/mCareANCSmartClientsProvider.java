@@ -85,6 +85,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         TextView nid = (TextView)itemView.findViewById(R.id.nid);
         TextView brid = (TextView)itemView.findViewById(R.id.brid);
         TextView edd = (TextView)itemView.findViewById(R.id.edd);
+        TextView ga = (TextView)itemView.findViewById(R.id.ga);
 //        TextView psrfdue = (TextView)itemView.findViewById(R.id.psrf_due_date);
 ////        Button due_visit_date = (Button)itemView.findViewById(R.id.hh_due_date);
 //
@@ -110,6 +111,10 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         age.setText(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"");
         nid.setText("NID :" +(pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):""));
         brid.setText("BRID :" +(pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):""));
+
+        if(pc.getDetails().get("FWGESTATIONALAGE")!=null){
+            ga.setText("GA :" +pc.getDetails().get("FWGESTATIONALAGE")+ " weeks");
+        }
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -344,12 +349,15 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         List <Alert>alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(),"BirthNotificationPregnancyStatusFollowUp");
         if(alertlist.size() != 0){
             alerttextstatus = setAlertStatus("","",alertlist);
+            if(alerttextstatus.alertText.length()>0){
+                alerttextstatus.setAlertText(alerttextstatus.alertText.substring(1));
+            }
         }else{
             alerttextstatus = new alertTextandStatus("Not synced","not synced");
+            alerttextstatus.setAlertText(alerttextstatus.alertText);
+
         }
-        if(alerttextstatus.alertText.length()>0){
-            alerttextstatus.setAlertText(alerttextstatus.alertText.substring(1));
-        }
+
         CustomFontTextView NBNFDueDate = (CustomFontTextView)itemView.findViewById(R.id.nbnf_due_date);
         setalerttextandColorInView(NBNFDueDate, alerttextstatus, pc);
 

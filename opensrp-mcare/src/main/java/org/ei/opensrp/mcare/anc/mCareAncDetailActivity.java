@@ -170,32 +170,32 @@ public class mCareAncDetailActivity extends Activity {
     }
 
     private void pregnancyin2years(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRPREGTWYRS")!=null?ecclient.getDetails().get("FWPSRPREGTWYRS"):"0";
-        TextView stillbirth = (TextView)findViewById(R.id.history_of_mr);
+        String text = ecclient.getDetails().get("FWPSRPREGTWYRS")!=null?ecclient.getDetails().get("FWPSRPREGTWYRS"):"";
+        TextView stillbirth = (TextView)findViewById(R.id.number_of_pregnancy);
         stillbirth.setText(text);
     }
 
     private void historyofsb(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRPRSB")!=null?ecclient.getDetails().get("FWPSRPRSB"):"0";
-        TextView stillbirth = (TextView)findViewById(R.id.history_of_mr);
+        String text = ecclient.getDetails().get("FWPSRPRSB")!=null?ecclient.getDetails().get("FWPSRPRSB"):"";
+        TextView stillbirth = (TextView)findViewById(R.id.history_of_sb);
         stillbirth.setText(text);
     }
 
     private void historyofmr(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRPRMC")!=null?ecclient.getDetails().get("FWPSRPRMC"):"0";
+        String text = ecclient.getDetails().get("FWPSRPRMC")!=null?ecclient.getDetails().get("FWPSRPRMC"):"";
         TextView stillbirth = (TextView)findViewById(R.id.history_of_mr);
         stillbirth.setText(text);
 
     }
 
     private void numberofstillbirthview(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRNBDTH")!=null?ecclient.getDetails().get("FWPSRNBDTH"):"0";
+        String text = ecclient.getDetails().get("FWPSRNBDTH")!=null?ecclient.getDetails().get("FWPSRNBDTH"):"";
         TextView stillbirth = (TextView)findViewById(R.id.stillbirths);
         stillbirth.setText(text);
     }
 
     private void numberofChildrenView(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRTOTBIRTH")!=null?ecclient.getDetails().get("FWPSRTOTBIRTH"):"0";
+        String text = ecclient.getDetails().get("FWPSRTOTBIRTH")!=null?ecclient.getDetails().get("FWPSRTOTBIRTH"):"";
         TextView numberofChildren = (TextView)findViewById(R.id.livechildren);
         numberofChildren.setText(text);
 

@@ -202,6 +202,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
     public void setupViews(View view) {
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
 
         ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
         startregister.setVisibility(View.GONE);

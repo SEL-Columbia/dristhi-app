@@ -180,12 +180,14 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
-            android:id="@+id/edd" />
+            android:id="@+id/edd"
+            android:textSize="12sp" />
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
-            android:id="@+id/ga" />
+            android:id="@+id/ga"
+            android:textSize="12sp" />
     </LinearLayout>
     <ImageView
         android:layout_width="@dimen/smart_register_client_divider_height"

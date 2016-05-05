@@ -84,10 +84,6 @@ public class ChildDetailActivity extends Activity {
 
 
         name.setText(humanize((ChildClient.getDetails().get("FWBNFCHILDNAME") != null ? ChildClient.getDetails().get("FWBNFCHILDNAME") : "").replace("+", "_")));
-
-//        brid.setText(getString(R.string.BRID) +humanize((ChildClient.getDetails().get("FWWOMBID") != null ? ChildClient.getDetails().get("FWWOMBID") : "").replace("+", "_")));
-//        nid.setText(getString(R.string.NID) +humanize((ChildClient.getDetails().get("FWWOMNID") != null ? ChildClient.getDetails().get("FWWOMNID") : "").replace("+", "_")));
-
         fathersname.setText(getString(R.string.child_details_fathers_name_label)+(mcaremotherObject.getDetails().get("FWHUSNAME") != null ? mcaremotherObject.getDetails().get("FWHUSNAME") : ""));
         age.setText(getString(R.string.elco_age_label) + age(ChildClient) + " days ");
         godhhid.setText(getString(R.string.hhid_gob_elco_label) + (mcaremotherObject.getColumnmaps().get("GOBHHID")!=null?mcaremotherObject.getColumnmaps().get("GOBHHID"):""));
@@ -101,7 +97,7 @@ public class ChildDetailActivity extends Activity {
 
        checkEncc1view(ChildClient);
        checkEncc2view(ChildClient);
-//        checkAnc3view(ChildClient);
+        checkEncc3view(ChildClient);
 //        checktempView(ChildClient);
        doolay(ChildClient);
 //        final ImageView householdview = (ImageView) findViewById(R.id.householdprofileview);

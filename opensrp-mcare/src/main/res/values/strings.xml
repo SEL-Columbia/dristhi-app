@@ -303,7 +303,7 @@
     <string name="ic_keyboard_arrow_up">&#xe0c8;</string>
 
     <string name="hh_profile">Profile</string>
-    <string name="hh_no_of_mwra">No of ELCO</string>
+    <string name="hh_no_of_mwra">No. of ELCO</string>
     <string name="hh_last_visit_date">Last Visit Date</string>
     <string name="hh_visit_due_date">HH Visit Due Date</string>
     <string name="hh_other_inhabitants">Other Inhabitants</string>

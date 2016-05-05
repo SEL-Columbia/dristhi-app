@@ -190,13 +190,16 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
                 viewHolder.due_visit_date.setOnClickListener(onClickListener);
+                viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 viewHolder.due_visit_date.setTag(smartRegisterClient);
 
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
                 viewHolder.due_visit_date.setOnClickListener(onClickListener);
                 viewHolder.due_visit_date.setTag(smartRegisterClient);
+                viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
+
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
@@ -209,6 +212,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             }
             if(alertlist_for_client.get(i).isComplete()){
                 viewHolder.due_visit_date.setText("visited");
+                viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
             }
         }
