@@ -47,6 +47,7 @@ public class Event extends BaseDataObject{
     private List<Obs> obs;
     @JsonProperty
     private String entityType;
+
     @JsonProperty
     private Map<String, String> details;
     @JsonProperty

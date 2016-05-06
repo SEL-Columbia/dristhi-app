@@ -6,7 +6,7 @@
         "lookup": "event",
         "fields": [
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "New Household Registration",
             "opens_case":["ec_household"]
           }
@@ -64,25 +64,25 @@
             "opens_case":["ec_elco"]
           },
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "ANC Reminder Visit 1",
             "closes_case":["ec_elco"],
             "opens_case":["ec_mcaremother"]
           },
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "ANC Reminder Visit 2",
             "closes_case":["ec_elco","ec_pnc"],
             "opens_case":["ec_mcaremother"]
           },
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "ANC Reminder Visit 3",
             "closes_case":["ec_elco","ec_pnc"],
             "opens_case":["ec_mcaremother"]
           },
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "ANC Reminder Visit 4",
             "closes_case":["ec_elco","ec_pnc"],
             "opens_case":["ec_mcaremother"]
@@ -105,24 +105,24 @@
             "opens_case":["ec_pnc"]
           },
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "Birth Notification Followup form",
             "closes_case":["ec_elco","ec_mcaremother"],
             "opens_case":["ec_pnc"]
           },
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "PNC Reminder Visit 1",
             "closes_case":["ec_elco","ec_mcaremother"],
             "opens_case":["ec_pnc"]
           }, {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "PNC Reminder Visit 2",
             "closes_case":["ec_elco","ec_mcaremother"],
             "opens_case":["ec_pnc"]
           },
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "PNC Reminder Visit 3",
             "closes_case":["ec_elco","ec_mcaremother"],
             "opens_case":["ec_pnc"]
@@ -136,21 +136,21 @@
         "lookup": "event",
         "fields": [
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "Child Vital Status",
             "opens_case":["ec_mcarechild"]
           },
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "Essential Newborn Care 1",
             "opens_case":["ec_mcarechild"]
           }, {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "Essential Newborn Care 2",
             "opens_case":["ec_mcarechild"]
           },
           {
-            "field_name":"event_type",
+            "field_name":"eventType",
             "field_value": "Essential Newborn Care 3",
             "opens_case":["ec_mcarechild"]
           }

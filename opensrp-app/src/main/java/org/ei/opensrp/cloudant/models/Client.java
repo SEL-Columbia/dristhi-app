@@ -65,26 +65,25 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
     public static final String type_key = "type";
     public static final String adresses_key = "adresses";
     public static final String attributes_key = "attributes";
-    public static final String base_entity_id_key = "base_entity_id";
-    public static final String birth_date_key = "birth_date";
-    public static final String birth_date_approx_key = "birth_date_approx";
+    public static final String base_entity_id_key = "baseEntityId";
+    public static final String birth_date_key = "birthDate";
+    public static final String birth_date_approx_key = "birthDateApprox";
     public static final String creator_key = "creator";
-    public static final String date_created_key = "date_created";
-    public static final String date_voided_key = "date_voided";
-    public static final String date_edited_key = "date_edited";
-    public static final String death_date_key = "death_date";
-    public static final String firstname_key = "firstname";
+    public static final String date_created_key = "dateCreated";
+    public static final String date_voided_key = "dateVoided";
+    public static final String date_edited_key = "dateEdited";
+    public static final String death_date_key = "deathDate";
+    public static final String firstname_key = "firstName";
     public static final String identifiers_key = "identifiers";
     public static final String gender_key = "gender";
-    public static final String lastname_key = "lastname";
-    public static final String middlename_key = "middlename";
+    public static final String lastname_key = "lastName";
+    public static final String middlename_key = "middleName";
     public static final String voider_key = "voider";
-    public static final String void_reason_key = "void_reason";
+    public static final String void_reason_key = "voidReason";
     public static final String editor_key = "editor";
-    public static final String death_date_approx_key = "death_date_approx";
+    public static final String death_date_approx_key = "deathDateApprox";
     public static final String voided_key = "voided";
     public static final String relationships_key = "relationships";
-    public static final String relational_base_entityId_key = "relational_base_entityId";
 
     public static Client fromRevision(BasicDocumentRevision rev) {
         Client client = new Client();
@@ -138,8 +137,6 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
                 client.setVoided((Boolean) map.get(voided_key));
             if (map.get(relationships_key) != null)
                 client.setRelationships((Map<String, List<String>>) map.get(relationships_key));
-            if (map.get(relational_base_entityId_key) != null)
-                client.setRelationalBaseEntityId((String) map.get(relational_base_entityId_key));
             return client;
         }
         return null;
@@ -191,8 +188,6 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
             map.put(voided_key, getVoided());
         if (getRelationships() != null)
             map.put(relationships_key, getRelationships());
-        if (getRelationalBaseEntityId() != null)
-            map.put(relational_base_entityId_key, getRelationalBaseEntityId());
         return map;
     }
 

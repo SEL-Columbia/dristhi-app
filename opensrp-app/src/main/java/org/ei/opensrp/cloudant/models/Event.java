@@ -60,22 +60,22 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
     }
 
     public static final String type_key = "type";
-    public static final String date_created_key = "date_created";
+    public static final String date_created_key = "dateCreated";
     public static final String voided_key = "voided";
-    public static final String base_entity_id_key = "base_entity_id";
+    public static final String base_entity_id_key = "baseEntityId";
     public static final String editor_key = "editor";
     public static final String creator_key = "creator";
-    public static final String date_edited_key = "date_edited";
+    public static final String date_edited_key = "dateEdited";
     public static final String voider_key = "voider";
-    public static final String date_voided_key = "date_voided";
-    public static final String void_reason_key = "void_reason";
-    public static final String details_key = "void_reason";
-    public static final String entity_type_key = "entity_type";
-    public static final String form_submission_id_key = "form_submission_id";
-    public static final String location_id_key = "location_id";
-    public static final String event_date_key = "event_date";
-    public static final String event_type_key = "event_type";
-    public static final String event_id_key = "event_id";
+    public static final String date_voided_key = "dateVoided";
+    public static final String void_reason_key = "voidReason";
+    public static final String details_key = "voidReason";
+    public static final String entity_type_key = "entityType";
+    public static final String form_submission_id_key = "formSubmissionId";
+    public static final String location_id_key = "locationId";
+    public static final String event_date_key = "eventDate";
+    public static final String event_type_key = "eventType";
+    public static final String event_id_key = "eventId";
     public static final String obs_key = "obs";
     public static final String provider_key = "provider";
     public static final String version_key = "version";

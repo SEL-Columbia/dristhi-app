@@ -30,6 +30,7 @@ public class ClientProcessor {
     private static ClientProcessor instance;
     private CloudantDataHandler mCloudantDataHandler;
     private static final String TAG = "ClientProcessor";
+    private static final String baseEntityIdJSONKey = "baseEntityId";
 
     Context mContext;
 
@@ -60,7 +61,7 @@ public class ClientProcessor {
         for (JSONObject event : events) {
             // JSONObject event = events.get(0);
 
-            String baseEntityId = event.getString("base_entity_id");
+            String baseEntityId = event.getString(baseEntityIdJSONKey);
             //for data integrity check if a client exists, if not pull one from cloudant and insert in drishti sqlite db
 
             //if(clientfromsqlite==null){
@@ -134,7 +135,7 @@ public class ClientProcessor {
             if(closesCase==null || closesCase.length()==0){
                 return;
             }
-            String baseEntityId = client.getString("base_entity_id");
+            String baseEntityId = client.getString(baseEntityIdJSONKey);
 
             for (int i = 0; i < closesCase.length(); i++) {
                 String tableName=closesCase.getString(i);
@@ -160,8 +161,8 @@ public class ClientProcessor {
 
                 JSONObject columnMappings = getColumnMappings(clientType);
                 JSONArray columns = columnMappings.getJSONArray("columns");
-                String baseEntityId = client.getString("base_entity_id");
-                String expectedEncounterType = event.has("event_type") ? event.getString("event_type") : null;
+                String baseEntityId = client.getString(baseEntityIdJSONKey);
+                String expectedEncounterType = event.has("eventType") ? event.getString("eventType") : null;
 
                 ContentValues contentValues = new ContentValues();
                 //Add the base_entity_id
@@ -260,7 +261,7 @@ public class ClientProcessor {
 
                 // save the values to db
                 Long id = executeInsertStatement(contentValues, clientType);
-                Long timestamp = event.getLong("event_date");
+                Long timestamp = event.getLong("eventDate");
                 addContentValuesToDetailsTable(contentValues, timestamp);
                 updateClientDetailsTable(event, client);
             }
@@ -301,8 +302,8 @@ public class ClientProcessor {
      */
     public void updateClientDetailsTable(JSONObject event, JSONObject client) {
         try {
-            String baseEntityId = client.getString("base_entity_id");
-            Long timestamp = event.getLong("event_date");
+            String baseEntityId = client.getString(baseEntityIdJSONKey);
+            Long timestamp = event.getLong("eventDate");
 
             Map<String, String> addressInfo = getClientAddressAsMap(client);
             saveClientDetails(baseEntityId, addressInfo, timestamp);

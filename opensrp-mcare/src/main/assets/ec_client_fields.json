@@ -7,7 +7,7 @@
           "column_name": "base_entity_id",
           "document_type": "Client",
           "json_mapping": {
-            "field_name": "base_entity_id"
+            "field_name": "baseEntityId"
           }
         },
         {
@@ -38,7 +38,7 @@
           "column_name": "FWHOHFNAME",
           "document_type": "Client",
           "json_mapping": {
-            "field_name": "firstname"
+            "field_name": "firstName"
           }
         },
         {
@@ -70,7 +70,7 @@
           "column_name": "base_entity_id",
           "document_type": "Client",
           "json_mapping": {
-            "field_name": "base_entity_id"
+            "field_name": "baseEntityId"
           }
         },
         {
@@ -78,7 +78,7 @@
           "document_type": "Client",
           "json_mapping": {
             "data_segment": "relationships",
-            "field_name": "household_head"
+            "field_name": "householdHead"
           }
         },
         {
@@ -101,7 +101,7 @@
           "column_name": "FWWOMFNAME",
           "document_type": "Client",
           "json_mapping": {
-            "field_name": "firstname"
+            "field_name": "firstName"
           }
         },
         {
@@ -177,7 +177,7 @@
           "column_name": "base_entity_id",
           "document_type": "Client",
           "json_mapping": {
-            "field_name": "base_entity_id"
+            "field_name": "baseEntityId"
           }
         },
         {
@@ -273,7 +273,7 @@
           "column_name": "base_entity_id",
           "document_type": "Client",
           "json_mapping": {
-            "field_name": "base_entity_id"
+            "field_name": "baseEntityId"
           }
         },
         {
@@ -376,7 +376,7 @@
           "column_name": "base_entity_id",
           "document_type": "Client",
           "json_mapping": {
-            "field_name": "base_entity_id"
+            "field_name": "baseEntityId"
           }
         },
         {
@@ -391,7 +391,7 @@
           "column_name": "FWBNFDTOO",
           "document_type": "Client",
           "json_mapping": {
-            "field_name": "birth_date"
+            "field_name": "birthDate"
           }
         },
         {

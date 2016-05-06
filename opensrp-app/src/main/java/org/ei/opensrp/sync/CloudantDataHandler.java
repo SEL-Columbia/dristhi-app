@@ -47,6 +47,9 @@ import java.util.concurrent.CountDownLatch;
 public class CloudantDataHandler extends ReplicationService {
     private static final String TAG = CloudantDataHandler.class.getCanonicalName();
     private static CloudantDataHandler instance;
+    private static final String baseEntityIdJSONKey = "baseEntityId";
+    List<String> fields = Arrays.asList("obs", "eventDate", "eventType", "formSubmissionId", "provider", baseEntityIdJSONKey, "type", "entityType", "version");
+
 
     public CloudantDataHandler(Context context) throws Exception {
         this(context, null);
@@ -151,7 +154,6 @@ public class CloudantDataHandler extends ReplicationService {
         query.put("version", filterByVersion);
         query.put("type", "org.ei.opensrp.cloudant.models.Event");
 
-        List<String> fields = Arrays.asList("obs", "event_date", "event_type", "form_submission_id", "provider", "base_entity_id", "type", "entity_type", "version");
         QueryResult result = indexManager.find(query, 0, 0, fields, sortDocument);
 
         if (result != null){
@@ -226,7 +228,7 @@ public class CloudantDataHandler extends ReplicationService {
     public Client getClientDocumentByBaseEntityId(String baseEntityId) throws Exception {
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("type", "org.ei.opensrp.cloudant.models.Client");
-        query.put("base_entity_id", baseEntityId);
+        query.put(baseEntityIdJSONKey, baseEntityId);
         Iterator<DocumentRevision> iterator = indexManager.find(query).iterator();
 
         if (iterator != null && iterator.hasNext()) {
