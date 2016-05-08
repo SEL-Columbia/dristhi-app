@@ -116,4 +116,5 @@
     <string name="norma_birth">Normal Birth</string>
     <string name="Caeserian_section">Caeserian Section</string>
     <string name="dont_know">Don\'t Know</string>
+    <string name="mcare_child_details">Child Details</string>
 </resources>

@@ -218,7 +218,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
         for(int i = 0;i<mcarechildren.size();i++){
             Log.v("here is log!!", "children here");
             LinearLayout childrenLayout = (LinearLayout)inflater().inflate(R.layout.household_inhabitants_child_clients, null);
-            TextView childgender = (TextView)childrenLayout.findViewById(R.id.gender);
+            TextView childname = (TextView)childrenLayout.findViewById(R.id.childname);
             TextView age = (TextView)childrenLayout.findViewById(R.id.age);
             TextView childRegisterLink = (TextView)childrenLayout.findViewById(R.id.linktoregister);
             childRegisterLink.setPaintFlags(childRegisterLink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -230,13 +230,8 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
                 }
             });
             age.setText("" + childage(mcarechildren.get(i)) + " days");
-            String gender = "";
-            if((mcarechildren.get(i).getColumnmaps().get("FWBNFGEN") != null ? mcarechildren.get(i).getColumnmaps().get("FWBNFGEN") : "").equalsIgnoreCase("1")){
-                gender = "Boy";
-            }else if((mcarechildren.get(i).getColumnmaps().get("FWBNFGEN") != null ? mcarechildren.get(i).getColumnmaps().get("FWBNFGEN") : "").equalsIgnoreCase("2")){
-                gender = "girl";
-            }
-            childgender.setText(gender);
+
+            childname.setText(mcarechildren.get(i).getDetails().get("FWBNFCHILDNAME") != null ? mcarechildren.get(i).getDetails().get("FWBNFCHILDNAME") : "");
 
 
 

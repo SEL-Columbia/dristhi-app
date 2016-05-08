@@ -235,10 +235,12 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                     }
                 });
                 psrfdue.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
+                psrfdue.setTextColor(context.getResources().getColor(R.color.text_black));
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
                 psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
-               psrfdue.setOnClickListener(onClickListener);
+                psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
+                psrfdue.setOnClickListener(onClickListener);
                psrfdue.setTag(smartRegisterClient);
 
             }
@@ -246,8 +248,11 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                psrfdue.setOnClickListener(onClickListener);
                psrfdue.setTag(smartRegisterClient);
                 psrfdue.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
+                psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
+
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
+                psrfdue.setTextColor(context.getResources().getColor(R.color.text_black));
                 psrfdue.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
                psrfdue.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -259,6 +264,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
             if(alertlist_for_client.get(i).isComplete()){
 //               psrfdue.setText("visited");
                 psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
+                psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 psrfdue.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

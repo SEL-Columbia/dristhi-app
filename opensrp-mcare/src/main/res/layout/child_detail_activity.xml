@@ -6,7 +6,7 @@
               android:orientation="vertical"
               android:background="@color/client_list_header_dark_grey">
 
-    <include layout="@layout/pncdetail_nav_bar"
+    <include layout="@layout/childdetail_nav_bar"
          />
 
     <ImageView

@@ -44,7 +44,6 @@ import static org.ei.opensrp.util.StringUtil.humanize;
  * Created by user on 2/12/15.
  */
 public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
-
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
