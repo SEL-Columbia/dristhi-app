@@ -70,6 +70,9 @@ public class mCarePncDetailActivity extends Activity {
         TextView jivitahhid = (TextView) findViewById(R.id.jivitahhid);
         TextView godhhid = (TextView) findViewById(R.id.gobhhid);
         TextView village = (TextView) findViewById(R.id.village);
+        TextView typeofdelivery  = (TextView) findViewById(R.id.preganancy_type_of_delivery);
+        TextView pregnancy_outcome  = (TextView) findViewById(R.id.preganancy_outcome);
+
 
         ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +92,24 @@ public class mCarePncDetailActivity extends Activity {
         jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(ancclient.getColumnmaps().get("JiVitAHHID") != null ? ancclient.getColumnmaps().get("JiVitAHHID") : ""));
         godhhid.setText(getString(R.string.hhid_gob_elco_label) + (ancclient.getColumnmaps().get("GOBHHID") != null ? ancclient.getColumnmaps().get("GOBHHID") : ""));
         village.setText(humanize(ancclient.getDetails().get("location_name") != null ? ancclient.getDetails().get("location_name") : ""));
-       AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("mcaremother");
+
+        String type_of_delivery = ancclient.getDetails().get("FWPNC1DELTYPE") != null ? ancclient.getDetails().get("FWPNC1DELTYPE") : "";
+        if (type_of_delivery.equalsIgnoreCase("1")){
+            typeofdelivery.setText(getString(R.string.norma_birth));
+        } else if (type_of_delivery.equalsIgnoreCase("2")){
+            typeofdelivery.setText(getString(R.string.Caeserian_section));
+        }else{
+            typeofdelivery.setText(getString(R.string.dont_know));
+        }
+           String outcomevalue = ancclient.getColumnmaps().get("FWBNFSTS")!=null?ancclient.getColumnmaps().get("FWBNFSTS") : "";
+
+        if (outcomevalue.equalsIgnoreCase("3")){
+            pregnancy_outcome.setText(getString(R.string.mcare_pnc_liveBirth));
+        } else if (outcomevalue.equalsIgnoreCase("4")){
+            pregnancy_outcome.setText(getString(R.string.mcare_pnc_Stillbirth));
+        }
+
+        AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("mcaremother");
         CommonPersonObject ancobject = allancRepository.findByCaseID(ancclient.entityId());
         AllCommonsRepository allelcorep = Context.getInstance().allCommonsRepositoryobjects("elco");
         CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getRelationalId());

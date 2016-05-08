@@ -169,6 +169,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         if(alertlist_for_client.size() == 0 ){
             viewHolder.due_visit_date.setText("Not Synced to Server");
             viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
+            viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.text_black));
             viewHolder.due_visit_date.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -179,6 +180,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         for(int i = 0;i<alertlist_for_client.size();i++){
             viewHolder.due_visit_date.setText(alertlist_for_client.get(i).expiryDate());
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
+                viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.text_black));
                 viewHolder.due_visit_date.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -203,6 +205,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
+                viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.text_black));
                 viewHolder.due_visit_date.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

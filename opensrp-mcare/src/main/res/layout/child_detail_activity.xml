@@ -122,7 +122,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="Date Of Outcome"
+                        android:text="Date Of Birth"
                         android:id="@+id/textView6"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"

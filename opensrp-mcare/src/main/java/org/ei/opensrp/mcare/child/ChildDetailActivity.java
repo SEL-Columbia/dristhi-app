@@ -68,6 +68,7 @@ public class ChildDetailActivity extends Activity {
         TextView jivitahhid = (TextView) findViewById(R.id.jivitahhid);
         TextView godhhid = (TextView) findViewById(R.id.gobhhid);
         TextView village = (TextView) findViewById(R.id.village);
+        TextView TypeOfDelivery = (TextView) findViewById(R.id.preganancy_type_of_delivery);
 
         ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +90,14 @@ public class ChildDetailActivity extends Activity {
         godhhid.setText(getString(R.string.hhid_gob_elco_label) + (mcaremotherObject.getColumnmaps().get("GOBHHID")!=null?mcaremotherObject.getColumnmaps().get("GOBHHID"):""));
         jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(mcaremotherObject.getColumnmaps().get("JiVitAHHID")!=null?mcaremotherObject.getColumnmaps().get("JiVitAHHID"):""));
         village.setText(humanize((mcaremotherObject.getDetails().get("mauza") != null ? mcaremotherObject.getDetails().get("mauza") : "").replace("+", "_")));
-
+        String type_of_delivery = mcaremotherObject.getDetails().get("FWPNC1DELTYPE") != null ? mcaremotherObject.getDetails().get("FWPNC1DELTYPE") : "";
+        if (type_of_delivery.equalsIgnoreCase("1")){
+            TypeOfDelivery.setText(getString(R.string.norma_birth));
+        } else if (type_of_delivery.equalsIgnoreCase("2")){
+            TypeOfDelivery.setText(getString(R.string.Caeserian_section));
+        }else{
+            TypeOfDelivery.setText(getString(R.string.dont_know));
+        }
 
 
 
@@ -135,7 +143,7 @@ public class ChildDetailActivity extends Activity {
         TextView edd = (TextView)findViewById(R.id.date_of_outcome);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date edd_date = format.parse(ancclient.getColumnmaps().get("FWBNFDOB")!=null?ancclient.getColumnmaps().get("FWBNFDOB"):"");
+            Date edd_date = format.parse(ancclient.getDetails().get("FWBNFDOB")!=null?ancclient.getDetails().get("FWBNFDOB"):"");
             GregorianCalendar calendar = new GregorianCalendar();
             calendar.setTime(edd_date);
             edd_date.setTime(calendar.getTime().getTime());
