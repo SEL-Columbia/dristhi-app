@@ -52,7 +52,7 @@
     <string name="str_pnc_search_hint">Search PNC Register</string>
     <string name="str_child_search_hint">Search Child Register</string>
     <string name="label_sorted_by">Sorted By:</string>
-    <string name="label_village">, Filtered By:</string>
+    <string name="label_village">,Filtered By:</string>
     <string name="ec_register_wife_age">({0})</string>
 
     <string name="ec_register_male_child">Male\n{0}</string>
@@ -302,10 +302,10 @@
     <string name="ic_keyboard_arrow_right">&#xe0c7;</string>
     <string name="ic_keyboard_arrow_up">&#xe0c8;</string>
 
-    <string name="hh_profile">Profile</string>
-    <string name="hh_no_of_mwra">No. of ELCO</string>
-    <string name="hh_last_visit_date">Last Visit Date</string>
-    <string name="hh_visit_due_date">HH Visit Due Date</string>
+    <string name="hh_profile">PROFILE</string>
+    <string name="hh_no_of_mwra">NO. OF ELCO</string>
+    <string name="hh_last_visit_date">LAST VISIT DATE</string>
+    <string name="hh_visit_due_date">HH VISIT DUE DATE</string>
     <string name="hh_other_inhabitants">Other Inhabitants</string>
     <string name="hh_inhabitants_details">HH Inhabitants Details</string>
     <string name="household_entries">All Household Entries</string>
@@ -320,7 +320,7 @@
     <string name="hh_fwGobhhid_sort">HHID - Government</string>
     <string name="hh_fwJivhhid_sort">HHID - JiVitA</string>
     <string name="due_status">Due Status</string>
-    <string name="hh_search_hint">Search Household</string>
+    <string name="hh_search_hint">Search</string>
     <string name="hh_no_mwra">No ELCO</string>
     <string name="hh_has_mwra">Has one or more ELCO</string>
     <string name="elco_search_hint">Search Eligible Couples</string>

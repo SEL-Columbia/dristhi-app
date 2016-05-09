@@ -326,6 +326,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
     private void setalerttextandColorInView(CustomFontTextView customFontTextView, alertTextandStatus alerttextstatus, CommonPersonObjectClient pc) {
         customFontTextView.setText(alerttextstatus.getAlertText() != null ? alerttextstatus.getAlertText() : "");
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("normal")){
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.text_black));
             customFontTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -336,6 +337,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         }
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("upcoming")){
             customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             customFontTextView.setOnClickListener(onClickListener);
             customFontTextView.setTag(R.id.clientobject, pc);
             customFontTextView.setTag(R.id.textforPncRegister, alerttextstatus.getAlertText() != null ? alerttextstatus.getAlertText() : "");
@@ -344,6 +346,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("urgent")){
             customFontTextView.setOnClickListener(onClickListener);
             customFontTextView.setTag(R.id.clientobject, pc);
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             customFontTextView.setTag(R.id.textforPncRegister,alerttextstatus.getAlertText() != null ? alerttextstatus.getAlertText() : "");
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
             customFontTextView.setTag(R.id.AlertStatustextforPncRegister, "urgent");
@@ -352,6 +355,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("expired")){
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
             customFontTextView.setText("expired");
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.text_black));
             customFontTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -362,6 +366,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("complete")){
 //               psrfdue.setText("visited");
             customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             customFontTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

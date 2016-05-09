@@ -135,6 +135,10 @@
     <style name="CustomFontTextViewStyle.StatusBar.Bold">
         <item name="fontVariant">bold</item>
     </style>
+    <style name="CustomFontTextViewStyle.StatusBar.Bold.NoPadding">
+        <item name="fontVariant">bold</item>
+        <item name="android:paddingLeft">0dp</item>
+    </style>
 
     <style name="CustomFontTextViewStyle.StatusBar.Black">
         <item name="fontVariant">black</item>

@@ -198,13 +198,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
     @Override
     protected void onInitialization() {
-//        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
-//                context.allBeneficiaries(), context.listCache(),
-//                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new HouseholdCensusDueDateSort());
-
-//        villageController = new VillageController(context.allEligibleCouples(),
-//                context.listCache(), context.villagesCache());
-//        dialogOptionMapper = new DialogOptionMapper();
         context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
     }
 
