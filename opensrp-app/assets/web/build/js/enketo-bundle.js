@@ -1,4 +1,45 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./xpath-evaluator-binding":[function(require,module,exports){
+tthEvaluator = require('extended-xpath');
+var openrosa_xpath_extensions = require( 'openrosa-xpath-extensions');
+
+module.exports = function() {
+    // re-implement XPathJS ourselves!
+    var evaluator = new XPathEvaluator();
+    this.xml.jsCreateExpression = function() {
+        return evaluator.createExpression.apply( evaluator, arguments );
+    };
+    this.xml.jsCreateNSResolver = function() {
+        return evaluator.createNSResolver.apply( evaluator, arguments );
+    };
+    this.xml.jsEvaluate = function(e, contextPath, namespaceResolver, resultType, result) {
+        var val, evaluator;
+        evaluator = new ExtendedXpathEvaluator(
+                function wrappedXpathEvaluator(v) {
+                    var doc = contextPath.ownerDocument;
+                    return doc.evaluate(v, contextPath, namespaceResolver,
+                            // We pretty much always want to get a String in
+                            // the java rosa functions, and we don't want to
+                            // pass the top-level expectation all the way
+                            // down, so it's fairly safe to hard-code this,
+                            // especially considering we handle NUMBER_TYPEs
+                            // manually.
+                            // TODO what is `result` for?  Should it be
+                            // replaced in this call?
+                            XPathResult.ANY_TYPE, result);
+                            //resultType, result);
+                },
+                openrosa_xpath_extensions);
+        val = evaluator.evaluate(e);
+        return val;
+    };
+    window.JsXPathException =
+            window.JsXPathExpression =
+            window.JsXPathNSResolver =
+            window.JsXPathResult =
+            window.JsXPathNamespace = true;
+};
+
+},{"extended-xpath":"extended-xpath","openrosa-xpath-extensions":"openrosa-xpath-extensions"}],1:[function(require,module,exports){
 /**
  * This file is just meant to facilitate enketo-core development as a standalone library.
  *
@@ -14,7 +55,7 @@ var support = require( './src/js/support' );
 var Form = require( './src/js/Form' );
 var fileManager = require( './src/js/file-manager' );
 
-var loadErrors, form, formStr, modelStr, loadDraft, savePartialData;
+var loadErrors, form, formStr, modelStr;
 
 // if querystring touch=true is added, override detected touchscreen presence
 if ( getURLParameter( 'touch' ) === 'true' ) {
@@ -37,31 +78,39 @@ if ( getURLParameter( 'xform' ) !== 'null' ) {
     initializeForm();
 }
 
-loadDraft = function(passedDataStr){
-   	$( '.guidance' ).remove();
-    modelStr = passedDataStr;
+window.loadDraft = function(xmlDataString){
+	$( '.guidance' ).remove();
+    modelStr = xmlDataString;
+    Android.log(xmlDataString);
+    form.resetView();
+    //form.init();
     initializeForm();
 }
 
-savePartialData = function(){
-    Android.savePartialFormData(form.getDataStr());
+window.savePartialData = function(){
+	Android.savePartialFormData(form.getDataStr());
 }
 
 // validate handler for validate button
 $( '#validate-form' ).on( 'click', function() {
-    form.validate()
-        .then( function( valid ) {
-            if ( !valid ) {
-                //alert( 'Form contains errors. Please see fields marked in red.' );
-                Android.showFormErrorToast();
-            } else {
-                //alert( 'Form is valid! (see XML record and media files in the console)' );
-                //console.log( 'record:', form.getDataStr() );
-                //console.log( 'media files:', fileManager.getCurrentFiles() );
-                Android.processFormSubmission(form.getDataStr());
-            }
-        } );
+    form.validate();
+    if ( !form.isValid() ) {
+        //alert( 'Form contains errors. Please see fields marked in red.' );
+        Android.showFormErrorToast();
+    } else {
+        //alert( 'Form is valid! (see XML record and media files in the console)' );
+        //console.log( 'record:', form.getDataStr() );
+        //console.log( 'media files:', fileManager.getCurrentFiles() );
+        Android.processFormSubmission(form.getDataStr());
+    }
 } );
+
+window.resetForm = function() {
+	$( '.guidance' ).remove();
+    modelStr = globalModelStr;
+    form.resetView();
+    initializeForm();
+}
 
 // initialize the form
 function initializeForm() {
@@ -85,20 +134,7 @@ function getURLParameter( name ) {
     );
 }
 
-},{"./src/js/Form":16,"./src/js/file-manager":19,"./src/js/support":21,"jquery":9}],2:[function(require,module,exports){
-module.exports={
-    "maps": [ {
-        "tiles": [ "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" ],
-        "name": "streets",
-        "attribution": "Map data © <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors"
-    }, {
-        "tiles": "GOOGLE_SATELLITE",
-        "name": "satellite"
-    } ],
-    "googleApiKey": ""
-}
-
-},{}],3:[function(require,module,exports){
+},{"./src/js/Form":13,"./src/js/file-manager":19,"./src/js/support":21,"jquery":9}],2:[function(require,module,exports){
 /*!
  * Datepicker for Bootstrap v1.4.1 (https://github.com/eternicode/bootstrap-datepicker)
  *
@@ -1882,11 +1918,12 @@ module.exports={
 
 }(window.jQuery));
 
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /** Customized for Enketo:
  *  - wrapped anonymous function inside an AMD/CommonJS wrapper and removed the (window.jQuery) all the way at the bottom
  *  - removed tooltip html
  *  - keep original input element intact instead of moving it inside the slider div
+ *  - added wrapper .widget div for easier DOM customization
  */
 
 /* 
@@ -1903,54 +1940,58 @@ module.exports={
  * limitations under the License.
  * ========================================================= */
 
-( function( factory ) {
-    if ( typeof define === "function" && define.amd ) {
-        define( [ "jquery" ], factory );
-    } else if ( typeof exports === 'object' ) {
-        factory( require( 'jquery' ) );
+(function(factory) {
+    if (typeof define === "function" && define.amd) {
+        define(["jquery"], factory);
+    } else if (typeof exports === 'object') {
+        factory(require('jquery'));
     } else {
-        factory( jQuery );
+        factory(jQuery);
     }
-}( function( $, undefined ) {
+}(function($, undefined) {
 
     var ErrorMsgs = {
-        formatInvalidInputErrorMsg: function( input ) {
+        formatInvalidInputErrorMsg: function(input) {
             return "Invalid input value '" + input + "' passed in";
         },
         callingContextNotSliderInstance: "Calling context element does not have instance of Slider bound to it. Check your code to make sure the JQuery object returned from the call to the slider() initializer is calling the method"
     };
 
-    var Slider = function( element, options ) {
-        var el = this.element = $( element ).hide();
-        var origWidth = $( element )[ 0 ].style.width;
+    var Slider = function(element, options) {
+        var el = this.element = $(element).hide();
+        var origWidth = $(element)[0].style.width;
 
         var updateSlider = false;
-        var widget = this.element.next( '.widget' );
+        var widget = this.element.next('.widget');
 
-        if ( widget.hasClass( 'slider' ) === true ) {
+        if (widget.hasClass('slider') === true) {
             updateSlider = true;
-            this.picker = widget;
+            this.widget = widget;
         } else {
-            this.picker = $( '<div class="slider widget">' +
-                '<div class="slider-track">' +
-                '<div class="slider-selection"></div>' +
-                '<div class="slider-handle"></div>' +
-                '<div class="slider-handle"></div>' +
-                '</div>' +
-                //'<div id="tooltip" class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>' +
-                //<div id="tooltip_min" class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>' +
-                //'<div id="tooltip_max" class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>' +
-                '</div>' )
-                .insertAfter( this.element );
+            this.widget = $('<div class="widget">' +
+                    '<div class="slider">' +
+                    '<div class="slider-track">' +
+                    '<div class="slider-selection"></div>' +
+                    '<div class="slider-handle"></div>' +
+                    '<div class="slider-handle"></div>' +
+                    '</div>' +
+                    //'<div id="tooltip" class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>' +
+                    //<div id="tooltip_min" class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>' +
+                    //'<div id="tooltip_max" class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>' +
+                    '</div>' +
+                    '</div>')
+                .insertAfter(this.element);
             //.append( this.element );
         }
 
-        this.id = this.element.data( 'slider-id' ) || options.id;
-        if ( this.id ) {
-            this.picker[ 0 ].id = this.id;
+        this.picker = this.widget.find('.slider');
+
+        this.id = this.element.data('slider-id') || options.id;
+        if (this.id) {
+            this.widget[0].id = this.id;
         }
 
-        if ( ( 'ontouchstart' in window ) || window.DocumentTouch && document instanceof window.DocumentTouch ) {
+        if (('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch) {
             this.touchCapable = true;
         }
 
@@ -1965,20 +2006,20 @@ module.exports={
         //this.tooltip_max = this.picker.find( '#tooltip_max' );
         //this.tooltipInner_max = this.tooltip_max.find( 'div.tooltip-inner' );
 
-        if ( updateSlider === true ) {
+        if (updateSlider === true) {
             // Reset classes
-            this.picker.removeClass( 'slider-horizontal' );
-            this.picker.removeClass( 'slider-vertical' );
+            this.widget.removeClass('slider-horizontal');
+            this.widget.removeClass('slider-vertical');
             //this.tooltip.removeClass( 'hide' );
             //this.tooltip_min.removeClass( 'hide' );
             //this.tooltip_max.removeClass( 'hide' );
 
         }
 
-        this.orientation = this.element.data( 'slider-orientation' ) || options.orientation;
-        switch ( this.orientation ) {
+        this.orientation = this.element.data('slider-orientation') || options.orientation;
+        switch (this.orientation) {
             case 'vertical':
-                this.picker.addClass( 'slider-vertical' );
+                this.widget.addClass('slider-vertical');
                 this.stylePos = 'top';
                 this.mousePos = 'pageY';
                 this.sizePos = 'offsetHeight';
@@ -1987,9 +2028,9 @@ module.exports={
                 //this.tooltip_max.addClass( 'right' )[ 0 ].style.left = '100%';
                 break;
             default:
-                this.picker
-                    .addClass( 'slider-horizontal' )
-                    .css( 'width', origWidth );
+                this.widget
+                    .addClass('slider-horizontal')
+                    .css('width', origWidth);
                 this.orientation = 'horizontal';
                 this.stylePos = 'left';
                 this.mousePos = 'pageX';
@@ -2001,93 +2042,93 @@ module.exports={
         }
 
         var self = this;
-        $.each( [ 'min',
+        $.each(['min',
             'max',
             'step',
             'precision',
             'value',
             'reversed',
             'handle'
-        ], function( i, attr ) {
-            if ( typeof el.data( 'slider-' + attr ) !== 'undefined' ) {
-                self[ attr ] = el.data( 'slider-' + attr );
-            } else if ( typeof options[ attr ] !== 'undefined' ) {
-                self[ attr ] = options[ attr ];
-            } else if ( typeof el.prop( attr ) !== 'undefined' ) {
-                self[ attr ] = el.prop( attr );
+        ], function(i, attr) {
+            if (typeof el.data('slider-' + attr) !== 'undefined') {
+                self[attr] = el.data('slider-' + attr);
+            } else if (typeof options[attr] !== 'undefined') {
+                self[attr] = options[attr];
+            } else if (typeof el.prop(attr) !== 'undefined') {
+                self[attr] = el.prop(attr);
             } else {
-                self[ attr ] = 0; // to prevent empty string issues in calculations in IE
+                self[attr] = 0; // to prevent empty string issues in calculations in IE
             }
-        } );
+        });
 
-        if ( this.value instanceof Array ) {
-            if ( updateSlider && !this.range ) {
-                this.value = this.value[ 0 ];
+        if (this.value instanceof Array) {
+            if (updateSlider && !this.range) {
+                this.value = this.value[0];
             } else {
                 this.range = true;
             }
-        } else if ( this.range ) {
+        } else if (this.range) {
             // User wants a range, but value is not an array
-            this.value = [ this.value, this.max ];
+            this.value = [this.value, this.max];
         }
 
-        this.selection = this.element.data( 'slider-selection' ) || options.selection;
-        this.selectionEl = this.picker.find( '.slider-selection' );
-        if ( this.selection === 'none' ) {
-            this.selectionEl.addClass( 'hide' );
+        this.selection = this.element.data('slider-selection') || options.selection;
+        this.selectionEl = this.picker.find('.slider-selection');
+        if (this.selection === 'none') {
+            this.selectionEl.addClass('hide');
         }
 
-        this.selectionElStyle = this.selectionEl[ 0 ].style;
+        this.selectionElStyle = this.selectionEl[0].style;
 
-        this.handle1 = this.picker.find( '.slider-handle:first' );
-        this.handle1Stype = this.handle1[ 0 ].style;
+        this.handle1 = this.picker.find('.slider-handle:first');
+        this.handle1Stype = this.handle1[0].style;
 
-        this.handle2 = this.picker.find( '.slider-handle:last' );
-        this.handle2Stype = this.handle2[ 0 ].style;
+        this.handle2 = this.picker.find('.slider-handle:last');
+        this.handle2Stype = this.handle2[0].style;
 
-        if ( updateSlider === true ) {
+        if (updateSlider === true) {
             // Reset classes
-            this.handle1.removeClass( 'round triangle' );
-            this.handle2.removeClass( 'round triangle hide' );
+            this.handle1.removeClass('round triangle');
+            this.handle2.removeClass('round triangle hide');
         }
 
-        switch ( this.handle ) {
+        switch (this.handle) {
             case 'round':
-                this.handle1.addClass( 'round' );
-                this.handle2.addClass( 'round' );
+                this.handle1.addClass('round');
+                this.handle2.addClass('round');
                 break;
             case 'triangle':
-                this.handle1.addClass( 'triangle' );
-                this.handle2.addClass( 'triangle' );
+                this.handle1.addClass('triangle');
+                this.handle2.addClass('triangle');
                 break;
         }
 
         this.offset = this.picker.offset();
-        this.size = this.picker[ 0 ][ this.sizePos ];
+        this.size = this.picker[0][this.sizePos];
         this.formater = options.formater;
 
         //this.tooltip_separator = options.tooltip_separator;
         //this.tooltip_split = options.tooltip_split;
 
-        this.setValue( this.value );
+        this.setValue(this.value);
 
-        this.handle1.on( {
-            keydown: $.proxy( this.keydown, this, 0 )
-        } );
-        this.handle2.on( {
-            keydown: $.proxy( this.keydown, this, 1 )
-        } );
+        this.handle1.on({
+            keydown: $.proxy(this.keydown, this, 0)
+        });
+        this.handle2.on({
+            keydown: $.proxy(this.keydown, this, 1)
+        });
 
-        if ( this.touchCapable ) {
+        if (this.touchCapable) {
             // Touch: Bind touch events:
-            this.picker.on( {
-                touchstart: $.proxy( this.mousedown, this )
-            } );
+            this.picker.on({
+                touchstart: $.proxy(this.mousedown, this)
+            });
         }
         // Bind mouse events:
-        this.picker.on( {
-            mousedown: $.proxy( this.mousedown, this )
-        } );
+        this.picker.on({
+            mousedown: $.proxy(this.mousedown, this)
+        });
 
         /*
         if ( tooltip === 'hide' ) {
@@ -2113,13 +2154,13 @@ module.exports={
         }*/
 
         this.enabled = options.enabled &&
-            ( this.element.data( 'slider-enabled' ) === undefined || this.element.data( 'slider-enabled' ) === true );
-        if ( this.enabled ) {
+            (this.element.data('slider-enabled') === undefined || this.element.data('slider-enabled') === true);
+        if (this.enabled) {
             this.enable();
         } else {
             this.disable();
         }
-        this.natural_arrow_keys = this.element.data( 'slider-natural_arrow_keys' ) || options.natural_arrow_keys;
+        this.natural_arrow_keys = this.element.data('slider-natural_arrow_keys') || options.natural_arrow_keys;
     };
 
     Slider.prototype = {
@@ -2151,21 +2192,21 @@ module.exports={
         layout: function() {
             var positionPercentages;
 
-            if ( this.reversed ) {
-                positionPercentages = [ 100 - this.percentage[ 0 ], this.percentage[ 1 ] ];
+            if (this.reversed) {
+                positionPercentages = [100 - this.percentage[0], this.percentage[1]];
             } else {
-                positionPercentages = [ this.percentage[ 0 ], this.percentage[ 1 ] ];
+                positionPercentages = [this.percentage[0], this.percentage[1]];
             }
 
-            this.handle1Stype[ this.stylePos ] = positionPercentages[ 0 ] + '%';
-            this.handle2Stype[ this.stylePos ] = positionPercentages[ 1 ] + '%';
+            this.handle1Stype[this.stylePos] = positionPercentages[0] + '%';
+            this.handle2Stype[this.stylePos] = positionPercentages[1] + '%';
 
-            if ( this.orientation === 'vertical' ) {
-                this.selectionElStyle.top = Math.min( positionPercentages[ 0 ], positionPercentages[ 1 ] ) + '%';
-                this.selectionElStyle.height = Math.abs( positionPercentages[ 0 ] - positionPercentages[ 1 ] ) + '%';
+            if (this.orientation === 'vertical') {
+                this.selectionElStyle.top = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
+                this.selectionElStyle.height = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
             } else {
-                this.selectionElStyle.left = Math.min( positionPercentages[ 0 ], positionPercentages[ 1 ] ) + '%';
-                this.selectionElStyle.width = Math.abs( positionPercentages[ 0 ] - positionPercentages[ 1 ] ) + '%';
+                this.selectionElStyle.left = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
+                this.selectionElStyle.width = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
 
                 //var offset_min = this.tooltip_min[ 0 ].getBoundingClientRect();
                 //var offset_max = this.tooltip_max[ 0 ].getBoundingClientRect();
@@ -2204,74 +2245,74 @@ module.exports={
             }*/
         },
 
-        mousedown: function( ev ) {
-            if ( !this.isEnabled() ) {
+        mousedown: function(ev) {
+            if (!this.isEnabled()) {
                 return false;
             }
             // Touch: Get the original event:
-            if ( this.touchCapable && ev.type === 'touchstart' ) {
+            if (this.touchCapable && ev.type === 'touchstart') {
                 ev = ev.originalEvent;
             }
 
             this.triggerFocusOnHandle();
 
             this.offset = this.picker.offset();
-            this.size = this.picker[ 0 ][ this.sizePos ];
+            this.size = this.picker[0][this.sizePos];
 
-            var percentage = this.getPercentage( ev );
+            var percentage = this.getPercentage(ev);
 
-            if ( this.range ) {
-                var diff1 = Math.abs( this.percentage[ 0 ] - percentage );
-                var diff2 = Math.abs( this.percentage[ 1 ] - percentage );
-                this.dragged = ( diff1 < diff2 ) ? 0 : 1;
+            if (this.range) {
+                var diff1 = Math.abs(this.percentage[0] - percentage);
+                var diff2 = Math.abs(this.percentage[1] - percentage);
+                this.dragged = (diff1 < diff2) ? 0 : 1;
             } else {
                 this.dragged = 0;
             }
 
-            this.percentage[ this.dragged ] = this.reversed ? 100 - percentage : percentage;
+            this.percentage[this.dragged] = this.reversed ? 100 - percentage : percentage;
             this.layout();
 
-            if ( this.touchCapable ) {
+            if (this.touchCapable) {
                 // Touch: Bind touch events:
-                $( document ).on( {
-                    touchmove: $.proxy( this.mousemove, this ),
-                    touchend: $.proxy( this.mouseup, this )
-                } );
+                $(document).on({
+                    touchmove: $.proxy(this.mousemove, this),
+                    touchend: $.proxy(this.mouseup, this)
+                });
             }
             // Bind mouse events:
-            $( document ).on( {
-                mousemove: $.proxy( this.mousemove, this ),
-                mouseup: $.proxy( this.mouseup, this )
-            } );
+            $(document).on({
+                mousemove: $.proxy(this.mousemove, this),
+                mouseup: $.proxy(this.mouseup, this)
+            });
 
             this.inDrag = true;
             var val = this.calculateValue();
-            this.element.trigger( {
-                type: 'slideStart',
-                value: val
-            } )
-                .data( 'value', val )
-                .prop( 'value', val );
-            this.setValue( val );
+            this.element.trigger({
+                    type: 'slideStart',
+                    value: val
+                })
+                .data('value', val)
+                .prop('value', val);
+            this.setValue(val);
             return true;
         },
 
-        triggerFocusOnHandle: function( handleIdx ) {
-            if ( handleIdx === 0 ) {
+        triggerFocusOnHandle: function(handleIdx) {
+            if (handleIdx === 0) {
                 this.handle1.focus();
             }
-            if ( handleIdx === 1 ) {
+            if (handleIdx === 1) {
                 this.handle2.focus();
             }
         },
 
-        keydown: function( handleIdx, ev ) {
-            if ( !this.isEnabled() ) {
+        keydown: function(handleIdx, ev) {
+            if (!this.isEnabled()) {
                 return false;
             }
 
             var dir;
-            switch ( ev.which ) {
+            switch (ev.which) {
                 case 37: // left
                 case 40: // down
                     dir = -1;
@@ -2281,99 +2322,99 @@ module.exports={
                     dir = 1;
                     break;
             }
-            if ( !dir ) {
+            if (!dir) {
                 return;
             }
 
             // use natural arrow keys instead of from min to max
-            if ( this.natural_arrow_keys ) {
-                if ( ( this.orientation === 'vertical' && !this.reversed ) || ( this.orientation === 'horizontal' && this.reversed ) ) {
+            if (this.natural_arrow_keys) {
+                if ((this.orientation === 'vertical' && !this.reversed) || (this.orientation === 'horizontal' && this.reversed)) {
                     dir = dir * -1;
                 }
             }
 
-            var oneStepValuePercentageChange = dir * this.percentage[ 2 ];
-            var percentage = this.percentage[ handleIdx ] + oneStepValuePercentageChange;
+            var oneStepValuePercentageChange = dir * this.percentage[2];
+            var percentage = this.percentage[handleIdx] + oneStepValuePercentageChange;
 
-            if ( percentage > 100 ) {
+            if (percentage > 100) {
                 percentage = 100;
-            } else if ( percentage < 0 ) {
+            } else if (percentage < 0) {
                 percentage = 0;
             }
 
             this.dragged = handleIdx;
-            this.adjustPercentageForRangeSliders( percentage );
-            this.percentage[ this.dragged ] = percentage;
+            this.adjustPercentageForRangeSliders(percentage);
+            this.percentage[this.dragged] = percentage;
             this.layout();
 
             var val = this.calculateValue();
 
-            this.element.trigger( {
-                type: 'slideStart',
-                value: val
-            } )
-                .data( 'value', val )
-                .prop( 'value', val );
+            this.element.trigger({
+                    type: 'slideStart',
+                    value: val
+                })
+                .data('value', val)
+                .prop('value', val);
 
-            this.setValue( val, true );
+            this.setValue(val, true);
 
             this.element
-                .trigger( {
+                .trigger({
                     type: 'slideStop',
                     value: val
-                } )
-                .data( 'value', val )
-                .prop( 'value', val );
+                })
+                .data('value', val)
+                .prop('value', val);
             return false;
         },
 
-        mousemove: function( ev ) {
-            if ( !this.isEnabled() ) {
+        mousemove: function(ev) {
+            if (!this.isEnabled()) {
                 return false;
             }
             // Touch: Get the original event:
-            if ( this.touchCapable && ev.type === 'touchmove' ) {
+            if (this.touchCapable && ev.type === 'touchmove') {
                 ev = ev.originalEvent;
             }
 
-            var percentage = this.getPercentage( ev );
-            this.adjustPercentageForRangeSliders( percentage );
-            this.percentage[ this.dragged ] = this.reversed ? 100 - percentage : percentage;
+            var percentage = this.getPercentage(ev);
+            this.adjustPercentageForRangeSliders(percentage);
+            this.percentage[this.dragged] = this.reversed ? 100 - percentage : percentage;
             this.layout();
 
             var val = this.calculateValue();
-            this.setValue( val, true );
+            this.setValue(val, true);
 
             return false;
         },
-        adjustPercentageForRangeSliders: function( percentage ) {
-            if ( this.range ) {
-                if ( this.dragged === 0 && this.percentage[ 1 ] < percentage ) {
-                    this.percentage[ 0 ] = this.percentage[ 1 ];
+        adjustPercentageForRangeSliders: function(percentage) {
+            if (this.range) {
+                if (this.dragged === 0 && this.percentage[1] < percentage) {
+                    this.percentage[0] = this.percentage[1];
                     this.dragged = 1;
-                } else if ( this.dragged === 1 && this.percentage[ 0 ] > percentage ) {
-                    this.percentage[ 1 ] = this.percentage[ 0 ];
+                } else if (this.dragged === 1 && this.percentage[0] > percentage) {
+                    this.percentage[1] = this.percentage[0];
                     this.dragged = 0;
                 }
             }
         },
 
         mouseup: function() {
-            if ( !this.isEnabled() ) {
+            if (!this.isEnabled()) {
                 return false;
             }
-            if ( this.touchCapable ) {
+            if (this.touchCapable) {
                 // Touch: Unbind touch event handlers:
-                $( document ).off( {
+                $(document).off({
                     touchmove: this.mousemove,
                     touchend: this.mouseup
-                } );
+                });
             }
             // Unbind mouse event handlers:
-            $( document ).off( {
+            $(document).off({
                 mousemove: this.mousemove,
                 mouseup: this.mouseup
-            } );
+            });
 
             this.inDrag = false;
             /*if ( this.over === false ) {
@@ -2382,138 +2423,138 @@ module.exports={
             var val = this.calculateValue();
             this.layout();
             this.element
-                .data( 'value', val )
-                .prop( 'value', val )
-                .trigger( {
+                .data('value', val)
+                .prop('value', val)
+                .trigger({
                     type: 'slideStop',
                     value: val
-                } );
+                });
             return false;
         },
 
         calculateValue: function() {
             var val;
-            if ( this.range ) {
-                val = [ this.min, this.max ];
-                if ( this.percentage[ 0 ] !== 0 ) {
-                    val[ 0 ] = ( Math.max( this.min, this.min + Math.round( ( this.diff * this.percentage[ 0 ] / 100 ) / this.step ) * this.step ) );
-                    val[ 0 ] = this.applyPrecision( val[ 0 ] );
+            if (this.range) {
+                val = [this.min, this.max];
+                if (this.percentage[0] !== 0) {
+                    val[0] = (Math.max(this.min, this.min + Math.round((this.diff * this.percentage[0] / 100) / this.step) * this.step));
+                    val[0] = this.applyPrecision(val[0]);
                 }
-                if ( this.percentage[ 1 ] !== 100 ) {
-                    val[ 1 ] = ( Math.min( this.max, this.min + Math.round( ( this.diff * this.percentage[ 1 ] / 100 ) / this.step ) * this.step ) );
-                    val[ 1 ] = this.applyPrecision( val[ 1 ] );
+                if (this.percentage[1] !== 100) {
+                    val[1] = (Math.min(this.max, this.min + Math.round((this.diff * this.percentage[1] / 100) / this.step) * this.step));
+                    val[1] = this.applyPrecision(val[1]);
                 }
                 this.value = val;
             } else {
-                val = ( this.min + Math.round( ( this.diff * this.percentage[ 0 ] / 100 ) / this.step ) * this.step );
-                if ( val < this.min ) {
+                val = (this.min + Math.round((this.diff * this.percentage[0] / 100) / this.step) * this.step);
+                if (val < this.min) {
                     val = this.min;
-                } else if ( val > this.max ) {
+                } else if (val > this.max) {
                     val = this.max;
                 }
-                val = parseFloat( val );
-                val = this.applyPrecision( val );
-                this.value = [ val, this.value[ 1 ] ];
+                val = parseFloat(val);
+                val = this.applyPrecision(val);
+                this.value = [val, this.value[1]];
             }
             return val;
         },
-        applyPrecision: function( val ) {
-            var precision = this.precision || this.getNumDigitsAfterDecimalPlace( this.step );
-            return this.applyToFixedAndParseFloat( val, precision );
+        applyPrecision: function(val) {
+            var precision = this.precision || this.getNumDigitsAfterDecimalPlace(this.step);
+            return this.applyToFixedAndParseFloat(val, precision);
         },
         /*
             Credits to Mike Samuel for the following method!
             Source: http://stackoverflow.com/questions/10454518/javascript-how-to-retrieve-the-number-of-decimals-of-a-string-number
         */
-        getNumDigitsAfterDecimalPlace: function( num ) {
-            var match = ( '' + num ).match( /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/ );
-            if ( !match ) {
+        getNumDigitsAfterDecimalPlace: function(num) {
+            var match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+            if (!match) {
                 return 0;
             }
-            return Math.max( 0, ( match[ 1 ] ? match[ 1 ].length : 0 ) - ( match[ 2 ] ? +match[ 2 ] : 0 ) );
+            return Math.max(0, (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0));
         },
 
-        applyToFixedAndParseFloat: function( num, toFixedInput ) {
-            var truncatedNum = num.toFixed( toFixedInput );
-            return parseFloat( truncatedNum );
+        applyToFixedAndParseFloat: function(num, toFixedInput) {
+            var truncatedNum = num.toFixed(toFixedInput);
+            return parseFloat(truncatedNum);
         },
 
-        getPercentage: function( ev ) {
-            if ( this.touchCapable && ( ev.type === 'touchstart' || ev.type === 'touchmove' ) ) {
-                ev = ev.touches[ 0 ];
+        getPercentage: function(ev) {
+            if (this.touchCapable && (ev.type === 'touchstart' || ev.type === 'touchmove')) {
+                ev = ev.touches[0];
             }
-            var percentage = ( ev[ this.mousePos ] - this.offset[ this.stylePos ] ) * 100 / this.size;
-            percentage = Math.round( percentage / this.percentage[ 2 ] ) * this.percentage[ 2 ];
-            return Math.max( 0, Math.min( 100, percentage ) );
+            var percentage = (ev[this.mousePos] - this.offset[this.stylePos]) * 100 / this.size;
+            percentage = Math.round(percentage / this.percentage[2]) * this.percentage[2];
+            return Math.max(0, Math.min(100, percentage));
         },
 
         getValue: function() {
-            if ( this.range ) {
+            if (this.range) {
                 return this.value;
             }
-            return this.value[ 0 ];
+            return this.value[0];
         },
 
-        setValue: function( val, triggerSlideEvent ) {
-            if ( !val ) {
+        setValue: function(val, triggerSlideEvent) {
+            if (!val) {
                 val = 0;
             }
-            this.value = this.validateInputValue( val );
+            this.value = this.validateInputValue(val);
 
-            if ( this.range ) {
-                this.value[ 0 ] = this.applyPrecision( this.value[ 0 ] );
-                this.value[ 1 ] = this.applyPrecision( this.value[ 1 ] );
+            if (this.range) {
+                this.value[0] = this.applyPrecision(this.value[0]);
+                this.value[1] = this.applyPrecision(this.value[1]);
 
-                this.value[ 0 ] = Math.max( this.min, Math.min( this.max, this.value[ 0 ] ) );
-                this.value[ 1 ] = Math.max( this.min, Math.min( this.max, this.value[ 1 ] ) );
+                this.value[0] = Math.max(this.min, Math.min(this.max, this.value[0]));
+                this.value[1] = Math.max(this.min, Math.min(this.max, this.value[1]));
             } else {
-                this.value = this.applyPrecision( this.value );
-                this.value = [ Math.max( this.min, Math.min( this.max, this.value ) ) ];
-                this.handle2.addClass( 'hide' );
-                if ( this.selection === 'after' ) {
-                    this.value[ 1 ] = this.max;
+                this.value = this.applyPrecision(this.value);
+                this.value = [Math.max(this.min, Math.min(this.max, this.value))];
+                this.handle2.addClass('hide');
+                if (this.selection === 'after') {
+                    this.value[1] = this.max;
                 } else {
-                    this.value[ 1 ] = this.min;
+                    this.value[1] = this.min;
                 }
             }
 
             this.diff = this.max - this.min;
-            if ( this.diff > 0 ) {
+            if (this.diff > 0) {
                 this.percentage = [
-                    ( this.value[ 0 ] - this.min ) * 100 / this.diff, ( this.value[ 1 ] - this.min ) * 100 / this.diff,
+                    (this.value[0] - this.min) * 100 / this.diff, (this.value[1] - this.min) * 100 / this.diff,
                     this.step * 100 / this.diff
                 ];
             } else {
-                this.percentage = [ 0, 0, 100 ];
+                this.percentage = [0, 0, 100];
             }
 
             this.layout();
 
 
-            if ( triggerSlideEvent === true ) {
-                var slideEventValue = this.range ? this.value : this.value[ 0 ];
+            if (triggerSlideEvent === true) {
+                var slideEventValue = this.range ? this.value : this.value[0];
                 this.element
-                    .trigger( {
+                    .trigger({
                         'type': 'slide',
                         'value': slideEventValue
-                    } )
-                    .data( 'value', slideEventValue )
-                    .prop( 'value', slideEventValue );
+                    })
+                    .data('value', slideEventValue)
+                    .prop('value', slideEventValue);
             }
         },
 
-        validateInputValue: function( val ) {
-            if ( typeof val === 'number' ) {
+        validateInputValue: function(val) {
+            if (typeof val === 'number') {
                 return val;
-            } else if ( val instanceof Array ) {
-                $.each( val, function( i, input ) {
-                    if ( typeof input !== 'number' ) {
-                        throw new Error( ErrorMsgs.formatInvalidInputErrorMsg( input ) );
+            } else if (val instanceof Array) {
+                $.each(val, function(i, input) {
+                    if (typeof input !== 'number') {
+                        throw new Error(ErrorMsgs.formatInvalidInputErrorMsg(input));
                     }
-                } );
+                });
                 return val;
             } else {
-                throw new Error( ErrorMsgs.formatInvalidInputErrorMsg( val ) );
+                throw new Error(ErrorMsgs.formatInvalidInputErrorMsg(val));
             }
         },
 
@@ -2522,27 +2563,27 @@ module.exports={
             this.handle2.off();
             this.element.off().show(); //.insertBefore( this.picker );
             this.picker.off().remove();
-            $( this.element ).removeData( 'slider' );
+            $(this.element).removeData('slider');
         },
 
         disable: function() {
             this.enabled = false;
-            this.handle1.removeAttr( "tabindex" );
-            this.handle2.removeAttr( "tabindex" );
-            this.picker.addClass( 'slider-disabled' );
-            this.element.trigger( 'slideDisabled' );
+            this.handle1.removeAttr("tabindex");
+            this.handle2.removeAttr("tabindex");
+            this.picker.addClass('slider-disabled');
+            this.element.trigger('slideDisabled');
         },
 
         enable: function() {
             this.enabled = true;
-            this.handle1.attr( "tabindex", 0 );
-            this.handle2.attr( "tabindex", 0 );
-            this.picker.removeClass( 'slider-disabled' );
-            this.element.trigger( 'slideEnabled' );
+            this.handle1.attr("tabindex", 0);
+            this.handle2.attr("tabindex", 0);
+            this.picker.removeClass('slider-disabled');
+            this.element.trigger('slideEnabled');
         },
 
         toggle: function() {
-            if ( this.enabled ) {
+            if (this.enabled) {
                 this.disable();
             } else {
                 this.enable();
@@ -2553,12 +2594,12 @@ module.exports={
             return this.enabled;
         },
 
-        setAttribute: function( attribute, value ) {
-            this[ attribute ] = value;
+        setAttribute: function(attribute, value) {
+            this[attribute] = value;
         },
 
-        getAttribute: function( attribute ) {
-            return this[ attribute ];
+        getAttribute: function(attribute) {
+            return this[attribute];
         }
 
     };
@@ -2575,58 +2616,58 @@ module.exports={
         isEnabled: Slider.prototype.isEnabled
     };
 
-    $.fn.slider = function( option ) {
-        if ( typeof option === 'string' && option !== 'refresh' ) {
-            var args = Array.prototype.slice.call( arguments, 1 );
-            return invokePublicMethod.call( this, option, args );
+    $.fn.slider = function(option) {
+        if (typeof option === 'string' && option !== 'refresh') {
+            var args = Array.prototype.slice.call(arguments, 1);
+            return invokePublicMethod.call(this, option, args);
         } else {
-            return createNewSliderInstance.call( this, option );
+            return createNewSliderInstance.call(this, option);
         }
     };
 
-    function invokePublicMethod( methodName, args ) {
-        if ( publicMethods[ methodName ] ) {
-            var sliderObject = retrieveSliderObjectFromElement( this );
-            var result = publicMethods[ methodName ].apply( sliderObject, args );
+    function invokePublicMethod(methodName, args) {
+        if (publicMethods[methodName]) {
+            var sliderObject = retrieveSliderObjectFromElement(this);
+            var result = publicMethods[methodName].apply(sliderObject, args);
 
-            if ( typeof result === "undefined" ) {
-                return $( this );
+            if (typeof result === "undefined") {
+                return $(this);
             } else {
                 return result;
             }
         } else {
-            throw new Error( "method '" + methodName + "()' does not exist for slider." );
+            throw new Error("method '" + methodName + "()' does not exist for slider.");
         }
     }
 
-    function retrieveSliderObjectFromElement( element ) {
-        var sliderObject = $( element ).data( 'slider' );
-        if ( sliderObject && sliderObject instanceof Slider ) {
+    function retrieveSliderObjectFromElement(element) {
+        var sliderObject = $(element).data('slider');
+        if (sliderObject && sliderObject instanceof Slider) {
             return sliderObject;
         } else {
-            throw new Error( ErrorMsgs.callingContextNotSliderInstance );
+            throw new Error(ErrorMsgs.callingContextNotSliderInstance);
         }
     }
 
-    function createNewSliderInstance( opts ) {
-        var $this = $( this );
-        $this.each( function() {
-            var $this = $( this ),
-                slider = $this.data( 'slider' ),
+    function createNewSliderInstance(opts) {
+        var $this = $(this);
+        $this.each(function() {
+            var $this = $(this),
+                slider = $this.data('slider'),
                 options = typeof opts === 'object' && opts;
 
             // If slider already exists, use its attributes
             // as options so slider refreshes properly
-            if ( slider && !options ) {
+            if (slider && !options) {
                 options = {};
 
-                $.each( $.fn.slider.defaults, function( key ) {
-                    options[ key ] = slider[ key ];
-                } );
+                $.each($.fn.slider.defaults, function(key) {
+                    options[key] = slider[key];
+                });
             }
 
-            $this.data( 'slider', ( new Slider( this, $.extend( {}, $.fn.slider.defaults, options ) ) ) );
-        } );
+            $this.data('slider', (new Slider(this, $.extend({}, $.fn.slider.defaults, options))));
+        });
         return $this;
     }
 
@@ -2646,16 +2687,16 @@ module.exports={
         handle: 'round',
         reversed: false,
         enabled: true,
-        formater: function( value ) {
+        formater: function(value) {
             return value;
         }
     };
 
     $.fn.slider.Constructor = Slider;
 
-} ) );
+}));
 
-},{"jquery":9}],5:[function(require,module,exports){
+},{"jquery":9}],4:[function(require,module,exports){
 /*!
  * Timepicker Component for Twitter Bootstrap
  *
@@ -3754,7 +3795,7 @@ module.exports={
 
 })(jQuery, window, document);
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /**
  * Original copyright notice for XPathJS:
  *
@@ -12691,6 +12732,102 @@ XPathJS._parser = (function() {
 }(this, function () {
     return XPathJS;
 }));
+
+},{}],6:[function(require,module,exports){
+// shim for using process in browser
+
+var process = module.exports = {};
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = setTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    clearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        setTimeout(drainQueue, 0);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
 
 },{}],7:[function(require,module,exports){
 (function(a){if(typeof define==="function"&&define.amd&&define.amd.jQuery){define(["jquery"],a)}else{if(typeof module!=="undefined"&&module.exports){a(require("jquery"))}else{a(jQuery)}}}(function(f){var y="1.6.15",p="left",o="right",e="up",x="down",c="in",A="out",m="none",s="auto",l="swipe",t="pinch",B="tap",j="doubletap",b="longtap",z="hold",E="horizontal",u="vertical",i="all",r=10,g="start",k="move",h="end",q="cancel",a="ontouchstart" in window,v=window.navigator.msPointerEnabled&&!window.navigator.pointerEnabled&&!a,d=(window.navigator.pointerEnabled||window.navigator.msPointerEnabled)&&!a,C="TouchSwipe";var n={fingers:1,threshold:75,cancelThreshold:null,pinchThreshold:20,maxTimeThreshold:null,fingerReleaseThreshold:250,longTapThreshold:500,doubleTapThreshold:200,swipe:null,swipeLeft:null,swipeRight:null,swipeUp:null,swipeDown:null,swipeStatus:null,pinchIn:null,pinchOut:null,pinchStatus:null,click:null,tap:null,doubleTap:null,longTap:null,hold:null,triggerOnTouchEnd:true,triggerOnTouchLeave:false,allowPageScroll:"auto",fallbackToMouseEvents:true,excludedElements:"label, button, input, select, textarea, a, .noSwipe",preventDefaultEvents:true};f.fn.swipe=function(H){var G=f(this),F=G.data(C);if(F&&typeof H==="string"){if(F[H]){return F[H].apply(this,Array.prototype.slice.call(arguments,1))}else{f.error("Method "+H+" does not exist on jQuery.swipe")}}else{if(F&&typeof H==="object"){F.option.apply(this,arguments)}else{if(!F&&(typeof H==="object"||!H)){return w.apply(this,arguments)}}}return G};f.fn.swipe.version=y;f.fn.swipe.defaults=n;f.fn.swipe.phases={PHASE_START:g,PHASE_MOVE:k,PHASE_END:h,PHASE_CANCEL:q};f.fn.swipe.directions={LEFT:p,RIGHT:o,UP:e,DOWN:x,IN:c,OUT:A};f.fn.swipe.pageScroll={NONE:m,HORIZONTAL:E,VERTICAL:u,AUTO:s};f.fn.swipe.fingers={ONE:1,TWO:2,THREE:3,FOUR:4,FIVE:5,ALL:i};function w(F){if(F&&(F.allowPageScroll===undefined&&(F.swipe!==undefined||F.swipeStatus!==undefined))){F.allowPageScroll=m}if(F.click!==undefined&&F.tap===undefined){F.tap=F.click}if(!F){F={}}F=f.extend({},f.fn.swipe.defaults,F);return this.each(function(){var H=f(this);var G=H.data(C);if(!G){G=new D(this,F);H.data(C,G)}})}function D(a5,au){var au=f.extend({},au);var az=(a||d||!au.fallbackToMouseEvents),K=az?(d?(v?"MSPointerDown":"pointerdown"):"touchstart"):"mousedown",ax=az?(d?(v?"MSPointerMove":"pointermove"):"touchmove"):"mousemove",V=az?(d?(v?"MSPointerUp":"pointerup"):"touchend"):"mouseup",T=az?(d?"mouseleave":null):"mouseleave",aD=(d?(v?"MSPointerCancel":"pointercancel"):"touchcancel");var ag=0,aP=null,a2=null,ac=0,a1=0,aZ=0,H=1,ap=0,aJ=0,N=null;var aR=f(a5);var aa="start";var X=0;var aQ={};var U=0,a3=0,a6=0,ay=0,O=0;var aW=null,af=null;try{aR.bind(K,aN);aR.bind(aD,ba)}catch(aj){f.error("events not supported "+K+","+aD+" on jQuery.swipe")}this.enable=function(){aR.bind(K,aN);aR.bind(aD,ba);return aR};this.disable=function(){aK();return aR};this.destroy=function(){aK();aR.data(C,null);aR=null};this.option=function(bd,bc){if(typeof bd==="object"){au=f.extend(au,bd)}else{if(au[bd]!==undefined){if(bc===undefined){return au[bd]}else{au[bd]=bc}}else{if(!bd){return au}else{f.error("Option "+bd+" does not exist on jQuery.swipe.options")}}}return null};function aN(be){if(aB()){return}if(f(be.target).closest(au.excludedElements,aR).length>0){return}var bf=be.originalEvent?be.originalEvent:be;var bd,bg=bf.touches,bc=bg?bg[0]:bf;aa=g;if(bg){X=bg.length}else{if(au.preventDefaultEvents!==false){be.preventDefault()}}ag=0;aP=null;a2=null;aJ=null;ac=0;a1=0;aZ=0;H=1;ap=0;N=ab();S();ai(0,bc);if(!bg||(X===au.fingers||au.fingers===i)||aX()){U=ar();if(X==2){ai(1,bg[1]);a1=aZ=at(aQ[0].start,aQ[1].start)}if(au.swipeStatus||au.pinchStatus){bd=P(bf,aa)}}else{bd=false}if(bd===false){aa=q;P(bf,aa);return bd}else{if(au.hold){af=setTimeout(f.proxy(function(){aR.trigger("hold",[bf.target]);if(au.hold){bd=au.hold.call(aR,bf,bf.target)}},this),au.longTapThreshold)}an(true)}return null}function a4(bf){var bi=bf.originalEvent?bf.originalEvent:bf;if(aa===h||aa===q||al()){return}var be,bj=bi.touches,bd=bj?bj[0]:bi;var bg=aH(bd);a3=ar();if(bj){X=bj.length}if(au.hold){clearTimeout(af)}aa=k;if(X==2){if(a1==0){ai(1,bj[1]);a1=aZ=at(aQ[0].start,aQ[1].start)}else{aH(bj[1]);aZ=at(aQ[0].end,aQ[1].end);aJ=aq(aQ[0].end,aQ[1].end)}H=a8(a1,aZ);ap=Math.abs(a1-aZ)}if((X===au.fingers||au.fingers===i)||!bj||aX()){aP=aL(bg.start,bg.end);a2=aL(bg.last,bg.end);ak(bf,a2);ag=aS(bg.start,bg.end);ac=aM();aI(aP,ag);be=P(bi,aa);if(!au.triggerOnTouchEnd||au.triggerOnTouchLeave){var bc=true;if(au.triggerOnTouchLeave){var bh=aY(this);bc=F(bg.end,bh)}if(!au.triggerOnTouchEnd&&bc){aa=aC(k)}else{if(au.triggerOnTouchLeave&&!bc){aa=aC(h)}}if(aa==q||aa==h){P(bi,aa)}}}else{aa=q;P(bi,aa)}if(be===false){aa=q;P(bi,aa)}}function M(bc){var bd=bc.originalEvent?bc.originalEvent:bc,be=bd.touches;if(be){if(be.length&&!al()){G(bd);return true}else{if(be.length&&al()){return true}}}if(al()){X=ay}a3=ar();ac=aM();if(bb()||!am()){aa=q;P(bd,aa)}else{if(au.triggerOnTouchEnd||(au.triggerOnTouchEnd==false&&aa===k)){if(au.preventDefaultEvents!==false){bc.preventDefault()}aa=h;P(bd,aa)}else{if(!au.triggerOnTouchEnd&&a7()){aa=h;aF(bd,aa,B)}else{if(aa===k){aa=q;P(bd,aa)}}}}an(false);return null}function ba(){X=0;a3=0;U=0;a1=0;aZ=0;H=1;S();an(false)}function L(bc){var bd=bc.originalEvent?bc.originalEvent:bc;if(au.triggerOnTouchLeave){aa=aC(h);P(bd,aa)}}function aK(){aR.unbind(K,aN);aR.unbind(aD,ba);aR.unbind(ax,a4);aR.unbind(V,M);if(T){aR.unbind(T,L)}an(false)}function aC(bg){var bf=bg;var be=aA();var bd=am();var bc=bb();if(!be||bc){bf=q}else{if(bd&&bg==k&&(!au.triggerOnTouchEnd||au.triggerOnTouchLeave)){bf=h}else{if(!bd&&bg==h&&au.triggerOnTouchLeave){bf=q}}}return bf}function P(be,bc){var bd,bf=be.touches;if(J()||W()){bd=aF(be,bc,l)}if((Q()||aX())&&bd!==false){bd=aF(be,bc,t)}if(aG()&&bd!==false){bd=aF(be,bc,j)}else{if(ao()&&bd!==false){bd=aF(be,bc,b)}else{if(ah()&&bd!==false){bd=aF(be,bc,B)}}}if(bc===q){if(W()){bd=aF(be,bc,l)}if(aX()){bd=aF(be,bc,t)}ba(be)}if(bc===h){if(bf){if(!bf.length){ba(be)}}else{ba(be)}}return bd}function aF(bf,bc,be){var bd;if(be==l){aR.trigger("swipeStatus",[bc,aP||null,ag||0,ac||0,X,aQ,a2]);if(au.swipeStatus){bd=au.swipeStatus.call(aR,bf,bc,aP||null,ag||0,ac||0,X,aQ,a2);if(bd===false){return false}}if(bc==h&&aV()){clearTimeout(aW);clearTimeout(af);aR.trigger("swipe",[aP,ag,ac,X,aQ,a2]);if(au.swipe){bd=au.swipe.call(aR,bf,aP,ag,ac,X,aQ,a2);if(bd===false){return false}}switch(aP){case p:aR.trigger("swipeLeft",[aP,ag,ac,X,aQ,a2]);if(au.swipeLeft){bd=au.swipeLeft.call(aR,bf,aP,ag,ac,X,aQ,a2)}break;case o:aR.trigger("swipeRight",[aP,ag,ac,X,aQ,a2]);if(au.swipeRight){bd=au.swipeRight.call(aR,bf,aP,ag,ac,X,aQ,a2)}break;case e:aR.trigger("swipeUp",[aP,ag,ac,X,aQ,a2]);if(au.swipeUp){bd=au.swipeUp.call(aR,bf,aP,ag,ac,X,aQ,a2)}break;case x:aR.trigger("swipeDown",[aP,ag,ac,X,aQ,a2]);if(au.swipeDown){bd=au.swipeDown.call(aR,bf,aP,ag,ac,X,aQ,a2)}break}}}if(be==t){aR.trigger("pinchStatus",[bc,aJ||null,ap||0,ac||0,X,H,aQ]);if(au.pinchStatus){bd=au.pinchStatus.call(aR,bf,bc,aJ||null,ap||0,ac||0,X,H,aQ);if(bd===false){return false}}if(bc==h&&a9()){switch(aJ){case c:aR.trigger("pinchIn",[aJ||null,ap||0,ac||0,X,H,aQ]);if(au.pinchIn){bd=au.pinchIn.call(aR,bf,aJ||null,ap||0,ac||0,X,H,aQ)}break;case A:aR.trigger("pinchOut",[aJ||null,ap||0,ac||0,X,H,aQ]);if(au.pinchOut){bd=au.pinchOut.call(aR,bf,aJ||null,ap||0,ac||0,X,H,aQ)}break}}}if(be==B){if(bc===q||bc===h){clearTimeout(aW);clearTimeout(af);if(Z()&&!I()){O=ar();aW=setTimeout(f.proxy(function(){O=null;aR.trigger("tap",[bf.target]);if(au.tap){bd=au.tap.call(aR,bf,bf.target)}},this),au.doubleTapThreshold)}else{O=null;aR.trigger("tap",[bf.target]);if(au.tap){bd=au.tap.call(aR,bf,bf.target)}}}}else{if(be==j){if(bc===q||bc===h){clearTimeout(aW);clearTimeout(af);O=null;aR.trigger("doubletap",[bf.target]);if(au.doubleTap){bd=au.doubleTap.call(aR,bf,bf.target)}}}else{if(be==b){if(bc===q||bc===h){clearTimeout(aW);O=null;aR.trigger("longtap",[bf.target]);if(au.longTap){bd=au.longTap.call(aR,bf,bf.target)}}}}}return bd}function am(){var bc=true;if(au.threshold!==null){bc=ag>=au.threshold}return bc}function bb(){var bc=false;if(au.cancelThreshold!==null&&aP!==null){bc=(aT(aP)-ag)>=au.cancelThreshold}return bc}function ae(){if(au.pinchThreshold!==null){return ap>=au.pinchThreshold}return true}function aA(){var bc;if(au.maxTimeThreshold){if(ac>=au.maxTimeThreshold){bc=false}else{bc=true}}else{bc=true}return bc}function ak(bc,bd){if(au.preventDefaultEvents===false){return}if(au.allowPageScroll===m){bc.preventDefault()}else{var be=au.allowPageScroll===s;switch(bd){case p:if((au.swipeLeft&&be)||(!be&&au.allowPageScroll!=E)){bc.preventDefault()}break;case o:if((au.swipeRight&&be)||(!be&&au.allowPageScroll!=E)){bc.preventDefault()}break;case e:if((au.swipeUp&&be)||(!be&&au.allowPageScroll!=u)){bc.preventDefault()}break;case x:if((au.swipeDown&&be)||(!be&&au.allowPageScroll!=u)){bc.preventDefault()}break}}}function a9(){var bd=aO();var bc=Y();var be=ae();return bd&&bc&&be}function aX(){return !!(au.pinchStatus||au.pinchIn||au.pinchOut)}function Q(){return !!(a9()&&aX())}function aV(){var bf=aA();var bh=am();var be=aO();var bc=Y();var bd=bb();var bg=!bd&&bc&&be&&bh&&bf;return bg}function W(){return !!(au.swipe||au.swipeStatus||au.swipeLeft||au.swipeRight||au.swipeUp||au.swipeDown)}function J(){return !!(aV()&&W())}function aO(){return((X===au.fingers||au.fingers===i)||!a)}function Y(){return aQ[0].end.x!==0}function a7(){return !!(au.tap)}function Z(){return !!(au.doubleTap)}function aU(){return !!(au.longTap)}function R(){if(O==null){return false}var bc=ar();return(Z()&&((bc-O)<=au.doubleTapThreshold))}function I(){return R()}function aw(){return((X===1||!a)&&(isNaN(ag)||ag<au.threshold))}function a0(){return((ac>au.longTapThreshold)&&(ag<r))}function ah(){return !!(aw()&&a7())}function aG(){return !!(R()&&Z())}function ao(){return !!(a0()&&aU())}function G(bc){a6=ar();ay=bc.touches.length+1}function S(){a6=0;ay=0}function al(){var bc=false;if(a6){var bd=ar()-a6;if(bd<=au.fingerReleaseThreshold){bc=true}}return bc}function aB(){return !!(aR.data(C+"_intouch")===true)}function an(bc){if(!aR){return}if(bc===true){aR.bind(ax,a4);aR.bind(V,M);if(T){aR.bind(T,L)}}else{aR.unbind(ax,a4,false);aR.unbind(V,M,false);if(T){aR.unbind(T,L,false)}}aR.data(C+"_intouch",bc===true)}function ai(be,bc){var bd={start:{x:0,y:0},last:{x:0,y:0},end:{x:0,y:0}};bd.start.x=bd.last.x=bd.end.x=bc.pageX||bc.clientX;bd.start.y=bd.last.y=bd.end.y=bc.pageY||bc.clientY;aQ[be]=bd;return bd}function aH(bc){var be=bc.identifier!==undefined?bc.identifier:0;var bd=ad(be);if(bd===null){bd=ai(be,bc)}bd.last.x=bd.end.x;bd.last.y=bd.end.y;bd.end.x=bc.pageX||bc.clientX;bd.end.y=bc.pageY||bc.clientY;return bd}function ad(bc){return aQ[bc]||null}function aI(bc,bd){bd=Math.max(bd,aT(bc));N[bc].distance=bd}function aT(bc){if(N[bc]){return N[bc].distance}return undefined}function ab(){var bc={};bc[p]=av(p);bc[o]=av(o);bc[e]=av(e);bc[x]=av(x);return bc}function av(bc){return{direction:bc,distance:0}}function aM(){return a3-U}function at(bf,be){var bd=Math.abs(bf.x-be.x);var bc=Math.abs(bf.y-be.y);return Math.round(Math.sqrt(bd*bd+bc*bc))}function a8(bc,bd){var be=(bd/bc)*1;return be.toFixed(2)}function aq(){if(H<1){return A}else{return c}}function aS(bd,bc){return Math.round(Math.sqrt(Math.pow(bc.x-bd.x,2)+Math.pow(bc.y-bd.y,2)))}function aE(bf,bd){var bc=bf.x-bd.x;var bh=bd.y-bf.y;var be=Math.atan2(bh,bc);var bg=Math.round(be*180/Math.PI);if(bg<0){bg=360-Math.abs(bg)}return bg}function aL(bd,bc){var be=aE(bd,bc);if((be<=45)&&(be>=0)){return p}else{if((be<=360)&&(be>=315)){return p}else{if((be>=135)&&(be<=225)){return o}else{if((be>45)&&(be<135)){return x}else{return e}}}}}function ar(){var bc=new Date();return bc.getTime()}function aY(bc){bc=f(bc);var be=bc.offset();var bd={left:be.left,right:be.left+bc.outerWidth(),top:be.top,bottom:be.top+bc.outerHeight()};return bd}function F(bc,bd){return(bc.x>bd.left&&bc.x<bd.right&&bc.y>bd.top&&bc.y<bd.bottom)}}}));
@@ -31177,334 +31314,6 @@ L.Map.include({
 
 }(window, document));
 },{}],11:[function(require,module,exports){
-'use strict';
-var immediate = require('immediate');
-
-/* istanbul ignore next */
-function INTERNAL() {}
-
-var handlers = {};
-
-var REJECTED = ['REJECTED'];
-var FULFILLED = ['FULFILLED'];
-var PENDING = ['PENDING'];
-
-module.exports = exports = Promise;
-
-function Promise(resolver) {
-  if (typeof resolver !== 'function') {
-    throw new TypeError('resolver must be a function');
-  }
-  this.state = PENDING;
-  this.queue = [];
-  this.outcome = void 0;
-  if (resolver !== INTERNAL) {
-    safelyResolveThenable(this, resolver);
-  }
-}
-
-Promise.prototype["catch"] = function (onRejected) {
-  return this.then(null, onRejected);
-};
-Promise.prototype.then = function (onFulfilled, onRejected) {
-  if (typeof onFulfilled !== 'function' && this.state === FULFILLED ||
-    typeof onRejected !== 'function' && this.state === REJECTED) {
-    return this;
-  }
-  var promise = new this.constructor(INTERNAL);
-  if (this.state !== PENDING) {
-    var resolver = this.state === FULFILLED ? onFulfilled : onRejected;
-    unwrap(promise, resolver, this.outcome);
-  } else {
-    this.queue.push(new QueueItem(promise, onFulfilled, onRejected));
-  }
-
-  return promise;
-};
-function QueueItem(promise, onFulfilled, onRejected) {
-  this.promise = promise;
-  if (typeof onFulfilled === 'function') {
-    this.onFulfilled = onFulfilled;
-    this.callFulfilled = this.otherCallFulfilled;
-  }
-  if (typeof onRejected === 'function') {
-    this.onRejected = onRejected;
-    this.callRejected = this.otherCallRejected;
-  }
-}
-QueueItem.prototype.callFulfilled = function (value) {
-  handlers.resolve(this.promise, value);
-};
-QueueItem.prototype.otherCallFulfilled = function (value) {
-  unwrap(this.promise, this.onFulfilled, value);
-};
-QueueItem.prototype.callRejected = function (value) {
-  handlers.reject(this.promise, value);
-};
-QueueItem.prototype.otherCallRejected = function (value) {
-  unwrap(this.promise, this.onRejected, value);
-};
-
-function unwrap(promise, func, value) {
-  immediate(function () {
-    var returnValue;
-    try {
-      returnValue = func(value);
-    } catch (e) {
-      return handlers.reject(promise, e);
-    }
-    if (returnValue === promise) {
-      handlers.reject(promise, new TypeError('Cannot resolve promise with itself'));
-    } else {
-      handlers.resolve(promise, returnValue);
-    }
-  });
-}
-
-handlers.resolve = function (self, value) {
-  var result = tryCatch(getThen, value);
-  if (result.status === 'error') {
-    return handlers.reject(self, result.value);
-  }
-  var thenable = result.value;
-
-  if (thenable) {
-    safelyResolveThenable(self, thenable);
-  } else {
-    self.state = FULFILLED;
-    self.outcome = value;
-    var i = -1;
-    var len = self.queue.length;
-    while (++i < len) {
-      self.queue[i].callFulfilled(value);
-    }
-  }
-  return self;
-};
-handlers.reject = function (self, error) {
-  self.state = REJECTED;
-  self.outcome = error;
-  var i = -1;
-  var len = self.queue.length;
-  while (++i < len) {
-    self.queue[i].callRejected(error);
-  }
-  return self;
-};
-
-function getThen(obj) {
-  // Make sure we only access the accessor once as required by the spec
-  var then = obj && obj.then;
-  if (obj && typeof obj === 'object' && typeof then === 'function') {
-    return function appyThen() {
-      then.apply(obj, arguments);
-    };
-  }
-}
-
-function safelyResolveThenable(self, thenable) {
-  // Either fulfill, reject or reject with error
-  var called = false;
-  function onError(value) {
-    if (called) {
-      return;
-    }
-    called = true;
-    handlers.reject(self, value);
-  }
-
-  function onSuccess(value) {
-    if (called) {
-      return;
-    }
-    called = true;
-    handlers.resolve(self, value);
-  }
-
-  function tryToUnwrap() {
-    thenable(onSuccess, onError);
-  }
-
-  var result = tryCatch(tryToUnwrap);
-  if (result.status === 'error') {
-    onError(result.value);
-  }
-}
-
-function tryCatch(func, value) {
-  var out = {};
-  try {
-    out.value = func(value);
-    out.status = 'success';
-  } catch (e) {
-    out.status = 'error';
-    out.value = e;
-  }
-  return out;
-}
-
-exports.resolve = resolve;
-function resolve(value) {
-  if (value instanceof this) {
-    return value;
-  }
-  return handlers.resolve(new this(INTERNAL), value);
-}
-
-exports.reject = reject;
-function reject(reason) {
-  var promise = new this(INTERNAL);
-  return handlers.reject(promise, reason);
-}
-
-exports.all = all;
-function all(iterable) {
-  var self = this;
-  if (Object.prototype.toString.call(iterable) !== '[object Array]') {
-    return this.reject(new TypeError('must be an array'));
-  }
-
-  var len = iterable.length;
-  var called = false;
-  if (!len) {
-    return this.resolve([]);
-  }
-
-  var values = new Array(len);
-  var resolved = 0;
-  var i = -1;
-  var promise = new this(INTERNAL);
-
-  while (++i < len) {
-    allResolver(iterable[i], i);
-  }
-  return promise;
-  function allResolver(value, i) {
-    self.resolve(value).then(resolveFromAll, function (error) {
-      if (!called) {
-        called = true;
-        handlers.reject(promise, error);
-      }
-    });
-    function resolveFromAll(outValue) {
-      values[i] = outValue;
-      if (++resolved === len && !called) {
-        called = true;
-        handlers.resolve(promise, values);
-      }
-    }
-  }
-}
-
-exports.race = race;
-function race(iterable) {
-  var self = this;
-  if (Object.prototype.toString.call(iterable) !== '[object Array]') {
-    return this.reject(new TypeError('must be an array'));
-  }
-
-  var len = iterable.length;
-  var called = false;
-  if (!len) {
-    return this.resolve([]);
-  }
-
-  var i = -1;
-  var promise = new this(INTERNAL);
-
-  while (++i < len) {
-    resolver(iterable[i]);
-  }
-  return promise;
-  function resolver(value) {
-    self.resolve(value).then(function (response) {
-      if (!called) {
-        called = true;
-        handlers.resolve(promise, response);
-      }
-    }, function (error) {
-      if (!called) {
-        called = true;
-        handlers.reject(promise, error);
-      }
-    });
-  }
-}
-
-},{"immediate":12}],12:[function(require,module,exports){
-(function (global){
-'use strict';
-var Mutation = global.MutationObserver || global.WebKitMutationObserver;
-
-var scheduleDrain;
-
-{
-  if (Mutation) {
-    var called = 0;
-    var observer = new Mutation(nextTick);
-    var element = global.document.createTextNode('');
-    observer.observe(element, {
-      characterData: true
-    });
-    scheduleDrain = function () {
-      element.data = (called = ++called % 2);
-    };
-  } else if (!global.setImmediate && typeof global.MessageChannel !== 'undefined') {
-    var channel = new global.MessageChannel();
-    channel.port1.onmessage = nextTick;
-    scheduleDrain = function () {
-      channel.port2.postMessage(0);
-    };
-  } else if ('document' in global && 'onreadystatechange' in global.document.createElement('script')) {
-    scheduleDrain = function () {
-
-      // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
-      // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
-      var scriptEl = global.document.createElement('script');
-      scriptEl.onreadystatechange = function () {
-        nextTick();
-
-        scriptEl.onreadystatechange = null;
-        scriptEl.parentNode.removeChild(scriptEl);
-        scriptEl = null;
-      };
-      global.document.documentElement.appendChild(scriptEl);
-    };
-  } else {
-    scheduleDrain = function () {
-      setTimeout(nextTick, 0);
-    };
-  }
-}
-
-var draining;
-var queue = [];
-//named nextTick for less confusing stack traces
-function nextTick() {
-  draining = true;
-  var i, oldQueue;
-  var len = queue.length;
-  while (len) {
-    oldQueue = queue;
-    queue = [];
-    i = -1;
-    while (++i < len) {
-      oldQueue[i]();
-    }
-    len = queue.length;
-  }
-  draining = false;
-}
-
-module.exports = immediate;
-function immediate(task) {
-  if (queue.push(task) === 1 && !draining) {
-    scheduleDrain();
-  }
-}
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],13:[function(require,module,exports){
 /**
  * XML merging class
  * Merge multiple XML sources
@@ -32047,1251 +31856,2059 @@ function immediate(task) {
   };
 }));
 
-},{}],14:[function(require,module,exports){
-if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
-    var define = function( factory ) {
-        factory( require, exports, module );
-    };
-}
-define( function( require, exports, module ) {
-    'use strict';
+},{}],12:[function(require,module,exports){
+(function (process){
+// vim:ts=4:sts=4:sw=4:
+/*!
+ *
+ * Copyright 2009-2012 Kris Kowal under the terms of the MIT
+ * license found at http://github.com/kriskowal/q/raw/master/LICENSE
+ *
+ * With parts by Tyler Close
+ * Copyright 2007-2009 Tyler Close under the terms of the MIT X license found
+ * at http://www.opensource.org/licenses/mit-license.html
+ * Forked at ref_send.js version: 2009-05-11
+ *
+ * With parts by Mark Miller
+ * Copyright (C) 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
-    function FormLogicError( message ) {
-        this.message = message || 'unknown';
-        this.name = 'FormLogicError';
-        this.stack = ( new Error() ).stack;
+(function (definition) {
+    "use strict";
+
+    // This file will function properly as a <script> tag, or a module
+    // using CommonJS and NodeJS or RequireJS module formats.  In
+    // Common/Node/RequireJS, the module exports the Q API and when
+    // executed as a simple <script>, it creates a Q global instead.
+
+    // Montage Require
+    if (typeof bootstrap === "function") {
+        bootstrap("promise", definition);
+
+    // CommonJS
+    } else if (typeof exports === "object" && typeof module === "object") {
+        module.exports = definition();
+
+    // RequireJS
+    } else if (typeof define === "function" && define.amd) {
+        define(definition);
+
+    // SES (Secure EcmaScript)
+    } else if (typeof ses !== "undefined") {
+        if (!ses.ok()) {
+            return;
+        } else {
+            ses.makeQ = definition;
+        }
+
+    // <script>
+    } else if (typeof window !== "undefined" || typeof self !== "undefined") {
+        // Prefer window over self for add-on scripts. Use self for
+        // non-windowed contexts.
+        var global = typeof window !== "undefined" ? window : self;
+
+        // Get the `window` object, save the previous Q global
+        // and initialize Q as a global.
+        var previousQ = global.Q;
+        global.Q = definition();
+
+        // Add a noConflict function so Q can be removed from the
+        // global namespace.
+        global.Q.noConflict = function () {
+            global.Q = previousQ;
+            return this;
+        };
+
+    } else {
+        throw new Error("This environment was not anticipated by Q. Please file a bug.");
     }
 
-    FormLogicError.prototype = Object.create( Error.prototype );
-    FormLogicError.prototype.constructor = FormLogicError;
+})(function () {
+"use strict";
 
-    module.exports = FormLogicError;
-} );
-
-},{}],15:[function(require,module,exports){
-if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
-    var define = function( factory ) {
-        factory( require, exports, module );
-    };
+var hasStacks = false;
+try {
+    throw new Error();
+} catch (e) {
+    hasStacks = !!e.stack;
 }
-define( function( require, exports, module ) {
-    'use strict';
-    var MergeXML = require( 'mergexml/mergexml' );
-    var utils = require( './utils' );
-    var $ = require( 'jquery' );
-    var Promise = require( 'lie' );
-    var FormLogicError = require( './Form-logic-error' );
-    require( './plugins' );
-    require( './extend' );
-    require( 'jquery-xpath-basic' );
 
-    var FormModel, Nodeset, types;
+// All code after this point will be filtered from stack traces reported
+// by Q.
+var qStartingLine = captureLine();
+var qFileName;
 
+// shims
 
-    /**
-     * Class dealing with the XML Model of a form
-     *
-     * @constructor
-     * @param {{modelStr: string, ?instanceStr: string, ?external: <{id: string, xmlStr: string }>, ?submitted: boolean }} data:
-     *                            data object containing XML model, 
-     *                            (partial) XML instance to load, 
-     *                            external data array
-     *                            flag to indicate whether data was submitted before
-     * @param {?{?full:boolean}} options Whether to initialize the full model or only the primary instance
-     */
-    FormModel = function( data, options ) {
+// used for fallback in "allResolved"
+var noop = function () {};
 
-        if ( typeof data === 'string' ) {
-            data = {
-                modelStr: data
+// Use the fastest possible means to execute a task in a future turn
+// of the event loop.
+var nextTick =(function () {
+    // linked list of tasks (single, with head node)
+    var head = {task: void 0, next: null};
+    var tail = head;
+    var flushing = false;
+    var requestTick = void 0;
+    var isNodeJS = false;
+    // queue for late tasks, used by unhandled rejection tracking
+    var laterQueue = [];
+
+    function flush() {
+        /* jshint loopfunc: true */
+        var task, domain;
+
+        while (head.next) {
+            head = head.next;
+            task = head.task;
+            head.task = void 0;
+            domain = head.domain;
+
+            if (domain) {
+                head.domain = void 0;
+                domain.enter();
+            }
+            runSingle(task, domain);
+
+        }
+        while (laterQueue.length) {
+            task = laterQueue.pop();
+            runSingle(task);
+        }
+        flushing = false;
+    }
+    // runs a single function in the async queue
+    function runSingle(task, domain) {
+        try {
+            task();
+
+        } catch (e) {
+            if (isNodeJS) {
+                // In node, uncaught exceptions are considered fatal errors.
+                // Re-throw them synchronously to interrupt flushing!
+
+                // Ensure continuation if the uncaught exception is suppressed
+                // listening "uncaughtException" events (as domains does).
+                // Continue in next event to avoid tick recursion.
+                if (domain) {
+                    domain.exit();
+                }
+                setTimeout(flush, 0);
+                if (domain) {
+                    domain.enter();
+                }
+
+                throw e;
+
+            } else {
+                // In browsers, uncaught exceptions are not fatal.
+                // Re-throw them asynchronously to avoid slow-downs.
+                setTimeout(function () {
+                    throw e;
+                }, 0);
+            }
+        }
+
+        if (domain) {
+            domain.exit();
+        }
+    }
+
+    nextTick = function (task) {
+        tail = tail.next = {
+            task: task,
+            domain: isNodeJS && process.domain,
+            next: null
+        };
+
+        if (!flushing) {
+            flushing = true;
+            requestTick();
+        }
+    };
+
+    if (typeof process === "object" &&
+        process.toString() === "[object process]" && process.nextTick) {
+        // Ensure Q is in a real Node environment, with a `process.nextTick`.
+        // To see through fake Node environments:
+        // * Mocha test runner - exposes a `process` global without a `nextTick`
+        // * Browserify - exposes a `process.nexTick` function that uses
+        //   `setTimeout`. In this case `setImmediate` is preferred because
+        //    it is faster. Browserify's `process.toString()` yields
+        //   "[object Object]", while in a real Node environment
+        //   `process.nextTick()` yields "[object process]".
+        isNodeJS = true;
+
+        requestTick = function () {
+            process.nextTick(flush);
+        };
+
+    } else if (typeof setImmediate === "function") {
+        // In IE10, Node.js 0.9+, or https://github.com/NobleJS/setImmediate
+        if (typeof window !== "undefined") {
+            requestTick = setImmediate.bind(window, flush);
+        } else {
+            requestTick = function () {
+                setImmediate(flush);
             };
         }
 
-        data.external = data.external || [];
-        data.submitted = ( typeof data.submitted !== 'undefined' ) ? data.submitted : true;
-        options = options || {};
-        options.full = ( typeof options.full !== 'undefined' ) ? options.full : true;
+    } else if (typeof MessageChannel !== "undefined") {
+        // modern browsers
+        // http://www.nonblocking.io/2011/06/windownexttick.html
+        var channel = new MessageChannel();
+        // At least Safari Version 6.0.5 (8536.30.1) intermittently cannot create
+        // working message ports the first time a page loads.
+        channel.port1.onmessage = function () {
+            requestTick = requestPortTick;
+            channel.port1.onmessage = flush;
+            flush();
+        };
+        var requestPortTick = function () {
+            // Opera requires us to provide a message payload, regardless of
+            // whether we use it.
+            channel.port2.postMessage(0);
+        };
+        requestTick = function () {
+            setTimeout(flush, 0);
+            requestPortTick();
+        };
 
-        this.convertedExpressions = {};
-        this.templates = {};
-        this.loadErrors = [];
-
-        this.INSTANCE = /instance\([\'|\"]([^\/:\s]+)[\'|\"]\)/g;
-        this.OPENROSA = /(decimal-date-time\(|pow\(|indexed-repeat\(|format-date\(|coalesce\(|join\(|max\(|min\(|random\(|substr\(|int\(|uuid\(|regex\(|now\(|today\(|date\(|if\(|boolean-from-string\(|checklist\(|selected\(|selected-at\(|round\(|area\(|position\([^\)])/;
-
-        this.data = data;
-        this.options = options;
+    } else {
+        // old browsers
+        requestTick = function () {
+            setTimeout(flush, 0);
+        };
+    }
+    // runs a task after all other tasks have been run
+    // this is useful for unhandled rejection tracking that needs to happen
+    // after all `then`d tasks have been run.
+    nextTick.runAfter = function (task) {
+        laterQueue.push(task);
+        if (!flushing) {
+            flushing = true;
+            requestTick();
+        }
     };
+    return nextTick;
+})();
 
-    /**
-     * Initializes FormModel
-     */
-    FormModel.prototype.init = function() {
-        var id;
-        var i;
-        var instanceDoc;
-        var secondaryInstanceChildren;
-        var that = this;
+// Attempt to make generics safe in the face of downstream
+// modifications.
+// There is no situation where this is necessary.
+// If you need a security guarantee, these primordials need to be
+// deeply frozen anyway, and if you don’t need a security guarantee,
+// this is just plain paranoid.
+// However, this **might** have the nice side-effect of reducing the size of
+// the minified code by reducing x.call() to merely x()
+// See Mark Miller’s explanation of what this does.
+// http://wiki.ecmascript.org/doku.php?id=conventions:safe_meta_programming
+var call = Function.call;
+function uncurryThis(f) {
+    return function () {
+        return call.apply(f, arguments);
+    };
+}
+// This is equivalent, but slower:
+// uncurryThis = Function_bind.bind(Function_bind.call);
+// http://jsperf.com/uncurrythis
 
-        /**
-         * Default namespaces (on a primary instance, instance child, model) would create a problem using the **native** XPath evaluator.
-         * It wouldn't find any regular /path/to/nodes. The solution is to ignore these by renaming these attributes to data-xmlns.
-         *
-         * If the regex is later deemed too aggressive, it could target the model, primary instance and primary instance child only, after creating an XML Document.
-         */
-        this.data.modelStr = this.data.modelStr.replace( /\s(xmlns\=("|')[^\s\>]+("|'))/g, ' data-$1' );
+var array_slice = uncurryThis(Array.prototype.slice);
 
-        if ( !this.options.full ) {
-            // Strip all secondary instances from string before parsing
-            // This regex works because the model never includes itext in Enketo
-            this.data.modelStr = this.data.modelStr.replace( /^(<model\s*><instance((?!<instance).)+<\/instance\s*>\s*)(<instance.+<\/instance\s*>)*/, '$1' );
-        }
-
-        // Create the model
-        try {
-            id = 'model';
-            // the default model
-            this.xml = $.parseXML( this.data.modelStr );
-            // add external data to model
-            this.data.external.forEach( function( instance ) {
-                id = 'instance "' + instance.id + '"' || 'instance unknown';
-                instanceDoc = that.xml.getElementById( instance.id );
-                // remove any existing content that is just an XLSForm hack to pass ODK Validate
-                secondaryInstanceChildren = instanceDoc.childNodes;
-                for ( i = secondaryInstanceChildren.length - 1; i >= 0; i-- ) {
-                    instanceDoc.removeChild( secondaryInstanceChildren[ i ] );
+var array_reduce = uncurryThis(
+    Array.prototype.reduce || function (callback, basis) {
+        var index = 0,
+            length = this.length;
+        // concerning the initial value, if one is not provided
+        if (arguments.length === 1) {
+            // seek to the first value in the array, accounting
+            // for the possibility that is is a sparse array
+            do {
+                if (index in this) {
+                    basis = this[index++];
+                    break;
                 }
-                instanceDoc.appendChild( $.parseXML( instance.xmlStr ).firstChild );
-            } );
-        } catch ( e ) {
-            console.error( e );
-            this.loadErrors.push( 'Error trying to parse XML ' + id + '. ' + e.message );
-        }
-
-        // Initialize/process the model
-        if ( this.xml ) {
-            try {
-                this.$ = $( this.xml );
-                this.hasInstance = !!this.xml.querySelector( 'model > instance' ) || false;
-                this.rootElement = this.xml.querySelector( 'instance > *' ) || this.xml.documentElement;
-
-                // Check if all secondary instances with an external source have been populated
-                this.$.find( 'model > instance[src]:empty' ).each( function( index, instance ) {
-                    that.loadErrors.push( 'External instance "' + $( instance ).attr( 'id' ) + '" is empty.' );
-                } );
-
-                this.trimValues();
-                this.cloneAllTemplates();
-                this.extractTemplates();
-            } catch ( e ) {
-                console.error( e );
-                this.loadErrors.push( e.name + ': ' + e.message );
-            }
-            // Merge an existing instance into the model, AFTER templates have been removed
-            try {
-                id = 'record';
-                if ( this.data.instanceStr ) {
-                    this.mergeXml( this.data.instanceStr );
-                    if ( this.data.submitted ) {
-                        this.deprecateId();
-                    }
+                if (++index >= length) {
+                    throw new TypeError();
                 }
-            } catch ( e ) {
-                console.error( e );
-                this.loadErrors.push( 'Error trying to parse XML ' + id + '. ' + e.message );
+            } while (1);
+        }
+        // reduce
+        for (; index < length; index++) {
+            // account for the possibility that the array is sparse
+            if (index in this) {
+                basis = callback(basis, this[index], index);
             }
         }
+        return basis;
+    }
+);
 
-        return this.loadErrors;
+var array_indexOf = uncurryThis(
+    Array.prototype.indexOf || function (value) {
+        // not a very good shim, but good enough for our one use of it
+        for (var i = 0; i < this.length; i++) {
+            if (this[i] === value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+);
+
+var array_map = uncurryThis(
+    Array.prototype.map || function (callback, thisp) {
+        var self = this;
+        var collect = [];
+        array_reduce(self, function (undefined, value, index) {
+            collect.push(callback.call(thisp, value, index, self));
+        }, void 0);
+        return collect;
+    }
+);
+
+var object_create = Object.create || function (prototype) {
+    function Type() { }
+    Type.prototype = prototype;
+    return new Type();
+};
+
+var object_hasOwnProperty = uncurryThis(Object.prototype.hasOwnProperty);
+
+var object_keys = Object.keys || function (object) {
+    var keys = [];
+    for (var key in object) {
+        if (object_hasOwnProperty(object, key)) {
+            keys.push(key);
+        }
+    }
+    return keys;
+};
+
+var object_toString = uncurryThis(Object.prototype.toString);
+
+function isObject(value) {
+    return value === Object(value);
+}
+
+// generator related shims
+
+// FIXME: Remove this function once ES6 generators are in SpiderMonkey.
+function isStopIteration(exception) {
+    return (
+        object_toString(exception) === "[object StopIteration]" ||
+        exception instanceof QReturnValue
+    );
+}
+
+// FIXME: Remove this helper and Q.return once ES6 generators are in
+// SpiderMonkey.
+var QReturnValue;
+if (typeof ReturnValue !== "undefined") {
+    QReturnValue = ReturnValue;
+} else {
+    QReturnValue = function (value) {
+        this.value = value;
     };
+}
 
-    /**
-     * Returns a new Nodeset instance
-     *
-     * @param {(string|null)=} selector - [type/description]
-     * @param {(string|number|null)=} index    - [type/description]
-     * @param {(Object|null)=} filter   - [type/description]
-     * @param filter.onlyLeaf
-     * @param filter.noEmpty
-     * @return {Nodeset}
-     */
-    FormModel.prototype.node = function( selector, index, filter ) {
-        return new Nodeset( selector, index, filter, this );
-    };
+// long stack traces
 
-    /**
-     * Merges an XML instance string into the XML Model
-     *
-     * @param  {string} recordStr The XML record as string
-     * @param  {string} modelDoc  The XML model to merge the record into
-     */
-    FormModel.prototype.mergeXml = function( recordStr ) {
-        var modelInstanceChildStr, merger, modelInstanceEl, modelInstanceChildEl;
-        var that = this;
+var STACK_JUMP_SEPARATOR = "From previous event:";
 
-        if ( !recordStr ) {
+function makeStackTraceLong(error, promise) {
+    // If possible, transform the error stack trace by removing Node and Q
+    // cruft, then concatenating with the stack trace of `promise`. See #57.
+    if (hasStacks &&
+        promise.stack &&
+        typeof error === "object" &&
+        error !== null &&
+        error.stack &&
+        error.stack.indexOf(STACK_JUMP_SEPARATOR) === -1
+    ) {
+        var stacks = [];
+        for (var p = promise; !!p; p = p.source) {
+            if (p.stack) {
+                stacks.unshift(p.stack);
+            }
+        }
+        stacks.unshift(error.stack);
+
+        var concatedStacks = stacks.join("\n" + STACK_JUMP_SEPARATOR + "\n");
+        error.stack = filterStackString(concatedStacks);
+    }
+}
+
+function filterStackString(stackString) {
+    var lines = stackString.split("\n");
+    var desiredLines = [];
+    for (var i = 0; i < lines.length; ++i) {
+        var line = lines[i];
+
+        if (!isInternalFrame(line) && !isNodeFrame(line) && line) {
+            desiredLines.push(line);
+        }
+    }
+    return desiredLines.join("\n");
+}
+
+function isNodeFrame(stackLine) {
+    return stackLine.indexOf("(module.js:") !== -1 ||
+           stackLine.indexOf("(node.js:") !== -1;
+}
+
+function getFileNameAndLineNumber(stackLine) {
+    // Named functions: "at functionName (filename:lineNumber:columnNumber)"
+    // In IE10 function name can have spaces ("Anonymous function") O_o
+    var attempt1 = /at .+ \((.+):(\d+):(?:\d+)\)$/.exec(stackLine);
+    if (attempt1) {
+        return [attempt1[1], Number(attempt1[2])];
+    }
+
+    // Anonymous functions: "at filename:lineNumber:columnNumber"
+    var attempt2 = /at ([^ ]+):(\d+):(?:\d+)$/.exec(stackLine);
+    if (attempt2) {
+        return [attempt2[1], Number(attempt2[2])];
+    }
+
+    // Firefox style: "function@filename:lineNumber or @filename:lineNumber"
+    var attempt3 = /.*@(.+):(\d+)$/.exec(stackLine);
+    if (attempt3) {
+        return [attempt3[1], Number(attempt3[2])];
+    }
+}
+
+function isInternalFrame(stackLine) {
+    var fileNameAndLineNumber = getFileNameAndLineNumber(stackLine);
+
+    if (!fileNameAndLineNumber) {
+        return false;
+    }
+
+    var fileName = fileNameAndLineNumber[0];
+    var lineNumber = fileNameAndLineNumber[1];
+
+    return fileName === qFileName &&
+        lineNumber >= qStartingLine &&
+        lineNumber <= qEndingLine;
+}
+
+// discover own file name and line number range for filtering stack
+// traces
+function captureLine() {
+    if (!hasStacks) {
+        return;
+    }
+
+    try {
+        throw new Error();
+    } catch (e) {
+        var lines = e.stack.split("\n");
+        var firstLine = lines[0].indexOf("@") > 0 ? lines[1] : lines[2];
+        var fileNameAndLineNumber = getFileNameAndLineNumber(firstLine);
+        if (!fileNameAndLineNumber) {
             return;
         }
 
-        modelInstanceEl = this.xml.querySelector( 'instance' );
-        modelInstanceChildEl = this.xml.querySelector( 'instance > *' ); // do not use firstChild as it may find a #textNode
+        qFileName = fileNameAndLineNumber[0];
+        return fileNameAndLineNumber[1];
+    }
+}
 
-        if ( !modelInstanceChildEl ) {
-            throw new Error( 'Model is corrupt. It does not contain a childnode of instance' );
+function deprecate(callback, name, alternative) {
+    return function () {
+        if (typeof console !== "undefined" &&
+            typeof console.warn === "function") {
+            console.warn(name + " is deprecated, use " + alternative +
+                         " instead.", new Error("").stack);
         }
-
-        /**
-         * To comply with quirky behaviour of repeats in XForms, we manually create the correct number of repeat instances
-         * before merging. This resolves these two issues:
-         *  a) Multiple repeat instances in record are added out of order when merged into a record that contains fewer 
-         *     repeat instances, see https://github.com/kobotoolbox/enketo-express/issues/223
-         *  b) If a repeat node is missing from a repeat instance (e.g. the 2nd) in a record, and that repeat instance is not 
-         *     in the model, that node will be missing in the result.
-         */
-
-        $( $.parseXML( recordStr ) ).find( '*' ).each( function() {
-            var path;
-            var $node = $( this );
-            var nodeName = $node.prop( 'nodeName' );
-            /**
-             * TODO: fails when node has namespace.
-             * The most solid way is probably to create an instance of FormModel for the record.
-             * However, since namespaced nodes will likely never pop up inside a repeat, 
-             * and cloning a namespaced repeat woul fail anyway, we just catch and ignore any 
-             * exceptions here.
-             */
-            try {
-                var $siblings = $node.siblings( nodeName );
-                if ( $siblings.length > 0 && $node.prev( nodeName ).length === 0 ) {
-                    path = $node.getXPath( 'instance' );
-                    $siblings.each( function( index ) {
-                        that.cloneRepeat( path, index, true );
-                    } );
-                }
-            } catch ( e ) {
-                console.log( 'Ignored error:', e );
-            }
-        } );
-
-        merger = new MergeXML( {
-            join: false
-        } );
-
-        modelInstanceChildStr = ( new XMLSerializer() ).serializeToString( modelInstanceChildEl );
-
-        // first the model, to preserve DOM order of that of the default instance
-        merger.AddSource( modelInstanceChildStr );
-        // then merge the record into the model
-        merger.AddSource( recordStr );
-
-        if ( merger.error.code ) {
-            throw new Error( merger.error.text );
-        }
-
-        // remove the primary instance  childnode from the original model
-        this.xml.querySelector( 'instance' ).removeChild( modelInstanceChildEl );
-        // adopt the merged instance childnode
-        modelInstanceChildEl = this.xml.adoptNode( merger.Get( 0 ).documentElement, true );
-        // append the adopted node to the primary instance
-        modelInstanceEl.appendChild( modelInstanceChildEl );
-        // reset the rootElement
-        this.rootElement = modelInstanceChildEl;
-
+        return callback.apply(callback, arguments);
     };
+}
 
-    /**
-     * Trims values
-     * 
-     */
-    FormModel.prototype.trimValues = function() {
-        this.node( null, null, {
-            noEmpty: true
-        } ).get().each( function() {
-            this.textContent = this.textContent.trim();
-        } );
-    };
+// end of shims
+// beginning of real work
 
-    /**
-     * [deprecateId description]
-     * @return {[type]} [description]
-     */
-    FormModel.prototype.deprecateId = function() {
-        var instanceIdEls, instanceIdEl, deprecatedIdEls, deprecatedIdEl, metaEl;
+/**
+ * Constructs a promise for an immediate reference, passes promises through, or
+ * coerces promises from different systems.
+ * @param value immediate reference or promise
+ */
+function Q(value) {
+    // If the object is already a Promise, return it directly.  This enables
+    // the resolve function to both be used to created references from objects,
+    // but to tolerably coerce non-promises to promises.
+    if (value instanceof Promise) {
+        return value;
+    }
 
-        /*
-         * When implementing this function using the this.node(selector) to find nodes instead of querySelectorAll,
-         * I found that the results were always empty even if the nodes existed. There seems to be 
-         * some sort of delay in updating the XML Document (in mergeXML) that causes a problem
-         * when the XPath evaluator is used to retrieve nodes.
-         */
+    // assimilate thenables
+    if (isPromiseAlike(value)) {
+        return coerce(value);
+    } else {
+        return fulfill(value);
+    }
+}
+Q.resolve = Q;
 
-        instanceIdEls = this.xml.querySelectorAll( '* > meta > instanceID' );
+/**
+ * Performs a task in a future turn of the event loop.
+ * @param {Function} task
+ */
+Q.nextTick = nextTick;
 
-        if ( instanceIdEls.length !== 1 ) {
-            throw new Error( 'Invalid primary instance. Found ' + instanceIdEls.length + ' instanceID nodes but expected 1.' );
-        }
+/**
+ * Controls whether or not long stack traces will be on
+ */
+Q.longStackSupport = false;
 
-        instanceIdEl = instanceIdEls[ 0 ];
+// enable long stacks if Q_DEBUG is set
+if (typeof process === "object" && process && process.env && process.env.Q_DEBUG) {
+    Q.longStackSupport = true;
+}
 
-        deprecatedIdEls = this.xml.querySelectorAll( '* > meta > deprecatedID' );
+/**
+ * Constructs a {promise, resolve, reject} object.
+ *
+ * `resolve` is a callback to invoke with a more resolved value for the
+ * promise. To fulfill the promise, invoke `resolve` with any value that is
+ * not a thenable. To reject the promise, invoke `resolve` with a rejected
+ * thenable, or invoke `reject` with the reason directly. To resolve the
+ * promise to another thenable, thus putting it in the same state, invoke
+ * `resolve` with that other thenable.
+ */
+Q.defer = defer;
+function defer() {
+    // if "messages" is an "Array", that indicates that the promise has not yet
+    // been resolved.  If it is "undefined", it has been resolved.  Each
+    // element of the messages array is itself an array of complete arguments to
+    // forward to the resolved promise.  We coerce the resolution value to a
+    // promise using the `resolve` function because it handles both fully
+    // non-thenable values and other thenables gracefully.
+    var messages = [], progressListeners = [], resolvedPromise;
 
-        if ( deprecatedIdEls.length > 1 ) {
-            throw new Error( 'Invalid primary instance. Found ' + deprecatedIdEls.length + ' deprecatedID nodes but expected 1.' );
-        }
+    var deferred = object_create(defer.prototype);
+    var promise = object_create(Promise.prototype);
 
-        deprecatedIdEl = deprecatedIdEls[ 0 ];
-
-        // add deprecatedID node
-        if ( !deprecatedIdEl ) {
-            deprecatedIdEl = $.parseXML( '<deprecatedID/>' ).documentElement;
-            this.xml.adoptNode( deprecatedIdEl );
-            metaEl = this.xml.querySelector( '* > meta' );
-            metaEl.appendChild( deprecatedIdEl );
-        }
-
-        // give deprecatedID element the value of the instanceId
-        deprecatedIdEl.textContent = instanceIdEl.textContent;
-
-        // set the instanceID value to empty
-        instanceIdEl.textContent = '';
-    };
-
-    /**
-     * Creates a custom XPath Evaluator to be used for XPath Expresssions that contain custom
-     * OpenRosa functions or for browsers that do not have a native evaluator.
-     */
-    FormModel.prototype.bindJsEvaluator = require( './xpath-evaluator-binding' );
-
-    /**
-     * Gets the instance ID
-     *
-     * @return {string} instanceID
-     */
-    FormModel.prototype.getInstanceID = function() {
-        return this.node( '/*/meta/instanceID' ).getVal()[ 0 ];
-    };
-
-    /**
-     * Gets the deprecated ID
-     *
-     * @return {string} deprecatedID
-     */
-    FormModel.prototype.getDeprecatedID = function() {
-        return this.node( '/*/meta/deprecatedID' ).getVal()[ 0 ] || "";
-    };
-
-    /**
-     * Gets the instance Name
-     *
-     * @return {string} instanceID
-     */
-    FormModel.prototype.getInstanceName = function() {
-        return this.node( '/*/meta/instanceName' ).getVal()[ 0 ];
-    };
-
-    /**
-     * Clones a <repeat>able instance node. If a template exists it will use this, otherwise it will clone an empty version of the first node.
-     * If the node with the specified index already exists, this function will do nothing.
-     *
-     * @param  {string} selector selector of a repeat or a node that is contained inside a repeat
-     * @param  {number} index    index of the repeat that the new repeat should be inserted after.
-     * @param  {boolean} merge   whether this operation is part of a merge operation (won't send dataupdate event and clears all values)
-     */
-    FormModel.prototype.cloneRepeat = function( selector, index, merge ) {
-        var $insertAfterNode, name, allClonedNodeNames, $templateClone,
-            $template = this.templates[ selector ] || this.node( selector, 0 ).get(),
-            that = this;
-
-        name = $template.prop( 'nodeName' );
-        $insertAfterNode = this.node( selector, index ).get();
-
-        // If templatenodes and insertAfterNode(s) have been identified 
-        // AND the node following insertAfterNode doesn't already exist (! important for nested repeats!)
-        // Strictly speaking using .next() is more efficient, but we use .nextAll() in case the document order has changed due to 
-        // incorrect merging of an existing record.
-        if ( $template[ 0 ] && $insertAfterNode.length === 1 && $insertAfterNode.nextAll( name ).length === 0 ) {
-            $templateClone = $template.clone().insertAfter( $insertAfterNode );
-
-            if ( !merge ) {
-                allClonedNodeNames = [ $template.prop( 'nodeName' ) ];
-
-                $template.find( '*' ).each( function() {
-                    allClonedNodeNames.push( $( this ).prop( 'nodeName' ) );
-                } );
-
-                this.$.trigger( 'dataupdate', {
-                    nodes: allClonedNodeNames,
-                    repeatPath: selector,
-                    repeatIndex: that.node( selector, index ).determineIndex( $templateClone )
-                } );
-            } else {
-                // this is part of a merge operation (during form load) where the values will be populated from the record, 
-                // defaults are therefore not desired
-                $templateClone.find( '*' ).text( '' );
+    promise.promiseDispatch = function (resolve, op, operands) {
+        var args = array_slice(arguments);
+        if (messages) {
+            messages.push(args);
+            if (op === "when" && operands[1]) { // progress operand
+                progressListeners.push(operands[1]);
             }
         } else {
-            // Strictly speaking using .next() is more efficient, but we use .nextAll() in case the document order has changed due to 
-            // incorrect merging of an existing record.
-            if ( $insertAfterNode.nextAll( name ).length === 0 ) {
-                console.error( 'Could not find template node and/or node to insert the clone after' );
-            }
+            Q.nextTick(function () {
+                resolvedPromise.promiseDispatch.apply(resolvedPromise, args);
+            });
         }
     };
 
-
-    /**
-     * Extracts all templates from the model and stores them in a Javascript object poperties as Jquery collections
-     * @return {[type]} [description]
-     */
-    FormModel.prototype.extractTemplates = function() {
-        var that = this;
-        // in reverse document order to properly deal with nested repeat templates
-        // for now we support both the official namespaced template and the hacked non-namespaced template attributes
-        this.evaluate( '/model/instance[1]/*//*[@template] | /model/instance[1]/*//*[@jr:template]', 'nodes', null, null, true ).reverse().forEach( function( templateEl ) {
-            var $template = $( templateEl );
-            that.templates[ $template.getXPath( 'instance' ) ] = $template.removeAttr( 'template' ).removeAttr( 'jr:template' ).remove();
-        } );
-    };
-
-
-    /**
-     * Finds a template path that would contain the provided node path if that template exists in the form.
-     *
-     * @param  {string} nodePath the /path/to/template/node
-     * @return {*}               the /path/to/template
-     */
-    FormModel.prototype.getTemplatePath = function( nodePath ) {
-        var templateIndex,
-            that = this;
-
-        nodePath.split( '/' ).some( function( value, index, array ) {
-            templateIndex = array.slice( 0, array.length - index ).join( '/' );
-            return that.templates[ templateIndex ];
-        } );
-
-        return templateIndex || undefined;
-    };
-
-    /**
-     * Initialization function that creates <repeat>able data nodes with the defaults from the template if no repeats have been created yet.
-     * Strictly speaking creating the first repeat automatically is not "according to the spec" as the user should be asked first whether it
-     * has any data for this question.
-     * However, it seems usually always better to assume at least one 'repeat' (= 1 question). It doesn't make use of the Nodeset subclass (CHANGE?)
-     *
-     * See also: In JavaRosa, the documentation on the jr:template attribute.
-     */
-    FormModel.prototype.cloneAllTemplates = function() {
-        var that = this;
-
-        // for now we support both the official namespaced template and the hacked non-namespaced template attributes
-        this.evaluate( '/model/instance[1]/*//*[@template] | /model/instance[1]/*//*[@jr:template]', 'nodes', null, null, true ).forEach( function( templateEl ) {
-            var nodeName = templateEl.nodeName,
-                selector = $( templateEl ).getXPath( 'instance' ),
-                ancestorTemplateNodes = that.evaluate( 'ancestor::' + nodeName + '[@template] | ancestor::' + nodeName + '[@jr:template]', 'nodes', selector, 0, true );
-            if ( ancestorTemplateNodes.length === 0 && $( templateEl ).siblings( nodeName ).length === 0 ) {
-                $( templateEl ).clone().insertAfter( $( templateEl ) ).find( '*' ).addBack().removeAttr( 'template' ).removeAttr( 'jr:template' );
-            }
-        } );
-    };
-
-    /**
-     * See Also:
-     * Returns jQuery Data Object (obsolete?)
-     * See also: <nodes.get()>, which is always (?) preferred except for debugging.
-     *
-     * @return {jQuery} JQuery Data Object
-     */
-    FormModel.prototype.get = function() {
-        return this.$ || null;
-    };
-
-    /**
-     *
-     * @return {Element} data XML object (not sure if type is element actually)
-     */
-    FormModel.prototype.getXML = function() {
-        return this.xml || null;
-    };
-
-    /**
-     * Obtains a cleaned up string of the data instance
-     *
-     * @return {string}           XML string
-     */
-    FormModel.prototype.getStr = function() {
-        var dataStr = ( new XMLSerializer() ).serializeToString( this.xml.querySelector( 'instance > *' ) || this.xml.documentElement, 'text/xml' );
-        // remove tabs
-        dataStr = dataStr.replace( /\t/g, '' );
-        // restore default namespaces
-        dataStr = dataStr.replace( /\s(data-)(xmlns\=("|')[^\s\>]+("|'))/g, ' $2' );
-        return dataStr;
-    };
-
-    /**
-     * There is a huge bug in JavaRosa that has resulted in the usage of incorrect formulae on nodes inside repeat nodes.
-     * Those formulae use absolute paths when relative paths should have been used. See more here:
-     * http://opendatakit.github.io/odk-xform-spec/#a-big-deviation-with-xforms
-     *
-     * Tools such as pyxform also build forms in this incorrect manner. See https://github.com/modilabs/pyxform/issues/91
-     * It will take time to correct this so makeBugCompliant() aims to mimic the incorrect
-     * behaviour by injecting the 1-based [position] of repeats into the XPath expressions. The resulting expression
-     * will then be evaluated in a way users expect (as if the paths were relative) without having to mess up
-     * the XPath Evaluator.
-     *
-     * E.g. '/data/rep_a/node_a' could become '/data/rep_a[2]/node_a' if the context is inside
-     * the second rep_a repeat.
-     *
-     * This function should be removed as soon as JavaRosa (or maybe just pyxform) fixes the way those formulae
-     * are created (or evaluated).
-     *
-     * @param  {string} expr        the XPath expression
-     * @param  {string} selector    of the (context) node on which expression is evaluated
-     * @param  {number} index       of the instance node with that selector
-     * @return {string} modified    expression with injected positions (1-based!)
-     */
-    FormModel.prototype.makeBugCompliant = function( expr, selector, index ) {
-        var i, parentSelector, parentIndex, $target, $node, nodeName, $siblings, $parents;
-        $target = this.node( selector, index ).get();
-        // add() sorts the resulting collection in document order
-        $parents = $target.parents().add( $target );
-        // traverse collection in reverse document order
-        for ( i = $parents.length - 1; i >= 0; i-- ) {
-            $node = $parents.eq( i );
-            // escape any dots in the node name
-            nodeName = $node.prop( 'nodeName' ).replace( /\./g, '\\.' );
-            $siblings = $node.siblings( nodeName ).not( '[template]' );
-            // if the node is a repeat node that has been cloned at least once (i.e. if it has siblings with the same nodeName)
-            if ( nodeName.toLowerCase() !== 'instance' && nodeName.toLowerCase() !== 'model' && $siblings.length > 0 ) {
-                parentSelector = $node.getXPath( 'instance' );
-                parentIndex = $siblings.add( $node ).index( $node );
-                // Add position to segments that do not have an XPath predicate. This is where it gets very messy.
-                if ( !new RegExp( parentSelector + '\\[' ).test( expr ) ) {
-                    expr = expr.replace( new RegExp( parentSelector, 'g' ), parentSelector + '[' + ( parentIndex + 1 ) + ']' );
-                }
-            }
+    // XXX deprecated
+    promise.valueOf = function () {
+        if (messages) {
+            return promise;
         }
-        return expr;
-    };
-
-    FormModel.prototype.nsResolver = {
-
-        lookupNamespaceURI: function( prefix ) {
-            var namespaces = {
-                'jr': 'http://openrosa.org/javarosa',
-                'xsd': 'http://www.w3.org/2001/XMLSchema',
-                'orx': 'http://openrosa.org/xforms/', // CommCare uses 'http://openrosa.org/jr/xforms'
-                'cc': 'http://commcarehq.org/xforms'
-            };
-
-            return namespaces[ prefix ] || null;
+        var nearerValue = nearer(resolvedPromise);
+        if (isPromise(nearerValue)) {
+            resolvedPromise = nearerValue; // shorten chain
         }
+        return nearerValue;
     };
 
-    /**
-     * Shift root to first instance for all absolute paths not starting with /model
-     *
-     * @param  {string} expr original expression
-     * @return {string}      new expression
-     */
-    FormModel.prototype.shiftRoot = function( expr ) {
-        if ( this.hasInstance ) {
-            expr = expr.replace( /^(\/(?!model\/)[^\/][^\/\s]*\/)/g, '/model/instance[1]$1' );
-            expr = expr.replace( /([^a-zA-Z0-9\.\]\)\/\*_-])(\/(?!model\/)[^\/][^\/\s]*\/)/g, '$1/model/instance[1]$2' );
+    promise.inspect = function () {
+        if (!resolvedPromise) {
+            return { state: "pending" };
         }
-        return expr;
+        return resolvedPromise.inspect();
     };
 
-    /** 
-     * Replace instance('id') with an absolute path
-     * Doing this here instead of adding an instance() function to the XPath evaluator, means we can keep using
-     * the much faster native evaluator in most cases!
-     *
-     * @param  {string} expr original expression
-     * @return {string}      new expression
-     */
-    FormModel.prototype.replaceInstanceFn = function( expr ) {
-        var prefix;
-        var that = this;
+    if (Q.longStackSupport && hasStacks) {
+        try {
+            throw new Error();
+        } catch (e) {
+            // NOTE: don't try to use `Error.captureStackTrace` or transfer the
+            // accessor around; that causes memory leaks as per GH-111. Just
+            // reify the stack trace as a string ASAP.
+            //
+            // At the same time, cut off the first line; it's always just
+            // "[object Promise]\n", as per the `toString`.
+            promise.stack = e.stack.substring(e.stack.indexOf("\n") + 1);
+        }
+    }
 
-        // TODO: would be more consistent to use utls.parseFunctionFromExpression() and utils.stripQuotes
-        return expr.replace( this.INSTANCE, function( match, id ) {
-            prefix = '/model/instance[@id="' + id + '"]';
-            // check if referred instance exists in model
-            if ( that.evaluate( prefix, 'nodes', null, null, true ).length ) {
-                return prefix;
-            } else {
-                throw new FormLogicError( 'instance "' + id + '" does not exist in model' );
-            }
-        } );
-    };
+    // NOTE: we do the checks for `resolvedPromise` in each method, instead of
+    // consolidating them into `become`, since otherwise we'd create new
+    // promises with the lines `become(whatever(value))`. See e.g. GH-252.
 
-    /** 
-     * Replaces current() with /absolute/path/to/node to ensure the context is shifted to the primary instance
-     * 
-     * Doing this here instead of adding a current() function to the XPath evaluator, means we can keep using
-     * the much faster native evaluator in most cases!
-     *
-     * Root will be shifted, and repeat positions injected, **later on**, so it's not included here.
-     *
-     * @param  {string} expr            original expression
-     * @param  {string} contextSelector context selector 
-     * @return {string}                 new expression
-     */
-    FormModel.prototype.replaceCurrentFn = function( expr, contextSelector ) {
-        // relative paths
-        expr = expr.replace( 'current()/.', contextSelector + '/.' );
-        // absolute paths
-        expr = expr.replace( 'current()/', '/' );
+    function become(newPromise) {
+        resolvedPromise = newPromise;
+        promise.source = newPromise;
 
-        return expr;
-    };
+        array_reduce(messages, function (undefined, message) {
+            Q.nextTick(function () {
+                newPromise.promiseDispatch.apply(newPromise, message);
+            });
+        }, void 0);
 
-    /**
-     * Replaces indexed-repeat(node, path, position, path, position, etc) substrings by converting them
-     * to their native XPath equivalents using [position() = x] predicates
-     *
-     * @param  {string} expr the XPath expression
-     * @return {string}      converted XPath expression
-     */
-    FormModel.prototype.replaceIndexedRepeatFn = function( expr, selector, index ) {
-        var that = this;
-        var indexedRepeats = utils.parseFunctionFromExpression( expr, 'indexed-repeat' );
+        messages = void 0;
+        progressListeners = void 0;
+    }
 
-        if ( !indexedRepeats.length ) {
-            return expr;
+    deferred.promise = promise;
+    deferred.resolve = function (value) {
+        if (resolvedPromise) {
+            return;
         }
 
-        indexedRepeats.forEach( function( indexedRepeat ) {
-            var i, positionedPath;
-            var position;
-            var params = indexedRepeat[ 1 ];
-
-            if ( params.length % 2 === 1 ) {
-
-                positionedPath = params[ 0 ];
-
-                for ( i = params.length - 1; i > 1; i -= 2 ) {
-                    // The position will become an XPath predicate. The context for an XPath predicate, is not the same
-                    // as the context for the complete expression, so we have to evaluate the position separately. Otherwise 
-                    // relative paths would break.
-                    position = !isNaN( params[ i ] ) ? params[ i ] : that.evaluate( params[ i ], 'number', selector, index, true );
-                    positionedPath = positionedPath.replace( params[ i - 1 ], params[ i - 1 ] + '[position() = ' + position + ']' );
-                }
-
-                expr = expr.replace( indexedRepeat[ 0 ], positionedPath );
-
-            } else {
-                throw new FormLogicError( 'indexed repeat with incorrect number of parameters found: ' + indexedRepeat[ 0 ] );
-            }
-        } );
-
-        return expr;
+        become(Q(value));
     };
 
-    FormModel.prototype.replacePullDataFn = function( expr, selector, index ) {
-        var that = this;
-        var pullDatas = utils.parseFunctionFromExpression( expr, 'pulldata' );
-
-        if ( !pullDatas.length ) {
-            return expr;
+    deferred.fulfill = function (value) {
+        if (resolvedPromise) {
+            return;
         }
 
-        pullDatas.forEach( function( pullData ) {
-            var searchValue;
-            var searchXPath;
-            var params = pullData[ 1 ];
+        become(fulfill(value));
+    };
+    deferred.reject = function (reason) {
+        if (resolvedPromise) {
+            return;
+        }
 
-            if ( params.length === 4 ) {
+        become(reject(reason));
+    };
+    deferred.notify = function (progress) {
+        if (resolvedPromise) {
+            return;
+        }
 
-                // strip quotes
-                params[ 1 ] = utils.stripQuotes( params[ 1 ] );
-                params[ 2 ] = utils.stripQuotes( params[ 2 ] );
-
-                // TODO: the 2nd and 3rd parameter could probably also be expressions.
-
-                // The 4th argument will become an XPath predicate. The context for an XPath predicate, is not the same
-                // as the context for the complete expression, so we have to evaluate the position separately. Otherwise
-                // relative paths would break.
-                searchValue = that.evaluate( params[ 3 ], 'string', selector, index, true );
-                searchValue = searchValue === '' || isNaN( searchValue ) ? '\'' + searchValue + '\'' : searchValue;
-                searchXPath = 'instance(' + params[ 0 ] + ')/root/item[' + params[ 2 ] + ' = ' + searchValue + ']/' + params[ 1 ];
-
-                expr = expr.replace( pullData[ 0 ], searchXPath );
-
-            } else {
-                throw new FormLogicError( 'pulldata with incorrect number of parameters found: ' + pullData[ 0 ] );
-            }
-        } );
-
-        return expr;
+        array_reduce(progressListeners, function (undefined, progressListener) {
+            Q.nextTick(function () {
+                progressListener(progress);
+            });
+        }, void 0);
     };
 
-    /**
-     * Evaluates an XPath Expression using XPathJS_javarosa (not native XPath 1.0 evaluator)
-     *
-     * This function does not seem to work properly for nodeset resulttypes otherwise:
-     * muliple nodes can be accessed by returned node.snapshotItem(i)(.textContent)
-     * a single node can be accessed by returned node(.textContent)
-     *
-     * @param  { string }     expr        the expression to evaluate
-     * @param  { string= }    resTypeStr  boolean, string, number, node, nodes (best to always supply this)
-     * @param  { string= }    selector    jQuery selector which will be use to provide the context to the evaluator
-     * @param  { number= }    index       0-based index of selector in document
-     * @param  { boolean= }   tryNative   whether an attempt to try the Native Evaluator is safe (ie. whether it is
-     *                                    certain that there are no date comparisons)
-     * @return { ?(number|string|boolean|Array<element>) } the result
-     */
-    FormModel.prototype.evaluate = function( expr, resTypeStr, selector, index, tryNative ) {
-        var j, context, doc, resTypeNum, resultTypes, result, $collection, response, repeats, cacheKey, original, cacheable;
+    return deferred;
+}
 
-        // console.debug( 'evaluating expr: ' + expr + ' with context selector: ' + selector + ', 0-based index: ' +
-        //    index + ' and result type: ' + resTypeStr );
-        original = expr;
-        tryNative = tryNative || false;
-        resTypeStr = resTypeStr || 'any';
-        index = index || 0;
-        doc = this.xml;
-        repeats = null;
-
-        // path corrections for repeated nodes: http://opendatakit.github.io/odk-xform-spec/#a-big-deviation-with-xforms
-        if ( selector ) {
-            $collection = this.node( selector ).get();
-            repeats = $collection.length;
-            context = $collection.eq( index )[ 0 ];
+/**
+ * Creates a Node-style callback that will resolve or reject the deferred
+ * promise.
+ * @returns a nodeback
+ */
+defer.prototype.makeNodeResolver = function () {
+    var self = this;
+    return function (error, value) {
+        if (error) {
+            self.reject(error);
+        } else if (arguments.length > 2) {
+            self.resolve(array_slice(arguments, 1));
         } else {
-            // either the first data child of the first instance or the first child (for loaded instances without a model)
-            context = this.rootElement;
-        }
-
-        // cache key includes the number of repeated context nodes, 
-        // to force a new cache item if the number of repeated changes to > 0
-        // TODO: these cache keys can get quite large. Would it be beneficial to get the md5 of the key?
-        cacheKey = [ expr, selector, index, repeats ].join( '|' );
-
-        // These functions need to come before makeBugCompliant.
-        // An expression transformation with indexed-repeat or pulldata cannot be cached because in 
-        // "indexed-repeat(node, repeat nodeset, index)" the index parameter could be an expression.
-        expr = this.replaceIndexedRepeatFn( expr, selector, index );
-        expr = this.replacePullDataFn( expr, selector, index );
-        cacheable = ( original === expr );
-
-        // if no cached conversion exists
-        if ( !this.convertedExpressions[ cacheKey ] ) {
-            expr = expr;
-            expr = expr.trim();
-            expr = this.replaceInstanceFn( expr );
-            expr = this.replaceCurrentFn( expr, selector );
-            // shiftRoot should come after replaceCurrentFn
-            expr = this.shiftRoot( expr );
-            if ( repeats && repeats > 1 ) {
-                expr = this.makeBugCompliant( expr, selector, index );
-            }
-            // decode
-            expr = expr.replace( /&lt;/g, '<' );
-            expr = expr.replace( /&gt;/g, '>' );
-            expr = expr.replace( /&quot;/g, '"' );
-            if ( cacheable ) {
-                this.convertedExpressions[ cacheKey ] = expr;
-            }
-        } else {
-            expr = this.convertedExpressions[ cacheKey ];
-        }
-
-        resultTypes = {
-            0: [ 'any', 'ANY_TYPE' ],
-            1: [ 'number', 'NUMBER_TYPE', 'numberValue' ],
-            2: [ 'string', 'STRING_TYPE', 'stringValue' ],
-            3: [ 'boolean', 'BOOLEAN_TYPE', 'booleanValue' ],
-            7: [ 'nodes', 'ORDERED_NODE_SNAPSHOT_TYPE' ],
-            9: [ 'node', 'FIRST_ORDERED_NODE_TYPE', 'singleNodeValue' ]
-        };
-
-        // translate typeStr to number according to DOM level 3 XPath constants
-        for ( resTypeNum in resultTypes ) {
-            if ( resultTypes.hasOwnProperty( resTypeNum ) ) {
-                resTypeNum = Number( resTypeNum );
-                if ( resultTypes[ resTypeNum ][ 0 ] === resTypeStr ) {
-                    break;
-                } else {
-                    resTypeNum = 0;
-                }
-            }
-        }
-
-        // try native to see if that works... (will not work if the expr contains custom OpenRosa functions)
-        if ( tryNative && typeof doc.evaluate !== 'undefined' && !this.OPENROSA.test( expr ) ) {
-            try {
-                // console.log( 'trying the blazing fast native XPath Evaluator for', expr, index );
-                result = doc.evaluate( expr, context, this.nsResolver, resTypeNum, null );
-            } catch ( e ) {
-                console.log( '%cWell native XPath evaluation did not work... No worries, worth a shot, the expression probably ' +
-                    'contained unknown OpenRosa functions or errors:', 'color:orange', expr );
-            }
-        }
-
-        // if that didn't work, try the slow XPathJS evaluator 
-        if ( !result ) {
-            try {
-                if ( typeof doc.jsEvaluate === 'undefined' ) {
-                    this.bindJsEvaluator();
-                }
-                // console.log( 'trying the slow enketo-xpathjs "openrosa" evaluator for', expr, index );
-                result = doc.jsEvaluate( expr, context, this.nsResolver, resTypeNum, null );
-            } catch ( e ) {
-                throw new FormLogicError( 'Could not evaluate: ' + expr + ', message: ' + e.message );
-            }
-        }
-
-        // get desired value from the result object
-        if ( result ) {
-            // for type = any, see if a valid string, number or boolean is returned
-            if ( resTypeNum === 0 ) {
-                for ( resTypeNum in resultTypes ) {
-                    if ( resultTypes.hasOwnProperty( resTypeNum ) ) {
-                        resTypeNum = Number( resTypeNum );
-                        if ( resTypeNum === Number( result.resultType ) && resTypeNum > 0 && resTypeNum < 4 ) {
-                            response = result[ resultTypes[ resTypeNum ][ 2 ] ];
-                            break;
-                        }
-                    }
-                }
-                console.error( 'Expression: ' + expr + ' did not return any boolean, string or number value as expected' );
-            } else if ( resTypeNum === 7 ) {
-                // response is an array of Elements
-                response = [];
-                for ( j = 0; j < result.snapshotLength; j++ ) {
-                    response.push( result.snapshotItem( j ) );
-                }
-            } else {
-                response = result[ resultTypes[ resTypeNum ][ 2 ] ];
-            }
-            return response;
+            self.resolve(value);
         }
     };
+};
 
-    /**
-     * Class dealing with nodes and nodesets of the XML instance
-     *
-     * @constructor
-     * @param {string=} selector simpleXPath or jQuery selectedor
-     * @param {number=} index    the index of the target node with that selector
-     * @param {?{onlyLeaf: boolean, noEmpty: boolean}=} filter   filter object for the result nodeset
-     * @param { FormModel } model instance of FormModel
-     */
-    Nodeset = function( selector, index, filter, model ) {
-        var defaultSelector = model.hasInstance ? '/model/instance[1]//*' : '//*';
+/**
+ * @param resolver {Function} a function that returns nothing and accepts
+ * the resolve, reject, and notify functions for a deferred.
+ * @returns a promise that may be resolved with the given resolve and reject
+ * functions, or rejected by a thrown exception in resolver
+ */
+Q.Promise = promise; // ES6
+Q.promise = promise;
+function promise(resolver) {
+    if (typeof resolver !== "function") {
+        throw new TypeError("resolver must be a function.");
+    }
+    var deferred = defer();
+    try {
+        resolver(deferred.resolve, deferred.reject, deferred.notify);
+    } catch (reason) {
+        deferred.reject(reason);
+    }
+    return deferred.promise;
+}
 
-        this.model = model;
-        this.originalSelector = selector;
-        this.selector = ( typeof selector === 'string' && selector.length > 0 ) ? selector : defaultSelector;
-        filter = ( typeof filter !== 'undefined' && filter !== null ) ? filter : {};
-        this.filter = filter;
-        this.filter.onlyLeaf = ( typeof filter.onlyLeaf !== 'undefined' ) ? filter.onlyLeaf : false;
-        this.filter.noEmpty = ( typeof filter.noEmpty !== 'undefined' ) ? filter.noEmpty : false;
-        this.index = index;
-    };
+promise.race = race; // ES6
+promise.all = all; // ES6
+promise.reject = reject; // ES6
+promise.resolve = Q; // ES6
 
-    /**
-     * Privileged method to find data nodes filtered by a jQuery or XPath selector and additional filter properties
-     * Without parameters it returns a collection of all data nodes excluding template nodes and their children. Therefore, most
-     * queries will not require filter properties. This function handles all (?) data queries in the application.
-     *
-     * @return {jQuery} jQuery-wrapped filtered instance nodes that match the selector and index
-     */
-    Nodeset.prototype.get = function() {
-        var $nodes, /** @type {string} */ val;
+// XXX experimental.  This method is a way to denote that a local value is
+// serializable and should be immediately dispatched to a remote upon request,
+// instead of passing a reference.
+Q.passByCopy = function (object) {
+    //freeze(object);
+    //passByCopies.set(object, true);
+    return object;
+};
 
-        // cache evaluation result
-        if ( !this.nodes ) {
-            this.nodes = this.model.evaluate( this.selector, 'nodes', null, null, true );
-        }
+Promise.prototype.passByCopy = function () {
+    //freeze(object);
+    //passByCopies.set(object, true);
+    return this;
+};
 
-        // noEmpty automatically excludes non-leaf nodes
-        if ( this.filter.noEmpty === true ) {
-            $nodes = $( this.nodes ).filter( function() {
-                var $node = $( this );
-                val = $node.text();
-                return $node.children().length === 0 && val.trim().length > 0;
-            } );
-        }
-        // this may still contain empty leaf nodes
-        else if ( this.filter.onlyLeaf === true ) {
-            $nodes = $( this.nodes ).filter( function() {
-                return $( this ).children().length === 0;
-            } );
-        } else {
-            $nodes = $( this.nodes );
-        }
+/**
+ * If two promises eventually fulfill to the same value, promises that value,
+ * but otherwise rejects.
+ * @param x {Any*}
+ * @param y {Any*}
+ * @returns {Any*} a promise for x and y if they are the same, but a rejection
+ * otherwise.
+ *
+ */
+Q.join = function (x, y) {
+    return Q(x).join(y);
+};
 
-        return ( typeof this.index !== 'undefined' && this.index !== null ) ? $nodes.eq( this.index ) : $nodes;
-    };
-
-    /**
-     * Sets the index of the Nodeset instance
-     *
-     * @param {=number?} index The 0-based index
-     */
-    Nodeset.prototype.setIndex = function( index ) {
-        this.index = index;
-    };
-
-    /**
-     * Sets data node values.
-     *
-     * @param {(string|Array.<string>)=} newVals    The new value of the node.
-     * @param {?string=} expr  XPath expression to validate the node.
-     * @param {?string=} xmlDataType XML data type of the node
-     *
-     * @return {Promise} wrapping {?boolean}; null is returned when the node is not found or multiple nodes were selected
-     */
-    Nodeset.prototype.setVal = function( newVals, expr, xmlDataType ) {
-        var $target, curVal, /**@type {string}*/ newVal, success, updated;
-
-        curVal = this.getVal()[ 0 ];
-
-        if ( typeof newVals !== 'undefined' && newVals !== null ) {
-            newVal = ( $.isArray( newVals ) ) ? newVals.join( ' ' ) : newVals.toString();
-        } else {
-            newVal = '';
-        }
-
-        newVal = this.convert( newVal, xmlDataType );
-
-        $target = this.get();
-
-        if ( $target.length === 1 && $.trim( newVal.toString() ) !== $.trim( curVal.toString() ) ) { //|| (target.length > 1 && typeof this.index == 'undefined') ){
-            //first change the value so that it can be evaluated in XPath (validated)
-            $target.text( newVal );
-            //then return validation result
-            success = this.validate( expr, xmlDataType );
-            updated = this.getClosestRepeat();
-            updated.nodes = [ $target.prop( 'nodeName' ) ];
-            this.model.$.trigger( 'dataupdate', updated );
-            //add type="file" attribute for file references
-            if ( xmlDataType === 'binary' ) {
-                if ( newVal.length > 0 ) {
-                    $target.attr( 'type', 'file' );
-                } else {
-                    $target.removeAttr( 'type' );
-                }
-            }
-
-            return success;
-        }
-        if ( $target.length > 1 ) {
-            console.error( 'nodeset.setVal expected nodeset with one node, but received multiple' );
-            return Promise.resolve( null );
-        }
-        if ( $target.length === 0 ) {
-            console.log( 'Data node: ' + this.selector + ' with null-based index: ' + this.index + ' not found. Ignored.' );
-            return Promise.resolve( null );
-        }
-        //always validate if the new value is not empty, even if value didn't change (see validateAll() function)
-        //return (newVal.length > 0 && validateAll) ? this.validate(expr, xmlDataType) : true;
-        return Promise.resolve( null );
-    };
-
-
-    /**
-     * Obtains the data value if a JQuery or XPath selector for a single node is provided.
-     *
-     * @return {Array<string|number|boolean>} [description]
-     */
-    Nodeset.prototype.getVal = function() {
-        var vals = [];
-        this.get().each( function() {
-            vals.push( $( this ).text() );
-        } );
-        return vals;
-    };
-
-    /**
-     * Determines the index of a repeated node amongst all nodes with the same XPath selector
-     *
-     * @param  {} $node optional jquery element
-     * @return {number}       [description]
-     */
-    Nodeset.prototype.determineIndex = function( $node ) {
-        var nodeName, path, $family;
-
-        $node = $node || this.get();
-
-        if ( $node.length === 1 ) {
-            nodeName = $node.prop( 'nodeName' );
-            path = $node.getXPath( 'instance' );
-            $family = this.model.$.find( nodeName ).filter( function() {
-                return path === $( this ).getXPath( 'instance' );
-            } );
-            return ( $family.length === 1 ) ? null : $family.index( $node );
-        } else {
-            console.error( 'no node, or multiple nodes, provided to nodeset.determineIndex' );
-            return -1;
-        }
-    };
-
-    // if repeats have not been cloned yet, they are not considered a repeat by this function
-    Nodeset.prototype.getClosestRepeat = function() {
-        var $node = this.get(),
-            nodeName = $node.prop( 'nodeName' );
-
-        while ( $node.siblings( nodeName ).length === 0 && nodeName !== 'instance' ) {
-            $node = $node.parent();
-            nodeName = $node.prop( 'nodeName' );
-        }
-
-        return ( nodeName === 'instance' ) ? {} : {
-            repeatPath: $node.getXPath( 'instance' ),
-            repeatIndex: this.determineIndex( $node )
-        };
-    };
-
-    /**
-     * Remove a repeat node
-     */
-    Nodeset.prototype.remove = function() {
-        var $dataNode, allRemovedNodeNames, $this, repeatPath, repeatIndex;
-
-        $dataNode = this.get();
-
-        if ( $dataNode.length > 0 ) {
-
-            allRemovedNodeNames = [ $dataNode.prop( 'nodeName' ) ];
-
-            $dataNode.find( '*' ).each( function() {
-                $this = $( this );
-                allRemovedNodeNames.push( $this.prop( 'nodeName' ) );
-            } );
-
-            repeatPath = $dataNode.getXPath( 'instance' );
-            repeatIndex = this.determineIndex( $dataNode );
-
-            $dataNode.remove();
-            this.nodes = null;
-
-            this.model.$.trigger( 'dataupdate', {
-                updatedNodes: allRemovedNodeNames,
-                repeatPath: repeatPath,
-                repeatIndex: repeatIndex
-            } );
-        } else {
-            console.error( 'could not find node ' + this.selector + ' with index ' + this.index + ' to remove ' );
-        }
-    };
-
-    /**
-     * Convert a value to a specified data type( though always stringified )
-     * @param  {?string=} x           value to convert
-     * @param  {?string=} xmlDataType XML data type
-     * @return {string}               string representation of converted value
-     */
-    Nodeset.prototype.convert = function( x, xmlDataType ) {
-        if ( x.toString() === '' ) {
+Promise.prototype.join = function (that) {
+    return Q([this, that]).spread(function (x, y) {
+        if (x === y) {
+            // TODO: "===" should be Object.is or equiv
             return x;
+        } else {
+            throw new Error("Can't join: not the same: " + x + " " + y);
         }
-        if ( typeof xmlDataType !== 'undefined' && xmlDataType !== null &&
-            typeof types[ xmlDataType.toLowerCase() ] !== 'undefined' &&
-            typeof types[ xmlDataType.toLowerCase() ].convert !== 'undefined' ) {
-            return types[ xmlDataType.toLowerCase() ].convert( x );
+    });
+};
+
+/**
+ * Returns a promise for the first of an array of promises to become settled.
+ * @param answers {Array[Any*]} promises to race
+ * @returns {Any*} the first promise to be settled
+ */
+Q.race = race;
+function race(answerPs) {
+    return promise(function (resolve, reject) {
+        // Switch to this once we can assume at least ES5
+        // answerPs.forEach(function (answerP) {
+        //     Q(answerP).then(resolve, reject);
+        // });
+        // Use this in the meantime
+        for (var i = 0, len = answerPs.length; i < len; i++) {
+            Q(answerPs[i]).then(resolve, reject);
         }
-        return x;
+    });
+}
+
+Promise.prototype.race = function () {
+    return this.then(Q.race);
+};
+
+/**
+ * Constructs a Promise with a promise descriptor object and optional fallback
+ * function.  The descriptor contains methods like when(rejected), get(name),
+ * set(name, value), post(name, args), and delete(name), which all
+ * return either a value, a promise for a value, or a rejection.  The fallback
+ * accepts the operation name, a resolver, and any further arguments that would
+ * have been forwarded to the appropriate method above had a method been
+ * provided with the proper name.  The API makes no guarantees about the nature
+ * of the returned object, apart from that it is usable whereever promises are
+ * bought and sold.
+ */
+Q.makePromise = Promise;
+function Promise(descriptor, fallback, inspect) {
+    if (fallback === void 0) {
+        fallback = function (op) {
+            return reject(new Error(
+                "Promise does not support operation: " + op
+            ));
+        };
+    }
+    if (inspect === void 0) {
+        inspect = function () {
+            return {state: "unknown"};
+        };
+    }
+
+    var promise = object_create(Promise.prototype);
+
+    promise.promiseDispatch = function (resolve, op, args) {
+        var result;
+        try {
+            if (descriptor[op]) {
+                result = descriptor[op].apply(promise, args);
+            } else {
+                result = fallback.call(promise, op, args);
+            }
+        } catch (exception) {
+            result = reject(exception);
+        }
+        if (resolve) {
+            resolve(result);
+        }
     };
 
-    /**
-     * Validate a value with an XPath Expression and /or xml data type
-     * @param  {?string=} expr        XPath expression
-     * @param  {?string=} xmlDataType XML datatype
-     * @return {Promise} wrapping a boolean indicating if the value is valid or not; error also indicates invalid field, or problem validating it
-     */
-    Nodeset.prototype.validate = function( expr, xmlDataType ) {
-        var that = this,
-            value;
+    promise.inspect = inspect;
 
-        if ( !xmlDataType || typeof types[ xmlDataType.toLowerCase() ] === 'undefined' ) {
-            xmlDataType = 'string';
+    // XXX deprecated `valueOf` and `exception` support
+    if (inspect) {
+        var inspected = inspect();
+        if (inspected.state === "rejected") {
+            promise.exception = inspected.reason;
         }
 
-        // This one weird trick results in a small validation performance increase.
-        // Do not obtain *the value* if the expr is empty and data type is string, select, select1, binary knowing that this will always return true.
-        if ( !expr && ( xmlDataType === 'string' || xmlDataType === 'select' || xmlDataType === 'select1' || xmlDataType === 'binary' ) ) {
-            return Promise.resolve( true );
+        promise.valueOf = function () {
+            var inspected = inspect();
+            if (inspected.state === "pending" ||
+                inspected.state === "rejected") {
+                return promise;
+            }
+            return inspected.value;
+        };
+    }
+
+    return promise;
+}
+
+Promise.prototype.toString = function () {
+    return "[object Promise]";
+};
+
+Promise.prototype.then = function (fulfilled, rejected, progressed) {
+    var self = this;
+    var deferred = defer();
+    var done = false;   // ensure the untrusted promise makes at most a
+                        // single call to one of the callbacks
+
+    function _fulfilled(value) {
+        try {
+            return typeof fulfilled === "function" ? fulfilled(value) : value;
+        } catch (exception) {
+            return reject(exception);
+        }
+    }
+
+    function _rejected(exception) {
+        if (typeof rejected === "function") {
+            makeStackTraceLong(exception, self);
+            try {
+                return rejected(exception);
+            } catch (newException) {
+                return reject(newException);
+            }
+        }
+        return reject(exception);
+    }
+
+    function _progressed(value) {
+        return typeof progressed === "function" ? progressed(value) : value;
+    }
+
+    Q.nextTick(function () {
+        self.promiseDispatch(function (value) {
+            if (done) {
+                return;
+            }
+            done = true;
+
+            deferred.resolve(_fulfilled(value));
+        }, "when", [function (exception) {
+            if (done) {
+                return;
+            }
+            done = true;
+
+            deferred.resolve(_rejected(exception));
+        }]);
+    });
+
+    // Progress propagator need to be attached in the current tick.
+    self.promiseDispatch(void 0, "when", [void 0, function (value) {
+        var newValue;
+        var threw = false;
+        try {
+            newValue = _progressed(value);
+        } catch (e) {
+            threw = true;
+            if (Q.onerror) {
+                Q.onerror(e);
+            } else {
+                throw e;
+            }
         }
 
-        value = that.getVal()[ 0 ];
-
-        if ( value.toString() === '' ) {
-            return Promise.resolve( true );
+        if (!threw) {
+            deferred.notify(newValue);
         }
+    }]);
 
-        return Promise.resolve()
-            .then( function() {
-                return types[ xmlDataType.toLowerCase() ].validate( value );
-            } )
-            .then( function( typeValid ) {
-                var exprValid = ( typeof expr !== 'undefined' && expr !== null && expr.length > 0 ) ? that.model.evaluate( expr, 'boolean', that.originalSelector, that.index ) : true;
+    return deferred.promise;
+};
 
-                return ( typeValid && exprValid );
-            } );
-    };
+Q.tap = function (promise, callback) {
+    return Q(promise).tap(callback);
+};
 
-    /**
-     * @namespace types
-     * @type {Object}
-     */
-    types = {
-        'string': {
-            //max length of type string is 255 chars.Convert( truncate ) silently ?
-            validate: function() {
-                return true;
-            }
-        },
-        'select': {
-            validate: function() {
-                return true;
-            }
-        },
-        'select1': {
-            validate: function() {
-                return true;
-            }
-        },
-        'decimal': {
-            validate: function( x ) {
-                return ( !isNaN( x - 0 ) && x !== null ) ? true : false;
-            },
-            convert: function( x ) {
-                // deals with Java issue and possible db issues:
-                // https://github.com/MartijnR/enketo-core/issues/40
-                return ( x === 'NaN' ) ? '' : x;
-            }
-        },
-        'int': {
-            validate: function( x ) {
-                return ( !isNaN( x - 0 ) && x !== null && Math.round( x ).toString() === x.toString() ) ? true : false;
-            },
-            convert: function( x ) {
-                // deals with Java issue and possible db issues:
-                // https://github.com/MartijnR/enketo-core/issues/40
-                return ( x === 'NaN' ) ? '' : x;
-            }
-        },
-        'date': {
-            validate: function( x ) {
-                var pattern = ( /([0-9]{4})([\-]|[\/])([0-9]{2})([\-]|[\/])([0-9]{2})/ ),
-                    segments = pattern.exec( x );
+/**
+ * Works almost like "finally", but not called for rejections.
+ * Original resolution value is passed through callback unaffected.
+ * Callback may return a promise that will be awaited for.
+ * @param {Function} callback
+ * @returns {Q.Promise}
+ * @example
+ * doSomething()
+ *   .then(...)
+ *   .tap(console.log)
+ *   .then(...);
+ */
+Promise.prototype.tap = function (callback) {
+    callback = Q(callback);
 
-                return ( segments && segments.length === 6 ) ? ( new Date( Number( segments[ 1 ] ), Number( segments[ 3 ] ) - 1, Number( segments[ 5 ] ) ).toString() !== 'Invalid Date' ) : false;
-            },
-            convert: function( x ) {
-                var pattern = /([0-9]{4})([\-]|[\/])([0-9]{2})([\-]|[\/])([0-9]{2})/,
-                    segments = pattern.exec( x ),
-                    date = new Date( x );
-                if ( new Date( x ).toString() === 'Invalid Date' ) {
-                    //this code is really only meant for the Rhino and PhantomJS engines, in browsers it may never be reached
-                    if ( segments && Number( segments[ 1 ] ) > 0 && Number( segments[ 3 ] ) >= 0 && Number( segments[ 3 ] ) < 12 && Number( segments[ 5 ] ) < 32 ) {
-                        date = new Date( Number( segments[ 1 ] ), ( Number( segments[ 3 ] ) - 1 ), Number( segments[ 5 ] ) );
+    return this.then(function (value) {
+        return callback.fcall(value).thenResolve(value);
+    });
+};
+
+/**
+ * Registers an observer on a promise.
+ *
+ * Guarantees:
+ *
+ * 1. that fulfilled and rejected will be called only once.
+ * 2. that either the fulfilled callback or the rejected callback will be
+ *    called, but not both.
+ * 3. that fulfilled and rejected will not be called in this turn.
+ *
+ * @param value      promise or immediate reference to observe
+ * @param fulfilled  function to be called with the fulfilled value
+ * @param rejected   function to be called with the rejection exception
+ * @param progressed function to be called on any progress notifications
+ * @return promise for the return value from the invoked callback
+ */
+Q.when = when;
+function when(value, fulfilled, rejected, progressed) {
+    return Q(value).then(fulfilled, rejected, progressed);
+}
+
+Promise.prototype.thenResolve = function (value) {
+    return this.then(function () { return value; });
+};
+
+Q.thenResolve = function (promise, value) {
+    return Q(promise).thenResolve(value);
+};
+
+Promise.prototype.thenReject = function (reason) {
+    return this.then(function () { throw reason; });
+};
+
+Q.thenReject = function (promise, reason) {
+    return Q(promise).thenReject(reason);
+};
+
+/**
+ * If an object is not a promise, it is as "near" as possible.
+ * If a promise is rejected, it is as "near" as possible too.
+ * If it’s a fulfilled promise, the fulfillment value is nearer.
+ * If it’s a deferred promise and the deferred has been resolved, the
+ * resolution is "nearer".
+ * @param object
+ * @returns most resolved (nearest) form of the object
+ */
+
+// XXX should we re-do this?
+Q.nearer = nearer;
+function nearer(value) {
+    if (isPromise(value)) {
+        var inspected = value.inspect();
+        if (inspected.state === "fulfilled") {
+            return inspected.value;
+        }
+    }
+    return value;
+}
+
+/**
+ * @returns whether the given object is a promise.
+ * Otherwise it is a fulfilled value.
+ */
+Q.isPromise = isPromise;
+function isPromise(object) {
+    return object instanceof Promise;
+}
+
+Q.isPromiseAlike = isPromiseAlike;
+function isPromiseAlike(object) {
+    return isObject(object) && typeof object.then === "function";
+}
+
+/**
+ * @returns whether the given object is a pending promise, meaning not
+ * fulfilled or rejected.
+ */
+Q.isPending = isPending;
+function isPending(object) {
+    return isPromise(object) && object.inspect().state === "pending";
+}
+
+Promise.prototype.isPending = function () {
+    return this.inspect().state === "pending";
+};
+
+/**
+ * @returns whether the given object is a value or fulfilled
+ * promise.
+ */
+Q.isFulfilled = isFulfilled;
+function isFulfilled(object) {
+    return !isPromise(object) || object.inspect().state === "fulfilled";
+}
+
+Promise.prototype.isFulfilled = function () {
+    return this.inspect().state === "fulfilled";
+};
+
+/**
+ * @returns whether the given object is a rejected promise.
+ */
+Q.isRejected = isRejected;
+function isRejected(object) {
+    return isPromise(object) && object.inspect().state === "rejected";
+}
+
+Promise.prototype.isRejected = function () {
+    return this.inspect().state === "rejected";
+};
+
+//// BEGIN UNHANDLED REJECTION TRACKING
+
+// This promise library consumes exceptions thrown in handlers so they can be
+// handled by a subsequent promise.  The exceptions get added to this array when
+// they are created, and removed when they are handled.  Note that in ES6 or
+// shimmed environments, this would naturally be a `Set`.
+var unhandledReasons = [];
+var unhandledRejections = [];
+var reportedUnhandledRejections = [];
+var trackUnhandledRejections = true;
+
+function resetUnhandledRejections() {
+    unhandledReasons.length = 0;
+    unhandledRejections.length = 0;
+
+    if (!trackUnhandledRejections) {
+        trackUnhandledRejections = true;
+    }
+}
+
+function trackRejection(promise, reason) {
+    if (!trackUnhandledRejections) {
+        return;
+    }
+    if (typeof process === "object" && typeof process.emit === "function") {
+        Q.nextTick.runAfter(function () {
+            if (array_indexOf(unhandledRejections, promise) !== -1) {
+                process.emit("unhandledRejection", reason, promise);
+                reportedUnhandledRejections.push(promise);
+            }
+        });
+    }
+
+    unhandledRejections.push(promise);
+    if (reason && typeof reason.stack !== "undefined") {
+        unhandledReasons.push(reason.stack);
+    } else {
+        unhandledReasons.push("(no stack) " + reason);
+    }
+}
+
+function untrackRejection(promise) {
+    if (!trackUnhandledRejections) {
+        return;
+    }
+
+    var at = array_indexOf(unhandledRejections, promise);
+    if (at !== -1) {
+        if (typeof process === "object" && typeof process.emit === "function") {
+            Q.nextTick.runAfter(function () {
+                var atReport = array_indexOf(reportedUnhandledRejections, promise);
+                if (atReport !== -1) {
+                    process.emit("rejectionHandled", unhandledReasons[at], promise);
+                    reportedUnhandledRejections.splice(atReport, 1);
+                }
+            });
+        }
+        unhandledRejections.splice(at, 1);
+        unhandledReasons.splice(at, 1);
+    }
+}
+
+Q.resetUnhandledRejections = resetUnhandledRejections;
+
+Q.getUnhandledReasons = function () {
+    // Make a copy so that consumers can't interfere with our internal state.
+    return unhandledReasons.slice();
+};
+
+Q.stopUnhandledRejectionTracking = function () {
+    resetUnhandledRejections();
+    trackUnhandledRejections = false;
+};
+
+resetUnhandledRejections();
+
+//// END UNHANDLED REJECTION TRACKING
+
+/**
+ * Constructs a rejected promise.
+ * @param reason value describing the failure
+ */
+Q.reject = reject;
+function reject(reason) {
+    var rejection = Promise({
+        "when": function (rejected) {
+            // note that the error has been handled
+            if (rejected) {
+                untrackRejection(this);
+            }
+            return rejected ? rejected(reason) : this;
+        }
+    }, function fallback() {
+        return this;
+    }, function inspect() {
+        return { state: "rejected", reason: reason };
+    });
+
+    // Note that the reason has not been handled.
+    trackRejection(rejection, reason);
+
+    return rejection;
+}
+
+/**
+ * Constructs a fulfilled promise for an immediate reference.
+ * @param value immediate reference
+ */
+Q.fulfill = fulfill;
+function fulfill(value) {
+    return Promise({
+        "when": function () {
+            return value;
+        },
+        "get": function (name) {
+            return value[name];
+        },
+        "set": function (name, rhs) {
+            value[name] = rhs;
+        },
+        "delete": function (name) {
+            delete value[name];
+        },
+        "post": function (name, args) {
+            // Mark Miller proposes that post with no name should apply a
+            // promised function.
+            if (name === null || name === void 0) {
+                return value.apply(void 0, args);
+            } else {
+                return value[name].apply(value, args);
+            }
+        },
+        "apply": function (thisp, args) {
+            return value.apply(thisp, args);
+        },
+        "keys": function () {
+            return object_keys(value);
+        }
+    }, void 0, function inspect() {
+        return { state: "fulfilled", value: value };
+    });
+}
+
+/**
+ * Converts thenables to Q promises.
+ * @param promise thenable promise
+ * @returns a Q promise
+ */
+function coerce(promise) {
+    var deferred = defer();
+    Q.nextTick(function () {
+        try {
+            promise.then(deferred.resolve, deferred.reject, deferred.notify);
+        } catch (exception) {
+            deferred.reject(exception);
+        }
+    });
+    return deferred.promise;
+}
+
+/**
+ * Annotates an object such that it will never be
+ * transferred away from this process over any promise
+ * communication channel.
+ * @param object
+ * @returns promise a wrapping of that object that
+ * additionally responds to the "isDef" message
+ * without a rejection.
+ */
+Q.master = master;
+function master(object) {
+    return Promise({
+        "isDef": function () {}
+    }, function fallback(op, args) {
+        return dispatch(object, op, args);
+    }, function () {
+        return Q(object).inspect();
+    });
+}
+
+/**
+ * Spreads the values of a promised array of arguments into the
+ * fulfillment callback.
+ * @param fulfilled callback that receives variadic arguments from the
+ * promised array
+ * @param rejected callback that receives the exception if the promise
+ * is rejected.
+ * @returns a promise for the return value or thrown exception of
+ * either callback.
+ */
+Q.spread = spread;
+function spread(value, fulfilled, rejected) {
+    return Q(value).spread(fulfilled, rejected);
+}
+
+Promise.prototype.spread = function (fulfilled, rejected) {
+    return this.all().then(function (array) {
+        return fulfilled.apply(void 0, array);
+    }, rejected);
+};
+
+/**
+ * The async function is a decorator for generator functions, turning
+ * them into asynchronous generators.  Although generators are only part
+ * of the newest ECMAScript 6 drafts, this code does not cause syntax
+ * errors in older engines.  This code should continue to work and will
+ * in fact improve over time as the language improves.
+ *
+ * ES6 generators are currently part of V8 version 3.19 with the
+ * --harmony-generators runtime flag enabled.  SpiderMonkey has had them
+ * for longer, but under an older Python-inspired form.  This function
+ * works on both kinds of generators.
+ *
+ * Decorates a generator function such that:
+ *  - it may yield promises
+ *  - execution will continue when that promise is fulfilled
+ *  - the value of the yield expression will be the fulfilled value
+ *  - it returns a promise for the return value (when the generator
+ *    stops iterating)
+ *  - the decorated function returns a promise for the return value
+ *    of the generator or the first rejected promise among those
+ *    yielded.
+ *  - if an error is thrown in the generator, it propagates through
+ *    every following yield until it is caught, or until it escapes
+ *    the generator function altogether, and is translated into a
+ *    rejection for the promise returned by the decorated generator.
+ */
+Q.async = async;
+function async(makeGenerator) {
+    return function () {
+        // when verb is "send", arg is a value
+        // when verb is "throw", arg is an exception
+        function continuer(verb, arg) {
+            var result;
+
+            // Until V8 3.19 / Chromium 29 is released, SpiderMonkey is the only
+            // engine that has a deployed base of browsers that support generators.
+            // However, SM's generators use the Python-inspired semantics of
+            // outdated ES6 drafts.  We would like to support ES6, but we'd also
+            // like to make it possible to use generators in deployed browsers, so
+            // we also support Python-style generators.  At some point we can remove
+            // this block.
+
+            if (typeof StopIteration === "undefined") {
+                // ES6 Generators
+                try {
+                    result = generator[verb](arg);
+                } catch (exception) {
+                    return reject(exception);
+                }
+                if (result.done) {
+                    return Q(result.value);
+                } else {
+                    return when(result.value, callback, errback);
+                }
+            } else {
+                // SpiderMonkey Generators
+                // FIXME: Remove this case when SM does ES6 generators.
+                try {
+                    result = generator[verb](arg);
+                } catch (exception) {
+                    if (isStopIteration(exception)) {
+                        return Q(exception.value);
+                    } else {
+                        return reject(exception);
                     }
                 }
-                //date.setUTCHours(0,0,0,0);
-                //return date.toUTCString();//.getUTCFullYear(), datetime.getUTCMonth(), datetime.getUTCDate());
-                return date.getUTCFullYear().toString().pad( 4 ) + '-' + ( date.getUTCMonth() + 1 ).toString().pad( 2 ) + '-' + date.getUTCDate().toString().pad( 2 );
-            }
-        },
-        'datetime': {
-            validate: function( x ) {
-                //the second part builds in some tolerance for slightly-off dates provides as defaults (e.g.: 2013-05-31T07:00-02)
-                return ( new Date( x.toString() ).toString() !== 'Invalid Date' || new Date( this.convert( x.toString() ) ).toString() !== 'Invalid Date' );
-            },
-            convert: function( x ) {
-                var date, // timezone, segments, dateS, timeS,
-                    patternCorrect = /([0-9]{4}\-[0-9]{2}\-[0-9]{2})([T]|[\s])([0-9]){2}:([0-9]){2}([0-9:.]*)(\+|\-)([0-9]{2}):([0-9]{2})$/,
-                    patternAlmostCorrect = /([0-9]{4}\-[0-9]{2}\-[0-9]{2})([T]|[\s])([0-9]){2}:([0-9]){2}([0-9:.]*)(\+|\-)([0-9]{2})$/;
-                /* 
-                 * if the pattern is right, or almost right but needs a small correction for JavaScript to handle it,
-                 * do not risk changing the time zone by calling toISOLocalString()
-                 */
-                if ( new Date( x ).toString() !== 'Invalid Date' && patternCorrect.test( x ) ) {
-                    return x;
-                }
-                if ( new Date( x ).toString() === 'Invalid Date' && patternAlmostCorrect.test( x ) ) {
-                    return x + ':00';
-                }
-                date = new Date( x );
-                return ( date.toString() !== 'Invalid Date' ) ? date.toISOLocalString() : date.toString();
-            }
-        },
-        'time': {
-            validate: function( x ) {
-                var date = new Date(),
-                    segments = x.toString().split( ':' );
-                if ( segments.length < 2 ) {
-                    return false;
-                }
-                segments[ 2 ] = ( segments[ 2 ] ) ? Number( segments[ 2 ].toString().split( '.' )[ 0 ] ) : 0;
-
-                return ( segments[ 0 ] < 24 && segments[ 0 ] >= 0 && segments[ 1 ] < 60 && segments[ 1 ] >= 0 && segments[ 2 ] < 60 && segments[ 2 ] >= 0 && date.toString() !== 'Invalid Date' );
-            },
-            convert: function( x ) {
-                var segments = x.toString().split( ':' );
-                $.each( segments, function( i, val ) {
-                    segments[ i ] = val.toString().pad( 2 );
-                } );
-                return segments.join( ':' );
-            }
-        },
-        'barcode': {
-            validate: function() {
-                return true;
-            }
-        },
-        'geopoint': {
-            validate: function( x ) {
-                var coords = x.toString().trim().split( ' ' );
-                return ( coords[ 0 ] !== '' && coords[ 0 ] >= -90 && coords[ 0 ] <= 90 ) &&
-                    ( coords[ 1 ] !== '' && coords[ 1 ] >= -180 && coords[ 1 ] <= 180 ) &&
-                    ( typeof coords[ 2 ] === 'undefined' || !isNaN( coords[ 2 ] ) ) &&
-                    ( typeof coords[ 3 ] === 'undefined' || ( !isNaN( coords[ 3 ] ) && coords[ 3 ] >= 0 ) );
-            },
-            convert: function( x ) {
-                return $.trim( x.toString() );
-            }
-        },
-        'geotrace': {
-            validate: function( x ) {
-                var geopoints = x.toString().split( ';' );
-                return geopoints.length >= 2 && geopoints.every( function( geopoint ) {
-                    return types.geopoint.validate( geopoint );
-                } );
-            },
-            convert: function( x ) {
-                return x.toString().trim();
-            }
-        },
-        'geoshape': {
-            validate: function( x ) {
-                console.debug( 'validating geoshape, this: ', this );
-                var geopoints = x.toString().split( ';' );
-                return geopoints.length >= 4 && ( geopoints[ 0 ] === geopoints[ geopoints.length - 1 ] ) && geopoints.every( function( geopoint ) {
-                    return types.geopoint.validate( geopoint );
-                } );
-            },
-            convert: function( x ) {
-                return x.toString().trim();
-            }
-        },
-        'binary': {
-            validate: function() {
-                return true;
+                return when(result, callback, errback);
             }
         }
+        var generator = makeGenerator.apply(this, arguments);
+        var callback = continuer.bind(continuer, "next");
+        var errback = continuer.bind(continuer, "throw");
+        return callback();
+    };
+}
+
+/**
+ * The spawn function is a small wrapper around async that immediately
+ * calls the generator and also ends the promise chain, so that any
+ * unhandled errors are thrown instead of forwarded to the error
+ * handler. This is useful because it's extremely common to run
+ * generators at the top-level to work with libraries.
+ */
+Q.spawn = spawn;
+function spawn(makeGenerator) {
+    Q.done(Q.async(makeGenerator)());
+}
+
+// FIXME: Remove this interface once ES6 generators are in SpiderMonkey.
+/**
+ * Throws a ReturnValue exception to stop an asynchronous generator.
+ *
+ * This interface is a stop-gap measure to support generator return
+ * values in older Firefox/SpiderMonkey.  In browsers that support ES6
+ * generators like Chromium 29, just use "return" in your generator
+ * functions.
+ *
+ * @param value the return value for the surrounding generator
+ * @throws ReturnValue exception with the value.
+ * @example
+ * // ES6 style
+ * Q.async(function* () {
+ *      var foo = yield getFooPromise();
+ *      var bar = yield getBarPromise();
+ *      return foo + bar;
+ * })
+ * // Older SpiderMonkey style
+ * Q.async(function () {
+ *      var foo = yield getFooPromise();
+ *      var bar = yield getBarPromise();
+ *      Q.return(foo + bar);
+ * })
+ */
+Q["return"] = _return;
+function _return(value) {
+    throw new QReturnValue(value);
+}
+
+/**
+ * The promised function decorator ensures that any promise arguments
+ * are settled and passed as values (`this` is also settled and passed
+ * as a value).  It will also ensure that the result of a function is
+ * always a promise.
+ *
+ * @example
+ * var add = Q.promised(function (a, b) {
+ *     return a + b;
+ * });
+ * add(Q(a), Q(B));
+ *
+ * @param {function} callback The function to decorate
+ * @returns {function} a function that has been decorated.
+ */
+Q.promised = promised;
+function promised(callback) {
+    return function () {
+        return spread([this, all(arguments)], function (self, args) {
+            return callback.apply(self, args);
+        });
+    };
+}
+
+/**
+ * sends a message to a value in a future turn
+ * @param object* the recipient
+ * @param op the name of the message operation, e.g., "when",
+ * @param args further arguments to be forwarded to the operation
+ * @returns result {Promise} a promise for the result of the operation
+ */
+Q.dispatch = dispatch;
+function dispatch(object, op, args) {
+    return Q(object).dispatch(op, args);
+}
+
+Promise.prototype.dispatch = function (op, args) {
+    var self = this;
+    var deferred = defer();
+    Q.nextTick(function () {
+        self.promiseDispatch(deferred.resolve, op, args);
+    });
+    return deferred.promise;
+};
+
+/**
+ * Gets the value of a property in a future turn.
+ * @param object    promise or immediate reference for target object
+ * @param name      name of property to get
+ * @return promise for the property value
+ */
+Q.get = function (object, key) {
+    return Q(object).dispatch("get", [key]);
+};
+
+Promise.prototype.get = function (key) {
+    return this.dispatch("get", [key]);
+};
+
+/**
+ * Sets the value of a property in a future turn.
+ * @param object    promise or immediate reference for object object
+ * @param name      name of property to set
+ * @param value     new value of property
+ * @return promise for the return value
+ */
+Q.set = function (object, key, value) {
+    return Q(object).dispatch("set", [key, value]);
+};
+
+Promise.prototype.set = function (key, value) {
+    return this.dispatch("set", [key, value]);
+};
+
+/**
+ * Deletes a property in a future turn.
+ * @param object    promise or immediate reference for target object
+ * @param name      name of property to delete
+ * @return promise for the return value
+ */
+Q.del = // XXX legacy
+Q["delete"] = function (object, key) {
+    return Q(object).dispatch("delete", [key]);
+};
+
+Promise.prototype.del = // XXX legacy
+Promise.prototype["delete"] = function (key) {
+    return this.dispatch("delete", [key]);
+};
+
+/**
+ * Invokes a method in a future turn.
+ * @param object    promise or immediate reference for target object
+ * @param name      name of method to invoke
+ * @param value     a value to post, typically an array of
+ *                  invocation arguments for promises that
+ *                  are ultimately backed with `resolve` values,
+ *                  as opposed to those backed with URLs
+ *                  wherein the posted value can be any
+ *                  JSON serializable object.
+ * @return promise for the return value
+ */
+// bound locally because it is used by other methods
+Q.mapply = // XXX As proposed by "Redsandro"
+Q.post = function (object, name, args) {
+    return Q(object).dispatch("post", [name, args]);
+};
+
+Promise.prototype.mapply = // XXX As proposed by "Redsandro"
+Promise.prototype.post = function (name, args) {
+    return this.dispatch("post", [name, args]);
+};
+
+/**
+ * Invokes a method in a future turn.
+ * @param object    promise or immediate reference for target object
+ * @param name      name of method to invoke
+ * @param ...args   array of invocation arguments
+ * @return promise for the return value
+ */
+Q.send = // XXX Mark Miller's proposed parlance
+Q.mcall = // XXX As proposed by "Redsandro"
+Q.invoke = function (object, name /*...args*/) {
+    return Q(object).dispatch("post", [name, array_slice(arguments, 2)]);
+};
+
+Promise.prototype.send = // XXX Mark Miller's proposed parlance
+Promise.prototype.mcall = // XXX As proposed by "Redsandro"
+Promise.prototype.invoke = function (name /*...args*/) {
+    return this.dispatch("post", [name, array_slice(arguments, 1)]);
+};
+
+/**
+ * Applies the promised function in a future turn.
+ * @param object    promise or immediate reference for target function
+ * @param args      array of application arguments
+ */
+Q.fapply = function (object, args) {
+    return Q(object).dispatch("apply", [void 0, args]);
+};
+
+Promise.prototype.fapply = function (args) {
+    return this.dispatch("apply", [void 0, args]);
+};
+
+/**
+ * Calls the promised function in a future turn.
+ * @param object    promise or immediate reference for target function
+ * @param ...args   array of application arguments
+ */
+Q["try"] =
+Q.fcall = function (object /* ...args*/) {
+    return Q(object).dispatch("apply", [void 0, array_slice(arguments, 1)]);
+};
+
+Promise.prototype.fcall = function (/*...args*/) {
+    return this.dispatch("apply", [void 0, array_slice(arguments)]);
+};
+
+/**
+ * Binds the promised function, transforming return values into a fulfilled
+ * promise and thrown errors into a rejected one.
+ * @param object    promise or immediate reference for target function
+ * @param ...args   array of application arguments
+ */
+Q.fbind = function (object /*...args*/) {
+    var promise = Q(object);
+    var args = array_slice(arguments, 1);
+    return function fbound() {
+        return promise.dispatch("apply", [
+            this,
+            args.concat(array_slice(arguments))
+        ]);
+    };
+};
+Promise.prototype.fbind = function (/*...args*/) {
+    var promise = this;
+    var args = array_slice(arguments);
+    return function fbound() {
+        return promise.dispatch("apply", [
+            this,
+            args.concat(array_slice(arguments))
+        ]);
+    };
+};
+
+/**
+ * Requests the names of the owned properties of a promised
+ * object in a future turn.
+ * @param object    promise or immediate reference for target object
+ * @return promise for the keys of the eventually settled object
+ */
+Q.keys = function (object) {
+    return Q(object).dispatch("keys", []);
+};
+
+Promise.prototype.keys = function () {
+    return this.dispatch("keys", []);
+};
+
+/**
+ * Turns an array of promises into a promise for an array.  If any of
+ * the promises gets rejected, the whole array is rejected immediately.
+ * @param {Array*} an array (or promise for an array) of values (or
+ * promises for values)
+ * @returns a promise for an array of the corresponding values
+ */
+// By Mark Miller
+// http://wiki.ecmascript.org/doku.php?id=strawman:concurrency&rev=1308776521#allfulfilled
+Q.all = all;
+function all(promises) {
+    return when(promises, function (promises) {
+        var pendingCount = 0;
+        var deferred = defer();
+        array_reduce(promises, function (undefined, promise, index) {
+            var snapshot;
+            if (
+                isPromise(promise) &&
+                (snapshot = promise.inspect()).state === "fulfilled"
+            ) {
+                promises[index] = snapshot.value;
+            } else {
+                ++pendingCount;
+                when(
+                    promise,
+                    function (value) {
+                        promises[index] = value;
+                        if (--pendingCount === 0) {
+                            deferred.resolve(promises);
+                        }
+                    },
+                    deferred.reject,
+                    function (progress) {
+                        deferred.notify({ index: index, value: progress });
+                    }
+                );
+            }
+        }, void 0);
+        if (pendingCount === 0) {
+            deferred.resolve(promises);
+        }
+        return deferred.promise;
+    });
+}
+
+Promise.prototype.all = function () {
+    return all(this);
+};
+
+/**
+ * Returns the first resolved promise of an array. Prior rejected promises are
+ * ignored.  Rejects only if all promises are rejected.
+ * @param {Array*} an array containing values or promises for values
+ * @returns a promise fulfilled with the value of the first resolved promise,
+ * or a rejected promise if all promises are rejected.
+ */
+Q.any = any;
+
+function any(promises) {
+    if (promises.length === 0) {
+        return Q.resolve();
+    }
+
+    var deferred = Q.defer();
+    var pendingCount = 0;
+    array_reduce(promises, function (prev, current, index) {
+        var promise = promises[index];
+
+        pendingCount++;
+
+        when(promise, onFulfilled, onRejected, onProgress);
+        function onFulfilled(result) {
+            deferred.resolve(result);
+        }
+        function onRejected() {
+            pendingCount--;
+            if (pendingCount === 0) {
+                deferred.reject(new Error(
+                    "Can't get fulfillment value from any promise, all " +
+                    "promises were rejected."
+                ));
+            }
+        }
+        function onProgress(progress) {
+            deferred.notify({
+                index: index,
+                value: progress
+            });
+        }
+    }, undefined);
+
+    return deferred.promise;
+}
+
+Promise.prototype.any = function () {
+    return any(this);
+};
+
+/**
+ * Waits for all promises to be settled, either fulfilled or
+ * rejected.  This is distinct from `all` since that would stop
+ * waiting at the first rejection.  The promise returned by
+ * `allResolved` will never be rejected.
+ * @param promises a promise for an array (or an array) of promises
+ * (or values)
+ * @return a promise for an array of promises
+ */
+Q.allResolved = deprecate(allResolved, "allResolved", "allSettled");
+function allResolved(promises) {
+    return when(promises, function (promises) {
+        promises = array_map(promises, Q);
+        return when(all(array_map(promises, function (promise) {
+            return when(promise, noop, noop);
+        })), function () {
+            return promises;
+        });
+    });
+}
+
+Promise.prototype.allResolved = function () {
+    return allResolved(this);
+};
+
+/**
+ * @see Promise#allSettled
+ */
+Q.allSettled = allSettled;
+function allSettled(promises) {
+    return Q(promises).allSettled();
+}
+
+/**
+ * Turns an array of promises into a promise for an array of their states (as
+ * returned by `inspect`) when they have all settled.
+ * @param {Array[Any*]} values an array (or promise for an array) of values (or
+ * promises for values)
+ * @returns {Array[State]} an array of states for the respective values.
+ */
+Promise.prototype.allSettled = function () {
+    return this.then(function (promises) {
+        return all(array_map(promises, function (promise) {
+            promise = Q(promise);
+            function regardless() {
+                return promise.inspect();
+            }
+            return promise.then(regardless, regardless);
+        }));
+    });
+};
+
+/**
+ * Captures the failure of a promise, giving an oportunity to recover
+ * with a callback.  If the given promise is fulfilled, the returned
+ * promise is fulfilled.
+ * @param {Any*} promise for something
+ * @param {Function} callback to fulfill the returned promise if the
+ * given promise is rejected
+ * @returns a promise for the return value of the callback
+ */
+Q.fail = // XXX legacy
+Q["catch"] = function (object, rejected) {
+    return Q(object).then(void 0, rejected);
+};
+
+Promise.prototype.fail = // XXX legacy
+Promise.prototype["catch"] = function (rejected) {
+    return this.then(void 0, rejected);
+};
+
+/**
+ * Attaches a listener that can respond to progress notifications from a
+ * promise's originating deferred. This listener receives the exact arguments
+ * passed to ``deferred.notify``.
+ * @param {Any*} promise for something
+ * @param {Function} callback to receive any progress notifications
+ * @returns the given promise, unchanged
+ */
+Q.progress = progress;
+function progress(object, progressed) {
+    return Q(object).then(void 0, void 0, progressed);
+}
+
+Promise.prototype.progress = function (progressed) {
+    return this.then(void 0, void 0, progressed);
+};
+
+/**
+ * Provides an opportunity to observe the settling of a promise,
+ * regardless of whether the promise is fulfilled or rejected.  Forwards
+ * the resolution to the returned promise when the callback is done.
+ * The callback can return a promise to defer completion.
+ * @param {Any*} promise
+ * @param {Function} callback to observe the resolution of the given
+ * promise, takes no arguments.
+ * @returns a promise for the resolution of the given promise when
+ * ``fin`` is done.
+ */
+Q.fin = // XXX legacy
+Q["finally"] = function (object, callback) {
+    return Q(object)["finally"](callback);
+};
+
+Promise.prototype.fin = // XXX legacy
+Promise.prototype["finally"] = function (callback) {
+    callback = Q(callback);
+    return this.then(function (value) {
+        return callback.fcall().then(function () {
+            return value;
+        });
+    }, function (reason) {
+        // TODO attempt to recycle the rejection with "this".
+        return callback.fcall().then(function () {
+            throw reason;
+        });
+    });
+};
+
+/**
+ * Terminates a chain of promises, forcing rejections to be
+ * thrown as exceptions.
+ * @param {Any*} promise at the end of a chain of promises
+ * @returns nothing
+ */
+Q.done = function (object, fulfilled, rejected, progress) {
+    return Q(object).done(fulfilled, rejected, progress);
+};
+
+Promise.prototype.done = function (fulfilled, rejected, progress) {
+    var onUnhandledError = function (error) {
+        // forward to a future turn so that ``when``
+        // does not catch it and turn it into a rejection.
+        Q.nextTick(function () {
+            makeStackTraceLong(error, promise);
+            if (Q.onerror) {
+                Q.onerror(error);
+            } else {
+                throw error;
+            }
+        });
     };
 
-    // Expose types to facilitate extending with custom types
-    FormModel.prototype.types = types;
+    // Avoid unnecessary `nextTick`ing via an unnecessary `when`.
+    var promise = fulfilled || rejected || progress ?
+        this.then(fulfilled, rejected, progress) :
+        this;
 
-    module.exports = FormModel;
-} );
+    if (typeof process === "object" && process && process.domain) {
+        onUnhandledError = process.domain.bind(onUnhandledError);
+    }
 
-},{"./Form-logic-error":14,"./extend":18,"./plugins":20,"./utils":22,"./xpath-evaluator-binding":25,"jquery":9,"jquery-xpath-basic":8,"lie":11,"mergexml/mergexml":13}],16:[function(require,module,exports){
+    promise.then(void 0, onUnhandledError);
+};
+
+/**
+ * Causes a promise to be rejected if it does not get fulfilled before
+ * some milliseconds time out.
+ * @param {Any*} promise
+ * @param {Number} milliseconds timeout
+ * @param {Any*} custom error message or Error object (optional)
+ * @returns a promise for the resolution of the given promise if it is
+ * fulfilled before the timeout, otherwise rejected.
+ */
+Q.timeout = function (object, ms, error) {
+    return Q(object).timeout(ms, error);
+};
+
+Promise.prototype.timeout = function (ms, error) {
+    var deferred = defer();
+    var timeoutId = setTimeout(function () {
+        if (!error || "string" === typeof error) {
+            error = new Error(error || "Timed out after " + ms + " ms");
+            error.code = "ETIMEDOUT";
+        }
+        deferred.reject(error);
+    }, ms);
+
+    this.then(function (value) {
+        clearTimeout(timeoutId);
+        deferred.resolve(value);
+    }, function (exception) {
+        clearTimeout(timeoutId);
+        deferred.reject(exception);
+    }, deferred.notify);
+
+    return deferred.promise;
+};
+
+/**
+ * Returns a promise for the given value (or promised value), some
+ * milliseconds after it resolved. Passes rejections immediately.
+ * @param {Any*} promise
+ * @param {Number} milliseconds
+ * @returns a promise for the resolution of the given promise after milliseconds
+ * time has elapsed since the resolution of the given promise.
+ * If the given promise rejects, that is passed immediately.
+ */
+Q.delay = function (object, timeout) {
+    if (timeout === void 0) {
+        timeout = object;
+        object = void 0;
+    }
+    return Q(object).delay(timeout);
+};
+
+Promise.prototype.delay = function (timeout) {
+    return this.then(function (value) {
+        var deferred = defer();
+        setTimeout(function () {
+            deferred.resolve(value);
+        }, timeout);
+        return deferred.promise;
+    });
+};
+
+/**
+ * Passes a continuation to a Node function, which is called with the given
+ * arguments provided as an array, and returns a promise.
+ *
+ *      Q.nfapply(FS.readFile, [__filename])
+ *      .then(function (content) {
+ *      })
+ *
+ */
+Q.nfapply = function (callback, args) {
+    return Q(callback).nfapply(args);
+};
+
+Promise.prototype.nfapply = function (args) {
+    var deferred = defer();
+    var nodeArgs = array_slice(args);
+    nodeArgs.push(deferred.makeNodeResolver());
+    this.fapply(nodeArgs).fail(deferred.reject);
+    return deferred.promise;
+};
+
+/**
+ * Passes a continuation to a Node function, which is called with the given
+ * arguments provided individually, and returns a promise.
+ * @example
+ * Q.nfcall(FS.readFile, __filename)
+ * .then(function (content) {
+ * })
+ *
+ */
+Q.nfcall = function (callback /*...args*/) {
+    var args = array_slice(arguments, 1);
+    return Q(callback).nfapply(args);
+};
+
+Promise.prototype.nfcall = function (/*...args*/) {
+    var nodeArgs = array_slice(arguments);
+    var deferred = defer();
+    nodeArgs.push(deferred.makeNodeResolver());
+    this.fapply(nodeArgs).fail(deferred.reject);
+    return deferred.promise;
+};
+
+/**
+ * Wraps a NodeJS continuation passing function and returns an equivalent
+ * version that returns a promise.
+ * @example
+ * Q.nfbind(FS.readFile, __filename)("utf-8")
+ * .then(console.log)
+ * .done()
+ */
+Q.nfbind =
+Q.denodeify = function (callback /*...args*/) {
+    var baseArgs = array_slice(arguments, 1);
+    return function () {
+        var nodeArgs = baseArgs.concat(array_slice(arguments));
+        var deferred = defer();
+        nodeArgs.push(deferred.makeNodeResolver());
+        Q(callback).fapply(nodeArgs).fail(deferred.reject);
+        return deferred.promise;
+    };
+};
+
+Promise.prototype.nfbind =
+Promise.prototype.denodeify = function (/*...args*/) {
+    var args = array_slice(arguments);
+    args.unshift(this);
+    return Q.denodeify.apply(void 0, args);
+};
+
+Q.nbind = function (callback, thisp /*...args*/) {
+    var baseArgs = array_slice(arguments, 2);
+    return function () {
+        var nodeArgs = baseArgs.concat(array_slice(arguments));
+        var deferred = defer();
+        nodeArgs.push(deferred.makeNodeResolver());
+        function bound() {
+            return callback.apply(thisp, arguments);
+        }
+        Q(bound).fapply(nodeArgs).fail(deferred.reject);
+        return deferred.promise;
+    };
+};
+
+Promise.prototype.nbind = function (/*thisp, ...args*/) {
+    var args = array_slice(arguments, 0);
+    args.unshift(this);
+    return Q.nbind.apply(void 0, args);
+};
+
+/**
+ * Calls a method of a Node-style object that accepts a Node-style
+ * callback with a given array of arguments, plus a provided callback.
+ * @param object an object that has the named method
+ * @param {String} name name of the method of object
+ * @param {Array} args arguments to pass to the method; the callback
+ * will be provided by Q and appended to these arguments.
+ * @returns a promise for the value or error
+ */
+Q.nmapply = // XXX As proposed by "Redsandro"
+Q.npost = function (object, name, args) {
+    return Q(object).npost(name, args);
+};
+
+Promise.prototype.nmapply = // XXX As proposed by "Redsandro"
+Promise.prototype.npost = function (name, args) {
+    var nodeArgs = array_slice(args || []);
+    var deferred = defer();
+    nodeArgs.push(deferred.makeNodeResolver());
+    this.dispatch("post", [name, nodeArgs]).fail(deferred.reject);
+    return deferred.promise;
+};
+
+/**
+ * Calls a method of a Node-style object that accepts a Node-style
+ * callback, forwarding the given variadic arguments, plus a provided
+ * callback argument.
+ * @param object an object that has the named method
+ * @param {String} name name of the method of object
+ * @param ...args arguments to pass to the method; the callback will
+ * be provided by Q and appended to these arguments.
+ * @returns a promise for the value or error
+ */
+Q.nsend = // XXX Based on Mark Miller's proposed "send"
+Q.nmcall = // XXX Based on "Redsandro's" proposal
+Q.ninvoke = function (object, name /*...args*/) {
+    var nodeArgs = array_slice(arguments, 2);
+    var deferred = defer();
+    nodeArgs.push(deferred.makeNodeResolver());
+    Q(object).dispatch("post", [name, nodeArgs]).fail(deferred.reject);
+    return deferred.promise;
+};
+
+Promise.prototype.nsend = // XXX Based on Mark Miller's proposed "send"
+Promise.prototype.nmcall = // XXX Based on "Redsandro's" proposal
+Promise.prototype.ninvoke = function (name /*...args*/) {
+    var nodeArgs = array_slice(arguments, 1);
+    var deferred = defer();
+    nodeArgs.push(deferred.makeNodeResolver());
+    this.dispatch("post", [name, nodeArgs]).fail(deferred.reject);
+    return deferred.promise;
+};
+
+/**
+ * If a function would like to support both Node continuation-passing-style and
+ * promise-returning-style, it can end its internal promise chain with
+ * `nodeify(nodeback)`, forwarding the optional nodeback argument.  If the user
+ * elects to use a nodeback, the result will be sent there.  If they do not
+ * pass a nodeback, they will receive the result promise.
+ * @param object a result (or a promise for a result)
+ * @param {Function} nodeback a Node.js-style callback
+ * @returns either the promise or nothing
+ */
+Q.nodeify = nodeify;
+function nodeify(object, nodeback) {
+    return Q(object).nodeify(nodeback);
+}
+
+Promise.prototype.nodeify = function (nodeback) {
+    if (nodeback) {
+        this.then(function (value) {
+            Q.nextTick(function () {
+                nodeback(null, value);
+            });
+        }, function (error) {
+            Q.nextTick(function () {
+                nodeback(error);
+            });
+        });
+    } else {
+        return this;
+    }
+};
+
+Q.noConflict = function() {
+    throw new Error("Q.noConflict only works when Q is used as a global");
+};
+
+// All code before this point will be filtered from stack traces.
+var qEndingLine = captureLine();
+
+return Q;
+
+});
+
+}).call(this,require('_process'))
+},{"_process":6}],13:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -33315,11 +33932,9 @@ if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && type
 
 define( function( require, exports, module ) {
     'use strict';
-    var FormModel = require( './Form-model' );
+    var FormModel = require( './FormModel' );
     var widgets = require( './widgets-controller' );
     var $ = require( 'jquery' );
-    var Promise = require( 'lie' );
-    var utils = require( './utils' );
     require( './plugins' );
     require( './extend' );
     require( 'jquery-touchswipe' );
@@ -33360,7 +33975,9 @@ define( function( require, exports, module ) {
 
             loadErrors = loadErrors.concat( form.init() );
 
-            $( formSelector )[ 0 ].scrollIntoView();
+            if ( window.scrollTo ) {
+                window.scrollTo( 0, 0 );
+            }
 
             return loadErrors;
         };
@@ -33373,9 +33990,6 @@ define( function( require, exports, module ) {
         };
         this.getInstanceID = function() {
             return model.getInstanceID();
-        };
-        this.getDeprecatedID = function() {
-            return model.getDeprecatedID();
         };
         this.getInstanceName = function() {
             return model.getInstanceName();
@@ -33545,10 +34159,6 @@ define( function( require, exports, module ) {
                 // after loading existing instance to not trigger an 'edit' event
                 this.setEventHandlers();
 
-                // update field calculations again to make sure that dependent
-                // field values are calculated
-                this.calcUpdate();
-
                 this.editStatus.set( false );
 
                 setTimeout( function() {
@@ -33594,7 +34204,7 @@ define( function( require, exports, module ) {
 
                     this.flipToFirst();
 
-                    $form.removeClass( 'hide' );
+                    $form.show();
                 }
             },
             setButtonHandlers: function() {
@@ -33686,35 +34296,15 @@ define( function( require, exports, module ) {
             getCurrentIndex: function() {
                 return this.$activePages.index( this.$current );
             },
-            /**
-             * Changes the `pages.next()` function to return a `Promise`, wrapping one of the following values:
-             *
-             * @return {Promise} wrapping {boolean} or {number}.  If a {number}, this is the index into
-             *         `$activePages` of the new current page; if a {boolean}, {false} means that validation
-             *         failed, and {true} that validation passed, but the page did not change.
-             */
             next: function() {
-                var that = this,
-                    currentIndex;
+                var next, currentIndex;
                 this.updateAllActive();
                 currentIndex = this.getCurrentIndex();
+                next = this.getNext( currentIndex );
 
-                return form.validateContent( this.$current )
-                    .then( function( valid ) {
-                        var next, newIndex;
-
-                        if ( !valid ) return false;
-
-                        next = that.getNext( currentIndex );
-
-                        if ( next ) {
-                            newIndex = currentIndex + 1;
-                            that.flipTo( next, newIndex );
-                            return newIndex;
-                        }
-
-                        return true;
-                    } );
+                if ( next ) {
+                    this.flipTo( next, currentIndex + 1 );
+                }
             },
             prev: function() {
                 var prev, currentIndex;
@@ -33748,7 +34338,9 @@ define( function( require, exports, module ) {
                     this.toggleButtons( newIndex );
                 }
 
-                pageEl.scrollIntoView();
+                if ( window.scrollTo ) {
+                    window.scrollTo( 0, 0 );
+                }
 
                 $( pageEl ).trigger( 'pageflip.enketo' );
             },
@@ -33774,16 +34366,9 @@ define( function( require, exports, module ) {
             },
             focusOnFirstQuestion: function( pageEl ) {
                 //triggering fake focus in case element cannot be focused (if hidden by widget)
-                $( pageEl )
-                    .find( '.question:not(.disabled)' )
-                    .addBack( '.question:not(.disabled)' )
-                    .filter( function() {
-                        return $( this ).parentsUntil( '.or', '.disabled' ).length === 0;
-                    } )
-                    .eq( 0 )
-                    .find( 'input, select, textarea' )
-                    .eq( 0 )
-                    .trigger( 'fakefocus' );
+                $( pageEl ).find( '.question:not(.disabled)' ).filter( function() {
+                    return $( this ).parentsUntil( '.or', '.disabled' ).length === 0;
+                } ).eq( 0 ).find( 'input, select, textarea' ).eq( 0 ).trigger( 'fakefocus' );
             },
             toggleButtons: function( index ) {
                 var i = index || this.getCurrentIndex(),
@@ -33931,7 +34516,7 @@ define( function( require, exports, module ) {
                 return ( !$node.val() ) ? '' : ( $.isArray( $node.val() ) ) ? $node.val().join( ' ' ).trim() : $node.val().trim();
             },
             setVal: function( name, index, value ) {
-                var $inputNodes, type;
+                var $inputNodes, type, $target;
 
                 index = index || 0;
 
@@ -34580,7 +35165,7 @@ define( function( require, exports, module ) {
             $nodes = $nodes.add( this.getNodesToUpdate( 'data-relevant', '[data-calculate]', updated ) );
 
             $nodes.each( function() {
-                var result, dataNodesObj, dataNodes, $dataNode, index, name, dataNodeName, expr, dataType, constraint, relevantExpr, relevant, $this;
+                var result, valid, dataNodesObj, dataNodes, $dataNode, index, name, dataNodeName, expr, dataType, constraint, relevantExpr, relevant, $this;
 
                 $this = $( this );
                 name = that.input.getName( $this );
@@ -34625,7 +35210,7 @@ define( function( require, exports, module ) {
                     dataNodesObj.setIndex( index );
 
                     // set the value
-                    dataNodesObj.setVal( result, constraint, dataType );
+                    valid = dataNodesObj.setVal( result, constraint, dataType );
 
                     // not the most efficient to use input.setVal here as it will do another lookup
                     // of the node, that we already have...
@@ -35068,7 +35653,69 @@ define( function( require, exports, module ) {
 
             // Why is the file namespace added?
             $form.on( 'change.file validate', 'input:not(.ignore), select:not(.ignore), textarea:not(.ignore)', function( event ) {
-                that.validateInput( event.type, $( this ) );
+                var validCons, validReq, _dataNodeObj,
+                    $input = $( this ),
+                    // all relevant properties, except for the **very expensive** index property
+                    n = {
+                        path: that.input.getName( $input ),
+                        inputType: that.input.getInputType( $input ),
+                        xmlType: that.input.getXmlType( $input ),
+                        enabled: that.input.isEnabled( $input ),
+                        constraint: that.input.getConstraint( $input ),
+                        val: that.input.getVal( $input ),
+                        required: that.input.isRequired( $input )
+                    },
+                    getDataNodeObj = function() {
+                        if ( !_dataNodeObj ) {
+                            // Only now, will we determine the index.
+                            n.ind = that.input.getIndex( $input );
+                            _dataNodeObj = model.node( n.path, n.ind );
+                        }
+                        return _dataNodeObj;
+                    };
+
+
+                // set file input values to the actual name of file (without c://fakepath or anything like that)
+                if ( n.val.length > 0 && n.inputType === 'file' && $input[ 0 ].files[ 0 ] && $input[ 0 ].files[ 0 ].size > 0 ) {
+                    n.val = $input[ 0 ].files[ 0 ].name;
+                }
+
+                if ( event.type === 'validate' ) {
+                    // The enabled check serves a purpose only when an input field itself is marked as enabled but its parent fieldset is not.
+                    // If an element is disabled mark it as valid (to undo a previously shown branch with fields marked as invalid).
+                    if ( !n.enabled || n.inputType === 'hidden' ) {
+                        validCons = true;
+                    } else
+                    // Use a dirty trick to not have to determine the index with the following insider knowledge.
+                    // It could potentially be sped up more by excluding n.val === "", but this would not be safe, in case the view is not in sync with the model.
+                    if ( !n.constraint && ( n.xmlType === 'string' || n.xmlType === 'select' || n.xmlType === 'select1' || n.xmlType === 'binary' ) ) {
+                        validCons = true;
+                    } else {
+                        validCons = getDataNodeObj().validate( n.constraint, n.xmlType );
+                    }
+                } else {
+                    validCons = getDataNodeObj().setVal( n.val, n.constraint, n.xmlType );
+                    // geotrace and geoshape are very complex data types that require various change events
+                    // to avoid annoying users, we ignore the INVALID onchange validation result
+                    validCons = ( validCons === false && ( n.xmlType === 'geotrace' || n.xmlType === 'geoshape' ) ) ? null : validCons;
+                }
+
+                // validate 'required', checking value in Model (not View)
+                validReq = !( n.enabled && n.inputType !== 'hidden' && n.required && getDataNodeObj().getVal()[ 0 ].length === 0 );
+
+                if ( validReq === false ) {
+                    that.setValid( $input, 'constraint' );
+                    if ( event.type === 'validate' ) {
+                        that.setInvalid( $input, 'required' );
+                    }
+                } else {
+                    that.setValid( $input, 'required' );
+                    if ( typeof validCons !== 'undefined' && validCons === false ) {
+                        that.setInvalid( $input, 'constraint' );
+                    } else if ( validCons !== null ) {
+                        that.setValid( $input, 'constraint' );
+                    }
+                }
 
                 // propagate event externally after internal processing is completed
                 if ( event.type === 'change' ) {
@@ -35090,12 +35737,13 @@ define( function( require, exports, module ) {
                     $legend = $question.find( 'legend' ).eq( 0 ),
                     loudErrorShown = $question.hasClass( 'invalid-required' ) || $question.hasClass( 'invalid-constraint' ),
                     insideTable = ( $input.parentsUntil( '.or', '.or-appearance-list-nolabel' ).length > 0 ),
-                    $reqSubtle = $question.find( '.required-subtle' );
+                    $reqSubtle = $question.find( '.required-subtle' ),
+                    reqSubtle = $( '<span class="required-subtle" style="color: transparent;">Required</span>' );
 
                 if ( event.type === 'focusin' || event.type === 'fakefocus' ) {
                     $question.addClass( 'focus' );
                     if ( props.required && $reqSubtle.length === 0 && !insideTable ) {
-                        $reqSubtle = $( '<span class="required-subtle" style="color: transparent;">Required</span>' );
+                        $reqSubtle = $( reqSubtle );
 
                         if ( $legend.length > 0 ) {
                             $legend.append( $reqSubtle );
@@ -35163,58 +35811,36 @@ define( function( require, exports, module ) {
 
         /**
          * Validates all enabled input fields after first resetting everything as valid.
-         * @return {Promise} wrapping {boolean} whether the form contains any errors
+         * @return {boolean} whether the form contains any errors
          */
         FormView.prototype.validateAll = function() {
-            return this.validateContent( $form );
-        };
-
-        /**
-         * Validates all enabled input fields in the supplied container, after first resetting everything as valid.
-         * @return {Promise} wrapping {boolean} whether the container contains any errors
-         */
-        FormView.prototype.validateContent = function( $container ) {
             var $firstError,
                 that = this;
 
             //can't fire custom events on disabled elements therefore we set them all as valid
-            $container.find( 'fieldset:disabled input, fieldset:disabled select, fieldset:disabled textarea, ' +
+            $form.find( 'fieldset:disabled input, fieldset:disabled select, fieldset:disabled textarea, ' +
                 'input:disabled, select:disabled, textarea:disabled' ).each( function() {
                 that.setValid( $( this ) );
             } );
 
-            var validations = $container.find( '.question' ).addBack( '.question' ).map( function() {
+            $form.find( '.question' ).each( function() {
                 // only trigger validate on first input and use a **pure CSS** selector (huge performance impact)
-                var $elem = $( this )
-                    .find( 'input:not(.ignore):not(:disabled), select:not(.ignore):not(:disabled), textarea:not(.ignore):not(:disabled)' );
-                if ( $elem.length === 0 ) {
-                    return Promise.resolve();
+                $( this )
+                    .find( 'input:not(.ignore):not(:disabled), select:not(.ignore):not(:disabled), textarea:not(.ignore):not(:disabled)' )
+                    .eq( 0 )
+                    .trigger( 'validate' );
+            } );
+
+            $firstError = $form.find( '.invalid-required, .invalid-constraint' ).eq( 0 );
+
+            if ( $firstError.length > 0 && window.scrollTo ) {
+                if ( this.pages.active ) {
+                    // move to the first page with an error
+                    this.pages.flipToPageContaining( $firstError );
                 }
-                return that.validateInput( 'validate', $elem.eq( 0 ) );
-            } ).toArray();
-
-            return Promise.all( validations )
-                .then( function() {
-                    $firstError = $container
-                        .find( '.invalid-required, .invalid-constraint' )
-                        .addBack( '.invalid-required, .invalid-constraint' )
-                        .eq( 0 );
-
-                    if ( $firstError.length > 0 ) {
-                        if ( that.pages.active ) {
-                            // move to the first page with an error
-                            that.pages.flipToPageContaining( $firstError );
-                        }
-
-                        $firstError[ 0 ].scrollIntoView();
-                    }
-                    return $firstError.length === 0;
-                } )
-                .catch( function( e ) {
-                    // fail whole-form validation if any of the question
-                    // validations threw.
-                    return false;
-                } );
+                window.scrollTo( 0, $firstError.offset().top - 50 );
+            }
+            return $firstError.length === 0;
         };
 
         /**
@@ -35266,100 +35892,1233 @@ define( function( require, exports, module ) {
         FormView.prototype.addPageBreaks = function() {
 
         };
-
-        /**
-         * Validates input values AND updates model if event type is not 'validate'.
-         * 
-         * @param  {string} eventType [description]
-         * @param  {jQuery} $input    [description]
-         * @return {[type]}           [description]
-         */
-        FormView.prototype.validateInput = function( eventType, $input ) {
-            var that = this;
-            var validCons;
-            var validReq;
-            var _dataNodeObj;
-            // all relevant properties, except for the **very expensive** index property
-            var n = {
-                path: that.input.getName( $input ),
-                inputType: that.input.getInputType( $input ),
-                xmlType: that.input.getXmlType( $input ),
-                enabled: that.input.isEnabled( $input ),
-                constraint: that.input.getConstraint( $input ),
-                val: that.input.getVal( $input ),
-                required: that.input.isRequired( $input )
-            };
-            var getDataNodeObj = function() {
-                if ( !_dataNodeObj ) {
-                    // Only now, will we determine the index.
-                    n.ind = that.input.getIndex( $input );
-                    _dataNodeObj = model.node( n.path, n.ind );
-                }
-                return _dataNodeObj;
-            };
-
-
-            // set file input values to the actual name of file (without c://fakepath or anything like that)
-            if ( n.val.length > 0 && n.inputType === 'file' && $input[ 0 ].files[ 0 ] && $input[ 0 ].files[ 0 ].size > 0 ) {
-                n.val = utils.getFilename( $input[ 0 ].files[ 0 ], $input[ 0 ].dataset.filenamePostfix );
-            }
-
-            if ( eventType === 'validate' ) {
-                // The enabled check serves a purpose only when an input field itself is marked as enabled but its parent fieldset is not.
-                // If an element is disabled mark it as valid (to undo a previously shown branch with fields marked as invalid).
-                if ( !n.enabled || n.inputType === 'hidden' ) {
-                    validCons = Promise.resolve( true );
-                } else
-                // Use a dirty trick to not have to determine the index with the following insider knowledge.
-                // It could potentially be sped up more by excluding n.val === "", but this would not be safe, in case the view is not in sync with the model.
-                if ( !n.constraint && ( n.xmlType === 'string' || n.xmlType === 'select' || n.xmlType === 'select1' || n.xmlType === 'binary' ) ) {
-                    validCons = Promise.resolve( true );
-                } else {
-                    validCons = getDataNodeObj().validate( n.constraint, n.xmlType );
-                }
-            } else {
-                var dataNodeObject = getDataNodeObj();
-                dataNodeObject.setVal( n.val, n.constraint, n.xmlType );
-                validCons = dataNodeObject.validate( n.constraint, n.xmlType )
-                    .then( function( validCons ) {
-                        // geotrace and geoshape are very complex data types that require various change events
-                        // to avoid annoying users, we ignore the INVALID onchange validation result
-                        return ( validCons === false && ( n.xmlType === 'geotrace' || n.xmlType === 'geoshape' ) ) ? null : validCons;
-                    } );
-            }
-
-            // validate 'required', checking value in Model (not View)
-            validReq = !( n.enabled && n.inputType !== 'hidden' && n.required && getDataNodeObj().getVal()[ 0 ].length === 0 );
-
-            if ( validReq === false ) {
-                that.setValid( $input, 'constraint' );
-                if ( eventType === 'validate' ) {
-                    that.setInvalid( $input, 'required' );
-                }
-
-                return Promise.resolve( false );
-            } else {
-                that.setValid( $input, 'required' );
-                return validCons
-                    .then( function( validCons ) {
-                        if ( typeof validCons !== 'undefined' && validCons === false ) {
-                            that.setInvalid( $input, 'constraint' );
-                        } else if ( validCons !== null ) {
-                            that.setValid( $input, 'constraint' );
-                        }
-                    } )
-                    .catch( function( e ) {
-                        that.setInvalid( $input, 'constraint' );
-                        throw e;
-                    } );
-            }
-        };
     }
 
     module.exports = Form;
 } );
 
-},{"./Form-model":15,"./extend":18,"./plugins":20,"./utils":22,"./widgets-controller":23,"jquery":9,"jquery-touchswipe":7,"lie":11}],17:[function(require,module,exports){
+},{"./FormModel":15,"./extend":18,"./plugins":20,"./widgets-controller":23,"jquery":9,"jquery-touchswipe":7}],14:[function(require,module,exports){
+if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
+    var define = function( factory ) {
+        factory( require, exports, module );
+    };
+}
+define( function( require, exports, module ) {
+    'use strict';
+
+    function FormLogicError( message ) {
+        this.message = message || 'unknown';
+        this.name = 'FormLogicError';
+        this.stack = ( new Error() ).stack;
+    }
+
+    FormLogicError.prototype = Object.create( Error.prototype );
+    FormLogicError.prototype.constructor = FormLogicError;
+
+    module.exports = FormLogicError;
+} );
+
+},{}],15:[function(require,module,exports){
+if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
+    var define = function( factory ) {
+        factory( require, exports, module );
+    };
+}
+define( function( require, exports, module ) {
+    'use strict';
+    var MergeXML = require( 'mergexml/mergexml' );
+    var utils = require( './utils' );
+    var $ = require( 'jquery' );
+    var FormLogicError = require( './FormLogicError' );
+    var ExtendedXpathEvaluator = require('extended-xpath');
+    var openrosa_xpath_extensions = require( 'openrosa-xpath-extensions');
+    require( './plugins' );
+    require( './extend' );
+    require( 'jquery-xpath-basic' );
+
+    var FormModel, Nodeset, types;
+
+
+    /**
+     * Class dealing with the XML Model of a form
+     *
+     * @constructor
+     * @param {{modelStr: string, ?instanceStr: string, ?external: <{id: string, xmlStr: string }>, ?submitted: boolean }} data:
+     *                            data object containing XML model, 
+     *                            (partial) XML instance to load, 
+     *                            external data array
+     *                            flag to indicate whether data was submitted before
+     * @param {?{?full:boolean}} options Whether to initialize the full model or only the primary instance
+     */
+    FormModel = function( data, options ) {
+
+        if ( typeof data === 'string' ) {
+            data = {
+                modelStr: data
+            };
+        }
+
+        data.external = data.external || [];
+        data.submitted = ( typeof data.submitted !== 'undefined' ) ? data.submitted : true;
+        options = options || {};
+        options.full = ( typeof options.full !== 'undefined' ) ? options.full : true;
+
+        this.convertedExpressions = {};
+        this.templates = {};
+        this.loadErrors = [];
+
+        this.INSTANCE = /instance\([\'|\"]([^\/:\s]+)[\'|\"]\)/g;
+        this.OPENROSA = /(decimal-date-time\(|pow\(|indexed-repeat\(|format-date\(|coalesce\(|join\(|max\(|min\(|random\(|substr\(|int\(|uuid\(|regex\(|now\(|today\(|date\(|if\(|boolean-from-string\(|checklist\(|selected\(|selected-at\(|round\(|area\(|position\([^\)])/;
+
+        this.data = data;
+        this.options = options;
+    };
+
+    /**
+     * Initializes FormModel
+     */
+    FormModel.prototype.init = function() {
+        var id, instanceDoc, instanceRoot,
+            that = this;
+        /**
+         * Default namespaces (on a primary instance, instance child, model) would create a problem using the **native** XPath evaluator.
+         * It wouldn't find any regular /path/to/nodes. The solution is to ignore these by renaming these attributes to data-xmlns.
+         *
+         * If the regex is later deemed too aggressive, it could target the model, primary instance and primary instance child only, after creating an XML Document.
+         */
+        this.data.modelStr = this.data.modelStr.replace( /\s(xmlns\=("|')[^\s\>]+("|'))/g, ' data-$1' );
+
+        if ( !this.options.full ) {
+            // Strip all secondary instances from string before parsing
+            // This regex works because the model never includes itext in Enketo
+            this.data.modelStr = this.data.modelStr.replace( /^(<model\s*><instance((?!<instance).)+<\/instance\s*>\s*)(<instance.+<\/instance\s*>)*/, '$1' );
+        }
+
+        // Create the model
+        try {
+            id = 'model';
+            // the default model
+            this.xml = $.parseXML( this.data.modelStr );
+            // add external data to model
+            this.data.external.forEach( function( instance ) {
+                id = 'instance "' + instance.id + '"' || 'instance unknown';
+                instanceDoc = that.xml.getElementById( instance.id );
+                // remove any existing content that is just an XLSForm hack to pass ODK Validate
+                instanceRoot = instanceDoc.querySelector( 'root' );
+                if ( instanceRoot ) {
+                    instanceDoc.removeChild( instanceRoot );
+                }
+                instanceDoc.appendChild( $.parseXML( instance.xmlStr ).firstChild );
+            } );
+        } catch ( e ) {
+            console.error( e );
+            this.loadErrors.push( 'Error trying to parse XML ' + id + '. ' + e.message );
+        }
+
+        // Initialize/process the model
+        if ( this.xml ) {
+            try {
+                this.$ = $( this.xml );
+                this.hasInstance = !!this.xml.querySelector( 'model > instance' ) || false;
+                this.rootElement = this.xml.querySelector( 'instance > *' ) || this.xml.documentElement;
+
+                // Check if all secondary instances with an external source have been populated
+                this.$.find( 'model > instance[src]:empty' ).each( function( index, instance ) {
+                    that.loadErrors.push( 'External instance "' + $( instance ).attr( 'id' ) + '" is empty.' );
+                } );
+
+                this.trimValues();
+                this.cloneAllTemplates();
+                this.extractTemplates();
+            } catch ( e ) {
+                console.error( e );
+                this.loadErrors.push( e.name + ': ' + e.message );
+            }
+            // Merge an existing instance into the model, AFTER templates have been removed
+            try {
+                id = 'record';
+                if ( this.data.instanceStr ) {
+                    this.mergeXml( this.data.instanceStr );
+                    if ( this.data.submitted ) {
+                        this.deprecateId();
+                    }
+                }
+            } catch ( e ) {
+                console.error( e );
+                this.loadErrors.push( 'Error trying to parse XML ' + id + '. ' + e.message );
+            }
+        }
+
+        return this.loadErrors;
+    };
+
+    /**
+     * Returns a new Nodeset instance
+     *
+     * @param {(string|null)=} selector - [type/description]
+     * @param {(string|number|null)=} index    - [type/description]
+     * @param {(Object|null)=} filter   - [type/description]
+     * @param filter.onlyLeaf
+     * @param filter.noEmpty
+     * @return {Nodeset}
+     */
+    FormModel.prototype.node = function( selector, index, filter ) {
+        return new Nodeset( selector, index, filter, this );
+    };
+
+    /**
+     * Merges an XML instance string into the XML Model
+     *
+     * @param  {string} recordStr The XML record as string
+     * @param  {string} modelDoc  The XML model to merge the record into
+     */
+    FormModel.prototype.mergeXml = function( recordStr ) {
+        var modelInstanceChildStr, merger, modelInstanceEl, modelInstanceChildEl;
+        var that = this;
+
+        if ( !recordStr ) {
+            return;
+        }
+
+        modelInstanceEl = this.xml.querySelector( 'instance' );
+        modelInstanceChildEl = this.xml.querySelector( 'instance > *' ); // do not use firstChild as it may find a #textNode
+
+        if ( !modelInstanceChildEl ) {
+            throw new Error( 'Model is corrupt. It does not contain a childnode of instance' );
+        }
+
+        /**
+         * To comply with quirky behaviour of repeats in XForms, we manually create the correct number of repeat instances
+         * before merging. This resolves these two issues:
+         *  a) Multiple repeat instances in record are added out of order when merged into a record that contains fewer 
+         *     repeat instances, see https://github.com/kobotoolbox/enketo-express/issues/223
+         *  b) If a repeat node is missing from a repeat instance (e.g. the 2nd) in a record, and that repeat instance is not 
+         *     in the model, that node will be missing in the result.
+         */
+
+        $( $.parseXML( recordStr ) ).find( '*' ).each( function() {
+            var path;
+            var $node = $( this );
+            var nodeName = $node.prop( 'nodeName' );
+            /**
+             * TODO: fails when node has namespace.
+             * The most solid way is probably to create an instance of FormModel for the record.
+             * However, since namespaced nodes will likely never pop up inside a repeat, 
+             * and cloning a namespaced repeat woul fail anyway, we just catch and ignore any 
+             * exceptions here.
+             */
+            try {
+                var $siblings = $node.siblings( nodeName );
+                if ( $siblings.length > 0 && $node.prev( nodeName ).length === 0 ) {
+                    path = $node.getXPath( 'instance' );
+                    $siblings.each( function( index ) {
+                        that.cloneRepeat( path, index, true );
+                    } );
+                }
+            } catch ( e ) {
+                console.log( 'Ignored error:', e );
+            }
+        } );
+
+        merger = new MergeXML( {
+            join: false
+        } );
+
+        modelInstanceChildStr = ( new XMLSerializer() ).serializeToString( modelInstanceChildEl );
+
+        // first the model, to preserve DOM order of that of the default instance
+        merger.AddSource( modelInstanceChildStr );
+        // then merge the record into the model
+        merger.AddSource( recordStr );
+
+        if ( merger.error.code ) {
+            throw new Error( merger.error.text );
+        }
+
+        // remove the primary instance  childnode from the original model
+        this.xml.querySelector( 'instance' ).removeChild( modelInstanceChildEl );
+        // adopt the merged instance childnode
+        modelInstanceChildEl = this.xml.adoptNode( merger.Get( 0 ).documentElement, true );
+        // append the adopted node to the primary instance
+        modelInstanceEl.appendChild( modelInstanceChildEl );
+        // reset the rootElement
+        this.rootElement = modelInstanceChildEl;
+
+    };
+
+    /**
+     * Trims values
+     * 
+     */
+    FormModel.prototype.trimValues = function() {
+        this.node( null, null, {
+            noEmpty: true
+        } ).get().each( function() {
+            this.textContent = this.textContent.trim();
+        } );
+    };
+
+    /**
+     * [deprecateId description]
+     * @return {[type]} [description]
+     */
+    FormModel.prototype.deprecateId = function() {
+        var instanceIdEls, instanceIdEl, deprecatedIdEls, deprecatedIdEl, metaEl;
+
+        /*
+         * When implementing this function using the this.node(selector) to find nodes instead of querySelectorAll,
+         * I found that the results were always empty even if the nodes existed. There seems to be 
+         * some sort of delay in updating the XML Document (in mergeXML) that causes a problem
+         * when the XPath evaluator is used to retrieve nodes.
+         */
+
+        instanceIdEls = this.xml.querySelectorAll( '* > meta > instanceID' );
+
+        if ( instanceIdEls.length !== 1 ) {
+            throw new Error( 'Invalid primary instance. Found ' + instanceIdEls.length + ' instanceID nodes but expected 1.' );
+        }
+
+        instanceIdEl = instanceIdEls[ 0 ];
+
+        deprecatedIdEls = this.xml.querySelectorAll( '* > meta > deprecatedID' );
+
+        if ( deprecatedIdEls.length > 1 ) {
+            throw new Error( 'Invalid primary instance. Found ' + deprecatedIdEls.length + ' deprecatedID nodes but expected 1.' );
+        }
+
+        deprecatedIdEl = deprecatedIdEls[ 0 ];
+
+        // add deprecatedID node
+        if ( !deprecatedIdEl ) {
+            deprecatedIdEl = $.parseXML( '<deprecatedID/>' ).documentElement;
+            this.xml.adoptNode( deprecatedIdEl );
+            metaEl = this.xml.querySelector( '* > meta' );
+            metaEl.appendChild( deprecatedIdEl );
+        }
+
+        // give deprecatedID element the value of the instanceId
+        deprecatedIdEl.textContent = instanceIdEl.textContent;
+
+        // set the instanceID value to empty
+        instanceIdEl.textContent = '';
+    };
+
+    /**
+     * Creates a custom XPath Evaluator to be used for XPath Expresssions that contain custom
+     * OpenRosa functions or for browsers that do not have a native evaluator.
+     */
+    FormModel.prototype.bindJsEvaluator = require( './XPathEvaluatorBinding' );
+
+    /**
+     * Gets the instance ID
+     *
+     * @return {string} instanceID
+     */
+    FormModel.prototype.getInstanceID = function() {
+        return this.node( '/*/meta/instanceID' ).getVal()[ 0 ];
+    };
+
+    /**
+     * Gets the instance Name
+     *
+     * @return {string} instanceID
+     */
+    FormModel.prototype.getInstanceName = function() {
+        return this.node( '/*/meta/instanceName' ).getVal()[ 0 ];
+    };
+
+    /**
+     * Clones a <repeat>able instance node. If a template exists it will use this, otherwise it will clone an empty version of the first node.
+     * If the node with the specified index already exists, this function will do nothing.
+     *
+     * @param  {string} selector selector of a repeat or a node that is contained inside a repeat
+     * @param  {number} index    index of the repeat that the new repeat should be inserted after.
+     * @param  {boolean} merge   whether this operation is part of a merge operation (won't send dataupdate event and clears all values)
+     */
+    FormModel.prototype.cloneRepeat = function( selector, index, merge ) {
+        var $insertAfterNode, name, allClonedNodeNames, $templateClone,
+            $template = this.templates[ selector ] || this.node( selector, 0 ).get(),
+            that = this;
+
+        name = $template.prop( 'nodeName' );
+        $insertAfterNode = this.node( selector, index ).get();
+
+        // If templatenodes and insertAfterNode(s) have been identified 
+        // AND the node following insertAfterNode doesn't already exist (! important for nested repeats!)
+        // Strictly speaking using .next() is more efficient, but we use .nextAll() in case the document order has changed due to 
+        // incorrect merging of an existing record.
+        if ( $template[ 0 ] && $insertAfterNode.length === 1 && $insertAfterNode.nextAll( name ).length === 0 ) {
+            $templateClone = $template.clone().insertAfter( $insertAfterNode );
+
+            if ( !merge ) {
+                allClonedNodeNames = [ $template.prop( 'nodeName' ) ];
+
+                $template.find( '*' ).each( function() {
+                    allClonedNodeNames.push( $( this ).prop( 'nodeName' ) );
+                } );
+
+                this.$.trigger( 'dataupdate', {
+                    nodes: allClonedNodeNames,
+                    repeatPath: selector,
+                    repeatIndex: that.node( selector, index ).determineIndex( $templateClone )
+                } );
+            } else {
+                // this is part of a merge operation (during form load) where the values will be populated from the record, 
+                // defaults are therefore not desired
+                $templateClone.find( '*' ).text( '' );
+            }
+        } else {
+            // Strictly speaking using .next() is more efficient, but we use .nextAll() in case the document order has changed due to 
+            // incorrect merging of an existing record.
+            if ( $insertAfterNode.nextAll( name ).length === 0 ) {
+                console.error( 'Could not find template node and/or node to insert the clone after' );
+            }
+        }
+    };
+
+
+    /**
+     * Extracts all templates from the model and stores them in a Javascript object poperties as Jquery collections
+     * @return {[type]} [description]
+     */
+    FormModel.prototype.extractTemplates = function() {
+        var that = this;
+        // in reverse document order to properly deal with nested repeat templates
+        // for now we support both the official namespaced template and the hacked non-namespaced template attributes
+        this.evaluate( '/model/instance[1]/*//*[@template] | /model/instance[1]/*//*[@jr:template]', 'nodes', null, null, true ).reverse().forEach( function( templateEl ) {
+            var $template = $( templateEl );
+            that.templates[ $template.getXPath( 'instance' ) ] = $template.removeAttr( 'template' ).removeAttr( 'jr:template' ).remove();
+        } );
+    };
+
+
+    /**
+     * Finds a template path that would contain the provided node path if that template exists in the form.
+     *
+     * @param  {string} nodePath the /path/to/template/node
+     * @return {*}               the /path/to/template
+     */
+    FormModel.prototype.getTemplatePath = function( nodePath ) {
+        var templateIndex,
+            that = this;
+
+        nodePath.split( '/' ).some( function( value, index, array ) {
+            templateIndex = array.slice( 0, array.length - index ).join( '/' );
+            return that.templates[ templateIndex ];
+        } );
+
+        return templateIndex || undefined;
+    };
+
+    /**
+     * Initialization function that creates <repeat>able data nodes with the defaults from the template if no repeats have been created yet.
+     * Strictly speaking creating the first repeat automatically is not "according to the spec" as the user should be asked first whether it
+     * has any data for this question.
+     * However, it seems usually always better to assume at least one 'repeat' (= 1 question). It doesn't make use of the Nodeset subclass (CHANGE?)
+     *
+     * See also: In JavaRosa, the documentation on the jr:template attribute.
+     */
+    FormModel.prototype.cloneAllTemplates = function() {
+        var that = this;
+
+        // for now we support both the official namespaced template and the hacked non-namespaced template attributes
+        this.evaluate( '/model/instance[1]/*//*[@template] | /model/instance[1]/*//*[@jr:template]', 'nodes', null, null, true ).forEach( function( templateEl ) {
+            var nodeName = templateEl.nodeName,
+                selector = $( templateEl ).getXPath( 'instance' ),
+                ancestorTemplateNodes = that.evaluate( 'ancestor::' + nodeName + '[@template] | ancestor::' + nodeName + '[@jr:template]', 'nodes', selector, 0, true );
+            if ( ancestorTemplateNodes.length === 0 && $( templateEl ).siblings( nodeName ).length === 0 ) {
+                $( templateEl ).clone().insertAfter( $( templateEl ) ).find( '*' ).addBack().removeAttr( 'template' ).removeAttr( 'jr:template' );
+            }
+        } );
+    };
+
+    /**
+     * See Also:
+     * Returns jQuery Data Object (obsolete?)
+     * See also: <nodes.get()>, which is always (?) preferred except for debugging.
+     *
+     * @return {jQuery} JQuery Data Object
+     */
+    FormModel.prototype.get = function() {
+        return this.$ || null;
+    };
+
+    /**
+     *
+     * @return {Element} data XML object (not sure if type is element actually)
+     */
+    FormModel.prototype.getXML = function() {
+        return this.xml || null;
+    };
+
+    /**
+     * Obtains a cleaned up string of the data instance
+     *
+     * @return {string}           XML string
+     */
+    FormModel.prototype.getStr = function() {
+        var dataStr = ( new XMLSerializer() ).serializeToString( this.xml.querySelector( 'instance > *' ) || this.xml.documentElement, 'text/xml' );
+        // remove tabs
+        dataStr = dataStr.replace( /\t/g, '' );
+        // restore default namespaces
+        dataStr = dataStr.replace( /\s(data-)(xmlns\=("|')[^\s\>]+("|'))/g, ' $2' );
+        return dataStr;
+    };
+
+    /**
+     * There is a huge bug in JavaRosa that has resulted in the usage of incorrect formulae on nodes inside repeat nodes.
+     * Those formulae use absolute paths when relative paths should have been used. See more here:
+     * http://opendatakit.github.io/odk-xform-spec/#a-big-deviation-with-xforms
+     *
+     * Tools such as pyxform also build forms in this incorrect manner. See https://github.com/modilabs/pyxform/issues/91
+     * It will take time to correct this so makeBugCompliant() aims to mimic the incorrect
+     * behaviour by injecting the 1-based [position] of repeats into the XPath expressions. The resulting expression
+     * will then be evaluated in a way users expect (as if the paths were relative) without having to mess up
+     * the XPath Evaluator.
+     *
+     * E.g. '/data/rep_a/node_a' could become '/data/rep_a[2]/node_a' if the context is inside
+     * the second rep_a repeat.
+     *
+     * This function should be removed as soon as JavaRosa (or maybe just pyxform) fixes the way those formulae
+     * are created (or evaluated).
+     *
+     * @param  {string} expr        the XPath expression
+     * @param  {string} selector    of the (context) node on which expression is evaluated
+     * @param  {number} index       of the instance node with that selector
+     * @return {string} modified    expression with injected positions (1-based!)
+     */
+    FormModel.prototype.makeBugCompliant = function( expr, selector, index ) {
+        var i, parentSelector, parentIndex, $target, $node, nodeName, $siblings, $parents;
+        $target = this.node( selector, index ).get();
+        // add() sorts the resulting collection in document order
+        $parents = $target.parents().add( $target );
+        // traverse collection in reverse document order
+        for ( i = $parents.length - 1; i >= 0; i-- ) {
+            $node = $parents.eq( i );
+            // escape any dots in the node name
+            nodeName = $node.prop( 'nodeName' ).replace( /\./g, '\\.' );
+            $siblings = $node.siblings( nodeName ).not( '[template]' );
+            // if the node is a repeat node that has been cloned at least once (i.e. if it has siblings with the same nodeName)
+            if ( nodeName.toLowerCase() !== 'instance' && nodeName.toLowerCase() !== 'model' && $siblings.length > 0 ) {
+                parentSelector = $node.getXPath( 'instance' );
+                parentIndex = $siblings.add( $node ).index( $node );
+                // Add position to segments that do not have an XPath predicate. This is where it gets very messy.
+                if ( !new RegExp( parentSelector + '\\[' ).test( expr ) ) {
+                    expr = expr.replace( new RegExp( parentSelector, 'g' ), parentSelector + '[' + ( parentIndex + 1 ) + ']' );
+                }
+            }
+        }
+        return expr;
+    };
+
+    FormModel.prototype.nsResolver = {
+
+        lookupNamespaceURI: function( prefix ) {
+            var namespaces = {
+                'jr': 'http://openrosa.org/javarosa',
+                'xsd': 'http://www.w3.org/2001/XMLSchema',
+                'orx': 'http://openrosa.org/xforms/', // CommCare uses 'http://openrosa.org/jr/xforms'
+                'cc': 'http://commcarehq.org/xforms'
+            };
+
+            return namespaces[ prefix ] || null;
+        }
+    };
+
+    /**
+     * Shift root to first instance for all absolute paths not starting with /model
+     *
+     * @param  {string} expr original expression
+     * @return {string}      new expression
+     */
+    FormModel.prototype.shiftRoot = function( expr ) {
+        if ( this.hasInstance ) {
+            expr = expr.replace( /^(\/(?!model\/)[^\/][^\/\s]*\/)/g, '/model/instance[1]$1' );
+            expr = expr.replace( /([^a-zA-Z0-9\.\]\)\/\*_-])(\/(?!model\/)[^\/][^\/\s]*\/)/g, '$1/model/instance[1]$2' );
+        }
+        return expr;
+    };
+
+    /** 
+     * Replace instance('id') with an absolute path
+     * Doing this here instead of adding an instance() function to the XPath evaluator, means we can keep using
+     * the much faster native evaluator in most cases!
+     *
+     * @param  {string} expr original expression
+     * @return {string}      new expression
+     */
+    FormModel.prototype.replaceInstanceFn = function( expr ) {
+        var prefix;
+        var that = this;
+
+        // TODO: would be more consistent to use utls.parseFunctionFromExpression() and utils.stripQuotes
+        return expr.replace( this.INSTANCE, function( match, id ) {
+            prefix = '/model/instance[@id="' + id + '"]';
+            // check if referred instance exists in model
+            if ( that.evaluate( prefix, 'nodes', null, null, true ).length ) {
+                return prefix;
+            } else {
+                throw new FormLogicError( 'instance "' + id + '" does not exist in model' );
+            }
+        } );
+    };
+
+    /** 
+     * Replaces current()/ with '' or '/' because Enketo does not (yet) change the context in an itemset.
+     * Doing this here instead of adding a current() function to the XPath evaluator, means we can keep using
+     * the much faster native evaluator in most cases!
+     *
+     * @param  {string} expr original expression
+     * @return {string}      new expression
+     */
+    FormModel.prototype.replaceCurrentFn = function( expr ) {
+        expr = expr.replace( /current\(\)\/\./g, '.' );
+        expr = expr.replace( /current\(\)/g, '' );
+        return expr;
+    };
+
+    /**
+     * Replaces indexed-repeat(node, path, position, path, position, etc) substrings by converting them
+     * to their native XPath equivalents using [position() = x] predicates
+     *
+     * @param  {string} expr the XPath expression
+     * @return {string}      converted XPath expression
+     */
+    FormModel.prototype.replaceIndexedRepeatFn = function( expr, selector, index ) {
+        var that = this;
+        var error;
+        var indexedRepeats = utils.parseFunctionFromExpression( expr, 'indexed-repeat' );
+
+        if ( !indexedRepeats.length ) {
+            return expr;
+        }
+
+        indexedRepeats.forEach( function( indexedRepeat ) {
+            var i, positionedPath;
+            var position;
+            var params = indexedRepeat[ 1 ];
+
+            if ( params.length % 2 === 1 ) {
+
+                positionedPath = params[ 0 ];
+
+                for ( i = params.length - 1; i > 1; i -= 2 ) {
+                    // The position will become an XPath predicate. The context for an XPath predicate, is not the same
+                    // as the context for the complete expression, so we have to evaluate the position separately. Otherwise 
+                    // relative paths would break.
+                    position = !isNaN( params[ i ] ) ? params[ i ] : that.evaluate( params[ i ], 'number', selector, index, true );
+                    positionedPath = positionedPath.replace( params[ i - 1 ], params[ i - 1 ] + '[position() = ' + position + ']' );
+                }
+
+                expr = expr.replace( indexedRepeat[ 0 ], positionedPath );
+
+            } else {
+                throw new FormLogicError( 'indexed repeat with incorrect number of parameters found: ' + indexedRepeat[ 0 ] );
+            }
+        } );
+
+        return expr;
+    };
+
+    FormModel.prototype.replacePullDataFn = function( expr, selector, index ) {
+        var that = this;
+        var error;
+        var pullDatas = utils.parseFunctionFromExpression( expr, 'pulldata' );
+
+        if ( !pullDatas.length ) {
+            return expr;
+        }
+
+        pullDatas.forEach( function( pullData ) {
+            var searchValue;
+            var searchXPath;
+            var params = pullData[ 1 ];
+
+            if ( params.length === 4 ) {
+
+                // strip quotes
+                params[ 1 ] = utils.stripQuotes( params[ 1 ] );
+                params[ 2 ] = utils.stripQuotes( params[ 2 ] );
+
+                // TODO: the 2nd and 3rd parameter could probably also be expressions.
+
+                // The 4th argument will become an XPath predicate. The context for an XPath predicate, is not the same
+                // as the context for the complete expression, so we have to evaluate the position separately. Otherwise
+                // relative paths would break.
+                searchValue = that.evaluate( params[ 3 ], 'string', selector, index, true );
+                searchValue = searchValue === '' || isNaN( searchValue ) ? '\'' + searchValue + '\'' : searchValue;
+                searchXPath = 'instance(' + params[ 0 ] + ')/root/item[' + params[ 2 ] + ' = ' + searchValue + ']/' + params[ 1 ];
+
+                expr = expr.replace( pullData[ 0 ], searchXPath );
+
+            } else {
+                throw new FormLogicError( 'pulldata with incorrect number of parameters found: ' + pullData[ 0 ] );
+            }
+        } );
+
+        return expr;
+    };
+
+    /**
+     * Evaluates an XPath Expression with available XPath evaluators, including
+     * javarosa extensions.
+     *
+     * This function does not seem to work properly for nodeset resulttypes otherwise:
+     * muliple nodes can be accessed by returned node.snapshotItem(i)(.textContent)
+     * a single node can be accessed by returned node(.textContent)
+     *
+     * @param  { string }     expr        the expression to evaluate
+     * @param  { string= }    resTypeStr  boolean, string, number, node, nodes (best to always supply this)
+     * @param  { string= }    selector    jQuery selector which will be use to provide the context to the evaluator
+     * @param  { number= }    index       0-based index of selector in document
+     * @param  { boolean= }   tryNative   whether an attempt to try the Native Evaluator is safe (ie. whether it is
+     *                                    certain that there are no date comparisons)
+     * @return { ?(number|string|boolean|Array<element>) } the result
+     */
+    FormModel.prototype.evaluate = function( expr, resTypeStr, selector, index, tryNative ) {
+        var j, error, context, doc, resTypeNum, resultTypes, result, $collection, response, repeats, cacheKey, original, cacheable;
+
+        // console.debug( 'evaluating expr: ' + expr + ' with context selector: ' + selector + ', 0-based index: ' +
+        //    index + ' and result type: ' + resTypeStr );
+        original = expr;
+        tryNative = tryNative || false;
+        resTypeStr = resTypeStr || 'any';
+        index = index || 0;
+        doc = this.xml;
+        repeats = null;
+
+        // path corrections for repeated nodes: http://opendatakit.github.io/odk-xform-spec/#a-big-deviation-with-xforms
+        if ( selector ) {
+            $collection = this.node( selector ).get();
+            repeats = $collection.length;
+            context = $collection.eq( index )[ 0 ];
+        } else {
+            // either the first data child of the first instance or the first child (for loaded instances without a model)
+            context = this.rootElement;
+        }
+
+        // cache key includes the number of repeated context nodes, 
+        // to force a new cache item if the number of repeated changes to > 0
+        // TODO: these cache keys can get quite large. Would it be beneficial to get the md5 of the key?
+        cacheKey = [ expr, selector, index, repeats ].join( '|' );
+
+        // These functions need to come before makeBugCompliant.
+        // An expression transformation with indexed-repeat or pulldata cannot be cached because in 
+        // "indexed-repeat(node, repeat nodeset, index)" the index parameter could be an expression.
+        expr = this.replaceIndexedRepeatFn( expr, selector, index );
+        expr = this.replacePullDataFn( expr, selector, index );
+        cacheable = ( original === expr );
+
+        // if no cached conversion exists
+        if ( !this.convertedExpressions[ cacheKey ] ) {
+            expr = expr;
+            expr = expr.trim();
+            expr = this.shiftRoot( expr );
+            expr = this.replaceInstanceFn( expr );
+            expr = this.replaceCurrentFn( expr );
+            if ( repeats && repeats > 1 ) {
+                expr = this.makeBugCompliant( expr, selector, index );
+            }
+            // decode
+            expr = expr.replace( /&lt;/g, '<' );
+            expr = expr.replace( /&gt;/g, '>' );
+            expr = expr.replace( /&quot;/g, '"' );
+            if ( cacheable ) {
+                this.convertedExpressions[ cacheKey ] = expr;
+            }
+        } else {
+            expr = this.convertedExpressions[ cacheKey ];
+        }
+
+        resultTypes = {
+            0: [ 'any', 'ANY_TYPE' ],
+            1: [ 'number', 'NUMBER_TYPE', 'numberValue' ],
+            2: [ 'string', 'STRING_TYPE', 'stringValue' ],
+            3: [ 'boolean', 'BOOLEAN_TYPE', 'booleanValue' ],
+            7: [ 'nodes', 'ORDERED_NODE_SNAPSHOT_TYPE' ],
+            9: [ 'node', 'FIRST_ORDERED_NODE_TYPE', 'singleNodeValue' ]
+        };
+
+        // translate typeStr to number according to DOM level 3 XPath constants
+        for ( resTypeNum in resultTypes ) {
+            if ( resultTypes.hasOwnProperty( resTypeNum ) ) {
+                resTypeNum = Number( resTypeNum );
+                if ( resultTypes[ resTypeNum ][ 0 ] === resTypeStr ) {
+                    break;
+                } else {
+                    resTypeNum = 0;
+                }
+            }
+        }
+
+        // try native to see if that works... (will not work if the expr contains custom OpenRosa functions)
+        if ( tryNative && typeof doc.evaluate !== 'undefined' && !this.OPENROSA.test( expr ) ) {
+            try {
+                // console.log( 'trying the blazing fast native XPath Evaluator for', expr, index );
+                result = doc.evaluate( expr, context, this.nsResolver, resTypeNum, null );
+            } catch ( e ) {
+                console.log( '%cWell native XPath evaluation did not work... No worries, worth a shot, the expression probably ' +
+                    'contained unknown OpenRosa functions or errors:', 'color:orange', expr );
+            }
+        }
+
+        // if that didn't work, try the slower custom XPath JS evaluator
+        if ( !result ) {
+            try {
+                if ( typeof doc.jsEvaluate === 'undefined' ) {
+                    this.bindJsEvaluator();
+                }
+                // console.log( 'trying the slow enketo-xpathjs "openrosa" evaluator for', expr, index );
+                result = doc.jsEvaluate( expr, context, this.nsResolver, resTypeNum, null );
+            } catch ( e ) {
+                throw new FormLogicError( 'Could not evaluate: ' + expr + ', message: ' + e.message );
+            }
+        }
+
+        // get desired value from the result object
+        if ( result ) {
+            // for type = any, see if a valid string, number or boolean is returned
+            if ( resTypeNum === 0 ) {
+                for ( resTypeNum in resultTypes ) {
+                    if ( resultTypes.hasOwnProperty( resTypeNum ) ) {
+                        resTypeNum = Number( resTypeNum );
+                        if ( resTypeNum === Number( result.resultType ) && resTypeNum > 0 && resTypeNum < 4 ) {
+                            response = result[ resultTypes[ resTypeNum ][ 2 ] ];
+                            break;
+                        }
+                    }
+                }
+                console.error( 'Expression: ' + expr + ' did not return any boolean, string or number value as expected' );
+            } else if ( resTypeNum === 7 ) {
+                // response is an array of Elements
+                response = [];
+                for ( j = 0; j < result.snapshotLength; j++ ) {
+                    response.push( result.snapshotItem( j ) );
+                }
+            } else {
+                response = result[ resultTypes[ resTypeNum ][ 2 ] ];
+            }
+            return response;
+        }
+    };
+
+    /**
+     * Class dealing with nodes and nodesets of the XML instance
+     *
+     * @constructor
+     * @param {string=} selector simpleXPath or jQuery selectedor
+     * @param {number=} index    the index of the target node with that selector
+     * @param {?{onlyLeaf: boolean, noEmpty: boolean}=} filter   filter object for the result nodeset
+     * @param { FormModel } model instance of FormModel
+     */
+    Nodeset = function( selector, index, filter, model ) {
+        var defaultSelector = model.hasInstance ? '/model/instance[1]//*' : '//*';
+
+        this.model = model;
+        this.originalSelector = selector;
+        this.selector = ( typeof selector === 'string' && selector.length > 0 ) ? selector : defaultSelector;
+        filter = ( typeof filter !== 'undefined' && filter !== null ) ? filter : {};
+        this.filter = filter;
+        this.filter.onlyLeaf = ( typeof filter.onlyLeaf !== 'undefined' ) ? filter.onlyLeaf : false;
+        this.filter.noEmpty = ( typeof filter.noEmpty !== 'undefined' ) ? filter.noEmpty : false;
+        this.index = index;
+    };
+
+    /**
+     * Privileged method to find data nodes filtered by a jQuery or XPath selector and additional filter properties
+     * Without parameters it returns a collection of all data nodes excluding template nodes and their children. Therefore, most
+     * queries will not require filter properties. This function handles all (?) data queries in the application.
+     *
+     * @return {jQuery} jQuery-wrapped filtered instance nodes that match the selector and index
+     */
+    Nodeset.prototype.get = function() {
+        var $nodes, /** @type {string} */ val;
+
+        // cache evaluation result
+        if ( !this.nodes ) {
+            this.nodes = this.model.evaluate( this.selector, 'nodes', null, null, true );
+        }
+
+        // noEmpty automatically excludes non-leaf nodes
+        if ( this.filter.noEmpty === true ) {
+            $nodes = $( this.nodes ).filter( function() {
+                var $node = $( this );
+                val = $node.text();
+                return $node.children().length === 0 && val.trim().length > 0;
+            } );
+        }
+        // this may still contain empty leaf nodes
+        else if ( this.filter.onlyLeaf === true ) {
+            $nodes = $( this.nodes ).filter( function() {
+                return $( this ).children().length === 0;
+            } );
+        } else {
+            $nodes = $( this.nodes );
+        }
+
+        return ( typeof this.index !== 'undefined' && this.index !== null ) ? $nodes.eq( this.index ) : $nodes;
+    };
+
+    /**
+     * Sets the index of the Nodeset instance
+     *
+     * @param {=number?} index The 0-based index
+     */
+    Nodeset.prototype.setIndex = function( index ) {
+        this.index = index;
+    };
+
+    /**
+     * Sets data node values.
+     *
+     * @param {(string|Array.<string>)=} newVals    The new value of the node.
+     * @param {?string=} expr  XPath expression to validate the node.
+     * @param {?string=} xmlDataType XML data type of the node
+     *
+     * @return {?boolean} null is returned when the node is not found or multiple nodes were selected
+     */
+    Nodeset.prototype.setVal = function( newVals, expr, xmlDataType ) {
+        var $target, curVal, /**@type {string}*/ newVal, success, updated;
+
+        curVal = this.getVal()[ 0 ];
+
+        if ( typeof newVals !== 'undefined' && newVals !== null ) {
+            newVal = ( $.isArray( newVals ) ) ? newVals.join( ' ' ) : newVals.toString();
+        } else {
+            newVal = '';
+        }
+
+        newVal = this.convert( newVal, xmlDataType );
+
+        $target = this.get();
+
+        if ( $target.length === 1 && $.trim( newVal.toString() ) !== $.trim( curVal.toString() ) ) { //|| (target.length > 1 && typeof this.index == 'undefined') ){
+            //first change the value so that it can be evaluated in XPath (validated)
+            $target.text( newVal );
+            //then return validation result
+            success = this.validate( expr, xmlDataType );
+            updated = this.getClosestRepeat();
+            updated.nodes = [ $target.prop( 'nodeName' ) ];
+            this.model.$.trigger( 'dataupdate', updated );
+            //add type="file" attribute for file references
+            if ( xmlDataType === 'binary' ) {
+                if ( newVal.length > 0 ) {
+                    $target.attr( 'type', 'file' );
+                } else {
+                    $target.removeAttr( 'type' );
+                }
+            }
+
+            return success;
+        }
+        if ( $target.length > 1 ) {
+            console.error( 'nodeset.setVal expected nodeset with one node, but received multiple' );
+            return null;
+        }
+        if ( $target.length === 0 ) {
+            console.log( 'Data node: ' + this.selector + ' with null-based index: ' + this.index + ' not found. Ignored.' );
+            return null;
+        }
+        //always validate if the new value is not empty, even if value didn't change (see validateAll() function)
+        //return (newVal.length > 0 && validateAll) ? this.validate(expr, xmlDataType) : true;
+        return null;
+    };
+
+
+    /**
+     * Obtains the data value if a JQuery or XPath selector for a single node is provided.
+     *
+     * @return {Array<string|number|boolean>} [description]
+     */
+    Nodeset.prototype.getVal = function() {
+        var vals = [];
+        this.get().each( function() {
+            vals.push( $( this ).text() );
+        } );
+        return vals;
+    };
+
+    /**
+     * Determines the index of a repeated node amongst all nodes with the same XPath selector
+     *
+     * @param  {} $node optional jquery element
+     * @return {number}       [description]
+     */
+    Nodeset.prototype.determineIndex = function( $node ) {
+        var nodeName, path, $family;
+
+        $node = $node || this.get();
+
+        if ( $node.length === 1 ) {
+            nodeName = $node.prop( 'nodeName' );
+            path = $node.getXPath( 'instance' );
+            $family = this.model.$.find( nodeName ).filter( function() {
+                return path === $( this ).getXPath( 'instance' );
+            } );
+            return ( $family.length === 1 ) ? null : $family.index( $node );
+        } else {
+            console.error( 'no node, or multiple nodes, provided to nodeset.determineIndex' );
+            return -1;
+        }
+    };
+
+    // if repeats have not been cloned yet, they are not considered a repeat by this function
+    Nodeset.prototype.getClosestRepeat = function() {
+        var $node = this.get(),
+            nodeName = $node.prop( 'nodeName' );
+
+        while ( $node.siblings( nodeName ).length === 0 && nodeName !== 'instance' ) {
+            $node = $node.parent();
+            nodeName = $node.prop( 'nodeName' );
+        }
+
+        return ( nodeName === 'instance' ) ? {} : {
+            repeatPath: $node.getXPath( 'instance' ),
+            repeatIndex: this.determineIndex( $node )
+        };
+    };
+
+    /**
+     * Remove a repeat node
+     */
+    Nodeset.prototype.remove = function() {
+        var $dataNode, allRemovedNodeNames, $this, repeatPath, repeatIndex;
+
+        $dataNode = this.get();
+
+        if ( $dataNode.length > 0 ) {
+
+            allRemovedNodeNames = [ $dataNode.prop( 'nodeName' ) ];
+
+            $dataNode.find( '*' ).each( function() {
+                $this = $( this );
+                allRemovedNodeNames.push( $this.prop( 'nodeName' ) );
+            } );
+
+            repeatPath = $dataNode.getXPath( 'instance' );
+            repeatIndex = this.determineIndex( $dataNode );
+
+            $dataNode.remove();
+            this.nodes = null;
+
+            this.model.$.trigger( 'dataupdate', {
+                updatedNodes: allRemovedNodeNames,
+                repeatPath: repeatPath,
+                repeatIndex: repeatIndex
+            } );
+        } else {
+            console.error( 'could not find node ' + this.selector + ' with index ' + this.index + ' to remove ' );
+        }
+    };
+
+    /**
+     * Convert a value to a specified data type( though always stringified )
+     * @param  {?string=} x           value to convert
+     * @param  {?string=} xmlDataType XML data type
+     * @return {string}               string representation of converted value
+     */
+    Nodeset.prototype.convert = function( x, xmlDataType ) {
+        if ( x.toString() === '' ) {
+            return x;
+        }
+        if ( typeof xmlDataType !== 'undefined' && xmlDataType !== null &&
+            typeof types[ xmlDataType.toLowerCase() ] !== 'undefined' &&
+            typeof types[ xmlDataType.toLowerCase() ].convert !== 'undefined' ) {
+            return types[ xmlDataType.toLowerCase() ].convert( x );
+        }
+        return x;
+    };
+
+    /**
+     * Validate a value with an XPath Expression and /or xml data type
+     * @param  {?string=} expr        XPath expression
+     * @param  {?string=} xmlDataType XML datatype
+     * @return {boolean}
+     */
+    Nodeset.prototype.validate = function( expr, xmlDataType ) {
+        var typeValid, exprValid, value;
+
+        if ( !xmlDataType || typeof types[ xmlDataType.toLowerCase() ] === 'undefined' ) {
+            xmlDataType = 'string';
+        }
+
+        // This one weird trick results in a small validation performance increase.
+        // Do not obtain *the value* if the expr is empty and data type is string, select, select1, binary knowing that this will always return true.
+        if ( !expr && ( xmlDataType === 'string' || xmlDataType === 'select' || xmlDataType === 'select1' || xmlDataType === 'binary' ) ) {
+            return true;
+        }
+
+        value = this.getVal()[ 0 ];
+
+        if ( value.toString() === '' ) {
+            return true;
+        }
+
+        typeValid = types[ xmlDataType.toLowerCase() ].validate( value );
+        exprValid = ( typeof expr !== 'undefined' && expr !== null && expr.length > 0 ) ? this.model.evaluate( expr, 'boolean', this.originalSelector, this.index ) : true;
+
+        return ( typeValid && exprValid );
+    };
+
+    /**
+     * @namespace types
+     * @type {Object}
+     */
+    types = {
+        'string': {
+            //max length of type string is 255 chars.Convert( truncate ) silently ?
+            validate: function() {
+                return true;
+            }
+        },
+        'select': {
+            validate: function() {
+                return true;
+            }
+        },
+        'select1': {
+            validate: function() {
+                return true;
+            }
+        },
+        'decimal': {
+            validate: function( x ) {
+                return ( !isNaN( x - 0 ) && x !== null ) ? true : false;
+            },
+            convert: function( x ) {
+                // deals with Java issue and possible db issues:
+                // https://github.com/MartijnR/enketo-core/issues/40
+                return ( x === 'NaN' ) ? '' : x;
+            }
+        },
+        'int': {
+            validate: function( x ) {
+                return ( !isNaN( x - 0 ) && x !== null && Math.round( x ).toString() === x.toString() ) ? true : false;
+            },
+            convert: function( x ) {
+                // deals with Java issue and possible db issues:
+                // https://github.com/MartijnR/enketo-core/issues/40
+                return ( x === 'NaN' ) ? '' : x;
+            }
+        },
+        'date': {
+            validate: function( x ) {
+                var pattern = ( /([0-9]{4})([\-]|[\/])([0-9]{2})([\-]|[\/])([0-9]{2})/ ),
+                    segments = pattern.exec( x );
+
+                return ( segments && segments.length === 6 ) ? ( new Date( Number( segments[ 1 ] ), Number( segments[ 3 ] ) - 1, Number( segments[ 5 ] ) ).toString() !== 'Invalid Date' ) : false;
+            },
+            convert: function( x ) {
+                var pattern = /([0-9]{4})([\-]|[\/])([0-9]{2})([\-]|[\/])([0-9]{2})/,
+                    segments = pattern.exec( x ),
+                    date = new Date( x );
+                if ( new Date( x ).toString() === 'Invalid Date' ) {
+                    //this code is really only meant for the Rhino and PhantomJS engines, in browsers it may never be reached
+                    if ( segments && Number( segments[ 1 ] ) > 0 && Number( segments[ 3 ] ) >= 0 && Number( segments[ 3 ] ) < 12 && Number( segments[ 5 ] ) < 32 ) {
+                        date = new Date( Number( segments[ 1 ] ), ( Number( segments[ 3 ] ) - 1 ), Number( segments[ 5 ] ) );
+                    }
+                }
+                //date.setUTCHours(0,0,0,0);
+                //return date.toUTCString();//.getUTCFullYear(), datetime.getUTCMonth(), datetime.getUTCDate());
+                return date.getUTCFullYear().toString().pad( 4 ) + '-' + ( date.getUTCMonth() + 1 ).toString().pad( 2 ) + '-' + date.getUTCDate().toString().pad( 2 );
+            }
+        },
+        'datetime': {
+            validate: function( x ) {
+                //the second part builds in some tolerance for slightly-off dates provides as defaults (e.g.: 2013-05-31T07:00-02)
+                return ( new Date( x.toString() ).toString() !== 'Invalid Date' || new Date( this.convert( x.toString() ) ).toString() !== 'Invalid Date' );
+            },
+            convert: function( x ) {
+                var date, // timezone, segments, dateS, timeS,
+                    patternCorrect = /([0-9]{4}\-[0-9]{2}\-[0-9]{2})([T]|[\s])([0-9]){2}:([0-9]){2}([0-9:.]*)(\+|\-)([0-9]{2}):([0-9]{2})$/,
+                    patternAlmostCorrect = /([0-9]{4}\-[0-9]{2}\-[0-9]{2})([T]|[\s])([0-9]){2}:([0-9]){2}([0-9:.]*)(\+|\-)([0-9]{2})$/;
+                /* 
+                 * if the pattern is right, or almost right but needs a small correction for JavaScript to handle it,
+                 * do not risk changing the time zone by calling toISOLocalString()
+                 */
+                if ( new Date( x ).toString() !== 'Invalid Date' && patternCorrect.test( x ) ) {
+                    return x;
+                }
+                if ( new Date( x ).toString() === 'Invalid Date' && patternAlmostCorrect.test( x ) ) {
+                    return x + ':00';
+                }
+                date = new Date( x );
+                return ( date.toString() !== 'Invalid Date' ) ? date.toISOLocalString() : date.toString();
+            }
+        },
+        'time': {
+            validate: function( x ) {
+                var date = new Date(),
+                    segments = x.toString().split( ':' );
+                if ( segments.length < 2 ) {
+                    return false;
+                }
+                segments[ 2 ] = ( segments[ 2 ] ) ? Number( segments[ 2 ].toString().split( '.' )[ 0 ] ) : 0;
+
+                return ( segments[ 0 ] < 24 && segments[ 0 ] >= 0 && segments[ 1 ] < 60 && segments[ 1 ] >= 0 && segments[ 2 ] < 60 && segments[ 2 ] >= 0 && date.toString() !== 'Invalid Date' );
+            },
+            convert: function( x ) {
+                var segments = x.toString().split( ':' );
+                $.each( segments, function( i, val ) {
+                    segments[ i ] = val.toString().pad( 2 );
+                } );
+                return segments.join( ':' );
+            }
+        },
+        'barcode': {
+            validate: function() {
+                return true;
+            }
+        },
+        'geopoint': {
+            validate: function( x ) {
+                var coords = x.toString().trim().split( ' ' );
+                return ( coords[ 0 ] !== '' && coords[ 0 ] >= -90 && coords[ 0 ] <= 90 ) &&
+                    ( coords[ 1 ] !== '' && coords[ 1 ] >= -180 && coords[ 1 ] <= 180 ) &&
+                    ( typeof coords[ 2 ] === 'undefined' || !isNaN( coords[ 2 ] ) ) &&
+                    ( typeof coords[ 3 ] === 'undefined' || ( !isNaN( coords[ 3 ] ) && coords[ 3 ] >= 0 ) );
+            },
+            convert: function( x ) {
+                return $.trim( x.toString() );
+            }
+        },
+        'geotrace': {
+            validate: function( x ) {
+                var geopoints = x.toString().split( ';' );
+                return geopoints.length >= 2 && geopoints.every( function( geopoint ) {
+                    return types.geopoint.validate( geopoint );
+                } );
+            },
+            convert: function( x ) {
+                return x.toString().trim();
+            }
+        },
+        'geoshape': {
+            validate: function( x ) {
+                console.debug( 'validating geoshape, this: ', this );
+                var geopoints = x.toString().split( ';' );
+                return geopoints.length >= 4 && ( geopoints[ 0 ] === geopoints[ geopoints.length - 1 ] ) && geopoints.every( function( geopoint ) {
+                    return types.geopoint.validate( geopoint );
+                } );
+            },
+            convert: function( x ) {
+                return x.toString().trim();
+            }
+        },
+        'binary': {
+            validate: function() {
+                return true;
+            }
+        }
+    };
+
+    // Expose types to facilitate extending with custom types
+    FormModel.prototype.types = types;
+
+    module.exports = FormModel;
+} );
+
+},{"./FormLogicError":14,"./XPathEvaluatorBinding":17,"./extend":18,"./plugins":20,"./utils":22,"extended-xpath":"extended-xpath","jquery":9,"jquery-xpath-basic":8,"mergexml/mergexml":11,"openrosa-xpath-extensions":"openrosa-xpath-extensions"}],16:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -35454,7 +37213,35 @@ define( function( require, exports, module ) {
     module.exports = Widget;
 } );
 
-},{"jquery":9}],18:[function(require,module,exports){
+},{"jquery":9}],17:[function(require,module,exports){
+var XPathJS = require( 'enketo-xpathjs' );
+
+module.exports = function() {
+    var evaluator = new XPathJS.XPathEvaluator();
+
+    XPathJS.bindDomLevel3XPath( this.xml, {
+        'window': {
+            JsXPathException: true,
+            JsXPathExpression: true,
+            JsXPathNSResolver: true,
+            JsXPathResult: true,
+            JsXPathNamespace: true
+        },
+        'document': {
+            jsCreateExpression: function() {
+                return evaluator.createExpression.apply( evaluator, arguments );
+            },
+            jsCreateNSResolver: function() {
+                return evaluator.createNSResolver.apply( evaluator, arguments );
+            },
+            jsEvaluate: function() {
+                return evaluator.evaluate.apply( evaluator, arguments );
+            }
+        }
+    } );
+};
+
+},{"enketo-xpathjs":5}],18:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -35519,9 +37306,8 @@ if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && type
 
 define( function( require, exports, module ) {
     'use strict';
-    var Promise = require( 'lie' );
+    var Q = require( 'q' );
     var $ = require( 'jquery' );
-    var utils = require( './utils' );
 
     var supported = typeof FileReader !== 'undefined',
         notSupportedAdvisoryMsg = '';
@@ -35531,11 +37317,15 @@ define( function( require, exports, module ) {
      * @return {[type]} promise boolean or rejection with Error
      */
     function init() {
+        var deferred = Q.defer();
+
         if ( supported ) {
-            return Promise.resolve( true );
+            deferred.resolve( true );
         } else {
-            return Promise.reject( new Error( 'FileReader not supported.' ) );
+            deferred.reject( new Error( 'FileReader not supported.' ) );
         }
+
+        return deferred.promise;
     }
 
     /**
@@ -35562,33 +37352,33 @@ define( function( require, exports, module ) {
      * @return {[type]}         promise url string or rejection with Error
      */
     function getFileUrl( subject ) {
-        return new Promise( function( resolve, reject ) {
-            var error, reader;
+        var error, reader,
+            deferred = Q.defer();
 
-            if ( !subject ) {
-                resolve( null );
-            } else if ( typeof subject === 'string' ) {
-                // TODO obtain from storage
-            } else if ( typeof subject === 'object' ) {
-                if ( _isTooLarge( subject ) ) {
-                    error = new Error( 'File too large (max ' +
-                        ( Math.round( ( _getMaxSize() * 100 ) / ( 1024 * 1024 ) ) / 100 ) +
-                        ' Mb)' );
-                    reject( error );
-                } else {
-                    reader = new FileReader();
-                    reader.onload = function( e ) {
-                        resolve( e.target.result );
-                    };
-                    reader.onerror = function( e ) {
-                        reject( error );
-                    };
-                    reader.readAsDataURL( subject );
-                }
+        if ( !subject ) {
+            deferred.resolve( null );
+        } else if ( typeof subject === 'string' ) {
+            // TODO obtain from storage
+        } else if ( typeof subject === 'object' ) {
+            if ( _isTooLarge( subject ) ) {
+                error = new Error( 'File too large (max ' +
+                    ( Math.round( ( _getMaxSize() * 100 ) / ( 1024 * 1024 ) ) / 100 ) +
+                    ' Mb)' );
+                deferred.reject( error );
             } else {
-                reject( new Error( 'Unknown error occurred' ) );
+                reader = new FileReader();
+                reader.onload = function( e ) {
+                    deferred.resolve( e.target.result );
+                };
+                reader.onerror = function( e ) {
+                    deferred.reject( error );
+                };
+                reader.readAsDataURL( subject );
             }
-        } );
+        } else {
+            deferred.reject( new Error( 'Unknown error occurred' ) );
+        }
+        return deferred.promise;
     }
 
     /**
@@ -35596,37 +37386,17 @@ define( function( require, exports, module ) {
      * @return {[File]} array of files
      */
     function getCurrentFiles() {
-        var file;
-        var newFilename;
-        var files = [];
+        var file,
+            files = [];
 
         // first get any files inside file input elements
         $( 'form.or input[type="file"]' ).each( function() {
             file = this.files[ 0 ];
-            if ( file && file.name ) {
-                // Correct file names by adding a unique-ish postfix
-                // First create a clone, because the name property is immutable
-                // TODO: in the future, when browser support increase we can invoke
-                // the File constructor to do this.
-                newFilename = utils.getFilename( file, this.dataset.filenamePostfix );
-                file = new Blob( [ file ], {
-                    type: file.type
-                } );
-                file.name = newFilename;
+            if ( file ) {
                 files.push( file );
             }
         } );
         return files;
-    }
-
-    /**
-     * Placeholder function to check if file size is acceptable. 
-     * 
-     * @param  {Blob}  file [description]
-     * @return {Boolean}      [description]
-     */
-    function _isTooLarge( file ) {
-        return false;
     }
 
     module.exports = {
@@ -35639,7 +37409,7 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"./utils":22,"jquery":9,"lie":11}],20:[function(require,module,exports){
+},{"jquery":9,"q":12}],20:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -35820,29 +37590,13 @@ define( function( require, exports, module ) {
         return str;
     }
 
-    // Because iOS gives any camera-provided file the same filename, we need to a 
-    // unique-ified filename.
-    // 
-    // See https://github.com/kobotoolbox/enketo-express/issues/374
-    function getFilename( file, postfix ) {
-        var filenameParts;
-        if ( typeof file === 'object' && file.name ) {
-            postfix = postfix || '';
-            filenameParts = file.name.split( '.' );
-            if ( filenameParts.length > 1 ) {
-                filenameParts[ filenameParts.length - 2 ] += postfix;
-            } else if ( filenameParts.length === 1 ) {
-                filenameParts[ 0 ] += postfix;
-            }
-            return filenameParts.join( '.' );
-        }
-        return '';
+    function _trim( item ) {
+        return item.trim();
     }
 
     module.exports = {
         parseFunctionFromExpression: parseFunctionFromExpression,
         stripQuotes: stripQuotes,
-        getFilename: getFilename
     };
 } );
 
@@ -35861,7 +37615,7 @@ define( function( require, exports, module ) {
         return widget.selector;
     } );
     var $form, init, enable, disable, destroy,
-        _getElements, _instantiate, _setLangChangeHandler, _setOptionChangeHandler;
+        _getWidgets, _getElements, _instantiate, _load, _setLangChangeHandler, _setOptionChangeHandler;
 
     if ( typeof config === 'string' ) {
         config = JSON.parse( config );
@@ -36026,289 +37780,7 @@ define( function( require, exports, module ) {
 
 } );
 
-},{"./support":21,"jquery":9,"text!enketo-config":2,"widgets":24}],24:[function(require,module,exports){
-if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
-    var define = function( factory ) {
-        factory( require, exports, module );
-    };
-}
-
-define( function( require, exports, module ) {
-    var widgets = [
-        require( '../widget/note/notewidget' ),
-        require( '../widget/select-desktop/selectpicker' ),
-        require( '../widget/select-mobile/selectpicker' ),
-        require( '../widget/geo/geopicker' ),
-        require( '../widget/table/tablewidget' ),
-        require( '../widget/radio/radiopicker' ),
-        require( '../widget/date/datepicker-extended' ),
-        require( '../widget/time/timepicker-extended' ),
-        require( '../widget/datetime/datetimepicker-extended' ),
-        require( '../widget/mediagrid/mediagridpicker' ),
-        require( '../widget/file/filepicker' ),
-        require( '../widget/select-likert/likertitem' ),
-        require( '../widget/distress/distresspicker' ),
-        require( '../widget/horizontal-choices/horizontalchoices' ),
-        require( '../widget/analog-scale/analog-scalepicker' ),
-    ];
-
-    module.exports = widgets;
-} );
-
-},{"../widget/analog-scale/analog-scalepicker":26,"../widget/date/datepicker-extended":27,"../widget/datetime/datetimepicker-extended":28,"../widget/distress/distresspicker":29,"../widget/file/filepicker":30,"../widget/geo/geopicker":31,"../widget/horizontal-choices/horizontalchoices":32,"../widget/mediagrid/mediagridpicker":33,"../widget/note/notewidget":34,"../widget/radio/radiopicker":35,"../widget/select-desktop/selectpicker":36,"../widget/select-likert/likertitem":37,"../widget/select-mobile/selectpicker":38,"../widget/table/tablewidget":39,"../widget/time/timepicker-extended":40}],25:[function(require,module,exports){
-var XPathJS = require( 'enketo-xpathjs' );
-
-module.exports = function() {
-    var evaluator = new XPathJS.XPathEvaluator();
-
-    XPathJS.bindDomLevel3XPath( this.xml, {
-        'window': {
-            JsXPathException: true,
-            JsXPathExpression: true,
-            JsXPathNSResolver: true,
-            JsXPathResult: true,
-            JsXPathNamespace: true
-        },
-        'document': {
-            jsCreateExpression: function() {
-                return evaluator.createExpression.apply( evaluator, arguments );
-            },
-            jsCreateNSResolver: function() {
-                return evaluator.createNSResolver.apply( evaluator, arguments );
-            },
-            jsEvaluate: function() {
-                return evaluator.evaluate.apply( evaluator, arguments );
-            }
-        }
-    } );
-};
-
-},{"enketo-xpathjs":6}],26:[function(require,module,exports){
-if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
-    var define = function( factory ) {
-        factory( require, exports, module );
-    };
-}
-
-define( function( require, exports, module ) {
-    'use strict';
-    var Widget = require( '../../js/Widget' );
-    var $ = require( 'jquery' );
-    var pluginName = 'analogscalepicker';
-
-    require( 'bootstrap-slider-basic' );
-
-    /**
-     * Creates an analog scale picker
-     *
-     * @constructor
-     * @param {Element} element Element to apply widget to.
-     * @param {(boolean|{touch: boolean})} options options
-     */
-    function Analogscalepicker( element, options ) {
-        this.namespace = pluginName;
-        Widget.call( this, element, options );
-        this._init();
-    }
-
-    // copy the prototype functions from the Widget super class
-    Analogscalepicker.prototype = Object.create( Widget.prototype );
-
-    // ensure the constructor is the new one
-    Analogscalepicker.prototype.constructor = Analogscalepicker;
-
-    /**
-     * Initialize
-     */
-    Analogscalepicker.prototype._init = function() {
-        var $question = $( this.element ).closest( '.question' );
-        var $input = $( this.element );
-        var value = Number( this.element.value ) || -1;
-        var step = $( this.element ).attr( 'data-type-xml' ) === 'decimal' ? 0.1 : 1;
-
-        this.orientation = $question.hasClass( 'or-appearance-horizontal' ) ? 'horizontal' : 'vertical';
-
-        this.ticks = !$question.hasClass( 'or-appearance-no-ticks' );
-
-        $input
-            .slider( {
-                reversed: this.orientation === 'vertical',
-                min: 0,
-                max: 100,
-                orientation: this.orientation,
-                step: step,
-                value: value
-            } );
-
-        this.$widget = $input.next( '.widget' );
-        this.$slider = this.$widget.find( '.slider' );
-        this.$labelContent = $( '<div class="label-content widget" />' ).prependTo( $question );
-        this.$originalLabels = $question.find( '.question-label, .or-hint, .or-required-msg, .or-constraint-msg' );
-        this.$labelContent.append( this.$originalLabels );
-
-        this._renderResetButton();
-        this._renderLabels();
-        this._renderScale();
-        this._setChangeHandler();
-        this._setResizeHander();
-
-        // update reset button and slider "empty" state
-        $input.trigger( 'programmaticChange' + this.namespace );
-    };
-
-    /** 
-     * (re-)Renders the widget labels based on the current content of .question-label.active
-     */
-    Analogscalepicker.prototype._renderLabels = function() {
-        var $labelEl = this.$labelContent.find( '.question-label.active' );
-        var labels = $labelEl.html().split( /\|/ ).map( function( label ) {
-            return label.trim();
-        } );
-
-        this.$mainLabel = this.$mainLabel || $( '<span class="question-label widget active" />' ).insertAfter( $labelEl );
-        this.$mainLabel.empty().append( labels[ 0 ] );
-
-        this.$maxLabel = this.$maxLabel || $( '<div class="max-label" />' ).prependTo( this.$widget );
-        this.$maxLabel.empty().append( labels[ 1 ] );
-
-        this.$minLabel = this.$minLabel || $( '<div class="min-label" />' ).appendTo( this.$widget );
-        this.$minLabel.empty().append( labels[ 2 ] );
-
-        if ( labels[ 3 ] ) {
-            this.$showValue = this.$showValue || $( '<div class="widget show-value" />' ).appendTo( this.$labelContent );
-            this.$showValue.empty().append( '<div class="show-value__box">' + labels[ 3 ] +
-                '<span class="show-value__value">' + this.element.value + '</span></div>' );
-        } else if ( this.$showValue ) {
-            this.$showValue.remove();
-            this.$showValue = undefined;
-        }
-    };
-
-    Analogscalepicker.prototype._renderScale = function() {
-        var i;
-        var $scale = $( '<div class="scale"></div>' );
-
-        if ( this.orientation === 'vertical' ) {
-            for ( i = 100; i >= 0; i -= 10 ) {
-                $scale.append( this._getNumberHtml( i ) );
-            }
-        } else {
-            for ( i = 0; i <= 100; i += 10 ) {
-                $scale.append( this._getNumberHtml( i ) );
-            }
-        }
-
-        this.$slider.prepend( $scale );
-    };
-
-    Analogscalepicker.prototype._getNumberHtml = function( num ) {
-        return '<div class="scale__number"><div class="scale__ticks"></div><div class="scale__value">' + num + '</div></div>';
-    };
-
-    Analogscalepicker.prototype._renderResetButton = function() {
-        var that = this;
-
-        this.$resetBtn = $( '<button class="btn-icon-only btn-reset"><i class="icon icon-refresh"></i></button>' )
-            .appendTo( this.$widget )
-            .on( 'click', function() {
-                $( that.element ).slider( 'setValue', 0, false );
-                $( that.element ).val( '' ).trigger( 'programmaticChange' + that.namespace );
-                return false;
-            } );
-    };
-
-    Analogscalepicker.prototype._updateCurrentValueShown = function() {
-        if ( this.$showValue ) {
-            this.$showValue.find( '.show-value__value' ).text( this.element.value );
-        }
-    };
-
-    Analogscalepicker.prototype._setChangeHandler = function() {
-        var that = this;
-
-        $( this.element ).on( 'slideStop.' + this.namespace + ' programmaticChange' + this.namespace, function() {
-            var empty = ( this.value === '' );
-            $( this ).trigger( 'change' );
-            that.$resetBtn.prop( 'disabled', empty );
-            that.$slider.toggleClass( 'slider--empty', empty );
-            that._updateCurrentValueShown();
-        } );
-    };
-
-    /*
-     * Stretch the question to full page height.
-     * Doing this with pure css flexbox using "flex-direction: column" interferes with the Grid theme 
-     * because that theme relies on flexbox with "flex-direction: row".
-     */
-    Analogscalepicker.prototype._setResizeHander = function() {
-        var $question = $( this.element ).closest( '.question' );
-
-        if ( !$question.hasClass( 'or-appearance-horizontal' ) ) {
-            // Will only be triggered if question by itself constitutes a page.
-            // It will not be triggerd if question is contained inside a group with fieldlist appearance.
-            $question.on( 'pageflip.enketo', this._stretchHeight );
-        }
-    };
-
-    Analogscalepicker.prototype._stretchHeight = function() {
-        var $question = $( this ).closest( '.question' ).css( 'min-height', 'auto' );
-        var height = $question.outerHeight();
-        var $form = $question.closest( '.or' );
-        var diff = ( $form.offset().top + $form.height() ) - ( $question.offset().top + height ) - 10;
-        if ( diff ) {
-            // To somewhat avoid problems when a repeat is clone and height is set while the widget is detached
-            // we use min-height instead of height.
-            $question.css( 'min-height', height + diff + 'px' );
-        }
-    };
-
-    Analogscalepicker.prototype.destroy = function( element ) {
-        $( element )
-            .before( $( element ).siblings( '.label-content' ).find( '.question-label:not(.widget), .or-hint, .or-required-msg, .or-constraint-msg' ) )
-            .removeData( this.namespace )
-            .off( '.' + this.namespace )
-            .show()
-            .siblings( '.widget' ).remove();
-    };
-
-    Analogscalepicker.prototype.disable = function() {
-        $( this.element )
-            .slider( 'disable' )
-            .slider( 'setValue', this.element.value );
-    };
-
-    Analogscalepicker.prototype.enable = function() {
-        $( this.element )
-            .slider( 'enable' );
-    };
-
-    Analogscalepicker.prototype.update = function() {
-        this._renderLabels();
-    };
-
-    $.fn[ pluginName ] = function( options, event ) {
-        return this.each( function() {
-            var $this = $( this ),
-                data = $( this ).data( pluginName );
-
-            options = options || {};
-
-            if ( !data && typeof options === 'object' ) {
-                $this.data( pluginName, new Analogscalepicker( this, options, event ) );
-            } else if ( data && typeof options === 'string' ) {
-                //pass the context, used for destroy() as this method is called on a cloned widget
-                data[ options ]( this );
-            }
-        } );
-    };
-
-    module.exports = {
-        'name': pluginName,
-        'selector': '.or-appearance-analog-scale input[type="number"]'
-    };
-} );
-
-},{"../../js/Widget":17,"bootstrap-slider-basic":4,"jquery":9}],27:[function(require,module,exports){
+},{"./support":21,"jquery":9,"text!enketo-config":"text!enketo-config","widgets":"widgets"}],24:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -36491,7 +37963,7 @@ define( function( require, exports, module ) {
              */
 
             if ( !data && typeof options === 'object' && ( !options.touch || !support.inputtypes.date || badSamsung.test( navigator.userAgent ) ) ) {
-                $this.data( pluginName, new DatepickerExtended( this, options, event ) );
+                $this.data( pluginName, ( data = new DatepickerExtended( this, options, event ) ) );
             }
             //only call method if widget was instantiated before
             else if ( data && typeof options === 'string' ) {
@@ -36507,7 +37979,7 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"../../js/Widget":17,"../../js/support":21,"bootstrap-datepicker/dist/js/bootstrap-datepicker":3,"jquery":9}],28:[function(require,module,exports){
+},{"../../js/Widget":16,"../../js/support":21,"bootstrap-datepicker/dist/js/bootstrap-datepicker":2,"jquery":9}],25:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -36706,7 +38178,7 @@ define( function( require, exports, module ) {
                 webview: "Mozilla/5.0 (Linux; U; Android 4.1.2; en-us; GT-P3100 Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30" 
                 */
             if ( !data && typeof options === 'object' && ( !options.touch || !support.inputtypes.datetime || badSamsung.test( navigator.userAgent ) ) ) {
-                $this.data( pluginName, new DatetimepickerExtended( this, options, event ) );
+                $this.data( pluginName, ( data = new DatetimepickerExtended( this, options, event ) ) );
             }
             //only call method if widget was instantiated before
             else if ( data && typeof options === 'string' ) {
@@ -36722,7 +38194,7 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"../../js/Widget":17,"../../js/extend":18,"../../js/support":21,"bootstrap-datepicker/dist/js/bootstrap-datepicker":3,"bootstrap-timepicker/js/bootstrap-timepicker":5,"jquery":9}],29:[function(require,module,exports){
+},{"../../js/Widget":16,"../../js/extend":18,"../../js/support":21,"bootstrap-datepicker/dist/js/bootstrap-datepicker":2,"bootstrap-timepicker/js/bootstrap-timepicker":4,"jquery":9}],26:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -36842,7 +38314,7 @@ define( function( require, exports, module ) {
             options = options || {};
 
             if ( !data && typeof options === 'object' ) {
-                $this.data( pluginName, new Distresspicker( this, options, event ) );
+                $this.data( pluginName, ( data = new Distresspicker( this, options, event ) ) );
             } else if ( data && typeof options === 'string' ) {
                 //pass the context, used for destroy() as this method is called on a cloned widget
                 data[ options ]( this );
@@ -36856,7 +38328,7 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"../../js/Widget":17,"bootstrap-slider-basic":4,"jquery":9}],30:[function(require,module,exports){
+},{"../../js/Widget":16,"bootstrap-slider-basic":3,"jquery":9}],27:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -36867,7 +38339,6 @@ define( function( require, exports, module ) {
     var $ = require( 'jquery' );
     var Widget = require( '../../js/Widget' );
     var fileManager = require( '../../js/file-manager' );
-    var utils = require( '../../js/utils' );
 
     var pluginName = 'filepicker';
 
@@ -36901,14 +38372,14 @@ define( function( require, exports, module ) {
      * Initialize
      */
     Filepicker.prototype._init = function() {
-        var $input = $( this.element );
-        var existingFileName = $input.attr( 'data-loaded-file-name' );
-        var that = this;
+        var $input = $( this.element ),
+            existingFileName = $input.attr( 'data-loaded-file-name' ),
+            that = this;
 
         this.mediaType = $input.attr( 'accept' );
 
         $input
-            .prop( 'disabled', true )
+            .attr( 'disabled', 'disabled' )
             .addClass( 'transparent' )
             .parent().addClass( 'with-media clearfix' );
 
@@ -36942,7 +38413,7 @@ define( function( require, exports, module ) {
             .then( function() {
                 that._showFeedback();
                 that._changeListener();
-                $input.prop( 'disabled', false );
+                $input.removeAttr( 'disabled' );
                 if ( existingFileName ) {
                     fileManager.getFileUrl( existingFileName )
                         .then( function( url ) {
@@ -36967,12 +38438,9 @@ define( function( require, exports, module ) {
         var that = this;
 
         $( this.element ).on( 'change.propagate.' + this.namespace, function( event ) {
-            var file;
-            var fileName;
-            var postfix;
-            var $input = $( this );
-            var loadedFileName = $input.attr( 'data-loaded-file-name' );
-            var now = new Date();
+            var file, fileName,
+                $input = $( this ),
+                loadedFileName = $input.attr( 'data-loaded-file-name' );
 
             // trigger eventhandler to update instance value
             if ( event.namespace === 'propagate' ) {
@@ -36984,9 +38452,7 @@ define( function( require, exports, module ) {
 
             // get the file
             file = this.files[ 0 ];
-            postfix = '-' + now.getHours() + '_' + now.getMinutes() + '_' + now.getSeconds();
-            this.dataset.filenamePostfix = postfix;
-            fileName = utils.getFilename( file, postfix );
+            fileName = that._getFileName( file );
 
             // process the file
             fileManager.getFileUrl( file )
@@ -37010,6 +38476,10 @@ define( function( require, exports, module ) {
                     that._showFeedback( error.message, 'error' );
                 } );
         } );
+    };
+
+    Filepicker.prototype._getFileName = function( file ) {
+        return ( typeof file === 'object' && file.name ) ? file.name : '';
     };
 
     Filepicker.prototype._showFileName = function( fileName ) {
@@ -37058,7 +38528,7 @@ define( function( require, exports, module ) {
 
             //only instantiate if options is an object (i.e. not a string) and if it doesn't exist already
             if ( !data && typeof options === 'object' ) {
-                $this.data( pluginName, new Filepicker( this, options, event ) );
+                $this.data( pluginName, ( data = new Filepicker( this, options, event ) ) );
             }
             //only call method if widget was instantiated before
             else if ( data && typeof options === 'string' ) {
@@ -37074,7 +38544,7 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"../../js/Widget":17,"../../js/file-manager":19,"../../js/utils":22,"jquery":9}],31:[function(require,module,exports){
+},{"../../js/Widget":16,"../../js/file-manager":19,"jquery":9}],28:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -37102,9 +38572,9 @@ define( function( require, exports, module ) {
     var Widget = require( '../../js/Widget' );
     var config = require( 'text!enketo-config' );
     var L = require( 'leaflet' );
-    var Promise = require( 'lie' );
+    var Q = require( 'q' );
 
-    var googleMapsScriptRequest,
+    var googleMapsScriptRequested, googleMapsScriptLoaded,
         pluginName = 'geopicker',
         defaultZoom = 15,
         // MapBox TileJSON format
@@ -37768,9 +39238,10 @@ define( function( require, exports, module ) {
 
         return this._getLayers()
             .then( function( layers ) {
-                var options = {
-                    layers: that._getDefaultLayer( layers )
-                };
+                var deferred = Q.defer(),
+                    options = {
+                        layers: that._getDefaultLayer( layers )
+                    };
 
                 that.map = L.map( 'map' + that.mapId, options )
                     .on( 'click', function( e ) {
@@ -37815,6 +39286,9 @@ define( function( require, exports, module ) {
                 that.map.on( 'baselayerchange', function() {
                     that.$widget.find( '.leaflet-control-container input' ).addClass( 'ignore no-unselect' ).next( 'span' ).addClass( 'option-label' );
                 } );
+
+                deferred.resolve();
+                return deferred.promise;
             } );
     };
 
@@ -37859,7 +39333,7 @@ define( function( require, exports, module ) {
             }
         } );
 
-        return Promise.all( tasks );
+        return Q.all( tasks );
     };
 
     /**
@@ -37871,13 +39345,16 @@ define( function( require, exports, module ) {
      */
     Geopicker.prototype._getLeafletTileLayer = function( map, index ) {
         var url,
-            options = this._getTileOptions( map, index );
+            options = this._getTileOptions( map, index ),
+            deferred = Q.defer();
 
         // randomly pick a tile source from the array and store it in the maps config
         // so it will be re-used when the form is reset or multiple geo widgets are created
         map.tileIndex = ( map.tileIndex === undefined ) ? Math.round( Math.random() * 100 ) % map.tiles.length : map.tileIndex;
         url = map.tiles[ map.tileIndex ];
-        return Promise.resolve( L.tileLayer( url, options ) );
+        deferred.resolve( L.tileLayer( url, options ) );
+
+        return deferred.promise;
     };
 
     /**
@@ -37888,13 +39365,16 @@ define( function( require, exports, module ) {
      * @return {Promise}
      */
     Geopicker.prototype._getGoogleTileLayer = function( map, index ) {
-        var options = this._getTileOptions( map, index ),
+        var deferred = Q.defer(),
+            options = this._getTileOptions( map, index ),
             type = map.tiles.substring( 7 );
 
-        return this._loadGoogleMapsScript()
+        this._loadGoogleMapsScript()
             .then( function() {
-                return new L.Google( type, options );
+                deferred.resolve( new L.Google( type, options ) );
             } );
+
+        return deferred.promise;
     };
 
     /**
@@ -37923,29 +39403,30 @@ define( function( require, exports, module ) {
      * @return {Promise} [description]
      */
     Geopicker.prototype._loadGoogleMapsScript = function() {
+        var apiKeyQueryParam, loadUrl;
+
         // request Google maps script only once, using a variable outside of the scope of the current widget
         // in case multiple widgets exist in the same form
-        if ( !googleMapsScriptRequest ) {
+        if ( !googleMapsScriptRequested ) {
             // create deferred object, also outside of the scope of the current widget
-            googleMapsScriptRequest = new Promise( function( resolve, reject ) {
-                var apiKeyQueryParam, loadUrl;
-
-                // create a global callback to be called by the Google Maps script once this has loaded
-                window.gmapsLoaded = function() {
-                    // clean up the global function
-                    delete window.gmapsLoaded;
-                    // resolve the deferred object
-                    resolve();
-                };
-                // make the request for the Google Maps script asynchronously
-                apiKeyQueryParam = ( googleApiKey ) ? '&key=' + googleApiKey : '';
-                loadUrl = 'http://maps.google.com/maps/api/js?v=3.exp' + apiKeyQueryParam + '&sensor=false&libraries=places&callback=gmapsLoaded';
-                $.getScript( loadUrl );
-            } );
+            googleMapsScriptLoaded = Q.defer();
+            // create a global callback to be called by the Google Maps script once this has loaded
+            window.gmapsLoaded = function() {
+                // clean up the global function
+                delete window.gmapsLoaded;
+                // resolve the deferred object
+                googleMapsScriptLoaded.resolve();
+            };
+            // make the request for the Google Maps script asynchronously
+            apiKeyQueryParam = ( googleApiKey ) ? '&key=' + googleApiKey : '';
+            loadUrl = 'http://maps.google.com/maps/api/js?v=3.exp' + apiKeyQueryParam + '&sensor=false&libraries=places&callback=gmapsLoaded';
+            $.getScript( loadUrl );
+            // ensure if won't be requested again
+            googleMapsScriptRequested = true;
         }
 
         // return the promise of the deferred object outside of the scope of the current widget
-        return googleMapsScriptRequest;
+        return googleMapsScriptLoaded.promise;
     };
 
     Geopicker.prototype._getDefaultLayer = function( layers ) {
@@ -38478,7 +39959,7 @@ define( function( require, exports, module ) {
                 options = options || {};
 
                 if ( !data && typeof options === 'object' ) {
-                    $this.data( pluginName, new Geopicker( this, options, event ) );
+                    $this.data( pluginName, ( data = new Geopicker( this, options, event ) ) );
                 } else if ( data && typeof options === 'string' ) {
                     //pass the context, used for destroy() as this method is called on a cloned widget
                     data[ options ]( this );
@@ -38712,7 +40193,7 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"../../js/Widget":17,"jquery":9,"leaflet":10,"lie":11,"text!enketo-config":2}],32:[function(require,module,exports){
+},{"../../js/Widget":16,"jquery":9,"leaflet":10,"q":12,"text!enketo-config":"text!enketo-config"}],29:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -38784,7 +40265,7 @@ define( function( require, exports, module ) {
 
             //only instantiate if options is an object (i.e. not a string) and if it doesn't exist already
             if ( !data && typeof options === 'object' ) {
-                $this.data( pluginName, new HorizontalChoices( this, options, event ) );
+                $this.data( pluginName, ( data = new HorizontalChoices( this, options, event ) ) );
             }
             //only call method if widget was instantiated before
             else if ( data && typeof options === 'string' ) {
@@ -38800,7 +40281,7 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"../../js/Widget":17,"jquery":9}],33:[function(require,module,exports){
+},{"../../js/Widget":16,"jquery":9}],30:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -38810,10 +40291,10 @@ if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && type
 define( function( require, exports, module ) {
     module.exports = {
         'name': 'mediagridpicker'
-    };
+    }
 } );
 
-},{}],34:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -38883,7 +40364,7 @@ define( function( require, exports, module ) {
             options = options || {};
 
             if ( !data && typeof options === 'object' ) {
-                $this.data( pluginName, new Notewidget( this, options, event ) );
+                $this.data( pluginName, ( data = new Notewidget( this, options, event ) ) );
             } else if ( data && typeof options === 'string' ) {
                 data[ options ]( this );
             }
@@ -38896,7 +40377,7 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"../../js/Widget":17,"../../js/plugins":20,"jquery":9}],35:[function(require,module,exports){
+},{"../../js/Widget":16,"../../js/plugins":20,"jquery":9}],32:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -39021,7 +40502,7 @@ define( function( require, exports, module ) {
         options = options || {};
 
         if ( !data && typeof options === 'object' ) {
-            $this.data( pluginName, new Radiopicker( $this[ 0 ], options, event ) );
+            $this.data( pluginName, ( data = new Radiopicker( $this[ 0 ], options, event ) ) );
         } else if ( data && typeof options === 'string' ) {
             data[ options ]( this );
         }
@@ -39035,7 +40516,7 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"../../js/Widget":17,"../../js/plugins":20,"jquery":9}],36:[function(require,module,exports){
+},{"../../js/Widget":16,"../../js/plugins":20,"jquery":9}],33:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -39420,7 +40901,7 @@ define( function( require, exports, module ) {
                 var data = $this.data( 'bs.dropdown' );
 
                 if ( !data ) {
-                    $this.data( 'bs.dropdown', new Dropdown( this ) );
+                    $this.data( 'bs.dropdown', ( data = new Dropdown( this ) ) );
                 }
                 if ( typeof option === 'string' ) {
                     data[ option ].call( $this );
@@ -39459,7 +40940,7 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"../../js/Widget":17,"jquery":9}],37:[function(require,module,exports){
+},{"../../js/Widget":16,"jquery":9}],34:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -39469,10 +40950,10 @@ if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && type
 define( function( require, exports, module ) {
     module.exports = {
         'name': 'likertitem'
-    };
+    }
 } );
 
-},{}],38:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -39566,7 +41047,7 @@ define( function( require, exports, module ) {
 
             //only instantiate if options is an object AND if options.touch is truthy
             if ( !data && typeof options === 'object' && options.touch ) {
-                $this.data( pluginName, new MobileSelectpicker( this, options, event ) );
+                $this.data( pluginName, ( data = new MobileSelectpicker( this, options, event ) ) );
             }
             if ( data && typeof options === 'string' ) {
                 data[ options ]( this );
@@ -39581,7 +41062,7 @@ define( function( require, exports, module ) {
 
 } );
 
-},{"../../js/Widget":17,"jquery":9}],39:[function(require,module,exports){
+},{"../../js/Widget":16,"jquery":9}],36:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -39591,10 +41072,10 @@ if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && type
 define( function( require, exports, module ) {
     module.exports = {
         'name': 'tablewidget'
-    };
+    }
 } );
 
-},{}],40:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
     var define = function( factory ) {
         factory( require, exports, module );
@@ -39699,7 +41180,7 @@ define( function( require, exports, module ) {
                 data = $this.data( pluginName );
 
             if ( !data && typeof options === 'object' && ( !options.touch || !support.inputtypes.time ) ) {
-                $this.data( pluginName, new TimepickerExtended( this, options, event ) );
+                $this.data( pluginName, ( data = new TimepickerExtended( this, options, event ) ) );
             }
             //only call method if widget was instantiated before
             else if ( data && typeof options === 'string' ) {
@@ -39715,4 +41196,521 @@ define( function( require, exports, module ) {
     };
 } );
 
-},{"../../js/Widget":17,"../../js/support":21,"bootstrap-timepicker/js/bootstrap-timepicker":5,"jquery":9}]},{},[1]);
+},{"../../js/Widget":16,"../../js/support":21,"bootstrap-timepicker/js/bootstrap-timepicker":4,"jquery":9}],"extended-xpath":[function(require,module,exports){
+var ExtendedXpathEvaluator = function(wrapped, extensions) {
+  var
+    extendedFuncs = extensions.func || {},
+    extendedProcessors = extensions.process || {},
+    toInternalResult = function(r) {
+      if(r.resultType === XPathResult.NUMBER_TYPE) return { t:'num', v:r.numberValue };
+      if(r.resultType === XPathResult.BOOLEAN_TYPE) return {  t:'bool', v:r.booleanValue };
+      return { t:'str', v:r.stringValue };
+    },
+    toExternalResult = function(r) {
+      if(extendedProcessors.toExternalResult) {
+        var res = extendedProcessors.toExternalResult(r);
+        if(res) return res;
+      }
+      if(r.t === 'num') return { resultType:XPathResult.NUMBER_TYPE, numberValue:r.v, stringValue:r.v.toString() };
+      if(r.t === 'bool') return { resultType:XPathResult.BOOLEAN_TYPE, booleanValue:r.v, stringValue:r.v.toString() };
+      return { resultType:XPathResult.STRING_TYPE, stringValue:r.v.toString() };
+    },
+    callFn = function(name, args) {
+      if(extendedFuncs.hasOwnProperty(name)) {
+        return callExtended(name, args);
+      }
+      return callNative(name, args);
+    },
+    callExtended = function(name, args) {
+      var argVals = [], argString, res, i;
+      for(i=0; i<args.length; ++i) argVals.push(args[i].v);
+      res = extendedFuncs[name].apply(null, argVals);
+      return res;
+    },
+    callNative = function(name, args) {
+      var argString = '', arg, quote, i;
+      for(i=0; i<args.length; ++i) {
+        arg = args[i];
+        if(arg.t !== 'num' && arg.t !== 'bool') {
+          quote = arg.v.indexOf('"') === -1 ? '"' : "'";
+          argString += quote;
+        }
+        argString += arg.v;
+        if(arg.t === 'bool') argString += '()';
+        if(arg.t !== 'num' && arg.t !== 'bool') argString += quote;
+        if(i < args.length - 1) argString += ', ';
+      }
+      return toInternalResult(wrapped(name + '(' + argString + ')'));
+    },
+    typefor = function(val) {
+      if(extendedProcessors.typefor) {
+        var res = extendedProcessors.typefor(val);
+        if(res) return res;
+      }
+      if(typeof val === 'boolean') return 'bool';
+      if(typeof val === 'number') return 'number';
+      return 'str';
+    },
+  ___end_vars___;
+
+  this.evaluate = function(input) {
+    var cur, stack = [{ t:'root', tokens:[] }],
+      peek = function() { return stack.slice(-1)[0]; },
+      err = function(message) { throw new Error((message||'') + ' [stack=' + JSON.stringify(stack) + '] [cur=' + JSON.stringify(cur) + ']'); },
+      err_unexpectedC = function() { err('Character at unexpected location: "' + c + '"'); },
+      newCurrent = function() { cur = { t:'?', v:'' }; },
+      backtrack = function() {
+        // handle infix operators
+        var res, len, tokens, lhs, rhs, op;
+        tokens = peek().tokens;
+        len = tokens.length;
+        if(len >= 3) {
+          lhs = tokens[len - 3];
+          op  = tokens[len - 2];
+          rhs = tokens[len - 1];
+
+          if(extendedProcessors.handleInfix) {
+            res = extendedProcessors.handleInfix(lhs, op, rhs);
+            if(res && res.t === 'continue') {
+              lhs = res.lhs; op = res.op; rhs = res.rhs; res = null;
+            }
+          }
+
+          if(typeof res === 'undefined' || res === null) {
+            if(     op.t === '+') res = lhs.v + rhs.v;
+            else if(op.t === '-') res = lhs.v - rhs.v;
+            else if(op.t === '*') res = lhs.v * rhs.v;
+            else if(op.t === '/') res = lhs.v / rhs.v;
+            else if(op.t === '%') res = lhs.v % rhs.v;
+            else if(op.t === '=') res = lhs.v === rhs.v;
+            else if(op.t === '<') res = lhs.v < rhs.v;
+            else if(op.t === '>') res = lhs.v > rhs.v;
+            else if(op.t === '<=') res = lhs.v <= rhs.v;
+            else if(op.t === '>=') res = lhs.v >= rhs.v;
+            else if(op.t === '!=') res = lhs.v != rhs.v;
+            else if(op.t === '&') res = lhs.v && rhs.v;
+            else if(op.t === '|') res = lhs.v || rhs.v;
+          }
+
+          if(typeof res !== 'undefined' && res !== null) {
+            tokens = tokens.slice(0, -3);
+            tokens.push({ t:typefor(res), v:res });
+            peek().tokens = tokens;
+          }
+        }
+      },
+      handleXpathExpr = function() {
+        var evaluated, v = cur.v.trim();
+        if(/^-?[0-9]+(\.[0-9]+)?$/.test(v)) {
+          evaluated = { t:'num', v:parseFloat(v) };
+        } else {
+          evaluated = toInternalResult(wrapped(cur.v));
+        }
+        peek().tokens.push(evaluated);
+        newCurrent();
+        backtrack();
+      },
+      lastChar = function() {
+        if(i > 0) return input.charAt(i-1);
+      },
+      nextChar = function() {
+        if(i < input.length -1) return input.charAt(i+1);
+      },
+      ___end_vars___;
+
+    newCurrent();
+
+    for(i=0; i<input.length; ++i) {
+      c = input.charAt(i);
+      if(cur.t === 'str') {
+        if(c === cur.quote) {
+          peek().tokens.push(cur);
+          backtrack();
+          newCurrent();
+        } else cur.v += c;
+      } else switch(c) {
+        case "'":
+        case '"':
+          if(cur.t === '?' && cur.v === '') {
+            cur = { t:'str', quote:c, v:'' };
+          } else err('Not sure how to handle: ' + c);
+          break;
+        case '(':
+          if(cur.t === '?') {
+            cur.t = 'fn';
+            cur.tokens = [];
+            stack.push(cur);
+            newCurrent();
+          } else err_unexpectedC();
+          break;
+        case ')':
+          if(cur.t === '?') {
+            if(cur.v !== '') handleXpathExpr();
+            cur = stack.pop();
+            if(cur.t !== 'fn') err();
+            if(cur.v) {
+              peek().tokens.push(callFn(cur.v, cur.tokens));
+            } else {
+              if(cur.tokens.length !== 1) err();
+              peek().tokens.push(cur.tokens[0]);
+            }
+            backtrack();
+            newCurrent();
+          } else err_unexpectedC();
+          break;
+        case ',':
+          if(cur.t === '?') {
+            if(cur.v !== '') handleXpathExpr();
+            if(peek().t !== 'fn') err();
+          } else err_unexpectedC();
+          break;
+        case '-':
+          if(/[0-9]/.test(nextChar()) ||
+              (nextChar() !== ' ' && lastChar() !== ' ')) {
+            // -ve number or function name expr
+            cur.v += c;
+            break;
+          } // else it's `-` operator
+          /* falls through */
+        case '=':
+          if(c === '=' && (cur.v === '<' || cur.v === '&lt;' ||
+              cur.v === '>' || cur.v === '&gt;' || cur.v === '!')) {
+            cur.v += c; break;
+          }
+          /* falls through */
+        case '>':
+        case '<':
+          if((c === '<' || c === '>') && nextChar() === '=') {
+            cur.v += c; break;
+          }
+          /* falls through */
+        case '+':
+        case '*':
+          if(cur.t === '?') {
+            if(cur.v !== '') handleXpathExpr();
+            peek().tokens.push({ t:c });
+          } else err_unexpectedC();
+          break;
+        case ' ':
+          if(cur.t === '?') {
+            if(cur.v !== '') {
+              if(cur.v === 'mod') {
+                peek().tokens.push({ t:'%' });
+                newCurrent();
+              } else if(cur.v === 'div') {
+                peek().tokens.push({ t:'/' });
+                newCurrent();
+              } else if(cur.v === 'and') {
+                peek().tokens.push({ t:'&' });
+                newCurrent();
+              } else if(cur.v === 'or') {
+                peek().tokens.push({ t:'|' });
+                newCurrent();
+              } else if(cur.v === '&lt;') {
+                peek().tokens.push({ t:'<' });
+                newCurrent();
+              } else if(cur.v === '&gt;') {
+                peek().tokens.push({ t:'>' });
+                newCurrent();
+              } else if(cur.v === '<=' || cur.v === '&lt;=') {
+                peek().tokens.push({ t:'<=' });
+                newCurrent();
+              } else if(cur.v === '>=' || cur.v === '&gt;=') {
+                peek().tokens.push({ t:'>=' });
+                newCurrent();
+              } else if(cur.v === '!=') {
+                peek().tokens.push({ t:'!=' });
+                newCurrent();
+              } else {
+                handleXpathExpr();
+              }
+            }
+            break;
+          }
+          /* falls through */
+        default:
+          cur.v += c;
+      }
+    }
+
+    if(cur.t === '?' && cur.v !== '') handleXpathExpr();
+
+    if(cur.t !== '?' || cur.v !== '' || (cur.tokens && current.tokens.length)) err('Current item not evaluated!');
+    if(stack.length > 1) err('Stuff left on stack.');
+    if(stack[0].t !== 'root') err('Weird stuff on stack.');
+    if(stack[0].tokens.length === 0) err('No tokens.');
+    if(stack[0].tokens.length > 1) err('Too many tokens.');
+
+    return toExternalResult(stack[0].tokens[0]);
+  };
+};
+
+if(typeof define === 'function') {
+  define(function() { return ExtendedXpathEvaluator; });
+} else if(typeof module === 'object' && typeof module.exports === 'object') {
+  module.exports = ExtendedXpathEvaluator;
+}
+
+},{}],"openrosa-xpath-extensions":[function(require,module,exports){
+var openrosa_xpath_extensions = (function() {
+  var ___start_vars___,
+      MILLIS_PER_DAY = 1000 * 60 * 60 * 24,
+      MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      RAW_NUMBER = /^(-?[0-9]+)(\.[0-9]+)?$/,
+      DATE_STRING = /^\d\d\d\d-\d\d-\d\d(?:T\d\d:\d\d:\d\d(?:Z|[+-]\d\d:\d\d))?$/,
+      XPR = {
+        boolean: function(val) { return { t:'bool', v:val }; },
+        number: function(val) { return { t:'num', v:val }; },
+        string: function(val) { return { t:'str', v:val }; },
+        date: function(val) {
+          if(!(val instanceof Date)) throw new Error('Cannot create date from ' + val + ' (' + (typeof val) + ')');
+          return { t:'date', v:val };
+        }
+      },
+      _zeroPad = function(n, len) {
+        len = len || 2;
+        n = n.toString();
+        while(n.length < len) n = '0' + n;
+        return n;
+      },
+      _num = function(o) {
+        return Math.round(o.t === 'num'? o.v: parseFloat(o.v));
+      },
+      _dateToString = function(d) {
+            return d.getFullYear() + '-' + _zeroPad(d.getMonth()+1) + '-' +
+                _zeroPad(d.getDate());
+      },
+      _round = function(num) {
+        if(num < 0) {
+          return -Math.round(-num);
+        }
+        return Math.round(num);
+      },
+      _uuid_part = function(c) {
+          var r = Math.random()*16|0,
+                  v=c=='x'?r:r&0x3|0x8;
+          return v.toString(16);
+      },
+      uuid = function() {
+          return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+                  .replace(/[xy]/g, _uuid_part);
+      },
+      date = function(it) {
+        if(RAW_NUMBER.test(it)) {
+          var tempDate = new Date(0);
+          tempDate.setUTCDate(1 + parseInt(it, 10));
+          return XPR.date(tempDate);
+        } else if(DATE_STRING.test(it)) {
+          return XPR.date(new Date(it.substring(0, 10)));
+        } else {
+          return XPR.string('Invalid Date');
+        }
+      },
+      format_date = function(date, format) {
+        date = Date.parse(date);
+        if(isNaN(date)) return '';
+        date = new Date(date);
+        var c, i, sb = '', f = {
+          year: 1900 + date.getYear(),
+          month: 1 + date.getMonth(),
+          day: date.getDate(),
+          hour: date.getHours(),
+          minute: date.getMinutes(),
+          second: date.getSeconds(),
+          secTicks: date.getTime(),
+          dow: date.getDay(),
+        };
+
+        for(i=0; i<format.length; ++i) {
+          c = format.charAt(i);
+
+          if (c === '%') {
+            if(++i >= format.length) {
+              throw new Error("date format string ends with %");
+            }
+            c = format.charAt(i);
+
+            if (c === '%') { // literal '%'
+              sb += '%';
+            } else if (c === 'Y') {  //4-digit year
+              sb += _zeroPad(f.year, 4);
+            } else if (c === 'y') {  //2-digit year
+              sb += _zeroPad(f.year, 4).substring(2);
+            } else if (c === 'm') {  //0-padded month
+              sb += _zeroPad(f.month, 2);
+            } else if (c === 'n') {  //numeric month
+              sb += f.month;
+            } else if (c === 'b') {  //short text month
+              sb += MONTHS[f.month - 1];
+            } else if (c === 'd') {  //0-padded day of month
+              sb += _zeroPad(f.day, 2);
+            } else if (c === 'e') {  //day of month
+              sb += f.day;
+            } else if (c === 'H') {  //0-padded hour (24-hr time)
+              sb += _zeroPad(f.hour, 2);
+            } else if (c === 'h') {  //hour (24-hr time)
+              sb += f.hour;
+            } else if (c === 'M') {  //0-padded minute
+              sb += _zeroPad(f.minute, 2);
+            } else if (c === 'S') {  //0-padded second
+              sb += _zeroPad(f.second, 2);
+            } else if (c === '3') {  //0-padded millisecond ticks (000-999)
+              sb += _zeroPad(f.secTicks, 3);
+            } else if (c === 'a') {  //Three letter short text day
+              sb += DAYS[f.dow - 1];
+            } else if (c === 'Z' || c === 'A' || c === 'B') {
+              throw new Error('unsupported escape in date format string [%' + c + ']');
+            } else {
+              throw new Error('unrecognized escape in date format string [%' + c + ']');
+            }
+          } else {
+            sb += c;
+          }
+        }
+
+        return sb;
+      },
+      func,
+      ___end_vars___;
+
+  func = {
+    'boolean-from-string': function(string) {
+      return XPR.boolean(string === '1' || string === 'true');
+    },
+    coalesce: function(a, b) { return XPR.string(a || b); },
+    date: date,
+    'decimal-date': function(date) {
+        return XPR.number(Date.parse(date) / MILLIS_PER_DAY); },
+    'false': function() { return XPR.boolean(false); },
+    'format-date': function(date, format) {
+        return XPR.string(format_date(date, format)); },
+    'if': function(con, a, b) { return XPR.string(con? a: b); },
+    int: function(v) { return XPR.number(parseInt(v, 10)); },
+    now: function() { return XPR.number(Date.now()); },
+    pow: function(x, y) { return XPR.number(Math.pow(x, y)); },
+    random: function() { return XPR.number(Math.random()); },
+    regex: function(haystack, pattern) {
+        return XPR.boolean(new RegExp(pattern).test(haystack)); },
+    round: function(number, num_digits) {
+      number = parseFloat(number);
+      num_digits = num_digits ? parseInt(num_digits) : 0;
+      if(!num_digits) {
+        return XPR.number(_round(number));
+      }
+      var pow = Math.pow(10, Math.abs(num_digits));
+      if(num_digits > 0) {
+        return XPR.number(_round(number * pow) / pow);
+      } else {
+        return XPR.number(pow * _round(number / pow));
+      }
+    },
+    selected: function(haystack, needle) {
+        return XPR.boolean(haystack.split(' ').indexOf(needle) !== -1);
+    },
+    substr: function(string, startIndex, endIndex) {
+        return XPR.string(string.slice(startIndex, endIndex)); },
+    today: function() { return XPR.date(new Date()); },
+    'true': function() { return XPR.boolean(true); },
+    uuid: function() { return XPR.string(uuid()); },
+  };
+
+  // function aliases
+  func['date-time'] = func.date;
+  func['decimal-date-time'] = func['decimal-date'];
+  func['format-date-time'] = func['format-date'];
+
+  return {
+    func:func,
+    process: {
+      toExternalResult: function(r) {
+        if(r.t === 'date') return {
+          resultType:XPathResult.STRING_TYPE, stringValue:_dateToString(r.v) };
+      },
+      typefor: function(val) {
+        if(val instanceof Date) return 'date';
+      },
+      handleInfix: function(lhs, op, rhs) {
+        if(lhs.t === 'date' || rhs.t === 'date') {
+          // For comparisons, we must make sure that both values are numbers
+          // Dates would be fine, except for quality!
+          if( op.t === '=' ||
+              op.t === '<' ||
+              op.t === '>' ||
+              op.t === '<=' ||
+              op.t === '>=' ||
+              op.t === '!=') {
+            if(lhs.t === 'str') lhs = date(lhs.v);
+            if(rhs.t === 'str') rhs = date(rhs.v);
+            if(lhs.t !== 'date' || rhs.t !== 'date') {
+              return op.t === '!=';
+            } else {
+              lhs = { t:'num', v:lhs.v.getTime() };
+              rhs = { t:'num', v:rhs.v.getTime() };
+            }
+          } else if(op.t === '+' || op.t === '-') {
+            // for math operators, we need to do it ourselves
+            if(lhs.t === 'date' && rhs.t === 'date') err();
+            var d = lhs.t === 'date'? lhs.v: rhs.v,
+                n = lhs.t !== 'date'? _num(lhs): _num(rhs),
+                res = new Date(d.getTime());
+            if(op.t === '-') n = -n;
+            res.setUTCDate(d.getDate() + n);
+            return res;
+          }
+          return { t:'continue', lhs:lhs, op:op, rhs:rhs };
+        }
+      },
+    },
+  };
+}());
+
+if(typeof define === 'function') {
+  define(function() { return openrosa_xpath_extensions; });
+} else if(typeof module === 'object' && typeof module.exports === 'object') {
+  module.exports = openrosa_xpath_extensions;
+}
+
+
+},{}],"text!enketo-config":[function(require,module,exports){
+module.exports={
+    "maps": [ {
+        "tiles": [ "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" ],
+        "name": "streets",
+        "attribution": "Map data © <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors"
+    }, {
+        "tiles": "GOOGLE_SATELLITE",
+        "name": "satellite"
+    } ],
+    "googleApiKey": ""
+}
+
+},{}],"widgets":[function(require,module,exports){
+if ( typeof exports === 'object' && typeof exports.nodeName !== 'string' && typeof define !== 'function' ) {
+    var define = function( factory ) {
+        factory( require, exports, module );
+    };
+}
+
+define( function( require, exports, module ) {
+    var widgets = [
+        require( '../widget/note/notewidget' ),
+        require( '../widget/select-desktop/selectpicker' ),
+        require( '../widget/select-mobile/selectpicker' ),
+        require( '../widget/geo/geopicker' ),
+        require( '../widget/table/tablewidget' ),
+        require( '../widget/radio/radiopicker' ),
+        require( '../widget/date/datepicker-extended' ),
+        require( '../widget/time/timepicker-extended' ),
+        require( '../widget/datetime/datetimepicker-extended' ),
+        require( '../widget/mediagrid/mediagridpicker' ),
+        require( '../widget/file/filepicker' ),
+        require( '../widget/select-likert/likertitem' ),
+        require( '../widget/distress/distresspicker' ),
+        require( '../widget/horizontal-choices/horizontalchoices' )
+    ];
+
+    module.exports = widgets;
+} );
+
+},{"../widget/date/datepicker-extended":24,"../widget/datetime/datetimepicker-extended":25,"../widget/distress/distresspicker":26,"../widget/file/filepicker":27,"../widget/geo/geopicker":28,"../widget/horizontal-choices/horizontalchoices":29,"../widget/mediagrid/mediagridpicker":30,"../widget/note/notewidget":31,"../widget/radio/radiopicker":32,"../widget/select-desktop/selectpicker":33,"../widget/select-likert/likertitem":34,"../widget/select-mobile/selectpicker":35,"../widget/table/tablewidget":36,"../widget/time/timepicker-extended":37}]},{},[1]);

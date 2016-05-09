@@ -461,7 +461,7 @@ button {
   margin-top: 9px;
   margin-bottom: 9px;
   color: #252525;
-  text-align: center; }
+  text-align: left; }
 
 .or.hide {
   display: none; }
@@ -1876,7 +1876,7 @@ legend .required {
   float: none; }
 
 /*!
- * Datepicker for Bootstrap v1.4.1 (https://github.com/eternicode/bootstrap-datepicker)
+ * Datepicker for Bootstrap v1.5.1 (https://github.com/eternicode/bootstrap-datepicker)
  *
  * Copyright 2012 Stefan Petre
  * Improvements by Andrew Rowls
@@ -1907,7 +1907,7 @@ legend .required {
   display: inline-block;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-bottom: 7px solid #ccc;
+  border-bottom: 7px solid #999999;
   border-top: 0;
   border-bottom-color: rgba(0, 0, 0, 0.2);
   position: absolute; }
@@ -1933,29 +1933,24 @@ legend .required {
 .datepicker-dropdown.datepicker-orient-right:after {
   right: 7px; }
 
-.datepicker-dropdown.datepicker-orient-top:before {
+.datepicker-dropdown.datepicker-orient-bottom:before {
   top: -7px; }
 
-.datepicker-dropdown.datepicker-orient-top:after {
+.datepicker-dropdown.datepicker-orient-bottom:after {
   top: -6px; }
 
-.datepicker-dropdown.datepicker-orient-bottom:before {
+.datepicker-dropdown.datepicker-orient-top:before {
   bottom: -7px;
   border-bottom: 0;
-  border-top: 7px solid #999; }
+  border-top: 7px solid #999999; }
 
-.datepicker-dropdown.datepicker-orient-bottom:after {
+.datepicker-dropdown.datepicker-orient-top:after {
   bottom: -6px;
   border-bottom: 0;
   border-top: 6px solid #ffffff; }
 
 .datepicker > div {
   display: none; }
-
-.datepicker.days .datepicker-days,
-.datepicker.months .datepicker-months,
-.datepicker.years .datepicker-years {
-  display: block; }
 
 .datepicker table {
   margin: 0;
@@ -1995,17 +1990,21 @@ legend .required {
   color: #999999;
   cursor: default; }
 
+.datepicker table tr td.highlighted {
+  background: #d9edf7;
+  border-radius: 0; }
+
 .datepicker table tr td.today,
 .datepicker table tr td.today:hover,
 .datepicker table tr td.today.disabled,
 .datepicker table tr td.today.disabled:hover {
   background-color: #fde19a;
-  background-image: -moz-linear-gradient(top, #fdd49a, #fdf59a);
-  background-image: -ms-linear-gradient(top, #fdd49a, #fdf59a);
+  background-image: -moz-linear-gradient(to bottom, #fdd49a, #fdf59a);
+  background-image: -ms-linear-gradient(to bottom, #fdd49a, #fdf59a);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdd49a), to(#fdf59a));
-  background-image: -webkit-linear-gradient(top, #fdd49a, #fdf59a);
-  background-image: -o-linear-gradient(top, #fdd49a, #fdf59a);
-  background-image: linear-gradient(top, #fdd49a, #fdf59a);
+  background-image: -webkit-linear-gradient(to bottom, #fdd49a, #fdf59a);
+  background-image: -o-linear-gradient(to bottom, #fdd49a, #fdf59a);
+  background-image: linear-gradient(to bottom, #fdd49a, #fdf59a);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd49a', endColorstr='#fdf59a', GradientType=0);
   border-color: #fdf59a #fdf59a #fbed50;
@@ -2065,12 +2064,12 @@ legend .required {
 .datepicker table tr td.range.today.disabled,
 .datepicker table tr td.range.today.disabled:hover {
   background-color: #f3d17a;
-  background-image: -moz-linear-gradient(top, #f3c17a, #f3e97a);
-  background-image: -ms-linear-gradient(top, #f3c17a, #f3e97a);
+  background-image: -moz-linear-gradient(to bottom, #f3c17a, #f3e97a);
+  background-image: -ms-linear-gradient(to bottom, #f3c17a, #f3e97a);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f3c17a), to(#f3e97a));
-  background-image: -webkit-linear-gradient(top, #f3c17a, #f3e97a);
-  background-image: -o-linear-gradient(top, #f3c17a, #f3e97a);
-  background-image: linear-gradient(top, #f3c17a, #f3e97a);
+  background-image: -webkit-linear-gradient(to bottom, #f3c17a, #f3e97a);
+  background-image: -o-linear-gradient(to bottom, #f3c17a, #f3e97a);
+  background-image: linear-gradient(to bottom, #f3c17a, #f3e97a);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3c17a', endColorstr='#f3e97a', GradientType=0);
   border-color: #f3e97a #f3e97a #edde34;
@@ -2117,12 +2116,12 @@ legend .required {
 .datepicker table tr td.selected.disabled,
 .datepicker table tr td.selected.disabled:hover {
   background-color: #9e9e9e;
-  background-image: -moz-linear-gradient(top, #b3b3b3, #808080);
-  background-image: -ms-linear-gradient(top, #b3b3b3, #808080);
+  background-image: -moz-linear-gradient(to bottom, #b3b3b3, #808080);
+  background-image: -ms-linear-gradient(to bottom, #b3b3b3, #808080);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#b3b3b3), to(#808080));
-  background-image: -webkit-linear-gradient(top, #b3b3b3, #808080);
-  background-image: -o-linear-gradient(top, #b3b3b3, #808080);
-  background-image: linear-gradient(top, #b3b3b3, #808080);
+  background-image: -webkit-linear-gradient(to bottom, #b3b3b3, #808080);
+  background-image: -o-linear-gradient(to bottom, #b3b3b3, #808080);
+  background-image: linear-gradient(to bottom, #b3b3b3, #808080);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b3b3b3', endColorstr='#808080', GradientType=0);
   border-color: #808080 #808080 #595959;
@@ -2168,12 +2167,12 @@ legend .required {
 .datepicker table tr td.active.disabled,
 .datepicker table tr td.active.disabled:hover {
   background-color: #006dcc;
-  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -moz-linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: -ms-linear-gradient(to bottom, #0088cc, #0044cc);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
   border-color: #0044cc #0044cc #002a80;
@@ -2240,12 +2239,12 @@ legend .required {
 .datepicker table tr td span.active.disabled,
 .datepicker table tr td span.active.disabled:hover {
   background-color: #006dcc;
-  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -moz-linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: -ms-linear-gradient(to bottom, #0088cc, #0044cc);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
   border-color: #0044cc #0044cc #002a80;
@@ -2293,11 +2292,15 @@ legend .required {
 .datepicker .datepicker-switch {
   width: 145px; }
 
-.datepicker thead tr:first-child th,
+.datepicker .datepicker-switch,
+.datepicker .prev,
+.datepicker .next,
 .datepicker tfoot tr th {
   cursor: pointer; }
 
-.datepicker thead tr:first-child th:hover,
+.datepicker .datepicker-switch:hover,
+.datepicker .prev:hover,
+.datepicker .next:hover,
 .datepicker tfoot tr th:hover {
   background: #eeeeee; }
 
@@ -2306,10 +2309,6 @@ legend .required {
   width: 12px;
   padding: 0 2px 0 5px;
   vertical-align: middle; }
-
-.datepicker thead tr:first-child .cw {
-  cursor: default;
-  background-color: transparent; }
 
 .input-append.date .add-on,
 .input-prepend.date .add-on {
@@ -3453,77 +3452,123 @@ input[type="file"].transparent {
   left: auto;
   right: 50%; }
 
+.or-big-image {
+  display: block;
+  max-width: 70%;
+  max-height: 300px; }
+  .or-big-image img {
+    border: 2px solid #252525;
+    max-width: 100%; }
+  .or-big-image.open {
+    /*IE10*/
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    -moz-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    -moz-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 10000;
+    background: white;
+    margin-top: 0; }
+    .or-big-image.open img {
+      max-width: 100%;
+      width: 100%;
+      max-height: 100%; }
+
 /*!
  * Slider for Bootstrap
  *
  * Licensed under the Apache License v2.0
- * //converted to SASS by Martijn
+ * 
+ * converted to SASS and extended by Martijn van de Rijdt @ Enketo LLC
  *
  */
 .slider {
   display: inline-block;
   vertical-align: middle;
-  position: relative;
+  position: relative; }
+
+.slider-horizontal .slider {
+  width: 210px;
+  height: 20px; }
+
+.slider-horizontal .slider-track {
+  height: 10px;
+  width: 100%;
+  margin-top: -5px;
+  top: 50%;
+  left: 0; }
+
+.slider-horizontal .slider-selection {
+  height: 100%;
+  top: 0;
+  bottom: 0; }
+
+.slider-horizontal .slider-handle {
+  margin-left: -10px;
+  margin-top: -5px; }
+  .slider-horizontal .slider-handle.triangle {
+    border-width: 0 10px 10px 10px;
+    width: 0;
+    height: 0;
+    border-bottom-color: #0480be;
+    margin-top: 0; }
+
+.slider-vertical .slider {
+  height: 210px;
+  width: 20px; }
+
+.slider-vertical .slider-track {
+  width: 10px;
+  height: 100%;
+  margin-left: -5px;
+  left: 50%;
+  top: 0; }
+
+.slider-vertical .slider-selection {
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0; }
+
+.slider-vertical .slider-handle {
+  margin-left: -5px;
+  margin-top: -10px; }
+  .slider-vertical .slider-handle.triangle {
+    border-width: 10px 0 10px 10px;
+    width: 1px;
+    height: 1px;
+    border-left-color: #0480be;
+    margin-left: 0; }
+
+.slider-disabled {
   /*.tooltip-inner {
-    	white-space: nowrap;
+        white-space: nowrap;
     }*/ }
-  .slider.slider-horizontal {
-    width: 210px;
-    height: 20px; }
-    .slider.slider-horizontal .slider-track {
-      height: 10px;
-      width: 100%;
-      margin-top: -5px;
-      top: 50%;
-      left: 0; }
-    .slider.slider-horizontal .slider-selection {
-      height: 100%;
-      top: 0;
-      bottom: 0; }
-    .slider.slider-horizontal .slider-handle {
-      margin-left: -10px;
-      margin-top: -5px; }
-      .slider.slider-horizontal .slider-handle.triangle {
-        border-width: 0 10px 10px 10px;
-        width: 0;
-        height: 0;
-        border-bottom-color: #0480be;
-        margin-top: 0; }
-  .slider.slider-vertical {
-    height: 210px;
-    width: 20px; }
-    .slider.slider-vertical .slider-track {
-      width: 10px;
-      height: 100%;
-      margin-left: -5px;
-      left: 50%;
-      top: 0; }
-    .slider.slider-vertical .slider-selection {
-      width: 100%;
-      left: 0;
-      top: 0;
-      bottom: 0; }
-    .slider.slider-vertical .slider-handle {
-      margin-left: -5px;
-      margin-top: -10px; }
-      .slider.slider-vertical .slider-handle.triangle {
-        border-width: 10px 0 10px 10px;
-        width: 1px;
-        height: 1px;
-        border-left-color: #0480be;
-        margin-left: 0; }
-  .slider.slider-disabled .slider-handle {
+  .slider-disabled .slider-handle {
     background-image: -webkit-linear-gradient(top, #dfdfdf 0%, #bebebe 100%);
     background-image: linear-gradient(to bottom, #dfdfdf 0%, #bebebe 100%);
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFDFDFDF', endColorstr='#FFBEBEBE', GradientType=0); }
-  .slider.slider-disabled .slider-track {
+  .slider-disabled .slider-track {
     background-image: -webkit-linear-gradient(top, #e5e5e5 0%, #e9e9e9 100%);
     background-image: linear-gradient(to bottom, #e5e5e5 0%, #e9e9e9 100%);
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFE5E5E5', endColorstr='#FFE9E9E9', GradientType=0);
     cursor: not-allowed; }
-  .slider input {
+  .slider-disabled input {
     display: none; }
 
 .slider-track {

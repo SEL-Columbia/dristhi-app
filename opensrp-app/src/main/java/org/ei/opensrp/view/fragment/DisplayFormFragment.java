@@ -41,6 +41,8 @@ public class DisplayFormFragment extends Fragment {
 
     public static final String TAG = "DisplayFormFragment";
 
+    private static final String XML_MODEL_PLACEHOLDER = "<model><instance> $model </instance></model>";
+
     WebView webView;
     ProgressBar progressBar;
 
@@ -127,12 +129,25 @@ public class DisplayFormFragment extends Fragment {
         webView.addJavascriptInterface(myJavaScriptInterface, "Android");
     }
 
+    /**
+     * reset the form
+     */
+    public void resetForm(){
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("javascript:resetForm()");
+                Log.d(TAG, "reseting form");
+            }
+        });
+    }
+
     public void loadHtml(){
         showProgressDialog();
         String header = readFileAssets(headerTemplate);
 
         String script = readFileAssets(scriptFile);
-        String modelString = readFileAssets("www/form/" + formName + "/model.xml").replaceAll("\"", "\\\\\"").replaceAll("\n", "").replaceAll("\r", "").replaceAll("/","\\\\/");;
+        String modelString = readFileAssets("www/form/" + formName + "/model.xml").replaceAll("\"", "\\\\\"").replaceAll("\n", "").replaceAll("\r", "").replaceAll("/","\\\\/");
         String form = readFileAssets("www/form/" + formName + "/form.xml");
         String footer = readFileAssets(footerTemplate);
 
@@ -197,38 +212,55 @@ public class DisplayFormFragment extends Fragment {
         });
     }
 
-    String formData;
-    public void setFormData(String data){
-        if (data != null){
-            this.formData = data;
-        }
-    }
-
-    public void loadFormData(){
+    public void setFormData(final String data){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try{
+                    // Wait for the page to initialize
                     while (!javascriptLoaded){
                         Thread.sleep(100);
                     }
 
-                    formData = formData != null && !formData.isEmpty() ? formData.replaceAll("\"","\\\"") : "";
-                    webView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            webView.loadUrl("javascript:loadDraft('" + formData + "')");
-                            Log.e("posting data", formData);
-                        }
-                    });
+                    if (data != null && !data.isEmpty()){
+                        postXmlDataToForm(data);
+                    }else{
+                        resetForm();
+                    }
 
-                }catch(Exception doNothing){}
+                }catch(Exception e){
+                    Log.e(TAG, e.toString(), e);
+                }
             }
         }).start();
-
     }
 
-    //override this on tha child classes to override specific fields
+    private void postXmlDataToForm(final String data){
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                String xmlData = addModelAndInstanceTag(data).replaceAll("\"","\\\"");
+                webView.loadUrl("javascript:loadDraft('" + xmlData + "')");
+                Log.d("posting data", xmlData);
+            }
+        });
+    }
+
+    /**
+     * Adds the model and instance tag to the xml string if missing
+     * @param xmlData
+     * @return
+     */
+    private String addModelAndInstanceTag(String xmlData){
+        if(xmlData.startsWith("<model>")){
+            return xmlData;
+        }else{
+            String sb = XML_MODEL_PLACEHOLDER.replace("$model", xmlData).replaceAll("\"", "\\\\\"").replaceAll("/","\\\\/");
+            return sb.toString();
+        }
+    }
+
+    // override this on tha child classes to override specific fields
     public JSONObject getFormFieldsOverrides(){
         return fieldOverides;
     }
@@ -271,6 +303,7 @@ public class DisplayFormFragment extends Fragment {
     }
 
     public class MyJavaScriptInterface {
+        private static final String JAVASCRIPT_LOG_TAG = "Javascript";
         Context mContext;
 
         MyJavaScriptInterface(Context c) {
@@ -320,6 +353,12 @@ public class DisplayFormFragment extends Fragment {
             ((SecuredNativeSmartRegisterActivity)getActivity()).savePartialFormData(partialData, recordId, formName, getFormFieldsOverrides());
         }
 
+        @JavascriptInterface
+        public void log(String message){
+            Log.d(JAVASCRIPT_LOG_TAG, message);
+            //Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+            //((SecuredNativeSmartRegisterActivity)getActivity()).savePartialFormData(partialData, recordId, formName, getFormFieldsOverrides());
+        }
     }
 
     private void resizeForm() {

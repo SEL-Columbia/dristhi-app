@@ -188,7 +188,6 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
                 if (displayFormFragment != null) {
                     displayFormFragment.setFormData(data);
-                    displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
                     displayFormFragment.setFieldOverides(metaData);
                 }
@@ -252,7 +251,6 @@ public class NativeKIANCSmartRegisterActivity extends BidanSecuredNativeSmartReg
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
-                    displayFormFragment.loadFormData();
                 }
 
                 displayFormFragment.setRecordId(null);
