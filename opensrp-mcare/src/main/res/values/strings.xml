@@ -311,10 +311,10 @@
     <string name="household_entries">All Household Entries</string>
     <string name="hh_register_title_in_short">HH</string>
 
-    <string name="elco_profile">Profile</string>
-    <string name="elco_unique_id">Unique ID</string>
+    <string name="elco_profile">PROFILE</string>
+    <string name="elco_unique_id">UNIQUE ID</string>
     <string name="elco_lmp">LMP</string>
-    <string name="elco_psrf_due_date">PSRF Due Date</string>
+    <string name="elco_psrf_due_date">PSRF DUE DATE</string>
     <string name="sortoption">Filtered By :</string>
     <string name="hh_alphabetical_sort">Alphabetical (HoH Name)</string>
     <string name="hh_fwGobhhid_sort">HHID - Government</string>
