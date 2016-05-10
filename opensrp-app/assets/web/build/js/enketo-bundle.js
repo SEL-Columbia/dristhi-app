@@ -55,7 +55,7 @@ var support = require( './src/js/support' );
 var Form = require( './src/js/Form' );
 var fileManager = require( './src/js/file-manager' );
 
-var loadErrors, form, formStr, modelStr;
+var loadErrors, form, formStr, modelStr, instanceStr;
 
 // if querystring touch=true is added, override detected touchscreen presence
 if ( getURLParameter( 'touch' ) === 'true' ) {
@@ -80,7 +80,7 @@ if ( getURLParameter( 'xform' ) !== 'null' ) {
 
 window.loadDraft = function(xmlDataString){
 	$( '.guidance' ).remove();
-    modelStr = xmlDataString;
+    instanceStr = xmlDataString;
     Android.log(xmlDataString);
     form.resetView();
     //form.init();
@@ -115,7 +115,8 @@ window.resetForm = function() {
 // initialize the form
 function initializeForm() {
     form = new Form( 'form.or:eq(0)', {
-        modelStr: modelStr
+        modelStr: modelStr,
+        instanceStr: instanceStr
     } );
     // for debugging
     window.form = form;

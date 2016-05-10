@@ -190,9 +190,6 @@ public class FormUtils {
             serializer.setOutput(writer);
             serializer.startDocument("UTF-8", true);
 
-            serializer.startTag("", "model");
-            serializer.startTag("", "instance");
-
             //skip processing <model><instance>
             NodeList els = ((Element)document.getElementsByTagName("model").item(0)).getElementsByTagName("instance");
             Element el = (Element)els.item(0);
@@ -205,9 +202,6 @@ public class FormUtils {
                     writeXML(node, serializer, fieldOverrides, formDefinition, entityJson, null);
                 }
             }
-
-            serializer.endTag("", "instance");
-            serializer.endTag("", "model");
 
             serializer.endDocument();
 

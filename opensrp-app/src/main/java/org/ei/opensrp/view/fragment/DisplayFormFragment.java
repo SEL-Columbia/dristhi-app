@@ -239,9 +239,9 @@ public class DisplayFormFragment extends Fragment {
         webView.post(new Runnable() {
             @Override
             public void run() {
-                String xmlData = addModelAndInstanceTag(data).replaceAll("\"","\\\"");
-                webView.loadUrl("javascript:loadDraft('" + xmlData + "')");
-                Log.d("posting data", xmlData);
+                //String xmlData = addModelAndInstanceTag(data).replaceAll("\"","\\\"");
+                webView.loadUrl("javascript:loadDraft('" + data + "')");
+                Log.d("posting data", data);
             }
         });
     }
