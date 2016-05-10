@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
@@ -207,7 +208,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(View.GONE);
         clientsView.setVisibility(View.VISIBLE);
         clientsProgressView.setVisibility(View.INVISIBLE);
 //        list.setBackgroundColor(Color.RED);
@@ -456,7 +457,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
     }
 
     private void checkforNidMissing(View view) {
-        LinearLayout titlelayout = (LinearLayout)view.findViewById(org.ei.opensrp.R.id.title_layout);
+        RelativeLayout titlelayout = (RelativeLayout)view.findViewById(org.ei.opensrp.R.id.register_nav_bar_container);
         if(anyNIdmissing(controller)) {
             try {
                 titlelayout.removeView(getActivity().findViewById(R.id.warnid)) ;
@@ -464,17 +465,20 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
             }catch(Exception e){
 
             }
+            ImageView border = new ImageView(getActivity());
+            border.setImageDrawable(getResources().getDrawable(R.drawable.separator));
+            RelativeLayout.LayoutParams layoutParams_separator = new RelativeLayout.LayoutParams((int)getResources().getDimension(R.dimen.smart_register_nav_bar_separator), RelativeLayout.LayoutParams.FILL_PARENT);
+            border.setScaleType(ImageView.ScaleType.FIT_XY);
             ImageButton warn = new ImageButton(getActivity());
             warn.setImageDrawable(getResources().getDrawable(R.mipmap.warning));
             warn.setScaleType(ImageView.ScaleType.FIT_CENTER);
             warn.setBackground(null);
             warn.setId(R.id.warnid);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.gravity = Gravity.CENTER;
-
-//        warn.setGravity(Gravity.CENTER);
-//        warn.setB
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.addRule(RelativeLayout.LEFT_OF,R.id.sort_selection);
+            layoutParams_separator.addRule(RelativeLayout.RIGHT_OF,warn.getId());
             titlelayout.addView(warn, layoutParams);
+            titlelayout.addView(border, layoutParams_separator);
             warn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

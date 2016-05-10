@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/label_sorted_by"
-            style="@style/CustomFontTextViewStyle.StatusBar.Bold"/>
+            style="@style/CustomFontTextViewStyle.StatusBar.Bold.NoPadding"/>
 
     <org.ei.opensrp.view.customControls.CustomFontTextView
             android:id="@+id/sorted_by"

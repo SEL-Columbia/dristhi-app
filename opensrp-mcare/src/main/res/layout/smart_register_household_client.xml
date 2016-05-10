@@ -73,11 +73,12 @@
 
         <Button
             android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:id="@+id/warnbutton"
             android:background="@mipmap/warning"
-            android:layout_gravity="center_vertical"
-            android:visibility="invisible" />
+            android:layout_gravity="top"
+            android:visibility="invisible"
+            android:layout_margin="1dp" />
 
     </LinearLayout>
 
