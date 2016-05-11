@@ -56,13 +56,15 @@
                     style="@style/CustomFontTextViewStyle.ListView.Small.paddingNoHeight"
                     android:text="Medium Text"
                     android:textColor="@color/alert_urgent_red"
-                    android:id="@+id/jivitahhid" />
+                    android:id="@+id/jivitahhid"
+                    android:textSize="12sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text=","
-                    android:id="@+id/textView" />
+                    android:id="@+id/textView"
+                    android:textSize="12sp" />
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="wrap_content"
@@ -71,7 +73,8 @@
                     style="@style/CustomFontTextViewStyle.ListView.Small.NoHeight"
                     android:text="Medium Text"
                     android:textColor="@color/light_blue"
-                    android:id="@+id/gobhhid" />
+                    android:id="@+id/gobhhid"
+                    android:textSize="12sp" />
 
 
 
@@ -84,15 +87,14 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle"
                 android:text="Medium Text"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:id="@+id/village" />
         </LinearLayout>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
             android:text="00"
             android:id="@+id/age"
             android:gravity="right"

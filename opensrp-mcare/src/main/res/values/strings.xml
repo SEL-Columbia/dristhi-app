@@ -52,7 +52,7 @@
     <string name="str_pnc_search_hint">Search PNC Register</string>
     <string name="str_child_search_hint">Search Child Register</string>
     <string name="label_sorted_by">Sorted By:</string>
-    <string name="label_village">,Filtered By:</string>
+    <string name="label_village">, Filtered By:</string>
     <string name="ec_register_wife_age">({0})</string>
 
     <string name="ec_register_male_child">Male\n{0}</string>

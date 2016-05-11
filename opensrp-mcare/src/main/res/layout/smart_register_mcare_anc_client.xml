@@ -93,7 +93,8 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text=","
-                    android:id="@+id/textView" />
+                    android:id="@+id/textView"
+                    android:textSize="12sp" />
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="wrap_content"
@@ -116,7 +117,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle"
                 android:text="Medium Text"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:id="@+id/village" />
         </LinearLayout>
 

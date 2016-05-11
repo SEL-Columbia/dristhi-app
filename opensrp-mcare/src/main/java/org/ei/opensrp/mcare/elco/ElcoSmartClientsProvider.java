@@ -107,7 +107,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
 
 
 
-        age.setText(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"");
+        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+")");
         String NIDSourcestring = "NID : " + "<b>" + (pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"") + "</b> ";
         nid.setText(Html.fromHtml(NIDSourcestring));
         String BRIDSourcestring = "BRID : " + "<b>" + (pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):"") + "</b> ";
@@ -209,6 +209,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                     if (DateUtil.dayDifference(regdate, DateUtil.today()) == 0) {
                         Log.v("is here", "1");
                         psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+                        psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                         psrfdue.setOnClickListener(onClickListener);
                         psrfdue.setTag(smartRegisterClient);
                         psrfdue.setText(pc.getDetails().get("WomanREGDATE"));
@@ -217,6 +218,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                 if(pc.getDetails().get("FWPSRDATE")!=null){
                     psrfdue.setText(pc.getDetails().get("FWPSRDATE"));
                     psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
+                    psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                     psrfdue.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
