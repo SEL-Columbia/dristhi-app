@@ -41,8 +41,6 @@ public class DisplayFormFragment extends Fragment {
 
     public static final String TAG = "DisplayFormFragment";
 
-    private static final String XML_MODEL_PLACEHOLDER = "<model><instance> $model </instance></model>";
-
     WebView webView;
     ProgressBar progressBar;
 
@@ -239,25 +237,10 @@ public class DisplayFormFragment extends Fragment {
         webView.post(new Runnable() {
             @Override
             public void run() {
-                //String xmlData = addModelAndInstanceTag(data).replaceAll("\"","\\\"");
                 webView.loadUrl("javascript:loadDraft('" + data + "')");
                 Log.d("posting data", data);
             }
         });
-    }
-
-    /**
-     * Adds the model and instance tag to the xml string if missing
-     * @param xmlData
-     * @return
-     */
-    private String addModelAndInstanceTag(String xmlData){
-        if(xmlData.startsWith("<model>")){
-            return xmlData;
-        }else{
-            String sb = XML_MODEL_PLACEHOLDER.replace("$model", xmlData).replaceAll("\"", "\\\\\"").replaceAll("/","\\\\/");
-            return sb.toString();
-        }
     }
 
     // override this on tha child classes to override specific fields

@@ -57,6 +57,18 @@ var fileManager = require( './src/js/file-manager' );
 
 var loadErrors, form, formStr, modelStr, instanceStr;
 
+$('input[type=date]').attr("min", "1910-01-01");
+$('input[type=date]').attr("max", "2100-01-01");
+
+window.refreshDateFields = function(){
+$('input[type="date"]')
+       .each(function() {
+            //this.selected = (this.text == myVal);
+            this.setAttribute('type', 'text');
+            this.setAttribute('type', 'date');
+       });
+};
+
 // if querystring touch=true is added, override detected touchscreen presence
 if ( getURLParameter( 'touch' ) === 'true' ) {
     support.touch = true;
