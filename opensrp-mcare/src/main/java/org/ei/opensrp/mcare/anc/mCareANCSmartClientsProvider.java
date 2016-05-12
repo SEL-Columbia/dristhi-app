@@ -2,6 +2,7 @@ package org.ei.opensrp.mcare.anc;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,7 +101,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 //        }
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
-        name.setText(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):"");
+        name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
         spousename.setText(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):"");
         gobhhid.setText(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):"");
         jivitahhid.setText(pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):"");
@@ -108,12 +109,23 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 //
 //
 //
-        age.setText(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"");
-        nid.setText("NID :" +(pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):""));
-        brid.setText("BRID :" +(pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):""));
+        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+")");
+//        nid.setText("NID :" +(pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):""));
+//        brid.setText("BRID :" +(pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):""));
+
+        String NIDSourcestring = "NID : " + "<b>" + (pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"") + "</b> ";
+        nid.setText(Html.fromHtml(NIDSourcestring));
+        String BRIDSourcestring = "BRID : " + "<b>" + (pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):"") + "</b> ";
+        brid.setText(Html.fromHtml(BRIDSourcestring));
+
+
+
+
 
         if(pc.getDetails().get("FWGESTATIONALAGE")!=null){
-            ga.setText("GA :" +pc.getDetails().get("FWGESTATIONALAGE")+ " weeks");
+            String GASourcestring = "GA :" + "<b>" + pc.getDetails().get("FWGESTATIONALAGE")+ " weeks" + "</b> ";
+
+            ga.setText(Html.fromHtml(GASourcestring));
         }
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -123,7 +135,9 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                 calendar.setTime(edd_date);
                 calendar.add(Calendar.DATE, 259);
                 edd_date.setTime(calendar.getTime().getTime());
-            edd.setText("EDD :" + format.format(edd_date));
+            String EDDSourcestring = "EDD :" + "<b>" + format.format(edd_date)+ "</b> ";
+
+            edd.setText(Html.fromHtml(EDDSourcestring));
         } catch (ParseException e) {
             e.printStackTrace();
         }

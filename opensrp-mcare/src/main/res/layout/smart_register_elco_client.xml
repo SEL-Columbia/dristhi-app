@@ -169,7 +169,8 @@
             android:text="New Button"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:id="@+id/psrf_due_date"
-            android:background="@color/status_bar_text_almost_white" />
+            android:background="@color/status_bar_text_almost_white"
+            android:layout_margin="2dp" />
     </LinearLayout>
 
     <ImageView

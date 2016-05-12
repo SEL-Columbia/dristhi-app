@@ -72,7 +72,6 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle"
                 android:text="Medium Text"
-                android:textSize="12sp"
                 android:id="@+id/spousename" />
 
             <LinearLayout
@@ -125,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle"
             android:text="00"
             android:id="@+id/age"
             android:gravity="right"
@@ -184,7 +183,7 @@
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle"
             android:id="@+id/ga"
             android:textSize="12sp" />
     </LinearLayout>
@@ -322,7 +321,8 @@
             android:text="New Button"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:id="@+id/anc_reminder_due_date"
-            android:background="@color/status_bar_text_almost_white" />
+            android:background="@color/status_bar_text_almost_white"
+            android:layout_margin="2dp" />
     </LinearLayout>
     <ImageView
         android:layout_width="@dimen/smart_register_client_divider_height"
@@ -341,7 +341,8 @@
             android:text="New Button"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:id="@+id/nbnf_due_date"
-            android:background="@color/status_bar_text_almost_white" />
+            android:background="@color/status_bar_text_almost_white"
+            android:layout_margin="2dp" />
     </LinearLayout>
 
     <ImageView

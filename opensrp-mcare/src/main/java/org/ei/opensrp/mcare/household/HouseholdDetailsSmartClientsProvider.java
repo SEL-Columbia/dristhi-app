@@ -45,6 +45,7 @@ import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static org.ei.opensrp.util.StringUtil.humanize;
 
 /**
  * Created by user on 2/12/15.
@@ -84,7 +85,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
             TextView name = (TextView) itemView.findViewById(R.id.name);
             TextView age = (TextView) itemView.findViewById(R.id.age);
             TextView registerlink = (TextView) itemView.findViewById(R.id.registerlink);
-            registerlink.setPaintFlags(registerlink.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+//            registerlink.setPaintFlags(registerlink.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
 
 
@@ -112,8 +113,8 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
             profilepic.setOnClickListener(onClickListener);
             profilepic.setTag(smartRegisterClient);
 
-            name.setText(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : "");
-            age.setText(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "");
+            name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : ""));
+            age.setText("("+(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "")+")");
 
             LinearLayout child_parent_carrier = (LinearLayout)itemView.findViewById(R.id.child_parent_holder);
             ArrayList<String> stringList = new ArrayList<String>();
@@ -134,7 +135,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
                     TextView name = (TextView) itemView.findViewById(R.id.name);
                     TextView age = (TextView) itemView.findViewById(R.id.age);
                     TextView registerlink = (TextView) itemView.findViewById(R.id.registerlink);
-                    registerlink.setPaintFlags(registerlink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+//                    registerlink.setPaintFlags(registerlink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
                     if ((mcaremother.getColumnmaps().get("Is_PNC") != null ? mcaremother.getColumnmaps().get("Is_PNC") : "0").equalsIgnoreCase("0")) {
                         registerlink.setText("ANC Register");
                     }
@@ -178,8 +179,8 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
                     profilepic.setOnClickListener(onClickListener);
                     profilepic.setTag(smartRegisterClient);
 
-                    name.setText(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : "");
-                    age.setText(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "");
+                    name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : ""));
+                    age.setText("("+(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "")+")");
                     LinearLayout child_parent_carrier = (LinearLayout)itemView.findViewById(R.id.child_parent_holder);
                     addchildrenifany(child_parent_carrier,mcaremother);
                 }
@@ -203,8 +204,8 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
                 editform.setTag(smartRegisterClient);
 
 
-                name.setText(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : "");
-                age.setText(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "");
+                name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : ""));
+                age.setText("("+(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "")+")");
             }
         }
 //        itemView.setLayoutParams(clientViewLayoutParams);
@@ -218,10 +219,19 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
         for(int i = 0;i<mcarechildren.size();i++){
             Log.v("here is log!!", "children here");
             LinearLayout childrenLayout = (LinearLayout)inflater().inflate(R.layout.household_inhabitants_child_clients, null);
+            ImageView childpic = (ImageView)childrenLayout.findViewById(R.id.profilepic);
             TextView childname = (TextView)childrenLayout.findViewById(R.id.childname);
             TextView age = (TextView)childrenLayout.findViewById(R.id.age);
             TextView childRegisterLink = (TextView)childrenLayout.findViewById(R.id.linktoregister);
-            childRegisterLink.setPaintFlags(childRegisterLink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            ImageView ischildrelation = (ImageView)childrenLayout.findViewById(R.id.child_relation_image);
+            if(i != (mcarechildren.size()-1)){
+                ischildrelation.setImageResource(R.mipmap.extended_is_child_of);
+            }
+            if(i == (mcarechildren.size()-1)){
+                ischildrelation.setImageResource(R.mipmap.ischildof);
+            }
+
+//            childRegisterLink.setPaintFlags(childRegisterLink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             childRegisterLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -229,11 +239,18 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
 
                 }
             });
-            age.setText("" + childage(mcarechildren.get(i)) + " days");
+            age.setText("(" + childage(mcarechildren.get(i)) + " days)");
 
             childname.setText(mcarechildren.get(i).getDetails().get("FWBNFCHILDNAME") != null ? mcarechildren.get(i).getDetails().get("FWBNFCHILDNAME") : "");
 
-
+            if(mcarechildren.get(i).getColumnmaps().get("FWBNFGEN")!=null){
+                if(mcarechildren.get(i).getColumnmaps().get("FWBNFGEN").equalsIgnoreCase("1")){
+                    childpic.setImageResource(R.drawable.child_boy_infant);
+                }
+                if(mcarechildren.get(i).getColumnmaps().get("FWBNFGEN").equalsIgnoreCase("2")){
+                    childpic.setImageResource(R.drawable.child_girl_infant);
+                }
+            }
 
             child_parent_carrier.addView(childrenLayout);
 //            TextView txt = (new TextView(context));
