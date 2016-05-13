@@ -30,11 +30,11 @@
         "bind": "/model/instance/kunjungan_gizi/umur1"
       },
       {
-        "name": "beratBadan1",
+        "name": "beratBadan2",
         "bind": "/model/instance/kunjungan_gizi/berat_badan"
       },
       {
-        "name": "tinggiBadan1",
+        "name": "tinggiBadan2",
         "bind": "/model/instance/kunjungan_gizi/tinggi_badan"
       },
       {

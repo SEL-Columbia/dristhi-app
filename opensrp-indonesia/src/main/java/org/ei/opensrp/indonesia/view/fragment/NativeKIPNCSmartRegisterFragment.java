@@ -81,7 +81,7 @@ public class NativeKIPNCSmartRegisterFragment extends BidanSecuredNativeSmartReg
 
             @Override
             public String nameInShortFormForTitle() {
-                return getResources().getString(R.string.home_pnc_label) + ": ";
+                return getResources().getString(R.string.home_pnc_label) + " ";
             }
         };
     }

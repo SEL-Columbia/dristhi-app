@@ -13,6 +13,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.DefaultLabelFormatter;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
@@ -145,7 +151,56 @@ public class ChildDetailActivity extends Activity {
 //
 //            }
 //        });
+        // use static labels for horizontal and vertical labels
 
+        int satu = Integer.parseInt(childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "0");
+        int dua = Integer.parseInt(childclient.getDetails().get("beratBadan2") != null ? childclient.getDetails().get("beratBadan2") : "0");
+        int tiga = Integer.parseInt(childclient.getDetails().get("beratBadan3") != null ? childclient.getDetails().get("beratBadan3") : "0");
+        int emapt = Integer.parseInt(childclient.getDetails().get("beratBadan4") != null ? childclient.getDetails().get("beratBadan4") : "0");
+        int lima = Integer.parseInt(childclient.getDetails().get("beratBadan5") != null ? childclient.getDetails().get("beratBadan5") : "0");
+        int enam = Integer.parseInt(childclient.getDetails().get("beratBadan6") != null ? childclient.getDetails().get("beratBadan6") : "0");
+        int tujuh = Integer.parseInt(childclient.getDetails().get("beratBadan7") != null ? childclient.getDetails().get("beratBadan7") : "0");
+        int delapan = Integer.parseInt(childclient.getDetails().get("beratBadan8") != null ? childclient.getDetails().get("beratBadan8") : "0");
+        int sembilan = Integer.parseInt(childclient.getDetails().get("beratBadan9") != null ? childclient.getDetails().get("beratBadan9") : "0");
+        int sepuluh = Integer.parseInt(childclient.getDetails().get("beratBadan10") != null ? childclient.getDetails().get("beratBadan10") : "0");
+        int sebelas = Integer.parseInt(childclient.getDetails().get("beratBadan11") != null ? childclient.getDetails().get("beratBadan11") : "0");
+        int duabelas = Integer.parseInt(childclient.getDetails().get("beratBadan12") != null ? childclient.getDetails().get("beratBadan12") : "0");
+
+
+
+
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
+
+                new DataPoint(0, 0),
+                new DataPoint(1, 2),
+                new DataPoint(2, 3),
+                new DataPoint(3, 4),
+                new DataPoint(4, 3),
+                new DataPoint(5, 6)
+
+        });
+
+
+        graph.addSeries(series);
+
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(12);
+
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    // show normal x values
+                    return super.formatLabel(value, isValueX);
+                } else {
+                    // show currency for y values
+                    return super.formatLabel(value, isValueX) + " Kg";
+                }
+            }
+
+        });
 
     }
 
