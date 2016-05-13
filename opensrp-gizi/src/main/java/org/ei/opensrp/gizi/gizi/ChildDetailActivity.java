@@ -73,7 +73,7 @@ public class ChildDetailActivity extends Activity {
         //profile
         TextView nama = (TextView) findViewById(R.id.txt_profile_child_name);
         TextView mother_name = (TextView) findViewById(R.id.txt_profile_mother_name);
-        TextView father_name = (TextView) findViewById(R.id.txt_profile_father_name);
+     //   TextView father_name = (TextView) findViewById(R.id.txt_profile_father_name);
         TextView posyandu = (TextView) findViewById(R.id.txt_profile_posyandu);
         TextView village_name = (TextView) findViewById(R.id.txt_profile_village_name);
         TextView birth_date = (TextView) findViewById(R.id.txt_profile_birth_date);
@@ -103,14 +103,14 @@ public class ChildDetailActivity extends Activity {
 
 
         nama.setText(getString(R.string.child_name) +" "+ (childclient.getDetails().get("namaBayi") != null ? childclient.getDetails().get("namaBayi") : "-"));
-        mother_name.setText(getString(R.string.mother_name) +" "+ (childclient.getDetails().get("namaOrtu") != null ? childclient.getDetails().get("namaOrtu") : "-"));
-        father_name.setText(getString(R.string.father_name) +" "+ (childclient.getDetails().get("namaOrtu") != null ? childclient.getDetails().get("namaOrtu") : "-"));
+        mother_name.setText(getString(R.string.parent_name) +" "+ (childclient.getDetails().get("namaOrtu") != null ? childclient.getDetails().get("namaOrtu") : "-"));
+     //   father_name.setText(getString(R.string.father_name) +" "+ (childclient.getDetails().get("namaOrtu") != null ? childclient.getDetails().get("namaOrtu") : "-"));
         posyandu.setText(getString(R.string.posyandu) +" "+ (childclient.getDetails().get("posyandu") != null ? childclient.getDetails().get("posyandu") : "-"));
         village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));
         birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "-"));
         gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
-        weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan") : "-"));
-        height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan") : "-"));
+      //  weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan") : "-"));
+      //  height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan") : "-"));
 
 
         nutrition_status.setText(getString(R.string.nutrition_status) +" "+ (childclient.getDetails().get("status_gizi") != null ? childclient.getDetails().get("status_gizi") : "-"));
@@ -151,37 +151,67 @@ public class ChildDetailActivity extends Activity {
 //
 //            }
 //        });
-        // use static labels for horizontal and vertical labels
 
-        int satu = Integer.parseInt(childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "0");
-        int dua = Integer.parseInt(childclient.getDetails().get("beratBadan2") != null ? childclient.getDetails().get("beratBadan2") : "0");
-        int tiga = Integer.parseInt(childclient.getDetails().get("beratBadan3") != null ? childclient.getDetails().get("beratBadan3") : "0");
-        int emapt = Integer.parseInt(childclient.getDetails().get("beratBadan4") != null ? childclient.getDetails().get("beratBadan4") : "0");
-        int lima = Integer.parseInt(childclient.getDetails().get("beratBadan5") != null ? childclient.getDetails().get("beratBadan5") : "0");
-        int enam = Integer.parseInt(childclient.getDetails().get("beratBadan6") != null ? childclient.getDetails().get("beratBadan6") : "0");
-        int tujuh = Integer.parseInt(childclient.getDetails().get("beratBadan7") != null ? childclient.getDetails().get("beratBadan7") : "0");
-        int delapan = Integer.parseInt(childclient.getDetails().get("beratBadan8") != null ? childclient.getDetails().get("beratBadan8") : "0");
-        int sembilan = Integer.parseInt(childclient.getDetails().get("beratBadan9") != null ? childclient.getDetails().get("beratBadan9") : "0");
-        int sepuluh = Integer.parseInt(childclient.getDetails().get("beratBadan10") != null ? childclient.getDetails().get("beratBadan10") : "0");
-        int sebelas = Integer.parseInt(childclient.getDetails().get("beratBadan11") != null ? childclient.getDetails().get("beratBadan11") : "0");
-        int duabelas = Integer.parseInt(childclient.getDetails().get("beratBadan12") != null ? childclient.getDetails().get("beratBadan12") : "0");
+        //data tinggi badan
+        int data_tinggi[] = new int [13];
+        data_tinggi[0] = 0;
+        data_tinggi[1] = Integer.parseInt(childclient.getDetails().get("tinggiBadan1") != null ? childclient.getDetails().get("tinggiBadan1") : "0");
+        data_tinggi[2] = Integer.parseInt(childclient.getDetails().get("tinggiBadan2") != null ? childclient.getDetails().get("tinggiBadan2") : "0");
+        data_tinggi[3] = Integer.parseInt(childclient.getDetails().get("tinggiBadan3") != null ? childclient.getDetails().get("tinggiBadan3") : "0");
+        data_tinggi[4] = Integer.parseInt(childclient.getDetails().get("tinggiBadan4") != null ? childclient.getDetails().get("tinggiBadan4") : "0");
+        data_tinggi[5] = Integer.parseInt(childclient.getDetails().get("tinggiBadan5") != null ? childclient.getDetails().get("tinggiBadan5") : "0");
+        data_tinggi[6] = Integer.parseInt(childclient.getDetails().get("tinggiBadan6") != null ? childclient.getDetails().get("tinggiBadan6") : "0");
+        data_tinggi[7] = Integer.parseInt(childclient.getDetails().get("tinggiBadan7") != null ? childclient.getDetails().get("tinggiBadan7") : "0");
+        data_tinggi[8] = Integer.parseInt(childclient.getDetails().get("tinggiBadan8") != null ? childclient.getDetails().get("tinggiBadan8") : "0");
+        data_tinggi[9] = Integer.parseInt(childclient.getDetails().get("tinggiBadan9") != null ? childclient.getDetails().get("tinggiBadan9") : "0");
+        data_tinggi[10] = Integer.parseInt(childclient.getDetails().get("tinggiBadan10") != null ? childclient.getDetails().get("tinggiBadan10") : "0");
+        data_tinggi[11] = Integer.parseInt(childclient.getDetails().get("tinggiBadan11") != null ? childclient.getDetails().get("tinggiBadan11") : "0");
+        data_tinggi[12] = Integer.parseInt(childclient.getDetails().get("tinggiBadan12") != null ? childclient.getDetails().get("tinggiBadan12") : "0");
+
+        //data for graph
+        int datas[] = new int [13];
+        datas[0] = 0;
+        datas[1] = Integer.parseInt(childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "0");
+        datas[2] = Integer.parseInt(childclient.getDetails().get("beratBadan2") != null ? childclient.getDetails().get("beratBadan2") : "0");
+        datas[3] = Integer.parseInt(childclient.getDetails().get("beratBadan3") != null ? childclient.getDetails().get("beratBadan3") : "0");
+        datas[4] = Integer.parseInt(childclient.getDetails().get("beratBadan4") != null ? childclient.getDetails().get("beratBadan4") : "0");
+        datas[5] = Integer.parseInt(childclient.getDetails().get("beratBadan5") != null ? childclient.getDetails().get("beratBadan5") : "0");
+        datas[6] = Integer.parseInt(childclient.getDetails().get("beratBadan6") != null ? childclient.getDetails().get("beratBadan6") : "0");
+        datas[7] = Integer.parseInt(childclient.getDetails().get("beratBadan7") != null ? childclient.getDetails().get("beratBadan7") : "0");
+        datas[8] = Integer.parseInt(childclient.getDetails().get("beratBadan8") != null ? childclient.getDetails().get("beratBadan8") : "0");
+        datas[9] = Integer.parseInt(childclient.getDetails().get("beratBadan9") != null ? childclient.getDetails().get("beratBadan9") : "0");
+        datas[10] = Integer.parseInt(childclient.getDetails().get("beratBadan10") != null ? childclient.getDetails().get("beratBadan10") : "0");
+        datas[11] = Integer.parseInt(childclient.getDetails().get("beratBadan11") != null ? childclient.getDetails().get("beratBadan11") : "0");
+        datas[12] = Integer.parseInt(childclient.getDetails().get("beratBadan12") != null ? childclient.getDetails().get("beratBadan12") : "0");
 
 
-
-
+        //fungtion break if found 0 data.
         GraphView graph = (GraphView) findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
+        int counter=0;
+        for(int i=0;i<datas.length;i++){
+            if(datas[i+1]==0)
+                break;
+            counter++;
+        }
 
-                new DataPoint(0, 0),
-                new DataPoint(1, 2),
-                new DataPoint(2, 3),
-                new DataPoint(3, 4),
-                new DataPoint(4, 3),
-                new DataPoint(5, 6)
-
-        });
+        //set current height and weight
+        weight.setText(getString(R.string.weight) +" "+ datas[counter]+" Kg");
+        height.setText(getString(R.string.height) +" "+ data_tinggi[counter]+" Cm");
 
 
+        //set data for graph
+        DataPoint dataPoint[] = new DataPoint[counter+1];
+
+        for(int i=0;i<dataPoint.length;i++){
+            dataPoint[i]= new DataPoint(i,datas[i]);
+
+        }
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dataPoint);
+
+
+
+
+        //add series data into chart
         graph.addSeries(series);
 
         graph.getViewport().setXAxisBoundsManual(true);
@@ -193,7 +223,7 @@ public class ChildDetailActivity extends Activity {
             public String formatLabel(double value, boolean isValueX) {
                 if (isValueX) {
                     // show normal x values
-                    return super.formatLabel(value, isValueX);
+                    return super.formatLabel(value, isValueX )+ " Month";
                 } else {
                     // show currency for y values
                     return super.formatLabel(value, isValueX) + " Kg";
@@ -201,6 +231,10 @@ public class ChildDetailActivity extends Activity {
             }
 
         });
+
+
+
+
 
     }
 

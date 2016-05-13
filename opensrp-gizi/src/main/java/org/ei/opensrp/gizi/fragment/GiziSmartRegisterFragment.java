@@ -97,7 +97,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
             @Override
             public String nameInShortFormForTitle() {
-                return Context.getInstance().getStringResource(R.string.test);
+                return Context.getInstance().getStringResource(R.string.gizi);
             }
         };
     }
@@ -186,7 +186,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
         setServiceModeViewDrawableRight(null);
         updateSearchView();
 //        checkforNidMissing(view);

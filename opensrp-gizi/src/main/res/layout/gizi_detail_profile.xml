@@ -40,19 +40,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="mother Name"
+                android:text="Parent Name"
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:id="@+id/txt_profile_mother_name"
-                android:textStyle="bold"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Father Name"
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-                android:id="@+id/txt_profile_father_name"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:textSize="16sp" />

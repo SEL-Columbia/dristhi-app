@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.GraphView;
+
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -114,8 +116,49 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin")!=null?pc.getDetails().get("jenisKelamin"):"");
 
             viewHolder.visitDate.setText(context.getString(R.string.tanggal) + (pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
-            viewHolder.height.setText(context.getString(R.string.weight)+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-"));
-            viewHolder.weight.setText(context.getString(R.string.height) + (pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"-"));
+
+
+        int data_tinggi[] = new int [13];
+        data_tinggi[0] = 0;
+        data_tinggi[1] = Integer.parseInt(pc.getDetails().get("tinggiBadan1") != null ? pc.getDetails().get("tinggiBadan1") : "0");
+        data_tinggi[2] = Integer.parseInt(pc.getDetails().get("tinggiBadan2") != null ? pc.getDetails().get("tinggiBadan2") : "0");
+        data_tinggi[3] = Integer.parseInt(pc.getDetails().get("tinggiBadan3") != null ? pc.getDetails().get("tinggiBadan3") : "0");
+        data_tinggi[4] = Integer.parseInt(pc.getDetails().get("tinggiBadan4") != null ? pc.getDetails().get("tinggiBadan4") : "0");
+        data_tinggi[5] = Integer.parseInt(pc.getDetails().get("tinggiBadan5") != null ? pc.getDetails().get("tinggiBadan5") : "0");
+        data_tinggi[6] = Integer.parseInt(pc.getDetails().get("tinggiBadan6") != null ? pc.getDetails().get("tinggiBadan6") : "0");
+        data_tinggi[7] = Integer.parseInt(pc.getDetails().get("tinggiBadan7") != null ? pc.getDetails().get("tinggiBadan7") : "0");
+        data_tinggi[8] = Integer.parseInt(pc.getDetails().get("tinggiBadan8") != null ? pc.getDetails().get("tinggiBadan8") : "0");
+        data_tinggi[9] = Integer.parseInt(pc.getDetails().get("tinggiBadan9") != null ? pc.getDetails().get("tinggiBadan9") : "0");
+        data_tinggi[10] = Integer.parseInt(pc.getDetails().get("tinggiBadan10") != null ? pc.getDetails().get("tinggiBadan10") : "0");
+        data_tinggi[11] = Integer.parseInt(pc.getDetails().get("tinggiBadan11") != null ? pc.getDetails().get("tinggiBadan11") : "0");
+        data_tinggi[12] = Integer.parseInt(pc.getDetails().get("tinggiBadan12") != null ? pc.getDetails().get("tinggiBadan12") : "0");
+
+        //data for graph
+        int datas[] = new int [13];
+        datas[0] = 0;
+        datas[1] = Integer.parseInt(pc.getDetails().get("beratBadan1") != null ? pc.getDetails().get("beratBadan1") : "0");
+        datas[2] = Integer.parseInt(pc.getDetails().get("beratBadan2") != null ? pc.getDetails().get("beratBadan2") : "0");
+        datas[3] = Integer.parseInt(pc.getDetails().get("beratBadan3") != null ? pc.getDetails().get("beratBadan3") : "0");
+        datas[4] = Integer.parseInt(pc.getDetails().get("beratBadan4") != null ? pc.getDetails().get("beratBadan4") : "0");
+        datas[5] = Integer.parseInt(pc.getDetails().get("beratBadan5") != null ? pc.getDetails().get("beratBadan5") : "0");
+        datas[6] = Integer.parseInt(pc.getDetails().get("beratBadan6") != null ? pc.getDetails().get("beratBadan6") : "0");
+        datas[7] = Integer.parseInt(pc.getDetails().get("beratBadan7") != null ? pc.getDetails().get("beratBadan7") : "0");
+        datas[8] = Integer.parseInt(pc.getDetails().get("beratBadan8") != null ? pc.getDetails().get("beratBadan8") : "0");
+        datas[9] = Integer.parseInt(pc.getDetails().get("beratBadan9") != null ? pc.getDetails().get("beratBadan9") : "0");
+        datas[10] = Integer.parseInt(pc.getDetails().get("beratBadan10") != null ? pc.getDetails().get("beratBadan10") : "0");
+        datas[11] = Integer.parseInt(pc.getDetails().get("beratBadan11") != null ? pc.getDetails().get("beratBadan11") : "0");
+        datas[12] = Integer.parseInt(pc.getDetails().get("beratBadan12") != null ? pc.getDetails().get("beratBadan12") : "0");
+
+
+        //fungtion break if found 0 data.
+        int counter=0;
+        for(int i=0;i<datas.length;i++){
+            if(datas[i+1]==0)
+                break;
+            counter++;
+        }
+            viewHolder.height.setText(context.getString(R.string.weight)+datas[counter]+" Cm");
+            viewHolder.weight.setText(context.getString(R.string.height) + data_tinggi[counter]+" Kg");
 
     /*
         if(pc.getDetails().get("status_gizi")!=null) {

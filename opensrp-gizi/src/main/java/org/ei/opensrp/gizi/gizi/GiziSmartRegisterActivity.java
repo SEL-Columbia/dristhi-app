@@ -84,7 +84,10 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     protected DefaultOptionsProvider getDefaultOptionsProvider() {return null;}
 
     @Override
-    protected void setupViews() {}
+    protected void setupViews() {
+
+
+    }
 
     @Override
     protected void onResumption(){}
