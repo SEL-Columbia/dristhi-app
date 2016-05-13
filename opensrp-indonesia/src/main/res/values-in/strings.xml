@@ -258,8 +258,8 @@
     <string name="pentavalent_short">Pentav</string>
     <string name="header_birth_status">STATUS</string>
 
-    <string name="fp_register_title_in_short">FP:</string>
-    <string name="pnc_register_title_in_short">PNC:</string>
+    <string name="fp_register_title_in_short">FP</string>
+    <string name="pnc_register_title_in_short">PNC</string>
     <string name="header_side_effects">SIDE EFFECTS</string>
     <string name="header_followup_refill">FOLLOW UP/REFILL</string>
     <string name="header_fp_prioritization_risks">RISKS</string>
@@ -310,7 +310,7 @@
     <string name="str_refill">refill</string>
     <string name="str_update">Update</string>
 
-    <string name="anc_label">ANC:</string>
+    <string name="anc_label">ANC</string>
     <string name="hb_test_label">Hb Test</string>
     <string name="str_days_past_due">day (s) past due</string>
     <string name="lmp_label">LMP:</string>

@@ -155,7 +155,7 @@
     <string name="str_reporting">Reporting</string>
     <string name="str_videos">Videos</string>
 
-    <string name="child_register_title_in_short">Child:</string>
+    <string name="child_register_title_in_short">Child</string>
     <string name="child_service_mode_overview">Overview</string>
     <string name="child_service_mode_immunization">Immunization</string>
     <string name="child_service_mode_immunization_0_to_9">Immunization 0-9</string>
@@ -223,8 +223,8 @@
     <string name="pentavalent_short">Pentav</string>
     <string name="header_birth_status">Status</string>
 
-    <string name="fp_register_title_in_short">FP:</string>
-    <string name="pnc_register_title_in_short">PNC:</string>
+    <string name="fp_register_title_in_short">FP</string>
+    <string name="pnc_register_title_in_short">PNC</string>
     <string name="header_method">METHOD</string>
     <string name="header_side_effects">SIDE EFFECTS</string>
     <string name="header_followup_refill">FOLLOW UP/REFILL</string>
@@ -279,7 +279,7 @@
     <string name="str_update">Update</string>
     <string name="str_side_effects">Side Effects</string>
 
-    <string name="anc_label">ANC:</string>
+    <string name="anc_label">ANC</string>
     <string name="hb_test_label">Hb Test</string>
     <string name="edd_label">"EDD: "</string>
     <string name="str_days_past_due">day (s) past due</string>
