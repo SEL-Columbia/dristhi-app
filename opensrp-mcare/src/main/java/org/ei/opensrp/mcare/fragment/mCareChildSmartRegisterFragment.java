@@ -159,7 +159,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
 
             @Override
             public String searchHint() {
-                return getString(org.ei.opensrp.R.string.str_child_search_hint);
+                return getString(R.string.str_ec_search_hint);
             }
         };
     }
