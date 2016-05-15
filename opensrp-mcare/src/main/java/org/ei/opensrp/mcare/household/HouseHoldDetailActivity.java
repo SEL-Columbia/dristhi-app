@@ -98,9 +98,9 @@ public class HouseHoldDetailActivity extends Activity {
 //        household_hhid.setText(getResources().getString(R.string.hhid_gob) + householdclient.getColumnmaps().get("FWGOBHHID"));
 //        household_hhid_jivita.setText(getResources().getString(R.string.hhid_jivita) + householdclient.getColumnmaps().get("FWJIVHHID"));
 
-        String hhid_jivitaSourcestring = getResources().getString(R.string.hhid_jivita) + "<b>" + (householdclient.getColumnmaps().get("FWJIVHHID")!=null?householdclient.getColumnmaps().get("FWJIVHHID"):"") + "</b> ";
+        String hhid_jivitaSourcestring = getResources().getString(R.string.hhid_jivita) + " <b>" + (householdclient.getColumnmaps().get("FWJIVHHID")!=null?householdclient.getColumnmaps().get("FWJIVHHID"):"") + "</b> ";
         household_hhid_jivita.setText(Html.fromHtml(hhid_jivitaSourcestring));
-        String hhidSourcestring = getResources().getString(R.string.hhid_gob) + "<b>" + (householdclient.getColumnmaps().get("FWGOBHHID")!=null?householdclient.getColumnmaps().get("FWGOBHHID"):"") + "</b> ";
+        String hhidSourcestring = getResources().getString(R.string.hhid_gob) + " <b>" + (householdclient.getColumnmaps().get("FWGOBHHID")!=null?householdclient.getColumnmaps().get("FWGOBHHID"):"") + "</b> ";
         household_hhid.setText(Html.fromHtml(hhidSourcestring));
 
 

@@ -120,16 +120,14 @@
             android:text="New Text"
             style="@style/CustomFontTextViewStyle"
             android:id="@+id/nid"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginTop="3dp" />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/CustomFontTextViewStyle"
             android:text="New Text"
-            android:id="@+id/brid"
-            android:layout_marginLeft="10dp" />
+            android:id="@+id/brid" />
     </LinearLayout>
 
     <ImageView

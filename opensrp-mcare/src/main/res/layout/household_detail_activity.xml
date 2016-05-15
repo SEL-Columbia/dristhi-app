@@ -72,20 +72,22 @@
     <LinearLayout
             android:id="@+id/clients_header_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/list_header_height"
-        android:orientation="horizontal">
+            android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:text="@string/hh_other_inhabitants"
             android:id="@+id/inhabitants"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle.ListView.Bold"
             android:layout_gravity="center_vertical"
             android:textColor="@color/text_black"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical" />
 
     </LinearLayout>
 

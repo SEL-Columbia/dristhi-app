@@ -61,8 +61,8 @@
         android:text="Child Register"
         android:id="@+id/linktoregister"
         android:gravity="center"
-        android:background="@color/smart_register_blue"
-        android:textColor="@color/status_bar_text_almost_white"
+        android:background="@color/client_list_header_dark_grey"
+        android:textColor="@color/text_black"
         android:layout_margin="2dp" />
 
     <ImageView
