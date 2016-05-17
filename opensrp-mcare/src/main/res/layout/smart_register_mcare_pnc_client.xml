@@ -125,7 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle"
             android:text="00"
             android:id="@+id/age"
             android:gravity="right"
@@ -152,7 +152,6 @@
             style="@style/CustomFontTextViewStyle"
             android:id="@+id/nid"
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="10dp"
             android:textSize="12sp" />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -161,7 +160,6 @@
             style="@style/CustomFontTextViewStyle"
             android:text="New Text"
             android:id="@+id/brid"
-            android:layout_marginLeft="10dp"
             android:textSize="12sp" />
     </LinearLayout>
 
