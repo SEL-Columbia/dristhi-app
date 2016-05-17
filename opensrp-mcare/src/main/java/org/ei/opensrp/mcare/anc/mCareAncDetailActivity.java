@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -89,17 +90,17 @@ public class mCareAncDetailActivity extends Activity {
 
         name.setText(humanize((ancclient.getColumnmaps().get("FWWOMFNAME") != null ? ancclient.getColumnmaps().get("FWWOMFNAME") : "").replace("+", "_")));
 
-        brid.setText(getString(R.string.BRID) +humanize((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").replace("+", "_")));
-        nid.setText(getString(R.string.NID) +humanize((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").replace("+", "_")));
+        brid.setText(Html.fromHtml(getString(R.string.BRID) +"<b> " + humanize((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").replace("+", "_"))+ "</b>"));
+        nid.setText(Html.fromHtml(getString(R.string.NID) +"<b> "+humanize((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").replace("+", "_"))+ "</b>"));
 
-        husbandname.setText(getString(R.string.elco_details_husband_name_label)+(ancclient.getDetails().get("FWHUSNAME") != null ? ancclient.getDetails().get("FWHUSNAME") : ""));
-        age.setText(getString(R.string.elco_age_label) + (ancclient.getDetails().get("FWWOMAGE") != null ? ancclient.getDetails().get("FWWOMAGE") : ""));
-        jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(ancclient.getColumnmaps().get("JiVitAHHID") != null ? ancclient.getColumnmaps().get("JiVitAHHID") : ""));
-        godhhid.setText(getString(R.string.hhid_gob_elco_label) + (ancclient.getColumnmaps().get("GOBHHID") != null ? ancclient.getColumnmaps().get("GOBHHID") : ""));
+        husbandname.setText(Html.fromHtml(getString(R.string.elco_details_husband_name_label)+"<b> "+humanize(ancclient.getDetails().get("FWHUSNAME") != null ? ancclient.getDetails().get("FWHUSNAME") : "")+ "</b>"));
+        age.setText(Html.fromHtml(getString(R.string.elco_age_label)+"<b> " + (ancclient.getDetails().get("FWWOMAGE") != null ? ancclient.getDetails().get("FWWOMAGE") : "")+ "</b>"));
+        jivitahhid.setText(Html.fromHtml(getString(R.string.hhiid_jivita_elco_label)+"<b> " +(ancclient.getColumnmaps().get("JiVitAHHID") != null ? ancclient.getColumnmaps().get("JiVitAHHID") : "")+ "</b>"));
+        godhhid.setText(Html.fromHtml(getString(R.string.hhid_gob_elco_label) +"<b> " + (ancclient.getColumnmaps().get("GOBHHID") != null ? ancclient.getColumnmaps().get("GOBHHID") : "")+ "</b>"));
 //        psf_due_date.setText(Elcoclient.getDetails().get("FWPSRDATE") != null ? Elcoclient.getDetails().get("FWPSRDATE") : "");
 
 
-        village.setText(humanize(ancclient.getDetails().get("location_name") != null ? ancclient.getDetails().get("location_name") : ""));
+        village.setText(Html.fromHtml(getString(R.string.elco_details_mauza) + "<b> " + humanize(ancclient.getDetails().get("mauza") != null ? ancclient.getDetails().get("mauza") : "")+ "</b>"));
             /////from househld
         AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("mcaremother");
         CommonPersonObject ancobject = allancRepository.findByCaseID(ancclient.entityId());

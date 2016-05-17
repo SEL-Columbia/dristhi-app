@@ -47,10 +47,10 @@
     <string name="header_edit"></string>
 
     <string name="couple_selection">All Eligible Couples</string>
-    <string name="str_ec_search_hint">Search EC Register</string>
+    <string name="str_ec_search_hint">Search</string>
     <string name="str_fp_search_hint">Search FP Register</string>
     <string name="str_pnc_search_hint">Search PNC Register</string>
-    <string name="str_child_search_hint">Search Child Register</string>
+    <string name="str_child_search_hint">Search</string>
     <string name="label_sorted_by">Sorted By:</string>
     <string name="label_village">, Filtered By:</string>
     <string name="ec_register_wife_age">({0})</string>
