@@ -38,12 +38,12 @@ public class GiziServiceModeOption extends ServiceModeOption {
 
             @Override
             public int weightSum() {
-                return 10;
+                return 100;
             }
 
             @Override
             public int[] weights() {
-                return new int[]{3,3,2,2};
+                return new int[]{30,25,25,20};
             }
 
             @Override

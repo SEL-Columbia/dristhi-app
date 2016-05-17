@@ -115,7 +115,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):"");
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin")!=null?pc.getDetails().get("jenisKelamin"):"");
 
-            viewHolder.visitDate.setText(context.getString(R.string.tanggal) + (pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
+            viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
 
 
         int data_tinggi[] = new int [13];
@@ -157,8 +157,8 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
                 break;
             counter++;
         }
-            viewHolder.height.setText(context.getString(R.string.weight)+datas[counter]+" Cm");
-            viewHolder.weight.setText(context.getString(R.string.height) + data_tinggi[counter]+" Kg");
+            viewHolder.height.setText(context.getString(R.string.weight)+ " "+datas[counter]+" Cm");
+            viewHolder.weight.setText(context.getString(R.string.height) +  " "+data_tinggi[counter]+" Kg");
 
     /*
         if(pc.getDetails().get("status_gizi")!=null) {
@@ -179,10 +179,10 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.underweight.setText("Status Gizi : ");
         }
         */
-        viewHolder.underweight.setText(context.getString(R.string.underweight) + (pc.getDetails().get("underweight_status")!=null?pc.getDetails().get("underweight_status"):"-"));
+        viewHolder.underweight.setText(context.getString(R.string.underweight) + " "+(pc.getDetails().get("underweight_status")!=null?pc.getDetails().get("underweight_status"):"-"));
 
-        viewHolder.stunting_status.setText(context.getString(R.string.stunting) + (pc.getDetails().get("Stunting_status")!=null?pc.getDetails().get("Stunting_status"):"-"));
-        viewHolder.wasting_status.setText(context.getString(R.string.wasting) + (pc.getDetails().get("wasting_status")!=null?pc.getDetails().get("wasting_status"):"-"));
+        viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+(pc.getDetails().get("Stunting_status")!=null?pc.getDetails().get("Stunting_status"):"-"));
+        viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " "+(pc.getDetails().get("wasting_status")!=null?pc.getDetails().get("wasting_status"):"-"));
 
 
 

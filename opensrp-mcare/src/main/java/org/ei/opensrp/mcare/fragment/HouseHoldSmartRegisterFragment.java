@@ -138,7 +138,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
             public DialogOption[] filterOptions() {
 
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
-
+                //CEK DISINI
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),filterStringForAll()));
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_no_mwra),filterStringForNoElco()));
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_has_mwra),filterStringForOneOrMoreElco()));
