@@ -1,6 +1,7 @@
 package org.ei.opensrp.mcare.pnc;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,11 +119,12 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 //        delivery_outcome.setText(pc.getDetails().get("FWBNFSTS")!=null?pc.getDetails().get("FWBNFSTS"):"");
 
 
-        nid.setText("NID :" +(pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):""));
-        brid.setText("BRID :" + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : ""));
+        nid.setText(Html.fromHtml("NID:" +"<b> "+ (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "")+ "</b>"));
+        brid.setText(Html.fromHtml("BRID:"+"<b> " + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "")+ "</b>"));
 
           try {
-                    dateofdelivery.setText("DOO :" + (pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : "").split("T")[0]);
+//                    dateofdelivery.setText(Html.fromHtml("DOO:" +"<b> "+ (pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : "")+ "</b>"));
+                   dateofdelivery.setText(Html.fromHtml("DOO:" +"<b> "+ doolay(pc)+ "</b>"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,6 +140,20 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 
 
 //        return itemView;
+    }
+    private String doolay(CommonPersonObjectClient ancclient) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date edd_date = format.parse(ancclient.getColumnmaps().get("FWBNFDTOO")!=null?ancclient.getColumnmaps().get("FWBNFDTOO"):"");
+            GregorianCalendar calendar = new GregorianCalendar();
+            calendar.setTime(edd_date);
+            edd_date.setTime(calendar.getTime().getTime());
+            return format.format(edd_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
     private void constructPncVisitStatusBlock(CommonPersonObjectClient pc, View itemview) {

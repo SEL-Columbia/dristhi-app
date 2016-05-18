@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -85,11 +86,11 @@ public class ChildDetailActivity extends Activity {
 
 
         name.setText(humanize((ChildClient.getDetails().get("FWBNFCHILDNAME") != null ? ChildClient.getDetails().get("FWBNFCHILDNAME") : "").replace("+", "_")));
-        fathersname.setText(getString(R.string.child_details_fathers_name_label)+(mcaremotherObject.getDetails().get("FWHUSNAME") != null ? mcaremotherObject.getDetails().get("FWHUSNAME") : ""));
-        age.setText(getString(R.string.elco_age_label) + age(ChildClient) + " days ");
-        godhhid.setText(getString(R.string.hhid_gob_elco_label) + (mcaremotherObject.getColumnmaps().get("GOBHHID")!=null?mcaremotherObject.getColumnmaps().get("GOBHHID"):""));
-        jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(mcaremotherObject.getColumnmaps().get("JiVitAHHID")!=null?mcaremotherObject.getColumnmaps().get("JiVitAHHID"):""));
-        village.setText(humanize((mcaremotherObject.getDetails().get("mauza") != null ? mcaremotherObject.getDetails().get("mauza") : "").replace("+", "_")));
+        fathersname.setText(Html.fromHtml(getString(R.string.child_details_fathers_name_label) +"<b> "+ (mcaremotherObject.getDetails().get("FWHUSNAME") != null ? mcaremotherObject.getDetails().get("FWHUSNAME") : "")+ "</b>"));
+        age.setText(Html.fromHtml(getString(R.string.elco_age_label) +"<b> "+ age(ChildClient) + " days "+ "</b>"));
+        godhhid.setText(Html.fromHtml(getString(R.string.hhid_gob_elco_label) +"<b> "+ (mcaremotherObject.getColumnmaps().get("GOBHHID")!=null?mcaremotherObject.getColumnmaps().get("GOBHHID"):"")+ "</b>"));
+        jivitahhid.setText(Html.fromHtml(getString(R.string.hhiid_jivita_elco_label)+"<b> "+(mcaremotherObject.getColumnmaps().get("JiVitAHHID")!=null?mcaremotherObject.getColumnmaps().get("JiVitAHHID"):"")+ "</b>"));
+        village.setText(Html.fromHtml(getString(R.string.elco_details_mauza) + "<b> " + humanize((mcaremotherObject.getDetails().get("mauza") != null ? mcaremotherObject.getDetails().get("mauza") : "").replace("+", "_"))+ "</b>"));
         String type_of_delivery = mcaremotherObject.getDetails().get("FWPNC1DELTYPE") != null ? mcaremotherObject.getDetails().get("FWPNC1DELTYPE") : "";
         if (type_of_delivery.equalsIgnoreCase("1")){
             TypeOfDelivery.setText(getString(R.string.norma_birth));

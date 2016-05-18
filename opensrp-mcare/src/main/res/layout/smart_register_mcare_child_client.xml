@@ -10,7 +10,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="4"
+        android:layout_weight="3.5"
         android:id="@+id/profile_info_layout">
 
         <FrameLayout
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                style="@style/CustomFontTextViewStyle"
                 android:text="Medium Text"
                 android:textSize="12sp"
                 android:id="@+id/father_name" />
@@ -83,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    style="@style/CustomFontTextViewStyle.ListView.Small"
+                    style="@style/CustomFontTextViewStyle"
                     android:text="Medium Text"
                     android:textSize="12sp"
                     android:textColor="@color/alert_urgent_red"
@@ -99,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    style="@style/CustomFontTextViewStyle.ListView.Small"
+                    style="@style/CustomFontTextViewStyle"
                     android:text="Medium Text"
                     android:textColor="@color/light_blue"
                     android:textSize="12sp"
@@ -114,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                style="@style/CustomFontTextViewStyle"
                 android:text="Medium Text"
                 android:textSize="14sp"
                 android:id="@+id/village" />
@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle"
             android:text="00"
             android:id="@+id/age"
             android:gravity="right"
@@ -141,26 +141,24 @@
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1.5"
+        android:layout_weight="2"
         android:layout_gravity="center">
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle"
             android:id="@+id/nid"
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="10dp"
             android:textSize="12sp" />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle"
             android:text="New Text"
             android:id="@+id/brid"
-            android:layout_marginLeft="10dp"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -178,7 +176,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle"
             android:id="@+id/dateofbirth" />
     </LinearLayout>
 
@@ -213,7 +211,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small"
+                style="@style/CustomFontTextViewStyle"
                 android:text="pnc1text"
                 android:id="@+id/encc1text"
                 android:layout_margin="1dp" />
@@ -238,7 +236,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small"
+                style="@style/CustomFontTextViewStyle"
                 android:text="anc1text"
                 android:id="@+id/encc2text"
                 android:layout_margin="1dp" />
@@ -265,7 +263,7 @@
                 android:layout_height="wrap_content"
                 android:text="pnc1text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small"
+                style="@style/CustomFontTextViewStyle"
                 android:id="@+id/encc3text"
                 android:layout_margin="1dp" />
 
