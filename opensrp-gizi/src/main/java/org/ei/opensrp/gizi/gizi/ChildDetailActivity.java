@@ -153,36 +153,36 @@ public class ChildDetailActivity extends Activity {
 //        });
 
         //data tinggi badan
-        int data_tinggi[] = new int [13];
+        double data_tinggi[] = new double [13];
         data_tinggi[0] = 0;
-        data_tinggi[1] = Integer.parseInt(childclient.getDetails().get("tinggiBadan1") != null ? childclient.getDetails().get("tinggiBadan1") : "0");
-        data_tinggi[2] = Integer.parseInt(childclient.getDetails().get("tinggiBadan2") != null ? childclient.getDetails().get("tinggiBadan2") : "0");
-        data_tinggi[3] = Integer.parseInt(childclient.getDetails().get("tinggiBadan3") != null ? childclient.getDetails().get("tinggiBadan3") : "0");
-        data_tinggi[4] = Integer.parseInt(childclient.getDetails().get("tinggiBadan4") != null ? childclient.getDetails().get("tinggiBadan4") : "0");
-        data_tinggi[5] = Integer.parseInt(childclient.getDetails().get("tinggiBadan5") != null ? childclient.getDetails().get("tinggiBadan5") : "0");
-        data_tinggi[6] = Integer.parseInt(childclient.getDetails().get("tinggiBadan6") != null ? childclient.getDetails().get("tinggiBadan6") : "0");
-        data_tinggi[7] = Integer.parseInt(childclient.getDetails().get("tinggiBadan7") != null ? childclient.getDetails().get("tinggiBadan7") : "0");
-        data_tinggi[8] = Integer.parseInt(childclient.getDetails().get("tinggiBadan8") != null ? childclient.getDetails().get("tinggiBadan8") : "0");
-        data_tinggi[9] = Integer.parseInt(childclient.getDetails().get("tinggiBadan9") != null ? childclient.getDetails().get("tinggiBadan9") : "0");
-        data_tinggi[10] = Integer.parseInt(childclient.getDetails().get("tinggiBadan10") != null ? childclient.getDetails().get("tinggiBadan10") : "0");
-        data_tinggi[11] = Integer.parseInt(childclient.getDetails().get("tinggiBadan11") != null ? childclient.getDetails().get("tinggiBadan11") : "0");
-        data_tinggi[12] = Integer.parseInt(childclient.getDetails().get("tinggiBadan12") != null ? childclient.getDetails().get("tinggiBadan12") : "0");
+        data_tinggi[1] = Double.parseDouble(childclient.getDetails().get("tinggiBadan1") != null ? childclient.getDetails().get("tinggiBadan1") : "0");
+        data_tinggi[2] = Double.parseDouble(childclient.getDetails().get("tinggiBadan2") != null ? childclient.getDetails().get("tinggiBadan2") : "0");
+        data_tinggi[3] = Double.parseDouble(childclient.getDetails().get("tinggiBadan3") != null ? childclient.getDetails().get("tinggiBadan3") : "0");
+        data_tinggi[4] = Double.parseDouble(childclient.getDetails().get("tinggiBadan4") != null ? childclient.getDetails().get("tinggiBadan4") : "0");
+        data_tinggi[5] = Double.parseDouble(childclient.getDetails().get("tinggiBadan5") != null ? childclient.getDetails().get("tinggiBadan5") : "0");
+        data_tinggi[6] = Double.parseDouble(childclient.getDetails().get("tinggiBadan6") != null ? childclient.getDetails().get("tinggiBadan6") : "0");
+        data_tinggi[7] = Double.parseDouble(childclient.getDetails().get("tinggiBadan7") != null ? childclient.getDetails().get("tinggiBadan7") : "0");
+        data_tinggi[8] = Double.parseDouble(childclient.getDetails().get("tinggiBadan8") != null ? childclient.getDetails().get("tinggiBadan8") : "0");
+        data_tinggi[9] = Double.parseDouble(childclient.getDetails().get("tinggiBadan9") != null ? childclient.getDetails().get("tinggiBadan9") : "0");
+        data_tinggi[10] = Double.parseDouble(childclient.getDetails().get("tinggiBadan10") != null ? childclient.getDetails().get("tinggiBadan10") : "0");
+        data_tinggi[11] = Double.parseDouble(childclient.getDetails().get("tinggiBadan11") != null ? childclient.getDetails().get("tinggiBadan11") : "0");
+        data_tinggi[12] = Double.parseDouble(childclient.getDetails().get("tinggiBadan12") != null ? childclient.getDetails().get("tinggiBadan12") : "0");
 
         //data for graph
-        int datas[] = new int [13];
+        double datas[] = new double [13];
         datas[0] = 0;
-        datas[1] = Integer.parseInt(childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "0");
-        datas[2] = Integer.parseInt(childclient.getDetails().get("beratBadan2") != null ? childclient.getDetails().get("beratBadan2") : "0");
-        datas[3] = Integer.parseInt(childclient.getDetails().get("beratBadan3") != null ? childclient.getDetails().get("beratBadan3") : "0");
-        datas[4] = Integer.parseInt(childclient.getDetails().get("beratBadan4") != null ? childclient.getDetails().get("beratBadan4") : "0");
-        datas[5] = Integer.parseInt(childclient.getDetails().get("beratBadan5") != null ? childclient.getDetails().get("beratBadan5") : "0");
-        datas[6] = Integer.parseInt(childclient.getDetails().get("beratBadan6") != null ? childclient.getDetails().get("beratBadan6") : "0");
-        datas[7] = Integer.parseInt(childclient.getDetails().get("beratBadan7") != null ? childclient.getDetails().get("beratBadan7") : "0");
-        datas[8] = Integer.parseInt(childclient.getDetails().get("beratBadan8") != null ? childclient.getDetails().get("beratBadan8") : "0");
-        datas[9] = Integer.parseInt(childclient.getDetails().get("beratBadan9") != null ? childclient.getDetails().get("beratBadan9") : "0");
-        datas[10] = Integer.parseInt(childclient.getDetails().get("beratBadan10") != null ? childclient.getDetails().get("beratBadan10") : "0");
-        datas[11] = Integer.parseInt(childclient.getDetails().get("beratBadan11") != null ? childclient.getDetails().get("beratBadan11") : "0");
-        datas[12] = Integer.parseInt(childclient.getDetails().get("beratBadan12") != null ? childclient.getDetails().get("beratBadan12") : "0");
+        datas[1] = Double.parseDouble(childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "0");
+        datas[2] = Double.parseDouble(childclient.getDetails().get("beratBadan2") != null ? childclient.getDetails().get("beratBadan2") : "0");
+        datas[3] = Double.parseDouble(childclient.getDetails().get("beratBadan3") != null ? childclient.getDetails().get("beratBadan3") : "0");
+        datas[4] = Double.parseDouble(childclient.getDetails().get("beratBadan4") != null ? childclient.getDetails().get("beratBadan4") : "0");
+        datas[5] = Double.parseDouble(childclient.getDetails().get("beratBadan5") != null ? childclient.getDetails().get("beratBadan5") : "0");
+        datas[6] = Double.parseDouble(childclient.getDetails().get("beratBadan6") != null ? childclient.getDetails().get("beratBadan6") : "0");
+        datas[7] = Double.parseDouble(childclient.getDetails().get("beratBadan7") != null ? childclient.getDetails().get("beratBadan7") : "0");
+        datas[8] = Double.parseDouble(childclient.getDetails().get("beratBadan8") != null ? childclient.getDetails().get("beratBadan8") : "0");
+        datas[9] = Double.parseDouble(childclient.getDetails().get("beratBadan9") != null ? childclient.getDetails().get("beratBadan9") : "0");
+        datas[10] = Double.parseDouble(childclient.getDetails().get("beratBadan10") != null ? childclient.getDetails().get("beratBadan10") : "0");
+        datas[11] = Double.parseDouble(childclient.getDetails().get("beratBadan11") != null ? childclient.getDetails().get("beratBadan11") : "0");
+        datas[12] = Double.parseDouble(childclient.getDetails().get("beratBadan12") != null ? childclient.getDetails().get("beratBadan12") : "0");
 
 
         //fungtion break if found 0 data.
