@@ -318,7 +318,7 @@
     <string name="elco_lmp">LMP</string>
     <string name="elco_psrf_due_date">PSRF Due Date</string>
     <string name="sortoption">Filtered By :</string>
-    <string name="hh_alphabetical_sort">Alphabetical (HoH Name)</string>
+    <string name="child_alphabetical_sort">Name (A to Z)</string>
     <string name="hh_fwGobhhid_sort">HHID - Government</string>
     <string name="hh_fwJivhhid_sort">HHID - JiVitA</string>
     <string name="due_status">Due Status</string>
@@ -376,6 +376,7 @@
     <string name="posyandu">Posyandu : </string>
     <string name="village">Village : </string>
     <string name="birth_date">Birth Date : </string>
+    <string name="birth_date1">Birth Date  </string>
     <string name="gender">Gender : </string>
     <string name="nutrition_status">Nutrition Status :</string>
     <string name="bgm">BGM :</string>

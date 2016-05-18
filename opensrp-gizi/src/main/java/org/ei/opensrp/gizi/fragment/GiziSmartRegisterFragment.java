@@ -9,8 +9,10 @@ import android.view.View;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
 import org.ei.opensrp.gizi.LoginActivity;
 import org.ei.opensrp.gizi.gizi.ChildDetailActivity;
 import org.ei.opensrp.gizi.gizi.GiziSearchOption;
@@ -138,11 +140,16 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
+                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "namaBayi", getResources().getString(R.string.child_alphabetical_sort)),
+                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "tanggalLahir", getResources().getString(R.string.birth_date1)),
+                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "tanggalPenimbangan", getResources().getString(R.string.hh_last_visit_date))
 
 //""
 //                        new CommonObjectSort(true,false,true,"age")
                 };
             }
+
+
 
             @Override
             public String searchHint() {
@@ -150,6 +157,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
             }
         };
     }
+
 
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
