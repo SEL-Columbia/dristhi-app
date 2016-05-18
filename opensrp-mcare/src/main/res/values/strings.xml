@@ -396,6 +396,8 @@
     <string name="Caeserian_section">Caeserian Section</string>
     <string name="dont_know">Don\'t Know</string>
     <string name="mcare_child_details">Child Details</string>
+    <string name="mis_elco">MIS ELCO form</string>
+    <string name="mis_elco_due">MIS ELCO DUE</string>
 
 
 </resources>

@@ -224,6 +224,9 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
     private DialogOption[] getEditOptions(CommonPersonObjectClient tag) {
         return ((ElcoSmartRegisterActivity)getActivity()).getEditOptions(tag);
     }
+    private DialogOption[] getEditOptionsForMIS_ELCO(CommonPersonObjectClient tag) {
+        return ((ElcoSmartRegisterActivity)getActivity()).getEditOptionsForMISELCO(tag);
+    }
 
 
     private class ClientActionHandler implements View.OnClickListener {
@@ -236,7 +239,10 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
                     startActivity(intent);
                     break;
                 case R.id.psrf_due_date:
-                    showFragmentDialog(new EditDialogOptionModel((CommonPersonObjectClient)view.getTag()), view.getTag());
+                    showFragmentDialog(new EditDialogOptionModel((CommonPersonObjectClient) view.getTag()), view.getTag());
+                    break;
+                case R.id.mis_elco:
+                    showFragmentDialog(new EditDialogOptionModelForMIS_ELCO((CommonPersonObjectClient)view.getTag()), view.getTag());
                     break;
             }
         }
@@ -255,6 +261,22 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         @Override
         public DialogOption[] getDialogOptions() {
             return getEditOptions(tag);
+        }
+
+        @Override
+        public void onDialogOptionSelection(DialogOption option, Object tag) {
+            onEditSelection((EditOption) option, (SmartRegisterClient) tag);
+        }
+    }
+    private class EditDialogOptionModelForMIS_ELCO implements DialogOptionModel {
+        CommonPersonObjectClient tag;
+        public EditDialogOptionModelForMIS_ELCO(CommonPersonObjectClient tag) {
+            this.tag = tag;
+        }
+
+        @Override
+        public DialogOption[] getDialogOptions() {
+            return getEditOptionsForMIS_ELCO(tag);
         }
 
         @Override

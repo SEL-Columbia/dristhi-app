@@ -159,7 +159,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="3">
+        android:layout_weight="1.5">
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
@@ -176,16 +176,19 @@
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
-    <ImageButton
-            android:id="@+id/btn_edit"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="0"
-            android:scaleType="center"
-            android:gravity="center"
-        android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/edit_button_background"
-        android:src="@drawable/ic_pencil"
-        android:visibility="gone" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.5">
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="New Button"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            android:id="@+id/mis_elco"
+            android:background="@color/status_bar_text_almost_white"
+            android:layout_margin="2dp" />
+    </LinearLayout>
 </LinearLayout>

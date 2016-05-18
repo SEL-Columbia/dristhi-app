@@ -198,7 +198,6 @@
             android:text="New Button"
             style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
             android:id="@+id/date_of_outcome"
-            android:background="@color/status_bar_text_almost_white"
             android:textSize="12sp"
             android:layout_margin="1dp" />
 
