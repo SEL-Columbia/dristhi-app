@@ -23,7 +23,7 @@ android {
         targetSdkVersion 21
 
         versionCode 27
-        versionName "27.01"
+        versionName "27.02"
 
         multiDexEnabled true
     }

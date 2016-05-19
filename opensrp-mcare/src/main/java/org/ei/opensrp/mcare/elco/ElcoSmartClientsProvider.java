@@ -228,6 +228,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                         }
                     });
                 }
+
                 }catch(ParseException e){
                     e.printStackTrace();
                 }
@@ -272,6 +273,9 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
             }
             if(alertlist_for_client.get(i).isComplete()){
 //               psrfdue.setText("visited");
+                if(pc.getDetails().get("FWPSRDATE")!=null) {
+                    psrfdue.setText(pc.getDetails().get("FWPSRDATE"));
+                }
                 psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
                 psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 psrfdue.setOnClickListener(new View.OnClickListener() {
@@ -281,6 +285,16 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                     }
                 });
             }
+        }
+        if(pc.getDetails().get("FWPSRDATE")==null){
+            GregorianCalendar calendar = new GregorianCalendar();
+            Date date = new Date();
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE, 0);
+            date.setTime(calendar.getTime().getTime());
+//                String result = String.format(Locale.ENGLISH, format.format(lastdate) );
+
+            psrfdue.setText(format.format(date));
         }
 //        Log.v("printing psrf schedule",pc.getDetails().get("psrf_schedule_logic")!=null?pc.getDetails().get("psrf_schedule_logic"):"");
         ////location////////
@@ -376,6 +390,16 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
             mis_elco_due.setText(format.format(lastdate));
 //           psrfdue.append(format.format(lastdate));
 
+        }
+        if(pc.getDetails().get("FWMISELCODATE")==null){
+            GregorianCalendar calendar = new GregorianCalendar();
+            Date date = new Date();
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE, 0);
+            date.setTime(calendar.getTime().getTime());
+//                String result = String.format(Locale.ENGLISH, format.format(lastdate) );
+
+            mis_elco_due.setText(format.format(date));
         }
 
         List<Alert> alertlist_for_client = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "mis_elco");
