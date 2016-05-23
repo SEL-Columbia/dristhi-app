@@ -5,6 +5,10 @@
     "bind_type": "mcaremother",
     "fields": [
       {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
         "name": "version",
         "bind": "/model/instance/PNC_Reminder_Visit_1/version"
       },
@@ -178,7 +182,20 @@
       },
       {
         "name": "pnc1_current_formStatus",
-        "bind": "/model/instance/PNC_Reminder_Visit_1/pnc1group/pnc1_current_formStatus"
+        "bind": "/model/instance/PNC_Reminder_Visit_1/pnc1_current_formStatus"
+      },
+      {
+        "name": "relationalid",
+        "bind": "/model/instance/PNC_Reminder_Visit_1/relationalid",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "user_type",
+        "bind": "/model/instance/PNC_Reminder_Visit_1/user_type"
+      },
+      {
+        "name": "external_user_ID",
+        "bind": "/model/instance/PNC_Reminder_Visit_1/external_user_ID"
       }
     ]
   }

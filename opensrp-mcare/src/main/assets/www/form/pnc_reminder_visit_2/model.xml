@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <PNC_Reminder_Visit_2 encounter_type="PNC Reminder Visit 2" id="PNC_Reminder_Visit_2" version="201602080721">
+        <PNC_Reminder_Visit_2 encounter_type="PNC Reminder Visit 2" id="PNC_Reminder_Visit_2" version="201602280847">
             <formhub>
                 <uuid/>
             </formhub>
@@ -42,8 +42,11 @@
                 <DISPLAY_FECDIS/>
                 <DISPLAY_URNBRN/>
                 <FWPNC2DELCOMP/>
-                <pnc2_current_formStatus/>
             </pnc2group>
+            <relationalid/>
+            <pnc2_current_formStatus/>
+            <user_type openmrs_entity="concept" openmrs_entity_id="163229AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">FWA</user_type>
+            <external_user_ID openmrs_entity="concept" openmrs_entity_id="163161AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <meta>
                 <instanceID/>
             </meta>
