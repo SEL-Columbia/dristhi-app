@@ -111,4 +111,12 @@
     <string name="filter_by_encc1">ENCC-1</string>
     <string name="filter_by_encc2">ENCC-2</string>
     <string name="filter_by_encc3">ENCC-3</string>
+    <string name="mcare_pnc_woman_details">Postnatal Woman Details</string>
+    <string name="child_details_fathers_name_label">Father\'s name :</string>
+    <string name="norma_birth">Normal Birth</string>
+    <string name="Caeserian_section">Caeserian Section</string>
+    <string name="dont_know">Don\'t Know</string>
+    <string name="mcare_child_details">Child Details</string>
+    <string name="mis_elco">MIS ELCO form</string>
+    <string name="mis_elco_due">MIS ELCO DUE</string>
 </resources>

@@ -2,6 +2,7 @@ package org.ei.opensrp.mcare.anc;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,6 +86,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         TextView nid = (TextView)itemView.findViewById(R.id.nid);
         TextView brid = (TextView)itemView.findViewById(R.id.brid);
         TextView edd = (TextView)itemView.findViewById(R.id.edd);
+        TextView ga = (TextView)itemView.findViewById(R.id.ga);
 //        TextView psrfdue = (TextView)itemView.findViewById(R.id.psrf_due_date);
 ////        Button due_visit_date = (Button)itemView.findViewById(R.id.hh_due_date);
 //
@@ -99,17 +101,27 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 //        }
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
-        name.setText(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):"");
+        name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
         spousename.setText(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):"");
         gobhhid.setText(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):"");
         jivitahhid.setText(pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):"");
         village.setText(humanize((pc.getDetails().get("mauza") != null ? pc.getDetails().get("mauza") : "").replace("+", "_")));
-//
-//
-//
-        age.setText(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"");
-        nid.setText("NID :" +(pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):""));
-        brid.setText("BRID :" +(pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):""));
+        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+")");
+
+        String NIDSourcestring = "NID: " + "<b>" + (pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"") + "</b> ";
+        nid.setText(Html.fromHtml(NIDSourcestring));
+        String BRIDSourcestring = "BRID: " + "<b>" + (pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):"") + "</b> ";
+        brid.setText(Html.fromHtml(BRIDSourcestring));
+
+
+
+
+
+        if(pc.getDetails().get("FWGESTATIONALAGE")!=null){
+            String GASourcestring = "GA: " + "<b>" + pc.getDetails().get("FWGESTATIONALAGE")+ " weeks" + "</b> ";
+
+            ga.setText(Html.fromHtml(GASourcestring));
+        }
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -118,7 +130,9 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                 calendar.setTime(edd_date);
                 calendar.add(Calendar.DATE, 259);
                 edd_date.setTime(calendar.getTime().getTime());
-            edd.setText("EDD :" + format.format(edd_date));
+            String EDDSourcestring = "EDD: " + "<b>" + format.format(edd_date)+ "</b> ";
+
+            edd.setText(Html.fromHtml(EDDSourcestring));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -147,7 +161,17 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         TextView anc3text = (TextView)itemview.findViewById(R.id.anc3text);
         TextView anc4tick = (TextView)itemview.findViewById(R.id.anc4tick);
         TextView anc4text = (TextView)itemview.findViewById(R.id.anc4text);
-        checkAnc1StatusAndform(anc1tick,anc1text,pc);
+        anc1tick.setVisibility(View.GONE);
+        anc1text.setVisibility(View.GONE);
+        anc2tick.setVisibility(View.GONE);
+        anc2text.setVisibility(View.GONE);
+        anc3tick.setVisibility(View.GONE);
+        anc3text.setVisibility(View.GONE);
+        anc4tick.setVisibility(View.GONE);
+        anc4text.setVisibility(View.GONE);
+
+
+        checkAnc1StatusAndform(anc1tick, anc1text, pc);
         checkAnc2StatusAndform(anc2tick, anc2text, pc);
         checkAnc3StatusAndform(anc3tick, anc3text, pc);
         checkAnc4StatusAndform(anc4tick, anc4text, pc);
@@ -162,10 +186,15 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             anc1text.setText("ANC1-"+pc.getDetails().get("FWANC1DATE"));
             if(pc.getDetails().get("anc1_current_formStatus")!=null){
                 if(pc.getDetails().get("anc1_current_formStatus").equalsIgnoreCase("upcoming")){
+                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
 
+                    anc1tick.setVisibility(View.VISIBLE);
+                    anc1text.setVisibility(View.VISIBLE);
                 }else if(pc.getDetails().get("anc1_current_formStatus").equalsIgnoreCase("urgent")){
                     anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
 //                    anc1text.setText("urgent");
+                    anc1tick.setVisibility(View.VISIBLE);
+                    anc1text.setVisibility(View.VISIBLE);
                 }
             }
         }else{
@@ -175,7 +204,8 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             if(alertlist.size()!=0){
                 for(int i = 0;i<alertlist.size();i++){
                     alertstate = alertlist.get(i).status().value();
-                    alertDate = alertlist.get(i).startDate();
+//                    alertDate = alertlist.get(i).startDate();
+                    alertDate = ancdate((pc.getColumnmaps().get("FWPSRLMP")!=null?pc.getColumnmaps().get("FWPSRLMP"):""),51);
                 }              ;
             }
             if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
@@ -183,25 +213,55 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc1tick.setText("✘");
                     anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc1text.setText( "ANC1-" + alertDate);
+                    anc1tick.setVisibility(View.VISIBLE);
+                    anc1text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
                 }else {
-                    anc1text.setVisibility(View.GONE);
-                    anc1tick.setVisibility(View.GONE);
+//                    anc1text.setVisibility(View.GONE);
+//                    anc1tick.setVisibility(View.GONE);
+                    alertDate = ancdate((pc.getColumnmaps().get("FWPSRLMP")!=null?pc.getColumnmaps().get("FWPSRLMP"):""),51);
+                    if(!checkANC1Expired(pc)){
+                        anc1text.setVisibility(View.GONE);
+                        anc1tick.setVisibility(View.GONE);
+                    }else{
+                        anc1tick.setText("✘");
+                        anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                        anc1text.setText( "ANC1-" + alertDate);
+                        anc1tick.setVisibility(View.VISIBLE);
+                        anc1text.setVisibility(View.VISIBLE);
+                    }
                 }
             } else {
+                alertDate = ancdate((pc.getColumnmaps().get("FWPSRLMP")!=null?pc.getColumnmaps().get("FWPSRLMP"):""),51);
+                if(!checkANC1Expired(pc)){
                 anc1text.setVisibility(View.GONE);
                 anc1tick.setVisibility(View.GONE);
+                }else{
+                    anc1tick.setText("✘");
+                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                    anc1text.setText( "ANC1-" + alertDate);
+                    anc1tick.setVisibility(View.VISIBLE);
+                    anc1text.setVisibility(View.VISIBLE);
+                }
             }
         }
     }
+
+
+
     private void checkAnc2StatusAndform(TextView anc2tick, TextView anc2text, CommonPersonObjectClient pc) {
         if(pc.getDetails().get("FWANC2DATE")!=null){
             anc2text.setText("ANC2-"+pc.getDetails().get("FWANC2DATE"));
             if(pc.getDetails().get("ANC2_current_formStatus")!=null){
                 if(pc.getDetails().get("ANC2_current_formStatus").equalsIgnoreCase("upcoming")){
+                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
+                    anc2tick.setVisibility(View.VISIBLE);
+                    anc2text.setVisibility(View.VISIBLE);
 
                 }else if(pc.getDetails().get("ANC2_current_formStatus").equalsIgnoreCase("urgent")){
                     anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                    anc2tick.setVisibility(View.VISIBLE);
+                    anc2text.setVisibility(View.VISIBLE);
                 }
             }
         }else{
@@ -212,6 +272,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                 for(int i = 0;i<alertlist.size();i++){
                     alertstate = alertlist.get(i).status().value();
                     alertDate = alertlist.get(i).startDate();
+                    alertDate = ancdate((pc.getColumnmaps().get("FWPSRLMP") != null ? pc.getColumnmaps().get("FWPSRLMP") : ""), 163);
                 }              ;
             }
             if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
@@ -219,14 +280,34 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc2tick.setText("✘");
                     anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc2text.setText( "ANC2-" + alertDate);
+                    anc2tick.setVisibility(View.VISIBLE);
+                    anc2text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
                 }else {
-                    anc2text.setVisibility(View.GONE);
-                    anc2tick.setVisibility(View.GONE);
+                    if(!checkANC2Expired(pc)) {
+                        anc2text.setVisibility(View.GONE);
+                        anc2tick.setVisibility(View.GONE);
+                    }else{
+                        alertDate = ancdate((pc.getColumnmaps().get("FWPSRLMP")!=null?pc.getColumnmaps().get("FWPSRLMP"):""),163);
+                        anc2tick.setText("✘");
+                        anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                        anc2text.setText( "ANC2-" + alertDate);
+                        anc2tick.setVisibility(View.VISIBLE);
+                        anc2text.setVisibility(View.VISIBLE);
+                    }
                 }
             } else {
-                anc2text.setVisibility(View.GONE);
-                anc2tick.setVisibility(View.GONE);
+                if(!checkANC2Expired(pc)) {
+                    anc2text.setVisibility(View.GONE);
+                    anc2tick.setVisibility(View.GONE);
+                }else{
+                    alertDate = ancdate((pc.getColumnmaps().get("FWPSRLMP")!=null?pc.getColumnmaps().get("FWPSRLMP"):""),163);
+                    anc2tick.setText("✘");
+                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                    anc2text.setText( "ANC2-" + alertDate);
+                    anc2tick.setVisibility(View.VISIBLE);
+                    anc2text.setVisibility(View.VISIBLE);
+                }
             }
         }
     }
@@ -235,9 +316,13 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             anc3text.setText("ANC3-"+pc.getDetails().get("FWANC3DATE"));
             if(pc.getDetails().get("ANC3_current_formStatus")!=null){
                 if(pc.getDetails().get("ANC3_current_formStatus").equalsIgnoreCase("upcoming")){
-
+                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
+                    anc3tick.setVisibility(View.VISIBLE);
+                    anc3text.setVisibility(View.VISIBLE);
                 }else if(pc.getDetails().get("ANC3_current_formStatus").equalsIgnoreCase("urgent")){
                     anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                    anc3tick.setVisibility(View.VISIBLE);
+                    anc3text.setVisibility(View.VISIBLE);
                 }
             }
         }else{
@@ -248,6 +333,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                 for(int i = 0;i<alertlist.size();i++){
                     alertstate = alertlist.get(i).status().value();
                     alertDate = alertlist.get(i).startDate();
+                    alertDate = ancdate((pc.getColumnmaps().get("FWPSRLMP") != null ? pc.getColumnmaps().get("FWPSRLMP") : ""), 219);
                 }              ;
             }
             if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
@@ -255,14 +341,34 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc3tick.setText("✘");
                     anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc3text.setText( "ANC3-" + alertDate);
+                    anc3tick.setVisibility(View.VISIBLE);
+                    anc3text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
                 }else {
-                    anc3text.setVisibility(View.GONE);
-                    anc3tick.setVisibility(View.GONE);
+                    if(!checkANC3Expired(pc)) {
+                        anc3text.setVisibility(View.GONE);
+                        anc3tick.setVisibility(View.GONE);
+                    }else{
+                        alertDate = ancdate((pc.getColumnmaps().get("FWPSRLMP")!=null?pc.getColumnmaps().get("FWPSRLMP"):""),219);
+                        anc3tick.setText("✘");
+                        anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                        anc3text.setText( "ANC3-" + alertDate);
+                        anc3tick.setVisibility(View.VISIBLE);
+                        anc3text.setVisibility(View.VISIBLE);
+                    }
                 }
             } else {
-                anc3text.setVisibility(View.GONE);
-                anc3tick.setVisibility(View.GONE);
+                if(!checkANC3Expired(pc)) {
+                    anc3text.setVisibility(View.GONE);
+                    anc3tick.setVisibility(View.GONE);
+                }else{
+                    alertDate = ancdate((pc.getColumnmaps().get("FWPSRLMP")!=null?pc.getColumnmaps().get("FWPSRLMP"):""),219);
+                    anc3tick.setText("✘");
+                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                    anc3text.setText( "ANC3-" + alertDate);
+                    anc3tick.setVisibility(View.VISIBLE);
+                    anc3text.setVisibility(View.VISIBLE);
+                }
             }
         }
     }
@@ -271,9 +377,13 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             anc4text.setText("ANC4-"+pc.getDetails().get("FWANC4DATE"));
             if(pc.getDetails().get("ANC4_current_formStatus")!=null){
                 if(pc.getDetails().get("ANC4_current_formStatus").equalsIgnoreCase("upcoming")){
-
+                    anc4tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
+                    anc4tick.setVisibility(View.VISIBLE);
+                    anc4text.setVisibility(View.VISIBLE);
                 }else if(pc.getDetails().get("ANC4_current_formStatus").equalsIgnoreCase("urgent")){
                     anc4tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                    anc4tick.setVisibility(View.VISIBLE);
+                    anc4text.setVisibility(View.VISIBLE);
                 }
             }
         }else{
@@ -284,6 +394,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                 for(int i = 0;i<alertlist.size();i++){
                     alertstate = alertlist.get(i).status().value();
                     alertDate = alertlist.get(i).startDate();
+                    alertDate = ancdate((pc.getColumnmaps().get("FWPSRLMP")!=null?pc.getColumnmaps().get("FWPSRLMP"):""),247);
                 }              ;
             }
             if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
@@ -291,6 +402,8 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc4tick.setText("✘");
                     anc4tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc4text.setText( "ANC4-" + alertDate);
+                    anc4tick.setVisibility(View.VISIBLE);
+                    anc4text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
                 }else {
                     anc4text.setVisibility(View.GONE);
@@ -308,12 +421,15 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         List <Alert>alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(),"BirthNotificationPregnancyStatusFollowUp");
         if(alertlist.size() != 0){
             alerttextstatus = setAlertStatus("","",alertlist);
+            if(alerttextstatus.alertText.length()>0){
+                alerttextstatus.setAlertText(alerttextstatus.alertText.substring(1));
+            }
         }else{
             alerttextstatus = new alertTextandStatus("Not synced","not synced");
+            alerttextstatus.setAlertText(alerttextstatus.alertText);
+
         }
-        if(alerttextstatus.alertText.length()>0){
-            alerttextstatus.setAlertText(alerttextstatus.alertText.substring(1));
-        }
+
         CustomFontTextView NBNFDueDate = (CustomFontTextView)itemView.findViewById(R.id.nbnf_due_date);
         setalerttextandColorInView(NBNFDueDate, alerttextstatus, pc);
 
@@ -352,6 +468,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
     private void setalerttextandColorInView(CustomFontTextView customFontTextView, alertTextandStatus alerttextstatus, CommonPersonObjectClient pc) {
         customFontTextView.setText(alerttextstatus.getAlertText() != null ? alerttextstatus.getAlertText() : "");
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("normal")){
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.text_black));
             customFontTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -362,6 +479,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         }
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("upcoming")){
             customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             customFontTextView.setOnClickListener(onClickListener);
             customFontTextView.setTag(R.id.clientobject, pc);
             customFontTextView.setTag(R.id.textforAncRegister, alerttextstatus.getAlertText() != null ? alerttextstatus.getAlertText() : "");
@@ -369,6 +487,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         }
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("urgent")){
             customFontTextView.setOnClickListener(onClickListener);
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             customFontTextView.setTag(R.id.clientobject, pc);
             customFontTextView.setTag(R.id.textforAncRegister,alerttextstatus.getAlertText() != null ? alerttextstatus.getAlertText() : "");
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
@@ -378,6 +497,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("expired")){
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
             customFontTextView.setText("expired");
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.text_black));
             customFontTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -388,6 +508,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("complete")){
 //               psrfdue.setText("visited");
             customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             customFontTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -513,6 +634,39 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         }
     }
 
-
+    private boolean checkANC1Expired(CommonPersonObjectClient pc) {
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "ancrv_2");
+        if(alertlist.size()>0 || (pc.getDetails().get("FWANC2DATE")!=null)){
+            return true;
+        }
+        alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "ancrv_3");
+        if(alertlist.size()>0 || (pc.getDetails().get("FWANC3DATE")!=null)){
+            return true;
+        }
+        alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "ancrv_4");
+        if(alertlist.size()>0 || (pc.getDetails().get("FWANC4DATE")!=null)){
+            return true;
+        }
+        return false;
+    }
+    private boolean checkANC2Expired(CommonPersonObjectClient pc) {
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "ancrv_3");
+        if(alertlist.size()>0 || (pc.getDetails().get("FWANC3DATE")!=null)){
+            return true;
+        }
+        alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "ancrv_4");
+        if(alertlist.size()>0 || (pc.getDetails().get("FWANC4DATE")!=null)){
+            return true;
+        }
+        return false;
+    }
+    private boolean checkANC3Expired(CommonPersonObjectClient pc) {
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "ancrv_4");
+        if(alertlist.size()>0 || (pc.getDetails().get("FWANC4DATE")!=null)){
+            return true;
+        }
+        return false;
+    }
 
 }
+

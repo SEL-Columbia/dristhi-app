@@ -27,7 +27,6 @@
             android:id="@+id/name"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:textStyle="bold"
@@ -55,21 +54,21 @@
     <LinearLayout
             android:id="@+id/clients_header_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/list_header_height"
-            android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
-            android:layout_marginRight="@dimen/list_view_margin_left_and_right"
+            android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/list_view_margin_left_and_right"
             android:orientation="horizontal">
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:text="@string/elco_details_summary"
             android:id="@+id/inhabitants"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
             android:textColor="@color/text_black"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:gravity="center_vertical" />
 
     </LinearLayout>
 
@@ -99,7 +98,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
+                    style="@style/CustomFontTextViewStyle"
                     android:text="@string/elco_mwra_registration_date_label"
                     android:textColor="@color/text_black"
 
@@ -132,7 +131,7 @@
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
+                    style="@style/CustomFontTextViewStyle"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="@string/elco_last_psf_date_label"
                     android:id="@+id/textView4"

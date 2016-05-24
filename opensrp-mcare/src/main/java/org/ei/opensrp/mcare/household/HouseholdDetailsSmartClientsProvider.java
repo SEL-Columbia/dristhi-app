@@ -2,23 +2,33 @@ package org.ei.opensrp.mcare.household;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
+import org.ei.opensrp.mcare.child.mCareChildSmartRegisterActivity;
+import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
+import org.ei.opensrp.mcare.pnc.mCarePNCSmartRegisterActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.view.activity.ANCSmartRegisterActivity;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
 import org.ei.opensrp.view.dialog.FilterOption;
@@ -26,7 +36,16 @@ import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static org.ei.opensrp.util.StringUtil.humanize;
 
 /**
  * Created by user on 2/12/15.
@@ -51,7 +70,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
-                (int) context.getResources().getDimension(org.ei.opensrp.R.dimen.list_item_height));
+                WRAP_CONTENT);
         txtColorBlack = context.getResources().getColor(R.color.text_black);
     }
 
@@ -66,7 +85,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
             TextView name = (TextView) itemView.findViewById(R.id.name);
             TextView age = (TextView) itemView.findViewById(R.id.age);
             TextView registerlink = (TextView) itemView.findViewById(R.id.registerlink);
-            registerlink.setPaintFlags(registerlink.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+//            registerlink.setPaintFlags(registerlink.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
 
 
@@ -94,33 +113,170 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
             profilepic.setOnClickListener(onClickListener);
             profilepic.setTag(smartRegisterClient);
 
-            name.setText(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : "");
-            age.setText(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "");
+            name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : ""));
+            age.setText("("+(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "")+")");
+
+            LinearLayout child_parent_carrier = (LinearLayout)itemView.findViewById(R.id.child_parent_holder);
+            ArrayList<String> stringList = new ArrayList<String>();
+            stringList.add(pc.getCaseId());
+            List <CommonPersonObject> commonPersonObjects = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcaremother").findByRelationalIDs(stringList);
+            if(commonPersonObjects.size()>0) {
+                CommonPersonObject mcaremother = commonPersonObjects.get(0);
+                addchildrenifany(child_parent_carrier,mcaremother);
+            }
         }else{
+            ArrayList<String> stringList = new ArrayList<String>();
+            stringList.add(pc.getCaseId());
+            List <CommonPersonObject> commonPersonObjects = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcaremother").findByRelationalIDs(stringList);
+            if(commonPersonObjects.size()>0){
+                CommonPersonObject mcaremother = commonPersonObjects.get(0);
+                if(mcaremother.getDetails().get("FWWOMVALID").equalsIgnoreCase("1")) {
+                    itemView = (ViewGroup) inflater().inflate(R.layout.household_inhabitants_register_clients, null);
+                    TextView name = (TextView) itemView.findViewById(R.id.name);
+                    TextView age = (TextView) itemView.findViewById(R.id.age);
+                    TextView registerlink = (TextView) itemView.findViewById(R.id.registerlink);
+//                    registerlink.setPaintFlags(registerlink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                    if ((mcaremother.getColumnmaps().get("Is_PNC") != null ? mcaremother.getColumnmaps().get("Is_PNC") : "0").equalsIgnoreCase("0")) {
+                        registerlink.setText("ANC Register");
+                    }
+                    if ((mcaremother.getColumnmaps().get("Is_PNC") != null ? mcaremother.getColumnmaps().get("Is_PNC") : "").equalsIgnoreCase("1")) {
+                        registerlink.setText("PNC Register");
+                    }
 
-            itemView = (ViewGroup) inflater().inflate(R.layout.household_inhabitants_nonregister_clients, null);
-            TextView name = (TextView) itemView.findViewById(R.id.name);
-            TextView age = (TextView) itemView.findViewById(R.id.age);
-            ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
 
-            if (pc.getDetails().get("profilepic") != null) {
-                HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.womanimageload);
+                    Button edit_form = (Button) itemView.findViewById(R.id.nidpic_capture);
+                    ImageView profilepic = (ImageView) itemView.findViewById(R.id.profilepic);
+                    if (pc.getDetails().get("profilepic") != null) {
+                        HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.womanimageload);
+                    }
+                    if (pc.getDetails().get("nidImage") != null) {
+//               edit_form.setVisibility(View.INVISIBLE);
+                        try {
+                            edit_form.setBackground(getDrawableFromPath(pc.getDetails().get("nidImage")));
+                            edit_form.setText("");
+                        } catch (Exception e) {
+
+                        }
+                    }
+                    registerlink.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(((TextView)v).getText().toString().contains("ANC")){
+                                context.startActivity(new Intent(context, mCareANCSmartRegisterActivity.class));
+
+                            }
+                            if(((TextView)v).getText().toString().contains("PNC")){
+                                context.startActivity(new Intent(context, mCarePNCSmartRegisterActivity.class));
+
+                            }
+                        }
+                    });
+
+
+                    edit_form.setOnClickListener(onClickListener);
+                    edit_form.setTag(smartRegisterClient);
+
+                    profilepic.setOnClickListener(onClickListener);
+                    profilepic.setTag(smartRegisterClient);
+
+                    name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : ""));
+                    age.setText("("+(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "")+")");
+                    LinearLayout child_parent_carrier = (LinearLayout)itemView.findViewById(R.id.child_parent_holder);
+                    addchildrenifany(child_parent_carrier,mcaremother);
+                }
+            }else {
+
+                itemView = (ViewGroup) inflater().inflate(R.layout.household_inhabitants_nonregister_clients, null);
+                TextView name = (TextView) itemView.findViewById(R.id.name);
+                TextView age = (TextView) itemView.findViewById(R.id.age);
+                ImageView profilepic = (ImageView) itemView.findViewById(R.id.profilepic);
+
+                if (pc.getDetails().get("profilepic") != null) {
+                    HouseHoldDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.womanimageload);
+                }
+
+                profilepic.setOnClickListener(onClickListener);
+                profilepic.setTag(smartRegisterClient);
+
+
+                Button editform = (Button) itemView.findViewById(R.id.edit_forms);
+                editform.setOnClickListener(onClickListener);
+                editform.setTag(smartRegisterClient);
+
+
+                name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : ""));
+                age.setText("("+(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "")+")");
+            }
+        }
+//        itemView.setLayoutParams(clientViewLayoutParams);
+        return itemView;
+    }
+
+    private void addchildrenifany(LinearLayout child_parent_carrier, CommonPersonObject mcaremother) {
+        ArrayList<String> listofmcaremother = new ArrayList<String>();
+        listofmcaremother.add(mcaremother.getCaseId());
+        List <CommonPersonObject> mcarechildren = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("mcarechild").findByRelationalIDs(listofmcaremother);
+        for(int i = 0;i<mcarechildren.size();i++){
+            Log.v("here is log!!", "children here");
+            LinearLayout childrenLayout = (LinearLayout)inflater().inflate(R.layout.household_inhabitants_child_clients, null);
+            ImageView childpic = (ImageView)childrenLayout.findViewById(R.id.profilepic);
+            TextView childname = (TextView)childrenLayout.findViewById(R.id.childname);
+            TextView age = (TextView)childrenLayout.findViewById(R.id.age);
+            TextView childRegisterLink = (TextView)childrenLayout.findViewById(R.id.linktoregister);
+            ImageView ischildrelation = (ImageView)childrenLayout.findViewById(R.id.child_relation_image);
+            if(i != (mcarechildren.size()-1)){
+                ischildrelation.setImageResource(R.mipmap.extended_is_child_of);
+            }
+            if(i == (mcarechildren.size()-1)){
+                ischildrelation.setImageResource(R.mipmap.ischildof);
             }
 
-            profilepic.setOnClickListener(onClickListener);
-            profilepic.setTag(smartRegisterClient);
+//            childRegisterLink.setPaintFlags(childRegisterLink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            childRegisterLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, mCareChildSmartRegisterActivity.class));
 
+                }
+            });
+            age.setText("(" + childage(mcarechildren.get(i)) + " days)");
 
-            Button editform = (Button) itemView.findViewById(R.id.edit_forms);
-            editform.setOnClickListener(onClickListener);
-            editform.setTag(smartRegisterClient);
+            childname.setText(mcarechildren.get(i).getDetails().get("FWBNFCHILDNAME") != null ? mcarechildren.get(i).getDetails().get("FWBNFCHILDNAME") : "");
 
+            if(mcarechildren.get(i).getColumnmaps().get("FWBNFGEN")!=null){
+                if(mcarechildren.get(i).getColumnmaps().get("FWBNFGEN").equalsIgnoreCase("1")){
+                    childpic.setImageResource(R.drawable.child_boy_infant);
+                }
+                if(mcarechildren.get(i).getColumnmaps().get("FWBNFGEN").equalsIgnoreCase("2")){
+                    childpic.setImageResource(R.drawable.child_girl_infant);
+                }
+            }
 
-            name.setText(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : "");
-            age.setText(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "");
+            child_parent_carrier.addView(childrenLayout);
+//            TextView txt = (new TextView(context));
+//            txt.setText("children");
+//            child_parent_carrier.addView(txt);
         }
-        itemView.setLayoutParams(clientViewLayoutParams);
-        return itemView;
+    }
+    private Long childage(CommonPersonObject ancclient) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date edd_date = format.parse(ancclient.getDetails().get("FWBNFDOB")!=null?ancclient.getDetails().get("FWBNFDOB"):"");
+            Calendar thatDay = Calendar.getInstance();
+            thatDay.setTime(edd_date);
+
+            Calendar today = Calendar.getInstance();
+
+            long diff = today.getTimeInMillis() - thatDay.getTimeInMillis();
+
+            long days = diff / (24 * 60 * 60 * 1000);
+
+            return days;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     @Override
