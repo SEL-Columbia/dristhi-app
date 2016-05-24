@@ -164,38 +164,48 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
      //==========================================Z-SCORE===============================================//
 
-        String gender = pc.getDetails().get("jenisKelamin") != null ? pc.getDetails().get("jenisKelamin") : "-";
-        String dateOfBirth = pc.getDetails().get("tanggalLahir") != null ? pc.getDetails().get("tanggalLahir") : "-";
-        String lastVisitDate = pc.getDetails().get("tanggalPenimbangan") != null ? pc.getDetails().get("tanggalPenimbangan") : "-";
-        double weight=datas[counter];
-        double length=data_tinggi[counter];
+        if(pc.getDetails().get("tanggalPenimbangan") != null)
+        {
+            String gender = pc.getDetails().get("jenisKelamin") != null ? pc.getDetails().get("jenisKelamin") : "-";
+            String dateOfBirth = pc.getDetails().get("tanggalLahir") != null ? pc.getDetails().get("tanggalLahir") : "-";
+            String lastVisitDate = pc.getDetails().get("tanggalPenimbangan") != null ? pc.getDetails().get("tanggalPenimbangan") : "-";
+            double weight=datas[counter];
+            double length=data_tinggi[counter];
 
-        ZScoreSystemCalculation zScore = new ZScoreSystemCalculation();
+            ZScoreSystemCalculation zScore = new ZScoreSystemCalculation();
 
 
-        double weight_for_age = zScore.countWFA(gender, dateOfBirth, lastVisitDate, weight);
-        String wfaStatus = zScore.getWFAZScoreClassification(weight_for_age);
+            double weight_for_age = zScore.countWFA(gender, dateOfBirth, lastVisitDate, weight);
+            String wfaStatus = zScore.getWFAZScoreClassification(weight_for_age);
 
-        double heigh_for_age = zScore.countHFA(gender, dateOfBirth, lastVisitDate, length);
-        String hfaStatus = zScore.getHFAZScoreClassification(heigh_for_age);
+            double heigh_for_age = zScore.countHFA(gender, dateOfBirth, lastVisitDate, length);
+            String hfaStatus = zScore.getHFAZScoreClassification(heigh_for_age);
 
-        double wight_for_lenght=0.0;
-        String wflStatus="";
-        if(zScore.dailyUnitCalculationOf(dateOfBirth, lastVisitDate)<730){
-            wight_for_lenght = zScore.countWFL(gender, weight, length);
+            double wight_for_lenght=0.0;
+            String wflStatus="";
+            if(zScore.dailyUnitCalculationOf(dateOfBirth, lastVisitDate)<730){
+                wight_for_lenght = zScore.countWFL(gender, weight, length);
+            }
+            else{
+                wight_for_lenght = zScore.countWFH(gender, weight, length);
+            }
+            wflStatus = zScore.getWFLZScoreClassification(wight_for_lenght);
+
+            //set to view
+            viewHolder.underweight.setText(context.getString(R.string.underweight) + " "+wfaStatus);
+            viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+hfaStatus);
+            viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " "+wflStatus);
+
         }
         else{
-            wight_for_lenght = zScore.countWFH(gender, weight, length);
+
+            viewHolder.underweight.setText(context.getString(R.string.underweight) + " ");
+            viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " ");
+            viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " ");
+
+
+            //================ END OF Z-SCORE==============================//
         }
-        wflStatus = zScore.getWFLZScoreClassification(wight_for_lenght);
-
-        //set to view
-        viewHolder.underweight.setText(context.getString(R.string.underweight) + " "+wfaStatus);
-        viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+hfaStatus);
-        viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " "+wflStatus);
-
-        //================ END OF Z-SCORE==============================//
-
 
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
