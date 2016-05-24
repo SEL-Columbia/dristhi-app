@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <BirthNotificationPregnancyStatusFollowUp encounter_type="Birth Notification Followup form" id="BirthNotificationFollowUp" version="201602280846">
+    <BirthNotificationPregnancyStatusFollowUp encounter_type="Birth Notification Followup form" id="BirthNotificationFollowUp" version="201604280908">
       <formhub>
         <uuid/>
       </formhub>
@@ -30,9 +30,12 @@
         <FWBNCHLDVITSTS template="" openmrs_entity="person" openmrs_entity_id="Child Vital Status">
           <FWBNFGEN openmrs_entity="concept" openmrs_entity_id="1587AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           <FWBNFCHLDVITSTS openmrs_entity="concept" openmrs_entity_id="159926AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWBNFNAMECHECK/>
+          <FWBNFNAME/>
+          <FWBNFCHILDNAME openmrs_entity="concept" openmrs_entity_id="1586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <FWBNFDOB/>
           <add_child/>
         </FWBNCHLDVITSTS>
-        <FWBNFSMSRSN openmrs_entity="concept" openmrs_entity_id="162953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       </outcome_occured>
       <Is_PNC/>
       <user_type openmrs_entity="concept" openmrs_entity_id="163229AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">FWA</user_type>

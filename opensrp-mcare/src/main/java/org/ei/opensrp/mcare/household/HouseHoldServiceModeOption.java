@@ -38,12 +38,12 @@ public class HouseHoldServiceModeOption extends ServiceModeOption {
 
             @Override
             public int weightSum() {
-                return 20;
+                return 40;
             }
 
             @Override
             public int[] weights() {
-                return new int[]{6,5,4,5};
+                return new int[]{12,11,9,8};
             }
 
             @Override

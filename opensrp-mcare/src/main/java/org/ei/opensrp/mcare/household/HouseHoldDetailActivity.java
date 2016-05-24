@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,10 +93,17 @@ public class HouseHoldDetailActivity extends Activity {
         });
 
 
-        householdhead_name.setText(householdclient.getColumnmaps().get("FWHOHFNAME"));
+        householdhead_name.setText(humanize(householdclient.getColumnmaps().get("FWHOHFNAME")));
         mauza.setText(humanize((householdclient.getDetails().get("existing_Mauzapara") != null ? householdclient.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
-        household_hhid.setText(getResources().getString(R.string.hhid_gob) + householdclient.getColumnmaps().get("FWGOBHHID"));
-        household_hhid_jivita.setText(getResources().getString(R.string.hhid_jivita) + householdclient.getColumnmaps().get("FWJIVHHID"));
+//        household_hhid.setText(getResources().getString(R.string.hhid_gob) + householdclient.getColumnmaps().get("FWGOBHHID"));
+//        household_hhid_jivita.setText(getResources().getString(R.string.hhid_jivita) + householdclient.getColumnmaps().get("FWJIVHHID"));
+
+        String hhid_jivitaSourcestring = getResources().getString(R.string.hhid_jivita) + " <b>" + (householdclient.getColumnmaps().get("FWJIVHHID")!=null?householdclient.getColumnmaps().get("FWJIVHHID"):"") + "</b> ";
+        household_hhid_jivita.setText(Html.fromHtml(hhid_jivitaSourcestring));
+        String hhidSourcestring = getResources().getString(R.string.hhid_gob) + " <b>" + (householdclient.getColumnmaps().get("FWGOBHHID")!=null?householdclient.getColumnmaps().get("FWGOBHHID"):"") + "</b> ";
+        household_hhid.setText(Html.fromHtml(hhidSourcestring));
+
+
         final ImageView householdview = (ImageView)findViewById(R.id.householdprofileview);
 
         if(householdclient.getDetails().get("profilepic")!= null){
