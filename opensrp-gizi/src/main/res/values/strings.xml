@@ -366,9 +366,9 @@
     <string name="status">Nutrition Status</string>
     <string name="tanggal">Visit Date : </string>
     <string name="height">Height : </string>
-    <string name="stunting">Stunting : </string>
-    <string name="wasting">Wasting : </string>
-    <string name="underweight">Underweight : </string>
+    <string name="stunting">Height for Age : </string>
+    <string name="wasting">Weight for length : </string>
+    <string name="underweight">Weight for Age : </string>
     <string name="weight">Weight :</string>
     <string name="child_name">Child Name : </string>
     <string name="mother_name">Mother Name : </string>

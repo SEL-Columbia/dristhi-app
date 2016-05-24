@@ -27,6 +27,8 @@ import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 
+import util.ZScore.ZScoreSystemCalculation;
+
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.ei.opensrp.util.StringUtil.humanize;
 
@@ -160,31 +162,39 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.height.setText(context.getString(R.string.weight)+ " "+datas[counter]+" Cm");
             viewHolder.weight.setText(context.getString(R.string.height) +  " "+data_tinggi[counter]+" Kg");
 
-    /*
-        if(pc.getDetails().get("status_gizi")!=null) {
-            if(pc.getDetails().get("status_gizi").equalsIgnoreCase("N")) {
-                viewHolder.underweight.setText("Status Gizi : Naik");
-            }
-            if(pc.getDetails().get("status_gizi").equalsIgnoreCase("T")) {
-                viewHolder.underweight.setText("Status Gizi : Tidak Naik");
-            }
-            if(pc.getDetails().get("status_gizi").equalsIgnoreCase("B")) {
-                viewHolder.underweight.setText("Status Gizi : Baru");
-            }
-            if(pc.getDetails().get("status_gizi").equalsIgnoreCase("O")) {
-                viewHolder.underweight.setText("Status Gizi : Tidak Hadir bulan lalu");
-            }
+     //==========================================Z-SCORE===============================================//
+
+        String gender = pc.getDetails().get("jenisKelamin") != null ? pc.getDetails().get("jenisKelamin") : "-";
+        String dateOfBirth = pc.getDetails().get("tanggalLahir") != null ? pc.getDetails().get("tanggalLahir") : "-";
+        String lastVisitDate = pc.getDetails().get("tanggalPenimbangan") != null ? pc.getDetails().get("tanggalPenimbangan") : "-";
+        double weight=datas[counter];
+        double length=data_tinggi[counter];
+
+        ZScoreSystemCalculation zScore = new ZScoreSystemCalculation();
+
+
+        double weight_for_age = zScore.countWFA(gender, dateOfBirth, lastVisitDate, weight);
+        String wfaStatus = zScore.getWFAZScoreClassification(weight_for_age);
+
+        double heigh_for_age = zScore.countHFA(gender, dateOfBirth, lastVisitDate, length);
+        String hfaStatus = zScore.getHFAZScoreClassification(heigh_for_age);
+
+        double wight_for_lenght=0.0;
+        String wflStatus="";
+        if(zScore.dailyUnitCalculationOf(dateOfBirth, lastVisitDate)<730){
+            wight_for_lenght = zScore.countWFL(gender, weight, length);
         }
         else{
-            viewHolder.underweight.setText("Status Gizi : ");
+            wight_for_lenght = zScore.countWFH(gender, weight, length);
         }
-        */
-        viewHolder.underweight.setText(context.getString(R.string.underweight) + " "+(pc.getDetails().get("underweight_status")!=null?pc.getDetails().get("underweight_status"):"-"));
+        wflStatus = zScore.getWFLZScoreClassification(wight_for_lenght);
 
-        viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+(pc.getDetails().get("Stunting_status")!=null?pc.getDetails().get("Stunting_status"):"-"));
-        viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " "+(pc.getDetails().get("wasting_status")!=null?pc.getDetails().get("wasting_status"):"-"));
+        //set to view
+        viewHolder.underweight.setText(context.getString(R.string.underweight) + " "+wfaStatus);
+        viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+hfaStatus);
+        viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " "+wflStatus);
 
-
+        //================ END OF Z-SCORE==============================//
 
 
         convertView.setLayoutParams(clientViewLayoutParams);
