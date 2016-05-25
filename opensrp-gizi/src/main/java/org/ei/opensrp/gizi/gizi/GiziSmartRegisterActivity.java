@@ -108,17 +108,8 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     public DialogOption[] getEditOptions() {
             return new DialogOption[]{
                 new OpenFormOption("Kunjungan Umur 1 Bulan ", "kunjungan_gizi", formController),
-                    new OpenFormOption("Kunjungan Umur 2 Bulan ", "kunjungan_bulan2", formController),
-                    new OpenFormOption("Kunjungan Umur 3 Bulan ", "kunjungan_bulan3", formController),
-                    new OpenFormOption("Kunjungan Umur 4 Bulan ", "kunjungan_bulan4", formController),
-                    new OpenFormOption("Kunjungan Umur 5 Bulan ", "kunjungan_bulan5", formController),
-                    new OpenFormOption("Kunjungan Umur 6 Bulan ", "kunjungan_bulan6", formController),
-                    new OpenFormOption("Kunjungan Umur 7 Bulan ", "kunjungan_bulan7", formController),
-                    new OpenFormOption("Kunjungan Umur 8 Bulan ", "kunjungan_bulan8", formController),
-                    new OpenFormOption("Kunjungan Umur 9 Bulan ", "kunjungan_bulan9", formController),
-                    new OpenFormOption("Kunjungan Umur 10 Bulan ", "kunjungan_bulan10", formController),
-                    new OpenFormOption("Kunjungan Umur 11 Bulan ", "kunjungan_bulan11", formController),
-                    new OpenFormOption("Kunjungan Umur 12 Bulan ", "kunjungan_bulan12", formController)
+
+
 
 
             };
@@ -247,18 +238,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         List<String> formNames = new ArrayList<String>();
        formNames.add("registrasi_gizi");
         formNames.add("kunjungan_gizi");
-        formNames.add("kunjungan_bulan2");
-        formNames.add("kunjungan_bulan3");
-        formNames.add("kunjungan_bulan4");
-        formNames.add("kunjungan_bulan5");
-        formNames.add("kunjungan_bulan6");
-        formNames.add("kunjungan_bulan7");
-        formNames.add("kunjungan_bulan8");
-        formNames.add("kunjungan_bulan9");
-        formNames.add("kunjungan_bulan10");
-        formNames.add("kunjungan_bulan11");
-        formNames.add("kunjungan_bulan12");
-
+       
 
      //   formNames.add("census_enrollment_form");
 //        DialogOption[] options = getEditOptions();
