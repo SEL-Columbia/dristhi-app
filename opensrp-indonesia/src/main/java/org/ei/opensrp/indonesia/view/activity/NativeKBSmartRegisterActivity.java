@@ -173,7 +173,6 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
                 if (displayFormFragment != null) {
                     displayFormFragment.setFormData(data);
-                    displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
                     displayFormFragment.setFieldOverides(metaData);
                 }
@@ -227,7 +226,6 @@ public class NativeKBSmartRegisterActivity extends BidanSecuredNativeSmartRegist
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
-                    displayFormFragment.loadFormData();
                 }
 
                 displayFormFragment.setRecordId(null);

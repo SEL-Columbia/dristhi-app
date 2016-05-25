@@ -155,8 +155,7 @@ label, legend, .trigger, .note {
   .geopicker.widget .search-bar {
     display: none; }
 
-.bootstrap-select:before,
-.bootstrap-select:after {
+.bootstrap-select:before, .bootstrap-select:after {
   content: " ";
   display: table; }
 
@@ -214,6 +213,23 @@ label, legend, .trigger, .note {
 .or-appearance-distress .slider.slider-vertical .slider-track {
   border: 1px solid black;
   border-bottom: none; }
+
+.or-appearance-analog-scale .show-value {
+  display: none; }
+
+.or-appearance-analog-scale .scale__ticks {
+  display: none; }
+
+.or-appearance-analog-scale .slider-vertical .slider-track {
+  border-right: 1px solid black;
+  margin-left: -8.5px; }
+
+.or-appearance-analog-scale .slider-horizontal .slider-track {
+  border-bottom: 1px solid black;
+  margin-top: -10px; }
+
+.or-appearance-analog-scale .slider-handle {
+  display: none; }
 
 .pages.or [role="page"] {
   display: inherit; }
