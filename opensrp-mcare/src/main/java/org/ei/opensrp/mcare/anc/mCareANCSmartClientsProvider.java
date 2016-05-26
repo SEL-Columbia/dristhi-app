@@ -87,6 +87,8 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         TextView brid = (TextView)itemView.findViewById(R.id.brid);
         TextView edd = (TextView)itemView.findViewById(R.id.edd);
         TextView ga = (TextView)itemView.findViewById(R.id.ga);
+
+        brid.setVisibility(View.GONE);
 //        TextView psrfdue = (TextView)itemView.findViewById(R.id.psrf_due_date);
 ////        Button due_visit_date = (Button)itemView.findViewById(R.id.hh_due_date);
 //
@@ -102,18 +104,23 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
         name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
-        spousename.setText(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):"");
-        gobhhid.setText(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):"");
-        jivitahhid.setText(pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):"");
+        spousename.setText(humanize(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):""));
+        gobhhid.setText(" "+(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):""));
+        jivitahhid.setText((pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):""));
         village.setText(humanize((pc.getDetails().get("mauza") != null ? pc.getDetails().get("mauza") : "").replace("+", "_")));
-        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+")");
+        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+") ");
+
+
 
         String NIDSourcestring = "NID: " + "<b>" + (pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"") + "</b> ";
         nid.setText(Html.fromHtml(NIDSourcestring));
-        String BRIDSourcestring = "BRID: " + "<b>" + (pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):"") + "</b> ";
-        brid.setText(Html.fromHtml(BRIDSourcestring));
+        if(pc.getDetails().get("FWWOMBID")!=null) {
+            String BRIDSourcestring = "BRID: " + "<b>" + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "") + "</b> ";
+            brid.setText(Html.fromHtml(BRIDSourcestring));
+            brid.setVisibility(View.VISIBLE);
+        }
 
-
+//        Log.v("brid tag",pc.getDetails().get("FWWOMBID"));
 
 
 
@@ -517,6 +524,8 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             });
         }
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("not synced")){
+            customFontTextView.setText("Not Synced");
+            customFontTextView.setTextColor(context.getResources().getColor(R.color.text_black));
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
 //
         }
