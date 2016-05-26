@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.view.fragment.SecuredFragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +38,7 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 /**
  * Created by raihan on 5/11/15.
  */
-public class ElcoDetailActivity extends Activity {
+public class ElcoDetailActivity extends SecuredFragment implements View.OnClickListener {
 
     //image retrieving
     private static final String TAG = "ImageGridFragment";
@@ -52,34 +55,44 @@ public class ElcoDetailActivity extends Activity {
     //image retrieving
 
     public static CommonPersonObjectClient Elcoclient;
+    private View mView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Context context = Context.getInstance();
-        setContentView(R.layout.elco_detail_activity);
-        TextView name = (TextView) findViewById(R.id.name);
-        TextView brid = (TextView) findViewById(R.id.brid);
-        TextView nid = (TextView) findViewById(R.id.womannid);
-
-        TextView husbandname = (TextView) findViewById(R.id.husbandname);
-        TextView age = (TextView) findViewById(R.id.age);
-        TextView jivitahhid = (TextView) findViewById(R.id.jivitahhid);
-        TextView godhhid = (TextView) findViewById(R.id.gobhhid);
-        TextView village = (TextView) findViewById(R.id.village);
-        TextView mw_reg_date = (TextView) findViewById(R.id.mw_reg_date);
-        TextView psf_due_date = (TextView) findViewById(R.id.last_psf_date);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.elco_detail_activity, container, false);
+        mView = view;
+//        view.findViewById(R.id.btn_back_to_home).setOnClickListener(navBarActionsHandler);
+        return view;
+    }
 
 
+    protected void initiallize() {
+        context = Context.getInstance();
+//        setContentView(R.layout.elco_detail_activity);
+        TextView name = (TextView) mView.findViewById(R.id.name);
+        TextView brid = (TextView)mView. findViewById(R.id.brid);
+        TextView nid = (TextView) mView.findViewById(R.id.womannid);
+
+        TextView husbandname = (TextView)mView.findViewById(R.id.husbandname);
+        TextView age = (TextView) mView.findViewById(R.id.age);
+        TextView jivitahhid = (TextView)mView.findViewById(R.id.jivitahhid);
+        TextView godhhid = (TextView)mView.findViewById(R.id.gobhhid);
+        TextView village = (TextView)mView.findViewById(R.id.village);
+        TextView mw_reg_date = (TextView)mView.findViewById(R.id.mw_reg_date);
+        TextView psf_due_date = (TextView)mView.findViewById(R.id.last_psf_date);
+        TextView mis_census = (TextView)mView.findViewById(R.id.mis_census);
 
 
 
 
 
-        ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
+
+
+        ImageButton back = (ImageButton)mView.findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ((ElcoSmartRegisterActivity) getActivity()).switchToBaseFragment(null);
             }
         });
 
@@ -94,6 +107,24 @@ public class ElcoDetailActivity extends Activity {
         godhhid.setText(Html.fromHtml(getString(R.string.hhid_gob_elco_label)+ "<b> "+(Elcoclient.getColumnmaps().get("GOBHHID") != null ? Elcoclient.getColumnmaps().get("GOBHHID") : "")+ "</b>"));
         psf_due_date.setText(Elcoclient.getDetails().get("FWPSRDATE") != null ? Elcoclient.getDetails().get("FWPSRDATE") : "");
 
+
+        if(Elcoclient.getDetails().get("FWMISCENSUSDATE") != null ){
+            mis_census.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            mis_census.setBackgroundColor(getResources().getColor(R.color.alert_complete_green));
+            mis_census.setTextColor(getResources().getColor(R.color.status_bar_text_almost_white));
+            mis_census.setText(Elcoclient.getDetails().get("FWMISCENSUSDATE"));
+        }else{
+            mis_census.setOnClickListener(this);
+            mis_census.setBackgroundColor(getResources().getColor(R.color.alert_upcoming_yellow));
+            mis_census.setTextColor(getResources().getColor(R.color.status_bar_text_almost_white));
+            mis_census.setText(getResources().getString(R.string.launch_mis_census_form));
+            mis_census.setTag(Elcoclient);
+        }
 
 //        village.setText(humanize(Elcoclient.getDetails().get("location_name") != null ? Elcoclient.getDetails().get("location_name") : ""));
             /////from househld
@@ -112,10 +143,10 @@ public class ElcoDetailActivity extends Activity {
         ///////////////////////////////////////////////////
 
 
-        final ImageView householdview = (ImageView) findViewById(R.id.householdprofileview);
+        final ImageView householdview = (ImageView)mView.findViewById(R.id.householdprofileview);
 
         if (Elcoclient.getDetails().get("profilepic") != null) {
-            setImagetoHolder(ElcoDetailActivity.this, Elcoclient.getDetails().get("profilepic"), householdview, R.mipmap.womanimageload);
+            setImagetoHolder(getActivity(), Elcoclient.getDetails().get("profilepic"), householdview, R.mipmap.womanimageload);
         }
 //        householdview.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -153,49 +184,49 @@ public class ElcoDetailActivity extends Activity {
     static File currentfile;
     static String bindobject;
     static String entityid;
-    private void dispatchTakePictureIntent(ImageView imageView) {
-        mImageView = imageView;
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
+//    private void dispatchTakePictureIntent(ImageView imageView) {
+//        mImageView = imageView;
+//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        // Ensure that there's a camera activity to handle the intent
+//        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+//            // Create the File where the photo should go
+//            File photoFile = null;
+//            try {
+//                photoFile = createImageFile();
+//            } catch (IOException ex) {
+//                // Error occurred while creating the File
+//
+//            }
+//            // Continue only if the File was successfully created
+//            if (photoFile != null) {
+//                currentfile = photoFile;
+//                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+//                        Uri.fromFile(photoFile));
+//                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+//            }
+//        }
+//    }
 
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                currentfile = photoFile;
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(photoFile));
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            String imageBitmap = (String) extras.get(MediaStore.EXTRA_OUTPUT);
-//            Toast.makeText(this,imageBitmap,Toast.LENGTH_LONG).show();
-            HashMap <String,String> details = new HashMap<String,String>();
-            details.put("profilepic",currentfile.getAbsolutePath());
-            saveimagereference(bindobject,entityid,details);
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
-            mImageView.setImageBitmap(bitmap);
-        }
-    }
-    public void saveimagereference(String bindobject,String entityid,Map<String,String> details){
-        Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityid,details);
-//                Elcoclient.entityId();
-//        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+////            Bundle extras = data.getExtras();
+////            String imageBitmap = (String) extras.get(MediaStore.EXTRA_OUTPUT);
+////            Toast.makeText(this,imageBitmap,Toast.LENGTH_LONG).show();
+//            HashMap <String,String> details = new HashMap<String,String>();
+//            details.put("profilepic",currentfile.getAbsolutePath());
+//            saveimagereference(bindobject,entityid,details);
+//            BitmapFactory.Options options = new BitmapFactory.Options();
+//            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
+//            mImageView.setImageBitmap(bitmap);
+//        }
+//    }
+//    public void saveimagereference(String bindobject,String entityid,Map<String,String> details){
+//        Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityid,details);
+////                Elcoclient.entityId();
+////        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
+//    }
     public static void setImagetoHolder(Activity activity,String file, ImageView view, int placeholder){
         mImageThumbSize = 300;
         mImageThumbSpacing = Context.getInstance().applicationContext().getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
@@ -221,5 +252,24 @@ public class ElcoDetailActivity extends Activity {
 //        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 //        Bitmap bitmap = BitmapFactory.decodeFile(file, options);
 //        view.setImageBitmap(bitmap);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.mis_census:
+                ((ElcoSmartRegisterActivity)getActivity()).startFormActivity("mis_census", ((CommonPersonObjectClient) v.getTag()).entityId(), null);
+                break;
+        }
+    }
+
+    @Override
+    protected void onCreation() {
+
+    }
+
+    @Override
+    protected void onResumption() {
+
     }
 }

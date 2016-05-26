@@ -235,8 +235,9 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
             switch (view.getId()) {
                 case R.id.profile_info_layout:
                     ElcoDetailActivity.Elcoclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(getActivity(), ElcoDetailActivity.class);
-                    startActivity(intent);
+                    ((ElcoSmartRegisterActivity)getActivity()).showProfileView();
+//                    Intent intent = new Intent(getActivity(), ElcoDetailActivity.class);
+//                    startActivity(intent);
                     break;
                 case R.id.psrf_due_date:
                     showFragmentDialog(new EditDialogOptionModel((CommonPersonObjectClient) view.getTag()), view.getTag());

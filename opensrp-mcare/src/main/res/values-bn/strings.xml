@@ -119,4 +119,6 @@
     <string name="mcare_child_details">Child Details</string>
     <string name="mis_elco">MIS ELCO form</string>
     <string name="mis_elco_due">MIS ELCO DUE</string>
+    <string name="mis_census_label">MIS Census Form</string>
+    <string name="launch_mis_census_form">Launch MIS Census Form</string>
 </resources>

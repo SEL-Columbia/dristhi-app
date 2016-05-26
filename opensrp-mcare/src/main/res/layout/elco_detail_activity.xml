@@ -86,7 +86,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:gravity="fill_vertical">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -113,7 +114,9 @@
                     android:textColor="@color/text_black"
 
                     android:id="@+id/mw_reg_date"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right" />
             </LinearLayout>
 
             <ImageView
@@ -148,7 +151,39 @@
 
                     android:text="Medium Text"
                     android:id="@+id/last_psf_date"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="5dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp">
+
+                <org.ei.opensrp.view.customControls.CustomFontTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/CustomFontTextViewStyle"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/mis_census_label"
+                    android:id="@+id/mis_census_label"
+                    android:textColor="@color/text_black"
+
                     android:layout_weight="1" />
+
+                <org.ei.opensrp.view.customControls.CustomFontTextView
+                    android:layout_width="240dp"
+                    android:layout_height="@dimen/list_item_height"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding"
+                    android:textColor="@color/text_black"
+
+                    android:text="Medium Text"
+                    android:id="@+id/mis_census"
+                    android:gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
