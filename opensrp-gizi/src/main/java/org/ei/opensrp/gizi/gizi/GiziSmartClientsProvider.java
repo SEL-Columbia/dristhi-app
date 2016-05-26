@@ -83,15 +83,11 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.wasting_status = (TextView)convertView.findViewById(R.id.txt_child_wasting);
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
-
-         //
-
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy_infant));
         }
-
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
            viewHolder.profilelayout.setOnClickListener(onClickListener);
@@ -102,7 +98,6 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         }
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
-
         //set image
         if(pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")){
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy_infant));
@@ -110,70 +105,23 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         else{
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_girl_infant));
         }
-
-
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
         viewHolder.parentname.setText(pc.getDetails().get("namaOrtu")!=null?pc.getDetails().get("namaOrtu"):"");
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):"");
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin")!=null?pc.getDetails().get("jenisKelamin"):"");
+        viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
+        viewHolder.height.setText(context.getString(R.string.height) +  " "+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-")+" Cm");
+        viewHolder.weight.setText(context.getString(R.string.weight) +  " "+(pc.getDetails().get("beratBadan1")!=null?pc.getDetails().get("beratBadan1"):"-")+" Kg");
 
-            viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
-
-
-        double data_tinggi[] = new double [13];
-        data_tinggi[0] = 0;
-        data_tinggi[1] = Double.parseDouble(pc.getDetails().get("tinggiBadan1") != null ? pc.getDetails().get("tinggiBadan1") : "0");
-        data_tinggi[2] = Double.parseDouble(pc.getDetails().get("tinggiBadan2") != null ? pc.getDetails().get("tinggiBadan2") : "0");
-        data_tinggi[3] = Double.parseDouble(pc.getDetails().get("tinggiBadan3") != null ? pc.getDetails().get("tinggiBadan3") : "0");
-        data_tinggi[4] = Double.parseDouble(pc.getDetails().get("tinggiBadan4") != null ? pc.getDetails().get("tinggiBadan4") : "0");
-        data_tinggi[5] = Double.parseDouble(pc.getDetails().get("tinggiBadan5") != null ? pc.getDetails().get("tinggiBadan5") : "0");
-        data_tinggi[6] = Double.parseDouble(pc.getDetails().get("tinggiBadan6") != null ? pc.getDetails().get("tinggiBadan6") : "0");
-        data_tinggi[7] = Double.parseDouble(pc.getDetails().get("tinggiBadan7") != null ? pc.getDetails().get("tinggiBadan7") : "0");
-        data_tinggi[8] = Double.parseDouble(pc.getDetails().get("tinggiBadan8") != null ? pc.getDetails().get("tinggiBadan8") : "0");
-        data_tinggi[9] = Double.parseDouble(pc.getDetails().get("tinggiBadan9") != null ? pc.getDetails().get("tinggiBadan9") : "0");
-        data_tinggi[10] = Double.parseDouble(pc.getDetails().get("tinggiBadan10") != null ? pc.getDetails().get("tinggiBadan10") : "0");
-        data_tinggi[11] = Double.parseDouble(pc.getDetails().get("tinggiBadan11") != null ? pc.getDetails().get("tinggiBadan11") : "0");
-        data_tinggi[12] = Double.parseDouble(pc.getDetails().get("tinggiBadan12") != null ? pc.getDetails().get("tinggiBadan12") : "0");
-
-        //data for graph
-        double datas[] = new double [13];
-        datas[0] = 0;
-        datas[1] = Double.parseDouble(pc.getDetails().get("beratBadan1") != null ? pc.getDetails().get("beratBadan1") : "0");
-        datas[2] = Double.parseDouble(pc.getDetails().get("beratBadan2") != null ? pc.getDetails().get("beratBadan2") : "0");
-        datas[3] = Double.parseDouble(pc.getDetails().get("beratBadan3") != null ? pc.getDetails().get("beratBadan3") : "0");
-        datas[4] = Double.parseDouble(pc.getDetails().get("beratBadan4") != null ? pc.getDetails().get("beratBadan4") : "0");
-        datas[5] = Double.parseDouble(pc.getDetails().get("beratBadan5") != null ? pc.getDetails().get("beratBadan5") : "0");
-        datas[6] = Double.parseDouble(pc.getDetails().get("beratBadan6") != null ? pc.getDetails().get("beratBadan6") : "0");
-        datas[7] = Double.parseDouble(pc.getDetails().get("beratBadan7") != null ? pc.getDetails().get("beratBadan7") : "0");
-        datas[8] = Double.parseDouble(pc.getDetails().get("beratBadan8") != null ? pc.getDetails().get("beratBadan8") : "0");
-        datas[9] = Double.parseDouble(pc.getDetails().get("beratBadan9") != null ? pc.getDetails().get("beratBadan9") : "0");
-        datas[10] = Double.parseDouble(pc.getDetails().get("beratBadan10") != null ? pc.getDetails().get("beratBadan10") : "0");
-        datas[11] = Double.parseDouble(pc.getDetails().get("beratBadan11") != null ? pc.getDetails().get("beratBadan11") : "0");
-        datas[12] = Double.parseDouble(pc.getDetails().get("beratBadan12") != null ? pc.getDetails().get("beratBadan12") : "0");
-
-
-        //fungtion break if found 0 data.
-        int counter=0;
-        for(int i=0;i<datas.length;i++){
-            if(datas[i+1]==0)
-                break;
-            counter++;
-        }
-            viewHolder.height.setText(context.getString(R.string.weight)+ " "+datas[counter]+" Cm");
-            viewHolder.weight.setText(context.getString(R.string.height) +  " "+data_tinggi[counter]+" Kg");
-
-     //==========================================Z-SCORE===============================================//
-
+      //==========================================Z-SCORE===============================================//
         if(pc.getDetails().get("tanggalPenimbangan") != null)
         {
             String gender = pc.getDetails().get("jenisKelamin") != null ? pc.getDetails().get("jenisKelamin") : "-";
             String dateOfBirth = pc.getDetails().get("tanggalLahir") != null ? pc.getDetails().get("tanggalLahir") : "-";
             String lastVisitDate = pc.getDetails().get("tanggalPenimbangan") != null ? pc.getDetails().get("tanggalPenimbangan") : "-";
-            double weight=datas[counter];
-            double length=data_tinggi[counter];
-
+            double weight=Double.parseDouble(pc.getDetails().get("beratBadan1")!=null?pc.getDetails().get("beratBadan1"):"0");
+            double length=Double.parseDouble(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"0");
             ZScoreSystemCalculation zScore = new ZScoreSystemCalculation();
-
 
             double weight_for_age = zScore.countWFA(gender, dateOfBirth, lastVisitDate, weight);
             String wfaStatus = zScore.getWFAZScoreClassification(weight_for_age);
@@ -203,9 +151,8 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " ");
             viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " ");
 
-
-            //================ END OF Z-SCORE==============================//
         }
+        //================ END OF Z-SCORE==============================//
 
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;

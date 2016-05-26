@@ -27,6 +27,7 @@ import org.ei.opensrp.gizi.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -68,8 +69,6 @@ public class ChildDetailActivity extends Activity {
 
         //header
         TextView header_name = (TextView) findViewById(R.id.header_name);
-
-
         //profile
         TextView nama = (TextView) findViewById(R.id.txt_profile_child_name);
         TextView mother_name = (TextView) findViewById(R.id.txt_profile_mother_name);
@@ -80,15 +79,12 @@ public class ChildDetailActivity extends Activity {
         TextView gender = (TextView) findViewById(R.id.txt_profile_child_gender);
         TextView weight = (TextView) findViewById(R.id.txt_profile_last_weight);
         TextView height = (TextView) findViewById(R.id.txt_profile_last_height);
-
         //child growth
-
         TextView nutrition_status = (TextView) findViewById(R.id.txt_profile_nutrition_status);
         TextView bgm = (TextView) findViewById(R.id.txt_profile_bgm);
         TextView dua_t = (TextView) findViewById(R.id.txt_profile_2t);
         TextView under_yellow_line = (TextView) findViewById(R.id.txt_profile_under_yellow_line);
         TextView breast_feeding = (TextView) findViewById(R.id.txt_profile_breastfeeding);
-
 
         ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
@@ -98,126 +94,49 @@ public class ChildDetailActivity extends Activity {
             }
         });
 
-
         nama.setText(R.string.child_profile);
-
-
         nama.setText(getString(R.string.child_name) +" "+ (childclient.getDetails().get("namaBayi") != null ? childclient.getDetails().get("namaBayi") : "-"));
         mother_name.setText(getString(R.string.parent_name) +" : "+ (childclient.getDetails().get("namaOrtu") != null ? childclient.getDetails().get("namaOrtu") : "-"));
-     //   father_name.setText(getString(R.string.father_name) +" "+ (childclient.getDetails().get("namaOrtu") != null ? childclient.getDetails().get("namaOrtu") : "-"));
         posyandu.setText(getString(R.string.posyandu) +" "+ (childclient.getDetails().get("posyandu") != null ? childclient.getDetails().get("posyandu") : "-"));
         village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));
         birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "-"));
         gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
-      //  weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan") : "-"));
-      //  height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan") : "-"));
-
-
+        weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "-"));
+        height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan") : "-"));
         nutrition_status.setText(getString(R.string.nutrition_status) +" "+ (childclient.getDetails().get("status_gizi") != null ? childclient.getDetails().get("status_gizi") : "-"));
-
 
         //KMS calculation
         boolean jenisKelamin = childclient.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")? true:false;
         int umur = Integer.parseInt(childclient.getDetails().get("umur") != null ? childclient.getDetails().get("umur") : "0");
-        double berat= Double.parseDouble(childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan") : "0");
+        double berat= Double.parseDouble(childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "0");
         double beraSebelum = Double.parseDouble(childclient.getDetails().get("beratSebelumnya") != null ? childclient.getDetails().get("beratSebelumnya") : "0");
-
-
         KmsPerson data = new KmsPerson(jenisKelamin, //boolean gender
                             umur,  //age(month)
                             berat, //curent weight
                             beraSebelum, //previous weight
                             childclient.getDetails().get("tanggalPenimbangan")!= null ? childclient.getDetails().get("tanggalPenimbangan") :"0"); // last visit date
-
         KmsCalculator calculator = new KmsCalculator();
-
-
         bgm.setText(getString(R.string.bgm) +calculator.cekBGM(data));
         dua_t.setText(getString(R.string.dua_t) +calculator.cek2T(data) );
         under_yellow_line.setText(getString(R.string.under_yellow_line)+calculator.cekBawahKuning(data));
         breast_feeding.setText(getString(R.string.asi) +" "+ (childclient.getDetails().get("asi_eksklusif") != null ? childclient.getDetails().get("asi_eksklusif") : "-"));
 
-       // final ImageView householdview = (ImageView) findViewById(R.id.childprofileview);
-
-      //  if (childclient.getDetails().get("profilepic") != null) {
-       //     setImagetoHolder(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.child_boy_infant);
-      //  }
-//        childview.setOnClickListener(new View.OnClickListener() {.
-//            @Override
-//            public void onClick(View v) {
-//                bindobject = "anak";
-//                entityid = childclient.entityId();
-//                dispatchTakePictureIntent(childview);
-//
-//            }
-//        });
-
-        //data tinggi badan
-        double data_tinggi[] = new double [13];
-        data_tinggi[0] = 0;
-        data_tinggi[1] = Double.parseDouble(childclient.getDetails().get("tinggiBadan1") != null ? childclient.getDetails().get("tinggiBadan1") : "0");
-        data_tinggi[2] = Double.parseDouble(childclient.getDetails().get("tinggiBadan2") != null ? childclient.getDetails().get("tinggiBadan2") : "0");
-        data_tinggi[3] = Double.parseDouble(childclient.getDetails().get("tinggiBadan3") != null ? childclient.getDetails().get("tinggiBadan3") : "0");
-        data_tinggi[4] = Double.parseDouble(childclient.getDetails().get("tinggiBadan4") != null ? childclient.getDetails().get("tinggiBadan4") : "0");
-        data_tinggi[5] = Double.parseDouble(childclient.getDetails().get("tinggiBadan5") != null ? childclient.getDetails().get("tinggiBadan5") : "0");
-        data_tinggi[6] = Double.parseDouble(childclient.getDetails().get("tinggiBadan6") != null ? childclient.getDetails().get("tinggiBadan6") : "0");
-        data_tinggi[7] = Double.parseDouble(childclient.getDetails().get("tinggiBadan7") != null ? childclient.getDetails().get("tinggiBadan7") : "0");
-        data_tinggi[8] = Double.parseDouble(childclient.getDetails().get("tinggiBadan8") != null ? childclient.getDetails().get("tinggiBadan8") : "0");
-        data_tinggi[9] = Double.parseDouble(childclient.getDetails().get("tinggiBadan9") != null ? childclient.getDetails().get("tinggiBadan9") : "0");
-        data_tinggi[10] = Double.parseDouble(childclient.getDetails().get("tinggiBadan10") != null ? childclient.getDetails().get("tinggiBadan10") : "0");
-        data_tinggi[11] = Double.parseDouble(childclient.getDetails().get("tinggiBadan11") != null ? childclient.getDetails().get("tinggiBadan11") : "0");
-        data_tinggi[12] = Double.parseDouble(childclient.getDetails().get("tinggiBadan12") != null ? childclient.getDetails().get("tinggiBadan12") : "0");
-
-        //data for graph
-        double datas[] = new double [13];
-        datas[0] = 0;
-        datas[1] = Double.parseDouble(childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "0");
-        datas[2] = Double.parseDouble(childclient.getDetails().get("beratBadan2") != null ? childclient.getDetails().get("beratBadan2") : "0");
-        datas[3] = Double.parseDouble(childclient.getDetails().get("beratBadan3") != null ? childclient.getDetails().get("beratBadan3") : "0");
-        datas[4] = Double.parseDouble(childclient.getDetails().get("beratBadan4") != null ? childclient.getDetails().get("beratBadan4") : "0");
-        datas[5] = Double.parseDouble(childclient.getDetails().get("beratBadan5") != null ? childclient.getDetails().get("beratBadan5") : "0");
-        datas[6] = Double.parseDouble(childclient.getDetails().get("beratBadan6") != null ? childclient.getDetails().get("beratBadan6") : "0");
-        datas[7] = Double.parseDouble(childclient.getDetails().get("beratBadan7") != null ? childclient.getDetails().get("beratBadan7") : "0");
-        datas[8] = Double.parseDouble(childclient.getDetails().get("beratBadan8") != null ? childclient.getDetails().get("beratBadan8") : "0");
-        datas[9] = Double.parseDouble(childclient.getDetails().get("beratBadan9") != null ? childclient.getDetails().get("beratBadan9") : "0");
-        datas[10] = Double.parseDouble(childclient.getDetails().get("beratBadan10") != null ? childclient.getDetails().get("beratBadan10") : "0");
-        datas[11] = Double.parseDouble(childclient.getDetails().get("beratBadan11") != null ? childclient.getDetails().get("beratBadan11") : "0");
-        datas[12] = Double.parseDouble(childclient.getDetails().get("beratBadan12") != null ? childclient.getDetails().get("beratBadan12") : "0");
 
 
-        //fungtion break if found 0 data.
+        //Graph
+        String berats = childclient.getDetails().get("history_berat")!= null ? childclient.getDetails().get("history_berat") :"0";
+        String[] history_berat = berats.split(",");
+        String umurs = childclient.getDetails().get("history_umur")!= null ? childclient.getDetails().get("history_umur") :"0";
+        String[] history_umur = umurs.split(",");
         GraphView graph = (GraphView) findViewById(R.id.graph);
-        int counter=0;
-        for(int i=0;i<datas.length;i++){
-            if(datas[i+1]==0)
-                break;
-            counter++;
-        }
-
-        //set current height and weight
-        weight.setText(getString(R.string.weight) +" "+ datas[counter]+" Kg");
-        height.setText(getString(R.string.height) +" "+ data_tinggi[counter]+" Cm");
-
-
         //set data for graph
-        DataPoint dataPoint[] = new DataPoint[counter+1];
-
-        for(int i=0;i<dataPoint.length;i++){
-            dataPoint[i]= new DataPoint(i,datas[i]);
-
+        DataPoint dataPoint[] = new DataPoint[history_berat.length];
+        for(int i=0;i<history_berat.length;i++){
+            dataPoint[i]= new DataPoint(Double.parseDouble(history_umur[i]),Double.parseDouble(history_berat[i]));
         }
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dataPoint);
-
-
-
-
         //add series data into chart
         graph.addSeries(series);
-
-        graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(12);
-
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {

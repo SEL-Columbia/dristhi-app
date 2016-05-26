@@ -1,27 +1,31 @@
 <model>
-    <instance>
-        <kunjungan_gizi id="kunjungan_gizi" version="201604060717">
-          <formhub>
-            <uuid/>
-          </formhub>
-          <start/>
-          <tanggal_penimbangan/>
-          <tanggal_lahir/>
-          <umur openmrs_entity="concept" openmrs_entity_id="1712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-          <generated_note_name_7/>
-          <umur1/>
-          <berat_badan/>
-          <tinggi_badan/>
-          <indikator_gizi/>
-          <status_gizi/>
-          <bgm/>
-          <dua_t/>
-          <garis_kuning_bawah/>
-          <ae/>
-          <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
-          <meta>
-            <instanceID/>
-          </meta>
-        </kunjungan_gizi>
-      </instance>
-  </model>
+  <instance>
+    <kunjungan_gizi encounter_type="Kunjungan Gizi" id="kunjungan_gizi" version="201605241105">
+      <formhub>
+        <uuid/>
+      </formhub>
+      <start/>
+      <today/>
+      <deviceid/>
+      <simserial/>
+      <phonenumber/>
+      <tanggal_penimbangan/>
+      <tanggal_lahir/>
+      <umur/>
+      <preload_umur>0</preload_umur>
+      <history_umur/>
+      <generated_note_name_12/>
+      <umur1/>
+      <berat_badan1/>
+      <preload_berat>0</preload_berat>
+      <history_berat/>
+      <generated_note_name_19/>
+      <tinggi_badan/>
+      <indikator_gizi/>
+      <end/>
+      <meta>
+        <instanceID/>
+      </meta>
+    </kunjungan_gizi>
+  </instance>
+</model>

@@ -26,40 +26,40 @@
         "bind": "/model/instance/kunjungan_gizi/umur"
       },
       {
+        "name": "history_umur",
+        "bind": "/model/instance/kunjungan_gizi/preload_umur",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "history_umur",
+        "bind": "/model/instance/kunjungan_gizi/history_umur"
+      },
+      {
         "name": "umur1",
         "bind": "/model/instance/kunjungan_gizi/umur1"
       },
+
       {
         "name": "beratBadan1",
-        "bind": "/model/instance/kunjungan_gizi/berat_badan"
+        "bind": "/model/instance/kunjungan_gizi/berat_badan1"
       },
       {
-        "name": "tinggiBadan1",
+        "name": "history_berat",
+        "bind": "/model/instance/kunjungan_gizi/preload_berat",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "history_berat",
+        "bind": "/model/instance/kunjungan_gizi/history_berat"
+      },
+
+      {
+        "name": "tinggiBadan",
         "bind": "/model/instance/kunjungan_gizi/tinggi_badan"
       },
       {
         "name": "indikator_gizi",
         "bind": "/model/instance/kunjungan_gizi/indikator_gizi"
-      },
-      {
-        "name": "status_gizi",
-        "bind": "/model/instance/kunjungan_gizi/status_gizi"
-      },
-      {
-        "name": "bgm",
-        "bind": "/model/instance/kunjungan_gizi/bgm"
-      },
-      {
-        "name": "dua_t",
-        "bind": "/model/instance/kunjungan_gizi/dua_t"
-      },
-      {
-        "name": "garis_kuning_bawah",
-        "bind": "/model/instance/kunjungan_gizi/garis_kuning_bawah"
-      },
-      {
-        "name": "asi_eksklusif",
-        "bind": "/model/instance/kunjungan_gizi/ae"
       },
       {
         "name": "end",
