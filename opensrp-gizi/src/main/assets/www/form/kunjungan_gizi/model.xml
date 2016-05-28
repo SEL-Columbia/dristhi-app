@@ -10,6 +10,8 @@
       <simserial/>
       <phonenumber/>
       <tanggal_penimbangan/>
+      <kunjungan_sebelumnya/>
+      <kunjunganSebelumnya/>
       <tanggal_lahir/>
       <umur/>
       <preload_umur>0</preload_umur>

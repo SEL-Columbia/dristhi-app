@@ -15,19 +15,15 @@ import android.widget.TextView;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import org.ei.opensrp.Context;
-import org.ei.opensrp.commonregistry.AllCommonsRepository;
-import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.gizi.R;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,10 +31,8 @@ import java.util.Map;
 
 import util.ImageCache;
 import util.ImageFetcher;
-import util.KmsCalculator;
-import util.KmsPerson;
-
-import static org.ei.opensrp.util.StringUtil.humanize;
+import util.KMS.KmsCalc;
+import util.KMS.KmsPerson;
 
 /**
  * Created by Iq on 26/04/16.
@@ -103,31 +97,39 @@ public class ChildDetailActivity extends Activity {
         gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
         weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "-"));
         height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan") : "-"));
-        nutrition_status.setText(getString(R.string.nutrition_status) +" "+ (childclient.getDetails().get("status_gizi") != null ? childclient.getDetails().get("status_gizi") : "-"));
+       // nutrition_status.setText(getString(R.string.nutrition_status) +" "+ (childclient.getDetails().get("status_gizi") != null ? childclient.getDetails().get("status_gizi") : "-"));
 
-        //KMS calculation
+
+        //set value
+        String berats = childclient.getDetails().get("history_berat")!= null ? childclient.getDetails().get("history_berat") :"0";
+        String[] history_berat = berats.split(",");
+        double berat_sebelum = Double.parseDouble(history_berat[(history_berat.length)-1]);
+        String umurs = childclient.getDetails().get("history_umur")!= null ? childclient.getDetails().get("history_umur") :"0";
+        String[] history_umur = umurs.split(",");
         boolean jenisKelamin = childclient.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")? true:false;
-        int umur = Integer.parseInt(childclient.getDetails().get("umur") != null ? childclient.getDetails().get("umur") : "0");
+        String tanggal_lahir = childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "0";
         double berat= Double.parseDouble(childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "0");
         double beraSebelum = Double.parseDouble(childclient.getDetails().get("beratSebelumnya") != null ? childclient.getDetails().get("beratSebelumnya") : "0");
-        KmsPerson data = new KmsPerson(jenisKelamin, //boolean gender
-                            umur,  //age(month)
-                            berat, //curent weight
-                            beraSebelum, //previous weight
-                            childclient.getDetails().get("tanggalPenimbangan")!= null ? childclient.getDetails().get("tanggalPenimbangan") :"0"); // last visit date
-        KmsCalculator calculator = new KmsCalculator();
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        String tanggal = (childclient.getDetails().get("tanggalPenimbangan") != null ? childclient.getDetails().get("tanggalPenimbangan") : "0");
+        String tanggal_sebelumnya = (childclient.getDetails().get("kunjunganSebelumnya") != null ? childclient.getDetails().get("kunjunganSebelumnya") : "0");
+
+
+        //KMS calculation
+        KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir,
+                berat,         beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
+
+        KmsCalc calculator = new KmsCalc();
+
         bgm.setText(getString(R.string.bgm) +calculator.cekBGM(data));
         dua_t.setText(getString(R.string.dua_t) +calculator.cek2T(data) );
         under_yellow_line.setText(getString(R.string.under_yellow_line)+calculator.cekBawahKuning(data));
         breast_feeding.setText(getString(R.string.asi) +" "+ (childclient.getDetails().get("asi_eksklusif") != null ? childclient.getDetails().get("asi_eksklusif") : "-"));
-
+        nutrition_status.setText(getString(R.string.nutrition_status) +calculator.cekWeightStatus(data) );
 
 
         //Graph
-        String berats = childclient.getDetails().get("history_berat")!= null ? childclient.getDetails().get("history_berat") :"0";
-        String[] history_berat = berats.split(",");
-        String umurs = childclient.getDetails().get("history_umur")!= null ? childclient.getDetails().get("history_umur") :"0";
-        String[] history_umur = umurs.split(",");
+
         GraphView graph = (GraphView) findViewById(R.id.graph);
         //set data for graph
         DataPoint dataPoint[] = new DataPoint[history_berat.length];

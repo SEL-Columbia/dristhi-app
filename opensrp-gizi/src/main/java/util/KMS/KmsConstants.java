@@ -1,4 +1,4 @@
-package util;
+package util.KMS;
 
 /**
  * Created by Iq on 02/05/16.
@@ -48,4 +48,5 @@ public class KmsConstants {
 
     public static final double[] femaleWeightUpIndicator={
             0,800,900,800,600,500,400,300,300,300,300,200};
+
 }

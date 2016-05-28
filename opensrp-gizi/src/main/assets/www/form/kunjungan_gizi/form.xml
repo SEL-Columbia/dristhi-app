@@ -118,6 +118,9 @@
             <input type="hidden" name="/kunjungan_gizi/history_umur" data-calculate="concat( /kunjungan_gizi/preload_umur ,',', /kunjungan_gizi/umur)" data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
+            <input type="hidden" name="/kunjungan_gizi/kunjunganSebelumnya" data-calculate="/kunjungan_gizi/kunjungan_sebelumnya " data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
             <input type="hidden" name="/kunjungan_gizi/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">

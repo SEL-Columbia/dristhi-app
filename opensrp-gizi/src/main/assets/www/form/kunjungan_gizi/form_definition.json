@@ -14,6 +14,15 @@
       },
       {
         "name": "tanggalPenimbangan",
+        "bind": "/model/instance/kunjungan_gizi/kunjungan_sebelumnya",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kunjunganSebelumnya",
+        "bind": "/model/instance/kunjungan_gizi/kunjunganSebelumnya"
+      },
+      {
+        "name": "tanggalPenimbangan",
         "bind": "/model/instance/kunjungan_gizi/tanggal_penimbangan"
       },
       {
@@ -38,7 +47,6 @@
         "name": "umur1",
         "bind": "/model/instance/kunjungan_gizi/umur1"
       },
-
       {
         "name": "beratBadan1",
         "bind": "/model/instance/kunjungan_gizi/berat_badan1"
