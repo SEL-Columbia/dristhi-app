@@ -14,12 +14,12 @@
       },
       {
         "name": "tanggalPenimbangan",
-        "bind": "/model/instance/kunjungan_gizi/kunjungan_sebelumnya",
+        "bind": "/model/instance/kunjungan_gizi/tanggal_preload",
         "shouldLoadValue": true
       },
       {
         "name": "kunjunganSebelumnya",
-        "bind": "/model/instance/kunjungan_gizi/kunjunganSebelumnya"
+        "bind": "/model/instance/kunjungan_gizi/kunjungan_sebelumnya"
       },
       {
         "name": "tanggalPenimbangan",
@@ -44,16 +44,12 @@
         "bind": "/model/instance/kunjungan_gizi/history_umur"
       },
       {
-        "name": "umur1",
-        "bind": "/model/instance/kunjungan_gizi/umur1"
-      },
-      {
-        "name": "beratBadan1",
-        "bind": "/model/instance/kunjungan_gizi/berat_badan1"
+        "name": "beratBadan",
+        "bind": "/model/instance/kunjungan_gizi/berat_badan"
       },
       {
         "name": "history_berat",
-        "bind": "/model/instance/kunjungan_gizi/preload_berat",
+        "bind": "/model/instance/kunjungan_gizi/berat_preload",
         "shouldLoadValue": true
       },
       {
@@ -66,8 +62,8 @@
         "bind": "/model/instance/kunjungan_gizi/tinggi_badan"
       },
       {
-        "name": "indikator_gizi",
-        "bind": "/model/instance/kunjungan_gizi/indikator_gizi"
+        "name": "asi",
+        "bind": "/model/instance/kunjungan_gizi/ae"
       },
       {
         "name": "end",

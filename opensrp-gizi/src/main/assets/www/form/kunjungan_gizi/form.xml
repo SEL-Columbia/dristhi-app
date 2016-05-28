@@ -8,7 +8,7 @@
     </select>
     <label class="question non-select ">
         <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/tanggal_penimbangan:label">Tanggal penimbangan</span>
-        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/tanggal_penimbangan:label">date of weighing</span>
+        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/tanggal_penimbangan:label">Date of Weighing</span>
         <span class="required">*</span>
         <span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_gizi/tanggal_penimbangan:hint">Tanggal dilakukan penimbangan</span>
         <span lang="en" class="or-hint " data-itext-id="/kunjungan_gizi/tanggal_penimbangan:hint">date of weighing</span>
@@ -17,35 +17,27 @@
         <span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span>
     </label>
     <label class="note non-select ">
-        <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/generated_note_name_12:label">Umur :
+        <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/generated_note_name_13:label">Umur :
             <span class="or-output" data-value=" /kunjungan_gizi/umur "></span>
         </span>
-        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/generated_note_name_12:label">age (months)</span>
-        <span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_gizi/generated_note_name_12:hint">Umur bayi/balita dalam bulan</span>
-        <span lang="en" class="or-hint " data-itext-id="/kunjungan_gizi/generated_note_name_12:hint">age of baby/child in month</span>
-        <input type="text" name="/kunjungan_gizi/generated_note_name_12" data-type-xml="string" readonly="readonly"/>
+        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/generated_note_name_13:label">Age (Months)</span>
+        <span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_gizi/generated_note_name_13:hint">Umur bayi/balita dalam bulan</span>
+        <span lang="en" class="or-hint " data-itext-id="/kunjungan_gizi/generated_note_name_13:hint">age of baby/child in month</span>
+        <input type="text" name="/kunjungan_gizi/generated_note_name_13" data-type-xml="string" readonly="readonly"/>
     </label>
     <label class="question non-select ">
-        <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/umur1:label">Umur (Manual)</span>
-        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/umur1:label">age (Manual)</span>
-        <span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_gizi/umur1:hint">Umur bayi/balita dalam bulan (diisi jika tanggal lahir tidak ada)</span>
-        <span lang="en" class="or-hint " data-itext-id="/kunjungan_gizi/umur1:hint">age of baby/child in month (fillef as DOB is not exist)</span>
-        <input type="number" name="/kunjungan_gizi/umur1" data-type-xml="int"/>
-        <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
-    </label>
-    <label class="question non-select ">
-        <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/berat_badan1:label">Berat Badan1</span>
-        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/berat_badan1:label">weight (kg)</span>
+        <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/berat_badan:label">Berat Badan</span>
+        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/berat_badan:label">Weight (kg)</span>
         <span class="required">*</span>
-        <span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_gizi/berat_badan1:hint">Berat badan bayi/balita (kg)</span>
-        <span lang="en" class="or-hint " data-itext-id="/kunjungan_gizi/berat_badan1:hint">weight of baby/ child in Kg</span>
-        <input type="number" name="/kunjungan_gizi/berat_badan1" required="required" data-constraint=".&gt;0 and .&lt;50" data-type-xml="decimal" step="any"/>
+        <span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_gizi/berat_badan:hint">Berat badan bayi/balita (kg)</span>
+        <span lang="en" class="or-hint " data-itext-id="/kunjungan_gizi/berat_badan:hint">weight of baby/ child in Kg</span>
+        <input type="number" name="/kunjungan_gizi/berat_badan" required="required" data-constraint=".&gt;0 and .&lt;50" data-type-xml="decimal" step="any"/>
         <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
         <span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span>
     </label>
     <label class="question non-select ">
         <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/tinggi_badan:label">Tinggi Badan</span>
-        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/tinggi_badan:label">height (cm)</span>
+        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/tinggi_badan:label">Height (cm)</span>
         <span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_gizi/tinggi_badan:hint">Tinggi badan bayi/balita (Cm)</span>
         <span lang="en" class="or-hint " data-itext-id="/kunjungan_gizi/tinggi_badan:hint">Height of baby/child in cm</span>
         <input type="number" name="/kunjungan_gizi/tinggi_badan" data-type-xml="decimal" step="any"/>
@@ -54,34 +46,21 @@
     <fieldset class="question simple-select ">
         <fieldset>
             <legend>
-                <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/indikator_gizi:label">Indikator Gizi</span>
-                <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/indikator_gizi:label">Gizi Indicator</span>
+                <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/ae:label">Air Asi Eksklusif</span>
+                <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/ae:label">Exclusive Breastfeeding</span>
+                <span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_gizi/ae:hint">Pemberian asi ekslusif pada bayi</span>
+                <span lang="en" class="or-hint " data-itext-id="/kunjungan_gizi/ae:hint">-</span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input type="checkbox" name="/kunjungan_gizi/indikator_gizi" value="status_gizi" data-type-xml="select"/>
-                    <span lang="Bahasa" class="option-label active" data-itext-id="/kunjungan_gizi/indikator_gizi/status_gizi:label">Status Gizi</span>
-                    <span lang="en" class="option-label " data-itext-id="/kunjungan_gizi/indikator_gizi/status_gizi:label">-</span>
+                    <input type="radio" name="/kunjungan_gizi/ae" data-name="/kunjungan_gizi/ae" value="Ya" data-type-xml="select1"/>
+                    <span lang="Bahasa" class="option-label active" data-itext-id="/kunjungan_gizi/ae/Ya:label">Ya</span>
+                    <span lang="en" class="option-label " data-itext-id="/kunjungan_gizi/ae/Ya:label">Yes</span>
                 </label>
                 <label class="">
-                    <input type="checkbox" name="/kunjungan_gizi/indikator_gizi" value="bgm" data-type-xml="select"/>
-                    <span lang="Bahasa" class="option-label active" data-itext-id="/kunjungan_gizi/indikator_gizi/bgm:label">BGM</span>
-                    <span lang="en" class="option-label " data-itext-id="/kunjungan_gizi/indikator_gizi/bgm:label">-</span>
-                </label>
-                <label class="">
-                    <input type="checkbox" name="/kunjungan_gizi/indikator_gizi" value="dua_t" data-type-xml="select"/>
-                    <span lang="Bahasa" class="option-label active" data-itext-id="/kunjungan_gizi/indikator_gizi/dua_t:label">2 T</span>
-                    <span lang="en" class="option-label " data-itext-id="/kunjungan_gizi/indikator_gizi/dua_t:label">-</span>
-                </label>
-                <label class="">
-                    <input type="checkbox" name="/kunjungan_gizi/indikator_gizi" value="garis_kuning_bawah" data-type-xml="select"/>
-                    <span lang="Bahasa" class="option-label active" data-itext-id="/kunjungan_gizi/indikator_gizi/garis_kuning_bawah:label">Garis Kuning Bawah</span>
-                    <span lang="en" class="option-label " data-itext-id="/kunjungan_gizi/indikator_gizi/garis_kuning_bawah:label">-</span>
-                </label>
-                <label class="">
-                    <input type="checkbox" name="/kunjungan_gizi/indikator_gizi" value="ae" data-type-xml="select"/>
-                    <span lang="Bahasa" class="option-label active" data-itext-id="/kunjungan_gizi/indikator_gizi/ae:label">Asi Eksklusif</span>
-                    <span lang="en" class="option-label " data-itext-id="/kunjungan_gizi/indikator_gizi/ae:label">-</span>
+                    <input type="radio" name="/kunjungan_gizi/ae" data-name="/kunjungan_gizi/ae" value="Tidak" data-type-xml="select1"/>
+                    <span lang="Bahasa" class="option-label active" data-itext-id="/kunjungan_gizi/ae/Tidak:label">Tidak</span>
+                    <span lang="en" class="option-label " data-itext-id="/kunjungan_gizi/ae/Tidak:label">No</span>
                 </label>
             </div>
         </fieldset>
@@ -109,22 +88,22 @@
     </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
         <label class="calculation non-select ">
+            <input type="hidden" name="/kunjungan_gizi/kunjungan_sebelumnya" data-calculate=" /kunjungan_gizi/tanggal_preload " data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
             <input type="hidden" name="/kunjungan_gizi/umur" data-calculate="int((( /kunjungan_gizi/tanggal_penimbangan  -  /kunjungan_gizi/tanggal_lahir ) div 30))" data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
-            <input type="hidden" name="/kunjungan_gizi/history_berat" data-calculate="concat( /kunjungan_gizi/preload_berat ,',', /kunjungan_gizi/berat_badan1)" data-type-xml="string"/>
+            <input type="hidden" name="/kunjungan_gizi/history_umur" data-calculate="concat( /kunjungan_gizi/preload_umur ,',', /kunjungan_gizi/umur )" data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
-            <input type="hidden" name="/kunjungan_gizi/history_umur" data-calculate="concat( /kunjungan_gizi/preload_umur ,',', /kunjungan_gizi/umur)" data-type-xml="string"/>
-        </label>
-        <label class="calculation non-select ">
-            <input type="hidden" name="/kunjungan_gizi/kunjunganSebelumnya" data-calculate="/kunjungan_gizi/kunjungan_sebelumnya " data-type-xml="string"/>
+            <input type="hidden" name="/kunjungan_gizi/history_berat" data-calculate="concat( /kunjungan_gizi/berat_preload ,',', /kunjungan_gizi/berat_badan )" data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
             <input type="hidden" name="/kunjungan_gizi/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
-            <input type="hidden" name="/kunjungan_gizi/formhub/uuid" data-calculate="'d8d7a900ebef45c0a6743aeadcc6664c'" data-type-xml="string"/>
+            <input type="hidden" name="/kunjungan_gizi/formhub/uuid" data-calculate="'ab32f5289f6343d18ff9895365b63bcb'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>

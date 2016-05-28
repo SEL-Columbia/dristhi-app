@@ -1,30 +1,28 @@
 <model>
   <instance>
-    <kunjungan_gizi encounter_type="Kunjungan Gizi" id="kunjungan_gizi" version="201605241105">
+    <kunjungan_gizi encounter_type="Kunjungan Gizi" id="kunjungan_gizi" version="201605280820">
       <formhub>
         <uuid/>
       </formhub>
-      <start/>
-      <today/>
+      <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+      <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
       <deviceid/>
       <simserial/>
       <phonenumber/>
-      <tanggal_penimbangan/>
+      <tanggal_preload/>
+      <tanggal_penimbangan openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <kunjungan_sebelumnya/>
-      <kunjunganSebelumnya/>
-      <tanggal_lahir/>
-      <umur/>
+      <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
+      <umur openmrs_entity="concept" openmrs_entity_id="1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <generated_note_name_13/>
       <preload_umur>0</preload_umur>
       <history_umur/>
-      <generated_note_name_12/>
-      <umur1/>
-      <berat_badan1/>
-      <preload_berat>0</preload_berat>
+      <berat_preload>0</berat_preload>
+      <berat_badan openmrs_entity="concept" openmrs_entity_id="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <history_berat/>
-      <generated_note_name_19/>
-      <tinggi_badan/>
-      <indikator_gizi/>
-      <end/>
+      <tinggi_badan openmrs_entity="concept" openmrs_entity_id="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <ae openmrs_entity="concept" openmrs_entity_id="5632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
       <meta>
         <instanceID/>
       </meta>

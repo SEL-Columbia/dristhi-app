@@ -124,7 +124,7 @@ public class ChildDetailActivity extends Activity {
         bgm.setText(getString(R.string.bgm) +calculator.cekBGM(data));
         dua_t.setText(getString(R.string.dua_t) +calculator.cek2T(data) );
         under_yellow_line.setText(getString(R.string.under_yellow_line)+calculator.cekBawahKuning(data));
-        breast_feeding.setText(getString(R.string.asi) +" "+ (childclient.getDetails().get("asi_eksklusif") != null ? childclient.getDetails().get("asi_eksklusif") : "-"));
+        breast_feeding.setText(getString(R.string.asi) +" "+ (childclient.getDetails().get("asi") != null ? childclient.getDetails().get("asi") : "-"));
         nutrition_status.setText(getString(R.string.nutrition_status) +calculator.cekWeightStatus(data) );
 
 
