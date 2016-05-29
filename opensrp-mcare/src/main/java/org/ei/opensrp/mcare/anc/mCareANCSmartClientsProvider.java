@@ -89,6 +89,8 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         TextView ga = (TextView)itemView.findViewById(R.id.ga);
 
         brid.setVisibility(View.GONE);
+        nid.setVisibility(View.GONE);
+
 //        TextView psrfdue = (TextView)itemView.findViewById(R.id.psrf_due_date);
 ////        Button due_visit_date = (Button)itemView.findViewById(R.id.hh_due_date);
 //
@@ -111,10 +113,12 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+") ");
 
 
-
-        String NIDSourcestring = "NID: " + "<b>" + (pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"") + "</b> ";
-        nid.setText(Html.fromHtml(NIDSourcestring));
-        if(pc.getDetails().get("FWWOMBID")!=null) {
+        if(pc.getDetails().get("FWWOMNID").length()>0) {
+            String NIDSourcestring = "NID: " + "<b>" + (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "") + "</b> ";
+            nid.setText(Html.fromHtml(NIDSourcestring));
+            nid.setVisibility(View.VISIBLE);
+        }
+        if(pc.getDetails().get("FWWOMBID").length()>0) {
             String BRIDSourcestring = "BRID: " + "<b>" + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "") + "</b> ";
             brid.setText(Html.fromHtml(BRIDSourcestring));
             brid.setVisibility(View.VISIBLE);

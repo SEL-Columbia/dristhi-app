@@ -281,79 +281,7 @@
                         android:layout_marginRight="5dp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_margin="2dp" >
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView12"
-                        android:src="@mipmap/icon_event_anc"
-                        android:visibility="gone" />
-
-                    <org.ei.opensrp.view.customControls.CustomFontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        style="@style/CustomFontTextViewStyle"
-                        android:text="Number of Alive Children"
-                        android:id="@+id/textView18"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_marginTop="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/livechildren"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_marginRight="5dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_margin="2dp" >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/anc1"
-                        android:src="@mipmap/icon_event_anc"
-                        android:visibility="gone" />
-
-                    <org.ei.opensrp.view.customControls.CustomFontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        style="@style/CustomFontTextViewStyle"
-                        android:text="Number of Stillbirths"
-                        android:id="@+id/textView8"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/stillbirths"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_marginRight="5dp" />
-
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -391,6 +319,75 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:background="#ffffff">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_margin="2dp" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView12"
+                        android:src="@mipmap/icon_event_anc"
+                        android:visibility="gone" />
+
+                    <org.ei.opensrp.view.customControls.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        style="@style/CustomFontTextViewStyle"
+                        android:text="Number of Alive Children"
+                        android:id="@+id/textView18"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/text_black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/livechildren"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/anc1"
+                        android:src="@mipmap/icon_event_anc"
+                        android:visibility="gone" />
+
+                    <org.ei.opensrp.view.customControls.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        style="@style/CustomFontTextViewStyle"
+                        android:text="Number of Stillbirths"
+                        android:id="@+id/textView8"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/text_black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/stillbirths"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/text_black"
+                        android:layout_marginRight="5dp" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -407,8 +404,7 @@
                         android:id="@+id/history_of_mr_label"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_marginTop="5dp" />
+                        android:textColor="@color/text_black" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -435,8 +431,7 @@
                         android:id="@+id/history_of_sb_label"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_marginTop="5dp" />
+                        android:textColor="@color/text_black" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -463,8 +458,7 @@
                         android:id="@+id/history_of_pregnancy_label"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_marginTop="5dp" />
+                        android:textColor="@color/text_black" />
                     <org.ei.opensrp.view.customControls.CustomFontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
