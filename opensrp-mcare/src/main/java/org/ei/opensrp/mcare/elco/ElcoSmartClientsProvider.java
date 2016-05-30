@@ -353,7 +353,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
 
         if(pc.getDetails().get("FWMISELCODATE")!=null){
                  try {
-                    Date regdate = format.parse(householdparent.getDetails().get("FWMISELCODATE"));
+                    Date regdate = format.parse(pc.getDetails().get("FWMISELCODATE"));
 
                     lastdate = regdate;
                 } catch (Exception e) {
@@ -401,6 +401,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
 
             mis_elco_due.setText(format.format(date));
         }
+
 
         List<Alert> alertlist_for_client = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "mis_elco");
         for(int i = 0;i<alertlist_for_client.size();i++){

@@ -413,7 +413,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("elco");
         countqueryBUilder.joinwithALerts("elco","ELCO PSRF");
-        countSelect = countqueryBUilder.mainCondition(" FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' ");
+        countSelect = countqueryBUilder.mainCondition(" FWWOMFNAME != \"\"  and  FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' ");
         CountExecute();
 
 
