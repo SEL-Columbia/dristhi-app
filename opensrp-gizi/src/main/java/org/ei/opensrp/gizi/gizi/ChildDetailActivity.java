@@ -95,7 +95,7 @@ public class ChildDetailActivity extends Activity {
         village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));
         birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "-"));
         gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
-        weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "-"));
+        weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan") : "-"));
         height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan") : "-"));
        // nutrition_status.setText(getString(R.string.nutrition_status) +" "+ (childclient.getDetails().get("status_gizi") != null ? childclient.getDetails().get("status_gizi") : "-"));
 
@@ -108,7 +108,7 @@ public class ChildDetailActivity extends Activity {
         String[] history_umur = umurs.split(",");
         boolean jenisKelamin = childclient.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")? true:false;
         String tanggal_lahir = childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "0";
-        double berat= Double.parseDouble(childclient.getDetails().get("beratBadan1") != null ? childclient.getDetails().get("beratBadan1") : "0");
+        double berat= Double.parseDouble(childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan") : "0");
         double beraSebelum = Double.parseDouble(childclient.getDetails().get("beratSebelumnya") != null ? childclient.getDetails().get("beratSebelumnya") : "0");
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
         String tanggal = (childclient.getDetails().get("tanggalPenimbangan") != null ? childclient.getDetails().get("tanggalPenimbangan") : "0");
@@ -120,13 +120,23 @@ public class ChildDetailActivity extends Activity {
                 berat,         beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
 
         KmsCalc calculator = new KmsCalc();
+        if(childclient.getDetails().get("kunjunganSebelumnya") != null && childclient.getDetails().get("beratSebelumnya") != null){
 
-        bgm.setText(getString(R.string.bgm) +calculator.cekBGM(data));
-        dua_t.setText(getString(R.string.dua_t) +calculator.cek2T(data) );
-        under_yellow_line.setText(getString(R.string.under_yellow_line)+calculator.cekBawahKuning(data));
-        breast_feeding.setText(getString(R.string.asi) +" "+ (childclient.getDetails().get("asi") != null ? childclient.getDetails().get("asi") : "-"));
-        nutrition_status.setText(getString(R.string.nutrition_status) +calculator.cekWeightStatus(data) );
+            bgm.setText(getString(R.string.bgm) + calculator.cekBGM(data));
+            dua_t.setText(getString(R.string.dua_t) + calculator.cek2T(data));
+            under_yellow_line.setText(getString(R.string.under_yellow_line) + calculator.cekBawahKuning(data));
+            breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("asi") != null ? childclient.getDetails().get("asi") : "-"));
+            nutrition_status.setText(getString(R.string.nutrition_status) + calculator.cekWeightStatus(data));
 
+        }
+        else {
+            bgm.setText(getString(R.string.bgm) + "-");
+            dua_t.setText(getString(R.string.dua_t) + "-");
+            under_yellow_line.setText(getString(R.string.under_yellow_line) + "-");
+            breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("asi") != null ? childclient.getDetails().get("asi") : "-"));
+            nutrition_status.setText(getString(R.string.nutrition_status) + "-");
+
+           }
 
         //Graph
 

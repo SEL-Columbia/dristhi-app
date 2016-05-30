@@ -111,7 +111,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin")!=null?pc.getDetails().get("jenisKelamin"):"");
         viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
         viewHolder.height.setText(context.getString(R.string.height) +  " "+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-")+" Cm");
-        viewHolder.weight.setText(context.getString(R.string.weight) +  " "+(pc.getDetails().get("beratBadan1")!=null?pc.getDetails().get("beratBadan1"):"-")+" Kg");
+        viewHolder.weight.setText(context.getString(R.string.weight) +  " "+(pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"-")+" Kg");
 
       //==========================================Z-SCORE===============================================//
         if(pc.getDetails().get("tanggalPenimbangan") != null)
@@ -119,7 +119,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             String gender = pc.getDetails().get("jenisKelamin") != null ? pc.getDetails().get("jenisKelamin") : "-";
             String dateOfBirth = pc.getDetails().get("tanggalLahir") != null ? pc.getDetails().get("tanggalLahir") : "-";
             String lastVisitDate = pc.getDetails().get("tanggalPenimbangan") != null ? pc.getDetails().get("tanggalPenimbangan") : "-";
-            double weight=Double.parseDouble(pc.getDetails().get("beratBadan1")!=null?pc.getDetails().get("beratBadan1"):"0");
+            double weight=Double.parseDouble(pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"0");
             double length=Double.parseDouble(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"0");
             ZScoreSystemCalculation zScore = new ZScoreSystemCalculation();
 
