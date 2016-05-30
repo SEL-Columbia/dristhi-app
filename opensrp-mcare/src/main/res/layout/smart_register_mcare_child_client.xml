@@ -62,28 +62,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding"
                 android:text="Medium Text"
-                android:id="@+id/mother_name" />
+                android:id="@+id/mother_name"
+                android:layout_weight="1" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:text="Medium Text"
                 android:textSize="12sp"
-                android:id="@+id/father_name" />
+                android:id="@+id/father_name"
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    style="@style/CustomFontTextViewStyle"
+                    style="@style/CustomFontTextViewStyle.noPadding"
                     android:text="Medium Text"
                     android:textSize="12sp"
                     android:textColor="@color/alert_urgent_red"
@@ -114,10 +117,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:text="Medium Text"
                 android:textSize="14sp"
-                android:id="@+id/village" />
+                android:id="@+id/village"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView

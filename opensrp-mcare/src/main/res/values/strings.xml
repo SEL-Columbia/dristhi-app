@@ -340,7 +340,7 @@
     <string name="elco_alphabetical_sort">Alphabetical (Woman name)</string>
     <string name="anc_nbnf_due_date">BIRTH NOTIFICATION</string>
     <string name="anc_reminder_status">ANC STATUS</string>
-    <string name="anc_edd_ga">EDD and GA</string>
+    <string name="anc_edd_ga">EDD &amp; GA</string>
     <string name="anc_reminder_due">ANC DUE</string>
     <string name="take_nid_picture">Take Picture \n NID/BRID</string>
     <string name="censusenrollmentform">Census New Woman Registration Form</string>
@@ -361,9 +361,9 @@
     <string name="okforminputerror">ok</string>
     <string name="pnc_outcome">OUTCOME</string>
     <string name="pnc_date_of_outcome">DATE OF OUTCOME</string>
-    <string name="pnc_reminder_status">PNC REMINDER STATUS</string>
-    <string name="pnc_reminder_due">PNC REMINDER DUE</string>
-    <string name="mcare_PNC_register_title_in_short">PNC Register</string>
+    <string name="pnc_reminder_status">PNC STATUS</string>
+    <string name="pnc_reminder_due">PNC DUE</string>
+    <string name="mcare_PNC_register_title_in_short">PNC</string>
     <string name="mcare_pnc_liveBirth">live birth</string>
     <string name="mcare_pnc_Stillbirth">Stillbirth</string>
     <string name="all_mcare_pnc">Postnatal Women</string>
@@ -371,10 +371,10 @@
     <string name="pnc2form">PNC visit 2 form</string>
     <string name="pnc1form">PNC visit 1 form</string>
     <string name="mcarechild_dob">DOB</string>
-    <string name="encc_reminder_status">ENCC REMINDER STATUS</string>
-    <string name="encc_due_date">ENCC DUE DATE</string>
+    <string name="encc_reminder_status">ENCC STATUS</string>
+    <string name="encc_due_date">ENCC DUE</string>
     <string name="child_mother_unique_id">MOTHER\'S UNIQUE ID</string>
-    <string name="mcare_Child_register_title_in_short">Child Register</string>
+    <string name="mcare_Child_register_title_in_short">Child</string>
     <string name="encc3form">ENCC Visit Form 3</string>
     <string name="encc2form">ENCC Visit Form 2</string>
     <string name="encc1form">ENCC Visit Form 1</string>
@@ -390,8 +390,8 @@
     <string name="filter_by_encc1">ENCC-1</string>
     <string name="filter_by_encc2">ENCC-2</string>
     <string name="filter_by_encc3">ENCC-3</string>
-    <string name="mcare_pnc_woman_details">Postnatal Woman Details</string>
-    <string name="child_details_fathers_name_label">Father\'s name :</string>
+    <string name="mcare_pnc_woman_details">PNC Details</string>
+    <string name="child_details_fathers_name_label">Father\'s name:</string>
     <string name="norma_birth">Normal Birth</string>
     <string name="Caeserian_section">Caeserian Section</string>
     <string name="dont_know">Don\'t Know</string>
@@ -400,6 +400,9 @@
     <string name="mis_elco_due">MIS ELCO DUE</string>
     <string name="mis_census_label">MIS Census Form</string>
     <string name="launch_mis_census_form">Launch MIS Census Form</string>
+    <string name="pregnancy_outcome">Pregnancy Outcome</string>
+    <string name="pnc_typeofdelivery">Type Of Delivery</string>
+    <string name="date_of_birth">Date of Birth</string>
 
 
 </resources>

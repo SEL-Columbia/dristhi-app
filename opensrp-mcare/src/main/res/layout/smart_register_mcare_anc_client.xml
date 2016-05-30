@@ -10,7 +10,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="2.75"
+        android:layout_weight="2.25"
         android:id="@+id/profile_info_layout">
 
         <FrameLayout
@@ -55,33 +55,39 @@
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:weightSum="4">
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+                style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
                 android:text="Medium Text"
-                android:id="@+id/name" />
+                android:id="@+id/name"
+                android:layout_weight="1" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:text="Medium Text"
-                android:id="@+id/spousename" />
+                android:id="@+id/spousename"
+                android:textSize="12sp"
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    style="@style/CustomFontTextViewStyle.ListView.Small"
+                    style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
                     android:text="Medium Text"
                     android:textSize="12sp"
                     android:textColor="@color/alert_urgent_red"
@@ -113,10 +119,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:text="Medium Text"
-                android:textSize="14sp"
-                android:id="@+id/village" />
+                android:textSize="12sp"
+                android:id="@+id/village"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -127,7 +134,8 @@
             android:text="00"
             android:id="@+id/age"
             android:gravity="right"
-            android:layout_marginRight="1dp" />
+            android:layout_marginRight="1dp"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -319,7 +327,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1.5"
+        android:layout_weight="1.75"
         >
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -340,7 +348,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1.5">
+        android:layout_weight="1.75">
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
