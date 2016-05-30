@@ -7,10 +7,16 @@ public class KmsCalc {
 
 
     public int monthAges(String lastVisitDate,String currentDate){
-        int tahun = Integer.parseInt(currentDate.substring(0,4))-Integer.parseInt(lastVisitDate.substring(0,4));
-        int bulan = Integer.parseInt(currentDate.substring(5,7))-Integer.parseInt(lastVisitDate.substring(5,7));
-        int hari = Integer.parseInt(currentDate.substring(8))-Integer.parseInt(lastVisitDate.substring(8));
-        return(tahun*12 + bulan + (int)(hari/30));
+        if(lastVisitDate.equalsIgnoreCase("0")) {
+                return 0;
+             }
+        else {
+            int tahun = Integer.parseInt(currentDate.substring(0, 4)) - Integer.parseInt(lastVisitDate.substring(0, 4));
+            int bulan = Integer.parseInt(currentDate.substring(5, 7)) - Integer.parseInt(lastVisitDate.substring(5, 7));
+            int hari = Integer.parseInt(currentDate.substring(8)) - Integer.parseInt(lastVisitDate.substring(8));
+            return (tahun * 12 + bulan + (int) (hari / 30));
+
+        }
     }
 
     public String cek2T(KmsPerson bayi){
