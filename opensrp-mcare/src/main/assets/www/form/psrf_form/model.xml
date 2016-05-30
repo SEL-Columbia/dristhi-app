@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <PregnancySurveillanceAndRegistrationForm encounter_type="Pregnancy Surveillance and Registration" id="PregnancySurveillanceAndRegistrationForm" version="201601250923">
+    <PregnancySurveillanceRegistrationForm encounter_type="Pregnancy Surveillance and Registration" id="PregnancySurveillanceAndRegistrationForm" version="201605291339">
       <formhub>
         <uuid/>
       </formhub>
@@ -79,6 +79,6 @@
       <meta>
         <instanceID/>
       </meta>
-    </PregnancySurveillanceAndRegistrationForm>
+    </PregnancySurveillanceRegistrationForm>
   </instance>
 </model>
