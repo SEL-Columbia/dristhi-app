@@ -20,6 +20,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.mcare.application.McareApplication;
 import org.ei.opensrp.mcare.household.HouseHoldDetailActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.AlertService;
@@ -443,6 +444,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 
         CustomFontTextView NBNFDueDate = (CustomFontTextView)itemView.findViewById(R.id.nbnf_due_date);
         setalerttextandColorInView(NBNFDueDate, alerttextstatus, pc);
+        NBNFDueDate.setText(McareApplication.convertToEnglishDigits(NBNFDueDate.getText().toString()));
 
     }
 
@@ -472,6 +474,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         }
         CustomFontTextView ancreminderDueDate = (CustomFontTextView)itemView.findViewById(R.id.anc_reminder_due_date);
         setalerttextandColorInView(ancreminderDueDate, alerttextstatus,pc);
+        ancreminderDueDate.setText(McareApplication.convertToEnglishDigits(ancreminderDueDate.getText().toString()));
 
 
     }

@@ -2,6 +2,7 @@ package org.ei.opensrp.mcare.household;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.mcare.application.McareApplication;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -229,8 +231,8 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
 //            viewHolder.due_visit_date.append(format.format(lastdate));
 
         }
-
-
+        viewHolder.last_visit_date.setText(McareApplication.convertToEnglishDigits(viewHolder.last_visit_date.getText().toString()));
+        viewHolder.due_visit_date.setText(McareApplication.convertToEnglishDigits(viewHolder.due_visit_date.getText().toString()));
         convertView.setLayoutParams(clientViewLayoutParams);
 //        return convertView;
     }
@@ -300,6 +302,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
          FrameLayout due_date_holder;
          Button warnbutton;
     }
+
 
 
 }

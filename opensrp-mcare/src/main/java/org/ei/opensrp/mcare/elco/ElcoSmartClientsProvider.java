@@ -20,6 +20,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.mcare.application.McareApplication;
 import org.ei.opensrp.mcare.household.HouseHoldDetailActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.AlertService;
@@ -313,7 +314,9 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                 });
             }
         }
-        CheckMisElcoSchedule(pc, mis_elco_due,smartRegisterClient,householdparent);
+        lmp.setText(McareApplication.convertToEnglishDigits(lmp.getText().toString()));
+        psrfdue.setText(McareApplication.convertToEnglishDigits(psrfdue.getText().toString()));
+        CheckMisElcoSchedule(pc, mis_elco_due, smartRegisterClient, householdparent);
         itemView.setLayoutParams(clientViewLayoutParams);
         ;
     }
@@ -453,6 +456,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                 });
             }
         }
+        mis_elco_due.setText(McareApplication.convertToEnglishDigits(mis_elco_due.getText().toString()));
     }
 
     @Override

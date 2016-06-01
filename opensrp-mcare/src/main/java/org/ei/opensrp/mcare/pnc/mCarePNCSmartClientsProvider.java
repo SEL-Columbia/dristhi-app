@@ -15,6 +15,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.mcare.application.McareApplication;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -148,7 +149,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
             GregorianCalendar calendar = new GregorianCalendar();
             calendar.setTime(edd_date);
             edd_date.setTime(calendar.getTime().getTime());
-            return format.format(edd_date);
+            return McareApplication.convertToEnglishDigits(format.format(edd_date));
         } catch (ParseException e) {
             e.printStackTrace();
             return "";
@@ -335,6 +336,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 
         CustomFontTextView pncreminderDueDate = (CustomFontTextView)itemView.findViewById(R.id.pnc_reminder_due_date);
         setalerttextandColorInView(pncreminderDueDate, alerttextstatus,pc);
+        pncreminderDueDate.setText(McareApplication.convertToEnglishDigits(pncreminderDueDate.getText().toString()));
 
 
     }
