@@ -98,15 +98,15 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 //        }
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
-        name.setText(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):"");
-        spousename.setText(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):"");
-        gobhhid.setText(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):"");
+        name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
+        spousename.setText(humanize(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):""));
+        gobhhid.setText(" "+(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):""));
         jivitahhid.setText(pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):"");
         village.setText(humanize((pc.getDetails().get("mauza") != null ? pc.getDetails().get("mauza") : "").replace("+", "_")));
 //
 //
 //
-        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+")");
+        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+") ");
         dateofdelivery.setText(pc.getColumnmaps().get("FWBNFDTOO")!=null?pc.getColumnmaps().get("FWBNFDTOO"):"");
         String outcomevalue = pc.getColumnmaps().get("FWBNFSTS")!=null?pc.getColumnmaps().get("FWBNFSTS"):"";
 
@@ -119,10 +119,18 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 
 //        delivery_outcome.setText(pc.getDetails().get("FWBNFSTS")!=null?pc.getDetails().get("FWBNFSTS"):"");
 
-
-        nid.setText(Html.fromHtml("NID:" +"<b> "+ (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "")+ "</b>"));
-        brid.setText(Html.fromHtml("BRID:"+"<b> " + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "")+ "</b>"));
-
+        if((pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "").length()>0) {
+            nid.setText(Html.fromHtml("NID:" + "<b> " + (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "") + "</b>"));
+            nid.setVisibility(View.VISIBLE);
+        }else{
+            nid.setVisibility(View.GONE);
+        }
+        if((pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "").length()>0) {
+            brid.setText(Html.fromHtml("BRID:" + "<b> " + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "") + "</b>"));
+            brid.setVisibility(View.VISIBLE);
+        }else{
+            brid.setVisibility(View.GONE);
+        }
           try {
 //                    dateofdelivery.setText(Html.fromHtml("DOO:" +"<b> "+ (pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : "")+ "</b>"));
                    dateofdelivery.setText(Html.fromHtml("DOO:" +"<b> "+ doolay(pc)+ "</b>"));

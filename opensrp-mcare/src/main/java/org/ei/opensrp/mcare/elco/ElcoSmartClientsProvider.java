@@ -111,10 +111,22 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
 
 
         age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+")");
-        String NIDSourcestring = "NID : " + "<b>" + (pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"") + "</b> ";
-        nid.setText(Html.fromHtml(NIDSourcestring));
-        String BRIDSourcestring = "BRID : " + "<b>" + (pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):"") + "</b> ";
-        brid.setText(Html.fromHtml(BRIDSourcestring));
+
+        if((pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"").length()>0) {
+            String NIDSourcestring = "NID: " + "<b>" + (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "") + "</b> ";
+            nid.setText(Html.fromHtml(NIDSourcestring));
+            nid.setVisibility(View.VISIBLE);
+        }else{
+            nid.setVisibility(View.GONE);
+        }
+        if((pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):"").length()>0) {
+            String BRIDSourcestring = "BRID: " + "<b>" + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "") + "</b> ";
+            brid.setText(Html.fromHtml(BRIDSourcestring));
+            brid.setVisibility(View.VISIBLE);
+        }else{
+            brid.setVisibility(View.GONE);
+        }
+
 //        nid.setText("NID :" +(pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):""));
 //        brid.setText("BRID :" +(pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):""));
         lmp.setText(pc.getDetails().get("FWPSRLMP")!=null?pc.getDetails().get("FWPSRLMP"):"");

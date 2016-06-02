@@ -95,16 +95,25 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
 
         final CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
 
-        fathername.setText(mcaremotherObject.getColumnmaps().get("FWWOMFNAME")!=null?mcaremotherObject.getColumnmaps().get("FWWOMFNAME"):"");
-        mothername.setText(pc.getDetails().get("FWBNFCHILDNAME") != null ? pc.getDetails().get("FWBNFCHILDNAME"):"");
-        gobhhid.setText(mcaremotherObject.getColumnmaps().get("GOBHHID")!=null?mcaremotherObject.getColumnmaps().get("GOBHHID"):"");
+        fathername.setText(humanize(mcaremotherObject.getColumnmaps().get("FWWOMFNAME")!=null?mcaremotherObject.getColumnmaps().get("FWWOMFNAME"):""));
+        mothername.setText(humanize(pc.getDetails().get("FWBNFCHILDNAME") != null ? pc.getDetails().get("FWBNFCHILDNAME"):""));
+        gobhhid.setText(" "+(mcaremotherObject.getColumnmaps().get("GOBHHID")!=null?mcaremotherObject.getColumnmaps().get("GOBHHID"):""));
         jivitahhid.setText(mcaremotherObject.getColumnmaps().get("JiVitAHHID")!=null?mcaremotherObject.getColumnmaps().get("JiVitAHHID"):"");
         village.setText(humanize((mcaremotherObject.getDetails().get("mauza") != null ? mcaremotherObject.getDetails().get("mauza") : "").replace("+", "_")));
         age.setText(""+age(pc)+ "d ");
         dateofbirth.setText(pc.getDetails().get("FWBNFDOB")!=null?pc.getDetails().get("FWBNFDOB"):"");
-
-        nid.setText("NID :" +(mcaremotherObject.getDetails().get("FWWOMNID")!=null?mcaremotherObject.getDetails().get("FWWOMNID"):""));
-        brid.setText("BRID :" +(mcaremotherObject.getDetails().get("FWWOMBID")!=null?mcaremotherObject.getDetails().get("FWWOMBID"):""));
+        if((mcaremotherObject.getDetails().get("FWWOMNID")!=null?mcaremotherObject.getDetails().get("FWWOMNID"):"").length()>0) {
+            nid.setText("NID: " + (mcaremotherObject.getDetails().get("FWWOMNID") != null ? mcaremotherObject.getDetails().get("FWWOMNID") : ""));
+            nid.setVisibility(View.VISIBLE);
+        }else{
+            nid.setVisibility(View.GONE);
+        }
+        if((mcaremotherObject.getDetails().get("FWWOMBID")!=null?mcaremotherObject.getDetails().get("FWWOMBID"):"").length()>0) {
+            brid.setText("BRID: " + (mcaremotherObject.getDetails().get("FWWOMBID") != null ? mcaremotherObject.getDetails().get("FWWOMBID") : ""));
+            brid.setVisibility(View.VISIBLE);
+        }else{
+            brid.setVisibility(View.GONE);
+        }
 
 
 

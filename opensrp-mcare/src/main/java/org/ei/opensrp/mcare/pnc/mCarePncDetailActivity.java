@@ -85,10 +85,20 @@ public class mCarePncDetailActivity extends Activity {
 
         name.setText(humanize((ancclient.getColumnmaps().get("FWWOMFNAME") != null ? ancclient.getColumnmaps().get("FWWOMFNAME") : "").replace("+", "_")));
 
-        brid.setText(Html.fromHtml(getString(R.string.BRID)  +"<b> "+ humanize((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").replace("+", "_"))+ "</b>"));
-        nid.setText(Html.fromHtml(getString(R.string.NID)  +"<b> "+humanize((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").replace("+", "_"))+ "</b>"));
 
-        husbandname.setText(Html.fromHtml(getString(R.string.elco_details_husband_name_label)+"<b> "+(ancclient.getDetails().get("FWHUSNAME") != null ? ancclient.getDetails().get("FWHUSNAME") : "")+ "</b>"));
+        if((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").length()>0) {
+            brid.setText(Html.fromHtml(getString(R.string.BRID) + "<b> " + humanize((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").replace("+", "_")) + "</b>"));
+            brid.setVisibility(View.VISIBLE);
+        }else{
+            brid.setVisibility(View.GONE);
+        }
+        if((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").length()>0) {
+            nid.setText(Html.fromHtml(getString(R.string.NID) + "<b> " + humanize((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").replace("+", "_")) + "</b>"));
+            nid.setVisibility(View.VISIBLE);
+        }else{
+            nid.setVisibility(View.GONE);
+        }
+        husbandname.setText(Html.fromHtml(getString(R.string.elco_details_husband_name_label)+"<b> "+humanize((ancclient.getDetails().get("FWHUSNAME") != null ? ancclient.getDetails().get("FWHUSNAME") : ""))+ "</b>"));
         age.setText(Html.fromHtml(getString(R.string.elco_age_label)+"<b> " + (ancclient.getDetails().get("FWWOMAGE") != null ? ancclient.getDetails().get("FWWOMAGE") : "")+ "</b>"));
         jivitahhid.setText(Html.fromHtml(getString(R.string.hhiid_jivita_elco_label)+"<b> "+(ancclient.getColumnmaps().get("JiVitAHHID") != null ? ancclient.getColumnmaps().get("JiVitAHHID") : "")+ "</b>"));
         godhhid.setText(Html.fromHtml(getString(R.string.hhid_gob_elco_label)+"<b> " + (ancclient.getColumnmaps().get("GOBHHID") != null ? ancclient.getColumnmaps().get("GOBHHID") : "")+ "</b>"));

@@ -89,10 +89,18 @@ public class mCareAncDetailActivity extends Activity {
         });
 
         name.setText(humanize((ancclient.getColumnmaps().get("FWWOMFNAME") != null ? ancclient.getColumnmaps().get("FWWOMFNAME") : "").replace("+", "_")));
-
-        brid.setText(Html.fromHtml(getString(R.string.BRID) +"<b> " + humanize((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").replace("+", "_"))+ "</b>"));
-        nid.setText(Html.fromHtml(getString(R.string.NID) +"<b> "+humanize((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").replace("+", "_"))+ "</b>"));
-
+        if((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").length()>0) {
+            brid.setText(Html.fromHtml(getString(R.string.BRID) + "<b> " + humanize((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").replace("+", "_")) + "</b>"));
+            brid.setVisibility(View.VISIBLE);
+        }else{
+            brid.setVisibility(View.GONE);
+        }
+        if((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").length()>0) {
+            nid.setText(Html.fromHtml(getString(R.string.NID) + "<b> " + humanize((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").replace("+", "_")) + "</b>"));
+            nid.setVisibility(View.VISIBLE);
+        }else{
+            nid.setVisibility(View.GONE);
+        }
         husbandname.setText(Html.fromHtml(getString(R.string.elco_details_husband_name_label)+"<b> "+humanize(ancclient.getDetails().get("FWHUSNAME") != null ? ancclient.getDetails().get("FWHUSNAME") : "")+ "</b>"));
         age.setText(Html.fromHtml(getString(R.string.elco_age_label)+"<b> " + (ancclient.getDetails().get("FWWOMAGE") != null ? ancclient.getDetails().get("FWWOMAGE") : "")+ "</b>"));
         jivitahhid.setText(Html.fromHtml(getString(R.string.hhiid_jivita_elco_label)+"<b> " +(ancclient.getColumnmaps().get("JiVitAHHID") != null ? ancclient.getColumnmaps().get("JiVitAHHID") : "")+ "</b>"));
@@ -171,32 +179,32 @@ public class mCareAncDetailActivity extends Activity {
     }
 
     private void pregnancyin2years(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRPREGTWYRS")!=null?ecclient.getDetails().get("FWPSRPREGTWYRS"):"";
+        String text = ecclient.getDetails().get("FWPSRPREGTWYRS")!=null?ecclient.getDetails().get("FWPSRPREGTWYRS"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.number_of_pregnancy);
         stillbirth.setText(text);
     }
 
     private void historyofsb(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRPRSB")!=null?ecclient.getDetails().get("FWPSRPRSB"):"";
+        String text = ecclient.getDetails().get("FWPSRPRSB")!=null?ecclient.getDetails().get("FWPSRPRSB"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.history_of_sb);
         stillbirth.setText(text);
     }
 
     private void historyofmr(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRPRMC")!=null?ecclient.getDetails().get("FWPSRPRMC"):"";
+        String text = ecclient.getDetails().get("FWPSRPRMC")!=null?ecclient.getDetails().get("FWPSRPRMC"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.history_of_mr);
         stillbirth.setText(text);
 
     }
 
     private void numberofstillbirthview(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRNBDTH")!=null?ecclient.getDetails().get("FWPSRNBDTH"):"";
+        String text = ecclient.getDetails().get("FWPSRNBDTH")!=null?ecclient.getDetails().get("FWPSRNBDTH"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.stillbirths);
         stillbirth.setText(text);
     }
 
     private void numberofChildrenView(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRTOTBIRTH")!=null?ecclient.getDetails().get("FWPSRTOTBIRTH"):"";
+        String text = ecclient.getDetails().get("FWPSRTOTBIRTH")!=null?ecclient.getDetails().get("FWPSRTOTBIRTH"):"N/A";
         TextView numberofChildren = (TextView)findViewById(R.id.livechildren);
         numberofChildren.setText(text);
 

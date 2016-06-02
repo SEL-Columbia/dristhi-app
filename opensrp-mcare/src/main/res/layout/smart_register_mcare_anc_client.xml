@@ -334,7 +334,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="New Button"
-            style="@style/CustomFontTextViewStyle.ListView.Small"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:id="@+id/anc_reminder_due_date"
             android:background="@color/status_bar_text_almost_white"
             android:layout_margin="2dp" />
@@ -354,7 +354,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="New Button"
-            style="@style/CustomFontTextViewStyle.ListView.Small"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:id="@+id/nbnf_due_date"
             android:background="@color/status_bar_text_almost_white"
             android:layout_margin="2dp" />

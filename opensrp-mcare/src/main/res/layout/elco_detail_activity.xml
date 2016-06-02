@@ -92,8 +92,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp">
+                android:layout_height="wrap_content">
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="0dp"
@@ -115,7 +114,7 @@
 
                     android:id="@+id/mw_reg_date"
                     android:layout_weight="1"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="10dp"
                     android:gravity="right" />
             </LinearLayout>
 
@@ -128,8 +127,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp">
+                android:layout_height="wrap_content">
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="0dp"
@@ -153,13 +151,19 @@
                     android:id="@+id/last_psf_date"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:layout_marginRight="5dp" />
+                    android:layout_marginRight="10dp" />
             </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/smart_register_client_divider_height"
+                android:src="@color/smart_register_client_divider_color"
+                android:id="@+id/imageView15" />
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp">
+                android:layout_height="wrap_content">
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="0dp"
@@ -173,7 +177,7 @@
                     android:layout_weight="1" />
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
-                    android:layout_width="240dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="@dimen/list_item_height"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding"
@@ -182,9 +186,14 @@
                     android:text="Medium Text"
                     android:id="@+id/mis_census"
                     android:gravity="center"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp" />
+                    android:padding="10dp" />
             </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/smart_register_client_divider_height"
+                android:src="@color/smart_register_client_divider_color"
+                android:id="@+id/imageView16" />
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

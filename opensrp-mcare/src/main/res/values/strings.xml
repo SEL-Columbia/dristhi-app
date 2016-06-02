@@ -88,7 +88,7 @@
     <string name="filter_by_all_label">All</string>
     <string name="filter_by_out_of_area_label">O/A</string>
     <string name="filter_by_leave_the_place_label">L/P</string>
-    <string name="ec_register_title_in_short">EC:</string>
+    <string name="ec_register_title_in_short">ELCO</string>
 
     <string name="str_register_anc_form">Register ANC</string>
     <string name="str_register_fp_form">Register FP</string>
@@ -324,9 +324,9 @@
     <string name="hh_no_mwra">No ELCO</string>
     <string name="hh_has_mwra">Has one or more ELCO</string>
     <string name="elco_search_hint">Search</string>
-    <string name="elco_woman_details">ELCO Woman Details</string>
+    <string name="elco_woman_details">ELCO Details</string>
     <string name="elco_details_summary">Summary</string>
-    <string name="elco_mwra_registration_date_label">MWRA Registration Date</string>
+    <string name="elco_mwra_registration_date_label">Registration Date</string>
     <string name="elco_last_psf_date_label">Last PSF Date</string>
     <string name="all_eligible_couples">All Eligible Couples</string>
     <string name="hhid_gob">HHID - Government:</string>
@@ -364,7 +364,7 @@
     <string name="pnc_reminder_status">PNC STATUS</string>
     <string name="pnc_reminder_due">PNC DUE</string>
     <string name="mcare_PNC_register_title_in_short">PNC</string>
-    <string name="mcare_pnc_liveBirth">live birth</string>
+    <string name="mcare_pnc_liveBirth">Live birth</string>
     <string name="mcare_pnc_Stillbirth">Stillbirth</string>
     <string name="all_mcare_pnc">Postnatal Women</string>
     <string name="pnc3form">PNC visit 3 form</string>
@@ -403,6 +403,7 @@
     <string name="pregnancy_outcome">Pregnancy Outcome</string>
     <string name="pnc_typeofdelivery">Type Of Delivery</string>
     <string name="date_of_birth">Date of Birth</string>
+    <string name="child_details_mothers_name_label">Mother\'s Name:</string>
 
 
 </resources>
