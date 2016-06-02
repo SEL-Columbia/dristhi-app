@@ -86,6 +86,7 @@
     <string name="okforminputerror">ঠিক আছে</string>
     <string name="pnc_outcome">গর্ভের ফলাফল</string>
     <string name="pnc_date_of_outcome">ফলাফলের তারিখ</string>
+    <string name="pnc_details_date_of_outcome">ফলাফলের তারিখ</string>
     <string name="pnc_reminder_status">PNC অবস্থা</string>
     <string name="pnc_reminder_due">PNC ভিজিট</string>
     <string name="mcare_PNC_register_title_in_short">PNC</string>

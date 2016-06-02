@@ -133,7 +133,7 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         }
           try {
 //                    dateofdelivery.setText(Html.fromHtml("DOO:" +"<b> "+ (pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : "")+ "</b>"));
-                   dateofdelivery.setText(Html.fromHtml("DOO:" +"<b> "+ doolay(pc)+ "</b>"));
+                   dateofdelivery.setText(Html.fromHtml("" +"<b> "+ doolay(pc)+ "</b>"));
 
         } catch (Exception e) {
             e.printStackTrace();
