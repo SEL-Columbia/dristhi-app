@@ -1,0 +1,314 @@
+<form autocomplete="off" class="or clearfix" id="penutupan_pnc" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Penutupan PNC</h3>
+    <select data-default-lang="Bahasa" id="form-languages">
+        <option value="Bahasa">Bahasa</option>
+        <option value="en">English</option>
+    </select>
+
+
+    <label class="question or-appearance-minimal ">
+        <span class="question-label active" data-itext-id="/penutupan_pnc_reviewed/pnc_close_reason:label"
+            lang="Bahasa">Alasan menutup PNC
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_pnc_reviewed/pnc_close_reason:label"
+            lang="en">Reason for PNC's closure
+        </span>
+        <span class="required">*</span>
+        <span class="or-hint active" data-itext-id="/penutupan_pnc_reviewed/pnc_close_reason:hint"
+            lang="Bahasa">Pilihlah salah satu alasan
+            yang tersedia
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_pnc_reviewed/pnc_close_reason:hint"
+            lang="en">Select one of reason
+            available
+        </span>
+        <select name="/penutupan_pnc_reviewed/pnc_close_reason"
+            data-name="/penutupan_pnc_reviewed/pnc_close_reason" data-type-xml="select1"
+            required="required">
+            <option value="">...</option>
+            <option value="relocation_temporary">Relokasi (sementara)</option>
+            <option value="relocation_permanent">Relokasi (permanen)</option>
+            <option value="end_of_pp_period">Akhir periode postpartum</option>
+            <option value="wrong_entry">Kesalahan entry</option>
+            <option value="Penyebab langsung">Kematian Ibu karena Penyebab langsung</option>
+            <option value="Penyebab tidak langsung">Kematian Ibu karena Penyebab tidak langsung
+            </option>
+            <option value="dont_know">Tidak tahu</option>
+        </select>
+        <span style="display:none;" class="or-option-translations">
+            <span data-option-value="relocation_temporary" lang="Bahasa">Relokasi (sementara)</span>
+            <span data-option-value="relocation_temporary" lang="en">Relocation (temporary)</span>
+            <span data-option-value="relocation_permanent" lang="Bahasa">Relokasi (permanen)</span>
+            <span data-option-value="relocation_permanent" lang="en">Relocation (permanent)</span>
+            <span data-option-value="end_of_pp_period" lang="Bahasa">Akhir periode postpartum</span>
+            <span data-option-value="end_of_pp_period" lang="en">End of post-partum period</span>
+            <span data-option-value="wrong_entry" lang="Bahasa">Kesalahan entry</span>
+            <span data-option-value="wrong_entry" lang="en">Wrong entry</span>
+            <span data-option-value="Penyebab langsung" lang="Bahasa">Kematian Ibu karena Penyebab
+                langsung
+            </span>
+            <span data-option-value="Penyebab langsung" lang="en">Direct cause</span>
+            <span data-option-value="Penyebab tidak langsung" lang="Bahasa">Kematian Ibu karena
+                Penyebab tidak langsung
+            </span>
+            <span data-option-value="Penyebab tidak langsung" lang="en">Indirect cause</span>
+            <span data-option-value="dont_know" lang="Bahasa">Tidak tahu</span>
+            <span data-option-value="dont_know" lang="en">Don't know</span>
+        </span>
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="or-constraint-msg active" data-itext-id="/penutupan_pnc_reviewed/death_date:jr:constraintMsg"
+            lang="Bahasa">Tanggal kematian ibu
+            hari ini atau hari-hari sebelumnya
+        </span>
+        <span class="or-constraint-msg " data-itext-id="/penutupan_pnc_reviewed/death_date:jr:constraintMsg"
+            lang="en">Date of mother's
+            death today or the days before
+        </span>
+        <span class="question-label active" data-itext-id="/penutupan_pnc_reviewed/death_date:label"
+            lang="Bahasa">Tanggal kematian
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_pnc_reviewed/death_date:label"
+            lang="en">Date of death
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_pnc_reviewed/death_date:hint"
+            lang="Bahasa">masukkan tanggal kematian
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_pnc_reviewed/death_date:hint" lang="en">
+            Enter the date of mother's death
+        </span>
+        <input name="/penutupan_pnc_reviewed/death_date" data-constraint=".&lt;= /penutupan_pnc_reviewed/today "
+            data-relevant=" /penutupan_pnc_reviewed/pnc_close_reason  = 'Penyebab langsung' or  /penutupan_pnc_reviewed/pnc_close_reason  = 'Penyebab tidak langsung'"
+            data-type-xml="date"
+            type="date" />
+    </label>
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" data-itext-id="/penutupan_pnc_reviewed/maternal_death_cause:label"
+            lang="Bahasa">Penyebab Kematian
+            ibu?
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_pnc_reviewed/maternal_death_cause:label"
+            lang="en">Cause of maternal
+            death
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_pnc_reviewed/maternal_death_cause:hint"
+            lang="Bahasa">Pilihlah salah satu
+            jawaban yang tersedia
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_pnc_reviewed/maternal_death_cause:hint"
+            lang="en">Select one of answers
+            available
+        </span>
+        <select name="/penutupan_pnc_reviewed/maternal_death_cause"
+            data-name="/penutupan_pnc_reviewed/maternal_death_cause"
+            data-relevant=" /penutupan_pnc_reviewed/pnc_close_reason  = 'Penyebab langsung'"
+            data-type-xml="select1">
+            <option value="">...</option>
+            <option value="early_pregnancy_bleeding">PERDARAHAN HAMIL MUDA ( Abortus,KET,Mola )
+            </option>
+            <option value="hemorrhage">PENDARAHAN ( APB, HPP )</option>
+            <option value="infection">INFEKSI ( P.Kasep,KPD, Sepsis,Puerperalis,P. Lama )</option>
+            <option value="hypertention_in_pregnancy">HDK ( HT Kronis,HT dg Protein
+                Urin,Eklampsia,Syndrom HELLP)
+            </option>
+            <option value="embolism">EMBOLI ( Pulmonal,air ketuban )</option>
+            <option value="other">LAIN-LAIN ( diluar penyebab yang diatas )</option>
+        </select>
+        <span style="display:none;" class="or-option-translations">
+            <span data-option-value="early_pregnancy_bleeding" lang="Bahasa">PERDARAHAN HAMIL MUDA (
+                Abortus,KET,Mola )
+            </span>
+            <span data-option-value="early_pregnancy_bleeding" lang="en">Early Pregnancy Bleeding
+                (Abortion/Miscarriage, Ectopic Pregnancy, Mola)
+            </span>
+            <span data-option-value="hemorrhage" lang="Bahasa">PENDARAHAN ( APB, HPP )</span>
+            <span data-option-value="hemorrhage" lang="en">Hemorrhage (APB, PPH)</span>
+            <span data-option-value="infection" lang="Bahasa">INFEKSI ( P.Kasep,KPD,
+                Sepsis,Puerperalis,P. Lama )
+            </span>
+            <span data-option-value="infection" lang="en">Infection (prolonged labor with
+                complication, early membrane rupture, sepsis puerperalis, prolonged labor)
+            </span>
+            <span data-option-value="hypertention_in_pregnancy" lang="Bahasa">HDK ( HT Kronis,HT dg
+                Protein Urin,Eklampsia,Syndrom HELLP)
+            </span>
+            <span data-option-value="hypertention_in_pregnancy" lang="en">Hypertention in Pregnancy
+                (Chronic Hypertention, Hypertention with protein urinea, Syndrom HELLP)
+            </span>
+            <span data-option-value="embolism" lang="Bahasa">EMBOLI ( Pulmonal,air ketuban )</span>
+            <span data-option-value="embolism" lang="en">Embolism (Pulmonary, Amniotic fluid)</span>
+            <span data-option-value="other" lang="Bahasa">LAIN-LAIN ( diluar penyebab yang diatas
+                )
+            </span>
+            <span data-option-value="other" lang="en">Other</span>
+        </span>
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/penutupan_pnc_reviewed/other_maternal_death_cause:label"
+            lang="Bahasa">Lainnya
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_pnc_reviewed/other_maternal_death_cause:label"
+            lang="en">Other
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_pnc_reviewed/other_maternal_death_cause:hint"
+            lang="Bahasa">Sebutkan alasan
+            lainnya Jika ada
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_pnc_reviewed/other_maternal_death_cause:hint"
+            lang="en">Write other
+            reason, if available
+        </span>
+        <input name="/penutupan_pnc_reviewed/other_maternal_death_cause" data-relevant=" /penutupan_pnc_reviewed/maternal_death_cause  = 'others'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" data-itext-id="/penutupan_pnc_reviewed/place_of_death:label"
+            lang="Bahasa">Tempat Kematian
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_pnc_reviewed/place_of_death:label"
+            lang="en">Place of maternal death
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_pnc_reviewed/place_of_death:hint"
+            lang="Bahasa">Tempat Kematian ibu
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_pnc_reviewed/place_of_death:hint"
+            lang="en">Place of mother's death
+        </span>
+        <select name="/penutupan_pnc_reviewed/place_of_death"
+            data-name="/penutupan_pnc_reviewed/place_of_death"
+            data-relevant=" /penutupan_pnc_reviewed/pnc_close_reason  = 'Penyebab langsung'"
+            data-type-xml="select1">
+            <option value="">...</option>
+            <option value="Rumah sendiri/keluarga">Rumah sendiri/keluarga</option>
+            <option value="Rumah dukun">Rumah dukun</option>
+            <option value="Polindes">Polindes</option>
+            <option value="Pustu">Pustu</option>
+            <option value="Rumah bidan">Rumah bidan</option>
+            <option value="Puskesmas">Puskesmas</option>
+            <option value="Dalam perjalanan ke fasilitas">Dalam perjalanan ke fasilitas</option>
+            <option value="Lainnya">Lainnya</option>
+        </select>
+        <span style="display:none;" class="or-option-translations">
+            <span data-option-value="Rumah sendiri/keluarga" lang="Bahasa">Rumah sendiri/keluarga
+            </span>
+            <span data-option-value="Rumah sendiri/keluarga" lang="en">Mother/family's house</span>
+            <span data-option-value="Rumah dukun" lang="Bahasa">Rumah dukun</span>
+            <span data-option-value="Rumah dukun" lang="en">Traditional birth attendant's house
+            </span>
+            <span data-option-value="Polindes" lang="Bahasa">Polindes</span>
+            <span data-option-value="Polindes" lang="en">Community-based health post</span>
+            <span data-option-value="Pustu" lang="Bahasa">Pustu</span>
+            <span data-option-value="Pustu" lang="en">Sub-center</span>
+            <span data-option-value="Rumah bidan" lang="Bahasa">Rumah bidan</span>
+            <span data-option-value="Rumah bidan" lang="en">Midwife's house</span>
+            <span data-option-value="Puskesmas" lang="Bahasa">Puskesmas</span>
+            <span data-option-value="Puskesmas" lang="en">Primary Health Center</span>
+            <span data-option-value="Dalam perjalanan ke fasilitas" lang="Bahasa">Dalam perjalanan
+                ke fasilitas
+            </span>
+            <span data-option-value="Dalam perjalanan ke fasilitas" lang="en">On the way to
+                facility
+            </span>
+            <span data-option-value="Lainnya" lang="Bahasa">Lainnya</span>
+            <span data-option-value="Lainnya" lang="en">other</span>
+        </span>
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/penutupan_pnc_reviewed/other_place_of_death:label"
+            lang="Bahasa">Lainnya
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_pnc_reviewed/other_place_of_death:label"
+            lang="en">Other
+        </span>
+        <input name="/penutupan_pnc_reviewed/other_place_of_death" data-relevant=" /penutupan_pnc_reviewed/place_of_death  = 'Lainnya'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/penutupan_pnc_reviewed/not_maternal_death_cause:label"
+            lang="Bahasa">Penyebab
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_pnc_reviewed/not_maternal_death_cause:label"
+            lang="en">Cause
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_pnc_reviewed/not_maternal_death_cause:hint"
+            lang="Bahasa">masukkan penyebab
+            kematian
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_pnc_reviewed/not_maternal_death_cause:hint"
+            lang="en">Write the cause of
+            death
+        </span>
+        <input name="/penutupan_pnc_reviewed/not_maternal_death_cause" data-relevant=" /penutupan_pnc_reviewed/pnc_close_reason  = 'Penyebab tidak langsung'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/penutupan_pnc_reviewed/confirm_pnc_close:label"
+                    lang="Bahasa">konfirmasi
+                    penutupan PNC?
+                </span>
+                <span class="question-label " data-itext-id="/penutupan_pnc_reviewed/confirm_pnc_close:label"
+                    lang="en">Confirmation of
+                    PNC Closure?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/penutupan_pnc_reviewed/confirm_pnc_close" data-name="/penutupan_pnc_reviewed/confirm_pnc_close"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="yes" />
+                    <span class="option-label active" data-itext-id="/penutupan_pnc_reviewed/confirm_pnc_close/yes:label"
+                        lang="Bahasa">Ya
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_pnc_reviewed/confirm_pnc_close/yes:label"
+                        lang="en">Yes
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/penutupan_pnc_reviewed/start" data-preload="timestamp" data-preload-params="start"
+                data-type-xml="dateTime" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_pnc_reviewed/today" data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_pnc_reviewed/deviceid" data-preload="property" data-preload-params="deviceid"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_pnc_reviewed/simserial" data-preload="property" data-preload-params="simserial"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_pnc_reviewed/phonenumber" data-preload="property" data-preload-params="phonenumber"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_pnc_reviewed/end" data-preload="timestamp" data-preload-params="end"
+                data-type-xml="dateTime" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/penutupan_pnc_reviewed/meta/instanceID" data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_pnc_reviewed/formhub/uuid" data-calculate="'c83ba38964234d57b38fda6cc029f892'"
+                data-type-xml="string" type="hidden" />
+        </label>
+    </fieldset>
+</form>

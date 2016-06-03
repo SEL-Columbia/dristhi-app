@@ -1,0 +1,31 @@
+<model>
+    <instance>
+        <kunjungan_anc_reviewed_Lab_test encounter_type="Kunjungan ANC Lab Test"
+            id="kunjungan_anc_Lab_test" version="201511160655">
+            <formhub>
+                <uuid />
+            </formhub>
+            <start />
+            <today />
+            <deviceid />
+            <simserial />
+            <phonenumber />
+            <Lokasi_periksa />
+            <reference_date />
+            <generated_note_name_8 />
+            <laboratorium_periksa_hb_hasil />
+            <laboratorium_periksa_hb_anemia />
+            <laboratorium_protein_uria />
+            <laboratorium_gula_darah />
+            <laboratorium_thalasemia />
+            <laboratorium_sifilis />
+            <laboratorium_hbsag />
+            <High_Risk_Pregnancy_anemia />
+            <High_Risk_Pregnancy_diabetes />
+            <end />
+            <meta>
+                <instanceID />
+            </meta>
+        </kunjungan_anc_reviewed_Lab_test>
+    </instance>
+</model>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    style="@style/card"
+    android:layout_width="match_parent"
+    android:layout_height="65dp">
+
+    <TextView
+        tools:text="Stocks Today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_header_inner_simple_title"
+        style="@style/card.header_simple_title"
+        android:textSize="24sp"
+        />
+
+    <TextView
+        tools:text="Updated: 23 minutes ago"
+        android:id="@+id/carddemo_googlenow_main_inner_lastupdate"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

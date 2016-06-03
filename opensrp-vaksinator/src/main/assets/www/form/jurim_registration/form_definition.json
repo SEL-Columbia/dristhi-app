@@ -1,0 +1,85 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "anak",
+    "default_bind_path": "/model/instance/kunjungan_jurim/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "hb1_kurang_7_hari",
+        "bind": "/model/instance/kunjungan_jurim/hb1_kurang_7_hari"
+      },
+      {
+        "name": "hb1_lebih_7_hari",
+        "bind": "/model/instance/kunjungan_jurim/hb1_lebih_7_hari"
+      },
+      {
+        "name": "bcg",
+        "bind": "/model/instance/kunjungan_jurim/bcg"
+      },
+      {
+        "name": "pol_1",
+        "bind": "/model/instance/kunjungan_jurim/pol_1"
+      },
+      {
+        "name": "dpt_hb_combo1",
+        "bind": "/model/instance/kunjungan_jurim/dpt_hb_combo1"
+      },
+      {
+        "name": "pol_2",
+        "bind": "/model/instance/kunjungan_jurim/pol_2"
+      },
+      {
+        "name": "dpt_hb_combo2",
+        "bind": "/model/instance/kunjungan_jurim/dpt_hb_combo2"
+      },
+      {
+        "name": "pol_3",
+        "bind": "/model/instance/kunjungan_jurim/pol_3"
+      },
+      {
+        "name": "dpt_hb_combo3",
+        "bind": "/model/instance/kunjungan_jurim/dpt_hb_combo3"
+      },
+      {
+        "name": "pol_4",
+        "bind": "/model/instance/kunjungan_jurim/pol_4"
+      },
+      {
+        "name": "imunisasi_campak",
+        "bind": "/model/instance/kunjungan_jurim/imunisasi_campak"
+      },
+      {
+        "name": "mutasi_meninggal_kurang_30hari",
+        "bind": "/model/instance/kunjungan_jurim/mutasi_meninggal_kurang_30hari"
+      },
+      {
+        "name": "mutasi_meninggal_lebih_30hari",
+        "bind": "/model/instance/kunjungan_jurim/mutasi_meninggal_lebih_30hari"
+      },
+      {
+        "name": "tanggal_pindah",
+        "bind": "/model/instance/kunjungan_jurim/tanggal_pindah"
+      },
+      {
+        "name": "imunisasi_lengkap",
+        "bind": "/model/instance/kunjungan_jurim/imunisasi_lengkap"
+      },
+      {
+        "name": "dpt_hb_lanjutan",
+        "bind": "/model/instance/kunjungan_jurim/dpt_hb_lanjutan"
+      },
+      {
+        "name": "campak_lanjutan",
+        "bind": "/model/instance/kunjungan_jurim/campak_lanjutan"
+      },
+      {
+        "name": "keterangan",
+        "bind": "/model/instance/kunjungan_jurim/keterangan"
+      }
+    ]
+  }
+}

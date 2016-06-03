@@ -1,0 +1,239 @@
+<form autocomplete="off" class="or clearfix" id="penutupan_anak" novalidate="novalidate">
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Penutupan Anak</h3>
+    <select data-default-lang="Bahasa" id="form-languages">
+        <option value="Bahasa">Bahasa</option>
+        <option value="en">English</option>
+    </select>
+
+
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/penutupan_anak_reviewed/close_reason:label"
+                    lang="Bahasa">Alasan penutupan
+                </span>
+                <span class="question-label " data-itext-id="/penutupan_anak_reviewed/close_reason:label"
+                    lang="en">Reason for closure?
+                </span>
+                <span class="required">*</span>
+                <span class="or-hint active" data-itext-id="/penutupan_anak_reviewed/close_reason:hint"
+                    lang="Bahasa">Pilihlah salah satu
+                    alasan yang tersedia
+                </span>
+                <span class="or-hint " data-itext-id="/penutupan_anak_reviewed/close_reason:hint"
+                    lang="en">Select one of reasons
+                    available
+                </span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/penutupan_anak_reviewed/close_reason" data-name="/penutupan_anak_reviewed/close_reason"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="child_over5" />
+                    <span class="option-label active" data-itext-id="/penutupan_anak_reviewed/close_reason/child_over5:label"
+                        lang="Bahasa">Umur
+                        anak &gt;5 tahun
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_anak_reviewed/close_reason/child_over5:label"
+                        lang="en">
+                        Child's age &gt; 5 years
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/penutupan_anak_reviewed/close_reason" data-name="/penutupan_anak_reviewed/close_reason"
+                        data-type-xml="select1"
+                        required="required" type="radio" value="permanent_relocation" />
+                    <span class="option-label active" data-itext-id="/penutupan_anak_reviewed/close_reason/permanent_relocation:label"
+                        lang="Bahasa">
+                        Relokasi (permanen)
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_anak_reviewed/close_reason/permanent_relocation:label"
+                        lang="en">
+                        Relocation (permanent)
+                    </span>
+                </label>
+                <label class="">
+                    <input name="/penutupan_anak_reviewed/close_reason" data-name="/penutupan_anak_reviewed/close_reason"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="death_of_child" />
+                    <span class="option-label active" data-itext-id="/penutupan_anak_reviewed/close_reason/death_of_child:label"
+                        lang="Bahasa">
+                        Anak meninggal
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_anak_reviewed/close_reason/death_of_child:label"
+                        lang="en">
+                        Child's death
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+    <label class="question or-appearance-minimal  or-branch pre-init ">
+        <span class="question-label active" data-itext-id="/penutupan_anak_reviewed/child_death_cause:label"
+            lang="Bahasa">Penyebab kematian anak
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_anak_reviewed/child_death_cause:label"
+            lang="en">Cause of child's death
+        </span>
+        <select name="/penutupan_anak_reviewed/child_death_cause"
+            data-name="/penutupan_anak_reviewed/child_death_cause"
+            data-relevant=" /penutupan_anak_reviewed/close_reason  = 'death_of_child'"
+            data-type-xml="select1">
+            <option value="">...</option>
+            <option value="immunization">Imunisasi</option>
+            <option value="sepsis">Sepsis</option>
+            <option value="asphyxia">Asfiksia</option>
+            <option value="lbw">berat lahir kurang (&lt; 2.5 kg)</option>
+            <option value="pneumonia">Pneumonia</option>
+            <option value="diarrhea">Diare</option>
+            <option value="fever_related">berhubungan dengan demam</option>
+            <option value="measles">Campak</option>
+            <option value="malnutrition">Malnutrisi</option>
+            <option value="Infeksi_pernafasan_akut">Infeksi pernafasan akut</option>
+            <option value="malaria">Malaria</option>
+            <option value="cause_not_identified">Penyebab tidak teridentifikasi</option>
+            <option value="others">Lainnya</option>
+        </select>
+        <span style="display:none;" class="or-option-translations">
+            <span data-option-value="immunization" lang="Bahasa">Imunisasi</span>
+            <span data-option-value="immunization" lang="en">Immunization</span>
+            <span data-option-value="sepsis" lang="Bahasa">Sepsis</span>
+            <span data-option-value="sepsis" lang="en">Sepsis</span>
+            <span data-option-value="asphyxia" lang="Bahasa">Asfiksia</span>
+            <span data-option-value="asphyxia" lang="en">Asphyxia</span>
+            <span data-option-value="lbw" lang="Bahasa">berat lahir kurang (&lt; 2.5 kg)</span>
+            <span data-option-value="lbw" lang="en">Low birthweight (&lt; 2.5 kg)</span>
+            <span data-option-value="pneumonia" lang="Bahasa">Pneumonia</span>
+            <span data-option-value="pneumonia" lang="en">Pneumonia</span>
+            <span data-option-value="diarrhea" lang="Bahasa">Diare</span>
+            <span data-option-value="diarrhea" lang="en">Diarrhea</span>
+            <span data-option-value="fever_related" lang="Bahasa">berhubungan dengan demam</span>
+            <span data-option-value="fever_related" lang="en">Related to fever</span>
+            <span data-option-value="measles" lang="Bahasa">Campak</span>
+            <span data-option-value="measles" lang="en">Measles</span>
+            <span data-option-value="malnutrition" lang="Bahasa">Malnutrisi</span>
+            <span data-option-value="malnutrition" lang="en">Malnutrition</span>
+            <span data-option-value="Infeksi_pernafasan_akut" lang="Bahasa">Infeksi pernafasan
+                akut
+            </span>
+            <span data-option-value="Infeksi_pernafasan_akut" lang="en">Acute respiratory
+                infection
+            </span>
+            <span data-option-value="malaria" lang="Bahasa">Malaria</span>
+            <span data-option-value="malaria" lang="en">Malaria</span>
+            <span data-option-value="cause_not_identified" lang="Bahasa">Penyebab tidak
+                teridentifikasi
+            </span>
+            <span data-option-value="cause_not_identified" lang="en">Unidentified cause</span>
+            <span data-option-value="others" lang="Bahasa">Lainnya</span>
+            <span data-option-value="others" lang="en">Other</span>
+        </span>
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="question-label active" data-itext-id="/penutupan_anak_reviewed/child_death_cause_other:label"
+            lang="Bahasa">Lainnya
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_anak_reviewed/child_death_cause_other:label"
+            lang="en">Other
+        </span>
+        <span class="or-hint active" data-itext-id="/penutupan_anak_reviewed/child_death_cause_other:hint"
+            lang="Bahasa">Sebutkan alasan
+            lainnya Jika ada
+        </span>
+        <span class="or-hint " data-itext-id="/penutupan_anak_reviewed/child_death_cause_other:hint"
+            lang="en">Write other
+            reason, if available
+        </span>
+        <input name="/penutupan_anak_reviewed/child_death_cause_other" data-relevant=" /penutupan_anak_reviewed/child_death_cause  = 'others'"
+            data-type-xml="string"
+            type="text" />
+    </label>
+    <label class="question or-branch pre-init non-select ">
+        <span class="or-constraint-msg active" data-itext-id="/penutupan_anak_reviewed/child_death_date:jr:constraintMsg"
+            lang="Bahasa">Tanggal
+            kematian ibu hari ini atau hari-hari sebelumnya
+        </span>
+        <span class="or-constraint-msg " data-itext-id="/penutupan_anak_reviewed/child_death_date:jr:constraintMsg"
+            lang="en">Date of
+            mother's death today or the days before
+        </span>
+        <span class="question-label active" data-itext-id="/penutupan_anak_reviewed/child_death_date:label"
+            lang="Bahasa">Tanggal kematian anak
+        </span>
+        <span class="question-label " data-itext-id="/penutupan_anak_reviewed/child_death_date:label"
+            lang="en">Date of child death
+        </span>
+        <span class="required">*</span>
+        <input name="/penutupan_anak_reviewed/child_death_date" data-constraint=".&lt;= /penutupan_anak_reviewed/today " data-relevant=" /penutupan_anak_reviewed/close_reason  = 'death_of_child'"
+            data-type-xml="date"
+            required="required"
+            type="date" />
+    </label>
+    <fieldset class="question ">
+        <fieldset>
+            <legend>
+                <span class="question-label active" data-itext-id="/penutupan_anak_reviewed/confirm_child_close:label"
+                    lang="Bahasa">Konfirmasi
+                    penutupan anak
+                </span>
+                <span class="question-label " data-itext-id="/penutupan_anak_reviewed/confirm_child_close:label"
+                    lang="en">Confirmation
+                    of child's closure
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input name="/penutupan_anak_reviewed/confirm_child_close" data-name="/penutupan_anak_reviewed/confirm_child_close"
+                        data-type-xml="select1" required="required"
+                        type="radio" value="yes" />
+                    <span class="option-label active" data-itext-id="/penutupan_anak_reviewed/confirm_child_close/yes:label"
+                        lang="Bahasa">Ya
+                    </span>
+                    <span class="option-label " data-itext-id="/penutupan_anak_reviewed/confirm_child_close/yes:label"
+                        lang="en">Yes
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <fieldset style="display:none;" id="or-preload-items">
+        <label class="calculation non-select ">
+            <input name="/penutupan_anak_reviewed/start" data-preload="timestamp" data-preload-params="start"
+                data-type-xml="dateTime" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_anak_reviewed/today" data-preload="date" data-preload-params="today"
+                data-type-xml="date" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_anak_reviewed/deviceid" data-preload="property" data-preload-params="deviceid"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_anak_reviewed/simserial" data-preload="property" data-preload-params="simserial"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_anak_reviewed/phonenumber" data-preload="property" data-preload-params="phonenumber"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_anak_reviewed/end" data-preload="timestamp" data-preload-params="end"
+                data-type-xml="dateTime" type="hidden" />
+        </label>
+    </fieldset>
+    <fieldset style="display:none;" id="or-calculated-items">
+        <label class="calculation non-select ">
+            <input name="/penutupan_anak_reviewed/meta/instanceID" data-calculate="concat('uuid:', uuid())"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
+            <input name="/penutupan_anak_reviewed/formhub/uuid" data-calculate="'f64225136b5b4cfeac3df06754622488'"
+                data-type-xml="string" type="hidden" />
+        </label>
+    </fieldset>
+</form>
