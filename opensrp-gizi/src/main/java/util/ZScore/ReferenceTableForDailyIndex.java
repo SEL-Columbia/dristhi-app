@@ -1,5 +1,9 @@
 package util.ZScore;
 
+import android.content.Context;
+
+import org.ei.opensrp.gizi.R;
+
 /**
  * Created by Iq on 24/05/16.
  */
@@ -13612,10 +13616,20 @@ public class ReferenceTableForDailyIndex {
         return data[index];
     }
 
-    public String[]WeightAgeStandardIndex = {"Severely Underweight","Underweight","Good Nutrition","Overweight"};
 
-    public String[]HeightAgeStandardIndex = {"Severely Stunted","Stunted","Normal","Tall"};
+//    public String[]WeightAgeStandardIndex = {context.getResources().getString(R.string.Underweight),context.getResources().getString(R.string.Underweight),context.getResources().getString(R.string.good_nutrition),context.getResources().getString(R.string.overweight)};
+    public String[]WeightAgeStandardIndex = {"Gizi Buruk","Gizi Kurang","Normal","Gemuk"};
+
+   // public String[]HeightAgeStandardIndex = {context.getResources().getString(R.string.s_stunted),
+    //                                        context.getResources().getString(R.string.stunted),
+     //                                       context.getResources().getString(R.string.normal),
+     //                                       context.getResources().getString(R.string.tall)};
+    public String[]HeightAgeStandardIndex = {"Sangat Pendek","Pendek","Normal","Tinggi"};
 
     // BMI, weight length and weight height has the same standard
-    public String[]WeightHeightStandardIndex = {"severely Wasted","Sasted","Normal","Overweight"};
+   // public String[]WeightHeightStandardIndex = {context.getResources().getString(R.string.S_wasted),
+   //                                             context.getResources().getString(R.string.wasted),
+   //                                             context.getResources().getString(R.string.normal),
+    //                                            context.getResources().getString(R.string.overweight)};
+    public String[]WeightHeightStandardIndex = {"Sangat Kurus","Kurus","Normal","Gemuk"};
 }

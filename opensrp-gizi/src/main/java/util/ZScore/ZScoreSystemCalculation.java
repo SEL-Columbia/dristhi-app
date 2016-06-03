@@ -9,7 +9,7 @@ public class ZScoreSystemCalculation {
     private String zScoreClassification(String[]classificationTable, double zScore){
         return  zScore < -3 ?   classificationTable[0] :
                 zScore < -2 ?   classificationTable[1] :
-                        zScore <  3 ?    classificationTable[2] :
+                        zScore <  2 ?    classificationTable[2] :
                                 classificationTable[3];
     }
 

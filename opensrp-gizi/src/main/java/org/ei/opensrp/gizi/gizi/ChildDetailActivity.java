@@ -42,7 +42,7 @@ public class ChildDetailActivity extends Activity {
     //image retrieving
     private static final String TAG = "ImageGridFragment";
     private static final String IMAGE_CACHE_DIR = "thumbs";
-
+  //  private static KmsCalc  kmsCalc;
     private static int mImageThumbSize;
     private static int mImageThumbSpacing;
     private static String showbgm;
@@ -85,6 +85,8 @@ public class ChildDetailActivity extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
+                startActivity(new Intent(ChildDetailActivity.this, GiziSmartRegisterActivity.class));
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -95,47 +97,43 @@ public class ChildDetailActivity extends Activity {
         village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));
         birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "-"));
         gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
-        weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan") : "-"));
-        height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan") : "-"));
+        weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan")+"Kg" : "- Kg"));
+        height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan")+"Cm" : "- Cm"));
        // nutrition_status.setText(getString(R.string.nutrition_status) +" "+ (childclient.getDetails().get("status_gizi") != null ? childclient.getDetails().get("status_gizi") : "-"));
 
 
         //set value
         String berats = childclient.getDetails().get("history_berat")!= null ? childclient.getDetails().get("history_berat") :"0";
         String[] history_berat = berats.split(",");
-        double berat_sebelum = Double.parseDouble(history_berat[(history_berat.length)-1]);
+        double berat_sebelum = Double.parseDouble((history_berat.length) >=3 ? (history_berat[(history_berat.length)-3]) : "0");
         String umurs = childclient.getDetails().get("history_umur")!= null ? childclient.getDetails().get("history_umur") :"0";
         String[] history_umur = umurs.split(",");
         boolean jenisKelamin = childclient.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")? true:false;
         String tanggal_lahir = childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "0";
         double berat= Double.parseDouble(childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan") : "0");
-        double beraSebelum = Double.parseDouble(childclient.getDetails().get("beratSebelumnya") != null ? childclient.getDetails().get("beratSebelumnya") : "0");
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        double beraSebelum = Double.parseDouble((history_berat.length) >=2 ? (history_berat[(history_berat.length)-2]) : "0");
         String tanggal = (childclient.getDetails().get("tanggalPenimbangan") != null ? childclient.getDetails().get("tanggalPenimbangan") : "0");
+
         String tanggal_sebelumnya = (childclient.getDetails().get("kunjunganSebelumnya") != null ? childclient.getDetails().get("kunjunganSebelumnya") : "0");
 
-
-        //KMS calculation
-        KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir,
-                berat,         beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
-
-        KmsCalc calculator = new KmsCalc();
-
-
-
+        if(childclient.getDetails().get("tanggalPenimbangan") != null) {
+            //KMS calculation
+            KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir, berat, beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
+            KmsCalc calculator = new KmsCalc();
+            dua_t.setText(getString(R.string.dua_t) + "-");
             bgm.setText(getString(R.string.bgm) + calculator.cekBGM(data));
-            if( childclient.getDetails().get("kunjunganSebelumnya").equalsIgnoreCase("0")) {
-                dua_t.setText(getString(R.string.dua_t) + calculator.cek2T(data));
-            }
-             else {
-                dua_t.setText(getString(R.string.dua_t) + "-");
-            }
             under_yellow_line.setText(getString(R.string.under_yellow_line) + calculator.cekBawahKuning(data));
             breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("asi") != null ? childclient.getDetails().get("asi") : "-"));
             nutrition_status.setText(getString(R.string.nutrition_status) + calculator.cekWeightStatus(data));
+        }
+        else {
+            dua_t.setText(getString(R.string.dua_t) + "-");
+            bgm.setText(getString(R.string.bgm) + "-");
+            under_yellow_line.setText(getString(R.string.under_yellow_line) + "-");
+            breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("asi") != null ? childclient.getDetails().get("asi") : "-"));
+            nutrition_status.setText(getString(R.string.nutrition_status) + "-");
+        }
 
-
-        //Graph
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
         //set data for graph

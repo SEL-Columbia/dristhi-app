@@ -23,7 +23,7 @@
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Child Identity"
+            android:text="Detail Anak"
             android:id="@+id/header_name"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:layout_gravity="center_vertical"

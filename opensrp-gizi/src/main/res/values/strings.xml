@@ -385,6 +385,16 @@
     <string name="asi">Exclusive Breastfeeding :</string>
     <string name="parent_name">Parent Name</string>
     <string name="gizi">Gizi</string>
+    <string name="S_underweight">Severely Underweight</string>
+    <string name="Underweight">Underweight</string>
+    <string name="good_nutrition">Good Nutrition</string>
+    <string name="overweight">Overweight</string>
+    <string name="s_stunted">Severely Stunted</string>
+    <string name="stunted">Stunted</string>
+    <string name="normal">Normal</string>
+    <string name="tall">Tall</string>
+    <string name="S_wasted">severely Wasted</string>
+    <string name="wasted">Wasted</string>
 
 
 </resources>
