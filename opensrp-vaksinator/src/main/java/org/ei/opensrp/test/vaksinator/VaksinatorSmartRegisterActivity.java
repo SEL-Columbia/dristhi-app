@@ -101,14 +101,16 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
 
     public DialogOption[] getEditOptions() {
             return new DialogOption[]{
-                new OpenFormOption("registrasi juru imunisasi", "jurim_registration", formController)
+                new OpenFormOption("Kunjungan juru imunisasi", "jurim_visit", formController)
 
             };
 
 
     }
 
-    private String getalertstateforcensus(CommonPersonObjectClient pc) {
+
+    //alert not needed for now
+  /*  private String getalertstateforcensus(CommonPersonObjectClient pc) {
         try {
             List<Alert> alertlist_for_client = Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "FW CENSUS");
             String alertstate = "";
@@ -127,7 +129,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             return "";
         }
     }
-
+    */
     @Override
     public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         Log.v("fieldoverride", fieldOverrides.toString());
@@ -226,8 +228,8 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
 
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
-       formNames.add("jurim_registration");
-     //   formNames.add("census_enrollment_form");
+       formNames.add("registrasi_jurim");
+       formNames.add("jurim_visit");
 //        DialogOption[] options = getEditOptions();
 //        for (int i = 0; i < options.length; i++){
 //            formNames.add(((OpenFormOption) options[i]).getFormName());

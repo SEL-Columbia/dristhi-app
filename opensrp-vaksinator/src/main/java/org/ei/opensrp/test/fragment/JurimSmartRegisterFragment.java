@@ -164,7 +164,7 @@ public class JurimSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
         if (controller == null) {
             controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
                     context.allBeneficiaries(), context.listCache(),
-                    context.personObjectClientsCache(), "bcg"      , "anak"     , "pol_1",
+                    context.personObjectClientsCache(), "nama_bayi"      , "anak"     , "tanggal_lahir",
                     //                                  find this   , on this   , order by this
                     CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails);
 
@@ -197,7 +197,7 @@ public class JurimSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
         }
         ft.addToBackStack(null);
         TestLocationSelectorDialogFragment
-                .newInstance((VaksinatorSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "jurim_registration")
+                .newInstance((VaksinatorSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "registrasi_jurim")
                 .show(ft, locationDialogTAG);
     }
 
