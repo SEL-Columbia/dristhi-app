@@ -136,8 +136,6 @@ public class NativeHomeActivity extends SecuredActivity {
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"nama_bayi","anak","nik", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
-
-
        ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
 
     }

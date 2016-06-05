@@ -95,11 +95,11 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         //set default image for mother
         viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.woman_placeholder));
 
-        viewHolder.name.setText(pc.getDetails().get("name") != null ? pc.getDetails().get("name") : "-");
-        viewHolder.motherName.setText(pc.getDetails().get("motherName")!=null?pc.getDetails().get("motherName"):"-");
-        viewHolder.village.setText(pc.getDetails().get("village")!=null?pc.getDetails().get("village"):"-");
-        viewHolder.age.setText(pc.getDetails().get("age")!=null?pc.getDetails().get("age"):"-");
-        viewHolder.gender.setText(pc.getDetails().get("gender")!=null?pc.getDetails().get("gender"):"-");
+        viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : "-");
+        viewHolder.motherName.setText(pc.getDetails().get("nama_orang_tua")!=null?pc.getDetails().get("nama_orang_tua"):"-");
+        viewHolder.village.setText(pc.getDetails().get("lokasi")!=null?pc.getDetails().get("lokasi"):"-");
+        viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):"-");
+        viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin")!=null?pc.getDetails().get("jenis_kelamin"):"-");
 
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
