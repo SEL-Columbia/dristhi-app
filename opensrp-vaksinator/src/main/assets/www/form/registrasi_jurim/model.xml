@@ -1,0 +1,30 @@
+<model>
+    <instance>
+        <registrasi_jurim encounter_type="Registrasi Jurim" id="registrasi_jurim_1" version="201606050402">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+          <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+          <deviceid/>
+          <simserial/>
+          <phonenumber/>
+          <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
+          <lokasi openmrs_entity="concept" openmrs_entity_id="161010AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <nama_lokasi openmrs_entity="concept" openmrs_entity_id="1763AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <hari/>
+          <tanggal/>
+          <nama_bayi openmrs_entity="person" openmrs_entity_id="first_name"/>
+          <nama_orang_tua openmrs_entity="person" openmrs_entity_id="last_name"/>
+          <nik openmrs_entity="person_identifier"/>
+          <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
+          <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
+          <tanggal_ditimbang_saat_lahir openmrs_entity="person_attribute"/>
+          <berat_badan_saat_lahir openmrs_entity="concept" openmrs_entity_id="5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+          <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </registrasi_jurim>
+      </instance>
+  </model>

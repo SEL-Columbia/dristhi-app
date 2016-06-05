@@ -93,7 +93,7 @@ public class NativeHomeActivity extends SecuredActivity {
         findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
         findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
 
-        ecRegisterClientCountView = (TextView) findViewById(R.id.txt_child_register_client_count);
+        ecRegisterClientCountView = (TextView) findViewById(R.id.txt_vaksinator_register_client_count);
 
     }
 
@@ -132,9 +132,9 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void updateRegisterCounts(HomeContext homeContext) {
-        CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("ibu"),
+        CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
                 context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"name","ibu","id", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+                context.personObjectClientsCache(),"nama_bayi","anak","nik", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
 
 
@@ -225,7 +225,7 @@ public class NativeHomeActivity extends SecuredActivity {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.btn_test_register:
+                case R.id.btn_vaksinator_register:
                     navigationController.startECSmartRegistry();
                     break;
 

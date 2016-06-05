@@ -1,0 +1,58 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "bind_type": "anak",
+    "default_bind_path": "/model/instance/registrasi_jurim/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_location",
+        "bind": "/model/instance/registrasi_jurim/existing_location"
+      },{
+        "name": "lokasi",
+        "bind": "/model/instance/registrasi_jurim/lokasi"
+      },{
+        "name": "nama_lokasi",
+        "bind": "/model/instance/registrasi_jurim/nama_lokasi"
+      },{
+        "name": "hari",
+        "bind": "/model/instance/registrasi_jurim/hari"
+      },{
+        "name": "tanggal",
+        "bind": "/model/instance/registrasi_jurim/tanggal"
+      },
+      {
+        "name": "nama_bayi",
+        "bind": "/model/instance/registrasi_jurim/nama_bayi"
+      },
+      {
+        "name": "nama_orang_tua",
+        "bind": "/model/instance/registrasi_jurim/nama_orang_tua"
+      },
+      {
+        "name": "nik",
+        "bind": "/model/instance/registrasi_jurim/nik"
+      },
+      {
+        "name": "jenis_kelamin",
+        "bind": "/model/instance/registrasi_jurim/jenis_kelamin"
+      },
+      {
+        "name": "tanggal_lahir",
+        "bind": "/model/instance/registrasi_jurim/tanggal_lahir"
+      },
+      {
+        "name": "tanggal_ditimbang_saat_lahir",
+        "bind": "/model/instance/registrasi_jurim/tanggal_ditimbang_saat_lahir"
+      },
+      {
+        "name": "berat_badan_saat_lahir",
+        "bind": "/model/instance/registrasi_jurim/berat_badan_saat_lahir"
+      }
+   
+    ]
+  }
+}
