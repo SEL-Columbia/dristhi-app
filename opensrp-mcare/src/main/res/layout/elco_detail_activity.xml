@@ -109,7 +109,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
+                    style="@style/CustomFontTextViewStyle"
                     android:textColor="@color/text_black"
 
                     android:id="@+id/mw_reg_date"
@@ -144,7 +144,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
+                    style="@style/CustomFontTextViewStyle"
                     android:textColor="@color/text_black"
 
                     android:text="Medium Text"

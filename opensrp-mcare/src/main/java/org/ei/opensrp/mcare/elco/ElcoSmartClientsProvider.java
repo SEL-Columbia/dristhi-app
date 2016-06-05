@@ -104,23 +104,20 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
         name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
         spousename.setText(humanize(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):""));
-        gobhhid.setText(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):"");
+        gobhhid.setText(" "+(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):""));
         jivitahhid.setText(pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):"");
         village.setText((humanize((pc.getDetails().get("FWWOMMAUZA_PARA") != null ? pc.getDetails().get("FWWOMMAUZA_PARA") : "").replace("+", "_"))));
-
-
-
-        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+")");
+        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+") ");
 
         if((pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"").length()>0) {
-            String NIDSourcestring = "NID: " + "<b>" + (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "") + "</b> ";
+            String NIDSourcestring = "NID: " +  (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "") ;
             nid.setText(Html.fromHtml(NIDSourcestring));
             nid.setVisibility(View.VISIBLE);
         }else{
             nid.setVisibility(View.GONE);
         }
         if((pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):"").length()>0) {
-            String BRIDSourcestring = "BRID: " + "<b>" + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "") + "</b> ";
+            String BRIDSourcestring = "BRID: " + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "") ;
             brid.setText(Html.fromHtml(BRIDSourcestring));
             brid.setVisibility(View.VISIBLE);
         }else{

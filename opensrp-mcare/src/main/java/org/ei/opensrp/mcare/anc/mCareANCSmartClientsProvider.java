@@ -115,12 +115,12 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 
 
         if(pc.getDetails().get("FWWOMNID").length()>0) {
-            String NIDSourcestring = "NID: " + "<b>" + (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "") + "</b> ";
+            String NIDSourcestring = "NID: " +  (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "") + " ";
             nid.setText(Html.fromHtml(NIDSourcestring));
             nid.setVisibility(View.VISIBLE);
         }
         if(pc.getDetails().get("FWWOMBID").length()>0) {
-            String BRIDSourcestring = "BRID: " + "<b>" + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "") + "</b> ";
+            String BRIDSourcestring = "BRID: " +  (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "") + " ";
             brid.setText(Html.fromHtml(BRIDSourcestring));
             brid.setVisibility(View.VISIBLE);
         }
@@ -130,7 +130,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 
 
         if(pc.getDetails().get("FWGESTATIONALAGE")!=null){
-            String GASourcestring = "GA: " + "<b>" + pc.getDetails().get("FWGESTATIONALAGE")+ " weeks" + "</b> ";
+            String GASourcestring = "GA: " + pc.getDetails().get("FWGESTATIONALAGE")+ " weeks" + " ";
 
             ga.setText(Html.fromHtml(GASourcestring));
         }
@@ -142,7 +142,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                 calendar.setTime(edd_date);
                 calendar.add(Calendar.DATE, 259);
                 edd_date.setTime(calendar.getTime().getTime());
-            String EDDSourcestring = "EDD: " + "<b>" + format.format(edd_date)+ "</b> ";
+            String EDDSourcestring = "EDD: " +  format.format(edd_date)+ " ";
 
             edd.setText(Html.fromHtml(EDDSourcestring));
         } catch (ParseException e) {

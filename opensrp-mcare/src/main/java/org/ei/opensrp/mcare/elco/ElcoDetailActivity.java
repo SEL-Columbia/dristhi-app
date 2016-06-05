@@ -100,21 +100,21 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
 
 
         if((Elcoclient.getDetails().get("FWWOMBID") != null ? Elcoclient.getDetails().get("FWWOMBID") : "").length()>0) {
-            brid.setText(Html.fromHtml(getString(R.string.BRID) + "<b> " + humanize((Elcoclient.getDetails().get("FWWOMBID") != null ? Elcoclient.getDetails().get("FWWOMBID") : "").replace("+", "_")) + "</b>"));
+            brid.setText(Html.fromHtml(getString(R.string.BRID) + " " + humanize((Elcoclient.getDetails().get("FWWOMBID") != null ? Elcoclient.getDetails().get("FWWOMBID") : "").replace("+", "_")) ));
             brid.setVisibility(View.VISIBLE);
         }else{
             brid.setVisibility(View.GONE);
         }
         if((Elcoclient.getDetails().get("FWWOMNID") != null ? Elcoclient.getDetails().get("FWWOMNID") : "").length()>0) {
-            nid.setText(Html.fromHtml(getString(R.string.NID) + "<b> " + humanize((Elcoclient.getDetails().get("FWWOMNID") != null ? Elcoclient.getDetails().get("FWWOMNID") : "").replace("+", "_")) + "</b>"));
+            nid.setText(Html.fromHtml(getString(R.string.NID) + " " + humanize((Elcoclient.getDetails().get("FWWOMNID") != null ? Elcoclient.getDetails().get("FWWOMNID") : "").replace("+", "_")) ));
             nid.setVisibility(View.VISIBLE);
         }else{
             nid.setVisibility(View.GONE);
         }
-        husbandname.setText(Html.fromHtml(getString(R.string.elco_details_husband_name_label) + "<b> " + humanize((Elcoclient.getDetails().get("FWHUSNAME") != null ? Elcoclient.getDetails().get("FWHUSNAME") : ""))+ "</b>"));
-        age.setText(Html.fromHtml(getString(R.string.elco_age_label)+ "<b> " + (Elcoclient.getDetails().get("FWWOMAGE") != null ? Elcoclient.getDetails().get("FWWOMAGE") : "")+ "</b>"));
-        jivitahhid.setText(Html.fromHtml(getString(R.string.hhiid_jivita_elco_label)+ "<b> "+(Elcoclient.getColumnmaps().get("JiVitAHHID") != null ? Elcoclient.getColumnmaps().get("JiVitAHHID") : "")+ "</b>"));
-        godhhid.setText(Html.fromHtml(getString(R.string.hhid_gob_elco_label)+ "<b> "+(Elcoclient.getColumnmaps().get("GOBHHID") != null ? Elcoclient.getColumnmaps().get("GOBHHID") : "")+ "</b>"));
+        husbandname.setText(Html.fromHtml(getString(R.string.elco_details_husband_name_label) + " " + humanize((Elcoclient.getDetails().get("FWHUSNAME") != null ? Elcoclient.getDetails().get("FWHUSNAME") : ""))));
+        age.setText(Html.fromHtml(getString(R.string.elco_age_label)+ " " + (Elcoclient.getDetails().get("FWWOMAGE") != null ? Elcoclient.getDetails().get("FWWOMAGE") : "")));
+        jivitahhid.setText(Html.fromHtml(getString(R.string.hhiid_jivita_elco_label)+ " "+(Elcoclient.getColumnmaps().get("JiVitAHHID") != null ? Elcoclient.getColumnmaps().get("JiVitAHHID") : "")));
+        godhhid.setText(Html.fromHtml(getString(R.string.hhid_gob_elco_label)+ " "+(Elcoclient.getColumnmaps().get("GOBHHID") != null ? Elcoclient.getColumnmaps().get("GOBHHID") : "")));
         psf_due_date.setText(Elcoclient.getDetails().get("FWPSRDATE") != null ? Elcoclient.getDetails().get("FWPSRDATE") : "N/A");
 
 
@@ -146,7 +146,7 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
         if(householdparent.getDetails().get("existing_Mauzapara") != null) {
             location = householdparent.getDetails().get("existing_Mauzapara");
         }
-        village.setText(Html.fromHtml(getString(R.string.elco_details_mauza)+ "<b> "+humanize(location.replace("+","_"))+ "</b>"));
+        village.setText(Html.fromHtml(getString(R.string.elco_details_mauza)+ " "+humanize(location.replace("+","_"))));
 
 
         mw_reg_date.setText((Elcoclient.getDetails().get("WomanREGDATE") != null ? Elcoclient.getDetails().get("WomanREGDATE") : ""));

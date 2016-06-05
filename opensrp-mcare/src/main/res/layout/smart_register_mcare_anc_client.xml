@@ -82,7 +82,8 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="center_vertical">
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -268,15 +269,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:id="@+id/anc3tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+                android:src="@mipmap/doneintime"
+                />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -295,15 +293,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:id="@+id/anc4tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+                android:src="@mipmap/cross"
+                android:scaleType="fitXY" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
