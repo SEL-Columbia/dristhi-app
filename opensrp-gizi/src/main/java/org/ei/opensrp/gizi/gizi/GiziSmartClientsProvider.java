@@ -112,7 +112,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.parentname.setText(pc.getDetails().get("namaOrtu")!=null?pc.getDetails().get("namaOrtu"):"");
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):"");
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin")!=null?pc.getDetails().get("jenisKelamin"):"");
-        viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("stunting")!=null?pc.getDetails().get("stunting"):"-"));
+        viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
         viewHolder.height.setText(context.getString(R.string.height) +  " "+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-")+" Cm");
         viewHolder.weight.setText(context.getString(R.string.weight) +  " "+(pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"-")+" Kg");
 

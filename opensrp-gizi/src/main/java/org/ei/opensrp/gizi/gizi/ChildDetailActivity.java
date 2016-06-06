@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,6 +21,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.PointsGraphSeries;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
@@ -147,12 +151,19 @@ public class ChildDetailActivity extends Activity {
         for(int i=0;i<history_berat.length;i++){
             dataPoint[i]= new DataPoint(Double.parseDouble(history_umur[i]),Double.parseDouble(history_berat[i]));
         }
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(dataPoint);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dataPoint);
         //add series data into chart
         graph.addSeries(series);
-        series.setSpacing(50);
-        series.setDrawValuesOnTop(true);
-       // series.setValuesOnTopColor("RED");
+
+        //series.setTitle("Random Curve 1");
+        series.setColor(Color.BLUE);
+        series.setDrawDataPoints(true);
+        series.setDataPointsRadius(6);
+        series.setThickness(10);
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(5);
+        series.setCustomPaint(paint);
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
