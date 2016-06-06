@@ -17,8 +17,8 @@ public class KmsCalc {
 
     public String cek2T(KmsPerson bayi){
         boolean status = true;
-        System.out.println("check 2T");
-        String measureDate[] = {new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date()),bayi.getLastVisitDate()};
+       // System.out.println("check 2T");
+        String measureDate[] = {bayi.getLastVisitDate(),bayi.getSecondLastVisitDate()};
         double weight[] = {bayi.getWeight(),bayi.getPreviousWeight()};
         status = status && (!cekWeightStatus(bayi.isMale(), bayi.getDateOfBirth(), measureDate, weight).equalsIgnoreCase("naik"));
         String measureDate2[] = {bayi.getLastVisitDate(),bayi.getSecondLastVisitDate()};
@@ -32,7 +32,7 @@ public class KmsCalc {
 
     public String cekWeightStatus(KmsPerson bayi){
         System.out.println("check weight status");
-        String measureDate[] = {new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date()),bayi.getLastVisitDate()};
+        String measureDate[] = {bayi.getLastVisitDate(),bayi.getSecondLastVisitDate()};
         double weight[] = {bayi.getWeight(),bayi.getPreviousWeight()};
         bayi.StatusBeratBadan = cekWeightStatus(bayi.isMale(),bayi.getDateOfBirth(),measureDate,weight);
 
@@ -40,19 +40,19 @@ public class KmsCalc {
     }
 
     public String cekWeightStatus(boolean isMale, String dateOfBirth, String measureDate[], double weight[]){
-        if(dateOfBirth.equals("0") || measureDate.equals("0"))
-            return "Tidak Naik";
+        if( measureDate.equals("0"))
+            return "Baru";
         else {
             int age = monthAges(dateOfBirth, measureDate[0]);
             String result = "";
 
-
+            int ages = monthAges(measureDate[1], measureDate[0]);
             if (isMale)
-                result = monthAges(measureDate[1], measureDate[0]) > 1 ? "timbang pertama" : ((weight[0] - weight[1] + 0.000000000000004) * 1000)
+                result = ages > 1  ? "Tidak Datang Bulan Lalu" : ((weight[0] - weight[1] + 0.000000000000004) * 1000)
                         >= KmsConstants.maleWeightUpIndicator[age > 12 ? 12 : age]
                         ? "Naik" : "Tidak naik";
             else
-                result = monthAges(measureDate[1], measureDate[0]) > 1 ? "timbang pertama" : ((weight[0] - weight[1] + 0.000000000000004) * 1000)
+                result = ages > 1 ? "Tidak Datang Bulan Lalu" : ((weight[0] - weight[1] + 0.000000000000004) * 1000)
                         >= KmsConstants.femaleWeightUpIndicator[age > 11 ? 11 : age]
                         ? "Naik" : "Tidak naik";
 

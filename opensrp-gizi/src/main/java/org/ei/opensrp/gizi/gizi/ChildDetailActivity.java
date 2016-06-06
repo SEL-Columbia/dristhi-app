@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -120,18 +121,23 @@ public class ChildDetailActivity extends Activity {
             //KMS calculation
             KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir, berat, beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
             KmsCalc calculator = new KmsCalc();
-            dua_t.setText(getString(R.string.dua_t) + "-");
             bgm.setText(getString(R.string.bgm) + calculator.cekBGM(data));
+
+            String duat = history_berat.length <= 2 ? "-" : calculator.cek2T(data);
+            dua_t.setText(getString(R.string.dua_t) + duat);
+
             under_yellow_line.setText(getString(R.string.under_yellow_line) + calculator.cekBawahKuning(data));
             breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("asi") != null ? childclient.getDetails().get("asi") : "-"));
-            nutrition_status.setText(getString(R.string.nutrition_status) + calculator.cekWeightStatus(data));
+
+            String status = history_berat.length <= 2 ? "Baru" : calculator.cekWeightStatus(data);
+            nutrition_status.setText(getString(R.string.nutrition_status) + status);
         }
         else {
             dua_t.setText(getString(R.string.dua_t) + "-");
             bgm.setText(getString(R.string.bgm) + "-");
             under_yellow_line.setText(getString(R.string.under_yellow_line) + "-");
             breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("asi") != null ? childclient.getDetails().get("asi") : "-"));
-            nutrition_status.setText(getString(R.string.nutrition_status) + "-");
+            nutrition_status.setText(getString(R.string.nutrition_status) + "baru");
         }
 
 
@@ -141,9 +147,12 @@ public class ChildDetailActivity extends Activity {
         for(int i=0;i<history_berat.length;i++){
             dataPoint[i]= new DataPoint(Double.parseDouble(history_umur[i]),Double.parseDouble(history_berat[i]));
         }
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dataPoint);
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(dataPoint);
         //add series data into chart
         graph.addSeries(series);
+        series.setSpacing(50);
+        series.setDrawValuesOnTop(true);
+       // series.setValuesOnTopColor("RED");
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
