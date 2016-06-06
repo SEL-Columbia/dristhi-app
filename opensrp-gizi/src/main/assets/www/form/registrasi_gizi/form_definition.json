@@ -9,11 +9,36 @@
         "shouldLoadValue": true
       },
       {
+        "name": "desa",
+        "bind": "/model/instance/registrasi_gizi/existing_Village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "provinsi",
+        "bind": "/model/instance/registrasi_gizi/existing_Province",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/registrasi_gizi/existing_Sub-district",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/registrasi_gizi/existing_District",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "dusun",
+        "bind": "/model/instance/registrasi_gizi/existing_Sub-village",
+        "shouldLoadValue": true
+      },
+      {
         "name": "posyandu",
         "bind": "/model/instance/registrasi_gizi/posyandu"
       },
       {
-        "name": "desa",
+        "name": "desa_manual",
         "bind": "/model/instance/registrasi_gizi/desa"
       },
       {
@@ -35,7 +60,7 @@
         "bind": "/model/instance/registrasi_gizi/jenis_kelamin"
       },
       {
-        "name": "today",
+        "name": "reg_date",
         "bind": "/model/instance/registrasi_gizi/today"
       }
 

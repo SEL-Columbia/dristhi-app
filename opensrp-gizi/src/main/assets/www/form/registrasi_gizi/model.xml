@@ -4,6 +4,11 @@
           <formhub>
             <uuid/>
           </formhub>
+          <existing_Village />
+          <existing_Sub-village />
+          <existing_Province />
+          <existing_District />
+          <existing_Sub-district />
           <posyandu/>
           <desa/>
           <nama_anak/>

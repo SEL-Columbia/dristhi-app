@@ -169,8 +169,6 @@ public class ChildDetailActivity extends Activity {
 
 
 
-
-
     }
 
 
