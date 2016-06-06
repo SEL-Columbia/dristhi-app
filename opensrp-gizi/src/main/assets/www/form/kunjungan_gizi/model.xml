@@ -15,6 +15,13 @@
       <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
       <umur openmrs_entity="concept" openmrs_entity_id="1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <generated_note_name_13/>
+      <generated_note_name_14/>
+      <generated_note_name_15/>
+      <generated_note_name_16/>
+      <generated_note_name_17/>
+      <underweight/>
+      <stunting/>
+      <wasting/>
       <preload_umur>0</preload_umur>
       <history_umur/>
       <berat_preload>0</berat_preload>

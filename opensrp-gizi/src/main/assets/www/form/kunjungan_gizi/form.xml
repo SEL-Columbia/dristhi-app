@@ -6,6 +6,35 @@
         <option value="Bahasa">Bahasa</option>
         <option value="en">English</option>
     </select>
+
+    <label class="note non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/generated_note_name_17:label">Nilai Z-Score Sebelumnya
+        </span>
+        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/generated_note_name_17:label">Nilai Z-Score Sebelumnya</span>
+        <input type="text" name="/kunjungan_gizi/generated_note_name_17" data-type-xml="string" readonly="readonly"/>
+    </label>
+    <label class="note non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/generated_note_name_14:label">Berat/Umur :
+            <span class="or-output" data-value=" /kunjungan_gizi/underweight "></span>
+        </span>
+        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/generated_note_name_14:label">Berat/Umur :</span>
+        <input type="text" name="/kunjungan_gizi/generated_note_name_14" data-type-xml="string" readonly="readonly"/>
+    </label>
+    <label class="note non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/generated_note_name_15:label">Tinggi/Umur :
+            <span class="or-output" data-value=" /kunjungan_gizi/stunting "></span>
+        </span>
+        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/c:label">Tinggi/Umur :</span>
+        <input type="text" name="/kunjungan_gizi/generated_note_name_15" data-type-xml="string" readonly="readonly"/>
+    </label>
+    <label class="note non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/generated_note_name_16:label">Berat/Tinggi :
+            <span class="or-output" data-value=" /kunjungan_gizi/wasting "></span>
+        </span>
+        <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/generated_note_name_16:label">Berat/Tinggi :</span>
+        <input type="text" name="/kunjungan_gizi/generated_note_name_16" data-type-xml="string" readonly="readonly"/>
+    </label>
+
     <label class="question non-select ">
         <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/tanggal_penimbangan:label">Tanggal penimbangan</span>
         <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/tanggal_penimbangan:label">Date of Weighing</span>

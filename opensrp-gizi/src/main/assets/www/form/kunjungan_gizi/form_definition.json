@@ -13,6 +13,22 @@
         "bind": "/model/instance/kunjungan_gizi/start"
       },
       {
+        "name": "underweight",
+        "bind": "/model/instance/kunjungan_gizi/underweight",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "stunting",
+        "bind": "/model/instance/kunjungan_gizi/stunting",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "wasting",
+        "bind": "/model/instance/kunjungan_gizi/wasting",
+        "shouldLoadValue": true
+      },
+
+      {
         "name": "tanggalPenimbangan",
         "bind": "/model/instance/kunjungan_gizi/tanggal_preload",
         "shouldLoadValue": true

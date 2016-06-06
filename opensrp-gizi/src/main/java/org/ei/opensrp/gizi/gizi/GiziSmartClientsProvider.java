@@ -27,6 +27,9 @@ import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import util.ZScore.ZScoreSystemCalculation;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -40,7 +43,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
-
+    static String bindobject = "anak";
     private final int txtColorBlack;
     private final AbsListView.LayoutParams clientViewLayoutParams;
     private Drawable iconPencilDrawable;
@@ -109,7 +112,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.parentname.setText(pc.getDetails().get("namaOrtu")!=null?pc.getDetails().get("namaOrtu"):"");
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):"");
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin")!=null?pc.getDetails().get("jenisKelamin"):"");
-        viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
+        viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("stunting")!=null?pc.getDetails().get("stunting"):"-"));
         viewHolder.height.setText(context.getString(R.string.height) +  " "+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-")+" Cm");
         viewHolder.weight.setText(context.getString(R.string.weight) +  " "+(pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"-")+" Kg");
 
@@ -139,10 +142,20 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             }
             wflStatus = zScore.getWFLZScoreClassification(wight_for_lenght);
 
-            //set to view
+            // NOTE - Need a better way to handle z-score data to sqllite
             viewHolder.underweight.setText(context.getString(R.string.underweight) + " "+wfaStatus);
+            HashMap <String,String> wfa = new HashMap<String,String>();
+            wfa.put("underweight",wfaStatus);
+            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),wfa);
             viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+hfaStatus);
+            HashMap <String,String> hfa = new HashMap<String,String>();
+            hfa.put("stunting",hfaStatus);
+            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),hfa);
+
             viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " "+wflStatus);
+            HashMap <String,String> wfl = new HashMap<String,String>();
+            wfl.put("wasting",wflStatus);
+            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),wfl);
 
         }
         else{
@@ -158,7 +171,6 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         return convertView;
     }
     CommonPersonObjectController householdelcocontroller;
-
 
 
 
