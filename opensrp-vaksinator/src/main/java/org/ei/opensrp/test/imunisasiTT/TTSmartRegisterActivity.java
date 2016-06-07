@@ -100,10 +100,11 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
     }
 
     public DialogOption[] getEditOptions() {
-            return new DialogOption[]{
-                new OpenFormOption("registrasi juru imunisasi", "jurim_registration", formController)
+        return null;
+        //return new DialogOption[]{
+        //        new OpenFormOption("registrasi TT", "jurim_registration", formController)
 
-            };
+        //    };
 
 
     }

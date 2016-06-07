@@ -32,25 +32,25 @@ public class VaksinatorServiceModeOption extends ServiceModeOption {
     public ClientsHeaderProvider getHeaderProvider() {
         return new ClientsHeaderProvider() {
             @Override
-            public int count() {
-                return 2;
-            }
+            public int count() { return 18; }
 
             @Override
             public int weightSum() {
-                return 10;
+                return 18;
             }
 
             @Override
             public int[] weights() {
-                return new int[]{8,2};
+                return new int[]{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
             }
 
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
-                        R.string.hh_profile,R.string.header_edit
-                        };
+                    R.string.space,R.string.fence,R.string.space,R.string.fence,R.string.space,R.string.fence,
+                    R.string.space,R.string.fence,R.string.space,R.string.fence,R.string.space,R.string.fence,
+                    R.string.space,R.string.fence,R.string.space,R.string.fence,R.string.space,R.string.fence
+                };
             }
         };
     }
