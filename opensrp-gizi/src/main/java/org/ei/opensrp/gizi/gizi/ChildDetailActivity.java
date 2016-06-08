@@ -79,6 +79,7 @@ public class ChildDetailActivity extends Activity {
         TextView dua_t = (TextView) findViewById(R.id.txt_profile_2t);
         TextView under_yellow_line = (TextView) findViewById(R.id.txt_profile_under_yellow_line);
         TextView breast_feeding = (TextView) findViewById(R.id.txt_profile_breastfeeding);
+        TextView vitA = (TextView) findViewById(R.id.txt_vitA);
 
         ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +100,7 @@ public class ChildDetailActivity extends Activity {
         gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
         weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan")+"Kg" : "- Kg"));
         height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan")+"Cm" : "- Cm"));
-
+        vitA.setText(getString(R.string.vitamin_a) +" : "+ (childclient.getDetails().get("vitA") != null ? childclient.getDetails().get("vitA") : "-"));
         //set value
         String berats = childclient.getDetails().get("history_berat")!= null ? childclient.getDetails().get("history_berat") :"0";
         String[] history_berat = berats.split(",");

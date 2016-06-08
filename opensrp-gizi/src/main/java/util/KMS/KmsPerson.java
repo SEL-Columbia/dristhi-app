@@ -28,7 +28,7 @@ public class KmsPerson {
 
         this.isMale=isMale;
         this.dateOfBirth=dateOfBirth;
-        this.age=monthAges(dateOfBirth,new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date()));
+        this.age=monthAges(dateOfBirth,new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()));
         this.weight=weight;
         this.previousWeight=previousWeight;
         this.lastVisitDate=lastVisitDate;
