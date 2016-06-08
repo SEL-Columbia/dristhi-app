@@ -73,13 +73,13 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
             viewHolder.bcg = (TextView)convertView.findViewById(R.id.bcg);
             viewHolder.pol1 = (TextView)convertView.findViewById(R.id.pol1);
-            viewHolder.pol2 = (TextView)convertView.findViewById(R.id.bcg);
+            viewHolder.pol2 = (TextView)convertView.findViewById(R.id.pol2);
             viewHolder.pol3 = (TextView)convertView.findViewById(R.id.pol3);
             viewHolder.pol4 = (TextView)convertView.findViewById(R.id.pol4);
             viewHolder.ipv = (TextView)convertView.findViewById(R.id.ipv);
 
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
-           // viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
+            viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
             convertView.setTag(viewHolder);
         }else{
@@ -87,16 +87,17 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
         }
 
-        //viewHolder.follow_up.setOnClickListener(onClickListener);
-        //viewHolder.follow_up.setTag(smartRegisterClient);
+        viewHolder.follow_up.setOnClickListener(onClickListener);
+        viewHolder.follow_up.setTag(smartRegisterClient);
         viewHolder.profilelayout.setOnClickListener(onClickListener);
         viewHolder.profilelayout.setTag(smartRegisterClient);
         CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
         if (iconPencilDrawable == null) {
             iconPencilDrawable = context.getResources().getDrawable(R.drawable.ic_pencil);
         }
-        //viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
-        //viewHolder.follow_up.setOnClickListener(onClickListener);
+        viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
+        viewHolder.follow_up.setOnClickListener(onClickListener);
+
 
 
         //set default image for mother
@@ -104,18 +105,21 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
         viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : "-");
         viewHolder.motherName.setText(pc.getDetails().get("nama_orang_tua")!=null?pc.getDetails().get("nama_orang_tua"):"-");
-        viewHolder.village.setText(pc.getDetails().get("lokasi")!=null?pc.getDetails().get("lokasi"):"-");
+        viewHolder.village.setText(pc.getDetails().get("nama_lokasi")!=null?pc.getDetails().get("nama_lokasi"):"-");
         viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):"-");
-        viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin")!=null?pc.getDetails().get("jenis_kelamin"):"-");
+        viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : "-");
+
+        viewHolder.bcg.setText(pc.getDetails().get("bcg")!=null ? pc.getDetails().get("bcg"):"-");
+        viewHolder.pol1.setText(pc.getDetails().get("pol_1")!=null ? pc.getDetails().get("pol_1"):"-");
+        viewHolder.pol2.setText(pc.getDetails().get("pol_2")!=null ? pc.getDetails().get("pol_2"):"-");
+        viewHolder.pol3.setText(pc.getDetails().get("pol_3")!=null ? pc.getDetails().get("pol_3"):"-");
+        viewHolder.pol4.setText(pc.getDetails().get("pol_4")!=null ? pc.getDetails().get("pol_4"):"-");
+        viewHolder.ipv.setText(pc.getDetails().get("imunisasi_campak")!=null? pc.getDetails().get("imunisasi_campak"):"-");
 
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
     }
     CommonPersonObjectController householdelcocontroller;
-
-
-
-
 
     @Override
     public SmartRegisterClients getClients() {
