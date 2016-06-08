@@ -53,9 +53,6 @@ public class ChildDetailActivity extends Activity {
     private static String showbgm;
     private static ImageFetcher mImageFetcher;
 
-
-
-
     //image retrieving
 
     public static CommonPersonObjectClient childclient;
@@ -65,13 +62,11 @@ public class ChildDetailActivity extends Activity {
         Context context = Context.getInstance();
         setContentView(R.layout.gizi_detail_activity);
 
-
         //header
         TextView header_name = (TextView) findViewById(R.id.header_name);
         //profile
         TextView nama = (TextView) findViewById(R.id.txt_profile_child_name);
         TextView mother_name = (TextView) findViewById(R.id.txt_profile_mother_name);
-     //   TextView father_name = (TextView) findViewById(R.id.txt_profile_father_name);
         TextView posyandu = (TextView) findViewById(R.id.txt_profile_posyandu);
         TextView village_name = (TextView) findViewById(R.id.txt_profile_village_name);
         TextView birth_date = (TextView) findViewById(R.id.txt_profile_birth_date);
@@ -104,8 +99,6 @@ public class ChildDetailActivity extends Activity {
         gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
         weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan")+"Kg" : "- Kg"));
         height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan")+"Cm" : "- Cm"));
-       // nutrition_status.setText(getString(R.string.nutrition_status) +" "+ (childclient.getDetails().get("status_gizi") != null ? childclient.getDetails().get("status_gizi") : "-"));
-
 
         //set value
         String berats = childclient.getDetails().get("history_berat")!= null ? childclient.getDetails().get("history_berat") :"0";
@@ -126,8 +119,10 @@ public class ChildDetailActivity extends Activity {
             KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir, berat, beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
             KmsCalc calculator = new KmsCalc();
             bgm.setText(getString(R.string.bgm) + calculator.cekBGM(data));
+            int satu = Integer.parseInt(history_umur[history_umur.length-2]);
+            int dua = Integer.parseInt(history_umur[history_umur.length-1]);
 
-            String duat = history_berat.length <= 2 ? "-" : calculator.cek2T(data);
+            String duat = history_berat.length <= 2  ? "-" : dua - satu >=2 ? "-" :calculator.cek2T(data);
             dua_t.setText(getString(R.string.dua_t) + duat);
 
             under_yellow_line.setText(getString(R.string.under_yellow_line) + calculator.cekBawahKuning(data));

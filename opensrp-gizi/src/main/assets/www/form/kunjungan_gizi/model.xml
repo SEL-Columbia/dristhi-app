@@ -29,6 +29,7 @@
       <history_berat/>
       <tinggi_badan openmrs_entity="concept" openmrs_entity_id="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <ae openmrs_entity="concept" openmrs_entity_id="5632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <vitA/>
       <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
       <meta>
         <instanceID/>

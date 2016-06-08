@@ -82,6 +82,10 @@
         "bind": "/model/instance/kunjungan_gizi/ae"
       },
       {
+        "name": "vitA",
+        "bind": "/model/instance/kunjungan_gizi/vitA"
+      },
+      {
         "name": "end",
         "bind": "/model/instance/kunjungan_gizi/end"
       }

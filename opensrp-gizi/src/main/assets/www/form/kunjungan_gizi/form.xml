@@ -95,6 +95,29 @@
         </fieldset>
         <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
     </fieldset>
+    <fieldset class="question simple-select ">
+        <fieldset>
+            <legend>
+                <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/vitA:label">Diberikan Vitamin A ?</span>
+                <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/vitA:label">Vitamin A given</span>
+                <span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_gizi/vitA:hint">-</span>
+                <span lang="en" class="or-hint " data-itext-id="/kunjungan_gizi/vitA:hint">-</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="">
+                    <input type="radio" name="/kunjungan_gizi/vitA" data-name="/kunjungan_gizi/vitA" value="Ya" data-type-xml="select1"/>
+                    <span lang="Bahasa" class="option-label active" data-itext-id="/kunjungan_gizi/vitA/Ya:label">Ya</span>
+                    <span lang="en" class="option-label " data-itext-id="/kunjungan_gizi/vitA/Ya:label">Yes</span>
+                </label>
+                <label class="">
+                    <input type="radio" name="/kunjungan_gizi/vitA" data-name="/kunjungan_gizi/vitA" value="Tidak" data-type-xml="select1"/>
+                    <span lang="Bahasa" class="option-label active" data-itext-id="/kunjungan_gizi/vitA/Tidak:label">Tidak</span>
+                    <span lang="en" class="option-label " data-itext-id="/kunjungan_gizi/vitA/Tidak:label">No</span>
+                </label>
+            </div>
+        </fieldset>
+        <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
+    </fieldset>
     <fieldset id="or-preload-items" style="display:none;">
         <label class="calculation non-select ">
             <input type="hidden" name="/kunjungan_gizi/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime"/>
