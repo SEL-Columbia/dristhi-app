@@ -87,22 +87,22 @@ public class mCarePncDetailActivity extends Activity {
 
 
         if((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").length()>0) {
-            brid.setText(Html.fromHtml(getString(R.string.BRID) + "<b> " + humanize((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").replace("+", "_")) + "</b>"));
+            brid.setText(Html.fromHtml(getString(R.string.BRID) + " " + humanize((ancclient.getDetails().get("FWWOMBID") != null ? ancclient.getDetails().get("FWWOMBID") : "").replace("+", "_")) ));
             brid.setVisibility(View.VISIBLE);
         }else{
             brid.setVisibility(View.GONE);
         }
         if((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").length()>0) {
-            nid.setText(Html.fromHtml(getString(R.string.NID) + "<b> " + humanize((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").replace("+", "_")) + "</b>"));
+            nid.setText(Html.fromHtml(getString(R.string.NID) + " " + humanize((ancclient.getDetails().get("FWWOMNID") != null ? ancclient.getDetails().get("FWWOMNID") : "").replace("+", "_")) ));
             nid.setVisibility(View.VISIBLE);
         }else{
             nid.setVisibility(View.GONE);
         }
-        husbandname.setText(Html.fromHtml(getString(R.string.elco_details_husband_name_label)+"<b> "+humanize((ancclient.getDetails().get("FWHUSNAME") != null ? ancclient.getDetails().get("FWHUSNAME") : ""))+ "</b>"));
-        age.setText(Html.fromHtml(getString(R.string.elco_age_label)+"<b> " + (ancclient.getDetails().get("FWWOMAGE") != null ? ancclient.getDetails().get("FWWOMAGE") : "")+ "</b>"));
-        jivitahhid.setText(Html.fromHtml(getString(R.string.hhiid_jivita_elco_label)+"<b> "+(ancclient.getColumnmaps().get("JiVitAHHID") != null ? ancclient.getColumnmaps().get("JiVitAHHID") : "")+ "</b>"));
-        godhhid.setText(Html.fromHtml(getString(R.string.hhid_gob_elco_label)+"<b> " + (ancclient.getColumnmaps().get("GOBHHID") != null ? ancclient.getColumnmaps().get("GOBHHID") : "")+ "</b>"));
-        village.setText(Html.fromHtml(getString(R.string.elco_details_mauza) + "<b> " + humanize(ancclient.getDetails().get("mauza") != null ? ancclient.getDetails().get("mauza") : "")+ "</b>"));
+        husbandname.setText(Html.fromHtml(getString(R.string.elco_details_husband_name_label)+" "+humanize((ancclient.getDetails().get("FWHUSNAME") != null ? ancclient.getDetails().get("FWHUSNAME") : ""))));
+        age.setText(Html.fromHtml(getString(R.string.elco_age_label)+" " + (ancclient.getDetails().get("FWWOMAGE") != null ? ancclient.getDetails().get("FWWOMAGE") : "")));
+        jivitahhid.setText(Html.fromHtml(getString(R.string.hhiid_jivita_elco_label)+" "+(ancclient.getColumnmaps().get("JiVitAHHID") != null ? ancclient.getColumnmaps().get("JiVitAHHID") : "")));
+        godhhid.setText(Html.fromHtml(getString(R.string.hhid_gob_elco_label)+" " + (ancclient.getColumnmaps().get("GOBHHID") != null ? ancclient.getColumnmaps().get("GOBHHID") : "")));
+        village.setText(Html.fromHtml(getString(R.string.elco_details_mauza) + " " + humanize(ancclient.getDetails().get("mauza") != null ? ancclient.getDetails().get("mauza") : "")));
 
         String type_of_delivery = ancclient.getDetails().get("FWPNC1DELTYPE") != null ? ancclient.getDetails().get("FWPNC1DELTYPE") : "";
         if (type_of_delivery.equalsIgnoreCase("1")){

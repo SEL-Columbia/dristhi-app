@@ -195,7 +195,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 
     private void checkAnc1StatusAndform(ImageView anc1tick, TextView anc1text, CommonPersonObjectClient pc) {
         if(pc.getDetails().get("FWANC1DATE")!=null){
-            anc1text.setText("ANC1-"+pc.getDetails().get("FWANC1DATE"));
+            anc1text.setText("ANC1: "+pc.getDetails().get("FWANC1DATE"));
             if(pc.getDetails().get("anc1_current_formStatus")!=null){
                 if(pc.getDetails().get("anc1_current_formStatus").equalsIgnoreCase("upcoming")){
 //                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
@@ -226,7 +226,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc1tick.setImageResource(R.mipmap.cross);
 //                    anc1tick.setText("✘");
 //                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc1text.setText( "ANC1-" + alertDate);
+                    anc1text.setText( "ANC1: " + alertDate);
                     anc1tick.setVisibility(View.VISIBLE);
                     anc1text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
@@ -241,7 +241,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                         anc1tick.setImageResource(R.mipmap.cross);
 //                        anc1tick.setText("✘");
 //                        anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                        anc1text.setText( "ANC1-" + alertDate);
+                        anc1text.setText( "ANC1: " + alertDate);
                         anc1tick.setVisibility(View.VISIBLE);
                         anc1text.setVisibility(View.VISIBLE);
                     }
@@ -255,7 +255,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc1tick.setImageResource(R.mipmap.cross);
 //                    anc1tick.setText("✘");
 //                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc1text.setText( "ANC1-" + alertDate);
+                    anc1text.setText( "ANC1: " + alertDate);
                     anc1tick.setVisibility(View.VISIBLE);
                     anc1text.setVisibility(View.VISIBLE);
                 }
@@ -267,7 +267,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 
     private void checkAnc2StatusAndform(ImageView anc2tick, TextView anc2text, CommonPersonObjectClient pc) {
         if(pc.getDetails().get("FWANC2DATE")!=null){
-            anc2text.setText("ANC2-"+pc.getDetails().get("FWANC2DATE"));
+            anc2text.setText("ANC2: "+pc.getDetails().get("FWANC2DATE"));
             if(pc.getDetails().get("ANC2_current_formStatus")!=null){
                 if(pc.getDetails().get("ANC2_current_formStatus").equalsIgnoreCase("upcoming")){
                     anc2tick.setImageResource(R.mipmap.doneintime);
@@ -298,7 +298,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc2tick.setImageResource(R.mipmap.cross);
 //                    anc2tick.setText("✘");
 //                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc2text.setText( "ANC2-" + alertDate);
+                    anc2text.setText( "ANC2: " + alertDate);
                     anc2tick.setVisibility(View.VISIBLE);
                     anc2text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
@@ -311,7 +311,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 //                        anc2tick.setText("✘");
 //                        anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                         anc2tick.setImageResource(R.mipmap.cross);
-                        anc2text.setText( "ANC2-" + alertDate);
+                        anc2text.setText( "ANC2: " + alertDate);
                         anc2tick.setVisibility(View.VISIBLE);
                         anc2text.setVisibility(View.VISIBLE);
                     }
@@ -325,7 +325,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc2tick.setImageResource(R.mipmap.cross);
 //                    anc2tick.setText("✘");
 //                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc2text.setText( "ANC2-" + alertDate);
+                    anc2text.setText( "ANC2: " + alertDate);
                     anc2tick.setVisibility(View.VISIBLE);
                     anc2text.setVisibility(View.VISIBLE);
                 }
@@ -334,7 +334,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
     }
     private void checkAnc3StatusAndform(ImageView anc3tick, TextView anc3text, CommonPersonObjectClient pc) {
         if(pc.getDetails().get("FWANC3DATE")!=null){
-            anc3text.setText("ANC3-"+pc.getDetails().get("FWANC3DATE"));
+            anc3text.setText("ANC3: "+pc.getDetails().get("FWANC3DATE"));
             if(pc.getDetails().get("ANC3_current_formStatus")!=null){
                 if(pc.getDetails().get("ANC3_current_formStatus").equalsIgnoreCase("upcoming")){
                     anc3tick.setImageResource(R.mipmap.doneintime);
@@ -364,7 +364,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc3tick.setImageResource(R.mipmap.cross);
 //                    anc3tick.setText("✘");
 //                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc3text.setText( "ANC3-" + alertDate);
+                    anc3text.setText( "ANC3: " + alertDate);
                     anc3tick.setVisibility(View.VISIBLE);
                     anc3text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
@@ -377,7 +377,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                         anc3tick.setImageResource(R.mipmap.cross);
 //                        anc3tick.setText("✘");
 //                        anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                        anc3text.setText( "ANC3-" + alertDate);
+                        anc3text.setText( "ANC3: " + alertDate);
                         anc3tick.setVisibility(View.VISIBLE);
                         anc3text.setVisibility(View.VISIBLE);
                     }
@@ -391,7 +391,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc3tick.setImageResource(R.mipmap.cross);
 //                    anc3tick.setText("✘");
 //                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc3text.setText( "ANC3-" + alertDate);
+                    anc3text.setText( "ANC3: " + alertDate);
                     anc3tick.setVisibility(View.VISIBLE);
                     anc3text.setVisibility(View.VISIBLE);
                 }
@@ -400,7 +400,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
     }
     private void checkAnc4StatusAndform(ImageView anc4tick, TextView anc4text, CommonPersonObjectClient pc) {
         if(pc.getDetails().get("FWANC4DATE")!=null){
-            anc4text.setText("ANC4-"+pc.getDetails().get("FWANC4DATE"));
+            anc4text.setText("ANC4: "+pc.getDetails().get("FWANC4DATE"));
             if(pc.getDetails().get("ANC4_current_formStatus")!=null){
                 if(pc.getDetails().get("ANC4_current_formStatus").equalsIgnoreCase("upcoming")){
                     anc4tick.setImageResource(R.mipmap.doneintime);
@@ -430,7 +430,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
                     anc4tick.setImageResource(R.mipmap.cross);
 //                    anc4tick.setText("✘");
 //                    anc4tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc4text.setText( "ANC4-" + alertDate);
+                    anc4text.setText( "ANC4: " + alertDate);
                     anc4tick.setVisibility(View.VISIBLE);
                     anc4text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())

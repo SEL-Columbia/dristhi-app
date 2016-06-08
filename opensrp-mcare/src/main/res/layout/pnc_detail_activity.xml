@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle"
-                        android:text="@string/pnc_date_of_outcome"
+                        android:text="@string/pnc_Details_date_of_outcome"
                         android:id="@+id/textView6"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />

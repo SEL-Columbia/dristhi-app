@@ -223,77 +223,74 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:id="@+id/pnc1tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+                android:src="@mipmap/doneintime"
+                />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.VerySmall"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:text="pnc1text"
                 android:id="@+id/pnc1text"
-                android:layout_margin="1dp" />
+                android:layout_margin="1dp"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:id="@+id/pnc2tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+                android:src="@mipmap/doneintime"
+                />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.VerySmall"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:text="anc1text"
                 android:id="@+id/pnc2text"
-                android:layout_margin="1dp" />
+                android:layout_margin="1dp"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:id="@+id/pnc3tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+                android:src="@mipmap/doneintime"
+                 />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="pnc1text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.VerySmall"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:id="@+id/pnc3text"
-                android:layout_margin="1dp" />
+                android:layout_margin="1dp"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
