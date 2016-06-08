@@ -18,67 +18,83 @@
       },
       {
         "name": "bcg",
-        "bind": "/model/instance/kunjungan_jurim/bcg"
+        "bind": "/model/instance/kunjungan_jurim/bcg",
+        "shouldLoadValue": true
       },
       {
         "name": "pol_1",
-        "bind": "/model/instance/kunjungan_jurim/pol_1"
+        "bind": "/model/instance/kunjungan_jurim/pol_1",
+        "shouldLoadValue": true
       },
       {
         "name": "dpt_hb_combo1",
-        "bind": "/model/instance/kunjungan_jurim/dpt_hb_combo1"
+        "bind": "/model/instance/kunjungan_jurim/dpt_hb_combo1",
+        "shouldLoadValue": true
       },
       {
         "name": "pol_2",
-        "bind": "/model/instance/kunjungan_jurim/pol_2"
+        "bind": "/model/instance/kunjungan_jurim/pol_2",
+        "shouldLoadValue": true
       },
       {
         "name": "dpt_hb_combo2",
-        "bind": "/model/instance/kunjungan_jurim/dpt_hb_combo2"
+        "bind": "/model/instance/kunjungan_jurim/dpt_hb_combo2",
+        "shouldLoadValue": true
       },
       {
         "name": "pol_3",
-        "bind": "/model/instance/kunjungan_jurim/pol_3"
+        "bind": "/model/instance/kunjungan_jurim/pol_3",
+        "shouldLoadValue": true
       },
       {
         "name": "dpt_hb_combo3",
-        "bind": "/model/instance/kunjungan_jurim/dpt_hb_combo3"
+        "bind": "/model/instance/kunjungan_jurim/dpt_hb_combo3",
+        "shouldLoadValue": true
       },
       {
         "name": "pol_4",
-        "bind": "/model/instance/kunjungan_jurim/pol_4"
+        "bind": "/model/instance/kunjungan_jurim/pol_4",
+        "shouldLoadValue": true
       },
       {
         "name": "imunisasi_campak",
-        "bind": "/model/instance/kunjungan_jurim/imunisasi_campak"
+        "bind": "/model/instance/kunjungan_jurim/imunisasi_campak",
+        "shouldLoadValue": true
       },
       {
         "name": "mutasi_meninggal_kurang_30hari",
-        "bind": "/model/instance/kunjungan_jurim/mutasi_meninggal_kurang_30hari"
+        "bind": "/model/instance/kunjungan_jurim/mutasi_meninggal_kurang_30hari",
+        "shouldLoadValue": true
       },
       {
         "name": "mutasi_meninggal_lebih_30hari",
-        "bind": "/model/instance/kunjungan_jurim/mutasi_meninggal_lebih_30hari"
+        "bind": "/model/instance/kunjungan_jurim/mutasi_meninggal_lebih_30hari",
+        "shouldLoadValue": true
       },
       {
         "name": "tanggal_pindah",
-        "bind": "/model/instance/kunjungan_jurim/tanggal_pindah"
+        "bind": "/model/instance/kunjungan_jurim/tanggal_pindah",
+        "shouldLoadValue": true
       },
       {
         "name": "imunisasi_lengkap",
-        "bind": "/model/instance/kunjungan_jurim/imunisasi_lengkap"
+        "bind": "/model/instance/kunjungan_jurim/imunisasi_lengkap",
+        "shouldLoadValue": true
       },
       {
         "name": "dpt_hb_lanjutan",
-        "bind": "/model/instance/kunjungan_jurim/dpt_hb_lanjutan"
+        "bind": "/model/instance/kunjungan_jurim/dpt_hb_lanjutan",
+        "shouldLoadValue": true
       },
       {
         "name": "campak_lanjutan",
-        "bind": "/model/instance/kunjungan_jurim/campak_lanjutan"
+        "bind": "/model/instance/kunjungan_jurim/campak_lanjutan",
+        "shouldLoadValue": true
       },
       {
         "name": "keterangan",
-        "bind": "/model/instance/kunjungan_jurim/keterangan"
+        "bind": "/model/instance/kunjungan_jurim/keterangan",
+        "shouldLoadValue": true
       }
     ]
   }
