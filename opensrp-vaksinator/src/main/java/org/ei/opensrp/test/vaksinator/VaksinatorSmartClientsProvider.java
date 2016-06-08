@@ -71,6 +71,13 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
             viewHolder.age = (TextView)convertView.findViewById(R.id.age);
             viewHolder.gender = (TextView)convertView.findViewById(R.id.gender);
 
+            viewHolder.bcg = (TextView)convertView.findViewById(R.id.bcg);
+            viewHolder.pol1 = (TextView)convertView.findViewById(R.id.pol1);
+            viewHolder.pol2 = (TextView)convertView.findViewById(R.id.bcg);
+            viewHolder.pol3 = (TextView)convertView.findViewById(R.id.pol3);
+            viewHolder.pol4 = (TextView)convertView.findViewById(R.id.pol4);
+            viewHolder.ipv = (TextView)convertView.findViewById(R.id.ipv);
+
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
            // viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
@@ -82,7 +89,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
         //viewHolder.follow_up.setOnClickListener(onClickListener);
         //viewHolder.follow_up.setTag(smartRegisterClient);
-           viewHolder.profilelayout.setOnClickListener(onClickListener);
+        viewHolder.profilelayout.setOnClickListener(onClickListener);
         viewHolder.profilelayout.setTag(smartRegisterClient);
         CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
         if (iconPencilDrawable == null) {
@@ -147,9 +154,11 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
          public TextView motherName;
          public TextView village;
          public TextView age;
+         public TextView pol3;
+         public TextView pol4;
+         public TextView ipv;
          public TextView gender;
      }
-
 
 }
 
