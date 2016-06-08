@@ -35,7 +35,7 @@ import butterknife.ButterKnife;
 
 public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
-    public static final String TAG = "TestActivity";
+    public static final String TAG = "Vaksinator";
     @Bind(R.id.view_pager)
     OpenSRPViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
