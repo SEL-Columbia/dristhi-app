@@ -8,11 +8,11 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_weight="4"
         android:id="@+id/profile_info_layout"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_weight="1">
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -31,16 +31,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
             </LinearLayout>
         </FrameLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="fill_parent"
             android:layout_marginLeft="5dp"
-            android:layout_weight="0.5">
+            android:layout_weight="1">
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -65,47 +64,32 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
-                android:textSize="14sp"
+                android:textSize="10sp"
                 android:id="@+id/village" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="5dp">
-
-            <FrameLayout
+            <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2">
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="00"
+                android:textSize="10sp"
+                android:id="@+id/age"
+                android:layout_marginRight="1dp"
+                android:gravity="left" />
 
-                <org.ei.opensrp.view.customControls.CustomFontTextView
-                    android:layout_width="53dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
-                    android:text="00"
-                    android:textSize="12sp"
-                    android:id="@+id/age"
-                    android:layout_weight="0.87"
-                    android:gravity="right"
-                    android:layout_marginRight="1dp"
-                    android:layout_gravity="right|top" />
-
-                <org.ei.opensrp.view.customControls.CustomFontTextView
-                    android:layout_width="53dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
-                    android:text="00"
-                    android:id="@+id/gender"
-                    android:layout_weight="0.87"
-                    android:gravity="right"
-                    android:layout_marginRight="1dp"
-                    android:layout_gravity="right|center_vertical" />
-
-            </FrameLayout>
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="00"
+                android:id="@+id/gender"
+                android:textSize="10sp"
+                android:layout_weight="0.87"
+                android:gravity="left"
+                android:layout_marginRight="1dp"
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
     </LinearLayout>
@@ -119,78 +103,78 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/textView57"
-            android:layout_gravity="center"
+            android:id="@+id/bcg"
+            android:layout_gravity="center_horizontal|bottom"
             android:textSize="10dp" />
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1.2" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/textView56"
-            android:layout_gravity="center"
+            android:id="@+id/pol1"
+            android:layout_gravity="center_horizontal|bottom"
             android:textSize="10dp" />
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1.2" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/textView58"
-            android:layout_gravity="center"
+            android:id="@+id/pol2"
+            android:layout_gravity="center_horizontal|bottom"
             android:textSize="10dp" />
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1.2" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/textView59"
-            android:layout_gravity="center"
+            android:id="@+id/pol3"
+            android:layout_gravity="center_horizontal|bottom"
             android:textSize="10dp" />
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1.2" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/textView60"
-            android:layout_gravity="center"
+            android:id="@+id/pol4"
+            android:layout_gravity="center_horizontal|bottom"
             android:textSize="10dp" />
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1.2" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/textView61"
-            android:layout_gravity="center"
+            android:id="@+id/ipv"
+            android:layout_gravity="center_horizontal|bottom"
             android:textSize="10dp" />
     </FrameLayout>
 
@@ -226,7 +210,5 @@
         android:layout_width="@dimen/smart_register_client_divider_height"
         android:layout_height="fill_parent"
         android:src="@color/smart_register_client_divider_color"/>
-
-
 
 </LinearLayout>
