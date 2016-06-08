@@ -366,9 +366,9 @@
     <string name="fence">|</string>
     <string name="hb1">HB-1</string>
     <string name="polio1">BCG/Polio1</string>
-    <string name="polio2">DPT-HB1/Polio2</string>
-    <string name="polio3">DPT-HB2/Polio3</string>
-    <string name="polio4">DPT-HB3/Polio4</string>
+    <string name="polio2">DPT-HB1</string>
+    <string name="polio3">DPT-HB2</string>
+    <string name="polio4">DPT-HB3</string>
     <string name="ipv">IPV/Measles</string>
 
 
