@@ -71,7 +71,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
             viewHolder.age = (TextView)convertView.findViewById(R.id.age);
             viewHolder.gender = (TextView)convertView.findViewById(R.id.gender);
 
-            viewHolder.bcg = (TextView)convertView.findViewById(R.id.bcg);
+            viewHolder.hb1 = (TextView)convertView.findViewById(R.id.hb1);
             viewHolder.pol1 = (TextView)convertView.findViewById(R.id.pol1);
             viewHolder.pol2 = (TextView)convertView.findViewById(R.id.pol2);
             viewHolder.pol3 = (TextView)convertView.findViewById(R.id.pol3);
@@ -109,11 +109,11 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):"-");
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : "-");
 
-        viewHolder.bcg.setText(pc.getDetails().get("bcg")!=null ? pc.getDetails().get("bcg"):"-");
-        viewHolder.pol1.setText(pc.getDetails().get("pol_1")!=null ? pc.getDetails().get("pol_1"):"-");
-        viewHolder.pol2.setText(pc.getDetails().get("pol_2")!=null ? pc.getDetails().get("pol_2"):"-");
-        viewHolder.pol3.setText(pc.getDetails().get("pol_3")!=null ? pc.getDetails().get("pol_3"):"-");
-        viewHolder.pol4.setText(pc.getDetails().get("pol_4")!=null ? pc.getDetails().get("pol_4"):"-");
+        viewHolder.hb1.setText(pc.getDetails().get("hb1_kurang_7_hari")!=null ? pc.getDetails().get("hb1_kurang_7_hari"):pc.getDetails().get("hb1_lebih_7_hari")!=null ? pc.getDetails().get("hb1_lebih_7_hari"):"-");
+        viewHolder.pol1.setText(pc.getDetails().get("bcg")!=null ? pc.getDetails().get("bcg"):pc.getDetails().get("pol_1")!=null ? pc.getDetails().get("pol_1"):"-");
+        viewHolder.pol2.setText(pc.getDetails().get("dpt_hb_combo1")!=null ? pc.getDetails().get("dpt_hb_combo1"):pc.getDetails().get("pol_2")!=null ? pc.getDetails().get("pol_2"):"-");
+        viewHolder.pol3.setText(pc.getDetails().get("dpt_hb_combo2")!=null ? pc.getDetails().get("dpt_hb_combo2"):pc.getDetails().get("pol_3")!=null ? pc.getDetails().get("pol_3"):"-");
+        viewHolder.pol4.setText(pc.getDetails().get("dpt_hb_combo3")!=null ? pc.getDetails().get("dpt_hb_combo3"):pc.getDetails().get("pol_4")!=null ? pc.getDetails().get("pol_4"):"-");
         viewHolder.ipv.setText(pc.getDetails().get("imunisasi_campak")!=null? pc.getDetails().get("imunisasi_campak"):"-");
 
         convertView.setLayoutParams(clientViewLayoutParams);
@@ -150,7 +150,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
          LinearLayout profilelayout;
          ImageView profilepic;
          ImageButton follow_up;
-         public TextView bcg;
+         public TextView hb1;
          public TextView pol1;
          public TextView pol2;
          public TextView complete;

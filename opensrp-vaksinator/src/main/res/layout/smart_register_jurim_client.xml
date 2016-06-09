@@ -103,10 +103,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/bcg"
+                android:id="@+id/hb1"
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
                 android:gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hbLogo"
+                android:layout_gravity="center" />
         </FrameLayout>
 
         <FrameLayout
@@ -122,6 +128,12 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
                 android:gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pol1Logo"
+                android:layout_gravity="center" />
         </FrameLayout>
 
         <FrameLayout
@@ -137,6 +149,12 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
                 android:gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pol2Logo"
+                android:layout_gravity="center" />
         </FrameLayout>
 
         <FrameLayout
@@ -152,6 +170,12 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
                 android:gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pol3Logo"
+                android:layout_gravity="center" />
         </FrameLayout>
 
         <FrameLayout
@@ -167,6 +191,12 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
                 android:gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pol4Logo"
+                android:layout_gravity="center" />
         </FrameLayout>
 
         <FrameLayout
@@ -182,6 +212,12 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
                 android:gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ipvLogo"
+                android:layout_gravity="center" />
         </FrameLayout>
 
     </LinearLayout>
