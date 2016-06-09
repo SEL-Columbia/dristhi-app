@@ -30,6 +30,8 @@ import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 import java.util.HashMap;
 import java.util.Map;
 
+import util.KMS.KmsCalc;
+import util.KMS.KmsPerson;
 import util.ZScore.ZScoreSystemCalculation;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -116,7 +118,10 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.height.setText(context.getString(R.string.height) +  " "+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-")+" Cm");
         viewHolder.weight.setText(context.getString(R.string.weight) +  " "+(pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"-")+" Kg");
 
-      //==========================================Z-SCORE===============================================//
+        /** 
+         * Z-SCORE calculation
+         * NOTE - Need a better way to handle z-score data to sqllite
+         */
         if(pc.getDetails().get("tanggalPenimbangan") != null)
         {
             String gender = pc.getDetails().get("jenisKelamin") != null ? pc.getDetails().get("jenisKelamin") : "-";
@@ -142,20 +147,18 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             }
             wflStatus = zScore.getWFLZScoreClassification(wight_for_lenght);
 
-            // NOTE - Need a better way to handle z-score data to sqllite
-            viewHolder.underweight.setText(context.getString(R.string.underweight) + " "+wfaStatus);
-            HashMap <String,String> wfa = new HashMap<String,String>();
-            wfa.put("underweight",wfaStatus);
-            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),wfa);
-            viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+hfaStatus);
-            HashMap <String,String> hfa = new HashMap<String,String>();
-            hfa.put("stunting",hfaStatus);
-            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),hfa);
 
+            HashMap <String,String> z_score = new HashMap<String,String>();
+            z_score.put("underweight",wfaStatus);
+            z_score.put("stunting",hfaStatus);
+            z_score.put("wasting",wflStatus);
+            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),z_score);
+
+
+
+            viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+hfaStatus);
+            viewHolder.underweight.setText(context.getString(R.string.underweight) + " "+wfaStatus);
             viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " "+wflStatus);
-            HashMap <String,String> wfl = new HashMap<String,String>();
-            wfl.put("wasting",wflStatus);
-            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),wfl);
 
         }
         else{
@@ -167,6 +170,42 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         }
         //================ END OF Z-SCORE==============================//
 
+        /**
+         * kms calculation
+         * NOTE - Need a better way to handle z-score data to sqllite
+         */
+        String berats = pc.getDetails().get("history_berat")!= null ? pc.getDetails().get("history_berat") :"0";
+        String[] history_berat = berats.split(",");
+        double berat_sebelum = Double.parseDouble((history_berat.length) >=3 ? (history_berat[(history_berat.length)-3]) : "0");
+        String umurs = pc.getDetails().get("history_umur")!= null ? pc.getDetails().get("history_umur") :"0";
+        String[] history_umur = umurs.split(",");
+
+        boolean jenisKelamin = pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")? true:false;
+        String tanggal_lahir = pc.getDetails().get("tanggalLahir") != null ? pc.getDetails().get("tanggalLahir") : "0";
+        double berat= Double.parseDouble(pc.getDetails().get("beratBadan") != null ? pc.getDetails().get("beratBadan") : "0");
+        double beraSebelum = Double.parseDouble((history_berat.length) >=2 ? (history_berat[(history_berat.length)-2]) : "0");
+        String tanggal = (pc.getDetails().get("tanggalPenimbangan") != null ? pc.getDetails().get("tanggalPenimbangan") : "0");
+
+        String tanggal_sebelumnya = (pc.getDetails().get("kunjunganSebelumnya") != null ? pc.getDetails().get("kunjunganSebelumnya") : "0");
+
+        if(pc.getDetails().get("tanggalPenimbangan") != null) {
+            //KMS calculation
+            KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir, berat, beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
+            KmsCalc calculator = new KmsCalc();
+            int satu = Integer.parseInt(history_umur[history_umur.length-2]);
+            int dua = Integer.parseInt(history_umur[history_umur.length-1]);
+            String duat = history_berat.length <= 2  ? "-" : dua - satu >=2 ? "-" :calculator.cek2T(data);
+            String status = history_berat.length <= 2 ? "Baru" : calculator.cekWeightStatus(data);
+            HashMap <String,String> kms = new HashMap<String,String>();
+            kms.put("bgm",calculator.cekBGM(data));
+            kms.put("dua_t",duat);
+            kms.put("garis_kuning",calculator.cekBawahKuning(data));
+            kms.put("nutrition_status",status);
+            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),kms);
+            
+
+        }
+     
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
     }
