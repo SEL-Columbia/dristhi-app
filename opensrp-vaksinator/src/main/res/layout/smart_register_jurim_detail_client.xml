@@ -97,6 +97,19 @@
                 android:text="Current weight"
                 android:id="@+id/textView8"
                 android:textSize="12dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.85">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="53dp"
+                    android:id="@+id/backButton"
+                    android:layout_gravity="center_horizontal|bottom" />
+            </FrameLayout>
         </LinearLayout>
 
         <LinearLayout
