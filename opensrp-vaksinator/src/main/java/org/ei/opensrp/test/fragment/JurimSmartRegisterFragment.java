@@ -2,16 +2,19 @@ package org.ei.opensrp.test.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.test.LoginActivity;
 import org.ei.opensrp.test.R;
+import org.ei.opensrp.test.vaksinator.VaksinatorDetailActivity;
 import org.ei.opensrp.test.vaksinator.VaksinatorSmartRegisterActivity;
 import org.ei.opensrp.test.vaksinator.VaksinatorSearchOption;
 import org.ei.opensrp.test.vaksinator.VaksinatorServiceModeOption;
@@ -206,10 +209,10 @@ public class JurimSmartRegisterFragment extends SecuredNativeSmartRegisterFragme
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-               /*     HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(getActivity(),HouseHoldDetailActivity.class);
+                    VaksinatorDetailActivity.controller = (CommonPersonObjectClient)view.getTag();
+                    Intent intent = new Intent(getActivity(),VaksinatorDetailActivity.class);
                     startActivity(intent);
-                    getActivity().finish(); */
+                    getActivity().finish();
                     break;
 
                 //untuk follow up button
