@@ -99,7 +99,6 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.follow_up.setOnClickListener(onClickListener);
 
 
-
         //set default image for mother
         viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.woman_placeholder));
 
@@ -110,10 +109,10 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : "-");
 
         viewHolder.hb1.setText(pc.getDetails().get("hb1_kurang_7_hari")!=null ? pc.getDetails().get("hb1_kurang_7_hari"):pc.getDetails().get("hb1_lebih_7_hari")!=null ? pc.getDetails().get("hb1_lebih_7_hari"):"-");
-        viewHolder.pol1.setText(pc.getDetails().get("bcg")!=null ? pc.getDetails().get("bcg"):pc.getDetails().get("pol_1")!=null ? pc.getDetails().get("pol_1"):"-");
-        viewHolder.pol2.setText(pc.getDetails().get("dpt_hb_combo1")!=null ? pc.getDetails().get("dpt_hb_combo1"):pc.getDetails().get("pol_2")!=null ? pc.getDetails().get("pol_2"):"-");
-        viewHolder.pol3.setText(pc.getDetails().get("dpt_hb_combo2")!=null ? pc.getDetails().get("dpt_hb_combo2"):pc.getDetails().get("pol_3")!=null ? pc.getDetails().get("pol_3"):"-");
-        viewHolder.pol4.setText(pc.getDetails().get("dpt_hb_combo3")!=null ? pc.getDetails().get("dpt_hb_combo3"):pc.getDetails().get("pol_4")!=null ? pc.getDetails().get("pol_4"):"-");
+        viewHolder.pol1.setText(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1"):"-");
+        viewHolder.pol2.setText(pc.getDetails().get("dpt_1_pol_2")!=null ? pc.getDetails().get("dpt_1_pol_2"):"-");
+        viewHolder.pol3.setText(pc.getDetails().get("dpt_2_pol_3")!=null ? pc.getDetails().get("dpt_2_pol_3"):"-");
+        viewHolder.pol4.setText(pc.getDetails().get("dpt_3_pol_4_ipv")!=null ? pc.getDetails().get("dpt_3_pol_4_ipv"):"-");
         viewHolder.ipv.setText(pc.getDetails().get("imunisasi_campak")!=null? pc.getDetails().get("imunisasi_campak"):"-");
 
         convertView.setLayoutParams(clientViewLayoutParams);
