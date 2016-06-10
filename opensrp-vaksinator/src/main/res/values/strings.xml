@@ -364,6 +364,7 @@
 
     <string name="space"> </string>
     <string name="fence">|</string>
+    <string name="jurim_detail">Detail vaksinasi</string>
     <string name="hb1">HB-1</string>
     <string name="polio1">BCG/Polio1</string>
     <string name="polio2">DPT-HB1</string>
