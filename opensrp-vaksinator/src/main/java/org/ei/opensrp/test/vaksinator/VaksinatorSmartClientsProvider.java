@@ -78,6 +78,13 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
             viewHolder.pol4 = (TextView)convertView.findViewById(R.id.pol4);
             viewHolder.ipv = (TextView)convertView.findViewById(R.id.ipv);
 
+            viewHolder.hbLogo = (ImageView)convertView.findViewById(R.id.hbLogo);
+            viewHolder.pol1Logo = (ImageView)convertView.findViewById(R.id.pol1Logo);
+            viewHolder.pol2Logo = (ImageView)convertView.findViewById(R.id.pol2Logo);
+            viewHolder.pol3Logo = (ImageView)convertView.findViewById(R.id.pol3Logo);
+            viewHolder.pol4Logo = (ImageView)convertView.findViewById(R.id.pol4Logo);
+            viewHolder.ipvLogo = (ImageView)convertView.findViewById(R.id.measlesLogo);
+
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
@@ -109,6 +116,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : "-");
 
         viewHolder.hb1.setText(pc.getDetails().get("hb1_kurang_7_hari")!=null ? pc.getDetails().get("hb1_kurang_7_hari"):pc.getDetails().get("hb1_lebih_7_hari")!=null ? pc.getDetails().get("hb1_lebih_7_hari"):"-");
+
         viewHolder.pol1.setText(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1"):"-");
         viewHolder.pol2.setText(pc.getDetails().get("dpt_1_pol_2")!=null ? pc.getDetails().get("dpt_1_pol_2"):"-");
         viewHolder.pol3.setText(pc.getDetails().get("dpt_2_pol_3")!=null ? pc.getDetails().get("dpt_2_pol_3"):"-");
@@ -161,6 +169,12 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
          public TextView pol4;
          public TextView ipv;
          public TextView gender;
+         public ImageView hbLogo;
+         public ImageView pol1Logo;
+         public ImageView pol2Logo;
+         public ImageView pol3Logo;
+         public ImageView pol4Logo;
+         public ImageView ipvLogo;
      }
 
 }
