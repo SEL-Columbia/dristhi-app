@@ -9,6 +9,11 @@
       <deviceid/>
       <simserial/>
       <phonenumber/>
+      <existing_Village />
+      <existing_Sub-village />
+      <existing_Province />
+      <existing_District />
+      <existing_Sub-district />
       <tanggal_preload/>
       <tanggal_penimbangan openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <kunjungan_sebelumnya/>

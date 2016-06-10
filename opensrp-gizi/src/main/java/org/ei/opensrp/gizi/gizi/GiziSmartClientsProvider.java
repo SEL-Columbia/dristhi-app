@@ -133,32 +133,39 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
             double weight_for_age = zScore.countWFA(gender, dateOfBirth, lastVisitDate, weight);
             String wfaStatus = zScore.getWFAZScoreClassification(weight_for_age);
+            if(length != 0) {
+                double heigh_for_age = zScore.countHFA(gender, dateOfBirth, lastVisitDate, length);
+                String hfaStatus = zScore.getHFAZScoreClassification(heigh_for_age);
 
-            double heigh_for_age = zScore.countHFA(gender, dateOfBirth, lastVisitDate, length);
-            String hfaStatus = zScore.getHFAZScoreClassification(heigh_for_age);
-
-            double wight_for_lenght=0.0;
-            String wflStatus="";
-            if(zScore.dailyUnitCalculationOf(dateOfBirth, lastVisitDate)<730){
-                wight_for_lenght = zScore.countWFL(gender, weight, length);
+                double wight_for_lenght = 0.0;
+                String wflStatus = "";
+                if (zScore.dailyUnitCalculationOf(dateOfBirth, lastVisitDate) < 730) {
+                    wight_for_lenght = zScore.countWFL(gender, weight, length);
+                } else {
+                    wight_for_lenght = zScore.countWFH(gender, weight, length);
+                }
+                wflStatus = zScore.getWFLZScoreClassification(wight_for_lenght);
+                HashMap <String,String> z_score = new HashMap<String,String>();
+                z_score.put("underweight",wfaStatus);
+                z_score.put("stunting",hfaStatus);
+                z_score.put("wasting",wflStatus);
+                org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),z_score);
             }
-            else{
-                wight_for_lenght = zScore.countWFH(gender, weight, length);
+            else {
+             //   String hfaStatus = "-";
+             //   String wflStatus ="-";
+                HashMap<String, String> z_score = new HashMap<String, String>();
+                z_score.put("underweight", wfaStatus);
+                z_score.put("stunting", "-");
+                z_score.put("wasting", "-");
+                org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(), z_score);
             }
-            wflStatus = zScore.getWFLZScoreClassification(wight_for_lenght);
-
-
-            HashMap <String,String> z_score = new HashMap<String,String>();
-            z_score.put("underweight",wfaStatus);
-            z_score.put("stunting",hfaStatus);
-            z_score.put("wasting",wflStatus);
-            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),z_score);
 
 
 
-            viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+hfaStatus);
-            viewHolder.underweight.setText(context.getString(R.string.underweight) + " "+wfaStatus);
-            viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " "+wflStatus);
+            viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+(pc.getDetails().get("stunting")!=null?pc.getDetails().get("stunting"):"-"));
+            viewHolder.underweight.setText(context.getString(R.string.underweight) +  " "+(pc.getDetails().get("underweight")!=null?pc.getDetails().get("underweight"):"-"));
+            viewHolder.wasting_status.setText(context.getString(R.string.wasting) +   " "+(pc.getDetails().get("wasting")!=null?pc.getDetails().get("wasting"):"-"));
 
         }
         else{

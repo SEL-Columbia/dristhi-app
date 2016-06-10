@@ -6,25 +6,20 @@
         <option value="Bahasa">Bahasa</option>
         <option value="en">English</option>
     </select>
-    <label class="question non-select ">
-        <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/posyandu:label">Posyandu</span>
-        <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/posyandu:label">Health Post</span>
-        <span class="required">*</span>
-        <span lang="Bahasa" class="or-hint active" data-itext-id="/registrasi_gizi/posyandu:hint">Nama posyandu</span>
-        <span lang="en" class="or-hint " data-itext-id="/registrasi_gizi/posyandu:hint">name of health post</span>
-        <input type="text" name="/registrasi_gizi/posyandu" required="required" data-type-xml="string"/>
-        <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
-        <span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span>
+
+    <label class="note non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/generated_note_name_14:label">Posyandu :
+            <span class="or-output" data-value=" /registrasi_gizi/existing_Sub-village "></span>
+        </span>
+        <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/generated_note_name_14:label">Posyandu :</span>
+        <input type="text" name="/registrasi_gizi/generated_note_name_14" data-type-xml="string" readonly="readonly"/>
     </label>
-    <label class="question non-select ">
-        <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/desa:label">Desa</span>
-        <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/desa:label">village</span>
-        <span class="required">*</span>
-        <span lang="Bahasa" class="or-hint active" data-itext-id="/registrasi_gizi/desa:hint">Desa tempat pelayanan posyandu</span>
-        <span lang="en" class="or-hint " data-itext-id="/registrasi_gizi/desa:hint">name of village where Health Post service is given</span>
-        <input type="text" name="/registrasi_gizi/desa" required="required" data-type-xml="string"/>
-        <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
-        <span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span>
+    <label class="note non-select ">
+        <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/generated_note_name_15:label">Desa :
+            <span class="or-output" data-value=" /registrasi_gizi/existing_Village "></span>
+        </span>
+        <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/generated_note_name_15:label">Desa :</span>
+        <input type="text" name="/registrasi_gizi/generated_note_name_14" data-type-xml="string" readonly="readonly"/>
     </label>
     <label class="question non-select ">
         <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/nama_anak:label">Nama Anak</span>
@@ -48,8 +43,9 @@
         <span lang="Bahasa" class="question-label active" data-itext-id="/registrasi_gizi/tanggal_lahir:label">Tgl lahir</span>
         <span lang="en" class="question-label " data-itext-id="/registrasi_gizi/tanggal_lahir:label">DOB</span>
         <span lang="Bahasa" class="or-hint active" data-itext-id="/registrasi_gizi/tanggal_lahir:hint">tanggal/bulan/ tahun dimana bayi/balita lahir</span>
+        <span class="required">*</span>
         <span lang="en" class="or-hint " data-itext-id="/registrasi_gizi/tanggal_lahir:hint">DOB of Baby/ child</span>
-        <input type="date" name="/registrasi_gizi/tanggal_lahir" data-type-xml="date"/>
+        <input type="date" name="/registrasi_gizi/tanggal_lahir" required="required" data-type-xml="date"/>
         <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
     </label>
     <fieldset class="question simple-select ">

@@ -75,7 +75,7 @@
     <fieldset class="question simple-select ">
         <fieldset>
             <legend>
-                <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/ae:label">Air Asi Eksklusif</span>
+                <span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_gizi/ae:label">Asi Eksklusif</span>
                 <span lang="en" class="question-label " data-itext-id="/kunjungan_gizi/ae:label">Exclusive Breastfeeding</span>
                 <span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_gizi/ae:hint">Pemberian asi ekslusif pada bayi</span>
                 <span lang="en" class="or-hint " data-itext-id="/kunjungan_gizi/ae:hint">-</span>

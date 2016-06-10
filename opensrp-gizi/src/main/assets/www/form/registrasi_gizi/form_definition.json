@@ -24,7 +24,7 @@
         "shouldLoadValue": true
       },
       {
-        "name": "kecamatan",
+        "name": "kabupaten",
         "bind": "/model/instance/registrasi_gizi/existing_District",
         "shouldLoadValue": true
       },
