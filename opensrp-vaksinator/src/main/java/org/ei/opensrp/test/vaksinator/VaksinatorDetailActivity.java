@@ -58,7 +58,7 @@ public class VaksinatorDetailActivity extends Activity {
         TextView additionalDPT = (TextView) findViewById(R.id.additionalDPT);
         TextView additionalMeasles = (TextView) findViewById(R.id.additionalMeasles);
 
-        ImageButton backButton = (ImageButton) findViewById(R.id.backButton);
+        ImageButton backButton = (ImageButton) findViewById(R.id.btn_back_to_home);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,31 +68,31 @@ public class VaksinatorDetailActivity extends Activity {
             }
         });
 
-        nama.setText(controller.getDetails().get("childName") != null ? controller.getDetails().get("childName") : " ");
-        motherName.setText(controller.getDetails().get("motherName") != null ? controller.getDetails().get("motherName") : " ");
-        fatherName.setText(controller.getDetails().get("fatherName") != null? controller.getDetails().get("fatherName"):" ");
-        village.setText(controller.getDetails().get("village") != null? controller.getDetails().get("village"):" ");
-        posyandu.setText(controller.getDetails().get("posyandu") != null? controller.getDetails().get("posyandu"):" ");
-        dateOfBirth.setText(controller.getDetails().get("dateOfBirth") != null? controller.getDetails().get("dateOfBirth"):" ");
-        birthWeight.setText(controller.getDetails().get("birthWeight") != null? controller.getDetails().get("birthWeight"):" ");
-        currentWeight.setText(controller.getDetails().get("currentWeight") != null? controller.getDetails().get("currentWeight"):" ");
+        nama.setText(": "+(controller.getDetails().get("nama_bayi") != null ? controller.getDetails().get("nama_bayi") : "-"));
+        motherName.setText(": "+(controller.getDetails().get("nama_orang_tua") != null ? controller.getDetails().get("nama_orang_tua") : "-"));
+        fatherName.setText(": "+(controller.getDetails().get("fatherName") != null? controller.getDetails().get("fatherName"):"-"));
+        village.setText(": "+(controller.getDetails().get("existing_location") != null? controller.getDetails().get("existing_location"):"-"));
+        posyandu.setText(": "+(controller.getDetails().get("nama_lokasi") != null? controller.getDetails().get("nama_lokasi"):"-"));
+        dateOfBirth.setText(": "+(controller.getDetails().get("tanggal_lahir") != null? controller.getDetails().get("tanggal_lahir"):"-"));
+        birthWeight.setText(": "+(controller.getDetails().get("berat_badan_saat_lahir") != null? controller.getDetails().get("berat_badan_saat_lahir"):"-"));
+        currentWeight.setText(": "+(controller.getDetails().get("currentWeight") != null? controller.getDetails().get("currentWeight"):"-"));
 
-        hb1Under7.setText(controller.getDetails().get("hb1Under7") != null? controller.getDetails().get("hb1Under7"):" ");
-        hb1After7.setText(controller.getDetails().get("hb1After7") != null? controller.getDetails().get("hb1After7"):" ");
-        bcg.setText(controller.getDetails().get("bcg") != null? controller.getDetails().get("bcg"):" ");
-        pol1.setText(controller.getDetails().get("pol1") != null? controller.getDetails().get("pol1"):" ");
-        dpt1.setText(controller.getDetails().get("dpt1") != null? controller.getDetails().get("dpt1"):" ");
-        pol2.setText(controller.getDetails().get("pol2") != null? controller.getDetails().get("pol2"):" ");
-        dpt2.setText(controller.getDetails().get("dpt2") != null? controller.getDetails().get("dpt2"):" ");
-        pol3.setText(controller.getDetails().get("pol3") != null? controller.getDetails().get("pol3"):" ");
-        dpt3.setText(controller.getDetails().get("dpt3") != null? controller.getDetails().get("dpt3"):" ");
-        pol4.setText(controller.getDetails().get("pol4") != null? controller.getDetails().get("pol4"):" ");
-        measles.setText(controller.getDetails().get("measles") != null? controller.getDetails().get("measles"):" ");
-        mutationUnder30.setText(controller.getDetails().get("mutationUnder30") != null? controller.getDetails().get("mutationUnder30"):" ");
-        mutationAfter30.setText(controller.getDetails().get("mutationAfter30") != null? controller.getDetails().get("mutationAfter30"):" ");
-        mutationMoving.setText(controller.getDetails().get("mutationMoving") != null? controller.getDetails().get("mutationMoving"):" ");
-        complete.setText(controller.getDetails().get("complete") != null? controller.getDetails().get("complete"):" ");
-        additionalDPT.setText(controller.getDetails().get("additionalDPT") != null? controller.getDetails().get("additionalDPT"):" ");
-        additionalMeasles.setText(controller.getDetails().get("additionalMeasles") != null? controller.getDetails().get("additionalMeasles"):" ");
+        hb1Under7.setText(": "+(controller.getDetails().get("hb1_kurang_7_hari") != null? controller.getDetails().get("hb1_kurang_7_hari"):"-"));
+        hb1After7.setText(": "+(controller.getDetails().get("hb1_lebih_7_hari") != null? controller.getDetails().get("hb1_lebih_7_hari"):"-"));
+        bcg.setText(": "+(controller.getDetails().get("bcg_pol_1") != null? controller.getDetails().get("bcg_pol_1"):"-"));
+        pol1.setText(": "+(controller.getDetails().get("bcg_pol_1") != null? controller.getDetails().get("bcg_pol_1"):"-"));
+        dpt1.setText(": "+(controller.getDetails().get("dpt_1_pol_2") != null? controller.getDetails().get("dpt_1_pol_2"):"-"));
+        pol2.setText(": "+(controller.getDetails().get("dpt_1_pol_2") != null? controller.getDetails().get("dpt_1_pol_2"):"-"));
+        dpt2.setText(": "+(controller.getDetails().get("dpt_2_pol_3") != null? controller.getDetails().get("dpt_2_pol_3"):"-"));
+        pol3.setText(": "+(controller.getDetails().get("dpt_2_pol_3") != null? controller.getDetails().get("dpt_2_pol_3"):"-"));
+        dpt3.setText(": "+(controller.getDetails().get("dpt_3_pol_4_ipv") != null? controller.getDetails().get("dpt_3_pol_4_ipv"):"-"));
+        pol4.setText(": "+(controller.getDetails().get("dpt_3_pol_4_ipv") != null? controller.getDetails().get("dpt_3_pol_4_ipv"):"-"));
+        measles.setText(": "+(controller.getDetails().get("imunisasi_campak") != null? controller.getDetails().get("imunisasi_campak"):"-"));
+        mutationUnder30.setText(": "+(controller.getDetails().get("mutasi_meninggal_kurang_30hari") != null? controller.getDetails().get("mutasi_meninggal_kurang_30hari"):"-"));
+        mutationAfter30.setText(": "+(controller.getDetails().get("mutasi_meninggal_lebih_30hari") != null? controller.getDetails().get("mutasi_meninggal_lebih_30hari"):"-"));
+        mutationMoving.setText(": "+(controller.getDetails().get("tanggal_pindah") != null? controller.getDetails().get("tanggal_pindah"):"-"));
+        complete.setText(": "+(controller.getDetails().get("imunisasi_lengkap") != null? controller.getDetails().get("imunisasi_lengkap"):"-"));
+        additionalDPT.setText(": "+(controller.getDetails().get("dpt_hb_campak_lanjutan") != null? controller.getDetails().get("dpt_hb_campak_lanjutan"):"-"));
+        additionalMeasles.setText(": "+(controller.getDetails().get("dpt_hb_campak_lanjutan") != null? controller.getDetails().get("dpt_hb_campak_lanjutan"):"-"));
     }
 }
