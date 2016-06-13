@@ -149,14 +149,14 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text=": Marwan"
+                    android:text=": "
                     android:id="@+id/childName"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text=": Hakam"
+                    android:text=": "
                     android:id="@+id/motherName"
                     android:textSize="14dp" />
 
@@ -177,21 +177,21 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text=": Gantang"
+                    android:text=": "
                     android:id="@+id/village"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text=": 2016-04-01"
+                    android:text=": "
                     android:id="@+id/dateOfBirth"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text=": 3,3"
+                    android:text=": "
                     android:id="@+id/birthWeight"
                     android:textSize="14dp" />
 
