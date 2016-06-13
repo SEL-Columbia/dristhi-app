@@ -10,11 +10,13 @@
       },
       {
         "name": "hb1_kurang_7_hari",
-        "bind": "/model/instance/kunjungan_jurim/hb1_kurang_7_hari"
+        "bind": "/model/instance/kunjungan_jurim/hb1_kurang_7_hari",
+        "shouldLoadValue": true
       },
       {
         "name": "hb1_lebih_7_hari",
-        "bind": "/model/instance/kunjungan_jurim/hb1_lebih_7_hari"
+        "bind": "/model/instance/kunjungan_jurim/hb1_lebih_7_hari",
+        "shouldLoadValue": true
       },
       {
         "name": "bcg_pol_1",
