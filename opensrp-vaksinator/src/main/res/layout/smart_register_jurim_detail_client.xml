@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:paddingLeft="10dp">
+            android:paddingLeft="14dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="116dp"
                 android:layout_height="wrap_content"
                 android:weightSum="1"
                 android:layout_row="3"
@@ -68,8 +68,8 @@
                     android:layout_gravity="center_horizontal">
 
                     <ImageView
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
+                        android:layout_width="114dp"
+                        android:layout_height="114dp"
                         android:id="@+id/imageView2"
                         android:layout_gravity="center|left"
                         android:background="@drawable/woman_placeholder"/>
@@ -80,62 +80,62 @@
                     android:layout_height="wrap_content"
                     android:text="Nama Anak"
                     android:id="@+id/textView"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Nama Ibu"
                     android:id="@+id/textView2"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Nama Ayah"
                     android:id="@+id/textView3"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Posyandu"
                     android:id="@+id/textView4"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Desa/Dusun"
                     android:id="@+id/textView5"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Tanggal Lahir"
                     android:id="@+id/textView6"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Berat Lahir"
                     android:id="@+id/textView7"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Berat Sekarang"
                     android:id="@+id/textView8"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="165dp"
                 android:layout_height="wrap_content"
                 android:weightSum="1"
                 android:layout_row="3"
@@ -143,64 +143,64 @@
                 android:layout_gravity="top">
 
                 <FrameLayout
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"></FrameLayout>
+                    android:layout_width="84dp"
+                    android:layout_height="114dp"></FrameLayout>
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": Marwan"
                     android:id="@+id/childName"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": Hakam"
                     android:id="@+id/motherName"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/fatherName"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/posyandu"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": Gantang"
                     android:id="@+id/village"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": 2016-04-01"
                     android:id="@+id/dateOfBirth"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": 3,3"
                     android:id="@+id/birthWeight"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/currentWeight"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
             </LinearLayout>
 
@@ -243,119 +243,119 @@
                         android:layout_height="wrap_content"
                         android:text="Hb 1 (0-7 day)"
                         android:id="@+id/textView11"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Hb 1 (>7 day)"
                         android:id="@+id/textView12"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="BCG"
                         android:id="@+id/textView13"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Polio 1"
                         android:id="@+id/textView14"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="DPT/Hb 1"
                         android:id="@+id/textView15"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Polio 2"
                         android:id="@+id/textView16"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="DPT/Hb 2"
                         android:id="@+id/textView25"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Polio 3"
                         android:id="@+id/textView26"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="DPT/Hb 3"
                         android:id="@+id/textView27"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Polio 4"
                         android:id="@+id/textView28"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Measles"
                         android:id="@+id/textView29"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Mutasi/Kematian &lt; 30 hari"
                         android:id="@+id/textView30"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Mutasi/Kematian > 30 Day"
                         android:id="@+id/textView31"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Mutasi/Pindah"
                         android:id="@+id/textView32"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Imunisasi Lengkap"
                         android:id="@+id/textView33"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="DPT/Hb Tambahan"
                         android:id="@+id/textView34"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Campak Tambahan"
                         android:id="@+id/textView35"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -387,105 +387,105 @@
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/hb1under7"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/hb1after7"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": 6-8-2016"
                     android:id="@+id/bcg"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": 6-8-2016"
                     android:id="@+id/pol1"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/dpt1"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/pol2"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/dpt2"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/pol3"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/dpt3"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/pol4"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/measles"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/mutationUnder30"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/mutationAfter30"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/mutationMoving"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/complete"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -498,7 +498,7 @@
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/additionalMeasles"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
         </GridLayout>
