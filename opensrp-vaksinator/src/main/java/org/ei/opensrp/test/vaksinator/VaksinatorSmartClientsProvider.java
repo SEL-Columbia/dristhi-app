@@ -88,6 +88,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
+
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
@@ -128,11 +129,10 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
 
         // logo visibility, sometimes the variable contains blank string that count as not null, so we must check both the availability and content
-        boolean a = pc.getDetails().get("hb1_kurang_7_hari") != null ? pc.getDetails().get("hb1_kurang_7_hari").length() != 10 ? true : false : false;
-        a = !a || !(pc.getDetails().get("hb1_lebih_7_hari") != null ? pc.getDetails().get("hb1_lebih_7_hari").length() != 10 ? true : false : false);
+        boolean a = pc.getDetails().get("hb1_kurang_7_hari") != null ? pc.getDetails().get("hb1_kurang_7_hari").length() == 10 ? true : false : false;
+        boolean b = a || (pc.getDetails().get("hb1_lebih_7_hari") != null ? pc.getDetails().get("hb1_lebih_7_hari").length() == 10 ? true : false : false);
 
-
-        viewHolder.hbLogo.setVisibility(a ?  View.VISIBLE : View.INVISIBLE);
+        viewHolder.hbLogo.setVisibility(b ?  View.VISIBLE : View.INVISIBLE);
         viewHolder.pol1Logo.setVisibility(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1").length()==10 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
         viewHolder.pol2Logo.setVisibility(pc.getDetails().get("dpt_1_pol_2")!=null ? pc.getDetails().get("dpt_1_pol_2").length()==10 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
         viewHolder.pol3Logo.setVisibility(pc.getDetails().get("dpt_2_pol_3")!=null ? pc.getDetails().get("dpt_2_pol_3").length()==10 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
