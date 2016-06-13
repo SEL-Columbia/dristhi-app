@@ -115,7 +115,10 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):"-");
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : "-");
 
-        viewHolder.hb1.setText(pc.getDetails().get("hb1_kurang_7_hari")!=null ? pc.getDetails().get("hb1_kurang_7_hari"):pc.getDetails().get("hb1_lebih_7_hari")!=null ? pc.getDetails().get("hb1_lebih_7_hari"):"-");
+        viewHolder.hb1.setText(pc.getDetails().get("hb1_kurang_7_hari")!=null && pc.getDetails().get("hb1_kurang_7_hari").length()==10
+                ? pc.getDetails().get("hb1_kurang_7_hari")
+                : pc.getDetails().get("hb1_lebih_7_hari")!=null && pc.getDetails().get("hb1_lebih_7_hari").length()==10
+                    ? pc.getDetails().get("hb1_lebih_7_hari"):"-");
 
         viewHolder.pol1.setText(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1"):"-");
         viewHolder.pol2.setText(pc.getDetails().get("dpt_1_pol_2")!=null ? pc.getDetails().get("dpt_1_pol_2"):"-");
@@ -126,10 +129,10 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
         // logo visibility, sometimes the variable contains blank string that count as not null, so we must check both the availability and content
         boolean a = pc.getDetails().get("hb1_kurang_7_hari") != null ? pc.getDetails().get("hb1_kurang_7_hari").length() != 10 ? true : false : false;
-        a = a && (pc.getDetails().get("hb1_lebih_7_hari") != null ? pc.getDetails().get("hb1_lebih_7_hari").length() != 10 ? true : false : false);
+        a = !a || !(pc.getDetails().get("hb1_lebih_7_hari") != null ? pc.getDetails().get("hb1_lebih_7_hari").length() != 10 ? true : false : false);
 
 
-        viewHolder.hbLogo.setVisibility(!a ?  View.VISIBLE : View.INVISIBLE);
+        viewHolder.hbLogo.setVisibility(a ?  View.VISIBLE : View.INVISIBLE);
         viewHolder.pol1Logo.setVisibility(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1").length()==10 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
         viewHolder.pol2Logo.setVisibility(pc.getDetails().get("dpt_1_pol_2")!=null ? pc.getDetails().get("dpt_1_pol_2").length()==10 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
         viewHolder.pol3Logo.setVisibility(pc.getDetails().get("dpt_2_pol_3")!=null ? pc.getDetails().get("dpt_2_pol_3").length()==10 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
