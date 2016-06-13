@@ -1,0 +1,25 @@
+<model>
+    <instance>
+        <registrasi_gizi id="registrasi_gizi" version="201604060701">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <existing_Village />
+          <existing_Sub-village />
+          <existing_Province />
+          <existing_District />
+          <existing_Sub-district />
+          <generated_note_name_14/>
+          <generated_note_name_15/>
+          <posyandu/>
+          <desa/>
+          <nama_anak/>
+          <nama_ortu/>
+          <tanggal_lahir/>
+          <jenis_kelamin/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </registrasi_gizi>
+      </instance>
+  </model>

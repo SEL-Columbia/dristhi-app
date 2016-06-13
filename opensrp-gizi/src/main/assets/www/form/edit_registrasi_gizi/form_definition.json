@@ -1,0 +1,74 @@
+{
+  "form_data_definition_version": "2",
+  "form": {
+    "bind_type": "anak",
+    "default_bind_path": "/model/instance/registrasi_gizi/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "desa",
+        "bind": "/model/instance/registrasi_gizi/existing_Village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "provinsi",
+        "bind": "/model/instance/registrasi_gizi/existing_Province",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/registrasi_gizi/existing_Sub-district",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kabupaten",
+        "bind": "/model/instance/registrasi_gizi/existing_District",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "dusun",
+        "bind": "/model/instance/registrasi_gizi/existing_Sub-village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "posyandu",
+        "bind": "/model/instance/registrasi_gizi/posyandu",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "desa_manual",
+        "bind": "/model/instance/registrasi_gizi/desa",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "namaBayi",
+        "bind": "/model/instance/registrasi_gizi/nama_anak",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "namaOrtu",
+        "bind": "/model/instance/registrasi_gizi/nama_ortu",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "tanggalLahir",
+        "bind": "/model/instance/registrasi_gizi/tanggal_lahir",
+        "shouldLoadValue": true
+
+      },
+      {
+        "name": "jenisKelamin",
+        "bind": "/model/instance/registrasi_gizi/jenis_kelamin",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "reg_date",
+        "bind": "/model/instance/registrasi_gizi/today"
+      }
+
+    ]
+  }
+}
