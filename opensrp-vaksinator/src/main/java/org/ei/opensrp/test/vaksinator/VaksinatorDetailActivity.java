@@ -32,7 +32,7 @@ public class VaksinatorDetailActivity extends Activity {
         //profile
         TextView nama = (TextView) findViewById(R.id.childName);
         TextView motherName = (TextView) findViewById(R.id.motherName);
-        TextView fatherName = (TextView) findViewById(R.id.fatherName);
+        //TextView fatherName = (TextView) findViewById(R.id.fatherName);
         TextView posyandu = (TextView) findViewById(R.id.posyandu);
         TextView village = (TextView) findViewById(R.id.village);
         TextView dateOfBirth = (TextView) findViewById(R.id.dateOfBirth);
@@ -70,7 +70,7 @@ public class VaksinatorDetailActivity extends Activity {
 
         nama.setText(": "+(controller.getDetails().get("nama_bayi") != null ? controller.getDetails().get("nama_bayi") : "-"));
         motherName.setText(": "+(controller.getDetails().get("nama_orang_tua") != null ? controller.getDetails().get("nama_orang_tua") : "-"));
-        fatherName.setText(": "+(controller.getDetails().get("fatherName") != null? controller.getDetails().get("fatherName"):"-"));
+        //fatherName.setText(": "+(controller.getDetails().get("fatherName") != null? controller.getDetails().get("fatherName"):"-"));
         //village.setText(": "+(controller.getDetails().get("existing_location") != null? controller.getDetails().get("existing_location"):"-"));
         posyandu.setText(": "+(controller.getDetails().get("nama_lokasi") != null? controller.getDetails().get("nama_lokasi"):"-"));
         dateOfBirth.setText(": "+(controller.getDetails().get("tanggal_lahir") != null? controller.getDetails().get("tanggal_lahir"):"-"));

@@ -10,10 +10,7 @@
           <simserial/>
           <phonenumber/>
           <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
-          <lokasi openmrs_entity="concept" openmrs_entity_id="161010AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           <nama_lokasi openmrs_entity="concept" openmrs_entity_id="1763AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-          <hari/>
-          <tanggal/>
           <nama_bayi openmrs_entity="person" openmrs_entity_id="first_name"/>
           <nama_orang_tua openmrs_entity="person" openmrs_entity_id="last_name"/>
           <nik openmrs_entity="person_identifier"/>

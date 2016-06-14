@@ -12,17 +12,8 @@
         "name": "existing_location",
         "bind": "/model/instance/registrasi_jurim/existing_location"
       },{
-        "name": "lokasi",
-        "bind": "/model/instance/registrasi_jurim/lokasi"
-      },{
         "name": "nama_lokasi",
         "bind": "/model/instance/registrasi_jurim/nama_lokasi"
-      },{
-        "name": "hari",
-        "bind": "/model/instance/registrasi_jurim/hari"
-      },{
-        "name": "tanggal",
-        "bind": "/model/instance/registrasi_jurim/tanggal"
       },
       {
         "name": "nama_bayi",

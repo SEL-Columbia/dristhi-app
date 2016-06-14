@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OpenSRP</string>
+    <string name="app_name">Vaksinator</string>
     <string name="userNameEditText">Enter user name</string>
     <string name="passwordEditText">Enter password</string>
     <string name="login_text">Log In</string>
@@ -362,6 +362,7 @@
     <string name="forminputerror">Please check the form for any error/missing input marked in Red box</string>
     <string name="okforminputerror">ok</string>
 
+    <string name="jurim_label">Vaksinator</string>
     <string name="space"> </string>
     <string name="fence">|</string>
     <string name="jurim_detail">Detail vaksinasi</string>
@@ -371,6 +372,4 @@
     <string name="polio3">DPT-HB2/Pol3</string>
     <string name="polio4">DPT3/Pol4/IPV</string>
     <string name="ipv">Campak</string>
-
-
 </resources>
