@@ -201,7 +201,6 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
                 if (displayFormFragment != null) {
                     displayFormFragment.setFormData(data);
-                    displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
                     displayFormFragment.setFieldOverides(metaData);
                 }
@@ -308,7 +307,6 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
                     if (displayFormFragment != null) {
                         displayFormFragment.hideTranslucentProgressDialog();
                         displayFormFragment.setFormData(null);
-                        displayFormFragment.loadFormData();
                     }
 
                     displayFormFragment.setRecordId(null);
@@ -319,8 +317,8 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
                     if (displayFormFragment != null) {
                         displayFormFragment.hideTranslucentProgressDialog();
                         displayFormFragment.setFormData(null);
-                        displayFormFragment.loadFormData();
                     }
+
 
                     displayFormFragment.setRecordId(null);
                     ((ElcoDetailActivity)mProfileFragment).initiallize();
