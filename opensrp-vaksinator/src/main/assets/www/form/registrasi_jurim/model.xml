@@ -9,6 +9,7 @@
           <deviceid/>
           <simserial/>
           <phonenumber/>
+          <existing_Sub-village/>
           <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
           <nama_lokasi openmrs_entity="concept" openmrs_entity_id="1763AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
           <nama_bayi openmrs_entity="person" openmrs_entity_id="first_name"/>
