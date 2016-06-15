@@ -154,18 +154,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            style="@style/CustomFontTextViewStyle"
+            style="@style/CustomFontTextViewStyle.noPadding"
             android:id="@+id/nid"
-            android:layout_marginTop="3dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_marginLeft="2dp" />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomFontTextViewStyle"
+            style="@style/CustomFontTextViewStyle.noPadding"
             android:text="New Text"
             android:id="@+id/brid"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_marginLeft="2dp" />
     </LinearLayout>
 
     <ImageView
