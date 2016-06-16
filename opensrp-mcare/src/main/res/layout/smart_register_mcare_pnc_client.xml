@@ -313,7 +313,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="New Button"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"
             android:id="@+id/pnc_reminder_due_date"
             android:background="@color/status_bar_text_almost_white" />
     </LinearLayout>

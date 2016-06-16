@@ -202,24 +202,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:id="@+id/encc1tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+                android:src="@mipmap/doneintime"
+                />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:text="pnc1text"
                 android:id="@+id/encc1text"
-                android:layout_margin="1dp" />
+                android:layout_margin="1dp"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -227,24 +225,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
-                android:id="@+id/encc2tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/doneintime"
+                android:id="@+id/encc2tick" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:text="anc1text"
                 android:id="@+id/encc2text"
-                android:layout_margin="1dp" />
+                android:layout_margin="1dp"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -253,24 +248,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:id="@+id/encc3tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+                android:src="@mipmap/doneintime" />
 
-            <TextView
+            <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="pnc1text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:id="@+id/encc3text"
-                android:layout_margin="1dp" />
+                android:layout_margin="1dp"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -292,7 +284,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="New Button"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"
             android:id="@+id/encc_reminder_due_date"
             android:background="@color/status_bar_text_almost_white" />
     </LinearLayout>
