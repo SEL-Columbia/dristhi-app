@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.ei.opensrp.Context;
@@ -119,16 +120,26 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
 
 
         if(Elcoclient.getDetails().get("FWMISCENSUSDATE") != null ){
-            mis_census.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+//            mis_census.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
+//            mis_census.setBackgroundColor(getResources().getColor(R.color.alert_complete_green));
+//            mis_census.setTextColor(getResources().getColor(R.color.status_bar_text_almost_white));
+//            mis_census.setText(Elcoclient.getDetails().get("FWMISCENSUSDATE"));
+            ((ImageView)mView.findViewById(R.id.imageViewborder)).setVisibility(View.GONE);
+            ((LinearLayout)mView.findViewById(R.id.census_incompleteholder)).setVisibility(View.GONE);
+            ((LinearLayout)mView.findViewById(R.id.census_completeholder)).setVisibility(View.VISIBLE);
+            ((TextView)mView.findViewById(R.id.mis_census_complete_date)).setText(Elcoclient.getDetails().get("FWMISCENSUSDATE"));
 
-                }
-            });
-            mis_census.setBackgroundColor(getResources().getColor(R.color.alert_complete_green));
-            mis_census.setTextColor(getResources().getColor(R.color.status_bar_text_almost_white));
-            mis_census.setText(Elcoclient.getDetails().get("FWMISCENSUSDATE"));
+
+
         }else{
+            ((LinearLayout)mView.findViewById(R.id.census_incompleteholder)).setVisibility(View.VISIBLE);
+            ((LinearLayout)mView.findViewById(R.id.census_completeholder)).setVisibility(View.GONE);
+
             mis_census.setOnClickListener(this);
             mis_census.setBackgroundColor(getResources().getColor(R.color.alert_upcoming_yellow));
             mis_census.setTextColor(getResources().getColor(R.color.status_bar_text_almost_white));
