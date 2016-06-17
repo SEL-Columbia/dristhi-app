@@ -20,14 +20,16 @@
         android:weightSum="1">
 
         <FrameLayout
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"></FrameLayout>
 
         <GridLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:paddingLeft="14dp">
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            android:columnOrderPreserved="false">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -201,7 +203,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:layout_width="200dp"
+                android:layout_width="38dp"
                 android:layout_height="match_parent"
                 android:layout_row="3"
                 android:layout_column="4"></FrameLayout>
@@ -227,14 +229,14 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hb 1 (0-7 day)"
+                        android:text="Hb0 (0-7 day)"
                         android:id="@+id/textView11"
                         android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hb 1 (>7 day)"
+                        android:text="Hb0 (>7 day)"
                         android:id="@+id/textView12"
                         android:textSize="14dp" />
 

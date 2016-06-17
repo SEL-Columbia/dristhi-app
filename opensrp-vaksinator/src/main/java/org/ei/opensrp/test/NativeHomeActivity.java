@@ -1,6 +1,5 @@
 package org.ei.opensrp.test;
 
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +15,7 @@ import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
 import org.ei.opensrp.sync.UpdateActionsTask;
+import org.ei.opensrp.test.R;
 import org.ei.opensrp.view.activity.SecuredActivity;
 import org.ei.opensrp.view.contract.HomeContext;
 import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
@@ -76,7 +76,7 @@ public class NativeHomeActivity extends SecuredActivity {
     protected void onCreation() {
         //home dashboard
         setContentView(R.layout.smart_registers_jurim_home);
-        navigationController = new TestNavigationController(this,anmController);
+        navigationController = new org.ei.opensrp.test.TestNavigationController(this,anmController);
         setupViews();
         initialize();
         DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
@@ -87,8 +87,9 @@ public class NativeHomeActivity extends SecuredActivity {
 
     private void setupViews() {
         findViewById(R.id.btn_vaksinator_register).setOnClickListener(onRegisterStartListener);
-        findViewById(R.id.btn_tt_register).setOnClickListener(onRegisterStartListener);
+//        findViewById(R.id.btn_tt_register).setOnClickListener(onRegisterStartListener);
        // findViewById(R.id.btn_test2_register).setOnClickListener(onRegisterStartListener);
+       // findViewById(R.id.btn_tt_register).setVisibility(View.INVISIBLE);
 
         findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
         findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
@@ -134,7 +135,7 @@ public class NativeHomeActivity extends SecuredActivity {
     private void updateRegisterCounts(HomeContext homeContext) {
         CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
                 context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"nama_bayi","anak","nik", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+                context.personObjectClientsCache(),"nama_bayi","anak","nama_orang_tua", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
        ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
 

@@ -108,11 +108,11 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
 
         //set default image for mother
-        viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.woman_placeholder));
+        viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(pc.getDetails().get("jenis_kelamin").contains("k")? R.drawable.child_boy_infant : R.drawable.child_girl_infant));
 
         viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : "-");
         viewHolder.motherName.setText(pc.getDetails().get("nama_orang_tua")!=null?pc.getDetails().get("nama_orang_tua"):"-");
-        viewHolder.village.setText(pc.getDetails().get("nama_lokasi")!=null?pc.getDetails().get("nama_lokasi"):"-");
+        viewHolder.village.setText(pc.getDetails().get("village")!=null?pc.getDetails().get("village"):"-");
         viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):"-");
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : "-");
 

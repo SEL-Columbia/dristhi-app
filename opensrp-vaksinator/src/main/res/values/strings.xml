@@ -309,8 +309,8 @@
     <string name="hh_other_inhabitants">Other Inhabitants</string>
     <string name="hh_inhabitants_details">HH Inhabitants Details</string>
     <string name="household_entries">All Household Entries</string>
-    <string name="test_register">Vaksinator Register</string>
-    <string name="test">Ver 1.0</string>
+    <string name="test_register"></string>
+    <string name="test">Vaksinator Register</string>
     <string name="hh_register_title_in_short">HH</string>
 
     <string name="elco_profile">Profile;</string>
@@ -366,7 +366,8 @@
     <string name="space"> </string>
     <string name="fence">|</string>
     <string name="jurim_detail">Detail vaksinasi</string>
-    <string name="hb1">HB-1</string>
+    <string name="jurim_search">Vaksinasi search hint</string>
+    <string name="hb1">HB0</string>
     <string name="polio1">BCG/Pol1</string>
     <string name="polio2">DPT-HB1/Pol2</string>
     <string name="polio3">DPT-HB2/Pol3</string>

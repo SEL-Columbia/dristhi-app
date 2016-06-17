@@ -29,6 +29,7 @@ import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
+import org.ei.opensrp.test.R;
 import org.ei.opensrp.util.Log;
 import org.ei.opensrp.view.BackgroundAction;
 import org.ei.opensrp.view.LockingBackgroundTask;

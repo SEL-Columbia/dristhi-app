@@ -24,15 +24,15 @@ public class VaksinatorSearchOption implements FilterOption {
         CommonPersonObjectClient currentclient = (CommonPersonObjectClient) client;
 //        AllCommonsRepository allElcoRepository = new AllCommonsRepository("elco");
         if(!result) {
-            if(currentclient.getDetails().get("bcg") != null) {
-                if (currentclient.getDetails().get("bcg").toLowerCase().contains(criteria.toLowerCase())) {
+            if(currentclient.getDetails().get("nama_bayi") != null) {
+                if (currentclient.getDetails().get("nama_bayi").toLowerCase().contains(criteria.toLowerCase())) {
                     result = true;
                 }
             }
         }
         if(!result) {
-            if(currentclient.getDetails().get("pol1") != null) {
-                if (currentclient.getDetails().get("pol1").contains(criteria)) {
+            if(currentclient.getDetails().get("nama_orang_tua") != null) {
+                if (currentclient.getDetails().get("nama_orang_tua").contains(criteria)) {
                     result = true;
                 }
             }

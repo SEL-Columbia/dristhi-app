@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 
+import org.ei.opensrp.test.imunisasiTT.TTSmartRegisterActivity;
 import org.ei.opensrp.test.vaksinator.VaksinatorSmartRegisterActivity;
 import org.ei.opensrp.view.controller.ANMController;
 
@@ -34,7 +35,7 @@ public class TestNavigationController extends org.ei.opensrp.view.controller.Nav
     }
     @Override
     public void startFPSmartRegistry() {
-     //   activity.startActivity(new Intent(activity, ElcoSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, TTSmartRegisterActivity.class));
     }
     @Override
     public void startANCSmartRegistry() {

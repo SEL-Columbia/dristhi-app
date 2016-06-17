@@ -71,7 +71,7 @@ public class VaksinatorDetailActivity extends Activity {
         nama.setText(": "+(controller.getDetails().get("nama_bayi") != null ? controller.getDetails().get("nama_bayi") : "-"));
         motherName.setText(": "+(controller.getDetails().get("nama_orang_tua") != null ? controller.getDetails().get("nama_orang_tua") : "-"));
         //fatherName.setText(": "+(controller.getDetails().get("fatherName") != null? controller.getDetails().get("fatherName"):"-"));
-        //village.setText(": "+(controller.getDetails().get("existing_location") != null? controller.getDetails().get("existing_location"):"-"));
+        village.setText(": "+(controller.getDetails().get("village") != null? controller.getDetails().get("village"):"-"));
         posyandu.setText(": "+(controller.getDetails().get("nama_lokasi") != null? controller.getDetails().get("nama_lokasi"):"-"));
         dateOfBirth.setText(": "+(controller.getDetails().get("tanggal_lahir") != null? controller.getDetails().get("tanggal_lahir"):"-"));
         birthWeight.setText(": "+(controller.getDetails().get("berat_badan_saat_lahir") != null? controller.getDetails().get("berat_badan_saat_lahir"):"-"));

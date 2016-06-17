@@ -39,10 +39,10 @@
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
-                android:id="@+id/name" />
+                android:id="@+id/name"
+                android:textSize="12sp" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:id="@+id/village" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -68,7 +68,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="yyyy-mm-dd"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:id="@+id/age"
                 android:layout_marginRight="1dp"
                 android:gravity="left" />
@@ -80,7 +80,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="laki-laki"
                 android:id="@+id/gender"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:gravity="left"
                 android:layout_marginRight="1dp" />
         </LinearLayout>

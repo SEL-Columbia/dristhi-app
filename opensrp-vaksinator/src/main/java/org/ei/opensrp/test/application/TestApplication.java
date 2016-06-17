@@ -3,9 +3,6 @@ package org.ei.opensrp.test.application;
 import android.content.Intent;
 import android.content.res.Configuration;
 
-import org.acra.ACRA;
-import org.acra.ReportingInteractionMode;
-import org.acra.annotation.ReportsCrashes;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.test.LoginActivity;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
