@@ -23,16 +23,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp">
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                style="@style/CustomFontTextViewStyle"
-                android:text="Large Text"
-                android:layout_margin="1dp"
-                android:id="@+id/childid"
-                android:textSize="18sp"
-                android:textColor="@color/text_black" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -42,6 +32,16 @@
                 android:text="Large Text"
                 android:layout_margin="1dp"
                 android:id="@+id/fathersname"
+                android:textSize="18sp"
+                android:textColor="@color/text_black" />
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                style="@style/CustomFontTextViewStyle"
+                android:text="Large Text"
+                android:layout_margin="1dp"
+                android:id="@+id/mothersname"
                 android:textSize="18sp"
                 android:textColor="@color/text_black" />
             <org.ei.opensrp.view.customControls.CustomFontTextView

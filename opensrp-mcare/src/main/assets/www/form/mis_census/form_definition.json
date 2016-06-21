@@ -34,7 +34,7 @@
         "bind": "/model/instance/MIS_Census/end"
       },
       {
-        "name": "FWMISELCODATE",
+        "name": "FWMISCENSUSDATE",
         "bind": "/model/instance/MIS_Census/FWMISELCODATE"
       },
       {

@@ -55,7 +55,7 @@
     <LinearLayout
             android:id="@+id/clients_header_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/list_header_height"
+            android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/list_view_margin_left_and_right"
             android:orientation="horizontal">
 
@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle"
-                        android:text="Date Of Outcome"
+                        android:text="@string/pnc_Details_date_of_outcome"
                         android:id="@+id/textView6"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
@@ -154,7 +154,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle"
-                        android:text="Pregnancy Outcome"
+                        android:text="@string/pregnancy_outcome"
                         android:id="@+id/pregnancy_outcome_label"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
@@ -189,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         style="@style/CustomFontTextViewStyle"
-                        android:text="Type Of Delivery"
+                        android:text="@string/pnc_typeofdelivery"
                         android:id="@+id/type_of_delivery_label"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />

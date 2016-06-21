@@ -421,16 +421,27 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     }
     private int getCurrentPageCount() {
         if(currentoffset != 0) {
-            return (totalcount / currentlimit)-((totalcount-currentoffset)/currentlimit);
+            if((currentoffset/currentlimit) != 0) {
+                return  ((currentoffset / currentlimit)+1);
+            }else {
+                return 1;
+            }
         }else{
-            return 0;
+            return 1;
+        }
+    }
+    private int getTotalcount(){
+        if(totalcount%currentlimit == 0){
+           return (totalcount/currentlimit);
+        }else {
+            return ((totalcount / currentlimit)+1);
         }
     }
     public void refresh() {
         pageInfoView.setText(
                 format(getResources().getString(R.string.str_page_info),
                         (getCurrentPageCount()),
-                        (totalcount/currentlimit)));
+                        getTotalcount()));
         nextPageView.setVisibility(hasNextPage() ? VISIBLE : INVISIBLE);
         previousPageView.setVisibility(hasPreviousPage() ? VISIBLE : INVISIBLE);
     }

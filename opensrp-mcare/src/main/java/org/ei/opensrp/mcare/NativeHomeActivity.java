@@ -23,11 +23,17 @@ import org.ei.opensrp.mcare.anc.anc2handler;
 import org.ei.opensrp.mcare.anc.anc3handler;
 import org.ei.opensrp.mcare.anc.anc4handler;
 import org.ei.opensrp.mcare.anc.nbnfhandler;
+import org.ei.opensrp.mcare.child.encc1handler;
+import org.ei.opensrp.mcare.child.encc2handler;
+import org.ei.opensrp.mcare.child.encc3handler;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
 import org.ei.opensrp.mcare.household.HouseholdCensusDueDateSort;
 import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
+import org.ei.opensrp.mcare.pnc.pnc1handler;
+import org.ei.opensrp.mcare.pnc.pnc2handler;
+import org.ei.opensrp.mcare.pnc.pnc3handler;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
@@ -111,12 +117,20 @@ public class NativeHomeActivity extends SecuredActivity {
         initialize();
         DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
         DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
-        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form",new CensusEnrollmentHandler());
+        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
         context.formSubmissionRouter().getHandlerMap().put("psrf_form", new PSRFHandler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_1", new anc1handler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_2", new anc2handler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_3", new anc3handler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_4", new anc4handler());
+        context.formSubmissionRouter().getHandlerMap().put("pnc_reminder_visit_1", new pnc1handler());
+        context.formSubmissionRouter().getHandlerMap().put("pnc_reminder_visit_2", new pnc2handler());
+        context.formSubmissionRouter().getHandlerMap().put("pnc_reminder_visit_3", new pnc3handler());
+        context.formSubmissionRouter().getHandlerMap().put("encc_visit_1", new encc1handler());
+        context.formSubmissionRouter().getHandlerMap().put("encc_visit_2", new encc2handler());
+        context.formSubmissionRouter().getHandlerMap().put("encc_visit_3", new encc3handler());
+
+
         context.formSubmissionRouter().getHandlerMap().put("birthnotificationpregnancystatusfollowup", new nbnfhandler());
 
     }

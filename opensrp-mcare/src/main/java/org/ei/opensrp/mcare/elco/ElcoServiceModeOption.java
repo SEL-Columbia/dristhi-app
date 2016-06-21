@@ -38,12 +38,12 @@ public class ElcoServiceModeOption extends ServiceModeOption {
 
             @Override
             public int weightSum() {
-                return 20;
+                return 40;
             }
 
             @Override
             public int[] weights() {
-                return new int[]{6,5,3,3,3};
+                return new int[]{12,9,5,7,7};
             }
 
             @Override
