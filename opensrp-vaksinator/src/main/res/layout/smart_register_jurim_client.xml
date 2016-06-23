@@ -87,6 +87,12 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="@dimen/smart_register_nav_bar_separator"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageView2"
+        android:src="@color/smart_register_client_divider_color" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -118,6 +124,12 @@
 
         </FrameLayout>
 
+        <ImageView
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView3"
+            android:src="@color/smart_register_client_divider_color" />
+
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
@@ -141,6 +153,12 @@
                 android:background="@drawable/ic_yes_large" />
 
         </FrameLayout>
+
+        <ImageView
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView4"
+            android:src="@color/smart_register_client_divider_color" />
 
         <FrameLayout
             android:layout_width="100dp"
@@ -166,6 +184,12 @@
 
         </FrameLayout>
 
+        <ImageView
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView5"
+            android:src="@color/smart_register_client_divider_color" />
+
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
@@ -189,6 +213,12 @@
                 android:background="@drawable/ic_yes_large" />
 
         </FrameLayout>
+
+        <ImageView
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView6"
+            android:src="@color/smart_register_client_divider_color" />
 
         <FrameLayout
             android:layout_width="100dp"
@@ -214,6 +244,12 @@
 
         </FrameLayout>
 
+        <ImageView
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView7"
+            android:src="@color/smart_register_client_divider_color" />
+
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
@@ -237,6 +273,12 @@
                 android:background="@drawable/ic_yes_large" />
 
         </FrameLayout>
+
+        <ImageView
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView8"
+            android:src="@color/smart_register_client_divider_color" />
 
     </LinearLayout>
 
