@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
@@ -57,6 +58,7 @@ public class VaksinatorDetailActivity extends Activity {
         TextView complete = (TextView) findViewById(R.id.complete);
         TextView additionalDPT = (TextView) findViewById(R.id.additionalDPT);
         TextView additionalMeasles = (TextView) findViewById(R.id.additionalMeasles);
+        ImageView photo = (ImageView)findViewById(R.id.photo);
 
         ImageButton backButton = (ImageButton) findViewById(R.id.btn_back_to_home);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +94,13 @@ public class VaksinatorDetailActivity extends Activity {
         mutationAfter30.setText(": "+(controller.getDetails().get("mutasi_meninggal_lebih_30hari") != null? controller.getDetails().get("mutasi_meninggal_lebih_30hari"):"-"));
         mutationMoving.setText(": "+(controller.getDetails().get("tanggal_pindah") != null? controller.getDetails().get("tanggal_pindah"):"-"));
         complete.setText(": "+(controller.getDetails().get("imunisasi_lengkap") != null? controller.getDetails().get("imunisasi_lengkap"):"-"));
-        additionalDPT.setText(": "+(controller.getDetails().get("dpt_hb_campak_lanjutan") != null? controller.getDetails().get("dpt_hb_campak_lanjutan"):"-"));
-        additionalMeasles.setText(": "+(controller.getDetails().get("dpt_hb_campak_lanjutan") != null? controller.getDetails().get("dpt_hb_campak_lanjutan"):"-"));
+        additionalDPT.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
+        additionalMeasles.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
+
+        if(controller.getDetails().get("jenis_kelamin").contains("l")){
+            photo.setImageResource(R.drawable.child_boy_infant);
+        }else{
+            photo.setImageResource(R.drawable.child_girl_infant);
+        }
     }
 }
