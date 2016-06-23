@@ -101,8 +101,6 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
                 new OpenFormOption("Kunjungan Imunisasi", "jurim_visit", formController),
 
             };
-
-
     }
 
 
