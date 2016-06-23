@@ -97,7 +97,7 @@
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1.6" >
+            android:layout_weight="1.6">
 
             <TextView
                 android:layout_width="match_parent"
@@ -106,7 +106,8 @@
                 android:id="@+id/hb1"
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textColor="#000000" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -120,7 +121,7 @@
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1.6" >
+            android:layout_weight="1.6">
 
             <TextView
                 android:layout_width="match_parent"
@@ -129,7 +130,8 @@
                 android:id="@+id/pol1"
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textColor="#000000" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -152,7 +154,8 @@
                 android:id="@+id/pol2"
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textColor="#000000" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -175,7 +178,8 @@
                 android:id="@+id/pol3"
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textColor="#000000" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -198,7 +202,8 @@
                 android:id="@+id/pol4"
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textColor="#000000" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -221,7 +226,8 @@
                 android:id="@+id/ipv"
                 android:layout_gravity="center_horizontal|bottom"
                 android:textSize="12dp"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textColor="#000000" />
 
             <ImageView
                 android:layout_width="wrap_content"
