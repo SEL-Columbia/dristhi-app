@@ -72,9 +72,9 @@
                     <ImageView
                         android:layout_width="114dp"
                         android:layout_height="114dp"
-                        android:id="@+id/imageView2"
+                        android:id="@+id/photo"
                         android:layout_gravity="center|left"
-                        android:background="@drawable/woman_placeholder"/>
+                        android:background="@drawable/child_boy_infant"/>
                 </FrameLayout>
 
                 <TextView
@@ -229,14 +229,14 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hb0 (0-7 day)"
+                        android:text="HB0 (0-7 day)"
                         android:id="@+id/textView11"
                         android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hb0 (>7 day)"
+                        android:text="HB0 (>7 day)"
                         android:id="@+id/textView12"
                         android:textSize="14dp" />
 
@@ -257,7 +257,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="DPT/Hb 1"
+                        android:text="DPT/HB 1"
                         android:id="@+id/textView15"
                         android:textSize="14dp" />
 
@@ -271,7 +271,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="DPT/Hb 2"
+                        android:text="DPT/HB 2"
                         android:id="@+id/textView25"
                         android:textSize="14dp" />
 
@@ -285,7 +285,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="DPT/Hb 3"
+                        android:text="DPT/HB 3"
                         android:id="@+id/textView27"
                         android:textSize="14dp" />
 
@@ -299,7 +299,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Measles"
+                        android:text="Campak"
                         android:id="@+id/textView29"
                         android:textSize="14dp" />
 
@@ -313,7 +313,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Mutasi/Kematian > 30 Hari"
+                        android:text="Mutasi/Kematian > 30 hari"
                         android:id="@+id/textView31"
                         android:textSize="14dp" />
 
@@ -334,7 +334,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="DPT/Hb Tambahan"
+                        android:text="DPT/HB Tambahan"
                         android:id="@+id/textView34"
                         android:textSize="14dp" />
 
