@@ -23,6 +23,8 @@ import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 
+import java.text.SimpleDateFormat;
+
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
@@ -78,12 +80,21 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
             viewHolder.pol4 = (TextView)convertView.findViewById(R.id.pol4);
             viewHolder.ipv = (TextView)convertView.findViewById(R.id.ipv);
 
+            // checklist logo
             viewHolder.hbLogo = (ImageView)convertView.findViewById(R.id.hbLogo);
             viewHolder.pol1Logo = (ImageView)convertView.findViewById(R.id.pol1Logo);
             viewHolder.pol2Logo = (ImageView)convertView.findViewById(R.id.pol2Logo);
             viewHolder.pol3Logo = (ImageView)convertView.findViewById(R.id.pol3Logo);
             viewHolder.pol4Logo = (ImageView)convertView.findViewById(R.id.pol4Logo);
             viewHolder.ipvLogo = (ImageView)convertView.findViewById(R.id.measlesLogo);
+
+            // alert logo
+//            viewHolder.hbAlert = (ImageView) convertView.findViewById(R.id.hbAlert);
+//            viewHolder.pol1Alert = (ImageView) convertView.findViewById(R.id.pol1Alert);
+//            viewHolder.pol2Alert = (ImageView) convertView.findViewById(R.id.pol2Alert);
+//            viewHolder.pol3Alert = (ImageView) convertView.findViewById(R.id.pol3Alert);
+//            viewHolder.pol4Alert = (ImageView) convertView.findViewById(R.id.pol4Alert);
+//            viewHolder.measlesAlert = (ImageView) convertView.findViewById(R.id.measlesAlert);
 
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
@@ -106,7 +117,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
 
-
+        int umur = pc.getDetails().get("tanggal_lahir") != null ? age(pc.getDetails().get("tanggal_lahir")) : 0;
         //set default image for mother
         viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(pc.getDetails().get("jenis_kelamin").contains("k")? R.drawable.child_boy_infant : R.drawable.child_girl_infant));
 
@@ -127,22 +138,53 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.pol4.setText(pc.getDetails().get("dpt_3_pol_4_ipv") != null ? pc.getDetails().get("dpt_3_pol_4_ipv") : "-");
         viewHolder.ipv.setText(pc.getDetails().get("imunisasi_campak") != null ? pc.getDetails().get("imunisasi_campak") : "-");
 
-
         // logo visibility, sometimes the variable contains blank string that count as not null, so we must check both the availability and content
         boolean a = pc.getDetails().get("hb1_kurang_7_hari") != null ? pc.getDetails().get("hb1_kurang_7_hari").length() == 10 ? true : false : false;
         boolean b = a || (pc.getDetails().get("hb1_lebih_7_hari") != null ? pc.getDetails().get("hb1_lebih_7_hari").length() == 10 ? true : false : false);
 
-        viewHolder.hbLogo.setVisibility(b ?  View.VISIBLE : View.INVISIBLE);
-        viewHolder.pol1Logo.setVisibility(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1").length()==10 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
-        viewHolder.pol2Logo.setVisibility(pc.getDetails().get("dpt_1_pol_2")!=null ? pc.getDetails().get("dpt_1_pol_2").length()==10 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
-        viewHolder.pol3Logo.setVisibility(pc.getDetails().get("dpt_2_pol_3")!=null ? pc.getDetails().get("dpt_2_pol_3").length()==10 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
-        viewHolder.pol4Logo.setVisibility(pc.getDetails().get("dpt_3_pol_4_ipv")!=null ? pc.getDetails().get("dpt_3_pol_4_ipv").length()==10 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
-        viewHolder.ipvLogo.setVisibility(pc.getDetails().get("imunisasi_campak")!=null ? pc.getDetails().get("imunisasi_campak").length()>4 ? View.VISIBLE:View.INVISIBLE : View.INVISIBLE);
+        viewHolder.hbLogo.setImageResource(b ? R.drawable.ic_yes_large : umur > 0 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha);
+        setIcon(viewHolder.pol1Logo,"bcg_pol_1",umur,1,pc);
+        setIcon(viewHolder.pol2Logo,"dpt_1_pol_2",umur,2,pc);
+        setIcon(viewHolder.pol3Logo,"dpt_2_pol_3",umur,3,pc);
+        setIcon(viewHolder.pol4Logo,"dpt_3_pol_4_ipv",umur,4,pc);
+        setIcon(viewHolder.ipvLogo,"imunisasi_campak",umur,9,pc);
 
+//        viewHolder.pol1Logo.setImageResource(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1").length()==10
+//                ? R.drawable.ic_yes_large : umur > 1 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
+//        viewHolder.pol2Logo.setImageResource(pc.getDetails().get("dpt_1_pol_2") != null ? pc.getDetails().get("dpt_1_pol_2").length() == 10
+//                ? R.drawable.ic_yes_large : umur > 2 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
+//        viewHolder.pol3Logo.setImageResource(pc.getDetails().get("dpt_2_pol_3")!=null ? pc.getDetails().get("dpt_2_pol_3").length()==10
+//                ? R.drawable.ic_yes_large : umur > 3 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
+//        viewHolder.pol4Logo.setImageResource(pc.getDetails().get("dpt_3_pol_4_ipv") != null ? pc.getDetails().get("dpt_3_pol_4_ipv").length() == 10
+//                ? R.drawable.ic_yes_large : umur > 4 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
+//        viewHolder.ipvLogo.setImageResource(pc.getDetails().get("imunisasi_campak")!=null ? pc.getDetails().get("imunisasi_campak").length()>4
+//                ? R.drawable.ic_yes_large : umur > 9 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
 
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
     }
+
+    //  updating icon
+    private void setIcon(ImageView image, String detailID,int value, int indicator, CommonPersonObjectClient pc) {
+        image.setImageResource(pc.getDetails().get(detailID) != null ? pc.getDetails().get(detailID).length() == 10
+                ? R.drawable.ic_yes_large : value > indicator ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
+    }
+
+    //  month age calculation
+    private int age(String date){
+        String []dateOfBirth = date.split("-");
+        String []currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()).split("-");
+
+        int tahun = Integer.parseInt(currentDate[0]) - Integer.parseInt(dateOfBirth[0]);
+        int bulan = Integer.parseInt(currentDate[1]) - Integer.parseInt(dateOfBirth[1]);
+        int hari = Integer.parseInt(currentDate[2]) - Integer.parseInt(dateOfBirth[2]);
+
+        int result = (tahun*360 + bulan*30 + hari)/30;
+        result = result < 0 ? 0 : result;
+
+        return result;
+    }
+
     CommonPersonObjectController householdelcocontroller;
 
     @Override
@@ -192,6 +234,12 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
          public ImageView pol3Logo;
          public ImageView pol4Logo;
          public ImageView ipvLogo;
+         public ImageView hbAlert;
+         public ImageView pol1Alert;
+         public ImageView pol2Alert;
+         public ImageView pol3Alert;
+         public ImageView pol4Alert;
+         public ImageView measlesAlert;
      }
 
 }
