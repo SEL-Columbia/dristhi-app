@@ -36,12 +36,12 @@ public class VaksinatorServiceModeOption extends ServiceModeOption {
 
             @Override
             public int weightSum() {
-                return 88;
+                return 176;
             }
 
             @Override
             public int[] weights() {
-                return new int[]{8,10,11,9,11,11,11,11,8};
+                return new int[]{12,26,20,18,22,22,25,22,23};
             }
 
             @Override
