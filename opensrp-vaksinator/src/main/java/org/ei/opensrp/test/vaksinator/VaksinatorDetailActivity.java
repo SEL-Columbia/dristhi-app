@@ -38,7 +38,7 @@ public class VaksinatorDetailActivity extends Activity {
         TextView village = (TextView) findViewById(R.id.village);
         TextView dateOfBirth = (TextView) findViewById(R.id.dateOfBirth);
         TextView birthWeight = (TextView) findViewById(R.id.birthWeight);
-        TextView currentWeight = (TextView) findViewById(R.id.currentWeight);
+        //TextView currentWeight = (TextView) findViewById(R.id.currentWeight);
 
         //vaccination date
         TextView hb1Under7 = (TextView) findViewById(R.id.hb1under7);
@@ -77,7 +77,7 @@ public class VaksinatorDetailActivity extends Activity {
         posyandu.setText(": "+(controller.getDetails().get("nama_lokasi") != null? controller.getDetails().get("nama_lokasi"):"-"));
         dateOfBirth.setText(": "+(controller.getDetails().get("tanggal_lahir") != null? controller.getDetails().get("tanggal_lahir"):"-"));
         birthWeight.setText(": "+(controller.getDetails().get("berat_badan_saat_lahir") != null? controller.getDetails().get("berat_badan_saat_lahir"):"-"));
-        currentWeight.setText(": "+(controller.getDetails().get("currentWeight") != null? controller.getDetails().get("currentWeight"):"-"));
+        //currentWeight.setText(": "+(controller.getDetails().get("currentWeight") != null? controller.getDetails().get("currentWeight"):"-"));
 
         hb1Under7.setText(": "+(controller.getDetails().get("hb1_kurang_7_hari") != null? controller.getDetails().get("hb1_kurang_7_hari"):"-"));
         hb1After7.setText(": "+(controller.getDetails().get("hb1_lebih_7_hari") != null? controller.getDetails().get("hb1_lebih_7_hari"):"-"));
