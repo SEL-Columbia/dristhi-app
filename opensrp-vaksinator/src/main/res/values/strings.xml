@@ -322,7 +322,7 @@
     <string name="hh_fwGobhhid_sort">HHID - Government</string>
     <string name="hh_fwJivhhid_sort">HHID - JiVitA</string>
     <string name="due_status">Due Status</string>
-    <string name="hh_search_hint">Search Household</string>
+    <string name="hh_search_hint">Search Child</string>
     <string name="hh_no_mwra">No ELCO</string>
     <string name="hh_has_mwra">Has one or more ELCO</string>
     <string name="elco_search_hint">Search Eligible Couples</string>
@@ -365,7 +365,7 @@
     <string name="jurim_label">Vaksinator</string>
     <string name="space"> </string>
     <string name="fence">|</string>
-    <string name="jurim_detail">Detail vaksinasi</string>
+    <string name="jurim_detail">Detail Vaksinasi</string>
     <string name="jurim_search">Vaksinasi search hint</string>
     <string name="hb1">HB0</string>
     <string name="polio1">BCG/Pol1</string>
