@@ -12,13 +12,13 @@
         "name": "existing_location",
         "bind": "/model/instance/registrasi_jurim/existing_location"
       },{
+        "name": "desa",
+        "bind": "/model/instance/registrasi_jurim/existing_Village",
+        "shouldLoadValue": true
+      },{
         "name": "village",
         "bind": "/model/instance/registrasi_jurim/existing_Sub-village",
         "shouldLoadValue": true
-      },{
-        "name": "nama_lokasi",
-        "bind": "/model/instance/registrasi_jurim/nama_lokasi",
-        "shouldLoadValue":true
       },
       {
         "name": "nama_bayi",
@@ -39,10 +39,6 @@
       {
         "name": "tanggal_lahir",
         "bind": "/model/instance/registrasi_jurim/tanggal_lahir"
-      },
-      {
-        "name": "tanggal_ditimbang_saat_lahir",
-        "bind": "/model/instance/registrasi_jurim/tanggal_ditimbang_saat_lahir"
       },
       {
         "name": "berat_badan_saat_lahir",
