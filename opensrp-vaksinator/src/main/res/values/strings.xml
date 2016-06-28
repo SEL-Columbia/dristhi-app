@@ -367,6 +367,9 @@
     <string name="fence">|</string>
     <string name="jurim_detail">Detail Vaksinasi</string>
     <string name="jurim_search">Vaksinasi search hint</string>
+    <string name="sort_by_nama_bayi">Nama Bayi</string>
+    <string name="sort_by_nama_ibu">Nama Ibu</string>
+    <string name="sort_by_dusun">Dusun</string>
     <string name="hb1">HB0</string>
     <string name="polio1">BCG/Pol1</string>
     <string name="polio2">DPT-HB1/Pol2</string>
