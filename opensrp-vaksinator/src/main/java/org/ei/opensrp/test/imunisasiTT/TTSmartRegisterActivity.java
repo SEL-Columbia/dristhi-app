@@ -14,7 +14,7 @@ import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.test.LoginActivity;
 import org.ei.opensrp.test.R;
-import org.ei.opensrp.test.fragment.JurimSmartRegisterFragment;
+import org.ei.opensrp.test.fragment.VaksinatorSmartRegisterFragment;
 import org.ei.opensrp.test.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -55,7 +55,7 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         formNames = this.buildFormNameList();
-        mBaseFragment = new JurimSmartRegisterFragment();
+        mBaseFragment = new VaksinatorSmartRegisterFragment();
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
