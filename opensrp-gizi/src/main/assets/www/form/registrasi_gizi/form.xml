@@ -73,6 +73,12 @@
         <span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span>
         <span class="or-required-msg active" lang="" data-i18n="constraint.required">This field is required</span>
     </fieldset>
+    <fieldset style="display:none;" id="or-preload-items">
+    <label class="calculation non-select ">
+        <input name="/registrasi_gizi/today" data-preload="date" data-preload-params="today"
+            data-type-xml="date" type="hidden" />
+    </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
         <label class="calculation non-select ">
             <input type="hidden" name="/registrasi_gizi/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>

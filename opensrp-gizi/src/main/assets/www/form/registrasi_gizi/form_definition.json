@@ -60,7 +60,7 @@
         "bind": "/model/instance/registrasi_gizi/jenis_kelamin"
       },
       {
-        "name": "reg_date",
+        "name": "registrationDate",
         "bind": "/model/instance/registrasi_gizi/today"
       }
 

@@ -113,6 +113,10 @@
       {
         "name": "end",
         "bind": "/model/instance/kunjungan_gizi/end"
+      },
+      {
+        "name": "registrationDate",
+        "bind": "/model/instance/kunjungan_gizi/today"
       }
 
     ]

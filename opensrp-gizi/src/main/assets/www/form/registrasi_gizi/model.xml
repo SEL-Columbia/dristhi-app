@@ -4,6 +4,7 @@
           <formhub>
             <uuid/>
           </formhub>
+          <today/>
           <existing_Village />
           <existing_Sub-village />
           <existing_Province />
