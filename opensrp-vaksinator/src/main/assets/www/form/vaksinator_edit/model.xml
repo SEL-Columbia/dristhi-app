@@ -1,0 +1,29 @@
+<model>
+  <instance>
+    <registrasi_vaksinator encounter_type="Registrasi Vaksinator" id="registrasi_vaksinator" version="201606240736">
+      <formhub>
+        <uuid/>
+      </formhub>
+      <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+      <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+      <deviceid/>
+      <simserial/>
+      <phonenumber/>
+      <existing_Village/>
+      <existing_Sub-village/>
+      <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
+      <desa openmrs_entity="concept" openmrs_entity_id="1763AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <posyandu openmrs_entity="concept" openmrs_entity_id="161010AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <nama_bayi openmrs_entity="person" openmrs_entity_id="first_name"/>
+      <nama_orang_tua openmrs_entity="person" openmrs_entity_id="last_name"/>
+      <nik openmrs_entity="person_identifier" openmrs_entity_id="id"/>
+      <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
+      <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
+      <berat_badan_saat_lahir openmrs_entity="concept" openmrs_entity_id="5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+      <meta>
+        <instanceID/>
+      </meta>
+    </registrasi_vaksinator>
+  </instance>
+</model>
