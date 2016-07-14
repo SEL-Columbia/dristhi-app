@@ -104,7 +104,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
         //set image
-        if(pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")){
+        if(pc.getDetails().get("jenisKelamin").equalsIgnoreCase("male")){
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy_infant));
         }
         else{
