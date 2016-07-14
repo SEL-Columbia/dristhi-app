@@ -25,7 +25,9 @@ import com.jjoe64.graphview.series.PointsGraphSeries;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
+import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.gizi.R;
+import org.ei.opensrp.repository.ImageRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import util.ImageCache;
 import util.ImageFetcher;
@@ -62,6 +65,7 @@ public class ChildDetailActivity extends Activity {
         Context context = Context.getInstance();
         setContentView(R.layout.gizi_detail_activity);
 
+        final ImageView childview = (ImageView)findViewById(R.id.detail_profilepic);
         //header
         TextView header_name = (TextView) findViewById(R.id.header_name);
         //profile
@@ -90,6 +94,23 @@ public class ChildDetailActivity extends Activity {
                 overridePendingTransition(0, 0);
             }
         });
+
+        if(childclient.getDetails().get("profilepic")!= null){
+            if((childclient.getDetails().get("jenisKelamin")!=null?childclient.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("female")) {
+
+                setImagetoHolderFromUri(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.womanimageload);
+            } else if ((childclient.getDetails().get("jenisKelamin")!=null?childclient.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("male")){
+                setImagetoHolderFromUri(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.householdload);
+
+            }
+        }else{
+
+            if((childclient.getDetails().get("jenisKelamin")!=null?childclient.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("female")){
+                childview.setImageDrawable(getResources().getDrawable(R.drawable.child_girl_infant));
+            }else if ((childclient.getDetails().get("jenisKelamin")!=null?childclient.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("male")){
+                childview.setImageDrawable(getResources().getDrawable(R.drawable.child_boy_infant));
+            }
+        }
 
         nama.setText(R.string.child_profile);
         nama.setText(getString(R.string.child_name) +" "+ (childclient.getDetails().get("namaBayi") != null ? childclient.getDetails().get("namaBayi") : "-"));
@@ -148,12 +169,21 @@ public class ChildDetailActivity extends Activity {
 
         });
 
+        childview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                bindobject = "anak";
+                entityid = childclient.entityId();
+                dispatchTakePictureIntent(childview);
+
+            }
+        });
 
     }
 
 
-    // NOT USING PICTURE AT THE MOMENT
+
     String mCurrentPhotoPath;
 
     private File createImageFile() throws IOException {
@@ -217,6 +247,9 @@ public class ChildDetailActivity extends Activity {
     }
     public void saveimagereference(String bindobject,String entityid,Map<String,String> details){
         Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityid,details);
+        String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
+        ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("profilepic"), ImageRepository.TYPE_Unsynced,"dp");
+        ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
 //                childclient.entityId();
 //        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
     }
@@ -240,10 +273,25 @@ public class ChildDetailActivity extends Activity {
 
 
 
-
 //        BitmapFactory.Options options = new BitmapFactory.Options();
 //        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 //        Bitmap bitmap = BitmapFactory.decodeFile(file, options);
 //        view.setImageBitmap(bitmap);
+    }
+    public static void setImagetoHolderFromUri(Activity activity,String file, ImageView view, int placeholder){
+        view.setImageDrawable(activity.getResources().getDrawable(placeholder));
+        File externalFile = new File(file);
+        Uri external = Uri.fromFile(externalFile);
+        view.setImageURI(external);
+
+
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this, GiziSmartRegisterActivity.class));
+        overridePendingTransition(0, 0);
+
+
     }
 }

@@ -1,5 +1,6 @@
 package org.ei.opensrp.gizi.gizi;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -104,12 +105,20 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
         //set image
-        if(pc.getDetails().get("jenisKelamin").equalsIgnoreCase("male")){
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy_infant));
+        final ImageView childview = (ImageView)convertView.findViewById(R.id.profilepic);
+
+        if (pc.getDetails().get("profilepic") != null) {
+                       ChildDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), childview, R.drawable.ic_dristhi_logo);
+                       childview.setTag(smartRegisterClient);
         }
-        else{
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_girl_infant));
+        else {
+            if (pc.getDetails().get("jenisKelamin").equalsIgnoreCase("male")) {
+                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy_infant));
+            } else {
+                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_girl_infant));
+            }
         }
+
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
         viewHolder.parentname.setText(pc.getDetails().get("namaOrtu")!=null?pc.getDetails().get("namaOrtu"):"");
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):"");
