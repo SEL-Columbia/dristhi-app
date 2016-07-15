@@ -190,7 +190,7 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
 
-        setServiceModeViewDrawableRight(null);
+        System.out.println("disini broh");
         updateSearchView();
 //        checkforNidMissing(view);
     }
