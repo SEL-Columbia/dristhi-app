@@ -108,14 +108,14 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         final ImageView childview = (ImageView)convertView.findViewById(R.id.profilepic);
 
         if (pc.getDetails().get("profilepic") != null) {
-                       ChildDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), childview, R.drawable.ic_dristhi_logo);
+                       ChildDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), childview, R.mipmap.child_boy_infant);
                        childview.setTag(smartRegisterClient);
         }
         else {
-            if (pc.getDetails().get("jenisKelamin").equalsIgnoreCase("male")) {
-                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy_infant));
+            if (pc.getDetails().get("jenisKelamin").equalsIgnoreCase("male") || pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")) {
+                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
             } else {
-                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_girl_infant));
+                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_girl_infant));
             }
         }
 

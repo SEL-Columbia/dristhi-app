@@ -13617,19 +13617,20 @@ public class ReferenceTableForDailyIndex {
     }
 
 
-//    public String[]WeightAgeStandardIndex = {context.getResources().getString(R.string.Underweight),context.getResources().getString(R.string.Underweight),context.getResources().getString(R.string.good_nutrition),context.getResources().getString(R.string.overweight)};
-    public String[]WeightAgeStandardIndex = {"Gizi Buruk","Gizi Kurang","Normal","Gemuk"};
+//    public String[]WeightAgeStandardIndex = {context.getResources().getString(R.string.Underweight),
+// context.getResources().getString(R.string.Underweight),context.getResources().getString(R.string.good_nutrition),context.getResources().getString(R.string.overweight)};
+    public String[]WeightAgeStandardIndex = {"Severely Underweight","Underweight","Normal","Overweight"};
 
    // public String[]HeightAgeStandardIndex = {context.getResources().getString(R.string.s_stunted),
     //                                        context.getResources().getString(R.string.stunted),
      //                                       context.getResources().getString(R.string.normal),
      //                                       context.getResources().getString(R.string.tall)};
-    public String[]HeightAgeStandardIndex = {"Sangat Pendek","Pendek","Normal","Tinggi"};
+    public String[]HeightAgeStandardIndex = {"Severely Stunted","Stunted","Normal","Tall"};
 
     // BMI, weight length and weight height has the same standard
    // public String[]WeightHeightStandardIndex = {context.getResources().getString(R.string.S_wasted),
    //                                             context.getResources().getString(R.string.wasted),
    //                                             context.getResources().getString(R.string.normal),
     //                                            context.getResources().getString(R.string.overweight)};
-    public String[]WeightHeightStandardIndex = {"Sangat Kurus","Kurus","Normal","Gemuk"};
+    public String[]WeightHeightStandardIndex = {"Severely Wasted","Wasted","Normal","Overweight"};
 }

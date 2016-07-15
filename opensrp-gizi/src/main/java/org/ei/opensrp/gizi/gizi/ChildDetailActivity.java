@@ -97,18 +97,17 @@ public class ChildDetailActivity extends Activity {
 
         if(childclient.getDetails().get("profilepic")!= null){
             if((childclient.getDetails().get("jenisKelamin")!=null?childclient.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("female")) {
-
-                setImagetoHolderFromUri(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.womanimageload);
+                setImagetoHolderFromUri(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.child_boy_infant);
             } else if ((childclient.getDetails().get("jenisKelamin")!=null?childclient.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("male")){
-                setImagetoHolderFromUri(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.householdload);
+                setImagetoHolderFromUri(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.child_boy_infant);
 
             }
-        }else{
-
-            if((childclient.getDetails().get("jenisKelamin")!=null?childclient.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("female")){
-                childview.setImageDrawable(getResources().getDrawable(R.drawable.child_girl_infant));
-            }else if ((childclient.getDetails().get("jenisKelamin")!=null?childclient.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("male")){
-                childview.setImageDrawable(getResources().getDrawable(R.drawable.child_boy_infant));
+        }
+        else {
+            if (childclient.getDetails().get("jenisKelamin").equalsIgnoreCase("male") || childclient.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")) {
+                childview.setImageDrawable(getResources().getDrawable(R.mipmap.child_boy_infant));
+            } else {
+                childview.setImageDrawable(getResources().getDrawable(R.mipmap.child_girl_infant));
             }
         }
 

@@ -51,8 +51,8 @@
     <string name="str_fp_search_hint">Search FP Register</string>
     <string name="str_pnc_search_hint">Search PNC Register</string>
     <string name="str_child_search_hint">Cari Anak</string>
-    <string name="label_sorted_by">Diurutkan berdasarkan :</string>
-    <string name="label_village">, Desa:</string>
+    <string name="label_sorted_by">Sorted By :</string>
+    <string name="label_village">, Village:</string>
     <string name="ec_register_wife_age">({0})</string>
 
     <string name="ec_register_male_child">Male\n{0}</string>
@@ -304,7 +304,7 @@
 
     <string name="hh_profile">Profile</string>
     <string name="hh_no_of_mwra">No of ELCO</string>
-    <string name="hh_last_visit_date">Tanggal Kunjungan</string>
+    <string name="hh_last_visit_date">Visit Date</string>
     <string name="hh_visit_due_date">HH Visit Due Date</string>
     <string name="hh_other_inhabitants">Other Inhabitants</string>
     <string name="hh_inhabitants_details">HH Inhabitants Details</string>
@@ -361,29 +361,29 @@
     <string name="no_internet_connectivity">No internet connection. Please ensure data connectivity</string>
     <string name="forminputerror">Please check the form for any error/missing input marked in Red box</string>
     <string name="okforminputerror">ok</string>
-    <string name="child_profile">Data Anak</string>
+    <string name="child_profile">Child Details</string>
     <string name="anthopometri">Antropometri</string>
-    <string name="status">Status Nutrisi</string>
-    <string name="tanggal">Tanggal Kunjungan : </string>
-    <string name="height">Tinggi : </string>
-    <string name="stunting">Tinggi/Umur : </string>
-    <string name="wasting">Berat/Tinggi : </string>
-    <string name="underweight">Berat/Umur : </string>
-    <string name="weight">Berat :</string>
-    <string name="child_name">Nama Anak : </string>
+    <string name="status">Nutrition Status</string>
+    <string name="tanggal">Visit Date : </string>
+    <string name="height">Height : </string>
+    <string name="stunting">Height for Age status : </string>
+    <string name="wasting">Weight for Length status : </string>
+    <string name="underweight">Weight for Age status : </string>
+    <string name="weight">Weight :</string>
+    <string name="child_name">Child Name : </string>
     <string name="mother_name">Mother Name : </string>
     <string name="father_name">Father Name : </string>
     <string name="posyandu">Posyandu : </string>
-    <string name="village">Desa : </string>
-    <string name="birth_date">Tanggal Lahir : </string>
-    <string name="birth_date1">Tanggal Lahir  </string>
-    <string name="gender">Jenis Kelamin : </string>
-    <string name="nutrition_status">Status Nutrisi :</string>
-    <string name="bgm">BGM :</string>
-    <string name="dua_t">2T :</string>
-    <string name="under_yellow_line">Gizi Kurang :</string>
-    <string name="asi">Asi Ekslusif :</string>
-    <string name="parent_name">Nama Orang Tua</string>
+    <string name="village">Village : </string>
+    <string name="birth_date">Date of Birth : </string>
+    <string name="birth_date1">Date of Birth  </string>
+    <string name="gender">Gender : </string>
+    <string name="nutrition_status">Nutrition Status :</string>
+    <string name="bgm">Undernourished  :</string>
+    <string name="dua_t">Failure to gain weight :</string>
+    <string name="under_yellow_line">Underweight :</string>
+    <string name="asi">Exclusive Breastfeeding :</string>
+    <string name="parent_name">Parent Name</string>
     <string name="gizi">Gizi</string>
     <string name="S_underweight"> Gizi Buruk</string>
     <string name="Underweight">Gizi Kurang</string>
@@ -395,7 +395,7 @@
     <string name="tall">Tinggi</string>
     <string name="S_wasted">Sangak Kurus</string>
     <string name="wasted">Kurus</string>
-    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="jenis_kelamin">Gender</string>
 
 
 </resources>

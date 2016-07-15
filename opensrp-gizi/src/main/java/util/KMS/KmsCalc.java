@@ -20,12 +20,12 @@ public class KmsCalc {
        // System.out.println("check 2T");
         String measureDate[] = {bayi.getLastVisitDate(),bayi.getSecondLastVisitDate()};
         double weight[] = {bayi.getWeight(),bayi.getPreviousWeight()};
-        status = status && (!cekWeightStatus(bayi.isMale(), bayi.getDateOfBirth(), measureDate, weight).equalsIgnoreCase("naik"));
+        status = status && (!cekWeightStatus(bayi.isMale(), bayi.getDateOfBirth(), measureDate, weight).equalsIgnoreCase("Weight Increase"));
         String measureDate2[] = {bayi.getLastVisitDate(),bayi.getSecondLastVisitDate()};
         double weight2[] = {bayi.getPreviousWeight(),bayi.getSecondLastWeight()};
-        status = status && (!cekWeightStatus(bayi.isMale(), bayi.getDateOfBirth(), measureDate2, weight2).equalsIgnoreCase("naik"));
+        status = status && (!cekWeightStatus(bayi.isMale(), bayi.getDateOfBirth(), measureDate2, weight2).equalsIgnoreCase("Weight Increase"));
         bayi.Tidak2Kali = status;
-        return " "+(bayi.Tidak2Kali ? "Ya":"Tidak");
+        return " "+(bayi.Tidak2Kali ? "Yes":"No");
     }
 
 
@@ -41,20 +41,20 @@ public class KmsCalc {
 
     public String cekWeightStatus(boolean isMale, String dateOfBirth, String measureDate[], double weight[]){
         if( measureDate.equals("0"))
-            return "Baru";
+            return "New";
         else {
             int age = monthAges(dateOfBirth, measureDate[0]);
             String result = "";
 
             int ages = monthAges(measureDate[1], measureDate[0]);
             if (isMale)
-                result = ages > 1  ? "Tidak Datang Bulan Lalu" : ((weight[0] - weight[1] + 0.000000000000004) * 1000)
+                result = ages > 1  ? "Not attending previous visit" : ((weight[0] - weight[1] + 0.000000000000004) * 1000)
                         >= KmsConstants.maleWeightUpIndicator[age > 12 ? 12 : age]
-                        ? "Naik" : "Tidak naik";
+                        ? "Weight Increase" : "Not gaining weight";
             else
-                result = ages > 1 ? "Tidak Datang Bulan Lalu" : ((weight[0] - weight[1] + 0.000000000000004) * 1000)
+                result = ages > 1 ? "not attending previous visit" : ((weight[0] - weight[1] + 0.000000000000004) * 1000)
                         >= KmsConstants.femaleWeightUpIndicator[age > 11 ? 11 : age]
-                        ? "Naik" : "Tidak naik";
+                        ? "Weight Increase" : "Not gaining weight";
 
             return result;
         }
@@ -64,7 +64,7 @@ public class KmsCalc {
         bayi.BGM = bayi.isMale()
                 ? KmsConstants.maleBGM[bayi.getAge()]>bayi.getWeight()
                 : KmsConstants.femaleBGM[bayi.getAge()]>bayi.getWeight();
-        return " "+(bayi.BGM ? "Ya":"Tidak");
+        return " "+(bayi.BGM ? "Yes":"No");
     }
 
     public String cekBawahKuning(KmsPerson bayi){
@@ -74,7 +74,7 @@ public class KmsCalc {
                 : ((KmsConstants.femaleGarisKuning[bayi.getAge()][0]<=bayi.getWeight())
                 && (bayi.getWeight()<=KmsConstants.femaleGarisKuning[bayi.getAge()][1]))
         ;
-        return " "+(bayi.GarisKuning ? "Ya":"Tidak");
+        return " "+(bayi.GarisKuning ? "Yes":"No");
     }
 
 }
