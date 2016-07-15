@@ -53,7 +53,7 @@ public class AllSharedPreferences {
         preferences.edit().putString(HOST,host).commit();
     }
 
-    public Integer (Integer port){
+    public Integer fetchPort(Integer port){
 
         return  Integer.parseInt( preferences.getString(PORT,""+port));
     }

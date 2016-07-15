@@ -38,8 +38,6 @@ public class SettingsActivity extends PreferenceActivity{
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
 
-            final
-
             Preference baseUrlPreference = findPreference("DRISHTI_BASE_URL");
             if(baseUrlPreference != null){
                 EditTextPreference baseUrlEditTextPreference = (EditTextPreference) baseUrlPreference;
