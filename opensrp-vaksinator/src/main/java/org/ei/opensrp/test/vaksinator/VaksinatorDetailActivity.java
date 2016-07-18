@@ -58,7 +58,7 @@ public class VaksinatorDetailActivity extends Activity {
         TextView complete = (TextView) findViewById(R.id.complete);
         TextView additionalDPT = (TextView) findViewById(R.id.additionalDPT);
         TextView additionalMeasles = (TextView) findViewById(R.id.additionalMeasles);
-        ImageView photo = (ImageView)findViewById(R.id.photo);
+        ImageView photo = (ImageView) findViewById(R.id.photo);
 
         ImageButton backButton = (ImageButton) findViewById(R.id.btn_back_to_home);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -70,37 +70,46 @@ public class VaksinatorDetailActivity extends Activity {
             }
         });
 
-        nama.setText(": "+(controller.getDetails().get("nama_bayi") != null ? controller.getDetails().get("nama_bayi") : "-"));
-        motherName.setText(": "+(controller.getDetails().get("nama_orang_tua") != null ? controller.getDetails().get("nama_orang_tua") : "-"));
+        nama.setText(": " + (controller.getDetails().get("nama_bayi") != null ? controller.getDetails().get("nama_bayi") : "-"));
+        motherName.setText(": " + (controller.getDetails().get("nama_orang_tua") != null ? controller.getDetails().get("nama_orang_tua") : "-"));
         //fatherName.setText(": "+(controller.getDetails().get("fatherName") != null? controller.getDetails().get("fatherName"):"-"));
-        village.setText(": "+(controller.getDetails().get("village") != null? controller.getDetails().get("village"):"-"));
-        posyandu.setText(": "+(controller.getDetails().get("nama_lokasi") != null? controller.getDetails().get("nama_lokasi"):"-"));
-        dateOfBirth.setText(": "+(controller.getDetails().get("tanggal_lahir") != null? controller.getDetails().get("tanggal_lahir"):"-"));
-        birthWeight.setText(": "+(controller.getDetails().get("berat_badan_saat_lahir") != null? controller.getDetails().get("berat_badan_saat_lahir"):"-"));
+        village.setText(": " + (controller.getDetails().get("village") != null ? controller.getDetails().get("village") : "-"));
+        posyandu.setText(": " + (controller.getDetails().get("nama_lokasi") != null ? controller.getDetails().get("nama_lokasi") : "-"));
+        dateOfBirth.setText(": " + (controller.getDetails().get("tanggal_lahir") != null ? controller.getDetails().get("tanggal_lahir") : "-"));
+        birthWeight.setText(": " + (controller.getDetails().get("berat_badan_saat_lahir") != null ? controller.getDetails().get("berat_badan_saat_lahir") : "-"));
         //currentWeight.setText(": "+(controller.getDetails().get("currentWeight") != null? controller.getDetails().get("currentWeight"):"-"));
 
-        hb1Under7.setText(": "+(controller.getDetails().get("hb1_kurang_7_hari") != null? controller.getDetails().get("hb1_kurang_7_hari"):"-"));
-        hb1After7.setText(": "+(controller.getDetails().get("hb1_lebih_7_hari") != null? controller.getDetails().get("hb1_lebih_7_hari"):"-"));
-        bcg.setText(": "+(controller.getDetails().get("bcg_pol_1") != null? controller.getDetails().get("bcg_pol_1"):"-"));
-        pol1.setText(": "+(controller.getDetails().get("bcg_pol_1") != null? controller.getDetails().get("bcg_pol_1"):"-"));
-        dpt1.setText(": "+(controller.getDetails().get("dpt_1_pol_2") != null? controller.getDetails().get("dpt_1_pol_2"):"-"));
-        pol2.setText(": "+(controller.getDetails().get("dpt_1_pol_2") != null? controller.getDetails().get("dpt_1_pol_2"):"-"));
-        dpt2.setText(": "+(controller.getDetails().get("dpt_2_pol_3") != null? controller.getDetails().get("dpt_2_pol_3"):"-"));
-        pol3.setText(": "+(controller.getDetails().get("dpt_2_pol_3") != null? controller.getDetails().get("dpt_2_pol_3"):"-"));
-        dpt3.setText(": "+(controller.getDetails().get("dpt_3_pol_4_ipv") != null? controller.getDetails().get("dpt_3_pol_4_ipv"):"-"));
-        pol4.setText(": "+(controller.getDetails().get("dpt_3_pol_4_ipv") != null? controller.getDetails().get("dpt_3_pol_4_ipv"):"-"));
-        measles.setText(": "+(controller.getDetails().get("imunisasi_campak") != null? controller.getDetails().get("imunisasi_campak"):"-"));
-        mutationUnder30.setText(": "+(controller.getDetails().get("mutasi_meninggal_kurang_30hari") != null? controller.getDetails().get("mutasi_meninggal_kurang_30hari"):"-"));
-        mutationAfter30.setText(": "+(controller.getDetails().get("mutasi_meninggal_lebih_30hari") != null? controller.getDetails().get("mutasi_meninggal_lebih_30hari"):"-"));
-        mutationMoving.setText(": "+(controller.getDetails().get("tanggal_pindah") != null? controller.getDetails().get("tanggal_pindah"):"-"));
-        complete.setText(": "+(controller.getDetails().get("imunisasi_lengkap") != null? controller.getDetails().get("imunisasi_lengkap"):"-"));
+        hb1Under7.setText(": " + (controller.getDetails().get("hb1_kurang_7_hari") != null ? controller.getDetails().get("hb1_kurang_7_hari") : "-"));
+        hb1After7.setText(": " + (controller.getDetails().get("hb1_lebih_7_hari") != null ? controller.getDetails().get("hb1_lebih_7_hari") : "-"));
+        bcg.setText(": " + (controller.getDetails().get("bcg_pol_1") != null ? controller.getDetails().get("bcg_pol_1") : "-"));
+        pol1.setText(": " + (controller.getDetails().get("bcg_pol_1") != null ? controller.getDetails().get("bcg_pol_1") : "-"));
+        dpt1.setText(": " + (controller.getDetails().get("dpt_1_pol_2") != null ? controller.getDetails().get("dpt_1_pol_2") : "-"));
+        pol2.setText(": " + (controller.getDetails().get("dpt_1_pol_2") != null ? controller.getDetails().get("dpt_1_pol_2") : "-"));
+        dpt2.setText(": " + (controller.getDetails().get("dpt_2_pol_3") != null ? controller.getDetails().get("dpt_2_pol_3") : "-"));
+        pol3.setText(": " + (controller.getDetails().get("dpt_2_pol_3") != null ? controller.getDetails().get("dpt_2_pol_3") : "-"));
+        dpt3.setText(": " + (controller.getDetails().get("dpt_3_pol_4_ipv") != null ? controller.getDetails().get("dpt_3_pol_4_ipv") : "-"));
+        pol4.setText(": " + (controller.getDetails().get("dpt_3_pol_4_ipv") != null ? controller.getDetails().get("dpt_3_pol_4_ipv") : "-"));
+        measles.setText(": " + (controller.getDetails().get("imunisasi_campak") != null ? controller.getDetails().get("imunisasi_campak") : "-"));
+        mutationUnder30.setText(": " + (controller.getDetails().get("mutasi_meninggal_kurang_30hari") != null ? controller.getDetails().get("mutasi_meninggal_kurang_30hari") : "-"));
+        mutationAfter30.setText(": " + (controller.getDetails().get("mutasi_meninggal_lebih_30hari") != null ? controller.getDetails().get("mutasi_meninggal_lebih_30hari") : "-"));
+        mutationMoving.setText(": " + (controller.getDetails().get("tanggal_pindah") != null ? controller.getDetails().get("tanggal_pindah") : "-"));
+        complete.setText(": " + (controller.getDetails().get("imunisasi_lengkap") != null ? controller.getDetails().get("imunisasi_lengkap") : "-"));
         additionalDPT.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
         additionalMeasles.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
 
-        if(controller.getDetails().get("jenis_kelamin").contains("l")){
+        if (controller.getDetails().get("jenis_kelamin").contains("l")) {
             photo.setImageResource(R.drawable.child_boy_infant);
-        }else{
+        } else {
             photo.setImageResource(R.drawable.child_girl_infant);
         }
+
+        Context otherContext = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+
+        org.ei.opensrp.commonregistry.CommonPersonObjectController data = new org.ei.opensrp.commonregistry.CommonPersonObjectController(otherContext.allCommonsRepositoryobjects("anak"),
+                otherContext.allBeneficiaries(), otherContext.listCache(),
+                otherContext.personObjectClientsCache(), "nama_bayi", "anak", "nama_orang_tua", org.ei.opensrp.commonregistry.CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+
+        org.ei.opensrp.commonregistry.CommonPersonObjectClients clients = data.getClients();
+        System.out.println(data.getClients());
     }
 }
