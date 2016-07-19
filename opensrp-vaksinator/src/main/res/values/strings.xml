@@ -363,6 +363,7 @@
     <string name="okforminputerror">ok</string>
 
     <string name="jurim_label">Vaksinator</string>
+    <string name="vaksinator_recapitulation_label">Laporan Kunjungan</string>
     <string name="space"> </string>
     <string name="fence">|</string>
     <string name="jurim_detail">Detail Vaksinasi</string>
