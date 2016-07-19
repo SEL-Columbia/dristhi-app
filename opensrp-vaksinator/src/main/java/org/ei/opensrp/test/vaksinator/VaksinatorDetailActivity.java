@@ -102,14 +102,5 @@ public class VaksinatorDetailActivity extends Activity {
         } else {
             photo.setImageResource(R.drawable.child_girl_infant);
         }
-
-        Context otherContext = Context.getInstance().updateApplicationContext(this.getApplicationContext());
-
-        org.ei.opensrp.commonregistry.CommonPersonObjectController data = new org.ei.opensrp.commonregistry.CommonPersonObjectController(otherContext.allCommonsRepositoryobjects("anak"),
-                otherContext.allBeneficiaries(), otherContext.listCache(),
-                otherContext.personObjectClientsCache(), "nama_bayi", "anak", "nama_orang_tua", org.ei.opensrp.commonregistry.CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-
-        org.ei.opensrp.commonregistry.CommonPersonObjectClients clients = data.getClients();
-        System.out.println(data.getClients());
     }
 }
