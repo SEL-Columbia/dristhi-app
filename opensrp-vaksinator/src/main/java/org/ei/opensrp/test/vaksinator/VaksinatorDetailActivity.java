@@ -10,6 +10,7 @@ import android.widget.TextView;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.test.R;
+import org.w3c.dom.Text;
 
 /**
  * Created by Iq on 09/06/16.
@@ -66,6 +67,16 @@ public class VaksinatorDetailActivity extends Activity {
             public void onClick(View v) {
                 finish();
                 startActivity(new Intent(VaksinatorDetailActivity.this, VaksinatorSmartRegisterActivity.class));
+                overridePendingTransition(0, 0);
+            }
+        });
+
+        TextView recapitulationLabel = (TextView)findViewById(R.id.recapitulation_label);
+        recapitulationLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(VaksinatorDetailActivity.this, VaksinatorRecapitulationActivity.class));
                 overridePendingTransition(0, 0);
             }
         });
