@@ -1,7 +1,10 @@
 package org.ei.opensrp.test.vaksinator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
@@ -25,7 +28,7 @@ public class VaksinatorRecapitulationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Context context = Context.getInstance();
-        setContentView(R.layout.smart_register_jurim_detail_client);
+        setContentView(R.layout.smart_register_jurim_client_reporting);
 
         Context otherContext = Context.getInstance().updateApplicationContext(this.getApplicationContext());
 
@@ -33,9 +36,10 @@ public class VaksinatorRecapitulationActivity extends Activity {
                 otherContext.allBeneficiaries(), otherContext.listCache(),
                 otherContext.personObjectClientsCache(), "nama_bayi", "anak", "nama_orang_tua", org.ei.opensrp.commonregistry.CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
+
         org.ei.opensrp.commonregistry.CommonPersonObjectClients clients = data.getClients();
-        TextView hbunder7 = (TextView) findViewById(R.id.hbUnder7Reporting);
-        TextView hbover7 = (TextView) findViewById(R.id.hbOver7Reporting);
+        TextView hbUnder7 = (TextView) findViewById(R.id.hbUnder7Reporting);
+        TextView hbOver7 = (TextView) findViewById(R.id.hbOver7Reporting);
         TextView bcg = (TextView) findViewById(R.id.bcgReporting);
         TextView pol1 = (TextView) findViewById(R.id.pol1Reporting);
         TextView hb1 = (TextView) findViewById(R.id.hb1Reporting);
@@ -50,15 +54,25 @@ public class VaksinatorRecapitulationActivity extends Activity {
         TextView diedo30 = (TextView) findViewById(R.id.diedover30Reporting);
         TextView moving = (TextView) findViewById(R.id.movingReporting);
 
+        ImageButton backButton = (ImageButton) findViewById(R.id.btn_back_to_home);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(VaksinatorRecapitulationActivity.this, VaksinatorSmartRegisterActivity.class));
+                overridePendingTransition(0, 0);
+            }
+        });
+
         int counter = 0;
 
         counter = recapitulation(clients,"hb1_kurang_7_hari","-");
-        hbunder7.setText(Integer.toString(counter));
+        hbUnder7.setText(Integer.toString(counter));
         counter = recapitulation(clients,"hb1_lebih_7_hari","-");
-        hbover7.setText(Integer.toString(counter));
+        hbOver7.setText(Integer.toString(counter));
         counter = recapitulation(clients,"bcg_pol_1","-");
         bcg.setText(Integer.toString(counter));
-        pol1.setText(counter);
+        pol1.setText(Integer.toString(counter));
         counter = recapitulation(clients,"dpt_1_pol_2","-");
         hb1.setText(Integer.toString(counter));
         pol2.setText(Integer.toString(counter));
@@ -81,8 +95,11 @@ public class VaksinatorRecapitulationActivity extends Activity {
 
     private int recapitulation(org.ei.opensrp.commonregistry.CommonPersonObjectClients clients,String fieldName, String keyword){
         int counter = 0;
+        org.ei.opensrp.commonregistry.CommonPersonObjectClient cl;
         for(int i=0;i<clients.size();i++){
-            counter = ((org.ei.opensrp.commonregistry.CommonPersonObjectClient)clients.get(i)).getDetails().get(fieldName).equals(keyword) ? counter+1:counter;
+            cl = ((org.ei.opensrp.commonregistry.CommonPersonObjectClient)clients.get(i));
+            if (cl.getDetails().get(fieldName)!=null)
+                counter = cl.getDetails().get(fieldName).contains(keyword) ? counter+1:counter;
         }
         return counter;
     }
