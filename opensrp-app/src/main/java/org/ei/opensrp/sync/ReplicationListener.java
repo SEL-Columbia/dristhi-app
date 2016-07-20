@@ -49,10 +49,10 @@ public class ReplicationListener {
         }
         else {
             //Fire this incase the replication was lauched from an intent service
-            Intent localIntent = new Intent(AllConstants.Replication.ACTION_REPLICATION_COMPLETED);
+            Intent localIntent = new Intent(AllConstants.CloudantSync.ACTION_REPLICATION_COMPLETED);
             // Puts the status into the Intent
-            localIntent.putExtra(AllConstants.Replication.DOCUMENTS_REPLICATED, event.documentsReplicated);
-            localIntent.putExtra(AllConstants.Replication.BATCHES_REPLICATED, event.batchesReplicated);
+            localIntent.putExtra(AllConstants.CloudantSync.DOCUMENTS_REPLICATED, event.documentsReplicated);
+            localIntent.putExtra(AllConstants.CloudantSync.BATCHES_REPLICATED, event.batchesReplicated);
             // Broadcasts the Intent to receivers in this app.
             LocalBroadcastManager.getInstance(context).sendBroadcast(localIntent);
         }
@@ -65,9 +65,9 @@ public class ReplicationListener {
             callback.replicationFailed(event.errorInfo);
         } else {
             //Fire this incase the replication was lauched from an intent service
-            Intent localIntent = new Intent(AllConstants.Replication.ACTION_REPLICATION_ERROR);
+            Intent localIntent = new Intent(AllConstants.CloudantSync.ACTION_REPLICATION_ERROR);
             // Puts the status into the Intent
-            localIntent.putExtra(AllConstants.Replication.REPLICATION_ERROR, event.errorInfo.getException().getMessage());
+            localIntent.putExtra(AllConstants.CloudantSync.REPLICATION_ERROR, event.errorInfo.getException().getMessage());
             // Broadcasts the Intent to receivers in this app.
             LocalBroadcastManager.getInstance(context).sendBroadcast(localIntent);
         }
@@ -77,7 +77,7 @@ public class ReplicationListener {
     @Subscribe
     public void onDatabaseCreated(DatabaseCreated event) {
 //fire broadcast, this assumes the replication logic is fired through the intent service for the first time which is the only time a new db is created
-        Intent localIntent = new Intent(AllConstants.Replication.ACTION_DATABASE_CREATED);
+        Intent localIntent = new Intent(AllConstants.CloudantSync.ACTION_DATABASE_CREATED);
         // Broadcasts the Intent to receivers in this app.
         LocalBroadcastManager.getInstance(context).sendBroadcast(localIntent);
     }

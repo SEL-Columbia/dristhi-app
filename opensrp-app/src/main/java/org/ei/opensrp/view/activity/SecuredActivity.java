@@ -1,9 +1,7 @@
 package org.ei.opensrp.view.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
@@ -21,21 +19,12 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.R;
 import org.ei.opensrp.broadcastreceivers.OpenSRPClientBroadCastReceiver;
 import org.ei.opensrp.cloudant.models.ClientEventModel;
-import org.ei.opensrp.cloudant.models.Event;
 import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.service.ZiggyService;
-import org.ei.opensrp.service.intentservices.ReplicationIntentService;
-import org.ei.opensrp.sync.ClientProcessor;
-import org.ei.opensrp.sync.CloudantDataHandler;
 import org.ei.opensrp.view.controller.ANMController;
 import org.ei.opensrp.view.controller.FormController;
 import org.ei.opensrp.view.controller.NavigationController;
-import org.json.JSONObject;
 
-import android.support.v7.app.ActionBarActivity;
-
-import java.io.File;
-import java.util.List;
 import java.util.Map;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -204,9 +193,9 @@ public abstract class SecuredActivity extends ActionBarActivity {
 
     private void setupReplicationBroadcastReceiver() {
         // The filter's action is BROADCAST_ACTION
-        IntentFilter opensrpClientIntentFilter = new IntentFilter(AllConstants.Replication.ACTION_DATABASE_CREATED);
-        opensrpClientIntentFilter.addAction(AllConstants.Replication.ACTION_REPLICATION_COMPLETED);
-        opensrpClientIntentFilter.addAction(AllConstants.Replication.ACTION_REPLICATION_ERROR);
+        IntentFilter opensrpClientIntentFilter = new IntentFilter(CloudantSync.ACTION_DATABASE_CREATED);
+        opensrpClientIntentFilter.addAction(CloudantSync.ACTION_REPLICATION_COMPLETED);
+        opensrpClientIntentFilter.addAction(CloudantSync.ACTION_REPLICATION_ERROR);
         opensrpClientIntentFilter.addAction("android.intent.action.TIMEZONE_CHANGED");
         opensrpClientIntentFilter.addAction("android.intent.action.TIME_SET");
 

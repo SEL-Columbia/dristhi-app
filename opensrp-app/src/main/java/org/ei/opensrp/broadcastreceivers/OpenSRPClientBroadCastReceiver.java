@@ -34,12 +34,12 @@ public class OpenSRPClientBroadCastReceiver extends BroadcastReceiver {
             } else if (action.equals(Intent.ACTION_TIMEZONE_CHANGED)) {
                ((SecuredActivity) activity).showToast("TIMEZONE CHANGED");
                 Log.d(TAG, "timezonechanged");
-            } else if (action.equals(AllConstants.Replication.ACTION_DATABASE_CREATED)) {
+            } else if (action.equals(AllConstants.CloudantSync.ACTION_DATABASE_CREATED)) {
               //  ((SecuredActivity) activity).loadDatabase();
-            } else if (action.equals(AllConstants.Replication.ACTION_REPLICATION_COMPLETED)) {
-                Integer docsReplicated=intent.getIntExtra(AllConstants.Replication.DOCUMENTS_REPLICATED, 0);
+            } else if (action.equals(AllConstants.CloudantSync.ACTION_REPLICATION_COMPLETED)) {
+                Integer docsReplicated=intent.getIntExtra(AllConstants.CloudantSync.DOCUMENTS_REPLICATED, 0);
                 ((SecuredActivity) activity).showToast("Replication completed. Documents replicated: " + docsReplicated);
-            } else if (action.equals(AllConstants.Replication.ACTION_REPLICATION_ERROR)) {
+            } else if (action.equals(AllConstants.CloudantSync.ACTION_REPLICATION_ERROR)) {
                 ((SecuredActivity) activity).showToast("Replicaton error occurred");
             }
         } catch (Exception e) {

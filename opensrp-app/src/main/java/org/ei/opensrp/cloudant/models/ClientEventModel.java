@@ -1,8 +1,10 @@
 package org.ei.opensrp.cloudant.models;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.cloudant.sync.datastore.BasicDocumentRevision;
@@ -20,6 +22,8 @@ import com.cloudant.sync.replication.Replicator;
 import com.cloudant.sync.replication.ReplicatorBuilder;
 import com.google.common.eventbus.Subscribe;
 
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.sync.CloudantDataHandler;
 import org.ei.opensrp.view.activity.SecuredActivity;
@@ -49,7 +53,7 @@ public class ClientEventModel {
     private final Handler mHandler;
     private SecuredActivity mListener;
 
-    private final String dbURL="http://46.101.51.199:5984/test_db";
+    private String dbURL;
 
     private static ClientEventModel instance;
 
@@ -76,6 +80,13 @@ public class ClientEventModel {
             List<Object> indexFields = new ArrayList<>();
             indexFields.add("version");
             indexManager.ensureIndexed(indexFields, "eventdocindex");
+
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.mContext);
+            AllSharedPreferences allSharedPreferences = new AllSharedPreferences(preferences);
+            String port = AllConstants.CloudantSync.COUCHDB_PORT;
+            String databaseName = AllConstants.CloudantSync.COUCH_DATABASE_NAME;
+            dbURL = allSharedPreferences.fetchHost("").concat(":").concat(port).concat("/").concat(databaseName);
+
 
             this.reloadReplicationSettings();
             this.mCloudantDataHandler = CloudantDataHandler.getInstance(mContext.getApplicationContext());
