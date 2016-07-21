@@ -55,9 +55,14 @@ public class ClientProcessor {
         CloudantDataHandler handler = CloudantDataHandler.getInstance(mContext);
         //this seems to be easy for now cloudant json to events model is crazy
         List<JSONObject> events = handler.getUpdatedEventsDocs();
-        String clienClassificationStr = getFileContents("ec_client_classification.json");
-        JSONObject clientClassificationJson = new JSONObject(clienClassificationStr);
+        String clientClassificationStr = getFileContents("ec_client_classification.json");
+        JSONObject clientClassificationJson = new JSONObject(clientClassificationStr);
         //iterate through the events
+        loopEvents(events, clientClassificationJson);
+
+    }
+
+    private void loopEvents(List<JSONObject> events, JSONObject clientClassificationJson) throws Exception {
         for (JSONObject event : events) {
             // JSONObject event = events.get(0);
 
@@ -73,59 +78,69 @@ public class ClientProcessor {
 
             //get the client type classification
             JSONArray clientClasses = clientClassificationJson.getJSONArray("case_classification_rules");
-            for (int i = 0; i < clientClasses.length(); i++) {
-                JSONObject object = clientClasses.getJSONObject(i);
+            loopClientClasses(clientClasses, eventJsonObject, event, client);
 
-                JSONObject ruleObject = object.getJSONObject("rule");
-                JSONArray fields = ruleObject.getJSONArray("fields");
+        }
+    }
 
-                // keep checking if the event data matches the values expected by each rule, break the moment the rule fails
-                for (int j = 0; j < fields.length(); j++) {
-                    JSONObject fieldJson = fields.getJSONObject(j);
-                    String dataSegment = fieldJson.has("data_segment") ? fieldJson.getString("data_segment") : null;
-                    String fieldName = fieldJson.has("field_name") ? fieldJson.getString("field_name") : null;
-                    String fieldValue = fieldJson.has("field_value") ? fieldJson.getString("field_value") : null;
-                    String responseKey = fieldJson.has("response_key") ? fieldJson.getString("response_key") : null;
-                    JSONArray responseValue = fieldJson.has("response_value") ? fieldJson.getJSONArray("response_value") : null;
-                    JSONArray opensCase = fieldJson.has("opens_case") ? fieldJson.getJSONArray("opens_case") : null;
-                    JSONArray closesCase = fieldJson.has("closes_case") ? fieldJson.getJSONArray("closes_case") : null;
+    private void loopClientClasses(JSONArray clientClasses, JSONObject eventJsonObject, JSONObject event, JSONObject client) throws Exception{
+        for (int i = 0; i < clientClasses.length(); i++) {
+            JSONObject object = clientClasses.getJSONObject(i);
 
-                    List<String> responseValues = getValues(responseValue);
+            JSONObject ruleObject = object.getJSONObject("rule");
+            JSONArray fields = ruleObject.getJSONArray("fields");
+            loopFields(fields, eventJsonObject, event, client);
 
+        }
+    }
 
-                    //some fields are in the main doc e.g event_type so fetch them from the main doc
-                    if (dataSegment != null && !dataSegment.isEmpty()) {
-                        JSONArray jsonDataSegment = eventJsonObject.getJSONArray(dataSegment);
-                        //iterate in the segment e.g obs segment
-                        for (int k = 0; k < jsonDataSegment.length(); k++) {
-                            JSONObject segmentJsonObject = jsonDataSegment.getJSONObject(k);
-                            //let's discuss this further, to get the real value in the doc we've to use the keys 'fieldcode' and 'value'
+    private void loopFields(JSONArray fields, JSONObject eventJsonObject, JSONObject event, JSONObject client) throws Exception {
 
-                            String docSegmentFieldValue = segmentJsonObject.get(fieldName) != null ? segmentJsonObject.get(fieldName).toString() : "";
-                            String docSegmentResponseValue = segmentJsonObject.get(responseKey) != null ? segmentJsonObject.get(responseKey).toString() : "";
+        // keep checking if the event data matches the values expected by each rule, break the moment the rule fails
+        for (int i = 0; i < fields.length(); i++) {
+            JSONObject fieldJson = fields.getJSONObject(i);
+            String dataSegment = fieldJson.has("data_segment") ? fieldJson.getString("data_segment") : null;
+            String fieldName = fieldJson.has("field_name") ? fieldJson.getString("field_name") : null;
+            String fieldValue = fieldJson.has("field_value") ? fieldJson.getString("field_value") : null;
+            String responseKey = fieldJson.has("response_key") ? fieldJson.getString("response_key") : null;
+            JSONArray responseValue = fieldJson.has("response_value") ? fieldJson.getJSONArray("response_value") : null;
+            JSONArray opensCase = fieldJson.has("opens_case") ? fieldJson.getJSONArray("opens_case") : null;
+            JSONArray closesCase = fieldJson.has("closes_case") ? fieldJson.getJSONArray("closes_case") : null;
 
-
-                            if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) && responseValues.contains(docSegmentResponseValue)) {
-                                //this is the event obs we're interested in put it in the respective bucket specified by type variable
-                                processCaseModel(event, client, opensCase);
-                                closeCase(client, closesCase);
-                            }
-
-                        }
+            List<String> responseValues = getValues(responseValue);
 
 
-                    } else {
-                        //fetch from the main doc
-                        String docSegmentFieldValue = eventJsonObject.get(fieldName) != null ? eventJsonObject.get(fieldName).toString() : "";
+            //some fields are in the main doc e.g event_type so fetch them from the main doc
+            if (dataSegment != null && !dataSegment.isEmpty()) {
+                JSONArray jsonDataSegment = eventJsonObject.getJSONArray(dataSegment);
+                //iterate in the segment e.g obs segment
+                for (int j = 0; j < jsonDataSegment.length(); j++) {
+                    JSONObject segmentJsonObject = jsonDataSegment.getJSONObject(j);
+                    //let's discuss this further, to get the real value in the doc we've to use the keys 'fieldcode' and 'value'
 
-                        if (docSegmentFieldValue.equalsIgnoreCase(fieldValue)) {
+                    String docSegmentFieldValue = segmentJsonObject.get(fieldName) != null ? segmentJsonObject.get(fieldName).toString() : "";
+                    String docSegmentResponseValue = segmentJsonObject.get(responseKey) != null ? segmentJsonObject.get(responseKey).toString() : "";
 
-                            processCaseModel(event, client, opensCase);
-                            closeCase(client,closesCase);
-                        }
 
+                    if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) && responseValues.contains(docSegmentResponseValue)) {
+                        //this is the event obs we're interested in put it in the respective bucket specified by type variable
+                        processCaseModel(event, client, opensCase);
+                        closeCase(client, closesCase);
                     }
+
                 }
+
+
+            } else {
+                //fetch from the main doc
+                String docSegmentFieldValue = eventJsonObject.get(fieldName) != null ? eventJsonObject.get(fieldName).toString() : "";
+
+                if (docSegmentFieldValue.equalsIgnoreCase(fieldValue)) {
+
+                    processCaseModel(event, client, opensCase);
+                    closeCase(client,closesCase);
+                }
+
             }
         }
     }
