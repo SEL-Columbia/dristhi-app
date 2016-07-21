@@ -3,13 +3,13 @@ package org.ei.opensrp.service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.ei.drishti.dto.form.FormSubmissionDTO;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.DristhiConfiguration;
-import org.ei.opensrp.cloudant.models.ClientEventModel;
+import org.ei.opensrp.sync.CloudantSyncHandler;
 import org.ei.opensrp.domain.FetchStatus;
 import org.ei.opensrp.domain.Response;
 import org.ei.opensrp.domain.form.FormSubmission;
-import org.ei.drishti.dto.form.FormSubmissionDTO;
 import org.ei.opensrp.repository.AllSettings;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.repository.FormDataRepository;
@@ -20,7 +20,9 @@ import java.util.List;
 
 import static java.text.MessageFormat.format;
 import static org.ei.opensrp.convertor.FormSubmissionConvertor.toDomain;
-import static org.ei.opensrp.domain.FetchStatus.*;
+import static org.ei.opensrp.domain.FetchStatus.fetched;
+import static org.ei.opensrp.domain.FetchStatus.fetchedFailed;
+import static org.ei.opensrp.domain.FetchStatus.nothingFetched;
 import static org.ei.opensrp.util.Log.logError;
 import static org.ei.opensrp.util.Log.logInfo;
 
@@ -45,12 +47,16 @@ public class FormSubmissionSyncService {
     }
 
     public FetchStatus sync() {
-        ClientEventModel mClientEventModel = ClientEventModel.getInstance(Context.getInstance().applicationContext());
-        mClientEventModel.startPullReplication();
-        mClientEventModel.startPushReplication();
-        //pushToServer();
-        new ImageUploadSyncService((ImageRepository) Context.imageRepository());
-        return FetchStatus.fetched;
+        try{
+            CloudantSyncHandler mClientEventModel = CloudantSyncHandler.getInstance(Context.getInstance().applicationContext());
+            mClientEventModel.startPullReplication();
+            mClientEventModel.startPushReplication();
+            //pushToServer();
+            new ImageUploadSyncService((ImageRepository) Context.imageRepository());
+            return FetchStatus.fetched;
+        }catch (Exception e) {
+            return FetchStatus.fetchedFailed;
+        }
     }
 
     public void pushToServer() {

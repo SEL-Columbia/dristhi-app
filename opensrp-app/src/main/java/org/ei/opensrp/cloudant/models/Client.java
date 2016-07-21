@@ -21,7 +21,7 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
         return rev;
     }
 
-    static final String DOC_TYPE = "org.ei.opensrp.cloudant.models.Client";
+    static final String DOC_TYPE = "Client";
     private String type = DOC_TYPE;
 
     public String getType() {

@@ -22,7 +22,7 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event{
         return rev;
     }
 
-    static final String DOC_TYPE = "org.ei.opensrp.cloudant.models.Event";
+    static final String DOC_TYPE = "Event";
     private transient String type = DOC_TYPE;
 
     public String getType() {

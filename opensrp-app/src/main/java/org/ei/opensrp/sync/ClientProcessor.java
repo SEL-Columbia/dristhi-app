@@ -4,17 +4,11 @@ package org.ei.opensrp.sync;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.provider.BaseColumns;
 import android.util.Log;
 
-import org.ei.opensrp.cloudant.models.Client;
-import org.ei.opensrp.cloudant.models.ClientEventModel;
-import org.ei.opensrp.cloudant.models.Event;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.util.AssetHandler;
-import org.ei.opensrp.util.FormUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

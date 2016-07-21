@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.cloudant.sync.datastore.BasicDocumentRevision;
 import com.cloudant.sync.datastore.ConflictException;
+import com.cloudant.sync.datastore.Datastore;
+import com.cloudant.sync.datastore.DatastoreManager;
 import com.cloudant.sync.datastore.DocumentBody;
 import com.cloudant.sync.datastore.DocumentBodyFactory;
 import com.cloudant.sync.datastore.DocumentException;
@@ -23,12 +25,10 @@ import org.ei.opensrp.cloudant.models.Client;
 import org.ei.opensrp.cloudant.models.Event;
 import org.ei.opensrp.repository.ClientRepository;
 import org.ei.opensrp.repository.EventRepository;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,24 +41,42 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * Handles Cloudant data access methods
  * Created by onamacuser on 11/03/2016.
  */
 
-public class CloudantDataHandler extends ReplicationService {
+public class CloudantDataHandler {
     private static final String TAG = CloudantDataHandler.class.getCanonicalName();
+
     private static CloudantDataHandler instance;
+
     private static final String baseEntityIdJSONKey = "baseEntityId";
     List<String> fields = Arrays.asList("obs", "eventDate", "eventType", "formSubmissionId", "provider", baseEntityIdJSONKey, "type", "entityType", "version");
 
+    private static final String DATASTORE_MANGER_DIR = "data";
+    private static final String DATASTORE_NAME = "opensrp_clients_events";
+
+    private final Context mContext;
+    private final Datastore mDatastore;
+    private final IndexManager mIndexManager;
 
     public CloudantDataHandler(Context context) throws Exception {
-        this(context, null);
-        instance = this;
-    }
+        this.mContext = context;
 
-    public CloudantDataHandler(Context context, ReplicationListenerCallback _callback) throws Exception {
-        super(context, _callback);
+
+        // Set up our datastore within its own folder in the applications data directory.
+        File path = this.mContext.getApplicationContext().getDir(DATASTORE_MANGER_DIR, Context.MODE_PRIVATE);
+        DatastoreManager manager = new DatastoreManager(path.getAbsolutePath());
+        this.mDatastore = manager.openDatastore(DATASTORE_NAME);
+        this.mIndexManager = new IndexManager(mDatastore);
+        List<Object> indexFields = new ArrayList<>();
+        indexFields.add("version");
+        this.mIndexManager.ensureIndexed(indexFields, "eventdocindex");
+
+        Log.d(TAG, "Set up database at " + path.getAbsolutePath());
+
         instance = this;
+
     }
 
     private CountDownLatch latch = null;
@@ -76,7 +94,7 @@ public class CloudantDataHandler extends ReplicationService {
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("type", "Client");
 
-        QueryResult result = indexManager.find(query);
+        QueryResult result = this.mIndexManager.find(query);
 
         for (DocumentRevision rev : result) {
             DocumentBody doc = rev.getBody();
@@ -96,9 +114,9 @@ public class CloudantDataHandler extends ReplicationService {
 
 
         Map<String, Object> query = new HashMap<String, Object>();
-        query.put("type", "org.ei.opensrp.cloudant.models.Event");
+        query.put("type", "Event");
 
-        QueryResult result = indexManager.find(query);
+        QueryResult result = this.mIndexManager.find(query);
 
         Iterator<DocumentRevision> it = result.iterator();
         if (it.hasNext()) {
@@ -122,7 +140,7 @@ public class CloudantDataHandler extends ReplicationService {
         gttimestamp.put("$gt", "2016-03-16 09:37:46");
         query.put("providerId", "demotest");
 
-        QueryResult result = indexManager.find(query);
+        QueryResult result = this.mIndexManager.find(query);
 //        int size = result.size();
 //        Log.d("TAG", "" + size);
 
@@ -152,11 +170,11 @@ public class CloudantDataHandler extends ReplicationService {
         filterByVersion.put("$gt", 0);
 
         query.put("version", filterByVersion);
-        query.put("type", "org.ei.opensrp.cloudant.models.Event");
+        query.put("type", "Event");
 
-        QueryResult result = indexManager.find(query, 0, 0, fields, sortDocument);
+        QueryResult result = this.mIndexManager.find(query, 0, 0, fields, sortDocument);
 
-        if (result != null){
+        if (result != null) {
             for (DocumentRevision rev : result) {
                 DocumentBody doc = rev.getBody();
                 String docstr = doc.toString();
@@ -171,7 +189,7 @@ public class CloudantDataHandler extends ReplicationService {
     public void syncEventsToSqlite() throws Exception {
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("type", "Event");
-        QueryResult result = indexManager.find(query);
+        QueryResult result = this.mIndexManager.find(query);
 
         for (DocumentRevision rev : result) {
             EventRepository EventRepo = new EventRepository(mContext, "events", new String[]{"father_name", "voided", "providerId"});
@@ -188,9 +206,9 @@ public class CloudantDataHandler extends ReplicationService {
     public void syncClientsToSqlite() throws Exception {
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("type", "Client");
-        int querysize = indexManager.find(query).size();
+        int querysize = this.mIndexManager.find(query).size();
         Log.v("TAG TAG", "" + querysize);
-        QueryResult result = indexManager.find(query);
+        QueryResult result = this.mIndexManager.find(query);
 
         for (DocumentRevision rev : result) {
             ClientRepository clientRepo = new ClientRepository(mContext, new String[]{"firstName"});
@@ -227,9 +245,9 @@ public class CloudantDataHandler extends ReplicationService {
 
     public Client getClientDocumentByBaseEntityId(String baseEntityId) throws Exception {
         Map<String, Object> query = new HashMap<String, Object>();
-        query.put("type", "org.ei.opensrp.cloudant.models.Client");
+        query.put("type", "Client");
         query.put(baseEntityIdJSONKey, baseEntityId);
-        Iterator<DocumentRevision> iterator = indexManager.find(query).iterator();
+        Iterator<DocumentRevision> iterator = this.mIndexManager.find(query).iterator();
 
         if (iterator != null && iterator.hasNext()) {
             DocumentRevision rev = iterator.next();
@@ -243,7 +261,7 @@ public class CloudantDataHandler extends ReplicationService {
     public List<JSONObject> getUpdatedEvents() throws Exception {
         List<JSONObject> events = new ArrayList<JSONObject>();
         SQLiteDatabase db = loadDatabase();
-        Cursor cursor = db.rawQuery("select json from revs where updated_at is not null and json not like '{}' and json like '%\"type\":\"org.ei.opensrp.cloudant.models.Event\"%' order by updated_at asc ", null);
+        Cursor cursor = db.rawQuery("select json from revs where updated_at is not null and json not like '{}' and json like '%\"type\":\"Event\"%' order by updated_at asc ", null);
 
 
         while (cursor.moveToNext()) {
@@ -288,10 +306,92 @@ public class CloudantDataHandler extends ReplicationService {
         MutableDocumentRevision rev = client.getDocumentRevision().mutableCopy();
         rev.body = DocumentBodyFactory.create(client.asMap());
         try {
-            BasicDocumentRevision updated = dataStore.updateDocumentFromRevision(rev);
+            BasicDocumentRevision updated = this.mDatastore.updateDocumentFromRevision(rev);
             return Client.fromRevision(updated);
         } catch (DocumentException de) {
             return null;
         }
+    }
+
+    //
+    // DOCUMENT CRUD
+    //
+
+    /**
+     * Creates a Client, assigning an ID.
+     *
+     * @param client Client to create
+     * @return new revision of the document
+     */
+    public Client createClientDocument(Client client) {
+        MutableDocumentRevision rev = new MutableDocumentRevision();
+        rev.body = DocumentBodyFactory.create(client.asMap());
+        try {
+            //save the model only once if it already exist ignore, or merge the document
+            Client c = getClientDocumentByBaseEntityId(client.getBaseEntityId());
+
+            if (c == null) {
+                BasicDocumentRevision created = this.mDatastore.createDocumentFromRevision(rev);
+                return Client.fromRevision(created);
+            } else {
+                //TODO: merge/update the client document
+                return c;
+            }
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString(), e);
+        }
+
+        return null;
+    }
+
+    /**
+     * Creates a Event, assigning an ID.
+     *
+     * @param event Client to create
+     * @return new revision of the document
+     */
+    public Event createEventDocument(Event event) {
+        MutableDocumentRevision rev = new MutableDocumentRevision();
+        rev.body = DocumentBodyFactory.create(event.asMap());
+        try {
+            BasicDocumentRevision created = this.mDatastore.createDocumentFromRevision(rev);
+            return Event.fromRevision(created);
+        } catch (DocumentException de) {
+            return null;
+        }
+    }
+
+    /**
+     * Deletes a Client document within the datastore.
+     *
+     * @param client client to delete
+     * @throws ConflictException if the client passed in has a rev which doesn't
+     *                           match the current rev in the datastore.
+     */
+    public void deleteDocument(Client client) throws ConflictException {
+        this.mDatastore.deleteDocumentFromRevision(client.getDocumentRevision());
+    }
+
+    /**
+     * <p>Returns all {@code Client} documents in the datastore.</p>
+     */
+    public List<Client> allClients() {
+        int nDocs = this.mDatastore.getDocumentCount();
+        List<BasicDocumentRevision> all = this.mDatastore.getAllDocuments(0, nDocs, true);
+        List<Client> clients = new ArrayList<Client>();
+        // Filter all documents down to those of type client.
+        for (BasicDocumentRevision rev : all) {
+            Client client = Client.fromRevision(rev);
+            if (client != null) {
+                clients.add(client);
+            }
+        }
+
+        return clients;
+    }
+
+    public Datastore getDatastore() {
+        return mDatastore;
     }
 }

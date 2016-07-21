@@ -2,32 +2,30 @@ package org.ei.opensrp.clientandeventmodel;
 
 import android.content.Context;
 
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.ei.opensrp.clientandeventmodel.FormEntityConstants.Encounter;
+import org.ei.opensrp.clientandeventmodel.FormEntityConstants.FormEntity;
+import org.ei.opensrp.clientandeventmodel.FormEntityConstants.Person;
+import org.ei.opensrp.util.AssetHandler;
+import org.ei.opensrp.util.FormUtils;
+import org.joda.time.DateTime;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.xml.sax.SAXException;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.ei.opensrp.util.AssetHandler;
-import org.ei.opensrp.util.FormUtils;
-import org.joda.time.DateTime;
-import org.ei.opensrp.clientandeventmodel.FormEntityConstants.Encounter;
-import org.ei.opensrp.clientandeventmodel.FormEntityConstants.FormEntity;
-import org.ei.opensrp.clientandeventmodel.FormEntityConstants.Person;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xml.sax.SAXException;
-
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
 
 public class FormEntityConverter {
 
@@ -87,17 +85,17 @@ public class FormEntityConverter {
                 List<Object> humanReadableValues = new ArrayList<>();
                 for (String vl : fl.values()) {
                     String val = fl.valueCodes(vl) == null ? null : fl.valueCodes(vl).get("openmrs_code");
-                   // String hval=fl.getValues()==null?null:fl.getValues();
+                    // String hval=fl.getValues()==null?null:fl.getValues();
                     val = StringUtils.isEmpty(val) ? vl : val;
                     vall.add(val);
 
-                    if(fl.valueCodes(vl)!=null && fl.valueCodes(vl).get("openmrs_code")!=null){// this value is in concept id form
-                        String hval=fl.getValues()==null?null:fl.getValues().get(0);
+                    if (fl.valueCodes(vl) != null && fl.valueCodes(vl).get("openmrs_code") != null) {// this value is in concept id form
+                        String hval = fl.getValues() == null ? null : fl.getValues().get(0);
                         humanReadableValues.add(hval);
                     }
                 }
                 e.addObs(new Obs("concept", fl.type(), fat.get("openmrs_entity_id"),
-                        fat.get("openmrs_entity_parent"), vall,humanReadableValues, null, fl.name()));
+                        fat.get("openmrs_entity_parent"), vall, humanReadableValues, null, fl.name()));
             }
         }
         return e;
@@ -434,7 +432,7 @@ public class FormEntityConverter {
                 .withIdentifiers(idents);
 
 
-        addRelationship(subf,c);
+        addRelationship(subf, c);
 
         return c;
     }

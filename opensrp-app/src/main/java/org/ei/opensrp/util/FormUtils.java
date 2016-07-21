@@ -6,7 +6,6 @@ import android.util.Xml;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.clientandeventmodel.Client;
 import org.ei.opensrp.clientandeventmodel.Event;
 import org.ei.opensrp.clientandeventmodel.FormAttributeParser;
@@ -15,10 +14,11 @@ import org.ei.opensrp.clientandeventmodel.FormEntityConverter;
 import org.ei.opensrp.clientandeventmodel.FormField;
 import org.ei.opensrp.clientandeventmodel.FormInstance;
 import org.ei.opensrp.clientandeventmodel.SubFormData;
-import org.ei.opensrp.cloudant.models.ClientEventModel;
+import org.ei.opensrp.sync.CloudantSyncHandler;
 import org.ei.opensrp.domain.SyncStatus;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.domain.form.SubForm;
+import org.ei.opensrp.sync.CloudantDataHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,18 +65,18 @@ public class FormUtils {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     private Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private FormEntityConverter formEntityConverter;
-    private ClientEventModel mClientEventModel;
+    private CloudantDataHandler mCloudantDataHandler;
 
-    public FormUtils(Context context) {
+    public FormUtils(Context context) throws Exception {
         mContext = context;
         theAppContext = org.ei.opensrp.Context.getInstance();
         FormAttributeParser formAttributeParser = new FormAttributeParser(context);
         formEntityConverter = new FormEntityConverter(formAttributeParser,mContext);
         // Protect creation of static variable.
-        mClientEventModel = ClientEventModel.getInstance(context.getApplicationContext());
+        mCloudantDataHandler = CloudantDataHandler.getInstance(context.getApplicationContext());
     }
 
-    public static FormUtils getInstance(Context ctx) {
+    public static FormUtils getInstance(Context ctx) throws Exception{
         if (instance == null) {
             instance = new FormUtils(ctx);
         }
@@ -220,7 +220,9 @@ public class FormUtils {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mClientEventModel.startPushReplication();
+                //TODO Start ReplicationService
+                CloudantSyncHandler.getInstance(mContext).startPushReplication();
+                //mClientEventModel.startPushReplication();
             }
         }).start();
     }
@@ -940,11 +942,11 @@ public class FormUtils {
     }
 
     private void createNewEventDocument(org.ei.opensrp.cloudant.models.Event event) {
-        mClientEventModel.createEventDocument(event);
+        mCloudantDataHandler.createEventDocument(event);
 
     }
 
     private void createNewClientDocument(org.ei.opensrp.cloudant.models.Client client) {
-        mClientEventModel.createClientDocument(client);
+        mCloudantDataHandler.createClientDocument(client);
     }
 }

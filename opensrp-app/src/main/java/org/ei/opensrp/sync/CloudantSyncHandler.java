@@ -1,4 +1,4 @@
-package org.ei.opensrp.cloudant.models;
+package org.ei.opensrp.sync;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,44 +7,27 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.cloudant.sync.datastore.BasicDocumentRevision;
-import com.cloudant.sync.datastore.ConflictException;
 import com.cloudant.sync.datastore.Datastore;
-import com.cloudant.sync.datastore.DatastoreManager;
-import com.cloudant.sync.datastore.DatastoreNotCreatedException;
-import com.cloudant.sync.datastore.DocumentBodyFactory;
-import com.cloudant.sync.datastore.DocumentException;
-import com.cloudant.sync.datastore.MutableDocumentRevision;
 import com.cloudant.sync.notifications.ReplicationCompleted;
 import com.cloudant.sync.notifications.ReplicationErrored;
-import com.cloudant.sync.query.IndexManager;
 import com.cloudant.sync.replication.Replicator;
 import com.cloudant.sync.replication.ReplicatorBuilder;
 import com.google.common.eventbus.Subscribe;
 
 import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.repository.AllSharedPreferences;
-import org.ei.opensrp.sync.ClientProcessor;
-import org.ei.opensrp.sync.CloudantDataHandler;
 import org.ei.opensrp.view.activity.SecuredActivity;
-import org.json.JSONObject;
 
-import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
+ * Handles cloundant replication/sync processes.
  * Created by koros on 3/16/16.
  */
-public class ClientEventModel {
-    private static final String LOG_TAG = "ClientEventModel";
+public class CloudantSyncHandler {
+    private static final String LOG_TAG = "CloudantSyncHandler";
 
-    private static final String DATASTORE_MANGER_DIR = "data";
-    private static final String DATASTORE_NAME = "opensrp_clients_events";
-
-    private Datastore mDatastore;
 
     private Replicator mPushReplicator;
     private Replicator mPullReplicator;
@@ -55,47 +38,33 @@ public class ClientEventModel {
 
     private String dbURL;
 
-    private static ClientEventModel instance;
+    private static CloudantSyncHandler instance;
 
-    private CloudantDataHandler mCloudantDataHandler;
-
-    public static ClientEventModel getInstance(Context context){
+    public static CloudantSyncHandler getInstance(Context context){
         if (instance == null){
-            instance = new ClientEventModel(context);
+            instance = new CloudantSyncHandler(context);
         }
         return instance;
     }
 
-    public ClientEventModel(Context context) {
+    public CloudantSyncHandler(Context context) {
         this.mContext = context;
         // Allow us to switch code called by the ReplicationListener into
         // the main thread so the UI can update safely.
         this.mHandler = new Handler(Looper.getMainLooper());
         try {
-            // Set up our datastore within its own folder in the applications data directory.
-            File path = this.mContext.getApplicationContext().getDir(DATASTORE_MANGER_DIR, Context.MODE_PRIVATE);
-            DatastoreManager manager = new DatastoreManager(path.getAbsolutePath());
-            this.mDatastore = manager.openDatastore(DATASTORE_NAME);
-            IndexManager indexManager = new IndexManager(mDatastore);
-            List<Object> indexFields = new ArrayList<>();
-            indexFields.add("version");
-            indexManager.ensureIndexed(indexFields, "eventdocindex");
 
+            // Retrieve database host from preferences
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.mContext);
             AllSharedPreferences allSharedPreferences = new AllSharedPreferences(preferences);
             String port = AllConstants.CloudantSync.COUCHDB_PORT;
             String databaseName = AllConstants.CloudantSync.COUCH_DATABASE_NAME;
             dbURL = allSharedPreferences.fetchHost("").concat(":").concat(port).concat("/").concat(databaseName);
 
-
             this.reloadReplicationSettings();
-            this.mCloudantDataHandler = CloudantDataHandler.getInstance(mContext.getApplicationContext());
-            Log.d(LOG_TAG, "Set up database at " + path.getAbsolutePath());
 
         }catch (URISyntaxException e) {
             Log.e(LOG_TAG, "Unable to construct remote URI from configuration", e);
-        }catch (DatastoreNotCreatedException dnce) {
-            Log.e(LOG_TAG, "Unable to open Datastore", dnce);
         }catch (Exception e) {
             Log.e(LOG_TAG, "Exception While setting up datastore", e);
         }
@@ -112,81 +81,6 @@ public class ClientEventModel {
      */
     public void setReplicationListener(SecuredActivity listener) {
         this.mListener = listener;
-    }
-
-    //
-    // DOCUMENT CRUD
-    //
-    /**
-     * Creates a Client, assigning an ID.
-     * @param client Client to create
-     * @return new revision of the document
-     */
-    public Client createClientDocument(Client client) {
-        MutableDocumentRevision rev = new MutableDocumentRevision();
-        rev.body = DocumentBodyFactory.create(client.asMap());
-        try {
-            //save the model only once if it already exist ignore, or merge the document
-            Client c = mCloudantDataHandler.getClientDocumentByBaseEntityId(client.getBaseEntityId());
-
-            if (c == null){
-                BasicDocumentRevision created = this.mDatastore.createDocumentFromRevision(rev);
-                return Client.fromRevision(created);
-            }
-            else{
-                //TODO: merge/update the client document
-                return c;
-            }
-
-        } catch (Exception e) {
-            Log.e(LOG_TAG, e.toString(), e);
-        }
-
-        return null;
-    }
-
-    /**
-     * Creates a Event, assigning an ID.
-     * @param event Client to create
-     * @return new revision of the document
-     */
-    public Event createEventDocument(Event event) {
-        MutableDocumentRevision rev = new MutableDocumentRevision();
-        rev.body = DocumentBodyFactory.create(event.asMap());
-        try {
-            BasicDocumentRevision created = this.mDatastore.createDocumentFromRevision(rev);
-            return Event.fromRevision(created);
-        } catch (DocumentException de) {
-            return null;
-        }
-    }
-
-    /**
-     * Deletes a Client document within the datastore.
-     * @param client client to delete
-     * @throws ConflictException if the client passed in has a rev which doesn't
-     *      match the current rev in the datastore.
-     */
-    public void deleteDocument(Client client) throws ConflictException {
-        this.mDatastore.deleteDocumentFromRevision(client.getDocumentRevision());
-    }
-
-    /**
-     * <p>Returns all {@code Client} documents in the datastore.</p>
-     */
-    public List<Client> allClients() {
-        int nDocs = this.mDatastore.getDocumentCount();
-        List<BasicDocumentRevision> all = this.mDatastore.getAllDocuments(0, nDocs, true);
-        List<Client> clients = new ArrayList<Client>();
-        // Filter all documents down to those of type client.
-        for(BasicDocumentRevision rev : all) {
-            Client client = Client.fromRevision(rev);
-            if (client != null) {
-                clients.add(client);
-            }
-        }
-
-        return clients;
     }
 
     //
@@ -233,11 +127,14 @@ public class ClientEventModel {
      * <p>Stops running replications and reloads the replication settings from
      * the app's preferences.</p>
      */
-    public void reloadReplicationSettings() throws URISyntaxException {
+    public void reloadReplicationSettings() throws URISyntaxException, Exception {
         this.stopAllReplications();
 
         // Set up the new replicator objects
         URI uri = this.createServerURI();
+
+        CloudantDataHandler mCloudantDataHandler = CloudantDataHandler.getInstance(mContext);
+        Datastore mDatastore = mCloudantDataHandler.getDatastore();
 
         mPullReplicator = ReplicatorBuilder.pull().to(mDatastore).from(uri).build();
         mPushReplicator = ReplicatorBuilder.push().from(mDatastore).to(uri).build();
