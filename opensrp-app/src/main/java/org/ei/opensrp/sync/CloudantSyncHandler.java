@@ -60,7 +60,7 @@ public class CloudantSyncHandler {
             AllSharedPreferences allSharedPreferences = new AllSharedPreferences(preferences);
             String port = AllConstants.CloudantSync.COUCHDB_PORT;
             String databaseName = AllConstants.CloudantSync.COUCH_DATABASE_NAME;
-            dbURL = "http://46.101.51.199:5984/test_db";//TODO Redo allSharedPreferences.fetchHost("").concat(":").concat(port).concat("/").concat(databaseName);
+            dbURL = allSharedPreferences.fetchHost("").concat(":").concat(port).concat("/").concat(databaseName);
 
             this.reloadReplicationSettings();
 
