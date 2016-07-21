@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
+import org.ei.opensrp.sync.CloudantSyncHandler;
+
 
 /**
  * Created by onamacuser on 18/03/2016.
@@ -29,12 +31,9 @@ public class ReplicationIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         try {
-            //TODO Update service to do cloudantSync
-            //PullPushService replicationService = new PullPushService(getApplicationContext(),null);
-//            Map<String,String> params= new HashMap<String,String>();
-//            params.put("locationId","korangi");
-           //replicationService.filteredPull(AllConstants.SyncFilters.FILTER_TIMESTAMP_NOT_EMPTY,null);
-         //   replicationService.pull();
+            CloudantSyncHandler cloudantSyncHandler = CloudantSyncHandler.getInstance(getApplicationContext());
+            cloudantSyncHandler.startPushReplication();
+            cloudantSyncHandler.startPullReplication();
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         }

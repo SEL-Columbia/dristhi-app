@@ -48,9 +48,9 @@ public class FormSubmissionSyncService {
 
     public FetchStatus sync() {
         try{
-            CloudantSyncHandler mClientEventModel = CloudantSyncHandler.getInstance(Context.getInstance().applicationContext());
-            mClientEventModel.startPullReplication();
-            mClientEventModel.startPushReplication();
+            CloudantSyncHandler mCloudantSyncHandler = CloudantSyncHandler.getInstance(Context.getInstance().applicationContext());
+            mCloudantSyncHandler.startPullReplication();
+            mCloudantSyncHandler.startPushReplication();
             //pushToServer();
             new ImageUploadSyncService((ImageRepository) Context.imageRepository());
             return FetchStatus.fetched;

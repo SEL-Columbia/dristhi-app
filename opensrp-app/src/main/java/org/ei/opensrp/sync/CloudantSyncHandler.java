@@ -1,10 +1,12 @@
 package org.ei.opensrp.sync;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.cloudant.sync.datastore.Datastore;
@@ -16,7 +18,6 @@ import com.google.common.eventbus.Subscribe;
 
 import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.repository.AllSharedPreferences;
-import org.ei.opensrp.view.activity.SecuredActivity;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -34,14 +35,14 @@ public class CloudantSyncHandler {
 
     private final Context mContext;
     private final Handler mHandler;
-    private SecuredActivity mListener;
+    private CloudantSyncListener mListener;
 
     private String dbURL;
 
     private static CloudantSyncHandler instance;
 
-    public static CloudantSyncHandler getInstance(Context context){
-        if (instance == null){
+    public static CloudantSyncHandler getInstance(Context context) {
+        if (instance == null) {
             instance = new CloudantSyncHandler(context);
         }
         return instance;
@@ -59,13 +60,13 @@ public class CloudantSyncHandler {
             AllSharedPreferences allSharedPreferences = new AllSharedPreferences(preferences);
             String port = AllConstants.CloudantSync.COUCHDB_PORT;
             String databaseName = AllConstants.CloudantSync.COUCH_DATABASE_NAME;
-            dbURL = allSharedPreferences.fetchHost("").concat(":").concat(port).concat("/").concat(databaseName);
+            dbURL = "http://46.101.51.199:5984/test_db";//TODO Redo allSharedPreferences.fetchHost("").concat(":").concat(port).concat("/").concat(databaseName);
 
             this.reloadReplicationSettings();
 
-        }catch (URISyntaxException e) {
+        } catch (URISyntaxException e) {
             Log.e(LOG_TAG, "Unable to construct remote URI from configuration", e);
-        }catch (Exception e) {
+        } catch (Exception e) {
             Log.e(LOG_TAG, "Exception While setting up datastore", e);
         }
 
@@ -77,18 +78,20 @@ public class CloudantSyncHandler {
 
     /**
      * Sets the listener for replication callbacks as a weak reference.
-     * @param listener {@link SecuredActivity} to receive callbacks.
+     *
+     * @param listener {@link CloudantSyncListener} to receive callbacks.
      */
-    public void setReplicationListener(SecuredActivity listener) {
+    public void setReplicationListener(CloudantSyncListener listener) {
         this.mListener = listener;
     }
 
     //
     // MANAGE REPLICATIONS
     //
+
     /**
      * <p>Stops running replications.</p>
-     *
+     * <p/>
      * <p>The stop() methods stops the replications asynchronously, see the
      * replicator docs for more information.</p>
      */
@@ -148,6 +151,7 @@ public class CloudantSyncHandler {
     /**
      * <p>Returns the URI for the remote database, based on the app's
      * configuration.</p>
+     *
      * @return the remote database's URI
      * @throws URISyntaxException if the settings give an invalid URI
      */
@@ -159,25 +163,35 @@ public class CloudantSyncHandler {
     //
     // REPLICATIONLISTENER IMPLEMENTATION
     //
+
     /**
      * Calls the SecuredActivity's replicationComplete method on the main thread,
      * as the complete() callback will probably come from a replicator worker
      * thread.
      */
     @Subscribe
-    public void complete(ReplicationCompleted rc) {
+    public void complete(final ReplicationCompleted rc) {
         // Call the logic to break down CE into case models
-        try{
+        try {
             ClientProcessor.getInstance(mContext.getApplicationContext()).processClient();
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e(LOG_TAG, e.toString(), e);
         }
         mHandler.post(new Runnable() {
             @Override
             public void run() {
+                // Fire callback if a replicationListener exists
                 if (mListener != null) {
                     mListener.replicationComplete();
                 }
+
+                // Fire this incase the replication was lauched from an intent service
+                Intent localIntent = new Intent(AllConstants.CloudantSync.ACTION_REPLICATION_COMPLETED);
+                // Puts the status into the Intent
+                localIntent.putExtra(AllConstants.CloudantSync.DOCUMENTS_REPLICATED, rc.documentsReplicated);
+                localIntent.putExtra(AllConstants.CloudantSync.BATCHES_REPLICATED, rc.batchesReplicated);
+                // Broadcasts the Intent to receivers in this app.
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(localIntent);
             }
         });
     }
@@ -188,14 +202,22 @@ public class CloudantSyncHandler {
      * thread.
      */
     @Subscribe
-    public void error(ReplicationErrored re) {
+    public void error(final ReplicationErrored re) {
         Log.e(LOG_TAG, "Replication error:", re.errorInfo.getException());
         mHandler.post(new Runnable() {
             @Override
             public void run() {
+                // Fire callback if a replicationListener exists
                 if (mListener != null) {
                     mListener.replicationError();
                 }
+
+                //Fire this incase the replication was lauched from an intent service
+                Intent localIntent = new Intent(AllConstants.CloudantSync.ACTION_REPLICATION_ERROR);
+                // Puts the status into the Intent
+                localIntent.putExtra(AllConstants.CloudantSync.REPLICATION_ERROR, re.errorInfo.getException().getMessage());
+                // Broadcasts the Intent to receivers in this app.
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(localIntent);
             }
         });
     }

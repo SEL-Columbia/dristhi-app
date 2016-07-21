@@ -40,7 +40,6 @@ public abstract class SecuredActivity extends ActionBarActivity {
     protected NavigationController navigationController;
     private String metaData;
     private OpenSRPClientBroadCastReceiver openSRPClientBroadCastReceiver;
-    protected CloudantSyncHandler mClientEventModel;
     protected ZiggyService ziggyService;
 
     public static final String LOG_TAG = "SecuredActivity";
@@ -48,9 +47,6 @@ public abstract class SecuredActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mClientEventModel = CloudantSyncHandler.getInstance(getApplicationContext());
-        mClientEventModel.setReplicationListener(this);
 
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         ziggyService = context.ziggyService();
@@ -175,8 +171,8 @@ public abstract class SecuredActivity extends ActionBarActivity {
     }
 
     /**
-     * Called by ClientsEventModel when it receives a replication complete callback.
-     * ClientsEventModel takes care of calling this on the main thread.
+     * Called by CloudantSyncHandler when it receives a replication complete callback.
+     * CloudantSyncHandler takes care of calling this on the main thread.
      */
     public void replicationComplete() {
         Toast.makeText(getApplicationContext(), "Replication Complete", Toast.LENGTH_LONG).show();

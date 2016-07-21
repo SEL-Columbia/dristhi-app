@@ -1,6 +1,7 @@
 package org.ei.opensrp.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Xml;
 
 import com.google.gson.Gson;
@@ -14,6 +15,7 @@ import org.ei.opensrp.clientandeventmodel.FormEntityConverter;
 import org.ei.opensrp.clientandeventmodel.FormField;
 import org.ei.opensrp.clientandeventmodel.FormInstance;
 import org.ei.opensrp.clientandeventmodel.SubFormData;
+import org.ei.opensrp.service.intentservices.ReplicationIntentService;
 import org.ei.opensrp.sync.CloudantSyncHandler;
 import org.ei.opensrp.domain.SyncStatus;
 import org.ei.opensrp.domain.form.FormSubmission;
@@ -195,7 +197,7 @@ public class FormUtils {
 
         }
 
-        startPushReplicationOnBackgroundThread();
+        startReplicationIntentService();
     }
 
     private void printClient(Client client) {
@@ -215,16 +217,13 @@ public class FormUtils {
         Log.logDebug("====================================");
     }
 
-    private void startPushReplicationOnBackgroundThread() {
-        //start a push replication
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //TODO Start ReplicationService
-                CloudantSyncHandler.getInstance(mContext).startPushReplication();
-                //mClientEventModel.startPushReplication();
-            }
-        }).start();
+    /**
+     * Start ReplicationIntentService which handles cloudant sync processes
+     */
+    private void startReplicationIntentService() {
+
+        Intent serviceIntent = new Intent(mContext, ReplicationIntentService.class);
+        mContext.startService(serviceIntent);
     }
 
     private List<SubFormData> getSubFormList(FormSubmission formSubmission) {
