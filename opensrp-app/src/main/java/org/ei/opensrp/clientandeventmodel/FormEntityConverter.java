@@ -450,7 +450,7 @@ public class FormEntityConverter {
                     //is this a new child registration, add person relationships -mother
                     if (subformMap.getField(rObject.getString("field")) != null) {
 
-                        client.addRelationship(rObject.getString("person_relationship"), subformMap.getField(rObject.getString("field")).value());
+                        client.addRelationship(rObject.getString("client_relationship"), subformMap.getField(rObject.getString("field")).value());
 
                     }
                 }

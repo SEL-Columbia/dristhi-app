@@ -17,6 +17,7 @@ import org.ei.opensrp.repository.ImageRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import static java.text.MessageFormat.format;
 import static org.ei.opensrp.convertor.FormSubmissionConvertor.toDomain;
@@ -49,8 +50,12 @@ public class FormSubmissionSyncService {
     public FetchStatus sync() {
         try{
             CloudantSyncHandler mCloudantSyncHandler = CloudantSyncHandler.getInstance(Context.getInstance().applicationContext());
+            CountDownLatch mCountDownLatch = new CountDownLatch(2);
+            mCloudantSyncHandler.setCountDownLatch(mCountDownLatch);
             mCloudantSyncHandler.startPullReplication();
             mCloudantSyncHandler.startPushReplication();
+
+            mCountDownLatch.await();
             //pushToServer();
             new ImageUploadSyncService((ImageRepository) Context.imageRepository());
             return FetchStatus.fetched;

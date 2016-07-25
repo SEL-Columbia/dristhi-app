@@ -77,7 +77,7 @@ public class ClientProcessor {
         }
     }
 
-    private void loopClientClasses(JSONArray clientClasses, JSONObject eventJsonObject, JSONObject event, JSONObject client) throws Exception{
+    private void loopClientClasses(JSONArray clientClasses, JSONObject eventJsonObject, JSONObject event, JSONObject client) throws Exception {
         for (int i = 0; i < clientClasses.length(); i++) {
             JSONObject object = clientClasses.getJSONObject(i);
 
@@ -93,12 +93,23 @@ public class ClientProcessor {
         // keep checking if the event data matches the values expected by each rule, break the moment the rule fails
         for (int i = 0; i < fields.length(); i++) {
             JSONObject fieldJson = fields.getJSONObject(i);
-            String dataSegment = fieldJson.has("data_segment") ? fieldJson.getString("data_segment") : null;
-            String fieldName = fieldJson.has("field_name") ? fieldJson.getString("field_name") : null;
+            String dataSegment = null;
+            String fieldName = fieldJson.has("field") ? fieldJson.getString("field") : null;
             String fieldValue = fieldJson.has("field_value") ? fieldJson.getString("field_value") : null;
-            String responseKey = fieldJson.has("response_key") ? fieldJson.getString("response_key") : null;
-            JSONArray responseValue = fieldJson.has("response_value") ? fieldJson.getJSONArray("response_value") : null;
-            JSONArray opensCase = fieldJson.has("opens_case") ? fieldJson.getJSONArray("opens_case") : null;
+            String responseKey = null;
+            if (fieldName != null && fieldName.contains(".")) {
+                String fieldNameArray[] = fieldName.split("\\.");
+                dataSegment = fieldNameArray[0];
+                fieldName = fieldNameArray[1];
+                String concept = fieldJson.has("concept") ? fieldJson.getString("concept") : null;
+                if (concept != null) {
+                    fieldValue = concept;
+                    responseKey = "value";
+                }
+            }
+
+            JSONArray responseValue = fieldJson.has(responseKey) ? fieldJson.getJSONArray(responseKey) : null;
+            JSONArray createsCase = fieldJson.has("creates_case") ? fieldJson.getJSONArray("creates_case") : null;
             JSONArray closesCase = fieldJson.has("closes_case") ? fieldJson.getJSONArray("closes_case") : null;
 
             List<String> responseValues = getValues(responseValue);
@@ -118,7 +129,7 @@ public class ClientProcessor {
 
                     if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) && responseValues.contains(docSegmentResponseValue)) {
                         //this is the event obs we're interested in put it in the respective bucket specified by type variable
-                        processCaseModel(event, client, opensCase);
+                        processCaseModel(event, client, createsCase);
                         closeCase(client, closesCase);
                     }
 
@@ -131,8 +142,8 @@ public class ClientProcessor {
 
                 if (docSegmentFieldValue.equalsIgnoreCase(fieldValue)) {
 
-                    processCaseModel(event, client, opensCase);
-                    closeCase(client,closesCase);
+                    processCaseModel(event, client, createsCase);
+                    closeCase(client, closesCase);
                 }
 
             }
@@ -141,32 +152,30 @@ public class ClientProcessor {
 
     private void closeCase(JSONObject client, JSONArray closesCase) {
         try {
-            if(closesCase==null || closesCase.length()==0){
+            if (closesCase == null || closesCase.length() == 0) {
                 return;
             }
             String baseEntityId = client.getString(baseEntityIdJSONKey);
 
             for (int i = 0; i < closesCase.length(); i++) {
-                String tableName=closesCase.getString(i);
+                String tableName = closesCase.getString(i);
                 CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
-                cr.closeCase(baseEntityId,tableName);
+                cr.closeCase(baseEntityId, tableName);
             }
-        }
-
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void processCaseModel(JSONObject event, JSONObject client, JSONArray opensCases) {
+    private void processCaseModel(JSONObject event, JSONObject client, JSONArray createsCase) {
         try {
 
-            if(opensCases==null || opensCases.length()==0){
+            if (createsCase == null || createsCase.length() == 0) {
                 return;
             }
-            for (int openCase = 0; openCase < opensCases.length(); openCase++) {
+            for (int openCase = 0; openCase < createsCase.length(); openCase++) {
 
-                String clientType = opensCases.getString(openCase);
+                String clientType = createsCase.getString(openCase);
 
                 JSONObject columnMappings = getColumnMappings(clientType);
                 JSONArray columns = columnMappings.getJSONArray("columns");
@@ -180,13 +189,23 @@ public class ClientProcessor {
 
                 for (int i = 0; i < columns.length(); i++) {
                     JSONObject colObject = columns.getJSONObject(i);
-                    String docType = colObject.getString("document_type");
+                    String docType = colObject.getString("type");
                     String columnName = colObject.getString("column_name");
                     JSONObject jsonMapping = colObject.getJSONObject("json_mapping");
-                    String dataSegment = jsonMapping.has("data_segment") ? jsonMapping.getString("data_segment") : null;
-                    String fieldName = jsonMapping.getString("field_name");
-                    String fieldValue = jsonMapping.has("field_value") ? jsonMapping.getString("field_value") : null;
-                    String responseKey = jsonMapping.has("response_key") ? jsonMapping.getString("response_key") : null;
+                    String dataSegment = null;
+                    String fieldName = jsonMapping.getString("field");
+                    String fieldValue = null;
+                    String responseKey = null;
+                    if (fieldName != null && fieldName.contains(".")) {
+                        String fieldNameArray[] = fieldName.split("\\.");
+                        dataSegment = fieldNameArray[0];
+                        fieldName = fieldNameArray[1];
+                        fieldValue = jsonMapping.has("concept") ? jsonMapping.getString("concept") : null;
+                        if (fieldValue != null) {
+                            responseKey = "value";
+                        }
+                    }
+
                     String encounterType = jsonMapping.has("event_type") ? jsonMapping.getString("event_type") : null;
 
 
@@ -542,8 +561,8 @@ public class ClientProcessor {
     private JSONObject getColumnMappings(String registerName) {
 
         try {
-            String clienClassificationStr = getFileContents("ec_client_fields.json");
-            JSONObject clientClassificationJson = new JSONObject(clienClassificationStr);
+            String clientClassificationStr = getFileContents("ec_client_fields.json");
+            JSONObject clientClassificationJson = new JSONObject(clientClassificationStr);
             JSONArray bindObjects = clientClassificationJson.getJSONArray("bindobjects");
 
             for (int i = 0; i < bindObjects.length(); i++) {

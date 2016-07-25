@@ -1,11 +1,11 @@
 [
   {
-    "person_relationship": "householdHead",
+    "client_relationship": "householdHead",
     "field": "household_head_entity_id",
     "comment": "this field is the name as it appears in the field_definition.json file"
   },
   {
-    "person_relationship": "mother",
+    "client_relationship": "mother",
     "field": "mother_entity_id",
     "comment": "this field is the name as it appears in the field_definition.json file"
   }

@@ -14,7 +14,7 @@ import org.ei.opensrp.view.activity.SecuredActivity;
  * Created by onamacuser on 16/03/2016.
  */
 public class OpenSRPClientBroadCastReceiver extends BroadcastReceiver {
-    private static final String TAG=OpenSRPClientBroadCastReceiver.class.getCanonicalName();
+    private static final String TAG = OpenSRPClientBroadCastReceiver.class.getCanonicalName();
     Activity activity;
 
     public OpenSRPClientBroadCastReceiver(Activity _activity) {
@@ -32,14 +32,14 @@ public class OpenSRPClientBroadCastReceiver extends BroadcastReceiver {
                 ((SecuredActivity) activity).showToast("TIME CHANGED");
                 Log.d(TAG, "timechanged");
             } else if (action.equals(Intent.ACTION_TIMEZONE_CHANGED)) {
-               ((SecuredActivity) activity).showToast("TIMEZONE CHANGED");
+                ((SecuredActivity) activity).showToast("TIMEZONE CHANGED");
                 Log.d(TAG, "timezonechanged");
             } else if (action.equals(AllConstants.CloudantSync.ACTION_DATABASE_CREATED)) {
-              //  ((SecuredActivity) activity).loadDatabase();
+                //  ((SecuredActivity) activity).loadDatabase();
             } else if (action.equals(AllConstants.CloudantSync.ACTION_REPLICATION_COMPLETED)) {
-                Integer docsReplicated=intent.getIntExtra(AllConstants.CloudantSync.DOCUMENTS_REPLICATED, 0);
-                Integer batchReplicated=intent.getIntExtra(AllConstants.CloudantSync.BATCHES_REPLICATED, 0);
-                ((SecuredActivity) activity).showToast("Replication completed. Documents replicated: " + docsReplicated + " Batch replicated:" + batchReplicated);
+                Integer docsReplicated = intent.getIntExtra(AllConstants.CloudantSync.DOCUMENTS_REPLICATED, 0);
+                Integer batchReplicated = intent.getIntExtra(AllConstants.CloudantSync.BATCHES_REPLICATED, 0);
+                ((SecuredActivity) activity).showToast("Replication completed.");
             } else if (action.equals(AllConstants.CloudantSync.ACTION_REPLICATION_ERROR)) {
                 ((SecuredActivity) activity).showToast("Replicaton error occurred");
             }

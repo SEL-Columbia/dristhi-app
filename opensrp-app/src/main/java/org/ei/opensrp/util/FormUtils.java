@@ -860,7 +860,7 @@ public class FormUtils {
     }
 
     /**
-     * see if the current field is a person_relationship field, if so set it's value to the relationid since that's the parent base_entity_id
+     * see if the current field is a client_relationship field, if so set it's value to the relationid since that's the parent base_entity_id
      * @param fieldItem
      * @param fieldsValues
      * @param relationalId

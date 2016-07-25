@@ -4,7 +4,10 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
+import org.ei.opensrp.Context;
 import org.ei.opensrp.sync.CloudantSyncHandler;
+
+import java.util.concurrent.CountDownLatch;
 
 
 /**
@@ -31,9 +34,13 @@ public class ReplicationIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         try {
-            CloudantSyncHandler cloudantSyncHandler = CloudantSyncHandler.getInstance(getApplicationContext());
-            cloudantSyncHandler.startPushReplication();
-            cloudantSyncHandler.startPullReplication();
+            CloudantSyncHandler mCloudantSyncHandler = CloudantSyncHandler.getInstance(Context.getInstance().applicationContext());
+            CountDownLatch mCountDownLatch = new CountDownLatch(2);
+            mCloudantSyncHandler.setCountDownLatch(mCountDownLatch);
+            mCloudantSyncHandler.startPullReplication();
+            mCloudantSyncHandler.startPushReplication();
+
+            mCountDownLatch.await();
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         }

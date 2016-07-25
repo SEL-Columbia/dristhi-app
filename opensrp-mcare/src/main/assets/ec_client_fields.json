@@ -5,60 +5,53 @@
       "columns": [
         {
           "column_name": "base_entity_id",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "field_name": "baseEntityId"
+            "field": "baseEntityId"
           }
         },
         {
           "column_name": "FWGOBHHID",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "attributes",
-            "field_name": "GoB_HHID"
+            "field": "attributes.GoB_HHID"
           }
         },
         {
           "column_name": "FWJIVHHID",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "attributes",
-            "field_name": "JiVitA_HHID"
+            "field": "attributes.JiVitA_HHID"
           }
         },
         {
           "column_name": "existing_Mauzapara",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "adresses",
-            "field_name": "address4"
+            "field": "adresses.address4"
           }
         },
         {
           "column_name": "FWHOHFNAME",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "field_name": "firstName"
+            "field": "firstName"
           }
         },
         {
           "column_name": "FWNHREGDATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWCENDATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         }
       ]
@@ -68,104 +61,90 @@
       "columns": [
         {
           "column_name": "base_entity_id",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "field_name": "baseEntityId"
+            "field": "baseEntityId"
           }
         },
         {
           "column_name": "relational_id",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "relationships",
-            "field_name": "householdHead"
+            "field": "relationships.householdHead"
           }
         },
         {
           "column_name": "GOBHHID",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "attributes",
-            "field_name": "GoB_HHID"
+            "field": "attributes.GoB_HHID"
           }
         },
         {
           "column_name": "JiVitAHHID",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "attributes",
-            "field_name": "JiVitA_HHID"
+            "field": "attributes.JiVitA_HHID"
           }
         },
         {
           "column_name": "FWWOMFNAME",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "field_name": "firstName"
+            "field": "firstName"
           }
         },
         {
           "column_name": "FWHUSNAME",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "161135AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "161135AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWWOMMAUZA_PARA",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "adresses",
-            "field_name": "address4"
+            "field": "adresses.address4"
           }
         },
         {
           "column_name": "FWWOMAGE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWPSRDATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWPSRPREGSTS",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "162942AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "162942AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWWOMNID",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "identifiers",
-            "field_name": "NID"
+            "field": "identifiers.NID"
           }
         },
         {
           "column_name": "FWWOMBID",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "identifiers",
-            "field_name": "Birth Registration ID"
+            "field": "identifiers.Birth Registration ID"
           }
         }
       ]
@@ -175,93 +154,77 @@
       "columns": [
         {
           "column_name": "base_entity_id",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "field_name": "baseEntityId"
+            "field": "baseEntityId"
           }
         },
         {
           "column_name": "FWPSRLMP",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWVG",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "163090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "163090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWHRP",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "163092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "163092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWHR_PSR",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "163091AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "163091AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWANC1DATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
+            "field": "obs.fieldCode",
             "event_type": "ANC Reminder Visit 1",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWANC2DATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
+            "field": "obs.fieldCode",
             "event_type": "ANC Reminder Visit 2",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWANC3DATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
+            "field": "obs.fieldCode",
             "event_type": "ANC Reminder Visit 3",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWANC4DATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
+            "field": "obs.fieldCode",
             "event_type": "ANC Reminder Visit 4",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         }
       ]
@@ -271,100 +234,83 @@
       "columns": [
         {
           "column_name": "base_entity_id",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "field_name": "baseEntityId"
+            "field": "baseEntityId"
           }
         },
         {
           "column_name": "FWBNFDTOO",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWBNFSTS",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "161641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "161641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWWOMNID",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "identifiers",
-            "field_name": "NID"
+            "field": "identifiers.NID"
           }
         },
         {
           "column_name": "FWVG",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "163090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "163090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWHRP",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "163092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "163092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWHR_PSR",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "163091AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "field": "obs.fieldCode",
+            "concept": "163091AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWPNC1DATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
+            "field": "obs.fieldCode",
             "event_type": "PNC Reminder Visit 1",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWPNC2DATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
+            "field": "obs.fieldCode",
             "event_type": "PNC Reminder Visit 2",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWPNC3DATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
+            "field": "obs.fieldCode",
             "event_type": "PNC Reminder Visit 3",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         }
       ]
@@ -374,77 +320,66 @@
       "columns": [
         {
           "column_name": "base_entity_id",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "field_name": "baseEntityId"
+            "field": "baseEntityId"
           }
         },
         {
           "column_name": "relational_id",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "data_segment": "relationships",
-            "field_name": "mother"
+            "field": "relationships.mother"
           }
         },
         {
           "column_name": "FWBNFDTOO",
-          "document_type": "Client",
+          "type": "Client",
           "json_mapping": {
-            "field_name": "birthDate"
+            "field": "birthDate"
           }
         },
         {
           "column_name": "FWBNFCHLDVITSTS",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "159926AAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "values"
+            "field": "obs.fieldCode",
+            "concept": "159926AAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWBNFGEN",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
-            "field_value": "1587AAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "values"
+            "field": "obs.fieldCode",
+            "concept": "1587AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWENC1DATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
+            "field": "obs.fieldCode",
             "event_type": "Essential Newborn Care 1",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWENC2DATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
+            "field": "obs.fieldCode",
             "event_type": "Essential Newborn Care 2",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
           "column_name": "FWENC3DATE",
-          "document_type": "Event",
+          "type": "Event",
           "json_mapping": {
-            "data_segment": "obs",
-            "field_name": "fieldCode",
+            "field": "obs.fieldCode",
             "event_type": "Essential Newborn Care 3",
-            "field_value": "160753AAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "response_key": "value"
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         }
       ]

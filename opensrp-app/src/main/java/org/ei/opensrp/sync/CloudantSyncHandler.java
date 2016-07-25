@@ -21,6 +21,7 @@ import org.ei.opensrp.repository.AllSharedPreferences;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Handles cloundant replication/sync processes.
@@ -36,6 +37,7 @@ public class CloudantSyncHandler {
     private final Context mContext;
     private final Handler mHandler;
     private CloudantSyncListener mListener;
+    private CountDownLatch countDownLatch;
 
     private String dbURL;
 
@@ -185,6 +187,10 @@ public class CloudantSyncHandler {
                     mListener.replicationComplete();
                 }
 
+                if(countDownLatch != null){
+                    countDownLatch.countDown();
+                }
+
                 // Fire this incase the replication was lauched from an intent service
                 Intent localIntent = new Intent(AllConstants.CloudantSync.ACTION_REPLICATION_COMPLETED);
                 // Puts the status into the Intent
@@ -212,6 +218,10 @@ public class CloudantSyncHandler {
                     mListener.replicationError();
                 }
 
+                if(countDownLatch != null){
+                    countDownLatch.countDown();
+                }
+
                 //Fire this incase the replication was lauched from an intent service
                 Intent localIntent = new Intent(AllConstants.CloudantSync.ACTION_REPLICATION_ERROR);
                 // Puts the status into the Intent
@@ -220,5 +230,9 @@ public class CloudantSyncHandler {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(localIntent);
             }
         });
+    }
+
+    public void setCountDownLatch(CountDownLatch countDownLatch) {
+        this.countDownLatch = countDownLatch;
     }
 }
