@@ -67,28 +67,25 @@ public class ClientProcessor {
             JSONObject client = mCloudantDataHandler.getClientByBaseEntityId(baseEntityId);
             // }
 
-            //  String eventJsonString = FormUtils.getInstance(mContext).getEventAsJsonString(event);
-            JSONObject eventJsonObject = event;
-
             //get the client type classification
             JSONArray clientClasses = clientClassificationJson.getJSONArray("case_classification_rules");
-            loopClientClasses(clientClasses, eventJsonObject, event, client);
+            loopClientClasses(clientClasses, event, client);
 
         }
     }
 
-    private void loopClientClasses(JSONArray clientClasses, JSONObject eventJsonObject, JSONObject event, JSONObject client) throws Exception {
+    private void loopClientClasses(JSONArray clientClasses, JSONObject event, JSONObject client) throws Exception {
         for (int i = 0; i < clientClasses.length(); i++) {
             JSONObject object = clientClasses.getJSONObject(i);
 
             JSONObject ruleObject = object.getJSONObject("rule");
             JSONArray fields = ruleObject.getJSONArray("fields");
-            loopFields(fields, eventJsonObject, event, client);
+            loopFields(fields, event, client);
 
         }
     }
 
-    private void loopFields(JSONArray fields, JSONObject eventJsonObject, JSONObject event, JSONObject client) throws Exception {
+    private void loopFields(JSONArray fields, JSONObject event, JSONObject client) throws Exception {
 
         // keep checking if the event data matches the values expected by each rule, break the moment the rule fails
         for (int i = 0; i < fields.length(); i++) {
@@ -117,7 +114,7 @@ public class ClientProcessor {
 
             //some fields are in the main doc e.g event_type so fetch them from the main doc
             if (dataSegment != null && !dataSegment.isEmpty()) {
-                JSONArray jsonDataSegment = eventJsonObject.getJSONArray(dataSegment);
+                JSONArray jsonDataSegment = event.getJSONArray(dataSegment);
                 //iterate in the segment e.g obs segment
                 for (int j = 0; j < jsonDataSegment.length(); j++) {
                     JSONObject segmentJsonObject = jsonDataSegment.getJSONObject(j);
@@ -138,7 +135,7 @@ public class ClientProcessor {
 
             } else {
                 //fetch from the main doc
-                String docSegmentFieldValue = eventJsonObject.get(fieldName) != null ? eventJsonObject.get(fieldName).toString() : "";
+                String docSegmentFieldValue = event.get(fieldName) != null ? event.get(fieldName).toString() : "";
 
                 if (docSegmentFieldValue.equalsIgnoreCase(fieldValue)) {
 
