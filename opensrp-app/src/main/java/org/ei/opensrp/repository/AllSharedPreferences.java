@@ -9,6 +9,7 @@ public class AllSharedPreferences {
     private static final String DRISHTI_BASE_URL = "DRISHTI_BASE_URL";
     private static final String HOST = "HOST";
     private static final String PORT = "PORT";
+    private static final String LAST_SYNC_DATE = "LAST_SYNC_DATE";
     private SharedPreferences preferences;
 
     public AllSharedPreferences(SharedPreferences preferences) {
@@ -53,4 +54,14 @@ public class AllSharedPreferences {
 
         return  Integer.parseInt( preferences.getString(PORT,""+port));
     }
+
+    public Long fetchLastSyncDate(long lastSyncDate){
+
+        return  preferences.getLong(LAST_SYNC_DATE, lastSyncDate);
+    }
+
+    public void saveLastSyncDate(long lastSyncDate){
+        preferences.edit().putLong(LAST_SYNC_DATE, lastSyncDate).commit();
+    }
+
 }

@@ -1,8 +1,10 @@
 package org.ei.opensrp.sync;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.cloudant.sync.datastore.BasicDocumentRevision;
@@ -23,6 +25,7 @@ import org.ei.opensrp.clientandeventmodel.processor.ClientsProcessor;
 import org.ei.opensrp.clientandeventmodel.processor.EventsProcessor;
 import org.ei.opensrp.cloudant.models.Client;
 import org.ei.opensrp.cloudant.models.Event;
+import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.repository.ClientRepository;
 import org.ei.opensrp.repository.EventRepository;
 import org.json.JSONException;
@@ -30,9 +33,12 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -259,17 +265,52 @@ public class CloudantDataHandler {
     }
 
     public List<JSONObject> getUpdatedEvents() throws Exception {
+
+        SharedPreferences preferences  = PreferenceManager.getDefaultSharedPreferences(mContext);
+        AllSharedPreferences allSharedPreferences = new AllSharedPreferences(preferences);
+        long lastSyncTimeStamp = allSharedPreferences.fetchLastSyncDate(0);
+        Date lastSyncDate = new Date(lastSyncTimeStamp);
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String lastSyncString = df.format(lastSyncDate);
+
         List<JSONObject> events = new ArrayList<JSONObject>();
         SQLiteDatabase db = loadDatabase();
-        Cursor cursor = db.rawQuery("select json from revs where updated_at is not null and json not like '{}' and json like '%\"type\":\"Event\"%' order by updated_at asc ", null);
+        Cursor cursor = db.rawQuery("select json, updated_at from revs where updated_at is not null and updated_at > \"" + lastSyncString + "\" and json not like '{}' and json like '%\"type\":\"Event\"%' order by updated_at asc ", null);
 
 
         while (cursor.moveToNext()) {
             byte[] json = (cursor.getBlob(0));
+
+            try {
+                lastSyncDate = df.parse(cursor.getString(1));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             String jsonEventStr = new String(json, "UTF-8");
             JSONObject jsonObectEvent = new JSONObject(jsonEventStr);
             events.add(jsonObectEvent);
         }
+
+        //TODO Use couch db filters
+        Collections.sort(events, new Comparator<JSONObject>() {
+            @Override
+            public int compare(JSONObject lhs, JSONObject rhs) {
+                try {
+                    if (lhs.getLong("version") > rhs.getLong("version")) {
+                        return 1;
+                    }else if(lhs.getLong("version") < rhs.getLong("version")){
+                        return -1;
+                    }
+                    return 0;
+                }catch (JSONException e){
+                    return 0;
+                }
+            }
+        });
+
+        allSharedPreferences.saveLastSyncDate(lastSyncDate.getTime());
         return events;
     }
 

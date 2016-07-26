@@ -45,15 +45,17 @@ public class ClientProcessor {
         return instance;
     }
 
-    public void processClient() throws Exception {
+    public synchronized  void processClient() throws Exception {
         CloudantDataHandler handler = CloudantDataHandler.getInstance(mContext);
-        //this seems to be easy for now cloudant json to events model is crazy
-        List<JSONObject> events = handler.getUpdatedEventsDocs();
-        String clientClassificationStr = getFileContents("ec_client_classification.json");
-        JSONObject clientClassificationJson = new JSONObject(clientClassificationStr);
-        //iterate through the events
-        loopEvents(events, clientClassificationJson);
 
+        //this seems to be easy for now cloudant json to events model is crazy
+        List<JSONObject> events = handler.getUpdatedEvents();
+        if(!events.isEmpty()) {
+            String clientClassificationStr = getFileContents("ec_client_classification.json");
+            JSONObject clientClassificationJson = new JSONObject(clientClassificationStr);
+            //iterate through the events
+            loopEvents(events, clientClassificationJson);
+        }
     }
 
     private void loopEvents(List<JSONObject> events, JSONObject clientClassificationJson) throws Exception {
