@@ -335,9 +335,14 @@ public class AllConstants {
 
     }
     public static class SyncFilters {
-        //these pull filters must be defined in your couchDB server for them to work
-        public static final String FILTER_TIMESTAMP_NOT_EMPTY = "syncfilters/timestampnotemptyfilter";
-        public static final String FILTER_LOCATION_ID = "syncfilters/locationidfilter";
-        public static final String FILTER_TYPE_AND_LOCATION_ID="syncfilters/typeandlocationidfilter";
+        // These pull filters must be defined in your couchDB server for them to work
+        // Filters
+        public static final String FILTER_LOCATION_ID = "locationId";
+        public static final String FILTER_PROVIDER = "provider";
+
+        //filter by team e.g. team = user1,user2,user3
+        public static final String FILTER_TEAM = "team";
+
+
     }
 }

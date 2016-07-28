@@ -12,15 +12,30 @@ import android.util.Log;
 import com.cloudant.sync.datastore.Datastore;
 import com.cloudant.sync.notifications.ReplicationCompleted;
 import com.cloudant.sync.notifications.ReplicationErrored;
+import com.cloudant.sync.replication.PullFilter;
 import com.cloudant.sync.replication.Replicator;
 import com.cloudant.sync.replication.ReplicatorBuilder;
 import com.google.common.eventbus.Subscribe;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.repository.AllSharedPreferences;
+import org.ei.opensrp.util.AssetHandler;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -60,11 +75,23 @@ public class CloudantSyncHandler {
             // Retrieve database host from preferences
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.mContext);
             AllSharedPreferences allSharedPreferences = new AllSharedPreferences(preferences);
+
             String port = AllConstants.CloudantSync.COUCHDB_PORT;
             String databaseName = AllConstants.CloudantSync.COUCH_DATABASE_NAME;
             dbURL = allSharedPreferences.fetchHost("").concat(":").concat(port).concat("/").concat(databaseName);
 
-            this.reloadReplicationSettings();
+            // Replication Filter by provider
+            String designDocumentId = this.replicationFilterSettings();
+            PullFilter pullFilter = null;
+
+            if (designDocumentId != null && designDocumentId.contains("/")) {
+                String filterDoc = designDocumentId.split("/")[1];
+                HashMap<String, String> filterParams = new HashMap<String, String>();
+                filterParams.put(AllConstants.SyncFilters.FILTER_PROVIDER, allSharedPreferences.fetchRegisteredANM());
+                pullFilter = new PullFilter(filterDoc.concat("/").concat(AllConstants.SyncFilters.FILTER_PROVIDER), filterParams);
+            }
+
+            this.reloadReplicationSettings(pullFilter);
 
         } catch (URISyntaxException e) {
             Log.e(LOG_TAG, "Unable to construct remote URI from configuration", e);
@@ -132,7 +159,7 @@ public class CloudantSyncHandler {
      * <p>Stops running replications and reloads the replication settings from
      * the app's preferences.</p>
      */
-    public void reloadReplicationSettings() throws URISyntaxException, Exception {
+    public void reloadReplicationSettings(PullFilter pullFilter) throws URISyntaxException, Exception {
         this.stopAllReplications();
 
         // Set up the new replicator objects
@@ -141,7 +168,12 @@ public class CloudantSyncHandler {
         CloudantDataHandler mCloudantDataHandler = CloudantDataHandler.getInstance(mContext);
         Datastore mDatastore = mCloudantDataHandler.getDatastore();
 
-        mPullReplicator = ReplicatorBuilder.pull().to(mDatastore).from(uri).build();
+        if (pullFilter != null) {
+            mPullReplicator = ReplicatorBuilder.pull().to(mDatastore).from(uri).filter(pullFilter).build();
+
+        } else {
+            mPullReplicator = ReplicatorBuilder.pull().to(mDatastore).from(uri).build();
+        }
         mPushReplicator = ReplicatorBuilder.push().from(mDatastore).to(uri).build();
 
         mPushReplicator.getEventBus().register(this);
@@ -187,7 +219,7 @@ public class CloudantSyncHandler {
                     mListener.replicationComplete();
                 }
 
-                if(countDownLatch != null){
+                if (countDownLatch != null) {
                     countDownLatch.countDown();
                 }
 
@@ -218,7 +250,7 @@ public class CloudantSyncHandler {
                     mListener.replicationError();
                 }
 
-                if(countDownLatch != null){
+                if (countDownLatch != null) {
                     countDownLatch.countDown();
                 }
 
@@ -234,5 +266,85 @@ public class CloudantSyncHandler {
 
     public void setCountDownLatch(CountDownLatch countDownLatch) {
         this.countDownLatch = countDownLatch;
+    }
+
+    public String replicationFilterSettings() {
+        try {
+            String syncFiltersString = getFileContents("sync_filters.json");
+            JsonObject syncFiltersJson = new JsonParser().parse(syncFiltersString).getAsJsonObject();
+            String designDocumentId = syncFiltersJson.get("_id").getAsString();
+
+            JsonObject jsonObject = getReplicationFiler(designDocumentId);
+            if (jsonObject == null) {
+                return null;
+            }
+
+            JsonElement idElement = jsonObject.get("_id");
+            if (idElement != null && idElement.getAsString().equals(designDocumentId) ) {
+                return designDocumentId;
+            }
+
+            // Define replication filter
+            setReplicationFilter(syncFiltersString, designDocumentId);
+            return designDocumentId;
+
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Exception While getting sync filters json", e);
+            return null;
+        }
+
+
+    }
+
+    public JsonObject setReplicationFilter(String json, String designDocumentId) {
+        try {
+
+            HttpClient client = new DefaultHttpClient();
+            HttpPut put = new HttpPut(dbURL.concat("/".concat(designDocumentId)));
+
+
+            StringEntity stringEntity = new StringEntity(json, "utf-8");
+            put.setEntity(stringEntity);
+            put.setHeader("Content-type", "application/json; charset=utf-8");
+            put.setHeader("Accept", "application/json");
+
+            HttpResponse response = client.execute(put);
+            HttpEntity entity = response.getEntity();
+            InputStream in = entity.getContent();
+
+            JsonParser jp = new JsonParser();
+            JsonElement root = jp.parse(new InputStreamReader(in));
+
+            return root.getAsJsonObject();
+
+
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Exception While setting replication filter", e);
+            return null;
+        }
+    }
+
+    public JsonObject getReplicationFiler(String designDocumentId) {
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+
+            HttpGet get = new HttpGet(dbURL.concat("/".concat(designDocumentId)));
+
+            HttpResponse response = httpclient.execute(get);
+            HttpEntity entity = response.getEntity();
+            InputStream in = entity.getContent();
+
+            JsonParser jp = new JsonParser();
+            JsonElement root = jp.parse(new InputStreamReader(in));
+
+            return root.getAsJsonObject();
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Exception While getting replication filter", e);
+            return null;
+        }
+    }
+
+    private String getFileContents(String fileName) {
+        return AssetHandler.readFileFromAssetsFolder(fileName, mContext);
     }
 }
