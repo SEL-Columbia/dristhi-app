@@ -128,9 +128,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : "-");
 
         viewHolder.hb1.setText(pc.getDetails().get("hb1_kurang_7_hari")!=null && pc.getDetails().get("hb1_kurang_7_hari").length()==10
-                ? pc.getDetails().get("hb1_kurang_7_hari")
-                : pc.getDetails().get("hb1_lebih_7_hari")!=null && pc.getDetails().get("hb1_lebih_7_hari").length()==10
-                    ? pc.getDetails().get("hb1_lebih_7_hari"):"-");
+                ? pc.getDetails().get("hb1_kurang_7_hari") :"-");
 
         viewHolder.pol1.setText(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1"):"-");
         viewHolder.pol2.setText(pc.getDetails().get("dpt_1_pol_2")!=null ? pc.getDetails().get("dpt_1_pol_2"):"-");
