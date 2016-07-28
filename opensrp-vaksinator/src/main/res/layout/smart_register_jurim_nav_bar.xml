@@ -57,12 +57,15 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/vaksinator_recapitulation_label"
         android:id="@+id/recapitulation_label"
+        android:paddingLeft="30px"
+
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/title_layout"
         android:layout_toEndOf="@+id/title_layout"
-        style="@style/CustomFontTextViewStyle.NavBar.Black"/>
+        style="@style/CustomFontTextViewStyle.NavBar.Black"
+        android:textStyle="bold" />
 
 </RelativeLayout>
