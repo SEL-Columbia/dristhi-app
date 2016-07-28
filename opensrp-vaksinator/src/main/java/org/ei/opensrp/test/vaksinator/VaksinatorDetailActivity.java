@@ -83,15 +83,21 @@ public class VaksinatorDetailActivity extends Activity {
 
         nama.setText(": " + (controller.getDetails().get("nama_bayi") != null ? controller.getDetails().get("nama_bayi") : "-"));
         motherName.setText(": " + (controller.getDetails().get("nama_orang_tua") != null ? controller.getDetails().get("nama_orang_tua") : "-"));
-        //fatherName.setText(": "+(controller.getDetails().get("fatherName") != null? controller.getDetails().get("fatherName"):"-"));
         village.setText(": " + (controller.getDetails().get("village") != null ? controller.getDetails().get("village") : "-"));
         posyandu.setText(": " + (controller.getDetails().get("nama_lokasi") != null ? controller.getDetails().get("nama_lokasi") : "-"));
         dateOfBirth.setText(": " + (controller.getDetails().get("tanggal_lahir") != null ? controller.getDetails().get("tanggal_lahir") : "-"));
         birthWeight.setText(": " + (controller.getDetails().get("berat_badan_saat_lahir") != null ? controller.getDetails().get("berat_badan_saat_lahir") : "-"));
-        //currentWeight.setText(": "+(controller.getDetails().get("currentWeight") != null? controller.getDetails().get("currentWeight"):"-"));
 
-        hb1Under7.setText(": " + (controller.getDetails().get("hb1_kurang_7_hari") != null ? controller.getDetails().get("hb1_kurang_7_hari") : "-"));
-        hb1After7.setText(": " + (controller.getDetails().get("hb1_lebih_7_hari") != null ? controller.getDetails().get("hb1_lebih_7_hari") : "-"));
+        hb1Under7.setText(": " + (controller.getDetails().get("hb1_kurang_7_hari") != null && controller.getDetails().get("hb1_kurang_7_hari").length()>6
+                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb1_kurang_7_hari")) <= 7
+                    ? controller.getDetails().get("hb1_kurang_7_hari")
+                    : "-"
+                : "-"));
+        hb1After7.setText(": " + (controller.getDetails().get("hb1_lebih_7_hari") != null && controller.getDetails().get("hb1_lebih_7_hari").length()>6
+                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb1_lebih_7_hari")) > 7
+                    ? controller.getDetails().get("hb1_lebih_7_hari")
+                    : "-"
+                : "-"));
         bcg.setText(": " + (controller.getDetails().get("bcg_pol_1") != null ? controller.getDetails().get("bcg_pol_1") : "-"));
         pol1.setText(": " + (controller.getDetails().get("bcg_pol_1") != null ? controller.getDetails().get("bcg_pol_1") : "-"));
         dpt1.setText(": " + (controller.getDetails().get("dpt_1_pol_2") != null ? controller.getDetails().get("dpt_1_pol_2") : "-"));
@@ -101,8 +107,16 @@ public class VaksinatorDetailActivity extends Activity {
         dpt3.setText(": " + (controller.getDetails().get("dpt_3_pol_4_ipv") != null ? controller.getDetails().get("dpt_3_pol_4_ipv") : "-"));
         pol4.setText(": " + (controller.getDetails().get("dpt_3_pol_4_ipv") != null ? controller.getDetails().get("dpt_3_pol_4_ipv") : "-"));
         measles.setText(": " + (controller.getDetails().get("imunisasi_campak") != null ? controller.getDetails().get("imunisasi_campak") : "-"));
-        mutationUnder30.setText(": " + (controller.getDetails().get("mutasi_meninggal_kurang_30hari") != null ? controller.getDetails().get("mutasi_meninggal_kurang_30hari") : "-"));
-        mutationAfter30.setText(": " + (controller.getDetails().get("mutasi_meninggal_lebih_30hari") != null ? controller.getDetails().get("mutasi_meninggal_lebih_30hari") : "-"));
+        mutationUnder30.setText(": " + (controller.getDetails().get("mutasi_meninggal_kurang_30hari") != null && controller.getDetails().get("mutasi_meninggal_kurang_30hari").length()>6
+                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb1_kurang_7_hari")) > 7
+                    ? controller.getDetails().get("hb1_kurang_7_hari")
+                    : "-"
+                : "-"));
+        mutationAfter30.setText(": " + (controller.getDetails().get("mutasi_meninggal_lebih_30hari") != null && controller.getDetails().get("mutasi_meninggal_lebih_30hari").length()>6
+                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb1_kurang_7_hari")) > 7
+                    ? controller.getDetails().get("hb1_kurang_7_hari")
+                    : "-"
+                : "-"));
         mutationMoving.setText(": " + (controller.getDetails().get("tanggal_pindah") != null ? controller.getDetails().get("tanggal_pindah") : "-"));
         complete.setText(": " + (controller.getDetails().get("imunisasi_lengkap") != null ? controller.getDetails().get("imunisasi_lengkap") : "-"));
         additionalDPT.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
@@ -114,4 +128,11 @@ public class VaksinatorDetailActivity extends Activity {
             photo.setImageResource(R.drawable.child_girl_infant);
         }
     }
+
+    private int age(String date1, String date2){
+        return (Integer.parseInt(date2.substring(0,3)) - Integer.parseInt(date1.substring(0,3)))*360
+                + (Integer.parseInt(date2.substring(5,7)) - Integer.parseInt(date1.substring(5,7)))*30
+                + (Integer.parseInt(date2.substring(8)) - Integer.parseInt(date1.substring(8)));
+    }
+
 }
