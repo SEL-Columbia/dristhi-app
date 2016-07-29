@@ -1,0 +1,27 @@
+<model>
+    <instance>
+        <kunjungan_vaksinator_campak_Openmrs id="kunjungan_vaksinator_ver_campak" version="201607290835">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+            <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+            <deviceid/>
+            <simserial/>
+            <phonenumber/>
+            <campak openmrs_entity="concept" openmrs_entity_id="984AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <keterangan openmrs_entity="concept"/>
+            <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </kunjungan_vaksinator_campak_Openmrs>
+    </instance>
+</model><form autocomplete="off" novalidate="novalidate" class="or clearfix" dir="ltr" id="kunjungan_vaksinator_ver_campak">
+<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.--><section class="form-logo"> </section><h3 id="form-title">Kunjungan Vaksinasi Campak</h3><select id="form-languages" data-default-lang="Bahasa"><option value="Bahasa">Bahasa</option> <option value="en">English</option> </select>
+
+
+<label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_vaksinator_campak_Openmrs/campak:label">Tanggal Vaksinasi campak</span><span lang="en" class="question-label " data-itext-id="/kunjungan_vaksinator_campak_Openmrs/campak:label">Vaccination Date measless</span><span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_vaksinator_campak_Openmrs/campak:hint">Tanggal vaksinasi diberikan</span><span lang="en" class="or-hint " data-itext-id="/kunjungan_vaksinator_campak_Openmrs/campak:hint">The date when the vaccination is given</span><input type="date" name="/kunjungan_vaksinator_campak_Openmrs/campak" data-type-xml="date"/><span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span></label>
+<label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/kunjungan_vaksinator_campak_Openmrs/keterangan:label">Keterangan</span><span lang="en" class="question-label " data-itext-id="/kunjungan_vaksinator_campak_Openmrs/keterangan:label">Notes</span><span lang="Bahasa" class="or-hint active" data-itext-id="/kunjungan_vaksinator_campak_Openmrs/keterangan:hint">Di Isi Jika ada tambahan informasi ketika Pemberian Imunisasi Pada Bayi</span><span lang="en" class="or-hint " data-itext-id="/kunjungan_vaksinator_campak_Openmrs/keterangan:hint">filled if re is additional information related to immunization service</span><input type="text" name="/kunjungan_vaksinator_campak_Openmrs/keterangan" data-type-xml="string"/><span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Value not allowed</span></label>
+
+<fieldset id="or-preload-items" style="display:none;"><label class="calculation non-select "><input type="hidden" name="/kunjungan_vaksinator_campak_Openmrs/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime"/></label><label class="calculation non-select "><input type="hidden" name="/kunjungan_vaksinator_campak_Openmrs/today" data-preload="date" data-preload-params="today" data-type-xml="date"/></label><label class="calculation non-select "><input type="hidden" name="/kunjungan_vaksinator_campak_Openmrs/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/kunjungan_vaksinator_campak_Openmrs/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/kunjungan_vaksinator_campak_Openmrs/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/kunjungan_vaksinator_campak_Openmrs/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime"/></label></fieldset><fieldset id="or-calculated-items" style="display:none;"><label class="calculation non-select "><input type="hidden" name="/kunjungan_vaksinator_campak_Openmrs/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/kunjungan_vaksinator_campak_Openmrs/formhub/uuid" data-calculate="'2059a842ff2d4291a32c913d535ea6c2'" data-type-xml="string"/></label></fieldset></form>

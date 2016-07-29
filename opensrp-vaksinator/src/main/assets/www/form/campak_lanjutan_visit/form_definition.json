@@ -1,0 +1,28 @@
+{
+  "form_data_definition_version": "2",
+  "form": {
+    "bind_type": "anak",
+    "default_bind_path": "/model/instance/kunjungan_vaksinator_dpt_hb_campak_l...Openmrs/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "dpt_hb_campak_lanjutan",
+        "bind": "/model/instance/kunjungan_vaksinator_dpt_hb_campak_l...Openmrs/dpt_hb_campak_lanjutan",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "keterangan",
+        "bind": "/model/instance/kunjungan_vaksinator_dpt_hb_campak_l...Openmrs/keterangan",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "submissiondate",
+        "bind": "/model/instance/kunjungan_vaksinator_dpt_hb_campak_l...Openmrs/today",
+        "shouldLoadValue": true
+      }
+    ]
+  }
+}

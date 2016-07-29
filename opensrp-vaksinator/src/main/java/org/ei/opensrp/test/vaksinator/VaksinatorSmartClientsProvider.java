@@ -127,8 +127,8 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):"-");
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : "-");
 
-        viewHolder.hb1.setText(pc.getDetails().get("hb1_kurang_7_hari")!=null && pc.getDetails().get("hb1_kurang_7_hari").length()==10
-                ? pc.getDetails().get("hb1_kurang_7_hari") :"-");
+        viewHolder.hb1.setText(pc.getDetails().get("hb0")!=null && pc.getDetails().get("hb0").length()==10
+                ? pc.getDetails().get("hb0") :"-");
 
         viewHolder.pol1.setText(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1"):"-");
         viewHolder.pol2.setText(pc.getDetails().get("dpt_1_pol_2")!=null ? pc.getDetails().get("dpt_1_pol_2"):"-");
@@ -137,10 +137,8 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.ipv.setText(pc.getDetails().get("imunisasi_campak") != null ? pc.getDetails().get("imunisasi_campak") : "-");
 
         // logo visibility, sometimes the variable contains blank string that count as not null, so we must check both the availability and content
-        boolean a = pc.getDetails().get("hb1_kurang_7_hari") != null ? pc.getDetails().get("hb1_kurang_7_hari").length() == 10 ? true : false : false;
-        boolean b = a || (pc.getDetails().get("hb1_lebih_7_hari") != null ? pc.getDetails().get("hb1_lebih_7_hari").length() == 10 ? true : false : false);
-
-        viewHolder.hbLogo.setImageResource(b ? R.drawable.ic_yes_large : umur > 0 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha);
+        boolean a = pc.getDetails().get("hb0") != null ? pc.getDetails().get("hb0").length() == 10 ? true : false : false;
+         viewHolder.hbLogo.setImageResource(a ? R.drawable.ic_yes_large : umur > 0 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha);
         setIcon(viewHolder.pol1Logo,"bcg_pol_1",umur,1,pc);
         setIcon(viewHolder.pol2Logo,"dpt_1_pol_2",umur,2,pc);
         setIcon(viewHolder.pol3Logo,"dpt_2_pol_3",umur,3,pc);

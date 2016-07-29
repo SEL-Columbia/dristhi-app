@@ -1,0 +1,20 @@
+<model>
+  <instance>
+    <kunjungan_vaksinator_Bcg_pol1_Openmrs id="kunjungan_vaksinator_ver_bcg_pol1" version="201607290811">
+      <formhub>
+        <uuid/>
+      </formhub>
+      <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+      <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+      <deviceid/>
+      <simserial/>
+      <phonenumber/>
+      <bcg_pol1 openmrs_entity="concept" openmrs_entity_id="984AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <keterangan openmrs_entity="concept"/>
+      <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+      <meta>
+        <instanceID/>
+      </meta>
+    </kunjungan_vaksinator_Bcg_pol1_Openmrs>
+  </instance>
+</model>
