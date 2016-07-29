@@ -16,6 +16,9 @@ import com.cloudant.sync.replication.PullFilter;
 import com.cloudant.sync.replication.Replicator;
 import com.cloudant.sync.replication.ReplicatorBuilder;
 import com.google.common.eventbus.Subscribe;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -84,7 +87,7 @@ public class CloudantSyncHandler {
             String designDocumentId = this.replicationFilterSettings();
             PullFilter pullFilter = null;
 
-            if (designDocumentId != null && designDocumentId.contains("/")) {
+            if (designDocumentId != null) {
                 String filterDoc = designDocumentId.split("/")[1];
                 HashMap<String, String> filterParams = new HashMap<String, String>();
                 filterParams.put(AllConstants.SyncFilters.FILTER_PROVIDER, allSharedPreferences.fetchRegisteredANM());
@@ -270,22 +273,35 @@ public class CloudantSyncHandler {
 
     public String replicationFilterSettings() {
         try {
-            String syncFiltersString = getFileContents("sync_filters.json");
-            JsonObject syncFiltersJson = new JsonParser().parse(syncFiltersString).getAsJsonObject();
-            String designDocumentId = syncFiltersJson.get("_id").getAsString();
+            String localJsonString = getFileContents("sync_filters.json");
+            JsonObject localJson = new JsonParser().parse(localJsonString).getAsJsonObject();
 
-            JsonObject jsonObject = getReplicationFiler(designDocumentId);
-            if (jsonObject == null) {
+            String designDocumentId = localJson.get("_id").getAsString();
+            if(designDocumentId == null || designDocumentId.isEmpty() || !designDocumentId.contains("_design/")){
                 return null;
             }
 
-            JsonElement idElement = jsonObject.get("_id");
-            if (idElement != null && idElement.getAsString().equals(designDocumentId) ) {
+            JsonObject serverJson = getReplicationFiler(designDocumentId);
+            if (serverJson == null) {
+                return null;
+            }
+
+            JsonElement idElement = serverJson.get("_id");
+            if (idElement != null && idElement.getAsString().equals(designDocumentId)) {
+                //Compare filters and update if the filters are different
+                JsonObject syncFiltersElement = localJson.get("filters").getAsJsonObject();
+                JsonObject serverFiltersElement = serverJson.get("filters").getAsJsonObject();
+                if (!syncFiltersElement.equals(serverFiltersElement)) {
+                    String rev = serverJson.get("_rev").getAsString();
+                    localJson.addProperty("_rev", rev);
+                    setReplicationFilter(localJson, designDocumentId);
+
+                }
                 return designDocumentId;
             }
 
             // Define replication filter
-            setReplicationFilter(syncFiltersString, designDocumentId);
+            setReplicationFilter(localJson, designDocumentId);
             return designDocumentId;
 
         } catch (Exception e) {
@@ -296,8 +312,11 @@ public class CloudantSyncHandler {
 
     }
 
-    public JsonObject setReplicationFilter(String json, String designDocumentId) {
+    public JsonObject setReplicationFilter(JsonObject jsonObject, String designDocumentId) {
         try {
+            Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+
+            String json = gson.toJson(jsonObject);
 
             HttpClient client = new DefaultHttpClient();
             HttpPut put = new HttpPut(dbURL.concat("/".concat(designDocumentId)));
