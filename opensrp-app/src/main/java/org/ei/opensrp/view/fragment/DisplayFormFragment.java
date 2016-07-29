@@ -127,12 +127,32 @@ public class DisplayFormFragment extends Fragment {
         webView.addJavascriptInterface(myJavaScriptInterface, "Android");
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * reset the form
+     */
+    public void resetForm(){
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("javascript:resetForm()");
+                Log.d(TAG, "reseting form");
+            }
+        });
+    }
+
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     public void loadHtml(){
         showProgressDialog();
         String header = readFileAssets(headerTemplate);
 
         String script = readFileAssets(scriptFile);
+<<<<<<< HEAD
         String modelString = readFileAssets("www/form/" + formName + "/model.xml").replaceAll("\"", "\\\\\"").replaceAll("\n", "").replaceAll("\r", "").replaceAll("/","\\\\/");;
+=======
+        String modelString = readFileAssets("www/form/" + formName + "/model.xml").replaceAll("\"", "\\\\\"").replaceAll("\n", "").replaceAll("\r", "").replaceAll("/","\\\\/");
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         String form = readFileAssets("www/form/" + formName + "/form.xml");
         String footer = readFileAssets(footerTemplate);
 
@@ -143,6 +163,10 @@ public class DisplayFormFragment extends Fragment {
         StringBuilder sb = new StringBuilder();
         sb.append(header).append(form).append(footer);
         webView.loadDataWithBaseURL("file:///android_asset/web/forms/", sb.toString(), "text/html", "utf-8", null);
+<<<<<<< HEAD
+=======
+        //webView.loadUrl("file:///android_asset/web/template.html");
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
         resizeForm();
     }
@@ -196,6 +220,7 @@ public class DisplayFormFragment extends Fragment {
         });
     }
 
+<<<<<<< HEAD
     String formData;
     public void setFormData(String data){
         if (data != null){
@@ -204,14 +229,22 @@ public class DisplayFormFragment extends Fragment {
     }
 
     public void loadFormData(){
+=======
+    public void setFormData(final String data){
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try{
+<<<<<<< HEAD
+=======
+                    // Wait for the page to initialize
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     while (!javascriptLoaded){
                         Thread.sleep(100);
                     }
 
+<<<<<<< HEAD
                     formData = formData != null && !formData.isEmpty() ? formData.replaceAll("\"","\\\"") : "";
                     webView.post(new Runnable() {
                         @Override
@@ -228,6 +261,32 @@ public class DisplayFormFragment extends Fragment {
     }
 
     //override this on tha child classes to override specific fields
+=======
+                    if (data != null && !data.isEmpty()){
+                        postXmlDataToForm(data);
+                    }else{
+                        resetForm();
+                    }
+
+                }catch(Exception e){
+                    Log.e(TAG, e.toString(), e);
+                }
+            }
+        }).start();
+    }
+
+    private void postXmlDataToForm(final String data){
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("javascript:loadDraft('" + data + "')");
+                Log.d("posting data", data);
+            }
+        });
+    }
+
+    // override this on tha child classes to override specific fields
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     public JSONObject getFormFieldsOverrides(){
         return fieldOverides;
     }
@@ -270,6 +329,10 @@ public class DisplayFormFragment extends Fragment {
     }
 
     public class MyJavaScriptInterface {
+<<<<<<< HEAD
+=======
+        private static final String JAVASCRIPT_LOG_TAG = "Javascript";
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         Context mContext;
 
         MyJavaScriptInterface(Context c) {
@@ -319,6 +382,15 @@ public class DisplayFormFragment extends Fragment {
             ((SecuredNativeSmartRegisterActivity)getActivity()).savePartialFormData(partialData, recordId, formName, getFormFieldsOverrides());
         }
 
+<<<<<<< HEAD
+=======
+        @JavascriptInterface
+        public void log(String message){
+            Log.d(JAVASCRIPT_LOG_TAG, message);
+            //Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+            //((SecuredNativeSmartRegisterActivity)getActivity()).savePartialFormData(partialData, recordId, formName, getFormFieldsOverrides());
+        }
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     }
 
     private void resizeForm() {

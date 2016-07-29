@@ -134,5 +134,4 @@ public class VaksinatorDetailActivity extends Activity {
                 + (Integer.parseInt(date2.substring(5,7)) - Integer.parseInt(date1.substring(5,7)))*30
                 + (Integer.parseInt(date2.substring(8)) - Integer.parseInt(date1.substring(8)));
     }
-
 }

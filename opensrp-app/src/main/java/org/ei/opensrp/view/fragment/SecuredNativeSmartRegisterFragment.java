@@ -7,6 +7,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+<<<<<<< HEAD
+=======
+import android.util.Log;
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +59,7 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
     public static final String DIALOG_TAG = "dialog";
     public static final List<? extends DialogOption> DEFAULT_FILTER_OPTIONS = asList(new AllClientsFilter());
 
+<<<<<<< HEAD
     private ListView clientsView;
     private ProgressBar clientsProgressView;
     private TextView serviceModeView;
@@ -63,6 +68,16 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
     private EditText searchView;
     private View searchCancelView;
     private TextView titleLabelView;
+=======
+    public ListView clientsView;
+    public ProgressBar clientsProgressView;
+    public TextView serviceModeView;
+    public TextView appliedVillageFilterView;
+    public TextView appliedSortView;
+    public EditText searchView;
+    public View searchCancelView;
+    public TextView titleLabelView;
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     public EditText getSearchView() {
         return searchView;
@@ -213,7 +228,11 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
         setReportDates(reportMonthStartView);
     }
 
+<<<<<<< HEAD
     private void setupSearchView(View view) {
+=======
+    public void setupSearchView(View view) {
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         searchView = (EditText) view.findViewById(R.id.edt_search);
         searchView.setHint(getNavBarOptionsProvider().searchHint());
         searchView.addTextChangedListener(new TextWatcher() {
@@ -311,7 +330,12 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
         populateClientListHeaderView(serviceModeOption.getHeaderProvider(), view);
     }
 
+<<<<<<< HEAD
     protected void onSortSelection(SortOption sortBy) {
+=======
+    public void onSortSelection(SortOption sortBy) {
+        Log.v("he pressed this",sortBy.name());
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         currentSortOption = sortBy;
         appliedSortView.setText(sortBy.name());
         clientsAdapter
@@ -319,7 +343,11 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
                         currentSearchFilter, currentSortOption);
     }
 
+<<<<<<< HEAD
     protected void onFilterSelection(FilterOption filter) {
+=======
+    public void onFilterSelection(FilterOption filter) {
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         currentVillageFilter = filter;
         appliedVillageFilterView.setText(filter.name());
         clientsAdapter
@@ -331,6 +359,10 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
         editOption.doEdit(client);
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     private void goBack() {
         getActivity().finish();
     }
@@ -439,6 +471,7 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
             }
         }
 
+<<<<<<< HEAD
         private void gotoNextPage() {
             clientsAdapter.nextPage();
             clientsAdapter.notifyDataSetChanged();
@@ -448,6 +481,18 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
             clientsAdapter.previousPage();
             clientsAdapter.notifyDataSetChanged();
         }
+=======
+    }
+
+    public void gotoNextPage() {
+        clientsAdapter.nextPage();
+        clientsAdapter.notifyDataSetChanged();
+    }
+
+    public void goBackToPreviousPage() {
+        clientsAdapter.previousPage();
+        clientsAdapter.notifyDataSetChanged();
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     }
 
     public class NavBarActionsHandler implements View.OnClickListener {

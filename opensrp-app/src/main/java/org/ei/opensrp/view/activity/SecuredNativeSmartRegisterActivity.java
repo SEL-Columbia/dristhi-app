@@ -480,12 +480,20 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             }
         }
 
+<<<<<<< HEAD
         private void gotoNextPage() {
+=======
+        public void gotoNextPage() {
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             clientsAdapter.nextPage();
             clientsAdapter.notifyDataSetChanged();
         }
 
+<<<<<<< HEAD
         private void goBackToPreviousPage() {
+=======
+        public void goBackToPreviousPage() {
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             clientsAdapter.previousPage();
             clientsAdapter.notifyDataSetChanged();
         }

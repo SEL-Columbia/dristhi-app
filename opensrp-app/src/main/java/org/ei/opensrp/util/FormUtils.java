@@ -134,6 +134,7 @@ public class FormUtils {
         return fs;
     }
 
+<<<<<<< HEAD
     private List<String> retrieveRelationalIdForSubForm(String childTableName, String entityId) throws  Exception{
         List<String> ids = new ArrayList<String>();
         if (entityId != null){
@@ -153,6 +154,8 @@ public class FormUtils {
         return ids;
     }
 
+=======
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     public String generateXMLInputForFormWithEntityId(String entityId, String formName, String overrides){
         try
         {
@@ -207,6 +210,10 @@ public class FormUtils {
 
             String xml = writer.toString();
             //xml = xml.replaceAll("<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>","");//56 !!!this ain't working
+<<<<<<< HEAD
+=======
+            //Add model and instance tags
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             xml = xml.substring(56);
             System.out.println(xml);
 
@@ -251,9 +258,14 @@ public class FormUtils {
                     Element child = (Element) entries.item(i);
                     String fieldName = child.getNodeName();
 
+<<<<<<< HEAD
                     if(!subFormNames.isEmpty() && subFormNames.contains(fieldName))
                     {
                         /* its a subform element process it */
+=======
+                    if(!subFormNames.isEmpty() && subFormNames.contains(fieldName)) {
+                        /** its a subform element process it **/
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                         // get the subform definition
                         JSONArray subForms = formDefinition.getJSONObject("form").getJSONArray("sub_forms");
                         JSONObject subFormDefinition = retriveSubformDefinitionForBindPath(subForms, fieldName);
@@ -277,12 +289,22 @@ public class FormUtils {
                                     writeXML(child, serializer, fieldOverrides, subFormDefinition, childEntityJson, entityId);
                                 }
                             }else{
+<<<<<<< HEAD
                                 //writeXML(child, serializer, fieldOverrides, subFormDefinition, new JSONObject(), entityId);
                             }
                         }
                     }
                     else
                     {
+=======
+                                writeXML(child, serializer, fieldOverrides, subFormDefinition, new JSONObject(), entityId);
+                            }
+                        }
+                    } // Check if the node contains other elements
+                    else if(hasChildElements(child)){
+                        writeXML(child, serializer, fieldOverrides, formDefinition, new JSONObject(), entityId);
+                    }else {
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                         //its not a sub-form element write its value
                         serializer.startTag("", fieldName);
                         // write the xml attributes
@@ -312,6 +334,24 @@ public class FormUtils {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Checks if the provided node has Child elements
+     * @param element
+     * @return
+     */
+    public static boolean hasChildElements(Node element) {
+        NodeList children = element.getChildNodes();
+        for (int i = 0;i < children.getLength();i++) {
+            if (children.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
      * Iterate through the provided array and retrieve a json object whose name attribute matches the name supplied
      *
      * @param fieldName
@@ -716,11 +756,26 @@ public class FormUtils {
             }
             i++;
         }
+<<<<<<< HEAD
         if(object.has(path[i]) && object.get(path[i]) instanceof JSONObject && ((JSONObject) object.get(path[i])).has("content")){
             value = ((JSONObject) object.get(path[i])).getString("content");
         }
         else if(object.has(path[i]) && !(object.get(path[i]) instanceof JSONObject)){
             value = object.has(path[i]) ? object.get(path[i]).toString() : null;
+=======
+        Object valueObject = object.has(path[i]) ? object.get(path[i]) : null;
+
+        if (valueObject == null)
+            return value;
+        if(valueObject instanceof JSONObject && ((JSONObject) valueObject).has("content")){
+            value = ((JSONObject) object.get(path[i])).getString("content");
+        }
+        else if(valueObject instanceof JSONArray){
+            value = ((JSONArray)valueObject).get(0).toString();
+        }
+        else if(!(valueObject instanceof JSONObject) ){
+            value = valueObject.toString();
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         }
         return value;
     }

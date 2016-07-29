@@ -9,12 +9,7 @@
         "shouldLoadValue": true
       },
       {
-        "name": "hb1_kurang_7_hari",
-        "bind": "/model/instance/kunjungan_vaksinator_ver_02/hb0",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "hb1_lebih_7_hari",
+        "name": "hb0",
         "bind": "/model/instance/kunjungan_vaksinator_ver_02/hb0",
         "shouldLoadValue": true
       },

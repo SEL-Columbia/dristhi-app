@@ -25,13 +25,20 @@
             android:layout_height="wrap_content"
             android:text="hhid"
             android:id="@+id/hh_detail_jivita"
+<<<<<<< HEAD
             style="@style/CustomFontTextViewStyle.ListView.Medium"
+=======
+            style="@style/CustomFontTextViewStyle"
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             android:layout_gravity="center_vertical"
             android:textColor="@color/alert_urgent_red"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
+<<<<<<< HEAD
             android:textStyle="bold"
+=======
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             android:textSize="22sp" />
 
         <ImageView
@@ -45,12 +52,19 @@
             android:layout_height="wrap_content"
             android:text="hhid"
             android:id="@+id/house_detail_hhid"
+<<<<<<< HEAD
             style="@style/CustomFontTextViewStyle.ListView.Medium"
+=======
+            style="@style/CustomFontTextViewStyle"
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             android:layout_gravity="center_vertical"
             android:textColor="@color/light_blue"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="2dp"
+<<<<<<< HEAD
             android:textStyle="bold"
+=======
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             android:textSize="22sp" />
     </LinearLayout>
 
@@ -74,6 +88,7 @@
     <LinearLayout
             android:id="@+id/clients_header_layout"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="@dimen/list_header_height"
             android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
             android:layout_marginRight="@dimen/list_view_margin_left_and_right"
@@ -89,6 +104,24 @@
             android:textColor="@color/text_black"
             android:textStyle="bold"
             android:textSize="20sp" />
+=======
+            android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/hh_other_inhabitants"
+            android:id="@+id/inhabitants"
+            style="@style/CustomFontTextViewStyle.ListView.Bold"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/text_black"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     </LinearLayout>
 

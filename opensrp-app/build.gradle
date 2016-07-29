@@ -108,7 +108,10 @@ configurations.all {
 }
 
 dependencies {
+<<<<<<< HEAD
     compile 'org.ei.drishti:drishti-interface:0.1-SNAPSHOT'
+=======
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile "org.apache.httpcomponents:httpmime:4.2.3"
     compile 'commons-io:commons-io:2.1'

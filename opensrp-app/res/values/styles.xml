@@ -49,6 +49,15 @@
         <!--<item name="android:paddingLeft">10dp</item>-->
         <item name="android:ellipsize">none</item>
     </style>
+<<<<<<< HEAD
+=======
+    <style name="CustomFontTextViewStyle.ListView.Small.paddingNoHeight" parent="@android:style/Widget.TextView">
+        <item name="fontVariant">medium</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:ellipsize">none</item>
+    </style>
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     <style name="CustomFontTextViewStyle.ListView.VerySmall" parent="CustomFontTextViewStyle">
         <item name="fontVariant">medium</item>
@@ -135,6 +144,13 @@
     <style name="CustomFontTextViewStyle.StatusBar.Bold">
         <item name="fontVariant">bold</item>
     </style>
+<<<<<<< HEAD
+=======
+    <style name="CustomFontTextViewStyle.StatusBar.Bold.NoPadding">
+        <item name="fontVariant">bold</item>
+        <item name="android:paddingLeft">0dp</item>
+    </style>
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     <style name="CustomFontTextViewStyle.StatusBar.Black">
         <item name="fontVariant">black</item>

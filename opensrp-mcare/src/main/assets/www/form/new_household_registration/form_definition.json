@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "form_data_definition_version": "15",
+=======
+  "form_data_definition_version": "16",
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
   "form": {
     "default_bind_path": "/model/instance/FWNewHH",
     "bind_type": "household",
@@ -204,6 +208,13 @@
             "bind": "/model/instance/FWNewHH/woman/FWCWOMSTRMEN"
           },
           {
+<<<<<<< HEAD
+=======
+            "name": "FWCWOMSTER",
+            "bind": "/model/instance/FWNewHH/woman/FWCWOMSTER"
+          },
+          {
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             "name": "FWCWOMHUSALV",
             "bind": "/model/instance/FWNewHH/woman/FWCWOMHUSALV"
           },

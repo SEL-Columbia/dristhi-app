@@ -179,7 +179,10 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
                 if (displayFormFragment != null) {
                     displayFormFragment.setFormData(data);
+<<<<<<< HEAD
                     displayFormFragment.loadFormData();
+=======
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     displayFormFragment.setRecordId(entityId);
                     displayFormFragment.setFieldOverides(metaData);
                 }
@@ -209,7 +212,10 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
+<<<<<<< HEAD
                     displayFormFragment.loadFormData();
+=======
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 }
 
                 displayFormFragment.setRecordId(null);

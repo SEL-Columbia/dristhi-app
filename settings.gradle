@@ -1,4 +1,8 @@
 rootProject.name = 'opensrp-app-parent'
+<<<<<<< HEAD
 include ':opensrp-app', ':opensrp-drishti', ':opensrp-mcare', 'opensrp-indonesia', ':opensrp-vaccinator', ':opensrp-vaksinator'
+=======
+include ':opensrp-app', ':opensrp-drishti', ':opensrp-mcare','opensrp-indonesia', ':opensrp-vaccinator'
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
 project(':opensrp-app').projectDir = "$rootDir/opensrp-app" as File
