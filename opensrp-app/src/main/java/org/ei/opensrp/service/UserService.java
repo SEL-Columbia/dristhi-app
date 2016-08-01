@@ -21,7 +21,7 @@ import static org.ei.opensrp.event.Event.ON_LOGOUT;
 public class UserService {
     private final Repository repository;
     private final AllSettings allSettings;
-    private final AllSharedPreferences allSharedPreferences;
+    protected final AllSharedPreferences allSharedPreferences;
     private HTTPAgent httpAgent;
     private Session session;
     private DristhiConfiguration configuration;
@@ -69,10 +69,27 @@ public class UserService {
 
     public void remoteLogin(String userName, String password, String userInfo) {
         loginWith(userName, password);
+
         saveAnmLocation(getUserLocation(userInfo));
         saveUserInfo(getUserData(userInfo));
+        allSharedPreferences.setPreference(AllConstants.LoginResponse.LOCATION_ANMIDS,getlocationAnmids(userInfo));
     }
+   
 
+           private String getlocationAnmids(String userInfo) {
+               try {
+                   JSONObject userLocationAnmidsJSON = new JSONObject(userInfo);
+        
+                    if(!userLocationAnmidsJSON.has(AllConstants.LoginResponse.LOCATION_ANMIDS)){
+                        return "";
+                    }
+        
+                    return userLocationAnmidsJSON.getString(AllConstants.LoginResponse.LOCATION_ANMIDS);
+                } catch (JSONException e) {
+                    Log.v("Error : ", e.getMessage());
+                    return null;
+                }
+            }
     public String getUserData(String userInfo) {
         try {
             JSONObject userInfoJson = new JSONObject(userInfo);
@@ -98,6 +115,7 @@ public class UserService {
     }
 
     public void saveUserInfo(String userInfo) { saveUserInfoTask.save(userInfo); }
+    public void saveUserInfo(String userInfo,String userInfoKey) { saveUserInfoTask.save(userInfo,userInfoKey); }
 
     public boolean hasARegisteredUser() {
         return !allSharedPreferences.fetchRegisteredANM().equals("");

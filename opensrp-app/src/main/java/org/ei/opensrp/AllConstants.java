@@ -317,4 +317,7 @@ public class AllConstants {
         public static final String DELIVERY_FACILITY_SDH_VALUE = "sdh";
         public static final String DELIVERY_FACILITY_DH_VALUE = "dh";
     }
+    public class LoginResponse {
+                public static final String LOCATION_ANMIDS = "locationAnmids";
+            }
 }

@@ -650,14 +650,14 @@ public class Context {
         return userService;
     }
 
-    private SaveANMLocationTask saveANMLocationTask() {
+    public SaveANMLocationTask saveANMLocationTask() {
         if (saveANMLocationTask == null) {
             saveANMLocationTask = new SaveANMLocationTask(allSettings());
         }
         return saveANMLocationTask;
     }
 
-    private SaveUserInfoTask saveUserInfoTask() {
+    public SaveUserInfoTask saveUserInfoTask() {
         if(saveUserInfoTask == null) {
             saveUserInfoTask = new SaveUserInfoTask(allSettings());
         }
