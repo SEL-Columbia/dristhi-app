@@ -198,6 +198,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         super.setupViews(view);
 //
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
 //
         ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
         startregister.setVisibility(View.GONE);
@@ -226,6 +227,9 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
     private DialogOption[] getEditOptions(CommonPersonObjectClient tag) {
         return ((ElcoSmartRegisterActivity)getActivity()).getEditOptions(tag);
     }
+    private DialogOption[] getEditOptionsForMIS_ELCO(CommonPersonObjectClient tag) {
+        return ((ElcoSmartRegisterActivity)getActivity()).getEditOptionsForMISELCO(tag);
+    }
 
 
     private class ClientActionHandler implements View.OnClickListener {
@@ -233,13 +237,14 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-//                    ElcoDetailActivity.Elcoclient = (CommonPersonObjectClient)view.getTag();
-//                    Intent intent = new Intent(getActivity(), ElcoDetailActivity.class);
-//                    startActivity(intent);
-                    showFragmentDialog(new EditDialogOptionModel((CommonPersonObjectClient)view.getTag()), view.getTag());
+                    ElcoDetailActivity.Elcoclient = (CommonPersonObjectClient)view.getTag();
+                    ((ElcoSmartRegisterActivity)getActivity()).showProfileView();
                     break;
                 case R.id.psrf_due_date:
-                    showFragmentDialog(new EditDialogOptionModel((CommonPersonObjectClient)view.getTag()), view.getTag());
+                    showFragmentDialog(new EditDialogOptionModel((CommonPersonObjectClient) view.getTag()), view.getTag());
+                    break;
+                case R.id.mis_elco:
+                    showFragmentDialog(new EditDialogOptionModelForMIS_ELCO((CommonPersonObjectClient)view.getTag()), view.getTag());
                     break;
             }
         }
@@ -258,6 +263,22 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         @Override
         public DialogOption[] getDialogOptions() {
             return getEditOptions(tag);
+        }
+
+        @Override
+        public void onDialogOptionSelection(DialogOption option, Object tag) {
+            onEditSelection((EditOption) option, (SmartRegisterClient) tag);
+        }
+    }
+    private class EditDialogOptionModelForMIS_ELCO implements DialogOptionModel {
+        CommonPersonObjectClient tag;
+        public EditDialogOptionModelForMIS_ELCO(CommonPersonObjectClient tag) {
+            this.tag = tag;
+        }
+
+        @Override
+        public DialogOption[] getDialogOptions() {
+            return getEditOptionsForMIS_ELCO(tag);
         }
 
         @Override
@@ -394,6 +415,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         countqueryBUilder.SelectInitiateMainTableCounts("ec_elco");
         countqueryBUilder.joinwithALerts("ec_elco","ELCO PSRF");
         countSelect = countqueryBUilder.mainCondition(" FWWOMFNAME is not null and is_closed=0");
+
         CountExecute();
 
 

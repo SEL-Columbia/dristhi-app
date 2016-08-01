@@ -160,7 +160,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
             @Override
             public String searchHint() {
-                return getString(org.ei.opensrp.R.string.str_anc_search_hint);
+                return getString(R.string.str_ec_search_hint);
             }
         };
     }
@@ -204,6 +204,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     public void setupViews(View view) {
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
 
         ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
         startregister.setVisibility(View.GONE);

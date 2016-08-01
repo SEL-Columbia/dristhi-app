@@ -221,7 +221,6 @@ public class ChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
 
 
                     displayFormFragment.setFormData(data);
-                    displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
                     displayFormFragment.setFieldOverides(metaData);
 
@@ -253,7 +252,6 @@ public class ChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivi
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
-                    displayFormFragment.loadFormData();
                 }
 
                 displayFormFragment.setRecordId(null);

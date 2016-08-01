@@ -315,7 +315,6 @@ public class FieldMonitorSmartRegisterActivity extends SecuredNativeSmartRegiste
 
 
                     displayFormFragment.setFormData(data);
-                    displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
                     displayFormFragment.setFieldOverides(metaData);
 
@@ -414,7 +413,6 @@ public class FieldMonitorSmartRegisterActivity extends SecuredNativeSmartRegiste
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
-                    displayFormFragment.loadFormData();
                 }
 
                 displayFormFragment.setRecordId(null);

@@ -2,6 +2,7 @@ package org.ei.opensrp.mcare.household;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.mcare.application.McareApplication;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -44,7 +46,6 @@ import static org.ei.opensrp.util.StringUtil.humanize;
  * Created by user on 2/12/15.
  */
 public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
-
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
@@ -132,7 +133,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         viewHolder.gobhhid.setText(pc.getColumnmaps().get("FWGOBHHID")!=null?pc.getColumnmaps().get("FWGOBHHID"):"");
         viewHolder.jvitahhid.setText(pc.getColumnmaps().get("FWJIVHHID")!=null?pc.getColumnmaps().get("FWJIVHHID"):"");
         viewHolder.village.setText((humanize((pc.getDetails().get("existing_Mauzapara")!=null?pc.getDetails().get("existing_Mauzapara"):"").replace("+","_"))));
-        viewHolder.headofhouseholdname.setText(pc.getColumnmaps().get("FWHOHFNAME")!=null?pc.getColumnmaps().get("FWHOHFNAME"):"");
+        viewHolder.headofhouseholdname.setText(humanize(pc.getColumnmaps().get("FWHOHFNAME")!=null?pc.getColumnmaps().get("FWHOHFNAME"):""));
         viewHolder.no_of_mwra.setText(pc.getDetails().get("ELCO")!=null?pc.getDetails().get("ELCO"):"");
         Date lastdate = null;
         if(pc.getDetails().get("FWNHREGDATE")!= null && pc.getDetails().get("FWCENDATE")!= null) {
@@ -169,6 +170,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         if(alertlist_for_client.size() == 0 ){
             viewHolder.due_visit_date.setText("Not Synced to Server");
             viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
+            viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.text_black));
             viewHolder.due_visit_date.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -179,6 +181,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         for(int i = 0;i<alertlist_for_client.size();i++){
             viewHolder.due_visit_date.setText(alertlist_for_client.get(i).expiryDate());
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
+                viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.text_black));
                 viewHolder.due_visit_date.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -190,16 +193,20 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
                 viewHolder.due_visit_date.setOnClickListener(onClickListener);
+                viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 viewHolder.due_visit_date.setTag(smartRegisterClient);
 
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
                 viewHolder.due_visit_date.setOnClickListener(onClickListener);
                 viewHolder.due_visit_date.setTag(smartRegisterClient);
+                viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
+
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
+                viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.text_black));
                 viewHolder.due_visit_date.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -209,6 +216,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             }
             if(alertlist_for_client.get(i).isComplete()){
                 viewHolder.due_visit_date.setText("visited");
+                viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
             }
         }
@@ -223,8 +231,8 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
 //            viewHolder.due_visit_date.append(format.format(lastdate));
 
         }
-
-
+        viewHolder.last_visit_date.setText(McareApplication.convertToEnglishDigits(viewHolder.last_visit_date.getText().toString()));
+        viewHolder.due_visit_date.setText(McareApplication.convertToEnglishDigits(viewHolder.due_visit_date.getText().toString()));
         convertView.setLayoutParams(clientViewLayoutParams);
 //        return convertView;
     }
@@ -294,6 +302,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
          FrameLayout due_date_holder;
          Button warnbutton;
     }
+
 
 
 }

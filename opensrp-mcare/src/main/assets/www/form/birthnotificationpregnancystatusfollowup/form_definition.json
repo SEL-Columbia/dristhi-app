@@ -149,6 +149,21 @@
             "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFCHLDVITSTS"
           },
           {
+            "name": "FWBNFNAMECHECK",
+            "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFNAMECHECK"
+          },
+          {
+            "name": "FWBNFNAME",
+            "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFNAME"
+          },
+          {
+            "name": "FWBNFCHILDNAME",
+            "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFCHILDNAME"
+          },
+          {
+            "name": "FWBNFDOB",
+            "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFDOB"
+          },{
             "name": "mother_entity_id",
             "source": "mcaremother.id",
             "shouldLoadValue": true

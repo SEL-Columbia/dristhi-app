@@ -26,6 +26,7 @@ import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
 import org.ei.opensrp.mcare.anc.mCareAncDetailActivity;
+import org.ei.opensrp.mcare.child.ChildDetailActivity;
 import org.ei.opensrp.mcare.child.mCareChildServiceModeOption;
 import org.ei.opensrp.mcare.child.mCareChildSmartClientsProvider;
 import org.ei.opensrp.mcare.child.mCareChildSmartRegisterActivity;
@@ -158,7 +159,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
 
             @Override
             public String searchHint() {
-                return getString(org.ei.opensrp.R.string.str_child_search_hint);
+                return getString(R.string.str_ec_search_hint);
             }
         };
     }
@@ -201,6 +202,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
     public void setupViews(View view) {
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
 
         ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
         startregister.setVisibility(View.GONE);
@@ -222,8 +224,8 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    mCareAncDetailActivity.ancclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(getActivity(),mCareAncDetailActivity.class);
+                    ChildDetailActivity.ChildClient = (CommonPersonObjectClient)view.getTag();
+                    Intent intent = new Intent(getActivity(),ChildDetailActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.encc_reminder_due_date:

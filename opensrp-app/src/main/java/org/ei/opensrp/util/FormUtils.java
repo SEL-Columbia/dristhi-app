@@ -333,6 +333,7 @@ public class FormUtils {
 
             String xml = writer.toString();
             //xml = xml.replaceAll("<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>","");//56 !!!this ain't working
+            //Add model and instance tags
             xml = xml.substring(56);
             System.out.println(xml);
 
@@ -375,8 +376,9 @@ public class FormUtils {
                     Element child = (Element) entries.item(i);
                     String fieldName = child.getNodeName();
 
-                    if (!subFormNames.isEmpty() && subFormNames.contains(fieldName)) {
-                        /* its a subform element process it */
+                 /* its a subform element process it */
+                    if(!subFormNames.isEmpty() && subFormNames.contains(fieldName)) {
+                        /** its a subform element process it **/
                         // get the subform definition
                         JSONArray subForms = formDefinition.getJSONObject("form").getJSONArray("sub_forms");
                         JSONObject subFormDefinition = retriveSubformDefinitionForBindPath(subForms, fieldName);
@@ -400,11 +402,15 @@ public class FormUtils {
                                     JSONObject obj = getCombinedJsonObjectForObject(childEntityJson);
                                     writeXML(child, serializer, fieldOverrides, subFormDefinition, childEntityJson, entityId);
                                 }
-                            } else {
-                                //writeXML(child, serializer, fieldOverrides, subFormDefinition, new JSONObject(), entityId);
+
+                            }else{
+                                writeXML(child, serializer, fieldOverrides, subFormDefinition, new JSONObject(), entityId);
                             }
                         }
-                    } else {
+                    } // Check if the node contains other elements
+                    else if(hasChildElements(child)){
+                        writeXML(child, serializer, fieldOverrides, formDefinition, new JSONObject(), entityId);
+                    }else {
                         //its not a sub-form element write its value
                         serializer.startTag("", fieldName);
                         // write the xml attributes
@@ -443,18 +449,31 @@ public class FormUtils {
             String baseEntityId = entityJson.getString("base_entity_id");
             Map<String, String> map = theAppContext.detailsRepository().getAllDetailsForClient(baseEntityId);
             Iterator<String> it = map.keySet().iterator();
-            if (it != null){
-                while(it.hasNext()){
+            if (it != null) {
+                while (it.hasNext()) {
                     String key = it.next();
-                    if (!entityJson.has(key)){
+                    if (!entityJson.has(key)) {
                         entityJson.put(key, map.get(key));
                     }
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return entityJson;
+    }
+    /* Checks if the provided node has Child elements
+     * @param element
+     * @return
+     */
+    public static boolean hasChildElements(Node element) {
+        NodeList children = element.getChildNodes();
+        for (int i = 0;i < children.getLength();i++) {
+            if (children.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

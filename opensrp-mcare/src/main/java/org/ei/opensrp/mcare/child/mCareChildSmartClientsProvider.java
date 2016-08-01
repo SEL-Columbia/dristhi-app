@@ -9,13 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.ei.opensrp.commonregistry.AllCommonsRepository;
-import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
-import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.mcare.application.McareApplication;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
@@ -28,6 +26,8 @@ import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -91,14 +91,27 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         profileinfolayout.setOnClickListener(onClickListener);
 
 
-        mothername.setText(pc.getColumnmaps().get("FWWOMFNAME") != null ? pc.getColumnmaps().get("FWWOMFNAME") : "");
-        fathername.setText(pc.getDetails().get("FWHUSNAME") != null ? pc.getDetails().get("FWHUSNAME") : "");
-        gobhhid.setText(pc.getColumnmaps().get("GOBHHID") != null ? pc.getColumnmaps().get("GOBHHID") : "");
-        jivitahhid.setText(pc.getColumnmaps().get("FWJIVHHID") != null ? pc.getColumnmaps().get("FWJIVHHID") : "");
-        village.setText(humanize((pc.getColumnmaps().get("existing_Mauzapara") != null ? pc.getColumnmaps().get("existing_Mauzapara") : "").replace("+", "_")));
         age.setText(pc.getColumnmaps().get("FWWOMAGE") != null ? pc.getColumnmaps().get("FWWOMAGE") : "");
         String dob = pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : null;
-
+        fathername.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
+        mothername.setText(humanize(pc.getDetails().get("FWBNFCHILDNAME") != null ? pc.getDetails().get("FWBNFCHILDNAME"):""));
+        gobhhid.setText(" "+(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):""));
+        jivitahhid.setText(pc.getColumnmaps().get("FWJIVHHID")!=null?pc.getColumnmaps().get("FWJIVHHID"):"");
+        village.setText(humanize((pc.getDetails().get("existing_Mauzapara") != null ? pc.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
+        age.setText(""+age+ "d ");
+        dateofbirth.setText(pc.getDetails().get("FWBNFDOB")!=null?pc.getDetails().get("FWBNFDOB"):"");
+        if((pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"").length()>0) {
+            nid.setText("NID: " + (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : ""));
+            nid.setVisibility(View.VISIBLE);
+        }else{
+            nid.setVisibility(View.GONE);
+        }
+        if((pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):"").length()>0) {
+            brid.setText("BRID: " + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : ""));
+            brid.setVisibility(View.VISIBLE);
+        }else{
+            brid.setVisibility(View.GONE);
+        }
         dateofbirth.setText(dob);
         nid.setText("NID :" + (pc.getColumnmaps().get("FWWOMNID") != null ? pc.getColumnmaps().get("FWWOMNID") : ""));
         brid.setText("BRID :" + (pc.getColumnmaps().get("FWWOMBID") != null ? pc.getColumnmaps().get("FWWOMBID") : ""));
@@ -116,28 +129,56 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
     }
 
     private void constructENCCVisitStatusBlock(CommonPersonObjectClient pc, View itemview) {
-        TextView encc1tick = (TextView) itemview.findViewById(R.id.encc1tick);
-        TextView encc1text = (TextView) itemview.findViewById(R.id.encc1text);
-        TextView encc2tick = (TextView) itemview.findViewById(R.id.encc2tick);
-        TextView encc2text = (TextView) itemview.findViewById(R.id.encc2text);
-        TextView encc3tick = (TextView) itemview.findViewById(R.id.encc3tick);
-        TextView encc3text = (TextView) itemview.findViewById(R.id.encc3text);
-        checkEncc1StatusAndform(encc1tick, encc1text, pc);
+        ImageView encc1tick = (ImageView)itemview.findViewById(R.id.encc1tick);
+        TextView encc1text = (TextView)itemview.findViewById(R.id.encc1text);
+        ImageView encc2tick = (ImageView)itemview.findViewById(R.id.encc2tick);
+        TextView encc2text = (TextView)itemview.findViewById(R.id.encc2text);
+        ImageView encc3tick = (ImageView)itemview.findViewById(R.id.encc3tick);
+        TextView encc3text = (TextView)itemview.findViewById(R.id.encc3text);
+        checkEncc1StatusAndform(encc1tick,encc1text,pc);
         checkEncc2StatusAndform(encc2tick, encc2text, pc);
         checkEncc3StatusAndform(encc3tick, encc3text, pc);
 
 
     }
 
+    private Long age(CommonPersonObjectClient ancclient) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date edd_date = format.parse(ancclient.getDetails().get("FWBNFDOB")!=null?ancclient.getDetails().get("FWBNFDOB") :"");
+            Calendar thatDay = Calendar.getInstance();
+            thatDay.setTime(edd_date);
 
-    private void checkEncc1StatusAndform(TextView anc1tick, TextView anc1text, CommonPersonObjectClient pc) {
-        if (pc.getDetails().get("FWENC1DATE") != null) {
-            anc1text.setText("ENCC1-" + pc.getDetails().get("FWENC1DATE"));
-            if (pc.getDetails().get("encc1_current_formStatus") != null) {
-                if (pc.getDetails().get("encc1_current_formStatus").equalsIgnoreCase("upcoming")) {
 
-                } else if (pc.getDetails().get("encc1_current_formStatus").equalsIgnoreCase("urgent")) {
-                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+            Calendar today = Calendar.getInstance();
+
+            long diff = today.getTimeInMillis() - thatDay.getTimeInMillis();
+
+            long days = diff / (24 * 60 * 60 * 1000);
+
+            return days;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+
+
+    private void checkEncc1StatusAndform(ImageView anc1tick, TextView anc1text, CommonPersonObjectClient pc) {
+        if(pc.getDetails().get("FWENC1DATE")!=null){
+            anc1text.setText("ENCC1: "+pc.getDetails().get("FWENC1DATE"));
+            if(pc.getDetails().get("encc1_current_formStatus")!=null){
+                if(pc.getDetails().get("encc1_current_formStatus").equalsIgnoreCase("upcoming")){
+                    anc1tick.setImageResource(R.mipmap.doneintime);
+                    anc1tick.setVisibility(View.VISIBLE);
+                    anc1text.setVisibility(View.VISIBLE);
+                }else if(pc.getDetails().get("encc1_current_formStatus").equalsIgnoreCase("urgent")){
+                    anc1tick.setImageResource(R.mipmap.notdoneintime);
+                    anc1tick.setVisibility(View.VISIBLE);
+                    anc1text.setVisibility(View.VISIBLE);
+//                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc1text.setText("urgent");
                 }
             }
@@ -152,11 +193,12 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
                 }
                 ;
             }
-            if (alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))) {
-                if (alertstate.equalsIgnoreCase("expired")) {
-                    anc1tick.setText("✘");
-                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc1text.setText("ENCC1-" + alertDate);
+            if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
+                if(alertstate.equalsIgnoreCase("expired")){
+                    anc1tick.setImageResource(R.mipmap.cross);
+                    anc1tick.setVisibility(View.VISIBLE);
+                    anc1text.setVisibility(View.VISIBLE);
+                    anc1text.setText( "ENCC1: " + alertDate);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
                 } else {
                     anc1text.setVisibility(View.GONE);
@@ -168,15 +210,20 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
             }
         }
     }
+    private void checkEncc2StatusAndform(ImageView anc2tick, TextView anc2text, CommonPersonObjectClient pc) {
+        if(pc.getDetails().get("FWENC2DATE")!=null){
+            anc2text.setText("ENCC2: "+pc.getDetails().get("FWENC2DATE"));
+            if(pc.getDetails().get("encc2_current_formStatus")!=null){
+                if(pc.getDetails().get("encc2_current_formStatus").equalsIgnoreCase("upcoming")){
+                    anc2tick.setImageResource(R.mipmap.doneintime);
+                    anc2tick.setVisibility(View.VISIBLE);
+                    anc2text.setVisibility(View.VISIBLE);
+                }else if(pc.getDetails().get("encc2_current_formStatus").equalsIgnoreCase("urgent")){
+                    anc2tick.setImageResource(R.mipmap.notdoneintime);
+                    anc2tick.setVisibility(View.VISIBLE);
+                    anc2text.setVisibility(View.VISIBLE);
 
-    private void checkEncc2StatusAndform(TextView anc2tick, TextView anc2text, CommonPersonObjectClient pc) {
-        if (pc.getDetails().get("FWENC2DATE") != null) {
-            anc2text.setText("ENCC2-" + pc.getDetails().get("FWENC2DATE"));
-            if (pc.getDetails().get("encc2_current_formStatus") != null) {
-                if (pc.getDetails().get("encc2_current_formStatus").equalsIgnoreCase("upcoming")) {
-
-                } else if (pc.getDetails().get("encc2_current_formStatus").equalsIgnoreCase("urgent")) {
-                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+//                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                 }
             }
         } else {
@@ -190,11 +237,12 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
                 }
                 ;
             }
-            if (alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))) {
-                if (alertstate.equalsIgnoreCase("expired")) {
-                    anc2tick.setText("✘");
-                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc2text.setText("ENCC2-" + alertDate);
+            if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
+                if(alertstate.equalsIgnoreCase("expired")){
+                    anc2tick.setImageResource(R.mipmap.cross);
+                    anc2text.setText( "ENCC2: " + alertDate);
+                    anc2tick.setVisibility(View.VISIBLE);
+                    anc2text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
                 } else {
                     anc2text.setVisibility(View.GONE);
@@ -206,15 +254,19 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
             }
         }
     }
+    private void checkEncc3StatusAndform(ImageView anc3tick, TextView anc3text, CommonPersonObjectClient pc) {
+        if(pc.getDetails().get("FWENC3DATE")!=null){
+            anc3text.setText("ENCC3: "+pc.getDetails().get("FWENC3DATE"));
+            if(pc.getDetails().get("encc3_current_formStatus")!=null){
+                if(pc.getDetails().get("encc3_current_formStatus").equalsIgnoreCase("upcoming")){
+                    anc3tick.setImageResource(R.mipmap.doneintime);
+                    anc3tick.setVisibility(View.VISIBLE);
+                    anc3text.setVisibility(View.VISIBLE);
+                }else if(pc.getDetails().get("encc3_current_formStatus").equalsIgnoreCase("urgent")){
+                    anc3tick.setImageResource(R.mipmap.notdoneintime);
+                    anc3tick.setVisibility(View.VISIBLE);
+                    anc3text.setVisibility(View.VISIBLE);
 
-    private void checkEncc3StatusAndform(TextView anc3tick, TextView anc3text, CommonPersonObjectClient pc) {
-        if (pc.getDetails().get("FWENC3DATE") != null) {
-            anc3text.setText("ENCC3-" + pc.getDetails().get("FWENC3DATE"));
-            if (pc.getDetails().get("encc3_current_formStatus") != null) {
-                if (pc.getDetails().get("encc3_current_formStatus").equalsIgnoreCase("upcoming")) {
-
-                } else if (pc.getDetails().get("encc3_current_formStatus").equalsIgnoreCase("urgent")) {
-                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                 }
             }
         } else {
@@ -228,11 +280,12 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
                 }
                 ;
             }
-            if (alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))) {
-                if (alertstate.equalsIgnoreCase("expired")) {
-                    anc3tick.setText("✘");
-                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                    anc3text.setText("ENCC3-" + alertDate);
+            if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
+                if(alertstate.equalsIgnoreCase("expired")){
+                    anc3tick.setImageResource(R.mipmap.cross);
+                    anc3text.setText( "ENCC3: " + alertDate);
+                    anc3tick.setVisibility(View.VISIBLE);
+                    anc3text.setVisibility(View.VISIBLE);
 //                    (anc+ "-"+alertlist.get(i).startDate(),alertlist.get(i).status().value())
                 } else {
                     anc3text.setVisibility(View.GONE);
@@ -265,8 +318,10 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
             }
         }
 
-        CustomFontTextView pncreminderDueDate = (CustomFontTextView) itemView.findViewById(R.id.encc_reminder_due_date);
+        CustomFontTextView pncreminderDueDate = (CustomFontTextView)itemView.findViewById(R.id.encc_reminder_due_date);
+        pncreminderDueDate.setVisibility(View.VISIBLE);
         setalerttextandColorInView(pncreminderDueDate, alerttextstatus, pc);
+        pncreminderDueDate.setText(McareApplication.convertToEnglishDigits(pncreminderDueDate.getText().toString()));
 
 
     }
@@ -281,9 +336,12 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
                 }
             });
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
+            customFontTextView.setTextColor(context.getResources().getColor(org.ei.opensrp.R.color.text_black));
+
         }
         if (alerttextstatus.getAlertstatus().equalsIgnoreCase("upcoming")) {
             customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+            customFontTextView.setTextColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
             customFontTextView.setOnClickListener(onClickListener);
             customFontTextView.setTag(R.id.clientobject, pc);
             customFontTextView.setTag(R.id.textforEnccRegister, alerttextstatus.getAlertText() != null ? alerttextstatus.getAlertText() : "");
@@ -294,10 +352,12 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
             customFontTextView.setTag(R.id.clientobject, pc);
             customFontTextView.setTag(R.id.textforEnccRegister, alerttextstatus.getAlertText() != null ? alerttextstatus.getAlertText() : "");
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
+            customFontTextView.setTextColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
             customFontTextView.setTag(R.id.AlertStatustextforEnccRegister, "urgent");
 
         }
-        if (alerttextstatus.getAlertstatus().equalsIgnoreCase("expired")) {
+        if(alerttextstatus.getAlertstatus().equalsIgnoreCase("expired")){
+            customFontTextView.setTextColor(context.getResources().getColor(org.ei.opensrp.R.color.text_black));
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
             customFontTextView.setText("expired");
             customFontTextView.setOnClickListener(new View.OnClickListener() {
@@ -310,6 +370,7 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         if (alerttextstatus.getAlertstatus().equalsIgnoreCase("complete")) {
 //               psrfdue.setText("visited");
             customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
+            customFontTextView.setTextColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
             customFontTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -325,9 +386,9 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
 
     private alertTextandStatus setAlertStatus(String anc, List<Alert> alertlist) {
         alertTextandStatus alts = null;
-        for (int i = 0; i < alertlist.size(); i++) {
-            alts = new alertTextandStatus(anc + "-" + alertlist.get(i).startDate(), alertlist.get(i).status().value());
-        }
+        for(int i = 0;i<alertlist.size();i++){
+            alts = new alertTextandStatus(anc+ "\n"+alertlist.get(i).startDate(),alertlist.get(i).status().value());
+            }
         return alts;
     }
 
