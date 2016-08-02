@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <registrasi_vaksinator encounter_type="Registrasi Vaksinator" id="registrasi_vaksinator" version="201606240736">
+    <registrasi_vaksinator encounter_type="Registrasi Vaksinator" id="registrasi_vaksinator" version="201608020911">
       <formhub>
         <uuid/>
       </formhub>
@@ -9,14 +9,21 @@
       <deviceid/>
       <simserial/>
       <phonenumber/>
+      <existing_Province/>
+      <existing_District/>
+      <existing_Sub-district/>
       <existing_Village/>
       <existing_Sub-village/>
       <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
-      <desa openmrs_entity="concept" openmrs_entity_id="1763AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <posyandu openmrs_entity="concept" openmrs_entity_id="161010AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <Province openmrs_entity="person_address" openmrs_entity_id="stateProvince" openmrs_entity_parent="usual_residence"/>
+      <District openmrs_entity="person_address" openmrs_entity_id="countyDistrict" openmrs_entity_parent="usual_residence"/>
+      <Village openmrs_entity="person_address" openmrs_entity_id="cityVillage" openmrs_entity_parent="usual_residence"/>
+      <SubVillage openmrs_entity="person_address" openmrs_entity_id="address1" openmrs_entity_parent="usual_residence"/>
+      <posyandu openmrs_entity="concept" openmrs_entity_id="162724AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <desa openmrs_entity="concept" openmrs_entity_id="1354AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <nama_bayi openmrs_entity="person" openmrs_entity_id="first_name"/>
       <nama_orang_tua openmrs_entity="person" openmrs_entity_id="last_name"/>
-      <nik openmrs_entity="person_identifier" openmrs_entity_id="id"/>
+      <nik openmrs_entity="person_identifier" openmrs_entity_id="nik"/>
       <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
       <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
       <berat_badan_saat_lahir openmrs_entity="concept" openmrs_entity_id="5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
