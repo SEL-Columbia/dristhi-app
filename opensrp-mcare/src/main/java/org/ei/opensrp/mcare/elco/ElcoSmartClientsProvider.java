@@ -136,7 +136,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
         CommonPersonObject elcoobject = allelcoRepository.findByCaseID(pc.entityId());
 
         AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("household");
-        final CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
+        final CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getColumnmaps().get("relational_id"));
 
 //            if(householdparent.getDetails().get("existing_Mauzapara") != null) {
 //                location = householdparent.getDetails().get("existing_Mauzapara");

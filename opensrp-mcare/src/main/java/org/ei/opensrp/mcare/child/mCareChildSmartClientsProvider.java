@@ -91,14 +91,13 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         profileinfolayout.setOnClickListener(onClickListener);
 
 
-        age.setText(pc.getColumnmaps().get("FWWOMAGE") != null ? pc.getColumnmaps().get("FWWOMAGE") : "");
         String dob = pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : null;
         fathername.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
         mothername.setText(humanize(pc.getDetails().get("FWBNFCHILDNAME") != null ? pc.getDetails().get("FWBNFCHILDNAME"):""));
         gobhhid.setText(" "+(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):""));
         jivitahhid.setText(pc.getColumnmaps().get("FWJIVHHID")!=null?pc.getColumnmaps().get("FWJIVHHID"):"");
         village.setText(humanize((pc.getDetails().get("existing_Mauzapara") != null ? pc.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
-        age.setText(""+age+ "d ");
+        age.setText(""+age(pc)+ "d ");
         dateofbirth.setText(pc.getDetails().get("FWBNFDOB")!=null?pc.getDetails().get("FWBNFDOB"):"");
         if((pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"").length()>0) {
             nid.setText("NID: " + (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : ""));
@@ -145,7 +144,7 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
     private Long age(CommonPersonObjectClient ancclient) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date edd_date = format.parse(ancclient.getDetails().get("FWBNFDOB")!=null?ancclient.getDetails().get("FWBNFDOB") :"");
+            Date edd_date = format.parse(ancclient.getColumnmaps().get("FWBNFDTOO")!=null?ancclient.getColumnmaps().get("FWBNFDTOO") :"");
             Calendar thatDay = Calendar.getInstance();
             thatDay.setTime(edd_date);
 
@@ -159,7 +158,7 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
             return days;
         } catch (ParseException e) {
             e.printStackTrace();
-            return null;
+            return 0l;
         }
 
     }

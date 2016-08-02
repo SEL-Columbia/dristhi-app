@@ -69,7 +69,6 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
     private android.support.v4.app.Fragment mProfileFragment = null;
 
-    ZiggyService ziggyService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -299,7 +298,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             if (displayFormFragment != null) {
                 displayFormFragment.hideTranslucentProgressDialog();
             }
-            e.printStackTrace();
+            Log.e("", "Form Submission Error", e);;
         }
     }
 

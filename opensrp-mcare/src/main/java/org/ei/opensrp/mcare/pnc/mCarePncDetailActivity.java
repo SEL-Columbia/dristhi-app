@@ -120,10 +120,10 @@ public class mCarePncDetailActivity extends Activity {
             pregnancy_outcome.setText(getString(R.string.mcare_pnc_Stillbirth));
         }
 
-        AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("mcaremother");
+        AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("ec_mcaremother");
         CommonPersonObject ancobject = allancRepository.findByCaseID(ancclient.entityId());
-        AllCommonsRepository allelcorep = Context.getInstance().allCommonsRepositoryobjects("elco");
-        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getRelationalId());
+        AllCommonsRepository allelcorep = Context.getInstance().allCommonsRepositoryobjects("ec_elco");
+        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getColumnmaps().get("base_entity_id"));
        checkPnc1view(ancclient);
         checkPnc2view(ancclient);
         checkAnc3view(ancclient);

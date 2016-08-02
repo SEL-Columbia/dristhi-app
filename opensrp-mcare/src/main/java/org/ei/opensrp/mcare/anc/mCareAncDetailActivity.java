@@ -21,6 +21,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.repository.DetailsRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -110,10 +111,10 @@ public class mCareAncDetailActivity extends Activity {
 
         village.setText(Html.fromHtml(getString(R.string.elco_details_mauza) + " " + humanize(ancclient.getDetails().get("mauza") != null ? ancclient.getDetails().get("mauza") : "")));
             /////from househld
-        AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("mcaremother");
+        AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("ec_mcaremother");
         CommonPersonObject ancobject = allancRepository.findByCaseID(ancclient.entityId());
-        AllCommonsRepository allelcorep = Context.getInstance().allCommonsRepositoryobjects("elco");
-        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getRelationalId());
+        AllCommonsRepository allelcorep = Context.getInstance().allCommonsRepositoryobjects("ec_elco");
+        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getColumnmaps().get("base_entity_id"));
 
 //
         checkAnc1view(ancclient);
@@ -179,35 +180,34 @@ public class mCareAncDetailActivity extends Activity {
     }
 
     private void pregnancyin2years(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRPREGTWYRS")!=null?ecclient.getDetails().get("FWPSRPREGTWYRS"):"N/A";
+        String text = getDetails(ecclient).get("FWPSRPREGTWYRS")!=null?getDetails(ecclient).get("FWPSRPREGTWYRS"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.number_of_pregnancy);
         stillbirth.setText(text);
     }
 
     private void historyofsb(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRPRSB")!=null?ecclient.getDetails().get("FWPSRPRSB"):"N/A";
+        String text = getDetails(ecclient).get("FWPSRPRSB")!=null?getDetails(ecclient).get("FWPSRPRSB"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.history_of_sb);
         stillbirth.setText(text);
     }
 
     private void historyofmr(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRPRMC")!=null?ecclient.getDetails().get("FWPSRPRMC"):"N/A";
+        String text = getDetails(ecclient).get("FWPSRPRMC")!=null?getDetails(ecclient).get("FWPSRPRMC"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.history_of_mr);
         stillbirth.setText(text);
 
     }
 
     private void numberofstillbirthview(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRNBDTH")!=null?ecclient.getDetails().get("FWPSRNBDTH"):"N/A";
+        String text = getDetails(ecclient).get("FWPSRNBDTH")!=null?getDetails(ecclient).get("FWPSRNBDTH"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.stillbirths);
         stillbirth.setText(text);
     }
 
     private void numberofChildrenView(CommonPersonObject ecclient) {
-        String text = ecclient.getDetails().get("FWPSRTOTBIRTH")!=null?ecclient.getDetails().get("FWPSRTOTBIRTH"):"N/A";
+        String text = getDetails(ecclient).get("FWPSRTOTBIRTH")!=null?getDetails(ecclient).get("FWPSRTOTBIRTH"):"N/A";
         TextView numberofChildren = (TextView)findViewById(R.id.livechildren);
         numberofChildren.setText(text);
-
     }
     private void checkAnc4view(CommonPersonObjectClient ecclient) {
         LinearLayout anc1layout = (LinearLayout)findViewById(R.id.anc4_layout);
@@ -389,4 +389,10 @@ public class mCareAncDetailActivity extends Activity {
 //        Bitmap bitmap = BitmapFactory.decodeFile(file, options);
 //        view.setImageBitmap(bitmap);
     }
+
+    private Map<String, String> getDetails(CommonPersonObject ecclient){
+        DetailsRepository detailsRepository = Context.getInstance().detailsRepository();
+        return detailsRepository.getAllDetailsForClient(ecclient.getColumnmaps().get("base_entity_id"));
+    }
+
 }

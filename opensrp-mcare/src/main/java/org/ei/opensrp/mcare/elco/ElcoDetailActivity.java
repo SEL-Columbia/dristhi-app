@@ -149,13 +149,13 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
 
 //        village.setText(humanize(Elcoclient.getDetails().get("location_name") != null ? Elcoclient.getDetails().get("location_name") : ""));
             /////from househld
-        AllCommonsRepository allelcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
+        AllCommonsRepository allelcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_elco");
         CommonPersonObject elcoobject = allelcoRepository.findByCaseID(Elcoclient.entityId());
-        AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("household");
-        CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
+        AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_household");
+        CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getColumnmaps().get("relational_id"));
         String location = "";
-        if(householdparent.getDetails().get("existing_Mauzapara") != null) {
-            location = householdparent.getDetails().get("existing_Mauzapara");
+        if(householdparent.getColumnmaps().get("existing_Mauzapara") != null) {
+            location = householdparent.getColumnmaps().get("existing_Mauzapara");
         }
         village.setText(Html.fromHtml(getString(R.string.elco_details_mauza)+ " "+humanize(location.replace("+","_"))));
 
