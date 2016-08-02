@@ -330,7 +330,8 @@ public class AllConstants {
         public static final String DOCUMENTS_REPLICATED = "DOCUMENTS_REPLICATED";
         public static final String BATCHES_REPLICATED = "BATCHES_REPLICATED";
         public static final String COUCHDB_PORT = "5984";
-        public static final String COUCH_DATABASE_NAME = "opensrp_v2";
+        public static final String COUCH_DATABASE_NAME = "a-opensrp";
+
 
 
     }

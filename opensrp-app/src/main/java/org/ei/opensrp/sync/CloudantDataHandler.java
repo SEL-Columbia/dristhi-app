@@ -351,6 +351,8 @@ public class CloudantDataHandler {
             return Client.fromRevision(updated);
         } catch (DocumentException de) {
             return null;
+        } catch (ParseException e) {
+            return null;
         }
     }
 
@@ -400,6 +402,8 @@ public class CloudantDataHandler {
             return Event.fromRevision(created);
         } catch (DocumentException de) {
             return null;
+        } catch (ParseException e) {
+            return null;
         }
     }
 
@@ -417,13 +421,18 @@ public class CloudantDataHandler {
     /**
      * <p>Returns all {@code Client} documents in the datastore.</p>
      */
-    public List<Client> allClients() {
+    public List<Client> allClients()  {
         int nDocs = this.mDatastore.getDocumentCount();
         List<BasicDocumentRevision> all = this.mDatastore.getAllDocuments(0, nDocs, true);
         List<Client> clients = new ArrayList<Client>();
         // Filter all documents down to those of type client.
         for (BasicDocumentRevision rev : all) {
-            Client client = Client.fromRevision(rev);
+            Client client = null;
+            try {
+                client = Client.fromRevision(rev);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             if (client != null) {
                 clients.add(client);
             }

@@ -5,6 +5,8 @@ import com.cloudant.sync.datastore.BasicDocumentRevision;
 import org.ei.opensrp.clientandeventmodel.Address;
 import org.ei.opensrp.clientandeventmodel.User;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -13,10 +15,11 @@ import java.util.Map;
 /**
  * Created by koros on 3/16/16.
  */
-public class Client extends org.ei.opensrp.clientandeventmodel.Client{
+public class Client extends org.ei.opensrp.clientandeventmodel.Client {
 
     // this is the revision in the database representing this task
     private BasicDocumentRevision rev;
+
     public BasicDocumentRevision getDocumentRevision() {
         return rev;
     }
@@ -32,10 +35,10 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
         this.type = type;
     }
 
-    public Client(){
+    public Client() {
     }
 
-    public Client(org.ei.opensrp.clientandeventmodel.Client client){
+    public Client(org.ei.opensrp.clientandeventmodel.Client client) {
 
         setAddresses(client.getAddresses());
         setAttributes(client.getAttributes());
@@ -84,56 +87,62 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
     public static final String death_date_approx_key = "deathDateApprox";
     public static final String voided_key = "voided";
     public static final String relationships_key = "relationships";
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-    public static Client fromRevision(BasicDocumentRevision rev) {
+    public static Client fromRevision(BasicDocumentRevision rev) throws ParseException {
         Client client = new Client();
         client.rev = rev;
         // this could also be done by a fancy object mapper
         Map<String, Object> map = rev.asMap();
-        if(map.containsKey(type_key) && map.get(type_key).equals(Client.DOC_TYPE)) {
+        if (map.containsKey(type_key) && map.get(type_key).equals(Client.DOC_TYPE)) {
             client.setType((String) map.get(type_key));
-            if(map.get(adresses_key)!=null)
+            if (map.get(adresses_key) != null)
                 client.setAddresses((List<Address>) map.get(adresses_key));
-            if(map.get(attributes_key)!=null)
+            if (map.get(attributes_key) != null)
                 client.setAttributes((Map<String, Object>) map.get(attributes_key));
 
-            if(map.get(base_entity_id_key)!=null)
+            if (map.get(base_entity_id_key) != null)
                 client.setBaseEntityId((String) map.get(base_entity_id_key));
             //the date is being saved as long
-            Long timestamp = (Long) map.get(birth_date_key);
-            if (timestamp != null)
-                client.setBirthdate(new Date(timestamp));
-            if(map.get(birth_date_approx_key)!=null)
+            if (map.get(birth_date_key) != null) {
+                Date birthDate = dateFormat.parse(map.get(birth_date_key).toString());
+                client.setBirthdate(birthDate);
+            }
+            if (map.get(birth_date_approx_key) != null)
                 client.setBirthdateApprox((Boolean) map.get(birth_date_approx_key));
-            if(map.get(creator_key)!=null)
+            if (map.get(creator_key) != null)
                 client.setCreator((User) map.get(creator_key));
-            if(map.get(date_created_key)!=null)
-                client.setDateCreated((Date) map.get(date_created_key));
-            if(map.get(date_voided_key)!=null)
+            if (map.get(date_created_key) != null) {
+                Date dateCreated = dateFormat.parse(map.get(date_created_key).toString());
+                client.setDateCreated(dateCreated);
+            }
+            if (map.get(date_voided_key) != null)
                 client.setDateVoided((Date) map.get(date_voided_key));
-            if(map.get(date_edited_key)!=null)
+            if (map.get(date_edited_key) != null)
                 client.setDateEdited((Date) map.get(date_edited_key));
-            if(map.get(death_date_key)!=null)
-                client.setDeathdate(new Date((Long) map.get(death_date_key)));
-            if(map.get(firstname_key)!=null)
+            if (map.get(death_date_key) != null) {
+                Date deathDate = dateFormat.parse(map.get(death_date_key).toString());
+                client.setDeathdate(deathDate);
+            }
+            if (map.get(firstname_key) != null)
                 client.setFirstName((String) map.get(firstname_key));
-            if(map.get(identifiers_key)!=null)
+            if (map.get(identifiers_key) != null)
                 client.setIdentifiers((Map<String, String>) map.get(identifiers_key));
-            if(map.get(gender_key)!=null)
+            if (map.get(gender_key) != null)
                 client.setGender((String) map.get(gender_key));
-            if( map.get(lastname_key)!=null)
+            if (map.get(lastname_key) != null)
                 client.setLastName((String) map.get(lastname_key));
-            if(map.get(middlename_key)!=null)
+            if (map.get(middlename_key) != null)
                 client.setMiddleName((String) map.get(middlename_key));
-            if(map.get(voider_key)!=null)
+            if (map.get(voider_key) != null)
                 client.setVoider((User) map.get(voider_key));
-            if(map.get(void_reason_key)!=null)
+            if (map.get(void_reason_key) != null)
                 client.setVoidReason((String) map.get(void_reason_key));
-            if(map.get(editor_key)!=null)
+            if (map.get(editor_key) != null)
                 client.setEditor((User) map.get(editor_key));
-            if(map.get(death_date_approx_key)!=null)
+            if (map.get(death_date_approx_key) != null)
                 client.setDeathdateApprox((Boolean) map.get(death_date_approx_key));
-            if( map.get(voided_key)!=null)
+            if (map.get(voided_key) != null)
                 client.setVoided((Boolean) map.get(voided_key));
             if (map.get(relationships_key) != null)
                 client.setRelationships((Map<String, List<String>>) map.get(relationships_key));
@@ -152,20 +161,26 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client{
             map.put(attributes_key, getAttributes());
         if (getBaseEntityId() != null)
             map.put(base_entity_id_key, getBaseEntityId());
-        if (getBirthdate() != null)
-            map.put(birth_date_key, getBirthdate());
+        if (getBirthdate() != null) {
+            String birthDate = dateFormat.format(getBirthdate());
+            map.put(birth_date_key, birthDate);
+        }
         if (getBirthdateApprox() != null)
             map.put(birth_date_approx_key, getBirthdateApprox());
         if (getCreator() != null)
             map.put(creator_key, getCreator());
-        if (getDateCreated() != null)
-            map.put(date_created_key, getDateCreated());
+        if (getDateCreated() != null) {
+            String dateCreated = dateFormat.format(getDateCreated());
+            map.put(date_created_key, dateCreated);
+        }
         if (getDateVoided() != null)
             map.put(date_voided_key, getDateVoided());
         if (getDateEdited() != null)
             map.put(date_edited_key, getDateEdited());
-        if (getDeathdate() != null)
-            map.put(death_date_key, getDeathdate());
+        if (getDeathdate() != null) {
+            String deathDate = dateFormat.format(getDeathdate());
+            map.put(death_date_key, deathDate);
+        }
         if (getFirstName() != null)
             map.put(firstname_key, getFirstName());
         if (getIdentifiers() != null)

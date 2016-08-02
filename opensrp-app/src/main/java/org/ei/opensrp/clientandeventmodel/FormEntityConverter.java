@@ -20,6 +20,7 @@ import org.xml.sax.SAXException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,14 +68,14 @@ public class FormEntityConverter {
         String encounterStart = getFieldName(Encounter.encounter_start, fs);
         String encounterEnd = getFieldName(Encounter.encounter_end, fs);
 
-        Event e = new Event()
+        Event e = (Event) new Event()
                 .withBaseEntityId(entityId)//should be different for main and subform
                 .withEventDate(new DateTime(FormEntityConstants.FORM_DATE.parse(fs.getFieldValue(encounterDateField))).toDate())
                 .withEventType(eventType)
                 .withLocationId(fs.getFieldValue(encounterLocation))
                 .withProviderId(fs.providerId())
                 .withEntityType(fs.bindType())
-                .withFormSubmissionId(fs.instanceId());
+                .withFormSubmissionId(fs.instanceId()).withDateCreated(new Date());
 
         for (FormFieldMap fl : fields) {
             Map<String, String> fat = fl.fieldAttributes();
@@ -361,13 +362,13 @@ public class FormEntityConverter {
 
         List<Address> addresses = new ArrayList<>(extractAddresses(fs).values());
 
-        Client c = new Client(fs.entityId())
+        Client c = (Client) new Client(fs.entityId())
                 .withFirstName(firstName)
                 .withMiddleName(middleName)
                 .withLastName(lastName)
                 .withBirthdate((birthdate != null ? birthdate.toDate() : null), birthdateApprox)
                 .withDeathdate(deathdate != null ? deathdate.toDate() : null, deathdateApprox)
-                .withGender(gender);
+                .withGender(gender).withDateCreated(new Date());
 
         c.withAddresses(addresses)
                 .withAttributes(extractAttributes(fs))
@@ -419,13 +420,13 @@ public class FormEntityConverter {
 
         List<Address> addresses = new ArrayList<>(extractAddressesForSubform(subf).values());
 
-        Client c = new Client(subf.getFieldValue("id"))
+        Client c = (Client) new Client(subf.getFieldValue("id"))
                 .withFirstName(firstName)
                 .withMiddleName(middleName)
                 .withLastName(lastName)
                 .withBirthdate(new DateTime(birthdate).toDate(), birthdateApprox)
                 .withDeathdate(new DateTime(deathdate).toDate(), deathdateApprox)
-                .withGender(gender);
+                .withGender(gender).withDateCreated(new Date());
 
         c.withAddresses(addresses)
                 .withAttributes(extractAttributes(subf))
