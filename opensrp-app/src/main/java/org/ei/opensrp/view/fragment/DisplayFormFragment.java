@@ -232,12 +232,13 @@ public class DisplayFormFragment extends Fragment {
             }
         }).start();
     }
-
+   String formData="";
     private void postXmlDataToForm(final String data){
         webView.post(new Runnable() {
             @Override
             public void run() {
-                webView.loadUrl("javascript:loadDraft('" + data + "')");
+                formData = data.replaceAll("template=\"\"","");
+                webView.loadUrl("javascript:loadDraft('" + formData + "')");
                 Log.d("posting data", data);
             }
         });
