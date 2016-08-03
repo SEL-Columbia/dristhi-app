@@ -199,7 +199,9 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
             if (alertlist_for_client.size() == 0) {
                 psrfdue.setText(format.format(lastdate));
                 psrfdue.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
-                
+                //TODO remove this, just for testing
+                psrfdue.setOnClickListener(onClickListener);
+                psrfdue.setTag(smartRegisterClient);
                 Log.v("is here", "3");
                 try {
                     if (pc.getDetails().get("WomanREGDATE") != null) {

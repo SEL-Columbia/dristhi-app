@@ -403,13 +403,8 @@ public class FormUtils {
                                     writeXML(child, serializer, fieldOverrides, subFormDefinition, childEntityJson, entityId);
                                 }
 
-                            }else{
-                                writeXML(child, serializer, fieldOverrides, subFormDefinition, new JSONObject(), entityId);
                             }
                         }
-                    } // Check if the node contains other elements
-                    else if(hasChildElements(child)){
-                        writeXML(child, serializer, fieldOverrides, formDefinition, new JSONObject(), entityId);
                     }else {
                         //its not a sub-form element write its value
                         serializer.startTag("", fieldName);
