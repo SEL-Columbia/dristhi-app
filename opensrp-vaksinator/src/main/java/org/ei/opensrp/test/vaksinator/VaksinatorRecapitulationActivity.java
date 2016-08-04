@@ -11,6 +11,7 @@ import android.widget.TextView;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.test.R;
+import org.ei.opensrp.view.activity.ReportsActivity;
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
@@ -21,7 +22,7 @@ import java.util.Date;
 /**
  * Created by Iq on 09/06/16, modified by Marwan on 14/07/16
  */
-public class VaksinatorRecapitulationActivity extends Activity {
+public class VaksinatorRecapitulationActivity extends ReportsActivity {
 
     //image retrieving
     private static final String TAG = "ImageGridFragment";

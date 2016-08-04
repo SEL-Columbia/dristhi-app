@@ -88,16 +88,22 @@ public class VaksinatorDetailActivity extends Activity {
         dateOfBirth.setText(": " + (controller.getDetails().get("tanggal_lahir") != null ? controller.getDetails().get("tanggal_lahir") : "-"));
         birthWeight.setText(": " + (controller.getDetails().get("berat_badan_saat_lahir") != null ? controller.getDetails().get("berat_badan_saat_lahir") : "-"));
 
-        hb1Under7.setText(": " + (controller.getDetails().get("hb1_kurang_7_hari") != null && controller.getDetails().get("hb1_kurang_7_hari").length()>6
-                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb1_kurang_7_hari")) <= 7
+        hb1Under7.setText(": " + (hasDate(controller,"hb0")
+                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb0")) <= 7
+                    ? controller.getDetails().get("hb0")
+                    : "-"
+                : hasDate(controller,"hb1_kurang_7_hari")
                     ? controller.getDetails().get("hb1_kurang_7_hari")
+                    :"-"));
+
+        hb1After7.setText(": " + (hasDate(controller,"hb0")
+                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb0")) > 7
+                    ? controller.getDetails().get("hb0")
                     : "-"
-                : "-"));
-        hb1After7.setText(": " + (controller.getDetails().get("hb1_lebih_7_hari") != null && controller.getDetails().get("hb1_lebih_7_hari").length()>6
-                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb1_lebih_7_hari")) > 7
+                : hasDate(controller,"hb1_lebih_7_hari")
                     ? controller.getDetails().get("hb1_lebih_7_hari")
-                    : "-"
-                : "-"));
+                    :"-"));
+
         bcg.setText(": " + (controller.getDetails().get("bcg_pol_1") != null ? controller.getDetails().get("bcg_pol_1") : "-"));
         pol1.setText(": " + (controller.getDetails().get("bcg_pol_1") != null ? controller.getDetails().get("bcg_pol_1") : "-"));
         dpt1.setText(": " + (controller.getDetails().get("dpt_1_pol_2") != null ? controller.getDetails().get("dpt_1_pol_2") : "-"));
@@ -107,16 +113,24 @@ public class VaksinatorDetailActivity extends Activity {
         dpt3.setText(": " + (controller.getDetails().get("dpt_3_pol_4_ipv") != null ? controller.getDetails().get("dpt_3_pol_4_ipv") : "-"));
         pol4.setText(": " + (controller.getDetails().get("dpt_3_pol_4_ipv") != null ? controller.getDetails().get("dpt_3_pol_4_ipv") : "-"));
         measles.setText(": " + (controller.getDetails().get("imunisasi_campak") != null ? controller.getDetails().get("imunisasi_campak") : "-"));
-        mutationUnder30.setText(": " + (controller.getDetails().get("mutasi_meninggal_kurang_30hari") != null && controller.getDetails().get("mutasi_meninggal_kurang_30hari").length()>6
-                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb1_kurang_7_hari")) > 7
-                    ? controller.getDetails().get("hb1_kurang_7_hari")
+
+        mutationUnder30.setText(": " + (
+                controller.getDetails().get("tanggal_meninggal") != null && controller.getDetails().get("tanggal_meninggal").length()>6
+                ? age(controller.getDetails().get("tanggal_lahir"), controller.getDetails().get("tanggal_meninggal")) <= 30
+                     ? controller.getDetails().get("tanggal_meninggal")
+                     : "-"
+                : controller.getDetails().get("mutasi_meninggal_kurang_30hari") != null && controller.getDetails().get("mutasi_meninggal_kurang_30hari").length()>6
+                    ? controller.getDetails().get("mutasi_meninggal_kurang_30hari")
+                    : "-"));
+        mutationAfter30.setText(": " + (
+                controller.getDetails().get("tanggal_meninggal") != null && controller.getDetails().get("tanggal_meninggal").length()>6
+                ? age(controller.getDetails().get("tanggal_lahir"), controller.getDetails().get("tanggal_meninggal")) > 30
+                    ? controller.getDetails().get("tanggal_meninggal")
                     : "-"
-                : "-"));
-        mutationAfter30.setText(": " + (controller.getDetails().get("mutasi_meninggal_lebih_30hari") != null && controller.getDetails().get("mutasi_meninggal_lebih_30hari").length()>6
-                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb1_kurang_7_hari")) > 7
-                    ? controller.getDetails().get("hb1_kurang_7_hari")
-                    : "-"
-                : "-"));
+                :   controller.getDetails().get("mutasi_meninggal_lebih_30hari") != null && controller.getDetails().get("mutasi_meninggal_lebih_30hari").length()>6
+                    ? controller.getDetails().get("mutasi_meninggal_lebih_30hari")
+                    : "-"));
+
         mutationMoving.setText(": " + (controller.getDetails().get("tanggal_pindah") != null ? controller.getDetails().get("tanggal_pindah") : "-"));
         complete.setText(": " + (controller.getDetails().get("imunisasi_lengkap") != null ? controller.getDetails().get("imunisasi_lengkap") : "-"));
         additionalDPT.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
@@ -127,6 +141,20 @@ public class VaksinatorDetailActivity extends Activity {
         } else {
             photo.setImageResource(R.drawable.child_girl_infant);
         }
+    }
+
+    /*
+    * Used to check if the variable contains a date (10 character which representing yyyy-MM-dd) or not
+    * params:
+    * CommonPersonObjectClient pc
+    * String variable
+    *
+    * return:
+    * true - if the variable contains date
+    * false - if the variable null or less than 10 character length
+    * */
+    private boolean hasDate(CommonPersonObjectClient pc, String variable){
+        return pc.getDetails().get(variable)!=null && pc.getDetails().get(variable).length()==10;
     }
 
     private int age(String date1, String date2){

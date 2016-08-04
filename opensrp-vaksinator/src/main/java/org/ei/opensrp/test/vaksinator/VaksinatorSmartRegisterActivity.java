@@ -99,13 +99,14 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
     public DialogOption[] getEditOptions() {
             return new DialogOption[]{
                 new OpenFormOption("Edit Data Peserta", "vaksinator_edit", formController),
-                    new OpenFormOption("Kunjungan Imunisasi HB0", "hb0_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi HB0", "hb0_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi BCG pol1", "bcg_pol1_visit", formController),
-                    new OpenFormOption("Kunjungan Imunisasi HB1 POL2", "hb1_pol2_visit", formController),
-                    new OpenFormOption("Kunjungan Imunisasi HB2 POL3", "dpt_hb2_pol3_visit", formController),
-                    new OpenFormOption("Kunjungan Imunisasi HB3 POL4", "hb3_pol4_visit", formController),
-                    new OpenFormOption("Kunjungan Imunisasi CAMPAK", "campak_visit", formController),
-                    new OpenFormOption("Kunjungan Imunisasi CAMPAK lanjutan", "campak_lanjutan_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi HB1 POL2", "hb1_pol2_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi HB2 POL3", "dpt_hb2_pol3_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi HB3 POL4", "hb3_pol4_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi CAMPAK", "campak_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi CAMPAK lanjutan", "campak_lanjutan_visit", formController),
+                new OpenFormOption("Mutasi Data", "mutational_record", formController),
 
 
         };
@@ -231,7 +232,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
 
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
-       formNames.add("registrasi_jurim");
+        formNames.add("registrasi_jurim");
     //   formNames.add("jurim_visit");
         formNames.add("vaksinator_edit");
         formNames.add("hb0_visit");
@@ -241,6 +242,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
         formNames.add("campak_visit");
         formNames.add("hb3_pol4_visit");
         formNames.add("campak_lanjutan_visit");
+        formNames.add("mutational_record");
 //        DialogOption[] options = getEditOptions();
 //        for (int i = 0; i < options.length; i++){
 //            formNames.add(((OpenFormOption) options[i]).getFormName());
