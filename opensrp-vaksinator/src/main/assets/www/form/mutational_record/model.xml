@@ -1,0 +1,21 @@
+<model>
+    <instance>
+        <kunjungan_vaksinator_ver_mutasi id="kunjungan_vaksinator_ver_mutasi" version="201608021010">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+            <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+            <deviceid/>
+            <simserial/>
+            <phonenumber/>
+            <tanggal_meninggal openmrs_entity="concept" openmrs_entity_id="1543AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <tanggal_pindah openmrs_entity="concept"/>
+            <keterangan openmrs_entity="concept" openmrs_entity_id="159395AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </kunjungan_vaksinator_ver_mutasi>
+    </instance>
+</model>
