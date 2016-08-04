@@ -90,6 +90,14 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
 //        ImageButton follow_up = (ImageButton)itemView.findViewById(R.id.btn_edit);
         profileinfolayout.setOnClickListener(onClickListener);
 
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        Map<String, String> details = detailsRepository.getAllDetailsForClient(pc.getColumnmaps().get("_id"));
+
+        if(pc.getDetails() != null) {
+            pc.getDetails().putAll(details);
+        }else{
+            pc.setDetails(details);
+        }
 
         String dob = pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : null;
         fathername.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
@@ -115,7 +123,6 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         nid.setText("NID :" + (pc.getColumnmaps().get("FWWOMNID") != null ? pc.getColumnmaps().get("FWWOMNID") : ""));
         brid.setText("BRID :" + (pc.getColumnmaps().get("FWWOMBID") != null ? pc.getColumnmaps().get("FWWOMBID") : ""));
 
-        DetailsRepository detailsRepository= org.ei.opensrp.Context.getInstance().detailsRepository();
         Map<String, String> mcaremotherObject = detailsRepository.getAllDetailsForClient(pc.getColumnmaps().get("relationalid"));
 
         constructRiskFlagView(pc, mcaremotherObject, itemView);

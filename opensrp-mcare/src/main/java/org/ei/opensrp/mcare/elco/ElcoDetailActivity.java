@@ -26,6 +26,7 @@ import org.ei.opensrp.view.fragment.SecuredFragment;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -159,8 +160,7 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
         }
         village.setText(Html.fromHtml(getString(R.string.elco_details_mauza)+ " "+humanize(location.replace("+","_"))));
 
-
-        mw_reg_date.setText((Elcoclient.getDetails().get("WomanREGDATE") != null ? Elcoclient.getDetails().get("WomanREGDATE") : ""));
+        mw_reg_date.setText((elcoobject.getColumnmaps().get("WomanREGDATE") != null ? formatDate(elcoobject.getColumnmaps().get("WomanREGDATE")) : ""));
         ///////////////////////////////////////////////////
 
 
@@ -292,5 +292,15 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
     @Override
     protected void onResumption() {
 
+    }
+
+    private String formatDate(String dateString){
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = format.parse(dateString);
+            return format.format(date);
+        }catch (ParseException e){
+            return dateString;
+        }
     }
 }

@@ -17,6 +17,7 @@ import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.application.McareApplication;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
@@ -32,6 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.ei.opensrp.util.StringUtil.humanize;
@@ -100,6 +102,14 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 //        }
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
+
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        Map<String, String> details = detailsRepository.getAllDetailsForClient(pc.getColumnmaps().get("_id"));
+        if(pc.getDetails() != null) {
+            pc.getDetails().putAll(details);
+        }else{
+            pc.setDetails(details);
+        }
 
         name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
         spousename.setText(humanize(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):""));

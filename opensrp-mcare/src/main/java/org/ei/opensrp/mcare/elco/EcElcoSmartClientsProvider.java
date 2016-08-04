@@ -121,7 +121,7 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
 
         try {
 
-            householdparent = householdrep.findHHByGOBHHID(pc.getColumnmaps().get("GOBHHID"));
+            householdparent = householdrep.findByCaseID(pc.getColumnmaps().get("relational_id"));
 
 
 //            if(householdparent.getDetails().get("existing_Mauzapara") != null) {
@@ -204,15 +204,16 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
                 psrfdue.setTag(smartRegisterClient);
                 Log.v("is here", "3");
                 try {
-                    if (pc.getDetails().get("WomanREGDATE") != null) {
+                    if (elcoobject.getColumnmaps().get("WomanREGDATE") != null) {
                         Log.v("is here", "2");
-                        LocalDate regdate = LocalDate.fromDateFields(format.parse(pc.getDetails().get("WomanREGDATE")));
+                        Date womanRegDate = format.parse(elcoobject.getColumnmaps().get("WomanREGDATE"));
+                        LocalDate regdate = LocalDate.fromDateFields(womanRegDate);
                         if (DateUtil.dayDifference(regdate, DateUtil.today()) == 0) {
                             Log.v("is here", "1");
                             psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
                             psrfdue.setOnClickListener(onClickListener);
                             psrfdue.setTag(smartRegisterClient);
-                            psrfdue.setText(pc.getDetails().get("WomanREGDATE"));
+                            psrfdue.setText(format.format(womanRegDate));
                         }
                     }
                     if (pc.getDetails().get("FWPSRDATE") != null) {

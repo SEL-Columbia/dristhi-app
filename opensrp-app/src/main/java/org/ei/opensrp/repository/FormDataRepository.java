@@ -227,12 +227,13 @@ public class FormDataRepository extends DrishtiRepository {
         String[] columns = cursor.getColumnNames();
         int numberOfColumns = columns.length;
         for (int index = 0; index < numberOfColumns; index++) {
-            if (DETAILS_COLUMN_NAME.equalsIgnoreCase(columns[index])) {
-                Map<String, String> details = new Gson().fromJson(cursor.getString(index), new TypeToken<Map<String, String>>() {
+            String columnValue = cursor.getString(index);
+            if (DETAILS_COLUMN_NAME.equalsIgnoreCase(columns[index]) && columnValue != null && !columnValue.isEmpty()) {
+                Map<String, String> details = new Gson().fromJson(columnValue, new TypeToken<Map<String, String>>() {
                 }.getType());
                 columnValues.putAll(details);
             } else {
-                columnValues.put(columns[index], cursor.getString(index));
+                columnValues.put(columns[index], columnValue);
             }
         }
         return columnValues;

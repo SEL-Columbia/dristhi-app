@@ -332,6 +332,9 @@ public class ClientProcessor {
             String baseEntityId = client.getString(baseEntityIdJSONKey);
             Long timestamp = event.getLong("eventDate");
 
+            Map<String, String> genderInfo = getClientSingleValueAttribute(client, "gender");
+            saveClientDetails(baseEntityId, genderInfo, timestamp);
+
             Map<String, String> addressInfo = getClientAddressAsMap(client);
             saveClientDetails(baseEntityId, addressInfo, timestamp);
 
@@ -403,6 +406,19 @@ public class ClientProcessor {
             e.printStackTrace();
         }
         return attributes;
+    }
+
+    private Map<String, String> getClientSingleValueAttribute(JSONObject client, String key) {
+        Map<String, String> map = new HashMap<String, String>();
+        try {
+            if (client.has(key)) {
+                String value = client.getString(key);
+                map.put(key, value);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
     }
 
     private void saveClientDetails(String baseEntityId, Map<String, String> values, Long timestamp) {

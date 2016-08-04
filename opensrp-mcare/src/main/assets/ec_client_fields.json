@@ -146,6 +146,14 @@
           "json_mapping": {
             "field": "identifiers.Birth Registration ID"
           }
+        },
+        {
+          "column_name": "WomanREGDATE",
+          "type": "Client",
+          "json_mapping": {
+            "field": "dateCreated",
+            "comment": "This value should come from the Woman REGDATE but currently it doesn't have a concept mapping"
+          }
         }
       ]
     },

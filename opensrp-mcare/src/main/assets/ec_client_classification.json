@@ -9,6 +9,11 @@
             "field":"eventType",
             "field_value": "New Household Registration",
             "creates_case":["ec_household"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Census Visit",
+            "creates_case":["ec_household"]
           }
         ]
       }

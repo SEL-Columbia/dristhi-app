@@ -23,6 +23,7 @@ import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.application.McareApplication;
 import org.ei.opensrp.mcare.household.HouseHoldDetailActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.util.DateUtil;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -40,6 +41,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.ei.opensrp.util.StringUtil.humanize;
@@ -106,12 +108,24 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 //        }
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
+        AllCommonsRepository allelcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_elco");
+        CommonPersonObject elcoobject = allelcoRepository.findByCaseID(pc.entityId());
+        AllCommonsRepository allancRepository =  org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_mcaremother");
+        CommonPersonObject ancobject = allancRepository.findByCaseID(elcoobject.getColumnmaps().get("base_entity_id"));
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.getColumnmaps().get("_id"));
+
+        if(pc.getDetails() != null) {
+            pc.getDetails().putAll(details);
+        }else{
+            pc.setDetails(details);
+        }
         name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
-        spousename.setText(humanize(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):""));
+        spousename.setText(humanize(elcoobject.getColumnmaps().get("FWHUSNAME")!=null?elcoobject.getColumnmaps().get("FWHUSNAME"):""));
         gobhhid.setText(" "+(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):""));
         jivitahhid.setText((pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):""));
         village.setText(humanize((pc.getDetails().get("mauza") != null ? pc.getDetails().get("mauza") : "").replace("+", "_")));
-        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+") ");
+        age.setText("("+(elcoobject.getColumnmaps().get("FWWOMAGE")!=null?elcoobject.getColumnmaps().get("FWWOMAGE"):"")+") ");
 
 
         if(pc.getDetails().get("FWWOMNID").length()>0) {

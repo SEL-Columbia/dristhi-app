@@ -115,8 +115,21 @@ public class mCareAncDetailActivity extends Activity {
         CommonPersonObject ancobject = allancRepository.findByCaseID(ancclient.entityId());
         AllCommonsRepository allelcorep = Context.getInstance().allCommonsRepositoryobjects("ec_elco");
         CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getColumnmaps().get("base_entity_id"));
-
+        DetailsRepository detailsRepository = Context.getInstance().detailsRepository();
+        Map<String, String> details = detailsRepository.getAllDetailsForClient(elcoparent.getColumnmaps().get("base_entity_id"));
 //
+        if(elcoparent.getDetails() != null) {
+            elcoparent.getDetails().putAll(details);
+        }else{
+            elcoparent.setDetails(details);
+        }
+
+        if(ancclient.getDetails() != null) {
+            ancclient.getDetails().putAll(details);
+        }else{
+            ancclient.setDetails(details);
+        }
+
         checkAnc1view(ancclient);
         checkAnc2view(ancclient);
         checkAnc3view(ancclient);
@@ -180,32 +193,32 @@ public class mCareAncDetailActivity extends Activity {
     }
 
     private void pregnancyin2years(CommonPersonObject ecclient) {
-        String text = getDetails(ecclient).get("FWPSRPREGTWYRS")!=null?getDetails(ecclient).get("FWPSRPREGTWYRS"):"N/A";
+        String text = ecclient.getDetails().get("FWPSRPREGTWYRS")!=null?ecclient.getDetails().get("FWPSRPREGTWYRS"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.number_of_pregnancy);
         stillbirth.setText(text);
     }
 
     private void historyofsb(CommonPersonObject ecclient) {
-        String text = getDetails(ecclient).get("FWPSRPRSB")!=null?getDetails(ecclient).get("FWPSRPRSB"):"N/A";
+        String text = ecclient.getDetails().get("FWPSRPRSB")!=null?ecclient.getDetails().get("FWPSRPRSB"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.history_of_sb);
         stillbirth.setText(text);
     }
 
     private void historyofmr(CommonPersonObject ecclient) {
-        String text = getDetails(ecclient).get("FWPSRPRMC")!=null?getDetails(ecclient).get("FWPSRPRMC"):"N/A";
+        String text = ecclient.getDetails().get("FWPSRPRMC")!=null?ecclient.getDetails().get("FWPSRPRMC"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.history_of_mr);
         stillbirth.setText(text);
 
     }
 
     private void numberofstillbirthview(CommonPersonObject ecclient) {
-        String text = getDetails(ecclient).get("FWPSRNBDTH")!=null?getDetails(ecclient).get("FWPSRNBDTH"):"N/A";
+        String text = ecclient.getDetails().get("FWPSRNBDTH")!=null?ecclient.getDetails().get("FWPSRNBDTH"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.stillbirths);
         stillbirth.setText(text);
     }
 
     private void numberofChildrenView(CommonPersonObject ecclient) {
-        String text = getDetails(ecclient).get("FWPSRTOTBIRTH")!=null?getDetails(ecclient).get("FWPSRTOTBIRTH"):"N/A";
+        String text = ecclient.getDetails().get("FWPSRTOTBIRTH")!=null?ecclient.getDetails().get("FWPSRTOTBIRTH"):"N/A";
         TextView numberofChildren = (TextView)findViewById(R.id.livechildren);
         numberofChildren.setText(text);
     }
@@ -388,11 +401,6 @@ public class mCareAncDetailActivity extends Activity {
 //        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 //        Bitmap bitmap = BitmapFactory.decodeFile(file, options);
 //        view.setImageBitmap(bitmap);
-    }
-
-    private Map<String, String> getDetails(CommonPersonObject ecclient){
-        DetailsRepository detailsRepository = Context.getInstance().detailsRepository();
-        return detailsRepository.getAllDetailsForClient(ecclient.getColumnmaps().get("base_entity_id"));
     }
 
 }
