@@ -1,18 +1,17 @@
 package org.ei.opensrp.clientandeventmodel;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.joda.time.Period;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DateUtil {
     private static DateUtility dateUtility = new RealDate();
-    static DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     public static DateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
     public static DateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static DateFormat yyyyMMddTHHmmssSSSZ = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
@@ -72,13 +71,39 @@ public class DateUtil {
         try {
             if(dateString!=null && !dateString.equals("null") && dateString.length()>0)
             {
-                parsed = sdf.parse(dateString.trim());
+                parsed = yyyyMMddTHHmmssSSSZ.parse(dateString.trim());
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return parsed;
     }
+
+    public static Date toDate(Object dateObject){
+        if(dateObject instanceof Date){
+            return (Date) dateObject;
+        }else if(dateObject instanceof  Long){
+            return new Date((Long) dateObject);
+        }else if(dateObject instanceof  String) {
+            try {
+                String dateString = (String) dateObject;
+                if (dateString.isEmpty()) {
+                    return null;
+                }
+
+                return yyyyMMddTHHmmssSSSZ.parse(dateString);
+            } catch (ParseException e) {
+                return null;
+            }
+        }
+
+        return null;
+    }
+
+    public static String fromDate(Date date){
+        return yyyyMMddTHHmmssSSSZ.format(date);
+    }
+
 }
 
 interface DateUtility {

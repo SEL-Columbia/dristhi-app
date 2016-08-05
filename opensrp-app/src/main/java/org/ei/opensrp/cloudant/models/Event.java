@@ -2,12 +2,11 @@ package org.ei.opensrp.cloudant.models;
 
 import com.cloudant.sync.datastore.BasicDocumentRevision;
 
+import org.ei.opensrp.clientandeventmodel.DateUtil;
 import org.ei.opensrp.clientandeventmodel.Obs;
 import org.ei.opensrp.clientandeventmodel.User;
-import org.joda.time.DateTime;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -82,7 +81,6 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event {
     public static final String obs_key = "obs";
     public static final String provider_key = "provider";
     public static final String version_key = "version";
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     public static Event fromRevision(BasicDocumentRevision rev) throws ParseException {
         Event event = new Event();
@@ -92,8 +90,9 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event {
         if (map.containsKey(type_key) && map.get(type_key).equals(Event.DOC_TYPE)) {
             // event.setType((String) map.get(type_key));
             if (map.get(date_created_key) != null) {
-                Date dateCreated = dateFormat.parse(map.get(date_created_key).toString());
-                event.setDateCreated(dateCreated);
+                Date dateCreated = DateUtil.toDate(map.get(date_created_key));
+                if (dateCreated != null)
+                    event.setDateCreated(dateCreated);
             }
             if (map.get(voided_key) != null)
                 event.setVoided((Boolean) map.get(voided_key));
@@ -103,12 +102,18 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event {
                 event.setEditor((User) map.get(editor_key));
             if (map.get(creator_key) != null)
                 event.setCreator((User) map.get(creator_key));
-            if (map.get(date_edited_key) != null)
-                event.setDateEdited((Date) map.get(date_edited_key));
+            if (map.get(date_edited_key) != null) {
+                Date dateEdited = DateUtil.toDate(map.get(date_edited_key));
+                if (dateEdited != null)
+                    event.setDateEdited(dateEdited);
+            }
             if (map.get(voider_key) != null)
                 event.setVoider((User) map.get(voider_key));
-            if (map.get(date_voided_key) != null)
-                event.setDateVoided((Date) map.get(date_voided_key));
+            if (map.get(date_voided_key) != null) {
+                Date dateVoided = DateUtil.toDate(map.get(date_voided_key));
+                if (dateVoided != null)
+                    event.setDateVoided(dateVoided);
+            }
             if (map.get(void_reason_key) != null)
                 event.setVoidReason((String) map.get(void_reason_key));
             if (map.get(details_key) != null)
@@ -140,11 +145,8 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put(type_key, type);
-        if (getDateCreated() != null) {
-            String formattedDate = dateFormat.format(getDateCreated());
-
-            map.put(date_created_key, formattedDate);
-        }
+        if (getDateCreated() != null)
+            map.put(date_created_key, DateUtil.fromDate(getDateCreated()));
         if (getVoided() != null)
             map.put(voided_key, getVoided());
         if (getBaseEntityId() != null)
@@ -154,11 +156,11 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event {
         if (getCreator() != null)
             map.put(creator_key, getCreator());
         if (getDateEdited() != null)
-            map.put(date_edited_key, getDateEdited());
+            map.put(date_edited_key, DateUtil.fromDate(getDateEdited()));
         if (getVoider() != null)
             map.put(voider_key, getVoider());
         if (getDateVoided() != null)
-            map.put(date_voided_key, getDateVoided());
+            map.put(date_voided_key, DateUtil.fromDate(getDateVoided()));
         if (getVoidReason() != null)
             map.put(void_reason_key, getVoidReason());
         if (getDetails() != null)
@@ -170,7 +172,7 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event {
         if (getLocationId() != null)
             map.put(location_id_key, getLocationId());
         if (getEventDate() != null)
-            map.put(event_date_key, getEventDate());
+            map.put(event_date_key, DateUtil.fromDate(getEventDate()));
         if (getEventType() != null)
             map.put(event_type_key, getEventType());
         if (getEventId() != null)

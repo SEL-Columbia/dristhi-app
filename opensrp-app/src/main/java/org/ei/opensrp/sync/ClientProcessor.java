@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
+import org.ei.opensrp.clientandeventmodel.DateUtil;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.util.AssetHandler;
@@ -14,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -288,7 +290,7 @@ public class ClientProcessor {
 
                 // save the values to db
                 Long id = executeInsertStatement(contentValues, clientType);
-                Long timestamp = event.getLong("eventDate");
+                Long timestamp = getEventDate(event.get("eventDate"));
                 addContentValuesToDetailsTable(contentValues, timestamp);
                 updateClientDetailsTable(event, client);
             }
@@ -330,7 +332,7 @@ public class ClientProcessor {
     public void updateClientDetailsTable(JSONObject event, JSONObject client) {
         try {
             String baseEntityId = client.getString(baseEntityIdJSONKey);
-            Long timestamp = event.getLong("eventDate");
+            Long timestamp = getEventDate(event.get("eventDate"));
 
             Map<String, String> genderInfo = getClientSingleValueAttribute(client, "gender");
             saveClientDetails(baseEntityId, genderInfo, timestamp);
@@ -608,5 +610,16 @@ public class ClientProcessor {
             values.add((String) jsonArray.get(i));
         }
         return values;
+    }
+
+    private long getEventDate(Object eventDate){
+        if(eventDate instanceof Long){
+            return (Long) eventDate;
+        }else{
+            Date date = DateUtil.toDate(eventDate);
+            if(date != null)
+                return date.getTime();
+        }
+        return new Date().getTime();
     }
 }

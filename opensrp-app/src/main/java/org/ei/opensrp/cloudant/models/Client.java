@@ -3,10 +3,10 @@ package org.ei.opensrp.cloudant.models;
 import com.cloudant.sync.datastore.BasicDocumentRevision;
 
 import org.ei.opensrp.clientandeventmodel.Address;
+import org.ei.opensrp.clientandeventmodel.DateUtil;
 import org.ei.opensrp.clientandeventmodel.User;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -87,7 +87,6 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client {
     public static final String death_date_approx_key = "deathDateApprox";
     public static final String voided_key = "voided";
     public static final String relationships_key = "relationships";
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     public static Client fromRevision(BasicDocumentRevision rev) throws ParseException {
         Client client = new Client();
@@ -105,24 +104,33 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client {
                 client.setBaseEntityId((String) map.get(base_entity_id_key));
             //the date is being saved as long
             if (map.get(birth_date_key) != null) {
-                Date birthDate = dateFormat.parse(map.get(birth_date_key).toString());
-                client.setBirthdate(birthDate);
+                Date birthDate = DateUtil.toDate(map.get(birth_date_key));
+                if (birthDate != null)
+                    client.setBirthdate(birthDate);
             }
             if (map.get(birth_date_approx_key) != null)
                 client.setBirthdateApprox((Boolean) map.get(birth_date_approx_key));
             if (map.get(creator_key) != null)
                 client.setCreator((User) map.get(creator_key));
             if (map.get(date_created_key) != null) {
-                Date dateCreated = dateFormat.parse(map.get(date_created_key).toString());
-                client.setDateCreated(dateCreated);
+                Date dateCreated = DateUtil.toDate(map.get(date_created_key));
+                if (dateCreated != null)
+                    client.setDateCreated(dateCreated);
             }
-            if (map.get(date_voided_key) != null)
-                client.setDateVoided((Date) map.get(date_voided_key));
-            if (map.get(date_edited_key) != null)
-                client.setDateEdited((Date) map.get(date_edited_key));
+            if (map.get(date_voided_key) != null) {
+                Date dateVoided = DateUtil.toDate(map.get(date_voided_key));
+                if (dateVoided != null)
+                    client.setDateVoided(dateVoided);
+            }
+            if (map.get(date_edited_key) != null){
+                Date dateEdited = DateUtil.toDate(map.get(date_edited_key));
+                if (dateEdited != null)
+                    client.setDateEdited(dateEdited);
+            }
             if (map.get(death_date_key) != null) {
-                Date deathDate = dateFormat.parse(map.get(death_date_key).toString());
-                client.setDeathdate(deathDate);
+                Date deathDate = DateUtil.toDate(map.get(death_date_key));
+                if (deathDate != null)
+                    client.setDeathdate(deathDate);
             }
             if (map.get(firstname_key) != null)
                 client.setFirstName((String) map.get(firstname_key));
@@ -162,24 +170,23 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client {
         if (getBaseEntityId() != null)
             map.put(base_entity_id_key, getBaseEntityId());
         if (getBirthdate() != null) {
-            String birthDate = dateFormat.format(getBirthdate());
-            map.put(birth_date_key, birthDate);
+            map.put(birth_date_key, DateUtil.fromDate(getBirthdate()));
         }
         if (getBirthdateApprox() != null)
             map.put(birth_date_approx_key, getBirthdateApprox());
         if (getCreator() != null)
             map.put(creator_key, getCreator());
         if (getDateCreated() != null) {
-            String dateCreated = dateFormat.format(getDateCreated());
-            map.put(date_created_key, dateCreated);
+            map.put(date_created_key, DateUtil.fromDate(getDateCreated()));
         }
-        if (getDateVoided() != null)
-            map.put(date_voided_key, getDateVoided());
-        if (getDateEdited() != null)
-            map.put(date_edited_key, getDateEdited());
+        if (getDateVoided() != null){
+            map.put(date_voided_key, DateUtil.fromDate(getDateVoided()));
+        }
+        if (getDateEdited() != null) {
+            map.put(date_edited_key, DateUtil.fromDate(getDateEdited()));
+        }
         if (getDeathdate() != null) {
-            String deathDate = dateFormat.format(getDeathdate());
-            map.put(death_date_key, deathDate);
+            map.put(death_date_key, DateUtil.fromDate(getDeathdate()));
         }
         if (getFirstName() != null)
             map.put(firstname_key, getFirstName());
