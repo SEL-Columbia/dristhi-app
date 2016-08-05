@@ -22,7 +22,6 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.repository.DetailsRepository;
-import org.ei.opensrp.view.contract.ChildDetail;
 
 import java.io.File;
 import java.io.IOException;
@@ -83,10 +82,8 @@ public class ChildDetailActivity extends Activity {
             }
         });
 
-        AllCommonsRepository allchildRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_mcarechild");
-        CommonPersonObject childobject = allchildRepository.findByCaseID(ChildClient.entityId());
         AllCommonsRepository motherrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_elco");
-        final CommonPersonObject mcaremotherObject = motherrep.findByCaseID(childobject.getColumnmaps().get("relational_id"));
+        final CommonPersonObject mcaremotherObject = motherrep.findByCaseID(ChildClient.getColumnmaps().get("relationalid"));
         DetailsRepository detailsRepository = Context.getInstance().detailsRepository();
         Map<String, String> details = detailsRepository.getAllDetailsForClient(mcaremotherObject.getColumnmaps().get("base_entity_id"));
 
@@ -94,13 +91,6 @@ public class ChildDetailActivity extends Activity {
             mcaremotherObject.getDetails().putAll(details);
         }else{
             mcaremotherObject.setDetails(details);
-        }
-
-        Map<String, String> childDetails = detailsRepository.getAllDetailsForClient(childobject.getColumnmaps().get("base_entity_id"));
-        if(ChildClient.getDetails() != null){
-            ChildClient.getDetails().putAll(details);
-        }else{
-            ChildClient.setDetails(details);
         }
 
         name.setText(humanize((ChildClient.getDetails().get("FWBNFCHILDNAME") != null ? ChildClient.getDetails().get("FWBNFCHILDNAME") : "").replace("+", "_")));

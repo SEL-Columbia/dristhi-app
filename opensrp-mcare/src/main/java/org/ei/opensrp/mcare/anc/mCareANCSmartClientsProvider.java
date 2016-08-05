@@ -1,14 +1,11 @@
 package org.ei.opensrp.mcare.anc;
 
-import android.app.Activity;
 import android.content.Context;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,11 +18,8 @@ import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.application.McareApplication;
-import org.ei.opensrp.mcare.household.HouseHoldDetailActivity;
-import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
-import org.ei.opensrp.util.DateUtil;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
 import org.ei.opensrp.view.customControls.CustomFontTextView;
@@ -33,7 +27,6 @@ import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
-import org.joda.time.LocalDate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -108,12 +101,12 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 //        }
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
-        AllCommonsRepository allelcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_elco");
-        CommonPersonObject elcoobject = allelcoRepository.findByCaseID(pc.entityId());
         AllCommonsRepository allancRepository =  org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_mcaremother");
-        CommonPersonObject ancobject = allancRepository.findByCaseID(elcoobject.getColumnmaps().get("base_entity_id"));
+        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
+
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
-        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.getColumnmaps().get("_id"));
+        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.entityId());
+        details.putAll(ancobject.getColumnmaps());
 
         if(pc.getDetails() != null) {
             pc.getDetails().putAll(details);
@@ -121,11 +114,11 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             pc.setDetails(details);
         }
         name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
-        spousename.setText(humanize(elcoobject.getColumnmaps().get("FWHUSNAME")!=null?elcoobject.getColumnmaps().get("FWHUSNAME"):""));
+        spousename.setText(humanize(pc.getDetails().get("FWHUSNAME") != null ? pc.getDetails().get("FWHUSNAME") : ""));
         gobhhid.setText(" "+(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):""));
         jivitahhid.setText((pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):""));
         village.setText(humanize((pc.getDetails().get("mauza") != null ? pc.getDetails().get("mauza") : "").replace("+", "_")));
-        age.setText("("+(elcoobject.getColumnmaps().get("FWWOMAGE")!=null?elcoobject.getColumnmaps().get("FWWOMAGE"):"")+") ");
+        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+") ");
 
 
         if(pc.getDetails().get("FWWOMNID").length()>0) {

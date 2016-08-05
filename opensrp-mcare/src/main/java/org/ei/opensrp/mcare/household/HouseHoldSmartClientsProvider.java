@@ -2,7 +2,6 @@ package org.ei.opensrp.mcare.household;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.application.McareApplication;
-import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -38,7 +36,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -108,25 +105,29 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
 
         List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "FW CENSUS");
 
-
         AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_household");
-
         CommonPersonObject householdobject = householdrep.findByCaseID(pc.entityId());
-        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
-        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.getColumnmaps().get("_id"));
 
-        String gender = details.get("gender");
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.entityId());
+
+        if(pc.getDetails() != null) {
+            pc.getDetails().putAll(details);
+        }else{
+            pc.setDetails(details);
+        }
+
         if(pc.getDetails().get("profilepic")!=null){
-            if((gender!=null?gender:"").equalsIgnoreCase("2")) {
+            if((pc.getDetails().get("gender")!=null?pc.getDetails().get("gender"):"").equalsIgnoreCase("2")) {
                 HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), viewHolder.profilepic, R.mipmap.womanimageload);
-            }else if ((gender!=null?gender:"").equalsIgnoreCase("1")){
+            }else if ((pc.getDetails().get("gender")!=null?pc.getDetails().get("gender"):"").equalsIgnoreCase("1")){
                 HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), viewHolder.profilepic, R.mipmap.householdload);
             }
 
         }else{
-            if((gender!=null?gender:"").equalsIgnoreCase("2")){
+            if((pc.getDetails().get("gender")!=null?pc.getDetails().get("gender"):"").equalsIgnoreCase("2")){
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.woman_placeholder));
-            }else if ((gender!=null?gender : "").equalsIgnoreCase("1")){
+            }else if ((pc.getDetails().get("gender")!=null?pc.getDetails().get("gender") : "").equalsIgnoreCase("1")){
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
             }
         }
@@ -177,7 +178,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             viewHolder.last_visit_date.setText(householdobject.getColumnmaps().get("FWNHREGDATE") != null ? householdobject.getColumnmaps().get("FWNHREGDATE") : "");
         }
 
-        if(alertlist_for_client.size() == 0 ){
+        if (alertlist_for_client.size() == 0) {
             viewHolder.due_visit_date.setText("Not Synced to Server");
             viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.text_black));
@@ -187,9 +188,6 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
 
                 }
             });
-            viewHolder.due_visit_date.setOnClickListener(onClickListener);
-            viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
-            viewHolder.due_visit_date.setTag(smartRegisterClient);
         }
         for(int i = 0;i<alertlist_for_client.size();i++){
             viewHolder.due_visit_date.setText(alertlist_for_client.get(i).expiryDate());

@@ -16,12 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.ei.opensrp.Context;
-import org.ei.opensrp.commonregistry.AllCommonsRepository;
-import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
-import org.ei.opensrp.repository.DetailsRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -111,34 +108,17 @@ public class mCareAncDetailActivity extends Activity {
 
         village.setText(Html.fromHtml(getString(R.string.elco_details_mauza) + " " + humanize(ancclient.getDetails().get("mauza") != null ? ancclient.getDetails().get("mauza") : "")));
             /////from househld
-        AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("ec_mcaremother");
-        CommonPersonObject ancobject = allancRepository.findByCaseID(ancclient.entityId());
-        AllCommonsRepository allelcorep = Context.getInstance().allCommonsRepositoryobjects("ec_elco");
-        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getColumnmaps().get("base_entity_id"));
-        DetailsRepository detailsRepository = Context.getInstance().detailsRepository();
-        Map<String, String> details = detailsRepository.getAllDetailsForClient(elcoparent.getColumnmaps().get("base_entity_id"));
-//
-        if(elcoparent.getDetails() != null) {
-            elcoparent.getDetails().putAll(details);
-        }else{
-            elcoparent.setDetails(details);
-        }
-
-        if(ancclient.getDetails() != null) {
-            ancclient.getDetails().putAll(details);
-        }else{
-            ancclient.setDetails(details);
-        }
+ //
 
         checkAnc1view(ancclient);
         checkAnc2view(ancclient);
         checkAnc3view(ancclient);
         checkAnc4view(ancclient);
-        numberofChildrenView(elcoparent);
-        numberofstillbirthview(elcoparent);
-        historyofmr(elcoparent);
-        historyofsb(elcoparent);
-        pregnancyin2years(elcoparent);
+        numberofChildrenView(ancclient);
+        numberofstillbirthview(ancclient);
+        historyofmr(ancclient);
+        historyofsb(ancclient);
+        pregnancyin2years(ancclient);
         eddlay(ancclient);
 
 
@@ -192,32 +172,32 @@ public class mCareAncDetailActivity extends Activity {
 
     }
 
-    private void pregnancyin2years(CommonPersonObject ecclient) {
+    private void pregnancyin2years(CommonPersonObjectClient ecclient) {
         String text = ecclient.getDetails().get("FWPSRPREGTWYRS")!=null?ecclient.getDetails().get("FWPSRPREGTWYRS"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.number_of_pregnancy);
         stillbirth.setText(text);
     }
 
-    private void historyofsb(CommonPersonObject ecclient) {
+    private void historyofsb(CommonPersonObjectClient ecclient) {
         String text = ecclient.getDetails().get("FWPSRPRSB")!=null?ecclient.getDetails().get("FWPSRPRSB"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.history_of_sb);
         stillbirth.setText(text);
     }
 
-    private void historyofmr(CommonPersonObject ecclient) {
+    private void historyofmr(CommonPersonObjectClient ecclient) {
         String text = ecclient.getDetails().get("FWPSRPRMC")!=null?ecclient.getDetails().get("FWPSRPRMC"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.history_of_mr);
         stillbirth.setText(text);
 
     }
 
-    private void numberofstillbirthview(CommonPersonObject ecclient) {
+    private void numberofstillbirthview(CommonPersonObjectClient ecclient) {
         String text = ecclient.getDetails().get("FWPSRNBDTH")!=null?ecclient.getDetails().get("FWPSRNBDTH"):"N/A";
         TextView stillbirth = (TextView)findViewById(R.id.stillbirths);
         stillbirth.setText(text);
     }
 
-    private void numberofChildrenView(CommonPersonObject ecclient) {
+    private void numberofChildrenView(CommonPersonObjectClient ecclient) {
         String text = ecclient.getDetails().get("FWPSRTOTBIRTH")!=null?ecclient.getDetails().get("FWPSRTOTBIRTH"):"N/A";
         TextView numberofChildren = (TextView)findViewById(R.id.livechildren);
         numberofChildren.setText(text);

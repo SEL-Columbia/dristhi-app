@@ -107,18 +107,18 @@ public class HouseHoldDetailActivity extends Activity {
         final ImageView householdview = (ImageView)findViewById(R.id.householdprofileview);
 
         if(householdclient.getDetails().get("profilepic")!= null){
-            if((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("2")) {
+            if((householdclient.getDetails().get("gender")!=null?householdclient.getDetails().get("gender"):"").equalsIgnoreCase("2")) {
 
                 setImagetoHolderFromUri(HouseHoldDetailActivity.this, householdclient.getDetails().get("profilepic"), householdview, R.mipmap.womanimageload);
-            } else if ((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("1")){
+            } else if ((householdclient.getDetails().get("gender")!=null?householdclient.getDetails().get("gender"):"").equalsIgnoreCase("1")){
                 setImagetoHolderFromUri(HouseHoldDetailActivity.this, householdclient.getDetails().get("profilepic"), householdview, R.mipmap.householdload);
 
             }
         }else{
 
-            if((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("2")){
+            if((householdclient.getDetails().get("gender")!=null?householdclient.getDetails().get("gender"):"").equalsIgnoreCase("2")){
                 householdview.setImageDrawable(getResources().getDrawable(R.drawable.woman_placeholder));
-            }else if ((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("1")){
+            }else if ((householdclient.getDetails().get("gender")!=null?householdclient.getDetails().get("gender"):"").equalsIgnoreCase("1")){
                 householdview.setImageDrawable(getResources().getDrawable(R.mipmap.household_profile_thumb));
             }
         }

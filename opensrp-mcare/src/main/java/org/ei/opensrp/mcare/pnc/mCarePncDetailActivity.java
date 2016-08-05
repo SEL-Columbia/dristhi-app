@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.ei.opensrp.Context;
-import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.Alert;
@@ -26,7 +25,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -120,11 +118,7 @@ public class mCarePncDetailActivity extends Activity {
             pregnancy_outcome.setText(getString(R.string.mcare_pnc_Stillbirth));
         }
 
-        AllCommonsRepository allancRepository = Context.getInstance().allCommonsRepositoryobjects("ec_mcaremother");
-        CommonPersonObject ancobject = allancRepository.findByCaseID(ancclient.entityId());
-        AllCommonsRepository allelcorep = Context.getInstance().allCommonsRepositoryobjects("ec_elco");
-        CommonPersonObject elcoparent = allelcorep.findByCaseID(ancobject.getColumnmaps().get("base_entity_id"));
-       checkPnc1view(ancclient);
+        checkPnc1view(ancclient);
         checkPnc2view(ancclient);
         checkAnc3view(ancclient);
         checktempView(ancclient);

@@ -9,12 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.application.McareApplication;
-import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -25,8 +26,8 @@ import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 
-import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -90,8 +91,12 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
 //        ImageButton follow_up = (ImageButton)itemView.findViewById(R.id.btn_edit);
         profileinfolayout.setOnClickListener(onClickListener);
 
+        AllCommonsRepository childRepository =  org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_mcarechild");
+        CommonPersonObject childobject = childRepository.findByCaseID(pc.entityId());
+
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
-        Map<String, String> details = detailsRepository.getAllDetailsForClient(pc.getColumnmaps().get("_id"));
+        Map<String, String> details = detailsRepository.getAllDetailsForClient(pc.entityId());
+        details.putAll(childobject.getColumnmaps());
 
         if(pc.getDetails() != null) {
             pc.getDetails().putAll(details);
