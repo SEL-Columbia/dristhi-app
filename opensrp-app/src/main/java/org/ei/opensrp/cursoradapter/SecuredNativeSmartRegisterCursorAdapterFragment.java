@@ -70,6 +70,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     public String currentquery;
     private String tablename;
     public String countSelect;
+    public Cursor databaseCursor;
     public String getTablename() {
         return tablename;
     }
@@ -317,6 +318,11 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
 
 
     private void goBack() {
+        try {
+            databaseCursor.close();
+        }catch (Exception e){
+
+        }
         getActivity().finish();
     }
 
@@ -471,13 +477,18 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
 
     public void filterandSortExecute() {
         refresh();
+        try{
+            databaseCursor.close();
+        }catch (Exception e){
+
+        }
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
         sqb.addCondition(filters);
         currentquery =  sqb.orderbyCondition(Sortqueries);
         String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,currentlimit,currentoffset));
         CommonRepository commonRepository = context.commonrepository(tablename);
-        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
-        clientAdapter.swapCursor(c);
+        databaseCursor = commonRepository.RawCustomQueryForAdapter(query);
+        clientAdapter.swapCursor(databaseCursor);
     }
     public void CountExecute(){
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(countSelect);
