@@ -6,9 +6,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
+import org.ei.drishti.dto.Action;
+import org.ei.drishti.dto.AlertStatus;
 import org.ei.opensrp.clientandeventmodel.DateUtil;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonRepository;
+import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.repository.AlertRepository;
 import org.ei.opensrp.repository.DetailsRepository;
+import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.util.AssetHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,16 +53,23 @@ public class ClientProcessor {
         return instance;
     }
 
-    public synchronized  void processClient() throws Exception {
+    public synchronized void processClient() throws Exception {
         CloudantDataHandler handler = CloudantDataHandler.getInstance(mContext);
 
         //this seems to be easy for now cloudant json to events model is crazy
         List<JSONObject> events = handler.getUpdatedEvents();
-        if(!events.isEmpty()) {
+        if (!events.isEmpty()) {
             String clientClassificationStr = getFileContents("ec_client_classification.json");
             JSONObject clientClassificationJson = new JSONObject(clientClassificationStr);
             //iterate through the events
             loopEvents(events, clientClassificationJson);
+        }
+
+        List<JSONObject> alerts = handler.getAlerts();
+        if (!alerts.isEmpty()) {
+            String clientAlertsStr = getFileContents("ec_client_alerts.json");
+            JSONObject clientAlertsJson = new JSONObject(clientAlertsStr);
+            loopAlerts(alerts, clientAlertsJson);
         }
     }
 
@@ -148,6 +161,59 @@ public class ClientProcessor {
                 }
 
             }
+        }
+    }
+
+    private void loopAlerts(List<JSONObject> alerts, JSONObject clientAlertsJson) throws Exception {
+
+        try {
+
+            JSONArray columns = clientAlertsJson.getJSONArray("columns");
+
+            for (JSONObject jsonDocument : alerts) {
+                ContentValues contentValues = new ContentValues();
+
+                for (int i = 0; i < columns.length(); i++) {
+                    JSONObject colObject = columns.getJSONObject(i);
+                    String columnName = colObject.getString("column_name");
+                    JSONObject jsonMapping = colObject.getJSONObject("json_mapping");
+                    String dataSegment = null;
+                    String fieldName = jsonMapping.getString("field");
+                    if (fieldName != null && fieldName.contains(".")) {
+                        String fieldNameArray[] = fieldName.split("\\.");
+                        dataSegment = fieldNameArray[0];
+                        fieldName = fieldNameArray[1];
+                    }
+
+                    Object jsonDocSegment = null;
+
+                    if (dataSegment != null) {
+                        //pick data from a specific section of the doc
+                        jsonDocSegment = jsonDocument.get(dataSegment);
+
+                    } else {
+                        //else the use the main doc as the doc segment
+                        jsonDocSegment = jsonDocument;
+
+                    }
+
+                    //e.g client attributes section
+                    String columnValue = null;
+                    JSONObject jsonDocSegmentObject = (JSONObject) jsonDocSegment;
+                    columnValue = jsonDocSegmentObject.has(fieldName) ? jsonDocSegmentObject.getString(fieldName) : "";
+                    // after successfully retrieving the column name and value store it in Content value
+                    if (columnValue != null) {
+                        columnValue = getHumanReadableConceptResponse(columnValue, jsonDocSegmentObject);
+                        contentValues.put(columnName, columnValue);
+                    }
+                }
+
+                // save the values to db
+                executeInsertAlert(contentValues);
+
+            }
+        } catch (Exception e) {
+            Log.e(TAG, e.toString(), e);
         }
     }
 
@@ -569,6 +635,15 @@ public class ClientProcessor {
         return id;
     }
 
+    private void executeInsertAlert(ContentValues contentValues) {
+        Alert alert = new Alert(contentValues.getAsString(AlertRepository.ALERTS_CASEID_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_SCHEDULE_NAME_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_VISIT_CODE_COLUMN), AlertStatus.from(contentValues.getAsString(AlertRepository.ALERTS_STATUS_COLUMN)), contentValues.getAsString(AlertRepository.ALERTS_STARTDATE_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_EXPIRYDATE_COLUMN));
+        AlertService alertService = org.ei.opensrp.Context.getInstance().alertService();
+        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(alert.caseId(), alert.visitCode());
+        if(alerts.isEmpty()) {
+            alertService.create(alert);
+        }
+    }
+
     private Cursor queryTable(String sql, String tableName) {
         CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
         Cursor c = cr.queryTable(sql);
@@ -612,12 +687,12 @@ public class ClientProcessor {
         return values;
     }
 
-    private long getEventDate(Object eventDate){
-        if(eventDate instanceof Long){
+    private long getEventDate(Object eventDate) {
+        if (eventDate instanceof Long) {
             return (Long) eventDate;
-        }else{
+        } else {
             Date date = DateUtil.toDate(eventDate);
-            if(date != null)
+            if (date != null)
                 return date.getTime();
         }
         return new Date().getTime();

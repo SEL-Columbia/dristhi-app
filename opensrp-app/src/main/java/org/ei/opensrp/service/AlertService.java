@@ -21,6 +21,12 @@ public class AlertService {
         }
     }
 
+    public void create(Alert alert) {
+        if (alert != null) {
+            repository.createAlert(alert);
+        }
+    }
+
     public void close(Action action) {
         repository.markAlertAsClosed(action.caseID(), action.get("visitCode"), action.get("completionDate"));
     }

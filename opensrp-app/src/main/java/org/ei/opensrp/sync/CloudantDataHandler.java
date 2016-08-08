@@ -300,11 +300,11 @@ public class CloudantDataHandler {
                 try {
                     if (lhs.getLong("version") > rhs.getLong("version")) {
                         return 1;
-                    }else if(lhs.getLong("version") < rhs.getLong("version")){
+                    } else if (lhs.getLong("version") < rhs.getLong("version")) {
                         return -1;
                     }
                     return 0;
-                }catch (JSONException e){
+                } catch (JSONException e) {
                     return 0;
                 }
             }
@@ -312,6 +312,22 @@ public class CloudantDataHandler {
 
         allSharedPreferences.saveLastSyncDate(lastSyncDate.getTime());
         return events;
+    }
+
+    public List<JSONObject> getAlerts() throws Exception {
+
+        List<JSONObject> alerts = new ArrayList<JSONObject>();
+        SQLiteDatabase db = loadDatabase();
+        Cursor cursor = db.rawQuery("select json, updated_at from revs where updated_at is not null and json not like '{}' and json like '%\"type\":\"Action\"%' order by updated_at asc ", null);
+
+
+        while (cursor.moveToNext()) {
+            byte[] json = (cursor.getBlob(0));
+            String jsonAlertStr = new String(json, "UTF-8");
+            JSONObject jsonObectAlert = new JSONObject(jsonAlertStr);
+            alerts.add(jsonObectAlert);
+        }
+        return alerts;
     }
 
     //load cloudant db
