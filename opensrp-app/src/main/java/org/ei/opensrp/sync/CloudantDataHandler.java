@@ -21,6 +21,7 @@ import com.cloudant.sync.query.QueryResult;
 
 import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.R;
+import org.ei.opensrp.clientandeventmodel.DateUtil;
 import org.ei.opensrp.clientandeventmodel.processor.ClientsProcessor;
 import org.ei.opensrp.clientandeventmodel.processor.EventsProcessor;
 import org.ei.opensrp.cloudant.models.Client;
@@ -264,37 +265,35 @@ public class CloudantDataHandler {
         return null;
     }
 
-    public List<JSONObject> getUpdatedEvents() throws Exception {
+    public List<JSONObject> getUpdatedEventsAndAlerts(Date lastSyncDate) throws Exception {
 
-        SharedPreferences preferences  = PreferenceManager.getDefaultSharedPreferences(mContext);
-        AllSharedPreferences allSharedPreferences = new AllSharedPreferences(preferences);
-        long lastSyncTimeStamp = allSharedPreferences.fetchLastSyncDate(0);
-        Date lastSyncDate = new Date(lastSyncTimeStamp);
+        String lastSyncString = DateUtil.yyyyMMddHHmmss.format(lastSyncDate);
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String lastSyncString = df.format(lastSyncDate);
-
-        List<JSONObject> events = new ArrayList<JSONObject>();
+        List<JSONObject> eventAndAlerts = new ArrayList<JSONObject>();
         SQLiteDatabase db = loadDatabase();
-        Cursor cursor = db.rawQuery("select json, updated_at from revs where updated_at is not null and updated_at > \"" + lastSyncString + "\" and json not like '{}' and json like '%\"type\":\"Event\"%' order by updated_at asc ", null);
+        Cursor cursor = db.rawQuery("select json, updated_at from revs where updated_at is not null and updated_at > \"" + lastSyncString + "\" and json not like '{}' and ( json like '%\"type\":\"Event\"%' or json like '%\"type\":\"Action\"%' ) order by updated_at asc ", null);
 
+        try {
+            while (cursor.moveToNext()) {
+                byte[] json = (cursor.getBlob(0));
+                String jsonEventStr = new String(json, "UTF-8");
+                JSONObject jsonObectEventOrAlert = new JSONObject(jsonEventStr);
+                eventAndAlerts.add(jsonObectEventOrAlert);
 
-        while (cursor.moveToNext()) {
-            byte[] json = (cursor.getBlob(0));
-
-            try {
-                lastSyncDate = df.parse(cursor.getString(1));
-            } catch (ParseException e) {
-                e.printStackTrace();
+                if(cursor.isLast()) {
+                    try {
+                        lastSyncDate.setTime(DateUtil.yyyyMMddHHmmss.parse(cursor.getString(1)).getTime());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-
-            String jsonEventStr = new String(json, "UTF-8");
-            JSONObject jsonObectEvent = new JSONObject(jsonEventStr);
-            events.add(jsonObectEvent);
+        }finally {
+            cursor.close();
         }
 
-        //TODO Use couch db filters
-        Collections.sort(events, new Comparator<JSONObject>() {
+
+        Collections.sort(eventAndAlerts, new Comparator<JSONObject>() {
             @Override
             public int compare(JSONObject lhs, JSONObject rhs) {
                 try {
@@ -310,8 +309,7 @@ public class CloudantDataHandler {
             }
         });
 
-        allSharedPreferences.saveLastSyncDate(lastSyncDate.getTime());
-        return events;
+        return eventAndAlerts;
     }
 
     public List<JSONObject> getAlerts() throws Exception {
