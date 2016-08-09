@@ -280,7 +280,7 @@ public class CloudantDataHandler {
                 JSONObject jsonObectEventOrAlert = new JSONObject(jsonEventStr);
                 eventAndAlerts.add(jsonObectEventOrAlert);
 
-                if(cursor.isLast()) {
+                if (cursor.isLast()) {
                     try {
                         lastSyncDate.setTime(DateUtil.yyyyMMddHHmmss.parse(cursor.getString(1)).getTime());
                     } catch (ParseException e) {
@@ -288,8 +288,12 @@ public class CloudantDataHandler {
                     }
                 }
             }
-        }finally {
+        } finally {
             cursor.close();
+        }
+
+        if(eventAndAlerts.isEmpty()){
+            return eventAndAlerts;
         }
 
 
@@ -297,14 +301,21 @@ public class CloudantDataHandler {
             @Override
             public int compare(JSONObject lhs, JSONObject rhs) {
                 try {
+                    if (!lhs.has("version")) {
+                        return 1;
+                    }
+                    if (!rhs.has("version")) {
+                        return -1;
+                    }
                     if (lhs.getLong("version") > rhs.getLong("version")) {
                         return 1;
-                    } else if (lhs.getLong("version") < rhs.getLong("version")) {
+                    }
+                    if (lhs.getLong("version") < rhs.getLong("version")) {
                         return -1;
                     }
                     return 0;
                 } catch (JSONException e) {
-                    return 0;
+                    return -1;
                 }
             }
         });
@@ -435,7 +446,7 @@ public class CloudantDataHandler {
     /**
      * <p>Returns all {@code Client} documents in the datastore.</p>
      */
-    public List<Client> allClients()  {
+    public List<Client> allClients() {
         int nDocs = this.mDatastore.getDocumentCount();
         List<BasicDocumentRevision> all = this.mDatastore.getAllDocuments(0, nDocs, true);
         List<Client> clients = new ArrayList<Client>();
