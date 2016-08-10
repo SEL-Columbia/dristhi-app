@@ -136,7 +136,7 @@ public class NativeHomeActivity extends SecuredActivity {
     private void updateRegisterCounts(HomeContext homeContext) {
         CommonPersonObjectController childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
                 context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"namaBayi","anak","tanggalLahir", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+                context.personObjectClientsCache(),"namaBayi","anak","jenisKelamin", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
 
 

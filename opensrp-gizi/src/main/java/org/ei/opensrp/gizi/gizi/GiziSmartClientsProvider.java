@@ -112,7 +112,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
                        childview.setTag(smartRegisterClient);
         }
         else {
-            if (pc.getDetails().get("jenisKelamin").equalsIgnoreCase("male") || pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")) {
+            if (pc.getDetails().get("jenisKelamin").equalsIgnoreCase("male") || pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki" )|| pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki")){
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
             } else {
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_girl_infant));
@@ -121,7 +121,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
         viewHolder.parentname.setText(pc.getDetails().get("namaOrtu")!=null?pc.getDetails().get("namaOrtu"):"");
-        viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):"");
+        viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin")!=null?pc.getDetails().get("jenisKelamin"):"");
         viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
         viewHolder.height.setText(context.getString(R.string.height) +  " "+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-")+" Cm");

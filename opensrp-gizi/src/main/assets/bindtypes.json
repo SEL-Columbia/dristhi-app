@@ -1,6 +1,12 @@
 {
   "bindobjects": [
     {
+      "name": "kartu_ibu",
+      "columns": [
+
+      ]
+    },
+    {
       "name": "ibu",
       "columns": [
 

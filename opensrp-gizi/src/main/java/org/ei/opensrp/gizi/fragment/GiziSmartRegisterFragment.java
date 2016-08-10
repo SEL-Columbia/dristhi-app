@@ -174,7 +174,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
         if (controller == null) {
             controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
                     context.allBeneficiaries(), context.listCache(),
-                    context.personObjectClientsCache(), "namaBayi", "anak", "tanggalLahir",
+                    context.personObjectClientsCache(), "namaBayi", "anak", "jenisKelamin",
                     CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails);
 
         }
