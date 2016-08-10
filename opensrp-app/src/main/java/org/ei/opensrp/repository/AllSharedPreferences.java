@@ -50,6 +50,10 @@ public class AllSharedPreferences {
         return   preferences.getString(HOST,host);
     }
 
+    public void saveHost(String host){
+        preferences.edit().putString(HOST,host).commit();
+    }
+
     public Integer fetchPort(Integer port){
 
         return  Integer.parseInt( preferences.getString(PORT,""+port));
@@ -62,6 +66,10 @@ public class AllSharedPreferences {
 
     public void saveLastSyncDate(long lastSyncDate){
         preferences.edit().putLong(LAST_SYNC_DATE, lastSyncDate).commit();
+    }
+
+    public void savePort(Integer port){
+        preferences.edit().putString(PORT,String.valueOf(port)).commit();
     }
 
 }
