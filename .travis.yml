@@ -43,3 +43,6 @@ script:
   # so we'll just if the project compiles 
   #- ./gradlew connectedAndroidTest
   - ./gradlew clean assembleDebug
+
+notifications:
+  slack: opensrp:x2sS539cm2TamL3g0kPERUhb
