@@ -321,7 +321,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         try {
             databaseCursor.close();
         }catch (Exception e){
-
+            Log.e("Cursor Close Error",e.getMessage());
         }
         getActivity().finish();
     }
@@ -480,6 +480,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         try{
             databaseCursor.close();
         }catch (Exception e){
+            Log.e("Cursor Close Error",e.getMessage());
 
         }
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
