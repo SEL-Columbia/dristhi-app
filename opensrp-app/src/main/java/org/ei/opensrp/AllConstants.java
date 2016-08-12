@@ -330,7 +330,7 @@ public class AllConstants {
         public static final String DOCUMENTS_REPLICATED = "DOCUMENTS_REPLICATED";
         public static final String BATCHES_REPLICATED = "BATCHES_REPLICATED";
         public static final String COUCHDB_PORT = "5984";
-        public static final String COUCH_DATABASE_NAME = "a-opensrp";
+        public static final String COUCH_DATABASE_NAME = "test_db";
 
 
 
@@ -339,7 +339,7 @@ public class AllConstants {
         // These pull filters must be defined in your couchDB server for them to work
         // Filters
         public static final String FILTER_LOCATION_ID = "locationId";
-        public static final String FILTER_PROVIDER = "provider";
+        public static final String FILTER_PROVIDER = "providerId";
 
         //filter by team e.g. team = user1,user2,user3
         public static final String FILTER_TEAM = "team";

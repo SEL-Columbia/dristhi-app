@@ -79,7 +79,7 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event {
     public static final String event_type_key = "eventType";
     public static final String event_id_key = "eventId";
     public static final String obs_key = "obs";
-    public static final String provider_key = "provider";
+    public static final String provider_key = "providerId";
     public static final String version_key = "version";
 
     public static Event fromRevision(BasicDocumentRevision rev) throws ParseException {

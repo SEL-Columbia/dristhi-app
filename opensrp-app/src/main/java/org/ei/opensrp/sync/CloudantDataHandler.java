@@ -58,7 +58,7 @@ public class CloudantDataHandler {
     private static CloudantDataHandler instance;
 
     private static final String baseEntityIdJSONKey = "baseEntityId";
-    List<String> fields = Arrays.asList("obs", "eventDate", "eventType", "formSubmissionId", "provider", baseEntityIdJSONKey, "type", "entityType", "version");
+    List<String> fields = Arrays.asList("obs", "eventDate", "eventType", "formSubmissionId", "providerId", baseEntityIdJSONKey, "type", "entityType", "version");
 
     private static final String DATASTORE_MANGER_DIR = "data";
     private static final String DATASTORE_NAME = "opensrp_clients_events";
