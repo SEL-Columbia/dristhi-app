@@ -338,7 +338,7 @@
     <string name="hhid_gob_elco_label">HHID-Government:</string>
     <string name="elco_details_mauza">Mauza:</string>
     <string name="elco_alphabetical_sort">Alphabetical (Woman name)</string>
-    <string name="anc_nbnf_due_date">BIRTH NOTIFICATION</string>
+    <string name="anc_nbnf_due_date">BNF DUE</string>
     <string name="anc_reminder_status">ANC STATUS</string>
     <string name="anc_edd_ga">EDD &amp; GA</string>
     <string name="anc_reminder_due">ANC DUE</string>

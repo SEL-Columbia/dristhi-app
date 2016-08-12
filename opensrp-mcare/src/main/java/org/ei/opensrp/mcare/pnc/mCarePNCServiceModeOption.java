@@ -43,7 +43,7 @@ public class mCarePNCServiceModeOption extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{10,6,5,7,6,6};
+                return new int[]{12,6,5,6,6,5};
             }
 
             @Override
