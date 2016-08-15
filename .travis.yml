@@ -27,6 +27,11 @@ android:
     # if you need to run emulator(s) during your tests
     - sys-img-armeabi-v7a-android-19
 
+
+addons:
+  apt_packages:
+  - pandoc
+
 before_script:
   # Emulator Management: Create, Start and Wait
   - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
@@ -43,6 +48,10 @@ script:
   # so we'll just if the project compiles 
   #- ./gradlew connectedAndroidTest
   - ./gradlew opensrp-mcare:connectedAndroidTest -i --stacktrace
+
+
+after_failure:
+- pandoc opensrp-mcare/build/reports/androidTests/connected/index.html -t plain
 
 #notifications:
 #  slack:
