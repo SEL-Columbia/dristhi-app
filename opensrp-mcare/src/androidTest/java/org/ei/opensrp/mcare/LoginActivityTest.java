@@ -29,42 +29,23 @@ public class LoginActivityTest {
     @Test
     public void testUsernameExist() {
 
-        try {
-            Espresso.onView(ViewMatchers.withId(R.id.login_userNameText))
-                    .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-        } catch (NoMatchingViewException e) {
-            e.printStackTrace();
-            // View exists but not displayed
-            Espresso.onView(ViewMatchers.withId(R.id.login_userNameText)).check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())));
-        }
+        // View exists but not displayed
+        Espresso.onView(ViewMatchers.withId(R.id.login_userNameText)).check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())));
+
     }
 
     @Test
     public void testPasswordExist() {
 
-        try {
-            Espresso.onView(ViewMatchers.withId(R.id.login_passwordText))
-                    .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-        } catch (NoMatchingViewException e) {
-            e.printStackTrace();
-
-            // View exists but not displayed
-            Espresso.onView(ViewMatchers.withId(R.id.login_passwordText)).check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())));
-        }
+        // View exists but not displayed
+        Espresso.onView(ViewMatchers.withId(R.id.login_passwordText)).check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())));
     }
 
     @Test
     public void testLoginExist() {
 
-        try {
-            Espresso.onView(ViewMatchers.withId(R.id.login_loginButton))
-                    .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-        } catch (NoMatchingViewException e) {
-            e.printStackTrace();
-
-            // View exists but not displayed
-            Espresso.onView(ViewMatchers.withId(R.id.login_loginButton)).check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())));
-        }
+        // View exists but not displayed
+        Espresso.onView(ViewMatchers.withId(R.id.login_loginButton)).check(ViewAssertions.matches(Matchers.not(ViewMatchers.isDisplayed())));
 
     }
 
