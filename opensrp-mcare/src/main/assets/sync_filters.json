@@ -2,7 +2,7 @@
   "_id": "_design/cloudantFilter",
   "filters": {
     "locationId": "function(doc, req){ if ( doc.locationId != req.query.locationId ){ return false; } return true; }",
-    "provider": "function(doc, req){ if(doc.type != \"Event\"){ return true; } if ( doc.providerId == req.query.providerId ){ return true; } return false; }",
-    "team": "function(doc, req){ if(doc.type != \"Event\"){ return true; } if(req.query.team){ if(req.query.team.split(',').indexOf(doc.provider) >= 0){ return true; } } return false; }"
+    "providerId": "function(doc, req){ if(doc.type != \"Event\"){ return true; } if ( doc.providerId == req.query.providerId ){ return true; } return false; }",
+    "team": "function(doc, req){ if(doc.type != \"Event\"){ return true; } if(req.query.team){ if(req.query.team.split(',').indexOf(doc.providerId) >= 0){ return true; } } return false; }"
   }
 }

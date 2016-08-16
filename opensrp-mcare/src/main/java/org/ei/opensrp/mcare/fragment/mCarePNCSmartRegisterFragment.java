@@ -374,7 +374,6 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     }
 
     public void initializeQueries() {
-        Cursor cursor = null;
         try {
             CommonRepository commonRepository = context.commonrepository("ec_pnc");
             setTablename("ec_pnc");
@@ -389,10 +388,10 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             queryBUilder.addCondition(filters);
             Sortqueries = sortByAlertmethod();
             currentquery = queryBUilder.orderbyCondition(Sortqueries);
-            cursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+            databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
 
             mCarePNCSmartClientsProvider hhscp = new mCarePNCSmartClientsProvider(getActivity(), clientActionHandler, context.alertService());
-            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), cursor, hhscp, new CommonRepository("ec_pnc", new String[]{"FWWOMFNAME", "FWPSRLMP", "JiVitAHHID", "GOBHHID", "FWBNFSTS", "FWBNFDTOO"}));
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, hhscp, new CommonRepository("ec_pnc", new String[]{"FWWOMFNAME", "FWPSRLMP", "JiVitAHHID", "GOBHHID", "FWBNFSTS", "FWBNFDTOO"}));
             clientsView.setAdapter(clientAdapter);
             updateSearchView();
             refresh();

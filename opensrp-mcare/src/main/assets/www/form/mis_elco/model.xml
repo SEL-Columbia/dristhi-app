@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <MIS_ELCO encounter_type="MIS ELCO" id="MIS_ELCO" version="201605300446">
+    <MIS_ELCO encounter_type="MIS ELCO" id="MIS_ELCO" version="201606210648">
       <formhub>
         <uuid/>
       </formhub>
@@ -12,6 +12,7 @@
       <FWMISELCODATE openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWPMISBIRTHCTRL openmrs_entity="concept" openmrs_entity_id="374AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWMISBCSOURCE openmrs_entity="concept" openmrs_entity_id="163361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <current_formStatus/>
       <meta>
         <instanceID/>
       </meta>

@@ -376,7 +376,6 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                 "Left Join alerts as alerts2 on alerts2.caseID = ec_mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
     public void initializeQueries(){
-        Cursor cursor = null;
         try {
             CommonRepository commonRepository = context.commonrepository("ec_mcaremother");
             setTablename("ec_mcaremother");
@@ -391,9 +390,9 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             queryBUilder.addCondition(filters);
             Sortqueries = sortByFWWOMFNAME();
             currentquery  = queryBUilder.orderbyCondition(Sortqueries);
-            cursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+            databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
             mCareANCSmartClientsProvider hhscp = new mCareANCSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), cursor, hhscp, new CommonRepository("ec_mcaremother",new String []{"FWWOMFNAME","FWWOMNID","mauza","FWPSRLMP","JiVitAHHID","GOBHHID"}));
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, hhscp, new CommonRepository("ec_mcaremother",new String []{"FWWOMFNAME","FWWOMNID","mauza","FWPSRLMP","JiVitAHHID","GOBHHID"}));
             clientsView.setAdapter(clientAdapter);
             updateSearchView();
             refresh();

@@ -225,7 +225,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
                 "Else alerts.status END ASC";
     }
     public void initializeQueries(){
-        Cursor cursor = null;
         try {
             CommonRepository commonRepository = context.commonrepository("ec_household");
             setTablename("ec_household");
@@ -248,10 +247,12 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
 //        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-            cursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+
+            databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
             HouseHoldSmartClientsProvider hhscp = new HouseHoldSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), cursor, hhscp, new CommonRepository("ec_household",new String []{"FWHOHFNAME", "FWGOBHHID","FWJIVHHID","existing_Mauzapara", "ELCO"}));
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, hhscp, new CommonRepository("ec_household",new String []{"FWHOHFNAME", "FWGOBHHID","FWJIVHHID","existing_Mauzapara", "ELCO"}));
             clientsView.setAdapter(clientAdapter);
+
 //        setServiceModeViewDrawableRight(null);
             updateSearchView();
             refresh();

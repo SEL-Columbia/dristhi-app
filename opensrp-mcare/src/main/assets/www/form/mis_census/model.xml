@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <MIS_Census encounter_type="MIS Census" id="MIS_Census" version="201605300448">
+    <MIS_Census encounter_type="MIS Census" id="MIS_Census" version="201606210651">
       <formhub>
         <uuid/>
       </formhub>
@@ -10,7 +10,7 @@
       <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
       <start openmrs_entity="concept" openmrs_entity_id="163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <end openmrs_entity="concept" openmrs_entity_id="163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <FWMISELCODATE openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <FWMISCENDATE openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWCOUPLENUM openmrs_entity="person_attribute" openmrs_entity_id="CoupleNum"/>
       <FWTETSTAT openmrs_entity="concept" openmrs_entity_id="160701AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWMARRYDATE openmrs_entity="concept" openmrs_entity_id="163299AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -18,6 +18,7 @@
         <FWCHILDALIVEB openmrs_entity="concept" openmrs_entity_id="1825AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
         <FWCHILDALIVEG openmrs_entity="concept" openmrs_entity_id="1825AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       </num_children_alive_grp>
+      <current_formStatus/>
       <meta>
         <instanceID/>
       </meta>
