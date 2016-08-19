@@ -3,7 +3,7 @@
   "columns": [{
     "column_name": "caseID",
     "json_mapping": {
-      "field": "caseID"
+      "field": "baseEntityId"
     }
   }, {
     "column_name": "scheduleName",
