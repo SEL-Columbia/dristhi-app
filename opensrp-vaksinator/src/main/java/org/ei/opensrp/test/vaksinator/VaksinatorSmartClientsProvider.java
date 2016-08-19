@@ -124,11 +124,11 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
                 ? R.drawable.child_boy_infant
                 : R.drawable.child_girl_infant));
 
-        viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : "-");
-        viewHolder.motherName.setText(pc.getDetails().get("nama_orang_tua")!=null?pc.getDetails().get("nama_orang_tua"):"-");
-        viewHolder.village.setText(pc.getDetails().get("village")!=null?pc.getDetails().get("village"):"-");
-        viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):"-");
-        viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : "-");
+        viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : " ");
+        viewHolder.motherName.setText(pc.getDetails().get("nama_orang_tua")!=null?pc.getDetails().get("nama_orang_tua"):" ");
+        viewHolder.village.setText(pc.getDetails().get("village")!=null?pc.getDetails().get("village"):" ");
+        viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):" ");
+        viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : " ");
 
         viewHolder.hb1.setText(hasDate(pc,"hb0")
                 ? pc.getDetails().get("hb0")
@@ -139,11 +139,11 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
                         :("-")
         );
 
-        viewHolder.pol1.setText(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1"):"-");
-        viewHolder.pol2.setText(pc.getDetails().get("dpt_1_pol_2")!=null ? pc.getDetails().get("dpt_1_pol_2"):"-");
-        viewHolder.pol3.setText(pc.getDetails().get("dpt_2_pol_3")!=null ? pc.getDetails().get("dpt_2_pol_3"):"-");
-        viewHolder.pol4.setText(pc.getDetails().get("dpt_3_pol_4_ipv") != null ? pc.getDetails().get("dpt_3_pol_4_ipv") : "-");
-        viewHolder.ipv.setText(pc.getDetails().get("imunisasi_campak") != null ? pc.getDetails().get("imunisasi_campak") : "-");
+        viewHolder.pol1.setText(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1"):" ");
+        viewHolder.pol2.setText(pc.getDetails().get("dpt_1_pol_2")!=null ? pc.getDetails().get("dpt_1_pol_2"):" ");
+        viewHolder.pol3.setText(pc.getDetails().get("dpt_2_pol_3")!=null ? pc.getDetails().get("dpt_2_pol_3"):" ");
+        viewHolder.pol4.setText(pc.getDetails().get("dpt_3_pol_4_ipv") != null ? pc.getDetails().get("dpt_3_pol_4_ipv") : " ");
+        viewHolder.ipv.setText(pc.getDetails().get("imunisasi_campak") != null ? pc.getDetails().get("imunisasi_campak") : " ");
 
         // logo visibility, sometimes the variable contains blank string that count as not null, so we must check both the availability and content
         boolean a = hasDate(pc,"hb0") || hasDate(pc,"hb1_kurang_7_hari") || hasDate(pc,"hb1_lebih_7_hari");
@@ -171,8 +171,16 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
     //  updating icon
     private void setIcon(ImageView image, String detailID,int value, int indicator, CommonPersonObjectClient pc) {
-        image.setImageResource(pc.getDetails().get(detailID) != null ? pc.getDetails().get(detailID).length() == 10
-                ? R.drawable.ic_yes_large : value > indicator ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
+        image.setImageResource(pc.getDetails().get(detailID) != null
+                ? pc.getDetails().get(detailID).length() == 10
+                    ? R.drawable.ic_yes_large
+                    : value > indicator
+                        ? R.drawable.ic_no
+                        : R.drawable.abc_list_divider_mtrl_alpha
+                : value > indicator
+                    ? R.drawable.ic_no
+                    : R.drawable.abc_list_divider_mtrl_alpha
+        );
     }
 
     /*
