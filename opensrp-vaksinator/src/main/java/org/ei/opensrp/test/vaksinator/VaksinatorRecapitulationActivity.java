@@ -49,7 +49,7 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
         final LocalVariable var = new LocalVariable();
 
         var.setDefaultSpinnerDate();
-        System.out.println(((org.ei.opensrp.commonregistry.CommonPersonObjectClient)clients.get(4)).getDetails().toString());
+        //System.out.println(((org.ei.opensrp.commonregistry.CommonPersonObjectClient)clients.get(4)).getDetails().toString());
         var.monthSpinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     @Override
