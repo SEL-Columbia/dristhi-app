@@ -44,12 +44,11 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
                 otherContext.allBeneficiaries(), otherContext.listCache(),
                 otherContext.personObjectClientsCache(), "nama_bayi", "anak", "nama_orang_tua", org.ei.opensrp.commonregistry.CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
-
         final org.ei.opensrp.commonregistry.CommonPersonObjectClients clients = data.getClients();
         final LocalVariable var = new LocalVariable();
 
         var.setDefaultSpinnerDate();
-        //System.out.println(((org.ei.opensrp.commonregistry.CommonPersonObjectClient)clients.get(4)).getDetails().toString());
+
         var.monthSpinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -176,6 +175,4 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
             subtitle.setText("Rekapitulasi Imunisasi di Desa "+villageName+" Bulan "+monthSpinner.getSelectedItem().toString()+" Tahun "+yearSpinner.getSelectedItem().toString());
         }
     }
-
-
 }

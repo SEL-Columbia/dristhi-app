@@ -2,6 +2,12 @@ package org.ei.opensrp.mcare;
 
 import android.app.ActionBar;
 import android.content.Intent;
+<<<<<<< HEAD
+=======
+import android.os.AsyncTask;
+import android.util.Log;
+import android.database.Cursor;
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -10,17 +16,38 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ei.opensrp.Context;
+<<<<<<< HEAD
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+=======
+import org.ei.opensrp.commonregistry.CommonPersonObject;
+import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.commonregistry.ControllerFilterMap;
+import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.mcare.anc.anc1handler;
 import org.ei.opensrp.mcare.anc.anc2handler;
 import org.ei.opensrp.mcare.anc.anc3handler;
 import org.ei.opensrp.mcare.anc.anc4handler;
 import org.ei.opensrp.mcare.anc.nbnfhandler;
+<<<<<<< HEAD
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
 import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
+=======
+import org.ei.opensrp.mcare.child.encc1handler;
+import org.ei.opensrp.mcare.child.encc2handler;
+import org.ei.opensrp.mcare.child.encc3handler;
+import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
+import org.ei.opensrp.mcare.elco.PSRFHandler;
+import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
+import org.ei.opensrp.mcare.household.HouseholdCensusDueDateSort;
+import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
+import org.ei.opensrp.mcare.pnc.pnc1handler;
+import org.ei.opensrp.mcare.pnc.pnc2handler;
+import org.ei.opensrp.mcare.pnc.pnc3handler;
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
@@ -31,6 +58,11 @@ import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import static android.widget.Toast.LENGTH_SHORT;
 import static java.lang.String.valueOf;
 import static org.ei.opensrp.event.Event.ACTION_HANDLED;
@@ -83,6 +115,19 @@ public class NativeHomeActivity extends SecuredActivity {
     private TextView pncRegisterClientCountView;
     private TextView fpRegisterClientCountView;
     private TextView childRegisterClientCountView;
+<<<<<<< HEAD
+=======
+    public static CommonPersonObjectController hhcontroller;
+    public static CommonPersonObjectController anccontroller;
+    public static CommonPersonObjectController elcocontroller;
+    public static CommonPersonObjectController childcontroller;
+    public static CommonPersonObjectController pnccontroller;
+    public static int hhcount;
+    private int elcocount;
+    private int anccount;
+    private int pnccount;
+    private int childcount;
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     @Override
     protected void onCreation() {
@@ -92,12 +137,27 @@ public class NativeHomeActivity extends SecuredActivity {
         initialize();
         DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
         DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
+<<<<<<< HEAD
         context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form",new CensusEnrollmentHandler());
+=======
+        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         context.formSubmissionRouter().getHandlerMap().put("psrf_form", new PSRFHandler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_1", new anc1handler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_2", new anc2handler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_3", new anc3handler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_4", new anc4handler());
+<<<<<<< HEAD
+=======
+        context.formSubmissionRouter().getHandlerMap().put("pnc_reminder_visit_1", new pnc1handler());
+        context.formSubmissionRouter().getHandlerMap().put("pnc_reminder_visit_2", new pnc2handler());
+        context.formSubmissionRouter().getHandlerMap().put("pnc_reminder_visit_3", new pnc3handler());
+        context.formSubmissionRouter().getHandlerMap().put("encc_visit_1", new encc1handler());
+        context.formSubmissionRouter().getHandlerMap().put("encc_visit_2", new encc2handler());
+        context.formSubmissionRouter().getHandlerMap().put("encc_visit_3", new encc3handler());
+
+
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         context.formSubmissionRouter().getHandlerMap().put("birthnotificationpregnancystatusfollowup", new nbnfhandler());
 
     }
@@ -131,8 +191,11 @@ public class NativeHomeActivity extends SecuredActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         LoginActivity.setLanguage();
+<<<<<<< HEAD
 //        getActionBar().setBackgroundDrawable(getReso
 // urces().getDrawable(R.color.action_bar_background));
+=======
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     }
 
     @Override
@@ -154,6 +217,7 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void updateRegisterCounts(HomeContext homeContext) {
+<<<<<<< HEAD
         CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
@@ -173,6 +237,34 @@ public class NativeHomeActivity extends SecuredActivity {
         pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
         fpRegisterClientCountView.setText(valueOf(elcocontroller.getClients().size()));
         childRegisterClientCountView.setText(valueOf(childcontroller.getClients().size()));
+=======
+               SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household", "household.FWHOHFNAME NOT Null and household.FWHOHFNAME != ''"));
+        hhcountcursor.moveToFirst();
+        hhcount= hhcountcursor.getInt(0);
+        hhcountcursor.close();
+        Cursor elcocountcursor = context.commonrepository("elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("elco","elco.FWWOMFNAME NOT NULL and elco.FWWOMFNAME !=''  AND elco.details  LIKE '%\"FWELIGIBLE\":\"1\"%'"));
+        elcocountcursor.moveToFirst();
+        elcocount= elcocountcursor.getInt(0);
+        elcocountcursor.close();
+        Cursor anccountcursor = context.commonrepository("mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcaremother","(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME is not NUll  AND mcaremother.FWWOMFNAME != \"\"      AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'"));
+        anccountcursor.moveToFirst();
+        anccount= anccountcursor.getInt(0);
+        anccountcursor.close();
+        Cursor pnccountcursor = context.commonrepository("mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcaremother","mcaremother.Is_PNC = '1' and mcaremother.FWWOMFNAME is not NUll  AND mcaremother.FWWOMFNAME != \"\"      AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'"));
+        pnccountcursor.moveToFirst();
+        pnccount= pnccountcursor.getInt(0);
+        pnccountcursor.close();
+        Cursor childcountcursor = context.commonrepository("mcarechild").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcarechild"," mcarechild.FWBNFGEN is not NUll "));
+        childcountcursor.moveToFirst();
+        childcount= childcountcursor.getInt(0);
+        childcountcursor.close();
+        pncRegisterClientCountView.setText(valueOf(pnccount));
+        ecRegisterClientCountView.setText(valueOf(hhcount));
+        ancRegisterClientCountView.setText(valueOf(anccount));
+        fpRegisterClientCountView.setText(valueOf(elcocount));
+        childRegisterClientCountView.setText(valueOf(childcount));
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     }
 
     @Override
@@ -267,11 +359,19 @@ public class NativeHomeActivity extends SecuredActivity {
                     break;
 
                 case R.id.btn_pnc_register:
+<<<<<<< HEAD
 //                    navigationController.startPNCSmartRegistry();
                     break;
 
                 case R.id.btn_child_register:
 //                    navigationController.startChildSmartRegistry();
+=======
+                    navigationController.startPNCSmartRegistry();
+                    break;
+
+                case R.id.btn_child_register:
+                    navigationController.startChildSmartRegistry();
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     break;
 
                 case R.id.btn_fp_register:
@@ -296,4 +396,49 @@ public class NativeHomeActivity extends SecuredActivity {
             }
         }
     };
+<<<<<<< HEAD
+=======
+    class pncControllerfiltermap extends ControllerFilterMap {
+
+        @Override
+        public boolean filtermapLogic(CommonPersonObject commonPersonObject) {
+            boolean returnvalue = false;
+            if(commonPersonObject.getDetails().get("FWWOMVALID") != null){
+                if(commonPersonObject.getDetails().get("FWWOMVALID").equalsIgnoreCase("1")){
+                    returnvalue = true;
+                    if(commonPersonObject.getDetails().get("Is_PNC")!=null){
+                        if(commonPersonObject.getDetails().get("Is_PNC").equalsIgnoreCase("1")){
+                            returnvalue = true;
+                        }
+
+                    }else{
+                        returnvalue = false;
+                    }
+                }
+            }
+            Log.v("the filter", "" + returnvalue);
+            return returnvalue;
+        }
+    }
+    class ancControllerfiltermap extends ControllerFilterMap{
+
+        @Override
+        public boolean filtermapLogic(CommonPersonObject commonPersonObject) {
+            boolean returnvalue = false;
+            if(commonPersonObject.getDetails().get("FWWOMVALID") != null){
+                if(commonPersonObject.getDetails().get("FWWOMVALID").equalsIgnoreCase("1")){
+                    returnvalue = true;
+                    if(commonPersonObject.getDetails().get("Is_PNC")!=null){
+                        if(commonPersonObject.getDetails().get("Is_PNC").equalsIgnoreCase("1")){
+                            returnvalue = false;
+                        }
+
+                    }
+                }
+            }
+            Log.v("the filter",""+returnvalue);
+            return returnvalue;
+        }
+    }
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 }

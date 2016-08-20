@@ -1,0 +1,62 @@
+{
+  "form_data_definition_version": "1",
+  "form": {
+    "default_bind_path": "/model/instance/MIS_Census",
+    "bind_type": "elco",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "version",
+        "bind": "/model/instance/MIS_Census/version"
+      },
+      {
+        "name": "changes",
+        "bind": "/model/instance/MIS_Census/changes"
+      },
+      {
+        "name": "existing_location",
+        "bind": "/model/instance/MIS_Census/existing_location",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "today",
+        "bind": "/model/instance/MIS_Census/today"
+      },
+      {
+        "name": "start",
+        "bind": "/model/instance/MIS_Census/start"
+      },
+      {
+        "name": "end",
+        "bind": "/model/instance/MIS_Census/end"
+      },
+      {
+        "name": "FWMISCENSUSDATE",
+        "bind": "/model/instance/MIS_Census/FWMISELCODATE"
+      },
+      {
+        "name": "FWCOUPLENUM",
+        "bind": "/model/instance/MIS_Census/FWCOUPLENUM"
+      },
+      {
+        "name": "FWTETSTAT",
+        "bind": "/model/instance/MIS_Census/FWTETSTAT"
+      },
+      {
+        "name": "FWMARRYDATE",
+        "bind": "/model/instance/MIS_Census/FWMARRYDATE"
+      },
+      {
+        "name": "FWCHILDALIVEB",
+        "bind": "/model/instance/MIS_Census/num_children_alive_grp/FWCHILDALIVEB"
+      },
+      {
+        "name": "FWCHILDALIVEG",
+        "bind": "/model/instance/MIS_Census/num_children_alive_grp/FWCHILDALIVEG"
+      }
+    ]
+  }
+}

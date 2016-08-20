@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,14 +57,15 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
     public static final String DIALOG_TAG = "dialog";
     public static final List<? extends DialogOption> DEFAULT_FILTER_OPTIONS = asList(new AllClientsFilter());
 
-    private ListView clientsView;
-    private ProgressBar clientsProgressView;
-    private TextView serviceModeView;
-    private TextView appliedVillageFilterView;
-    private TextView appliedSortView;
-    private EditText searchView;
-    private View searchCancelView;
-    private TextView titleLabelView;
+
+    public ListView clientsView;
+    public ProgressBar clientsProgressView;
+    public TextView serviceModeView;
+    public TextView appliedVillageFilterView;
+    public TextView appliedSortView;
+    public EditText searchView;
+    public View searchCancelView;
+    public TextView titleLabelView;
 
     public EditText getSearchView() {
         return searchView;
@@ -213,7 +216,8 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
         setReportDates(reportMonthStartView);
     }
 
-    private void setupSearchView(View view) {
+
+    public void setupSearchView(View view) {
         searchView = (EditText) view.findViewById(R.id.edt_search);
         searchView.setHint(getNavBarOptionsProvider().searchHint());
         searchView.addTextChangedListener(new TextWatcher() {
@@ -311,7 +315,9 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
         populateClientListHeaderView(serviceModeOption.getHeaderProvider(), view);
     }
 
-    protected void onSortSelection(SortOption sortBy) {
+
+    public void onSortSelection(SortOption sortBy) {
+        Log.v("he pressed this",sortBy.name());
         currentSortOption = sortBy;
         appliedSortView.setText(sortBy.name());
         clientsAdapter
@@ -319,7 +325,8 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
                         currentSearchFilter, currentSortOption);
     }
 
-    protected void onFilterSelection(FilterOption filter) {
+
+    public void onFilterSelection(FilterOption filter) {
         currentVillageFilter = filter;
         appliedVillageFilterView.setText(filter.name());
         clientsAdapter
@@ -439,15 +446,16 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
             }
         }
 
-        private void gotoNextPage() {
-            clientsAdapter.nextPage();
-            clientsAdapter.notifyDataSetChanged();
-        }
+    }
 
-        private void goBackToPreviousPage() {
-            clientsAdapter.previousPage();
-            clientsAdapter.notifyDataSetChanged();
-        }
+    public void gotoNextPage() {
+        clientsAdapter.nextPage();
+        clientsAdapter.notifyDataSetChanged();
+    }
+
+    public void goBackToPreviousPage() {
+        clientsAdapter.previousPage();
+        clientsAdapter.notifyDataSetChanged();
     }
 
     public class NavBarActionsHandler implements View.OnClickListener {

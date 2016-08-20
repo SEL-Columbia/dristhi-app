@@ -33,24 +33,40 @@ public class ElcoServiceModeOption extends ServiceModeOption {
         return new ClientsHeaderProvider() {
             @Override
             public int count() {
+<<<<<<< HEAD
                 return 4;
+=======
+                return 5;
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             }
 
             @Override
             public int weightSum() {
+<<<<<<< HEAD
                 return 20;
+=======
+                return 40;
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             }
 
             @Override
             public int[] weights() {
+<<<<<<< HEAD
                 return new int[]{6,5,3,6};
+=======
+                return new int[]{12,9,5,7,7};
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             }
 
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
                         R.string.elco_profile, R.string.elco_unique_id, R.string.elco_lmp,
+<<<<<<< HEAD
                         R.string.elco_psrf_due_date};
+=======
+                        R.string.elco_psrf_due_date,R.string.mis_elco_due};
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             }
         };
     }

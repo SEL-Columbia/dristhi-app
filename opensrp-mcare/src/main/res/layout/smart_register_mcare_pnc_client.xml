@@ -55,34 +55,63 @@
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
+<<<<<<< HEAD
             android:layout_marginLeft="5dp">
+=======
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1">
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+<<<<<<< HEAD
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
                 android:id="@+id/name" />
+=======
+                style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
+                android:text="Medium Text"
+                android:id="@+id/name"
+                android:layout_weight="1" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+<<<<<<< HEAD
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
                 android:textSize="12sp"
                 android:id="@+id/spousename" />
+=======
+                style="@style/CustomFontTextViewStyle.noPadding"
+                android:text="Medium Text"
+                android:textSize="12sp"
+                android:id="@+id/spousename"
+                android:layout_weight="1" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
+<<<<<<< HEAD
                 android:layout_height="wrap_content">
+=======
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
+<<<<<<< HEAD
                     style="@style/CustomFontTextViewStyle.ListView.Small"
+=======
+                    style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     android:text="Medium Text"
                     android:textSize="12sp"
                     android:textColor="@color/alert_urgent_red"
@@ -92,13 +121,22 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text=","
+<<<<<<< HEAD
                     android:id="@+id/textView" />
+=======
+                    android:id="@+id/textView"
+                    android:textSize="12sp" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
+<<<<<<< HEAD
                     style="@style/CustomFontTextViewStyle.ListView.Small"
+=======
+                    style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     android:text="Medium Text"
                     android:textColor="@color/light_blue"
                     android:textSize="12sp"
@@ -113,22 +151,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+<<<<<<< HEAD
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
                 android:textSize="14sp"
                 android:id="@+id/village" />
+=======
+                style="@style/CustomFontTextViewStyle.noPadding"
+                android:text="Medium Text"
+                android:textSize="14sp"
+                android:id="@+id/village"
+                android:layout_weight="1" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         </LinearLayout>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+<<<<<<< HEAD
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:text="00"
             android:id="@+id/age"
             android:layout_weight="1"
             android:gravity="right"
             android:layout_marginRight="1dp" />
+=======
+            style="@style/CustomFontTextViewStyle"
+            android:text="00"
+            android:id="@+id/age"
+            android:gravity="right"
+            android:layout_marginRight="1dp"
+            android:textSize="12sp" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     </LinearLayout>
 
@@ -148,20 +203,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
+<<<<<<< HEAD
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:id="@+id/nid"
             android:layout_marginTop="3dp"
             android:layout_marginLeft="10dp"
             android:textSize="12sp" />
+=======
+            style="@style/CustomFontTextViewStyle.noPadding"
+            android:id="@+id/nid"
+            android:textSize="12sp"
+            android:layout_marginLeft="2dp" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:text="New Text"
             android:id="@+id/brid"
             android:layout_marginLeft="10dp"
             android:textSize="12sp" />
+=======
+            style="@style/CustomFontTextViewStyle.noPadding"
+            android:text="New Text"
+            android:id="@+id/brid"
+            android:textSize="12sp"
+            android:layout_marginLeft="2dp" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     </LinearLayout>
 
     <ImageView
@@ -173,12 +243,20 @@
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
+<<<<<<< HEAD
         android:layout_weight="1.5">
+=======
+        android:layout_weight="1.25">
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
+<<<<<<< HEAD
             style="@style/CustomFontTextViewStyle.ListView.Medium"
+=======
+            style="@style/CustomFontTextViewStyle"
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             android:id="@+id/deliveryoutcome" />
     </LinearLayout>
 
@@ -191,15 +269,26 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
+<<<<<<< HEAD
         android:layout_weight="1.5">
+=======
+        android:layout_weight="1.75">
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="New Button"
+<<<<<<< HEAD
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:id="@+id/date_of_outcome"
             android:background="@color/status_bar_text_almost_white" />
+=======
+            style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
+            android:id="@+id/date_of_outcome"
+            android:textSize="12sp"
+            android:layout_margin="1dp" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     </LinearLayout>
 
@@ -218,6 +307,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="wrap_content">
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -229,20 +319,40 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_margin="1dp"
                 android:textColor="@color/alert_complete_green" />
+=======
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:id="@+id/pnc1tick"
+                android:src="@mipmap/doneintime"
+                />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+<<<<<<< HEAD
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:text="pnc1text"
                 android:id="@+id/pnc1text"
                 android:layout_margin="1dp" />
+=======
+                style="@style/CustomFontTextViewStyle.noPadding"
+                android:text="pnc1text"
+                android:id="@+id/pnc1text"
+                android:layout_margin="1dp"
+                android:textSize="12sp" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="wrap_content">
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -254,21 +364,41 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_margin="1dp"
                 android:textColor="@color/alert_complete_green" />
+=======
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:id="@+id/pnc2tick"
+                android:src="@mipmap/doneintime"
+                />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+<<<<<<< HEAD
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:text="anc1text"
                 android:id="@+id/pnc2text"
                 android:layout_margin="1dp" />
+=======
+                style="@style/CustomFontTextViewStyle.noPadding"
+                android:text="anc1text"
+                android:id="@+id/pnc2text"
+                android:layout_margin="1dp"
+                android:textSize="12sp" />
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="wrap_content">
 
             <TextView
@@ -282,10 +412,24 @@
                 android:textColor="@color/alert_complete_green" />
 
             <TextView
+=======
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:id="@+id/pnc3tick"
+                android:src="@mipmap/doneintime"
+                 />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="pnc1text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+<<<<<<< HEAD
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:id="@+id/anc3text"
                 android:layout_margin="1dp" />
@@ -317,6 +461,15 @@
                 android:layout_margin="1dp" />
 
         </LinearLayout>
+=======
+                style="@style/CustomFontTextViewStyle.noPadding"
+                android:id="@+id/pnc3text"
+                android:layout_margin="1dp"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     </LinearLayout>
 
     <ImageView
@@ -335,7 +488,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="New Button"
+<<<<<<< HEAD
             style="@style/CustomFontTextViewStyle.ListView.Medium"
+=======
+            style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             android:id="@+id/pnc_reminder_due_date"
             android:background="@color/status_bar_text_almost_white" />
     </LinearLayout>

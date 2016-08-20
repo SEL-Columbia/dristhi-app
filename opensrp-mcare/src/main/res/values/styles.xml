@@ -8,6 +8,16 @@
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
     </style>
+<<<<<<< HEAD
+=======
+    <style name="CustomFontTextViewStyle.noPadding" parent="@android:style/Widget.TextView">
+        <item name="fontVariant">regular</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     <style name="CustomFontTextViewStyle.ListView.Normal" parent="CustomFontTextViewStyle">
         <item name="fontVariant">medium</item>

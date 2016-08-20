@@ -14,6 +14,10 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.form.FormSubmission;
+<<<<<<< HEAD
+=======
+import org.ei.opensrp.mcare.LoginActivity;
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoSearchOption;
@@ -138,6 +142,19 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     public void startRegistration() {
     }
+<<<<<<< HEAD
+=======
+    @Override
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+        try {
+            LoginActivity.setLanguage();
+        }catch (Exception e){
+
+        }
+        super.showFragmentDialog(dialogOptionModel, tag);
+    }
+
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     public DialogOption[] getEditOptions() {
         return new DialogOption[]{
@@ -216,7 +233,10 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
                 if (displayFormFragment != null) {
                     displayFormFragment.setFormData(data);
+<<<<<<< HEAD
                     displayFormFragment.loadFormData();
+=======
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     displayFormFragment.setRecordId(entityId);
                     displayFormFragment.setFieldOverides(metaData);
                 }
@@ -320,7 +340,10 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
+<<<<<<< HEAD
                     displayFormFragment.loadFormData();
+=======
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 }
 
                 displayFormFragment.setRecordId(null);
@@ -398,7 +421,11 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
+<<<<<<< HEAD
                 dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"existing_Mauzapara", ElcoMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+=======
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"existing_Mauzapara",name));
+>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
             }
         }
