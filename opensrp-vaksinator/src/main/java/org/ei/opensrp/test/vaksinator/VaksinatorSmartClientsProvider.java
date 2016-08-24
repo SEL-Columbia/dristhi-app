@@ -1,11 +1,13 @@
 package org.ei.opensrp.test.vaksinator;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,6 +33,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 /**
  * Created by user on 2/12/15.
  */
+
 public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvider {
 
     private final LayoutInflater inflater;
@@ -61,19 +64,30 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
     @Override
     public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
-
         ViewHolder viewHolder;
+        CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
+//        FrameLayout [] frameLayout = {
+//                (FrameLayout)convertView.findViewById(R.id.hb0Layout),
+//                (FrameLayout)convertView.findViewById(R.id.bcgLayout),
+//                (FrameLayout)convertView.findViewById(R.id.hb1Layout),
+//                (FrameLayout)convertView.findViewById(R.id.hb2Layout),
+//                (FrameLayout)convertView.findViewById(R.id.hb3Layout),
+//                (FrameLayout)convertView.findViewById(R.id.campakLayout)
+//        };
+
         if (convertView == null){
-           convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_jurim_client, null);
+            convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_jurim_client, null);
             viewHolder = new ViewHolder();
             viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
 
+//----------Child Basic Information
             viewHolder.name = (TextView)convertView.findViewById(R.id.name);
             viewHolder.motherName = (TextView)convertView.findViewById(R.id.motherName);
             viewHolder.village = (TextView)convertView.findViewById(R.id.village);
             viewHolder.age = (TextView)convertView.findViewById(R.id.age);
             viewHolder.gender = (TextView)convertView.findViewById(R.id.gender);
 
+//----------TextView to show immunization date
             viewHolder.hb1 = (TextView)convertView.findViewById(R.id.hb1);
             viewHolder.pol1 = (TextView)convertView.findViewById(R.id.pol1);
             viewHolder.pol2 = (TextView)convertView.findViewById(R.id.pol2);
@@ -81,21 +95,13 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
             viewHolder.pol4 = (TextView)convertView.findViewById(R.id.pol4);
             viewHolder.ipv = (TextView)convertView.findViewById(R.id.ipv);
 
-            // checklist logo
+//----------Checklist logo
             viewHolder.hbLogo = (ImageView)convertView.findViewById(R.id.hbLogo);
             viewHolder.pol1Logo = (ImageView)convertView.findViewById(R.id.pol1Logo);
             viewHolder.pol2Logo = (ImageView)convertView.findViewById(R.id.pol2Logo);
             viewHolder.pol3Logo = (ImageView)convertView.findViewById(R.id.pol3Logo);
             viewHolder.pol4Logo = (ImageView)convertView.findViewById(R.id.pol4Logo);
             viewHolder.ipvLogo = (ImageView)convertView.findViewById(R.id.measlesLogo);
-
-            // alert logo
-//            viewHolder.hbAlert = (ImageView) convertView.findViewById(R.id.hbAlert);
-//            viewHolder.pol1Alert = (ImageView) convertView.findViewById(R.id.pol1Alert);
-//            viewHolder.pol2Alert = (ImageView) convertView.findViewById(R.id.pol2Alert);
-//            viewHolder.pol3Alert = (ImageView) convertView.findViewById(R.id.pol3Alert);
-//            viewHolder.pol4Alert = (ImageView) convertView.findViewById(R.id.pol4Alert);
-//            viewHolder.measlesAlert = (ImageView) convertView.findViewById(R.id.measlesAlert);
 
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
@@ -111,7 +117,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.follow_up.setTag(smartRegisterClient);
         viewHolder.profilelayout.setOnClickListener(onClickListener);
         viewHolder.profilelayout.setTag(smartRegisterClient);
-        CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
+
         if (iconPencilDrawable == null) {
             iconPencilDrawable = context.getResources().getDrawable(R.drawable.ic_pencil);
         }
@@ -145,25 +151,17 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         viewHolder.pol4.setText(pc.getDetails().get("dpt_3_pol_4_ipv") != null ? pc.getDetails().get("dpt_3_pol_4_ipv") : " ");
         viewHolder.ipv.setText(pc.getDetails().get("imunisasi_campak") != null ? pc.getDetails().get("imunisasi_campak") : " ");
 
-        // logo visibility, sometimes the variable contains blank string that count as not null, so we must check both the availability and content
+//----- logo visibility, sometimes the variable contains blank string that count as not null, so we must check both the availability and content
         boolean a = hasDate(pc,"hb0") || hasDate(pc,"hb1_kurang_7_hari") || hasDate(pc,"hb1_lebih_7_hari");
-        viewHolder.hbLogo.setImageResource(a ? R.drawable.ic_yes_large : umur > 0 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha);
+        viewHolder.hbLogo.setImageResource(a ? R.drawable.ic_yes_large : umur > 0 ? R.drawable.vacc_late : umur == 0 ? R.mipmap.vacc_due : R.drawable.abc_list_divider_mtrl_alpha);
         setIcon(viewHolder.pol1Logo,"bcg_pol_1",umur,1,pc);
         setIcon(viewHolder.pol2Logo,"dpt_1_pol_2",umur,2,pc);
         setIcon(viewHolder.pol3Logo,"dpt_2_pol_3",umur,3,pc);
         setIcon(viewHolder.pol4Logo,"dpt_3_pol_4_ipv",umur,4,pc);
         setIcon(viewHolder.ipvLogo,"imunisasi_campak",umur,9,pc);
 
-//        viewHolder.pol1Logo.setImageResource(pc.getDetails().get("bcg_pol_1")!=null ? pc.getDetails().get("bcg_pol_1").length()==10
-//                ? R.drawable.ic_yes_large : umur > 1 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
-//        viewHolder.pol2Logo.setImageResource(pc.getDetails().get("dpt_1_pol_2") != null ? pc.getDetails().get("dpt_1_pol_2").length() == 10
-//                ? R.drawable.ic_yes_large : umur > 2 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
-//        viewHolder.pol3Logo.setImageResource(pc.getDetails().get("dpt_2_pol_3")!=null ? pc.getDetails().get("dpt_2_pol_3").length()==10
-//                ? R.drawable.ic_yes_large : umur > 3 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
-//        viewHolder.pol4Logo.setImageResource(pc.getDetails().get("dpt_3_pol_4_ipv") != null ? pc.getDetails().get("dpt_3_pol_4_ipv").length() == 10
-//                ? R.drawable.ic_yes_large : umur > 4 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
-//        viewHolder.ipvLogo.setImageResource(pc.getDetails().get("imunisasi_campak")!=null ? pc.getDetails().get("imunisasi_campak").length()>4
-//                ? R.drawable.ic_yes_large : umur > 9 ? R.drawable.ic_no : R.drawable.abc_list_divider_mtrl_alpha : R.drawable.abc_list_divider_mtrl_alpha);
+//        if(umur<5 || umur==9)
+//            setBackgroundColorOf(frameLayout[umur<5? 5:umur]);
 
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
@@ -172,15 +170,60 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
     //  updating icon
     private void setIcon(ImageView image, String detailID,int value, int indicator, CommonPersonObjectClient pc) {
         image.setImageResource(pc.getDetails().get(detailID) != null
-                ? pc.getDetails().get(detailID).length() == 10
+                ? pc.getDetails().get(detailID).contains("-")
                     ? R.drawable.ic_yes_large
                     : value > indicator
-                        ? R.drawable.ic_no
-                        : R.drawable.abc_list_divider_mtrl_alpha
+                        ? R.drawable.vacc_late
+                        : value == indicator
+                            ? R.drawable.vacc_due
+                            : R.drawable.abc_list_divider_mtrl_alpha
                 : value > indicator
-                    ? R.drawable.ic_no
-                    : R.drawable.abc_list_divider_mtrl_alpha
+                    ? R.drawable.vacc_late
+                    : value == indicator
+                        ? R.drawable.vacc_due
+                        : R.drawable.abc_list_divider_mtrl_alpha
         );
+
+    }
+
+    private void setView(View convertView, ViewHolder viewHolder){
+        if (convertView == null){
+            convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_jurim_client, null);
+            viewHolder = new ViewHolder();
+            viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
+
+//----------Child Basic Information
+            viewHolder.name = (TextView)convertView.findViewById(R.id.name);
+            viewHolder.motherName = (TextView)convertView.findViewById(R.id.motherName);
+            viewHolder.village = (TextView)convertView.findViewById(R.id.village);
+            viewHolder.age = (TextView)convertView.findViewById(R.id.age);
+            viewHolder.gender = (TextView)convertView.findViewById(R.id.gender);
+
+//----------TextView to show immunization date
+            viewHolder.hb1 = (TextView)convertView.findViewById(R.id.hb1);
+            viewHolder.pol1 = (TextView)convertView.findViewById(R.id.pol1);
+            viewHolder.pol2 = (TextView)convertView.findViewById(R.id.pol2);
+            viewHolder.pol3 = (TextView)convertView.findViewById(R.id.pol3);
+            viewHolder.pol4 = (TextView)convertView.findViewById(R.id.pol4);
+            viewHolder.ipv = (TextView)convertView.findViewById(R.id.ipv);
+
+//----------Checklist logo
+            viewHolder.hbLogo = (ImageView)convertView.findViewById(R.id.hbLogo);
+            viewHolder.pol1Logo = (ImageView)convertView.findViewById(R.id.pol1Logo);
+            viewHolder.pol2Logo = (ImageView)convertView.findViewById(R.id.pol2Logo);
+            viewHolder.pol3Logo = (ImageView)convertView.findViewById(R.id.pol3Logo);
+            viewHolder.pol4Logo = (ImageView)convertView.findViewById(R.id.pol4Logo);
+            viewHolder.ipvLogo = (ImageView)convertView.findViewById(R.id.measlesLogo);
+
+            viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
+            viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
+            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
+
+            convertView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
+        }
     }
 
     /*
@@ -193,8 +236,13 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
     * true - if the variable contains date
     * false - if the variable null or less than 10 character length
     * */
+
     private boolean hasDate(CommonPersonObjectClient pc, String variable){
         return pc.getDetails().get(variable)!=null && pc.getDetails().get(variable).length()==10;
+    }
+
+    private void setBackgroundColorOf(FrameLayout layout){
+        layout.setBackgroundColor(Color.parseColor("#4e59f9"));
     }
 
     //  month age calculation
@@ -268,6 +316,5 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
          public ImageView pol4Alert;
          public ImageView measlesAlert;
      }
-
 }
 
