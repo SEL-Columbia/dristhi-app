@@ -103,7 +103,8 @@
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1.6">
+            android:layout_weight="1.6"
+            android:id="@+id/hb0Layout">
 
             <TextView
                 android:layout_width="match_parent"
@@ -120,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/hbLogo"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_yes_large" />
+                android:background="@drawable/abc_list_divider_mtrl_alpha" />
 
         </FrameLayout>
 
@@ -133,7 +134,8 @@
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1.6">
+            android:layout_weight="1.6"
+            android:id="@+id/bcgLayout">
 
             <TextView
                 android:layout_width="match_parent"
@@ -150,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/pol1Logo"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_yes_large" />
+                android:background="@drawable/abc_list_divider_mtrl_alpha" />
 
         </FrameLayout>
 
@@ -163,7 +165,8 @@
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1.6" >
+            android:layout_weight="1.6"
+            android:id="@+id/hb1Layout">
 
             <TextView
                 android:layout_width="match_parent"
@@ -180,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/pol2Logo"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_yes_large" />
+                android:background="@drawable/abc_list_divider_mtrl_alpha" />
 
         </FrameLayout>
 
@@ -193,7 +196,8 @@
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1.6" >
+            android:layout_weight="1.6"
+            android:id="@+id/hb2Layout">
 
             <TextView
                 android:layout_width="match_parent"
@@ -210,7 +214,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/pol3Logo"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_yes_large" />
+                android:background="@drawable/abc_list_divider_mtrl_alpha" />
 
         </FrameLayout>
 
@@ -223,7 +227,8 @@
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1.6" >
+            android:layout_weight="1.6"
+            android:id="@+id/hb3Layout">
 
             <TextView
                 android:layout_width="match_parent"
@@ -240,7 +245,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/pol4Logo"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_yes_large" />
+                android:background="@drawable/abc_list_divider_mtrl_alpha" />
 
         </FrameLayout>
 
@@ -253,7 +258,8 @@
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1.6" >
+            android:layout_weight="1.6"
+            android:id="@+id/campakLayout">
 
             <TextView
                 android:layout_width="match_parent"
@@ -270,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/measlesLogo"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_yes_large" />
+                android:background="@drawable/abc_list_divider_mtrl_alpha" />
 
         </FrameLayout>
 
