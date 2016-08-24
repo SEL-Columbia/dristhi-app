@@ -84,7 +84,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="2.5"
+        android:layout_weight="2"
         android:layout_gravity="center">
 
         <LinearLayout
@@ -123,6 +123,14 @@
                 android:id="@+id/txt_child_weight"
                 android:textSize="16sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tidak Datang Posyandu"
+                android:id="@+id/absen"
+                style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
+                android:textColor="#fa0303" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -136,7 +144,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="2.5"
+        android:layout_weight="3"
         android:layout_gravity="center" >
 
         <LinearLayout
@@ -146,7 +154,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:layout_weight="1.28">
+            android:layout_weight="1.75">
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -185,9 +193,93 @@
 
     <LinearLayout
         android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/weightSymbol"
+                android:src="@drawable/ic_yes_large"
+                android:layout_marginTop="3dp"
+                android:layout_gravity="center|right" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/heightSymbol"
+                android:src="@drawable/ic_remove"
+                android:layout_gravity="center|right"
+                android:layout_marginTop="3dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/vitASymbol"
+                android:src="@drawable/ic_remove"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="0.7">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Weight"
+                android:id="@+id/weightSchedule"
+                android:layout_marginLeft="5dp"
+                style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines" />
+
+            <TextView
+                style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Height"
+                android:id="@+id/heightSchedule"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Vitamin A"
+                android:id="@+id/vitASchedule"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="@dimen/smart_register_client_divider_height"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageView"
+        android:src="@color/smart_register_client_divider_color" />
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="2">
+        android:layout_weight="1">
+
         <ImageButton
             android:id="@+id/btn_edit"
             android:layout_width="@dimen/list_edit_icon_view_width"
