@@ -377,6 +377,7 @@
     <string name="polio3">DPT-HB2/Pol3</string>
     <string name="polio4">DPT3/Pol4/IPV</string>
     <string name="ipv">Campak</string>
+    <string name="vaccBlue">#4e59f9</string>
 
     <string name="month_list_prompt">Bulan</string>
     <string-array name="month_list_entry">
