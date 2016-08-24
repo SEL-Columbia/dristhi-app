@@ -66,14 +66,6 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
     public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder;
         CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
-//        FrameLayout [] frameLayout = {
-//                (FrameLayout)convertView.findViewById(R.id.hb0Layout),
-//                (FrameLayout)convertView.findViewById(R.id.bcgLayout),
-//                (FrameLayout)convertView.findViewById(R.id.hb1Layout),
-//                (FrameLayout)convertView.findViewById(R.id.hb2Layout),
-//                (FrameLayout)convertView.findViewById(R.id.hb3Layout),
-//                (FrameLayout)convertView.findViewById(R.id.campakLayout)
-//        };
 
         if (convertView == null){
             convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_jurim_client, null);
@@ -160,9 +152,6 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         setIcon(viewHolder.pol4Logo,"dpt_3_pol_4_ipv",umur,4,pc);
         setIcon(viewHolder.ipvLogo,"imunisasi_campak",umur,9,pc);
 
-//        if(umur<5 || umur==9)
-//            setBackgroundColorOf(frameLayout[umur<5? 5:umur]);
-
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
     }
@@ -239,10 +228,6 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
     private boolean hasDate(CommonPersonObjectClient pc, String variable){
         return pc.getDetails().get(variable)!=null && pc.getDetails().get(variable).length()==10;
-    }
-
-    private void setBackgroundColorOf(FrameLayout layout){
-        layout.setBackgroundColor(Color.parseColor("#4e59f9"));
     }
 
     //  month age calculation
