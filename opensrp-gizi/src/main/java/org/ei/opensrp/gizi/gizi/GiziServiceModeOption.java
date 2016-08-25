@@ -33,7 +33,7 @@ public class GiziServiceModeOption extends ServiceModeOption {
         return new ClientsHeaderProvider() {
             @Override
             public int count() {
-                return 4;
+                return 5;
             }
 
             @Override
@@ -43,13 +43,13 @@ public class GiziServiceModeOption extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{30,25,25,20};
+                return new int[]{30,25,20,15,10};
             }
 
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
-                        R.string.child_profile,R.string.anthopometri,R.string.status,R.string.header_edit
+                        R.string.child_profile,R.string.anthopometri,R.string.status,R.string.visitSchedule,R.string.header_edit
                         };
             }
         };
