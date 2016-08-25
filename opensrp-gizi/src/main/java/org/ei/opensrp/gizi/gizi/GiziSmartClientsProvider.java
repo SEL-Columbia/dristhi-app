@@ -27,7 +27,9 @@ import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
+import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -87,6 +89,11 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.underweight = (TextView)convertView.findViewById(R.id.txt_child_underweight);
             viewHolder.stunting_status = (TextView)convertView.findViewById(R.id.txt_child_stunting);
             viewHolder.wasting_status = (TextView)convertView.findViewById(R.id.txt_child_wasting);
+
+            viewHolder.absentAlert = (TextView)convertView.findViewById(R.id.absen);
+            viewHolder.vitALogo = (ImageView)convertView.findViewById(R.id.vitASymbol);
+            viewHolder.vitAText = (TextView)convertView.findViewById(R.id.vitASchedule);
+
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
             convertView.setTag(viewHolder);
@@ -146,14 +153,14 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
                 double heigh_for_age = zScore.countHFA(gender, dateOfBirth, lastVisitDate, length);
                 String hfaStatus = zScore.getHFAZScoreClassification(heigh_for_age);
 
-                double wight_for_lenght = 0.0;
+                double weight_for_lenght = 0.0;
                 String wflStatus = "";
                 if (zScore.dailyUnitCalculationOf(dateOfBirth, lastVisitDate) < 730) {
-                    wight_for_lenght = zScore.countWFL(gender, weight, length);
+                    weight_for_lenght = zScore.countWFL(gender, weight, length);
                 } else {
-                    wight_for_lenght = zScore.countWFH(gender, weight, length);
+                    weight_for_lenght = zScore.countWFH(gender, weight, length);
                 }
-                wflStatus = zScore.getWFLZScoreClassification(wight_for_lenght);
+                wflStatus = zScore.getWFLZScoreClassification(weight_for_lenght);
                 HashMap <String,String> z_score = new HashMap<String,String>();
                 z_score.put("underweight",wfaStatus);
                 z_score.put("stunting",hfaStatus);
@@ -170,12 +177,9 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
                 org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(), z_score);
             }
 
-
-
             viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+(pc.getDetails().get("stunting")!=null?pc.getDetails().get("stunting"):"-"));
             viewHolder.underweight.setText(context.getString(R.string.underweight) +  " "+(pc.getDetails().get("underweight")!=null?pc.getDetails().get("underweight"):"-"));
             viewHolder.wasting_status.setText(context.getString(R.string.wasting) +   " "+(pc.getDetails().get("wasting")!=null?pc.getDetails().get("wasting"):"-"));
-
         }
         else{
 
@@ -204,6 +208,11 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
         String tanggal_sebelumnya = (pc.getDetails().get("kunjunganSebelumnya") != null ? pc.getDetails().get("kunjunganSebelumnya") : "0");
 
+
+//------VISIBLE AND INVISIBLE COMPONENT
+        viewHolder.absentAlert.setVisibility(isLate(tanggal) ? View.VISIBLE:View.INVISIBLE);
+        viewHolder.setVitAVisibility();
+
         if(pc.getDetails().get("tanggalPenimbangan") != null) {
             //KMS calculation
             KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir, berat, beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
@@ -218,17 +227,28 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             kms.put("garis_kuning",calculator.cekBawahKuning(data));
             kms.put("nutrition_status",status);
             org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),kms);
-            
-
         }
-     
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
     }
     CommonPersonObjectController householdelcocontroller;
 
+    private boolean isLate(String lastVisitDate){
+        if (lastVisitDate.length()<6) {
+            return true;
+        }
 
+        String currentDate[] = new SimpleDateFormat("yyyy-MM").format(new java.util.Date()).substring(0,7).split("-");
+        return  ((Integer.parseInt(currentDate[0]) - Integer.parseInt(lastVisitDate.substring(0,4)))*12 +
+                (Integer.parseInt(currentDate[1]) - Integer.parseInt(lastVisitDate.substring(5,7)))) > 1;
+    }
 
+    private void setVitAVisibility(ViewHolder viewHolder){
+        int month = Integer.parseInt(new SimpleDateFormat("MM").format(new java.util.Date()));
+        System.out.println(month);
+        viewHolder.vitALogo.setVisibility(month == 2 || month == 7 ? View.VISIBLE : View.INVISIBLE);
+        viewHolder.vitALogo.setVisibility(month == 2 || month == 7 ? View.VISIBLE : View.INVISIBLE);
+    }
 
     @Override
     public SmartRegisterClients getClients() {
@@ -274,6 +294,16 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
          TextView underweight;
          TextView stunting_status;
          TextView wasting_status;
+         TextView absentAlert;
+         ImageView vitALogo;
+         TextView vitAText;
+
+         public void setVitAVisibility(){
+             int month = Integer.parseInt(new SimpleDateFormat("MM").format(new java.util.Date()));
+             int visibility = month == 2 || month == 8 ? View.VISIBLE : View.INVISIBLE;
+             vitALogo.setVisibility(visibility);
+             vitAText.setVisibility(visibility);
+         }
      }
 
 
