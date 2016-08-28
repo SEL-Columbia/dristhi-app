@@ -71,6 +71,10 @@ public class BidanHomeActivity extends SecuredActivity {
     };
 
     private TextView ecRegisterClientCountView;
+    private TextView kartuIbuANCRegisterClientCountView;
+    private TextView kartuIbuPNCRegisterClientCountView;
+    private TextView anakRegisterClientCountView;
+    private TextView kohortKbCountView;
     public static CommonPersonObjectController kicontroller;
     public static CommonPersonObjectController anccontroller;
     public static CommonPersonObjectController kbcontroller;
@@ -97,13 +101,20 @@ public class BidanHomeActivity extends SecuredActivity {
 
     private void setupViews() {
         findViewById(R.id.btn_kartu_ibu_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_kartu_ibu_anc_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_kartu_ibu_pnc_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_anak_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_kohort_kb_register).setOnClickListener(onRegisterStartListener);
 
 
         findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
         findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
 
         ecRegisterClientCountView = (TextView) findViewById(R.id.txt_kartu_ibu_register_client_count);
-
+        kartuIbuANCRegisterClientCountView = (TextView) findViewById(R.id.txt_kartu_ibu_anc_register_client_count);
+        kartuIbuPNCRegisterClientCountView = (TextView) findViewById(R.id.txt_kartu_ibu_pnc_register_client_count);
+        anakRegisterClientCountView = (TextView) findViewById(R.id.txt_anak_client_count);
+        kohortKbCountView = (TextView) findViewById(R.id.txt_kohort_kb_register_count);
     }
 
     private void initialize() {
@@ -147,8 +158,34 @@ public class BidanHomeActivity extends SecuredActivity {
         kicount= kicountcursor.getInt(0);
         kicountcursor.close();
 
-        ecRegisterClientCountView.setText(valueOf(kicount));
+        Cursor kbcountcursor = context.commonrepository("kartu_ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("kartu_ibu", "kartu_ibu.isClosed NOT Null and kartu_ibu.isClosed != ''"));
+        kbcountcursor.moveToFirst();
+        kbcount= kbcountcursor.getInt(0);
+        kbcountcursor.close();
 
+
+        Cursor anccountcursor = context.commonrepository("ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ibu", "ibu.type NOT Null and ibu.type = 'anc'"));
+        anccountcursor.moveToFirst();
+        anccount= anccountcursor.getInt(0);
+        anccountcursor.close();
+
+
+        Cursor pnccountcursor = context.commonrepository("ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ibu", "ibu.type NOT Null and ibu.type = 'pnc'"));
+        pnccountcursor.moveToFirst();
+        pnccount= pnccountcursor.getInt(0);
+        pnccountcursor.close();
+
+
+        Cursor childcountcursor = context.commonrepository("anak").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("anak", "anak.isClosed = 'false'"));
+        childcountcursor.moveToFirst();
+        anccount= childcountcursor.getInt(0);
+        childcountcursor.close();
+
+        ecRegisterClientCountView.setText(valueOf(kicount));
+        kartuIbuANCRegisterClientCountView.setText(valueOf(anccount));
+        kartuIbuPNCRegisterClientCountView.setText(valueOf(pnccount));
+        anakRegisterClientCountView.setText(valueOf(childcount));
+        kohortKbCountView.setText(valueOf(kbcount));
     }
 
     @Override
