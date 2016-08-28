@@ -1,9 +1,28 @@
 {
-    "bindobjects":
- [
+  "bindobjects": [
     {
-      "name": "person",
-      "columns" : [ {"name": "age"}]
+      "name": "bidan",
+      "columns": [
+        {"name":"bidanId"}
+      ]
+    },
+    {
+      "name": "kartu_ibu",
+      "columns": [
+        {"name":"dusun"}, {"name":"isClosed"},{"name":"isOutOfArea"}
+      ]
+    },
+    {
+      "name": "ibu",
+      "columns": [
+        {"name":"kartuIbuId"},{"name":"type"},{"name":"referenceDate"},{"name":"isClosed"},{"name":"bidanId"}
+      ]
+    },
+    {
+      "name": "anak",
+      "columns": [
+        {"name":"ibuCaseId"},{"name":"tanggalLahirAnak"},{"name":"jenisKelamin"},{"name":"isClosed"},{"name":"photoPath"}
+      ]
     }
- ]
+  ]
 }
