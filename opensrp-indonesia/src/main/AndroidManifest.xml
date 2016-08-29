@@ -20,7 +20,11 @@
         <activity android:name=".BidanHomeActivity"
             android:theme="@style/AppTheme"
             android:screenOrientation="landscape"/>
-
+        <activity android:name=".kartu_ibu.NativeKISmartRegisterActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppThemeNoActionBarAndTitle"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="landscape"/>
 
     </application>
 

@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 
-
+import org.ei.opensrp.indonesia.kartu_ibu.NativeKISmartRegisterActivity;
 import org.ei.opensrp.view.controller.ANMController;
 
 
@@ -21,7 +21,7 @@ public class NavigationControllerINA extends org.ei.opensrp.view.controller.Navi
     }
     @Override
     public void startECSmartRegistry() {
-        //   activity.startActivity(new Intent(activity, TestSmartRegisterActivity.class));
+           activity.startActivity(new Intent(activity, NativeKISmartRegisterActivity.class));
         ///  activity.startActivity(new Intent(activity, HouseHoldSmartRegisterActivity.class));
         SharedPreferences sharedPreferences = getDefaultSharedPreferences(this.activity);
 

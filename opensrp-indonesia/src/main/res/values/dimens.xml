@@ -61,6 +61,8 @@
     <dimen name="gplsa_item_width">22dp</dimen>
     <dimen name="fp_register_gplsa_item_width">22dp</dimen>
     <dimen name="fp_modal_header_text_height">45dp</dimen>
+    <dimen name="obsetri_item_width">60dp</dimen>
+
 
     <dimen name="anc_list_hb_ifa_service_mode_hb_details_indicator_view_width">15dp</dimen>
     <dimen name="anc_list_hb_ifa_service_mode_hb_details_indicator_view_height">10dp</dimen>

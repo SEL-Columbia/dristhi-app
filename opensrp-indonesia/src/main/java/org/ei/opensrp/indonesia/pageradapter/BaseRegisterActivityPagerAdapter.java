@@ -1,4 +1,4 @@
-package org.ei.opensrp.indonesia.pageadapter;
+package org.ei.opensrp.indonesia.pageradapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
