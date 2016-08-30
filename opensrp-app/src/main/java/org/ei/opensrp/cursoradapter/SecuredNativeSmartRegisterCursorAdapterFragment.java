@@ -71,6 +71,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     private String tablename;
     public String countSelect;
     public Cursor databaseCursor;
+    public String joinTable="";
     public String getTablename() {
         return tablename;
     }
@@ -484,19 +485,35 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
 
         }
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
-        sqb.addCondition(filters);
-        currentquery =  sqb.orderbyCondition(Sortqueries);
-        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,currentlimit,currentoffset));
         CommonRepository commonRepository = context.commonrepository(tablename);
+        String query = "";
+        if(commonRepository.isFts() && filters != null && (!filters.contains("Like"))){
+            String sql = sqb.searchQueryFts(tablename, joinTable, filters, Sortqueries, currentlimit, currentoffset);
+            List<String> ids = commonRepository.findSearchIds(sql);
+            currentquery = sqb.toStringFts(ids, CommonRepository.ID_COLUMN, Sortqueries);
+            query = sqb.Endquery(currentquery);
+        } else {
+            sqb.addCondition(filters);
+            currentquery =  sqb.orderbyCondition(Sortqueries);
+            query = sqb.Endquery(sqb.addlimitandOffset(currentquery,currentlimit,currentoffset));
+
+        }
+        Log.d(getClass().getName(), query);
         databaseCursor = commonRepository.RawCustomQueryForAdapter(query);
         clientAdapter.swapCursor(databaseCursor);
     }
     public void CountExecute(){
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(countSelect);
-        sqb.addCondition(filters);
-        currentquery =  sqb.orderbyCondition(Sortqueries);
-        String query = sqb.Endquery(currentquery);
         CommonRepository commonRepository = context.commonrepository(tablename);
+        String query = "";
+        if(commonRepository.isFts() && filters != null && (!filters.contains("Like"))){
+            currentquery = sqb.countQueryFts(tablename, joinTable, filters);
+        }else {
+            sqb.addCondition(filters);
+            currentquery = sqb.orderbyCondition(Sortqueries);
+        }
+        query = sqb.Endquery(currentquery);
+        Log.d(getClass().getName(), query);
         Cursor c = commonRepository.RawCustomQueryForAdapter(query);
         c.moveToFirst();
         totalcount= c.getInt(0);

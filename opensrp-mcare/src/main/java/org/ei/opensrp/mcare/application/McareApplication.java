@@ -7,6 +7,7 @@ import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.CommonFtsObject;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
 import org.ei.opensrp.view.activity.DrishtiApplication;
@@ -39,6 +40,7 @@ public class McareApplication extends DrishtiApplication {
 
         context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());
+        context.updateCommonFtsObject(createCommonFtsObject());
         applyUserLanguagePreference();
         cleanUpSyncState();
     }
@@ -94,6 +96,42 @@ public class McareApplication extends DrishtiApplication {
                 .replace( "6","৬").replace( "7","৭").replace( "8","৮").replace( "9","৯").replace( "0","০");
 
         return newValue;
+    }
+
+    private String[] getFtsSearchFields(String tableName){
+        if(tableName.equals("household")){
+            String[] ftsSearchFileds =  { "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID" };
+            return ftsSearchFileds;
+        } else if(tableName.equals("elco")){
+            String[] ftsSearchFileds =  { "FWWOMFNAME", "GOBHHID", "JiVitAHHID" };
+            return ftsSearchFileds;
+        }
+        return null;
+    }
+
+    private String[] getFtsSortFields(String tableName){
+        if(tableName.equals("household")) {
+            String[] sortFields = {"FWHOHFNAME COLLATE NOCASE ASC", "FWGOBHHID ASC", "FWJIVHHID ASC"};
+            return sortFields;
+        } else if(tableName.equals("elco")){
+            String[] sortFields = {"FWWOMFNAME COLLATE NOCASE ASC", "GOBHHID ASC", "JiVitAHHID ASC"};
+            return sortFields;
+        }
+        return null;
+    }
+
+    private String[] getFtsTables(){
+        String[] ftsTables = { "household", "elco" };
+        return ftsTables;
+    }
+
+    private CommonFtsObject createCommonFtsObject(){
+        CommonFtsObject commonFtsObject = new CommonFtsObject(getFtsTables());
+        for(String ftsTable: commonFtsObject.getTables()){
+            commonFtsObject.updateSearchFields(ftsTable, getFtsSearchFields(ftsTable));
+            commonFtsObject.updateSortFields(ftsTable, getFtsSortFields(ftsTable));
+        }
+        return commonFtsObject;
     }
 
 }

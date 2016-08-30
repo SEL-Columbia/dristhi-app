@@ -2,6 +2,7 @@ package org.ei.opensrp.service;
 
 import com.google.gson.Gson;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.repository.AllSettings;
 import org.ei.opensrp.repository.FormDataRepository;
@@ -18,6 +19,7 @@ public class FormSubmissionService {
     private ZiggyService ziggyService;
     private FormDataRepository formDataRepository;
     private AllSettings allSettings;
+    private AllCommonsRepository[] allCommonsRepositories;
 
     public FormSubmissionService(ZiggyService ziggyService, FormDataRepository formDataRepository, AllSettings allSettings) {
         this.ziggyService = ziggyService;
@@ -25,11 +27,29 @@ public class FormSubmissionService {
         this.allSettings = allSettings;
     }
 
+    public FormSubmissionService(ZiggyService ziggyService, FormDataRepository formDataRepository, AllSettings allSettings, AllCommonsRepository... allCommonsRepositories) {
+        this.ziggyService = ziggyService;
+        this.formDataRepository = formDataRepository;
+        this.allSettings = allSettings;
+        this.allCommonsRepositories = allCommonsRepositories;
+    }
+
     public void processSubmissions(List<FormSubmission> formSubmissions) {
         for (FormSubmission submission : formSubmissions) {
             if (!formDataRepository.submissionExists(submission.instanceId())) {
                 try {
                     ziggyService.saveForm(getParams(submission), submission.instance());
+
+                    // Update FTS Tables
+                    if(allCommonsRepositories != null) {
+                        for(AllCommonsRepository allCommonsRepository: allCommonsRepositories) {
+                            boolean updated = allCommonsRepository.updateSearch(submission.entityId());
+                            if (updated) {
+                                break;
+                            }
+                        }
+                    }
+
                 } catch (Exception e) {
                     logError(format("Form submission processing failed, with instanceId: {0}. Exception: {1}, StackTrace: {2}",
                             submission.instanceId(), e.getMessage(), ExceptionUtils.getStackTrace(e)));

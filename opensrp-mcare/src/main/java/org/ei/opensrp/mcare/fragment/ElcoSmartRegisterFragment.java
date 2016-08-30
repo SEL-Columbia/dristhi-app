@@ -311,7 +311,9 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
                         if(cs.toString().equalsIgnoreCase("")){
                             filters = "";
                         }else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters = cs.toString();
+                            joinTable = "";
                         }
                             return null;
                     }
@@ -360,7 +362,9 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
                         if (cs.toString().equalsIgnoreCase("")) {
                             filters = "";
                         } else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters = cs.toString();
+                            joinTable = "";
                         }
                         return null;
                     }
