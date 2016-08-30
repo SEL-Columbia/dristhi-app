@@ -417,5 +417,8 @@
     <string name="str_parity_full">Parity</string>
     <string name="str_abortus_full">Abortus</string>
     <string name="str_alive_full">Alive</string>
-
+    <string name="str_kb_update">Update KB</string>
+    <string name="str_kb_edit">Edit KB</string>
+    <string name="str_kb_close">Tutup KB</string>
+    <string name="kb_register_title_in_short">KB:</string>
 </resources>

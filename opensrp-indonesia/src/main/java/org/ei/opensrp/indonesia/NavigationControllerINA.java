@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 
 import org.ei.opensrp.indonesia.kartu_ibu.NativeKISmartRegisterActivity;
+import org.ei.opensrp.indonesia.kb.NativeKBSmartRegisterActivity;
 import org.ei.opensrp.view.controller.ANMController;
 
 
@@ -33,7 +34,7 @@ public class NavigationControllerINA extends org.ei.opensrp.view.controller.Navi
     }
     @Override
     public void startFPSmartRegistry() {
-        //   activity.startActivity(new Intent(activity, ElcoSmartRegisterActivity.class));
+           activity.startActivity(new Intent(activity, NativeKBSmartRegisterActivity.class));
     }
     @Override
     public void startANCSmartRegistry() {

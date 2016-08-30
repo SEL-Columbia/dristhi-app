@@ -1,4 +1,5 @@
-package org.ei.opensrp.indonesia.kartu_ibu;
+package org.ei.opensrp.indonesia.kb;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
@@ -7,42 +8,49 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
-import org.ei.opensrp.Context;
-import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
-import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
+import org.ei.opensrp.indonesia.fragment.NativeKBSmartRegisterFragment;
 import org.ei.opensrp.indonesia.fragment.NativeKISmartRegisterFragment;
 import org.ei.opensrp.indonesia.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
-import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.dialog.DialogOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static android.preference.PreferenceManager.getDefaultSharedPreferences;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_REGISTRATION;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_CLOSE;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_EDIT;
+import static org.ei.opensrp.R.string.form_back_confirm_dialog_message;
+import static org.ei.opensrp.R.string.form_back_confirm_dialog_title;
+import static org.ei.opensrp.R.string.no_button_label;
+import static org.ei.opensrp.R.string.yes_button_label;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_REGISTRATION;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_PELAYANAN;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_CLOSE;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_EDIT;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_REGISTER;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_UPDATE;
 
-public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
+/**
+ * Created by Dimas Ciputra on 2/18/15.
+ */
+public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
-    public static final String TAG = "KIActivity";
+    public static final String TAG = "KBActivity";
     @Bind(R.id.view_pager)
     OpenSRPViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
@@ -63,7 +71,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         formNames = this.buildFormNameList();
-        mBaseFragment = new NativeKISmartRegisterFragment();
+        mBaseFragment = new NativeKBSmartRegisterFragment();
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
@@ -111,10 +119,9 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     public DialogOption[] getEditOptions() {
         return new DialogOption[]{
-                new OpenFormOption("Registrasi KB ", "kohort_kb_pelayanan", formController),
-                new OpenFormOption("ANC Registration ", "kartu_anc_registration", formController),
-                new OpenFormOption("Edit Kartu Ibu ", KARTU_IBU_EDIT, formController),
-                new OpenFormOption("Kartu Ibu Close ", KARTU_IBU_CLOSE, formController),
+                new OpenFormOption("Update KB ", KOHORT_KB_UPDATE, formController),
+                new OpenFormOption("Edit KB ", KOHORT_KB_EDIT, formController),
+                new OpenFormOption("Tutup KB ", KOHORT_KB_CLOSE, formController),
 
         };
 
@@ -167,7 +174,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
-//        Log.v("fieldoverride", metaData);
+        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
@@ -239,16 +246,14 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
-        formNames.add(KARTU_IBU_REGISTRATION);
-        formNames.add("kohort_kb_pelayanan");
-        formNames.add("kartu_anc_registration");
-        formNames.add(KARTU_IBU_EDIT);
-        formNames.add(KARTU_IBU_CLOSE);
-
+        formNames.add(KOHORT_KB_REGISTER);
+        formNames.add(KOHORT_KB_UPDATE);
+        formNames.add(KOHORT_KB_EDIT);
+        formNames.add(KOHORT_KB_CLOSE);
         DialogOption[] options = getEditOptions();
-        //for (int i = 0; i < options.length; i++) {
-       //     formNames.add(((OpenFormOption) options[i]).getFormName());
-    //    }
+      //  for (int i = 0; i < options.length; i++) {
+     //       formNames.add(((OpenFormOption) options[i]).getFormName());
+     //   }
         return formNames.toArray(new String[formNames.size()]);
     }
 

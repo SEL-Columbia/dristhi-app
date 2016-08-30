@@ -2,34 +2,26 @@ package org.ei.opensrp.indonesia.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.database.Cursor;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonObjectFilterOption;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
-import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
-import org.ei.opensrp.commonregistry.CommonRepository;
-import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
-import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
-import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
-import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
-import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
+import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.kartu_ibu.AllKartuIbuServiceMode;
 import org.ei.opensrp.indonesia.kartu_ibu.KIClientsProvider;
 import org.ei.opensrp.indonesia.kartu_ibu.KISearchOption;
 import org.ei.opensrp.indonesia.kartu_ibu.NativeKISmartRegisterActivity;
+import org.ei.opensrp.indonesia.kb.KBClientsProvider;
+import org.ei.opensrp.indonesia.kb.KBSearchOption;
+import org.ei.opensrp.indonesia.kb.NativeKBSmartRegisterActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -43,6 +35,7 @@ import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
@@ -59,12 +52,14 @@ import util.AsyncTask;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
+import static com.google.common.collect.Iterables.toArray;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_REGISTER;
 
 /**
- * Created by soran on 28/08/16.
+ * Created by koros on 10/29/15.
  */
-public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterFragment {
+public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFragment {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private CommonPersonObjectController controller;
@@ -108,7 +103,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
             @Override
             public String nameInShortFormForTitle() {
-                return Context.getInstance().getStringResource(R.string.ki_register_title_in_short);
+                return Context.getInstance().getStringResource(R.string.kb_register_title_in_short);
             }
         };
     }
@@ -147,7 +142,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterFra
                 return new DialogOption[]{
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "namaLengkap", getResources().getString(R.string.sort_by_name_label)),
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "umur", getResources().getString(R.string.sort_by_wife_age_label)),
-                      //  new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "umur", getResources().getString(R.string.hh_last_visit_date))
+                        //  new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "umur", getResources().getString(R.string.hh_last_visit_date))
 
 //""
 //                        new CommonObjectSort(true,false,true,"age")
@@ -167,14 +162,14 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterFra
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
         if (clientProvider == null) {
-            clientProvider = new KIClientsProvider(
+            clientProvider = new KBClientsProvider(
                     getActivity(),clientActionHandler , controller,context.alertService());
         }
         return clientProvider;
     }
 
     private DialogOption[] getEditOptions() {
-        return ((NativeKISmartRegisterActivity)getActivity()).getEditOptions();
+        return ((NativeKBSmartRegisterActivity)getActivity()).getEditOptions();
     }
 
     @Override
@@ -211,7 +206,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterFra
         }
         ft.addToBackStack(null);
         BidanLocationSelectorDialogFragment
-                .newInstance((NativeKISmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "kartu_ibu_registration")
+                .newInstance((NativeKBSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), KOHORT_KB_REGISTER)
                 .show(ft, locationDialogTAG);
     }
 
@@ -220,10 +215,10 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterFra
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                //    ChildDetailActivity.childclient = (CommonPersonObjectClient)view.getTag();
-               //     Intent intent = new Intent(getActivity(),ChildDetailActivity.class);
-               //     startActivity(intent);
-               //     getActivity().finish();
+                    //    ChildDetailActivity.childclient = (CommonPersonObjectClient)view.getTag();
+                    //     Intent intent = new Intent(getActivity(),ChildDetailActivity.class);
+                    //     startActivity(intent);
+                    //     getActivity().finish();
                     break;
 
                 //untuk follow up button
@@ -294,7 +289,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterFra
                     @Override
                     protected Object doInBackground(Object[] params) {
 //                        currentSearchFilter =
-                        setCurrentSearchFilter(new KISearchOption(cs.toString()));
+                        setCurrentSearchFilter(new KBSearchOption(cs.toString()));
                         filteredClients = getClientsAdapter().getListItemProvider()
                                 .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
                                         getCurrentSearchFilter(), getCurrentSortOption());
@@ -334,3 +329,4 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
 
 }
+

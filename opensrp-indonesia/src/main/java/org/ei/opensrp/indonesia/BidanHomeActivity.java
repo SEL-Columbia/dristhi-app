@@ -275,9 +275,9 @@ public class BidanHomeActivity extends SecuredActivity {
                     navigationController.startECSmartRegistry();
                     break;
 
-                //  case R.id.btn_test2_register:
-                //        navigationController.startANCSmartRegistry();
-                //        break;
+                case R.id.btn_kohort_kb_register:
+                        navigationController.startFPSmartRegistry();
+                        break;
 /*
                case R.id.btn_pnc_register:
 //                    navigationController.startPNCSmartRegistry();
