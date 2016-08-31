@@ -1,23 +1,4 @@
-<model>
-    <instance>
-        <kunjungan_vaksinator_campak_Openmrs id="kunjungan_vaksinator_ver_campak" version="201607290835">
-            <formhub>
-                <uuid/>
-            </formhub>
-            <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
-            <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
-            <deviceid/>
-            <simserial/>
-            <phonenumber/>
-            <campak openmrs_entity="concept" openmrs_entity_id="984AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-            <keterangan openmrs_entity="concept"/>
-            <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
-            <meta>
-                <instanceID/>
-            </meta>
-        </kunjungan_vaksinator_campak_Openmrs>
-    </instance>
-</model><form autocomplete="off" novalidate="novalidate" class="or clearfix" dir="ltr" id="kunjungan_vaksinator_ver_campak">
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" dir="ltr" id="kunjungan_vaksinator_ver_campak">
 <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.--><section class="form-logo"> </section><h3 id="form-title">Kunjungan Vaksinasi Campak</h3><select id="form-languages" data-default-lang="Bahasa"><option value="Bahasa">Bahasa</option> <option value="en">English</option> </select>
 
 

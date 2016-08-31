@@ -1,23 +1,4 @@
-<model>
-    <instance>
-        <kunjungan_vaksinator_dpt_hb2_pol3_Openmrs id="kunjungan_vaksinator_ver_dpt_hb2_pol3" version="201607290829">
-            <formhub>
-                <uuid/>
-            </formhub>
-            <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
-            <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
-            <deviceid/>
-            <simserial/>
-            <phonenumber/>
-            <dpt_hb2_pol3 openmrs_entity="concept" openmrs_entity_id="984AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-            <keterangan openmrs_entity="concept"/>
-            <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
-            <meta>
-                <instanceID/>
-            </meta>
-        </kunjungan_vaksinator_dpt_hb2_pol3_Openmrs>
-    </instance>
-</model><form autocomplete="off" novalidate="novalidate" class="or clearfix" dir="ltr" id="kunjungan_vaksinator_ver_dpt_hb2_pol3">
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" dir="ltr" id="kunjungan_vaksinator_ver_dpt_hb2_pol3">
 <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.--><section class="form-logo"> </section><h3 id="form-title">Kunjungan Vaksinasi dpt hb2 pol3</h3><select id="form-languages" data-default-lang="Bahasa"><option value="Bahasa">Bahasa</option> <option value="en">English</option> </select>
 
 

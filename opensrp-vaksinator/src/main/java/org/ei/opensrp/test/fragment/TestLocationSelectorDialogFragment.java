@@ -40,7 +40,6 @@ public class TestLocationSelectorDialogFragment extends DialogFragment {
     public String formname;
     // private final Object tag;
 
-
     private TestLocationSelectorDialogFragment(SecuredNativeSmartRegisterActivity activity,
                                                DialogOptionModel dialogOptionModel,
                                                String locationJSONString
