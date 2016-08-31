@@ -1,27 +1,4 @@
-<<<<<<< HEAD
-    <button id="submit-form" class="btn btn-info btn-large">Save</button>
 
-</article>
-</div>
-
-
-<!--<footer class="center ui-widget">
-    Copyright &copy; 2012 <a href="http://www.aidwebsolutions.com" title="go to Aid Web Solutions site in a new tab" target="_blank">Martijn van de Rijdt</a>
-</footer>-->
-
-</body>
-
-</html>
-
-<!-- $script_placeholder >
-
-<script type="text/javascript" data-main="" src="../build/js/webform-combined.min.js"></script>
-
-<script type="text/javascript">
-    $('input[type=date]').attr("min", "1910-01-01");
-    $('input[type=date]').attr("max", "2100-01-01");
-</script>
-=======
 <!-- The comment below is used in enketo-core-performance-monitor. -->
 		<!-- {{<form>}} -->
 
@@ -50,5 +27,3 @@
 <!-- IMPORTANT: leave the minified script in the committed index.html, to not throw off enketo-core-performance-monitor -->
 <script type="text/javascript" src="../build/js/enketo-bundle.min.js"></script>
 </body></html>
-
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
