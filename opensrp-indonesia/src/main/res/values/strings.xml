@@ -218,7 +218,7 @@
     <string name="fp_prioritization">FP Prioritization</string>
     <string name="fp_prioritization_add_fp">Add FP</string>
     <string name="fp_prioritization_fp_videos">FP Videos</string>
-
+    <string name="header_update_refill">UPDATE REFILL</string>
     <string name="header_thayi_number">THAYI NO.</string>
     <string name="header_delivery_info">DELIVERY INFO</string>
     <string name="header_delivery_complications">COMPLICATIONS</string>
@@ -227,10 +227,10 @@
     <string name="header_days_pp">DAYS PP</string>
     <string name="header_first_seven_days">FIRST 7 DAYS</string>
     <string name="header_pnc_visits">PNC VISITS</string>
-
+    <string name="header_kb_method">Kontrasepsi</string>
     <string name="pnc_register_service_mode_overview">Overview</string>
     <string name="pnc_register_service_mode_pnc_visits">PNC Visits</string>
-
+    <string name="kb_selection">KB</string>
     <string name="str_pnc_visit_form">PNC Visit</string>
     <string name="str_pnc_postpartum_family_planning_form">Postpartum family planning</string>
     <string name="str_pnc_close_form">PNC Close</string>

@@ -10,30 +10,14 @@
         android:layout_margin="5dp"
         android:background="@color/status_bar_text_almost_white">
 
-    <ViewStub
-        android:id="@+id/ki_status_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout="@layout/smart_register_client_status_ki"/>
-
-    <ViewStub
-        android:id="@+id/kb_status_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout="@layout/smart_register_client_status_kb"/>
-
-
-    <ViewStub
-        android:id="@+id/anc_status_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout="@layout/smart_register_client_status_anc_ki"/>
-
-    <ViewStub
-        android:id="@+id/pnc_status_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout="@layout/smart_register_client_status_pnc_ki"/>
+    <org.ei.opensrp.view.customControls.CustomFontTextView
+        android:id="@+id/mother_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Kartu Ibu"
+        style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 
 
 </LinearLayout>

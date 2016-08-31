@@ -39,7 +39,9 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_CLOSE
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_EDIT;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_PELAYANAN;
-
+/**
+ * Created by Dimas Ciputra on 2/18/15.
+ */
 public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
     public static final String TAG = "KIActivity";

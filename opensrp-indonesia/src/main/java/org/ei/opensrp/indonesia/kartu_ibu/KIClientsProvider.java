@@ -27,6 +27,7 @@ import org.ei.opensrp.indonesia.R;
 
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.AlertService;
+import org.ei.opensrp.util.DateUtil;
 import org.ei.opensrp.view.contract.AlertDTO;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
@@ -36,7 +37,9 @@ import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.ECProfilePhotoLoader;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 import org.ei.opensrp.view.viewHolder.ProfilePhotoLoader;
+import org.joda.time.Days;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -53,24 +56,22 @@ import static org.ei.opensrp.view.controller.ECSmartRegisterController.STATUS_TY
 /**
  * Created by Dimas Ciputra on 2/16/15.
  */
-public class KIClientsProvider implements SmartRegisterClientsProvider {
-
+public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
-    static String bindobject = "kartu_ibu";
+    private Drawable iconPencilDrawable;
     private final int txtColorBlack;
     private final AbsListView.LayoutParams clientViewLayoutParams;
-    private Drawable iconPencilDrawable;
+
     protected CommonPersonObjectController controller;
 
     AlertService alertService;
-
     public KIClientsProvider(Context context,
-                                    View.OnClickListener onClickListener,
-                                    CommonPersonObjectController controller, AlertService alertService) {
+                                         View.OnClickListener onClickListener,
+                                         AlertService alertService) {
         this.onClickListener = onClickListener;
-        this.controller = controller;
+//        this.controller = controller;
         this.context = context;
         this.alertService = alertService;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -82,11 +83,11 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
     }
 
     @Override
-    public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
+    public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
 
         ViewHolder viewHolder;
-           if (convertView == null){
-               convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_ki_client, null);
+     //      if (convertView == null){
+     //          convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_ki_client, null);
         viewHolder = new ViewHolder();
         viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
         viewHolder.wife_name = (TextView)convertView.findViewById(R.id.wife_name);
@@ -104,14 +105,17 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
                viewHolder.edd = (TextView)convertView.findViewById(R.id.txt_edd);
                viewHolder.edd_due = (TextView)convertView.findViewById(R.id.txt_edd_due);
                viewHolder.children_age_left = (TextView)convertView.findViewById(R.id.txt_children_age_left);
+
+        //    viewHolder.anc_status_layout = (TextView)convertView.findViewById(R.id.mother_status);
+
         viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
         viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
         convertView.setTag(viewHolder);
-           }else{
-               viewHolder = (ViewHolder) convertView.getTag();
-               viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
-           }
+     //      }else{
+    //           viewHolder = (ViewHolder) convertView.getTag();
+     //          viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
+    //       }
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
         viewHolder.profilelayout.setOnClickListener(onClickListener);
@@ -137,18 +141,52 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.number_of_abortus.setText(pc.getDetails().get("abortus")!=null?pc.getDetails().get("abortus"):"-");
         viewHolder.number_of_alive.setText(pc.getDetails().get("hidup")!=null?pc.getDetails().get("hidup"):"-");
 
-        viewHolder.edd.setText(pc.getDetails().get("htp")!=null?pc.getDetails().get("htp"):"");
+        viewHolder.edd.setText("HTP :"+pc.getDetails().get("htp")!=null?pc.getDetails().get("htp"):"");
+
+
+        String date = pc.getDetails().get("htp");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        if(pc.getDetails().get("htp")!=null) {
+            try {
+                Calendar c = Calendar.getInstance();
+                c.setTime(format.parse(date));
+                c.add(Calendar.DATE, 2);  // number of days to add
+                date = format.format(c.getTime());  // dt is now the new date
+                Date dates = format.parse(date);
+                Date currentDateandTime = new Date();
+                long diff = Math.abs(dates.getTime() - currentDateandTime.getTime());
+                long diffDays = diff / (24 * 60 * 60 * 1000);
+                if(diffDays <1){
+                    viewHolder.edd_due.setText("");
+
+                }
+                viewHolder.edd_due.setText("Due : "+diffDays+" Hari");
+
+            } catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        else{
+            viewHolder.edd_due.setText("-");
+        }
+
+
+
         viewHolder.children_age_left.setText(pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
 
+
+       // viewHolder.anc_status_layout.setText(pc.getReference()!=null?pc.getReference():"--");
         convertView.setLayoutParams(clientViewLayoutParams);
-        return convertView;
+      //  return convertView;
     }
     CommonPersonObjectController householdelcocontroller;
 
 
 
 
-    @Override
+
+    //    @Override
     public SmartRegisterClients getClients() {
         return controller.getClients();
     }
@@ -173,6 +211,12 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
         return inflater;
     }
 
+    @Override
+    public View inflatelayoutForCursorAdapter() {
+        View View = (ViewGroup) inflater().inflate(R.layout.smart_register_ki_client, null);
+        return View;
+    }
+
     class ViewHolder {
 
         TextView wife_name ;
@@ -192,6 +236,7 @@ public class KIClientsProvider implements SmartRegisterClientsProvider {
         TextView edd;
         TextView edd_due;
         TextView children_age_left;
+        TextView anc_status_layout;
     }
 
 
