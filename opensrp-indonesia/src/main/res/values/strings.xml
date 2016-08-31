@@ -31,6 +31,9 @@
     <string name="header_no_ibu">No Ibu</string>
     <string name="header_status_b">Status</string>
     <string name="header_obsetri">Obsetri</string>
+    <string name="mother_weight">Berat Badan :</string>
+    <string name="header_pemeriksaan">Pemeriksaan</string>
+    <string name="header_resiko">Resiko</string>
     <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
     <string name="videos_IEC_not_installed_dialog_message">Please install IEC application to play the videos.
     </string>

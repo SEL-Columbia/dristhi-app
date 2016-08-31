@@ -27,7 +27,7 @@ public class SmartRegisterQueryBuilder {
             Alertname is the name of the alert you would like to sort this by.
              */
     public  String queryForRegisterSortBasedOnRegisterAndAlert(String tablename,String[]columns,String condition,String AlertName){
-        Selectquery = "Select id as _id";
+        Selectquery = "Select "+tablename+".id as _id";
         for(int i = 0;i<columns.length;i++){
             Selectquery= Selectquery + " , " + columns[i];
         }
@@ -64,7 +64,7 @@ public class SmartRegisterQueryBuilder {
         return selectquery+";";
     }
     public String SelectInitiateMainTable(String tablename,String [] columns){
-        Selectquery = "Select id as _id";
+        Selectquery = "Select "+tablename+".id as _id";
         for(int i = 0;i<columns.length;i++){
             Selectquery= Selectquery + " , " + columns[i];
         }
@@ -96,6 +96,11 @@ public class SmartRegisterQueryBuilder {
     public String joinwithALerts(String tablename){
         Selectquery = Selectquery+ " LEFT JOIN alerts ";
         Selectquery = Selectquery+ " ON "+ tablename +".id = alerts.caseID " ;
+        return Selectquery;
+    }
+    public String joinwithIbus(String tablename){
+        Selectquery = Selectquery+ " LEFT JOIN kartu_ibu ";
+        Selectquery = Selectquery+ " ON "+ tablename +".id = ibu.kartuIbuId " ;
         return Selectquery;
     }
     @Override

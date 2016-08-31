@@ -6,8 +6,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.commonregistry.CommonObjectFilterOption;
+import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
@@ -15,13 +19,21 @@ import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
 import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
-import org.ei.opensrp.indonesia.kartu_ibu.AllKartuIbuServiceMode;
+import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
-
-import org.ei.opensrp.indonesia.kartu_ibu.KICommonObjectFilterOption;
+import org.ei.opensrp.indonesia.anc.KIANCClientsProvider;
+import org.ei.opensrp.indonesia.anc.KIANCOverviewServiceMode;
+import org.ei.opensrp.indonesia.anc.NativeKIANCSmartRegisterActivity;
+import org.ei.opensrp.indonesia.kartu_ibu.AllKartuIbuServiceMode;
 import org.ei.opensrp.indonesia.kartu_ibu.KIClientsProvider;
+import org.ei.opensrp.indonesia.kartu_ibu.KICommonObjectFilterOption;
+import org.ei.opensrp.indonesia.kartu_ibu.KISearchOption;
 import org.ei.opensrp.indonesia.kartu_ibu.NativeKISmartRegisterActivity;
+import org.ei.opensrp.indonesia.kb.AllKBServiceMode;
+import org.ei.opensrp.indonesia.kb.KBClientsProvider;
+import org.ei.opensrp.indonesia.kb.KBSearchOption;
+import org.ei.opensrp.indonesia.kb.NativeKBSmartRegisterActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -35,9 +47,11 @@ import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
+import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.EntityUtils;
 import org.opensrp.api.util.LocationTree;
@@ -50,11 +64,13 @@ import util.AsyncTask;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
+import static com.google.common.collect.Iterables.toArray;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+
 /**
- * Created by Dimas Ciputra on 2/18/15.
+ * Created by koros on 10/29/15.
  */
-public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCursorAdapterFragment {
+public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAdapterFragment {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private CommonPersonObjectController controller;
@@ -79,7 +95,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
             @Override
             public ServiceModeOption serviceMode() {
-                return new AllKartuIbuServiceMode(clientsProvider());
+                return new KIANCOverviewServiceMode(clientsProvider());
             }
 
             @Override
@@ -95,7 +111,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
             @Override
             public String nameInShortFormForTitle() {
-                return Context.getInstance().getStringResource(R.string.ki_register_title_in_short);
+                return Context.getInstance().getStringResource(R.string.anc_register_title_in_short);
             }
         };
     }
@@ -110,8 +126,8 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
 
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),filterStringForAll()));
-           //     dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_no_mwra),filterStringForNoElco()));
-          //      dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_has_mwra),filterStringForOneOrMoreElco()));
+                //     dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_no_mwra),filterStringForNoElco()));
+                //      dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_has_mwra),filterStringForOneOrMoreElco()));
 
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
@@ -139,8 +155,8 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
                         new CursorCommonObjectSort(getResources().getString(R.string.due_status),sortByAlertmethod()),
                         new CursorCommonObjectSort(getResources().getString(R.string.hh_alphabetical_sort),KiSortByName()),
-                      //  new CursorCommonObjectSort(getResources().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
-                     //   new CursorCommonObjectSort(getResources().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
+                        //  new CursorCommonObjectSort(getResources().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
+                        //   new CursorCommonObjectSort(getResources().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
 //""
 //                        new CommonObjectSort(true,false,true,"age")
                 };
@@ -163,12 +179,12 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
     }
 
     private DialogOption[] getEditOptions() {
-        return ((NativeKISmartRegisterActivity)getActivity()).getEditOptions();
+        return ((NativeKIANCSmartRegisterActivity)getActivity()).getEditOptions();
     }
 
     @Override
     protected void onInitialization() {
-      //  context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
+        //  context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
     }
 
     @Override
@@ -196,46 +212,44 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
                 "Else alerts.status END ASC";
     }
     public void initializeQueries(){
-        CommonRepository commonRepository = context.commonrepository("kartu_ibu");
-        setTablename("kartu_ibu");
+        CommonRepository commonRepository = context.commonrepository("ibu");
+        setTablename("ibu");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
-        countqueryBUilder.SelectInitiateMainTableCounts("kartu_ibu");
-     //   countqueryBUilder.joinwithIbus("kartu_ibu","ibu");
-        countSelect = countqueryBUilder.mainCondition(" kartu_ibu.isClosed !='true' ");
+        countqueryBUilder.SelectInitiateMainTableCounts("ibu");
+           countqueryBUilder.joinwithIbus("kartu_ibu");
+        countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true' ");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"isClosed", "details", "isOutOfArea"});
-     //   queryBUilder.joinwithIbus("kartu_ibu","ibu");
-        mainSelect = queryBUilder.mainCondition(" kartu_ibu.isClosed !='true' ");
+        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details","kartu_ibu.id as kiid"});
+           queryBUilder.joinwithIbus("ibu");
+        mainSelect = queryBUilder.mainCondition(" ibu.type ='anc'");
         queryBUilder.addCondition(filters);
         Sortqueries = KiSortByName();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
-        KIClientsProvider kiscp = new KIClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"isClosed", "isOutOfArea"}));
+        KIANCClientsProvider kiscp = new KIANCClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
         refresh();
-//        checkforNidMissing(view);
-
     }
 
 
     @Override
     public void startRegistration() {
-        FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
-        Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        BidanLocationSelectorDialogFragment
-                .newInstance((NativeKISmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "kartu_ibu_registration")
-                .show(ft, locationDialogTAG);
+     //   FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+     //   Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
+     //   if (prev != null) {
+    //        ft.remove(prev);
+    //    }
+    //    ft.addToBackStack(null);
+    //    BidanLocationSelectorDialogFragment
+    //            .newInstance((NativeKIANCSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), KOHORT_KB_REGISTER)
+   //             .show(ft, locationDialogTAG);
     }
 
     private class ClientActionHandler implements View.OnClickListener {
@@ -243,16 +257,16 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                //    HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
-                 //   Intent intent = new Intent(getActivity(),HouseHoldDetailActivity.class);
-                //    startActivity(intent);
-                //    getActivity().finish();
+                    //    HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
+                    //   Intent intent = new Intent(getActivity(),HouseHoldDetailActivity.class);
+                    //    startActivity(intent);
+                    //    getActivity().finish();
                     break;
-            //    case R.id.hh_due_date:
-            //        HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
+                //    case R.id.hh_due_date:
+                //        HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
 //
-            //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
-            //        break;
+                //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
+                //        break;
                 case R.id.btn_edit:
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
@@ -269,12 +283,12 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
     private String KiSortByName() {
         return " namaLengkap ASC";
     }
-   // private String householdSortByFWGOBHHID(){
+    // private String householdSortByFWGOBHHID(){
     //    return " FWGOBHHID ASC";
-  //  }
-   // private String householdSortByFWJIVHHID(){
-   //     return " FWJIVHHID ASC";
-  //  }
+    //  }
+    // private String householdSortByFWJIVHHID(){
+    //     return " FWJIVHHID ASC";
+    //  }
 
     private class EditDialogOptionModel implements DialogOptionModel {
         @Override
@@ -293,8 +307,8 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //        super.onResumption();
         getDefaultOptionsProvider();
         initializeQueries();
-   //     updateSearchView();
-     //   checkforNidMissing(mView);
+        //     updateSearchView();
+        //   checkforNidMissing(mView);
 //
         try{
             LoginActivity.setLanguage();
@@ -413,7 +427,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new KICommonObjectFilterOption(name,"Village", name));
+                dialogOptionslist.add(new KICommonObjectFilterOption(name,"dusun", name));
 
             }
         }

@@ -177,7 +177,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     }
 
     private DialogOption[] getEditOptions() {
-        return ((NativeKISmartRegisterActivity)getActivity()).getEditOptions();
+        return ((NativeKBSmartRegisterActivity)getActivity()).getEditOptions();
     }
 
     @Override
@@ -248,7 +248,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         }
         ft.addToBackStack(null);
         BidanLocationSelectorDialogFragment
-                .newInstance((NativeKISmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), KOHORT_KB_REGISTER)
+                .newInstance((NativeKBSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), KOHORT_KB_REGISTER)
                 .show(ft, locationDialogTAG);
     }
 
@@ -267,6 +267,9 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //
                 //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                 //        break;
+                case R.id.btn_edit:
+                    showFragmentDialog(new EditDialogOptionModel(), view.getTag());
+                    break;
             }
         }
 

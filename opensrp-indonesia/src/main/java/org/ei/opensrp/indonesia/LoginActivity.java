@@ -57,10 +57,10 @@ public class LoginActivity extends Activity {
     private ProgressDialog progressDialog;
     public static final String ENGLISH_LOCALE = "en";
     public static final String KANNADA_LOCALE = "kn";
-    public static final String BENGALI_LOCALE = "bn";
+    public static final String BAHASA_LOCALE = "in";
     public static final String ENGLISH_LANGUAGE = "English";
     public static final String KANNADA_LANGUAGE = "Kannada";
-    public static final String Bengali_LANGUAGE = "Bengali";
+    public static final String Bahasa_LANGUAGE = "Bahasa";
 
 
     @Override
@@ -329,14 +329,14 @@ public class LoginActivity extends Activity {
 
         String preferredLocale = allSharedPreferences.fetchLanguagePreference();
         if (ENGLISH_LOCALE.equals(preferredLocale)) {
-            allSharedPreferences.saveLanguagePreference(BENGALI_LOCALE);
+            allSharedPreferences.saveLanguagePreference(BAHASA_LOCALE);
             Resources res = Context.getInstance().applicationContext().getResources();
             // Change locale settings in the app.
             DisplayMetrics dm = res.getDisplayMetrics();
             android.content.res.Configuration conf = res.getConfiguration();
-            conf.locale = new Locale(BENGALI_LOCALE);
+            conf.locale = new Locale(BAHASA_LOCALE);
             res.updateConfiguration(conf, dm);
-            return Bengali_LANGUAGE;
+            return Bahasa_LANGUAGE;
         } else {
             allSharedPreferences.saveLanguagePreference(ENGLISH_LOCALE);
             Resources res = Context.getInstance().applicationContext().getResources();
