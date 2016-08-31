@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.ei.opensrp.Context;
@@ -12,13 +13,21 @@ import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonObjectFilterOption;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.commonregistry.CommonRepository;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
+import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
+import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragment;
+import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
+import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.kartu_ibu.AllKartuIbuServiceMode;
 import org.ei.opensrp.indonesia.kartu_ibu.KIClientsProvider;
+import org.ei.opensrp.indonesia.kartu_ibu.KICommonObjectFilterOption;
 import org.ei.opensrp.indonesia.kartu_ibu.KISearchOption;
 import org.ei.opensrp.indonesia.kartu_ibu.NativeKISmartRegisterActivity;
+import org.ei.opensrp.indonesia.kb.AllKBServiceMode;
 import org.ei.opensrp.indonesia.kb.KBClientsProvider;
 import org.ei.opensrp.indonesia.kb.KBSearchOption;
 import org.ei.opensrp.indonesia.kb.NativeKBSmartRegisterActivity;
@@ -59,7 +68,7 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_REGIS
 /**
  * Created by koros on 10/29/15.
  */
-public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFragment {
+public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAdapterFragment {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private CommonPersonObjectController controller;
@@ -68,16 +77,15 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
     private String locationDialogTAG = "locationDialogTAG";
-
     @Override
     protected void onCreation() {
         //
     }
 
-    @Override
-    protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(clientsProvider());
-    }
+//    @Override
+//    protected SmartRegisterPaginatedAdapter adapter() {
+//        return new SmartRegisterPaginatedAdapter(clientsProvider());
+//    }
 
     @Override
     protected SecuredNativeSmartRegisterActivity.DefaultOptionsProvider getDefaultOptionsProvider() {
@@ -85,8 +93,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
             @Override
             public ServiceModeOption serviceMode() {
-
-                return new AllKartuIbuServiceMode(clientsProvider());
+                return new AllKBServiceMode(clientsProvider());
             }
 
             @Override
@@ -97,7 +104,6 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
             @Override
             public SortOption sortOption() {
                 return new NameSort();
-                //    return new HouseholdCensusDueDateSort();
 
             }
 
@@ -117,7 +123,10 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
 
-                dialogOptionslist.add(new AllClientsFilter());
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),filterStringForAll()));
+                //     dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_no_mwra),filterStringForNoElco()));
+                //      dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_has_mwra),filterStringForOneOrMoreElco()));
+
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
 
@@ -140,49 +149,40 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
             @Override
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "namaLengkap", getResources().getString(R.string.sort_by_name_label)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "umur", getResources().getString(R.string.sort_by_wife_age_label)),
-                        //  new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "umur", getResources().getString(R.string.hh_last_visit_date))
+//                        new HouseholdCensusDueDateSort(),
 
+                        new CursorCommonObjectSort(getResources().getString(R.string.due_status),sortByAlertmethod()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.hh_alphabetical_sort),KiSortByName()),
+                        //  new CursorCommonObjectSort(getResources().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
+                        //   new CursorCommonObjectSort(getResources().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
 //""
 //                        new CommonObjectSort(true,false,true,"age")
                 };
             }
 
-
-
             @Override
             public String searchHint() {
-                return getResources().getString(R.string.str_child_search_hint);
+                return getResources().getString(R.string.hh_search_hint);
             }
         };
     }
 
-
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
-        if (clientProvider == null) {
-            clientProvider = new KBClientsProvider(
-                    getActivity(),clientActionHandler , controller,context.alertService());
-        }
-        return clientProvider;
+//        if (clientProvider == null) {
+//            clientProvider = new HouseHoldSmartClientsProvider(
+//                    getActivity(),clientActionHandler , context.alertService());
+//        }
+        return null;
     }
 
     private DialogOption[] getEditOptions() {
-        return ((NativeKBSmartRegisterActivity)getActivity()).getEditOptions();
+        return ((NativeKISmartRegisterActivity)getActivity()).getEditOptions();
     }
 
     @Override
     protected void onInitialization() {
-        if (controller == null) {
-            controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("kartu_ibu"),
-                    context.allBeneficiaries(), context.listCache(),
-                    context.personObjectClientsCache(), "namaLengkap", "kartu_ibu", "submissionDate",
-                    CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails);
-
-        }
-
-        dialogOptionMapper = new DialogOptionMapper();
+        //  context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
     }
 
     @Override
@@ -191,11 +191,53 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
-        setServiceModeViewDrawableRight(null);
-        updateSearchView();
-//        checkforNidMissing(view);
+        view.findViewById(R.id.service_mode_selection).setVisibility(View.GONE);
+        clientsView.setVisibility(View.VISIBLE);
+        clientsProgressView.setVisibility(View.INVISIBLE);
+//        list.setBackgroundColor(Color.RED);
+        initializeQueries();
     }
+    private String filterStringForAll(){
+        return "";
+    }
+    private String sortByAlertmethod() {
+        return " CASE WHEN alerts.status = 'urgent' THEN '1'"
+                +
+                "WHEN alerts.status = 'upcoming' THEN '2'\n" +
+                "WHEN alerts.status = 'normal' THEN '3'\n" +
+                "WHEN alerts.status = 'expired' THEN '4'\n" +
+                "WHEN alerts.status is Null THEN '5'\n" +
+                "Else alerts.status END ASC";
+    }
+    public void initializeQueries(){
+        CommonRepository commonRepository = context.commonrepository("kartu_ibu");
+        setTablename("kartu_ibu");
+        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
+        countqueryBUilder.SelectInitiateMainTableCounts("kartu_ibu");
+        // countqueryBUilder.joinwithALerts("kartu_ibu","Ante Natal Care - Normal");
+        countSelect = countqueryBUilder.mainCondition(" isClosed !='true' and details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
+        CountExecute();
+
+
+        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"isClosed", "details", "isOutOfArea"});
+        //   queryBUilder.joinwithALerts("kartu_ibu","Ante Natal Care - Normal");
+        mainSelect = queryBUilder.mainCondition(" isClosed !='true' and details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
+        queryBUilder.addCondition(filters);
+        Sortqueries = KiSortByName();
+        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+
+        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+        KBClientsProvider kiscp = new KBClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"isClosed", "isOutOfArea"}));
+        clientsView.setAdapter(clientAdapter);
+//        setServiceModeViewDrawableRight(null);
+        updateSearchView();
+        refresh();
+//        checkforNidMissing(view);
+
+    }
+
 
     @Override
     public void startRegistration() {
@@ -206,7 +248,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
         }
         ft.addToBackStack(null);
         BidanLocationSelectorDialogFragment
-                .newInstance((NativeKBSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), KOHORT_KB_REGISTER)
+                .newInstance((NativeKISmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), KOHORT_KB_REGISTER)
                 .show(ft, locationDialogTAG);
     }
 
@@ -215,16 +257,16 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    //    ChildDetailActivity.childclient = (CommonPersonObjectClient)view.getTag();
-                    //     Intent intent = new Intent(getActivity(),ChildDetailActivity.class);
-                    //     startActivity(intent);
-                    //     getActivity().finish();
+                    //    HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
+                    //   Intent intent = new Intent(getActivity(),HouseHoldDetailActivity.class);
+                    //    startActivity(intent);
+                    //    getActivity().finish();
                     break;
-
-                //untuk follow up button
-                case R.id.btn_edit:
-                    showFragmentDialog(new EditDialogOptionModel(), view.getTag());
-                    break;
+                //    case R.id.hh_due_date:
+                //        HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
+//
+                //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
+                //        break;
             }
         }
 
@@ -232,6 +274,18 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
             navigationController.startEC(client.entityId());
         }
     }
+
+
+
+    private String KiSortByName() {
+        return " namaLengkap ASC";
+    }
+    // private String householdSortByFWGOBHHID(){
+    //    return " FWGOBHHID ASC";
+    //  }
+    // private String householdSortByFWJIVHHID(){
+    //     return " FWJIVHHID ASC";
+    //  }
 
     private class EditDialogOptionModel implements DialogOptionModel {
         @Override
@@ -247,11 +301,12 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 
     @Override
     protected void onResumption() {
-        super.onResumption();
+//        super.onResumption();
         getDefaultOptionsProvider();
-        updateSearchView();
-        //checkforNidMissing(mView);
-
+        initializeQueries();
+        //     updateSearchView();
+        //   checkforNidMissing(mView);
+//
         try{
             LoginActivity.setLanguage();
         }catch (Exception e){
@@ -259,20 +314,54 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
         }
 
     }
-    public void addChildToList(ArrayList<DialogOption> dialogOptionslist,Map<String,TreeNode<String, Location>> locationMap){
-        for(Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
-
-            if(entry.getValue().getChildren() != null) {
-                addChildToList(dialogOptionslist,entry.getValue().getChildren());
-
-            }else{
-                StringUtil.humanize(entry.getValue().getLabel());
-                String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new CommonObjectFilterOption(name,"dusun", CommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
-
-
+    @Override
+    public void setupSearchView(View view) {
+        searchView = (EditText) view.findViewById(org.ei.opensrp.R.id.edt_search);
+        searchView.setHint(getNavBarOptionsProvider().searchHint());
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
-        }
+
+            @Override
+            public void onTextChanged(final CharSequence cs, int start, int before, int count) {
+
+                (new AsyncTask() {
+                    SmartRegisterClients filteredClients;
+
+                    @Override
+                    protected Object doInBackground(Object[] params) {
+//                        currentSearchFilter =
+//                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
+//                        filteredClients = getClientsAdapter().getListItemProvider()
+//                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
+//                                        getCurrentSearchFilter(), getCurrentSortOption());
+//
+                        filters = "and namaLengkap Like '%" + cs.toString() +"%'" ;
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Object o) {
+//                        clientsAdapter
+//                                .refreshList(currentVillageFilter, currentServiceModeOption,
+//                                        currentSearchFilter, currentSortOption);
+//                        getClientsAdapter().refreshClients(filteredClients);
+//                        getClientsAdapter().notifyDataSetChanged();
+                        getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                        CountExecute();
+                        filterandSortExecute();
+                        super.onPostExecute(o);
+                    }
+                }).execute();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        searchCancelView = view.findViewById(org.ei.opensrp.R.id.btn_search_cancel);
+        searchCancelView.setOnClickListener(searchCancelHandler);
     }
 
     public void updateSearchView(){
@@ -289,12 +378,12 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
                     @Override
                     protected Object doInBackground(Object[] params) {
 //                        currentSearchFilter =
-                        setCurrentSearchFilter(new KBSearchOption(cs.toString()));
-                        filteredClients = getClientsAdapter().getListItemProvider()
-                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
-                                        getCurrentSearchFilter(), getCurrentSortOption());
-
-
+//                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
+//                        filteredClients = getClientsAdapter().getListItemProvider()
+//                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
+//                                        getCurrentSearchFilter(), getCurrentSortOption());
+//
+                        filters = "and namaLengkap Like '%" + cs.toString() +"%'" ;
                         return null;
                     }
 
@@ -303,9 +392,10 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
 //                        clientsAdapter
 //                                .refreshList(currentVillageFilter, currentServiceModeOption,
 //                                        currentSearchFilter, currentSortOption);
-                        getClientsAdapter().refreshClients(filteredClients);
-                        getClientsAdapter().notifyDataSetChanged();
+//                        getClientsAdapter().refreshClients(filteredClients);
+//                        getClientsAdapter().notifyDataSetChanged();
                         getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                        filterandSortExecute();
                         super.onPostExecute(o);
                     }
                 }).execute();
@@ -325,8 +415,20 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterFra
             }
         });
     }
+    public void addChildToList(ArrayList<DialogOption> dialogOptionslist,Map<String,TreeNode<String, Location>> locationMap){
+        for(Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
 
+            if(entry.getValue().getChildren() != null) {
+                addChildToList(dialogOptionslist,entry.getValue().getChildren());
+
+            }else{
+                StringUtil.humanize(entry.getValue().getLabel());
+                String name = StringUtil.humanize(entry.getValue().getLabel());
+                dialogOptionslist.add(new KICommonObjectFilterOption(name,"dusun", name));
+
+            }
+        }
+    }
 
 
 }
-

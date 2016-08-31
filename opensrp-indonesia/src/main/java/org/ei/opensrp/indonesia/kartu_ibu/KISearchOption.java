@@ -30,13 +30,6 @@ public class KISearchOption implements FilterOption {
                 }
             }
         }
-        if(!result) {
-            if(currentclient.getDetails().get("namaSuami") != null) {
-                if (currentclient.getDetails().get("namaSuami").contains(criteria)) {
-                    result = true;
-                }
-            }
-        }
 
         return result;
     }

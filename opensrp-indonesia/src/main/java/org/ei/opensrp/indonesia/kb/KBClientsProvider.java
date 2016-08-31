@@ -53,24 +53,22 @@ import static org.ei.opensrp.view.controller.ECSmartRegisterController.STATUS_TY
 /**
  * Created by Dimas Ciputra on 2/16/15.
  */
-public class KBClientsProvider implements SmartRegisterClientsProvider {
-
+public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
-    static String bindobject = "kartu_ibu";
+    private Drawable iconPencilDrawable;
     private final int txtColorBlack;
     private final AbsListView.LayoutParams clientViewLayoutParams;
-    private Drawable iconPencilDrawable;
+
     protected CommonPersonObjectController controller;
 
     AlertService alertService;
-
     public KBClientsProvider(Context context,
                              View.OnClickListener onClickListener,
-                             CommonPersonObjectController controller, AlertService alertService) {
+                             AlertService alertService) {
         this.onClickListener = onClickListener;
-        this.controller = controller;
+//        this.controller = controller;
         this.context = context;
         this.alertService = alertService;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -82,11 +80,11 @@ public class KBClientsProvider implements SmartRegisterClientsProvider {
     }
 
     @Override
-    public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
+    public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
 
         ViewHolder viewHolder;
-        if (convertView == null){
-            convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_kb_client, null);
+    //    if (convertView == null){
+    //        convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_kb_client, null);
             viewHolder = new ViewHolder();
             viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
             viewHolder.wife_name = (TextView)convertView.findViewById(R.id.wife_name);
@@ -116,10 +114,10 @@ public class KBClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
             convertView.setTag(viewHolder);
-        }else{
-            viewHolder = (ViewHolder) convertView.getTag();
+    //    }else{
+    //        viewHolder = (ViewHolder) convertView.getTag();
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
-        }
+    //    }
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
         viewHolder.profilelayout.setOnClickListener(onClickListener);
@@ -148,21 +146,19 @@ public class KBClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.kb_method.setText(pc.getDetails().get("jenisKontrasepsi")!=null?pc.getDetails().get("jenisKontrasepsi"):"");
         viewHolder.kb_mulai.setText(pc.getDetails().get("tanggalkunjungan")!=null?pc.getDetails().get("tanggalkunjungan"):"");
         viewHolder.risk_HB.setText(pc.getDetails().get("laboratoriumPeriksaHbHasil")!=null?pc.getDetails().get("laboratoriumPeriksaHbHasil"):"-");
-        viewHolder.LILA.setText(pc.getDetails().get("alkilila")!=null?pc.getDetails().get("alkilila"):"");
+        viewHolder.LILA.setText(pc.getDetails().get("alkilila")!=null?pc.getDetails().get("alkilila"):"-");
 //        viewHolder.risk_IMS.setText(pc.getDetails().get("htp")!=null?pc.getDetails().get("htp"):"");
 //        viewHolder.follow_up_due.setText(pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
 //        viewHolder.risk_PenyakitKronis.setText(pc.getDetails().get("penyakitKronis")!=null?pc.getDetails().get("penyakitKronis"):"");
 
 
         convertView.setLayoutParams(clientViewLayoutParams);
-        return convertView;
+     //   return convertView;
     }
     CommonPersonObjectController householdelcocontroller;
 
 
-
-
-    @Override
+    //    @Override
     public SmartRegisterClients getClients() {
         return controller.getClients();
     }
@@ -185,6 +181,12 @@ public class KBClientsProvider implements SmartRegisterClientsProvider {
 
     public LayoutInflater inflater() {
         return inflater;
+    }
+
+    @Override
+    public View inflatelayoutForCursorAdapter() {
+        View View = (ViewGroup) inflater().inflate(R.layout.smart_register_kb_client, null);
+        return View;
     }
 
     class ViewHolder {

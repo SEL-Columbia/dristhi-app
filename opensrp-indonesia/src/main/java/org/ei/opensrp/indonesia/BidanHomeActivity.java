@@ -95,7 +95,7 @@ public class BidanHomeActivity extends SecuredActivity {
         initialize();
         DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
         DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
-
+      //  context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new ANChandler());
 
     }
 
@@ -158,7 +158,7 @@ public class BidanHomeActivity extends SecuredActivity {
         kicount= kicountcursor.getInt(0);
         kicountcursor.close();
 
-        Cursor kbcountcursor = context.commonrepository("kartu_ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("kartu_ibu", "kartu_ibu.isClosed NOT Null and kartu_ibu.isClosed != ''"));
+        Cursor kbcountcursor = context.commonrepository("kartu_ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("kartu_ibu", "kartu_ibu.isClosed NOT Null and kartu_ibu.isClosed != '' and details not LIKE '%\"jenisKontrasepsi\":\"\"%'"));
         kbcountcursor.moveToFirst();
         kbcount= kbcountcursor.getInt(0);
         kbcountcursor.close();
