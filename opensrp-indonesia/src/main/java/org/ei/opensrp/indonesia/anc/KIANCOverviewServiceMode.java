@@ -50,8 +50,8 @@ public class KIANCOverviewServiceMode extends ServiceModeOption {
             public int[] headerTextResourceIds() {
                 return new int[]{
                         R.string.header_name, R.string.header_id, R.string.header_status,
-                        R.string.header_pemeriksaan, R.string.header_resiko,
-                        R.string.header_kunjungan, R.string.header_edit};
+                        R.string.header_pemeriksaan, R.string.header_history_anc,
+                        R.string.header_status, R.string.header_edit};
             }
         };
     }

@@ -171,44 +171,40 @@
         >
 
         <LinearLayout
-            android:id="@+id/layout_resiko_anc"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/status_bar_text_almost_white"
             android:orientation="vertical">
 
-            <!--<org.ei.bidan.view.customControls.CustomFontTextView-->
-                <!--android:id="@+id/lbl_ki_anc_penyakit_kronis"-->
-                <!--style="@style/CustomFontTextViewStyle.ListView.VerySmall"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Penyakit Kronis :"/>-->
-
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:id="@+id/txt_ki_anc_penyakit_kronis"
+                android:id="@+id/txt_tanggal_kunjungan_anc"
                 android:layout_marginTop="-2dp"
                 style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:text="Something something asdasd"/>
+                android:text="Something "/>
 
-            <!--<org.ei.bidan.view.customControls.CustomFontTextView-->
-                <!--android:id="@+id/lbl_ki_anc_alergi"-->
-                <!--style="@style/CustomFontTextViewStyle.ListView.VerySmall"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Alergi :"/>-->
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/txt_anc_number"
+                android:layout_marginTop="-2dp"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Something "/>
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/txt_kunjugan_ke"
+                android:layout_marginTop="-2dp"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Something "/>
 
 
-            <!--<org.ei.bidan.view.customControls.CustomFontTextView-->
-                <!--android:id="@+id/txt_ki_anc_alergi"-->
-                <!--android:layout_marginTop="-2dp"-->
-                <!--style="@style/CustomFontTextViewStyle.ListView.Small"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="alergi apa aja"/>-->
         </LinearLayout>
 
     </LinearLayout>
@@ -241,11 +237,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_status_type"
             android:layout_alignParentLeft="true"
-            android:text="Start"
+            android:text="Status"
             style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/txt_status_date"
+            android:id="@+id/txt_status_date_anc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_status_type"

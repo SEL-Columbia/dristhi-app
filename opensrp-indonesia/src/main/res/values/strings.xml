@@ -43,11 +43,19 @@
         cleared.
     </string>
     <string name="unsynced_forms_count_message">forms unsynced</string>
-
+    <string name="anc_visit_integrasi">Kunjungan ANC Integrasi</string>
+    <string name="anc_visit_labtest">Kunjungan ANC Tes Lab</string>
+    <string name="str_rencana_persalinan_anc_form">Rencana Persalinan</string>
+    <string name="str_register_pnc_form">Daftar PNC</string>
+    <string name="anc_edit">Edit ANC</string>
+    <string name="pnc_edit">Edit PNC</string>
+    <string name="pnc_visit">PNC Visit</string>
+    <string name="pnc_pospartum_kb">Postpartum KB</string>
     <string name="str_next">"Next &gt;&gt;"</string>
     <string name="str_previous">"&lt;&lt; Previous"</string>
     <string name="str_page_info">Page {0} of {1}</string>
 
+    <string name="header_history_anc">VISIT HISTORY</string>
     <string name="header_name">NAME</string>
     <string name="header_ec_no">EC NO.</string>
     <string name="header_gplsa">GPLSA</string>
@@ -424,4 +432,7 @@
     <string name="str_kb_edit">Edit KB</string>
     <string name="str_kb_close">Tutup KB</string>
     <string name="kb_register_title_in_short">KB:</string>
+    <string name="tanggalkunjungan">Tanggal Kunjungan :</string>
+    <string name="ancke">ANC Ke :</string>
+    <string name="kunjunganke">Kunjungan Ke :</string>
 </resources>

@@ -29,6 +29,13 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_CLOSE;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_EDIT;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_RENCANA_PERSALINAN;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_VISIT;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_VISIT_INTEGRASI;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_VISIT_LABTEST;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_CLOSE;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_EDIT;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_REGISTER;
@@ -108,9 +115,14 @@ public class NativeKIANCSmartRegisterActivity extends SecuredNativeSmartRegister
 
     public DialogOption[] getEditOptions() {
         return new DialogOption[]{
-                new OpenFormOption("Update KB ", KOHORT_KB_UPDATE, formController),
-                new OpenFormOption("Edit KB ", KOHORT_KB_EDIT, formController),
-                new OpenFormOption("Tutup KB ", KOHORT_KB_CLOSE, formController),
+                new OpenFormOption("ANC Visit ", KARTU_IBU_ANC_VISIT, formController),
+                new OpenFormOption("Kunjungan ANC Integrasi ", KARTU_IBU_ANC_VISIT_INTEGRASI, formController),
+                new OpenFormOption("Kunjungan ANC Tes Lab ", KARTU_IBU_ANC_VISIT_LABTEST, formController),
+                new OpenFormOption("Rencana Persalinan", KARTU_IBU_ANC_RENCANA_PERSALINAN, formController),
+                new OpenFormOption("Daftar PNC ", KARTU_IBU_PNC_REGISTRATION, formController),
+             //   new OpenFormOption("Edit ANC ", KARTU_IBU_ANC_EDIT, formController),
+                new OpenFormOption("ANC Close ", KARTU_IBU_ANC_CLOSE, formController),
+
 
         };
 
@@ -235,10 +247,14 @@ public class NativeKIANCSmartRegisterActivity extends SecuredNativeSmartRegister
 
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
-        formNames.add(KOHORT_KB_REGISTER);
-        formNames.add(KOHORT_KB_UPDATE);
-        formNames.add(KOHORT_KB_EDIT);
-        formNames.add(KOHORT_KB_CLOSE);
+        formNames.add(KARTU_IBU_ANC_VISIT);
+        formNames.add(KARTU_IBU_ANC_VISIT_INTEGRASI);
+        formNames.add(KARTU_IBU_ANC_VISIT_LABTEST);
+        formNames.add(KARTU_IBU_ANC_RENCANA_PERSALINAN);
+        formNames.add(KARTU_IBU_PNC_REGISTRATION);
+      //  formNames.add(KARTU_IBU_ANC_EDIT);
+        formNames.add(KARTU_IBU_ANC_CLOSE);
+
         DialogOption[] options = getEditOptions();
       //  for (int i = 0; i < options.length; i++) {
      //       formNames.add(((OpenFormOption) options[i]).getFormName());

@@ -216,17 +216,16 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
         setTablename("ibu");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ibu");
-           countqueryBUilder.joinwithIbus("kartu_ibu");
-        countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true' ");
+        countqueryBUilder.joinwithALerts("ibu","Ante Natal Care - Normal");
+        countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='anc' ");
         CountExecute();
 
-
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details","kartu_ibu.id as kiid"});
-           queryBUilder.joinwithIbus("ibu");
-        mainSelect = queryBUilder.mainCondition(" ibu.type ='anc'");
+        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details"});
+        queryBUilder.joinwithALerts("ibu","Ante Natal Care - Normal");
+        mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='anc'");
         queryBUilder.addCondition(filters);
-        Sortqueries = KiSortByName();
+        Sortqueries = sortByAlertmethod();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));

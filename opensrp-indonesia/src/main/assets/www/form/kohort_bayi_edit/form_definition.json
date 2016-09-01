@@ -39,11 +39,6 @@
                 "shouldLoadValue": true
             },
             {
-                "name": "kepemilikanBukuKIA",
-                "bind": "/model/instance/tambah_bayi_reviewed/kepemilikan_buku_kia",
-                "shouldLoadValue": true
-            },
-            {
                 "name": "beratLahir",
                 "bind": "/model/instance/tambah_bayi_reviewed/berat_lahir",
                 "shouldLoadValue": true
