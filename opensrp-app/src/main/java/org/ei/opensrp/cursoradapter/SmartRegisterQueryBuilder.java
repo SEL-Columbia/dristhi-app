@@ -2,6 +2,7 @@ package org.ei.opensrp.cursoradapter;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.commonregistry.CommonFtsObject;
+import org.ei.opensrp.util.StringUtil;
 
 import java.util.List;
 
@@ -108,65 +109,115 @@ public class SmartRegisterQueryBuilder {
         return Selectquery;
     }
 
-    public String toStringFts(List<String> ids, String idColumn, String sort){
+    public String toStringFts(List<String> ids, String idColumn){
         String res = Selectquery;
 
-        String whereOrAnd = " WHERE";
-        if(Selectquery.contains("WHERE")){
-            whereOrAnd = " AND";
+        // Remove where clause, Already used when fetching ids
+        if(StringUtils.containsIgnoreCase(res, "WHERE")){
+            res = res.substring(0, res.toUpperCase().indexOf("WHERE"));
         }
 
         if(ids.isEmpty()){
-            res += String.format(whereOrAnd + " %s IN () ", idColumn);;
+            res += String.format(" WHERE %s IN () ", idColumn);;
         }else {
             String joinedIds = "'" + StringUtils.join(ids, "','") + "'";
-            res += String.format(whereOrAnd + " %s IN (%s) ", idColumn, joinedIds);
+            res += String.format(" WHERE %s IN (%s) ", idColumn, joinedIds);
+        }
+
+        return res;
+    }
+
+    public String toStringFts(List<String> ids, String idColumn, String sort){
+        String res = Selectquery;
+
+        // Remove where clause, Already used when fetching ids
+        if(StringUtils.containsIgnoreCase(res, "WHERE")){
+            res = res.substring(0, res.toUpperCase().indexOf("WHERE"));
+        }
+
+        if(ids.isEmpty()){
+            res += String.format(" WHERE %s IN () ", idColumn);;
+        }else {
+            String joinedIds = "'" + StringUtils.join(ids, "','") + "'";
+            res += String.format(" WHERE %s IN (%s) ", idColumn, joinedIds);
 
             if (StringUtils.isNotBlank(sort)) {
-                res += " ORDER BY CASE " + idColumn;
-                for (int i = 0; i < ids.size(); i++) {
-                    res += " WHEN '" + ids.get(i) + "' THEN " + i;
+                if(innerSort(sort)) {
+                    res += " ORDER BY CASE " + idColumn;
+                    for (int i = 0; i < ids.size(); i++) {
+                        res += " WHEN '" + ids.get(i) + "' THEN " + i;
+                    }
+                    res += " END ";
+                } else {
+                    res += " ORDER BY " + sort;
                 }
-                res += " END ";
-
             }
         }
 
         return res;
     }
 
-    public String searchQueryFts(String tablename, String searchJoinTable, String searchFilter, String sort, int limit, int offset){
-        String query = "SELECT " + CommonFtsObject.idColumn + " FROM " + CommonFtsObject.searchTableName(tablename)  + phraseClause(searchJoinTable, searchFilter) + orderByClause(sort) + limitClause(limit, offset);
+    public String searchQueryFts(String tablename, String searchJoinTable, String mainCondition, String searchFilter, String sort, int limit, int offset){
+        if(StringUtils.isNotBlank(searchJoinTable) && StringUtils.isNotBlank(searchFilter)){
+            String query = "SELECT " + CommonFtsObject.idColumn + " FROM " + CommonFtsObject.searchTableName(tablename)  + phraseClause(tablename, searchJoinTable, mainCondition, searchFilter) + orderByClause(sort) + limitClause(limit, offset);
+            return query;
+        }
+        String query = "SELECT " + CommonFtsObject.idColumn + " FROM " + CommonFtsObject.searchTableName(tablename)  + phraseClause(mainCondition, searchFilter) + orderByClause(sort) + limitClause(limit, offset);
         return query;
     }
 
 
-    public String countQueryFts(String tablename, String searchJoinTable, String searchFilter){
-        String countQuery = "SELECT COUNT(*) FROM " + CommonFtsObject.searchTableName(tablename)  + phraseClause(searchJoinTable, searchFilter);
-        return countQuery;
+    public String countQueryFts(String tablename, String searchJoinTable, String mainCondition, String searchFilter){
+        if(StringUtils.isNotBlank(searchJoinTable) && StringUtils.isNotBlank(searchFilter)){
+            String query = "SELECT " + CommonFtsObject.idColumn + " FROM " + CommonFtsObject.searchTableName(tablename)  + phraseClause(searchJoinTable, mainCondition, searchFilter);
+            return query;
+        }
+        String query = "SELECT " + CommonFtsObject.idColumn + " FROM " + CommonFtsObject.searchTableName(tablename)  + phraseClause(mainCondition, searchFilter);
+        return query;
     }
 
-    private String phraseClause(String joinTable, String phrase){
-        String phraseClause = "";
-        if(StringUtils.isNotBlank(phrase)){
-            phraseClause = " WHERE " + CommonFtsObject.phraseColumnName + " MATCH '" + phrase + "*'";
-            if(StringUtils.isNotBlank(joinTable)){
-                phraseClause += " OR " + CommonFtsObject.idColumn + " IN ( SELECT " + CommonFtsObject.relationalIdColumn + " FROM " + CommonFtsObject.searchTableName(joinTable) + " WHERE " + CommonFtsObject.phraseColumnName + " MATCH '" + phrase + "*' )";
-            }
+    private String phraseClause(String mainCondition, String phrase){
+        if(StringUtils.isNotBlank(phrase)) {
+            String phraseClause = " WHERE " + mainConditionClause(mainCondition) + CommonFtsObject.phraseColumnName + " MATCH '" + phrase + "*'";
+            return phraseClause;
+        }else if(StringUtils.isNotBlank(mainCondition)){
+            return " WHERE " + mainCondition;
         }
+        return "";
+    }
+
+    private String phraseClause(String joinTable, String mainCondition, String phrase){
+        String phraseClause = " WHERE " + mainConditionClause(mainCondition) + CommonFtsObject.phraseColumnName + " MATCH '" + phrase + "*'" +
+                    " UNION SELECT " + CommonFtsObject.relationalIdColumn + " FROM " + CommonFtsObject.searchTableName(joinTable) + " WHERE " + CommonFtsObject.phraseColumnName + " MATCH '" + phrase + "*'";
+        return phraseClause;
+    }
+
+    private String phraseClause(String tableName, String joinTable, String mainCondition, String phrase){
+        String phraseClause = " WHERE " + CommonFtsObject.idColumn + " IN ( SELECT " + CommonFtsObject.idColumn + " FROM " + CommonFtsObject.searchTableName(tableName) + " WHERE " + mainConditionClause(mainCondition) + CommonFtsObject.phraseColumnName + " MATCH '" + phrase + "*'" +
+                " UNION SELECT " + CommonFtsObject.relationalIdColumn + " FROM " + CommonFtsObject.searchTableName(joinTable) + " WHERE " + CommonFtsObject.phraseColumnName + " MATCH '" + phrase + "*' )";
         return phraseClause;
     }
 
     private String orderByClause(String sort){
-        if(StringUtils.isNotBlank(sort)){
-            if(!sort.contains("alerts")) {
-                return " ORDER BY " + sort;
-            }
+        if(StringUtils.isNotBlank(sort) && innerSort(sort)){
+            return " ORDER BY " + sort;
         }
         return "";
     }
 
     private String limitClause(int limit, int offset){
         return " LIMIT " +  offset + "," + limit;
+    }
+
+    private boolean innerSort(String sort){
+        return !sort.contains("alerts".trim()) && !StringUtils.containsIgnoreCase(StringUtils.normalizeSpace(sort), "case when");
+    }
+
+    private String mainConditionClause(String mainCondition){
+        if(StringUtils.isNotBlank(mainCondition)){
+            return mainCondition += " AND ";
+        }else{
+            return mainCondition = "";
+        }
     }
 }

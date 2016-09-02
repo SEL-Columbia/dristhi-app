@@ -231,6 +231,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         countqueryBUilder.SelectInitiateMainTableCounts("household");
         countqueryBUilder.joinwithALerts("household","FW CENSUS");
         countSelect = countqueryBUilder.mainCondition(" FWHOHFNAME is not null ");
+        mainCondition = " FWHOHFNAME is not null ";
         CountExecute();
 
 
@@ -366,6 +367,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
                         //filters = "and FWHOHFNAME Like '%" + cs.toString() + "%' or FWGOBHHID Like '%" + cs.toString() + "%'  or FWJIVHHID Like '%" + cs.toString() + "%' ";
                         filters = cs.toString();
                         joinTable = "";
+                        mainCondition = " FWHOHFNAME is not null ";
                         return null;
                     }
 
@@ -414,6 +416,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
                         //filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' or household.id in (Select elco.relationalid from elco where FWWOMFNAME Like '%"+cs.toString()+"%' )";
                         filters = cs.toString();
                         joinTable = "elco";
+                        mainCondition = " FWHOHFNAME is not null ";
                         return null;
                     }
 

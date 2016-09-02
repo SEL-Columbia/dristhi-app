@@ -97,6 +97,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.preference.PreferenceManager.setDefaultValues;
@@ -249,14 +250,13 @@ public class Context {
         initRepository();
         if (formSubmissionService == null) {
             if(commonFtsObject != null){
-                List<AllCommonsRepository> allCommonsRepositoryList = new ArrayList<>();
+                Map<String, AllCommonsRepository> allCommonsRepositoryMap = new HashMap<String, AllCommonsRepository>();
                 for(String ftsTable: commonFtsObject.getTables()){
                     AllCommonsRepository allCommonsRepository =  allCommonsRepositoryobjects(ftsTable);
-                    allCommonsRepositoryList.add(allCommonsRepository);
+                    allCommonsRepositoryMap.put(ftsTable, allCommonsRepository);
                 }
 
-                AllCommonsRepository[] allCommonsRepositories = allCommonsRepositoryList.toArray(new AllCommonsRepository[allCommonsRepositoryList.size()]);
-                formSubmissionService = new FormSubmissionService(ziggyService(), formDataRepository(), allSettings(), allCommonsRepositories);
+                formSubmissionService = new FormSubmissionService(ziggyService(), formDataRepository(), allSettings(), allCommonsRepositoryMap);
             } else {
                 formSubmissionService = new FormSubmissionService(ziggyService(), formDataRepository(), allSettings());
             }

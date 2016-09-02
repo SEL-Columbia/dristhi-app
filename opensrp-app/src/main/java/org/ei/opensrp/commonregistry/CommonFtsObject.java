@@ -15,6 +15,7 @@ public class CommonFtsObject {
     private String[] tables;
     private Map<String, String[]> searchMap;
     private Map<String, String[]> sortMap;
+    private Map<String, String[]> mainConditionMap;
     public static final String idColumn = "object_id";
     public static final String relationalIdColumn = "object_relational_id";
     public static final String phraseColumnName = "phrase";
@@ -23,6 +24,7 @@ public class CommonFtsObject {
         this.tables = tables;
         this.searchMap = new HashMap<String, String[]>();
         this.sortMap = new HashMap<String, String[]>();
+        this.mainConditionMap = new HashMap<String, String[]>();
     }
 
     public void updateSearchFields(String table, String[] searchFields) {
@@ -34,6 +36,12 @@ public class CommonFtsObject {
     public void updateSortFields(String table, String[] sortFields) {
         if (containsTable(table) && sortFields != null) {
             sortMap.put(table, sortFields);
+        }
+    }
+
+    public void updateMainConditions(String table, String[] mainConditions) {
+        if (containsTable(table) && mainConditions != null) {
+            mainConditionMap.put(table, mainConditions);
         }
     }
 
@@ -49,6 +57,8 @@ public class CommonFtsObject {
         return sortMap.get(table);
     }
 
+    public String[] getMainConditions(String table) { return mainConditionMap.get(table); }
+
     public boolean containsTable(String table) {
         if (tables == null || StringUtils.isBlank(table)) {
             return false;
@@ -62,10 +72,4 @@ public class CommonFtsObject {
         return table + "_search";
     }
 
-    public static String sortColumn(String sortValue){
-        if(sortValue.trim().contains(" ")) {
-            return sortValue.trim().split(" ")[0];
-        }
-        return sortValue;
-    }
 }

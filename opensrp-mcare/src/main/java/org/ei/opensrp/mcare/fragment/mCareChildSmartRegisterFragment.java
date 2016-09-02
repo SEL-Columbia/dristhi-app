@@ -284,8 +284,11 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
                         if(cs.toString().equalsIgnoreCase("")){
                             filters = "";
                         }else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters =  cs.toString();
                         }
+                        joinTable = "";
+                        mainCondition = " FWBNFGEN is not null ";
                         return null;
                     }
 
@@ -355,6 +358,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
         setTablename("mcarechild");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(childMainCountWithJoins());
         countSelect = countqueryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
+        mainCondition = " FWBNFGEN is not null ";
         CountExecute();
 
 

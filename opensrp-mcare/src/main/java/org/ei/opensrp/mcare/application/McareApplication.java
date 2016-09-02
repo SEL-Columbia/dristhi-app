@@ -105,23 +105,52 @@ public class McareApplication extends DrishtiApplication {
         } else if(tableName.equals("elco")){
             String[] ftsSearchFileds =  { "FWWOMFNAME", "GOBHHID", "JiVitAHHID" };
             return ftsSearchFileds;
+        } else if (tableName.equals("mcaremother")){
+            String[] ftsSearchFileds =  { "FWWOMFNAME", "GOBHHID", "JiVitAHHID", "Is_PNC" };
+            return ftsSearchFileds;
+        } else if (tableName.equals("mcarechild")){
+            String[] ftsSearchFileds =  { "FWWOMFNAME", "GOBHHID", "JiVitAHHID" };
+            return ftsSearchFileds;
         }
         return null;
     }
 
     private String[] getFtsSortFields(String tableName){
         if(tableName.equals("household")) {
-            String[] sortFields = {"FWHOHFNAME COLLATE NOCASE ASC", "FWGOBHHID ASC", "FWJIVHHID ASC"};
+            String[] sortFields = {"FWHOHFNAME", "FWGOBHHID", "FWJIVHHID"};
             return sortFields;
         } else if(tableName.equals("elco")){
-            String[] sortFields = {"FWWOMFNAME COLLATE NOCASE ASC", "GOBHHID ASC", "JiVitAHHID ASC"};
+            String[] sortFields = {"FWWOMFNAME", "GOBHHID", "JiVitAHHID"};
+            return sortFields;
+        } else if(tableName.equals("mcaremother")){
+            String[] sortFields = {"FWWOMFNAME", "GOBHHID", "JiVitAHHID", "FWPSRLMP", "FWBNFDTOO", "FWSORTVALUE"};
+            return sortFields;
+        } else if(tableName.equals("mcarechild")){
+            String[] sortFields = {"FWWOMFNAME", "GOBHHID", "JiVitAHHID", "FWSORTVALUE"};
+            return sortFields;
+        }
+        return null;
+    }
+
+    private String[] getFtsMainConditions(String tableName){
+        if(tableName.equals("household")) {
+            String[] sortFields = {"FWHOHFNAME"};
+            return sortFields;
+        } else if(tableName.equals("elco")){
+            String[] sortFields = {"FWWOMFNAME", "details"};
+            return sortFields;
+        } else if(tableName.equals("mcaremother")){
+            String[] sortFields = {"FWWOMFNAME", "Is_PNC", "details"};
+            return sortFields;
+        } else if(tableName.equals("mcarechild")){
+            String[] sortFields = {"FWBNFGEN"};
             return sortFields;
         }
         return null;
     }
 
     private String[] getFtsTables(){
-        String[] ftsTables = { "household", "elco" };
+        String[] ftsTables = { "household", "elco", "mcaremother", "mcarechild" };
         return ftsTables;
     }
 
@@ -130,6 +159,7 @@ public class McareApplication extends DrishtiApplication {
         for(String ftsTable: commonFtsObject.getTables()){
             commonFtsObject.updateSearchFields(ftsTable, getFtsSearchFields(ftsTable));
             commonFtsObject.updateSortFields(ftsTable, getFtsSortFields(ftsTable));
+            commonFtsObject.updateMainConditions(ftsTable, getFtsMainConditions(ftsTable));
         }
         return commonFtsObject;
     }

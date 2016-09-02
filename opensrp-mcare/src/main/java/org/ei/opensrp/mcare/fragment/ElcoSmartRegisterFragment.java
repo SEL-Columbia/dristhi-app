@@ -313,9 +313,10 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
                         }else {
                             //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
                             filters = cs.toString();
-                            joinTable = "";
                         }
-                            return null;
+                        joinTable = "";
+                        mainCondition = " FWWOMFNAME != \"\"  and  FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' ";
+                        return null;
                     }
 
                     @Override
@@ -364,8 +365,9 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
                         } else {
                             //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
                             filters = cs.toString();
-                            joinTable = "";
                         }
+                        joinTable = "";
+                        mainCondition = " FWWOMFNAME != \"\"  and  FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' ";
                         return null;
                     }
 
@@ -418,6 +420,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         countqueryBUilder.SelectInitiateMainTableCounts("elco");
         countqueryBUilder.joinwithALerts("elco","ELCO PSRF");
         countSelect = countqueryBUilder.mainCondition(" FWWOMFNAME != \"\"  and  FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' ");
+        mainCondition = " FWWOMFNAME != \"\"  and  FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' ";
         CountExecute();
 
 

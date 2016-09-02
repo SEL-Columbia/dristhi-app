@@ -12,7 +12,9 @@ import org.ei.opensrp.util.Session;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Repository extends SQLiteOpenHelper {
     private DrishtiRepository[] repositories;
@@ -49,14 +51,22 @@ public class Repository extends SQLiteOpenHelper {
 
         if(this.commonFtsObject != null) {
             for (String ftsTable: commonFtsObject.getTables()) {
+                Set<String> searchColumns = new LinkedHashSet<String>();
+                searchColumns.add(CommonFtsObject.idColumn);
+                searchColumns.add(CommonFtsObject.relationalIdColumn);
+                searchColumns.add(CommonFtsObject.phraseColumnName);
+
+                String[] mainConditions = this.commonFtsObject.getMainConditions(ftsTable);
+                if(mainConditions != null)
+                    for (String mainCondition : mainConditions) {
+                        searchColumns.add(mainCondition);
+                    }
+
                 String[] sortFields = this.commonFtsObject.getSortFields(ftsTable);
-                List<String> searchColumns = new ArrayList<String>();
-                for(String sortValue: sortFields){
-                    searchColumns.add(CommonFtsObject.sortColumn(sortValue));
-                }
-                searchColumns.add(0, CommonFtsObject.idColumn);
-                searchColumns.add(1, CommonFtsObject.relationalIdColumn);
-                searchColumns.add(2, CommonFtsObject.phraseColumnName);
+                if(sortFields != null)
+                    for (String sortValue : sortFields) {
+                        searchColumns.add(sortValue);
+                    }
 
                 String joinedSearchColumns = StringUtils.join(searchColumns, ",");
 

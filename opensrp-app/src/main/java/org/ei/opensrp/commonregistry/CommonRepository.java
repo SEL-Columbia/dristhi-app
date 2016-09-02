@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.repository.DrishtiRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -281,7 +282,7 @@ public class CommonRepository extends DrishtiRepository {
         return cursor;
     }
     public Cursor RawCustomQueryForAdapter(String query){
-
+        Log.i(getClass().getName(), query);
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(query, null);
           return cursor;
@@ -336,11 +337,21 @@ public class CommonRepository extends DrishtiRepository {
 
         try {
             Map<String, String> columnMaps = commonPersonObject.getColumnmaps();
+            List<String> additionalColumns = new ArrayList<String>(Arrays.asList(this.additionalcolumns));
+
             List<String> ftsSearchColumns = new ArrayList<String>();
             String[] ftsSearchFields =  commonFtsObject.getSearchFields(TABLE_NAME);
             for(String ftsSearchField: ftsSearchFields){
-                String ftsSearchColumn = withSub(columnMaps.get(ftsSearchField));
-                ftsSearchColumns.add(ftsSearchColumn);
+
+                if(!additionalColumns.contains(ftsSearchField) && commonPersonObject.getRelationalId() != null) {
+                    // Try getting the field by the relational Id
+                    String relationalFieldValue = getRelationalFieldValue(ftsSearchField, commonPersonObject.getRelationalId());
+                    String ftsSearchColumn = withSub(relationalFieldValue);
+                    ftsSearchColumns.add(ftsSearchColumn);
+                } else {
+                    String ftsSearchColumn = withSub(columnMaps.get(ftsSearchField));
+                    ftsSearchColumns.add(ftsSearchColumn);
+                }
             }
 
             String phraseSeparator = " | ";
@@ -351,12 +362,38 @@ public class CommonRepository extends DrishtiRepository {
             searchValues.put(CommonFtsObject.relationalIdColumn, commonPersonObject.getRelationalId());
             searchValues.put(CommonFtsObject.phraseColumnName, phrase);
 
+            String[] ftsMainConditionFields = commonFtsObject.getMainConditions(TABLE_NAME);
+            if(ftsMainConditionFields != null)
+                for(String ftsMainConditionField: ftsMainConditionFields){
+                    String value = null;
+                    if(ftsMainConditionField.equals("details")){
+                        Map<String, String> details = commonPersonObject.getDetails();
+                        if(details != null && !details.isEmpty()) {
+                            value = new Gson().toJson(details);
+                        }
+                    } else {
+                        if(!additionalColumns.contains(ftsMainConditionField) && commonPersonObject.getRelationalId() != null) {
+                            // Try getting the field by the relational Id
+                            value = getRelationalFieldValue(ftsMainConditionField, commonPersonObject.getRelationalId());
+                        } else
+                            value = columnMaps.get(ftsMainConditionField);
+                    }
+
+                    searchValues.put(ftsMainConditionField, value);
+                }
+
             String[] ftsSortFields =  commonFtsObject.getSortFields(TABLE_NAME);
-            for(String ftsSortField: ftsSortFields){
-                String ftsSortColumn = CommonFtsObject.sortColumn(ftsSortField);
-                String ftsSortValue = columnMaps.get(ftsSortColumn) == null ? "" : columnMaps.get(ftsSortColumn);
-                searchValues.put(ftsSortColumn, ftsSortValue);
-            }
+            if(ftsSearchFields != null)
+                for(String ftsSortField: ftsSortFields){
+                    if(!additionalColumns.contains(ftsSortField) && commonPersonObject.getRelationalId() != null) {
+                        // Try getting the field by the relational Id
+                        String ftsSortValue = getRelationalFieldValue(ftsSortField, commonPersonObject.getRelationalId());
+                        searchValues.put(ftsSortField, ftsSortValue);
+                    } else {
+                        String ftsSortValue = columnMaps.get(ftsSortField);
+                        searchValues.put(ftsSortField, ftsSortValue);
+                    }
+                }
 
             return searchValues;
         }catch (Exception e){
@@ -428,5 +465,36 @@ public class CommonRepository extends DrishtiRepository {
             withSub += s.substring(i) + " ";
         }
         return withSub.trim();
+    }
+
+    private String getRelationalFieldValue(String fieldName, String relationalId){
+        for(String table: commonFtsObject.getTables()){
+            if(isFieldExist(table, fieldName)){
+                ArrayList<HashMap<String, String>> list = rawQuery(" SELECT " + fieldName + " FROM "+ table + " WHERE " + ID_COLUMN + " = '"+ relationalId+"'");
+                if(!list.isEmpty()){
+                    return list.get(0).get(fieldName);
+                }
+            }
+        }
+        return null;
+    }
+    private boolean isFieldExist(String tableName, String fieldName)
+    {
+        boolean isExist = false;
+        SQLiteDatabase db = masterRepository.getWritableDatabase();
+        Cursor cursor = db.rawQuery("PRAGMA table_info(" + tableName + ")", null);
+        int index = cursor.getColumnIndex("name");
+        if (cursor.moveToFirst()) {
+            do {
+                String columnName = cursor.getString(index);
+                if(columnName.equals(fieldName)){
+                    isExist = true;
+                    break;
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return isExist;
     }
 }

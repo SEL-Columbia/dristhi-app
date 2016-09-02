@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonRepository;
@@ -66,6 +67,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     public static int currentoffset = 0;
     public String mainSelect;
     public String filters = "";
+    public String mainCondition = "";
     public String Sortqueries;
     public String currentquery;
     private String tablename;
@@ -487,10 +489,10 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
         CommonRepository commonRepository = context.commonrepository(tablename);
         String query = "";
-        if(commonRepository.isFts() && filters != null && (!filters.contains("Like"))){
-            String sql = sqb.searchQueryFts(tablename, joinTable, filters, Sortqueries, currentlimit, currentoffset);
+        if(commonRepository.isFts() && (filters != null && !StringUtils.containsIgnoreCase(filters, "like"))){
+            String sql = sqb.searchQueryFts(tablename, joinTable, mainCondition, filters, Sortqueries, currentlimit, currentoffset);
             List<String> ids = commonRepository.findSearchIds(sql);
-            currentquery = sqb.toStringFts(ids, CommonRepository.ID_COLUMN, Sortqueries);
+            currentquery = sqb.toStringFts(ids, tablename + "." + CommonRepository.ID_COLUMN, Sortqueries);
             query = sqb.Endquery(currentquery);
         } else {
             sqb.addCondition(filters);
@@ -498,7 +500,6 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
             query = sqb.Endquery(sqb.addlimitandOffset(currentquery,currentlimit,currentoffset));
 
         }
-        Log.d(getClass().getName(), query);
         databaseCursor = commonRepository.RawCustomQueryForAdapter(query);
         clientAdapter.swapCursor(databaseCursor);
     }
@@ -506,14 +507,16 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(countSelect);
         CommonRepository commonRepository = context.commonrepository(tablename);
         String query = "";
-        if(commonRepository.isFts() && filters != null && (!filters.contains("Like"))){
-            currentquery = sqb.countQueryFts(tablename, joinTable, filters);
+        if(commonRepository.isFts() && (filters != null && !StringUtils.containsIgnoreCase(filters, "like"))){
+            String sql = sqb.countQueryFts(tablename, joinTable, mainCondition, filters);
+            List<String> ids = commonRepository.findSearchIds(sql);
+            currentquery = sqb.toStringFts(ids, tablename + "." + CommonRepository.ID_COLUMN);
+            query = sqb.Endquery(currentquery);
         }else {
             sqb.addCondition(filters);
-            currentquery = sqb.orderbyCondition(Sortqueries);
+            currentquery =  sqb.orderbyCondition(Sortqueries);
+            query = sqb.Endquery(currentquery);
         }
-        query = sqb.Endquery(currentquery);
-        Log.d(getClass().getName(), query);
         Cursor c = commonRepository.RawCustomQueryForAdapter(query);
         c.moveToFirst();
         totalcount= c.getInt(0);
