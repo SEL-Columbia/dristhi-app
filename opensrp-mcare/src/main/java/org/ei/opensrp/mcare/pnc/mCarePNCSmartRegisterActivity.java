@@ -23,6 +23,7 @@ import org.ei.opensrp.mcare.fragment.mCarePNCSmartRegisterFragment;
 import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.AllSharedPreferences;
+import org.ei.opensrp.service.FormSubmissionService;
 import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
@@ -295,6 +296,10 @@ public class mCarePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             Context context = Context.getInstance();
             ZiggyService ziggyService = context.ziggyService();
             ziggyService.saveForm(getParams(submission), submission.instance());
+
+            FormSubmissionService formSubmissionService = context.formSubmissionService();
+            formSubmissionService.updateFTSsearch(submission);
+
             Log.v("we are here", "hhregister");
             //switch to forms list fragmentstregi
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data

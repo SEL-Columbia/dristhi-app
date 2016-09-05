@@ -486,8 +486,17 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
             Log.e("Cursor Close Error",e.getMessage());
 
         }
+
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
         CommonRepository commonRepository = context.commonrepository(tablename);
+        String query = filterandSortQuery(commonRepository, sqb);
+
+        databaseCursor = commonRepository.RawCustomQueryForAdapter(query);
+        clientAdapter.swapCursor(databaseCursor);
+    }
+
+    public String filterandSortQuery(CommonRepository commonRepository, SmartRegisterQueryBuilder sqb){
+
         String query = "";
         if(commonRepository.isFts() && (filters != null && !StringUtils.containsIgnoreCase(filters, "like"))){
             String sql = sqb.searchQueryFts(tablename, joinTable, mainCondition, filters, Sortqueries, currentlimit, currentoffset);
@@ -500,9 +509,10 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
             query = sqb.Endquery(sqb.addlimitandOffset(currentquery,currentlimit,currentoffset));
 
         }
-        databaseCursor = commonRepository.RawCustomQueryForAdapter(query);
-        clientAdapter.swapCursor(databaseCursor);
+
+        return query;
     }
+
     public void CountExecute(){
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(countSelect);
         CommonRepository commonRepository = context.commonrepository(tablename);

@@ -67,7 +67,11 @@ public class FormSubmissionService {
                         .map());
     }
 
-    private void updateFTSsearch(FormSubmission formSubmission){
+    public void updateFTSsearch(FormSubmission formSubmission){
+        if(allCommonsRepositoryMap == null || allCommonsRepositoryMap.isEmpty()){
+            return;
+        }
+
         FormData form = formSubmission.getForm();
         String bindType = form.bindType();
         String entityId = form.getFieldValue("id");
