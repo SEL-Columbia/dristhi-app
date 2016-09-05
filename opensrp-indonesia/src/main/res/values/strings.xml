@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OpenSRP</string>
+    <string name="app_name">Bidan OpenSRP</string>
     <string name="userNameEditText">Enter user name</string>
     <string name="passwordEditText">Enter password</string>
     <string name="login_text">Log In</string>
@@ -435,4 +435,14 @@
     <string name="tanggalkunjungan">Tanggal Kunjungan :</string>
     <string name="ancke">ANC Ke :</string>
     <string name="kunjunganke">Kunjungan Ke :</string>
+    <string name="header_rencana">PLAN</string>
+
+    <string name="header_komplikasi">COMPLICATION</string>
+
+    <string name="header_kontrasepsi">CONTRACEPTION</string>
+    <string name="header_tanda_vital">VITAL SIGN</string>
+    <string name="place_place">Place :</string>
+    <string name="plan_type">Type :</string>
+    <string name="mother_title">Mother :</string>
+    <string name="child_title">Child :</string>
 </resources>

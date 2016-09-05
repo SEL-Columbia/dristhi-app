@@ -6,10 +6,10 @@ import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.dialog.FilterOption;
 
-public class KBSearchOption implements FilterOption {
+public class ANCSearchOption implements FilterOption {
     private final String criteria;
 
-    public KBSearchOption(String criteria) {
+    public ANCSearchOption(String criteria) {
         this.criteria = criteria;
     }
 

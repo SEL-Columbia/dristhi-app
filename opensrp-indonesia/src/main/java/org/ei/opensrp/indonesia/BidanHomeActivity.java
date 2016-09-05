@@ -286,10 +286,10 @@ public class BidanHomeActivity extends SecuredActivity {
                case R.id.btn_child_register:
 //                    navigationController.startChildSmartRegistry();
                    break;
-
-               case R.id.btn_fp_register:
-                //   navigationController.startFPSmartRegistry();
-                   break; */
+ */
+               case R.id.btn_kartu_ibu_pnc_register:
+                   navigationController.startPNCSmartRegistry();
+                   break;
             }
         }
     };
