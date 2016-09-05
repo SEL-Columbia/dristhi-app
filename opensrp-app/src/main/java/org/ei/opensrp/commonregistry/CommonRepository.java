@@ -409,11 +409,10 @@ public class CommonRepository extends DrishtiRepository {
         String ftsSearchTable = CommonFtsObject.searchTableName(TABLE_NAME);
         try {
             for(String caseId: searchMap.keySet()) {
-                String[] args = {caseId, TABLE_NAME};
                 ContentValues searchValues = searchMap.get(caseId);
                 ArrayList<HashMap<String, String>> mapList = rawQuery(String.format("SELECT " + CommonFtsObject.idColumn + " FROM " + ftsSearchTable + " WHERE  " + CommonFtsObject.idColumn + " = '%s'", caseId));
                 if (!mapList.isEmpty()) {
-                    database.update(ftsSearchTable, searchValues, CommonFtsObject.idColumn + "= ?", new String[]{caseId});
+                    database.update(ftsSearchTable, searchValues, CommonFtsObject.idColumn + " = ?", new String[]{caseId});
 
                 } else {
                     database.insert(ftsSearchTable, null, searchValues);

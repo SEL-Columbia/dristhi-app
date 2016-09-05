@@ -100,17 +100,17 @@ public class McareApplication extends DrishtiApplication {
 
     private String[] getFtsSearchFields(String tableName){
         if(tableName.equals("household")){
-            String[] ftsSearchFileds =  { "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID" };
-            return ftsSearchFileds;
+            String[] ftsSearchFields =  { "FWHOHFNAME", "FWGOBHHID", "FWJIVHHID" };
+            return ftsSearchFields;
         } else if(tableName.equals("elco")){
-            String[] ftsSearchFileds =  { "FWWOMFNAME", "GOBHHID", "JiVitAHHID" };
-            return ftsSearchFileds;
+            String[] ftsSearchFields =  { "FWWOMFNAME", "GOBHHID", "JiVitAHHID" };
+            return ftsSearchFields;
         } else if (tableName.equals("mcaremother")){
-            String[] ftsSearchFileds =  { "FWWOMFNAME", "GOBHHID", "JiVitAHHID", "Is_PNC" };
-            return ftsSearchFileds;
+            String[] ftsSearchFields =  { "FWWOMFNAME", "GOBHHID", "JiVitAHHID", "Is_PNC" };
+            return ftsSearchFields;
         } else if (tableName.equals("mcarechild")){
-            String[] ftsSearchFileds =  { "FWWOMFNAME", "GOBHHID", "JiVitAHHID" };
-            return ftsSearchFileds;
+            String[] ftsSearchFields =  { "FWWOMFNAME", "GOBHHID", "JiVitAHHID" };
+            return ftsSearchFields;
         }
         return null;
     }
@@ -134,17 +134,17 @@ public class McareApplication extends DrishtiApplication {
 
     private String[] getFtsMainConditions(String tableName){
         if(tableName.equals("household")) {
-            String[] sortFields = {"FWHOHFNAME"};
-            return sortFields;
+            String[] mainConditions = {"FWHOHFNAME"};
+            return mainConditions;
         } else if(tableName.equals("elco")){
-            String[] sortFields = {"FWWOMFNAME", "details"};
-            return sortFields;
+            String[] mainConditions = {"FWWOMFNAME", "details"};
+            return mainConditions;
         } else if(tableName.equals("mcaremother")){
-            String[] sortFields = {"FWWOMFNAME", "Is_PNC", "details"};
-            return sortFields;
+            String[] mainConditions = {"FWWOMFNAME", "Is_PNC", "details"};
+            return mainConditions;
         } else if(tableName.equals("mcarechild")){
-            String[] sortFields = {"FWBNFGEN"};
-            return sortFields;
+            String[] mainConditions = {"FWBNFGEN"};
+            return mainConditions;
         }
         return null;
     }

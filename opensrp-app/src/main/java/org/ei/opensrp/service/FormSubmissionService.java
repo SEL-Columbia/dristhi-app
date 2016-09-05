@@ -74,8 +74,12 @@ public class FormSubmissionService {
 
         FormData form = formSubmission.getForm();
         String bindType = form.bindType();
-        String entityId = form.getFieldValue("id");
-        updateFTSsearch(bindType, entityId);
+        for(FormField field: form.fields()){
+            if(field.name() != null && field.name().equals("id")){
+                String entityId = field.value();
+                updateFTSsearch(bindType, entityId);
+            }
+        }
 
         List<FormField> fields = form.fields();
 
