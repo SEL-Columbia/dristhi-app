@@ -91,15 +91,15 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         viewHolder.komplikasi = (TextView)convertView.findViewById(R.id.txt_komplikasi);
 
-        viewHolder.kondisi_ibu = (TextView)convertView.findViewById(R.id.txt_kondisi_ibu);
-        viewHolder.kondisi_anak_1 = (TextView)convertView.findViewById(R.id.txt_kondisi_anak_1);
-        viewHolder.kondisi_anak_2 = (TextView)convertView.findViewById(R.id.txt_kondisi_anak_2);
+        viewHolder.tanggal_kunjungan = (TextView)convertView.findViewById(R.id.txt_tanggal_kunjungan_pnc);
+        viewHolder.KF = (TextView)convertView.findViewById(R.id.txt_kf);
+        viewHolder.vit_a = (TextView)convertView.findViewById(R.id.txt_vit_a);
 
         viewHolder.td_sistolik = (TextView)convertView.findViewById(R.id.txt_td_sistolik);
         viewHolder.td_diastolik = (TextView)convertView.findViewById(R.id.txt_td_diastolik);
-        //viewHolder.td_suhu = (TextView)convertView.findViewById(R.id.txt_td_suhu);
+        viewHolder.td_suhu = (TextView)convertView.findViewById(R.id.txt_td_suhu);
 
-      //  txt_kondisi_ibu txt_kondisi_anak_1 txt_kondisi_anak_2
+      //  txt_kondisi_ibu txt_KF txt_vit_a
 
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
@@ -124,11 +124,19 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.tempat_persalinan.setText(pc.getDetails().get("tempatBersalin")!=null?pc.getDetails().get("tempatBersalin"):"");
         viewHolder.dok_tipe.setText(pc.getDetails().get("caraPersalinanIbu")!=null?pc.getDetails().get("caraPersalinanIbu"):"");
         viewHolder.komplikasi.setText(pc.getDetails().get("komplikasi")!=null?pc.getDetails().get("komplikasi"):"");
-        viewHolder.kondisi_ibu.setText(pc.getDetails().get("keadaanIbu")!=null?pc.getDetails().get("keadaanIbu"):"");
+
+
+        String date = pc.getDetails().get("submissionDate")!=null?pc.getDetails().get("submissionDate"):"";
+        String kf_ke = pc.getDetails().get("hariKeKF")!=null?pc.getDetails().get("hariKeKF"):"";
+        String vit_a = pc.getDetails().get("pelayananfe")!=null?pc.getDetails().get("pelayananfe"):"";
+
+        viewHolder.tanggal_kunjungan.setText("Tanggal : " + date);
+        viewHolder.KF.setText("Hari Ke /KF : " + kf_ke);
+        viewHolder.vit_a.setText("Pelayanan FE : " +vit_a);
 
         viewHolder.td_sistolik.setText(pc.getDetails().get("tandaVitalTDSistolik")!=null?pc.getDetails().get("tandaVitalTDSistolik"):"");
         viewHolder.td_diastolik.setText(pc.getDetails().get("tandaVitalTDDiastolik")!=null?pc.getDetails().get("tandaVitalTDDiastolik"):"");
-     //   viewHolder.td_suhu.setText(pc.getDetails().get("keadaanIbu")!=null?pc.getDetails().get("keadaanIbu"):"");
+        viewHolder.td_suhu.setText(pc.getDetails().get("tandaVitalSuhu")!=null?pc.getDetails().get("tandaVitalSuhu"):"");
 
         AllCommonsRepository kiRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
 
@@ -148,8 +156,8 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         //  AllCommonsRepository anakrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("anak");
         //    final CommonPersonObject anakparent = anakrep.findByCaseID(kiobject.getColumnmaps().get("id"));
 
-      //  viewHolder.kondisi_anak_1.setText(anakparent.getDetails().get("saatLahirsd5JamKondisibayi")!=null?anakparent.getDetails().get("saatLahirsd5JamKondisibayi"):"");
-      //  viewHolder.kondisi_anak_1.setText(anakparent.getDetails().get("saatLahirsd5JamKondisibayi")!=null?anakparent.getDetails().get("saatLahirsd5JamKondisibayi")+","+anakparent.getDetails().get("beratLahir"):"-");
+      //  viewHolder.KF.setText(anakparent.getDetails().get("saatLahirsd5JamKondisibayi")!=null?anakparent.getDetails().get("saatLahirsd5JamKondisibayi"):"");
+      //  viewHolder.KF.setText(anakparent.getDetails().get("saatLahirsd5JamKondisibayi")!=null?anakparent.getDetails().get("saatLahirsd5JamKondisibayi")+","+anakparent.getDetails().get("beratLahir"):"-");
 
 
 
@@ -212,7 +220,7 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         TextView tanggal_bersalin;
         TextView tempat_persalinan;
         TextView dok_tipe;
-        TextView ki_lila_bb;
+        TextView tanggal_kunjungan;
         TextView beratbadan_tb;
         TextView anc_penyakit_kronis;
         TextView status_type;
@@ -232,8 +240,8 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         public TextView komplikasi;
         public TextView kondisi_ibu;
-        public TextView kondisi_anak_1;
-        public TextView kondisi_anak_2;
+        public TextView KF;
+        public TextView vit_a;
         TextView pnc_id;
         public TextView td_sistolik;
         public TextView td_diastolik;

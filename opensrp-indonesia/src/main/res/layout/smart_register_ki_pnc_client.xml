@@ -126,51 +126,36 @@
         android:weightSum="1"
         android:background="@color/status_bar_text_almost_white">
 
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/kondisi_ibu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/mother_title"
-            style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/txt_kondisi_ibu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/kondisi_ibu"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentTop="true"
-            android:text="Sehat"
-            style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"/>
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/txt_tanggal_kunjungan_pnc"
+                android:layout_marginTop="-2dp"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Something "/>
 
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/txt_kf"
+                android:layout_marginTop="-2dp"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_tanggal_kunjungan_pnc"
+                android:textSize="14sp"
+                android:text="Something "/>
 
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/kondisi_anak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/kondisi_ibu"
-            android:text="@string/child_title"
-            style="@style/CustomFontTextViewStyle.ListView.Small"/>
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/txt_vit_a"
+                android:layout_marginTop="-2dp"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_kf"
+                android:textSize="14sp"
+                android:text="Something "/>
 
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/txt_kondisi_anak_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/kondisi_ibu"
-            android:layout_toRightOf="@+id/kondisi_anak"
-            android:text="Sehat"
-            style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"/>
-
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/txt_kondisi_anak_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/kondisi_anak"
-            style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
     </RelativeLayout>
 

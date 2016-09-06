@@ -34,7 +34,11 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_R
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_VISIT;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_VISIT_INTEGRASI;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_VISIT_LABTEST;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_CLOSE;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_EDIT;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_POSPARTUM_KB;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_REGISTRATION;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_VISIT;
 
 /**
  * Created by Dimas Ciputra on 3/5/15.
@@ -110,13 +114,10 @@ public class NativeKIPNCSmartRegisterActivity extends SecuredNativeSmartRegister
 
     public DialogOption[] getEditOptions() {
         return new DialogOption[]{
-                new OpenFormOption("ANC Visit ", KARTU_IBU_ANC_VISIT, formController),
-                new OpenFormOption("Kunjungan ANC Integrasi ", KARTU_IBU_ANC_VISIT_INTEGRASI, formController),
-                new OpenFormOption("Kunjungan ANC Tes Lab ", KARTU_IBU_ANC_VISIT_LABTEST, formController),
-                new OpenFormOption("Rencana Persalinan", KARTU_IBU_ANC_RENCANA_PERSALINAN, formController),
-                new OpenFormOption("Daftar PNC ", KARTU_IBU_PNC_REGISTRATION, formController),
-             //   new OpenFormOption("Edit ANC ", KARTU_IBU_ANC_EDIT, formController),
-                new OpenFormOption("ANC Close ", KARTU_IBU_ANC_CLOSE, formController),
+                new OpenFormOption("PNC Visit ", KARTU_IBU_PNC_VISIT, formController),
+                new OpenFormOption("Postpartum KB ", KARTU_IBU_PNC_POSPARTUM_KB, formController),
+                new OpenFormOption("Edit PNC ", KARTU_IBU_PNC_EDIT, formController),
+                new OpenFormOption("PNC Close ", KARTU_IBU_PNC_CLOSE, formController),
 
 
         };
@@ -170,7 +171,7 @@ public class NativeKIPNCSmartRegisterActivity extends SecuredNativeSmartRegister
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
-        Log.v("fieldoverride", metaData);
+//        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
@@ -242,15 +243,15 @@ public class NativeKIPNCSmartRegisterActivity extends SecuredNativeSmartRegister
 
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
-        formNames.add(KARTU_IBU_ANC_VISIT);
-        formNames.add(KARTU_IBU_ANC_VISIT_INTEGRASI);
-        formNames.add(KARTU_IBU_ANC_VISIT_LABTEST);
-        formNames.add(KARTU_IBU_ANC_RENCANA_PERSALINAN);
-        formNames.add(KARTU_IBU_PNC_REGISTRATION);
+        formNames.add(KARTU_IBU_PNC_VISIT);
+        formNames.add(KARTU_IBU_PNC_POSPARTUM_KB);
+        formNames.add(KARTU_IBU_PNC_EDIT);
+        formNames.add(KARTU_IBU_PNC_CLOSE);
+    //    formNames.add(KARTU_IBU_PNC_REGISTRATION);
       //  formNames.add(KARTU_IBU_ANC_EDIT);
         formNames.add(KARTU_IBU_ANC_CLOSE);
 
-        DialogOption[] options = getEditOptions();
+    //    DialogOption[] options = getEditOptions();
       //  for (int i = 0; i < options.length; i++) {
      //       formNames.add(((OpenFormOption) options[i]).getFormName());
      //   }

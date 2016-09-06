@@ -53,7 +53,7 @@ public class KIPNCOverviewServiceMode extends ServiceModeOption {
                         R.string.header_name, R.string.header_id,
                         R.string.header_rencana,
                         R.string.header_komplikasi,
-                        R.string.header_kontrasepsi,
+                        R.string.header_pnc_visits,
                         R.string.header_tanda_vital,
                         R.string.header_edit};
             }
