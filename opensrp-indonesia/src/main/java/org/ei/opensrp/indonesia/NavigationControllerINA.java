@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 
 import org.ei.opensrp.indonesia.anc.NativeKIANCSmartRegisterActivity;
+import org.ei.opensrp.indonesia.child.NativeKIAnakSmartRegisterActivity;
 import org.ei.opensrp.indonesia.kartu_ibu.NativeKISmartRegisterActivity;
 import org.ei.opensrp.indonesia.kb.NativeKBSmartRegisterActivity;
 import org.ei.opensrp.indonesia.pnc.NativeKIPNCSmartRegisterActivity;
@@ -45,6 +46,10 @@ public class NavigationControllerINA extends org.ei.opensrp.view.controller.Navi
     @Override
     public void startPNCSmartRegistry() {
         activity.startActivity(new Intent(activity, NativeKIPNCSmartRegisterActivity.class));
+    }
+    @Override
+    public void startChildSmartRegistry() {
+        activity.startActivity(new Intent(activity, NativeKIAnakSmartRegisterActivity.class));
     }
 
 }

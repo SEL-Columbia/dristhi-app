@@ -31,7 +31,7 @@
     <string name="header_no_ibu">No Ibu</string>
     <string name="header_status_b">Status</string>
     <string name="header_obsetri">Obsetri</string>
-    <string name="mother_weight">Berat Badan :</string>
+    <string name="mother_weight">Weight :</string>
     <string name="header_pemeriksaan">Pemeriksaan</string>
     <string name="header_resiko">Resiko</string>
     <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
@@ -72,7 +72,7 @@
     <string name="label_sorted_by">Sorted By:</string>
     <string name="label_village">, Filtered By:</string>
     <string name="ec_register_wife_age">({0})</string>
-    <string name="ki_register_title_in_short">KI:</string>
+    <string name="ki_register_title_in_short">KI</string>
     <string name="ec_register_male_child">Male\n{0}</string>
     <string name="ec_register_female_child">Female\n{0}</string>
     <string name="ec_register_no_fp">No FP</string>
@@ -131,7 +131,7 @@
     <string name="str_reporting">Reporting</string>
     <string name="str_videos">Videos</string>
 
-    <string name="child_register_title_in_short">Child:</string>
+    <string name="child_register_title_in_short">Child</string>
     <string name="child_service_mode_overview">Overview</string>
     <string name="child_service_mode_immunization_0_to_9">Immunization 0-9</string>
     <string name="child_service_mode_immunization_9_plus">Immunization 9+</string>
@@ -197,8 +197,8 @@
     <string name="service_type_dpt_booster_2_short">DPT B2</string>
     <string name="pentavalent_short">Pentav</string>
 
-    <string name="fp_register_title_in_short">FP:</string>
-    <string name="pnc_register_title_in_short">PNC:</string>
+    <string name="fp_register_title_in_short">FP</string>
+    <string name="pnc_register_title_in_short">PNC</string>
     <string name="header_method">METHOD</string>
     <string name="header_side_effects">SIDE EFFECTS</string>
     <string name="header_followup_refill">FOLLOW UP/REFILL</string>
@@ -223,7 +223,7 @@
     <string name="fp_prioritization_high_priority_service_mode">High Priority (HP)</string>
     <string name="fp_prioritization_two_plus_children_service_mode">2+ Children</string>
     <string name="fp_prioritization_one_child_service_mode">1 Child</string>
-    <string name="fp_register_child_details">Child:</string>
+    <string name="fp_register_child_details">Child</string>
     <string name="str_due">"Due "</string>
     <string name="fp_methods">FP Methods</string>
     <string name="fp_prioritization">FP Prioritization</string>
@@ -253,13 +253,13 @@
     <string name="str_update">Update</string>
     <string name="str_side_effects">Side Effects</string>
 
-    <string name="anc_label">ANC:</string>
+    <string name="anc_label">ANC</string>
     <string name="hb_test_label">Hb Test</string>
     <string name="edd_label">"EDD: "</string>
     <string name="str_days_past_due">day (s) past due</string>
     <string name="lmp_label">LMP:</string>
     <string name="str_weeks">weeks</string>
-    <string name="anc_register_title_in_short">ANC:</string>
+    <string name="anc_register_title_in_short">ANC</string>
     <string name="str_bp">BP</string>
     <string name="str_weight">Wt.</string>
     <string name="str_anc_search_hint">Search ANC Register</string>
@@ -431,8 +431,8 @@
     <string name="str_kb_update">Update KB</string>
     <string name="str_kb_edit">Edit KB</string>
     <string name="str_kb_close">Tutup KB</string>
-    <string name="kb_register_title_in_short">KB:</string>
-    <string name="tanggalkunjungan">Tanggal Kunjungan :</string>
+    <string name="kb_register_title_in_short">KB</string>
+    <string name="tanggalkunjungan">Tanggal :</string>
     <string name="ancke">ANC Ke :</string>
     <string name="kunjunganke">Kunjungan Ke :</string>
     <string name="header_rencana">PLAN</string>
@@ -445,4 +445,16 @@
     <string name="plan_type">Type :</string>
     <string name="mother_title">Mother :</string>
     <string name="child_title">Child :</string>
+    <string name="dob_title">DOB :</string>
+    <string name="header_dok_persalinan">DELIVERY DOCUMENTATION</string>
+    <string name="header_birth_status">Status</string>
+    <string name="birth_place_title">B.Place :</string>
+    <string name="date_visit_title">Visit Date :</string>
+    <string name="birth_weight_title">B.Weight :</string>
+    <string name="hari_ke_kf">KF :</string>
+    <string name="str_anak_neonatal">Neonatal Visit</string>
+    <string name="str_anak_edit">Edit Child</string>
+    <string name="str_anak_bayi_visit">Baby Visit</string>
+    <string name="str_anak_balita_visit">Toddler Visit</string>
+    <string name="height">Height :</string>
 </resources>

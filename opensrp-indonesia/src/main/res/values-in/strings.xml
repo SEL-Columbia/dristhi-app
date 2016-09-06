@@ -85,8 +85,8 @@
     <string name="filter_by_out_of_area_label">O/A</string>
     <string name="filter_by_leave_the_place_label">L/P</string>
     <string name="ec_register_title_in_short">EC:</string>
-    <string name="ki_register_title_in_short">KI:</string>
-    <string name="kb_register_title_in_short">KB:</string>
+    <string name="ki_register_title_in_short">KI</string>
+    <string name="kb_register_title_in_short">KB</string>
 
     <string name="str_register_anc_form">Daftar ANC</string>
     <string name="str_register_kb_form">Daftar KB</string>
@@ -259,8 +259,8 @@
     <string name="pentavalent_short">Pentav</string>
     <string name="header_birth_status">Status</string>
 
-    <string name="fp_register_title_in_short">FP:</string>
-    <string name="pnc_register_title_in_short">PNC:</string>
+    <string name="fp_register_title_in_short">FP</string>
+    <string name="pnc_register_title_in_short">PNC</string>
     <string name="header_side_effects">SIDE EFFECTS</string>
     <string name="header_followup_refill">FOLLOW UP/REFILL</string>
     <string name="header_fp_prioritization_risks">RISKS</string>
@@ -316,7 +316,7 @@
     <string name="str_days_past_due">day (s) past due</string>
     <string name="lmp_label">LMP:</string>
     <string name="str_weeks">weeks</string>
-    <string name="anc_register_title_in_short">ANC:</string>
+    <string name="anc_register_title_in_short">ANC</string>
     <string name="str_bp">BP</string>
     <string name="str_weight">Wt.</string>
     <string name="str_anc_search_hint">Search ANC Register</string>
@@ -407,4 +407,5 @@
     <string name="cohort_child">ANAK</string>
     <string name="cohort_mother">KOHORT IBU</string>
     <string name="cohort_fp">KOHORT KB</string>
+
 </resources>

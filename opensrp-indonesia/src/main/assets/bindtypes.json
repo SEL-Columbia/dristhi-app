@@ -21,7 +21,7 @@
     {
       "name": "anak",
       "columns": [
-        {"name":"ibuCaseId"},{"name":"namaBayi"},{"name":"isClosed"},{"name":"photoPath"}
+        {"name":"ibuCaseId"},{"name":"isClosed"},{"name":"photoPath"}
       ]
     }
   ]

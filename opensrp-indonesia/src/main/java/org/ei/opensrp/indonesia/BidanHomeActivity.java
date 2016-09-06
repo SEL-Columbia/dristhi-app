@@ -164,7 +164,7 @@ public class BidanHomeActivity extends SecuredActivity {
         kbcountcursor.close();
 
 
-        Cursor anccountcursor = context.commonrepository("ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ibu", "ibu.type NOT Null and ibu.type = 'anc'"));
+        Cursor anccountcursor = context.commonrepository("ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ibu", "ibu.isClosed !='true' and ibu.type ='anc'"));
         anccountcursor.moveToFirst();
         anccount= anccountcursor.getInt(0);
         anccountcursor.close();
@@ -178,7 +178,7 @@ public class BidanHomeActivity extends SecuredActivity {
 
         Cursor childcountcursor = context.commonrepository("anak").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("anak", "anak.isClosed = 'false'"));
         childcountcursor.moveToFirst();
-        anccount= childcountcursor.getInt(0);
+        childcount= childcountcursor.getInt(0);
         childcountcursor.close();
 
         ecRegisterClientCountView.setText(valueOf(kicount));
@@ -282,11 +282,11 @@ public class BidanHomeActivity extends SecuredActivity {
                case R.id.btn_kartu_ibu_anc_register:
                     navigationController.startANCSmartRegistry();
                    break;
-/*
-               case R.id.btn_child_register:
-//                    navigationController.startChildSmartRegistry();
+
+               case R.id.btn_anak_register:
+                    navigationController.startChildSmartRegistry();
                    break;
- */
+
                case R.id.btn_kartu_ibu_pnc_register:
                    navigationController.startPNCSmartRegistry();
                    break;

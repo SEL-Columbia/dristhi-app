@@ -17,6 +17,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Kartu Ibu"
+        android:visibility="gone"
         style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 
 

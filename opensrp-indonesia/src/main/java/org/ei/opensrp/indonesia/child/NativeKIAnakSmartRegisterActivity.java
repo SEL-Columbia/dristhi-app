@@ -1,56 +1,51 @@
-package org.ei.opensrp.indonesia.kb;
+package org.ei.opensrp.indonesia.child;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
-import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
-import org.ei.opensrp.indonesia.fragment.NativeKBSmartRegisterFragment;
-import org.ei.opensrp.indonesia.fragment.NativeKISmartRegisterFragment;
+import org.ei.opensrp.indonesia.fragment.NativeKIAnakSmartRegisterFragment;
+import org.ei.opensrp.indonesia.fragment.NativeKIPNCSmartRegisterFragment;
 import org.ei.opensrp.indonesia.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.dialog.DialogOption;
-import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static org.ei.opensrp.R.string.form_back_confirm_dialog_message;
-import static org.ei.opensrp.R.string.form_back_confirm_dialog_title;
-import static org.ei.opensrp.R.string.no_button_label;
-import static org.ei.opensrp.R.string.yes_button_label;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_REGISTRATION;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_CLOSE;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_EDIT;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_REGISTER;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_UPDATE;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.BALITA_KUNJUNGAN;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.BAYI_NEONATAL_PERIOD;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANAK_CLOSE;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_CLOSE;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_CLOSE;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_EDIT;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_POSPARTUM_KB;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_VISIT;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_BAYI_EDIT;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_BAYI_KUNJUNGAN;
 
 /**
- * Created by Dimas Ciputra on 2/18/15.
+ * Created by Dimas Ciputra on 4/7/15.
  */
-public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
+public class NativeKIAnakSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
-    public static final String TAG = "KBActivity";
+    public static final String TAG = "AnakActivity";
     @Bind(R.id.view_pager)
     OpenSRPViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
@@ -71,7 +66,7 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         formNames = this.buildFormNameList();
-        mBaseFragment = new NativeKBSmartRegisterFragment();
+        mBaseFragment = new NativeKIAnakSmartRegisterFragment();
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
@@ -119,9 +114,13 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     public DialogOption[] getEditOptions() {
         return new DialogOption[]{
-                new OpenFormOption("Update KB ", KOHORT_KB_UPDATE, formController),
-                new OpenFormOption("Edit KB ", KOHORT_KB_EDIT, formController),
-                new OpenFormOption("Tutup KB ", KOHORT_KB_CLOSE, formController),
+                new OpenFormOption(getString(R.string.str_anak_neonatal), BAYI_NEONATAL_PERIOD, formController),
+                new OpenFormOption(getString(R.string.str_anak_bayi_visit), KOHORT_BAYI_KUNJUNGAN, formController),
+                new OpenFormOption(getString(R.string.str_anak_balita_visit), BALITA_KUNJUNGAN, formController),
+                new OpenFormOption(getString(R.string.str_anak_edit), KOHORT_BAYI_EDIT, formController),
+
+            //    new OpenFormOption(getString(R.string.str_tutup_anak),
+             //           KARTU_IBU_ANAK_CLOSE, formController),
 
         };
 
@@ -174,7 +173,7 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
-      //  Log.v("fieldoverride", metaData);
+//        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
@@ -246,11 +245,15 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
-        formNames.add(KOHORT_KB_REGISTER);
-        formNames.add(KOHORT_KB_UPDATE);
-        formNames.add(KOHORT_KB_EDIT);
-        formNames.add(KOHORT_KB_CLOSE);
-        DialogOption[] options = getEditOptions();
+        formNames.add(BAYI_NEONATAL_PERIOD);
+        formNames.add(KOHORT_BAYI_KUNJUNGAN);
+        formNames.add(BALITA_KUNJUNGAN);
+        formNames.add(KOHORT_BAYI_EDIT);
+    //    formNames.add(KARTU_IBU_PNC_REGISTRATION);
+      //  formNames.add(KARTU_IBU_ANC_EDIT);
+     //   formNames.add(KARTU_IBU_ANC_CLOSE);
+
+    //    DialogOption[] options = getEditOptions();
       //  for (int i = 0; i < options.length; i++) {
      //       formNames.add(((OpenFormOption) options[i]).getFormName());
      //   }

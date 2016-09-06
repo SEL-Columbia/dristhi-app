@@ -25,6 +25,9 @@ import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.anc.KIANCClientsProvider;
 import org.ei.opensrp.indonesia.anc.KIANCOverviewServiceMode;
 import org.ei.opensrp.indonesia.anc.NativeKIANCSmartRegisterActivity;
+import org.ei.opensrp.indonesia.child.AnakOverviewServiceMode;
+import org.ei.opensrp.indonesia.child.AnakRegisterClientsProvider;
+import org.ei.opensrp.indonesia.child.NativeKIAnakSmartRegisterActivity;
 import org.ei.opensrp.indonesia.kartu_ibu.AllKartuIbuServiceMode;
 import org.ei.opensrp.indonesia.kartu_ibu.KIClientsProvider;
 import org.ei.opensrp.indonesia.kartu_ibu.KICommonObjectFilterOption;
@@ -70,7 +73,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 /**
  * Created by koros on 10/29/15.
  */
-public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAdapterFragment {
+public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAdapterFragment {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private CommonPersonObjectController controller;
@@ -95,7 +98,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
 
             @Override
             public ServiceModeOption serviceMode() {
-                return new KIANCOverviewServiceMode(clientsProvider());
+                return new AnakOverviewServiceMode(clientsProvider());
             }
 
             @Override
@@ -111,7 +114,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
 
             @Override
             public String nameInShortFormForTitle() {
-                return Context.getInstance().getStringResource(R.string.anc_register_title_in_short);
+                return Context.getInstance().getStringResource(R.string.child_register_title_in_short);
             }
         };
     }
@@ -153,8 +156,8 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
-                        new CursorCommonObjectSort(getResources().getString(R.string.due_status),sortByAlertmethod()),
-                        new CursorCommonObjectSort(getResources().getString(R.string.hh_alphabetical_sort),KiSortByName()),
+                        //   new CursorCommonObjectSort(getResources().getString(R.string.due_status),sortByAlertmethod()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.hh_alphabetical_sort),AnakNameShort()),
                         //  new CursorCommonObjectSort(getResources().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
                         //   new CursorCommonObjectSort(getResources().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
 //""
@@ -179,7 +182,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
     }
 
     private DialogOption[] getEditOptions() {
-        return ((NativeKIANCSmartRegisterActivity)getActivity()).getEditOptions();
+        return ((NativeKIAnakSmartRegisterActivity)getActivity()).getEditOptions();
     }
 
     @Override
@@ -212,25 +215,25 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
                 "Else alerts.status END ASC";
     }
     public void initializeQueries(){
-        CommonRepository commonRepository = context.commonrepository("ibu");
-        setTablename("ibu");
+        CommonRepository commonRepository = context.commonrepository("anak");
+        setTablename("anak");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
-        countqueryBUilder.SelectInitiateMainTableCounts("ibu");
-        countqueryBUilder.joinwithALerts("ibu","Ante Natal Care - Normal");
-        countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='anc' ");
+        countqueryBUilder.SelectInitiateMainTableCounts("anak");
+        // countqueryBUilder.joinwithALerts("ibu","Ante Natal Care - Normal");
+        countSelect = countqueryBUilder.mainCondition(" anak.isClosed !='true' or ibuCaseId != '' ");
         CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details"});
-        queryBUilder.joinwithALerts("ibu","Ante Natal Care - Normal");
-        mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='anc'");
+        queryBUilder.SelectInitiateMainTable("anak", new String[]{"isClosed", "details"});
+        //  queryBUilder.joinwithALerts("ibu","Ante Natal Care - Normal");
+        countSelect = countqueryBUilder.mainCondition(" anak.isClosed !='true' or ibuCaseId != '' ");
         queryBUilder.addCondition(filters);
-        Sortqueries = sortByAlertmethod();
+       //   Sortqueries = AnakNameShort();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
-        KIANCClientsProvider kiscp = new KIANCClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed"}));
+        AnakRegisterClientsProvider kiscp = new AnakRegisterClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("anak",new String []{"isClosed"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -240,15 +243,15 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
 
     @Override
     public void startRegistration() {
-     //   FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
-     //   Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
-     //   if (prev != null) {
-    //        ft.remove(prev);
-    //    }
+   //     FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+   //     Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
+   //     if (prev != null) {
+   //         ft.remove(prev);
+  //      }
     //    ft.addToBackStack(null);
-    //    BidanLocationSelectorDialogFragment
-    //            .newInstance((NativeKIAnakSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), KOHORT_KB_REGISTER)
-   //             .show(ft, locationDialogTAG);
+   //     BidanLocationSelectorDialogFragment
+    //            .newInstance((NativeKIAnakSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "kartu_pnc_regitration_oa")
+    //            .show(ft, locationDialogTAG);
     }
 
     private class ClientActionHandler implements View.OnClickListener {
@@ -279,8 +282,8 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
 
 
 
-    private String KiSortByName() {
-        return " namaLengkap ASC";
+    private String AnakNameShort() {
+        return " namaBayi ASC";
     }
     // private String householdSortByFWGOBHHID(){
     //    return " FWGOBHHID ASC";
