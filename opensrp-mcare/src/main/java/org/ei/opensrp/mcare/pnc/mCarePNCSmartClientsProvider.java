@@ -195,12 +195,12 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         ImageView pnc3tick = (ImageView)itemview.findViewById(R.id.pnc3tick);
         TextView anc3text = (TextView)itemview.findViewById(R.id.pnc3text);
 
-//        anc1tick.setVisibility(View.GONE);
-//        anc1text.setVisibility(View.GONE);
-//        anc2tick.setVisibility(View.GONE);
-//        anc2text.setVisibility(View.GONE);
-//        anc3tick.setVisibility(View.GONE);
-//        anc3text.setVisibility(View.GONE);
+        pnc1tick.setVisibility(View.GONE);
+        anc1text.setVisibility(View.GONE);
+        pnc2tick.setVisibility(View.GONE);
+        anc2text.setVisibility(View.GONE);
+        pnc3tick.setVisibility(View.GONE);
+        anc3text.setVisibility(View.GONE);
 //        TextView anc4tick = (TextView)itemview.findViewById(R.id.pnc4tick);
 //        TextView anc4text = (TextView)itemview.findViewById(R.id.pnc4text);
         checkPnc1StatusAndform(pnc1tick, anc1text, pc);
@@ -215,15 +215,26 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
 
 
     private void checkPnc1StatusAndform(ImageView anc1tick, TextView anc1text, CommonPersonObjectClient pc) {
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "pncrv_1");
+        String alertstate = "";
+        String alertDate = "";
+        if (alertlist.size() != 0) {
+            for (int i = 0; i < alertlist.size(); i++) {
+                alertstate = alertlist.get(i).status().value();
+                alertDate = alertlist.get(i).startDate();
+            }
+            ;
+        }
+
         if(pc.getDetails().get("FWPNC1DATE")!=null){
             anc1text.setText("PNC1: "+pc.getDetails().get("FWPNC1DATE"));
-            if(pc.getDetails().get("pnc1_current_formStatus")!=null){
-                if(pc.getDetails().get("pnc1_current_formStatus").equalsIgnoreCase("upcoming")){
+            if(!alertstate.isEmpty()){
+                if(alertstate.equalsIgnoreCase("upcoming")){
                     anc1tick.setVisibility(View.VISIBLE);
                     anc1text.setVisibility(View.VISIBLE);
 //                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     anc1tick.setImageResource(R.mipmap.doneintime);
-                }else if(pc.getDetails().get("pnc1_current_formStatus").equalsIgnoreCase("urgent")){
+                }else if(alertstate.equalsIgnoreCase("urgent")){
 //                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc1tick.setImageResource(R.mipmap.notdoneintime);
 
@@ -233,16 +244,6 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
                 }
             }
         } else {
-            List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "pncrv_1");
-            String alertstate = "";
-            String alertDate = "";
-            if (alertlist.size() != 0) {
-                for (int i = 0; i < alertlist.size(); i++) {
-                    alertstate = alertlist.get(i).status().value();
-                    alertDate = alertlist.get(i).startDate();
-                }
-                ;
-            }
 
             if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
                 if(alertstate.equalsIgnoreCase("expired")){
@@ -266,17 +267,28 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
     }
 
     private void checkPnc2StatusAndform(ImageView anc2tick, TextView anc2text, CommonPersonObjectClient pc) {
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "pncrv_2");
+        String alertstate = "";
+        String alertDate = "";
+        if (alertlist.size() != 0) {
+            for (int i = 0; i < alertlist.size(); i++) {
+                alertstate = alertlist.get(i).status().value();
+                alertDate = alertlist.get(i).startDate();
+            }
+            ;
+        }
+
         if(pc.getDetails().get("FWPNC2DATE")!=null){
             anc2text.setText("PNC2: "+pc.getDetails().get("FWPNC2DATE"));
-            if(pc.getDetails().get("pnc2_current_formStatus")!=null){
-                if(pc.getDetails().get("pnc2_current_formStatus").equalsIgnoreCase("upcoming")){
+            if(!alertstate.isEmpty()){
+                if(alertstate.equalsIgnoreCase("upcoming")){
                     anc2tick.setVisibility(View.VISIBLE);
                     anc2text.setVisibility(View.VISIBLE);
 //                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     anc2tick.setImageResource(R.mipmap.doneintime);
 
 
-                }else if(pc.getDetails().get("pnc2_current_formStatus").equalsIgnoreCase("urgent")){
+                }else if(alertstate.equalsIgnoreCase("urgent")){
                     anc2tick.setImageResource(R.mipmap.notdoneintime);
 //                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc2tick.setVisibility(View.VISIBLE);
@@ -285,16 +297,6 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
                 }
             }
         } else {
-            List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "pncrv_2");
-            String alertstate = "";
-            String alertDate = "";
-            if (alertlist.size() != 0) {
-                for (int i = 0; i < alertlist.size(); i++) {
-                    alertstate = alertlist.get(i).status().value();
-                    alertDate = alertlist.get(i).startDate();
-                }
-                ;
-            }
 
             if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
                 if(alertstate.equalsIgnoreCase("expired")){
@@ -318,17 +320,28 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
     }
 
     private void checkPnc3StatusAndform(ImageView anc3tick, TextView anc3text, CommonPersonObjectClient pc) {
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "pncrv_3");
+        String alertstate = "";
+        String alertDate = "";
+        if (alertlist.size() != 0) {
+            for (int i = 0; i < alertlist.size(); i++) {
+                alertstate = alertlist.get(i).status().value();
+                alertDate = alertlist.get(i).startDate();
+            }
+            ;
+        }
+
         if(pc.getDetails().get("FWPNC3DATE")!=null){
             anc3text.setText("PNC3: "+pc.getDetails().get("FWPNC3DATE"));
-            if(pc.getDetails().get("pnc3_current_formStatus")!=null){
-                if(pc.getDetails().get("pnc3_current_formStatus").equalsIgnoreCase("upcoming")){
+            if(!alertstate.isEmpty()){
+                if(alertstate.equalsIgnoreCase("upcoming")){
                     anc3tick.setVisibility(View.VISIBLE);
                     anc3text.setVisibility(View.VISIBLE);
                     anc3tick.setImageResource(R.mipmap.doneintime);
 //                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
 
 
-                }else if(pc.getDetails().get("pnc3_current_formStatus").equalsIgnoreCase("urgent")){
+                }else if(alertstate.equalsIgnoreCase("urgent")){
                     anc3tick.setImageResource(R.mipmap.notdoneintime);
 //                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc3tick.setVisibility(View.VISIBLE);
@@ -337,16 +350,6 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
                 }
             }
         } else {
-            List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "pncrv_3");
-            String alertstate = "";
-            String alertDate = "";
-            if (alertlist.size() != 0) {
-                for (int i = 0; i < alertlist.size(); i++) {
-                    alertstate = alertlist.get(i).status().value();
-                    alertDate = alertlist.get(i).startDate();
-                }
-                ;
-            }
 
             if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
                 if(alertstate.equalsIgnoreCase("expired")){
