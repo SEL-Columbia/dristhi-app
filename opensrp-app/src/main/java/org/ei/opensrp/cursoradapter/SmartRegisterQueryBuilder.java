@@ -100,7 +100,7 @@ public class SmartRegisterQueryBuilder {
     }
     public String joinwithIbus(String tablename){
         Selectquery = Selectquery+ " LEFT JOIN kartu_ibu ";
-        Selectquery = Selectquery+ " ON "+ tablename +".id = ibu.kartuIbuId " ;
+        Selectquery = Selectquery+ " ON "+ tablename +".kartuIbuId = kartu_ibu.id " ;
         return Selectquery;
     }
     @Override

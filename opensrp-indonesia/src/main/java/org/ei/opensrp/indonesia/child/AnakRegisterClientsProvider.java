@@ -194,7 +194,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         final CommonPersonObject kiparent = kirep.findByCaseID(ibuparent.getColumnmaps().get("kartuIbuId"));
 
         String namaayah = kiparent.getDetails().get("namaSuami")!=null?kiparent.getDetails().get("namaSuami"):"";
-        String namaibu = kiparent.getDetails().get("namalengkap")!=null?kiparent.getDetails().get("namalengkap"):"";
+        String namaibu = kiparent.getColumnmaps().get("namalengkap")!=null?kiparent.getColumnmaps().get("namalengkap"):"";
 
           viewHolder.mother_name.setText(namaibu +","+ namaayah);
            viewHolder.village_name.setText(kiparent.getDetails().get("desa")!=null?kiparent.getDetails().get("desa"):"");

@@ -140,12 +140,9 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
-                     //   new CursorCommonObjectSort(getResources().getString(R.string.due_status),sortByAlertmethod()),
-                        new CursorCommonObjectSort(getResources().getString(R.string.hh_alphabetical_sort),KiSortByDate()),
-                        //  new CursorCommonObjectSort(getResources().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
-                        //   new CursorCommonObjectSort(getResources().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
-//""
-//                        new CommonObjectSort(true,false,true,"age")
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_wife_age_label),KiSortByHtp()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label),KiSortByNameAZ()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label_reverse),KiSortByNameZA()),
                 };
             }
 
@@ -203,21 +200,21 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
         setTablename("ibu");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ibu");
-       // countqueryBUilder.joinwithALerts("ibu","Ante Natal Care - Normal");
+        countqueryBUilder.joinwithIbus("ibu");
         countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='pnc' ");
         CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details"});
-      //  queryBUilder.joinwithALerts("ibu","Ante Natal Care - Normal");
+        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details","kartu_ibu.namalengkap","kartu_ibu.umur"});
+        queryBUilder.joinwithIbus("ibu");
         mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='pnc'");
         queryBUilder.addCondition(filters);
-      //  Sortqueries = KiSortByDate();
+        Sortqueries = KiSortByName();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         KIPNCClientsProvider kiscp = new KIPNCClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed","kartu_ibu.namalengkap","kartu_ibu.umur"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -266,15 +263,18 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 
 
 
-    private String KiSortByDate() {
-        return " referenceDate ASC";
+    private String KiSortByName() {
+        return " kartu_ibu.namalengkap ASC";
     }
-    // private String householdSortByFWGOBHHID(){
-    //    return " FWGOBHHID ASC";
-    //  }
-    // private String householdSortByFWJIVHHID(){
-    //     return " FWJIVHHID ASC";
-    //  }
+    private String KiSortByNameAZ() {
+        return " kartu_ibu.namalengkap ASC";
+    }
+    private String KiSortByNameZA() {
+        return " kartu_ibu.namalengkap DESC";
+    }
+    private String KiSortByHtp() {
+        return " kartu_ibu.umur DESC";
+    }
 
     private class EditDialogOptionModel implements DialogOptionModel {
         @Override
@@ -326,7 +326,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namaLengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() +"%'" ;
                         return null;
                     }
 
@@ -372,7 +372,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namaLengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() +"%'" ;
                         return null;
                     }
 
