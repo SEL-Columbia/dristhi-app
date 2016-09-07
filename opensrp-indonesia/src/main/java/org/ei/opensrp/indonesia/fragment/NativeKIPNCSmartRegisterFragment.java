@@ -113,8 +113,6 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
 
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),filterStringForAll()));
-                //     dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_no_mwra),filterStringForNoElco()));
-                //      dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_has_mwra),filterStringForOneOrMoreElco()));
 
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
@@ -294,7 +292,6 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
         getDefaultOptionsProvider();
         initializeQueries();
         //     updateSearchView();
-        //   checkforNidMissing(mView);
 //
         try{
             LoginActivity.setLanguage();

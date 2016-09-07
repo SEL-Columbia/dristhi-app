@@ -118,7 +118,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         viewHolder.follow_up.setOnClickListener(onClickListener);
         //set image
 
-        viewHolder.childs_name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"Bayi");
+        viewHolder.childs_name.setText(pc.getColumnmaps().get("namaBayi")!=null?pc.getColumnmaps().get("namaBayi"):"Bayi");
 
         String date = pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"-";
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

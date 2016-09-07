@@ -218,7 +218,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
         refresh();
-//        checkforNidMissing(view);
+
 
     }
 
@@ -292,7 +292,6 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         getDefaultOptionsProvider();
         initializeQueries();
    //     updateSearchView();
-     //   checkforNidMissing(mView);
 //
         try{
             LoginActivity.setLanguage();

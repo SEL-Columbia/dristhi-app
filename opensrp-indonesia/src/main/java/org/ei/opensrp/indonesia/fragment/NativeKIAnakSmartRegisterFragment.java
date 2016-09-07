@@ -154,14 +154,10 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
             @Override
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{
-//                        new HouseholdCensusDueDateSort(),
 
-                        //   new CursorCommonObjectSort(getResources().getString(R.string.due_status),sortByAlertmethod()),
-                        new CursorCommonObjectSort(getResources().getString(R.string.hh_alphabetical_sort),AnakNameShort()),
-                        //  new CursorCommonObjectSort(getResources().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
-                        //   new CursorCommonObjectSort(getResources().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
-//""
-//                        new CommonObjectSort(true,false,true,"age")
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label),AnakNameShort()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label_reverse),AnakNameShortR()),
+
                 };
             }
 
@@ -215,29 +211,33 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
                 "Else alerts.status END ASC";
     }
     public void initializeQueries(){
+
+        ///------------------------------------------------------------------
+
         CommonRepository commonRepository = context.commonrepository("anak");
         setTablename("anak");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("anak");
-        // countqueryBUilder.joinwithALerts("ibu","Ante Natal Care - Normal");
-        countSelect = countqueryBUilder.mainCondition(" anak.isClosed !='true' or ibuCaseId != '' ");
+        //   countqueryBUilder.joinwithIbus("kartu_ibu","ibu");
+        countSelect = countqueryBUilder.mainCondition(" anak.isClosed !='true' ");
         CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("anak", new String[]{"isClosed", "details"});
-        //  queryBUilder.joinwithALerts("ibu","Ante Natal Care - Normal");
-        countSelect = countqueryBUilder.mainCondition(" anak.isClosed !='true' or ibuCaseId != '' ");
+        queryBUilder.SelectInitiateMainTable("anak", new String[]{"isClosed", "details", "namaBayi"});
+        //   queryBUilder.joinwithIbus("kartu_ibu","ibu");
+        mainSelect = queryBUilder.mainCondition(" anak.isClosed !='true' ");
         queryBUilder.addCondition(filters);
-       //   Sortqueries = AnakNameShort();
+        Sortqueries = AnakNameShort();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
-        AnakRegisterClientsProvider kiscp = new AnakRegisterClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("anak",new String []{"isClosed"}));
+        AnakRegisterClientsProvider anakscp = new AnakRegisterClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, anakscp, new CommonRepository("anak",new String []{"namaBayi", "isClosed"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
         refresh();
+//        checkforNidMissing(view);
     }
 
 
@@ -285,12 +285,9 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
     private String AnakNameShort() {
         return " namaBayi ASC";
     }
-    // private String householdSortByFWGOBHHID(){
-    //    return " FWGOBHHID ASC";
-    //  }
-    // private String householdSortByFWJIVHHID(){
-    //     return " FWJIVHHID ASC";
-    //  }
+    private String AnakNameShortR() {
+        return " namaBayi DESC";
+    }
 
     private class EditDialogOptionModel implements DialogOptionModel {
         @Override
@@ -310,8 +307,8 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         getDefaultOptionsProvider();
         initializeQueries();
         //     updateSearchView();
-        //   checkforNidMissing(mView);
-//
+
+
         try{
             LoginActivity.setLanguage();
         }catch (Exception e){
@@ -342,7 +339,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namaLengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and namaBayi Like '%" + cs.toString() +"%'" ;
                         return null;
                     }
 
@@ -388,7 +385,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namaLengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and namaBayi Like '%" + cs.toString() +"%'" ;
                         return null;
                     }
 
@@ -429,7 +426,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new KICommonObjectFilterOption(name,"dusun", name));
+                dialogOptionslist.add(new KICommonObjectFilterOption(name,"Village", name));
 
             }
         }
