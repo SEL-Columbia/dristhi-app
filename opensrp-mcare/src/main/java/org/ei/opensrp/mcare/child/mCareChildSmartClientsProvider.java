@@ -107,8 +107,8 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         String dob = pc.getColumnmaps().get("FWBNFDTOO") != null ? pc.getColumnmaps().get("FWBNFDTOO") : null;
         fathername.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
         mothername.setText(humanize(pc.getDetails().get("FWBNFCHILDNAME") != null ? pc.getDetails().get("FWBNFCHILDNAME"):""));
-        gobhhid.setText(" "+(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):""));
-        jivitahhid.setText(pc.getColumnmaps().get("FWJIVHHID")!=null?pc.getColumnmaps().get("FWJIVHHID"):"");
+        gobhhid.setText(" " + (pc.getColumnmaps().get("GOBHHID") != null ? pc.getColumnmaps().get("GOBHHID") : ""));
+        jivitahhid.setText(pc.getColumnmaps().get("FWJIVHHID") != null ? pc.getColumnmaps().get("FWJIVHHID") : "");
         village.setText(humanize((pc.getDetails().get("existing_Mauzapara") != null ? pc.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
         age.setText(""+age(pc)+ "d ");
         dateofbirth.setText(pc.getDetails().get("FWBNFDOB")!=null?pc.getDetails().get("FWBNFDOB"):"");
@@ -146,6 +146,14 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         TextView encc2text = (TextView)itemview.findViewById(R.id.encc2text);
         ImageView encc3tick = (ImageView)itemview.findViewById(R.id.encc3tick);
         TextView encc3text = (TextView)itemview.findViewById(R.id.encc3text);
+
+        encc1tick.setVisibility(View.GONE);
+        encc1text.setVisibility(View.GONE);
+        encc2tick.setVisibility(View.GONE);
+        encc2text.setVisibility(View.GONE);
+        encc3tick.setVisibility(View.GONE);
+        encc3text.setVisibility(View.GONE);
+
         checkEncc1StatusAndform(encc1tick,encc1text,pc);
         checkEncc2StatusAndform(encc2tick, encc2text, pc);
         checkEncc3StatusAndform(encc3tick, encc3text, pc);
@@ -178,14 +186,25 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
 
 
     private void checkEncc1StatusAndform(ImageView anc1tick, TextView anc1text, CommonPersonObjectClient pc) {
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "enccrv_1");
+        String alertstate = "";
+        String alertDate = "";
+        if (alertlist.size() != 0) {
+            for (int i = 0; i < alertlist.size(); i++) {
+                alertstate = alertlist.get(i).status().value();
+                alertDate = alertlist.get(i).startDate();
+            }
+            ;
+        }
+
         if(pc.getDetails().get("FWENC1DATE")!=null){
             anc1text.setText("ENCC1: "+pc.getDetails().get("FWENC1DATE"));
-            if(pc.getDetails().get("encc1_current_formStatus")!=null){
-                if(pc.getDetails().get("encc1_current_formStatus").equalsIgnoreCase("upcoming")){
+            if(!alertstate.isEmpty()){
+                if(alertstate.equalsIgnoreCase("upcoming")){
                     anc1tick.setImageResource(R.mipmap.doneintime);
                     anc1tick.setVisibility(View.VISIBLE);
                     anc1text.setVisibility(View.VISIBLE);
-                }else if(pc.getDetails().get("encc1_current_formStatus").equalsIgnoreCase("urgent")){
+                }else if(alertstate.equalsIgnoreCase("urgent")){
                     anc1tick.setImageResource(R.mipmap.notdoneintime);
                     anc1tick.setVisibility(View.VISIBLE);
                     anc1text.setVisibility(View.VISIBLE);
@@ -194,16 +213,7 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
                 }
             }
         } else {
-            List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "enccrv_1");
-            String alertstate = "";
-            String alertDate = "";
-            if (alertlist.size() != 0) {
-                for (int i = 0; i < alertlist.size(); i++) {
-                    alertstate = alertlist.get(i).status().value();
-                    alertDate = alertlist.get(i).startDate();
-                }
-                ;
-            }
+
             if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
                 if(alertstate.equalsIgnoreCase("expired")){
                     anc1tick.setImageResource(R.mipmap.cross);
@@ -222,14 +232,25 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         }
     }
     private void checkEncc2StatusAndform(ImageView anc2tick, TextView anc2text, CommonPersonObjectClient pc) {
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "enccrv_2");
+        String alertstate = "";
+        String alertDate = "";
+        if (alertlist.size() != 0) {
+            for (int i = 0; i < alertlist.size(); i++) {
+                alertstate = alertlist.get(i).status().value();
+                alertDate = alertlist.get(i).startDate();
+            }
+            ;
+        }
+
         if(pc.getDetails().get("FWENC2DATE")!=null){
             anc2text.setText("ENCC2: "+pc.getDetails().get("FWENC2DATE"));
-            if(pc.getDetails().get("encc2_current_formStatus")!=null){
-                if(pc.getDetails().get("encc2_current_formStatus").equalsIgnoreCase("upcoming")){
+            if(!alertstate.isEmpty()){
+                if(alertstate.equalsIgnoreCase("upcoming")){
                     anc2tick.setImageResource(R.mipmap.doneintime);
                     anc2tick.setVisibility(View.VISIBLE);
                     anc2text.setVisibility(View.VISIBLE);
-                }else if(pc.getDetails().get("encc2_current_formStatus").equalsIgnoreCase("urgent")){
+                }else if(alertstate.equalsIgnoreCase("urgent")){
                     anc2tick.setImageResource(R.mipmap.notdoneintime);
                     anc2tick.setVisibility(View.VISIBLE);
                     anc2text.setVisibility(View.VISIBLE);
@@ -238,16 +259,7 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
                 }
             }
         } else {
-            List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "enccrv_2");
-            String alertstate = "";
-            String alertDate = "";
-            if (alertlist.size() != 0) {
-                for (int i = 0; i < alertlist.size(); i++) {
-                    alertstate = alertlist.get(i).status().value();
-                    alertDate = alertlist.get(i).startDate();
-                }
-                ;
-            }
+
             if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
                 if(alertstate.equalsIgnoreCase("expired")){
                     anc2tick.setImageResource(R.mipmap.cross);
@@ -266,14 +278,25 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         }
     }
     private void checkEncc3StatusAndform(ImageView anc3tick, TextView anc3text, CommonPersonObjectClient pc) {
+        List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "enccrv_3");
+        String alertstate = "";
+        String alertDate = "";
+        if (alertlist.size() != 0) {
+            for (int i = 0; i < alertlist.size(); i++) {
+                alertstate = alertlist.get(i).status().value();
+                alertDate = alertlist.get(i).startDate();
+            }
+            ;
+        }
+
         if(pc.getDetails().get("FWENC3DATE")!=null){
             anc3text.setText("ENCC3: "+pc.getDetails().get("FWENC3DATE"));
-            if(pc.getDetails().get("encc3_current_formStatus")!=null){
-                if(pc.getDetails().get("encc3_current_formStatus").equalsIgnoreCase("upcoming")){
+            if(!alertstate.isEmpty()){
+                if(alertstate.equalsIgnoreCase("upcoming")){
                     anc3tick.setImageResource(R.mipmap.doneintime);
                     anc3tick.setVisibility(View.VISIBLE);
                     anc3text.setVisibility(View.VISIBLE);
-                }else if(pc.getDetails().get("encc3_current_formStatus").equalsIgnoreCase("urgent")){
+                }else if(alertstate.equalsIgnoreCase("urgent")){
                     anc3tick.setImageResource(R.mipmap.notdoneintime);
                     anc3tick.setVisibility(View.VISIBLE);
                     anc3text.setVisibility(View.VISIBLE);
@@ -281,16 +304,7 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
                 }
             }
         } else {
-            List<Alert> alertlist = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "enccrv_3");
-            String alertstate = "";
-            String alertDate = "";
-            if (alertlist.size() != 0) {
-                for (int i = 0; i < alertlist.size(); i++) {
-                    alertstate = alertlist.get(i).status().value();
-                    alertDate = alertlist.get(i).startDate();
-                }
-                ;
-            }
+
             if(alertstate != null && !(alertstate.trim().equalsIgnoreCase(""))){
                 if(alertstate.equalsIgnoreCase("expired")){
                     anc3tick.setImageResource(R.mipmap.cross);

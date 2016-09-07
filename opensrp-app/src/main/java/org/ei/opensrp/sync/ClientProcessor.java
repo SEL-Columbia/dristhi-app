@@ -99,12 +99,15 @@ public class ClientProcessor {
         JSONObject client = mCloudantDataHandler.getClientByBaseEntityId(baseEntityId);
         // }
 
-        //get the client type classification
+        // Get the client type classification
         JSONArray clientClasses = clientClassificationJson.getJSONArray("case_classification_rules");
         for (int i = 0; i < clientClasses.length(); i++) {
             JSONObject clientClass = clientClasses.getJSONObject(i);
             processClientClass(clientClass, event, client);
         }
+
+        // Incase the details have not been updated
+        updateClientDetailsTable(event, client);
 
     }
 
@@ -249,6 +252,7 @@ public class ClientProcessor {
         try {
 
             if (createsCase == null || createsCase.length() == 0) {
+
                 return;
             }
             for (int openCase = 0; openCase < createsCase.length(); openCase++) {
@@ -647,11 +651,13 @@ public class ClientProcessor {
     }
 
     private void executeInsertAlert(ContentValues contentValues) {
-        Alert alert = new Alert(contentValues.getAsString(AlertRepository.ALERTS_CASEID_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_SCHEDULE_NAME_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_VISIT_CODE_COLUMN), AlertStatus.from(contentValues.getAsString(AlertRepository.ALERTS_STATUS_COLUMN)), contentValues.getAsString(AlertRepository.ALERTS_STARTDATE_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_EXPIRYDATE_COLUMN));
-        AlertService alertService = org.ei.opensrp.Context.getInstance().alertService();
-        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(alert.caseId(), alert.visitCode());
-        if (alerts.isEmpty()) {
-            alertService.create(alert);
+        if(!contentValues.getAsString(AlertRepository.ALERTS_STATUS_COLUMN).isEmpty()) {
+            Alert alert = new Alert(contentValues.getAsString(AlertRepository.ALERTS_CASEID_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_SCHEDULE_NAME_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_VISIT_CODE_COLUMN), AlertStatus.from(contentValues.getAsString(AlertRepository.ALERTS_STATUS_COLUMN)), contentValues.getAsString(AlertRepository.ALERTS_STARTDATE_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_EXPIRYDATE_COLUMN));
+            AlertService alertService = org.ei.opensrp.Context.getInstance().alertService();
+            List<Alert> alerts = alertService.findByEntityIdAndAlertNames(alert.caseId(), alert.visitCode());
+            if (alerts.isEmpty()) {
+                alertService.create(alert);
+            }
         }
     }
 
