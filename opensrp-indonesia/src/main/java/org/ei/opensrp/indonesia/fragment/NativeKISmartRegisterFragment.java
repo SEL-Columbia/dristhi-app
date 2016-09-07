@@ -137,12 +137,10 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
-                        new CursorCommonObjectSort(getResources().getString(R.string.due_status),sortByAlertmethod()),
-                        new CursorCommonObjectSort(getResources().getString(R.string.hh_alphabetical_sort),KiSortByName()),
-                      //  new CursorCommonObjectSort(getResources().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
-                     //   new CursorCommonObjectSort(getResources().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
-//""
-//                        new CommonObjectSort(true,false,true,"age")
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_wife_age_label),KiSortByHtp()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label),KiSortByNameAZ()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label_reverse),KiSortByNameZA()),
+
                 };
             }
 
@@ -206,16 +204,16 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"isClosed", "details", "isOutOfArea"});
+        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"isClosed", "details", "isOutOfArea","namalengkap", "umur"});
      //   queryBUilder.joinwithIbus("kartu_ibu","ibu");
         mainSelect = queryBUilder.mainCondition(" kartu_ibu.isClosed !='true' ");
         queryBUilder.addCondition(filters);
-        Sortqueries = KiSortByName();
+        Sortqueries = KiSortByNameAZ();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         KIClientsProvider kiscp = new KIClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"isClosed", "isOutOfArea"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"isClosed", "namalengkap", "umur", "isOutOfArea"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -266,15 +264,15 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
 
 
-    private String KiSortByName() {
-        return " namaLengkap ASC";
+    private String KiSortByNameAZ() {
+        return " namalengkap ASC";
     }
-   // private String householdSortByFWGOBHHID(){
-    //    return " FWGOBHHID ASC";
-  //  }
-   // private String householdSortByFWJIVHHID(){
-   //     return " FWJIVHHID ASC";
-  //  }
+    private String KiSortByNameZA() {
+        return " namalengkap DESC";
+    }
+    private String KiSortByHtp() {
+        return " umur DESC";
+    }
 
     private class EditDialogOptionModel implements DialogOptionModel {
         @Override
@@ -326,7 +324,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namaLengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and namalengkap Like '%" + cs.toString() +"%'" ;
                         return null;
                     }
 
@@ -372,7 +370,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namaLengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and namalengkap Like '%" + cs.toString() +"%'" ;
                         return null;
                     }
 

@@ -151,12 +151,9 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
-                        new CursorCommonObjectSort(getResources().getString(R.string.due_status),sortByAlertmethod()),
-                        new CursorCommonObjectSort(getResources().getString(R.string.hh_alphabetical_sort),KiSortByName()),
-                        //  new CursorCommonObjectSort(getResources().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
-                        //   new CursorCommonObjectSort(getResources().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
-//""
-//                        new CommonObjectSort(true,false,true,"age")
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_wife_age_label),KiSortByHtp()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label),KiSortByNameAZ()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label_reverse),KiSortByNameZA()),
                 };
             }
 
@@ -214,22 +211,22 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         setTablename("kartu_ibu");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("kartu_ibu");
-        // countqueryBUilder.joinwithALerts("kartu_ibu","Ante Natal Care - Normal");
+        //   countqueryBUilder.joinwithIbus("kartu_ibu","ibu");
         countSelect = countqueryBUilder.mainCondition(" isClosed !='true' and details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"isClosed", "details", "isOutOfArea"});
-        //   queryBUilder.joinwithALerts("kartu_ibu","Ante Natal Care - Normal");
-        mainSelect = queryBUilder.mainCondition(" isClosed !='true' and details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
+        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"isClosed", "details", "isOutOfArea","namalengkap", "umur"});
+        //   queryBUilder.joinwithIbus("kartu_ibu","ibu");
+        mainSelect = queryBUilder.mainCondition("isClosed !='true' and details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
         queryBUilder.addCondition(filters);
-        Sortqueries = KiSortByName();
+        Sortqueries = KiSortByNameAZ();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         KBClientsProvider kiscp = new KBClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"isClosed", "isOutOfArea"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"isClosed", "namalengkap", "umur", "isOutOfArea"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -280,15 +277,15 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
 
 
-    private String KiSortByName() {
-        return " namaLengkap ASC";
+    private String KiSortByNameAZ() {
+        return " namalengkap ASC";
     }
-    // private String householdSortByFWGOBHHID(){
-    //    return " FWGOBHHID ASC";
-    //  }
-    // private String householdSortByFWJIVHHID(){
-    //     return " FWJIVHHID ASC";
-    //  }
+    private String KiSortByNameZA() {
+        return " namalengkap DESC";
+    }
+    private String KiSortByHtp() {
+        return " umur DESC";
+    }
 
     private class EditDialogOptionModel implements DialogOptionModel {
         @Override
@@ -340,7 +337,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namaLengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and namalengkap Like '%" + cs.toString() +"%'" ;
                         return null;
                     }
 
@@ -386,7 +383,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namaLengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and namalengkap Like '%" + cs.toString() +"%'" ;
                         return null;
                     }
 
