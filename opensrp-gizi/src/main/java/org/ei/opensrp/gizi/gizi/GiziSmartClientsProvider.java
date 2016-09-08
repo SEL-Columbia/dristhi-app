@@ -30,6 +30,7 @@ import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -91,8 +92,12 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.wasting_status = (TextView)convertView.findViewById(R.id.txt_child_wasting);
 
             viewHolder.absentAlert = (TextView)convertView.findViewById(R.id.absen);
+            viewHolder.weightLogo = (ImageView)convertView.findViewById(R.id.weightSymbol);
+            viewHolder.heightLogo = (ImageView)convertView.findViewById(R.id.heightSymbol);
             viewHolder.vitALogo = (ImageView)convertView.findViewById(R.id.vitASymbol);
             viewHolder.vitAText = (TextView)convertView.findViewById(R.id.vitASchedule);
+            viewHolder.antihelminticLogo = (ImageView)convertView.findViewById(R.id.antihelminticSymbol);
+            viewHolder.antihelminticText = (TextView)convertView.findViewById(R.id.antihelminticText);
 
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
@@ -129,12 +134,33 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
         viewHolder.parentname.setText(pc.getDetails().get("namaOrtu")!=null?pc.getDetails().get("namaOrtu"):"");
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
-        viewHolder.gender.setText(pc.getDetails().get("jenisKelamin")!=null?pc.getDetails().get("jenisKelamin"):"");
+        viewHolder.gender.setText(pc.getDetails().get("jenisKelamin").contains("em")? "Perempuan" : "Laki-laki");
         viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
-        viewHolder.height.setText(context.getString(R.string.height) +  " "+(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"-")+" Cm");
-        viewHolder.weight.setText(context.getString(R.string.weight) +  " "+(pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"-")+" Kg");
+        viewHolder.height.setText(context.getString(R.string.height) + " " + (pc.getDetails().get("tinggiBadan") != null ? pc.getDetails().get("tinggiBadan") : "-") + " Cm");
+        viewHolder.weight.setText(context.getString(R.string.weight) + " " + (pc.getDetails().get("beratBadan") != null ? pc.getDetails().get("beratBadan") : "-") + " Kg");
 
-        /** 
+//------VISIBLE AND INVISIBLE COMPONENT
+        viewHolder.absentAlert.setVisibility(isLate(pc.getDetails().get("tanggalPenimbangan"), 1) ? View.VISIBLE : View.INVISIBLE);
+        viewHolder.setVitAVisibility();
+        viewHolder.setAntihelminticVisibility(
+                dayRangeBetween(pc.getDetails().get("tanggalLahir").split("-")
+                        ,new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()).split("-")
+                 ) >= 365 ? View.VISIBLE : View.INVISIBLE
+        );
+
+//------CHILD DATA HAS BEEN SUBMITTED OR NOT
+        viewHolder.weightLogo.setImageDrawable(context.getResources().getDrawable(isLate(pc.getDetails().get("tanggalPenimbangan"),0)?R.drawable.ic_remove:R.drawable.ic_yes_large));
+        viewHolder.heightLogo.setImageDrawable(context.getResources().getDrawable(pc.getDetails().get("tinggiBadan") != null
+            ? R.drawable.ic_yes_large
+            : isLate(pc.getDetails().get("tanggalPenimbangan"), 0)
+                ? R.drawable.ic_remove
+                : isDue(pc.getDetails().get("tanggalPenimbangan"))
+                    ? R.drawable.nutr_due : R.drawable.ic_yes_large)
+        );
+        viewHolder.vitALogo.setImageDrawable(context.getResources().getDrawable(inTheSameRegion(pc.getDetails().get("tanggalPenimbangan")) ? R.drawable.ic_yes_large:R.drawable.ic_remove));
+        viewHolder.antihelminticLogo.setImageDrawable(context.getResources().getDrawable(inTheSameRegion(
+                pc.getDetails().get("tanggalPenimbangan")) && isGiven(pc,"antihelmintic")? R.drawable.ic_yes_large:R.drawable.ic_remove));
+        /**
          * Z-SCORE calculation
          * NOTE - Need a better way to handle z-score data to sqllite
          */
@@ -208,11 +234,6 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
         String tanggal_sebelumnya = (pc.getDetails().get("kunjunganSebelumnya") != null ? pc.getDetails().get("kunjunganSebelumnya") : "0");
 
-
-//------VISIBLE AND INVISIBLE COMPONENT
-        viewHolder.absentAlert.setVisibility(isLate(tanggal) ? View.VISIBLE:View.INVISIBLE);
-        viewHolder.setVitAVisibility();
-
         if(pc.getDetails().get("tanggalPenimbangan") != null) {
             //KMS calculation
             KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir, berat, beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
@@ -233,21 +254,48 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
     }
     CommonPersonObjectController householdelcocontroller;
 
-    private boolean isLate(String lastVisitDate){
-        if (lastVisitDate.length()<6) {
+    private boolean isLate(String lastVisitDate,int threshold){
+        if (lastVisitDate==null || lastVisitDate.length()<6)
             return true;
-        }
-
         String currentDate[] = new SimpleDateFormat("yyyy-MM").format(new java.util.Date()).substring(0,7).split("-");
         return  ((Integer.parseInt(currentDate[0]) - Integer.parseInt(lastVisitDate.substring(0,4)))*12 +
-                (Integer.parseInt(currentDate[1]) - Integer.parseInt(lastVisitDate.substring(5,7)))) > 1;
+                (Integer.parseInt(currentDate[1]) - Integer.parseInt(lastVisitDate.substring(5,7)))) > threshold;
     }
 
-    private void setVitAVisibility(ViewHolder viewHolder){
-        int month = Integer.parseInt(new SimpleDateFormat("MM").format(new java.util.Date()));
-        System.out.println(month);
-        viewHolder.vitALogo.setVisibility(month == 2 || month == 7 ? View.VISIBLE : View.INVISIBLE);
-        viewHolder.vitALogo.setVisibility(month == 2 || month == 7 ? View.VISIBLE : View.INVISIBLE);
+    private boolean isDue(String lastVisitDate){
+        if(lastVisitDate==null || lastVisitDate.length()<6)
+            return true;
+
+        return dayRangeBetween(lastVisitDate.split("-"),new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()).split("-")) <= 30;
+    }
+
+    private boolean isGiven(CommonPersonObjectClient pc, String details){
+        if(pc.getDetails().get(details) != null)
+            return pc.getDetails().get(details).equalsIgnoreCase("ya");
+        return false;
+    }
+
+
+    /**
+     *  The part of method that using to check is the last visit date was in the same region as the current vitamin A period,
+     *  a.e. when the last visit was held on july and current month was august,
+    **/
+    private boolean inTheSameRegion(String date){
+        if(date==null || date.length()<6)
+            return true;
+        int currentDate = Integer.parseInt(new SimpleDateFormat("MM").format(new java.util.Date()));
+        int visitDate = Integer.parseInt(date.substring(5, 7));
+
+        boolean date1 = currentDate < 2 || currentDate >=8;
+        boolean date2 = visitDate < 2 || visitDate >=8;
+
+        return !((!date1 && date2) || (date1 && !date2));
+    }
+
+    private int dayRangeBetween(String[]startDate, String[]endDate){
+        return (Integer.parseInt(endDate[0]) - Integer.parseInt(startDate[0]))*360 +
+               (Integer.parseInt(endDate[1]) - Integer.parseInt(startDate[1]))*30 +
+               (Integer.parseInt(endDate[2]) - Integer.parseInt(startDate[2]));
     }
 
     @Override
@@ -295,14 +343,23 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
          TextView stunting_status;
          TextView wasting_status;
          TextView absentAlert;
+         ImageView weightLogo;
+         ImageView heightLogo;
          ImageView vitALogo;
          TextView vitAText;
+         ImageView antihelminticLogo;
+         TextView antihelminticText;
 
          public void setVitAVisibility(){
              int month = Integer.parseInt(new SimpleDateFormat("MM").format(new java.util.Date()));
              int visibility = month == 2 || month == 8 ? View.VISIBLE : View.INVISIBLE;
-             vitALogo.setVisibility(visibility);
-             vitAText.setVisibility(visibility);
+//             vitALogo.setVisibility(visibility);
+//             vitAText.setVisibility(visibility);
+         }
+
+         public void setAntihelminticVisibility(int visibility){
+             antihelminticLogo.setVisibility(visibility);
+             antihelminticText.setVisibility(visibility);
          }
      }
 
