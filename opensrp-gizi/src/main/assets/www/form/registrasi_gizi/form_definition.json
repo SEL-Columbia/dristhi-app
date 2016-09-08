@@ -45,21 +45,23 @@
       },
       {
         "name": "desa",
-        "bind": "/model/instance/Registrasi_Gizi/Village",
+        "bind": "/model/instance/Registrasi_Gizi/existing_Village",
         "shouldLoadValue": true
       },
       {
         "name": "dusun",
-        "bind": "/model/instance/Registrasi_Gizi/SubVillage",
+        "bind": "/model/instance/Registrasi_Gizi/existing_sub-Village",
         "shouldLoadValue": true
       },
       {
         "name": "posyandu",
-        "bind": "/model/instance/Registrasi_Gizi/posyandu"
+        "bind": "/model/instance/Registrasi_Gizi/existing_sub-Village",
+        "shouldLoadValue": true
       },
       {
         "name": "desa_manual",
-        "bind": "/model/instance/Registrasi_Gizi/desa"
+        "bind": "/model/instance/Registrasi_Gizi/existing_Village",
+        "shouldLoadValue": true
       },
       {
         "name": "namaBayi",
@@ -87,7 +89,6 @@
         "name": "registrationDate",
         "bind": "/model/instance/Registrasi_Gizi/today"
       }
-
     ]
   }
 }
