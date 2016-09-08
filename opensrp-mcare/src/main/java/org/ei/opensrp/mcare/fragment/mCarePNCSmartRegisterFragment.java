@@ -359,18 +359,20 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
     public String pncMainSelectWithJoins() {
         //FWSORTVALUE
-        return "Select  pnc.id as _id,pnc.base_entity_id as relationalid,pnc.details,elco.FWWOMFNAME,hh.existing_Mauzapara as mauza,elco.FWWOMNID,elco.FWWOMBID,mother.FWPSRLMP,hh.FWJIVHHID as JiVitAHHID,hh.FWGOBHHID as GOBHHID,FWBNFSTS,FWBNFDTOO \n" +
+        return "Select  pnc.id as _id,pnc.base_entity_id as relationalid,pnc.details,elco.FWWOMFNAME,hh.existing_Mauzapara as mauza,elco.FWWOMNID,elco.FWWOMBID,hh.FWJIVHHID as JiVitAHHID,hh.FWGOBHHID as GOBHHID,FWBNFSTS,FWBNFDTOO \n" +
                 " from ec_pnc pnc\n" +
                 " Left Join alerts on alerts.caseID = pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'   \n" +
                 " Left Join ec_elco elco on elco.id=pnc.base_entity_id   \n" +
                 " Left Join ec_household hh on hh.id=elco.relational_id\n" +
-                " Left Join ec_mcaremother mother on mother.base_entity_id=pnc.base_entity_id where pnc.is_closed=0";
+                " where pnc.is_closed=0";
     }
 
     public String pncMainCountWithJoins() {
         return "Select Count(*) \n" +
                 "from ec_pnc pnc\n" +
-                "Left Join alerts on alerts.caseID = pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit' and pnc.is_closed=0";
+                "Left Join alerts on alerts.caseID = pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'  \n" +
+                "Left Join ec_elco elco on elco.id=pnc.base_entity_id \n" +
+                "where pnc.is_closed=0 ";
     }
 
     public void initializeQueries() {
