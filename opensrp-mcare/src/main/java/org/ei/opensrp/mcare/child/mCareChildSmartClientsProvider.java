@@ -124,6 +124,10 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         }else{
             brid.setVisibility(View.GONE);
         }
+
+        if(dob != null && dob.contains("T")){
+            dob = dob.substring(0, dob.indexOf("T"));
+        }
         dateofbirth.setText(dob);
         nid.setText("NID :" + (pc.getColumnmaps().get("FWWOMNID") != null ? pc.getColumnmaps().get("FWWOMNID") : ""));
         brid.setText("BRID :" + (pc.getColumnmaps().get("FWWOMBID") != null ? pc.getColumnmaps().get("FWWOMBID") : ""));

@@ -1,5 +1,7 @@
 package org.ei.opensrp.cursoradapter;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Created by raihan on 3/17/16.
  */
@@ -95,20 +97,25 @@ public class SmartRegisterQueryBuilder {
         return Selectquery;
     }
     public String mainCondition(String condition){
-        Selectquery= Selectquery+(!condition.isEmpty()? " Where " + condition:"" );
+        Selectquery= Selectquery+(!condition.isEmpty()? " Where " + condition + " " : "");
         return Selectquery;
     }
     public String addCondition(String condition){
-        Selectquery= Selectquery + condition ;
+        Selectquery= Selectquery + " " + condition ;
         return Selectquery;
     }
     public String orderbyCondition(String condition){
-        Selectquery= Selectquery + (condition!=null && !condition.isEmpty()? " ORDER BY " + condition:"");
+        // No need to order a count query
+        if(StringUtils.containsIgnoreCase(Selectquery, "Count(*)")) {
+            return Selectquery;
+        }
+
+        Selectquery = Selectquery + (condition != null && !condition.isEmpty() ? " ORDER BY " + condition + " " : "");
         return Selectquery;
     }
     public String joinwithALerts(String tablename,String alertname){
         Selectquery = Selectquery+ " LEFT JOIN alerts ";
-        Selectquery = Selectquery+ " ON "+ tablename +".id = alerts.caseID and  alerts.scheduleName = '"+alertname+"'" ;
+        Selectquery = Selectquery+ " ON "+ tablename +".id = alerts.caseID and  alerts.scheduleName = '"+alertname+"' " ;
         return Selectquery;
     }
     public String joinwithALerts(String tablename){
