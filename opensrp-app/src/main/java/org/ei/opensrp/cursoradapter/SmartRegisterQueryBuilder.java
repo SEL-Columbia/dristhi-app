@@ -49,7 +49,7 @@ public class SmartRegisterQueryBuilder {
         return Selectquery;
     }
     public String queryForCountOnRegisters(String tablename,String condition){
-        String Selectquery = "Select Count (*) ";
+        String Selectquery = "Select Count(*) ";
         Selectquery= Selectquery+ " From " + tablename;
         if(condition != null){
             Selectquery= Selectquery+ " Where " + condition ;
@@ -106,7 +106,7 @@ public class SmartRegisterQueryBuilder {
     }
     public String orderbyCondition(String condition){
         // No need to order a count query
-        if(StringUtils.containsIgnoreCase(Selectquery, "Count(*)")) {
+        if(StringUtils.containsIgnoreCase(Selectquery.trim().substring(0, 15), "Select Count(*)")) {
             return Selectquery;
         }
 

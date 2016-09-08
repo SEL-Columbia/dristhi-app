@@ -30,6 +30,7 @@ public class CommonRepository extends DrishtiRepository {
     private String common_SQL = "CREATE TABLE common(id VARCHAR PRIMARY KEY,details VARCHAR)";
     public static final String ID_COLUMN = "id";
     public static final String Relational_ID = "relationalid";
+    public static final String Relational_Underscore_ID = "relational_id";
     public static final String DETAILS_COLUMN = "details";
     public String TABLE_NAME = "common";
     public String[] common_TABLE_COLUMNS = new String[]{ID_COLUMN, Relational_ID, DETAILS_COLUMN};
@@ -108,6 +109,13 @@ public class CommonRepository extends DrishtiRepository {
     public List<CommonPersonObject> findByRelationalIDs(String... caseIds) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", TABLE_NAME, Relational_ID,
+                insertPlaceholdersForInClause(caseIds.length)), caseIds);
+        return readAllcommon(cursor);
+    }
+
+    public List<CommonPersonObject> findByRelational_IDs(String... caseIds) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", TABLE_NAME, Relational_Underscore_ID,
                 insertPlaceholdersForInClause(caseIds.length)), caseIds);
         return readAllcommon(cursor);
     }

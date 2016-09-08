@@ -39,7 +39,7 @@ public class OpenSRPClientBroadCastReceiver extends BroadcastReceiver {
             } else if (action.equals(AllConstants.CloudantSync.ACTION_REPLICATION_COMPLETED)) {
                 Integer docsReplicated = intent.getIntExtra(AllConstants.CloudantSync.DOCUMENTS_REPLICATED, 0);
                 Integer batchReplicated = intent.getIntExtra(AllConstants.CloudantSync.BATCHES_REPLICATED, 0);
-                ((SecuredActivity) activity).showToast("Replication completed.");
+                //((SecuredActivity) activity).showToast("Replication completed.");
             } else if (action.equals(AllConstants.CloudantSync.ACTION_REPLICATION_ERROR)) {
                 ((SecuredActivity) activity).showToast("Replicaton error occurred");
             }

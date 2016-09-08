@@ -50,6 +50,10 @@ public class AllCommonsRepository {
         return personRepository.findByRelationalIDs(RelationalID.toArray(new String[RelationalID.size()]));
     }
 
+    public List<CommonPersonObject> findByRelational_IDs(List<String> RelationalID) {
+        return personRepository.findByRelational_IDs(RelationalID.toArray(new String[RelationalID.size()]));
+    }
+
     public void close(String entityId) {
         alertRepository.deleteAllAlertsForEntity(entityId);
         timelineEventRepository.deleteAllTimelineEventsForEntity(entityId);

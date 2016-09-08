@@ -175,7 +175,7 @@ public abstract class SecuredActivity extends ActionBarActivity {
      * CloudantSyncHandler takes care of calling this on the main thread.
      */
     public void replicationComplete() {
-        Toast.makeText(getApplicationContext(), "Replication Complete", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "Replication Complete", Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -184,7 +184,7 @@ public abstract class SecuredActivity extends ActionBarActivity {
      */
     public void replicationError() {
         Log.e(LOG_TAG, "error()");
-        Toast.makeText(getApplicationContext(), "Replication Error", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "Replication Error", Toast.LENGTH_LONG).show();
     }
 
     private void setupReplicationBroadcastReceiver() {
