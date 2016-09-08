@@ -202,7 +202,8 @@
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp">
+            android:layout_marginLeft="10dp"
+            android:weightSum="1">
 
             <ImageView
                 android:layout_width="20dp"
@@ -218,7 +219,7 @@
                 android:id="@+id/heightSymbol"
                 android:src="@drawable/ic_remove"
                 android:layout_gravity="center|right"
-                android:layout_marginTop="3dp" />
+                android:layout_marginTop="2dp" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -226,7 +227,16 @@
                 android:id="@+id/vitASymbol"
                 android:src="@drawable/ic_remove"
                 android:layout_gravity="center"
-                android:layout_marginTop="3dp" />
+                android:layout_marginTop="2dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/antihelminticSymbol"
+                android:src="@drawable/ic_remove"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="center" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -253,8 +263,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Height"
                 android:id="@+id/heightSchedule"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp" />
+                android:layout_marginLeft="5dp" />
 
             <TextView
                 style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
@@ -263,8 +272,17 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Vitamin A"
                 android:id="@+id/vitASchedule"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp" />
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="antihelmintic"
+                android:id="@+id/antihelminticText"
+                style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
+                android:layout_marginLeft="5dp" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -296,4 +314,5 @@
         android:layout_width="@dimen/smart_register_client_divider_height"
         android:layout_height="fill_parent"
         android:src="@color/smart_register_client_divider_color"/>
+
 </LinearLayout>
