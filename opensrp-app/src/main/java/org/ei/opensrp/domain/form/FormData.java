@@ -64,4 +64,12 @@ public class FormData {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
+    public String bindType() {
+        return bind_type;
+    }
+
+    public List<SubForm> getSubForms(){
+        return sub_forms;
+    }
 }

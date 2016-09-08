@@ -98,4 +98,9 @@ public class FormSubmission {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
+    public FormData getForm(){
+        return formInstance.form();
+    }
+
 }
