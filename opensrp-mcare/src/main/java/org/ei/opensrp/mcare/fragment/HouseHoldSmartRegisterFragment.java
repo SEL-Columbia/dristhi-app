@@ -224,12 +224,18 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
                 "WHEN alerts.status is Null THEN '5'\n" +
                 "Else alerts.status END ASC";
     }
+
+    public String houseHoldMainCount(){
+        return "Select Count(*) from (Select *, " +
+                "(Select count(*)  from ec_elco where ec_elco.relational_id = ec_household.base_entity_id) as ELCO " +
+                "from ec_household) ec_household ";
+    }
+
     public void initializeQueries(){
         try {
             CommonRepository commonRepository = context.commonrepository("ec_household");
             setTablename("ec_household");
-            SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
-            countqueryBUilder.SelectInitiateMainTableCounts("ec_household");
+            SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(houseHoldMainCount());
             countqueryBUilder.joinwithALerts("ec_household","FW CENSUS");
             countSelect = countqueryBUilder.mainCondition(" FWHOHFNAME is not null ");
             CountExecute();
@@ -305,10 +311,10 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
 
     private String filterStringForOneOrMoreElco(){
-        return "and details not LIKE '%\"ELCO\":\"0\"%'";
+        return " and ELCO > 0";
     }
     private String filterStringForNoElco(){
-        return " and details LIKE '%\"ELCO\":\"0\"%'";
+        return " and ELCO = 0";
     }
     private String filterStringForAll(){
         return "";
@@ -419,7 +425,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' or ec_household.id in (Select elco.relationalid from elco where FWWOMFNAME Like '%"+cs.toString()+"%' )";
+                        filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' or ec_household.id in (Select ec_elco.relational_id from ec_elco where FWWOMFNAME Like '%"+cs.toString()+"%' )";
                         return null;
                     }
 
@@ -495,7 +501,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 //                    getClientsAdapter()
 //                            .refreshList(new noNIDFilter(), getCurrentServiceModeOption(),
 //                                    getCurrentSearchFilter(), getCurrentSortOption());
-                    filters = "and ec_household.id in (Select elco.relationalid from elco where details not Like '%nidImage%' and details LIKE '%\"FWELIGIBLE\":\"1\"%' )";
+                    filters = "and ec_household.id in ( Select ec_elco.relational_id from ec_elco, ec_details where ec_elco.base_entity_id = ec_details.base_entity_id and key not Like '%nidImage%' and (key = 'FWELIGIBLE' and value = '1') group by ec_elco.base_entity_id )";
 
                     CountExecute();
                     filterandSortExecute();
@@ -536,7 +542,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         countqueryBUilder.SelectInitiateMainTableCounts("ec_household");
         countqueryBUilder.joinwithALerts("ec_household", "FW CENSUS");
         countqueryBUilder.mainCondition(" FWHOHFNAME is not null ");
-        String nidfilters = "and ec_household.id in (Select elco.relationalid from elco where details not Like '%nidImage%' and details LIKE '%\"FWELIGIBLE\":\"1\"%' )";
+        String nidfilters = "and ec_household.id in ( Select ec_elco.relational_id from ec_elco, ec_details where  ec_elco.base_entity_id = ec_details.base_entity_id and key not Like '%nidImage%' and (key = 'FWELIGIBLE' and value = '1') group by ec_elco.base_entity_id )";
 
         countqueryBUilder.addCondition(nidfilters);
         Cursor c = commonRepository.RawCustomQueryForAdapter(countqueryBUilder.Endquery(countqueryBUilder.toString()));
