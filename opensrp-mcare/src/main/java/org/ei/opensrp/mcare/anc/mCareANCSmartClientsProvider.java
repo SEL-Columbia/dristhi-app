@@ -133,8 +133,13 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         }
 
 //        Log.v("brid tag",pc.getDetails().get("FWWOMBID"));
+        AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_household");
+        CommonPersonObject householdparent = householdrep.findByCaseID(pc.getDetails().get("relational_id"));
 
-
+        if(householdparent.getColumnmaps().get("existing_Mauzapara") != null) {
+            String location = householdparent.getColumnmaps().get("existing_Mauzapara");
+            village.setText(humanize(location));
+        }
 
         if(pc.getDetails().get("FWGESTATIONALAGE")!=null){
             String GASourcestring = "GA: " + pc.getDetails().get("FWGESTATIONALAGE")+ " weeks" + " ";

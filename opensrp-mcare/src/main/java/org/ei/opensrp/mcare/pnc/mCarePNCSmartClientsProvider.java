@@ -134,6 +134,8 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
             delivery_outcome.setText(context.getString(R.string.mcare_pnc_liveBirth));
         } else if (outcomevalue.equalsIgnoreCase("4")) {
             delivery_outcome.setText(context.getString(R.string.mcare_pnc_Stillbirth));
+        } else {
+            delivery_outcome.setText("");
         }
 
 

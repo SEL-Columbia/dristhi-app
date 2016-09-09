@@ -143,17 +143,15 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
 
 //        village.setText(humanize(Elcoclient.getDetails().get("location_name") != null ? Elcoclient.getDetails().get("location_name") : ""));
             /////from househld
-        AllCommonsRepository allelcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_elco");
-        CommonPersonObject elcoobject = allelcoRepository.findByCaseID(Elcoclient.entityId());
         AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_household");
-        CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getColumnmaps().get("relational_id"));
+        CommonPersonObject householdparent = householdrep.findByCaseID(Elcoclient.getColumnmaps().get("relational_id"));
         String location = "";
         if(householdparent.getColumnmaps().get("existing_Mauzapara") != null) {
             location = householdparent.getColumnmaps().get("existing_Mauzapara");
         }
         village.setText(Html.fromHtml(getString(R.string.elco_details_mauza)+ " "+humanize(location.replace("+","_"))));
 
-        mw_reg_date.setText((elcoobject.getColumnmaps().get("WomanREGDATE") != null ? formatDate(elcoobject.getColumnmaps().get("WomanREGDATE")) : ""));
+        mw_reg_date.setText((Elcoclient.getDetails().get("WomanREGDATE") != null ? formatDate(Elcoclient.getDetails().get("WomanREGDATE")) : ""));
         ///////////////////////////////////////////////////
 
 

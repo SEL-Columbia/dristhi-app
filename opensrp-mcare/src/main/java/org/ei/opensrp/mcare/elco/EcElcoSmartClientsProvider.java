@@ -2,6 +2,7 @@ package org.ei.opensrp.mcare.elco;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +89,9 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
         TextView psrfdue = (TextView) itemView.findViewById(R.id.psrf_due_date);
 //        Button due_visit_date = (Button)itemView.findViewById(R.id.hh_due_date);
 
+        brid.setVisibility(View.GONE);
+        nid.setVisibility(View.GONE);
+
         ImageButton follow_up = (ImageButton) itemView.findViewById(R.id.btn_edit);
         elcodetails.setOnClickListener(onClickListener);
         elcodetails.setTag(smartRegisterClient);
@@ -113,19 +117,23 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
         jivitahhid.setText(pc.getColumnmaps().get("JiVitAHHID") != null ? pc.getColumnmaps().get("JiVitAHHID") : "");
         village.setText((humanize((pc.getDetails().get("FWWOMMAUZA_PARA") != null ? pc.getDetails().get("FWWOMMAUZA_PARA") : "").replace("+", "_"))));
 
+        age.setText("("+(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "")+")");
 
-        age.setText(pc.getDetails().get("FWWOMAGE") != null ? pc.getDetails().get("FWWOMAGE") : "");
-        nid.setText("NID :" + (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : ""));
-        brid.setText("BRID :" + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : ""));
+        if(pc.getDetails().get("FWWOMNID").length()>0) {
+            String NIDSourcestring = "NID: " +  (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "") + " ";
+            nid.setText(Html.fromHtml(NIDSourcestring));
+            nid.setVisibility(View.VISIBLE);
+        }
+        if(pc.getDetails().get("FWWOMBID").length()>0) {
+            String BRIDSourcestring = "BRID: " +  (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "") + " ";
+            brid.setText(Html.fromHtml(BRIDSourcestring));
+            brid.setVisibility(View.VISIBLE);
+        }
+
         lmp.setText(pc.getDetails().get("FWPSRLMP") != null ? pc.getDetails().get("FWPSRLMP") : "");
-
 
         String location = "";
         /////location////////
-        AllCommonsRepository allelcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_elco");
-
-        CommonPersonObject elcoobject = allelcoRepository.findByCaseID(pc.entityId());
-
         AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_household");
         final CommonPersonObject householdparent;
 
@@ -133,11 +141,10 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
 
             householdparent = householdrep.findByCaseID(pc.getColumnmaps().get("relational_id"));
 
-
-//            if(householdparent.getDetails().get("existing_Mauzapara") != null) {
-//                location = householdparent.getDetails().get("existing_Mauzapara");
-//            }
-//        village.setText(humanize(location));
+            if(householdparent.getColumnmaps().get("existing_Mauzapara") != null) {
+                location = householdparent.getColumnmaps().get("existing_Mauzapara");
+            }
+            village.setText(humanize(location));
 
             Date lastdate = null;
             if (householdparent.getColumnmaps().get("FWNHREGDATE") != null && householdparent.getColumnmaps().get("FWCENDATE") != null) {
@@ -214,9 +221,9 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
                 psrfdue.setTag(smartRegisterClient);
                 Log.v("is here", "3");
                 try {
-                    if (elcoobject.getColumnmaps().get("WomanREGDATE") != null) {
+                    if (pc.getDetails().get("WomanREGDATE") != null) {
                         Log.v("is here", "2");
-                        Date womanRegDate = format.parse(elcoobject.getColumnmaps().get("WomanREGDATE"));
+                        Date womanRegDate = format.parse(pc.getDetails().get("WomanREGDATE"));
                         LocalDate regdate = LocalDate.fromDateFields(womanRegDate);
                         if (DateUtil.dayDifference(regdate, DateUtil.today()) == 0) {
                             Log.v("is here", "1");

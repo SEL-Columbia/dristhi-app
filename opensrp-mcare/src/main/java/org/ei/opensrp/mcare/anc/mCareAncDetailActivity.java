@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
@@ -107,6 +109,13 @@ public class mCareAncDetailActivity extends Activity {
 
 
         village.setText(Html.fromHtml(getString(R.string.elco_details_mauza) + " " + humanize(ancclient.getDetails().get("mauza") != null ? ancclient.getDetails().get("mauza") : "")));
+        AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_household");
+        CommonPersonObject householdparent = householdrep.findByCaseID(ancclient.getDetails().get("relational_id"));
+
+        if(householdparent.getColumnmaps().get("existing_Mauzapara") != null) {
+            String location = householdparent.getColumnmaps().get("existing_Mauzapara");
+            village.setText(humanize(getString(R.string.elco_details_mauza) + " " +location));
+        }
             /////from househld
  //
 
