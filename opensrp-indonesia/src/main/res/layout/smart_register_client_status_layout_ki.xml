@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/status_layout"
         android:layout_width="@dimen/list_status_view_width"
@@ -16,9 +16,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Kartu Ibu"
-        android:visibility="gone"
-        style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+        android:text=""
+        style="@style/CustomFontTextViewStyle.ListView.Small"/>
+    <org.ei.opensrp.view.customControls.CustomFontTextView
+        android:id="@+id/last_visit_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mother_status"
+        android:text=""
+        style="@style/CustomFontTextViewStyle.ListView.Small"/>
+    <org.ei.opensrp.view.customControls.CustomFontTextView
+        android:id="@+id/visit_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/last_visit_status"
+        android:text=""
+        style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
-
-</LinearLayout>
+</RelativeLayout>

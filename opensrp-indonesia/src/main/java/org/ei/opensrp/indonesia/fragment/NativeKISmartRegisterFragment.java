@@ -2,12 +2,14 @@ package org.ei.opensrp.indonesia.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
@@ -21,6 +23,7 @@ import org.ei.opensrp.indonesia.R;
 
 import org.ei.opensrp.indonesia.kartu_ibu.KICommonObjectFilterOption;
 import org.ei.opensrp.indonesia.kartu_ibu.KIClientsProvider;
+import org.ei.opensrp.indonesia.kartu_ibu.KIDetailActivity;
 import org.ei.opensrp.indonesia.kartu_ibu.NativeKISmartRegisterActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
@@ -198,22 +201,24 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         setTablename("kartu_ibu");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("kartu_ibu");
-     //   countqueryBUilder.joinwithIbus("kartu_ibu","ibu");
+        countqueryBUilder.joinwithKIs("kartu_ibu");
+     //   countqueryBUilder.joinwithchilds("ibu");
         countSelect = countqueryBUilder.mainCondition(" kartu_ibu.isClosed !='true' ");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"isClosed", "details", "isOutOfArea","namalengkap", "umur"});
-     //   queryBUilder.joinwithIbus("kartu_ibu","ibu");
+        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"kartu_ibu.isClosed", "kartu_ibu.details", "kartu_ibu.isOutOfArea","namalengkap", "umur","ibu.type","namaSuami","ibu.ancDate","ibu.ancKe","ibu.hariKeKF","anak.namaBayi","anak.tanggalLahirAnak"});
+        queryBUilder.joinwithKIs("kartu_ibu");
+    //    countqueryBUilder.joinwithchilds("ibu");
         mainSelect = queryBUilder.mainCondition(" kartu_ibu.isClosed !='true' ");
         queryBUilder.addCondition(filters);
         Sortqueries = KiSortByNameAZ();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
-        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0))); //,"ibu.type as type"
         KIClientsProvider kiscp = new KIClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"isClosed", "namalengkap", "umur", "isOutOfArea"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"kartu_ibu.isClosed", "namalengkap", "umur", "ibu.type","namaSuami","ibu.ancDate","ibu.ancKe","ibu.hariKeKF","anak.namaBayi","anak.tanggalLahirAnak","kartu_ibu.isOutOfArea"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -241,10 +246,10 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                //    HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
-                 //   Intent intent = new Intent(getActivity(),HouseHoldDetailActivity.class);
-                //    startActivity(intent);
-                //    getActivity().finish();
+                   KIDetailActivity.kiclient = (CommonPersonObjectClient)view.getTag();
+                    Intent intent = new Intent(getActivity(),KIDetailActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                     break;
             //    case R.id.hh_due_date:
             //        HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
@@ -323,7 +328,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namalengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and namalengkap Like '%" + cs.toString() + "%' or namaSuami Like '%" + cs.toString() + "%' ";
                         return null;
                     }
 
@@ -369,7 +374,8 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namalengkap Like '%" + cs.toString() +"%'" ;
+
+                        filters = "and namalengkap Like '%" + cs.toString() + "%' or namaSuami Like '%" + cs.toString() + "%' ";
                         return null;
                     }
 

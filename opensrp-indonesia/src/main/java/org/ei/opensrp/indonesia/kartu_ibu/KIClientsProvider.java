@@ -105,9 +105,11 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                viewHolder.edd = (TextView)convertView.findViewById(R.id.txt_edd);
                viewHolder.edd_due = (TextView)convertView.findViewById(R.id.txt_edd_due);
                viewHolder.children_age_left = (TextView)convertView.findViewById(R.id.txt_children_age_left);
+            viewHolder.children_age_right = (TextView)convertView.findViewById(R.id.txt_children_age_right);
 
-        //    viewHolder.anc_status_layout = (TextView)convertView.findViewById(R.id.mother_status);
-
+           viewHolder.anc_status_layout = (TextView)convertView.findViewById(R.id.mother_status);
+            viewHolder.date_status = (TextView)convertView.findViewById(R.id.last_visit_status);
+        viewHolder.visit_status = (TextView)convertView.findViewById(R.id.visit_status);
         viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
         viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
@@ -130,7 +132,7 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         //  final ImageView childview = (ImageView)convertView.findViewById(R.id.profilepic);
 
         viewHolder.wife_name.setText(pc.getColumnmaps().get("namalengkap")!=null?pc.getColumnmaps().get("namalengkap"):"");
-        viewHolder.husband_name.setText(pc.getDetails().get("namaSuami")!=null?pc.getDetails().get("namaSuami"):"");
+        viewHolder.husband_name.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");
         viewHolder.village_name.setText(pc.getDetails().get("desa")!=null?pc.getDetails().get("desa"):"");
         viewHolder.wife_age.setText(pc.getColumnmaps().get("umur")!=null?pc.getColumnmaps().get("umur"):"");
         viewHolder.no_ibu.setText(pc.getDetails().get("noIbu")!=null?pc.getDetails().get("noIbu"):"");
@@ -160,7 +162,7 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                     viewHolder.edd_due.setText("");
 
                 }
-                viewHolder.edd_due.setText("Due : "+diffDays+" Hari");
+                viewHolder.edd_due.setText(context.getString(R.string.due_status)+": "+diffDays+" "+context.getString(R.string.header_days_pp));
 
             } catch (ParseException e) {
                 // TODO Auto-generated catch block
@@ -171,20 +173,32 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
             viewHolder.edd_due.setText("-");
         }
 
+        viewHolder.children_age_left.setText(pc.getColumnmaps().get("anak.namaBayi")!=null?"Name : "+pc.getColumnmaps().get("anak.namaBayi"):"");
+        viewHolder.children_age_right.setText(pc.getColumnmaps().get("anak.tanggalLahirAnak")!=null?"DOB : "+pc.getColumnmaps().get("anak.tanggalLahirAnak"):"");
 
+        if(pc.getColumnmaps().get("ibu.type")!=null){
+            if(pc.getColumnmaps().get("ibu.type").equals("anc")){
+                viewHolder.anc_status_layout.setText(context.getString(R.string.service_anc));
+                String visit_date = pc.getColumnmaps().get("ibu.ancDate")!=null?context.getString(R.string.hh_last_visit_date) +" " +pc.getColumnmaps().get("ibu.ancDate"):"";
+                String visit_stat = pc.getColumnmaps().get("ibu.ancKe")!=null?context.getString(R.string.anc_ke) +" " + pc.getColumnmaps().get("ibu.ancKe"):"";
+                viewHolder.date_status.setText( visit_date);
+                viewHolder.visit_status.setText(visit_stat);
 
-        viewHolder.children_age_left.setText(pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
+            }
+            if(pc.getColumnmaps().get("ibu.type").equals("pnc")){
+                viewHolder.anc_status_layout.setText(context.getString(R.string.service_pnc));
+                String hariKeKF = pc.getColumnmaps().get("ibu.hariKeKF")!=null?context.getString(R.string.hari_ke_kf)+" " +pc.getColumnmaps().get("ibu.hariKeKF"):"";
+                viewHolder.visit_status.setText( hariKeKF);
+            }
+        }
 
+     //   viewHolder.anc_status_layout.setText(pc.getColumnmaps().get("ibu.type")!=null?pc.getColumnmaps().get("ibu.type"):"--");
 
-       // viewHolder.anc_status_layout.setText(pc.getReference()!=null?pc.getReference():"--");
         convertView.setLayoutParams(clientViewLayoutParams);
       //  return convertView;
     }
     CommonPersonObjectController householdelcocontroller;
-
-
-
-
+    
 
     //    @Override
     public SmartRegisterClients getClients() {
@@ -237,6 +251,9 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         TextView edd_due;
         TextView children_age_left;
         TextView anc_status_layout;
+        public TextView visit_status;
+        public TextView date_status;
+        public TextView children_age_right;
     }
 
 

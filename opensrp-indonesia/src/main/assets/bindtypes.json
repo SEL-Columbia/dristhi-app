@@ -9,19 +9,19 @@
     {
       "name": "kartu_ibu",
       "columns": [
-        {"name":"namalengkap"}, {"name":"isClosed"},{"name":"isOutOfArea"},{"name":"umur"}
+        {"name":"namalengkap"}, {"name":"isClosed"},{"name":"isOutOfArea"},{"name":"umur"},{"name":"namaSuami"}
       ]
     },
     {
       "name": "ibu",
       "columns": [
-        {"name":"kartuIbuId"}, {"name":"type"},{"name":"referenceDate"},{"name":"isClosed"},{"name":"bidanId"}
+        {"name":"kartuIbuId"}, {"name":"type"},{"name":"isClosed"},{"name":"ancDate"},{"name":"ancKe"},{"name":"hariKeKF"}
       ]
     },
     {
       "name": "anak",
       "columns": [
-        {"name":"ibuCaseId"},{"name":"isClosed"},{"name":"namaBayi"},{"name":"photoPath"}
+        {"name":"ibuCaseId"},{"name":"isClosed"},{"name":"namaBayi"},{"name":"tanggalLahirAnak"}
       ]
     }
   ]

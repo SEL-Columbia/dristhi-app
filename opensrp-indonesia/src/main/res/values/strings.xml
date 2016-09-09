@@ -23,17 +23,17 @@
     <string name="home_report_label">Reporting</string>
     <string name="register_label">Register</string>
     <string name="home_videos_label">Videos</string>
-    <string name="header_anak">Anak</string>
-    <string name="header_nama">Nama</string>
-    <string name="header_tgl_periksa">Tgl Periksa</string>
-    <string name="header_edd">HTP</string>
-    <string name="header_kunjungan">Kunjungan</string>
+    <string name="header_anak">Child</string>
+    <string name="header_nama">Name</string>
+    <string name="header_tgl_periksa">Check Date</string>
+    <string name="header_edd">EDD</string>
+    <string name="header_kunjungan">VISIT</string>
     <string name="header_no_ibu">No Ibu</string>
     <string name="header_status_b">Status</string>
     <string name="header_obsetri">Obsetri</string>
     <string name="mother_weight">Weight :</string>
-    <string name="header_pemeriksaan">Pemeriksaan</string>
-    <string name="header_resiko">Resiko</string>
+    <string name="header_pemeriksaan">EXAMINATION</string>
+    <string name="header_resiko">Risk</string>
     <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
     <string name="videos_IEC_not_installed_dialog_message">Please install IEC application to play the videos.
     </string>
@@ -237,10 +237,10 @@
     <string name="header_delivery_complications">COMPLICATIONS</string>
     <string name="header_pp_fp">PP FP</string>
     <string name="header_child">CHILD</string>
-    <string name="header_days_pp">DAYS PP</string>
+    <string name="header_days_pp"> DAYS</string>
     <string name="header_first_seven_days">FIRST 7 DAYS</string>
     <string name="header_pnc_visits">PNC VISITS</string>
-    <string name="header_kb_method">Kontrasepsi</string>
+    <string name="header_kb_method">CONTRACEPTION</string>
     <string name="pnc_register_service_mode_overview">Overview</string>
     <string name="pnc_register_service_mode_pnc_visits">PNC Visits</string>
     <string name="kb_selection">KB</string>
@@ -324,7 +324,7 @@
 
     <string name="hh_profile">PROFILE</string>
     <string name="hh_no_of_mwra">NO. OF ELCO</string>
-    <string name="hh_last_visit_date">LAST VISIT DATE</string>
+    <string name="hh_last_visit_date">LAST VISIT DATE :</string>
     <string name="hh_visit_due_date">HH VISIT DUE DATE</string>
     <string name="hh_other_inhabitants">OTHER INHABITANTS</string>
     <string name="hh_inhabitants_details">HH Details</string>
@@ -339,7 +339,7 @@
     <string name="hh_alphabetical_sort">Alphabetical (HoH Name)</string>
     <string name="hh_fwGobhhid_sort">HHID - Government</string>
     <string name="hh_fwJivhhid_sort">HHID - JiVitA</string>
-    <string name="due_status">Due Status</string>
+    <string name="due_status">Due</string>
     <string name="hh_search_hint">Search</string>
     <string name="hh_no_mwra">No ELCO</string>
     <string name="hh_has_mwra">Has one or more ELCO</string>
@@ -459,4 +459,7 @@
     <string name="str_anak_bayi_visit">Baby Visit</string>
     <string name="str_anak_balita_visit">Toddler Visit</string>
     <string name="height">Height :</string>
+    <string name="service_anc">Service Status : ANC</string>
+    <string name="service_pnc">Service Status : PNC</string>
+    <string name="anc_ke">ANC Number :</string>
 </resources>
