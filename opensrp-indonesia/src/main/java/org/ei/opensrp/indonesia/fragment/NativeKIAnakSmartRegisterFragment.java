@@ -225,7 +225,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("anak", new String[]{"isClosed", "details", "namaBayi"});
         //   queryBUilder.joinwithIbus("kartu_ibu","ibu");
-        mainSelect = queryBUilder.mainCondition(" anak.isClosed !='true' ");
+        mainSelect = queryBUilder.mainCondition(" anak.isClosed !='true' and anak.ibuCaseId !='' ");
         queryBUilder.addCondition(filters);
         Sortqueries = AnakNameShort();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);

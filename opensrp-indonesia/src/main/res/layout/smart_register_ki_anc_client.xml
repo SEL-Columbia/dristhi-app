@@ -180,7 +180,7 @@
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:id="@+id/txt_tanggal_kunjungan_anc"
                 android:layout_marginTop="-2dp"
-                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -189,7 +189,7 @@
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:id="@+id/txt_anc_number"
                 android:layout_marginTop="-2dp"
-                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -198,7 +198,7 @@
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:id="@+id/txt_kunjugan_ke"
                 android:layout_marginTop="-2dp"
-                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"

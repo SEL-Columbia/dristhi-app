@@ -214,20 +214,21 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ibu");
         countqueryBUilder.joinwithIbus("ibu");
-        countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='anc' ");
+        countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true'  and ibu.type = 'anc'");
         CountExecute();
 
+
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details","kartu_ibu.namalengkap","kartu_ibu.umur"});
+        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details", "ibu.ancDate", "ibu.ancKe","kartu_ibu.namalengkap","kartu_ibu.umur"});
         queryBUilder.joinwithIbus("ibu");
-        mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='anc'");
+        mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type = 'anc'");
         queryBUilder.addCondition(filters);
-        Sortqueries = KiSortByName();
+     //   Sortqueries = KiSortByNameAZ();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
-        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0))); //,"ibu.type as type"
         KIANCClientsProvider kiscp = new KIANCClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed","kartu_ibu.namalengkap","kartu_ibu.umur"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed", "ibu.ancDate", "ibu.ancKe","kartu_ibu.namalengkap","kartu_ibu.umur"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();

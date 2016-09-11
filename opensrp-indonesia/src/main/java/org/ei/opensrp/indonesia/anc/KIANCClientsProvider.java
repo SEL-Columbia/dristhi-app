@@ -98,7 +98,6 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.status_date = (TextView)convertView.findViewById(R.id.txt_status_date_anc);
         viewHolder.alert_status = (TextView)convertView.findViewById(R.id.txt_alert_status);
 
-
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
@@ -117,6 +116,9 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
         //set image
+
+        String KunjunganKe = pc.getDetails().get("kunjunganKe")!=null?pc.getDetails().get("kunjunganKe"):"-";
+
         AllCommonsRepository kiRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
 
         CommonPersonObject kiobject = kiRepository.findByCaseID(pc.entityId());
@@ -124,108 +126,186 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(kiobject.getColumnmaps().get("kartuIbuId"));
 
-
-
         viewHolder.wife_name.setText(ibuparent.getColumnmaps().get("namalengkap")!=null?ibuparent.getColumnmaps().get("namalengkap"):"");
-        viewHolder.husband_name.setText(ibuparent.getDetails().get("namaSuami")!=null?ibuparent.getDetails().get("namaSuami"):"");
+        viewHolder.husband_name.setText(ibuparent.getColumnmaps().get("namaSuami")!=null?ibuparent.getColumnmaps().get("namaSuami"):"");
         viewHolder.village_name.setText(ibuparent.getDetails().get("desa")!=null?ibuparent.getDetails().get("desa"):"");
         viewHolder.wife_age.setText(ibuparent.getColumnmaps().get("umur")!=null?ibuparent.getColumnmaps().get("umur"):"");
         viewHolder.no_ibu.setText(ibuparent.getDetails().get("noIbu")!=null?ibuparent.getDetails().get("noIbu"):"");
         viewHolder.unique_id.setText(ibuparent.getDetails().get("unique_id")!=null?ibuparent.getDetails().get("unique_id"):"");
 
-
         viewHolder.usia_klinis.setText(pc.getDetails().get("usiaKlinis")!=null?pc.getDetails().get("usiaKlinis")+" Minggu":"-");
         viewHolder.htpt.setText(pc.getDetails().get("tanggalHPHT")!=null?pc.getDetails().get("tanggalHPHT"):"-");
         viewHolder.ki_lila_bb.setText(pc.getDetails().get("hasilPemeriksaanLILA")!=null?pc.getDetails().get("hasilPemeriksaanLILA"):"-");
 
-        viewHolder.beratbadan_tb.setText(pc.getDetails().get("hasilPemeriksaanLILA")!=null?pc.getDetails().get("hasilPemeriksaanLILA"):"-");
+        viewHolder.beratbadan_tb.setText(pc.getDetails().get("bbKg")!=null?pc.getDetails().get("bbKg"):"-");
+
+        String AncDate = kiobject.getColumnmaps().get("ancDate")!=null?kiobject.getColumnmaps().get("ancDate"):"-";
+        String AncKe = kiobject.getColumnmaps().get("ancKe")!=null?kiobject.getColumnmaps().get("ancKe"):"-";
+
+        viewHolder.tanggal_kunjungan_anc.setText(context.getString(R.string.hh_last_visit_date)+ AncDate);
+        viewHolder.anc_number.setText(context.getString(R.string.anc_ke) + AncKe);
+        viewHolder.kunjugan_ke.setText(context.getString(R.string.visit_number) +KunjunganKe);
 
 
-        String AncDate = pc.getDetails().get("ancDate")!=null?pc.getDetails().get("ancDate"):"-";
-        String AncKe = pc.getDetails().get("ancKe")!=null?pc.getDetails().get("ancKe"):"-";
-        String KunjunganKe = pc.getDetails().get("kunjunganKe")!=null?pc.getDetails().get("kunjunganKe"):"-";
-
-        viewHolder.tanggal_kunjungan_anc.setText("Tanggal Kunjungan : " + AncDate);
-        viewHolder.anc_number.setText("ANC Ke : " + AncKe);
-        viewHolder.kunjugan_ke.setText("Kunjungan Ke : " +KunjunganKe);
-
-
-        List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 1");
-        //alertlist_for_client.get(i).
-        if(alertlist_for_client.size() == 0 ){
-            //  viewHolder.due_visit_date.setText("Not Synced to Server");
-            viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
-        }
-        for(int i = 0;i<alertlist_for_client.size();i++){
-            viewHolder.status_type.setText("ANC 1");
-            viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
-            if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
-                viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
-                viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+        if(AncKe.equals("-")){
+            List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 1");
+            //alertlist_for_client.get(i).
+            if(alertlist_for_client.size() == 0 ){
+                //  viewHolder.due_visit_date.setText("Not Synced to Server");
+                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             }
-            if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
+            for(int i = 0;i<alertlist_for_client.size();i++){
+                viewHolder.status_type.setText("ANC 1");
                 viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
-                viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
 
-            }
-            if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
-                viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
-                viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
 
-            }
-            if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
-                viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
-                viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
-            }
-            if(alertlist_for_client.get(i).isComplete()){
-                viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
-                viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
-            }
-        }
-       /*
-        List<Alert> alertlist_for_client2 = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 2");
-
-        if(alertlist_for_client2.size() == 0 ){
-            //  viewHolder.due_visit_date.setText("Not Synced to Server");
-            viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
-        }
-        for(int i = 0;i<alertlist_for_client2.size();i++){
-            viewHolder.status_type.setText("ANC 2");
-            viewHolder.status_date.setText(alertlist_for_client2.get(i).expiryDate());
-            if(alertlist_for_client2.get(i).status().value().equalsIgnoreCase("normal")){
-                viewHolder.status_date.setText(pc.getColumnmaps().get("expiryDate"));
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
-                viewHolder.status_date.setText("normal");
-            }
-            if(alertlist_for_client2.get(i).status().value().equalsIgnoreCase("upcoming")){
-                viewHolder.status_date.setText(pc.getColumnmaps().get("expiryDate"));
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
-                viewHolder.status_date.setText("upcoming");
-
-            }
-            if(alertlist_for_client2.get(i).status().value().equalsIgnoreCase("urgent")){
-                viewHolder.status_date.setText(pc.getColumnmaps().get("expiryDate"));
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
-                viewHolder.status_date.setText("urgents");
-
-            }
-            if(alertlist_for_client2.get(i).status().value().equalsIgnoreCase("expired")){
-                viewHolder.status_date.setText(pc.getColumnmaps().get("expiryDate"));
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
-                viewHolder.status_date.setText("expired");
-            }
-            if(alertlist_for_client2.get(i).isComplete()){
-                viewHolder.status_date.setText(pc.getColumnmaps().get("expiryDate"));
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
-                viewHolder.status_date.setText("Done");
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+                if(alertlist_for_client.get(i).isComplete()){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
             }
         }
-        */
+        if(AncKe.equals("1")){
+            List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 2");
+            //alertlist_for_client.get(i).
+            if(alertlist_for_client.size() == 0 ){
+                //  viewHolder.due_visit_date.setText("Not Synced to Server");
+                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
+            }
+            for(int i = 0;i<alertlist_for_client.size();i++){
+                viewHolder.status_type.setText("ANC 2");
+                viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+                if(alertlist_for_client.get(i).isComplete()){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+            }
+        }
+
+        if(AncKe.equals("2")){
+            List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 3");
+            //alertlist_for_client.get(i).
+            if(alertlist_for_client.size() == 0 ){
+                //  viewHolder.due_visit_date.setText("Not Synced to Server");
+                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
+            }
+            for(int i = 0;i<alertlist_for_client.size();i++){
+                viewHolder.status_type.setText("ANC 3");
+                viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+                if(alertlist_for_client.get(i).isComplete()){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+            }
+        }
+        if(AncKe.equals("3")){
+            List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 4");
+            //alertlist_for_client.get(i).
+            if(alertlist_for_client.size() == 0 ){
+                //  viewHolder.due_visit_date.setText("Not Synced to Server");
+                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
+            }
+            for(int i = 0;i<alertlist_for_client.size();i++){
+                viewHolder.status_type.setText("ANC 4");
+                viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+
+                }
+                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+                if(alertlist_for_client.get(i).isComplete()){
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).status().value());
+                }
+            }
+        }
+
+
         convertView.setLayoutParams(clientViewLayoutParams);
      //   return convertView;
     }

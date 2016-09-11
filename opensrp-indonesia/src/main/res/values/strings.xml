@@ -462,4 +462,5 @@
     <string name="service_anc">Service Status : ANC</string>
     <string name="service_pnc">Service Status : PNC</string>
     <string name="anc_ke">ANC Number :</string>
+    <string name="visit_number">Visit Number :</string>
 </resources>

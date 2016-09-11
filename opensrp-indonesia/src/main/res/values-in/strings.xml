@@ -16,7 +16,7 @@
     <string name="form_back_confirm_dialog_title">Konfirmasi penutupan form</string>
     <string name="yes_button_label">Iya</string>
     <string name="no_button_label">Tidak</string>
-
+    <string name="anc_ke">ANC Ke :</string>
     <string name="sort_by_name_label_reverse">Nama (Z ke A)</string>
     <string name="sort_by_wife_age_label">Umur</string>
     <string name="sort_by_ec_number_label">EC Number</string>

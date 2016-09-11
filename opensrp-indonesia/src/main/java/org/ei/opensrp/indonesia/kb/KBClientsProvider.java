@@ -132,7 +132,7 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
         //  final ImageView childview = (ImageView)convertView.findViewById(R.id.profilepic);
 
         viewHolder.wife_name.setText(pc.getColumnmaps().get("namalengkap")!=null?pc.getColumnmaps().get("namalengkap"):"");
-        viewHolder.husband_name.setText(pc.getDetails().get("namaSuami")!=null?pc.getDetails().get("namaSuami"):"");
+        viewHolder.husband_name.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");
         viewHolder.village_name.setText(pc.getDetails().get("desa")!=null?pc.getDetails().get("desa"):"");
         viewHolder.wife_age.setText(pc.getColumnmaps().get("umur")!=null?pc.getColumnmaps().get("umur"):"");
         viewHolder.no_ibu.setText(pc.getDetails().get("noIbu")!=null?pc.getDetails().get("noIbu"):"");

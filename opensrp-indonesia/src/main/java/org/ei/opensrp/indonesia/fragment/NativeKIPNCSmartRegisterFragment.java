@@ -199,13 +199,13 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ibu");
         countqueryBUilder.joinwithIbus("ibu");
-        countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='pnc' ");
+        countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='pnc' and ibu.kartuIbuId !='' ");
         CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details","kartu_ibu.namalengkap","kartu_ibu.umur"});
         queryBUilder.joinwithIbus("ibu");
-        mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='pnc'");
+        mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='pnc' and ibu.kartuIbuId !=''");
         queryBUilder.addCondition(filters);
         Sortqueries = KiSortByName();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
