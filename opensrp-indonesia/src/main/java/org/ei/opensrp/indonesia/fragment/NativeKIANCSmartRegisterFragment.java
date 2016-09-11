@@ -219,7 +219,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details", "ibu.ancDate", "ibu.ancKe","kartu_ibu.namalengkap","kartu_ibu.umur"});
+        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details", "ibu.ancDate", "ibu.ancKe","kartu_ibu.namalengkap","kartu_ibu.umur","kartu_ibu.namaSuami"});
         queryBUilder.joinwithIbus("ibu");
         mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type = 'anc'");
         queryBUilder.addCondition(filters);
@@ -228,7 +228,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0))); //,"ibu.type as type"
         KIANCClientsProvider kiscp = new KIANCClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed", "ibu.ancDate", "ibu.ancKe","kartu_ibu.namalengkap","kartu_ibu.umur"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed", "ibu.ancDate", "ibu.ancKe","kartu_ibu.namalengkap","kartu_ibu.umur","kartu_ibu.namaSuami"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -346,7 +346,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() + "%' or kartu_ibu.namaSuami Like '%" + cs.toString() + "%' ";
                         return null;
                     }
 
@@ -392,7 +392,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() + "%' or kartu_ibu.namaSuami Like '%" + cs.toString() + "%' ";
                         return null;
                     }
 

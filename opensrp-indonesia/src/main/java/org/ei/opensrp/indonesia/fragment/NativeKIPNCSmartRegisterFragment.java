@@ -199,20 +199,21 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ibu");
         countqueryBUilder.joinwithIbus("ibu");
-        countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='pnc' and ibu.kartuIbuId !='' ");
+        countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true'  and ibu.type = 'pnc'");
         CountExecute();
 
+
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details","kartu_ibu.namalengkap","kartu_ibu.umur"});
+        queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details", "ibu.hariKeKF","kartu_ibu.namalengkap","kartu_ibu.umur","kartu_ibu.namaSuami"});
         queryBUilder.joinwithIbus("ibu");
-        mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type ='pnc' and ibu.kartuIbuId !=''");
+        mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type = 'pnc'");
         queryBUilder.addCondition(filters);
-        Sortqueries = KiSortByName();
+        //   Sortqueries = KiSortByNameAZ();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
-        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0))); //,"ibu.type as type"
         KIPNCClientsProvider kiscp = new KIPNCClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed","kartu_ibu.namalengkap","kartu_ibu.umur"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed",  "ibu.hariKeKF","kartu_ibu.namalengkap","kartu_ibu.umur","kartu_ibu.namaSuami"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -323,7 +324,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() + "%' or kartu_ibu.namaSuami Like '%" + cs.toString() + "%' ";
                         return null;
                     }
 
@@ -369,7 +370,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() +"%'" ;
+                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() + "%' or kartu_ibu.namaSuami Like '%" + cs.toString() + "%' ";
                         return null;
                     }
 

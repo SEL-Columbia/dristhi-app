@@ -127,11 +127,11 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
 
         String date = pc.getDetails().get("submissionDate")!=null?pc.getDetails().get("submissionDate"):"";
-        String kf_ke = pc.getDetails().get("hariKeKF")!=null?pc.getDetails().get("hariKeKF"):"";
+
         String vit_a = pc.getDetails().get("pelayananfe")!=null?pc.getDetails().get("pelayananfe"):"";
 
         viewHolder.tanggal_kunjungan.setText("Tanggal : " + date);
-        viewHolder.KF.setText("Hari Ke /KF : " + kf_ke);
+
         viewHolder.vit_a.setText("Pelayanan FE : " +vit_a);
 
         viewHolder.td_sistolik.setText(pc.getDetails().get("tandaVitalTDSistolik")!=null?pc.getDetails().get("tandaVitalTDSistolik"):"");
@@ -144,9 +144,10 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(kiobject.getColumnmaps().get("kartuIbuId"));
-
+        String kf_ke = kiobject.getColumnmaps().get("hariKeKF")!=null?kiobject.getColumnmaps().get("hariKeKF"):"";
+        viewHolder.KF.setText("Hari Ke /KF : " + kf_ke);
         viewHolder.wife_name.setText(ibuparent.getColumnmaps().get("namalengkap")!=null?ibuparent.getColumnmaps().get("namalengkap"):"");
-        viewHolder.husband_name.setText(ibuparent.getDetails().get("namaSuami")!=null?ibuparent.getDetails().get("namaSuami"):"");
+        viewHolder.husband_name.setText(ibuparent.getColumnmaps().get("namaSuami")!=null?ibuparent.getColumnmaps().get("namaSuami"):"");
         viewHolder.village_name.setText(ibuparent.getDetails().get("desa")!=null?ibuparent.getDetails().get("desa"):"");
         viewHolder.wife_age.setText(ibuparent.getColumnmaps().get("umur")!=null?ibuparent.getColumnmaps().get("umur"):"");
         viewHolder.pnc_id.setText(ibuparent.getDetails().get("noIbu")!=null?ibuparent.getDetails().get("noIbu"):"");

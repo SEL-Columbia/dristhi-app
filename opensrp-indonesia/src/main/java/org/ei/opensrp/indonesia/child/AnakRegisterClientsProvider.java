@@ -120,33 +120,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
 
         viewHolder.childs_name.setText(pc.getColumnmaps().get("namaBayi")!=null?pc.getColumnmaps().get("namaBayi"):"Bayi");
 
-        String date = pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"-";
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        if(pc.getDetails().get("tanggalLahirAnak")!=null) {
-            try {
-                Calendar c = Calendar.getInstance();
-                c.setTime(format.parse(date));
-                c.add(Calendar.DATE, 0);  // number of days to add
-                date = format.format(c.getTime());  // dt is now the new date
-                Date dates = format.parse(date);
-                Date currentDateandTime = new Date();
-                long diff = Math.abs(dates.getTime() - currentDateandTime.getTime());
-                long diffDays = diff / (24 * 60 * 60 * 1000);
-                if(diffDays <1){
-                    viewHolder.childs_age.setText("");
-
-                }
-                viewHolder.childs_age.setText(diffDays+" Hari");
-
-            } catch (ParseException e) {
-                // TODO Auto-generated catch block
-                viewHolder.childs_age.setText("NaN Hari");
-            }
-        }
-        else{
-            viewHolder.childs_age.setText("-");
-        }
 
 
         //delivery documentation
@@ -201,7 +175,33 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.no_ibu.setText(kiparent.getDetails().get("noIbu")!=null?kiparent.getDetails().get("noIbu"):"");
 
 
+        String date = childobject.getColumnmaps().get("tanggalLahirAnak")!=null?childobject.getColumnmaps().get("tanggalLahirAnak"):"-";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
+        if(childobject.getColumnmaps().get("tanggalLahirAnak")!=null) {
+            try {
+                Calendar c = Calendar.getInstance();
+                c.setTime(format.parse(date));
+                c.add(Calendar.DATE, 0);  // number of days to add
+                date = format.format(c.getTime());  // dt is now the new date
+                Date dates = format.parse(date);
+                Date currentDateandTime = new Date();
+                long diff = Math.abs(dates.getTime() - currentDateandTime.getTime());
+                long diffDays = diff / (24 * 60 * 60 * 1000);
+                if(diffDays <1){
+                    viewHolder.childs_age.setText("");
+
+                }
+                viewHolder.childs_age.setText(diffDays+" Hari");
+
+            } catch (ParseException e) {
+                // TODO Auto-generated catch block
+                viewHolder.childs_age.setText("NaN Hari");
+            }
+        }
+        else{
+            viewHolder.childs_age.setText("-");
+        }
 
         convertView.setLayoutParams(clientViewLayoutParams);
      //   return convertView;
