@@ -25,6 +25,7 @@ import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.indonesia.R;
 
+import org.ei.opensrp.indonesia.kartu_ibu.KIDetailActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.AlertDTO;
@@ -99,7 +100,7 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
             viewHolder.number_of_abortus = (TextView)convertView.findViewById(R.id.txt_number_of_abortus);
             viewHolder.number_of_alive = (TextView)convertView.findViewById(R.id.txt_number_of_alive);
 
-
+            viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
             viewHolder.kb_method = (TextView)convertView.findViewById(R.id.kb_method);
             viewHolder.kb_mulai = (TextView)convertView.findViewById(R.id.kb_mulai);
             viewHolder.risk_HB = (TextView)convertView.findViewById(R.id.risk_HB);
@@ -116,7 +117,7 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
             convertView.setTag(viewHolder);
     //    }else{
     //        viewHolder = (ViewHolder) convertView.getTag();
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
+        //    viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
     //    }
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
@@ -128,8 +129,20 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
         }
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
+        if(pc.getDetails().get("highRiskSTIBBVs")!=null || pc.getDetails().get("highRiskEctopicPregnancy")!=null || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null || pc.getDetails().get("highRiskDidneyDisorder")!=null || pc.getDetails().get("highRiskHeartDisorder")!=null || pc.getDetails().get("highRiskAsthma")!=null || pc.getDetails().get("highRiskTuberculosis")!=null || pc.getDetails().get("highRiskMalaria")!=null){
+            viewHolder.hr_badge.setVisibility(View.VISIBLE);
+        }
         //set image
-        //  final ImageView childview = (ImageView)convertView.findViewById(R.id.profilepic);
+        final ImageView kiview = (ImageView)convertView.findViewById(R.id.img_profile);
+        if (pc.getDetails().get("profilepic") != null) {
+            KIDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
+            kiview.setTag(smartRegisterClient);
+        }
+        else {
+
+            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.woman_placeholder));
+
+        }
 
         viewHolder.wife_name.setText(pc.getColumnmaps().get("namalengkap")!=null?pc.getColumnmaps().get("namalengkap"):"");
         viewHolder.husband_name.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");
@@ -212,6 +225,7 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
         TextView risk_IMS;
         TextView follow_up_due;
         TextView kb_mulai;
+        public ImageView hr_badge;
     }
 
 

@@ -1,5 +1,6 @@
 package org.ei.opensrp.indonesia.anc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.indonesia.R;
+import org.ei.opensrp.indonesia.kartu_ibu.KIDetailActivity;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
@@ -77,7 +79,7 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
             viewHolder.no_ibu = (TextView)convertView.findViewById(R.id.no_ibu);
             viewHolder.unique_id = (TextView)convertView.findViewById(R.id.unique_id);
 
-        viewHolder.hp_badge =(ImageView)convertView.findViewById(R.id.img_hp_badge);
+        viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
         viewHolder.img_hrl_badge =(ImageView)convertView.findViewById(R.id.img_hrl_badge);
         viewHolder.bpl_badge =(ImageView)convertView.findViewById(R.id.img_bpl_badge);
         viewHolder.hrp_badge =(ImageView)convertView.findViewById(R.id.img_hrp_badge);
@@ -103,7 +105,7 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
             convertView.setTag(viewHolder);
 
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
+          //  viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
 
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
@@ -117,6 +119,8 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.follow_up.setOnClickListener(onClickListener);
         //set image
 
+
+
         String KunjunganKe = pc.getDetails().get("kunjunganKe")!=null?pc.getDetails().get("kunjunganKe"):"-";
 
         AllCommonsRepository kiRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
@@ -125,6 +129,28 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(kiobject.getColumnmaps().get("kartuIbuId"));
+
+        if(ibuparent.getDetails().get("highRiskSTIBBVs")!=null || ibuparent.getDetails().get("highRiskEctopicPregnancy")!=null || ibuparent.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null || ibuparent.getDetails().get("highRiskDidneyDisorder")!=null || ibuparent.getDetails().get("highRiskHeartDisorder")!=null || ibuparent.getDetails().get("highRiskAsthma")!=null || ibuparent.getDetails().get("highRiskTuberculosis")!=null || ibuparent.getDetails().get("highRiskMalaria")!=null){
+            viewHolder.hr_badge.setVisibility(View.VISIBLE);
+        }
+
+        if(pc.getDetails().get("highRiskPregnancyPIH")!=null || pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")!=null || pc.getDetails().get("highRiskPregnancyPIH")!=null || pc.getDetails().get("highRiskPregnancyDiabetes")!=null || pc.getDetails().get("highRiskPregnancyAnemia")!=null){
+            viewHolder.hrp_badge.setVisibility(View.VISIBLE);
+        }
+        if(pc.getDetails().get("highRiskLabourFetusMalpresentation")!=null || pc.getDetails().get("highRiskLabourFetusSize")!=null || ibuparent.getDetails().get("highRisklabourFetusNumber")!=null || ibuparent.getDetails().get("HighRiskLabourSectionCesareaRecord")!=null || ibuparent.getDetails().get("highRiskLabourTBRisk")!=null){
+            viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
+        }
+
+        final ImageView kiview = (ImageView)convertView.findViewById(R.id.img_profile);
+        if (ibuparent.getDetails().get("profilepic") != null) {
+            ANCDetailActivity.setImagetoHolderFromUri((Activity) context, ibuparent.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
+            kiview.setTag(smartRegisterClient);
+        }
+        else {
+
+            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.woman_placeholder));
+
+        }
 
         viewHolder.wife_name.setText(ibuparent.getColumnmaps().get("namalengkap")!=null?ibuparent.getColumnmaps().get("namalengkap"):"");
         viewHolder.husband_name.setText(ibuparent.getColumnmaps().get("namaSuami")!=null?ibuparent.getColumnmaps().get("namaSuami"):"");

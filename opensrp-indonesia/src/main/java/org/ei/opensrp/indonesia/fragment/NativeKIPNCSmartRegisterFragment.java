@@ -2,12 +2,14 @@ package org.ei.opensrp.indonesia.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
@@ -24,6 +26,7 @@ import org.ei.opensrp.indonesia.kartu_ibu.KICommonObjectFilterOption;
 import org.ei.opensrp.indonesia.pnc.KIPNCClientsProvider;
 import org.ei.opensrp.indonesia.pnc.KIPNCOverviewServiceMode;
 import org.ei.opensrp.indonesia.pnc.NativeKIPNCSmartRegisterActivity;
+import org.ei.opensrp.indonesia.pnc.PNCDetailActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -239,10 +242,10 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    //    HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
-                    //   Intent intent = new Intent(getActivity(),HouseHoldDetailActivity.class);
-                    //    startActivity(intent);
-                    //    getActivity().finish();
+                    PNCDetailActivity.pncclient = (CommonPersonObjectClient)view.getTag();
+                    Intent intent = new Intent(getActivity(),PNCDetailActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                     break;
                 //    case R.id.hh_due_date:
                 //        HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();

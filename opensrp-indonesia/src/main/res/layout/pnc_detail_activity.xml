@@ -97,6 +97,6 @@
             android:layout_height="@dimen/smart_register_client_divider_height"
             android:src="@color/smart_register_client_divider_color"/>
 
-<include layout="@layout/kb_detail_data_layout"
+<include layout="@layout/pnc_detail_data_layout"
     />
 </LinearLayout>

@@ -101,7 +101,7 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                viewHolder.parity = (TextView)convertView.findViewById(R.id.txt_parity);
                viewHolder.number_of_abortus = (TextView)convertView.findViewById(R.id.txt_number_of_abortus);
                viewHolder.number_of_alive = (TextView)convertView.findViewById(R.id.txt_number_of_alive);
-
+        viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
                viewHolder.edd = (TextView)convertView.findViewById(R.id.txt_edd);
                viewHolder.edd_due = (TextView)convertView.findViewById(R.id.txt_edd_due);
                viewHolder.children_age_left = (TextView)convertView.findViewById(R.id.txt_children_age_left);
@@ -112,7 +112,8 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.visit_status = (TextView)convertView.findViewById(R.id.visit_status);
         viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
         viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
-               viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
+
+              // viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
         convertView.setTag(viewHolder);
      //      }else{
     //           viewHolder = (ViewHolder) convertView.getTag();
@@ -128,9 +129,22 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         }
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
+        if(pc.getDetails().get("highRiskSTIBBVs")!=null || pc.getDetails().get("highRiskEctopicPregnancy")!=null || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null || pc.getDetails().get("highRiskDidneyDisorder")!=null || pc.getDetails().get("highRiskHeartDisorder")!=null || pc.getDetails().get("highRiskAsthma")!=null || pc.getDetails().get("highRiskTuberculosis")!=null || pc.getDetails().get("highRiskMalaria")!=null){
+            viewHolder.hr_badge.setVisibility(View.VISIBLE);
+        }
+        
+        
         //set image
-        //  final ImageView childview = (ImageView)convertView.findViewById(R.id.profilepic);
+        final ImageView kiview = (ImageView)convertView.findViewById(R.id.img_profile);
+        if (pc.getDetails().get("profilepic") != null) {
+            KIDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
+            kiview.setTag(smartRegisterClient);
+        }
+        else {
 
+                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.woman_placeholder));
+
+        }
         viewHolder.wife_name.setText(pc.getColumnmaps().get("namalengkap")!=null?pc.getColumnmaps().get("namalengkap"):"");
         viewHolder.husband_name.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");
         viewHolder.village_name.setText(pc.getDetails().get("desa")!=null?pc.getDetails().get("desa"):"");
@@ -254,6 +268,7 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         public TextView visit_status;
         public TextView date_status;
         public TextView children_age_right;
+        public ImageView hr_badge;
     }
 
 

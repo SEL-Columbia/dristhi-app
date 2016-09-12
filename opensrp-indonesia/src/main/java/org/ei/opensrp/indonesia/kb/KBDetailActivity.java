@@ -1,4 +1,4 @@
-package org.ei.opensrp.indonesia.kartu_ibu;
+package org.ei.opensrp.indonesia.kb;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.indonesia.R;
+import org.ei.opensrp.indonesia.kartu_ibu.NativeKISmartRegisterActivity;
 import org.ei.opensrp.repository.ImageRepository;
 
 import java.io.File;
@@ -33,7 +34,7 @@ import util.ImageFetcher;
 /**
  * Created by Iq on 07/09/16.
  */
-public class KIDetailActivity extends Activity {
+public class KBDetailActivity extends Activity {
 
     //image retrieving
     private static final String TAG = "ImageGridFragment";
@@ -51,7 +52,7 @@ public class KIDetailActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Context context = Context.getInstance();
-        setContentView(R.layout.ki_detail_activity);
+        setContentView(R.layout.kb_detail_activity);
 
         final ImageView kiview = (ImageView)findViewById(R.id.motherdetailprofileview);
         //header
@@ -81,24 +82,29 @@ public class KIDetailActivity extends Activity {
         TextView blood_type = (TextView) findViewById(R.id.txt_blood);
         TextView asuransi = (TextView) findViewById(R.id.txt_asuransi);
 
-
-
+        TextView jenisKontrasepsi = (TextView) findViewById(R.id.txt_jenisKontrasepsi);
+        TextView td_diastolik = (TextView) findViewById(R.id.txt_td_diastolik);
+        TextView tdSistolik = (TextView) findViewById(R.id.txt_tdSistolik);
+        TextView alkilila  = (TextView) findViewById(R.id.txt_alkilila);
+        TextView alkiPenyakitIms = (TextView) findViewById(R.id.txt_alkiPenyakitIms);
+        TextView keteranganTentangPesertaKB   = (TextView) findViewById(R.id.txt_keteranganTentangPesertaKB);
+        TextView keteranganTentangPesertaKB2 = (TextView) findViewById(R.id.txt_keteranganTentangPesertaKB2);
+        TextView alkiPenyakitKronis = (TextView) findViewById(R.id.txt_alkiPenyakitKronis);
+        TextView alkihb = (TextView) findViewById(R.id.txt_alkihb);
+        TextView keteranganGantiCara = (TextView) findViewById(R.id.txt_keteranganGantiCara);
         ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(KIDetailActivity.this, NativeKISmartRegisterActivity.class));
+                startActivity(new Intent(KBDetailActivity.this, NativeKBSmartRegisterActivity.class));
                 overridePendingTransition(0, 0);
             }
         });
 
 
         if(kiclient.getDetails().get("profilepic")!= null){
-                setImagetoHolderFromUri(KIDetailActivity.this, kiclient.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
-        }
-        else {
-                kiview.setImageDrawable(getResources().getDrawable(R.mipmap.woman_placeholder));
+            setImagetoHolderFromUri(KBDetailActivity.this, kiclient.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
         }
 
 
@@ -146,6 +152,19 @@ public class KIDetailActivity extends Activity {
 
 
 
+
+        jenisKontrasepsi.setText( (kiclient.getDetails().get("jenisKontrasepsi") != null ? kiclient.getDetails().get("jenisKontrasepsi") : "-"));
+        alkihb.setText( (kiclient.getDetails().get("alkihb") != null ? kiclient.getDetails().get("alkihb") : "-"));
+        tdSistolik.setText( (kiclient.getDetails().get("tdDiastolik") != null ? kiclient.getDetails().get("tdDiastolik") : "-"));
+        td_diastolik.setText( (kiclient.getDetails().get("tdDiastolik") != null ? kiclient.getDetails().get("tdDiastolik") : "-"));
+        alkilila.setText((kiclient.getDetails().get("alkilila") != null ? kiclient.getDetails().get("alkilila") : "-"));
+        alkiPenyakitIms.setText((kiclient.getDetails().get("alkiPenyakitIms") != null ? kiclient.getDetails().get("alkiPenyakitIms") : "-"));
+        keteranganTentangPesertaKB.setText((kiclient.getDetails().get("keteranganTentangPesertaKB") != null ? kiclient.getDetails().get("keteranganTentangPesertaKB") : "-"));
+        keteranganTentangPesertaKB2.setText((kiclient.getDetails().get("keterangantentangPesertaKB2") != null ? kiclient.getDetails().get("keterangantentangPesertaKB2") : "-"));
+        alkiPenyakitKronis.setText((kiclient.getDetails().get("alkiPenyakitKronis") != null ? kiclient.getDetails().get("alkiPenyakitKronis") : "-"));
+        keteranganGantiCara.setText((kiclient.getDetails().get("keteranganGantiCara") != null ? kiclient.getDetails().get("keteranganGantiCara") : "-"));
+
+        /*
         kiview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +174,7 @@ public class KIDetailActivity extends Activity {
                 dispatchTakePictureIntent(kiview);
 
             }
-        });
+        }); */
 
     }
 

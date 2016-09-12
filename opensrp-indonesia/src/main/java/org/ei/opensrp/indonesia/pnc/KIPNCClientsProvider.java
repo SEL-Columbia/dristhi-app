@@ -78,7 +78,7 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
             viewHolder.pnc_id = (TextView)convertView.findViewById(R.id.pnc_id);
            // viewHolder.unique_id = (TextView)convertView.findViewById(R.id.unique_id);
 
-        viewHolder.hp_badge =(ImageView)convertView.findViewById(R.id.img_hp_badge);
+        viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
         viewHolder.img_hrl_badge =(ImageView)convertView.findViewById(R.id.img_hrl_badge);
         viewHolder.bpl_badge =(ImageView)convertView.findViewById(R.id.img_bpl_badge);
         viewHolder.hrp_badge =(ImageView)convertView.findViewById(R.id.img_hrp_badge);
@@ -144,6 +144,18 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(kiobject.getColumnmaps().get("kartuIbuId"));
+
+        if(ibuparent.getDetails().get("highRiskSTIBBVs")!=null || ibuparent.getDetails().get("highRiskEctopicPregnancy")!=null || ibuparent.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null || ibuparent.getDetails().get("highRiskDidneyDisorder")!=null || ibuparent.getDetails().get("highRiskHeartDisorder")!=null || ibuparent.getDetails().get("highRiskAsthma")!=null || ibuparent.getDetails().get("highRiskTuberculosis")!=null || ibuparent.getDetails().get("highRiskMalaria")!=null){
+            viewHolder.hr_badge.setVisibility(View.VISIBLE);
+        }
+
+        if(pc.getDetails().get("highRiskPregnancyPIH")!=null || pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")!=null || pc.getDetails().get("highRiskPregnancyPIH")!=null || pc.getDetails().get("highRiskPregnancyDiabetes")!=null || pc.getDetails().get("highRiskPregnancyAnemia")!=null){
+            viewHolder.hrp_badge.setVisibility(View.VISIBLE);
+        }
+        if(pc.getDetails().get("highRiskLabourFetusMalpresentation")!=null || pc.getDetails().get("highRiskLabourFetusSize")!=null || ibuparent.getDetails().get("highRisklabourFetusNumber")!=null || ibuparent.getDetails().get("HighRiskLabourSectionCesareaRecord")!=null || ibuparent.getDetails().get("highRiskLabourTBRisk")!=null){
+            viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
+        }
+
         String kf_ke = kiobject.getColumnmaps().get("hariKeKF")!=null?kiobject.getColumnmaps().get("hariKeKF"):"";
         viewHolder.KF.setText("Hari Ke /KF : " + kf_ke);
         viewHolder.wife_name.setText(ibuparent.getColumnmaps().get("namalengkap")!=null?ibuparent.getColumnmaps().get("namalengkap"):"");
