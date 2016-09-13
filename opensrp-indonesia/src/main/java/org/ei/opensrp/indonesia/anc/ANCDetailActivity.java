@@ -187,8 +187,8 @@ public class ANCDetailActivity extends Activity {
         }
 
 
-        Date currentDateandTime = new Date();
-        today.setText(" "+currentDateandTime);
+       // Date currentDateandTime = new Date();
+       // today.setText(" "+currentDateandTime);
        
         nama.setText("Nama : "+ (ibuparent.getColumnmaps().get("namalengkap") != null ? ibuparent.getColumnmaps().get("namalengkap") : "-"));
         nik.setText("NIK : "+ (ibuparent.getDetails().get("nik") != null ? ibuparent.getDetails().get("nik") : "-"));
@@ -197,23 +197,23 @@ public class ANCDetailActivity extends Activity {
         phone.setText("No HP : "+ (ibuparent.getDetails().get("NomorTelponHp") != null ? ibuparent.getDetails().get("NomorTelponHp") : "-"));
 
         //risk
-        if(ibuparent.getDetails().get("highRiskPregnancyYoungMaternalAge") != null){
+        if(ibuparent.getDetails().get("highRiskPregnancyYoungMaternalAge") != null && ibuparent.getDetails().get("highRiskPregnancyYoungMaternalAge").equals("yes")){
             risk1.setText("Ibu Terlalu Muda ");
         }
-        if(ibuparent.getDetails().get("highRiskPregnancyOldMaternalAge") != null){
+        if(ibuparent.getDetails().get("highRiskPregnancyOldMaternalAge") != null && ibuparent.getDetails().get("highRiskPregnancyYoungMaternalAge").equals("yes")){
             risk1.setText("Ibu terlalu tua ");
         }
-        if(ibuparent.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null){
+        if(ibuparent.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null && ibuparent.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")){
             risk2.setText("Kekurangan Energi Kronis ");
         }
-        if(ibuparent.getDetails().get("HighRiskPregnancyAbortus") != null){
+        if(ibuparent.getDetails().get("HighRiskPregnancyAbortus") != null && ibuparent.getDetails().get("HighRiskPregnancyAbortus").equals("yes")){
             risk3.setText("Riwayat Abortus ");
-            if(ibuparent.getDetails().get("HighRiskLabourSectionCesareaRecord") != null){
+            if(ibuparent.getDetails().get("HighRiskLabourSectionCesareaRecord" ) != null && ibuparent.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")){
                 risk3.setText("Riwayat Abortus, Riwayat Cesar ");
             }
         }
-        if(ibuparent.getDetails().get("HighRiskPregnancyAbortus") != null){
-            risk4.setText("Riwayat Abortus ");
+        if(kiobject.getDetails().get("highRiskPregnancyDiabetes") != null && kiobject.getDetails().get("highRiskPregnancyDiabetes").equals("yes")){
+            risk4.setText("Riwayat Diabetes ");
         }
 
 /*

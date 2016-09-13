@@ -129,7 +129,15 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         }
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
-        if(pc.getDetails().get("highRiskSTIBBVs")!=null || pc.getDetails().get("highRiskEctopicPregnancy")!=null || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null || pc.getDetails().get("highRiskDidneyDisorder")!=null || pc.getDetails().get("highRiskHeartDisorder")!=null || pc.getDetails().get("highRiskAsthma")!=null || pc.getDetails().get("highRiskTuberculosis")!=null || pc.getDetails().get("highRiskMalaria")!=null){
+        if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
+                || pc.getDetails().get("highRiskEctopicPregnancy")!=null && pc.getDetails().get("highRiskEctopicPregnancy").equals("yes")
+                || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && pc.getDetails().get("highRiskDidneyDisorder").equals("yes")
+                || pc.getDetails().get("highRiskDidneyDisorder")!=null && pc.getDetails().get("highRiskHeartDisorder").equals("yes")
+                || pc.getDetails().get("highRiskHeartDisorder")!=null && pc.getDetails().get("highRiskAsthma").equals("yes")
+                || pc.getDetails().get("highRiskAsthma")!=null && pc.getDetails().get("highRiskTuberculosis").equals("yes")
+                || pc.getDetails().get("highRiskTuberculosis")!=null && pc.getDetails().get("highRiskMalaria").equals("yes")
+                || pc.getDetails().get("highRiskMalaria")!=null && pc.getDetails().get("highRiskMalaria").equals("yes") )
+        {
             viewHolder.hr_badge.setVisibility(View.VISIBLE);
         }
         

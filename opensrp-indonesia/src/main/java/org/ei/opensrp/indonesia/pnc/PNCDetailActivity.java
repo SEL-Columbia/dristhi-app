@@ -71,6 +71,10 @@ public class PNCDetailActivity extends Activity {
         TextView risk2 = (TextView) findViewById(R.id.txt_risk2);
         TextView risk3 = (TextView) findViewById(R.id.txt_risk3);
         TextView risk4 = (TextView) findViewById(R.id.txt_risk4);
+        TextView risk5 = (TextView) findViewById(R.id.txt_risk5);
+        TextView risk6 = (TextView) findViewById(R.id.txt_risk6);
+        TextView risk7 = (TextView) findViewById(R.id.txt_risk7);
+        TextView risk8 = (TextView) findViewById(R.id.txt_risk8);
 
 
         //detail data
@@ -169,8 +173,8 @@ public class PNCDetailActivity extends Activity {
         }
 
 
-        Date currentDateandTime = new Date();
-        today.setText(" "+currentDateandTime);
+      //  Date currentDateandTime = new Date();
+      //  today.setText(" "+currentDateandTime);
 
         nama.setText("Nama : "+ (ibuparent.getColumnmaps().get("namalengkap") != null ? ibuparent.getColumnmaps().get("namalengkap") : "-"));
         nik.setText("NIK : "+ (ibuparent.getDetails().get("nik") != null ? ibuparent.getDetails().get("nik") : "-"));
@@ -179,24 +183,26 @@ public class PNCDetailActivity extends Activity {
         phone.setText("No HP : "+ (ibuparent.getDetails().get("NomorTelponHp") != null ? ibuparent.getDetails().get("NomorTelponHp") : "-"));
 
         //risk
-        if(ibuparent.getDetails().get("highRiskPregnancyYoungMaternalAge") != null){
-            risk1.setText("Ibu Terlalu Muda ");
+        if(ibuparent.getDetails().get("highRiskLabourFetusMalpresentation") != null && ibuparent.getDetails().get("highRiskLabourFetusMalpresentation").equals("yes")){
+            risk1.setText("Malpresentasi Janin ");
         }
-        if(ibuparent.getDetails().get("highRiskPregnancyOldMaternalAge") != null){
-            risk1.setText("Ibu terlalu tua ");
+        if(ibuparent.getDetails().get("HighRiskLabourSectionCesareaRecord") != null && ibuparent.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")){
+            risk1.setText("- Riwayat Cesar ");
         }
-        if(ibuparent.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null){
-            risk2.setText("Kekurangan Energi Kronis ");
+        if(ibuparent.getDetails().get("highRiskLabourTBRisk") != null && ibuparent.getDetails().get("highRiskLabourTBRisk").equals("yes")){
+            risk2.setText("- TB ");
         }
-        if(ibuparent.getDetails().get("HighRiskPregnancyAbortus") != null){
-            risk3.setText("Riwayat Abortus ");
-            if(ibuparent.getDetails().get("HighRiskLabourSectionCesareaRecord") != null){
-                risk3.setText("Riwayat Abortus, Riwayat Cesar ");
-            }
+        if(ibuparent.getDetails().get("highRiskPregnancyDiabetes") != null && ibuparent.getDetails().get("highRiskPregnancyDiabetes").equals("yes")){
+            risk3.setText("- Diabetes ");
         }
-        if(ibuparent.getDetails().get("HighRiskPregnancyAbortus") != null){
-            risk4.setText("Riwayat Abortus ");
+        if(kiobject.getDetails().get("highRisklabourFetusNumber") != null && kiobject.getDetails().get("highRisklabourFetusNumber").equals("yes")){
+            risk4.setText("- Resiko Jumlah Janin lebih dari 1 ");
         }
+        if(kiobject.getDetails().get("highRiskLabourFetusSize") != null && kiobject.getDetails().get("highRiskLabourFetusSize").equals("yes")){
+            risk5.setText(" - Resiko Besar Janin ");
+        }
+
+
 
 /*
 

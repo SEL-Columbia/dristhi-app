@@ -1,5 +1,6 @@
 package org.ei.opensrp.indonesia.child;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.indonesia.R;
+import org.ei.opensrp.indonesia.kartu_ibu.KIDetailActivity;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
@@ -117,7 +119,20 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
         //set image
-
+        //set image
+        final ImageView childview = (ImageView)convertView.findViewById(R.id.img_profile);
+        if (pc.getDetails().get("profilepic") != null) {
+            AnakDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), childview, R.mipmap.child_boy);
+            childview.setTag(smartRegisterClient);
+        }
+        else {
+            if(pc.getDetails().get("jenisKelamin").equals("laki")) {
+                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
+            }
+            else
+                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_girl_infant));
+        }
+        
         viewHolder.childs_name.setText(pc.getColumnmaps().get("namaBayi")!=null?pc.getColumnmaps().get("namaBayi"):"Bayi");
 
 
@@ -157,7 +172,6 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("anak");
 
         CommonPersonObject childobject = childRepository.findByCaseID(pc.entityId());
-    //    String id = childobject.getColumnmaps().get("ibuCaseId");
 
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(childobject.getColumnmaps().get("ibuCaseId"));

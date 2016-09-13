@@ -130,17 +130,34 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(kiobject.getColumnmaps().get("kartuIbuId"));
 
-        if(ibuparent.getDetails().get("highRiskSTIBBVs")!=null || ibuparent.getDetails().get("highRiskEctopicPregnancy")!=null || ibuparent.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null || ibuparent.getDetails().get("highRiskDidneyDisorder")!=null || ibuparent.getDetails().get("highRiskHeartDisorder")!=null || ibuparent.getDetails().get("highRiskAsthma")!=null || ibuparent.getDetails().get("highRiskTuberculosis")!=null || ibuparent.getDetails().get("highRiskMalaria")!=null){
-            viewHolder.hr_badge.setVisibility(View.VISIBLE);
-        }
-
-        if(pc.getDetails().get("highRiskPregnancyPIH")!=null || pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")!=null || pc.getDetails().get("highRiskPregnancyPIH")!=null || pc.getDetails().get("highRiskPregnancyDiabetes")!=null || pc.getDetails().get("highRiskPregnancyAnemia")!=null){
-            viewHolder.hrp_badge.setVisibility(View.VISIBLE);
-        }
-        if(pc.getDetails().get("highRiskLabourFetusMalpresentation")!=null || pc.getDetails().get("highRiskLabourFetusSize")!=null || ibuparent.getDetails().get("highRisklabourFetusNumber")!=null || ibuparent.getDetails().get("HighRiskLabourSectionCesareaRecord")!=null || ibuparent.getDetails().get("highRiskLabourTBRisk")!=null){
+        if(ibuparent.getDetails().get("highRiskSTIBBVs")!=null && ibuparent.getDetails().get("highRiskSTIBBVs").equals("yes")
+                || ibuparent.getDetails().get("highRiskEctopicPregnancy")!=null && ibuparent.getDetails().get("highRiskEctopicPregnancy").equals("yes")
+                || ibuparent.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && ibuparent.getDetails().get("highRiskDidneyDisorder").equals("yes")
+                || ibuparent.getDetails().get("highRiskDidneyDisorder")!=null && ibuparent.getDetails().get("highRiskHeartDisorder").equals("yes")
+                || ibuparent.getDetails().get("highRiskHeartDisorder")!=null && ibuparent.getDetails().get("highRiskAsthma").equals("yes")
+                || ibuparent.getDetails().get("highRiskAsthma")!=null && ibuparent.getDetails().get("highRiskTuberculosis").equals("yes")
+                || ibuparent.getDetails().get("highRiskTuberculosis")!=null && ibuparent.getDetails().get("highRiskMalaria").equals("yes")
+                || ibuparent.getDetails().get("highRiskMalaria")!=null && ibuparent.getDetails().get("highRiskMalaria").equals("yes") )
+                    {
+                                viewHolder.hr_badge.setVisibility(View.VISIBLE);
+                    }
+        if(pc.getDetails().get("highRiskPregnancyPIH")!=null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")!=null && pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyPIH")!=null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyDiabetes")!=null && pc.getDetails().get("highRiskPregnancyDiabetes").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyAnemia")!=null && pc.getDetails().get("highRiskPregnancyAnemia").equals("yes") )
+                    {
+                        viewHolder.hrp_badge.setVisibility(View.VISIBLE);
+                    }
+        if(pc.getDetails().get("highRiskLabourFetusMalpresentation")!=null && pc.getDetails().get("highRiskLabourFetusMalpresentation").equals("yes")
+                || pc.getDetails().get("highRiskLabourFetusSize")!=null && pc.getDetails().get("highRiskLabourFetusSize").equals("yes")
+                || pc.getDetails().get("highRisklabourFetusNumber")!=null && pc.getDetails().get("highRisklabourFetusNumber").equals("yes")
+                || pc.getDetails().get("HighRiskLabourSectionCesareaRecord")!=null && pc.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")
+                || pc.getDetails().get("highRiskLabourTBRisk")!=null && pc.getDetails().get("highRiskLabourTBRisk").equals("yes") )
+        {
             viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
         }
-
+        
         final ImageView kiview = (ImageView)convertView.findViewById(R.id.img_profile);
         if (ibuparent.getDetails().get("profilepic") != null) {
             ANCDetailActivity.setImagetoHolderFromUri((Activity) context, ibuparent.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);

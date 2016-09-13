@@ -2,6 +2,7 @@ package org.ei.opensrp.indonesia.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -12,6 +13,7 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonObjectFilterOption;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
+import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
@@ -22,9 +24,11 @@ import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.indonesia.AllConstantsINA;
 import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
+import org.ei.opensrp.indonesia.anc.ANCDetailActivity;
 import org.ei.opensrp.indonesia.anc.KIANCClientsProvider;
 import org.ei.opensrp.indonesia.anc.KIANCOverviewServiceMode;
 import org.ei.opensrp.indonesia.anc.NativeKIANCSmartRegisterActivity;
+import org.ei.opensrp.indonesia.child.AnakDetailActivity;
 import org.ei.opensrp.indonesia.child.AnakOverviewServiceMode;
 import org.ei.opensrp.indonesia.child.AnakRegisterClientsProvider;
 import org.ei.opensrp.indonesia.child.NativeKIAnakSmartRegisterActivity;
@@ -259,10 +263,10 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    //    HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
-                    //   Intent intent = new Intent(getActivity(),HouseHoldDetailActivity.class);
-                    //    startActivity(intent);
-                    //    getActivity().finish();
+                    AnakDetailActivity.childclient = (CommonPersonObjectClient)view.getTag();
+                    Intent intent = new Intent(getActivity(),AnakDetailActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                     break;
                 //    case R.id.hh_due_date:
                 //        HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();

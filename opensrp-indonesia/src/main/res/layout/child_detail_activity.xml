@@ -6,7 +6,7 @@
               android:orientation="vertical"
               android:background="@color/client_list_header_dark_grey">
 
-    <include layout="@layout/motherdetail_nav_bar"/>
+    <include layout="@layout/childdetail_nav_bar"/>
 
     <ImageView
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Risk:"
+            android:text="Today's Date:"
             android:id="@+id/detail_today"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:layout_gravity="left"
@@ -61,7 +61,7 @@
         android:id="@+id/imageView4" />
 
     <include
-        layout="@layout/ki_detail_profile"
+        layout="@layout/child_detail_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -97,6 +97,6 @@
             android:layout_height="@dimen/smart_register_client_divider_height"
             android:src="@color/smart_register_client_divider_color"/>
 
-<include layout="@layout/anc_detail_data_layout"
+<include layout="@layout/child_detail_data_layout"
     />
 </LinearLayout>

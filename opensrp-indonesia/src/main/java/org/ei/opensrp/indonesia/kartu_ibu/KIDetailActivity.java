@@ -112,22 +112,22 @@ public class KIDetailActivity extends Activity {
         phone.setText("No HP : "+ (kiclient.getDetails().get("NomorTelponHp") != null ? kiclient.getDetails().get("NomorTelponHp") : "-"));
 
         //risk
-        if(kiclient.getDetails().get("highRiskPregnancyYoungMaternalAge") != null){
+        if(kiclient.getDetails().get("highRiskPregnancyYoungMaternalAge") != null && kiclient.getDetails().get("highRiskPregnancyYoungMaternalAge").equals("yes")){
             risk1.setText("Ibu Terlalu Muda ");
         }
-        if(kiclient.getDetails().get("highRiskPregnancyOldMaternalAge") != null){
+        if(kiclient.getDetails().get("highRiskPregnancyOldMaternalAge") != null && kiclient.getDetails().get("highRiskPregnancyYoungMaternalAge").equals("yes")){
             risk1.setText("Ibu terlalu tua ");
         }
-        if(kiclient.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null){
+        if(kiclient.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null && kiclient.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")){
             risk2.setText("Kekurangan Energi Kronis ");
         }
-        if(kiclient.getDetails().get("HighRiskPregnancyAbortus") != null){
+        if(kiclient.getDetails().get("HighRiskPregnancyAbortus") != null && kiclient.getDetails().get("HighRiskPregnancyAbortus").equals("yes")){
             risk3.setText("Riwayat Abortus ");
-            if(kiclient.getDetails().get("HighRiskLabourSectionCesareaRecord") != null){
+            if(kiclient.getDetails().get("HighRiskLabourSectionCesareaRecord" ) != null && kiclient.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")){
                 risk3.setText("Riwayat Abortus, Riwayat Cesar ");
             }
         }
-        if(kiclient.getDetails().get("HighRiskPregnancyAbortus") != null){
+        if(kiclient.getDetails().get("HighRiskPregnancyAbortus") != null && kiclient.getDetails().get("HighRiskPregnancyAbortus").equals("yes")){
             risk4.setText("Riwayat Abortus ");
         }
 

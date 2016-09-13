@@ -1,4 +1,4 @@
-package org.ei.opensrp.indonesia.kb;
+package org.ei.opensrp.indonesia.child;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.indonesia.R;
@@ -34,7 +36,7 @@ import util.ImageFetcher;
 /**
  * Created by Iq on 07/09/16.
  */
-public class KBDetailActivity extends Activity {
+public class AnakDetailActivity extends Activity {
 
     //image retrieving
     private static final String TAG = "ImageGridFragment";
@@ -47,23 +49,24 @@ public class KBDetailActivity extends Activity {
 
     //image retrieving
 
-    public static CommonPersonObjectClient kiclient;
+    public static CommonPersonObjectClient childclient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Context context = Context.getInstance();
-        setContentView(R.layout.kb_detail_activity);
+        setContentView(R.layout.child_detail_activity);
 
-        final ImageView kiview = (ImageView)findViewById(R.id.motherdetailprofileview);
+        final ImageView childview = (ImageView)findViewById(R.id.childdetailprofileview);
         //header
         TextView today = (TextView) findViewById(R.id.detail_today);
         
         //profile
-        TextView nama = (TextView) findViewById(R.id.txt_wife_name);
-        TextView nik = (TextView) findViewById(R.id.txt_nik);
-        TextView husband_name = (TextView) findViewById(R.id.txt_husband_name);
+        TextView nama = (TextView) findViewById(R.id.txt_child_name);
+        TextView mother = (TextView) findViewById(R.id.txt_mother_name);
+        TextView father = (TextView) findViewById(R.id.txt_father_number);
         TextView dob = (TextView) findViewById(R.id.txt_dob);
-        TextView phone = (TextView) findViewById(R.id.txt_contact_phone_number);
+        
+      //  TextView phone = (TextView) findViewById(R.id.txt_contact_phone_number);
         TextView risk1 = (TextView) findViewById(R.id.txt_risk1);
         TextView risk2 = (TextView) findViewById(R.id.txt_risk2);
         TextView risk3 = (TextView) findViewById(R.id.txt_risk3);
@@ -71,110 +74,96 @@ public class KBDetailActivity extends Activity {
         
         
         //detail data
-        TextView village = (TextView) findViewById(R.id.txt_village_name);
-        TextView subvillage = (TextView) findViewById(R.id.txt_subvillage);
-        TextView age = (TextView) findViewById(R.id.txt_age);
-        TextView alamat = (TextView) findViewById(R.id.txt_alamat);
-        TextView education = (TextView) findViewById(R.id.txt_edu);
-        TextView religion = (TextView) findViewById(R.id.txt_agama);
-        TextView job = (TextView) findViewById(R.id.txt_job);
-        TextView gakin = (TextView) findViewById(R.id.txt_gakin);
-        TextView blood_type = (TextView) findViewById(R.id.txt_blood);
-        TextView asuransi = (TextView) findViewById(R.id.txt_asuransi);
+        TextView txt_noBayi = (TextView) findViewById(R.id.txt_noBayi);
+        TextView txt_jenisKelamin = (TextView) findViewById(R.id.txt_jenisKelamin);
+        TextView txt_beratLahir = (TextView) findViewById(R.id.txt_beratLahir);
+        TextView tinggi = (TextView) findViewById(R.id.txt_hasilPengukuranTinggiBayihasilPengukuranTinggiBayi);
+        TextView berat = (TextView) findViewById(R.id.txt_indikatorBeratBedanBayi);
+        TextView asi = (TextView) findViewById(R.id.txt_pemberianAsiEksklusif);
+        TextView status_gizi = (TextView) findViewById(R.id.txt_statusGizi);
+        TextView kpsp = (TextView) findViewById(R.id.txt_hasilDilakukannyaKPSP);
+        TextView vita = (TextView) findViewById(R.id.txt_pelayananVita);
+        TextView hb0 = (TextView) findViewById(R.id.txt_tanggalpemberianimunisasiHb07);
+        TextView pol1 = (TextView) findViewById(R.id.txt_tanggalpemberianimunisasiBCGdanPolio1);
+        TextView pol2 = (TextView) findViewById(R.id.txt_tanggalpemberianimunisasiDPTHB1Polio2);
+        TextView pol3 = (TextView) findViewById(R.id.txt_tanggalpemberianimunisasiDPTHB2Polio3);
+        TextView pol4 = (TextView) findViewById(R.id.txt_tanggalpemberianimunisasiDPTHB3Polio4);
+        TextView campak = (TextView) findViewById(R.id.txt_tanggalpemberianimunisasiCampak);
 
-        TextView jenisKontrasepsi = (TextView) findViewById(R.id.txt_jenisKontrasepsi);
-        TextView td_diastolik = (TextView) findViewById(R.id.txt_td_diastolik);
-        TextView tdSistolik = (TextView) findViewById(R.id.txt_tdSistolik);
-        TextView alkilila  = (TextView) findViewById(R.id.txt_alkilila);
-        TextView alkiPenyakitIms = (TextView) findViewById(R.id.txt_alkiPenyakitIms);
-        TextView keteranganTentangPesertaKB   = (TextView) findViewById(R.id.txt_keteranganTentangPesertaKB);
-        TextView keteranganTentangPesertaKB2 = (TextView) findViewById(R.id.txt_keteranganTentangPesertaKB2);
-        TextView alkiPenyakitKronis = (TextView) findViewById(R.id.txt_alkiPenyakitKronis);
-        TextView alkihb = (TextView) findViewById(R.id.txt_alkihb);
-        TextView keteranganGantiCara = (TextView) findViewById(R.id.txt_keteranganGantiCara);
+
+
         ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(KBDetailActivity.this, NativeKBSmartRegisterActivity.class));
+                startActivity(new Intent(AnakDetailActivity.this, NativeKIAnakSmartRegisterActivity.class));
                 overridePendingTransition(0, 0);
             }
         });
 
 
-        if(kiclient.getDetails().get("profilepic")!= null){
-            setImagetoHolderFromUri(KBDetailActivity.this, kiclient.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
+        if(childclient.getDetails().get("profilepic")!= null){
+                setImagetoHolderFromUri(AnakDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.drawable.child_boy_infant);
+        }
+        else {
+            if(childclient.getDetails().get("jenisKelamin").equals("laki")) {
+                childview.setImageDrawable(getResources().getDrawable(R.drawable.child_boy_infant));
+            }
+            childview.setImageDrawable(getResources().getDrawable(R.drawable.child_girl_infant));
+
         }
 
 
         Date currentDateandTime = new Date();
         today.setText(" "+currentDateandTime);
-       
-        nama.setText("Nama : "+ (kiclient.getColumnmaps().get("namalengkap") != null ? kiclient.getColumnmaps().get("namalengkap") : "-"));
-        nik.setText("NIK : "+ (kiclient.getDetails().get("nik") != null ? kiclient.getDetails().get("nik") : "-"));
-        husband_name.setText("Nama Suami : "+ (kiclient.getDetails().get("namaSuami") != null ? kiclient.getDetails().get("namaSuami") : "-"));
-        dob.setText("Tanggal Lahir : "+ (kiclient.getDetails().get("tanggalLahir") != null ? kiclient.getDetails().get("tanggalLahir") : "-"));
-        phone.setText("No HP : "+ (kiclient.getDetails().get("NomorTelponHp") != null ? kiclient.getDetails().get("NomorTelponHp") : "-"));
-
-        //risk
-        if(kiclient.getDetails().get("highRiskPregnancyYoungMaternalAge") != null && kiclient.getDetails().get("highRiskPregnancyYoungMaternalAge").equals("yes")){
-            risk1.setText("Ibu Terlalu Muda ");
-        }
-        if(kiclient.getDetails().get("highRiskPregnancyOldMaternalAge") != null && kiclient.getDetails().get("highRiskPregnancyYoungMaternalAge").equals("yes")){
-            risk1.setText("Ibu terlalu tua ");
-        }
-        if(kiclient.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null && kiclient.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")){
-            risk2.setText("Kekurangan Energi Kronis ");
-        }
-        if(kiclient.getDetails().get("HighRiskPregnancyAbortus") != null && kiclient.getDetails().get("HighRiskPregnancyAbortus").equals("yes")){
-            risk3.setText("Riwayat Abortus ");
-            if(kiclient.getDetails().get("HighRiskLabourSectionCesareaRecord" ) != null && kiclient.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")){
-                risk3.setText("Riwayat Abortus, Riwayat Cesar ");
-            }
-        }
-        if(kiclient.getDetails().get("HighRiskPregnancyAbortus") != null && kiclient.getDetails().get("HighRiskPregnancyAbortus").equals("yes")){
-            risk4.setText("Riwayat Abortus ");
-        }
 
 
+        AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("anak");
 
-        village.setText( (kiclient.getDetails().get("desa") != null ? kiclient.getDetails().get("desa") : "-"));
-        subvillage.setText( (kiclient.getDetails().get("dusun") != null ? kiclient.getDetails().get("dusun") : "-"));
-        age.setText((kiclient.getDetails().get("umur") != null ? kiclient.getDetails().get("umur") : "-"));
-        alamat.setText((kiclient.getDetails().get("alamatDomisili") != null ? kiclient.getDetails().get("alamatDomisili") : "-"));
-        education.setText((kiclient.getDetails().get("pendidikan") != null ? kiclient.getDetails().get("pendidikan") : "-"));
-        religion.setText((kiclient.getDetails().get("agama") != null ? kiclient.getDetails().get("agama") : "-"));
-        job.setText((kiclient.getDetails().get("pekerjaan") != null ? kiclient.getDetails().get("pekerjaan") : "-"));
-        gakin.setText((kiclient.getDetails().get("gakinTidak") != null ? kiclient.getDetails().get("gakinTidak") : "-"));
-        blood_type.setText((kiclient.getDetails().get("golonganDarah") != null ? kiclient.getDetails().get("golonganDarah") : "-"));
-        asuransi.setText((kiclient.getDetails().get("jamkesmas") != null ? kiclient.getDetails().get("jamkesmas") : "-"));
+        CommonPersonObject childobject = childRepository.findByCaseID(childclient.entityId());
+
+        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
+        final CommonPersonObject ibuparent = iburep.findByCaseID(childobject.getColumnmaps().get("ibuCaseId"));
+        
+        AllCommonsRepository kirep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
+        final CommonPersonObject kiparent = kirep.findByCaseID(ibuparent.getColumnmaps().get("kartuIbuId"));
+
+        
+        nama.setText("Nama : "+ (childclient.getColumnmaps().get("namaBayi") != null ? childclient.getColumnmaps().get("namaBayi") : "-"));
+        mother.setText("Nama ibu : "+ (kiparent.getColumnmaps().get("namalengkap") != null ? kiparent.getColumnmaps().get("namalengkap") : "-"));
+        father.setText("Nama Ayah : "+ (kiparent.getColumnmaps().get("namaSuami") != null ? kiparent.getColumnmaps().get("namaSuami") : "-"));
+        dob.setText("Tanggal Lahir : "+ (childclient.getDetails().get("tanggalLahirAnak") != null ? childclient.getDetails().get("tanggalLahirAnak") : "-"));
+        
 
 
+        txt_noBayi.setText( (childclient.getDetails().get("noBayi") != null ? childclient.getDetails().get("noBayi") : "-"));
+        txt_jenisKelamin.setText( (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
+        txt_beratLahir.setText((childclient.getDetails().get("beratLahir") != null ? childclient.getDetails().get("beratLahir") : "-"));
+        tinggi.setText((childclient.getDetails().get("hasilPengukuranTinggiBayihasilPengukuranTinggiBayi") != null ? childclient.getDetails().get("hasilPengukuranTinggiBayihasilPengukuranTinggiBayi") : "-"));
+        berat.setText((childclient.getDetails().get("indikatorBeratBedanBayi") != null ? childclient.getDetails().get("indikatorBeratBedanBayi") : "-"));
+        asi.setText((childclient.getDetails().get("pemberianAsiEksklusif") != null ? childclient.getDetails().get("pemberianAsiEksklusif") : "-"));
+        status_gizi.setText((childclient.getDetails().get("statusGizi") != null ? childclient.getDetails().get("statusGizi") : "-"));
+        kpsp.setText((childclient.getDetails().get("hasilDilakukannyaKPSP") != null ? childclient.getDetails().get("hasilDilakukannyaKPSP") : "-"));
+        hb0.setText((childclient.getDetails().get("tanggalpemberianimunisasiHb07") != null ? childclient.getDetails().get("tanggalpemberianimunisasiHb07") : "-"));
+        pol1.setText((childclient.getDetails().get("tanggalpemberianimunisasiBCGdanPolio1") != null ? childclient.getDetails().get("tanggalpemberianimunisasiBCGdanPolio1") : "-"));
+        pol2.setText((childclient.getDetails().get("tanggalpemberianimunisasiDPTHB1Polio2") != null ? childclient.getDetails().get("tanggalpemberianimunisasiDPTHB1Polio2") : "-"));
+        pol3.setText((childclient.getDetails().get("tanggalpemberianimunisasiDPTHB2Polio3") != null ? childclient.getDetails().get("tanggalpemberianimunisasiDPTHB2Polio3") : "-"));
+        pol4.setText((childclient.getDetails().get("tanggalpemberianimunisasiDPTHB3Polio4") != null ? childclient.getDetails().get("tanggalpemberianimunisasiDPTHB3Polio4") : "-"));
+        campak.setText((childclient.getDetails().get("tanggalpemberianimunisasiCampak") != null ? childclient.getDetails().get("tanggalpemberianimunisasiCampak") : "-"));
+        vita.setText((childclient.getDetails().get("pelayananVita") != null ? childclient.getDetails().get("pelayananVita") : "-"));
 
 
-        jenisKontrasepsi.setText( (kiclient.getDetails().get("jenisKontrasepsi") != null ? kiclient.getDetails().get("jenisKontrasepsi") : "-"));
-        alkihb.setText( (kiclient.getDetails().get("alkihb") != null ? kiclient.getDetails().get("alkihb") : "-"));
-        tdSistolik.setText( (kiclient.getDetails().get("tdDiastolik") != null ? kiclient.getDetails().get("tdDiastolik") : "-"));
-        td_diastolik.setText( (kiclient.getDetails().get("tdDiastolik") != null ? kiclient.getDetails().get("tdDiastolik") : "-"));
-        alkilila.setText((kiclient.getDetails().get("alkilila") != null ? kiclient.getDetails().get("alkilila") : "-"));
-        alkiPenyakitIms.setText((kiclient.getDetails().get("alkiPenyakitIms") != null ? kiclient.getDetails().get("alkiPenyakitIms") : "-"));
-        keteranganTentangPesertaKB.setText((kiclient.getDetails().get("keteranganTentangPesertaKB") != null ? kiclient.getDetails().get("keteranganTentangPesertaKB") : "-"));
-        keteranganTentangPesertaKB2.setText((kiclient.getDetails().get("keterangantentangPesertaKB2") != null ? kiclient.getDetails().get("keterangantentangPesertaKB2") : "-"));
-        alkiPenyakitKronis.setText((kiclient.getDetails().get("alkiPenyakitKronis") != null ? kiclient.getDetails().get("alkiPenyakitKronis") : "-"));
-        keteranganGantiCara.setText((kiclient.getDetails().get("keteranganGantiCara") != null ? kiclient.getDetails().get("keteranganGantiCara") : "-"));
-
-        /*
-        kiview.setOnClickListener(new View.OnClickListener() {
+        childview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                bindobject = "kartu_ibu";
-                entityid = kiclient.entityId();
-                dispatchTakePictureIntent(kiview);
+                bindobject = "anak";
+                entityid = childclient.entityId();
+                dispatchTakePictureIntent(childview);
 
             }
-        }); */
+        });
 
     }
 
@@ -246,7 +235,7 @@ public class KBDetailActivity extends Activity {
         String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
         ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("profilepic"), ImageRepository.TYPE_Unsynced,"dp");
         ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
-//                kiclient.entityId();
+//                childclient.entityId();
 //        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
     }
     public static void setImagetoHolder(Activity activity, String file, ImageView view, int placeholder){
