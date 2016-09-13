@@ -344,7 +344,7 @@
           "column_name": "FWBNFDTOO",
           "type": "Client",
           "json_mapping": {
-            "field": "birthDate"
+            "field": "birthdate"
           }
         },
         {

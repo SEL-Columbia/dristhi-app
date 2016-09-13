@@ -69,13 +69,13 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client {
     public static final String adresses_key = "adresses";
     public static final String attributes_key = "attributes";
     public static final String base_entity_id_key = "baseEntityId";
-    public static final String birth_date_key = "birthDate";
-    public static final String birth_date_approx_key = "birthDateApprox";
+    public static final String birth_date_key = "birthdate";
+    public static final String birth_date_approx_key = "birthdateApprox";
     public static final String creator_key = "creator";
     public static final String date_created_key = "dateCreated";
     public static final String date_voided_key = "dateVoided";
     public static final String date_edited_key = "dateEdited";
-    public static final String death_date_key = "deathDate";
+    public static final String death_date_key = "deathdate";
     public static final String firstname_key = "firstName";
     public static final String identifiers_key = "identifiers";
     public static final String gender_key = "gender";
@@ -84,7 +84,7 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client {
     public static final String voider_key = "voider";
     public static final String void_reason_key = "voidReason";
     public static final String editor_key = "editor";
-    public static final String death_date_approx_key = "deathDateApprox";
+    public static final String death_date_approx_key = "deathdateApprox";
     public static final String voided_key = "voided";
     public static final String relationships_key = "relationships";
 
