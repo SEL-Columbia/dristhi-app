@@ -1,8 +1,15 @@
 package org.ei.opensrp.repository;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static org.ei.opensrp.AllConstants.*;
+import static org.ei.opensrp.util.Log.logError;
+import static org.ei.opensrp.util.Log.logInfo;
 
 public class AllSharedPreferences {
     public static final String ANM_IDENTIFIER_PREFERENCE_KEY = "anmIdentifier";
@@ -46,8 +53,10 @@ public class AllSharedPreferences {
     }
 
     public String fetchHost(String host){
-
-        return   preferences.getString(HOST,host);
+        if((host == null || host.isEmpty()) && preferences.getString(HOST,host).equals(host)){
+            updateUrl(fetchBaseURL(""));
+        }
+        return  preferences.getString(HOST,host);
     }
 
     public void saveHost(String host){
@@ -69,7 +78,26 @@ public class AllSharedPreferences {
     }
 
     public void savePort(Integer port){
-        preferences.edit().putString(PORT,String.valueOf(port)).commit();
+        preferences.edit().putString(PORT, String.valueOf(port)).commit();
     }
+    public void updateUrl(String baseUrl){
+        try {
+
+            URL url = new URL(baseUrl);
+
+            String base = url.getProtocol() + "://" + url.getHost();
+            int port = url.getPort();
+
+            logInfo("Base URL: " + base);
+            logInfo("Port: " + port);
+
+            saveHost(base);
+            savePort(port);
+
+        }catch (MalformedURLException e){
+            logError("Malformed Url: " + baseUrl);
+        }
+    }
+
 
 }
