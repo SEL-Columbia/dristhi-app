@@ -35,6 +35,7 @@ import org.ei.opensrp.indonesia.kb.KBClientsProvider;
 import org.ei.opensrp.indonesia.kb.KBDetailActivity;
 import org.ei.opensrp.indonesia.kb.KBSearchOption;
 import org.ei.opensrp.indonesia.kb.NativeKBSmartRegisterActivity;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -124,7 +125,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
             @Override
             public DialogOption[] filterOptions() {
-
+                FlurryFacade.logEvent("click_filter_option_on_kohort_kb_dashboard");
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
 
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),filterStringForAll()));
@@ -152,6 +153,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
             @Override
             public DialogOption[] sortingOptions() {
+                FlurryFacade.logEvent("click_sorting_option_on_kohort_kb_dashboard");
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
@@ -242,6 +244,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
     @Override
     public void startRegistration() {
+        FlurryFacade.logEvent("click_start_registration_on_kohort_kb_dashboard");
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
         Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
         if (prev != null) {
@@ -258,6 +261,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
+                    FlurryFacade.logEvent("click_detail_view_on_kohort_kb_dashboard");
                     KBDetailActivity.kiclient = (CommonPersonObjectClient)view.getTag();
                     Intent intent = new Intent(getActivity(),KBDetailActivity.class);
                     startActivity(intent);
@@ -269,6 +273,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                 //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                 //        break;
                 case R.id.btn_edit:
+                    FlurryFacade.logEvent("click_visit_button_on_kohort_kb_dashboard");
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
             }

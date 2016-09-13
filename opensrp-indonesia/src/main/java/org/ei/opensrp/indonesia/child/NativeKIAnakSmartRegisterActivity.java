@@ -11,6 +11,7 @@ import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.fragment.NativeKIAnakSmartRegisterFragment;
 import org.ei.opensrp.indonesia.fragment.NativeKIPNCSmartRegisterFragment;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.ZiggyService;
@@ -64,8 +65,8 @@ public class NativeKIAnakSmartRegisterActivity extends SecuredNativeSmartRegiste
         ButterKnife.bind(this);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-        formNames = this.buildFormNameList();
+        FlurryFacade.logEvent("anak_dashboard");
+    formNames = this.buildFormNameList();
         mBaseFragment = new NativeKIAnakSmartRegisterFragment();
 
         // Instantiate a ViewPager and a PagerAdapter.

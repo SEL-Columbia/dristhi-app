@@ -24,8 +24,8 @@ public class AllConstantsINA {
     public static final String HIGH_RISK_LABOUR = "high_risk_labour";
     public static final String HIGH_RISK_POST_PARTUM = "high_risk_post_partum";
 
-    // Flurry Bidan Testing
-     public static final String FLURRY_KEY = "SNRSKHM2HK6XMFSYBR7Z";
+    // Flurry Bidan Testing 2
+     public static final String FLURRY_KEY = "9RDM5TWW4HJ5QH8TNJ3P";
 
     // Flurry Key Bidan Prototype
    // public static final String FLURRY_KEY = "GVDTK3B4S92Y7D96NJ63";

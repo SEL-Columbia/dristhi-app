@@ -38,6 +38,7 @@ import org.ei.opensrp.indonesia.kb.KBClientsProvider;
 import org.ei.opensrp.indonesia.kb.KBDetailActivity;
 import org.ei.opensrp.indonesia.kb.KBSearchOption;
 import org.ei.opensrp.indonesia.kb.NativeKBSmartRegisterActivity;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -126,7 +127,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
 
             @Override
             public DialogOption[] filterOptions() {
-
+                FlurryFacade.logEvent("click_filter_option_on_kohort_anc_dashboard");
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
 
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),filterStringForAll()));
@@ -154,6 +155,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
 
             @Override
             public DialogOption[] sortingOptions() {
+                FlurryFacade.logEvent("click_sorting_option_on_kohort_anc_dashboard");
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
@@ -258,6 +260,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
+                    FlurryFacade.logEvent("click_detail_view_on_kohort_anc_dashboard");
                     ANCDetailActivity.ancclient = (CommonPersonObjectClient)view.getTag();
                     Intent intent = new Intent(getActivity(),ANCDetailActivity.class);
                     startActivity(intent);
@@ -269,6 +272,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
                 //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                 //        break;
                 case R.id.btn_edit:
+                    FlurryFacade.logEvent("click_visit_button_on_kohort_anc_dashboard");
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
             }

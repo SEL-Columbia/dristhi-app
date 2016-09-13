@@ -14,6 +14,7 @@ import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.fragment.NativeKISmartRegisterFragment;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.AllSharedPreferences;
@@ -63,7 +64,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
         ButterKnife.bind(this);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+        FlurryFacade.logEvent("kohort_ibu_dashboard");
         formNames = this.buildFormNameList();
         mBaseFragment = new NativeKISmartRegisterFragment();
 

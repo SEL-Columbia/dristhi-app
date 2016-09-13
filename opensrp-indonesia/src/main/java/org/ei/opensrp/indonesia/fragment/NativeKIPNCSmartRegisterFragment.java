@@ -23,6 +23,7 @@ import org.ei.opensrp.indonesia.anc.KIANCClientsProvider;
 import org.ei.opensrp.indonesia.anc.KIANCOverviewServiceMode;
 import org.ei.opensrp.indonesia.anc.NativeKIANCSmartRegisterActivity;
 import org.ei.opensrp.indonesia.kartu_ibu.KICommonObjectFilterOption;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.pnc.KIPNCClientsProvider;
 import org.ei.opensrp.indonesia.pnc.KIPNCOverviewServiceMode;
 import org.ei.opensrp.indonesia.pnc.NativeKIPNCSmartRegisterActivity;
@@ -112,7 +113,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 
             @Override
             public DialogOption[] filterOptions() {
-
+                FlurryFacade.logEvent("click_filter_option_on_kohort_pnc_dashboard");
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
 
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),filterStringForAll()));
@@ -138,6 +139,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 
             @Override
             public DialogOption[] sortingOptions() {
+                FlurryFacade.logEvent("click_sorting_option_on_kohort_pnc_dashboard");
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
@@ -226,6 +228,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 
     @Override
     public void startRegistration() {
+        FlurryFacade.logEvent("click_start_registration_on_kohort_pnc_dashboard");
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
         Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
         if (prev != null) {
@@ -242,6 +245,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
+                    FlurryFacade.logEvent("click_detail_view_on_kohort_pnc_dashboard");
                     PNCDetailActivity.pncclient = (CommonPersonObjectClient)view.getTag();
                     Intent intent = new Intent(getActivity(),PNCDetailActivity.class);
                     startActivity(intent);
@@ -253,6 +257,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
                 //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                 //        break;
                 case R.id.btn_edit:
+                    FlurryFacade.logEvent("click_visit_button_on_kohort_pnc_dashboard");
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
             }

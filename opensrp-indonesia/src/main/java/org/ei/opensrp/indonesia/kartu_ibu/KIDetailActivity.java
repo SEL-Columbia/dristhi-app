@@ -17,6 +17,7 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.indonesia.R;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.repository.ImageRepository;
 
 import java.io.File;
@@ -149,7 +150,7 @@ public class KIDetailActivity extends Activity {
         kiview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FlurryFacade.logEvent("taking_mother_pictures_on_kohort_ibu_detail_view");
                 bindobject = "kartu_ibu";
                 entityid = kiclient.entityId();
                 dispatchTakePictureIntent(kiview);

@@ -14,6 +14,7 @@ import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.fragment.NativeKBSmartRegisterFragment;
 import org.ei.opensrp.indonesia.fragment.NativeKISmartRegisterFragment;
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.ZiggyService;
@@ -69,7 +70,7 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         ButterKnife.bind(this);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+        FlurryFacade.logEvent("kb_dashboard");
         formNames = this.buildFormNameList();
         mBaseFragment = new NativeKBSmartRegisterFragment();
 
@@ -86,6 +87,7 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         });
 
         ziggyService = context.ziggyService();
+
     }
     public void onPageChanged(int page){
         setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

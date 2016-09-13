@@ -13,6 +13,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.event.Listener;
 
+import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
@@ -89,6 +90,7 @@ public class BidanHomeActivity extends SecuredActivity {
     @Override
     protected void onCreation() {
         //home dashboard
+        FlurryFacade.logEvent("home_dashboard");
         setContentView(R.layout.smart_registers_home_bidan);
         navigationController = new NavigationControllerINA(this,anmController);
         setupViews();
@@ -227,6 +229,7 @@ public class BidanHomeActivity extends SecuredActivity {
     }
 
     public void updateFromServer() {
+        FlurryFacade.logEvent("clicked_update_from_server");
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(),
                 new SyncProgressIndicator(), context.allFormVersionSyncService());
