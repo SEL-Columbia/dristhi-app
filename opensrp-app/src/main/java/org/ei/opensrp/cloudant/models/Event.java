@@ -1,6 +1,6 @@
 package org.ei.opensrp.cloudant.models;
 
-import com.cloudant.sync.datastore.BasicDocumentRevision;
+import com.cloudant.sync.datastore.DocumentRevision;
 
 import org.ei.opensrp.clientandeventmodel.DateUtil;
 import org.ei.opensrp.clientandeventmodel.Obs;
@@ -18,9 +18,9 @@ import java.util.Map;
 public class Event extends org.ei.opensrp.clientandeventmodel.Event {
 
     // this is the revision in the database representing this task
-    private BasicDocumentRevision rev;
+    private DocumentRevision rev;
 
-    public BasicDocumentRevision getDocumentRevision() {
+    public DocumentRevision getDocumentRevision() {
         return rev;
     }
 
@@ -82,7 +82,7 @@ public class Event extends org.ei.opensrp.clientandeventmodel.Event {
     public static final String provider_key = "providerId";
     public static final String version_key = "version";
 
-    public static Event fromRevision(BasicDocumentRevision rev) throws ParseException {
+    public static Event fromRevision(DocumentRevision rev) throws ParseException {
         Event event = new Event();
         event.rev = rev;
         // this could also be done by a fancy object mapper

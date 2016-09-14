@@ -1,41 +1,29 @@
 package org.ei.opensrp.sync;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.cloudant.sync.datastore.BasicDocumentRevision;
 import com.cloudant.sync.datastore.ConflictException;
 import com.cloudant.sync.datastore.Datastore;
 import com.cloudant.sync.datastore.DatastoreManager;
-import com.cloudant.sync.datastore.DocumentBody;
 import com.cloudant.sync.datastore.DocumentBodyFactory;
 import com.cloudant.sync.datastore.DocumentException;
 import com.cloudant.sync.datastore.DocumentRevision;
-import com.cloudant.sync.datastore.MutableDocumentRevision;
 import com.cloudant.sync.query.IndexManager;
-import com.cloudant.sync.query.QueryResult;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.R;
 import org.ei.opensrp.clientandeventmodel.DateUtil;
-import org.ei.opensrp.clientandeventmodel.processor.ClientsProcessor;
-import org.ei.opensrp.clientandeventmodel.processor.EventsProcessor;
 import org.ei.opensrp.cloudant.models.Client;
 import org.ei.opensrp.cloudant.models.Event;
-import org.ei.opensrp.repository.AllSharedPreferences;
-import org.ei.opensrp.repository.ClientRepository;
-import org.ei.opensrp.repository.EventRepository;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -66,10 +54,10 @@ public class CloudantDataHandler {
     private final Context mContext;
     private final Datastore mDatastore;
     private final IndexManager mIndexManager;
+    private final SQLiteDatabase mDatabase;
 
     public CloudantDataHandler(Context context) throws Exception {
         this.mContext = context;
-
 
         // Set up our datastore within its own folder in the applications data directory.
         File path = this.mContext.getApplicationContext().getDir(DATASTORE_MANGER_DIR, Context.MODE_PRIVATE);
@@ -77,8 +65,11 @@ public class CloudantDataHandler {
         this.mDatastore = manager.openDatastore(DATASTORE_NAME);
         this.mIndexManager = new IndexManager(mDatastore);
         List<Object> indexFields = new ArrayList<>();
-        indexFields.add("version");
+        // indexFields.add("version");
+        indexFields.add("type");
+        indexFields.add(baseEntityIdJSONKey);
         this.mIndexManager.ensureIndexed(indexFields, "eventdocindex");
+        this.mDatabase = loadDatabase();
 
         Log.d(TAG, "Set up database at " + path.getAbsolutePath());
 
@@ -95,152 +86,22 @@ public class CloudantDataHandler {
         return instance;
     }
 
-    public void getClients() throws Exception {
-
-
-        Map<String, Object> query = new HashMap<String, Object>();
-        query.put("type", "Client");
-
-        QueryResult result = this.mIndexManager.find(query);
-
-        for (DocumentRevision rev : result) {
-            DocumentBody doc = rev.getBody();
-            Map<String, Object> map = doc.asMap();
-            if (map.containsKey("type") && map.get("type").equals("Alert")) {
-                Log.d("ID", String.valueOf(map.get("type")));
-                Log.d("TYPE", String.valueOf(map.get("entityId")));
-            }
-
-            // The returned revision object contains all fields for
-            // the object. You cannot project certain fields in the
-            // current implementation.
-        }
-    }
-
-    public org.ei.opensrp.clientandeventmodel.Event getEvents() throws Exception {
-
-
-        Map<String, Object> query = new HashMap<String, Object>();
-        query.put("type", "Event");
-
-        QueryResult result = this.mIndexManager.find(query);
-
-        Iterator<DocumentRevision> it = result.iterator();
-        if (it.hasNext()) {
-            DocumentRevision rev = it.next();
-            org.ei.opensrp.clientandeventmodel.Event event = Event.fromRevision((BasicDocumentRevision) rev);
-
-            return event;
-        }
-        return null;
-    }
-
-    public void getUpdatedDocs() throws Exception {
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-
-        Date lastSyncDate = df.parse("09-03-2016 12:00:00");
-// query: { "timestamp": { "$gt": 12 } }
-        Map<String, Object> query = new HashMap<String, Object>();
-        Map<String, Object> gttimestamp = new HashMap<String, Object>();
-        long timestamp = lastSyncDate.getTime();
-
-        gttimestamp.put("$gt", "2016-03-16 09:37:46");
-        query.put("providerId", "demotest");
-
-        QueryResult result = this.mIndexManager.find(query);
-//        int size = result.size();
-//        Log.d("TAG", "" + size);
-
-        for (DocumentRevision rev : result) {
-            DocumentBody doc = rev.getBody();
-            Map<String, Object> map = doc.asMap();
-            if (map.containsKey("providerId") && map.get("providerId").toString().equalsIgnoreCase("demoprovideridtimestamp")) {
-                Log.d("TIMESTAMP", String.valueOf(map.get("timestamp")));
-            }
-        }
-
-    }
-
-    public List<JSONObject> getUpdatedEventsDocs() throws Exception {
-
-        List<JSONObject> events = new ArrayList<JSONObject>();
-
-        Map<String, Object> query = new HashMap<String, Object>();
-
-        List<Map<String, String>> sortDocument = new ArrayList<Map<String, String>>();
-
-        Map<String, String> sortByVersion = new HashMap<String, String>();
-        sortByVersion.put("version", "asc");
-        sortDocument.add(sortByVersion);
-
-        Map<String, Object> filterByVersion = new HashMap<String, Object>();
-        filterByVersion.put("$gt", 0);
-
-        query.put("version", filterByVersion);
-        query.put("type", "Event");
-
-        QueryResult result = this.mIndexManager.find(query, 0, 0, fields, sortDocument);
-
-        if (result != null) {
-            for (DocumentRevision rev : result) {
-                DocumentBody doc = rev.getBody();
-                String docstr = doc.toString();
-                JSONObject object = new JSONObject(docstr);
-                events.add(object);
-            }
-        }
-
-        return events;
-    }
-
-    public void syncEventsToSqlite() throws Exception {
-        Map<String, Object> query = new HashMap<String, Object>();
-        query.put("type", "Event");
-        QueryResult result = this.mIndexManager.find(query);
-
-        for (DocumentRevision rev : result) {
-            EventRepository EventRepo = new EventRepository(mContext, "events", new String[]{"father_name", "voided", "providerId"});
-            Log.v("Tag json", rev.getBody().toString());
-            try {
-                EventsProcessor eventsProcessor = new EventsProcessor(new JSONObject(mContext.getResources().getString(R.string.event_fields_extractor)), new JSONObject(rev.getBody().toString()));
-                EventRepo.insertValues(EventRepo.createValuesFor(eventsProcessor.createEventObject()));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void syncClientsToSqlite() throws Exception {
-        Map<String, Object> query = new HashMap<String, Object>();
-        query.put("type", "Client");
-        int querysize = this.mIndexManager.find(query).size();
-        Log.v("TAG TAG", "" + querysize);
-        QueryResult result = this.mIndexManager.find(query);
-
-        for (DocumentRevision rev : result) {
-            ClientRepository clientRepo = new ClientRepository(mContext, new String[]{"firstName"});
-            Log.v("Tag json", rev.getBody().toString());
-            try {
-                ClientsProcessor clientsProcessor = new ClientsProcessor(new JSONObject(mContext.getResources().getString(R.string.client_fields_extractor)), new JSONObject(rev.getBody().toString()));
-                clientRepo.insertValues(clientRepo.createValuesFor(clientsProcessor.createClientObject()));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     public JSONObject getClientByBaseEntityId(String baseEntityId) throws Exception {
         try {
             Client client = getClientDocumentByBaseEntityId(baseEntityId);
 
             if (client != null) {
                 SQLiteDatabase db = loadDatabase();
-                Cursor cursor = db.rawQuery("select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + client.getDocumentRevision().getId() + "' and json not like '{}' order by updated_at desc", null);
+                String query = "select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + client.getDocumentRevision().getId() + "' order by updated_at desc";
+                Log.i(getClass().getName(), query);
+                Cursor cursor = db.rawQuery(query, null);
                 if (cursor != null && cursor.moveToFirst()) {
                     byte[] json = (cursor.getBlob(0));
                     String jsonEventStr = new String(json, "UTF-8");
-                    JSONObject jsonObectClient = new JSONObject(jsonEventStr);
-                    return jsonObectClient;
+                    if(StringUtils.isNotBlank(jsonEventStr) && !jsonEventStr.equals("{}")){ // Check blank/empty json string
+                        JSONObject jsonObectClient = new JSONObject(jsonEventStr);
+                        return jsonObectClient;
+                    }
                 }
             }
         } catch (Exception e) {
@@ -251,14 +112,21 @@ public class CloudantDataHandler {
     }
 
     public Client getClientDocumentByBaseEntityId(String baseEntityId) throws Exception {
+        if(StringUtils.isBlank(baseEntityId)){
+            return null;
+        }
+
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("type", "Client");
         query.put(baseEntityIdJSONKey, baseEntityId);
+
+        Log.i(getClass().getName(), "Started getClientDocumentByBaseEntityId find query for " + baseEntityId);
         Iterator<DocumentRevision> iterator = this.mIndexManager.find(query).iterator();
+        Log.i(getClass().getName(), "Finished getClientDocumentByBaseEntityId find query for " + baseEntityId);
 
         if (iterator != null && iterator.hasNext()) {
             DocumentRevision rev = iterator.next();
-            Client c = Client.fromRevision((BasicDocumentRevision) rev);
+            Client c = Client.fromRevision(rev);
             return c;
         }
 
@@ -271,21 +139,33 @@ public class CloudantDataHandler {
 
         List<JSONObject> eventAndAlerts = new ArrayList<JSONObject>();
         SQLiteDatabase db = loadDatabase();
-        Cursor cursor = db.rawQuery("select json, updated_at from revs where updated_at is not null and updated_at > \"" + lastSyncString + "\" and json not like '{}' and ( json like '%\"type\":\"Event\"%' or json like '%\"type\":\"Action\"%' ) order by updated_at asc ", null);
+        String query = "select json, updated_at from revs where updated_at > \"" + lastSyncString + "\" order by updated_at asc ";
+        Log.i(getClass().getName(), query);
+        Cursor cursor = db.rawQuery(query, null);
 
         try {
             while (cursor.moveToNext()) {
                 byte[] json = (cursor.getBlob(0));
                 String jsonEventStr = new String(json, "UTF-8");
-                JSONObject jsonObectEventOrAlert = new JSONObject(jsonEventStr);
-                eventAndAlerts.add(jsonObectEventOrAlert);
+                if(StringUtils.isBlank(jsonEventStr) || jsonEventStr.equals("{}")){ // Skip blank/empty json string
+                    continue;
+                }
 
-                if (cursor.isLast()) {
-                    try {
-                        lastSyncDate.setTime(DateUtil.yyyyMMddHHmmss.parse(cursor.getString(1)).getTime());
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                JSONObject jsonObectEventOrAlert = new JSONObject(jsonEventStr);
+                String type = jsonObectEventOrAlert.has("type") ? jsonObectEventOrAlert.getString("type") : null;
+                if (StringUtils.isBlank(type)) { // Skip blank types
+                    continue;
+                }
+
+                if (!type.equals("Event") && !type.equals("Action")) { // Skip type that isn't Event or Action
+                    continue;
+                }
+
+                eventAndAlerts.add(jsonObectEventOrAlert);
+                try {
+                    lastSyncDate.setTime(DateUtil.yyyyMMddHHmmss.parse(cursor.getString(1)).getTime());
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
             }
         } finally {
@@ -301,16 +181,26 @@ public class CloudantDataHandler {
             @Override
             public int compare(JSONObject lhs, JSONObject rhs) {
                 try {
-                    if (!lhs.has("version")) {
+                    String lhvar = "version";
+                    String rhvar = "version";
+                    if(lhs.getString("type") == "Action"){
+                        lhvar = "timeStamp";
+                    }
+
+                    if(rhs.getString("type") == "Action"){
+                        rhvar = "timeStamp";
+                    }
+
+                    if (!lhs.has(lhvar)) {
                         return 1;
                     }
-                    if (!rhs.has("version")) {
+                    if (!rhs.has(rhvar)) {
                         return -1;
                     }
-                    if (lhs.getLong("version") > rhs.getLong("version")) {
+                    if (lhs.getLong(lhvar) > rhs.getLong(rhvar)) {
                         return 1;
                     }
-                    if (lhs.getLong("version") < rhs.getLong("version")) {
+                    if (lhs.getLong(lhvar) < rhs.getLong(rhvar)) {
                         return -1;
                     }
                     return 0;
@@ -323,24 +213,12 @@ public class CloudantDataHandler {
         return eventAndAlerts;
     }
 
-    public List<JSONObject> getAlerts() throws Exception {
-
-        List<JSONObject> alerts = new ArrayList<JSONObject>();
-        SQLiteDatabase db = loadDatabase();
-        Cursor cursor = db.rawQuery("select json, updated_at from revs where updated_at is not null and json not like '{}' and json like '%\"type\":\"Action\"%' order by updated_at asc ", null);
-
-
-        while (cursor.moveToNext()) {
-            byte[] json = (cursor.getBlob(0));
-            String jsonAlertStr = new String(json, "UTF-8");
-            JSONObject jsonObectAlert = new JSONObject(jsonAlertStr);
-            alerts.add(jsonObectAlert);
-        }
-        return alerts;
-    }
-
     //load cloudant db
     public SQLiteDatabase loadDatabase() {
+        if(this.mDatabase != null &&  this.mDatabase.isOpen()){
+            return mDatabase;
+        }
+
         SQLiteDatabase db = null;
         try {
             String dataStoreName = mContext.getString(R.string.datastore_name);
@@ -369,10 +247,10 @@ public class CloudantDataHandler {
      *                           match the current rev in the datastore.
      */
     public Client updateDocument(Client client) throws ConflictException {
-        MutableDocumentRevision rev = client.getDocumentRevision().mutableCopy();
-        rev.body = DocumentBodyFactory.create(client.asMap());
+        DocumentRevision rev = client.getDocumentRevision();
+        rev.setBody(DocumentBodyFactory.create(client.asMap()));
         try {
-            BasicDocumentRevision updated = this.mDatastore.updateDocumentFromRevision(rev);
+            DocumentRevision updated = this.mDatastore.updateDocumentFromRevision(rev);
             return Client.fromRevision(updated);
         } catch (DocumentException de) {
             return null;
@@ -392,14 +270,14 @@ public class CloudantDataHandler {
      * @return new revision of the document
      */
     public Client createClientDocument(Client client) {
-        MutableDocumentRevision rev = new MutableDocumentRevision();
-        rev.body = DocumentBodyFactory.create(client.asMap());
+        DocumentRevision rev = new DocumentRevision();
+        rev.setBody(DocumentBodyFactory.create(client.asMap()));
         try {
             //save the model only once if it already exist ignore, or merge the document
             Client c = getClientDocumentByBaseEntityId(client.getBaseEntityId());
 
             if (c == null) {
-                BasicDocumentRevision created = this.mDatastore.createDocumentFromRevision(rev);
+                DocumentRevision created = this.mDatastore.createDocumentFromRevision(rev);
                 return Client.fromRevision(created);
             } else {
                 //TODO: merge/update the client document
@@ -420,10 +298,10 @@ public class CloudantDataHandler {
      * @return new revision of the document
      */
     public Event createEventDocument(Event event) {
-        MutableDocumentRevision rev = new MutableDocumentRevision();
-        rev.body = DocumentBodyFactory.create(event.asMap());
+        DocumentRevision rev = new DocumentRevision();
+        rev.setBody(DocumentBodyFactory.create(event.asMap()));
         try {
-            BasicDocumentRevision created = this.mDatastore.createDocumentFromRevision(rev);
+            DocumentRevision created = this.mDatastore.createDocumentFromRevision(rev);
             return Event.fromRevision(created);
         } catch (DocumentException de) {
             return null;
@@ -448,10 +326,10 @@ public class CloudantDataHandler {
      */
     public List<Client> allClients() {
         int nDocs = this.mDatastore.getDocumentCount();
-        List<BasicDocumentRevision> all = this.mDatastore.getAllDocuments(0, nDocs, true);
+        List<DocumentRevision> all = this.mDatastore.getAllDocuments(0, nDocs, true);
         List<Client> clients = new ArrayList<Client>();
         // Filter all documents down to those of type client.
-        for (BasicDocumentRevision rev : all) {
+        for (DocumentRevision rev : all) {
             Client client = null;
             try {
                 client = Client.fromRevision(rev);

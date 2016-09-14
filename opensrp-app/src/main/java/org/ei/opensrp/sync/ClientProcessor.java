@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.AlertStatus;
 import org.ei.opensrp.clientandeventmodel.DateUtil;
@@ -71,9 +72,6 @@ public class ClientProcessor {
         if (!eventsAndAlerts.isEmpty()) {
             for (JSONObject eventOrAlert : eventsAndAlerts) {
                 String type = eventOrAlert.has("type") ? eventOrAlert.getString("type") : null;
-                if (type == null || type.isEmpty()) {
-                    continue;
-                }
                 if (type.equals("Event")) {
                     String clientClassificationStr = getFileContents("ec_client_classification.json");
                     JSONObject clientClassificationJson = new JSONObject(clientClassificationStr);
@@ -95,9 +93,10 @@ public class ClientProcessor {
         String baseEntityId = event.getString(baseEntityIdJSONKey);
         //for data integrity check if a client exists, if not pull one from cloudant and insert in drishti sqlite db
 
-        //if(clientfromsqlite==null){
         JSONObject client = mCloudantDataHandler.getClientByBaseEntityId(baseEntityId);
-        // }
+        if(client == null || client.length() == 0){
+            return;
+        }
 
         // Get the client type classification
         JSONArray clientClasses = clientClassificationJson.getJSONArray("case_classification_rules");

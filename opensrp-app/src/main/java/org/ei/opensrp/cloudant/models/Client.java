@@ -1,6 +1,6 @@
 package org.ei.opensrp.cloudant.models;
 
-import com.cloudant.sync.datastore.BasicDocumentRevision;
+import com.cloudant.sync.datastore.DocumentRevision;
 
 import org.ei.opensrp.clientandeventmodel.Address;
 import org.ei.opensrp.clientandeventmodel.DateUtil;
@@ -18,9 +18,9 @@ import java.util.Map;
 public class Client extends org.ei.opensrp.clientandeventmodel.Client {
 
     // this is the revision in the database representing this task
-    private BasicDocumentRevision rev;
+    private DocumentRevision rev;
 
-    public BasicDocumentRevision getDocumentRevision() {
+    public DocumentRevision getDocumentRevision() {
         return rev;
     }
 
@@ -88,7 +88,7 @@ public class Client extends org.ei.opensrp.clientandeventmodel.Client {
     public static final String voided_key = "voided";
     public static final String relationships_key = "relationships";
 
-    public static Client fromRevision(BasicDocumentRevision rev) throws ParseException {
+    public static Client fromRevision(DocumentRevision rev) throws ParseException {
         Client client = new Client();
         client.rev = rev;
         // this could also be done by a fancy object mapper

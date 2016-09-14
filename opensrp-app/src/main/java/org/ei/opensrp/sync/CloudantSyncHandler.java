@@ -15,7 +15,7 @@ import com.cloudant.sync.notifications.ReplicationErrored;
 import com.cloudant.sync.replication.PullFilter;
 import com.cloudant.sync.replication.Replicator;
 import com.cloudant.sync.replication.ReplicatorBuilder;
-import com.google.common.eventbus.Subscribe;
+import com.cloudant.sync.event.Subscribe;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -210,7 +210,9 @@ public class CloudantSyncHandler {
     public void complete(final ReplicationCompleted rc) {
         // Call the logic to break down CE into case models
         try {
-            ClientProcessor.getInstance(mContext.getApplicationContext()).processClient();
+            if(rc.documentsReplicated > 0) {
+                ClientProcessor.getInstance(mContext.getApplicationContext()).processClient();
+            }
         } catch (Exception e) {
             Log.e(LOG_TAG, e.toString(), e);
         }
