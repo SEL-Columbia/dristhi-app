@@ -2,7 +2,7 @@
   "form_data_definition_version": "2",
   "form": {
     "bind_type": "anak",
-    "default_bind_path": "/model/instance/Registrasi_Gizi/",
+    "default_bind_path": "/model/instance/Registrasi_Gizi-NewStructure-map/",
     "fields": [
       {
         "name": "id",
@@ -10,84 +10,83 @@
       },
       {
         "name": "existing_desa",
-        "bind": "/model/instance/Registrasi_Gizi/existing_Village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Village",
         "shouldLoadValue": true
       },
       {
         "name": "existing_provinsi",
-        "bind": "/model/instance/Registrasi_Gizi/existing_Province",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Province",
         "shouldLoadValue": true
       },
       {
         "name": "existing_kecamatan",
-        "bind": "/model/instance/Registrasi_Gizi/existing_Sub-district",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Sub-district",
         "shouldLoadValue": true
       },
       {
         "name": "existing_kabupaten",
-        "bind": "/model/instance/Registrasi_Gizi/existing_District",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_District",
         "shouldLoadValue": true
       },
       {
         "name": "existing_dusun",
-        "bind": "/model/instance/Registrasi_Gizi/existing_Sub-village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Sub-village",
         "shouldLoadValue": true
       },
       {
         "name": "provinsi",
-        "bind": "/model/instance/Registrasi_Gizi/Province",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/Province",
         "shouldLoadValue": true
       },
       {
         "name": "kabupaten",
-        "bind": "/model/instance/Registrasi_Gizi/District",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/District",
         "shouldLoadValue": true
       },
       {
         "name": "desa",
-        "bind": "/model/instance/Registrasi_Gizi/existing_Village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Village",
         "shouldLoadValue": true
       },
       {
         "name": "dusun",
-        "bind": "/model/instance/Registrasi_Gizi/existing_sub-Village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_sub-Village",
         "shouldLoadValue": true
       },
       {
         "name": "posyandu",
-        "bind": "/model/instance/Registrasi_Gizi/existing_sub-Village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_sub-Village",
         "shouldLoadValue": true
       },
       {
         "name": "desa_manual",
-        "bind": "/model/instance/Registrasi_Gizi/existing_Village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Village",
         "shouldLoadValue": true
       },
       {
         "name": "namaBayi",
-        "bind": "/model/instance/Registrasi_Gizi/nama_anak"
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_anak"
 
       },
       {
         "name": "namaOrtu",
-        "bind": "/model/instance/Registrasi_Gizi/nama_orang_tua"
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_orang_tua"
       },
       {
         "name": "tanggalLahir",
-        "bind": "/model/instance/Registrasi_Gizi/tanggal_lahir"
-
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/tanggal_lahir"
       },
       {
         "name": "nik",
-        "bind": "/model/instance/Registrasi_Gizi/nik"
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nik"
       },
       {
         "name": "jenisKelamin",
-        "bind": "/model/instance/Registrasi_Gizi/jenis_kelamin"
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/jenis_kelamin"
       },
       {
         "name": "registrationDate",
-        "bind": "/model/instance/Registrasi_Gizi/today"
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/today"
       }
     ]
   }

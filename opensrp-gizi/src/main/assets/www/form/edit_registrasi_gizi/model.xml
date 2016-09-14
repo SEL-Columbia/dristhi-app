@@ -1,25 +1,41 @@
 <model>
-    <instance>
-        <registrasi_gizi id="registrasi_gizi" version="201604060701">
-          <formhub>
-            <uuid/>
-          </formhub>
-          <existing_Village />
-          <existing_Sub-village />
-          <existing_Province />
-          <existing_District />
-          <existing_Sub-district />
-          <generated_note_name_14/>
-          <generated_note_name_15/>
-          <posyandu/>
-          <desa/>
-          <nama_anak/>
-          <nama_ortu/>
-          <tanggal_lahir/>
-          <jenis_kelamin/>
-          <meta>
-            <instanceID/>
-          </meta>
-        </registrasi_gizi>
-      </instance>
-  </model>
+  <instance>
+    <Registrasi_Gizi-NewStructure-map encounter_type="Registrasi Gizi New" id="registrasi_gizi_new" version="201609132245">
+      <formhub>
+        <uuid/>
+      </formhub>
+      <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+      <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+      <deviceid/>
+      <simserial/>
+      <phonenumber/>
+      <Province/>
+      <District/>
+      <Sub-district/>
+      <Village/>
+      <Sub-village/>
+      <existing_Province/>
+      <existing_District/>
+      <existing_Sub-district/>
+      <existing_Village/>
+      <existing_Sub-village/>
+      <provinsi openmrs_entity="person_address" openmrs_entity_id="stateProvince" openmrs_entity_parent="usual_residence"/>
+      <kabupaten openmrs_entity="person_address" openmrs_entity_id="countyDistrict" openmrs_entity_parent="usual_residence"/>
+      <desa openmrs_entity="person_address" openmrs_entity_id="cityVillage" openmrs_entity_parent="usual_residence"/>
+      <dusun openmrs_entity="person_address" openmrs_entity_id="address1" openmrs_entity_parent="usual_residence"/>
+      <kecamatan openmrs_entity="person_address" openmrs_entity_id="address2" openmrs_entity_parent="usual_residence"/>
+      <noteDesa openmrs_entity="concept" openmrs_entity_id="162724AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <noteDusun openmrs_entity="concept" openmrs_entity_id="1354AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <posyandu/>
+      <nama_anak openmrs_entity="person" openmrs_entity_id="first_name"/>
+      <nama_orang_tua openmrs_entity="person" openmrs_entity_id="last_name"/>
+      <nik openmrs_entity="person_identifier" openmrs_entity_id="nik"/>
+      <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
+      <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
+      <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+      <meta>
+        <instanceID/>
+      </meta>
+    </Registrasi_Gizi-NewStructure-map>
+  </instance>
+</model>
