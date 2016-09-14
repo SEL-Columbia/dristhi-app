@@ -108,7 +108,8 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     public DialogOption[] getEditOptions() {
             return new DialogOption[]{
                 new OpenFormOption("Kunjungan Per Bulan ", "kunjungan_gizi", formController),
-                    new OpenFormOption("Edit Registrasi Gizi ", "edit_registrasi_gizi", formController),
+                new OpenFormOption("Edit Registrasi Gizi ", "edit_registrasi_gizi", formController),
+                new OpenFormOption("Close Form","close_form",formController)
 
 
 
@@ -240,6 +241,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
        formNames.add("registrasi_gizi");
         formNames.add("kunjungan_gizi");
         formNames.add("edit_registrasi_gizi");
+        formNames.add("close_form");
        
 
      //   formNames.add("census_enrollment_form");
