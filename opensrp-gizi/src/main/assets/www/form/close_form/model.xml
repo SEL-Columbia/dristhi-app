@@ -1,0 +1,27 @@
+<model>
+  <instance>
+    <penutupan_anak_mapped encounter_type="Penutupan Anak" id="penutupan_anak_1" version="201609140005">
+      <formhub>
+        <uuid/>
+      </formhub>
+      <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+      <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+      <deviceid/>
+      <simserial/>
+      <phonenumber/>
+      <close_reason openmrs_entity="Concept" openmrs_entity_id="160417AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <child_death_cause openmrs_entity="Concept" openmrs_entity_id="159482AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <child_death_cause_other openmrs_entity="Concept"/>
+      <child_death_date openmrs_entity="Concept" openmrs_entity_id="1543AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <place_of_death openmrs_entity="Concept" openmrs_entity_id="160632AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <prereferral_management openmrs_entity="Concept"/>
+      <referred openmrs_entity="Concept" openmrs_entity_id="1648AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <referral_location openmrs_entity="Concept" openmrs_entity_id="161562AAAAAAAAAA AAAAAAAAAAAAAAAA"/>
+      <confirm_child_close openmrs_entity="n/a"/>
+      <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+      <meta>
+        <instanceID/>
+      </meta>
+    </penutupan_anak_mapped>
+  </instance>
+</model>
