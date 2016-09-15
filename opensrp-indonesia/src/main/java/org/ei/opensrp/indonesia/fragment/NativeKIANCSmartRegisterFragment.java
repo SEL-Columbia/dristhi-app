@@ -219,14 +219,14 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
         setTablename("ibu");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ibu");
-        countqueryBUilder.joinwithIbus("ibu");
+        countqueryBUilder.customJoin("LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
         countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true'  and ibu.type = 'anc'");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("ibu", new String[]{"ibu.isClosed", "ibu.details", "ibu.ancDate", "ibu.ancKe","kartu_ibu.namalengkap","kartu_ibu.umur","kartu_ibu.namaSuami"});
-        queryBUilder.joinwithIbus("ibu");
+        queryBUilder.customJoin("LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
         mainSelect = queryBUilder.mainCondition(" ibu.isClosed !='true' and ibu.type = 'anc'");
         queryBUilder.addCondition(filters);
      //   Sortqueries = KiSortByNameAZ();

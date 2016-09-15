@@ -98,15 +98,8 @@ public class SmartRegisterQueryBuilder {
         Selectquery = Selectquery+ " ON "+ tablename +".id = alerts.caseID " ;
         return Selectquery;
     }
-    public String joinwithIbus(String tablename){
-        Selectquery = Selectquery+ " LEFT JOIN kartu_ibu ";
-        Selectquery = Selectquery+ " ON "+ tablename +".kartuIbuId = kartu_ibu.id " ;
-        return Selectquery;
-    }
-    public String joinwithKIs(String tablename){
-        Selectquery = Selectquery+ " LEFT JOIN ibu ";
-        Selectquery = Selectquery+ " ON "+ tablename +".id = ibu.kartuIbuId " ;
-        Selectquery = Selectquery+ "LEFT JOIN anak ON ibu.id = anak.ibuCaseId " ;
+    public String customJoin(String query){
+        Selectquery = Selectquery+ " "+query;
         return Selectquery;
     }
     @Override

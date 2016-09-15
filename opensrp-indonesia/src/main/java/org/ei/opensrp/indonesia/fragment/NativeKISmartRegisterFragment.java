@@ -203,15 +203,16 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         setTablename("kartu_ibu");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("kartu_ibu");
-        countqueryBUilder.joinwithKIs("kartu_ibu");
-     //   countqueryBUilder.joinwithchilds("ibu");
+
+        countqueryBUilder.customJoin("LEFT JOIN ibu on kartu_ibu.id = ibu.kartuIbuId LEFT JOIN anak ON ibu.id = anak.ibuCaseId ");
+      //  countqueryBUilder.joinwithKIs("kartu_ibu");
         countSelect = countqueryBUilder.mainCondition(" kartu_ibu.isClosed !='true' ");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"kartu_ibu.isClosed", "kartu_ibu.details", "kartu_ibu.isOutOfArea","namalengkap", "umur","ibu.type","namaSuami","ibu.ancDate","ibu.ancKe","ibu.hariKeKF","anak.namaBayi","anak.tanggalLahirAnak"});
-        queryBUilder.joinwithKIs("kartu_ibu");
+        queryBUilder.customJoin("LEFT JOIN ibu on kartu_ibu.id = ibu.kartuIbuId LEFT JOIN anak ON ibu.id = anak.ibuCaseId ");
     //    countqueryBUilder.joinwithchilds("ibu");
         mainSelect = queryBUilder.mainCondition(" kartu_ibu.isClosed !='true' ");
         queryBUilder.addCondition(filters);
