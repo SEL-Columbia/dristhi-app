@@ -224,13 +224,13 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         setTablename("anak");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("anak");
-        //   countqueryBUilder.joinwithIbus("kartu_ibu","ibu");
+        countqueryBUilder.customJoin("LEFT JOIN ibu ON ibu.id = anak.ibuCaseId LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
         countSelect = countqueryBUilder.mainCondition(" anak.isClosed !='true' ");
         CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("anak", new String[]{"isClosed", "details", "namaBayi"});
-        //   queryBUilder.joinwithIbus("kartu_ibu","ibu");
+        queryBUilder.SelectInitiateMainTable("anak", new String[]{"anak.isClosed", "anak.details", "namaBayi"});
+        queryBUilder.customJoin("LEFT JOIN ibu ON ibu.id = anak.ibuCaseId LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
         mainSelect = queryBUilder.mainCondition(" anak.isClosed !='true' and anak.ibuCaseId !='' ");
         queryBUilder.addCondition(filters);
         Sortqueries = AnakNameShort();
@@ -238,7 +238,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         AnakRegisterClientsProvider anakscp = new AnakRegisterClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, anakscp, new CommonRepository("anak",new String []{"namaBayi", "isClosed"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, anakscp, new CommonRepository("anak",new String []{"namaBayi", "anak.isClosed"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
