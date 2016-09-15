@@ -175,13 +175,14 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
                     context.personObjectClientsCache(), "nama_bayi"      , "anak"     , "tanggal_lahir",
                     //                                  find this   , on this   , order by this
                     CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails);
-
         }
-        //controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mother"),
-         //       context.allBeneficiaries(), context.listCache(),
-         //       context.personObjectClientsCache(),"nama","mother");
+        CommonPersonObjectClient person;
+        for(int i=0;i<controller.getClients().size();i++){
+            person = (CommonPersonObjectClient)controller.getClients().get(i);
+            if(person.getDetails().get("form_ditutup")!=null && person.getDetails().get("form_ditutup").equalsIgnoreCase("yes"))
+                controller.getClients().remove(person);
+        }
         dialogOptionMapper = new DialogOptionMapper();
-       // context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form",new CensusEnrollmentHandler());
     }
 
     @Override
