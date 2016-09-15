@@ -1,0 +1,33 @@
+{
+  "form_data_definition_version": "2",
+  "form": {
+    "bind_type": "anak",
+    "default_bind_path": "/model/instance/kunjungan_vaksinator_ver_bcg/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "bcg",
+        "bind": "/model/instance/kunjungan_vaksinator_ver_bcg/bcg",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "getAntypiretic",
+        "bind": "/model/instance/kunjungan_vaksinator_ver_bcg/getAntipyretic",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "keterangan",
+        "bind": "/model/instance/kunjungan_vaksinator_ver_bcg/keterangan",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "submissiondate",
+        "bind": "/model/instance/kunjungan_vaksinator_ver_bcg/today",
+        "shouldLoadValue": true
+      }
+    ]
+  }
+}
