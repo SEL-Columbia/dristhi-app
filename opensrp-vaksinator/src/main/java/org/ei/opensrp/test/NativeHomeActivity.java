@@ -139,13 +139,6 @@ public class NativeHomeActivity extends SecuredActivity {
                 context.personObjectClientsCache(),"nama_bayi","anak","nama_orang_tua", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
         ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
-
-        CommonPersonObjectClient person;
-        for(int i=0;i<hhcontroller.getClients().size();i++){
-            person = (CommonPersonObjectClient)hhcontroller.getClients().get(i);
-            if(person.getDetails().get("form_ditutup")!=null && person.getDetails().get("form_ditutup").equalsIgnoreCase("yes"))
-                hhcontroller.getClients().remove(person);
-        }
     }
 
     @Override
