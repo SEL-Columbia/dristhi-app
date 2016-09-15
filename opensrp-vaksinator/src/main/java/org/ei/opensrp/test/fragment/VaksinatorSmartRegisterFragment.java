@@ -10,6 +10,7 @@ import android.view.View;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
+import org.ei.opensrp.test.vaksinator.CommonObjectFilterOption;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -20,6 +21,7 @@ import org.ei.opensrp.test.vaksinator.VaksinatorSmartRegisterActivity;
 import org.ei.opensrp.test.vaksinator.VaksinatorSearchOption;
 import org.ei.opensrp.test.vaksinator.VaksinatorServiceModeOption;
 import org.ei.opensrp.test.vaksinator.VaksinatorSmartClientsProvider;
+import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.contract.ECClient;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -116,10 +118,9 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
 
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
-
                 Map<String,TreeNode<String, Location>> locationMap =
                         locationTree.getLocationsHierarchy();
-              //  addChildToList(dialogOptionslist,locationMap);
+                addChildToList(dialogOptionslist,locationMap);
                 DialogOption[] dialogOptions = new DialogOption[dialogOptionslist.size()];
                 for (int i = 0;i < dialogOptionslist.size();i++){
                     dialogOptions[i] = dialogOptionslist.get(i);
@@ -189,8 +190,6 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
 
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-
-        System.out.println("disini broh");
         updateSearchView();
 //        checkforNidMissing(view);
     }
@@ -309,6 +308,17 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
         });
     }
 
-
+    public void addChildToList(ArrayList<DialogOption> dialogOptionslist,Map<String,TreeNode<String, Location>> locationMap){
+            for(Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
+        
+                if(entry.getValue().getChildren() != null) {
+                    addChildToList(dialogOptionslist,entry.getValue().getChildren());
+                }else{
+                    StringUtil.humanize(entry.getValue().getLabel());
+                    String name = StringUtil.humanize(entry.getValue().getLabel());
+                    dialogOptionslist.add(new CommonObjectFilterOption(name,"village", CommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+            }
+        }
+    }
 
 }
