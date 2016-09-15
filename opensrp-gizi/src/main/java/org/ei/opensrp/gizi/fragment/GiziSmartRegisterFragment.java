@@ -10,6 +10,7 @@ import android.view.View;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.gizi.LoginActivity;
@@ -176,8 +177,18 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
                     context.allBeneficiaries(), context.listCache(),
                     context.personObjectClientsCache(), "namaBayi", "anak", "jenisKelamin",
                     CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails);
-
         }
+
+        // remove close form
+        // system will remove the common person object client from controller map if the person's form closed
+        CommonPersonObjectClient person;
+        for(int i=0;i<controller.getClients().size();i++){
+            person = (CommonPersonObjectClient)controller.getClients().get(i);
+            if(person.getDetails().get("form_ditutup")!=null && person.getDetails().get("form_ditutup").equalsIgnoreCase("yes"))
+                controller.getClients().remove(person);
+        }
+        // /remove close form
+
         //controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mother"),
          //       context.allBeneficiaries(), context.listCache(),
          //       context.personObjectClientsCache(),"nama","mother");
