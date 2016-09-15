@@ -237,7 +237,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_status_type"
             android:layout_alignParentLeft="true"
-            android:text="Status"
+            android:text="Expire :"
             style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
