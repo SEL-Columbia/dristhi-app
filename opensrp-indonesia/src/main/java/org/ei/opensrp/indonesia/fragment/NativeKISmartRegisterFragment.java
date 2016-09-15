@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
@@ -263,6 +264,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
             //        break;
                 case R.id.btn_edit:
                     FlurryFacade.logEvent("click_visit_button_on_kohort_ibu_dashboard");
+                    KIDetailActivity.kiclient = (CommonPersonObjectClient)view.getTag();
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
             }
@@ -290,9 +292,17 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         public DialogOption[] getDialogOptions() {
             return getEditOptions();
         }
-
         @Override
         public void onDialogOptionSelection(DialogOption option, Object tag) {
+
+
+            if(option.name().equalsIgnoreCase(getString(R.string.str_register_anc_form)) ) {
+                CommonPersonObjectClient pc = KIDetailActivity.kiclient;
+                if(pc.getColumnmaps().get("ibu.type").equals("anc") || pc.getColumnmaps().get("ibu.type").equals("pnc")) {
+                    Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
         }
     }

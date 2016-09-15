@@ -57,6 +57,9 @@
     <string name="str_previous">"&lt;&lt; Previous"</string>
     <string name="str_page_info">Page {0} of {1}</string>
 
+
+
+    <string name="mother_already_registered">Mother already registered in ANC</string>
     <string name="header_history_anc">VISIT HISTORY</string>
     <string name="header_name">NAME</string>
     <string name="header_ec_no">EC NO.</string>

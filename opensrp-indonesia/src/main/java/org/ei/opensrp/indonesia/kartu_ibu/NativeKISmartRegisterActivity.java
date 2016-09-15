@@ -115,7 +115,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
     public DialogOption[] getEditOptions() {
         return new DialogOption[]{
                 new OpenFormOption("Registrasi KB ", "kohort_kb_pelayanan", formController),
-                new OpenFormOption("ANC Registration ", "kartu_anc_registration", formController),
+                new OpenFormOption(getString(R.string.str_register_anc_form), "kartu_anc_registration", formController),
                 new OpenFormOption("Edit Kartu Ibu ", KARTU_IBU_EDIT, formController),
                 new OpenFormOption("Kartu Ibu Close ", KARTU_IBU_CLOSE, formController),
 
