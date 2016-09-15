@@ -33,7 +33,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * Handles Cloudant data access methods
@@ -46,8 +45,6 @@ public class CloudantDataHandler {
     private static CloudantDataHandler instance;
 
     private static final String baseEntityIdJSONKey = "baseEntityId";
-    List<String> fields = Arrays.asList("obs", "eventDate", "eventType", "formSubmissionId", "providerId", baseEntityIdJSONKey, "type", "entityType", "version");
-
     private static final String DATASTORE_MANGER_DIR = "data";
     private static final String DATASTORE_NAME = "opensrp_clients_events";
 
@@ -77,8 +74,6 @@ public class CloudantDataHandler {
 
     }
 
-    private CountDownLatch latch = null;
-
     public static CloudantDataHandler getInstance(Context context) throws Exception {
         if (instance == null) {
             instance = new CloudantDataHandler(context);
@@ -88,11 +83,11 @@ public class CloudantDataHandler {
 
     public JSONObject getClientByBaseEntityId(String baseEntityId) throws Exception {
         try {
-            Client client = getClientDocumentByBaseEntityId(baseEntityId);
+            String documentId = getClientDocumentIdByBaseEntityId(baseEntityId);
 
-            if (client != null) {
+            if (StringUtils.isNotBlank(documentId)) {
                 SQLiteDatabase db = loadDatabase();
-                String query = "select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + client.getDocumentRevision().getId() + "' order by updated_at desc";
+                String query = "select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + documentId + "' order by updated_at desc";
                 Log.i(getClass().getName(), query);
                 Cursor cursor = db.rawQuery(query, null);
                 if (cursor != null && cursor.moveToFirst()) {
@@ -100,6 +95,7 @@ public class CloudantDataHandler {
                     String jsonEventStr = new String(json, "UTF-8");
                     if(StringUtils.isNotBlank(jsonEventStr) && !jsonEventStr.equals("{}")){ // Check blank/empty json string
                         JSONObject jsonObectClient = new JSONObject(jsonEventStr);
+                        Log.i(getClass().getName(), "Finished query");
                         return jsonObectClient;
                     }
                 }
@@ -120,14 +116,35 @@ public class CloudantDataHandler {
         query.put("type", "Client");
         query.put(baseEntityIdJSONKey, baseEntityId);
 
-        Log.i(getClass().getName(), "Started getClientDocumentByBaseEntityId find query for " + baseEntityId);
         Iterator<DocumentRevision> iterator = this.mIndexManager.find(query).iterator();
-        Log.i(getClass().getName(), "Finished getClientDocumentByBaseEntityId find query for " + baseEntityId);
 
         if (iterator != null && iterator.hasNext()) {
             DocumentRevision rev = iterator.next();
             Client c = Client.fromRevision(rev);
             return c;
+        }
+
+        return null;
+    }
+
+    public String getClientDocumentIdByBaseEntityId(String baseEntityId) throws Exception {
+        if(StringUtils.isBlank(baseEntityId)){
+            return null;
+        }
+
+        Map<String, Object> query = new HashMap<String, Object>();
+        query.put("type", "Client");
+        query.put(baseEntityIdJSONKey, baseEntityId);
+
+        List<String> fields = Arrays.asList(baseEntityIdJSONKey);
+
+        Log.i(getClass().getName(), "Started getClientDocumentIdByBaseEntityId find query for " + baseEntityId);
+        Iterator<DocumentRevision> iterator = this.mIndexManager.find(query, 0, 0, fields, null).iterator();
+
+        if (iterator != null && iterator.hasNext()) {
+            DocumentRevision rev = iterator.next();
+            Log.i(getClass().getName(), "Finished getClientDocumentIdByBaseEntityId find query for " + baseEntityId);
+            return rev.getId();
         }
 
         return null;

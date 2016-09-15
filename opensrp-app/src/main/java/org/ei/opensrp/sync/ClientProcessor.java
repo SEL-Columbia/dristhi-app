@@ -8,11 +8,8 @@ import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.apache.commons.lang3.StringUtils;
-import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.AlertStatus;
 import org.ei.opensrp.clientandeventmodel.DateUtil;
-import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.repository.AlertRepository;
@@ -24,8 +21,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,6 +34,7 @@ public class ClientProcessor {
     private CloudantDataHandler mCloudantDataHandler;
     private static final String TAG = "ClientProcessor";
     private static final String baseEntityIdJSONKey = "baseEntityId";
+    private static final String detailsUpdated = "detailsUpdated";
 
     Context mContext;
 
@@ -106,8 +102,10 @@ public class ClientProcessor {
         }
 
         // Incase the details have not been updated
-        updateClientDetailsTable(event, client);
-
+        boolean updated = event.has(detailsUpdated) ? event.getBoolean(detailsUpdated) : false;
+        if(!updated) {
+            updateClientDetailsTable(event, client);
+        }
     }
 
     private void processClientClass(JSONObject clientClass, JSONObject event, JSONObject client) throws Exception {
@@ -411,6 +409,8 @@ public class ClientProcessor {
      */
     public void updateClientDetailsTable(JSONObject event, JSONObject client) {
         try {
+            Log.i(TAG, "Started updateClientDetailsTable");
+
             String baseEntityId = client.getString(baseEntityIdJSONKey);
             Long timestamp = getEventDate(event.get("eventDate"));
 
@@ -426,6 +426,9 @@ public class ClientProcessor {
             Map<String, String> obs = getObsFromEvent(event);
             saveClientDetails(baseEntityId, obs, timestamp);
 
+            event.put(detailsUpdated, true);
+
+            Log.i(TAG, "Finished updateClientDetailsTable");
             //save the other misc, client info date of birth...
 
         } catch (Exception e) {

@@ -19,10 +19,15 @@ public class DetailsRepository extends DrishtiRepository {
 
     private static final String SQL = "CREATE TABLE ec_details(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, base_entity_id VARCHAR, key VARCHAR, value VARCHAR, event_date datetime)";
     private static final String TABLE_NAME = "ec_details";
+    private static final String BASE_ENTITY_ID_INDEX_SQL =  "CREATE INDEX ec_details_base_entity_id_index ON ec_details(base_entity_id COLLATE NOCASE);";
+    private static final String KEY_INDEX_SQL =  "CREATE INDEX ec_details_key_index ON ec_details(key);";
+
 
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(SQL);
+        database.execSQL(BASE_ENTITY_ID_INDEX_SQL);
+        database.execSQL(KEY_INDEX_SQL);
     }
 
     public void add(String baseEntityId, String key, String value, Long timestamp) {
@@ -30,7 +35,13 @@ public class DetailsRepository extends DrishtiRepository {
         ContentValues values = new ContentValues();
         Long _id = getIdForDetailsIfExists(baseEntityId, key, value);
         if (_id != null){
+
+            if(_id.longValue() == -1l){ // Value has not changed, no need to update
+                return;
+            }
+
             values.put("_id", _id);
+
         }
         values.put("base_entity_id", baseEntityId);
         values.put("key", key);
@@ -46,6 +57,12 @@ public class DetailsRepository extends DrishtiRepository {
             SQLiteDatabase db = masterRepository.getWritableDatabase();
             mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id = '" + baseEntityId + "' AND key ='" + key + "' LIMIT 1", null);
             if (mCursor != null && mCursor.moveToFirst()){
+                if(value != null){
+                    String currentValue = mCursor.getString(mCursor.getColumnIndex("value"));
+                    if(value.equals(currentValue)) { // Value has not changed, no need to update
+                        return -1l;
+                    }
+                }
                 return mCursor.getLong(mCursor.getColumnIndex("_id"));
             }
         }catch (Exception e){
