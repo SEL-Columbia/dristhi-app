@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <kunjungan_vaksinasi_lanjutan id="kunjungan_vaksinator_lanjutan" version="201608310810">
+    <kunjungan_vaksinator_campak_lanjutan id="kunjungan_vaksinator_campak_lanjutan" version="201609010629">
       <formhub>
         <uuid/>
       </formhub>
@@ -9,13 +9,12 @@
       <deviceid/>
       <simserial/>
       <phonenumber/>
-      <dpt_hb_lanjutan openmrs_entity="concept"/>
-      <campak_lanjutan openmrs_entity="concept"/>
+      <campak_lanjutan openmrs_entity="concept" openmrs_entity_id="984AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <keterangan openmrs_entity="concept"/>
       <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
       <meta>
         <instanceID/>
       </meta>
-    </kunjungan_vaksinasi_lanjutan>
+    </kunjungan_vaksinator_campak_lanjutan>
   </instance>
 </model>

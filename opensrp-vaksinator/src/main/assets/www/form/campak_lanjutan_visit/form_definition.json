@@ -2,30 +2,25 @@
   "form_data_definition_version": "2",
   "form": {
     "bind_type": "anak",
-    "default_bind_path": "/model/instance/kunjungan_vaksinasi_lanjutan/",
+    "default_bind_path": "/model/instance/kunjungan_vaksinator_campak_lanjutan/",
     "fields": [
       {
         "name": "id",
         "shouldLoadValue": true
       },
       {
-        "name": "dpt_hb_lanjutan",
-        "bind": "/model/instance/kunjungan_vaksinasi_lanjutan/dpt_hb_lanjutan",
-        "shouldLoadValue": true
-      },
-      {
         "name": "campak_lanjutan",
-        "bind": "/model/instance/kunjungan_vaksinasi_lanjutan/campak_lanjutan",
+        "bind": "/model/instance/kunjungan_vaksinator_campak_lanjutan/campak_lanjutan",
         "shouldLoadValue": true
       },
       {
         "name": "keterangan",
-        "bind": "/model/instance/kunjungan_vaksinasi_lanjutan/keterangan",
+        "bind": "/model/instance/kunjungan_vaksinator_campak_lanjutan/keterangan",
         "shouldLoadValue": true
       },
       {
         "name": "submissiondate",
-        "bind": "/model/instance/kunjungan_vaksinasi_lanjutan/today",
+        "bind": "/model/instance/kunjungan_vaksinator_campak_lanjutan/today",
         "shouldLoadValue": true
       }
     ]
