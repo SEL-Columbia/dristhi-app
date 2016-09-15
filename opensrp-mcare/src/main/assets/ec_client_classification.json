@@ -26,14 +26,14 @@
           {
             "field":"obs.fieldCode",
             "concept": "162699AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "values": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
             "closes_case":["ec_pnc"],
             "creates_case":["ec_elco"]
           },
           {
             "field":"obs.fieldCode",
             "concept": "163088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "value": ["5990AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","5276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","162959AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "values": ["5990AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","5276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","162959AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "163007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "128453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "159AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "5561AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
             "closes_case":["ec_elco"]
@@ -49,14 +49,14 @@
           {
             "field":"obs.fieldCode",
             "concept": "162942AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "value": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "values": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
             "closes_case":["ec_elco","ec_pnc"],
             "creates_case":["ec_mcaremother"]
           },
           {
             "field":"obs.fieldCode",
             "concept": "161641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "value": ["125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "values": ["125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
             "closes_case":["ec_mcaremother"],
             "creates_case":["ec_elco"]
           },
@@ -95,7 +95,7 @@
           {
             "field":"obs.fieldCode",
             "concept": "163088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "value":["151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,48AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "values":["151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,48AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
             "closes_case":["ec_elco","ec_mcaremother"],
             "creates_case":["ec_pnc"]
           },

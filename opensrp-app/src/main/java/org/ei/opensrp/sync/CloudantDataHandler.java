@@ -87,7 +87,7 @@ public class CloudantDataHandler {
 
             if (StringUtils.isNotBlank(documentId)) {
                 SQLiteDatabase db = loadDatabase();
-                String query = "select json from revs r inner join docs d on r.doc_id=d.doc_id where d.docid='" + documentId + "' order by updated_at desc";
+                String query = "select json from revs r inner join docs d on r.doc_id=d.doc_id where  d.docid='" + documentId + "' and length(json)>2 order by updated_at desc";
                 Log.i(getClass().getName(), query);
                 Cursor cursor = db.rawQuery(query, null);
                 if (cursor != null && cursor.moveToFirst()) {
@@ -156,7 +156,7 @@ public class CloudantDataHandler {
 
         List<JSONObject> eventAndAlerts = new ArrayList<JSONObject>();
         SQLiteDatabase db = loadDatabase();
-        String query = "select json, updated_at from revs where updated_at > \"" + lastSyncString + "\" order by updated_at asc ";
+        String query = "select json, updated_at from revs where updated_at > \"" + lastSyncString + "\"  and length(json)>2 order by updated_at asc ";
         Log.i(getClass().getName(), query);
         Cursor cursor = db.rawQuery(query, null);
 
