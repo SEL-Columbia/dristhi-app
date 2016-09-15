@@ -12,6 +12,8 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.event.Listener;
 
+import org.ei.opensrp.gizi.gizi.KmsHandler;
+import org.ei.opensrp.gizi.gizi.ZScorehandler;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
@@ -84,6 +86,8 @@ public class NativeHomeActivity extends SecuredActivity {
         initialize();
         DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
         DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
+        context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new ZScorehandler());
+        context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new KmsHandler());
 
 
     }

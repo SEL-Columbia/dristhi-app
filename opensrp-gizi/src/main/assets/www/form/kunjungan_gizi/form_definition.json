@@ -53,6 +53,21 @@
         "shouldLoadValue": true
       },
       {
+        "name": "nutrition_status",
+        "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/nutrition_status",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "bgm",
+        "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/bgm",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "dua_t",
+        "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/dua_t",
+        "shouldLoadValue": true
+      },
+      {
         "name": "tanggalPenimbangan",
         "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/tanggal_preload",
         "shouldLoadValue": true
@@ -106,6 +121,10 @@
         "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/ae"
       },
       {
+        "name": "mp_asi",
+        "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/mp_asi"
+      },
+      {
         "name": "vitA",
         "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/vitA"
       },
@@ -114,8 +133,8 @@
         "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/waktuVitA"
       },
       {
-        "name": "antihelmintic",
-        "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/antihelmintic"
+        "name": "obatcacing",
+        "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/obatcacing"
       },
       {
         "name": "end",

@@ -85,6 +85,10 @@
         "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/jenis_kelamin"
       },
       {
+        "name": "kms",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/kms"
+      },
+      {
         "name": "registrationDate",
         "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/today"
       }

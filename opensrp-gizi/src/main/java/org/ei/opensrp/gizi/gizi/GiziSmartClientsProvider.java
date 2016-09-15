@@ -159,50 +159,11 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         );
         viewHolder.vitALogo.setImageDrawable(context.getResources().getDrawable(inTheSameRegion(pc.getDetails().get("tanggalPenimbangan")) ? R.drawable.ic_yes_large:R.drawable.ic_remove));
         viewHolder.antihelminticLogo.setImageDrawable(context.getResources().getDrawable(inTheSameRegion(
-                pc.getDetails().get("tanggalPenimbangan")) && isGiven(pc,"antihelmintic")? R.drawable.ic_yes_large:R.drawable.ic_remove));
-        /**
-         * Z-SCORE calculation
-         * NOTE - Need a better way to handle z-score data to sqllite
-         */
+                pc.getDetails().get("tanggalPenimbangan")) && isGiven(pc,"obatcacing")? R.drawable.ic_yes_large:R.drawable.ic_remove));
+
+
         if(pc.getDetails().get("tanggalPenimbangan") != null)
         {
-            String gender = pc.getDetails().get("jenisKelamin") != null ? pc.getDetails().get("jenisKelamin") : "-";
-            String dateOfBirth = pc.getDetails().get("tanggalLahir") != null ? pc.getDetails().get("tanggalLahir") : "-";
-            String lastVisitDate = pc.getDetails().get("tanggalPenimbangan") != null ? pc.getDetails().get("tanggalPenimbangan") : "-";
-            double weight=Double.parseDouble(pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"0");
-            double length=Double.parseDouble(pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"0");
-            ZScoreSystemCalculation zScore = new ZScoreSystemCalculation();
-
-            double weight_for_age = zScore.countWFA(gender, dateOfBirth, lastVisitDate, weight);
-            String wfaStatus = zScore.getWFAZScoreClassification(weight_for_age);
-            if(length != 0) {
-                double heigh_for_age = zScore.countHFA(gender, dateOfBirth, lastVisitDate, length);
-                String hfaStatus = zScore.getHFAZScoreClassification(heigh_for_age);
-
-                double weight_for_lenght = 0.0;
-                String wflStatus = "";
-                if (zScore.dailyUnitCalculationOf(dateOfBirth, lastVisitDate) < 730) {
-                    weight_for_lenght = zScore.countWFL(gender, weight, length);
-                } else {
-                    weight_for_lenght = zScore.countWFH(gender, weight, length);
-                }
-                wflStatus = zScore.getWFLZScoreClassification(weight_for_lenght);
-                HashMap <String,String> z_score = new HashMap<String,String>();
-                z_score.put("underweight",wfaStatus);
-                z_score.put("stunting",hfaStatus);
-                z_score.put("wasting",wflStatus);
-                org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),z_score);
-            }
-            else {
-             //   String hfaStatus = "-";
-             //   String wflStatus ="-";
-                HashMap<String, String> z_score = new HashMap<String, String>();
-                z_score.put("underweight", wfaStatus);
-                z_score.put("stunting", "-");
-                z_score.put("wasting", "-");
-                org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(), z_score);
-            }
-
             viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+(pc.getDetails().get("stunting")!=null?pc.getDetails().get("stunting"):"-"));
             viewHolder.underweight.setText(context.getString(R.string.underweight) +  " "+(pc.getDetails().get("underweight")!=null?pc.getDetails().get("underweight"):"-"));
             viewHolder.wasting_status.setText(context.getString(R.string.wasting) +   " "+(pc.getDetails().get("wasting")!=null?pc.getDetails().get("wasting"):"-"));
@@ -216,39 +177,6 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         }
         //================ END OF Z-SCORE==============================//
 
-        /**
-         * kms calculation
-         * NOTE - Need a better way to handle z-score data to sqllite
-         */
-        String berats = pc.getDetails().get("history_berat")!= null ? pc.getDetails().get("history_berat") :"0";
-        String[] history_berat = berats.split(",");
-        double berat_sebelum = Double.parseDouble((history_berat.length) >=3 ? (history_berat[(history_berat.length)-3]) : "0");
-        String umurs = pc.getDetails().get("history_umur")!= null ? pc.getDetails().get("history_umur") :"0";
-        String[] history_umur = umurs.split(",");
-
-        boolean jenisKelamin = pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")? true:false;
-        String tanggal_lahir = pc.getDetails().get("tanggalLahir") != null ? pc.getDetails().get("tanggalLahir") : "0";
-        double berat= Double.parseDouble(pc.getDetails().get("beratBadan") != null ? pc.getDetails().get("beratBadan") : "0");
-        double beraSebelum = Double.parseDouble((history_berat.length) >=2 ? (history_berat[(history_berat.length)-2]) : "0");
-        String tanggal = (pc.getDetails().get("tanggalPenimbangan") != null ? pc.getDetails().get("tanggalPenimbangan") : "0");
-
-        String tanggal_sebelumnya = (pc.getDetails().get("kunjunganSebelumnya") != null ? pc.getDetails().get("kunjunganSebelumnya") : "0");
-
-        if(pc.getDetails().get("tanggalPenimbangan") != null) {
-            //KMS calculation
-            KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir, berat, beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
-            KmsCalc calculator = new KmsCalc();
-            int satu = Integer.parseInt(history_umur[history_umur.length-2]);
-            int dua = Integer.parseInt(history_umur[history_umur.length-1]);
-            String duat = history_berat.length <= 2  ? "-" : dua - satu >=2 ? "-" :calculator.cek2T(data);
-            String status = history_berat.length <= 2 ? "Baru" : calculator.cekWeightStatus(data);
-            HashMap <String,String> kms = new HashMap<String,String>();
-            kms.put("bgm",calculator.cekBGM(data));
-            kms.put("dua_t",duat);
-            kms.put("garis_kuning",calculator.cekBawahKuning(data));
-            kms.put("nutrition_status",status);
-            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(pc.entityId(),kms);
-        }
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
     }

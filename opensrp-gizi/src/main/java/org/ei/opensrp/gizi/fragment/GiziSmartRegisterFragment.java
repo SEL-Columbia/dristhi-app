@@ -20,6 +20,8 @@ import org.ei.opensrp.gizi.gizi.GiziSearchOption;
 import org.ei.opensrp.gizi.gizi.GiziServiceModeOption;
 import org.ei.opensrp.gizi.gizi.GiziSmartClientsProvider;
 import org.ei.opensrp.gizi.gizi.GiziSmartRegisterActivity;
+import org.ei.opensrp.gizi.gizi.KmsHandler;
+import org.ei.opensrp.gizi.gizi.ZScorehandler;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.gizi.R;
 
@@ -187,13 +189,9 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
             if(person.getDetails().get("form_ditutup")!=null && person.getDetails().get("form_ditutup").equalsIgnoreCase("yes"))
                 controller.getClients().remove(person);
         }
-        // /remove close form
-
-        //controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("mother"),
-         //       context.allBeneficiaries(), context.listCache(),
-         //       context.personObjectClientsCache(),"nama","mother");
         dialogOptionMapper = new DialogOptionMapper();
-       // context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form",new CensusEnrollmentHandler());
+        context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new ZScorehandler());
+        context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new KmsHandler());
     }
 
     @Override
