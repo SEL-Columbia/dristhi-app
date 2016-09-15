@@ -100,13 +100,18 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             return new DialogOption[]{
                 new OpenFormOption("Edit Data Peserta", "vaksinator_edit", formController),
                 new OpenFormOption("Kunjungan Imunisasi HB0", "hb0_visit", formController),
-                new OpenFormOption("Kunjungan Imunisasi BCG pol1", "bcg_pol1_visit", formController),
-                new OpenFormOption("Kunjungan Imunisasi HB1 POL2", "hb1_pol2_visit", formController),
-                new OpenFormOption("Kunjungan Imunisasi HB2 POL3", "dpt_hb2_pol3_visit", formController),
-                new OpenFormOption("Kunjungan Imunisasi HB3 POL4", "hb3_pol4_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi BCG", "bcg_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi polio 1", "polio1_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi HB1", "hb1_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi polio 2", "polio2_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi HB2", "dpt_hb2_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi polio 3", "polio3_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi HB3", "hb3_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi polio 4", "polio4_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi CAMPAK", "campak_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi DPT/HB lanjutan", "dpthb_lanjutan_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi CAMPAK lanjutan", "campak_lanjutan_visit", formController),
-                new OpenFormOption("Mutasi Data", "mutational_record", formController),
+                new OpenFormOption("Close Form", "close_form", formController),
 
 
         };
@@ -234,13 +239,18 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
     //   formNames.add("jurim_visit");
         formNames.add("vaksinator_edit");
         formNames.add("hb0_visit");
-        formNames.add("bcg_pol1_visit");
-        formNames.add("hb1_pol2_visit");
-        formNames.add("dpt_hb2_pol3_visit");
+        formNames.add("bcg_visit");
+        formNames.add("polio1_visit");
+        formNames.add("hb1_visit");
+        formNames.add("polio2_visit");
+        formNames.add("dpt_hb2_visit");
+        formNames.add("polio3_visit");
+        formNames.add("hb3_visit");
+        formNames.add("polio4_visit");
+        formNames.add("ipv_visit");
         formNames.add("campak_visit");
-        formNames.add("hb3_pol4_visit");
         formNames.add("campak_lanjutan_visit");
-        formNames.add("mutational_record");
+        formNames.add("close_form");
 //        DialogOption[] options = getEditOptions();
 //        for (int i = 0; i < options.length; i++){
 //            formNames.add(((OpenFormOption) options[i]).getFormName());
