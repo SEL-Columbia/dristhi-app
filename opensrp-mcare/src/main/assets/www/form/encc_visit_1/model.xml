@@ -1,14 +1,15 @@
 <model>
     <instance>
-        <EssentialNewbornCareChecklist1 encounter_type="Essential Newborn Care 1" id="EssentialNewbornCare1" version="201602080720">
+        <EssentialNewbornCareChecklist1 encounter_type="Essential Newborn Care 1" id="EssentialNewbornCare1" version="201609080701">
             <formhub>
                 <uuid/>
             </formhub>
             <version/>
             <changes/>
-            <start/>
-            <end/>
-            <today/>
+            <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
+            <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+            <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+            <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
             <FWENC1DATE openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <FWENC1STS openmrs_entity="concept" openmrs_entity_id="163088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <encc>
