@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.event.Listener;
 
@@ -137,8 +138,14 @@ public class NativeHomeActivity extends SecuredActivity {
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"nama_bayi","anak","nama_orang_tua", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
-       ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
+        ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
 
+        CommonPersonObjectClient person;
+        for(int i=0;i<hhcontroller.getClients().size();i++){
+            person = (CommonPersonObjectClient)hhcontroller.getClients().get(i);
+            if(person.getDetails().get("form_ditutup")!=null && person.getDetails().get("form_ditutup").equalsIgnoreCase("yes"))
+                hhcontroller.getClients().remove(person);
+        }
     }
 
     @Override
