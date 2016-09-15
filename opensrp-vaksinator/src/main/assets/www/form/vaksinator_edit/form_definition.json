@@ -12,11 +12,11 @@
         "name": "existing_location",
         "bind": "/model/instance/registrasi_vaksinator/existing_location"
       },{
-        "name": "desa",
+        "name": "village",
         "bind": "/model/instance/registrasi_vaksinator/existing_Village",
         "shouldLoadValue": true
       },{
-        "name": "village",
+        "name": "subVillage",
         "bind": "/model/instance/registrasi_vaksinator/existing_Sub-village",
         "shouldLoadValue": true
       },
@@ -50,7 +50,6 @@
         "bind": "/model/instance/registrasi_vaksinator/berat_badan_saat_lahir",
         "shouldLoadValue": true
       }
-
     ]
   }
 }
