@@ -291,7 +291,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
             FormSubmissionService formSubmissionService = context.formSubmissionService();
             formSubmissionService.updateFTSsearch(submission);
-
+            context.formSubmissionRouter().getHandlerMap().get(formName).handle(submission);
             switchToBaseFragment(formSubmission);
 
         }catch (Exception e){

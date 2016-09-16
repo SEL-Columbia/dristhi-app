@@ -56,6 +56,7 @@ import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.ei.opensrp.event.Event.FORM_SUBMITTED;
 
 public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -296,6 +297,7 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             FormSubmissionService formSubmissionService = context.formSubmissionService();
             formSubmissionService.updateFTSsearch(submission);
 
+            context.formSubmissionRouter().getHandlerMap().get(formName).handle(submission);
             switchToBaseFragment(formSubmission);
         }catch (Exception e){
             DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);

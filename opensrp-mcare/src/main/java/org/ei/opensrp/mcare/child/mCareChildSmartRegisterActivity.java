@@ -280,7 +280,7 @@ public class mCareChildSmartRegisterActivity extends SecuredNativeSmartRegisterA
 
             FormSubmissionService formSubmissionService = context.formSubmissionService();
             formSubmissionService.updateFTSsearch(submission);
-
+            context.formSubmissionRouter().getHandlerMap().get(formName).handle(submission);
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
         }catch (Exception e){

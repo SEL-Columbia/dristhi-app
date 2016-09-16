@@ -113,6 +113,9 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         }else{
             pc.setDetails(details);
         }
+        if(pc.getDetails().get("FWWOMFNAME").equalsIgnoreCase("Eisha")){
+            name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
+        }
         name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
         spousename.setText(humanize(pc.getDetails().get("FWHUSNAME") != null ? pc.getDetails().get("FWHUSNAME") : ""));
         gobhhid.setText(" "+(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):""));
@@ -136,7 +139,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         AllCommonsRepository householdrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_household");
         CommonPersonObject householdparent = householdrep.findByCaseID(pc.getDetails().get("relational_id"));
 
-        if(householdparent.getColumnmaps().get("existing_Mauzapara") != null) {
+        if (householdparent.getColumnmaps().get("existing_Mauzapara") != null) {
             String location = householdparent.getColumnmaps().get("existing_Mauzapara");
             village.setText(humanize(location));
         }
@@ -224,12 +227,12 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(pc.getDetails().get("FWANC1DATE")!=null){
             anc1text.setText("ANC1: "+pc.getDetails().get("FWANC1DATE"));
             if(!alertstate.isEmpty()){
-                if(alertstate.equalsIgnoreCase("upcoming")){
+                if (alertstate.equalsIgnoreCase("upcoming")){
 //                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     anc1tick.setImageResource(R.mipmap.doneintime);
                     anc1tick.setVisibility(View.VISIBLE);
                     anc1text.setVisibility(View.VISIBLE);
-                }else if(alertstate.equalsIgnoreCase("urgent")){
+                }else if (alertstate.equalsIgnoreCase("urgent")){
 //                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
 //                    anc1text.setText("urgent");
                     anc1tick.setImageResource(R.mipmap.notdoneintime);
@@ -298,13 +301,13 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(pc.getDetails().get("FWANC2DATE")!=null){
             anc2text.setText("ANC2: "+pc.getDetails().get("FWANC2DATE"));
             if(!alertstate.isEmpty()){
-                if(alertstate.equalsIgnoreCase("upcoming")){
+                if (alertstate.equalsIgnoreCase("upcoming")){
                     anc2tick.setImageResource(R.mipmap.doneintime);
 //                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     anc2tick.setVisibility(View.VISIBLE);
                     anc2text.setVisibility(View.VISIBLE);
 
-                }else if(alertstate.equalsIgnoreCase("urgent")){
+                }else if (alertstate.equalsIgnoreCase("urgent")){
 //                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc2tick.setImageResource(R.mipmap.notdoneintime);
                     anc2tick.setVisibility(View.VISIBLE);
@@ -367,12 +370,12 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(pc.getDetails().get("FWANC3DATE")!=null){
             anc3text.setText("ANC3: "+pc.getDetails().get("FWANC3DATE"));
             if(!alertstate.isEmpty()){
-                if(alertstate.equalsIgnoreCase("upcoming")){
+                if (alertstate.equalsIgnoreCase("upcoming")){
                     anc3tick.setImageResource(R.mipmap.doneintime);
 //                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     anc3tick.setVisibility(View.VISIBLE);
                     anc3text.setVisibility(View.VISIBLE);
-                }else if(alertstate.equalsIgnoreCase("urgent")){
+                }else if (alertstate.equalsIgnoreCase("urgent")){
                     anc3tick.setImageResource(R.mipmap.notdoneintime);
 //                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc3tick.setVisibility(View.VISIBLE);
@@ -435,12 +438,12 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(pc.getDetails().get("FWANC4DATE")!=null){
             anc4text.setText("ANC4: "+pc.getDetails().get("FWANC4DATE"));
             if(!alertstate.isEmpty()){
-                if(alertstate.equalsIgnoreCase("upcoming")){
+                if (alertstate.equalsIgnoreCase("upcoming")){
                     anc4tick.setImageResource(R.mipmap.doneintime);
 //                    anc4tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     anc4tick.setVisibility(View.VISIBLE);
                     anc4text.setVisibility(View.VISIBLE);
-                }else if(alertstate.equalsIgnoreCase("urgent")){
+                }else if (alertstate.equalsIgnoreCase("urgent")){
                     anc4tick.setImageResource(R.mipmap.notdoneintime);
 //                    anc4tick.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     anc4tick.setVisibility(View.VISIBLE);
@@ -532,7 +535,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             });
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
         }
-        if(true /* alerttextstatus.getAlertstatus().equalsIgnoreCase("upcoming") */){
+        if(alerttextstatus.getAlertstatus().equalsIgnoreCase("upcoming")){
             customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
             customFontTextView.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             customFontTextView.setOnClickListener(onClickListener);

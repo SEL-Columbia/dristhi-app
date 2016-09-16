@@ -74,7 +74,7 @@ public class FormSubmissionRouter {
         handlerMap.put(ANC_INVESTIGATIONS, ancInvestigationsHandler);
     }
 
-    @JavascriptInterface
+
     public void route(String instanceId) throws Exception {
         FormSubmission submission = formDataRepository.fetchFromSubmission(instanceId);
         FormSubmissionHandler handler = handlerMap.get(submission.formName());

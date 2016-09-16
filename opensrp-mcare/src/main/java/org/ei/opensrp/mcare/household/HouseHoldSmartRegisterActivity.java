@@ -150,7 +150,7 @@ public class HouseHoldSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
             FormSubmissionService formSubmissionService = context.formSubmissionService();
             formSubmissionService.updateFTSsearch(submission);
-
+            context.formSubmissionRouter().getHandlerMap().get(formName).handle(submission);
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
