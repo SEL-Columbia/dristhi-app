@@ -12,9 +12,11 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteQueryBuilder;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.repository.DrishtiRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,14 +30,19 @@ import static org.apache.commons.lang3.StringUtils.repeat;
 public class CommonRepository extends DrishtiRepository {
     private static final String TAG = "CommonRepository";
     private String common_SQL = "CREATE TABLE common(id VARCHAR PRIMARY KEY,details VARCHAR)";
+    private String common_ID_INDEX_SQL =  "CREATE INDEX common_id_index ON common(id COLLATE NOCASE) ;";
+    private String common_Relational_ID_INDEX_SQL = null;
     public static final String ID_COLUMN = "id";
     public static final String Relational_ID = "relationalid";
     public static final String Relational_Underscore_ID = "relational_id";
     public static final String DETAILS_COLUMN = "details";
-    public String TABLE_NAME = "common";
-    public String[] common_TABLE_COLUMNS = new String[]{ID_COLUMN, Relational_ID, DETAILS_COLUMN};
-    public String[] additionalcolumns;
+    public static final String IS_CLOSED_COLUMN = "is_closed";
 
+    public String TABLE_NAME = "common";
+    public  String[] common_TABLE_COLUMNS = new String[]{ID_COLUMN,Relational_ID,DETAILS_COLUMN,IS_CLOSED_COLUMN};
+    public final int initialColumnCount = common_TABLE_COLUMNS.length;
+    public String [] additionalcolumns;
+    private CommonFtsObject commonFtsObject;
     public CommonRepository(String tablename, String[] columns) {
         super();
         additionalcolumns = columns;
@@ -52,12 +59,26 @@ public class CommonRepository extends DrishtiRepository {
                 common_SQL = common_SQL + columns[i] + " VARCHAR ";
             }
         }
-        common_SQL = common_SQL + ")";
+        common_SQL = common_SQL +")";
+        common_ID_INDEX_SQL = "CREATE INDEX " + TABLE_NAME + "_" + ID_COLUMN + "_index ON " + TABLE_NAME + "(" + ID_COLUMN + " COLLATE NOCASE);";
+        common_Relational_ID_INDEX_SQL = "CREATE INDEX " + TABLE_NAME + "_" + Relational_ID + "_index ON " + TABLE_NAME + "(" + Relational_ID + " COLLATE NOCASE);";
+
+    }
+
+    public CommonRepository(CommonFtsObject commonFtsObject, String tablename, String[] columns) {
+        this(tablename, columns);
+        this.commonFtsObject = commonFtsObject;
     }
 
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(common_SQL);
+        if(StringUtils.isNotBlank(common_ID_INDEX_SQL)) {
+            database.execSQL(common_ID_INDEX_SQL);
+        }
+        if(StringUtils.isNotBlank(common_Relational_ID_INDEX_SQL)) {
+            database.execSQL(common_Relational_ID_INDEX_SQL);
+        }
     }
 
     public void add(CommonPersonObject common) {
@@ -167,11 +188,12 @@ public class CommonRepository extends DrishtiRepository {
         while (!cursor.isAfterLast()) {
             int columncount = cursor.getColumnCount();
             HashMap<String, String> columns = new HashMap<String, String>();
-            for (int i = 3; i < columncount; i++) {
-                columns.put(additionalcolumns[i - 3], cursor.getString(i));
+            for (int i = initialColumnCount; i < columncount; i++) {
+                columns.put(additionalcolumns[i - initialColumnCount], cursor.getString(i));
             }
             CommonPersonObject common = new CommonPersonObject(cursor.getString(0), cursor.getString(1), new Gson().<Map<String, String>>fromJson(cursor.getString(2), new TypeToken<Map<String, String>>() {
             }.getType()), TABLE_NAME);
+            common.setClosed(cursor.getShort(cursor.getColumnIndex(IS_CLOSED_COLUMN)));
             common.setColumnmaps(columns);
 
             commons.add(common);
@@ -226,6 +248,7 @@ public class CommonRepository extends DrishtiRepository {
                     columns.put(cursor.getColumnName(i), String.valueOf(cursor.getInt(i)));
                 }
                 CommonPersonObject common = new CommonPersonObject("1", "0", null, tableName);
+                common.setClosed((short) 0);
                 common.setColumnmaps(columns);
 
                 commons.add(common);
@@ -256,11 +279,12 @@ public class CommonRepository extends DrishtiRepository {
             while (!cursor.isAfterLast()) {
                 int columncount = cursor.getColumnCount();
                 HashMap<String, String> columns = new HashMap<String, String>();
-                for (int i = 3; i < columncount; i++) {
-                    columns.put(additionalcolumns[i - 3], cursor.getString(i));
+                for (int i = initialColumnCount; i < columncount; i++) {
+                    columns.put(additionalcolumns[i - initialColumnCount], cursor.getString(i));
                 }
                 CommonPersonObject common = new CommonPersonObject("1", "0", new Gson().<Map<String, String>>fromJson(cursor.getString(cursor.getColumnIndex("details")), new TypeToken<Map<String, String>>() {
                 }.getType()), tableName);
+                common.setClosed((short) 0);
                 common.setColumnmaps(columns);
 
                 commons.add(common);
@@ -282,12 +306,11 @@ public class CommonRepository extends DrishtiRepository {
 
         return cursor;
     }
-
-    public Cursor RawCustomQueryForAdapter(String query) {
+    public Cursor RawCustomQueryForAdapter(String query){
         Log.i(getClass().getName(), query);
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(query, null);
-        return cursor;
+          return cursor;
     }
 
     public CommonPersonObject readAllcommonforCursorAdapter(Cursor cursor) {
@@ -378,7 +401,7 @@ public class CommonRepository extends DrishtiRepository {
      * Closes a case with the given baseEntityId
      * @param baseEntityId
      */
-    public void closeCase(String baseEntityId, String tableName){
+    public void closeCase(String baseEntityId, String tableName) {
         try {
             StringBuilder sql = new StringBuilder().append("UPDATE ")
                     .append(tableName)
@@ -387,8 +410,213 @@ public class CommonRepository extends DrishtiRepository {
                     .append("'");
             SQLiteDatabase db = masterRepository.getWritableDatabase();
             db.execSQL(sql.toString());
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public  ArrayList<HashMap<String, String>> rawQuery(String sql){
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(sql, null);
+        ArrayList<HashMap<String, String>> maplist = new ArrayList<HashMap<String, String>>();
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                for(int i=0; i<cursor.getColumnCount();i++)
+                {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
+
+                maplist.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        // return contact list
+        return maplist;
+    }
+
+
+    public ContentValues populateSearchValues(String caseId){
+        CommonPersonObject commonPersonObject = findByCaseID(caseId);
+        if (commonPersonObject == null) {
+            return null;
+        }
+
+        if(commonFtsObject == null){
+            return null;
+        }
+
+        try {
+            ContentValues searchValues = new ContentValues();
+
+            List<String> additionalColumns = new ArrayList<String>(Arrays.asList(this.additionalcolumns));
+            List<String> ftsSearchColumns = new ArrayList<String>();
+
+            // Update Search Fields
+            String[] ftsSearchFields =  commonFtsObject.getSearchFields(TABLE_NAME);
+            for(String ftsSearchField: ftsSearchFields){
+                String ftsSearchValue = getSearchFieldValue(commonPersonObject, ftsSearchField);
+                String ftsSearchColumn = withSub(ftsSearchValue);
+                ftsSearchColumns.add(ftsSearchColumn);
+            }
+
+            String phraseSeparator = " | ";
+            String phrase = StringUtils.join(ftsSearchColumns, phraseSeparator);
+
+            searchValues.put(CommonFtsObject.phraseColumn, phrase);
+
+            // Update Main Condition Fields
+            String[] ftsMainConditionFields = commonFtsObject.getMainConditions(TABLE_NAME);
+            if(ftsMainConditionFields != null)
+                for(String ftsMainConditionField: ftsMainConditionFields){
+                    String value = null;
+                    if(ftsMainConditionField.equals("details")){
+                        Map<String, String> details = commonPersonObject.getDetails();
+                        if(details != null && !details.isEmpty()) {
+                            value = new Gson().toJson(details);
+                        }
+                    } else {
+                        value = getSearchFieldValue(commonPersonObject, ftsMainConditionField);
+                    }
+
+                    searchValues.put(ftsMainConditionField, value);
+                }
+
+            // Update Sort Fields
+            String[] ftsSortFields =  commonFtsObject.getSortFields(TABLE_NAME);
+            if(ftsSearchFields != null)
+                for(String ftsSortField: ftsSortFields){
+                    String ftsSortValue = getSearchFieldValue(commonPersonObject, ftsSortField);
+                    searchValues.put(ftsSortField, ftsSortValue);
+                }
+
+            // Update Common Fields
+            searchValues.put(CommonFtsObject.idColumn, caseId);
+
+            if(additionalColumns.contains(Relational_Underscore_ID)){
+                searchValues.put(CommonFtsObject.relationalIdColumn, commonPersonObject.getColumnmaps().get(Relational_Underscore_ID));
+            } else if(commonPersonObject.getRelationalId() != null){
+                searchValues.put(CommonFtsObject.relationalIdColumn, commonPersonObject.getRelationalId());
+            }
+
+            searchValues.put(CommonFtsObject.isClosedColumnName, (short) commonPersonObject.getClosed());
+            return searchValues;
+        }catch (Exception e){
+            Log.e("", "Update Search Error", e);
+            return null;
+        }
+    }
+
+    public boolean searchBatchInserts(Map<String, ContentValues> searchMap){
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+
+        database.beginTransaction();
+        String ftsSearchTable = CommonFtsObject.searchTableName(TABLE_NAME);
+        try {
+            for(String caseId: searchMap.keySet()) {
+                ContentValues searchValues = searchMap.get(caseId);
+                ArrayList<HashMap<String, String>> mapList = rawQuery(String.format("SELECT " + CommonFtsObject.idColumn + " FROM " + ftsSearchTable + " WHERE  " + CommonFtsObject.idColumn + " = '%s'", caseId));
+                if (!mapList.isEmpty()) {
+                    database.update(ftsSearchTable, searchValues, CommonFtsObject.idColumn + " = ?", new String[]{caseId});
+
+                } else {
+                    database.insert(ftsSearchTable, null, searchValues);
+                }
+            }
+            database.setTransactionSuccessful();
+            database.endTransaction();
+
+            return true;
+        }catch (Exception e){
+            Log.e("", "Update Search Error", e);
+            database.endTransaction();
+            return false;
+        }
+    }
+
+    public List<String> findSearchIds(String query){
+
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+
+        Log.i(getClass().getName(), query);
+        Cursor cursor = database.rawQuery(query, null);
+
+        List<String> ids  = new ArrayList<String>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                String id = cursor.getString(0);
+                ids.add(id);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return ids;
+    }
+
+    public boolean isFts(){
+        return commonFtsObject != null;
+    }
+
+    private String withSub(String s){
+        String withSub = "";
+        if(s == null || s.isEmpty()){
+            return withSub;
+        }
+        int length = s.length();
+
+        for (int i = 0; i < length; i++) {
+            withSub += s.substring(i) + " ";
+        }
+        return withSub.trim();
+    }
+
+    private String getSearchFieldValue(CommonPersonObject commonPersonObject, String field){
+        if(field.equals(ID_COLUMN) || field.equals(Relational_ID) || field.equals(IS_CLOSED_COLUMN)){
+            return null;
+        }
+
+        List<String> additionalColumns = new ArrayList<String>(Arrays.asList(this.additionalcolumns));
+        if(!additionalColumns.contains(field)) {
+            if(additionalColumns.contains(Relational_Underscore_ID)) { // Try getting the field by the relational_id
+                return getFieldValueFromRelatedTable(field, commonPersonObject.getColumnmaps().get(Relational_Underscore_ID));
+            }else if(commonPersonObject.getRelationalId() != null) { // Try getting the field by the relationalId
+                return getFieldValueFromRelatedTable(field, commonPersonObject.getRelationalId());
+            }else { // Try getting the field by the case Id
+                return getFieldValueFromRelatedTable(field, commonPersonObject.getCaseId());
+            }
+        } else
+            return commonPersonObject.getColumnmaps().get(field);
+    }
+
+    private String getFieldValueFromRelatedTable(String fieldName, String relationId){
+        for(String table: commonFtsObject.getTables()){
+            if(!table.equals(TABLE_NAME) && isFieldExist(table, fieldName)){
+                ArrayList<HashMap<String, String>> list = rawQuery(" SELECT " + fieldName + " FROM "+ table + " WHERE " + ID_COLUMN + " = '"+ relationId+"'");
+                if(!list.isEmpty()){
+                    return list.get(0).get(fieldName);
+                }
+            }
+        }
+        return null;
+    }
+    private boolean isFieldExist(String tableName, String fieldName)
+    {
+        boolean isExist = false;
+        SQLiteDatabase db = masterRepository.getWritableDatabase();
+        Cursor cursor = db.rawQuery("PRAGMA table_info(" + tableName + ")", null);
+        int index = cursor.getColumnIndex("name");
+        if (cursor.moveToFirst()) {
+            do {
+                String columnName = cursor.getString(index);
+                if(columnName.equals(fieldName)){
+                    isExist = true;
+                    break;
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return isExist;
     }
 }

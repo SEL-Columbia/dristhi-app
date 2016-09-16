@@ -301,8 +301,11 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                         if(cs.toString().equalsIgnoreCase("")){
                             filters = "";
                         }else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters = cs.toString();
                         }
+                        joinTable = "";
+                        mainCondition = " is_closed=0 AND FWWOMFNAME not null and FWWOMFNAME != \"\" ";
                         return null;
                     }
 
@@ -365,13 +368,13 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     }
     public String ancMainSelectWithJoins(){
         return "Select ec_elco.id as _id, ec_mcaremother.relationalid,ec_elco.FWWOMNID,ec_elco.FWWOMBID, ec_elco.FWWOMFNAME, ec_elco.FWWOMMAUZA_PARA as mauza, ec_mcaremother.FWPSRLMP, ec_elco.JiVitAHHID, ec_elco.GOBHHID \n" +
-                "from ec_mcaremother, ec_elco \n" +
+                "from ec_mcaremother Left Join ec_elco on  ec_mcaremother.id = ec_elco.id \n" +
                 "Left Join alerts on alerts.caseID = ec_mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
                 "Left Join alerts as alerts2 on alerts2.caseID = ec_mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
     public String ancMainCountWithJoins(){
         return "Select Count(*) \n" +
-                "from ec_mcaremother, ec_elco \n" +
+                "from ec_mcaremother Left Join ec_elco on  ec_mcaremother.id = ec_elco.id\n" +
                 "Left Join alerts on alerts.caseID = ec_mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
                 "Left Join alerts as alerts2 on alerts2.caseID = ec_mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
@@ -380,17 +383,24 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             CommonRepository commonRepository = context.commonrepository("ec_mcaremother");
             setTablename("ec_mcaremother");
             SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
-            countSelect = countqueryBUilder.mainCondition(" ec_elco.base_entity_id=ec_mcaremother.base_entity_id and ec_mcaremother.is_closed=0 AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
+            mainCondition = " is_closed=0 AND FWWOMFNAME not null and FWWOMFNAME != \"\" ";
+            joinTable = "";
+            countSelect = countqueryBUilder.mainCondition(" ec_mcaremother.is_closed=0 AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
             CountExecute();
 
 
             SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
-            mainSelect = queryBUilder.mainCondition(" ec_elco.base_entity_id=ec_mcaremother.base_entity_id and ec_mcaremother.is_closed=0 AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
-
-            queryBUilder.addCondition(filters);
+            mainSelect = queryBUilder.mainCondition(" ec_mcaremother.is_closed=0 AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
             Sortqueries = sortByFWWOMFNAME();
-            currentquery  = queryBUilder.orderbyCondition(Sortqueries);
-            databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+
+            currentlimit = 20;
+            currentoffset = 0;
+            String query = filterandSortQuery(commonRepository, queryBUilder);
+
+//          queryBUilder.addCondition(filters);
+//          currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+//          databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+            databaseCursor = commonRepository.RawCustomQueryForAdapter(query);
             mCareANCSmartClientsProvider hhscp = new mCareANCSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
             clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, hhscp, new CommonRepository("ec_mcaremother",new String []{"FWWOMFNAME","FWWOMNID","mauza","FWPSRLMP","JiVitAHHID","GOBHHID"}));
             clientsView.setAdapter(clientAdapter);
@@ -408,7 +418,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         return " FWSORTVALUE ASC";
     }
     private String sortByFWWOMFNAME(){
-        return " ec_elco.FWWOMFNAME ASC";
+        return " FWWOMFNAME ASC";
     }
     private String sortByJiVitAHHID(){
         return " JiVitAHHID ASC";

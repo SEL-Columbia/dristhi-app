@@ -106,4 +106,9 @@ public class FormSubmission {
     public void setFormInstance(FormInstance formInstance) {
         this.formInstance = formInstance;
     }
+
+    public FormData getForm(){
+        return formInstance.form();
+    }
+
 }

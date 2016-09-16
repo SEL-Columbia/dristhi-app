@@ -312,9 +312,12 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
                         if(cs.toString().equalsIgnoreCase("")){
                             filters = "";
                         }else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters = cs.toString();
                         }
-                            return null;
+                        joinTable = "";
+                        mainCondition = " FWWOMFNAME is not null and is_closed=0 ";
+                        return null;
                     }
 
                     @Override
@@ -361,8 +364,11 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
                         if (cs.toString().equalsIgnoreCase("")) {
                             filters = "";
                         } else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters = cs.toString();
                         }
+                        joinTable = "";
+                        mainCondition = " FWWOMFNAME is not null and is_closed=0 ";
                         return null;
                     }
 
@@ -413,24 +419,32 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         setTablename("ec_elco");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ec_elco");
-        countqueryBUilder.joinwithALerts("ec_elco","ELCO PSRF");
-        countSelect = countqueryBUilder.mainCondition(" FWWOMFNAME is not null and is_closed=0 ");
+        countqueryBUilder.joinwithALerts("ec_elco", "ELCO PSRF");
+        mainCondition = " FWWOMFNAME is not null and is_closed=0 ";
+        countSelect = countqueryBUilder.mainCondition(mainCondition);
 
         CountExecute();
 
 
+
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ec_elco", new String[]{"relationalid", "relational_id", "details", "FWWOMFNAME", "JiVitAHHID", "GOBHHID","base_entity_id","FWHUSNAME","FWWOMAGE","FWWOMNID","FWWOMBID","FWPSRDATE","FWPSRPREGSTS"});
+        queryBUilder.SelectInitiateMainTable("ec_elco", new String[]{"relationalid", "relational_id", "details", "FWWOMFNAME", "JiVitAHHID", "GOBHHID", "base_entity_id", "FWHUSNAME", "FWWOMAGE", "FWWOMNID", "FWWOMBID", "FWPSRDATE", "FWPSRPREGSTS"});
         queryBUilder.joinwithALerts("ec_elco","ELCO PSRF");
-        mainSelect = queryBUilder.mainCondition(" FWWOMFNAME != \"\"  and FWWOMFNAME is not null and is_closed=0 ");
-        queryBUilder.addCondition(filters);
+        mainSelect = queryBUilder.mainCondition(mainCondition);
         Sortqueries = sortByAlertmethod();
-        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+
+        currentlimit = 20;
+        currentoffset = 0;
+        String query  = filterandSortQuery(commonRepository, queryBUilder);
+//        queryBUilder.addCondition(filters);
+//        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
 
 //        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+
+//        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+        databaseCursor = commonRepository.RawCustomQueryForAdapter(query);
         EcElcoSmartClientsProvider hhscp = new EcElcoSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
         clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, hhscp, new CommonRepository("ec_elco",new String []{ "FWWOMFNAME","relational_id", "JiVitAHHID", "GOBHHID"}));
         clientsView.setAdapter(clientAdapter);

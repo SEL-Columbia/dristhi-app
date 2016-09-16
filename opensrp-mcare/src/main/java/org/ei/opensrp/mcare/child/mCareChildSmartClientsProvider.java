@@ -108,7 +108,7 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
         fathername.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
         mothername.setText(humanize(pc.getDetails().get("FWBNFCHILDNAME") != null ? pc.getDetails().get("FWBNFCHILDNAME"):""));
         gobhhid.setText(" " + (pc.getColumnmaps().get("GOBHHID") != null ? pc.getColumnmaps().get("GOBHHID") : ""));
-        jivitahhid.setText(pc.getColumnmaps().get("FWJIVHHID") != null ? pc.getColumnmaps().get("FWJIVHHID") : "");
+        jivitahhid.setText(pc.getColumnmaps().get("JiVitAHHID") != null ? pc.getColumnmaps().get("JiVitAHHID") : "");
         village.setText(humanize((pc.getDetails().get("existing_Mauzapara") != null ? pc.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
         age.setText(""+age(pc)+ "d ");
         dateofbirth.setText(pc.getDetails().get("FWBNFDOB")!=null?pc.getDetails().get("FWBNFDOB"):"");

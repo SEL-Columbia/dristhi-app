@@ -1,7 +1,6 @@
 package org.ei.opensrp.mcare.fragment;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.widget.ImageButton;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
@@ -22,15 +20,10 @@ import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragm
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
-import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
-import org.ei.opensrp.mcare.anc.mCareANCServiceModeOption;
-import org.ei.opensrp.mcare.anc.mCareANCSmartClientsProvider;
 import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
-import org.ei.opensrp.mcare.anc.mCareAncDetailActivity;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
-import org.ei.opensrp.mcare.elco.ElcoSearchOption;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.pnc.mCarePNCServiceModeOption;
 import org.ei.opensrp.mcare.pnc.mCarePNCSmartClientsProvider;
@@ -52,7 +45,6 @@ import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
-import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.EntityUtils;
 import org.opensrp.api.util.LocationTree;
@@ -293,9 +285,12 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //
                         if (cs.toString().equalsIgnoreCase("")) {
                             filters = "";
-                        } else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                        }else {
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters = cs.toString();
                         }
+                        joinTable = "";
+                        mainCondition = " is_closed=0 ";
                         return null;
                     }
 
@@ -359,20 +354,18 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
     public String pncMainSelectWithJoins() {
         //FWSORTVALUE
-        return "Select  pnc.id as _id,pnc.base_entity_id as relationalid,pnc.details,elco.FWWOMFNAME,hh.existing_Mauzapara as mauza,elco.FWWOMNID,elco.FWWOMBID,hh.FWJIVHHID as JiVitAHHID,hh.FWGOBHHID as GOBHHID,FWBNFSTS,FWBNFDTOO \n" +
-                " from ec_pnc pnc\n" +
-                " Left Join alerts on alerts.caseID = pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'   \n" +
-                " Left Join ec_elco elco on elco.id=pnc.base_entity_id   \n" +
-                " Left Join ec_household hh on hh.id=elco.relational_id\n" +
-                " where pnc.is_closed=0";
+        return "Select  ec_pnc.id as _id,ec_pnc.base_entity_id as relationalid,ec_pnc.details,elco.FWWOMFNAME,hh.existing_Mauzapara as mauza,elco.FWWOMNID,elco.FWWOMBID,elco.JiVitAHHID,elco.GOBHHID,FWBNFSTS,FWBNFDTOO \n" +
+                " from ec_pnc \n" +
+                " Left Join alerts on alerts.caseID = ec_pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'   \n" +
+                " Left Join ec_elco elco on elco.id=ec_pnc.base_entity_id   \n" +
+                " Left Join ec_household hh on hh.id=elco.relational_id ";
     }
 
     public String pncMainCountWithJoins() {
         return "Select Count(*) \n" +
-                "from ec_pnc pnc\n" +
-                "Left Join alerts on alerts.caseID = pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'  \n" +
-                "Left Join ec_elco elco on elco.id=pnc.base_entity_id \n" +
-                "where pnc.is_closed=0 ";
+                "from ec_pnc \n" +
+                "Left Join alerts on alerts.caseID = ec_pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'  \n" +
+                "Left Join ec_elco elco on elco.id=ec_pnc.base_entity_id ";
     }
 
     public void initializeQueries() {
@@ -380,18 +373,23 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             CommonRepository commonRepository = context.commonrepository("ec_pnc");
             setTablename("ec_pnc");
             SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(pncMainCountWithJoins());
-            countSelect = countqueryBUilder.mainCondition("");
+            mainCondition = "  is_closed=0 ";
+            countSelect = countqueryBUilder.mainCondition(mainCondition);
             CountExecute();
 
 
             SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(pncMainSelectWithJoins());
-            mainSelect = queryBUilder.mainCondition("");
-
-            queryBUilder.addCondition(filters);
+            mainSelect = queryBUilder.mainCondition(mainCondition);
             Sortqueries = sortByAlertmethod();
-            currentquery = queryBUilder.orderbyCondition(Sortqueries);
-            databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
 
+            currentlimit = 20;
+            currentoffset = 0;
+            String query = filterandSortQuery(commonRepository, queryBUilder);
+
+//          queryBUilder.addCondition(filters);
+//          currentquery = queryBUilder.orderbyCondition(Sortqueries);
+//          databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+            databaseCursor = commonRepository.RawCustomQueryForAdapter(query);
             mCarePNCSmartClientsProvider hhscp = new mCarePNCSmartClientsProvider(getActivity(), clientActionHandler, context.alertService());
             clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, hhscp, new CommonRepository("ec_pnc", new String[]{"FWWOMFNAME", "FWPSRLMP", "JiVitAHHID", "GOBHHID", "FWBNFSTS", "FWBNFDTOO"}));
             clientsView.setAdapter(clientAdapter);
@@ -424,15 +422,15 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     }
 
     private String sortByFWWOMFNAME() {
-        return " elco.FWWOMFNAME ASC";
+        return " FWWOMFNAME ASC";
     }
 
     private String sortByJiVitAHHID() {
-        return " hh.FWJIVHHID ASC";
+        return " JiVitAHHID ASC";
     }
 
     private String sortByGOBHHID() {
-        return " hh.FWGOBHHID ASC";
+        return " GOBHHID ASC";
     }
 
     private String sortByDateOfOutcome() {
@@ -440,10 +438,10 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     }
 
     private String sortByOutcomeStatis() {
-        return " CASE WHEN pnc.FWBNFSTS = '3' THEN '1'"
+        return " CASE WHEN ec_pnc.FWBNFSTS = '3' THEN '1'"
                 +
-                "WHEN pnc.FWBNFSTS = '4' THEN '2'\n" +
-                "Else pnc.FWBNFSTS END ASC";
+                "WHEN ec_pnc.FWBNFSTS = '4' THEN '2'\n" +
+                "Else ec_pnc.FWBNFSTS END ASC";
     }
 
     private String filterStringForPNCRV1() {

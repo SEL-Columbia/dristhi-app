@@ -284,8 +284,11 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
                         if(cs.toString().equalsIgnoreCase("")){
                             filters = "";
                         }else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters =  cs.toString();
                         }
+                        joinTable = "";
+                        mainCondition = " FWBNFGEN is not null ";
                         return null;
                     }
 
@@ -323,7 +326,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new CursorCommonObjectFilterOption(name,"and mcaremother.details like '%"+name +"%'"));
+                dialogOptionslist.add(new CursorCommonObjectFilterOption(name,"and ec_mcaremother.details like '%"+name +"%'"));
 
             }
         }
@@ -354,20 +357,27 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
         CommonRepository commonRepository = context.commonrepository("ec_mcarechild");
         setTablename("ec_mcarechild");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(childMainCountWithJoins());
-        countSelect = countqueryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
+        countSelect = countqueryBUilder.mainCondition(" FWBNFGEN is not null ");
+        mainCondition = " FWBNFGEN is not null ";
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(childMainSelectWithJoins());
         mainSelect = queryBUilder.mainCondition(" FWBNFGEN is not null ");
-        queryBUilder.addCondition(filters);
-        Sortqueries = sortBySortValue();
-        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+        Sortqueries = sortByFWWOMFNAME();
+
+        currentlimit = 20;
+        currentoffset = 0;
+        String query = filterandSortQuery(commonRepository, queryBUilder);
+
+//        queryBUilder.addCondition(filters);
+//        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
 
 //        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
 //        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+//        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
+        databaseCursor = commonRepository.RawCustomQueryForAdapter(query);
         mCareChildSmartClientsProvider hhscp = new mCareChildSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
         clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, hhscp, new CommonRepository("ec_mcarechild",new String []{ "FWBNFGEN"}));
         clientsView.setAdapter(clientAdapter);
@@ -387,32 +397,32 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
                 "Else alerts.status END ASC";
     }
     public String childMainSelectWithJoins(){
-        return "Select mcarechild.id as _id,mcarechild.relational_id as relationalid,mcarechild.details,mcarechild.FWBNFGEN \n" +
-                " ,elco.FWWOMFNAME,elco.GOBHHID,elco.FWHUSNAME,elco.FWWOMBID,hh.FWJIVHHID,hh.existing_mauzapara,elco.FWWOMAGE,pnc.FWBNFDTOO,elco.FWWOMNID from ec_mcarechild mcarechild\n" +
-                "Left Join ec_elco elco on mcarechild.relational_id = elco.id \n" +
+        return "Select ec_mcarechild.id as _id,ec_mcarechild.relational_id as relationalid,ec_mcarechild.details,ec_mcarechild.FWBNFGEN \n" +
+                " ,elco.FWWOMFNAME,elco.GOBHHID,elco.FWHUSNAME,elco.FWWOMBID,elco.JiVitAHHID,hh.existing_mauzapara,elco.FWWOMAGE,pnc.FWBNFDTOO,elco.FWWOMNID from ec_mcarechild \n" +
+                "Left Join ec_elco elco on ec_mcarechild.relational_id = elco.id \n" +
                 "Left Join ec_household hh on hh.id=elco.relational_id "+
-                "Left Join ec_pnc pnc on pnc.id=mcarechild.relational_id "+
-                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and mcarechild.is_closed=0";
+                "Left Join ec_pnc pnc on pnc.id=ec_mcarechild.relational_id "+
+                "Left Join alerts on alerts.caseID = ec_mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and ec_mcarechild.is_closed=0";
     }
     public String childMainCountWithJoins() {
         return "Select Count(*) \n" +
-                "from ec_mcarechild mcarechild\n" +
-                "Left Join ec_elco elco on mcarechild.relational_id = elco.id \n" +
-                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and mcarechild.is_closed=0";
+                "from ec_mcarechild \n" +
+                "Left Join ec_elco elco on ec_mcarechild.relational_id = elco.id \n" +
+                "Left Join alerts on alerts.caseID = ec_mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and ec_mcarechild.is_closed=0";
     }
 
     private String sortBySortValue(){
        // return " FWSORTVALUE ASC";
-        return " mcarechild.id ASC";
+        return " ec_mcarechild.id ASC";
     }
     private String sortByFWWOMFNAME(){
         return " FWWOMFNAME ASC";
     }
     private String sortByJiVitAHHID(){
-        return " hh.FWJIVHHID ASC";
+        return " JiVitAHHID ASC";
     }
     private String sortByGOBHHID(){
-        return " elco.GOBHHID ASC";
+        return " GOBHHID ASC";
     }
     private String filterStringForENCCRV1(){
         return "and alerts.visitCode LIKE '%enccrv_1%'";

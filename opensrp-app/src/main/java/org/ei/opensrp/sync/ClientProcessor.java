@@ -10,6 +10,7 @@ import android.util.Log;
 
 import org.ei.drishti.dto.AlertStatus;
 import org.ei.opensrp.clientandeventmodel.DateUtil;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.repository.AlertRepository;
@@ -247,6 +248,7 @@ public class ClientProcessor {
                 String tableName = closesCase.getString(i);
                 CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
                 cr.closeCase(baseEntityId, tableName);
+                updateFTSsearch(tableName, baseEntityId);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -376,6 +378,7 @@ public class ClientProcessor {
 
                 // save the values to db
                 Long id = executeInsertStatement(contentValues, clientType);
+                updateFTSsearch(clientType, baseEntityId);
                 Long timestamp = getEventDate(event.get("eventDate"));
                 addContentValuesToDetailsTable(contentValues, timestamp);
                 updateClientDetailsTable(event, client);
@@ -727,4 +730,12 @@ public class ClientProcessor {
         }
         return new Date().getTime();
     }
+
+    private void updateFTSsearch(String tableName, String entityId) {
+        AllCommonsRepository allCommonsRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(tableName);
+        if (allCommonsRepository != null) {
+            allCommonsRepository.updateSearch(entityId);
+        }
+    }
+
 }
