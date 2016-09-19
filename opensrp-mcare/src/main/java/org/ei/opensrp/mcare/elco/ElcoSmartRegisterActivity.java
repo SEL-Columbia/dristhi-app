@@ -413,20 +413,6 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     public DisplayFormFragment getDisplayFormFragmentAtIndex(int index) {
         return  (DisplayFormFragment)findFragmentByPosition(index);
     }
-    public void addChildToList(ArrayList<DialogOption> dialogOptionslist,Map<String,TreeNode<String, Location>> locationMap){
-        for(Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
-
-            if(entry.getValue().getChildren() != null) {
-                addChildToList(dialogOptionslist,entry.getValue().getChildren());
-
-            }else{
-                StringUtil.humanize(entry.getValue().getLabel());
-                String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"existing_Mauzapara",name));
-
-            }
-        }
-    }
 
     public void retrieveAndSaveUnsubmittedFormData(){
         if (currentActivityIsShowingForm()){

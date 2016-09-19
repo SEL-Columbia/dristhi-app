@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.dto.AlertStatus;
 import org.ei.opensrp.clientandeventmodel.DateUtil;
 import org.ei.opensrp.commonregistry.AllCommonsRepository;
@@ -18,6 +19,7 @@ import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.util.AssetHandler;
+import org.ei.opensrp.util.StringUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -555,6 +557,10 @@ public class ClientProcessor {
         JSONArray humanReadableValues = jsonDocObject.has("humanReadableValues") ? jsonDocObject.getJSONArray("humanReadableValues") : null;
 
         if (jsonDocObject == null || humanReadableValues == null || humanReadableValues.length() == 0) {
+            String humanReadableValue  = org.ei.opensrp.Context.getInstance().customHumanReadableConceptResponse().get(value);
+            if(StringUtils.isNotBlank(humanReadableValue)){
+                return humanReadableValue;
+            }
             return value;
         }
 

@@ -109,13 +109,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         CommonPersonObject householdobject = householdrep.findByCaseID(pc.entityId());
 
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
-        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.entityId());
-
-        if(pc.getDetails() != null) {
-            pc.getDetails().putAll(details);
-        }else{
-            pc.setDetails(details);
-        }
+        detailsRepository.updateDetails(pc);
 
         if(pc.getDetails().get("profilepic")!=null){
             if((pc.getDetails().get("gender")!=null?pc.getDetails().get("gender"):"").equalsIgnoreCase("2")) {
@@ -251,13 +245,19 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
     private boolean getIfHouseholdHasElcoWithoutNationalID(CommonPersonObjectClient pc) {
         boolean toreturn = true;
 
-        AllCommonsRepository allElcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
+        AllCommonsRepository allElcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_elco");
+
         ArrayList<String> list = new ArrayList<String>();
         list.add((pc.entityId()));
-        List<CommonPersonObject> allchildelco = allElcoRepository.findByRelationalIDs(list);
+        List<CommonPersonObject> allchildelco = allElcoRepository.findByRelational_IDs(list);
         for (int i = 0; i < allchildelco.size(); i++) {
-            if (allchildelco.get(i).getDetails().get("FWELIGIBLE").equalsIgnoreCase("1")) {
-                if (allchildelco.get(i).getDetails().get("nidImage") == null) {
+            CommonPersonObject commonPersonObject = allchildelco.get(i);
+            DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+            detailsRepository.updateDetails(commonPersonObject);
+
+            String eligible = commonPersonObject.getDetails().get("FWELIGIBLE2");
+            if (eligible != null && eligible.equalsIgnoreCase("1")) {
+                if (commonPersonObject.getDetails().get("nidImage") == null) {
                     toreturn = false;
                 }
             }

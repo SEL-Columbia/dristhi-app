@@ -198,6 +198,8 @@ public class Context {
 
     private CommonFtsObject commonFtsObject;
 
+    private Map<String, String> customHumanReadableConceptResponse;
+
     ///////////////////common bindtypes///////////////
     public static ArrayList<CommonRepositoryInformationHolder> bindtypes;
     /////////////////////////////////////////////////
@@ -1001,6 +1003,23 @@ public class Context {
 
     public CommonFtsObject commonFtsObject() {
         return commonFtsObject;
+    }
+
+    /**
+     * Linking generated concept with human readable values
+     * @param customHumanReadableConceptResponse
+     * @return
+     */
+    public Context updateCustomHumanReadableConceptResponse(Map<String, String> customHumanReadableConceptResponse) {
+        this.customHumanReadableConceptResponse = customHumanReadableConceptResponse;
+        return this;
+    }
+
+    public Map<String, String> customHumanReadableConceptResponse() {
+        if(customHumanReadableConceptResponse == null){
+            return new HashMap<>();
+        }
+        return customHumanReadableConceptResponse;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

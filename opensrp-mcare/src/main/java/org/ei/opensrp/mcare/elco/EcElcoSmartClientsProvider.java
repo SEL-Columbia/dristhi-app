@@ -98,13 +98,7 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
 
         final CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
-        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.entityId());
-
-        if(pc.getDetails() != null) {
-            pc.getDetails().putAll(details);
-        }else{
-            pc.setDetails(details);
-        }
+        detailsRepository.updateDetails(pc);
 
         if (pc.getDetails().get("profilepic") != null) {
             HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.womanimageload);

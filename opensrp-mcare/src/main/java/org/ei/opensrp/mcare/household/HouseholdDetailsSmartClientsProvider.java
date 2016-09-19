@@ -81,7 +81,7 @@ public class HouseholdDetailsSmartClientsProvider implements SmartRegisterClient
         ViewGroup itemView = viewGroup;
 
         CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
-        if(pc.getDetails().get("FWELIGIBLE") != null && pc.getDetails().get("FWELIGIBLE").equalsIgnoreCase("1")) {
+        if(pc.getDetails().get("FWELIGIBLE2") != null && pc.getDetails().get("FWELIGIBLE2").equalsIgnoreCase("1")) {
 
             itemView = (ViewGroup) inflater().inflate(R.layout.household_inhabitants_register_clients, null);
             TextView name = (TextView) itemView.findViewById(R.id.name);

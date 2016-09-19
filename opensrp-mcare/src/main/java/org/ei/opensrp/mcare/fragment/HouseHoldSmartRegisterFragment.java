@@ -479,7 +479,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new HHMauzaCommonObjectFilterOption(name,"existing_Mauzapara", name));
+                dialogOptionslist.add(new HHMauzaCommonObjectFilterOption(name, "location_name", name, "ec_household"));
 
             }
         }
@@ -514,7 +514,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 //                    getClientsAdapter()
 //                            .refreshList(new noNIDFilter(), getCurrentServiceModeOption(),
 //                                    getCurrentSearchFilter(), getCurrentSortOption());
-                    filters = "and ec_household.id in ( Select ec_elco.relational_id from ec_elco, ec_details where ec_elco.base_entity_id = ec_details.base_entity_id and key not Like '%nidImage%' and (key = 'FWELIGIBLE' and value = '1') group by ec_elco.base_entity_id )";
+                    filters = "and ec_household.id in ( Select Distinct ec_elco.relational_id from ec_elco where base_entity_id not in (select base_entity_id from ec_details where key MATCH 'nidImage' ) and base_entity_id  in (select base_entity_id from ec_details where key MATCH 'FWELIGIBLE2' INTERSECT select base_entity_id from ec_details where value MATCH '1') group by ec_elco.base_entity_id )";
                     joinTable = "";
                     CountExecute();
                     filterandSortExecute();
@@ -555,7 +555,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         countqueryBUilder.SelectInitiateMainTableCounts("ec_household");
         countqueryBUilder.joinwithALerts("ec_household", "FW CENSUS");
         countqueryBUilder.mainCondition(" FWHOHFNAME is not null ");
-        String nidfilters = "and ec_household.id in ( Select ec_elco.relational_id from ec_elco, ec_details where  ec_elco.base_entity_id = ec_details.base_entity_id and key not Like '%nidImage%' and (key = 'FWELIGIBLE' and value = '1') group by ec_elco.base_entity_id )";
+        String nidfilters = "and ec_household.id in ( Select Distinct ec_elco.relational_id from ec_elco where base_entity_id not in (select base_entity_id from ec_details where key MATCH 'nidImage' ) and base_entity_id  in (select base_entity_id from ec_details where key MATCH 'FWELIGIBLE2' INTERSECT select base_entity_id from ec_details where value MATCH '1') group by ec_elco.base_entity_id )";
 
         countqueryBUilder.addCondition(nidfilters);
         Cursor c = commonRepository.RawCustomQueryForAdapter(countqueryBUilder.Endquery(countqueryBUilder.toString()));

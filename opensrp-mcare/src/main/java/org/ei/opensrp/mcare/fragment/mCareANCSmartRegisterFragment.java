@@ -341,7 +341,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name", name));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name", name, "ec_elco"));
 
             }
         }

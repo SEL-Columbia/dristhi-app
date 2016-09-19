@@ -10,12 +10,15 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonFtsObject;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
+import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.DrishtiApplication;
 import org.ei.opensrp.view.receiver.SyncBroadcastReceiver;
 
 import static org.ei.opensrp.util.Log.logInfo;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by koros on 1/22/16.
@@ -42,6 +45,7 @@ public class McareApplication extends DrishtiApplication {
         context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());
         context.updateCommonFtsObject(createCommonFtsObject());
+        context.updateCustomHumanReadableConceptResponse(getHumanReadableConceptResponse());
         applyUserLanguagePreference();
         cleanUpSyncState();
     }
@@ -172,6 +176,17 @@ public class McareApplication extends DrishtiApplication {
             commonFtsObject.updateMainConditions(ftsTable, getFtsMainConditions(ftsTable));
         }
         return commonFtsObject;
+    }
+
+    /**
+     * Map linking generated Concepts with human readable values
+     * @return
+     */
+    private Map<String, String> getHumanReadableConceptResponse(){
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "1");
+        map.put("1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "0");
+        return map;
     }
 
 }

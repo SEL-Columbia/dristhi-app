@@ -326,7 +326,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new CursorCommonObjectFilterOption(name,"and ec_mcaremother.details like '%"+name +"%'"));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name",name,"ec_elco"));
 
             }
         }
@@ -398,16 +398,16 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
     }
     public String childMainSelectWithJoins(){
         return "Select ec_mcarechild.id as _id,ec_mcarechild.relational_id as relationalid,ec_mcarechild.details,ec_mcarechild.FWBNFGEN \n" +
-                " ,elco.FWWOMFNAME,elco.GOBHHID,elco.FWHUSNAME,elco.FWWOMBID,elco.JiVitAHHID,hh.existing_mauzapara,elco.FWWOMAGE,pnc.FWBNFDTOO,elco.FWWOMNID from ec_mcarechild \n" +
-                "Left Join ec_elco elco on ec_mcarechild.relational_id = elco.id \n" +
-                "Left Join ec_household hh on hh.id=elco.relational_id "+
+                " ,ec_elco.FWWOMFNAME,ec_elco.GOBHHID,ec_elco.FWHUSNAME,ec_elco.FWWOMBID,ec_elco.JiVitAHHID,hh.existing_mauzapara,ec_elco.FWWOMAGE,pnc.FWBNFDTOO,ec_elco.FWWOMNID from ec_mcarechild \n" +
+                "Left Join ec_elco on ec_mcarechild.relational_id = ec_elco.id \n" +
+                "Left Join ec_household hh on hh.id=ec_elco.relational_id "+
                 "Left Join ec_pnc pnc on pnc.id=ec_mcarechild.relational_id "+
                 "Left Join alerts on alerts.caseID = ec_mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and ec_mcarechild.is_closed=0";
     }
     public String childMainCountWithJoins() {
         return "Select Count(*) \n" +
                 "from ec_mcarechild \n" +
-                "Left Join ec_elco elco on ec_mcarechild.relational_id = elco.id \n" +
+                "Left Join ec_elco on ec_mcarechild.relational_id = ec_elco.id \n" +
                 "Left Join alerts on alerts.caseID = ec_mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and ec_mcarechild.is_closed=0";
     }
 

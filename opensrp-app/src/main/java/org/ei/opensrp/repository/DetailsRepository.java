@@ -5,6 +5,10 @@ import android.database.Cursor;
 import android.provider.BaseColumns;
 
 import net.sqlcipher.database.SQLiteDatabase;
+
+import org.ei.opensrp.commonregistry.CommonPersonObject;
+import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,17 +21,13 @@ import java.util.Map;
  */
 public class DetailsRepository extends DrishtiRepository {
 
-    private static final String SQL = "CREATE TABLE ec_details(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, base_entity_id VARCHAR, key VARCHAR, value VARCHAR, event_date datetime)";
+    private static final String SQL = "CREATE virtual table ec_details using fts4 (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, base_entity_id VARCHAR, key VARCHAR, value VARCHAR, event_date datetime)";
     private static final String TABLE_NAME = "ec_details";
-    private static final String BASE_ENTITY_ID_INDEX_SQL =  "CREATE INDEX ec_details_base_entity_id_index ON ec_details(base_entity_id COLLATE NOCASE);";
-    private static final String KEY_INDEX_SQL =  "CREATE INDEX ec_details_key_index ON ec_details(key);";
 
 
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(SQL);
-        database.execSQL(BASE_ENTITY_ID_INDEX_SQL);
-        database.execSQL(KEY_INDEX_SQL);
     }
 
     public void add(String baseEntityId, String key, String value, Long timestamp) {
@@ -55,7 +55,7 @@ public class DetailsRepository extends DrishtiRepository {
         Cursor mCursor = null;
         try {
             SQLiteDatabase db = masterRepository.getWritableDatabase();
-            mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id = '" + baseEntityId + "' AND key ='" + key + "' LIMIT 1", null);
+            mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id = '" + baseEntityId + "' AND key MATCH '" + key + "' ", null);
             if (mCursor != null && mCursor.moveToFirst()){
                 if(value != null){
                     String currentValue = mCursor.getString(mCursor.getColumnIndex("value"));
@@ -78,7 +78,7 @@ public class DetailsRepository extends DrishtiRepository {
         Map<String, String> clientDetails = new HashMap<String, String>();
         try {
             SQLiteDatabase db = masterRepository.getReadableDatabase();
-            cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id='"+baseEntityId+"'", null);
+            cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id = '"+baseEntityId+"'", null);
             if (cursor != null && cursor.moveToFirst()){
                 do {
                     String key = cursor.getString(cursor.getColumnIndex("key"));
@@ -95,6 +95,28 @@ public class DetailsRepository extends DrishtiRepository {
         return clientDetails;
     }
 
+    public Map<String, String> updateDetails(CommonPersonObjectClient commonPersonObjectClient){
+        Map<String, String> details =  getAllDetailsForClient(commonPersonObjectClient.entityId());
+        details.putAll(commonPersonObjectClient.getColumnmaps());
 
+        if(commonPersonObjectClient.getDetails() != null) {
+            commonPersonObjectClient.getDetails().putAll(details);
+        }else{
+            commonPersonObjectClient.setDetails(details);
+        }
+        return details;
+    }
+
+    public Map<String, String> updateDetails(CommonPersonObject commonPersonObject){
+        Map<String, String> details =  getAllDetailsForClient(commonPersonObject.getCaseId());
+        details.putAll(commonPersonObject.getColumnmaps());
+
+        if(commonPersonObject.getDetails() != null) {
+            commonPersonObject.getDetails().putAll(details);
+        }else{
+            commonPersonObject.setDetails(details);
+        }
+        return details;
+    }
 
 }

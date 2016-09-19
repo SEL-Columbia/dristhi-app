@@ -195,7 +195,7 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
         view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
-        ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
+        ImageButton startregister = (ImageButton) view.findViewById(org.ei.opensrp.R.id.register_client);
         startregister.setVisibility(View.GONE);
         clientsView.setVisibility(View.VISIBLE);
         clientsProgressView.setVisibility(View.INVISIBLE);
@@ -217,8 +217,8 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    mCarePncDetailActivity.ancclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(getActivity(),mCarePncDetailActivity.class);
+                    mCarePncDetailActivity.ancclient = (CommonPersonObjectClient) view.getTag();
+                    Intent intent = new Intent(getActivity(), mCarePncDetailActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.pnc_reminder_due_date:
@@ -285,7 +285,7 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //
                         if (cs.toString().equalsIgnoreCase("")) {
                             filters = "";
-                        }else {
+                        } else {
                             //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
                             filters = cs.toString();
                         }
@@ -323,7 +323,7 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             } else {
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name, "location_name", name));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name, "location_name", name, "ec_elco"));
 
             }
         }
@@ -354,18 +354,18 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
     public String pncMainSelectWithJoins() {
         //FWSORTVALUE
-        return "Select  ec_pnc.id as _id,ec_pnc.base_entity_id as relationalid,ec_pnc.details,elco.FWWOMFNAME,hh.existing_Mauzapara as mauza,elco.FWWOMNID,elco.FWWOMBID,elco.JiVitAHHID,elco.GOBHHID,FWBNFSTS,FWBNFDTOO \n" +
+        return "Select  ec_pnc.id as _id,ec_pnc.base_entity_id as relationalid,ec_pnc.details,ec_elco.FWWOMFNAME,hh.existing_Mauzapara as mauza,ec_elco.FWWOMNID,ec_elco.FWWOMBID,ec_elco.JiVitAHHID,ec_elco.GOBHHID,FWBNFSTS,FWBNFDTOO \n" +
                 " from ec_pnc \n" +
                 " Left Join alerts on alerts.caseID = ec_pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'   \n" +
-                " Left Join ec_elco elco on elco.id=ec_pnc.base_entity_id   \n" +
-                " Left Join ec_household hh on hh.id=elco.relational_id ";
+                " Left Join ec_elco on ec_elco.id=ec_pnc.base_entity_id   \n" +
+                " Left Join ec_household hh on hh.id=ec_elco.relational_id ";
     }
 
     public String pncMainCountWithJoins() {
         return "Select Count(*) \n" +
                 "from ec_pnc \n" +
                 "Left Join alerts on alerts.caseID = ec_pnc.id and alerts.scheduleName = 'Post Natal Care Reminder Visit'  \n" +
-                "Left Join ec_elco elco on elco.id=ec_pnc.base_entity_id ";
+                "Left Join ec_elco on ec_elco.id=ec_pnc.base_entity_id ";
     }
 
     public void initializeQueries() {
@@ -374,12 +374,12 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             setTablename("ec_pnc");
             SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(pncMainCountWithJoins());
             mainCondition = "  is_closed=0 ";
-            countSelect = countqueryBUilder.mainCondition(mainCondition);
+            countSelect = countqueryBUilder.mainCondition(" ec_pnc.is_closed=0 ");
             CountExecute();
 
 
             SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(pncMainSelectWithJoins());
-            mainSelect = queryBUilder.mainCondition(mainCondition);
+            mainSelect = queryBUilder.mainCondition(" ec_pnc.is_closed=0 ");
             Sortqueries = sortByAlertmethod();
 
             currentlimit = 20;
@@ -396,11 +396,9 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             updateSearchView();
             refresh();
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
 
         }
 

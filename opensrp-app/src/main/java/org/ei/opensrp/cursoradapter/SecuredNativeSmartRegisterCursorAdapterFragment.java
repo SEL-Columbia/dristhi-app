@@ -498,7 +498,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     public String filterandSortQuery(CommonRepository commonRepository, SmartRegisterQueryBuilder sqb){
 
         String query = "";
-        if(commonRepository.isFts() && (filters != null && !StringUtils.containsIgnoreCase(filters, "like"))){
+        if(isValidFilterForFts()){
             String sql = sqb.searchQueryFts(tablename, joinTable, mainCondition, filters, Sortqueries, currentlimit, currentoffset);
             List<String> ids = commonRepository.findSearchIds(sql);
             currentquery = sqb.toStringFts(ids, tablename + "." + CommonRepository.ID_COLUMN, Sortqueries);
@@ -517,7 +517,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(countSelect);
         CommonRepository commonRepository = context.commonrepository(tablename);
         String query = "";
-        if(commonRepository.isFts() && (filters != null && !StringUtils.containsIgnoreCase(filters, "like"))){
+        if(isValidFilterForFts()){
             String sql = sqb.countQueryFts(tablename, joinTable, mainCondition, filters);
             List<String> ids = commonRepository.findSearchIds(sql);
             currentquery = sqb.toStringFts(ids, tablename + "." + CommonRepository.ID_COLUMN);
@@ -534,6 +534,15 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         currentlimit = 20;
         currentoffset = 0;
         c.close();
+    }
+
+    private boolean isValidFilterForFts(){
+        return filters != null
+                && !StringUtils.containsIgnoreCase(filters, "like")
+                && !StringUtils.contains(filters, "=")
+                && !StringUtils.contains(filters, ">")
+                && !StringUtils.contains(filters, "<")
+                && !StringUtils.startsWithIgnoreCase(filters.trim(), "and ");
     }
 
     public class NavBarActionsHandler implements View.OnClickListener {

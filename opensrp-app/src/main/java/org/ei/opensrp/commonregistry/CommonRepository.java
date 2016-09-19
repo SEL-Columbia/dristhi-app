@@ -14,6 +14,7 @@ import net.sqlcipher.database.SQLiteQueryBuilder;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.repository.DrishtiRepository;
+import org.ei.opensrp.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,11 +33,14 @@ public class CommonRepository extends DrishtiRepository {
     private String common_SQL = "CREATE TABLE common(id VARCHAR PRIMARY KEY,details VARCHAR)";
     private String common_ID_INDEX_SQL =  "CREATE INDEX common_id_index ON common(id COLLATE NOCASE) ;";
     private String common_Relational_ID_INDEX_SQL = null;
+    private String common_Relational_Underscore_ID_INDEX_SQL = null;
+    private String common_Base_Entity_ID_INDEX_SQL = null;
     public static final String ID_COLUMN = "id";
     public static final String Relational_ID = "relationalid";
     public static final String Relational_Underscore_ID = "relational_id";
     public static final String DETAILS_COLUMN = "details";
     public static final String IS_CLOSED_COLUMN = "is_closed";
+    public static final String BASE_ENTITY_ID_COLUMN = "base_entity_id";
 
     public String TABLE_NAME = "common";
     public  String[] common_TABLE_COLUMNS = new String[]{ID_COLUMN,Relational_ID,DETAILS_COLUMN,IS_CLOSED_COLUMN};
@@ -63,6 +67,14 @@ public class CommonRepository extends DrishtiRepository {
         common_ID_INDEX_SQL = "CREATE INDEX " + TABLE_NAME + "_" + ID_COLUMN + "_index ON " + TABLE_NAME + "(" + ID_COLUMN + " COLLATE NOCASE);";
         common_Relational_ID_INDEX_SQL = "CREATE INDEX " + TABLE_NAME + "_" + Relational_ID + "_index ON " + TABLE_NAME + "(" + Relational_ID + " COLLATE NOCASE);";
 
+        List<String> additionalColumns = new ArrayList<String>(Arrays.asList(this.additionalcolumns));
+        if(additionalColumns.contains(Relational_Underscore_ID)) {
+            common_Relational_Underscore_ID_INDEX_SQL = "CREATE INDEX " + TABLE_NAME + "_" + Relational_Underscore_ID + "_index ON " + TABLE_NAME + "(" + Relational_Underscore_ID + " COLLATE NOCASE);";
+        }
+        if(additionalColumns.contains(BASE_ENTITY_ID_COLUMN)){
+            common_Base_Entity_ID_INDEX_SQL = "CREATE INDEX " + TABLE_NAME + "_" + BASE_ENTITY_ID_COLUMN + "_index ON " + TABLE_NAME + "(" + BASE_ENTITY_ID_COLUMN + " COLLATE NOCASE);";
+        }
+
     }
 
     public CommonRepository(CommonFtsObject commonFtsObject, String tablename, String[] columns) {
@@ -78,6 +90,12 @@ public class CommonRepository extends DrishtiRepository {
         }
         if(StringUtils.isNotBlank(common_Relational_ID_INDEX_SQL)) {
             database.execSQL(common_Relational_ID_INDEX_SQL);
+        }
+        if(StringUtils.isNotBlank(common_Relational_Underscore_ID_INDEX_SQL)){
+            database.execSQL(common_Relational_Underscore_ID_INDEX_SQL);
+        }
+        if(StringUtils.isNotBlank(common_Base_Entity_ID_INDEX_SQL)){
+            database.execSQL(common_Base_Entity_ID_INDEX_SQL);
         }
     }
 
