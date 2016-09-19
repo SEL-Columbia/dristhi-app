@@ -69,15 +69,6 @@ public class ZScorehandler implements FormSubmissionHandler {
                 z_score.put("wasting", "-");
                 org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityID, z_score);
             }
-
-
-
         }
-        else{
-
-
-
-        }
-
     }
 }
