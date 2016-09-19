@@ -225,7 +225,7 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
         TextView risk_IMS;
         TextView follow_up_due;
         TextView kb_mulai;
-        public ImageView hr_badge;
+         ImageView hr_badge;
     }
 
 

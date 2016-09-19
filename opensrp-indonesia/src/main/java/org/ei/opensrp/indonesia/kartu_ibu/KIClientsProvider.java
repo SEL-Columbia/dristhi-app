@@ -214,8 +214,6 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
             }
         }
 
-     //   viewHolder.anc_status_layout.setText(pc.getColumnmaps().get("ibu.type")!=null?pc.getColumnmaps().get("ibu.type"):"--");
-
         convertView.setLayoutParams(clientViewLayoutParams);
       //  return convertView;
     }
@@ -273,10 +271,10 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         TextView edd_due;
         TextView children_age_left;
         TextView anc_status_layout;
-        public TextView visit_status;
-        public TextView date_status;
-        public TextView children_age_right;
-        public ImageView hr_badge;
+         TextView visit_status;
+         TextView date_status;
+         TextView children_age_right;
+         ImageView hr_badge;
     }
 
 

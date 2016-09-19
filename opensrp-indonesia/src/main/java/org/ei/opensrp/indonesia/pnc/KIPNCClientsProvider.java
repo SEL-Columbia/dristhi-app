@@ -257,25 +257,25 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         TextView status_date;
         TextView alert_status;
         RelativeLayout status_layout;
-        public TextView tanggal_kunjungan_anc;
-        public TextView anc_number;
-        public TextView kunjugan_ke;
-        public ImageView hr_badge  ;
-        public ImageView hp_badge;
+         TextView tanggal_kunjungan_anc;
+         TextView anc_number;
+         TextView kunjugan_ke;
+         ImageView hr_badge  ;
+         ImageView hp_badge;
          ImageView hrpp_badge;
-        public ImageView bpl_badge;
-        public ImageView hrp_badge;
+         ImageView bpl_badge;
+         ImageView hrp_badge;
         ImageView img_hrl_badge;
 
 
-        public TextView komplikasi;
-        public TextView kondisi_ibu;
-        public TextView KF;
-        public TextView vit_a;
+         TextView komplikasi;
+         TextView kondisi_ibu;
+         TextView KF;
+         TextView vit_a;
         TextView pnc_id;
-        public TextView td_sistolik;
-        public TextView td_diastolik;
-        public TextView td_suhu;
+         TextView td_sistolik;
+         TextView td_diastolik;
+         TextView td_suhu;
     }
 
 

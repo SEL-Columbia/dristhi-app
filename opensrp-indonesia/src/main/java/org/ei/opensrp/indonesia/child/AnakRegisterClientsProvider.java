@@ -280,43 +280,43 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         TextView status_date;
         TextView alert_status;
         RelativeLayout status_layout;
-        public TextView tanggal_kunjungan_anc;
-        public TextView anc_number;
-        public TextView kunjugan_ke;
-        public ImageView hr_badge  ;
-        public ImageView hp_badge;
+         TextView tanggal_kunjungan_anc;
+         TextView anc_number;
+         TextView kunjugan_ke;
+         ImageView hr_badge  ;
+         ImageView hp_badge;
          ImageView hrpp_badge;
-        public ImageView bpl_badge;
-        public ImageView hrp_badge;
+         ImageView bpl_badge;
+         ImageView hrp_badge;
         ImageView img_hrl_badge;
 
 
-        public TextView komplikasi;
-        public TextView kondisi_ibu;
-        public TextView kondisi_anak_1;
-        public TextView kondisi_anak_2;
+         TextView komplikasi;
+         TextView kondisi_ibu;
+         TextView kondisi_anak_1;
+         TextView kondisi_anak_2;
         TextView pnc_id;
-        public TextView td_sistolik;
-        public TextView td_diastolik;
-        public TextView td_suhu;
-        public TextView childs_age;
-        public TextView mother_name;
+         TextView td_sistolik;
+         TextView td_diastolik;
+         TextView td_suhu;
+         TextView childs_age;
+         TextView mother_name;
         TextView childs_name;
-        public TextView anak_register_dob;
-        public TextView tempat_lahir;
-        public TextView berat_lahir;
-        public TextView tipe_lahir;
-        public ImageView hb0_no;
-        public ImageView hb0_yes;
-        public ImageView pol1_no;
-        public ImageView pol1_yes;
-        public ImageView pol2_no;
-        public ImageView pol2_yes;
-        public ImageView pol3_no;
-        public ImageView pol3_yes;
+         TextView anak_register_dob;
+         TextView tempat_lahir;
+         TextView berat_lahir;
+         TextView tipe_lahir;
+         ImageView hb0_no;
+         ImageView hb0_yes;
+         ImageView pol1_no;
+         ImageView pol1_yes;
+         ImageView pol2_no;
+         ImageView pol2_yes;
+         ImageView pol3_no;
+         ImageView pol3_yes;
 
-        public TextView berat_badan;
-        public TextView tinggi;
+         TextView berat_badan;
+         TextView tinggi;
     }
 
 

@@ -187,8 +187,6 @@ public class ANCDetailActivity extends Activity {
         }
 
 
-       // Date currentDateandTime = new Date();
-       // today.setText(" "+currentDateandTime);
        
         nama.setText("Nama : "+ (ibuparent.getColumnmaps().get("namalengkap") != null ? ibuparent.getColumnmaps().get("namalengkap") : "-"));
         nik.setText("NIK : "+ (ibuparent.getDetails().get("nik") != null ? ibuparent.getDetails().get("nik") : "-"));
@@ -216,32 +214,7 @@ public class ANCDetailActivity extends Activity {
             risk4.setText("Riwayat Diabetes ");
         }
 
-/*
 
-        village.setText( (ancclient.getDetails().get("desa") != null ? ancclient.getDetails().get("desa") : "-"));
-        subvillage.setText( (ancclient.getDetails().get("dusun") != null ? ancclient.getDetails().get("dusun") : "-"));
-        age.setText((ancclient.getDetails().get("umur") != null ? ancclient.getDetails().get("umur") : "-"));
-        alamat.setText((ancclient.getDetails().get("alamatDomisili") != null ? ancclient.getDetails().get("alamatDomisili") : "-"));
-        education.setText((ancclient.getDetails().get("pendidikan") != null ? ancclient.getDetails().get("pendidikan") : "-"));
-        religion.setText((ancclient.getDetails().get("agama") != null ? ancclient.getDetails().get("agama") : "-"));
-        job.setText((ancclient.getDetails().get("pekerjaan") != null ? ancclient.getDetails().get("pekerjaan") : "-"));
-        gakin.setText((ancclient.getDetails().get("gakinTidak") != null ? ancclient.getDetails().get("gakinTidak") : "-"));
-        blood_type.setText((ancclient.getDetails().get("golonganDarah") != null ? ancclient.getDetails().get("golonganDarah") : "-"));
-        asuransi.setText((ancclient.getDetails().get("jamkesmas") != null ? ancclient.getDetails().get("jamkesmas") : "-"));
-
-
-
-        kiview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                bindobject = "kartu_ibu";
-                entityid = ancclient.entityId();
-                dispatchTakePictureIntent(kiview);
-
-            }
-        });
- */
     }
 
    

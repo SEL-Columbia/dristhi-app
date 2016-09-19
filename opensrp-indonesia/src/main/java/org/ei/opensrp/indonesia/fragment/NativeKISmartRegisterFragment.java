@@ -298,9 +298,11 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
             if(option.name().equalsIgnoreCase(getString(R.string.str_register_anc_form)) ) {
                 CommonPersonObjectClient pc = KIDetailActivity.kiclient;
-                if(pc.getColumnmaps().get("ibu.type").equals("anc") || pc.getColumnmaps().get("ibu.type").equals("pnc")) {
-                    Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered), Toast.LENGTH_SHORT).show();
-                    return;
+                if(pc.getColumnmaps().get("ibu.type")!= null) {
+                    if (pc.getColumnmaps().get("ibu.type").equals("anc") || pc.getColumnmaps().get("ibu.type").equals("pnc")) {
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
             }
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
