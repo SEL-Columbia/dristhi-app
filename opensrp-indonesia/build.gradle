@@ -1,17 +1,27 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:1.2.3"
         classpath 'org.apache.commons:commons-lang3:3.3.2'
         classpath 'org.robolectric:robolectric-gradle-plugin:1.1.0'
+        classpath 'io.fabric.tools:gradle:1.+'
     }
 }
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':opensrp-app')
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.3@aar') {
+                transitive = true;
+            }
 }
 android {
     compileSdkVersion androidCompileSdkVersion
@@ -22,8 +32,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 21
 
-        versionCode 4
-        versionName "4.1"
+        versionCode 5
+        versionName "5.01"
 
         multiDexEnabled true
     }

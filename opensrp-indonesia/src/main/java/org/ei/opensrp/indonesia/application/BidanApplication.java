@@ -7,6 +7,7 @@ import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.indonesia.LoginActivity;
+import org.ei.opensrp.indonesia.lib.ErrorReportingFacade;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
 import org.ei.opensrp.view.activity.DrishtiApplication;
@@ -25,6 +26,7 @@ public class BidanApplication extends DrishtiApplication {
         //  ACRA.init(this);
 
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
+        ErrorReportingFacade.initErrorHandler(getApplicationContext());
         FlurryFacade.init(this);
         context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());
