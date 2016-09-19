@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <Kunjungan_Gizi_NewStructure-mapped_O encounter_type="Kunjungan Gizi" id="kunjungan_gizi_new" version="201609150614">
+    <Kunjungan_Gizi_NewStructure-mapped encounter_type="Kunjungan Gizi" id="kunjungan_gizi_new" version="201609151007">
       <formhub>
         <uuid/>
       </formhub>
@@ -57,12 +57,12 @@
       <ae openmrs_entity="concept" openmrs_entity_id="5632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <vitA/>
       <waktuVitA openmrs_entity="concept" openmrs_entity_id="160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <kms openmrs_entity="concept"/>
+      <jenisVitA/>
       <obatcacing openmrs_entity="concept"/>
       <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
       <meta>
         <instanceID/>
       </meta>
-    </Kunjungan_Gizi_NewStructure-mapped_O>
+    </Kunjungan_Gizi_NewStructure-mapped>
   </instance>
 </model>

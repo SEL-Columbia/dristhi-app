@@ -55,8 +55,7 @@
       },
       {
         "name": "posyandu",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_sub-Village",
-        "shouldLoadValue": true
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/posyandu",
       },
       {
         "name": "desa_manual",

@@ -71,6 +71,7 @@
                 android:text="Medium Text"
                 android:id="@+id/txt_child_gender"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
     </LinearLayout>
