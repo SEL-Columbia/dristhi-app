@@ -12,6 +12,7 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.event.Listener;
 
+import org.ei.opensrp.gizi.gizi.FlurryFacade;
 import org.ei.opensrp.gizi.gizi.KmsHandler;
 import org.ei.opensrp.gizi.gizi.ZScorehandler;
 import org.ei.opensrp.service.PendingFormSubmissionService;
@@ -80,6 +81,7 @@ public class NativeHomeActivity extends SecuredActivity {
     @Override
     protected void onCreation() {
         //home dashboard
+        FlurryFacade.logEvent("Creating_home_dashboard_on_home_activity");
         setContentView(R.layout.smart_registers_gizi_home);
         navigationController = new GiziNavigationController(this,anmController);
         setupViews();
@@ -184,6 +186,7 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     public void updateFromServer() {
+        FlurryFacade.logEvent("click_update_from_server");
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(),
                 new SyncProgressIndicator(), context.allFormVersionSyncService());

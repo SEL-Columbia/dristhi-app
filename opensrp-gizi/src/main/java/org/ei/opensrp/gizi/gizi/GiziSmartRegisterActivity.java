@@ -57,6 +57,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         ButterKnife.bind(this);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        FlurryFacade.logEvent("Gizi_dashboard");
 
         formNames = this.buildFormNameList();
         mBaseFragment = new GiziSmartRegisterFragment();

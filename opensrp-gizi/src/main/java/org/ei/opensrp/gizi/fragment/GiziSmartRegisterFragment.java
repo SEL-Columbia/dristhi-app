@@ -16,6 +16,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.gizi.LoginActivity;
 import org.ei.opensrp.gizi.gizi.ChildDetailActivity;
 import org.ei.opensrp.gizi.gizi.CommonObjectFilterOption;
+import org.ei.opensrp.gizi.gizi.FlurryFacade;
 import org.ei.opensrp.gizi.gizi.GiziSearchOption;
 import org.ei.opensrp.gizi.gizi.GiziServiceModeOption;
 import org.ei.opensrp.gizi.gizi.GiziSmartClientsProvider;
@@ -115,7 +116,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
             public DialogOption[] filterOptions() {
 
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
-
+                FlurryFacade.logEvent("gizi_filter_option_clicked");
                 dialogOptionslist.add(new AllClientsFilter());
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
@@ -138,6 +139,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
             @Override
             public DialogOption[] sortingOptions() {
+                FlurryFacade.logEvent("Gizi_sorting_option_clicked");
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "namaBayi", getResources().getString(R.string.child_alphabetical_sort)),
@@ -192,6 +194,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
         dialogOptionMapper = new DialogOptionMapper();
         context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new ZScorehandler());
         context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new KmsHandler());
+
     }
 
     @Override
@@ -213,6 +216,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
         if (prev != null) {
             ft.remove(prev);
         }
+        FlurryFacade.logEvent("click_start_registration_on_gizi");
         ft.addToBackStack(null);
         GiziLocationSelectorDialogFragment
                 .newInstance((GiziSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "registrasi_gizi")
@@ -224,6 +228,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
+                    FlurryFacade.logEvent("click_detail_view_on_gizi");
                     ChildDetailActivity.childclient = (CommonPersonObjectClient)view.getTag();
                     Intent intent = new Intent(getActivity(),ChildDetailActivity.class);
                     startActivity(intent);
@@ -232,6 +237,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
                 //untuk follow up button
                 case R.id.btn_edit:
+                    FlurryFacade.logEvent("click_edit_button_on_gizi");
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
             }
