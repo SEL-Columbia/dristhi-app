@@ -2,7 +2,7 @@
   "form_data_definition_version": "2",
   "form": {
     "bind_type": "anak",
-    "default_bind_path": "/model/instance/Registrasi_Gizi-NewStructure-map/",
+    "default_bind_path": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/",
     "fields": [
       {
         "name": "id",
@@ -10,73 +10,73 @@
       },
       {
         "name": "desa",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Village",
         "shouldLoadValue": true
       },
       {
         "name": "provinsi",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Province",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Province",
         "shouldLoadValue": true
       },
       {
         "name": "kecamatan",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Sub-district",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Sub-district",
         "shouldLoadValue": true
       },
       {
         "name": "kabupaten",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_District",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_District",
         "shouldLoadValue": true
       },
       {
         "name": "dusun",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Sub-village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Sub-village",
         "shouldLoadValue": true
       },
       {
         "name": "posyandu",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/posyandu",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/posyandu",
         "shouldLoadValue": true
       },
       {
         "name": "desa_manual",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/desa",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/desa",
         "shouldLoadValue": true
       },
       {
         "name": "posyandu",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/desa",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/desa",
         "shouldLoadValue": true
       },
       {
         "name": "nik",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nik",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/nik",
         "shouldLoadValue": true
       },
       {
         "name": "namaBayi",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_anak",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/nama_anak",
         "shouldLoadValue": true
       },
       {
         "name": "namaOrtu",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_orang_tua",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/nama_orang_tua",
         "shouldLoadValue": true
       },
       {
         "name": "tanggalLahir",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/tanggal_lahir",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/tanggal_lahir",
         "shouldLoadValue": true
 
       },
       {
         "name": "jenisKelamin",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/jenis_kelamin",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin",
         "shouldLoadValue": true
       },
       {
         "name": "reg_date",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/today"
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/today"
       }
     ]
   }
