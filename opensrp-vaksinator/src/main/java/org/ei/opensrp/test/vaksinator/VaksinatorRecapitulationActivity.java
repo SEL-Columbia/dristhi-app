@@ -69,7 +69,7 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                         updateView(var,clients,var.monthSpinner.getSelectedItemPosition()+1,Integer.parseInt(var.yearSpinner.getSelectedItem().toString()));
-                        var.setSubtitle(((org.ei.opensrp.commonregistry.CommonPersonObjectClient)clients.get(4)).getDetails().get("desa"));
+                        var.setSubtitle(((org.ei.opensrp.commonregistry.CommonPersonObjectClient)clients.get(0)).getDetails().get("desa"));
                     }
 
                     @Override
@@ -113,30 +113,34 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
         return counter;
     }
 
+    private boolean islarger(String date, String dividerDate){
+        return true;
+    }
+
     private void updateView(LocalVariable var, org.ei.opensrp.commonregistry.CommonPersonObjectClients clients, int month, int year){
         int counter = 0;
 
         String keyword = Integer.toString(year)+"-"+(month>9 ? Integer.toString(month):"0"+Integer.toString(month));
 
-        counter = recapitulation(clients,"hb1_kurang_7_hari",keyword);
+        counter = recapitulation(clients,"hb0_kurang_7_hari",keyword);
         var.hbUnder7.setText(Integer.toString(counter));
-        counter = recapitulation(clients,"hb1_lebih_7_hari",keyword);
+        counter = recapitulation(clients,"hb0_lebih_7_hari",keyword);
         var.hbOver7.setText(Integer.toString(counter));
         counter = recapitulation(clients,"bcg_pol_1",keyword);
-        var.bcg.setText(Integer.toString(counter));
-        var.pol1.setText(Integer.toString(counter));
+        var.bcg.setText(Integer.toString(recapitulation(clients,"bcg",keyword)));
+        var.pol1.setText(Integer.toString(recapitulation(clients,"polio1",keyword)));
         counter = recapitulation(clients,"dpt_1_pol_2",keyword);
-        var.hb1.setText(Integer.toString(counter));
-        var.pol2.setText(Integer.toString(counter));
+        var.hb1.setText(Integer.toString(recapitulation(clients,"dpt_hb1",keyword)));
+        var.pol2.setText(Integer.toString(recapitulation(clients, "polio2", keyword)));
         counter = recapitulation(clients,"dpt_2_pol_3",keyword);
-        var.hb2.setText(Integer.toString(counter));
-        var.pol3.setText(Integer.toString(counter));
+        var.hb2.setText(Integer.toString(recapitulation(clients,"dpt_hb2",keyword)));
+        var.pol3.setText(Integer.toString(recapitulation(clients,"polio3",keyword)));
         counter = recapitulation(clients,"dpt_3_pol_4_ipv",keyword);
-        var.hb3.setText(Integer.toString(counter));
-        var.pol4.setText(Integer.toString(counter));
-        var.ipv.setText(Integer.toString(counter));
+        var.hb3.setText(Integer.toString(recapitulation(clients,"dpt_hb3",keyword)));
+        var.pol4.setText(Integer.toString(recapitulation(clients,"polio4",keyword)));
+        var.ipv.setText(Integer.toString(recapitulation(clients,"ipv",keyword)));
         counter = recapitulation(clients,"imunisasi_campak",keyword);
-        var.measles.setText(Integer.toString(counter));
+        var.measles.setText(Integer.toString(recapitulation(clients,"imunisasi_campak",keyword)));
         counter = recapitulation(clients,"mutasi_meninggal_kurang_30hari",keyword);
         var.diedu30.setText(Integer.toString(counter));
         counter = recapitulation(clients,"mutasi_meninggal_lebih_30hari",keyword);

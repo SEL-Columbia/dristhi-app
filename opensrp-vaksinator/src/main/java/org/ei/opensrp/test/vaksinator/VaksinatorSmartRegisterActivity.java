@@ -51,7 +51,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
         ButterKnife.bind(this);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+        FlurryFacade.logEvent("anc_dashboard");
         formNames = this.buildFormNameList();
         mBaseFragment = new VaksinatorSmartRegisterFragment();
 
@@ -108,6 +108,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
                 new OpenFormOption("Kunjungan Imunisasi polio 3", "polio3_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi HB3", "hb3_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi polio 4", "polio4_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi IPV", "ipv_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi CAMPAK", "campak_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi DPT/HB lanjutan", "dpthb_lanjutan_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi CAMPAK lanjutan", "campak_lanjutan_visit", formController),

@@ -17,6 +17,7 @@ import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
 import org.ei.opensrp.sync.UpdateActionsTask;
 import org.ei.opensrp.test.R;
+import org.ei.opensrp.test.vaksinator.FlurryFacade;
 import org.ei.opensrp.view.activity.SecuredActivity;
 import org.ei.opensrp.view.contract.HomeContext;
 import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
@@ -77,6 +78,7 @@ public class NativeHomeActivity extends SecuredActivity {
     protected void onCreation() {
         //home dashboard
         setContentView(R.layout.smart_registers_jurim_home);
+        FlurryFacade.logEvent("vaksinator_home_dashboard");
         navigationController = new org.ei.opensrp.test.TestNavigationController(this,anmController);
         setupViews();
         initialize();
@@ -183,6 +185,7 @@ public class NativeHomeActivity extends SecuredActivity {
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(),
                 new SyncProgressIndicator(), context.allFormVersionSyncService());
+        FlurryFacade.logEvent("click_update_from_server");
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }
 

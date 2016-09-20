@@ -30,6 +30,8 @@ import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
 import org.ei.opensrp.test.R;
+import org.ei.opensrp.test.vaksinator.ErrorReportingFacade;
+import org.ei.opensrp.test.vaksinator.FlurryFacade;
 import org.ei.opensrp.util.Log;
 import org.ei.opensrp.view.BackgroundAction;
 import org.ei.opensrp.view.LockingBackgroundTask;
@@ -173,6 +175,8 @@ public class LoginActivity extends Activity {
     private void localLogin(View view, String userName, String password) {
         if (context.userService().isValidLocalLogin(userName, password)) {
             localLoginWith(userName, password);
+            ErrorReportingFacade.setUsername("", userName);
+            FlurryFacade.setUserId(userName);
         } else {
             showErrorDialog(getString(org.ei.opensrp.R.string.login_failed_dialog_message));
             view.setClickable(true);
@@ -182,6 +186,8 @@ public class LoginActivity extends Activity {
     private void remoteLogin(final View view, final String userName, final String password) {
         tryRemoteLogin(userName, password, new Listener<LoginResponse>() {
             public void onEvent(LoginResponse loginResponse) {
+                ErrorReportingFacade.setUsername("", userName);
+                FlurryFacade.setUserId(userName);
                 if (loginResponse == SUCCESS) {
                     remoteLoginWith(userName, password, loginResponse.payload());
                 } else {

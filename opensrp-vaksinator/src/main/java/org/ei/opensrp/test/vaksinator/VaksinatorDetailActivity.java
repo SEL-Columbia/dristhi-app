@@ -66,6 +66,7 @@ public class VaksinatorDetailActivity extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
+                FlurryFacade.logEvent("click_recapitulation_button");
                 startActivity(new Intent(VaksinatorDetailActivity.this, VaksinatorSmartRegisterActivity.class));
                 overridePendingTransition(0, 0);
             }

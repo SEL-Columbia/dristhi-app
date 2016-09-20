@@ -6,6 +6,8 @@ import android.content.res.Configuration;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.test.LoginActivity;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
+import org.ei.opensrp.test.vaksinator.ErrorReportingFacade;
+import org.ei.opensrp.test.vaksinator.FlurryFacade;
 import org.ei.opensrp.view.activity.DrishtiApplication;
 import org.ei.opensrp.view.receiver.SyncBroadcastReceiver;
 import static org.ei.opensrp.util.Log.logInfo;
@@ -25,6 +27,8 @@ public class TestApplication extends DrishtiApplication {
       //  ACRA.init(this);
 
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
+        ErrorReportingFacade.initErrorHandler(getApplicationContext());
+        FlurryFacade.init(this);
 
         context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());

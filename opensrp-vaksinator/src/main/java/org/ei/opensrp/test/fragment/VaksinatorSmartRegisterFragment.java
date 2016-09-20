@@ -16,6 +16,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.test.LoginActivity;
 import org.ei.opensrp.test.R;
+import org.ei.opensrp.test.vaksinator.FlurryFacade;
 import org.ei.opensrp.test.vaksinator.VaksinatorDetailActivity;
 import org.ei.opensrp.test.vaksinator.VaksinatorSmartRegisterActivity;
 import org.ei.opensrp.test.vaksinator.VaksinatorSearchOption;
@@ -109,7 +110,7 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
 
             @Override
             public DialogOption[] filterOptions() {
-
+                FlurryFacade.logEvent("click_filter_option_vaksinator");
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
 
                 dialogOptionslist.add(new AllClientsFilter());
@@ -136,6 +137,7 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
 
             @Override
             public DialogOption[] sortingOptions() {
+                FlurryFacade.logEvent("click_sort_option_vaksinator ");
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
@@ -197,6 +199,7 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
 
     @Override
     public void startRegistration() {
+        FlurryFacade.logEvent("click_start_registration_on_vaksinator");
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
         Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
         if (prev != null) {
@@ -213,6 +216,7 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
+                    FlurryFacade.logEvent("click_detail_picture_vaksinator");
                     VaksinatorDetailActivity.controller = (CommonPersonObjectClient)view.getTag();
                     Intent intent = new Intent(getActivity(),VaksinatorDetailActivity.class);
                     startActivity(intent);
@@ -221,6 +225,7 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
 
                 //untuk follow up button
                 case R.id.btn_edit:
+                    FlurryFacade.logEvent("click_button_edit_vaksinator");
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
             }
