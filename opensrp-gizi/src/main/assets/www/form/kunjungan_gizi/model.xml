@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <Kunjungan_Gizi_NewStructure-mapped encounter_type="Kunjungan Gizi" id="kunjungan_gizi_new" version="201609151007">
+    <Kunjungan_Gizi_NewStructure-mapped encounter_type="Kunjungan Gizi" id="kunjungan_gizi_new" version="201609200350">
       <formhub>
         <uuid/>
       </formhub>

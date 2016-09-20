@@ -10,7 +10,7 @@
   {"bind":{"calculate":"${underweight}"},"type":"calculate","name":"weight_for_age_status","instance":{"openmrs_entity_id":"1854AAAAAAAAAAAAAAAAAAAAAAAAAAAA"}},
   {"bind":{"calculate":"${stunting}"},"type":"calculate","name":"height_for_age_status"},
   {"bind":{"calculate":"${wasting}"},"type":"calculate","name":"weight_for_length_status"},
-  {"type":"note","name":"generated_note_name_16","label":{"Bahasa":"Nilai Z-Score Sebelumnya"}},
+  {"type":"note","name":"generated_note_name_16","label":{"Bahasa":"Status gizi Sebelumnya"}},
   {"type":"note","name":"generated_note_name_17","label":{"Bahasa":"Berat/Umur : ${underweight}"}},
   {"type":"note","name":"generated_note_name_18","label":{"Bahasa":"Tinggi/Umur : ${stunting}"}},
   {"type":"note","name":"generated_note_name_19","label":{"Bahasa":"Berat/Tinggi : ${wasting}"}},
