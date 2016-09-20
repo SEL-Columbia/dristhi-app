@@ -35,6 +35,7 @@ import org.ei.opensrp.view.BackgroundAction;
 import org.ei.opensrp.view.LockingBackgroundTask;
 import org.ei.opensrp.view.ProgressIndicator;
 import org.ei.opensrp.view.activity.SettingsActivity;
+import org.ei.opensrp.gizi.gizi.ErrorReportingFacade;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -172,6 +173,7 @@ public class LoginActivity extends Activity {
 
     private void localLogin(View view, String userName, String password) {
         if (context.userService().isValidLocalLogin(userName, password)) {
+            ErrorReportingFacade.setUsername("", userName);
             FlurryFacade.setUserId(userName);
             localLoginWith(userName, password);
         } else {
@@ -184,6 +186,7 @@ public class LoginActivity extends Activity {
         tryRemoteLogin(userName, password, new Listener<LoginResponse>() {
             public void onEvent(LoginResponse loginResponse) {
                 if (loginResponse == SUCCESS) {
+                    ErrorReportingFacade.setUsername("", userName);
                     FlurryFacade.setUserId(userName);
                     remoteLoginWith(userName, password, loginResponse.payload());
                 } else {

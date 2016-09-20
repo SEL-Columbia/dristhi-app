@@ -8,6 +8,7 @@ import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.gizi.LoginActivity;
+import org.ei.opensrp.gizi.gizi.ErrorReportingFacade;
 import org.ei.opensrp.gizi.gizi.FlurryFacade;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
 import org.ei.opensrp.view.activity.DrishtiApplication;
@@ -29,6 +30,7 @@ public class GiziApplication extends DrishtiApplication {
         //  ACRA.init(this);
 
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
+        ErrorReportingFacade.initErrorHandler(getApplicationContext());
         FlurryFacade.init(this);
 
         context = Context.getInstance();

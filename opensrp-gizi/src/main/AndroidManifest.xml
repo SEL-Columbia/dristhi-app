@@ -4,6 +4,10 @@
         android:label="@string/app_name"
         android:name="org.ei.opensrp.gizi.application.GiziApplication">
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b74c58c94d8965151212e8ecf1f4fdfbf5b7f4e4" />
+
         <activity
             android:name="org.ei.opensrp.gizi.LoginActivity"
             android:theme="@android:style/Theme.Holo"
