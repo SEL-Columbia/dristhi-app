@@ -68,9 +68,14 @@ public class FormEntityConverter {
         String encounterStart = getFieldName(Encounter.encounter_start, fs);
         String encounterEnd = getFieldName(Encounter.encounter_end, fs);
 
+        Date encounterDate = new DateTime(FormEntityConstants.FORM_DATE.format(new Date())).toDate();
+        if(fs.getFieldValue(encounterDateField) != null){
+            encounterDate = new DateTime(FormEntityConstants.FORM_DATE.parse(fs.getFieldValue(encounterDateField))).toDate();
+        }
+        
         Event e = (Event) new Event()
                 .withBaseEntityId(entityId)//should be different for main and subform
-                .withEventDate(new DateTime(FormEntityConstants.FORM_DATE.parse(fs.getFieldValue(encounterDateField))).toDate())
+                .withEventDate(encounterDate)
                 .withEventType(eventType)
                 .withLocationId(fs.getFieldValue(encounterLocation))
                 .withProviderId(fs.providerId())

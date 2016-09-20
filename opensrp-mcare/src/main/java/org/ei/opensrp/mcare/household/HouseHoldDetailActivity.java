@@ -29,6 +29,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.repository.ImageRepository;
 
 import java.io.File;
@@ -353,6 +354,8 @@ public class HouseHoldDetailActivity extends Activity {
         String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
         ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("profilepic"), ImageRepository.TYPE_Unsynced,"dp");
         ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
+        DetailsRepository detailsRepository = Context.getInstance().detailsRepository();
+        detailsRepository.add(entityid, "profilepic",details.get("profilepic"), (new Date()).getTime());
 //                householdclient.entityId();
 //        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
     }
@@ -361,6 +364,8 @@ public class HouseHoldDetailActivity extends Activity {
         String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
         ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("nidImage"), ImageRepository.TYPE_Unsynced,"nidImage");
         ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
+        DetailsRepository detailsRepository = Context.getInstance().detailsRepository();
+        detailsRepository.add(entityid, "nidImage", details.get("nidImage"), (new Date()).getTime());
         try {
             nidbutton.setText("");
             nidbutton.setBackground(getDrawableFromPath(details.get("nidImage")));

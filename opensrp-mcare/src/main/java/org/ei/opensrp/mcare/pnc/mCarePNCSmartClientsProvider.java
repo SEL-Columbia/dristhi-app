@@ -1,5 +1,6 @@
 package org.ei.opensrp.mcare.pnc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.application.McareApplication;
+import org.ei.opensrp.mcare.household.HouseHoldDetailActivity;
 import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -97,10 +99,6 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
         profileinfolayout.setOnClickListener(onClickListener);
         profileinfolayout.setTag(pc);
 
-//        if(pc.getDetails().get("profilepic")!=null){
-//            HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.woman_placeholder);
-//        }
-//
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
         AllCommonsRepository allAncRepository =  org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_pnc");
         CommonPersonObject pncobject = allAncRepository.findByCaseID(pc.entityId());
@@ -113,6 +111,10 @@ public class mCarePNCSmartClientsProvider implements SmartRegisterCLientsProvide
             pc.getDetails().putAll(details);
         }else{
             pc.setDetails(details);
+        }
+
+        if(pc.getDetails().get("profilepic")!=null){
+            HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.woman_placeholder);
         }
 
         name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));

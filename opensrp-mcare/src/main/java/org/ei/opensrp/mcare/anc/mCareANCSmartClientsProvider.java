@@ -1,5 +1,6 @@
 package org.ei.opensrp.mcare.anc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.application.McareApplication;
+import org.ei.opensrp.mcare.household.HouseHoldDetailActivity;
 import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -72,7 +74,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 //        itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_mcare_anc_client, null);
         LinearLayout profileinfolayout = (LinearLayout)itemView.findViewById(R.id.profile_info_layout);
 
-//        ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
+        ImageView profilepic = (ImageView)itemView.findViewById(R.id.profilepic);
         TextView name = (TextView)itemView.findViewById(R.id.name);
         TextView spousename = (TextView)itemView.findViewById(R.id.spousename);
         TextView gobhhid = (TextView)itemView.findViewById(R.id.gobhhid);
@@ -96,10 +98,6 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
 
         final CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
 
-//        if(pc.getDetails().get("profilepic")!=null){
-//            HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.woman_placeholder);
-//        }
-//
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
         AllCommonsRepository allancRepository =  org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_mcaremother");
         CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
@@ -113,6 +111,11 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         }else{
             pc.setDetails(details);
         }
+
+        if(pc.getDetails().get("profilepic")!=null){
+            HouseHoldDetailActivity.setImagetoHolder((Activity) context, pc.getDetails().get("profilepic"), profilepic, R.mipmap.woman_placeholder);
+        }
+
         if(pc.getDetails().get("FWWOMFNAME").equalsIgnoreCase("Eisha")){
             name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
         }
