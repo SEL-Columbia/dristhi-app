@@ -31,7 +31,7 @@
     <string name="header_no_ibu">No Ibu</string>
     <string name="header_status_b">Status</string>
     <string name="header_obsetri">Obsetri</string>
-    <string name="mother_weight">Weight :</string>
+    <string name="mother_weight">Weight:</string>
     <string name="header_pemeriksaan">EXAMINATION</string>
     <string name="header_resiko">Risk</string>
     <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
@@ -103,9 +103,9 @@
     <string name="sort_by_date_of_delivery_label">Date of Delivery</string>
     <string name="sort_by_sc_label">SC</string>
     <string name="sort_by_st_label">ST</string>
-    <string name="sort_by_high_priority_label">High Priority (HP)</string>
+    <string name="sort_by_high_priority_label">HighPriority (HP)</string>
     <string name="sort_by_high_risk_pregnancy_label">HRP</string>
-    <string name="sort_by_high_risk_label">High Risk (HR)</string>
+    <string name="sort_by_high_risk_label">HighRisk (HR)</string>
     <string name="sort_by_bpl_label">BPL</string>
 
     <string name="filter_by_all_label">All</string>
@@ -225,7 +225,7 @@
     <string name="fp_register_service_mode_none_ss">None - SS</string>
 
     <string name="fp_prioritization_all_ec_service_mode">All EC</string>
-    <string name="fp_prioritization_high_priority_service_mode">High Priority (HP)</string>
+    <string name="fp_prioritization_high_priority_service_mode">HighPriority (HP)</string>
     <string name="fp_prioritization_two_plus_children_service_mode">2+ Children</string>
     <string name="fp_prioritization_one_child_service_mode">1 Child</string>
     <string name="fp_register_child_details">Child</string>
@@ -240,7 +240,7 @@
     <string name="header_delivery_complications">COMPLICATIONS</string>
     <string name="header_pp_fp">PP FP</string>
     <string name="header_child">CHILD</string>
-    <string name="header_days_pp"> DAYS</string>
+    <string name="header_days"> DAYS</string>
     <string name="header_first_seven_days">FIRST 7 DAYS</string>
     <string name="header_pnc_visits">PNC VISITS</string>
     <string name="header_kb_method">CONTRACEPTION</string>
@@ -327,7 +327,7 @@
 
     <string name="hh_profile">PROFILE</string>
     <string name="hh_no_of_mwra">NO. OF ELCO</string>
-    <string name="hh_last_visit_date">LAST VISIT DATE :</string>
+    <string name="last_visit_date">LAST VISIT DATE:</string>
     <string name="hh_visit_due_date">HH VISIT DUE DATE</string>
     <string name="hh_other_inhabitants">OTHER INHABITANTS</string>
     <string name="hh_inhabitants_details">HH Details</string>
@@ -338,7 +338,7 @@
     <string name="elco_unique_id">UNIQUE ID</string>
     <string name="elco_lmp">LMP</string>
     <string name="elco_psrf_due_date">PSRF DUE DATE</string>
-    <string name="sortoption">Filtered By :</string>
+    <string name="sortoption">Filtered By:</string>
     <string name="hh_alphabetical_sort">Alphabetical (HoH Name)</string>
     <string name="hh_fwGobhhid_sort">HHID - Government</string>
     <string name="hh_fwJivhhid_sort">HHID - JiVitA</string>
@@ -415,7 +415,7 @@
     <string name="filter_by_encc2">ENCC-2</string>
     <string name="filter_by_encc3">ENCC-3</string>
     <string name="mcare_pnc_woman_details">PNC Details</string>
-    <string name="child_details_fathers_name_label">Father\'s name:</string>
+    <string name="child_details_fathers_name_label">Father\'s name:&#160;</string>
     <string name="norma_birth">Normal Birth</string>
     <string name="Caeserian_section">Caeserian Section</string>
     <string name="dont_know">Don\'t Know</string>
@@ -427,7 +427,7 @@
     <string name="pregnancy_outcome">Pregnancy Outcome</string>
     <string name="pnc_typeofdelivery">Type of Delivery</string>
     <string name="date_of_birth">Date of Birth</string>
-    <string name="child_details_mothers_name_label">Mother\'s Name:</string>
+    <string name="child_details_mothers_name_label">Mother\'s Name:&#160;</string>
     <string name="pnc_Details_date_of_outcome">Date of Outcome</string>
     <string name="str_gravida_full">Gravida</string>
     <string name="str_parity_full">Parity</string>
@@ -437,33 +437,90 @@
     <string name="str_kb_edit">Edit KB</string>
     <string name="str_kb_close">Tutup KB</string>
     <string name="kb_register_title_in_short">KB</string>
-    <string name="tanggalkunjungan">Tanggal :</string>
-    <string name="ancke">ANC Ke :</string>
-    <string name="kunjunganke">Kunjungan Ke :</string>
+    <string name="tanggalkunjungan">Tanggal:</string>
+    <string name="ancke">ANC Ke:</string>
+    <string name="kunjunganke">Kunjungan Ke:</string>
     <string name="header_rencana">PLAN</string>
 
     <string name="header_komplikasi">COMPLICATION</string>
 
     <string name="header_kontrasepsi">CONTRACEPTION</string>
     <string name="header_tanda_vital">VITAL SIGN</string>
-    <string name="place_place">Place :</string>
-    <string name="plan_type">Type :</string>
-    <string name="mother_title">Mother :</string>
-    <string name="child_title">Child :</string>
-    <string name="dob_title">DOB :</string>
+    <string name="place_place">Place:</string>
+    <string name="plan_type">Type:</string>
+    <string name="mother_title">Mother</string>
+    <string name="child_title">Child:</string>
+    <string name="dob_title">DOB:</string>
     <string name="header_dok_persalinan">DELIVERY DOCUMENTATION</string>
     <string name="header_birth_status">Status</string>
-    <string name="birth_place_title">B.Place :</string>
-    <string name="date_visit_title">Visit Date :</string>
-    <string name="birth_weight_title">B.Weight :</string>
-    <string name="hari_ke_kf">KF :</string>
+    <string name="birth_place_title">B.Place:</string>
+    <string name="date_visit_title">Visit Date:</string>
+    <string name="birth_weight_title">B.Weight:</string>
+    <string name="hari_ke_kf">KF:</string>
     <string name="str_anak_neonatal">Neonatal Visit</string>
     <string name="str_anak_edit">Edit Child</string>
     <string name="str_anak_bayi_visit">Baby Visit</string>
     <string name="str_anak_balita_visit">Toddler Visit</string>
-    <string name="height">Height :</string>
-    <string name="service_anc">Service Status : ANC</string>
-    <string name="service_pnc">Service Status : PNC</string>
-    <string name="anc_ke">ANC Number :</string>
-    <string name="visit_number">Visit Number :</string>
+    <string name="height">Height:</string>
+    <string name="service_anc">Service Status: ANC</string>
+    <string name="service_pnc">Service Status: PNC</string>
+    <string name="anc_ke">ANC Number:</string>
+    <string name="visit_number">Visit Number:</string>
+    <string name="name">NAME:&#160; </string>
+    <string name="nik">NIK:&#160; </string>
+    <string name="husband_name">Husband Name: &#160;</string>
+    <string name="dob">Date of Birth:&#160; </string>
+    <string name="phone">Phone Number: &#160;</string>
+
+    <!-- Mother detail -->
+    <string name="basic_information">Basic Information</string>
+    <string name="risk">Risk</string>
+    <string name="village">Village</string>
+    <string name="subvillage">Sub Village</string>
+    <string name="address">Address</string>
+    <string name="education">Education</string>
+    <string name="religion">Religion</string>
+    <string name="job">Job</string>
+    <string name="poor_household">Poor Household</string>
+    <string name="insurance">Insurance</string>
+    <string name="blodd_type">Blood Type</string>
+    <string name="show_more_button">Show More Risks . . .</string>
+    <!-- Risk detail-->
+    <string name="highRiskPregnancyYoungMaternalAge">Pregnancy Young Maternal Age: &#160;</string>
+    <string name="highRiskPregnancyOldMaternalAge">Pregnancy Young Maternal Age: &#160;</string>
+    <string name="highRiskPregnancyProteinEnergyMalnutrition">Pregnancy Protein Energy Malnutrition: &#160;</string>
+    <string name="HighRiskPregnancyAbortus">Pregnancy Abortus: &#160;</string>
+    <string name="HighRiskLabourSectionCesareaRecord">Labour Section Cesarea Record: &#160;</string>
+
+    <string name="risk_summary">Risk Summary:</string>
+
+    <string name="highRiskHIVAIDS">HighRisk HIV/AIDS</string>
+    <string name="highRiskSTIBBVs">HighRisk STIBBVs</string>
+    <string name="highRiskEctopicPregnancy">HighRisk Ectopic Pregnancy</string>
+    <string name="highRiskCardiovascularDiseaseRecord">Cardiovascular Disease Record</string>
+    <string name="highRiskDidneyDisorder">Kidney Disorder</string>
+    <string name="highRiskHeartDisorder">Heart Disorder</string>
+    <string name="highRiskAsthma">Asthma</string>
+    <string name="highRiskTuberculosis">Tuberculosis</string>
+    <string name="highRiskMalaria">HighRisk Malaria</string>
+    <string name="highRiskPregnancyPIH">HighRisk Pregnancy PIH</string>
+    <string name="highRiskPregnancyDiabetes">HighRisk Pregnancy Diabetes</string>
+    <string name="highRiskPregnancyAnemia">HighRisk Pregnancy Anemia</string>
+    <string name="highRiskLabourFetusMalpresentation">HighRisk Labour Fetus Malpresentation</string>
+    <string name="highRiskLabourFetusSize">HighRisk Labour Fetus Size</string>
+    <string name="highRisklabourFetusNumber">HighRisk Labour Fetus Number</string>
+    <string name="highRiskLabourTBRisk">High Risk Labour TB</string>
+    <string name="HighRiskPregnancyTooManyChildren">High Risk Pregnancy Too Many Children</string>
+    <string name="highRiskPostPartumForceps">high Risk Post Partum Forceps</string>
+    <string name="highRiskPostPartumVacum">High Risk PostPartum Vacum</string>
+    <string name="highRiskPostPartumPreEclampsiaEclampsia">High Risk PostPartum PreEclampsia/ Eclampsia</string>
+    <string name="highRiskPostPartumMaternalSepsis">High Risk PostPartum Maternal Sepsis</string>
+    <string name="highRiskPostPartumInfection">High Risk PostPartum Infection</string>
+    <string name="highRiskPostPartumHemorrhage">high Risk PostPartum Hemorrhage</string>
+    <string name="highRiskPostPartumPIH">High Risk PostPartum PIH</string>
+    <string name="highRiskPostPartumDistosia">High Risk PostPartum Distosia</string>
+    <string name="highRiskPostPartumSHectioCaesaria">High Risk PostPartum Sectio Caesaria</string>
+    <string name="show_less_button">Show Less . . .</string>
+    <string name="highRiskPostPartumSectioCaesaria">highRisk PostPartum Sectio Caesaria</string>
+
 </resources>

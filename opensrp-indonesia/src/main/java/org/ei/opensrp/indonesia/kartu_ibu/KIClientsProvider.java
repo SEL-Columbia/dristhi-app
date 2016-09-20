@@ -102,6 +102,10 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                viewHolder.number_of_abortus = (TextView)convertView.findViewById(R.id.txt_number_of_abortus);
                viewHolder.number_of_alive = (TextView)convertView.findViewById(R.id.txt_number_of_alive);
         viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
+        viewHolder.img_hrl_badge =(ImageView)convertView.findViewById(R.id.img_hrl_badge);
+        viewHolder.bpl_badge =(ImageView)convertView.findViewById(R.id.img_bpl_badge);
+        viewHolder.hrp_badge =(ImageView)convertView.findViewById(R.id.img_hrp_badge);
+        viewHolder.hrpp_badge =(ImageView)convertView.findViewById(R.id.img_hrpp_badge);
                viewHolder.edd = (TextView)convertView.findViewById(R.id.txt_edd);
                viewHolder.edd_due = (TextView)convertView.findViewById(R.id.txt_edd_due);
                viewHolder.children_age_left = (TextView)convertView.findViewById(R.id.txt_children_age_left);
@@ -140,8 +144,8 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         {
             viewHolder.hr_badge.setVisibility(View.VISIBLE);
         }
-        
-        
+
+
         //set image
         final ImageView kiview = (ImageView)convertView.findViewById(R.id.img_profile);
         if (pc.getDetails().get("profilepic") != null) {
@@ -151,7 +155,6 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         else {
 
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.woman_placeholder));
-
         }
         viewHolder.wife_name.setText(pc.getColumnmaps().get("namalengkap")!=null?pc.getColumnmaps().get("namalengkap"):"");
         viewHolder.husband_name.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");
@@ -166,7 +169,6 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.number_of_alive.setText(pc.getDetails().get("hidup")!=null?pc.getDetails().get("hidup"):"-");
 
         viewHolder.edd.setText(pc.getDetails().get("htp")!=null?pc.getDetails().get("htp"):"");
-
 
         String date = pc.getDetails().get("htp");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -184,7 +186,7 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                     viewHolder.edd_due.setText("");
 
                 }
-                viewHolder.edd_due.setText(context.getString(R.string.due_status)+": "+diffDays+" "+context.getString(R.string.header_days_pp));
+                viewHolder.edd_due.setText(context.getString(R.string.due_status)+": "+diffDays+" "+context.getString(R.string.header_days));
 
             } catch (ParseException e) {
                 // TODO Auto-generated catch block
@@ -201,7 +203,7 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         if(pc.getColumnmaps().get("ibu.type")!=null){
             if(pc.getColumnmaps().get("ibu.type").equals("anc")){
                 viewHolder.anc_status_layout.setText(context.getString(R.string.service_anc));
-                String visit_date = pc.getColumnmaps().get("ibu.ancDate")!=null?context.getString(R.string.hh_last_visit_date) +" " +pc.getColumnmaps().get("ibu.ancDate"):"";
+                String visit_date = pc.getColumnmaps().get("ibu.ancDate")!=null?context.getString(R.string.last_visit_date) +" " +pc.getColumnmaps().get("ibu.ancDate"):"";
                 String visit_stat = pc.getColumnmaps().get("ibu.ancKe")!=null?context.getString(R.string.anc_ke) +" " + pc.getColumnmaps().get("ibu.ancKe"):"";
                 viewHolder.date_status.setText( visit_date);
                 viewHolder.visit_status.setText(visit_stat);
@@ -213,7 +215,26 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                 viewHolder.visit_status.setText( hariKeKF);
             }
         }
+        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
+        if(pc.getColumnmaps().get("ibu.id") != null) {
+            final CommonPersonObject ibuparent = iburep.findByCaseID(pc.getColumnmaps().get("ibu.id"));
 
+            if (ibuparent.getDetails().get("highRiskPregnancyPIH") != null && ibuparent.getDetails().get("highRiskPregnancyPIH").equals("yes")
+                    || pc.getDetails().get("highRiskPregnancyPIH") != null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
+                    || ibuparent.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null && ibuparent.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")
+                    || pc.getDetails().get("HighRiskPregnancyTooManyChildren") != null && pc.getDetails().get("HighRiskPregnancyTooManyChildren").equals("yes")
+                    || ibuparent.getDetails().get("highRiskPregnancyDiabetes") != null && ibuparent.getDetails().get("highRiskPregnancyDiabetes").equals("yes")
+                    || ibuparent.getDetails().get("highRiskPregnancyAnemia") != null && ibuparent.getDetails().get("highRiskPregnancyAnemia").equals("yes")) {
+                viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
+            }
+            if (ibuparent.getDetails().get("highRiskLabourFetusMalpresentation") != null && ibuparent.getDetails().get("highRiskLabourFetusMalpresentation").equals("yes")
+                    || ibuparent.getDetails().get("highRiskLabourFetusSize") != null && ibuparent.getDetails().get("highRiskLabourFetusSize").equals("yes")
+                    || ibuparent.getDetails().get("highRisklabourFetusNumber") != null && ibuparent.getDetails().get("highRisklabourFetusNumber").equals("yes")
+                    || pc.getDetails().get("HighRiskLabourSectionCesareaRecord") != null && pc.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")
+                    || ibuparent.getDetails().get("highRiskLabourTBRisk") != null && ibuparent.getDetails().get("highRiskLabourTBRisk").equals("yes")) {
+                viewHolder.hrp_badge.setVisibility(View.VISIBLE);
+            }
+        }
         convertView.setLayoutParams(clientViewLayoutParams);
       //  return convertView;
     }
@@ -274,7 +295,11 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
          TextView visit_status;
          TextView date_status;
          TextView children_age_right;
-         ImageView hr_badge;
+        ImageView hr_badge;
+        ImageView hrpp_badge;
+        ImageView bpl_badge;
+        ImageView hrp_badge;
+        ImageView img_hrl_badge;
     }
 
 

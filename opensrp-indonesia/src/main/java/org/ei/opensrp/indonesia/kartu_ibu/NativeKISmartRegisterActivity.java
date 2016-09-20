@@ -10,6 +10,7 @@ import android.util.Log;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
@@ -22,14 +23,17 @@ import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.dialog.DialogOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,7 +47,7 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_PELAY
 /**
  * Created by Dimas Ciputra on 2/18/15.
  */
-public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
+public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterActivity implements LocationSelectorDialogFragment.OnLocationSelectedListener{
 
     public static final String TAG = "KIActivity";
     @Bind(R.id.view_pager)
@@ -123,7 +127,32 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
 
     }
+    @Override
+    public void OnLocationSelected(String locationJSONString) {
+        JSONObject combined = null;
 
+        try {
+            JSONObject locationJSON = new JSONObject(locationJSONString);
+         //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+
+            combined = locationJSON;
+         //   Iterator<String> iter = uniqueId.keys();
+
+          //  while (iter.hasNext()) {
+          //      String key = iter.next();
+         //       combined.put(key, uniqueId.get(key));
+        //    }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (combined != null) {
+            FieldOverrides fieldOverrides = new FieldOverrides(combined.toString());
+
+            startFormActivity(KARTU_IBU_REGISTRATION, null, fieldOverrides.getJSONString());
+        }
+    }
     @Override
     public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         Log.v("fieldoverride", fieldOverrides.toString());
@@ -149,6 +178,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
+        FlurryFacade.logEvent(formName);
 //        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset

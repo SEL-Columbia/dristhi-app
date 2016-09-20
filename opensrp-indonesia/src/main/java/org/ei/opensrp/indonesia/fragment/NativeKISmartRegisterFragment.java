@@ -40,6 +40,7 @@ import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
@@ -212,7 +213,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"kartu_ibu.isClosed", "kartu_ibu.details", "kartu_ibu.isOutOfArea","namalengkap", "umur","ibu.type","namaSuami","ibu.ancDate","ibu.ancKe","ibu.hariKeKF","anak.namaBayi","anak.tanggalLahirAnak"});
+        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"kartu_ibu.isClosed", "kartu_ibu.details", "kartu_ibu.isOutOfArea","namalengkap", "umur","ibu.type","namaSuami","ibu.ancDate","ibu.ancKe","ibu.hariKeKF","anak.namaBayi","anak.tanggalLahirAnak","ibu.id"});
         queryBUilder.customJoin("LEFT JOIN ibu on kartu_ibu.id = ibu.kartuIbuId LEFT JOIN anak ON ibu.id = anak.ibuCaseId ");
     //    countqueryBUilder.joinwithchilds("ibu");
         mainSelect = queryBUilder.mainCondition(" kartu_ibu.isClosed !='true' ");
@@ -222,7 +223,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0))); //,"ibu.type as type"
         KIClientsProvider kiscp = new KIClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"kartu_ibu.isClosed", "namalengkap", "umur", "ibu.type","namaSuami","ibu.ancDate","ibu.ancKe","ibu.hariKeKF","anak.namaBayi","anak.tanggalLahirAnak","kartu_ibu.isOutOfArea"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"kartu_ibu.isClosed", "namalengkap", "umur", "ibu.type","namaSuami","ibu.ancDate","ibu.ancKe","ibu.hariKeKF","anak.namaBayi","anak.tanggalLahirAnak","ibu.id","kartu_ibu.isOutOfArea"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -234,14 +235,14 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
     @Override
     public void startRegistration() {
-        FlurryFacade.logEvent("click_start_registration_on_kohort_ibu_dashboard");
+       // FlurryFacade.logEvent("click_start_registration_on_kohort_ibu_dashboard");
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
         Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
         if (prev != null) {
             ft.remove(prev);
         }
         ft.addToBackStack(null);
-        BidanLocationSelectorDialogFragment
+        LocationSelectorDialogFragment
                 .newInstance((NativeKISmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "kartu_ibu_registration")
                 .show(ft, locationDialogTAG);
     }
@@ -434,7 +435,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new KICommonObjectFilterOption(name,"Village", name));
+                dialogOptionslist.add(new KICommonObjectFilterOption(name,"desa", name));
 
             }
         }
