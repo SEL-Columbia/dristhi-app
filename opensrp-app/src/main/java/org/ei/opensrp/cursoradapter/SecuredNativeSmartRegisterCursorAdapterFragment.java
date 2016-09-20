@@ -539,9 +539,6 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     private boolean isValidFilterForFts(){
         return filters != null
                 && !StringUtils.containsIgnoreCase(filters, "like")
-                && !StringUtils.contains(filters, "=")
-                && !StringUtils.contains(filters, ">")
-                && !StringUtils.contains(filters, "<")
                 && !StringUtils.startsWithIgnoreCase(filters.trim(), "and ");
     }
 

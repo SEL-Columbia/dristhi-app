@@ -2,17 +2,14 @@ package org.ei.opensrp.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.provider.BaseColumns;
+import android.util.Log;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -21,9 +18,12 @@ import java.util.Map;
  */
 public class DetailsRepository extends DrishtiRepository {
 
-    private static final String SQL = "CREATE virtual table ec_details using fts4 (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, base_entity_id VARCHAR, key VARCHAR, value VARCHAR, event_date datetime)";
+    private static final String SQL = "CREATE virtual table ec_details using fts4 (base_entity_id VARCHAR, key VARCHAR, value VARCHAR, event_date datetime)";
     private static final String TABLE_NAME = "ec_details";
-
+    private static final String BASE_ENTITY_ID_COLUMN = "base_entity_id";
+    private static final String KEY_COLUMN = "key";
+    private static final String VALUE_COLUMN = "value";
+    private static final String EVENT_DATE_COLUMN = "event_date";
 
     @Override
     protected void onCreate(SQLiteDatabase database) {
@@ -32,45 +32,47 @@ public class DetailsRepository extends DrishtiRepository {
 
     public void add(String baseEntityId, String key, String value, Long timestamp) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        Long _id = getIdForDetailsIfExists(baseEntityId, key, value);
-        if (_id != null){
-
-            if(_id.longValue() == -1l){ // Value has not changed, no need to update
-                return;
-            }
-
-            values.put("_id", _id);
-
+        Boolean exists = getIdForDetailsIfExists(baseEntityId, key, value);
+        if(exists == null){ // Value has not changed, no need to update
+            return;
         }
-        values.put("base_entity_id", baseEntityId);
-        values.put("key", key);
-        values.put("value", value);
-        values.put("event_date", timestamp);
-        //TODO if the value is like this: 1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, convert to human readable
-        Long id = database.insertWithOnConflict(TABLE_NAME, BaseColumns._ID, values, android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE);
+
+        ContentValues values = new ContentValues();
+        values.put(BASE_ENTITY_ID_COLUMN, baseEntityId);
+        values.put(KEY_COLUMN, key);
+        values.put(VALUE_COLUMN, value);
+        values.put(EVENT_DATE_COLUMN, timestamp);
+
+        if (exists){
+            int updated = database.update(TABLE_NAME, values, BASE_ENTITY_ID_COLUMN + " = ? AND " + KEY_COLUMN + " MATCH ? ", new String[]{baseEntityId, key});
+            Log.i(getClass().getName(), "Detail Row Updated: " + String.valueOf(updated));
+        } else {
+            long rowId = database.insert(TABLE_NAME, null, values);
+            Log.i(getClass().getName(), "Details Row Inserted : " + String.valueOf(rowId));
+        }
     }
 
-    private Long getIdForDetailsIfExists(String baseEntityId, String key, String value) {
+    private Boolean getIdForDetailsIfExists(String baseEntityId, String key, String value) {
         Cursor mCursor = null;
         try {
             SQLiteDatabase db = masterRepository.getWritableDatabase();
-            mCursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id = '" + baseEntityId + "' AND key MATCH '" + key + "' ", null);
+            String query = "SELECT " + VALUE_COLUMN + " FROM " + TABLE_NAME + " WHERE " + BASE_ENTITY_ID_COLUMN + " = '" + baseEntityId + "' AND " + KEY_COLUMN + " MATCH '" + key + "' ";
+            mCursor = db.rawQuery(query, null);
             if (mCursor != null && mCursor.moveToFirst()){
                 if(value != null){
-                    String currentValue = mCursor.getString(mCursor.getColumnIndex("value"));
+                    String currentValue = mCursor.getString(mCursor.getColumnIndex(VALUE_COLUMN));
                     if(value.equals(currentValue)) { // Value has not changed, no need to update
-                        return -1l;
+                        return null;
                     }
                 }
-                return mCursor.getLong(mCursor.getColumnIndex("_id"));
+                return true;
             }
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             if (mCursor != null) mCursor.close();
         }
-        return null;
+        return false;
     }
 
     public Map<String, String> getAllDetailsForClient(String baseEntityId) {
@@ -78,11 +80,12 @@ public class DetailsRepository extends DrishtiRepository {
         Map<String, String> clientDetails = new HashMap<String, String>();
         try {
             SQLiteDatabase db = masterRepository.getReadableDatabase();
-            cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where base_entity_id = '"+baseEntityId+"'", null);
+            String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + BASE_ENTITY_ID_COLUMN + " = '"+baseEntityId+"'";
+            cursor = db.rawQuery(query, null);
             if (cursor != null && cursor.moveToFirst()){
                 do {
-                    String key = cursor.getString(cursor.getColumnIndex("key"));
-                    String value = cursor.getString(cursor.getColumnIndex("value"));
+                    String key = cursor.getString(cursor.getColumnIndex(KEY_COLUMN));
+                    String value = cursor.getString(cursor.getColumnIndex(VALUE_COLUMN));
                     clientDetails.put(key, value);
                 }while (cursor.moveToNext());
             }

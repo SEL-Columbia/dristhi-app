@@ -535,10 +535,12 @@ public class CommonRepository extends DrishtiRepository {
                 ContentValues searchValues = searchMap.get(caseId);
                 ArrayList<HashMap<String, String>> mapList = rawQuery(String.format("SELECT " + CommonFtsObject.idColumn + " FROM " + ftsSearchTable + " WHERE  " + CommonFtsObject.idColumn + " = '%s'", caseId));
                 if (!mapList.isEmpty()) {
-                    database.update(ftsSearchTable, searchValues, CommonFtsObject.idColumn + " = ?", new String[]{caseId});
+                    int updated = database.update(ftsSearchTable, searchValues, CommonFtsObject.idColumn + " = ?", new String[]{caseId});
+                    Log.i(getClass().getName(), "Fts Row Updated: " + String.valueOf(updated));
 
                 } else {
-                    database.insert(ftsSearchTable, null, searchValues);
+                    long rowId = database.insert(ftsSearchTable, null, searchValues);
+                    Log.i(getClass().getName(), "Details Row Inserted : " + String.valueOf(rowId));
                 }
             }
             database.setTransactionSuccessful();

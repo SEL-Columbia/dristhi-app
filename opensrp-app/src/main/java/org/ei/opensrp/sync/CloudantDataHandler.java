@@ -95,7 +95,6 @@ public class CloudantDataHandler {
                     String jsonEventStr = new String(json, "UTF-8");
                     if(StringUtils.isNotBlank(jsonEventStr) && !jsonEventStr.equals("{}")){ // Check blank/empty json string
                         JSONObject jsonObectClient = new JSONObject(jsonEventStr);
-                        Log.i(getClass().getName(), "Finished query");
                         return jsonObectClient;
                     }
                 }
@@ -138,12 +137,10 @@ public class CloudantDataHandler {
 
         List<String> fields = Arrays.asList(baseEntityIdJSONKey);
 
-        Log.i(getClass().getName(), "Started getClientDocumentIdByBaseEntityId find query for " + baseEntityId);
         Iterator<DocumentRevision> iterator = this.mIndexManager.find(query, 0, 0, fields, null).iterator();
 
         if (iterator != null && iterator.hasNext()) {
             DocumentRevision rev = iterator.next();
-            Log.i(getClass().getName(), "Finished getClientDocumentIdByBaseEntityId find query for " + baseEntityId);
             return rev.getId();
         }
 
