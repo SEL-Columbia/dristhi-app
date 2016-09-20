@@ -498,7 +498,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     public String filterandSortQuery(CommonRepository commonRepository, SmartRegisterQueryBuilder sqb){
 
         String query = "";
-        if(isValidFilterForFts()){
+        if(isValidFilterForFts(commonRepository)){
             String sql = sqb.searchQueryFts(tablename, joinTable, mainCondition, filters, Sortqueries, currentlimit, currentoffset);
             List<String> ids = commonRepository.findSearchIds(sql);
             currentquery = sqb.toStringFts(ids, tablename + "." + CommonRepository.ID_COLUMN, Sortqueries);
@@ -517,7 +517,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(countSelect);
         CommonRepository commonRepository = context.commonrepository(tablename);
         String query = "";
-        if(isValidFilterForFts()){
+        if(isValidFilterForFts(commonRepository)){
             String sql = sqb.countQueryFts(tablename, joinTable, mainCondition, filters);
             List<String> ids = commonRepository.findSearchIds(sql);
             currentquery = sqb.toStringFts(ids, tablename + "." + CommonRepository.ID_COLUMN);
@@ -536,8 +536,8 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         c.close();
     }
 
-    private boolean isValidFilterForFts(){
-        return filters != null
+    private boolean isValidFilterForFts(CommonRepository commonRepository){
+        return commonRepository.isFts() && filters != null
                 && !StringUtils.containsIgnoreCase(filters, "like")
                 && !StringUtils.startsWithIgnoreCase(filters.trim(), "and ");
     }
