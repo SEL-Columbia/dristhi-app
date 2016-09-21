@@ -39,11 +39,10 @@ public class VaksinatorDetailActivity extends Activity {
         TextView village = (TextView) findViewById(R.id.village);
         TextView dateOfBirth = (TextView) findViewById(R.id.dateOfBirth);
         TextView birthWeight = (TextView) findViewById(R.id.birthWeight);
-        //TextView currentWeight = (TextView) findViewById(R.id.currentWeight);
+        TextView antipiretik = (TextView) findViewById(R.id.antypiretic);
 
         //vaccination date
         TextView hb1Under7 = (TextView) findViewById(R.id.hb1under7);
-        TextView hb1After7 = (TextView) findViewById(R.id.hb1after7);
         TextView bcg = (TextView) findViewById(R.id.bcg);
         TextView pol1 = (TextView) findViewById(R.id.pol1);
         TextView dpt1 = (TextView) findViewById(R.id.dpt1);
@@ -52,9 +51,9 @@ public class VaksinatorDetailActivity extends Activity {
         TextView pol3 = (TextView) findViewById(R.id.pol3);
         TextView dpt3 = (TextView) findViewById(R.id.dpt3);
         TextView pol4 = (TextView) findViewById(R.id.pol4);
+        TextView ipv = (TextView) findViewById(R.id.ipv);
         TextView measles = (TextView) findViewById(R.id.measles);
         TextView mutationUnder30 = (TextView) findViewById(R.id.mutationUnder30);
-        TextView mutationAfter30 = (TextView) findViewById(R.id.mutationAfter30);
         TextView mutationMoving = (TextView) findViewById(R.id.mutationMoving);
         TextView complete = (TextView) findViewById(R.id.complete);
         TextView additionalDPT = (TextView) findViewById(R.id.additionalDPT);
@@ -84,10 +83,19 @@ public class VaksinatorDetailActivity extends Activity {
 
         nama.setText(": " + (controller.getDetails().get("nama_bayi") != null ? controller.getDetails().get("nama_bayi") : "-"));
         motherName.setText(": " + (controller.getDetails().get("nama_orang_tua") != null ? controller.getDetails().get("nama_orang_tua") : "-"));
-        village.setText(": " + (controller.getDetails().get("village") != null ? controller.getDetails().get("village") : "-"));
-        posyandu.setText(": " + (controller.getDetails().get("nama_lokasi") != null ? controller.getDetails().get("nama_lokasi") : "-"));
+        village.setText(": " + (controller.getDetails().get("dusun") != null
+                ? controller.getDetails().get("dusun")
+                : controller.getDetails().get("village") != null
+                    ? controller.getDetails().get("village")
+                    : "-"));
+        posyandu.setText(": " + (controller.getDetails().get("nama_lokasi") != null
+                ? controller.getDetails().get("nama_lokasi")
+                : controller.getDetails().get("posyandu")!=null
+                    ? controller.getDetails().get("posyandu")
+                    : "-"));
         dateOfBirth.setText(": " + (controller.getDetails().get("tanggal_lahir") != null ? controller.getDetails().get("tanggal_lahir") : "-"));
         birthWeight.setText(": " + (controller.getDetails().get("berat_badan_saat_lahir") != null ? controller.getDetails().get("berat_badan_saat_lahir") : "-"));
+        antipiretik.setText(": " + (controller.getDetails().get("getAntypiretic") != null ? controller.getDetails().get("getAntypiretic") : "-"));
 
         hb1Under7.setText(": " + (hasDate(controller,"hb0")
                 ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb0")) <= 7
@@ -97,50 +105,31 @@ public class VaksinatorDetailActivity extends Activity {
                     ? controller.getDetails().get("hb1_kurang_7_hari")
                     :"-"));
 
-        hb1After7.setText(": " + (hasDate(controller,"hb0")
-                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb0")) > 7
-                    ? controller.getDetails().get("hb0")
-                    : "-"
-                : hasDate(controller,"hb1_lebih_7_hari")
-                    ? controller.getDetails().get("hb1_lebih_7_hari")
-                    :"-"));
-
-        bcg.setText(": " + (controller.getDetails().get("bcg_pol_1") != null ? controller.getDetails().get("bcg_pol_1") : "-"));
-        pol1.setText(": " + (controller.getDetails().get("bcg_pol_1") != null ? controller.getDetails().get("bcg_pol_1") : "-"));
-        dpt1.setText(": " + (controller.getDetails().get("dpt_1_pol_2") != null ? controller.getDetails().get("dpt_1_pol_2") : "-"));
-        pol2.setText(": " + (controller.getDetails().get("dpt_1_pol_2") != null ? controller.getDetails().get("dpt_1_pol_2") : "-"));
-        dpt2.setText(": " + (controller.getDetails().get("dpt_2_pol_3") != null ? controller.getDetails().get("dpt_2_pol_3") : "-"));
-        pol3.setText(": " + (controller.getDetails().get("dpt_2_pol_3") != null ? controller.getDetails().get("dpt_2_pol_3") : "-"));
-        dpt3.setText(": " + (controller.getDetails().get("dpt_3_pol_4_ipv") != null ? controller.getDetails().get("dpt_3_pol_4_ipv") : "-"));
-        pol4.setText(": " + (controller.getDetails().get("dpt_3_pol_4_ipv") != null ? controller.getDetails().get("dpt_3_pol_4_ipv") : "-"));
+        bcg.setText(": " + (controller.getDetails().get("bcg") != null ? controller.getDetails().get("bcg") : "-"));
+        pol1.setText(": " + (controller.getDetails().get("polio1") != null ? controller.getDetails().get("polio1") : "-"));
+        dpt1.setText(": " + (controller.getDetails().get("dpt_hb1") != null ? controller.getDetails().get("dpt_hb1") : "-"));
+        pol2.setText(": " + (controller.getDetails().get("polio2") != null ? controller.getDetails().get("polio2") : "-"));
+        dpt2.setText(": " + (controller.getDetails().get("dpt_hb2") != null ? controller.getDetails().get("dpt_hb2") : "-"));
+        pol3.setText(": " + (controller.getDetails().get("polio3") != null ? controller.getDetails().get("polio3") : "-"));
+        dpt3.setText(": " + (controller.getDetails().get("dpt_hb3") != null ? controller.getDetails().get("dpt_hb3") : "-"));
+        pol4.setText(": " + (controller.getDetails().get("polio4") != null ? controller.getDetails().get("polio4") : "-"));
+        ipv.setText(": " + (controller.getDetails().get("ipv") != null ? controller.getDetails().get("ipv") : "-"));
         measles.setText(": " + (controller.getDetails().get("imunisasi_campak") != null ? controller.getDetails().get("imunisasi_campak") : "-"));
 
         mutationUnder30.setText(": " + (
                 controller.getDetails().get("tanggal_meninggal") != null && controller.getDetails().get("tanggal_meninggal").length()>6
-                ? age(controller.getDetails().get("tanggal_lahir"), controller.getDetails().get("tanggal_meninggal")) <= 30
-                     ? controller.getDetails().get("tanggal_meninggal")
-                     : "-"
-                : controller.getDetails().get("mutasi_meninggal_kurang_30hari") != null && controller.getDetails().get("mutasi_meninggal_kurang_30hari").length()>6
-                    ? controller.getDetails().get("mutasi_meninggal_kurang_30hari")
-                    : "-"));
-        mutationAfter30.setText(": " + (
-                controller.getDetails().get("tanggal_meninggal") != null && controller.getDetails().get("tanggal_meninggal").length()>6
-                ? age(controller.getDetails().get("tanggal_lahir"), controller.getDetails().get("tanggal_meninggal")) > 30
-                    ? controller.getDetails().get("tanggal_meninggal")
-                    : "-"
-                :   controller.getDetails().get("mutasi_meninggal_lebih_30hari") != null && controller.getDetails().get("mutasi_meninggal_lebih_30hari").length()>6
-                    ? controller.getDetails().get("mutasi_meninggal_lebih_30hari")
-                    : "-"));
+                ? controller.getDetails().get("tanggal_meninggal")
+                  : "-"));
 
         mutationMoving.setText(": " + (controller.getDetails().get("tanggal_pindah") != null ? controller.getDetails().get("tanggal_pindah") : "-"));
         complete.setText(": " + (controller.getDetails().get("imunisasi_lengkap") != null ? controller.getDetails().get("imunisasi_lengkap") : "-"));
         additionalDPT.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
         additionalMeasles.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
 
-        if (controller.getDetails().get("jenis_kelamin").contains("l")) {
-            photo.setImageResource(R.drawable.child_boy_infant);
-        } else {
+        if (controller.getDetails().get("jenis_kelamin").contains("em")) {
             photo.setImageResource(R.drawable.child_girl_infant);
+        } else {
+            photo.setImageResource(R.drawable.child_boy_infant);
         }
     }
 

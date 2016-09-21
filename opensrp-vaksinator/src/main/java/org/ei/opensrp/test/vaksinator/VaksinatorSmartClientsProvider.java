@@ -132,7 +132,15 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
         viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : " ");
         viewHolder.motherName.setText(pc.getDetails().get("nama_orang_tua")!=null?pc.getDetails().get("nama_orang_tua"):" ");
-        viewHolder.village.setText(pc.getDetails().get("village")!=null?pc.getDetails().get("village"):" ");
+        viewHolder.village.setText(pc.getDetails().get("village")!= null
+                ? pc.getDetails().get("village").length()>4
+                    ? pc.getDetails().get("village")
+                    : pc.getDetails().get("dusun")!= null
+                        ? pc.getDetails().get("dusun")
+                        : " "
+                : pc.getDetails().get("dusun")!= null
+                    ? pc.getDetails().get("dusun")
+                    : " ");
         viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):" ");
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : " ");
 
