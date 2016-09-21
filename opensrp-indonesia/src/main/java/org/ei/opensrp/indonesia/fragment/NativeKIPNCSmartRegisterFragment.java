@@ -41,6 +41,7 @@ import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
@@ -230,14 +231,14 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 
     @Override
     public void startRegistration() {
-        FlurryFacade.logEvent("click_start_registration_on_kohort_pnc_dashboard");
+
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
         Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
         if (prev != null) {
             ft.remove(prev);
         }
         ft.addToBackStack(null);
-        BidanLocationSelectorDialogFragment
+        LocationSelectorDialogFragment
                 .newInstance((NativeKIPNCSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "kartu_pnc_regitration_oa")
                 .show(ft, locationDialogTAG);
     }
@@ -253,11 +254,6 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
                     startActivity(intent);
                     getActivity().finish();
                     break;
-                //    case R.id.hh_due_date:
-                //        HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
-//
-                //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
-                //        break;
                 case R.id.btn_edit:
                     FlurryFacade.logEvent("click_visit_button_on_kohort_pnc_dashboard");
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
+import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.indonesia.LoginActivity;
 import org.ei.opensrp.indonesia.R;
@@ -18,10 +19,12 @@ import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.dialog.DialogOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -37,14 +40,16 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_V
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_VISIT_LABTEST;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_CLOSE;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_EDIT;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_OA;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_POSPARTUM_KB;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_VISIT;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_REGISTER;
 
 /**
  * Created by Dimas Ciputra on 3/5/15.
  */
-public class NativeKIPNCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
+public class NativeKIPNCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity implements LocationSelectorDialogFragment.OnLocationSelectedListener{
 
     public static final String TAG = "PNCActivity";
     @Bind(R.id.view_pager)
@@ -126,7 +131,31 @@ public class NativeKIPNCSmartRegisterActivity extends SecuredNativeSmartRegister
 
     }
 
+    @Override
+    public void OnLocationSelected(String locationJSONString) {
+        JSONObject combined = null;
 
+        try {
+            JSONObject locationJSON = new JSONObject(locationJSONString);
+            //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+
+            combined = locationJSON;
+            //   Iterator<String> iter = uniqueId.keys();
+
+            //  while (iter.hasNext()) {
+            //      String key = iter.next();
+            //       combined.put(key, uniqueId.get(key));
+            //    }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (combined != null) {
+            FieldOverrides fieldOverrides = new FieldOverrides(combined.toString());
+            startFormActivity(KARTU_IBU_PNC_OA, null, fieldOverrides.getJSONString());
+        }
+    }
     @Override
     public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         Log.v("fieldoverride", fieldOverrides.toString());
@@ -228,7 +257,7 @@ public class NativeKIPNCSmartRegisterActivity extends SecuredNativeSmartRegister
         formNames.add(KARTU_IBU_PNC_POSPARTUM_KB);
         formNames.add(KARTU_IBU_PNC_EDIT);
         formNames.add(KARTU_IBU_PNC_CLOSE);
-    //    formNames.add(KARTU_IBU_PNC_REGISTRATION);
+        formNames.add(KARTU_IBU_PNC_OA);
       //  formNames.add(KARTU_IBU_ANC_EDIT);
         formNames.add(KARTU_IBU_ANC_CLOSE);
 
