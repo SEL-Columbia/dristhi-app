@@ -228,7 +228,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
     @Override
     public SmartRegisterClients getClients() {
-        return controller.getClients();
+        return controller.getClients("form_ditutup","yes");
     }
 
     @Override
