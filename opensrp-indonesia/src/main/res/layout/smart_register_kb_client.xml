@@ -175,6 +175,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="120"
         android:padding="5dp"
+        android:id="@+id/follow_layout"
         android:orientation="horizontal"
         >
         <LinearLayout
@@ -190,6 +191,20 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:text="Follow Up Due"/>
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/follow_due"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="Expire:"/>
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/follow_status"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text=""/>
 
         </LinearLayout>
 

@@ -447,9 +447,9 @@
     <string name="highRiskHIVAIDS">Resiko TInggi HIV/AIDS</string>
     <string name="highRiskSTIBBVs">Resiko Tinggi STIBBVs</string>
     <string name="highRiskEctopicPregnancy">Resiko TInggi Ectopic Kehamilan</string>
-    <string name="highRiskCardiovascularDiseaseRecord">Cardiovascular Disease Record</string>
-    <string name="highRiskDidneyDisorder">Kidney Disorder</string>
-    <string name="highRiskHeartDisorder">Kelainan Jantung</string>
+    <string name="highRiskCardiovascularDiseaseRecord">Penyakit jantung Rekam</string>
+    <string name="highRiskDidneyDisorder">Gangguan ginjal</string>
+    <string name="highRiskHeartDisorder">Gangguan jantung</string>
     <string name="highRiskAsthma">Asthma</string>
     <string name="highRiskTuberculosis">Tuberculosis</string>
     <string name="highRiskMalaria">Resiko Tinggi Malaria</string>
@@ -471,5 +471,14 @@
     <string name="highRiskPostPartumDistosia">Resiko Tinggi PostPartum Distosia</string>
     <string name="highRiskPostPartumSHectioCaesaria">Resiko Tinggi PostPartum Sectio Caesaria</string>
     <string name="highRiskPostPartumSectioCaesaria">Resiko Tinggi PostPartum Sectio Caesaria</string>
-
+    <string name="contraseption">Jenis Kontrasepsi</string>
+    <string name="sistolic">Systolic</string>
+    <string name="diastolic">Diastolic</string>
+    <string name="alki_hb">ALKI /HB</string>
+    <string name="alkilila">ALKI / LILA</string>
+    <string name="ALKI_Penyakin_kronis">ALKI / Penyakit Kronis</string>
+    <string name="alkiims">ALKI /Ims</string>
+    <string name="kb_ket">Keterangan tentang peserta KB</string>
+    <string name="ganti_cara">Keterangan Ganti Cara</string>
+    <string name="elco_details_summary">Ringkasan</string>
 </resources>

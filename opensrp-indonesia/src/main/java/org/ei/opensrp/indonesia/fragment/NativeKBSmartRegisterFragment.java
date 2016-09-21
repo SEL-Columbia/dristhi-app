@@ -217,22 +217,22 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         setTablename("kartu_ibu");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("kartu_ibu");
-        //   countqueryBUilder.joinwithIbus("kartu_ibu","ibu");
-        countSelect = countqueryBUilder.mainCondition(" isClosed !='true' and details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
+        countqueryBUilder.customJoin("LEFT JOIN ibu on kartu_ibu.id = ibu.kartuIbuId LEFT JOIN anak ON ibu.id = anak.ibuCaseId ");
+        countSelect = countqueryBUilder.mainCondition(" kartu_ibu.isClosed !='true' and kartu_ibu.details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
         CountExecute();
 
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"isClosed", "details", "isOutOfArea","namalengkap", "umur","namaSuami"});
-        //   queryBUilder.joinwithIbus("kartu_ibu","ibu");
-        mainSelect = queryBUilder.mainCondition("isClosed !='true' and details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
+        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"kartu_ibu.isClosed", "kartu_ibu.details", "kartu_ibu.isOutOfArea","namalengkap", "umur","namaSuami","ibu.id"});
+        queryBUilder.customJoin("LEFT JOIN ibu on kartu_ibu.id = ibu.kartuIbuId LEFT JOIN anak ON ibu.id = anak.ibuCaseId ");
+        mainSelect = queryBUilder.mainCondition("kartu_ibu.isClosed !='true' and kartu_ibu.details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
         queryBUilder.addCondition(filters);
         Sortqueries = KiSortByNameAZ();
         currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         KBClientsProvider kiscp = new KBClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"isClosed", "namalengkap", "umur","namaSuami", "isOutOfArea"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, kiscp, new CommonRepository("kartu_ibu",new String []{"kartu_ibu.isClosed", "namalengkap", "umur","namaSuami","ibu.id", "kartu_ibu.isOutOfArea"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -251,7 +251,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             ft.remove(prev);
         }
         ft.addToBackStack(null);
-        BidanLocationSelectorDialogFragment
+        LocationSelectorDialogFragment
                 .newInstance((NativeKBSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), KOHORT_KB_REGISTER)
                 .show(ft, locationDialogTAG);
     }
@@ -267,12 +267,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                     startActivity(intent);
                     getActivity().finish();
                     break;
-                //    case R.id.hh_due_date:
-                //        HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
-//
-                //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
-                //        break;
-                case R.id.btn_edit:
+         case R.id.btn_edit:
                     FlurryFacade.logEvent("click_visit_button_on_kohort_kb_dashboard");
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;

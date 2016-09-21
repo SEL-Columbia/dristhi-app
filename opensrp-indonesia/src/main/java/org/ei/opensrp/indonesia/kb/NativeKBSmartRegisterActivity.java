@@ -49,7 +49,7 @@ import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KOHORT_KB_UPDAT
 /**
  * Created by Dimas Ciputra on 2/18/15.
  */
-public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
+public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterActivity implements LocationSelectorDialogFragment.OnLocationSelectedListener{
 
     public static final String TAG = "KBActivity";
     @Bind(R.id.view_pager)
@@ -130,7 +130,31 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     }
 
+    @Override
+    public void OnLocationSelected(String locationJSONString) {
+        JSONObject combined = null;
 
+        try {
+            JSONObject locationJSON = new JSONObject(locationJSONString);
+            //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+
+            combined = locationJSON;
+            //   Iterator<String> iter = uniqueId.keys();
+
+            //  while (iter.hasNext()) {
+            //      String key = iter.next();
+            //       combined.put(key, uniqueId.get(key));
+            //    }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (combined != null) {
+            FieldOverrides fieldOverrides = new FieldOverrides(combined.toString());
+            startFormActivity(KOHORT_KB_REGISTER, null, fieldOverrides.getJSONString());
+        }
+    }
     @Override
     public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         Log.v("fieldoverride", fieldOverrides.toString());

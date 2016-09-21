@@ -522,5 +522,14 @@
     <string name="highRiskPostPartumSHectioCaesaria">High Risk PostPartum Sectio Caesaria</string>
     <string name="show_less_button">Show Less . . .</string>
     <string name="highRiskPostPartumSectioCaesaria">highRisk PostPartum Sectio Caesaria</string>
+    <string name="contraseption">Contraception</string>
+    <string name="sistolic">Systolic</string>
+    <string name="diastolic">Diastolic</string>
+    <string name="alki_hb">ALKI /HB</string>
+    <string name="alkilila">ALKI / LILA</string>
+    <string name="ALKI_Penyakin_kronis">ALKI / Cronical Disease</string>
+    <string name="alkiims">ALKI /Ims</string>
+    <string name="kb_ket">FP Note</string>
+    <string name="ganti_cara">Change FP</string>
 
 </resources>
