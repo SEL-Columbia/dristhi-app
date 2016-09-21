@@ -35,7 +35,7 @@
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Gizi"
+                        android:text="GIZI"
                         style="@style/CustomFontTextViewStyle.Home.RegisterName"/>
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
