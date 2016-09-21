@@ -379,6 +379,7 @@
     <string name="birth_date1">Date of Birth  </string>
     <string name="gender">Gender : </string>
     <string name="nutrition_status">Nutrition Status :</string>
+    <string name="birth_weight">Birth Weight :</string>
     <string name="bgm">Undernourished  :</string>
     <string name="dua_t">Failure to gain weight :</string>
     <string name="under_yellow_line">Underweight :</string>

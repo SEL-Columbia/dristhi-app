@@ -379,6 +379,7 @@
     <string name="birth_date1">Tanggal Lahir  </string>
     <string name="gender">Jenis Kelamin : </string>
     <string name="nutrition_status">Status Nutrisi :</string>
+    <string name="birth_weight">Berat Lahir :</string>
     <string name="bgm">BGM :</string>
     <string name="dua_t">2T :</string>
     <string name="under_yellow_line">Gizi Kurang :</string>
@@ -395,6 +396,7 @@
     <string name="tall">Tinggi</string>
     <string name="S_wasted">Sangak Kurus</string>
     <string name="wasted">Kurus</string>
+
 
 
 </resources>

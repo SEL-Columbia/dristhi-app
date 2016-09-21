@@ -75,6 +75,7 @@ public class ChildDetailActivity extends Activity {
         TextView village_name = (TextView) findViewById(R.id.txt_profile_village_name);
         TextView birth_date = (TextView) findViewById(R.id.txt_profile_birth_date);
         TextView gender = (TextView) findViewById(R.id.txt_profile_child_gender);
+        TextView birthWeight = (TextView) findViewById(R.id.txt_profile_birth_weight);
         TextView weight = (TextView) findViewById(R.id.txt_profile_last_weight);
         TextView height = (TextView) findViewById(R.id.txt_profile_last_height);
         //child growth
@@ -118,6 +119,7 @@ public class ChildDetailActivity extends Activity {
         village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));
         birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "-"));
         gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
+        birthWeight.setText(getString(R.string.birth_weight) + " " + (childclient.getDetails().get("beratLahir") != null ? childclient.getDetails().get("beratLahir") + " gr" : "-"));
         weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan")+"Kg" : "- Kg"));
         height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan")+"Cm" : "- Cm"));
         vitA.setText(getString(R.string.vitamin_a) +" : "+ (childclient.getDetails().get("vitA") != null ? childclient.getDetails().get("vitA") : "-"));
