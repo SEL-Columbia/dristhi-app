@@ -220,7 +220,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                     LocalDate regdate = LocalDate.fromDateFields(format.parse(pc.getDetails().get("WomanREGDATE")));
                     if (DateUtil.dayDifference(regdate, DateUtil.today()) == 0) {
                         Log.v("is here", "1");
-                        psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+                        psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_dark_blue));
                         psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                         psrfdue.setOnClickListener(onClickListener);
                         psrfdue.setTag(smartRegisterClient);
@@ -258,7 +258,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                 psrfdue.setTextColor(context.getResources().getColor(R.color.text_black));
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
-                psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+                psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_dark_blue));
                 psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 psrfdue.setOnClickListener(onClickListener);
                psrfdue.setTag(smartRegisterClient);
@@ -385,7 +385,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
 
 
         }else{
-            mis_elco_due.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+            mis_elco_due.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_dark_blue));
             mis_elco_due.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             mis_elco_due.setOnClickListener(onClickListener);
             mis_elco_due.setTag(smartRegisterClient);
@@ -430,7 +430,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                 mis_elco_due.setTextColor(context.getResources().getColor(R.color.text_black));
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
-                mis_elco_due.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+                mis_elco_due.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_dark_blue));
                 mis_elco_due.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 mis_elco_due.setOnClickListener(onClickListener);
                 mis_elco_due.setTag(smartRegisterClient);

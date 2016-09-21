@@ -196,7 +196,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
-                viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+                viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_dark_blue));
                 viewHolder.due_visit_date.setOnClickListener(onClickListener);
                 viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 viewHolder.due_visit_date.setTag(smartRegisterClient);

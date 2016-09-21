@@ -539,7 +539,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
             customFontTextView.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
         }
         if(alerttextstatus.getAlertstatus().equalsIgnoreCase("upcoming") || alerttextstatus.getAlertstatus().equalsIgnoreCase("not synced")){ // Hack for registering NBNF
-            customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+            customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_dark_blue));
             customFontTextView.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             customFontTextView.setOnClickListener(onClickListener);
             customFontTextView.setTag(R.id.clientobject, pc);

@@ -369,7 +369,7 @@ public class mCareChildSmartClientsProvider implements SmartRegisterCLientsProvi
 
         }
         if (alerttextstatus.getAlertstatus().equalsIgnoreCase("upcoming")) {
-            customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+            customFontTextView.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_dark_blue));
             customFontTextView.setTextColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
             customFontTextView.setOnClickListener(onClickListener);
             customFontTextView.setTag(R.id.clientobject, pc);

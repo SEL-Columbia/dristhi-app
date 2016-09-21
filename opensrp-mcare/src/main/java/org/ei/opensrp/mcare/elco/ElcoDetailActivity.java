@@ -135,7 +135,7 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
             ((LinearLayout)mView.findViewById(R.id.census_completeholder)).setVisibility(View.GONE);
 
             mis_census.setOnClickListener(this);
-            mis_census.setBackgroundColor(getResources().getColor(R.color.alert_upcoming_yellow));
+            mis_census.setBackgroundColor(getResources().getColor(R.color.alert_upcoming_dark_blue));
             mis_census.setTextColor(getResources().getColor(R.color.status_bar_text_almost_white));
             mis_census.setText(getResources().getString(R.string.launch_mis_census_form));
             mis_census.setTag(Elcoclient);

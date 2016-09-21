@@ -221,7 +221,8 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
                         LocalDate regdate = LocalDate.fromDateFields(womanRegDate);
                         if (DateUtil.dayDifference(regdate, DateUtil.today()) == 0) {
                             Log.v("is here", "1");
-                            psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+                            psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_dark_blue));
+                            psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                             psrfdue.setOnClickListener(onClickListener);
                             psrfdue.setTag(smartRegisterClient);
                             psrfdue.setText(format.format(womanRegDate));
@@ -255,7 +256,8 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
                     psrfdue.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
                 }
                 if (alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")) {
-                    psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
+                    psrfdue.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_dark_blue));
+                    psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                     psrfdue.setOnClickListener(onClickListener);
                     psrfdue.setTag(smartRegisterClient);
 
@@ -264,6 +266,7 @@ public class EcElcoSmartClientsProvider implements SmartRegisterCLientsProviderF
                     psrfdue.setOnClickListener(onClickListener);
                     psrfdue.setTag(smartRegisterClient);
                     psrfdue.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
+                    psrfdue.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 }
                 if (alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")) {
                     psrfdue.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
