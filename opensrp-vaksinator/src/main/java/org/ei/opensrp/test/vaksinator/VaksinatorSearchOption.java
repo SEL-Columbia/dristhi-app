@@ -44,6 +44,13 @@ public class VaksinatorSearchOption implements FilterOption {
                 }
             }
         }
+        if(!result) {
+            if(currentclient.getDetails().get("dusun") != null) {
+                if (currentclient.getDetails().get("dusun").toLowerCase().contains(criteria.toLowerCase())) {
+                    result = true;
+                }
+            }
+        }
 
         return result;
     }
