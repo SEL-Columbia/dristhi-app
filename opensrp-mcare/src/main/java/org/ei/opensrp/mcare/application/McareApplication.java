@@ -1,6 +1,7 @@
 package org.ei.opensrp.mcare.application;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 
 import org.acra.ACRA;
@@ -14,6 +15,7 @@ import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.DrishtiApplication;
 import org.ei.opensrp.view.receiver.SyncBroadcastReceiver;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static org.ei.opensrp.util.Log.logInfo;
 
 import java.util.HashMap;
@@ -48,6 +50,9 @@ public class McareApplication extends DrishtiApplication {
         context.updateCustomHumanReadableConceptResponse(getHumanReadableConceptResponse());
         applyUserLanguagePreference();
         cleanUpSyncState();
+
+        SharedPreferences sharedPreferences = getDefaultSharedPreferences(getApplicationContext());
+        sharedPreferences.edit().putBoolean("firstlauch",false).commit();
     }
 
     @Override
