@@ -185,12 +185,18 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 
         // remove close form
         // system will remove the common person object client from controller map if the person's form closed
-        CommonPersonObjectClient person;
-        for(int i=0;i<controller.getClients().size();i++){
-            person = (CommonPersonObjectClient)controller.getClients().get(i);
-            if(person.getDetails().get("form_ditutup")!=null && person.getDetails().get("form_ditutup").equalsIgnoreCase("yes"))
-                controller.getClients().remove(person);
-        }
+//        CommonPersonObjectClient person;
+//        ArrayList <CommonPersonObjectClient> removed = new ArrayList<CommonPersonObjectClient>();
+//        for(int i=0;i<controller.getClients().size();i++){
+//            person = (CommonPersonObjectClient)controller.getClients().get(i);
+//            if(person.getDetails().get("form_ditutup")!=null && person.getDetails().get("form_ditutup").equalsIgnoreCase("yes"))
+//                removed.add(person);
+//        }
+//        for(CommonPersonObjectClient obj : removed){
+//            System.out.println(obj.getDetails().toString());
+//            controller.getClients().remove(obj);
+//        }
+
         dialogOptionMapper = new DialogOptionMapper();
         context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new ZScorehandler());
         context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new KmsHandler());
