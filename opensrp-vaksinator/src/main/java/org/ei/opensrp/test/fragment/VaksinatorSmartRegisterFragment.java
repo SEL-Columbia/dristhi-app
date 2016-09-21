@@ -178,12 +178,6 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
                     //                                  find this   , on this   , order by this
                     CommonPersonObjectController.ByColumnAndByDetails.byDetails.byDetails);
         }
-        CommonPersonObjectClient person;
-        for(int i=0;i<controller.getClients().size();i++){
-            person = (CommonPersonObjectClient)controller.getClients().get(i);
-            if(person.getDetails().get("form_ditutup")!=null && person.getDetails().get("form_ditutup").equalsIgnoreCase("yes"))
-                controller.getClients().remove(person);
-        }
         dialogOptionMapper = new DialogOptionMapper();
     }
 
