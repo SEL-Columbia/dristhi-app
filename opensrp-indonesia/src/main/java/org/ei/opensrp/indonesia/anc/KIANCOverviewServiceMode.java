@@ -43,13 +43,13 @@ public class KIANCOverviewServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{244, 100, 110, 120, 190, 135, 95};
+                return new int[]{244, 90, 140, 120, 170, 135, 95};
             }
 
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
-                        R.string.header_name, R.string.header_id, R.string.header_status,
+                        R.string.header_name, R.string.header_id, R.string.header_klinis,
                         R.string.header_pemeriksaan, R.string.header_history_anc,
                         R.string.header_status, R.string.header_edit};
             }

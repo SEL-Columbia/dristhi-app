@@ -263,7 +263,7 @@
     <string name="edd_label">"EDD: "</string>
     <string name="str_days_past_due">day (s) past due</string>
     <string name="lmp_label">LMP:</string>
-    <string name="str_weeks">weeks</string>
+    <string name="str_weeks">&#160;weeks</string>
     <string name="anc_register_title_in_short">ANC</string>
     <string name="str_bp">BP</string>
     <string name="str_weight">Wt.</string>
@@ -531,5 +531,7 @@
     <string name="alkiims">ALKI /Ims</string>
     <string name="kb_ket">FP Note</string>
     <string name="ganti_cara">Change FP</string>
-
+    <string name="header_tt_usia_klinis">Clinical Status</string>
+    <string name="usia">Clinical Age:</string>
+    <string name="header_klinis">Clinical Status</string>
 </resources>

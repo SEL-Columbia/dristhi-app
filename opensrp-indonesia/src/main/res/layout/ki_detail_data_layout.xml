@@ -19,7 +19,7 @@ android:layout_width="match_parent" android:layout_height="match_parent"
                 android:text="@string/village"
                 android:layout_margin="5dp"
                 android:id="@+id/lbl_village"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/text_black" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -30,9 +30,8 @@ android:layout_width="match_parent" android:layout_height="match_parent"
                 android:text="N/A "
                 android:layout_margin="5dp"
                 android:id="@+id/txt_village_name"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/text_black" />
-
 
         </TableRow>
         <TableRow>

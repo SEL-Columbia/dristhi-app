@@ -176,8 +176,8 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.no_ibu.setText(ibuparent.getDetails().get("noIbu")!=null?ibuparent.getDetails().get("noIbu"):"");
         viewHolder.unique_id.setText(ibuparent.getDetails().get("unique_id")!=null?ibuparent.getDetails().get("unique_id"):"");
 
-        viewHolder.usia_klinis.setText(pc.getDetails().get("usiaKlinis")!=null?pc.getDetails().get("usiaKlinis")+" Minggu":"-");
-        viewHolder.htpt.setText(pc.getDetails().get("tanggalHPHT")!=null?pc.getDetails().get("tanggalHPHT"):"-");
+        viewHolder.usia_klinis.setText(pc.getDetails().get("usiaKlinis")!=null?context.getString(R.string.usia)+pc.getDetails().get("usiaKlinis")+context.getString(R.string.str_weeks):"-");
+        viewHolder.htpt.setText(ibuparent.getDetails().get("htp")!=null?ibuparent.getDetails().get("htp"):"-");
         viewHolder.ki_lila_bb.setText(pc.getDetails().get("hasilPemeriksaanLILA")!=null?pc.getDetails().get("hasilPemeriksaanLILA"):"-");
 
         viewHolder.beratbadan_tb.setText(pc.getDetails().get("bbKg")!=null?pc.getDetails().get("bbKg"):"-");
@@ -185,10 +185,9 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         String AncDate = kiobject.getColumnmaps().get("ancDate")!=null?kiobject.getColumnmaps().get("ancDate"):"-";
         String AncKe = kiobject.getColumnmaps().get("ancKe")!=null?kiobject.getColumnmaps().get("ancKe"):"-";
 
-        viewHolder.tanggal_kunjungan_anc.setText(context.getString(R.string.hh_last_visit_date)+ AncDate);
+        viewHolder.tanggal_kunjungan_anc.setText(context.getString(R.string.last_visit_date)+ AncDate);
         viewHolder.anc_number.setText(context.getString(R.string.anc_ke) + AncKe);
         viewHolder.kunjugan_ke.setText(context.getString(R.string.visit_number) +KunjunganKe);
-
 
         if(AncKe.equals("-")){
             List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 1");

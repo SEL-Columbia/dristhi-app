@@ -235,7 +235,6 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
     @Override
     public void startRegistration() {
-       // FlurryFacade.logEvent("click_start_registration_on_kohort_ibu_dashboard");
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
         Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
         if (prev != null) {
@@ -264,7 +263,6 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
             //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
             //        break;
                 case R.id.btn_edit:
-                    FlurryFacade.logEvent("click_visit_button_on_kohort_ibu_dashboard");
                     KIDetailActivity.kiclient = (CommonPersonObjectClient)view.getTag();
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;

@@ -266,12 +266,7 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
                     startActivity(intent);
                     getActivity().finish();
                     break;
-                //    case R.id.hh_due_date:
-                //        HouseHoldDetailActivity.householdclient = (CommonPersonObjectClient)view.getTag();
-//
-                //        showFragmentDialog(new EditDialogOptionModel(), view.getTag());
-                //        break;
-                case R.id.btn_edit:
+                 case R.id.btn_edit:
                     FlurryFacade.logEvent("click_visit_button_on_kohort_anc_dashboard");
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;

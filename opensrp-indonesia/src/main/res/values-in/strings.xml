@@ -315,7 +315,7 @@
     <string name="hb_test_label">Hb Test</string>
     <string name="str_days_past_due">day (s) past due</string>
     <string name="lmp_label">LMP:</string>
-    <string name="str_weeks">weeks</string>
+    <string name="str_weeks">&#160;Minggu</string>
     <string name="anc_register_title_in_short">ANC</string>
     <string name="str_bp">BP</string>
     <string name="str_weight">Wt.</string>
@@ -481,4 +481,6 @@
     <string name="kb_ket">Keterangan tentang peserta KB</string>
     <string name="ganti_cara">Keterangan Ganti Cara</string>
     <string name="elco_details_summary">Ringkasan</string>
+    <string name="usia">Usia Klinis:</string>
+    <string name="header_klinis">Status Klinis</string>
 </resources>
