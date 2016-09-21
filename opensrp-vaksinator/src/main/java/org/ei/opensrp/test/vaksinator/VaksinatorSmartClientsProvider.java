@@ -126,9 +126,9 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
         int umur = pc.getDetails().get("tanggal_lahir") != null ? age(pc.getDetails().get("tanggal_lahir")) : 0;
         //set default image for mother
-        viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(pc.getDetails().get("jenis_kelamin").contains("k")
-                ? R.drawable.child_boy_infant
-                : R.drawable.child_girl_infant));
+        viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(pc.getDetails().get("jenis_kelamin").contains("em")
+                ? R.drawable.child_girl_infant
+                : R.drawable.child_boy_infant));
 
         viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : " ");
         viewHolder.motherName.setText(pc.getDetails().get("nama_orang_tua")!=null?pc.getDetails().get("nama_orang_tua"):" ");
