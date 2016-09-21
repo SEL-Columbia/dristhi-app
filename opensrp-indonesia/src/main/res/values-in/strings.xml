@@ -483,4 +483,5 @@
     <string name="elco_details_summary">Ringkasan</string>
     <string name="usia">Usia Klinis:</string>
     <string name="header_klinis">Status Klinis</string>
+    <string name="height">Tinggi:</string>
 </resources>

@@ -33,6 +33,8 @@ import java.util.UUID;
 import util.ImageCache;
 import util.ImageFetcher;
 
+import static org.ei.opensrp.util.StringUtil.humanize;
+import static org.ei.opensrp.util.StringUtil.humanizeAndDoUPPERCASE;
 /**
  * Created by Iq on 07/09/16.
  */
@@ -115,8 +117,8 @@ public class AnakDetailActivity extends Activity {
         }
 
 
-        Date currentDateandTime = new Date();
-        today.setText(" "+currentDateandTime);
+       // Date currentDateandTime = new Date();
+     //   today.setText(" "+currentDateandTime);
 
 
         AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("anak");
@@ -130,28 +132,27 @@ public class AnakDetailActivity extends Activity {
         final CommonPersonObject kiparent = kirep.findByCaseID(ibuparent.getColumnmaps().get("kartuIbuId"));
 
         
-        nama.setText("Nama : "+ (childclient.getColumnmaps().get("namaBayi") != null ? childclient.getColumnmaps().get("namaBayi") : "-"));
-        mother.setText("Nama ibu : "+ (kiparent.getColumnmaps().get("namalengkap") != null ? kiparent.getColumnmaps().get("namalengkap") : "-"));
-        father.setText("Nama Ayah : "+ (kiparent.getColumnmaps().get("namaSuami") != null ? kiparent.getColumnmaps().get("namaSuami") : "-"));
-        dob.setText("Tanggal Lahir : "+ (childclient.getDetails().get("tanggalLahirAnak") != null ? childclient.getDetails().get("tanggalLahirAnak") : "-"));
+        nama.setText(getResources().getString(R.string.name)+humanize (childclient.getColumnmaps().get("namaBayi") != null ? childclient.getColumnmaps().get("namaBayi") : "-"));
+        mother.setText(getResources().getString(R.string.child_details_mothers_name_label)+humanize (kiparent.getColumnmaps().get("namalengkap") != null ? kiparent.getColumnmaps().get("namalengkap") : "-"));
+        father.setText(getResources().getString(R.string.child_details_fathers_name_label)+ humanize(kiparent.getColumnmaps().get("namaSuami") != null ? kiparent.getColumnmaps().get("namaSuami") : "-"));
+        dob.setText(getResources().getString(R.string.date_of_birth)+ humanize(childclient.getColumnmaps().get("tanggalLahirAnak") != null ? childclient.getColumnmaps().get("tanggalLahirAnak") : "-"));
         
 
-
-        txt_noBayi.setText( (childclient.getDetails().get("noBayi") != null ? childclient.getDetails().get("noBayi") : "-"));
-        txt_jenisKelamin.setText( (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
-        txt_beratLahir.setText((childclient.getDetails().get("beratLahir") != null ? childclient.getDetails().get("beratLahir") : "-"));
-        tinggi.setText((childclient.getDetails().get("hasilPengukuranTinggiBayihasilPengukuranTinggiBayi") != null ? childclient.getDetails().get("hasilPengukuranTinggiBayihasilPengukuranTinggiBayi") : "-"));
-        berat.setText((childclient.getDetails().get("indikatorBeratBedanBayi") != null ? childclient.getDetails().get("indikatorBeratBedanBayi") : "-"));
-        asi.setText((childclient.getDetails().get("pemberianAsiEksklusif") != null ? childclient.getDetails().get("pemberianAsiEksklusif") : "-"));
-        status_gizi.setText((childclient.getDetails().get("statusGizi") != null ? childclient.getDetails().get("statusGizi") : "-"));
-        kpsp.setText((childclient.getDetails().get("hasilDilakukannyaKPSP") != null ? childclient.getDetails().get("hasilDilakukannyaKPSP") : "-"));
-        hb0.setText((childclient.getDetails().get("tanggalpemberianimunisasiHb07") != null ? childclient.getDetails().get("tanggalpemberianimunisasiHb07") : "-"));
-        pol1.setText((childclient.getDetails().get("tanggalpemberianimunisasiBCGdanPolio1") != null ? childclient.getDetails().get("tanggalpemberianimunisasiBCGdanPolio1") : "-"));
-        pol2.setText((childclient.getDetails().get("tanggalpemberianimunisasiDPTHB1Polio2") != null ? childclient.getDetails().get("tanggalpemberianimunisasiDPTHB1Polio2") : "-"));
-        pol3.setText((childclient.getDetails().get("tanggalpemberianimunisasiDPTHB2Polio3") != null ? childclient.getDetails().get("tanggalpemberianimunisasiDPTHB2Polio3") : "-"));
-        pol4.setText((childclient.getDetails().get("tanggalpemberianimunisasiDPTHB3Polio4") != null ? childclient.getDetails().get("tanggalpemberianimunisasiDPTHB3Polio4") : "-"));
-        campak.setText((childclient.getDetails().get("tanggalpemberianimunisasiCampak") != null ? childclient.getDetails().get("tanggalpemberianimunisasiCampak") : "-"));
-        vita.setText((childclient.getDetails().get("pelayananVita") != null ? childclient.getDetails().get("pelayananVita") : "-"));
+        txt_noBayi.setText( ": "+humanize (childclient.getDetails().get("noBayi") != null ? childclient.getDetails().get("noBayi") : "-"));
+        txt_jenisKelamin.setText(": "+ humanize (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
+        txt_beratLahir.setText(": "+humanize (childclient.getDetails().get("beratLahir") != null ? childclient.getDetails().get("beratLahir") : "-"));
+        tinggi.setText(": "+ humanize(childclient.getDetails().get("hasilPengukuranTinggiBayihasilPengukuranTinggiBayi") != null ? childclient.getDetails().get("hasilPengukuranTinggiBayihasilPengukuranTinggiBayi") : "-"));
+        berat.setText(": "+humanize (childclient.getDetails().get("indikatorBeratBedanBayi") != null ? childclient.getDetails().get("indikatorBeratBedanBayi") : "-"));
+        asi.setText(": "+humanize (childclient.getDetails().get("pemberianAsiEksklusif") != null ? childclient.getDetails().get("pemberianAsiEksklusif") : "-"));
+        status_gizi.setText(": "+ humanize(childclient.getDetails().get("statusGizi") != null ? childclient.getDetails().get("statusGizi") : "-"));
+        kpsp.setText(": "+ humanize(childclient.getDetails().get("hasilDilakukannyaKPSP") != null ? childclient.getDetails().get("hasilDilakukannyaKPSP") : "-"));
+        hb0.setText(": "+ humanize(childclient.getDetails().get("tanggalpemberianimunisasiHb07") != null ? childclient.getDetails().get("tanggalpemberianimunisasiHb07") : "-"));
+        pol1.setText(": "+ humanize(childclient.getDetails().get("tanggalpemberianimunisasiBCGdanPolio1") != null ? childclient.getDetails().get("tanggalpemberianimunisasiBCGdanPolio1") : "-"));
+        pol2.setText(": "+ humanize(childclient.getDetails().get("tanggalpemberianimunisasiDPTHB1Polio2") != null ? childclient.getDetails().get("tanggalpemberianimunisasiDPTHB1Polio2") : "-"));
+        pol3.setText(": "+ humanize(childclient.getDetails().get("tanggalpemberianimunisasiDPTHB2Polio3") != null ? childclient.getDetails().get("tanggalpemberianimunisasiDPTHB2Polio3") : "-"));
+        pol4.setText(": "+ humanize(childclient.getDetails().get("tanggalpemberianimunisasiDPTHB3Polio4") != null ? childclient.getDetails().get("tanggalpemberianimunisasiDPTHB3Polio4") : "-"));
+        campak.setText(": "+humanize (childclient.getDetails().get("tanggalpemberianimunisasiCampak") != null ? childclient.getDetails().get("tanggalpemberianimunisasiCampak") : "-"));
+        vita.setText(": "+ humanize(childclient.getDetails().get("pelayananVita") != null ? childclient.getDetails().get("pelayananVita") : "-"));
 
 
         childview.setOnClickListener(new View.OnClickListener() {
