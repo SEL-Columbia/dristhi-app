@@ -94,28 +94,32 @@ public class ClientProcessor {
 
     private void processEvent(JSONObject event, JSONObject clientClassificationJson) throws Exception {
 
-        String baseEntityId = event.getString(baseEntityIdJSONKey);
-        if(event.has("creator")){
-            Log.i(TAG,"EVENT from openmrs");
-        }
-        //for data integrity check if a client exists, if not pull one from cloudant and insert in drishti sqlite db
-
-        JSONObject client = mCloudantDataHandler.getClientByBaseEntityId(baseEntityId);
-        if(client == null || client.length() == 0){
-            return;
-        }
-
-        // Get the client type classification
-        JSONArray clientClasses = clientClassificationJson.getJSONArray("case_classification_rules");
-        for (int i = 0; i < clientClasses.length(); i++) {
-            JSONObject clientClass = clientClasses.getJSONObject(i);
-            processClientClass(clientClass, event, client);
-        }
-
-        // Incase the details have not been updated
-        boolean updated = event.has(detailsUpdated) ? event.getBoolean(detailsUpdated) : false;
-        if(!updated) {
-            updateClientDetailsTable(event, client);
+        try {
+            String baseEntityId = event.getString(baseEntityIdJSONKey);
+            if(event.has("creator")){
+                Log.i(TAG,"EVENT from openmrs");
+            }
+            //for data integrity check if a client exists, if not pull one from cloudant and insert in drishti sqlite db
+    
+            JSONObject client = mCloudantDataHandler.getClientByBaseEntityId(baseEntityId);
+            if(client == null || client.length() == 0){
+                return;
+            }
+    
+            // Get the client type classification
+            JSONArray clientClasses = clientClassificationJson.getJSONArray("case_classification_rules");
+            for (int i = 0; i < clientClasses.length(); i++) {
+                JSONObject clientClass = clientClasses.getJSONObject(i);
+                processClientClass(clientClass, event, client);
+            }
+    
+            // Incase the details have not been updated
+            boolean updated = event.has(detailsUpdated) ? event.getBoolean(detailsUpdated) : false;
+            if(!updated) {
+                updateClientDetailsTable(event, client);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, e.toString(), e);
         }
     }
 
@@ -162,8 +166,8 @@ public class ClientProcessor {
                 JSONObject segmentJsonObject = jsonDataSegment.getJSONObject(j);
                 //let's discuss this further, to get the real value in the doc we've to use the keys 'fieldcode' and 'value'
 
-                String docSegmentFieldValue = segmentJsonObject.get(fieldName) != null ? segmentJsonObject.get(fieldName).toString() : "";
-                List<String> docSegmentResponseValues = segmentJsonObject.get(responseKey) != null ? getValues(segmentJsonObject.get(responseKey)) : null;
+                String docSegmentFieldValue = segmentJsonObject.has(fieldName) ? segmentJsonObject.get(fieldName).toString() : "";
+                List<String> docSegmentResponseValues = segmentJsonObject.has(responseKey) ? getValues(segmentJsonObject.get(responseKey)) : null;
 
 
                 if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) &&(!Collections.disjoint(responseValues, docSegmentResponseValues))) {
@@ -177,7 +181,7 @@ public class ClientProcessor {
 
         } else {
             //fetch from the main doc
-            String docSegmentFieldValue = event.get(fieldName) != null ? event.get(fieldName).toString() : "";
+            String docSegmentFieldValue = event.has(fieldName) ? event.get(fieldName).toString() : "";
 
             if (docSegmentFieldValue.equalsIgnoreCase(fieldValue)) {
 
@@ -253,7 +257,7 @@ public class ClientProcessor {
                 updateFTSsearch(tableName, baseEntityId);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
     }
 
@@ -386,7 +390,7 @@ public class ClientProcessor {
                 updateClientDetailsTable(event, client);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
 
     }
@@ -445,7 +449,7 @@ public class ClientProcessor {
             //save the other misc, client info date of birth...
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
     }
 
@@ -477,7 +481,7 @@ public class ClientProcessor {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
         return obs;
     }
@@ -502,7 +506,7 @@ public class ClientProcessor {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
         return attributes;
     }
@@ -515,7 +519,7 @@ public class ClientProcessor {
                 map.put(key, value);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
         return map;
     }
@@ -612,7 +616,7 @@ public class ClientProcessor {
                 columnValue = cursor.getString(cursor.getColumnIndex(column));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         } finally {
             //close the cursor
             if (cursor != null) {
@@ -656,7 +660,7 @@ public class ClientProcessor {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
         }
         return addressMap;
     }
@@ -702,7 +706,7 @@ public class ClientProcessor {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
         }
         return null;
     }

@@ -1,5 +1,7 @@
 package org.ei.opensrp.clientandeventmodel;
 
+import android.util.Log;
+
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
@@ -11,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateUtil {
+    private static final String TAG = "DateUtil";
     private static DateUtility dateUtility = new RealDate();
     public static DateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
     public static DateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -74,7 +77,7 @@ public class DateUtil {
                 parsed = yyyyMMddTHHmmssSSSZ.parse(dateString.trim());
             }
         } catch (ParseException e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
         return parsed;
     }

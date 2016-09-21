@@ -10,6 +10,8 @@ import java.io.InputStream;
  */
 public class AssetHandler {
 
+    public static final String TAG = "AssetHandler";
+
     public static String readFileFromAssetsFolder(String fileName, Context context){
         String fileContents = null;
         try {
@@ -20,7 +22,7 @@ public class AssetHandler {
             is.close();
             fileContents = new String(buffer, "UTF-8");
         } catch (IOException ex) {
-            ex.printStackTrace();
+            android.util.Log.e(TAG, ex.toString(), ex);
             return null;
         }
         //Log.d("File", fileContents);

@@ -1,5 +1,7 @@
 package org.ei.opensrp.clientandeventmodel.processor;
 
+import android.util.Log;
+
 import org.ei.opensrp.clientandeventmodel.processor.model.Event;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,6 +15,7 @@ import java.util.Map;
  * Created by raihan on 3/15/16.
  */
 public class EventsProcessor {
+    public static final String TAG = "EventsProcessor";
     String baseEntityID;
     Map<String,String> attributesDetailsMap = new HashMap<String, String>();
     Map<String,String> attributesColumnsMap = new HashMap<String, String>();
@@ -47,7 +50,7 @@ public class EventsProcessor {
 
 
         } catch (JSONException e) {
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
         }
     }
     public Event createEventObject(){
@@ -83,7 +86,7 @@ public class EventsProcessor {
                     i = obsColumns.length();
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                 Log.e(TAG, e.toString(), e);
             }
 
         }
@@ -104,7 +107,7 @@ public class EventsProcessor {
                    i = attributecolumns.length();
                }
             } catch (JSONException e) {
-                e.printStackTrace();
+                 Log.e(TAG, e.toString(), e);
             }
 
         }

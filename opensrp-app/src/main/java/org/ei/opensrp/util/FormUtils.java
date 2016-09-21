@@ -16,7 +16,6 @@ import org.ei.opensrp.clientandeventmodel.FormField;
 import org.ei.opensrp.clientandeventmodel.FormInstance;
 import org.ei.opensrp.clientandeventmodel.SubFormData;
 import org.ei.opensrp.service.intentservices.ReplicationIntentService;
-import org.ei.opensrp.sync.CloudantSyncHandler;
 import org.ei.opensrp.domain.SyncStatus;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.domain.form.SubForm;
@@ -53,7 +52,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
  * Created by koros on 9/28/15.
  */
 public class FormUtils {
-
+    
+    public static final String TAG = "FormUtils";
     private static FormUtils instance;
     private Context mContext;
     private org.ei.opensrp.Context theAppContext;
@@ -340,7 +340,7 @@ public class FormUtils {
             return xml;
 
         } catch (Exception e) {
-            e.printStackTrace();
+             android.util.Log.e(TAG, e.toString(), e);
         }
         return "";
     }
@@ -453,7 +453,7 @@ public class FormUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             android.util.Log.e(TAG, e.toString(), e);
         }
         return entityJson;
     }
@@ -490,7 +490,7 @@ public class FormUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             android.util.Log.e(TAG, e.toString(), e);
         }
         return null;
     }
@@ -535,7 +535,7 @@ public class FormUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            android.util.Log.e(TAG, e.toString(), e);
         }
         return "";
     }
@@ -717,7 +717,7 @@ public class FormUtils {
                     }
                     item.put("value", val);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                     android.util.Log.e(TAG, e.toString(), e);
                 }
             }
         }
@@ -762,7 +762,7 @@ public class FormUtils {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+             android.util.Log.e(TAG, e.toString(), e);
         }
         return null;
     }
@@ -795,7 +795,7 @@ public class FormUtils {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+             android.util.Log.e(TAG, e.toString(), e);
         }
         return false;
     }
@@ -895,7 +895,7 @@ public class FormUtils {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+             android.util.Log.e(TAG, e.toString(), e);
         }
     }
 
@@ -938,7 +938,7 @@ public class FormUtils {
             is.close();
             fileContents = new String(buffer, "UTF-8");
         } catch (IOException ex) {
-            ex.printStackTrace();
+            android.util.Log.e(TAG, ex.toString(), ex);
             return null;
         }
         //Log.d("File", fileContents);

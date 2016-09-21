@@ -1,6 +1,7 @@
 package org.ei.opensrp.clientandeventmodel;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
@@ -45,7 +46,7 @@ import com.google.gson.JsonSyntaxException;
 public class FormAttributeParser {
 
     Context mContext;
-
+    private static final String TAG = "FormAttributeParser";
     public FormAttributeParser(Context context)
     {
         this.mContext = context;
@@ -775,7 +776,7 @@ public class FormAttributeParser {
             is.close();
             fileContents = new String(buffer, "UTF-8");
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Log.e(TAG, ex.toString(), ex);
             return null;
         }
         //Log.d("File", fileContents);

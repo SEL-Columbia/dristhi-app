@@ -289,9 +289,9 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             ziggyService.saveForm(getParams(submission), submission.instance());
             ClientProcessor.getInstance(getApplicationContext()).processClient();
 
-            FormSubmissionService formSubmissionService = context.formSubmissionService();
-            formSubmissionService.updateFTSsearch(submission);
-            context.formSubmissionRouter().getHandlerMap().get(formName).handle(submission);
+            context.formSubmissionService().updateFTSsearch(submission);
+            context.formSubmissionRouter().handleSubmission(submission, formName);
+
             switchToBaseFragment(formSubmission);
 
         }catch (Exception e){

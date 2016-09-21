@@ -105,6 +105,7 @@ import static android.preference.PreferenceManager.setDefaultValues;
 public class Context {
     private android.content.Context applicationContext;
     private static Context context = new Context();
+    private static final String TAG = "Context";
 
     private Repository repository;
     private EligibleCoupleRepository eligibleCoupleRepository;
@@ -920,7 +921,7 @@ public class Context {
                 Log.v("bind type logs",bindtypeObjects.getJSONObject(i).getString("name"));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
         }
     }
 
@@ -944,7 +945,7 @@ public class Context {
                 Log.v("bind type logs", bindname);
             }
         }catch (Exception e){
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
 
     }

@@ -273,7 +273,7 @@ public class CommonRepository extends DrishtiRepository {
                 cursor.moveToNext();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
         } finally {
             cursor.close();
         }
@@ -309,7 +309,7 @@ public class CommonRepository extends DrishtiRepository {
                 cursor.moveToNext();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
         } finally {
             cursor.close();
         }
@@ -429,7 +429,7 @@ public class CommonRepository extends DrishtiRepository {
             SQLiteDatabase db = masterRepository.getWritableDatabase();
             db.execSQL(sql.toString());
         } catch (Exception e) {
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
         }
     }
     public  ArrayList<HashMap<String, String>> rawQuery(String sql){

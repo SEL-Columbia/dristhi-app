@@ -304,7 +304,7 @@ public class FormDataRepository extends DrishtiRepository {
             cursor = database.rawQuery(sql, new String[]{});
             map = sqliteRowToMap(cursor);
         }catch (Exception e){
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
         finally {
             if (cursor != null){

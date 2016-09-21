@@ -18,6 +18,7 @@ import java.util.Map;
  */
 public class DetailsRepository extends DrishtiRepository {
 
+    private static final String TAG = "DetailsRepository";
     private static final String SQL = "CREATE virtual table ec_details using fts4 (base_entity_id VARCHAR, key VARCHAR, value VARCHAR, event_date datetime)";
     private static final String TABLE_NAME = "ec_details";
     private static final String BASE_ENTITY_ID_COLUMN = "base_entity_id";
@@ -68,7 +69,7 @@ public class DetailsRepository extends DrishtiRepository {
                 return true;
             }
         }catch (Exception e){
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }finally {
             if (mCursor != null) mCursor.close();
         }
@@ -91,7 +92,7 @@ public class DetailsRepository extends DrishtiRepository {
             }
             return clientDetails;
         }catch (Exception e){
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }finally {
             if (cursor != null) cursor.close();
         }

@@ -294,12 +294,11 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             ziggyService.saveForm(getParams(submission), submission.instance());
             ClientProcessor.getInstance(getApplicationContext()).processClient();
 
-            FormSubmissionService formSubmissionService = context.formSubmissionService();
-            formSubmissionService.updateFTSsearch(submission);
+            context.formSubmissionService().updateFTSsearch(submission);
+            context.formSubmissionRouter().handleSubmission(submission, formName);
 
-            context.formSubmissionRouter().getHandlerMap().get(formName).handle(submission);
             switchToBaseFragment(formSubmission);
-        }catch (Exception e){
+        }catch (Exception e) {
             DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
             if (displayFormFragment != null) {
                 displayFormFragment.hideTranslucentProgressDialog();

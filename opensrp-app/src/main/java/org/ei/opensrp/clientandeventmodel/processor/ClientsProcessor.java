@@ -1,5 +1,7 @@
 package org.ei.opensrp.clientandeventmodel.processor;
 
+import android.util.Log;
+
 import org.ei.opensrp.clientandeventmodel.processor.model.Client;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,6 +15,7 @@ import java.util.Map;
  * Created by raihan on 3/15/16.
  */
 public class ClientsProcessor {
+    public static final String TAG = "ClientsProcessor";
     String baseEntityID;
     Map<String,String> attributesDetailsMap = new HashMap<String, String>();
     Map<String,String> attributesColumnsMap = new HashMap<String, String>();
@@ -47,7 +50,7 @@ public class ClientsProcessor {
 
 
         } catch (JSONException e) {
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
         }
     }
     public Client createClientObject(){
@@ -85,7 +88,7 @@ public class ClientsProcessor {
                     i = attributesColumns.length();
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                 Log.e(TAG, e.toString(), e);
             }
 
         }
@@ -106,7 +109,7 @@ public class ClientsProcessor {
                    i = propertiescolumns.length();
                }
             } catch (JSONException e) {
-                e.printStackTrace();
+                 Log.e(TAG, e.toString(), e);
             }
 
         }

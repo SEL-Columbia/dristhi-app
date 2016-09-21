@@ -100,7 +100,7 @@ public class CloudantDataHandler {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
         }
 
         return null;
@@ -153,7 +153,7 @@ public class CloudantDataHandler {
 
         List<JSONObject> eventAndAlerts = new ArrayList<JSONObject>();
         SQLiteDatabase db = loadDatabase();
-        String query = "select json, updated_at from revs where updated_at > \"" + lastSyncString + "\"  and length(json)>2 order by updated_at asc ";
+        String query = "select json, updated_at from revs where updated_at > '" + lastSyncString + "'  and length(json)>2 order by updated_at asc ";
         Log.i(getClass().getName(), query);
         Cursor cursor = db.rawQuery(query, null);
 
@@ -179,7 +179,7 @@ public class CloudantDataHandler {
                 try {
                     lastSyncDate.setTime(DateUtil.yyyyMMddHHmmss.parse(cursor.getString(1)).getTime());
                 } catch (ParseException e) {
-                    e.printStackTrace();
+                     Log.e(TAG, e.toString(), e);
                 }
             }
         } finally {
@@ -348,7 +348,7 @@ public class CloudantDataHandler {
             try {
                 client = Client.fromRevision(rev);
             } catch (ParseException e) {
-                e.printStackTrace();
+                 Log.e(TAG, e.toString(), e);
             }
             if (client != null) {
                 clients.add(client);

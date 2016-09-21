@@ -1,6 +1,7 @@
 package org.ei.opensrp.clientandeventmodel;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -29,7 +30,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 
 public class FormEntityConverter {
-
+    private static final String TAG = "FormEntityConverter";
     private FormAttributeParser formAttributeParser;
     private Context mContext;
 
@@ -348,7 +349,7 @@ public class FormEntityConverter {
             try {
                 bde = Integer.parseInt(aproxbd);
             } catch (Exception e) {
-                e.printStackTrace();
+                 Log.e(TAG, e.toString(), e);
             }
             birthdateApprox = bde > 0 ? true : false;
         }
@@ -359,7 +360,7 @@ public class FormEntityConverter {
             try {
                 dde = Integer.parseInt(aproxdd);
             } catch (Exception e) {
-                e.printStackTrace();
+                 Log.e(TAG, e.toString(), e);
             }
             deathdateApprox = dde > 0 ? true : false;
         }
@@ -407,7 +408,7 @@ public class FormEntityConverter {
             try {
                 bde = Integer.parseInt(aproxbd);
             } catch (Exception e) {
-                e.printStackTrace();
+                 Log.e(TAG, e.toString(), e);
             }
             birthdateApprox = bde > 0 ? true : false;
         }
@@ -418,7 +419,7 @@ public class FormEntityConverter {
             try {
                 dde = Integer.parseInt(aproxdd);
             } catch (Exception e) {
-                e.printStackTrace();
+                 Log.e(TAG, e.toString(), e);
             }
             deathdateApprox = dde > 0 ? true : false;
         }
@@ -462,7 +463,7 @@ public class FormEntityConverter {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
     }
 
@@ -506,7 +507,7 @@ public class FormEntityConverter {
         } catch (JsonIOException | JsonSyntaxException
                 | XPathExpressionException | ParserConfigurationException
                 | SAXException | IOException | ParseException e) {
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
             throw new IllegalStateException(e);
         }
     }
