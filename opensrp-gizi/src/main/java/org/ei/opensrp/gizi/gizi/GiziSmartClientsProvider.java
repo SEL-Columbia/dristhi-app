@@ -76,12 +76,13 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
     public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
 
         ViewHolder viewHolder;
-        if (convertView == null){
-           convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_gizi_client, null);
+        if (viewGroup.getTag() == null || !(viewGroup.getTag() instanceof  ViewHolder)){
+            convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_gizi_client, null);
             viewHolder = new ViewHolder();
             viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
             viewHolder.name = (TextView)convertView.findViewById(R.id.txt_child_name);
-            viewHolder.parentname = (TextView)convertView.findViewById(R.id.ParentName);
+            viewHolder.parentname = (TextView) convertView.findViewById(R.id.ParentName);
+            viewHolder.subVillage = (TextView) convertView.findViewById(R.id.txt_child_subVillage);
             viewHolder.age = (TextView)convertView.findViewById(R.id.txt_child_age);
             viewHolder.gender = (TextView)convertView.findViewById(R.id.txt_child_gender);
             viewHolder.visitDate = (TextView)convertView.findViewById(R.id.txt_child_visit_date);
@@ -103,7 +104,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
             convertView.setTag(viewHolder);
         }else{
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (ViewHolder) viewGroup.getTag();
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy_infant));
         }
         viewHolder.follow_up.setOnClickListener(onClickListener);
@@ -134,6 +135,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
         viewHolder.parentname.setText(pc.getDetails().get("namaOrtu")!=null?pc.getDetails().get("namaOrtu"):"");
+        viewHolder.subVillage.setText(pc.getDetails().get("dusun")!=null ? pc.getDetails().get("dusun"):"");
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin").contains("em")? "Perempuan" : "Laki-laki");
         viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
@@ -254,6 +256,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
          TextView age ;
          TextView village;
          TextView husbandname;
+         TextView subVillage;
          LinearLayout profilelayout;
          ImageView profilepic;
          FrameLayout due_date_holder;
