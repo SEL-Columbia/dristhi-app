@@ -151,13 +151,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
 //------CHILD DATA HAS BEEN SUBMITTED OR NOT
         viewHolder.weightLogo.setImageDrawable(context.getResources().getDrawable(isLate(pc.getDetails().get("tanggalPenimbangan"),0)?R.drawable.ic_remove:R.drawable.ic_yes_large));
-        viewHolder.heightLogo.setImageDrawable(context.getResources().getDrawable(pc.getDetails().get("tinggiBadan") != null
-            ? R.drawable.ic_yes_large
-            : isLate(pc.getDetails().get("tanggalPenimbangan"), 0)
-                ? R.drawable.ic_remove
-                : isDue(pc.getDetails().get("tanggalPenimbangan"))
-                    ? R.drawable.nutr_due : R.drawable.ic_yes_large)
-        );
+        viewHolder.heightLogo.setImageDrawable(context.getResources().getDrawable(pc.getDetails().get("tinggiBadan")!=null ? R.drawable.ic_yes_large : R.drawable.ic_remove));
         viewHolder.vitALogo.setImageDrawable(context.getResources().getDrawable(isGiven(pc,"vitA") ? R.drawable.ic_yes_large:R.drawable.ic_remove));
         viewHolder.antihelminticLogo.setImageDrawable(context.getResources().getDrawable(isGiven(pc,"obatcacing")? R.drawable.ic_yes_large:R.drawable.ic_remove));
 
