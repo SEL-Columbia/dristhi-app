@@ -72,7 +72,6 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
     public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder;
         CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
-        System.out.println(pc.getDetails().toString());
         if (viewGroup.getTag() == null || !(viewGroup.getTag() instanceof  ViewHolder)){
             convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_jurim_client, null);
             viewHolder = new ViewHolder();
