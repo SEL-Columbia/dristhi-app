@@ -88,7 +88,6 @@ public class NativeHomeActivity extends SecuredActivity {
         initialize();
         DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
         DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
-        context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new ZScorehandler());
         context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new KmsHandler());
 
 

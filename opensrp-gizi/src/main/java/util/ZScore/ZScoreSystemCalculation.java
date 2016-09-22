@@ -46,7 +46,7 @@ public class ZScoreSystemCalculation {
     }
 
     public double countWFA(String gender, String dateOfBirth, String lastVisitDate, double weight){
-        return countWFA(gender.contains("l"),dailyUnitCalculationOf(dateOfBirth,lastVisitDate),weight);
+        return countWFA(!gender.contains("em"),dailyUnitCalculationOf(dateOfBirth,lastVisitDate),weight);
     }
 
     public double countWFA(boolean isMale,int age,double weight){
@@ -57,7 +57,7 @@ public class ZScoreSystemCalculation {
     }
 
     public double countHFA(String gender, String dateOfBirth, String lastVisitDate, double height){
-        return countHFA(gender.contains("l"),dailyUnitCalculationOf(dateOfBirth,lastVisitDate),height);
+        return countHFA(!gender.contains("em"),dailyUnitCalculationOf(dateOfBirth,lastVisitDate),height);
     }
 
     public double countHFA(boolean isMale,int age, double height){
@@ -68,7 +68,7 @@ public class ZScoreSystemCalculation {
     }
 
     public double countWFL(String gender, double weight,double height){
-        return countWFL(gender.contains("l"),weight,height);
+        return countWFL(!gender.contains("em"),weight,height);
     }
 
     public double countWFL(boolean isMale, double weight, double length){

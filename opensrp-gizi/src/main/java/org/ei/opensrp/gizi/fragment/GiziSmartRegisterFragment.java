@@ -198,7 +198,6 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
 //        }
 
         dialogOptionMapper = new DialogOptionMapper();
-        context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new ZScorehandler());
         context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new KmsHandler());
 
     }
