@@ -62,12 +62,18 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
     }
 
+    private boolean checkViewHolderInstance(View convertView){
+        if (convertView == null)
+            return true;
+        return (convertView.getTag() == null || !(convertView.getTag() instanceof  ViewHolder));
+    }
+
     @Override
     public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder;
         CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
         System.out.println(pc.getDetails().toString());
-        if (convertView == null){
+        if (viewGroup.getTag() == null || !(viewGroup.getTag() instanceof  ViewHolder)){
             convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_jurim_client, null);
             viewHolder = new ViewHolder();
             viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
@@ -109,8 +115,8 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
             convertView.setTag(viewHolder);
         }else{
-            viewHolder = (ViewHolder) convertView.getTag();
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
+            viewHolder = (ViewHolder) viewGroup.getTag();
+           // viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
         }
 
         viewHolder.follow_up.setOnClickListener(onClickListener);
