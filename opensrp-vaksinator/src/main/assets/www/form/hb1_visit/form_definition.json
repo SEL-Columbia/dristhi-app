@@ -14,6 +14,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "getAntypiretic",
+        "bind": "/model/instance/kunjungan_vaksinator_ver_dpt_hb1/getAntipyretic",
+        "shouldLoadValue": true
+      },
+      {
         "name": "keterangan",
         "bind": "/model/instance/kunjungan_vaksinator_ver_dpt_hb1/keterangan",
         "shouldLoadValue": true

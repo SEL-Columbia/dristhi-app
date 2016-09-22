@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <kunjungan_vaksinator_ver_bcg id="kunjungan_vaksinator_bcg" version="201609010543">
+    <kunjungan_vaksinator_ver_bcg id="kunjungan_vaksinator_bcg" version="201609080537">
       <formhub>
         <uuid/>
       </formhub>
@@ -10,7 +10,6 @@
       <simserial/>
       <phonenumber/>
       <bcg openmrs_entity="concept" openmrs_entity_id="984AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <getAntipyretic openmrs_entity="concept"/>
       <keterangan openmrs_entity="concept"/>
       <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
       <meta>
