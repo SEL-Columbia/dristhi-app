@@ -384,6 +384,7 @@
     <string name="dua_t">Failure to gain weight :</string>
     <string name="under_yellow_line">Underweight :</string>
     <string name="asi">Exclusive Breastfeeding :</string>
+    <string name="mpasi">Weaning Food :</string>
     <string name="parent_name">Parent Name</string>
     <string name="gizi">Gizi</string>
     <string name="S_underweight"> Gizi Buruk</string>
@@ -398,6 +399,7 @@
     <string name="wasted">Kurus</string>
     <string name="jenis_kelamin">Gender</string>
     <string name="visitSchedule">Visit Schedule</string>
+    <string name="obatcacing">Anthelmintic :</string>
 
 
 </resources>

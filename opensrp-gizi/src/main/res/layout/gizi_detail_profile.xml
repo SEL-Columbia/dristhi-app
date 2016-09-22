@@ -14,8 +14,6 @@
         android:id="@+id/profile_info_layout"
         android:layout_weight="5">
 
-
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="0dp"
@@ -196,6 +194,16 @@
                 android:text="Exclusive Breastfeeding :"
                 android:id="@+id/txt_profile_breastfeeding"
                 android:textSize="16sp" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:text="Weaning Food :"
+                android:id="@+id/txt_profile_mp_asi"
+                android:textSize="16sp" />
+
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -203,6 +211,15 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:text="Vitamin A :"
                 android:id="@+id/txt_vitA"
+                android:textSize="16sp" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:text="Anthelmintic :"
+                android:id="@+id/txt_anthelmintic"
                 android:textSize="16sp" />
 
         </LinearLayout>

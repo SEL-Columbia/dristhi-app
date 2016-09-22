@@ -28,6 +28,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.gizi.R;
 import org.ei.opensrp.repository.ImageRepository;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -84,7 +85,9 @@ public class ChildDetailActivity extends Activity {
         TextView dua_t = (TextView) findViewById(R.id.txt_profile_2t);
         TextView under_yellow_line = (TextView) findViewById(R.id.txt_profile_under_yellow_line);
         TextView breast_feeding = (TextView) findViewById(R.id.txt_profile_breastfeeding);
+        TextView mpasi = (TextView) findViewById(R.id.txt_profile_mp_asi);
         TextView vitA = (TextView) findViewById(R.id.txt_vitA);
+        TextView obatCacing = (TextView) findViewById(R.id.txt_anthelmintic);
 
         ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +126,8 @@ public class ChildDetailActivity extends Activity {
         weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan")+"Kg" : "- Kg"));
         height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan")+"Cm" : "- Cm"));
         vitA.setText(getString(R.string.vitamin_a) +" : "+ (childclient.getDetails().get("vitA") != null ? childclient.getDetails().get("vitA") : "-"));
+        mpasi.setText(getString(R.string.mpasi) + " "+(childclient.getDetails().get("mp_asi")!=null ? childclient.getDetails().get("mp_asi") : "-"));
+        obatCacing.setText(getString(R.string.obatcacing)+ " "+(childclient.getDetails().get("obatcacing")!=null ? childclient.getDetails().get("obatcacing") : "-"));
         //set value
         String berats = childclient.getDetails().get("history_berat")!= null ? childclient.getDetails().get("history_berat") :"0";
         String[] history_berat = berats.split(",");
