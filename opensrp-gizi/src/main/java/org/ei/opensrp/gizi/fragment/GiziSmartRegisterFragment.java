@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Toast;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
@@ -37,6 +38,7 @@ import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
@@ -221,8 +223,14 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
             ft.remove(prev);
         }
         FlurryFacade.logEvent("click_start_registration_on_gizi");
+        String uniqueIdJson = context.uniqueIdController().getUniqueIdJson();
+        if(uniqueIdJson == null || uniqueIdJson.isEmpty()) {
+            Toast.makeText(getActivity(), "No Unique Id", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         ft.addToBackStack(null);
-        GiziLocationSelectorDialogFragment
+        LocationSelectorDialogFragment
                 .newInstance((GiziSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "registrasi_gizi")
                 .show(ft, locationDialogTAG);
     }

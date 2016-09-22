@@ -9,6 +9,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "unique_id",
+        "bind": "model/instance/Registrasi_Gizi-NewStructure-map/unique_id",
+        "shouldLoadValue": true
+      },
+      {
         "name": "existing_desa",
         "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Village",
         "shouldLoadValue": true

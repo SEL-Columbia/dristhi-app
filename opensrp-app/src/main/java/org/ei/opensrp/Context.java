@@ -17,6 +17,7 @@ import org.ei.opensrp.repository.AllEligibleCouples;
 import org.ei.opensrp.repository.AllReports;
 import org.ei.opensrp.repository.AllServicesProvided;
 import org.ei.opensrp.repository.AllSettings;
+import org.ei.opensrp.repository.AllSettingsINA;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.repository.AllTimelineEvents;
 import org.ei.opensrp.repository.ChildRepository;
@@ -31,6 +32,7 @@ import org.ei.opensrp.repository.Repository;
 import org.ei.opensrp.repository.ServiceProvidedRepository;
 import org.ei.opensrp.repository.SettingsRepository;
 import org.ei.opensrp.repository.TimelineEventRepository;
+import org.ei.opensrp.repository.UniqueIdRepository;
 import org.ei.opensrp.service.ANMService;
 import org.ei.opensrp.service.ActionService;
 import org.ei.opensrp.service.AlertService;
@@ -45,6 +47,7 @@ import org.ei.opensrp.service.HTTPAgent;
 import org.ei.opensrp.service.MotherService;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.service.ServiceProvidedService;
+import org.ei.opensrp.service.UniqueIdService;
 import org.ei.opensrp.service.UserService;
 import org.ei.opensrp.service.ZiggyFileLoader;
 import org.ei.opensrp.service.ZiggyService;
@@ -87,6 +90,7 @@ import org.ei.opensrp.view.contract.Villages;
 import org.ei.opensrp.view.contract.pnc.PNCClients;
 import org.ei.opensrp.view.controller.ANMController;
 import org.ei.opensrp.view.controller.ANMLocationController;
+import org.ei.opensrp.view.controller.UniqueIdController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -95,6 +99,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.preference.PreferenceManager.setDefaultValues;
@@ -158,6 +163,11 @@ public class Context {
     private HTTPAgent httpAgent;
     private ZiggyFileLoader ziggyFileLoader;
 
+    private UniqueIdRepository uniqueIdRepository;
+    private Cache<List<Long>> uIdsCache;
+    private AllSettingsINA allSettingsINA;
+    private UniqueIdController uniqueIdController;
+    private UniqueIdService uniqueIdService;
     private FormSubmissionRouter formSubmissionRouter;
     private ECRegistrationHandler ecRegistrationHandler;
     private FPComplicationsHandler fpComplicationsHandler;
@@ -206,7 +216,7 @@ public class Context {
     public static Context getInstance() {
         if (context == null){
             context = new Context();
-        }
+    }
         return context;
     }
 
@@ -218,7 +228,7 @@ public class Context {
     public BeneficiaryService beneficiaryService() {
         if (beneficiaryService == null) {
             beneficiaryService = new BeneficiaryService(allEligibleCouples(), allBeneficiaries());
-        }
+    }
         return beneficiaryService;
     }
 
@@ -230,14 +240,14 @@ public class Context {
     protected DrishtiService drishtiService() {
         if (drishtiService == null) {
             drishtiService = new DrishtiService(httpAgent(), configuration().dristhiBaseURL());
-        }
+    }
         return drishtiService;
     }
 
     public ActionService actionService() {
         if (actionService == null) {
             actionService = new ActionService(drishtiService(), allSettings(), allSharedPreferences(), allReports());
-        }
+    }
         return actionService;
     }
 
@@ -245,7 +255,7 @@ public class Context {
         initRepository();
         if (formSubmissionService == null) {
             formSubmissionService = new FormSubmissionService(ziggyService(), formDataRepository(), allSettings());
-        }
+    }
         return formSubmissionService;
     }
 
@@ -253,10 +263,43 @@ public class Context {
         if(allFormVersionSyncService == null) {
             allFormVersionSyncService = new AllFormVersionSyncService(httpAgent(),
                     configuration(), formsVersionRepository());
-        }
+    }
         return allFormVersionSyncService;
     }
 
+
+    public AllSettingsINA allSettingsINA() {
+            initRepository();
+            if(allSettingsINA == null) {
+                    allSettingsINA = new AllSettingsINA(allSharedPreferences(), settingsRepository());
+            }
+            return allSettingsINA;
+    }
+    public Cache<List<Long>> uIdsCache() {
+            if (uIdsCache == null) {
+                    uIdsCache = new Cache<>();
+            }
+            return uIdsCache;
+    }
+    public UniqueIdRepository uniqueIdRepository() {
+            if(uniqueIdRepository==null) {
+                    uniqueIdRepository = new UniqueIdRepository();
+            }
+            return uniqueIdRepository;
+    }
+    public UniqueIdController uniqueIdController() {
+            if(uniqueIdController == null) {
+                    uniqueIdController = new UniqueIdController(uniqueIdRepository(), allSettingsINA(), uIdsCache());
+            }
+            return uniqueIdController;
+    }
+    public UniqueIdService uniqueIdService() {
+            if(uniqueIdService == null) {
+                    uniqueIdService = new UniqueIdService(httpAgent(), configuration(), uniqueIdController(), allSettingsINA(), allSharedPreferences());
+            }
+            return uniqueIdService;
+    }
+    
     public FormSubmissionRouter formSubmissionRouter() {
         initRepository();
         if (formSubmissionRouter == null) {
@@ -267,182 +310,182 @@ public class Context {
                     pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(),
                     childRegistrationOAHandler(), childCloseHandler(), childIllnessHandler(), vitaminAHandler(),
                     deliveryPlanHandler(), ecEditHandler(), ancInvestigationsHandler());
-        }
+    }
         return formSubmissionRouter;
     }
 
     private ChildCloseHandler childCloseHandler() {
         if (childCloseHandler == null) {
             childCloseHandler = new ChildCloseHandler(childService());
-        }
+    }
         return childCloseHandler;
     }
 
     private ECRegistrationHandler ecRegistrationHandler() {
         if (ecRegistrationHandler == null) {
             ecRegistrationHandler = new ECRegistrationHandler(eligibleCoupleService());
-        }
+    }
         return ecRegistrationHandler;
     }
 
     private FPComplicationsHandler fpComplicationsHandler() {
         if (fpComplicationsHandler == null) {
             fpComplicationsHandler = new FPComplicationsHandler(eligibleCoupleService());
-        }
+    }
         return fpComplicationsHandler;
     }
 
     private FPChangeHandler fpChangeHandler() {
         if (fpChangeHandler == null) {
             fpChangeHandler = new FPChangeHandler(eligibleCoupleService());
-        }
+    }
         return fpChangeHandler;
     }
 
     private RenewFPProductHandler renewFPProductHandler() {
         if (renewFPProductHandler == null) {
             renewFPProductHandler = new RenewFPProductHandler(eligibleCoupleService());
-        }
+    }
         return renewFPProductHandler;
     }
 
     private ECCloseHandler ecCloseHandler() {
         if (ecCloseHandler == null) {
             ecCloseHandler = new ECCloseHandler(eligibleCoupleService());
-        }
+    }
         return ecCloseHandler;
     }
 
     private ANCRegistrationHandler ancRegistrationHandler() {
         if (ancRegistrationHandler == null) {
             ancRegistrationHandler = new ANCRegistrationHandler(motherService());
-        }
+    }
         return ancRegistrationHandler;
     }
 
     private ANCRegistrationOAHandler ancRegistrationOAHandler() {
         if (ancRegistrationOAHandler == null) {
             ancRegistrationOAHandler = new ANCRegistrationOAHandler(motherService());
-        }
+    }
         return ancRegistrationOAHandler;
     }
 
     private ANCVisitHandler ancVisitHandler() {
         if (ancVisitHandler == null) {
             ancVisitHandler = new ANCVisitHandler(motherService());
-        }
+    }
         return ancVisitHandler;
     }
 
     private ANCCloseHandler ancCloseHandler() {
         if (ancCloseHandler == null) {
             ancCloseHandler = new ANCCloseHandler(motherService());
-        }
+    }
         return ancCloseHandler;
     }
 
     private TTHandler ttHandler() {
         if (ttHandler == null) {
             ttHandler = new TTHandler(motherService());
-        }
+    }
         return ttHandler;
     }
 
     private IFAHandler ifaHandler() {
         if (ifaHandler == null) {
             ifaHandler = new IFAHandler(motherService());
-        }
+    }
         return ifaHandler;
     }
 
     private HBTestHandler hbTestHandler() {
         if (hbTestHandler == null) {
             hbTestHandler = new HBTestHandler(motherService());
-        }
+    }
         return hbTestHandler;
     }
 
     private DeliveryOutcomeHandler deliveryOutcomeHandler() {
         if (deliveryOutcomeHandler == null) {
             deliveryOutcomeHandler = new DeliveryOutcomeHandler(motherService(), childService());
-        }
+    }
         return deliveryOutcomeHandler;
     }
 
     private DeliveryPlanHandler deliveryPlanHandler() {
         if (deliveryPlanHandler == null) {
             deliveryPlanHandler = new DeliveryPlanHandler(motherService());
-        }
+    }
         return deliveryPlanHandler;
     }
 
     private PNCRegistrationOAHandler pncRegistrationOAHandler() {
         if (pncRegistrationOAHandler == null) {
             pncRegistrationOAHandler = new PNCRegistrationOAHandler(childService());
-        }
+    }
         return pncRegistrationOAHandler;
     }
 
     private PNCCloseHandler pncCloseHandler() {
         if (pncCloseHandler == null) {
             pncCloseHandler = new PNCCloseHandler(motherService());
-        }
+    }
         return pncCloseHandler;
     }
 
     private PNCVisitHandler pncVisitHandler() {
         if (pncVisitHandler == null) {
             pncVisitHandler = new PNCVisitHandler(motherService(), childService());
-        }
+    }
         return pncVisitHandler;
     }
 
     private ChildImmunizationsHandler childImmunizationsHandler() {
         if (childImmunizationsHandler == null) {
             childImmunizationsHandler = new ChildImmunizationsHandler(childService());
-        }
+    }
         return childImmunizationsHandler;
     }
 
     private ChildIllnessHandler childIllnessHandler() {
         if (childIllnessHandler == null) {
             childIllnessHandler = new ChildIllnessHandler(childService());
-        }
+    }
         return childIllnessHandler;
     }
 
     private VitaminAHandler vitaminAHandler() {
         if (vitaminAHandler == null) {
             vitaminAHandler = new VitaminAHandler(childService());
-        }
+    }
         return vitaminAHandler;
     }
 
     private ChildRegistrationECHandler childRegistrationECHandler() {
         if (childRegistrationECHandler == null) {
             childRegistrationECHandler = new ChildRegistrationECHandler(childService());
-        }
+    }
         return childRegistrationECHandler;
     }
 
     private ChildRegistrationOAHandler childRegistrationOAHandler() {
         if (childRegistrationOAHandler == null) {
             childRegistrationOAHandler = new ChildRegistrationOAHandler(childService());
-        }
+    }
         return childRegistrationOAHandler;
     }
 
     private ECEditHandler ecEditHandler() {
         if (ecEditHandler == null) {
             ecEditHandler = new ECEditHandler();
-        }
+    }
         return ecEditHandler;
     }
 
     private ANCInvestigationsHandler ancInvestigationsHandler() {
         if (ancInvestigationsHandler == null) {
             ancInvestigationsHandler = new ANCInvestigationsHandler();
-        }
+    }
         return ancInvestigationsHandler;
     }
 
@@ -450,35 +493,35 @@ public class Context {
         initRepository();
         if (ziggyService == null) {
             ziggyService = new ZiggyService(ziggyFileLoader(), formDataRepository(), formSubmissionRouter());
-        }
+    }
         return ziggyService;
     }
 
     public ZiggyFileLoader ziggyFileLoader() {
         if (ziggyFileLoader == null) {
             ziggyFileLoader = new ZiggyFileLoader("www/ziggy", "www/form", applicationContext().getAssets());
-        }
+    }
         return ziggyFileLoader;
     }
 
     public FormSubmissionSyncService formSubmissionSyncService() {
         if (formSubmissionSyncService == null) {
             formSubmissionSyncService = new FormSubmissionSyncService(formSubmissionService(), httpAgent(), formDataRepository(), allSettings(), allSharedPreferences(), configuration());
-        }
+    }
         return formSubmissionSyncService;
     }
 
     protected HTTPAgent httpAgent() {
         if (httpAgent == null) {
             httpAgent = new HTTPAgent(applicationContext, allSettings(), allSharedPreferences(), configuration());
-        }
+    }
         return httpAgent;
     }
 
     protected Repository initRepository() {
         if(configuration().appName().equals(AllConstants.APP_NAME_INDONESIA)) {
             return null;
-        }
+    }
         if (repository == null) {
             assignbindtypes();
             ArrayList<DrishtiRepository> drishtireposotorylist = new ArrayList<DrishtiRepository>();
@@ -493,12 +536,13 @@ public class Context {
             drishtireposotorylist.add(serviceProvidedRepository());
             drishtireposotorylist.add(formsVersionRepository());
             drishtireposotorylist.add(imageRepository());
+            drishtireposotorylist.add(uniqueIdRepository());
             for(int i = 0;i < bindtypes.size();i++){
                 drishtireposotorylist.add(commonrepository(bindtypes.get(i).getBindtypename()));
-            }
+        }
             DrishtiRepository[] drishtireposotoryarray = drishtireposotorylist.toArray(new DrishtiRepository[drishtireposotorylist.size()]);
             repository = new Repository(this.applicationContext, session(), drishtireposotoryarray);
-        }
+    }
         return repository;
     }
 
@@ -506,7 +550,7 @@ public class Context {
         initRepository();
         if (allEligibleCouples == null) {
             allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository(), alertRepository(), timelineEventRepository());
-        }
+    }
         return allEligibleCouples;
     }
 
@@ -514,7 +558,7 @@ public class Context {
         initRepository();
         if (allAlerts == null) {
             allAlerts = new AllAlerts(alertRepository());
-        }
+    }
         return allAlerts;
     }
 
@@ -522,7 +566,7 @@ public class Context {
         initRepository();
         if (allSettings == null) {
             allSettings = new AllSettings(allSharedPreferences(), settingsRepository());
-        }
+    }
         return allSettings;
     }
 
@@ -530,7 +574,7 @@ public class Context {
         if (allSharedPreferences == null) {
             setDefaultValues(this.applicationContext, R.xml.preferences, false);
             allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(this.applicationContext));
-        }
+    }
         return allSharedPreferences;
     }
 
@@ -538,7 +582,7 @@ public class Context {
         initRepository();
         if (allBeneficiaries == null) {
             allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository(), alertRepository(), timelineEventRepository());
-        }
+    }
         return allBeneficiaries;
     }
 
@@ -546,7 +590,7 @@ public class Context {
         initRepository();
         if (allTimelineEvents == null) {
             allTimelineEvents = new AllTimelineEvents(timelineEventRepository());
-        }
+    }
         return allTimelineEvents;
     }
 
@@ -554,7 +598,7 @@ public class Context {
         initRepository();
         if (allReports == null) {
             allReports = new AllReports(reportRepository());
-        }
+    }
         return allReports;
     }
 
@@ -562,83 +606,83 @@ public class Context {
         initRepository();
         if (allServicesProvided == null) {
             allServicesProvided = new AllServicesProvided(serviceProvidedRepository());
-        }
+    }
         return allServicesProvided;
     }
 
     private EligibleCoupleRepository eligibleCoupleRepository() {
         if (eligibleCoupleRepository == null) {
             eligibleCoupleRepository = new EligibleCoupleRepository();
-        }
+    }
         return eligibleCoupleRepository;
     }
 
     protected AlertRepository alertRepository() {
         if (alertRepository == null) {
             alertRepository = new AlertRepository();
-        }
+    }
         return alertRepository;
     }
 
     protected SettingsRepository settingsRepository() {
         if (settingsRepository == null) {
             settingsRepository = new SettingsRepository();
-        }
+    }
         return settingsRepository;
     }
 
     private ChildRepository childRepository() {
         if (childRepository == null) {
             childRepository = new ChildRepository();
-        }
+    }
         return childRepository;
     }
 
     private MotherRepository motherRepository() {
         if (motherRepository == null) {
             motherRepository = new MotherRepository();
-        }
+    }
         return motherRepository;
     }
 
     protected TimelineEventRepository timelineEventRepository() {
         if (timelineEventRepository == null) {
             timelineEventRepository = new TimelineEventRepository();
-        }
+    }
         return timelineEventRepository;
     }
 
     private ReportRepository reportRepository() {
         if (reportRepository == null) {
             reportRepository = new ReportRepository();
-        }
+    }
         return reportRepository;
     }
 
     public FormDataRepository formDataRepository() {
         if (formDataRepository == null) {
             formDataRepository = new FormDataRepository();
-        }
+    }
         return formDataRepository;
     }
 
     protected ServiceProvidedRepository serviceProvidedRepository() {
         if (serviceProvidedRepository == null) {
             serviceProvidedRepository = new ServiceProvidedRepository();
-        }
+    }
         return serviceProvidedRepository;
     }
 
     protected FormsVersionRepository formsVersionRepository() {
         if (formsVersionRepository == null) {
             formsVersionRepository = new FormsVersionRepository();
-        }
+    }
         return formsVersionRepository;
     }
     public static DrishtiRepository imageRepository() {
         if (imageRepository == null) {
             imageRepository = new ImageRepository();
-        }
+    }
         return imageRepository;
     }
 
@@ -646,91 +690,91 @@ public class Context {
         if (userService == null) {
             Repository repo = initRepository();
             userService = new UserService(repo, allSettings(), allSharedPreferences(), httpAgent(), session(), configuration(), saveANMLocationTask(),saveUserInfoTask());
-        }
+    }
         return userService;
     }
 
     public SaveANMLocationTask saveANMLocationTask() {
         if (saveANMLocationTask == null) {
             saveANMLocationTask = new SaveANMLocationTask(allSettings());
-        }
+    }
         return saveANMLocationTask;
     }
 
     public SaveUserInfoTask saveUserInfoTask() {
         if(saveUserInfoTask == null) {
             saveUserInfoTask = new SaveUserInfoTask(allSettings());
-        }
+    }
         return saveUserInfoTask;
     }
 
     public AlertService alertService() {
         if (alertService == null) {
             alertService = new AlertService(alertRepository());
-        }
+    }
         return alertService;
     }
 
     public ServiceProvidedService serviceProvidedService() {
         if (serviceProvidedService == null) {
             serviceProvidedService = new ServiceProvidedService(allServicesProvided());
-        }
+    }
         return serviceProvidedService;
     }
 
     public EligibleCoupleService eligibleCoupleService() {
         if (eligibleCoupleService == null) {
             eligibleCoupleService = new EligibleCoupleService(allEligibleCouples(), allTimelineEvents(), allBeneficiaries());
-        }
+    }
         return eligibleCoupleService;
     }
 
     public MotherService motherService() {
         if (motherService == null) {
             motherService = new MotherService(allBeneficiaries(), allEligibleCouples(), allTimelineEvents(), serviceProvidedService());
-        }
+    }
         return motherService;
     }
 
     public ChildService childService() {
         if (childService == null) {
             childService = new ChildService(allBeneficiaries(), motherRepository(), childRepository(), allTimelineEvents(), serviceProvidedService(), allAlerts());
-        }
+    }
         return childService;
     }
 
     public Session session() {
         if (session == null) {
             session = new Session();
-        }
+    }
         return session;
     }
 
     public ANMService anmService() {
         if (anmService == null) {
             anmService = new ANMService(allSharedPreferences(), allBeneficiaries(), allEligibleCouples());
-        }
+    }
         return anmService;
     }
 
     public Cache<String> listCache() {
         if (listCache == null) {
             listCache = new Cache<String>();
-        }
+    }
         return listCache;
     }
 
     public Cache<SmartRegisterClients> smartRegisterClientsCache() {
         if (smartRegisterClientsCache == null) {
             smartRegisterClientsCache = new Cache<SmartRegisterClients>();
-        }
+    }
         return smartRegisterClientsCache;
     }
 
     public Cache<HomeContext> homeContextCache() {
         if (homeContextCache == null) {
             homeContextCache = new Cache<HomeContext>();
-        }
+    }
         return homeContextCache;
     }
 
@@ -741,28 +785,28 @@ public class Context {
     public DristhiConfiguration configuration() {
         if (configuration == null) {
             configuration = new DristhiConfiguration(getInstance().applicationContext().getAssets());
-        }
+    }
         return configuration;
     }
 
     public PendingFormSubmissionService pendingFormSubmissionService() {
         if (pendingFormSubmissionService == null) {
             pendingFormSubmissionService = new PendingFormSubmissionService(formDataRepository());
-        }
+    }
         return pendingFormSubmissionService;
     }
 
     public ANMController anmController() {
         if (anmController == null) {
             anmController = new ANMController(anmService(), listCache(), homeContextCache());
-        }
+    }
         return anmController;
     }
 
     public ANMLocationController anmLocationController() {
         if (anmLocationController == null) {
             anmLocationController = new ANMLocationController(allSettings(), listCache());
-        }
+    }
         return anmLocationController;
     }
 
@@ -770,7 +814,7 @@ public class Context {
     public Cache<ECClients> ecClientsCache() {
         if (ecClientsCache == null) {
             ecClientsCache = new Cache<ECClients>();
-        }
+    }
         return ecClientsCache;
 
     }
@@ -779,7 +823,7 @@ public class Context {
     public Cache<FPClients> fpClientsCache() {
         if (fpClientsCache == null) {
             fpClientsCache = new Cache<FPClients>();
-        }
+    }
         return fpClientsCache;
 
     }
@@ -789,28 +833,28 @@ public class Context {
     public Cache<ANCClients> ancClientsCache() {
         if (ancClientsCache == null) {
             ancClientsCache = new Cache<ANCClients>();
-        }
+    }
         return ancClientsCache;
     }
 
     public Cache<PNCClients> pncClientsCache() {
         if (pncClientsCache == null) {
             pncClientsCache = new Cache<PNCClients>();
-        }
+    }
         return pncClientsCache;
     }
 
     public Cache<Villages> villagesCache() {
         if (villagesCache == null) {
             villagesCache = new Cache<Villages>();
-        }
+    }
         return villagesCache;
     }
 
     public Cache<Typeface> typefaceCache() {
         if (typefaceCache == null) {
             typefaceCache = new Cache<Typeface>();
-        }
+    }
         return typefaceCache;
     }
 
@@ -852,16 +896,16 @@ public class Context {
     public CommonRepository commonrepository(String tablename){
         if(MapOfCommonRepository == null){
             MapOfCommonRepository = new HashMap<String, CommonRepository>();
-        }
+    }
         if(MapOfCommonRepository.get(tablename) == null){
             int index = 0;
             for(int i = 0;i<bindtypes.size();i++){
                 if(bindtypes.get(i).getBindtypename().equalsIgnoreCase(tablename)){
                     index = i;
-                }
             }
-            MapOfCommonRepository.put(bindtypes.get(index).getBindtypename(),new CommonRepository(bindtypes.get(index).getBindtypename(),bindtypes.get(index).getColumnNames()));
         }
+            MapOfCommonRepository.put(bindtypes.get(index).getBindtypename(),new CommonRepository(bindtypes.get(index).getBindtypename(),bindtypes.get(index).getColumnNames()));
+    }
 
         return  MapOfCommonRepository.get(tablename);
     }
@@ -879,13 +923,13 @@ public class Context {
                 String [] columNames = new String[ bindtypeObjects.getJSONObject(i).getJSONArray("columns").length()];
                 for(int j = 0 ; j < columNames.length;j++){
                   columNames[j] =  bindtypeObjects.getJSONObject(i).getJSONArray("columns").getJSONObject(j).getString("name");
-                }
+            }
                 bindtypes.add(new CommonRepositoryInformationHolder(bindname,columNames));
                 Log.v("bind type logs",bindtypeObjects.getJSONObject(i).getString("name"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+    } catch (Exception e) {
+            e.printStackTrace();
+    }
 
 
     }
@@ -902,10 +946,10 @@ public class Context {
             String line = "";
             while ((line = input.readLine()) != null) {
                 returnString.append(line);
-            }
-        } catch (Exception e) {
+        }
+    } catch (Exception e) {
             e.getMessage();
-        } finally {
+    } finally {
             try {
                 if (isr != null)
                     isr.close();
@@ -913,10 +957,10 @@ public class Context {
                     fIn.close();
                 if (input != null)
                     input.close();
-            } catch (Exception e2) {
+        } catch (Exception e2) {
                 e2.getMessage();
-            }
         }
+    }
         return returnString.toString();
     }
 

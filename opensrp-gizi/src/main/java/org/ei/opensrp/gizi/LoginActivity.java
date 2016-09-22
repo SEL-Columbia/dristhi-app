@@ -193,11 +193,11 @@ public class LoginActivity extends Activity {
                     if (loginResponse == null) {
                         showErrorDialog("Login failed. Unknown reason. Try Again");
                     } else {
-                        if(loginResponse == NO_INTERNET_CONNECTIVITY){
+                        if (loginResponse == NO_INTERNET_CONNECTIVITY) {
                             showErrorDialog(getResources().getString(R.string.no_internet_connectivity));
-                        }else if (loginResponse == UNKNOWN_RESPONSE){
+                        } else if (loginResponse == UNKNOWN_RESPONSE) {
                             showErrorDialog(getResources().getString(R.string.unknown_response));
-                        }else if (loginResponse == UNAUTHORIZED){
+                        } else if (loginResponse == UNAUTHORIZED) {
                             showErrorDialog(getResources().getString(R.string.unauthorized));
                         }
 //                        showErrorDialog(loginResponse.message());
@@ -206,6 +206,17 @@ public class LoginActivity extends Activity {
                 }
             }
         });
+// Get unique id
+        tryGetUniqueId(userName, password, new Listener<ResponseStatus>() {
+            @Override
+            public void onEvent(ResponseStatus data) {
+                if (data == ResponseStatus.failure) {
+                    logError("failed to fetch unique id");
+                }
+                goToHome();
+            }
+        });
+
     }
 
     private void showErrorDialog(String message) {
@@ -319,6 +330,32 @@ public class LoginActivity extends Activity {
         return new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new java.util.Date(ze.getTime()));
     }
 
+    private void tryGetUniqueId(final String username, final String password, final Listener<ResponseStatus> afterGetUniqueId) {
+        LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
+                @Override
+                public void setVisible() {
+                        progressDialog.show();
+                    }
+                @Override
+                public void setInvisible() {
+                        progressDialog.dismiss();
+                    }
+            });
+
+        task.doActionInBackground(new BackgroundAction<ResponseStatus>() {
+                @Override
+                public ResponseStatus actionToDoInBackgroundThread() {
+                        ((Context)context).uniqueIdService().syncUniqueIdFromServer(username, password);
+                        return ((Context)context).uniqueIdService().getLastUsedId(username, password);
+                    }
+    
+                        @Override
+                public void postExecuteInUIThread(ResponseStatus result) {
+                        afterGetUniqueId.onEvent(result);
+                    }
+            });
+    }
+
     public static void setLanguage(){
         AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(Context.getInstance().applicationContext()));
         String preferredLocale = allSharedPreferences.fetchLanguagePreference();
@@ -330,6 +367,7 @@ public class LoginActivity extends Activity {
             res.updateConfiguration(conf, dm);
 
     }
+
      public static String switchLanguagePreference() {
          AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(Context.getInstance().applicationContext()));
 

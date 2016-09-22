@@ -14,6 +14,7 @@ import org.ei.opensrp.sync.DrishtiSyncScheduler;
 import org.ei.opensrp.view.activity.DrishtiApplication;
 import org.ei.opensrp.view.receiver.SyncBroadcastReceiver;
 import static org.ei.opensrp.util.Log.logInfo;
+import org.ei.opensrp.gizi.application.SyncGiziBroadcastReceiver;
 
 import java.util.Locale;
 
@@ -26,10 +27,13 @@ public class GiziApplication extends DrishtiApplication {
     @Override
     public void onCreate() {
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
+        DrishtiSyncScheduler.setReceiverClass(SyncGiziBroadcastReceiver.class);
         super.onCreate();
         //  ACRA.init(this);
 
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
+        DrishtiSyncScheduler.setReceiverClass(SyncGiziBroadcastReceiver.class);
+
         ErrorReportingFacade.initErrorHandler(getApplicationContext());
         FlurryFacade.init(this);
 
