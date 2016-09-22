@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.google.common.base.Strings;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
@@ -84,45 +85,43 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
 
     @Override
     public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
-
         ViewHolder viewHolder;
-     //      if (convertView == null){
-     //          convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_ki_client, null);
-        viewHolder = new ViewHolder();
-        viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
-        viewHolder.wife_name = (TextView)convertView.findViewById(R.id.wife_name);
-        viewHolder.husband_name = (TextView)convertView.findViewById(R.id.txt_husband_name);
-        viewHolder.village_name = (TextView)convertView.findViewById(R.id.txt_village_name);
-        viewHolder.wife_age = (TextView)convertView.findViewById(R.id.wife_age);
-        viewHolder.no_ibu = (TextView)convertView.findViewById(R.id.no_ibu);
-        viewHolder.unique_id = (TextView)convertView.findViewById(R.id.unique_id);
 
-        viewHolder.gravida = (TextView)convertView.findViewById(R.id.txt_gravida);
-               viewHolder.parity = (TextView)convertView.findViewById(R.id.txt_parity);
-               viewHolder.number_of_abortus = (TextView)convertView.findViewById(R.id.txt_number_of_abortus);
-               viewHolder.number_of_alive = (TextView)convertView.findViewById(R.id.txt_number_of_alive);
-        viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
-        viewHolder.img_hrl_badge =(ImageView)convertView.findViewById(R.id.img_hrl_badge);
-        viewHolder.bpl_badge =(ImageView)convertView.findViewById(R.id.img_bpl_badge);
-        viewHolder.hrp_badge =(ImageView)convertView.findViewById(R.id.img_hrp_badge);
-        viewHolder.hrpp_badge =(ImageView)convertView.findViewById(R.id.img_hrpp_badge);
-               viewHolder.edd = (TextView)convertView.findViewById(R.id.txt_edd);
-               viewHolder.edd_due = (TextView)convertView.findViewById(R.id.txt_edd_due);
-               viewHolder.children_age_left = (TextView)convertView.findViewById(R.id.txt_children_age_left);
+        if(convertView.getTag() == null || !(convertView.getTag() instanceof  ViewHolder)){
+            viewHolder = new ViewHolder();
+            viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
+            viewHolder.wife_name = (TextView)convertView.findViewById(R.id.wife_name);
+            viewHolder.husband_name = (TextView)convertView.findViewById(R.id.txt_husband_name);
+            viewHolder.village_name = (TextView)convertView.findViewById(R.id.txt_village_name);
+            viewHolder.wife_age = (TextView)convertView.findViewById(R.id.wife_age);
+            viewHolder.no_ibu = (TextView)convertView.findViewById(R.id.no_ibu);
+            viewHolder.unique_id = (TextView)convertView.findViewById(R.id.unique_id);
+
+            viewHolder.gravida = (TextView)convertView.findViewById(R.id.txt_gravida);
+            viewHolder.parity = (TextView)convertView.findViewById(R.id.txt_parity);
+            viewHolder.number_of_abortus = (TextView)convertView.findViewById(R.id.txt_number_of_abortus);
+            viewHolder.number_of_alive = (TextView)convertView.findViewById(R.id.txt_number_of_alive);
+            viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
+            viewHolder.img_hrl_badge =(ImageView)convertView.findViewById(R.id.img_hrl_badge);
+            viewHolder.bpl_badge =(ImageView)convertView.findViewById(R.id.img_bpl_badge);
+            viewHolder.hrp_badge =(ImageView)convertView.findViewById(R.id.img_hrp_badge);
+            viewHolder.hrpp_badge =(ImageView)convertView.findViewById(R.id.img_hrpp_badge);
+            viewHolder.edd = (TextView)convertView.findViewById(R.id.txt_edd);
+            viewHolder.edd_due = (TextView)convertView.findViewById(R.id.txt_edd_due);
+            viewHolder.children_age_left = (TextView)convertView.findViewById(R.id.txt_children_age_left);
             viewHolder.children_age_right = (TextView)convertView.findViewById(R.id.txt_children_age_right);
 
-           viewHolder.anc_status_layout = (TextView)convertView.findViewById(R.id.mother_status);
+            viewHolder.anc_status_layout = (TextView)convertView.findViewById(R.id.mother_status);
             viewHolder.date_status = (TextView)convertView.findViewById(R.id.last_visit_status);
-        viewHolder.visit_status = (TextView)convertView.findViewById(R.id.visit_status);
-        viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
-        viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
+            viewHolder.visit_status = (TextView)convertView.findViewById(R.id.visit_status);
+            viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
+            viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
 
-              // viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
-        convertView.setTag(viewHolder);
-     //      }else{
-    //           viewHolder = (ViewHolder) convertView.getTag();
-     //          viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
-    //       }
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
         viewHolder.profilelayout.setOnClickListener(onClickListener);
@@ -135,6 +134,8 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.follow_up.setOnClickListener(onClickListener);
 
         // set flag High Risk
+        viewHolder.hr_badge.setVisibility(View.INVISIBLE);
+
         if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
                 || pc.getDetails().get("highRiskEctopicPregnancy")!=null && pc.getDetails().get("highRiskEctopicPregnancy").equals("yes")
                 || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && pc.getDetails().get("highRiskDidneyDisorder").equals("yes")
@@ -172,9 +173,11 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
 
         viewHolder.edd.setText(pc.getDetails().get("htp")!=null?pc.getDetails().get("htp"):"");
 
+        viewHolder.edd_due.setText("");
+
         String date = pc.getDetails().get("htp");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        if(pc.getDetails().get("htp")!=null) {
+        if(StringUtils.isNotBlank(pc.getDetails().get("htp"))) {
             try {
                 Calendar c = Calendar.getInstance();
                 c.setTime(format.parse(date));
@@ -202,6 +205,10 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.children_age_left.setText(pc.getColumnmaps().get("anak.namaBayi")!=null?"Name : "+pc.getColumnmaps().get("anak.namaBayi"):"");
         viewHolder.children_age_right.setText(pc.getColumnmaps().get("anak.tanggalLahirAnak")!=null?"DOB : "+pc.getColumnmaps().get("anak.tanggalLahirAnak"):"");
 
+        viewHolder.anc_status_layout.setText("");
+        viewHolder.date_status.setText("");
+        viewHolder.visit_status.setText("");
+
         if(pc.getColumnmaps().get("ibu.type")!=null){
             if(pc.getColumnmaps().get("ibu.type").equals("anc")){
                 viewHolder.anc_status_layout.setText(context.getString(R.string.service_anc));
@@ -217,6 +224,10 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                 viewHolder.visit_status.setText( hariKeKF);
             }
         }
+
+        viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
+        viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
+
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
         if(pc.getColumnmaps().get("ibu.id") != null) {
             final CommonPersonObject ibuparent = iburep.findByCaseID(pc.getColumnmaps().get("ibu.id"));
@@ -271,7 +282,7 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
 
     @Override
     public View inflatelayoutForCursorAdapter() {
-        View View = (ViewGroup) inflater().inflate(R.layout.smart_register_ki_client, null);
+        View View = inflater().inflate(R.layout.smart_register_ki_client, null);
         return View;
     }
 

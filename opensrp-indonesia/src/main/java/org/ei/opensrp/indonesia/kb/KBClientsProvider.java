@@ -84,8 +84,8 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
     public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
 
         ViewHolder viewHolder;
-    //    if (convertView == null){
-    //        convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_kb_client, null);
+
+        if(convertView.getTag() == null || !(convertView.getTag() instanceof  ViewHolder)){
             viewHolder = new ViewHolder();
             viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
             viewHolder.wife_name = (TextView)convertView.findViewById(R.id.wife_name);
@@ -100,11 +100,11 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
             viewHolder.number_of_abortus = (TextView)convertView.findViewById(R.id.txt_number_of_abortus);
             viewHolder.number_of_alive = (TextView)convertView.findViewById(R.id.txt_number_of_alive);
 
-        viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
-        viewHolder.img_hrl_badge =(ImageView)convertView.findViewById(R.id.img_hrl_badge);
-        viewHolder.bpl_badge =(ImageView)convertView.findViewById(R.id.img_bpl_badge);
-        viewHolder.hrp_badge =(ImageView)convertView.findViewById(R.id.img_hrp_badge);
-        viewHolder.hrpp_badge =(ImageView)convertView.findViewById(R.id.img_hrpp_badge);
+            viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
+            viewHolder.img_hrl_badge =(ImageView)convertView.findViewById(R.id.img_hrl_badge);
+            viewHolder.bpl_badge =(ImageView)convertView.findViewById(R.id.img_bpl_badge);
+            viewHolder.hrp_badge =(ImageView)convertView.findViewById(R.id.img_hrp_badge);
+            viewHolder.hrpp_badge =(ImageView)convertView.findViewById(R.id.img_hrpp_badge);
             viewHolder.kb_method = (TextView)convertView.findViewById(R.id.kb_method);
             viewHolder.kb_mulai = (TextView)convertView.findViewById(R.id.kb_mulai);
             viewHolder.risk_HB = (TextView)convertView.findViewById(R.id.risk_HB);
@@ -114,18 +114,19 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
             viewHolder.risk_IMS = (TextView)convertView.findViewById(R.id.risk_IMS);
 
             viewHolder.follow_up_due = (TextView)convertView.findViewById(R.id.follow_due);
-        viewHolder.follow_layout = (LinearLayout) convertView.findViewById(R.id. follow_layout);
-        viewHolder.follow_status = (TextView) convertView.findViewById(R.id. follow_status);
-        viewHolder.follow_due = (TextView) convertView.findViewById(R.id. follow_up_due);
+            viewHolder.follow_layout = (LinearLayout) convertView.findViewById(R.id. follow_layout);
+            viewHolder.follow_status = (TextView) convertView.findViewById(R.id. follow_status);
+            viewHolder.follow_due = (TextView) convertView.findViewById(R.id. follow_up_due);
 
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
             convertView.setTag(viewHolder);
-    //    }else{
-    //        viewHolder = (ViewHolder) convertView.getTag();
-        //    viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
-    //    }
+        }else{
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
+
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
         viewHolder.profilelayout.setOnClickListener(onClickListener);
@@ -137,6 +138,7 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
 
+        viewHolder.hr_badge.setVisibility(View.INVISIBLE);
         if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
                 || pc.getDetails().get("highRiskEctopicPregnancy")!=null && pc.getDetails().get("highRiskEctopicPregnancy").equals("yes")
                 || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && pc.getDetails().get("highRiskDidneyDisorder").equals("yes")
@@ -180,6 +182,10 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
        viewHolder.risk_IMS.setText(pc.getDetails().get("alkiPenyakitIms")!=null?pc.getDetails().get("alkiPenyakitIms"):"");
 //        viewHolder.follow_up_due.setText(pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
        viewHolder.risk_PenyakitKronis.setText(pc.getDetails().get("alkiPenyakitKronis")!=null?pc.getDetails().get("alkiPenyakitKronis"):"");
+
+        viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
+        viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
+
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
         if(pc.getColumnmaps().get("ibu.id") != null) {
             final CommonPersonObject ibuparent = iburep.findByCaseID(pc.getColumnmaps().get("ibu.id"));
@@ -201,6 +207,11 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
                 viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
             }
         }
+
+        viewHolder.follow_due.setText("");
+        viewHolder.follow_up_due.setText("");
+        viewHolder.follow_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
+        viewHolder.follow_status.setText("");
 
         String jenis = pc.getDetails().get("jenisKontrasepsi")!=null?pc.getDetails().get("jenisKontrasepsi"):"-";
         if(jenis.equals("suntik")){

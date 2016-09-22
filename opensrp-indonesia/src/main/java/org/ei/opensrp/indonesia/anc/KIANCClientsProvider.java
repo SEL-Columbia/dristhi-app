@@ -67,45 +67,47 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
     public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
 
         ViewHolder viewHolder;
-    //    if (convertView == null){
-    //        convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_kb_client, null);
+        if(convertView.getTag() == null || !(convertView.getTag() instanceof  ViewHolder)) {
             viewHolder = new ViewHolder();
-            viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
+            viewHolder.profilelayout = (LinearLayout) convertView.findViewById(R.id.profile_info_layout);
 
-            viewHolder.wife_name = (TextView)convertView.findViewById(R.id.wife_name);
-            viewHolder.husband_name = (TextView)convertView.findViewById(R.id.txt_husband_name);
-            viewHolder.village_name = (TextView)convertView.findViewById(R.id.txt_village_name);
-            viewHolder.wife_age = (TextView)convertView.findViewById(R.id.wife_age);
-            viewHolder.no_ibu = (TextView)convertView.findViewById(R.id.no_ibu);
-            viewHolder.unique_id = (TextView)convertView.findViewById(R.id.unique_id);
+            viewHolder.wife_name = (TextView) convertView.findViewById(R.id.wife_name);
+            viewHolder.husband_name = (TextView) convertView.findViewById(R.id.txt_husband_name);
+            viewHolder.village_name = (TextView) convertView.findViewById(R.id.txt_village_name);
+            viewHolder.wife_age = (TextView) convertView.findViewById(R.id.wife_age);
+            viewHolder.no_ibu = (TextView) convertView.findViewById(R.id.no_ibu);
+            viewHolder.unique_id = (TextView) convertView.findViewById(R.id.unique_id);
 
-        viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
-        viewHolder.img_hrl_badge =(ImageView)convertView.findViewById(R.id.img_hrl_badge);
-        viewHolder.bpl_badge =(ImageView)convertView.findViewById(R.id.img_bpl_badge);
-        viewHolder.hrp_badge =(ImageView)convertView.findViewById(R.id.img_hrp_badge);
-        viewHolder.hrpp_badge =(ImageView)convertView.findViewById(R.id.img_hrpp_badge);
-       // ViewHolder.img_hp_badge = ImageView.Set;   img_hrl_badge img_bpl_badge img_hrp_badge img_hrpp_badge
-             viewHolder.usia_klinis = (TextView)convertView.findViewById(R.id.txt_usia_klinis);
-            viewHolder.htpt = (TextView)convertView.findViewById(R.id.txt_htpt);
-        viewHolder.ki_lila_bb = (TextView)convertView.findViewById(R.id.txt_ki_lila_bb);
-        viewHolder.beratbadan_tb = (TextView)convertView.findViewById(R.id.txt_ki_beratbadan_tb);
+            viewHolder.hr_badge = (ImageView) convertView.findViewById(R.id.img_hr_badge);
+            viewHolder.img_hrl_badge = (ImageView) convertView.findViewById(R.id.img_hrl_badge);
+            viewHolder.bpl_badge = (ImageView) convertView.findViewById(R.id.img_bpl_badge);
+            viewHolder.hrp_badge = (ImageView) convertView.findViewById(R.id.img_hrp_badge);
+            viewHolder.hrpp_badge = (ImageView) convertView.findViewById(R.id.img_hrpp_badge);
+            // ViewHolder.img_hp_badge = ImageView.Set;   img_hrl_badge img_bpl_badge img_hrp_badge img_hrpp_badge
+            viewHolder.usia_klinis = (TextView) convertView.findViewById(R.id.txt_usia_klinis);
+            viewHolder.htpt = (TextView) convertView.findViewById(R.id.txt_htpt);
+            viewHolder.ki_lila_bb = (TextView) convertView.findViewById(R.id.txt_ki_lila_bb);
+            viewHolder.beratbadan_tb = (TextView) convertView.findViewById(R.id.txt_ki_beratbadan_tb);
 
 
-        viewHolder.tanggal_kunjungan_anc = (TextView)convertView.findViewById(R.id.txt_tanggal_kunjungan_anc);
-        viewHolder.anc_number = (TextView)convertView.findViewById(R.id.txt_anc_number);
-       viewHolder.kunjugan_ke = (TextView)convertView.findViewById(R.id.txt_kunjugan_ke);
+            viewHolder.tanggal_kunjungan_anc = (TextView) convertView.findViewById(R.id.txt_tanggal_kunjungan_anc);
+            viewHolder.anc_number = (TextView) convertView.findViewById(R.id.txt_anc_number);
+            viewHolder.kunjugan_ke = (TextView) convertView.findViewById(R.id.txt_kunjugan_ke);
 
-        viewHolder.status_layout =  (RelativeLayout)convertView.findViewById(R.id.anc_status_layout);
-        viewHolder.status_type = (TextView)convertView.findViewById(R.id.txt_status_type);
-        viewHolder.status_date = (TextView)convertView.findViewById(R.id.txt_status_date_anc);
-        viewHolder.alert_status = (TextView)convertView.findViewById(R.id.txt_alert_status);
+            viewHolder.status_layout = (RelativeLayout) convertView.findViewById(R.id.anc_status_layout);
+            viewHolder.status_type = (TextView) convertView.findViewById(R.id.txt_status_type);
+            viewHolder.status_date = (TextView) convertView.findViewById(R.id.txt_status_date_anc);
+            viewHolder.alert_status = (TextView) convertView.findViewById(R.id.txt_alert_status);
 
-            viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
-            viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
+            viewHolder.profilepic = (ImageView) convertView.findViewById(R.id.img_profile);
+            viewHolder.follow_up = (ImageButton) convertView.findViewById(R.id.btn_edit);
             convertView.setTag(viewHolder);
 
-          //  viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
 
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
@@ -129,6 +131,10 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(kiobject.getColumnmaps().get("kartuIbuId"));
+
+        viewHolder.hr_badge.setVisibility(View.INVISIBLE);
+        viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
+        viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
 
         if(ibuparent.getDetails().get("highRiskSTIBBVs")!=null && ibuparent.getDetails().get("highRiskSTIBBVs").equals("yes")
                 || ibuparent.getDetails().get("highRiskEctopicPregnancy")!=null && ibuparent.getDetails().get("highRiskEctopicPregnancy").equals("yes")
@@ -188,6 +194,11 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.tanggal_kunjungan_anc.setText(context.getString(R.string.last_visit_date)+ AncDate);
         viewHolder.anc_number.setText(context.getString(R.string.anc_ke) + AncKe);
         viewHolder.kunjugan_ke.setText(context.getString(R.string.visit_number) +KunjunganKe);
+
+        viewHolder.status_type.setText("");
+        viewHolder.status_date.setText("");
+        viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
+        viewHolder.alert_status.setText("");
 
         if(AncKe.equals("-")){
             List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 1");

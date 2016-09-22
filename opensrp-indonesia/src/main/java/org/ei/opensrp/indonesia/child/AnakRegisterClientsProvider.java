@@ -67,46 +67,46 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
     public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
 
         ViewHolder viewHolder;
-    //    if (convertView == null){
-    //        convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_kb_client, null);
+        if(convertView.getTag() == null || !(convertView.getTag() instanceof  ViewHolder)) {
             viewHolder = new ViewHolder();
-            viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
+            viewHolder.profilelayout = (LinearLayout) convertView.findViewById(R.id.profile_info_layout);
 
-            viewHolder.childs_name = (TextView)convertView.findViewById(R.id.child_name);
-            viewHolder.mother_name = (TextView)convertView.findViewById(R.id.mother_name);
-            viewHolder.village_name = (TextView)convertView.findViewById(R.id.txt_village_name);
-            viewHolder.childs_age = (TextView)convertView.findViewById(R.id.child_age);
-            viewHolder.no_ibu = (TextView)convertView.findViewById(R.id.   txt_ibu_ki_no);
-           // viewHolder.unique_id = (TextView)convertView.findViewById(R.id.unique_id);
+            viewHolder.childs_name = (TextView) convertView.findViewById(R.id.child_name);
+            viewHolder.mother_name = (TextView) convertView.findViewById(R.id.mother_name);
+            viewHolder.village_name = (TextView) convertView.findViewById(R.id.txt_village_name);
+            viewHolder.childs_age = (TextView) convertView.findViewById(R.id.child_age);
+            viewHolder.no_ibu = (TextView) convertView.findViewById(R.id.txt_ibu_ki_no);
+            // viewHolder.unique_id = (TextView)convertView.findViewById(R.id.unique_id);
 
-        viewHolder.hp_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
+            viewHolder.hp_badge = (ImageView) convertView.findViewById(R.id.img_hr_badge);
 
-        //delivery documentation
-        viewHolder.anak_register_dob = (TextView)convertView.findViewById(R.id.anak_register_dob);
-        viewHolder.tempat_lahir = (TextView)convertView.findViewById(R.id.tempat_lahir);
-        viewHolder.berat_lahir = (TextView)convertView.findViewById(R.id.berat_lahir);
-        viewHolder.tipe_lahir = (TextView)convertView.findViewById(R.id.tipe_lahir);
+            //delivery documentation
+            viewHolder.anak_register_dob = (TextView) convertView.findViewById(R.id.anak_register_dob);
+            viewHolder.tempat_lahir = (TextView) convertView.findViewById(R.id.tempat_lahir);
+            viewHolder.berat_lahir = (TextView) convertView.findViewById(R.id.berat_lahir);
+            viewHolder.tipe_lahir = (TextView) convertView.findViewById(R.id.tipe_lahir);
 
 
-        viewHolder.hb0_no =(ImageView)convertView.findViewById(R.id.icon_hb0_no);
-        viewHolder.hb0_yes =(ImageView)convertView.findViewById(R.id.icon_hb0_yes);
-        viewHolder.pol1_no =(ImageView)convertView.findViewById(R.id.icon_pol1_no);
-        viewHolder.pol1_yes =(ImageView)convertView.findViewById(R.id.icon_pol1_yes);
-        viewHolder.pol2_no =(ImageView)convertView.findViewById(R.id.icon_pol2_no);
-        viewHolder.pol2_yes =(ImageView)convertView.findViewById(R.id.icon_pol2_yes);
-        viewHolder.pol3_no =(ImageView)convertView.findViewById(R.id.icon_pol3_no);
-        viewHolder.pol3_yes =(ImageView)convertView.findViewById(R.id.icon_pol3_yes);
+            viewHolder.hb0_no = (ImageView) convertView.findViewById(R.id.icon_hb0_no);
+            viewHolder.hb0_yes = (ImageView) convertView.findViewById(R.id.icon_hb0_yes);
+            viewHolder.pol1_no = (ImageView) convertView.findViewById(R.id.icon_pol1_no);
+            viewHolder.pol1_yes = (ImageView) convertView.findViewById(R.id.icon_pol1_yes);
+            viewHolder.pol2_no = (ImageView) convertView.findViewById(R.id.icon_pol2_no);
+            viewHolder.pol2_yes = (ImageView) convertView.findViewById(R.id.icon_pol2_yes);
+            viewHolder.pol3_no = (ImageView) convertView.findViewById(R.id.icon_pol3_no);
+            viewHolder.pol3_yes = (ImageView) convertView.findViewById(R.id.icon_pol3_yes);
 
-        viewHolder.berat_badan = (TextView)convertView.findViewById(R.id.txt_current_weight);
-        viewHolder.tanggal_kunjungan_anc = (TextView)convertView.findViewById(R.id.txt_visit_date);
-        viewHolder.tinggi = (TextView)convertView.findViewById(R.id.txt_current_height);
+            viewHolder.berat_badan = (TextView) convertView.findViewById(R.id.txt_current_weight);
+            viewHolder.tanggal_kunjungan_anc = (TextView) convertView.findViewById(R.id.txt_visit_date);
+            viewHolder.tinggi = (TextView) convertView.findViewById(R.id.txt_current_height);
 
-            viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
-            viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
+            viewHolder.profilepic = (ImageView) convertView.findViewById(R.id.img_profile);
+            viewHolder.follow_up = (ImageButton) convertView.findViewById(R.id.btn_edit);
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy));
             convertView.setTag(viewHolder);
-
-        
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
 
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
@@ -147,20 +147,35 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
 
         //immunization
         if(pc.getDetails().get("tanggalpemberianimunisasiHb07")!=null){
-            viewHolder.hb0_no.setVisibility(View.GONE);
+            viewHolder.hb0_no.setVisibility(View.INVISIBLE);
             viewHolder.hb0_yes.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.hb0_no.setVisibility(View.VISIBLE);
+            viewHolder.hb0_yes.setVisibility(View.INVISIBLE);
         }
+
         if(pc.getDetails().get("tanggalpemberianimunisasiBCGdanPolio1")!=null){
-            viewHolder.pol1_no.setVisibility(View.GONE);
+            viewHolder.pol1_no.setVisibility(View.INVISIBLE);
             viewHolder.pol1_yes.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.pol1_no.setVisibility(View.VISIBLE);
+            viewHolder.pol1_yes.setVisibility(View.INVISIBLE);
         }
+
         if(pc.getDetails().get("tanggalpemberianimunisasiDPTHB1Polio2")!=null){
-            viewHolder.pol2_no.setVisibility(View.GONE);
+            viewHolder.pol2_no.setVisibility(View.INVISIBLE);
             viewHolder.pol2_yes.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.pol2_no.setVisibility(View.VISIBLE);
+            viewHolder.pol2_yes.setVisibility(View.INVISIBLE);
         }
+
         if(pc.getDetails().get("tanggalpemberianimunisasiDPTHB2Polio3")!=null){
-            viewHolder.pol3_no.setVisibility(View.GONE);
+            viewHolder.pol3_no.setVisibility(View.INVISIBLE);
             viewHolder.pol3_yes.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.pol3_no.setVisibility(View.VISIBLE);
+            viewHolder.pol3_yes.setVisibility(View.INVISIBLE);
         }
 
 

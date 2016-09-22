@@ -68,47 +68,48 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
     public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
 
         ViewHolder viewHolder;
-    //    if (convertView == null){
-    //        convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_kb_client, null);
+        if(convertView.getTag() == null || !(convertView.getTag() instanceof  ViewHolder)) {
             viewHolder = new ViewHolder();
-            viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
+            viewHolder.profilelayout = (LinearLayout) convertView.findViewById(R.id.profile_info_layout);
 
-            viewHolder.wife_name = (TextView)convertView.findViewById(R.id.wife_name);
-            viewHolder.husband_name = (TextView)convertView.findViewById(R.id.txt_husband_name);
-            viewHolder.village_name = (TextView)convertView.findViewById(R.id.txt_village_name);
-            viewHolder.wife_age = (TextView)convertView.findViewById(R.id.wife_age);
-            viewHolder.pnc_id = (TextView)convertView.findViewById(R.id.pnc_id);
-           // viewHolder.unique_id = (TextView)convertView.findViewById(R.id.unique_id);
+            viewHolder.wife_name = (TextView) convertView.findViewById(R.id.wife_name);
+            viewHolder.husband_name = (TextView) convertView.findViewById(R.id.txt_husband_name);
+            viewHolder.village_name = (TextView) convertView.findViewById(R.id.txt_village_name);
+            viewHolder.wife_age = (TextView) convertView.findViewById(R.id.wife_age);
+            viewHolder.pnc_id = (TextView) convertView.findViewById(R.id.pnc_id);
+            // viewHolder.unique_id = (TextView)convertView.findViewById(R.id.unique_id);
 
-        viewHolder.hr_badge =(ImageView)convertView.findViewById(R.id.img_hr_badge);
-        viewHolder.img_hrl_badge =(ImageView)convertView.findViewById(R.id.img_hrl_badge);
-        viewHolder.bpl_badge =(ImageView)convertView.findViewById(R.id.img_bpl_badge);
-        viewHolder.hrp_badge =(ImageView)convertView.findViewById(R.id.img_hrp_badge);
-        viewHolder.hrpp_badge =(ImageView)convertView.findViewById(R.id.img_hrpp_badge);
-       // ViewHolder.img_hp_badge = ImageView.Set;   img_hrl_badge img_bpl_badge img_hrp_badge img_hrpp_badge
+            viewHolder.hr_badge = (ImageView) convertView.findViewById(R.id.img_hr_badge);
+            viewHolder.img_hrl_badge = (ImageView) convertView.findViewById(R.id.img_hrl_badge);
+            viewHolder.bpl_badge = (ImageView) convertView.findViewById(R.id.img_bpl_badge);
+            viewHolder.hrp_badge = (ImageView) convertView.findViewById(R.id.img_hrp_badge);
+            viewHolder.hrpp_badge = (ImageView) convertView.findViewById(R.id.img_hrpp_badge);
+            // ViewHolder.img_hp_badge = ImageView.Set;   img_hrl_badge img_bpl_badge img_hrp_badge img_hrpp_badge
 
-        viewHolder.tanggal_bersalin = (TextView)convertView.findViewById(R.id.dok_tanggal_bersalin);
-        viewHolder.tempat_persalinan =(TextView)convertView.findViewById(R.id.txt_tempat_persalinan);
-        viewHolder.dok_tipe = (TextView)convertView.findViewById(R.id.txt_tipe);
+            viewHolder.tanggal_bersalin = (TextView) convertView.findViewById(R.id.dok_tanggal_bersalin);
+            viewHolder.tempat_persalinan = (TextView) convertView.findViewById(R.id.txt_tempat_persalinan);
+            viewHolder.dok_tipe = (TextView) convertView.findViewById(R.id.txt_tipe);
 
-        viewHolder.komplikasi = (TextView)convertView.findViewById(R.id.txt_komplikasi);
+            viewHolder.komplikasi = (TextView) convertView.findViewById(R.id.txt_komplikasi);
 
-        viewHolder.tanggal_kunjungan = (TextView)convertView.findViewById(R.id.txt_tanggal_kunjungan_pnc);
-        viewHolder.KF = (TextView)convertView.findViewById(R.id.txt_kf);
-        viewHolder.vit_a = (TextView)convertView.findViewById(R.id.txt_vit_a);
+            viewHolder.tanggal_kunjungan = (TextView) convertView.findViewById(R.id.txt_tanggal_kunjungan_pnc);
+            viewHolder.KF = (TextView) convertView.findViewById(R.id.txt_kf);
+            viewHolder.vit_a = (TextView) convertView.findViewById(R.id.txt_vit_a);
 
-        viewHolder.td_sistolik = (TextView)convertView.findViewById(R.id.txt_td_sistolik);
-        viewHolder.td_diastolik = (TextView)convertView.findViewById(R.id.txt_td_diastolik);
-        viewHolder.td_suhu = (TextView)convertView.findViewById(R.id.txt_td_suhu);
+            viewHolder.td_sistolik = (TextView) convertView.findViewById(R.id.txt_td_sistolik);
+            viewHolder.td_diastolik = (TextView) convertView.findViewById(R.id.txt_td_diastolik);
+            viewHolder.td_suhu = (TextView) convertView.findViewById(R.id.txt_td_suhu);
 
-      //  txt_kondisi_ibu txt_KF txt_vit_a
+            //  txt_kondisi_ibu txt_KF txt_vit_a
 
-            viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
-            viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
+            viewHolder.profilepic = (ImageView) convertView.findViewById(R.id.img_profile);
+            viewHolder.follow_up = (ImageButton) convertView.findViewById(R.id.btn_edit);
             convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
 
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
+        viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.woman_placeholder));
 
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
@@ -146,6 +147,10 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(kiobject.getColumnmaps().get("kartuIbuId"));
+
+        viewHolder.hr_badge.setVisibility(View.INVISIBLE);
+        viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
+        viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
 
         if(ibuparent.getDetails().get("highRiskSTIBBVs")!=null && ibuparent.getDetails().get("highRiskSTIBBVs").equals("yes")
                 || ibuparent.getDetails().get("highRiskEctopicPregnancy")!=null && ibuparent.getDetails().get("highRiskEctopicPregnancy").equals("yes")
