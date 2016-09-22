@@ -108,9 +108,10 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         }
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
-           viewHolder.profilelayout.setOnClickListener(onClickListener);
+        viewHolder.profilelayout.setOnClickListener(onClickListener);
         viewHolder.profilelayout.setTag(smartRegisterClient);
         CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
+//        System.out.println(pc.getDetails().toString());
         if (iconPencilDrawable == null) {
             iconPencilDrawable = context.getResources().getDrawable(R.drawable.ic_pencil);
         }
@@ -157,23 +158,19 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
                 : isDue(pc.getDetails().get("tanggalPenimbangan"))
                     ? R.drawable.nutr_due : R.drawable.ic_yes_large)
         );
-        viewHolder.vitALogo.setImageDrawable(context.getResources().getDrawable(inTheSameRegion(pc.getDetails().get("tanggalPenimbangan")) ? R.drawable.ic_yes_large:R.drawable.ic_remove));
-        viewHolder.antihelminticLogo.setImageDrawable(context.getResources().getDrawable(inTheSameRegion(
-                pc.getDetails().get("tanggalPenimbangan")) && isGiven(pc,"obatcacing")? R.drawable.ic_yes_large:R.drawable.ic_remove));
-
+        viewHolder.vitALogo.setImageDrawable(context.getResources().getDrawable(isGiven(pc,"vitA") ? R.drawable.ic_yes_large:R.drawable.ic_remove));
+        viewHolder.antihelminticLogo.setImageDrawable(context.getResources().getDrawable(isGiven(pc,"obatcacing")? R.drawable.ic_yes_large:R.drawable.ic_remove));
 
         if(pc.getDetails().get("tanggalPenimbangan") != null)
         {
-            viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+(pc.getDetails().get("stunting")!=null?pc.getDetails().get("stunting"):"-"));
-            viewHolder.underweight.setText(context.getString(R.string.underweight) +  " "+(pc.getDetails().get("underweight")!=null?pc.getDetails().get("underweight"):"-"));
-            viewHolder.wasting_status.setText(context.getString(R.string.wasting) +   " "+(pc.getDetails().get("wasting")!=null?pc.getDetails().get("wasting"):"-"));
+            viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+(hasValue(pc.getDetails().get("stunting"))?pc.getDetails().get("stunting"):"-"));
+            viewHolder.underweight.setText(context.getString(R.string.underweight) +  " "+(hasValue(pc.getDetails().get("underweight"))?pc.getDetails().get("underweight"):"-"));
+            viewHolder.wasting_status.setText(context.getString(R.string.wasting) +   " "+(hasValue(pc.getDetails().get("wasting"))?pc.getDetails().get("wasting"):"-"));
         }
         else{
-
             viewHolder.underweight.setText(context.getString(R.string.underweight) + " ");
             viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " ");
             viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " ");
-
         }
         //================ END OF Z-SCORE==============================//
 
@@ -201,6 +198,12 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         if(pc.getDetails().get(details) != null)
             return pc.getDetails().get(details).equalsIgnoreCase("ya");
         return false;
+    }
+
+    private boolean hasValue(String data){
+        if(data == null)
+            return false;
+        return data.length() > 2;
     }
 
 
