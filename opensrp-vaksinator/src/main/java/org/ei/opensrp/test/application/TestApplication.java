@@ -9,6 +9,7 @@ import org.ei.opensrp.sync.DrishtiSyncScheduler;
 import org.ei.opensrp.test.vaksinator.ErrorReportingFacade;
 import org.ei.opensrp.test.vaksinator.FlurryFacade;
 import org.ei.opensrp.view.activity.DrishtiApplication;
+import org.ei.opensrp.test.application.SyncVaksinatorBroadcastReceiver;
 import org.ei.opensrp.view.receiver.SyncBroadcastReceiver;
 import static org.ei.opensrp.util.Log.logInfo;
 
@@ -23,10 +24,12 @@ public class TestApplication extends DrishtiApplication {
     @Override
     public void onCreate() {
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
+        DrishtiSyncScheduler.setReceiverClass(SyncVaksinatorBroadcastReceiver.class);
         super.onCreate();
       //  ACRA.init(this);
 
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
+        DrishtiSyncScheduler.setReceiverClass(SyncVaksinatorBroadcastReceiver.class);
         ErrorReportingFacade.initErrorHandler(getApplicationContext());
         FlurryFacade.init(this);
 

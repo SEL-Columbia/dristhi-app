@@ -207,6 +207,16 @@ public class LoginActivity extends Activity {
                 }
             }
         });
+
+        tryGetUniqueId(userName, password, new Listener<ResponseStatus>() {
+            @Override
+            public void onEvent(ResponseStatus data) {
+                if (data == ResponseStatus.failure) {
+                    logError("failed to fetch unique id");
+                }
+                goToHome();
+            }
+        });
     }
 
     private void showErrorDialog(String message) {
@@ -354,6 +364,32 @@ public class LoginActivity extends Activity {
             res.updateConfiguration(conf, dm);
             return ENGLISH_LANGUAGE;
         }
+    }
+
+    private void tryGetUniqueId(final String username, final String password, final Listener<ResponseStatus> afterGetUniqueId) {
+        LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
+            @Override
+            public void setVisible() {
+                progressDialog.show();
+            }
+            @Override
+            public void setInvisible() {
+                progressDialog.dismiss();
+            }
+        });
+
+        task.doActionInBackground(new BackgroundAction<ResponseStatus>() {
+            @Override
+            public ResponseStatus actionToDoInBackgroundThread() {
+                ((Context)context).uniqueIdService().syncUniqueIdFromServer(username, password);
+                return ((Context)context).uniqueIdService().getLastUsedId(username, password);
+            }
+
+                @Override
+            public void postExecuteInUIThread(ResponseStatus result) {
+                afterGetUniqueId.onEvent(result);
+            }
+        });
     }
 
 }

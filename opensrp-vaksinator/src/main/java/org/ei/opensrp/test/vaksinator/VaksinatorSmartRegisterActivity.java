@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 
 import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.test.LoginActivity;
@@ -16,13 +17,16 @@ import org.ei.opensrp.test.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.dialog.DialogOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import butterknife.Bind;
@@ -30,7 +34,8 @@ import butterknife.ButterKnife;
 
 //import org.ei.opensrp.test.fragment.HouseHoldSmartRegisterFragment;
 
-public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
+public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterActivity implements
+        LocationSelectorDialogFragment.OnLocationSelectedListener{
 
     public static final String TAG = "Vaksinator";
     @Bind(R.id.view_pager)
@@ -163,6 +168,32 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
         }
     }
 
+    @Override
+    public void OnLocationSelected(String locationJSONString) {
+        JSONObject combined = null;
+
+        try {
+            JSONObject locationJSON = new JSONObject(locationJSONString);
+            JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+
+            combined = locationJSON;
+            Iterator<String> iter = uniqueId.keys();
+
+            while (iter.hasNext()) {
+                String key = iter.next();
+                combined.put(key, uniqueId.get(key));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (combined != null) {
+            FieldOverrides fieldOverrides = new FieldOverrides(combined.toString());
+            startFormActivity("registrasi_jurim", null, fieldOverrides.getJSONString());
+        }
+    }
+    
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
        // Log.v("fieldoverride", metaData);
