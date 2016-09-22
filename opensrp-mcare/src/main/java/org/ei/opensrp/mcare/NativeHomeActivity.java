@@ -27,7 +27,6 @@ import org.ei.opensrp.mcare.child.encc2handler;
 import org.ei.opensrp.mcare.child.encc3handler;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
-import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
 import org.ei.opensrp.mcare.pnc.pnc1handler;
 import org.ei.opensrp.mcare.pnc.pnc2handler;
 import org.ei.opensrp.mcare.pnc.pnc3handler;
@@ -249,9 +248,6 @@ public class NativeHomeActivity extends SecuredActivity {
                 LoginActivity.setLanguage();
                 Toast.makeText(this, "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
                 this.recreate();
-                return true;
-            case R.id.help:
-                startActivity(new Intent(this, tutorialCircleViewFlow.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
