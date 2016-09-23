@@ -72,7 +72,9 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     public String countSelect;
     public String joinTable="";
 
-    public static final int LOADER_ID = 0;
+    private static final int LOADER_ID = 0;
+    private static final String INIT_LOADER = "init";
+
 
     public String getTablename() {
         return tablename;
@@ -474,7 +476,20 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     }
 
     public void initialFilterandSortExecute() {
-        getLoaderManager().initLoader(LOADER_ID, null, this);
+        Loader<Cursor> loader = getLoaderManager().getLoader(LOADER_ID);
+        if(loader == null){
+            if(clientsProgressView.getVisibility() == INVISIBLE) {
+                clientsProgressView.setVisibility(View.VISIBLE);
+            }
+
+            if(clientsView.getVisibility() == VISIBLE) {
+                clientsView.setVisibility(View.INVISIBLE);
+            }
+
+            Bundle args = new Bundle();
+            args.putBoolean(INIT_LOADER, true);
+            getLoaderManager().initLoader(LOADER_ID, args, this);
+        }
     }
 
     public void filterandSortExecute() {
@@ -575,7 +590,7 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    public Loader<Cursor> onCreateLoader(int id, final Bundle args) {
         switch (id) {
             case LOADER_ID:
                 // Returns a new CursorLoader
@@ -583,7 +598,18 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
                     @Override
                     public Cursor loadInBackground() {
                         String query = filterandSortQuery();
-                        return commonRepository().RawCustomQueryForAdapter(query);
+                        Cursor cursor = commonRepository().RawCustomQueryForAdapter(query);
+
+                        if(args != null  && args.getBoolean(INIT_LOADER)){
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    clientsProgressView.setVisibility(INVISIBLE);
+                                    clientsView.setVisibility(VISIBLE);
+                                };
+                            });
+                        }
+                         return cursor;
                     }
                 };
             default:
