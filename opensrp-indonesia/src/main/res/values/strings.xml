@@ -240,7 +240,7 @@
     <string name="header_delivery_complications">COMPLICATIONS</string>
     <string name="header_pp_fp">PP FP</string>
     <string name="header_child">CHILD</string>
-    <string name="header_days"> DAYS</string>
+    <string name="header_days">&#160; DAYS</string>
     <string name="header_first_seven_days">FIRST 7 DAYS</string>
     <string name="header_pnc_visits">PNC VISITS</string>
     <string name="header_kb_method">CONTRACEPTION</string>

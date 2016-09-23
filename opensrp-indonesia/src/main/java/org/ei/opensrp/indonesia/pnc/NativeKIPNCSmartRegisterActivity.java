@@ -181,6 +181,7 @@ public class NativeKIPNCSmartRegisterActivity extends SecuredNativeSmartRegister
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
+        FlurryFacade.logEvent(formName);
 //        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset

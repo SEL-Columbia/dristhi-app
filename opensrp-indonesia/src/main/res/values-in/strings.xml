@@ -295,22 +295,18 @@
     <string name="header_delivery_complications">COMPLICATIONS</string>
     <string name="header_pp_fp">PP FP</string>
     <string name="header_child">Anak</string>
-    <string name="header_days">DAYS</string>
+    <string name="header_days"> &#160; Hari Lagi</string>
     <string name="header_first_seven_days">FIRST 7 DAYS</string>
     <string name="header_pnc_visits">PNC VISITS</string>
-
     <string name="pnc_register_service_mode_overview">Overview</string>
     <string name="pnc_register_service_mode_pnc_visits">PNC Visits</string>
-
     <string name="str_pnc_visit_form">PNC Visit</string>
     <string name="str_pnc_postpartum_family_planning_form">Postpartum family planning</string>
-
     <string name="str_referred">Referred</string>
     <string name="str_referral">referral</string>
     <string name="str_follow_up">follow-up</string>
     <string name="str_refill">refill</string>
     <string name="str_update">Update</string>
-
     <string name="anc_label">ANC:</string>
     <string name="hb_test_label">Hb Test</string>
     <string name="str_days_past_due">day (s) past due</string>
@@ -349,13 +345,11 @@
     <string name="str_asha">Asha:</string>
     <string name="str_contact">Contact:</string>
     <string name="str_risks_reviewed">Risks reviewed:</string>
-
     <string name="str_pnc_delivery_date">Date:</string>
     <string name="str_pnc_delivery_place">Place:</string>
     <string name="str_pnc_delivery_type">Type:</string>
     <string name="str_pp_fp">PP FP</string>
     <string name="str_pnc_child_weight">Wt: %1$s kg</string>
-
     <string name="str_pnc_clause">PNC</string>
     <string name="str_pnc_circle_type_expected">expected</string>
     <string name="str_pnc_circle_type_actual">actual</string>
@@ -367,18 +361,14 @@
     <string name="str_child_illness_ari">ari</string>
     <string name="str_child_illness_sam">sam</string>
     <string name="str_pnc_visit_button_label">PNC Visit</string>
-
     <string name="header_imunisasi_hb07">Hb</string>
     <string name="header_imunisasi_bcg_polio1">BCG/Pol1</string>
     <string name="header_imunisasi_dpt_hb1_polio2">DPT/HB1/Pol2</string>
     <string name="header_imunisasi_dpt_hb2_polio3">DPT/HB2/Pol3</string>
     <string name="header_imunisasi_dpt_hb3_polio4">DPT/HB3/Pol4</string>
     <string name="header_imunisasi_campak">Campak</string>
-
-
     <string name="title_double_selection">"Pilih nama lagi"</string>
     <string name="title_app">"Bidan"</string>
-
     <string name="detail_subtitle">Daftar resiko yang dimiliki</string>
     <string name="risk_flags_subtitle">Daftar resiko yang dimiliki</string>
     <string name="risk_flags_title">Resiko</string>
@@ -409,14 +399,12 @@
     <string name="cohort_fp">KOHORT KB</string>
 
     <string name="child_details_mothers_name_label">Nama Ibu:&#160;</string>
-
     <string name="child_details_fathers_name_label">Nama Ayah:&#160;</string>
     <string name="service_anc">Status Pelayanan: ANC</string>
     <string name="service_pnc">Status Pelayanan: PNC</string>
-
     <string name="visit_number">Kunjungan Ke:</string>
     <string name="last_visit_date">Tgl Kunj Terakhir:</string>
-    <string name="name">NAME: &#160;</string>
+    <string name="name">NAMA: &#160;</string>
     <string name="nik">NIK:&#160; </string>
     <string name="husband_name">Nama Suami:&#160; </string>
     <string name="dob">Tanggal Lahir: &#160;</string>
@@ -443,7 +431,6 @@
     <string name="HighRiskPregnancyAbortus">Riwayat Abortus: &#160;</string>
     <string name="HighRiskLabourSectionCesareaRecord">Riwayat Cesar: &#160;</string>
     <string name="risk_summary">Ringkasan Resiko:</string>
-
     <string name="highRiskHIVAIDS">Resiko TInggi HIV/AIDS</string>
     <string name="highRiskSTIBBVs">Resiko Tinggi STIBBVs</string>
     <string name="highRiskEctopicPregnancy">Resiko TInggi Ectopic Kehamilan</string>

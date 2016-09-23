@@ -191,7 +191,7 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                     viewHolder.edd_due.setText("");
 
                 }
-                viewHolder.edd_due.setText(context.getString(R.string.due_status)+": "+diffDays+" "+context.getString(R.string.header_days));
+                viewHolder.edd_due.setText(diffDays+context.getString(R.string.header_days));
 
             } catch (ParseException e) {
                 // TODO Auto-generated catch block
