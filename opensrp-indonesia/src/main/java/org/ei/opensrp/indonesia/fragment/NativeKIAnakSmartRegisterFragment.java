@@ -163,6 +163,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 
                         new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label),AnakNameShort()),
                         new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label_reverse),AnakNameShortR()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_dob_label),AnakDOB()),//tanggalLahirAnak
 
                 };
             }
@@ -172,6 +173,10 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
                 return getResources().getString(R.string.hh_search_hint);
             }
         };
+    }
+
+    private String AnakDOB() {
+        return "tanggalLahirAnak ASC";
     }
 
     @Override
@@ -229,7 +234,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("anak", new String[]{"anak.isClosed", "anak.details", "namaBayi"});
+        queryBUilder.SelectInitiateMainTable("anak", new String[]{"anak.isClosed", "anak.details", "namaBayi", "tanggalLahirAnak"});
         queryBUilder.customJoin("LEFT JOIN ibu ON ibu.id = anak.ibuCaseId LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
         mainSelect = queryBUilder.mainCondition(" anak.isClosed !='true' and anak.ibuCaseId !='' ");
         queryBUilder.addCondition(filters);
@@ -238,7 +243,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 
         databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
         AnakRegisterClientsProvider anakscp = new AnakRegisterClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, anakscp, new CommonRepository("anak",new String []{"namaBayi", "anak.isClosed"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, anakscp, new CommonRepository("anak",new String []{"namaBayi", "tanggalLahirAnak", "anak.isClosed"}));
         clientsView.setAdapter(clientAdapter);
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();

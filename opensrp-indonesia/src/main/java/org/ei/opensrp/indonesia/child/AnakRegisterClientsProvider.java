@@ -28,6 +28,10 @@ import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
+import org.joda.time.LocalDate;
+import org.joda.time.Months;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -36,6 +40,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static org.joda.time.LocalDateTime.parse;
 
 public class AnakRegisterClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
     private final LayoutInflater inflater;
@@ -204,29 +209,21 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.no_ibu.setText(kiparent.getDetails().get("noIbu")!=null?kiparent.getDetails().get("noIbu"):"");
 
 
-        String date = childobject.getColumnmaps().get("tanggalLahirAnak")!=null?childobject.getColumnmaps().get("tanggalLahirAnak"):"-";
+        String childAge = childobject.getColumnmaps().get("tanggalLahirAnak")!=null?childobject.getColumnmaps().get("tanggalLahirAnak"):"-";
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         if(childobject.getColumnmaps().get("tanggalLahirAnak")!=null) {
-            try {
-                Calendar c = Calendar.getInstance();
-                c.setTime(format.parse(date));
-                c.add(Calendar.DATE, 0);  // number of days to add
-                date = format.format(c.getTime());  // dt is now the new date
-                Date dates = format.parse(date);
-                Date currentDateandTime = new Date();
-                long diff = Math.abs(dates.getTime() - currentDateandTime.getTime());
-                long diffDays = diff / (24 * 60 * 60 * 1000);
-                if(diffDays <1){
-                    viewHolder.childs_age.setText("");
+            String age = childAge;
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+            LocalDate dates = parse(age, formatter).toLocalDate();
+            LocalDate dateNow = LocalDate.now();
 
-                }
-                viewHolder.childs_age.setText(diffDays+" Hari");
+            dates = dates.withDayOfMonth(1);
+            dateNow = dateNow.withDayOfMonth(1);
 
-            } catch (ParseException e) {
-                // TODO Auto-generated catch block
-                viewHolder.childs_age.setText("NaN Hari");
-            }
+            int months = Months.monthsBetween(dates, dateNow).getMonths();
+            viewHolder.childs_age.setText(months+ " "+context.getString(R.string.month));
+
         }
         else{
             viewHolder.childs_age.setText("-");

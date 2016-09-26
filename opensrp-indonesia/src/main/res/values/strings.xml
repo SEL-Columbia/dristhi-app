@@ -299,6 +299,7 @@
     <string name="str_risks_reviewed">Risks reviewed:</string>
     <string name="sort_by_edd_label">EDD</string>
 
+    <string name="sort_by_no_ibu_label">Mother Number</string>
     <string name="str_pnc_delivery_date">Date:</string>
     <string name="str_pnc_delivery_place">Place:</string>
     <string name="str_pnc_delivery_type">Type:</string>
@@ -534,4 +535,9 @@
     <string name="header_tt_usia_klinis">Clinical Status</string>
     <string name="usia">Clinical Age:</string>
     <string name="header_klinis">Clinical Status</string>
+    <string name="sort_by_dob_label">Date Of Birth</string>
+    <string name="months_away" translatable="false">months away</string>
+    <string name="this_month" translatable="false">this month</string>
+    <string name="delivered">delivered</string>
+    <string name="month">Month</string>
 </resources>

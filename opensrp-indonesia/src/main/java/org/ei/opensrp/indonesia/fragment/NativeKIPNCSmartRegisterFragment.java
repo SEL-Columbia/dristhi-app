@@ -144,9 +144,11 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
-                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_wife_age_label),KiSortByHtp()),
                         new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label),KiSortByNameAZ()),
                         new CursorCommonObjectSort(getResources().getString(R.string.sort_by_name_label_reverse),KiSortByNameZA()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_wife_age_label),KiSortByAge()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_edd_label),KiSortByEdd()),
+                        new CursorCommonObjectSort(getResources().getString(R.string.sort_by_no_ibu_label),KiSortByNoIbu()),
                 };
             }
 
@@ -277,10 +279,16 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
     private String KiSortByNameZA() {
         return " kartu_ibu.namalengkap DESC";
     }
-    private String KiSortByHtp() {
-        return " kartu_ibu.umur DESC";
+    private String KiSortByAge() {
+        return " umur DESC";
+    }
+    private String KiSortByNoIbu() {
+        return " noIbu ASC";
     }
 
+    private String KiSortByEdd() {
+        return " htp IS NULL, htp";
+    }
     private class EditDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {

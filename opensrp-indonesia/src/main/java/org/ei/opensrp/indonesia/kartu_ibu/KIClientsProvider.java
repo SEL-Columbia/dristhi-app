@@ -39,6 +39,10 @@ import org.ei.opensrp.view.viewHolder.ECProfilePhotoLoader;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 import org.ei.opensrp.view.viewHolder.ProfilePhotoLoader;
 import org.joda.time.Days;
+import org.joda.time.LocalDate;
+import org.joda.time.Months;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,6 +57,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.ei.opensrp.util.StringUtil.humanize;
 import static org.ei.opensrp.view.controller.ECSmartRegisterController.STATUS_DATE_FIELD;
 import static org.ei.opensrp.view.controller.ECSmartRegisterController.STATUS_TYPE_FIELD;
+import static org.joda.time.LocalDateTime.parse;
 
 /**
  * Created by Dimas Ciputra on 2/16/15.
@@ -143,7 +148,9 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                 || pc.getDetails().get("highRiskHeartDisorder")!=null && pc.getDetails().get("highRiskAsthma").equals("yes")
                 || pc.getDetails().get("highRiskAsthma")!=null && pc.getDetails().get("highRiskTuberculosis").equals("yes")
                 || pc.getDetails().get("highRiskTuberculosis")!=null && pc.getDetails().get("highRiskMalaria").equals("yes")
-                || pc.getDetails().get("highRiskMalaria")!=null && pc.getDetails().get("highRiskMalaria").equals("yes") )
+                || pc.getDetails().get("highRiskMalaria")!=null && pc.getDetails().get("highRiskMalaria").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyYoungMaternalAge")!=null && pc.getDetails().get("highRiskPregnancyYoungMaternalAge").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyOldMaternalAge")!=null && pc.getDetails().get("highRiskPregnancyOldMaternalAge").equals("yes") )
         {
             viewHolder.hr_badge.setVisibility(View.VISIBLE);
         }
@@ -163,7 +170,7 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.husband_name.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");
         viewHolder.village_name.setText(pc.getDetails().get("desa")!=null?pc.getDetails().get("desa"):"");
         viewHolder.wife_age.setText(pc.getColumnmaps().get("umur")!=null?pc.getColumnmaps().get("umur"):"");
-        viewHolder.no_ibu.setText(pc.getDetails().get("noIbu")!=null?pc.getDetails().get("noIbu"):"");
+        viewHolder.no_ibu.setText(pc.getColumnmaps().get("noIbu")!=null?pc.getDetails().get("noIbu"):"");
         viewHolder.unique_id.setText(pc.getDetails().get("unique_id")!=null?pc.getDetails().get("unique_id"):"");
 
         viewHolder.gravida.setText(pc.getDetails().get("gravida")!=null?pc.getDetails().get("gravida"):"-");
@@ -171,32 +178,35 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.number_of_abortus.setText(pc.getDetails().get("abortus")!=null?pc.getDetails().get("abortus"):"-");
         viewHolder.number_of_alive.setText(pc.getDetails().get("hidup")!=null?pc.getDetails().get("hidup"):"-");
 
-        viewHolder.edd.setText(pc.getDetails().get("htp")!=null?pc.getDetails().get("htp"):"");
+        viewHolder.edd.setText(pc.getColumnmaps().get("htp")!=null?pc.getColumnmaps().get("htp"):"");
 
         viewHolder.edd_due.setText("");
 
-        String date = pc.getDetails().get("htp");
+        String edd = pc.getColumnmaps().get("htp");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        if(StringUtils.isNotBlank(pc.getDetails().get("htp"))) {
-            try {
-                Calendar c = Calendar.getInstance();
-                c.setTime(format.parse(date));
-                c.add(Calendar.DATE, 2);  // number of days to add
-                date = format.format(c.getTime());  // dt is now the new date
-                Date dates = format.parse(date);
-                Date currentDateandTime = new Date();
-                long diff = Math.abs(dates.getTime() - currentDateandTime.getTime());
-                long diffDays = diff / (24 * 60 * 60 * 1000);
-                if(diffDays <1){
-                    viewHolder.edd_due.setText("");
+        if(StringUtils.isNotBlank(pc.getColumnmaps().get("htp"))) {
+            String _edd = edd;
+            String _dueEdd = "";
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+            LocalDate date = parse(_edd, formatter).toLocalDate();
+            LocalDate dateNow = LocalDate.now();
 
+            date = date.withDayOfMonth(1);
+            dateNow = dateNow.withDayOfMonth(1);
+
+            int months = Months.monthsBetween(dateNow, date).getMonths();
+            if(months >= 1) {
+                _dueEdd = "" + months + " " + context.getString(R.string.months_away);
+            } else if(months == 0){
+                if(DateUtil.dayDifference(dateNow, date) > 0) {
+                    _dueEdd =  context.getString(R.string.this_month);
                 }
-                viewHolder.edd_due.setText(diffDays+context.getString(R.string.header_days));
-
-            } catch (ParseException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                _dueEdd = context.getString(R.string.delivered);
+            } else {
+                _dueEdd = context.getString(R.string.delivered);
             }
+            viewHolder.edd_due.setText(_dueEdd);
+
         }
         else{
             viewHolder.edd_due.setText("-");
