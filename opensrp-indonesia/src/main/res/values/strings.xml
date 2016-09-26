@@ -328,7 +328,7 @@
 
     <string name="hh_profile">PROFILE</string>
     <string name="hh_no_of_mwra">NO. OF ELCO</string>
-    <string name="last_visit_date">LAST VISIT DATE:</string>
+    <string name="last_visit_date">Last Visit:&#160;</string>
     <string name="hh_visit_due_date">HH VISIT DUE DATE</string>
     <string name="hh_other_inhabitants">OTHER INHABITANTS</string>
     <string name="hh_inhabitants_details">HH Details</string>
@@ -450,7 +450,7 @@
     <string name="place_place">Place:</string>
     <string name="plan_type">Type:</string>
     <string name="mother_title">Mother</string>
-    <string name="child_title">Child:</string>
+    <string name="child_title">Child</string>
     <string name="dob_title">DOB:</string>
     <string name="header_dok_persalinan">DELIVERY DOCUMENTATION</string>
     <string name="header_birth_status">Status</string>
@@ -465,8 +465,8 @@
     <string name="height">Height:</string>
     <string name="service_anc">Service Status: ANC</string>
     <string name="service_pnc">Service Status: PNC</string>
-    <string name="anc_ke">ANC Number:</string>
-    <string name="visit_number">Visit Number:</string>
+    <string name="anc_ke">ANC Number:&#160;</string>
+    <string name="visit_number">Visit Number:&#160;</string>
     <string name="name">NAME:&#160; </string>
     <string name="nik">NIK:&#160; </string>
     <string name="husband_name">Husband Name: &#160;</string>
@@ -533,7 +533,7 @@
     <string name="kb_ket">FP Note</string>
     <string name="ganti_cara">Change FP</string>
     <string name="header_tt_usia_klinis">Clinical Status</string>
-    <string name="usia">Clinical Age:</string>
+    <string name="usia">Clinical Age:&#160;</string>
     <string name="header_klinis">Clinical Status</string>
     <string name="sort_by_dob_label">Date Of Birth</string>
     <string name="months_away" translatable="false">months away</string>
@@ -541,5 +541,6 @@
     <string name="delivered">delivered</string>
     <string name="month">Month</string>
     <string name="service_fp">Service Status: FP </string>
-    <string name="str_pnc_delivery">Delivery Date:</string>
+    <string name="str_pnc_delivery">Delivery Date:&#160;</string>
+    <string name="edd_passed">EDD Passed</string>
 </resources>

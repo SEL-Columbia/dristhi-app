@@ -16,7 +16,7 @@
     <string name="form_back_confirm_dialog_title">Konfirmasi penutupan form</string>
     <string name="yes_button_label">Iya</string>
     <string name="no_button_label">Tidak</string>
-    <string name="anc_ke">ANC Ke:</string>
+    <string name="anc_ke">ANC Ke:&#160;</string>
     <string name="sort_by_name_label_reverse">Nama (Z ke A)</string>
     <string name="sort_by_wife_age_label">Umur</string>
     <string name="sort_by_ec_number_label">EC Number</string>
@@ -135,7 +135,7 @@
     <string name="header_tanda_vital">Tanda Vital</string>
     <string name="header_pemeriksaan">Pemeriksaan</string>
 
-    <string name="header_history_anc">History Kunjungan</string>
+    <string name="header_history_anc">Riwayat Kunjungan</string>
     <string name="str_delivery_at">Persalinan Di</string>
     <string name="videos_cannot_play_video_dialog_title">Tidak bisa memutar video.</string>
     <string name="videos_unknown_error_dialog_message">Tidak bisa memutar video dikarenakan kesalahan teknis.</string>
@@ -389,7 +389,7 @@
     <string name="place_place">Tempat:</string>
     <string name="plan_type">Tipe:</string>
     <string name="mother_title">Ibu</string>
-    <string name="child_title">Anak:</string>
+    <string name="child_title">Anak</string>
     <string name="dob_title">Tgl Lahir:</string>
     <string name="birth_place_title">Tmpt:</string>
     <string name="birth_weight_title">B.Lahir:</string>
@@ -402,8 +402,8 @@
     <string name="child_details_fathers_name_label">Nama Ayah:&#160;</string>
     <string name="service_anc">Status Pelayanan: ANC</string>
     <string name="service_pnc">Status Pelayanan: PNC</string>
-    <string name="visit_number">Kunjungan Ke:</string>
-    <string name="last_visit_date">Tgl Kunj Terakhir:</string>
+    <string name="visit_number">Kunjungan Ke:&#160;</string>
+    <string name="last_visit_date">Tgl Kunj:&#160;</string>
     <string name="name">NAMA: &#160;</string>
     <string name="nik">NIK:&#160; </string>
     <string name="husband_name">Nama Suami:&#160; </string>
@@ -475,4 +475,5 @@
     <string name="service_fp">Status Pelayanan: KB </string>
 
     <string name="str_pnc_delivery">Tgl Persalinan:</string>
+    <string name="edd_passed">HTP sudah lewat</string>
 </resources>

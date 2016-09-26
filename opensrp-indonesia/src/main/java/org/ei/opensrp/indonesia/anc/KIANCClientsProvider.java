@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
@@ -23,16 +24,23 @@ import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.kartu_ibu.KIDetailActivity;
 import org.ei.opensrp.service.AlertService;
+import org.ei.opensrp.util.DateUtil;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
 import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
+import org.joda.time.LocalDate;
+import org.joda.time.Months;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static org.joda.time.LocalDateTime.parse;
 
 /**
  * Created by Dimas Ciputra on 3/4/15.
@@ -86,10 +94,9 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
             // ViewHolder.img_hp_badge = ImageView.Set;   img_hrl_badge img_bpl_badge img_hrp_badge img_hrpp_badge
             viewHolder.usia_klinis = (TextView) convertView.findViewById(R.id.txt_usia_klinis);
             viewHolder.htpt = (TextView) convertView.findViewById(R.id.txt_htpt);
+            viewHolder.edd_due = (TextView) convertView.findViewById(R.id.txt_edd_due);
             viewHolder.ki_lila_bb = (TextView) convertView.findViewById(R.id.txt_ki_lila_bb);
             viewHolder.beratbadan_tb = (TextView) convertView.findViewById(R.id.txt_ki_beratbadan_tb);
-
-
             viewHolder.tanggal_kunjungan_anc = (TextView) convertView.findViewById(R.id.txt_tanggal_kunjungan_anc);
             viewHolder.anc_number = (TextView) convertView.findViewById(R.id.txt_anc_number);
             viewHolder.kunjugan_ke = (TextView) convertView.findViewById(R.id.txt_kunjugan_ke);
@@ -184,6 +191,34 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         viewHolder.usia_klinis.setText(pc.getDetails().get("usiaKlinis")!=null?context.getString(R.string.usia)+pc.getDetails().get("usiaKlinis")+context.getString(R.string.str_weeks):"-");
         viewHolder.htpt.setText(ibuparent.getColumnmaps().get("htp")!=null?ibuparent.getColumnmaps().get("htp"):"-");
+
+        String edd = ibuparent.getColumnmaps().get("htp");
+        if(StringUtils.isNotBlank(ibuparent.getColumnmaps().get("htp"))) {
+            String _edd = edd;
+            String _dueEdd = "";
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+            LocalDate date = parse(_edd, formatter).toLocalDate();
+            LocalDate dateNow = LocalDate.now();
+            date = date.withDayOfMonth(1);
+            dateNow = dateNow.withDayOfMonth(1);
+            int months = Months.monthsBetween(dateNow, date).getMonths();
+            if(months >= 1) {
+                _dueEdd = "" + months + " " + context.getString(R.string.months_away);
+            } else if(months == 0){
+                _dueEdd =  context.getString(R.string.this_month);
+            }
+            else if(months < 0) {
+                _dueEdd = context.getString(R.string.edd_passed);
+            }
+
+            viewHolder.edd_due.setText(_dueEdd);
+
+        }
+        else{
+            viewHolder.edd_due.setText("-");
+        }
+
+
         viewHolder.ki_lila_bb.setText(pc.getDetails().get("hasilPemeriksaanLILA")!=null?pc.getDetails().get("hasilPemeriksaanLILA"):"-");
 
         viewHolder.beratbadan_tb.setText(pc.getDetails().get("bbKg")!=null?pc.getDetails().get("bbKg"):"-");
@@ -200,46 +235,11 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
         viewHolder.alert_status.setText("");
 
-        if(AncKe.equals("-")){
-            List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 1");
-            //alertlist_for_client.get(i).
-            if(alertlist_for_client.size() == 0 ){
-                //  viewHolder.due_visit_date.setText("Not Synced to Server");
-                viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
-            }
-            for(int i = 0;i<alertlist_for_client.size();i++){
-                viewHolder.status_type.setText("ANC 1");
-               // viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
-                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
-                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
-                    viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
-                }
-                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
-                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
-                    viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
-
-                }
-                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
-                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
-                    viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
-
-                }
-                if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
-                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
-                    viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
-                }
-                if(alertlist_for_client.get(i).isComplete()){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
-                    viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
-                    viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
-                }
-            }
+        if(AncKe.equals("-") || AncKe.equals("")){
+            viewHolder.status_type.setText("ANC");
         }
         if(AncKe.equals("1")){
+            viewHolder.status_type.setText("ANC 2");
             List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 2");
             //alertlist_for_client.get(i).
             if(alertlist_for_client.size() == 0 ){
@@ -247,8 +247,8 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
                 viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             }
             for(int i = 0;i<alertlist_for_client.size();i++){
-                viewHolder.status_type.setText("ANC 2");
-              //  viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
+
+                //  viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
                     viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
@@ -280,6 +280,7 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         }
 
         if(AncKe.equals("2")){
+            viewHolder.status_type.setText("ANC 3");
             List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 3");
             //alertlist_for_client.get(i).
             if(alertlist_for_client.size() == 0 ){
@@ -287,8 +288,8 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
                 viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             }
             for(int i = 0;i<alertlist_for_client.size();i++){
-                viewHolder.status_type.setText("ANC 3");
-               // viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
+
+                // viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
                     viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
@@ -319,6 +320,7 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
             }
         }
         if(AncKe.equals("3")){
+            viewHolder.status_type.setText("ANC 4");
             List<Alert> alertlist_for_client = alertService.findByEntityIdAndAlertNames(pc.entityId(), "ANC 4");
             //alertlist_for_client.get(i).
             if(alertlist_for_client.size() == 0 ){
@@ -326,8 +328,8 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
                 viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
             }
             for(int i = 0;i<alertlist_for_client.size();i++){
-                viewHolder.status_type.setText("ANC 4");
-             //   viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
+
+                //   viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
                     viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
@@ -360,9 +362,9 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
 
         convertView.setLayoutParams(clientViewLayoutParams);
-     //   return convertView;
+        //   return convertView;
     }
-   // CommonPersonObjectController householdelcocontroller;
+    // CommonPersonObjectController householdelcocontroller;
 
 
     //    @Override
@@ -422,17 +424,16 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         TextView status_date;
         TextView alert_status;
         RelativeLayout status_layout;
-        public TextView tanggal_kunjungan_anc;
-        public TextView anc_number;
-        public TextView kunjugan_ke;
-        public ImageView hr_badge  ;
-        public ImageView hp_badge;
-         ImageView hrpp_badge;
-        public ImageView bpl_badge;
-        public ImageView hrp_badge;
+        TextView tanggal_kunjungan_anc;
+        TextView anc_number;
+        TextView kunjugan_ke;
+        ImageView hr_badge  ;
+        ImageView hp_badge;
+        ImageView hrpp_badge;
+        ImageView bpl_badge;
+        ImageView hrp_badge;
         ImageView img_hrl_badge;
-
-
+        TextView edd_due;
     }
 
 

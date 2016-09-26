@@ -182,7 +182,7 @@ public class KBDetailActivity extends Activity {
 
         village.setText( ": "+humanize(kiclient.getDetails().get("desa") != null ? kiclient.getDetails().get("desa") : "-"));
         subvillage.setText( ": "+humanize(kiclient.getDetails().get("dusun") != null ? kiclient.getDetails().get("dusun") : "-"));
-        age.setText(": "+humanize(kiclient.getDetails().get("umur") != null ? kiclient.getDetails().get("umur") : "-"));
+        age.setText(": "+humanize(kiclient.getColumnmaps().get("umur") != null ? kiclient.getColumnmaps().get("umur") : "-"));
         alamat.setText(": "+humanize(kiclient.getDetails().get("alamatDomisili") != null ? kiclient.getDetails().get("alamatDomisili") : "-"));
         education.setText(": "+humanize(kiclient.getDetails().get("pendidikan") != null ? kiclient.getDetails().get("pendidikan") : "-"));
         religion.setText(": "+humanize(kiclient.getDetails().get("agama") != null ? kiclient.getDetails().get("agama") : "-"));
