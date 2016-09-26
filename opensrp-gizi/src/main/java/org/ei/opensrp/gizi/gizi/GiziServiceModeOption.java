@@ -43,7 +43,7 @@ public class GiziServiceModeOption extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{30,25,20,15,10};
+                return new int[]{30,25,23,15,7};
             }
 
             @Override
