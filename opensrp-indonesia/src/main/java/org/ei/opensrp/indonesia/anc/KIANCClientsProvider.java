@@ -209,31 +209,31 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
             }
             for(int i = 0;i<alertlist_for_client.size();i++){
                 viewHolder.status_type.setText("ANC 1");
-               // viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+               // viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
 
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
 
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
                 if(alertlist_for_client.get(i).isComplete()){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
@@ -248,31 +248,31 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
             }
             for(int i = 0;i<alertlist_for_client.size();i++){
                 viewHolder.status_type.setText("ANC 2");
-              //  viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+              //  viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
 
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
 
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
                 if(alertlist_for_client.get(i).isComplete()){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
@@ -288,31 +288,31 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
             }
             for(int i = 0;i<alertlist_for_client.size();i++){
                 viewHolder.status_type.setText("ANC 3");
-               // viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+               // viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
 
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
 
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
                 if(alertlist_for_client.get(i).isComplete()){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
@@ -327,31 +327,31 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
             }
             for(int i = 0;i<alertlist_for_client.size();i++){
                 viewHolder.status_type.setText("ANC 4");
-             //   viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+             //   viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_upcoming_light_blue));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
 
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
 
                 }
                 if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }
                 if(alertlist_for_client.get(i).isComplete()){
-                    viewHolder.status_date.setText(alertlist_for_client.get(i).expiryDate());
+                    viewHolder.status_date.setText(alertlist_for_client.get(i).startDate());
                     viewHolder.status_layout.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.status_bar_text_almost_white));
                     viewHolder.alert_status.setText(alertlist_for_client.get(i).status().value());
                 }

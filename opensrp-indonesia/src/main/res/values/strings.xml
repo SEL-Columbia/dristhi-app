@@ -230,7 +230,7 @@
     <string name="fp_prioritization_one_child_service_mode">1 Child</string>
     <string name="fp_register_child_details">Child</string>
     <string name="str_due">"Due "</string>
-    <string name="fp_methods">FP Methods</string>
+    <string name="fp_methods">FP Methods:</string>
     <string name="fp_prioritization">FP Prioritization</string>
     <string name="fp_prioritization_add_fp">Add FP</string>
     <string name="fp_prioritization_fp_videos">FP Videos</string>
@@ -540,4 +540,6 @@
     <string name="this_month" translatable="false">this month</string>
     <string name="delivered">delivered</string>
     <string name="month">Month</string>
+    <string name="service_fp">Service Status: FP </string>
+    <string name="str_pnc_delivery">Delivery Date:</string>
 </resources>

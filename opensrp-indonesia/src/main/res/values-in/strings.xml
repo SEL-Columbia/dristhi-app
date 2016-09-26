@@ -285,7 +285,7 @@
     <string name="fp_prioritization_one_child_service_mode">1 Child</string>
     <string name="fp_register_child_details">Anak:</string>
     <string name="str_due">"Due "</string>
-    <string name="fp_methods">FP Methods</string>
+    <string name="fp_methods">Jenis:&#160;</string>
     <string name="fp_prioritization">FP Prioritization</string>
     <string name="fp_prioritization_add_fp">Add FP</string>
     <string name="fp_prioritization_fp_videos">FP Videos</string>
@@ -472,4 +472,7 @@
     <string name="header_klinis">Status Klinis</string>
     <string name="height">Tinggi:</string>
     <string name="month">Bln</string>
+    <string name="service_fp">Status Pelayanan: KB </string>
+
+    <string name="str_pnc_delivery">Tgl Persalinan:</string>
 </resources>
