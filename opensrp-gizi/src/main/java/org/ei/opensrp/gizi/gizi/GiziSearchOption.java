@@ -31,8 +31,15 @@ public class GiziSearchOption implements FilterOption {
             }
         }
         if(!result) {
-            if(currentclient.getDetails().get("namaBayi") != null) {
-                if (currentclient.getDetails().get("namaBayi").contains(criteria)) {
+            if(currentclient.getDetails().get("namaOrtu") != null) {
+                if (currentclient.getDetails().get("namaOrtu").contains(criteria)) {
+                    result = true;
+                }
+            }
+        }
+        if(!result) {
+            if(currentclient.getDetails().get("dusun") != null) {
+                if (currentclient.getDetails().get("dusun").contains(criteria)) {
                     result = true;
                 }
             }
