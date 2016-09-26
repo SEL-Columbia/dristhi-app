@@ -363,7 +363,8 @@
     <string name="okforminputerror">ok</string>
     <string name="child_profile">Data Anak</string>
     <string name="anthopometri">Antropometri</string>
-    <string name="status">Status Nutrisi</string>
+    <string name="status">Status Gizi</string>
+    <string name="unique_id">Unique ID : </string>
     <string name="tanggal">Tanggal Kunjungan : </string>
     <string name="height">Tinggi : </string>
     <string name="stunting">Tinggi/Umur : </string>

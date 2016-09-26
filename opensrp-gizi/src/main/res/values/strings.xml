@@ -364,6 +364,7 @@
     <string name="child_profile">Child Details</string>
     <string name="anthopometri">Antropometri</string>
     <string name="status">Nutrition Status</string>
+    <string name="unique_id">Unique ID : </string>
     <string name="tanggal">Visit Date : </string>
     <string name="height">Height : </string>
     <string name="stunting">Height for Age status : </string>

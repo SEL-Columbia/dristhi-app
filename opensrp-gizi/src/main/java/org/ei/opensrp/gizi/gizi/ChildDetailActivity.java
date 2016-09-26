@@ -69,7 +69,10 @@ public class ChildDetailActivity extends Activity {
         final ImageView childview = (ImageView)findViewById(R.id.detail_profilepic);
         //header
         TextView header_name = (TextView) findViewById(R.id.header_name);
+        //sub header
+        TextView subheader = (TextView) findViewById(R.id.txt_title_label);
         //profile
+        TextView uniqueId = (TextView) findViewById(R.id.txt_profile_unique_id);
         TextView nama = (TextView) findViewById(R.id.txt_profile_child_name);
         TextView mother_name = (TextView) findViewById(R.id.txt_profile_mother_name);
         TextView posyandu = (TextView) findViewById(R.id.txt_profile_posyandu);
@@ -115,7 +118,9 @@ public class ChildDetailActivity extends Activity {
             }
         }
 
-        nama.setText(R.string.child_profile);
+        header_name.setText(R.string.child_profile);
+        subheader.setText(R.string.child_profile);
+        uniqueId.setText(getString(R.string.unique_id) + " " + (childclient.getDetails().get("unique_id") != null ? childclient.getDetails().get("unique_id"):"-"));
         nama.setText(getString(R.string.child_name) +" "+ (childclient.getDetails().get("namaBayi") != null ? childclient.getDetails().get("namaBayi") : "-"));
         mother_name.setText(getString(R.string.parent_name) +" : "+ (childclient.getDetails().get("namaOrtu") != null ? childclient.getDetails().get("namaOrtu") : "-"));
         posyandu.setText(getString(R.string.posyandu) +" "+ (childclient.getDetails().get("posyandu") != null ? childclient.getDetails().get("posyandu") : "-"));
