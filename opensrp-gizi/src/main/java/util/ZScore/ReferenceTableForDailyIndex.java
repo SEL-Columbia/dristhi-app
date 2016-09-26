@@ -1869,7 +1869,7 @@ public class ReferenceTableForDailyIndex {
                 {1856,-0.1534,18.4968,0.1358},
 
         };
-        return boysWeightForAge[index];
+        return boysWeightForAge[index < boysWeightForAge.length ? index : boysWeightForAge.length];
     }
 
     public double[]getGirlsWeightForAge(int index){
@@ -3732,7 +3732,7 @@ public class ReferenceTableForDailyIndex {
                 {1855,-0.353,18.3834,0.14889},
                 {1856,-0.3531,18.389,0.14892}
         };
-        return girlsWeightForAge[index];
+        return girlsWeightForAge[index < girlsWeightForAge.length ? index : girlsWeightForAge.length];
     }
 
     public double[]getBoysLengthForAge(int index){
@@ -5595,7 +5595,7 @@ public class ReferenceTableForDailyIndex {
                 {1855,1,110.479,0.04225},
                 {1856,1,110.4969,0.04226}
         };
-        return boysLengthForAge[index];
+        return boysLengthForAge[index < boysLengthForAge.length ? index : boysLengthForAge.length];
     }
 
     public double[]getGirlsLengthForAge(int index){
@@ -7458,7 +7458,7 @@ public class ReferenceTableForDailyIndex {
                 {1855,1,109.918,0.04358},
                 {1856,1,109.9352,0.04358}
         };
-        return girlsLengthForAge[index];
+        return girlsLengthForAge[index < girlsLengthForAge.length ? index : girlsLengthForAge.length];
     }
 
     public double[]getBoysWeightForLength(int index){
@@ -8115,7 +8115,7 @@ public class ReferenceTableForDailyIndex {
                 {109.9,-0.3521,18.234,0.08749},
                 {110,-0.3521,18.2689,0.08755}
         };
-        return boysWeightForLength[index];
+        return boysWeightForLength[index < boysWeightForLength.length ? index : boysWeightForLength.length];
     }
 
     public double[]getGirlsWeightForLength(int index){
@@ -8772,7 +8772,7 @@ public class ReferenceTableForDailyIndex {
                 {109.9,-0.3833,18.294,0.09397},
                 {110,-0.3833,18.3324,0.09401},
         };
-        return girlsWeightForLength[index];
+        return girlsWeightForLength[index < girlsWeightForLength.length ? index : girlsWeightForLength.length-1];
     }
 
     public double[]getBoysWeightForHeight(int index){
@@ -9329,7 +9329,7 @@ public class ReferenceTableForDailyIndex {
                 {119.9,-0.3521,22.3134,0.09418},
                 {120,-0.3521,22.353,0.09424}
         };
-        return boysWeightForHeight[index];
+        return boysWeightForHeight[index < boysWeightForHeight.length ? index : boysWeightForHeight.length];
     }
 
     public double[]getGirlsWeightForHeight(int index){
@@ -9886,7 +9886,7 @@ public class ReferenceTableForDailyIndex {
                 {119.9,-0.3833,22.7741,0.09824},
                 {120,-0.3833,22.8173,0.09828}
         };
-        return girlsWeightForHeight[index];
+        return girlsWeightForHeight[index < girlsWeightForHeight.length ? index : girlsWeightForHeight.length];
     }
 
     public double[]getBoysBMIForAge(int index){
@@ -11749,7 +11749,7 @@ public class ReferenceTableForDailyIndex {
                 {1855,-0.7223,15.1843,0.08739},
                 {1856,-0.7235,15.184,0.0874}
         };
-        return data[index];
+        return data[index < data.length ? index : data.length];
     }
 
     public double[]getGirlsBMIForAge(int index){
@@ -13613,7 +13613,7 @@ public class ReferenceTableForDailyIndex {
                 {1856,-0.5684,15.2798,0.09825}
 
         };
-        return data[index];
+        return data[index < data.length ? index : data.length];
     }
 
 
