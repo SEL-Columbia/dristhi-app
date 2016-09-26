@@ -225,7 +225,10 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 
         ///------------------------------------------------------------------
 
-        CommonRepository commonRepository = context.commonrepository("anak");
+        AnakRegisterClientsProvider anakscp = new AnakRegisterClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, anakscp, new CommonRepository("anak",new String []{"namaBayi", "tanggalLahirAnak", "anak.isClosed"}));
+        clientsView.setAdapter(clientAdapter);
+
         setTablename("anak");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("anak");
@@ -237,14 +240,13 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         queryBUilder.SelectInitiateMainTable("anak", new String[]{"anak.isClosed", "anak.details", "namaBayi", "tanggalLahirAnak"});
         queryBUilder.customJoin("LEFT JOIN ibu ON ibu.id = anak.ibuCaseId LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
         mainSelect = queryBUilder.mainCondition(" anak.isClosed !='true' and anak.ibuCaseId !='' ");
-        queryBUilder.addCondition(filters);
         Sortqueries = AnakNameShort();
-        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
-        databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
-        AnakRegisterClientsProvider anakscp = new AnakRegisterClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, anakscp, new CommonRepository("anak",new String []{"namaBayi", "tanggalLahirAnak", "anak.isClosed"}));
-        clientsView.setAdapter(clientAdapter);
+        currentlimit = 20;
+        currentoffset = 0;
+
+        super.initialFilterandSortExecute();
+
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
         refresh();
