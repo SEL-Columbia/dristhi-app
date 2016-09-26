@@ -40,27 +40,27 @@
       },
       {
         "name": "provinsi",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Province",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/provinsi",
         "shouldLoadValue": true
       },
       {
         "name": "kabupaten",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_District",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/kabupaten",
         "shouldLoadValue": true
       },
       {
         "name": "kecamatan",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Sub-district",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/kecamatan",
         "shouldLoadValue": true
       },
       {
         "name": "desa",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/desa",
         "shouldLoadValue": true
       },
       {
         "name": "dusun",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/existing_Sub-village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/dusun",
         "shouldLoadValue": true
       },
       {
