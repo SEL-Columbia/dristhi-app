@@ -224,10 +224,11 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         countqueryBUilder.SelectInitiateMainTableCounts("kartu_ibu");
         countqueryBUilder.customJoin("LEFT JOIN ibu on kartu_ibu.id = ibu.kartuIbuId LEFT JOIN anak ON ibu.id = anak.ibuCaseId ");
         countSelect = countqueryBUilder.mainCondition(" kartu_ibu.isClosed !='true' and kartu_ibu.details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
+        mainCondition = " isClosed !='true' and details not LIKE '%\"jenisKontrasepsi\":\"\"%' ";
         CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"kartu_ibu.isClosed", "kartu_ibu.details", "kartu_ibu.isOutOfArea","namalengkap", "umur","namaSuami","ibu.id"});
+        queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"kartu_ibu.isClosed", "kartu_ibu.details", "kartu_ibu.isOutOfArea", "namalengkap", "umur", "namaSuami", "ibu.id"});
         queryBUilder.customJoin("LEFT JOIN ibu on kartu_ibu.id = ibu.kartuIbuId LEFT JOIN anak ON ibu.id = anak.ibuCaseId ");
         mainSelect = queryBUilder.mainCondition("kartu_ibu.isClosed !='true' and kartu_ibu.details not LIKE '%\"jenisKontrasepsi\":\"\"%' ");
         Sortqueries = KiSortByNameAZ();
@@ -235,7 +236,12 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         currentlimit = 20;
         currentoffset = 0;
 
-        super.initialFilterandSortExecute();
+        if(isPaused()){
+            super.showProgressView();
+            super.filterandSortExecute();
+        } else {
+            super.initialFilterandSortExecute();
+        }
 
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -317,7 +323,9 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     protected void onResumption() {
 //        super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPaused()) {
+            initializeQueries();
+        }
         //     updateSearchView();
         //   checkforNidMissing(mView);
 //
@@ -351,7 +359,9 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namalengkap Like '%" + cs.toString() +"%'" ;
+                        filters = cs.toString();
+                        joinTable = "";
+                        mainCondition = "  isClosed !='true' and details not LIKE '%\"jenisKontrasepsi\":\"\"%' ";
                         return null;
                     }
 
@@ -397,7 +407,9 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namalengkap Like '%" + cs.toString() +"%'" ;
+                        filters = cs.toString();
+                        joinTable = "";
+                        mainCondition = "  isClosed !='true' and details not LIKE '%\"jenisKontrasepsi\":\"\"%' ";
                         return null;
                     }
 

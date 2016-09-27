@@ -217,6 +217,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         countqueryBUilder.customJoin("LEFT JOIN ibu on kartu_ibu.id = ibu.kartuIbuId LEFT JOIN anak ON ibu.id = anak.ibuCaseId ");
       //  countqueryBUilder.joinwithKIs("kartu_ibu");
         countSelect = countqueryBUilder.mainCondition(" kartu_ibu.isClosed !='true' ");
+        mainCondition = " isClosed !='true' ";
         CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
@@ -229,7 +230,12 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         currentlimit = 20;
         currentoffset = 0;
 
-        super.initialFilterandSortExecute();
+        if(isPaused()){
+            super.showProgressView();
+            super.filterandSortExecute();
+        } else {
+            super.initialFilterandSortExecute();
+        }
 
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -327,7 +333,9 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
     protected void onResumption() {
 //        super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPaused()) {
+            initializeQueries();
+        }
    //     updateSearchView();
 //
         try{
@@ -360,7 +368,9 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namalengkap Like '%" + cs.toString() + "%' or namaSuami Like '%" + cs.toString() + "%' ";
+                        filters = cs.toString();
+                        joinTable = "";
+                        mainCondition = " isClosed !='true' ";
                         return null;
                     }
 
@@ -407,7 +417,9 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
 
-                        filters = "and namalengkap Like '%" + cs.toString() + "%' or namaSuami Like '%" + cs.toString() + "%' ";
+                        filters = cs.toString();
+                        joinTable = "";
+                        mainCondition = " isClosed !='true' ";
                         return null;
                     }
 

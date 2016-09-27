@@ -1,5 +1,6 @@
 package org.ei.opensrp.commonregistry;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -16,6 +17,7 @@ public class CommonFtsObject {
     private Map<String, String[]> searchMap;
     private Map<String, String[]> sortMap;
     private Map<String, String[]> mainConditionMap;
+    private Map<String, String> customRelationalIdMap;
     public static final String idColumn = "object_id";
     public static final String relationalIdColumn = "object_relational_id";
     public static final String phraseColumnName = "phrase";
@@ -25,6 +27,7 @@ public class CommonFtsObject {
         this.searchMap = new HashMap<String, String[]>();
         this.sortMap = new HashMap<String, String[]>();
         this.mainConditionMap = new HashMap<String, String[]>();
+        this.customRelationalIdMap = new HashMap<String, String>();
     }
 
     public void updateSearchFields(String table, String[] searchFields) {
@@ -45,7 +48,16 @@ public class CommonFtsObject {
         }
     }
 
+    public void updateCustomRelationalId(String table, String  customRelationalId) {
+        if (containsTable(table) && StringUtils.isNotBlank(customRelationalId)) {
+            customRelationalIdMap.put(table, customRelationalId);
+        }
+    }
+
     public String[] getTables() {
+        if(tables == null){
+            tables = ArrayUtils.EMPTY_STRING_ARRAY;
+        }
         return tables;
     }
 
@@ -58,6 +70,10 @@ public class CommonFtsObject {
     }
 
     public String[] getMainConditions(String table) { return mainConditionMap.get(table); }
+
+    public String getCustomRelationalId(String table) {
+        return customRelationalIdMap.get(table);
+    }
 
     public boolean containsTable(String table) {
         if (tables == null || StringUtils.isBlank(table)) {

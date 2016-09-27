@@ -223,7 +223,12 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         currentlimit = 20;
         currentoffset = 0;
 
-        super.initialFilterandSortExecute();
+        if(isPaused()){
+            super.showProgressView();
+            super.filterandSortExecute();
+        } else {
+            super.initialFilterandSortExecute();
+        }
 
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -305,7 +310,9 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
     protected void onResumption() {
 //        super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPaused()) {
+            initializeQueries();
+        }
 //        updateSearchView();
         checkforNidMissing(mView);
 //

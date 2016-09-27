@@ -475,27 +475,32 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         }
     }
 
+
     public void initialFilterandSortExecute() {
         Loader<Cursor> loader = getLoaderManager().getLoader(LOADER_ID);
-        if(loader == null){
-            if(clientsProgressView.getVisibility() == INVISIBLE) {
-                clientsProgressView.setVisibility(View.VISIBLE);
-            }
-
-            if(clientsView.getVisibility() == VISIBLE) {
-                clientsView.setVisibility(View.INVISIBLE);
-            }
-
-            Bundle args = new Bundle();
-            args.putBoolean(INIT_LOADER, true);
-            getLoaderManager().initLoader(LOADER_ID, args, this);
+        if(loader != null) {
+            return;
         }
+
+        showProgressView();
+
+        getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     public void filterandSortExecute() {
         refresh();
 
         getLoaderManager().restartLoader(LOADER_ID, null, this);
+    }
+
+    public void showProgressView(){
+        if(clientsProgressView.getVisibility() == INVISIBLE) {
+            clientsProgressView.setVisibility(View.VISIBLE);
+        }
+
+        if(clientsView.getVisibility() == VISIBLE) {
+            clientsView.setVisibility(View.INVISIBLE);
+        }
     }
 
     private String filterandSortQuery(){
@@ -599,16 +604,18 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
                     public Cursor loadInBackground() {
                         String query = filterandSortQuery();
                         Cursor cursor = commonRepository().RawCustomQueryForAdapter(query);
-
-                        if(args != null  && args.getBoolean(INIT_LOADER)){
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(clientsProgressView.getVisibility() == VISIBLE) {
                                     clientsProgressView.setVisibility(INVISIBLE);
+                                }
+                                if(clientsView.getVisibility() == INVISIBLE) {
                                     clientsView.setVisibility(VISIBLE);
-                                };
-                            });
-                        }
+                                }
+                            };
+                        });
+
                          return cursor;
                     }
                 };
