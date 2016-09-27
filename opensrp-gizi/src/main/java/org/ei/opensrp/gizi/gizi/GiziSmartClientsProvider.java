@@ -161,12 +161,12 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
         if(pc.getDetails().get("tanggalPenimbangan") != null)
         {
-            viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+(hasValue(pc.getDetails().get("stunting"))?pc.getDetails().get("stunting"):"-"));
-            viewHolder.underweight.setText(context.getString(R.string.underweight) +  " "+(hasValue(pc.getDetails().get("underweight"))?pc.getDetails().get("underweight"):"-"));
-            viewHolder.wasting_status.setText(context.getString(R.string.wasting) +   " "+(hasValue(pc.getDetails().get("wasting"))?pc.getDetails().get("wasting"):"-"));
+            viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " "+(hasValue(pc.getDetails().get("stunting"))?setStatus(pc.getDetails().get("stunting")):"-"));
+            viewHolder.underweight.setText(context.getString(R.string.wfa) +  " "+(hasValue(pc.getDetails().get("underweight"))? setStatus(pc.getDetails().get("underweight")):"-"));
+            viewHolder.wasting_status.setText(context.getString(R.string.wasting) +   " "+(hasValue(pc.getDetails().get("wasting"))? setStatus(pc.getDetails().get("wasting")):"-"));
         }
         else{
-            viewHolder.underweight.setText(context.getString(R.string.underweight) + " ");
+            viewHolder.underweight.setText(context.getString(R.string.wfa) + " ");
             viewHolder.stunting_status.setText(context.getString(R.string.stunting) +  " ");
             viewHolder.wasting_status.setText(context.getString(R.string.wasting) +  " ");
         }
@@ -176,6 +176,31 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         return convertView;
     }
     CommonPersonObjectController householdelcocontroller;
+
+    private String setStatus(String status){
+        switch (status.toLowerCase()){
+            case "underweight" :
+                return context.getString(R.string.underweight);
+            case "severely underweight" :
+                return context.getString(R.string.s_underweight);
+            case "normal":
+                return context.getString(R.string.normal);
+            case "overweight":
+                return context.getString(R.string.overweight);
+            case "severely stunted" :
+                return context.getString(R.string.s_stunted);
+            case "stunted" :
+                return context.getString(R.string.stunted);
+            case "tall" :
+                return context.getString(R.string.tall);
+            case "severely wasted" :
+                return context.getString(R.string.s_wasted);
+            case "wasted" :
+                return context.getString(R.string.wasted);
+            default:
+                return "";
+        }
+    }
 
     private boolean isLate(String lastVisitDate,int threshold){
         if (lastVisitDate==null || lastVisitDate.length()<6)

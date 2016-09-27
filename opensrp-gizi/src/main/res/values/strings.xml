@@ -369,7 +369,7 @@
     <string name="height">Height : </string>
     <string name="stunting">Height for Age status : </string>
     <string name="wasting">Weight for Length status : </string>
-    <string name="underweight">Weight for Age status : </string>
+    <string name="wfa">Weight for Age status : </string>
     <string name="weight">Weight :</string>
     <string name="child_name">Child Name : </string>
     <string name="mother_name">Mother Name : </string>
@@ -388,19 +388,20 @@
     <string name="mpasi">Weaning Food :</string>
     <string name="parent_name">Parent Name</string>
     <string name="gizi">Gizi</string>
-    <string name="S_underweight"> Gizi Buruk</string>
-    <string name="Underweight">Gizi Kurang</string>
     <string name="good_nutrition">Good Nutrition</string>
-    <string name="overweight">Overweight</string>
-    <string name="s_stunted">Sangat Pendek</string>
-    <string name="stunted">Pendek</string>
-    <string name="normal">Normal</string>
-    <string name="tall">Tinggi</string>
-    <string name="S_wasted">Sangak Kurus</string>
-    <string name="wasted">Kurus</string>
     <string name="jenis_kelamin">Gender</string>
     <string name="visitSchedule">Visit Schedule</string>
     <string name="obatcacing">Anthelmintic :</string>
+    <string name="s_underweight">Severely Underweight</string>
+    <string name="underweight">Underweight</string>
+    <string name="normal">Normal</string>
+    <string name="overweight">Overweight</string>
+    <string name="s_stunted">Severely Stunted</string>
+    <string name="stunted">Stunted</string>
+    <string name="tall">Tall</string>
+    <string name="s_wasted">Severely Wasted</string>
+    <string name="wasted">Wasted</string>
+
 
 
 </resources>

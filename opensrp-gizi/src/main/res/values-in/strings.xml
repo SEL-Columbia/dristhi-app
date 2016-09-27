@@ -369,7 +369,7 @@
     <string name="height">Tinggi : </string>
     <string name="stunting">Tinggi/Umur : </string>
     <string name="wasting">Berat/Tinggi : </string>
-    <string name="underweight">Berat/Umur : </string>
+    <string name="wfa">Berat/Umur : </string>
     <string name="weight">Berat :</string>
     <string name="child_name">Nama Anak : </string>
     <string name="mother_name">Mother Name : </string>
@@ -388,19 +388,17 @@
     <string name="mpasi">MP ASI :</string>
     <string name="parent_name">Nama Orang Tua</string>
     <string name="gizi">Gizi</string>
-    <string name="S_underweight"> Gizi Buruk</string>
-    <string name="Underweight">Gizi Kurang</string>
+    <string name="s_underweight"> Gizi Buruk</string>
+    <string name="underweight">Gizi Kurang</string>
     <string name="good_nutrition">Good Nutrition</string>
     <string name="overweight">Overweight</string>
     <string name="s_stunted">Sangat Pendek</string>
     <string name="stunted">Pendek</string>
     <string name="normal">Normal</string>
     <string name="tall">Tinggi</string>
-    <string name="S_wasted">Sangak Kurus</string>
+    <string name="s_wasted">Sangat Kurus</string>
     <string name="wasted">Kurus</string>
     <string name="visitSchedule">Jadwal Kunjungan</string>
     <string name="obatcacing">Obat Cacing :</string>
-
-
 
 </resources>
