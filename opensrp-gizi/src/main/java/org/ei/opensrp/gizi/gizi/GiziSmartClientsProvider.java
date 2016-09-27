@@ -84,6 +84,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.parentname = (TextView) convertView.findViewById(R.id.ParentName);
             viewHolder.subVillage = (TextView) convertView.findViewById(R.id.txt_child_subVillage);
             viewHolder.age = (TextView)convertView.findViewById(R.id.txt_child_age);
+            viewHolder.dateOfBirth = (TextView) convertView.findViewById(R.id.txt_child_date_of_birth);
             viewHolder.gender = (TextView)convertView.findViewById(R.id.txt_child_gender);
             viewHolder.visitDate = (TextView)convertView.findViewById(R.id.txt_child_visit_date);
             viewHolder.height = (TextView)convertView.findViewById(R.id.txt_child_height);
@@ -134,9 +135,10 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         }
 
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
+        viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!= null ? Integer.toString(monthRangeToToday(pc.getDetails().get("tanggalLahir")))+" bln" : "");
         viewHolder.parentname.setText(pc.getDetails().get("namaOrtu")!=null?pc.getDetails().get("namaOrtu"):"");
         viewHolder.subVillage.setText(pc.getDetails().get("dusun")!=null ? pc.getDetails().get("dusun"):"");
-        viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
+        viewHolder.dateOfBirth.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin").contains("em")? "Perempuan" : "Laki-laki");
         viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
         viewHolder.height.setText(context.getString(R.string.height) + " " + (pc.getDetails().get("tinggiBadan") != null ? pc.getDetails().get("tinggiBadan") : "-") + " Cm");
@@ -178,9 +180,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
     private boolean isLate(String lastVisitDate,int threshold){
         if (lastVisitDate==null || lastVisitDate.length()<6)
             return true;
-        String currentDate[] = new SimpleDateFormat("yyyy-MM").format(new java.util.Date()).substring(0,7).split("-");
-        return  ((Integer.parseInt(currentDate[0]) - Integer.parseInt(lastVisitDate.substring(0,4)))*12 +
-                (Integer.parseInt(currentDate[1]) - Integer.parseInt(lastVisitDate.substring(5,7)))) > threshold;
+        return  monthRangeToToday(lastVisitDate) > threshold;
     }
 
     private boolean isDue(String lastVisitDate){
@@ -202,6 +202,11 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         return data.length() > 2;
     }
 
+    private int monthRangeToToday(String lastVisitDate){
+        String currentDate[] = new SimpleDateFormat("yyyy-MM").format(new java.util.Date()).substring(0,7).split("-");
+        return ((Integer.parseInt(currentDate[0]) - Integer.parseInt(lastVisitDate.substring(0,4)))*12 +
+                (Integer.parseInt(currentDate[1]) - Integer.parseInt(lastVisitDate.substring(5,7))));
+    }
 
     /**
      *  The part of method that using to check is the last visit date was in the same region as the current vitamin A period,
@@ -264,6 +269,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
          ImageButton follow_up;
          TextView parentname;
          TextView gender;
+         TextView dateOfBirth;
          TextView visitDate;
          TextView height;
          TextView weight;
