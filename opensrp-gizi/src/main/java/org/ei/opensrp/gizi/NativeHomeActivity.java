@@ -141,7 +141,7 @@ public class NativeHomeActivity extends SecuredActivity {
         CommonPersonObjectController childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"namaBayi","anak","jenisKelamin", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        ecRegisterClientCountView.setText(valueOf(childcontroller.getClients().size()));
+        ecRegisterClientCountView.setText(valueOf(childcontroller.getClients("form_ditutup","yes").size()));
 
     }
 
