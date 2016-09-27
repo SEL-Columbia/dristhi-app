@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class FlurryFacade {
 
-    private static final String flurry_key = "9RDM5TWW4HJ5QH8TNJ3P";
+    private static final String flurry_key = "3VPFC3PXZQ43PND539DR";
         public static void logEvent(String event) {
         FlurryAgent.logEvent(event);
     }
