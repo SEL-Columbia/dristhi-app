@@ -167,8 +167,9 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             }
             e.printStackTrace();
         }
-        if(formName.equals("registrasi_jurim"))
+        if(formName.equals("registrasi_gizi")) {
             saveuniqueid();
+        }
 
     }
 
