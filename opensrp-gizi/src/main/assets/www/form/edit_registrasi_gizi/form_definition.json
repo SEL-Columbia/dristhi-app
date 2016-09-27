@@ -77,11 +77,15 @@
         "name": "namaBayi",
         "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_anak",
         "shouldLoadValue": true
-
       },
       {
-        "name": "namaOrtu",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_orang_tua",
+        "name": "namaAyah",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_ayah",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "namaIbu",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_ibu",
         "shouldLoadValue": true
       },
       {

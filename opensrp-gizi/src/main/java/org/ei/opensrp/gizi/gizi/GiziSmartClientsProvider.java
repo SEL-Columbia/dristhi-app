@@ -69,7 +69,6 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
                 (int) context.getResources().getDimension(org.ei.opensrp.R.dimen.list_item_height));
         txtColorBlack = context.getResources().getColor(org.ei.opensrp.R.color.text_black);
-
     }
 
     @Override
@@ -81,7 +80,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder = new ViewHolder();
             viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
             viewHolder.name = (TextView)convertView.findViewById(R.id.txt_child_name);
-            viewHolder.parentname = (TextView) convertView.findViewById(R.id.ParentName);
+            viewHolder.fatherName = (TextView) convertView.findViewById(R.id.ParentName);
             viewHolder.subVillage = (TextView) convertView.findViewById(R.id.txt_child_subVillage);
             viewHolder.age = (TextView)convertView.findViewById(R.id.txt_child_age);
             viewHolder.dateOfBirth = (TextView) convertView.findViewById(R.id.txt_child_date_of_birth);
@@ -136,7 +135,11 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!= null ? Integer.toString(monthRangeToToday(pc.getDetails().get("tanggalLahir")))+" bln" : "");
-        viewHolder.parentname.setText(pc.getDetails().get("namaOrtu")!=null?pc.getDetails().get("namaOrtu"):"");
+        viewHolder.fatherName.setText(pc.getDetails().get("namaAyah")!=null
+                ? pc.getDetails().get("namaAyah")
+                : pc.getDetails().get("namaOrtu") != null
+                    ? pc.getDetails().get("namaOrtu")
+                    : "");
         viewHolder.subVillage.setText(pc.getDetails().get("dusun")!=null ? pc.getDetails().get("dusun"):"");
         viewHolder.dateOfBirth.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
         viewHolder.gender.setText(pc.getDetails().get("jenisKelamin").contains("em")? "Perempuan" : "Laki-laki");
@@ -292,7 +295,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
          FrameLayout due_date_holder;
          Button warnbutton;
          ImageButton follow_up;
-         TextView parentname;
+         TextView fatherName;
          TextView gender;
          TextView dateOfBirth;
          TextView visitDate;

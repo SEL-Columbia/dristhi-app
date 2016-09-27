@@ -372,8 +372,8 @@
     <string name="wfa">Berat/Umur : </string>
     <string name="weight">Berat :</string>
     <string name="child_name">Nama Anak : </string>
-    <string name="mother_name">Mother Name : </string>
-    <string name="father_name">Father Name : </string>
+    <string name="mother_name">Nama Ibu : </string>
+    <string name="father_name">Nama Ayah : </string>
     <string name="posyandu">Posyandu : </string>
     <string name="village">Desa : </string>
     <string name="birth_date">Tanggal Lahir : </string>

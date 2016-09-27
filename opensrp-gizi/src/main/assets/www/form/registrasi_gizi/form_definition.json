@@ -78,8 +78,12 @@
 
       },
       {
-        "name": "namaOrtu",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_orang_tua"
+        "name": "namaAyah",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_ayah"
+      },
+      {
+        "name": "namaIbu",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-map/nama_ibu"
       },
       {
         "name": "tanggalLahir",

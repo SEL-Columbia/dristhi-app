@@ -74,6 +74,7 @@ public class ChildDetailActivity extends Activity {
         //profile
         TextView uniqueId = (TextView) findViewById(R.id.txt_profile_unique_id);
         TextView nama = (TextView) findViewById(R.id.txt_profile_child_name);
+        TextView father_name = (TextView) findViewById(R.id.txt_profile_father_name);
         TextView mother_name = (TextView) findViewById(R.id.txt_profile_mother_name);
         TextView posyandu = (TextView) findViewById(R.id.txt_profile_posyandu);
         TextView village_name = (TextView) findViewById(R.id.txt_profile_village_name);
@@ -122,7 +123,11 @@ public class ChildDetailActivity extends Activity {
         subheader.setText(R.string.child_profile);
         uniqueId.setText(getString(R.string.unique_id) + " " + (childclient.getDetails().get("unique_id") != null ? childclient.getDetails().get("unique_id"):"-"));
         nama.setText(getString(R.string.child_name) +" "+ (childclient.getDetails().get("namaBayi") != null ? childclient.getDetails().get("namaBayi") : "-"));
-        mother_name.setText(getString(R.string.parent_name) +" : "+ (childclient.getDetails().get("namaOrtu") != null ? childclient.getDetails().get("namaOrtu") : "-"));
+        father_name.setText(getString(R.string.father_name)+" "+(childclient.getDetails().get("namaAyah")!=null ? childclient.getDetails().get("namaAyah") : "-"));
+        mother_name.setText(getString(R.string.parent_name) +" : "+ (childclient.getDetails().get("namaIbu") != null ? childclient.getDetails().get("namaIbu")
+                : childclient.getDetails().get("namaOrtu")!=null
+                    ? childclient.getDetails().get("namaOrtu")
+                    : "-"));
         posyandu.setText(getString(R.string.posyandu) +" "+ (childclient.getDetails().get("posyandu") != null ? childclient.getDetails().get("posyandu") : "-"));
         village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));
         birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "-"));

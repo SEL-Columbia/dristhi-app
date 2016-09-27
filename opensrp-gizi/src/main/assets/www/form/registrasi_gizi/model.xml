@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <Registrasi_Gizi-NewStructure-map encounter_type="Registrasi Gizi New" id="registrasi_gizi_new" version="201609260818">
+    <Registrasi_Gizi-NewStructure-map encounter_type="Registrasi Gizi New" id="registrasi_gizi_new" version="201609270731">
       <formhub>
         <uuid/>
       </formhub>
@@ -28,7 +28,8 @@
       <noteDusun openmrs_entity="concept" openmrs_entity_id="1354AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <posyandu/>
       <nama_anak openmrs_entity="person" openmrs_entity_id="first_name"/>
-      <nama_orang_tua openmrs_entity="person" openmrs_entity_id="last_name"/>
+      <nama_ayah openmrs_entity="person" openmrs_entity_id="last_name"/>
+      <nama_ibu openmrs_entity="person"/>
       <nik openmrs_entity="person_identifier" openmrs_entity_id="nik"/>
       <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
       <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
