@@ -207,7 +207,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
     private boolean isLate(String lastVisitDate,int threshold){
         if (lastVisitDate==null || lastVisitDate.length()<6)
-            return true;
+            return false;
         return  monthRangeToToday(lastVisitDate) > threshold;
     }
 
