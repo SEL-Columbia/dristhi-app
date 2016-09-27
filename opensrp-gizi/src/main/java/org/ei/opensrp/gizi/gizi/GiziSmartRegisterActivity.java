@@ -212,6 +212,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
        // Log.v("fieldoverride", metaData);
+        FlurryFacade.logEvent(formName);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
