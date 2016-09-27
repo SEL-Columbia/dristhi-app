@@ -16,6 +16,7 @@ import org.ei.opensrp.test.LoginActivity;
 import org.ei.opensrp.test.R;
 import org.ei.opensrp.test.fragment.VaksinatorSmartRegisterFragment;
 import org.ei.opensrp.test.pageradapter.BaseRegisterActivityPagerAdapter;
+import org.ei.opensrp.test.vaksinator.FlurryFacade;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.dialog.DialogOption;
@@ -153,6 +154,7 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
+        FlurryFacade.logEvent(formName);
        // Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
