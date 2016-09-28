@@ -9,6 +9,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "unique_id",
+        "bind": "/model/instance/registrasi_vaksinator/unique_id",
+        "shouldLoadValue" : true
+      },
+      {
         "name": "existing_desa",
         "bind": "/model/instance/registrasi_vaksinator/existing_Village",
         "shouldLoadValue": true
@@ -35,22 +40,27 @@
       },
       {
         "name": "provinsi",
-        "bind": "/model/instance/registrasi_vaksinator/Province",
+        "bind": "/model/instance/registrasi_vaksinator/provinsi",
         "shouldLoadValue": true
       },
       {
         "name": "kabupaten",
-        "bind": "/model/instance/registrasi_vaksinator/District",
+        "bind": "/model/instance/registrasi_vaksinator/kabupaten",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/registrasi_vaksinator/kecamatan",
         "shouldLoadValue": true
       },
       {
         "name": "desa",
-        "bind": "/model/instance/registrasi_vaksinator/Village",
+        "bind": "/model/instance/registrasi_vaksinator/desa",
         "shouldLoadValue": true
       },
       {
         "name": "dusun",
-        "bind": "/model/instance/registrasi_vaksinator/SubVillage",
+        "bind": "/model/instance/registrasi_vaksinator/dusun",
         "shouldLoadValue": true
       },
       {
@@ -66,8 +76,12 @@
         "bind": "/model/instance/registrasi_vaksinator/nama_bayi"
       },
       {
-        "name": "nama_orang_tua",
-        "bind": "/model/instance/registrasi_vaksinator/nama_orang_tua"
+        "name": "namaAyah",
+        "bind": "/model/instance/registrasi_vaksinator/nama_ayah"
+      },
+      {
+        "name": "namaIbu",
+        "bind": "/model/instance/registrasi_vaksinator/nama_ibu"
       },
       {
         "name": "nik",
@@ -89,7 +103,6 @@
         "name": "submissionDate",
         "bind": "/model/instance/registrasi_vaksinator/today"
       }
-
     ]
   }
 }
