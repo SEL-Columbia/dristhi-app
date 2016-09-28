@@ -230,7 +230,8 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(pc.getDetails().get("FWANC1DATE")!=null){
             anc1text.setText("ANC1: "+pc.getDetails().get("FWANC1DATE"));
             if(!alertstate.isEmpty()){
-                if (alertstate.equalsIgnoreCase("upcoming")){
+                //FIXME || alertstate.equalsIgnoreCase("complete") added for the sake of the bot
+                if (alertstate.equalsIgnoreCase("upcoming") || alertstate.equalsIgnoreCase("complete")){
 //                    anc1tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     anc1tick.setImageResource(R.mipmap.doneintime);
                     anc1tick.setVisibility(View.VISIBLE);
@@ -304,7 +305,8 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(pc.getDetails().get("FWANC2DATE")!=null){
             anc2text.setText("ANC2: "+pc.getDetails().get("FWANC2DATE"));
             if(!alertstate.isEmpty()){
-                if (alertstate.equalsIgnoreCase("upcoming")){
+                //FIXME || alertstate.equalsIgnoreCase("complete") added for the sake of the bot
+                if (alertstate.equalsIgnoreCase("upcoming") || alertstate.equalsIgnoreCase("complete")){
                     anc2tick.setImageResource(R.mipmap.doneintime);
 //                    anc2tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     anc2tick.setVisibility(View.VISIBLE);
@@ -373,7 +375,7 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(pc.getDetails().get("FWANC3DATE")!=null){
             anc3text.setText("ANC3: "+pc.getDetails().get("FWANC3DATE"));
             if(!alertstate.isEmpty()){
-                if (alertstate.equalsIgnoreCase("upcoming")){
+                if (alertstate.equalsIgnoreCase("upcoming") || alertstate.equalsIgnoreCase("complete")){
                     anc3tick.setImageResource(R.mipmap.doneintime);
 //                    anc3tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     anc3tick.setVisibility(View.VISIBLE);
@@ -441,7 +443,8 @@ public class mCareANCSmartClientsProvider implements SmartRegisterCLientsProvide
         if(pc.getDetails().get("FWANC4DATE")!=null){
             anc4text.setText("ANC4: "+pc.getDetails().get("FWANC4DATE"));
             if(!alertstate.isEmpty()){
-                if (alertstate.equalsIgnoreCase("upcoming")){
+                //FIXME || alertstate.equalsIgnoreCase("complete") added for the sake of the bot
+                if (alertstate.equalsIgnoreCase("upcoming") || alertstate.equalsIgnoreCase("complete")){
                     anc4tick.setImageResource(R.mipmap.doneintime);
 //                    anc4tick.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     anc4tick.setVisibility(View.VISIBLE);
