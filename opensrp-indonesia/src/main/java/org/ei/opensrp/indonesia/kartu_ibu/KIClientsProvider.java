@@ -194,18 +194,23 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
             dateNow = dateNow.withDayOfMonth(1);
             int months = Months.monthsBetween(dateNow, date).getMonths();
             if(months >= 1) {
+                viewHolder.edd_due.setTextColor(context.getResources().getColor(R.color.alert_in_progress_blue));
                 _dueEdd = "" + months + " " + context.getString(R.string.months_away);
             } else if(months == 0){
+                viewHolder.edd_due.setTextColor(context.getResources().getColor(R.color.light_blue));
                 _dueEdd =  context.getString(R.string.this_month);
             }
             else if(months < 0 ) {
                 if(pc.getColumnmaps().get("ibu.type").equals("anc")){
+                    viewHolder.edd_due.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     _dueEdd = context.getString(R.string.edd_passed);
                 }
                 else if(pc.getColumnmaps().get("ibu.type").equals("pnc")){
+                    viewHolder.edd_due.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
                     _dueEdd = context.getString(R.string.delivered);
                 }
                 else{
+                    viewHolder.edd_due.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
                     _dueEdd = context.getString(R.string.edd_passed);
                 }
             }

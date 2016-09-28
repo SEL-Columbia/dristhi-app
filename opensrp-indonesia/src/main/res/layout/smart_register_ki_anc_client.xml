@@ -135,7 +135,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LILA"/>
+                android:text="@string/lila"/>
 
 
             <org.ei.opensrp.view.customControls.CustomFontTextView

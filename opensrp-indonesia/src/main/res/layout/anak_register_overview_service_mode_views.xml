@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/lbl_berat_lahir"
-            android:text="Type : " />
+            android:text="@string/plan_type" />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:id="@+id/tipe_lahir"
