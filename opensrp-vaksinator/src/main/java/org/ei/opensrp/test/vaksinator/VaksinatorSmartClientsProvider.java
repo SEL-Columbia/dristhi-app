@@ -136,7 +136,16 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
                 : R.drawable.child_boy_infant));
 
         viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : " ");
-        viewHolder.motherName.setText(pc.getDetails().get("nama_orang_tua")!=null?pc.getDetails().get("nama_orang_tua"):" ");
+
+        viewHolder.motherName.setText(
+                pc.getDetails().get("namaAyah")!=null
+                ? pc.getDetails().get("namaAyah")
+                : pc.getDetails().get("namaIbu")!=null
+                    ? pc.getDetails().get("namaIbu")
+                    : pc.getDetails().get("nama_orang_tua")!=null
+                        ?pc.getDetails().get("nama_orang_tua")
+                        :" ");
+
         viewHolder.village.setText(pc.getDetails().get("village")!= null
                 ? pc.getDetails().get("village").length()>4
                     ? pc.getDetails().get("village")
@@ -147,57 +156,53 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
                     ? pc.getDetails().get("dusun")
                     : " ");
         viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):" ");
-        viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null ? pc.getDetails().get("jenis_kelamin") : " ");
+        viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null
+                ? pc.getDetails().get("jenis_kelamin").contains("em")
+                    ? "Perempuan"
+                    : "Laki-laki"
+                : " ");
 
         viewHolder.hb0.setText(hasDate(pc,"hb0")
-                ? pc.getDetails().get("hb0")
-                : hasDate(pc,"hb1_kurang_7_hari")
-                    ? pc.getDetails().get("hb1_kurang_7_hari")
-                    :   hasDate(pc,"hb1_lebih_7_hari")
-                        ? pc.getDetails().get("hb1_lebih_7_hari")
-                        :(" ")
+            ? pc.getDetails().get("hb0")
+            : (" ")
         );
 
         viewHolder.pol1.setText(
-            hasDate(pc,"bcg_pol_1")
-                ? pc.getDetails().get("bcg_pol_1")
-                : hasDate(pc,"bcg")//pc.getDetails().get("bcg")!=null && pc.getDetails().get("bcg").length()>6
-                    ? pc.getDetails().get("bcg")
-                    : hasDate(pc,"polio1")//pc.getDetails().get("polio1")!=null && pc.getDetails().get("polio1").length()>6
-                        ? pc.getDetails().get("polio1")
-                        : " "
+                latestDate(new String[]{pc.getDetails().get("bcg"),pc.getDetails().get("polio1")})
+//            hasDate(pc,"bcg")//pc.getDetails().get("bcg")!=null && pc.getDetails().get("bcg").length()>6
+//                ? pc.getDetails().get("bcg")
+//                : hasDate(pc,"polio1")//pc.getDetails().get("polio1")!=null && pc.getDetails().get("polio1").length()>6
+//                    ? pc.getDetails().get("polio1")
+//                    : " "
         );
 
         viewHolder.pol2.setText(
-            hasDate(pc,"dpt_1_pol_2")//pc.getDetails().get("dpt_1_pol_2")!=null && pc.getDetails().get("dpt_1_pol_2").length()>6
-                ? pc.getDetails().get("dpt_1_pol_2")
-                : hasDate(pc,"dpt_hb1")//pc.getDetails().get("dpt_hb1")!=null && pc.getDetails().get("dpt_hb1").length()>6
-                    ? pc.getDetails().get("dpt_hb1")
-                    : hasDate(pc,"polio2")//pc.getDetails().get("polio2")!=null && pc.getDetails().get("polio_2").length()>6
-                        ? pc.getDetails().get("polio2")
-                        : " "
+                latestDate(new String[]{pc.getDetails().get("dpt_hb1"),pc.getDetails().get("polio2")})
+//            hasDate(pc,"dpt_hb1")//pc.getDetails().get("dpt_hb1")!=null && pc.getDetails().get("dpt_hb1").length()>6
+//                ? pc.getDetails().get("dpt_hb1")
+//                : hasDate(pc,"polio2")//pc.getDetails().get("polio2")!=null && pc.getDetails().get("polio_2").length()>6
+//                    ? pc.getDetails().get("polio2")
+//                    : " "
         );
 
         viewHolder.pol3.setText(
-             hasDate(pc,"dpt_2_pol_3")//pc.getDetails().get("dpt_2_pol_3")!=null && pc.getDetails().get("dpt_2_pol_3").length()>6
-                 ? pc.getDetails().get("dpt_2_pol_3")
-                 : hasDate(pc,"dpt_hb2")//pc.getDetails().get("dpt_hb2")!=null && pc.getDetails().get("dpt_hb_2").length()>6
-                     ? pc.getDetails().get("dpt_hb2")
-                     : hasDate(pc,"polio3")//pc.getDetails().get("polio3")!=null && pc.getDetails().get("polio3").length()>6
-                        ? pc.getDetails().get("polio3")
-                        : " "
+                latestDate(new String[]{pc.getDetails().get("dpt_hb2"),pc.getDetails().get("polio3")})
+//              hasDate(pc,"dpt_hb2")//pc.getDetails().get("dpt_hb2")!=null && pc.getDetails().get("dpt_hb_2").length()>6
+//                 ? pc.getDetails().get("dpt_hb2")
+//                 : hasDate(pc,"polio3")//pc.getDetails().get("polio3")!=null && pc.getDetails().get("polio3").length()>6
+//                    ? pc.getDetails().get("polio3")
+//                    : " "
         );
 
         viewHolder.pol4.setText(
-             hasDate(pc,"dpt_3_pol_4_ipv")//pc.getDetails().get("dpt_3_pol_4_ipv")!=null && pc.getDetails().get("dpt_3_pol_4_ipv").length()>6
-                ? pc.getDetails().get("dpt_3_pol_4_ipv")
-                : hasDate(pc,"dpt_hb3")//pc.getDetails().get("dpt_hb3")!=null && pc.getDetails().get("dpt_hb3").length()>6
-                    ? pc.getDetails().get("dpt_hb3")
-                    : hasDate(pc,"polio4")//pc.getDetails().get("polio4")!=null && pc.getDetails().get("polio4").length()>6
-                       ? pc.getDetails().get("polio4")
-                       : hasDate(pc,"ipv")//pc.getDetails().get("ipv")!=null && pc.getDetails().get("ipv").length()>6
-                           ? pc.getDetails().get("ipv")
-                           : " "
+                latestDate(new String[]{pc.getDetails().get("dpt_hb3"),pc.getDetails().get("polio4"),pc.getDetails().get("ipv")})
+//             hasDate(pc,"dpt_hb3")//pc.getDetails().get("dpt_hb3")!=null && pc.getDetails().get("dpt_hb3").length()>6
+//                ? pc.getDetails().get("dpt_hb3")
+//                : hasDate(pc,"polio4")//pc.getDetails().get("polio4")!=null && pc.getDetails().get("polio4").length()>6
+//                   ? pc.getDetails().get("polio4")
+//                   : hasDate(pc,"ipv")//pc.getDetails().get("ipv")!=null && pc.getDetails().get("ipv").length()>6
+//                       ? pc.getDetails().get("ipv")
+//                       : " "
         );
 
         viewHolder.campak.setText(pc.getDetails().get("imunisasi_campak") != null ? pc.getDetails().get("imunisasi_campak") : " ");
@@ -216,6 +221,25 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
         convertView.setLayoutParams(clientViewLayoutParams);
         return convertView;
+    }
+
+    private String latestDate(String[]dates){
+        String max = dates[0]!=null
+                     ? dates[0].length()==10
+                        ? dates[0]
+                        : "0000-00-00"
+                     :"0000-00-00";
+        for(int i=1;i<dates.length;i++){
+            if(dates[i]==null)
+                continue;
+            if(dates[i].length()<10)
+                continue;
+            max =   (((Integer.parseInt(max.substring(0,4))-Integer.parseInt(dates[i].substring(0,4)))*360)
+                    +((Integer.parseInt(max.substring(5,7))-Integer.parseInt(dates[i].substring(5,7)))*30)
+                    +(Integer.parseInt(max.substring(8,10))-Integer.parseInt(dates[i].substring(8,10)))
+                    )<0 ? dates[i]:max;
+        }
+        return max.equals("0000-00-00")? "" : max;
     }
 
     //  updating icon
