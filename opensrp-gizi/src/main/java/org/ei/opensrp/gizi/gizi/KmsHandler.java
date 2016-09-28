@@ -45,6 +45,8 @@ public class KmsHandler implements FormSubmissionHandler {
         String tanggal_sebelumnya = (childobject.getDetails().get("kunjunganSebelumnya") != null ? childobject.getDetails().get("kunjunganSebelumnya") : "0");
 
         if(childobject.getDetails().get("tanggalPenimbangan") != null) {
+
+
             //KMS calculation
             KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir, berat, beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
             KmsCalc calculator = new KmsCalc();
@@ -57,6 +59,21 @@ public class KmsHandler implements FormSubmissionHandler {
             kms.put("dua_t",duat);
             kms.put("garis_kuning",calculator.cekBawahKuning(data));
             kms.put("nutrition_status",status);
+
+            if(childobject.getDetails().get("vitA") != null){
+                if(childobject.getDetails().get("vitA").equalsIgnoreCase("yes") || childobject.getDetails().get("vitA").equalsIgnoreCase("ya")){
+                    kms.put("lastVitA",childobject.getDetails().get("tanggalPenimbangan"));
+                }
+            }else{
+                kms.put("lastVitA",childobject.getDetails().get("lastVitA"));
+            }
+            if(childobject.getDetails().get("obatcacing") != null){
+                if(childobject.getDetails().get("obatcacing").equalsIgnoreCase("yes") || childobject.getDetails().get("obatcacing").equalsIgnoreCase("ya")){
+                    kms.put("lastAnthelmintic",childobject.getDetails().get("tanggalPenimbangan"));
+                }
+            }else{
+                kms.put("lastAnthelmintic",childobject.getDetails().get("lastAnthelmintic"));
+            }
             org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityID,kms);
         }
 
