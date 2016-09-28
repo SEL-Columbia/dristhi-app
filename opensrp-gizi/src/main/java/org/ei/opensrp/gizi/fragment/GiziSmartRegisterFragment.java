@@ -147,10 +147,10 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterFragmen
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "tanggalLahir", getResources().getString(R.string.birth_date1)),
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false, "tanggalPenimbangan", getResources().getString(R.string.hh_last_visit_date))
 
-//""
 //                        new CommonObjectSort(true,false,true,"age")
                 };
             }
+//""
 
 
 
