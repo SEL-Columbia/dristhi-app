@@ -92,6 +92,8 @@ public class ChildDetailActivity extends Activity {
         TextView mpasi = (TextView) findViewById(R.id.txt_profile_mp_asi);
         TextView vitA = (TextView) findViewById(R.id.txt_vitA);
         TextView obatCacing = (TextView) findViewById(R.id.txt_anthelmintic);
+        TextView lastVitA = (TextView) findViewById(R.id.txt_profile_last_vitA);
+        TextView lastAnthelmintic = (TextView) findViewById(R.id.txt_profile_last_anthelmintic);
 
         ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
@@ -131,13 +133,15 @@ public class ChildDetailActivity extends Activity {
         posyandu.setText(getString(R.string.posyandu) +" "+ (childclient.getDetails().get("posyandu") != null ? childclient.getDetails().get("posyandu") : "-"));
         village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));
         birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "-"));
-        gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? childclient.getDetails().get("jenisKelamin") : "-"));
+        gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? gender(childclient.getDetails().get("jenisKelamin")) : "-"));
         birthWeight.setText(getString(R.string.birth_weight) + " " + (childclient.getDetails().get("beratLahir") != null ? childclient.getDetails().get("beratLahir") + " gr" : "-"));
         weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan")+"Kg" : "- Kg"));
         height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan")+"Cm" : "- Cm"));
-        vitA.setText(getString(R.string.vitamin_a) +" : "+ (childclient.getDetails().get("vitA") != null ? childclient.getDetails().get("vitA") : "-"));
-        mpasi.setText(getString(R.string.mpasi) + " "+(childclient.getDetails().get("mp_asi")!=null ? childclient.getDetails().get("mp_asi") : "-"));
-        obatCacing.setText(getString(R.string.obatcacing)+ " "+(childclient.getDetails().get("obatcacing")!=null ? childclient.getDetails().get("obatcacing") : "-"));
+        vitA.setText(getString(R.string.vitamin_a) +" : "+ (childclient.getDetails().get("vitA") != null ? yesNo(childclient.getDetails().get("vitA")) : "-"));
+        mpasi.setText(getString(R.string.mpasi) + " "+(childclient.getDetails().get("mp_asi")!=null ? yesNo(childclient.getDetails().get("mp_asi")) : "-"));
+        obatCacing.setText(getString(R.string.obatcacing)+ " "+(childclient.getDetails().get("obatcacing")!=null ? yesNo(childclient.getDetails().get("obatcacing")) : "-"));
+        lastVitA.setText(getString(R.string.lastVitA)+" "+(childclient.getDetails().get("lastVitA")!=null ? childclient.getDetails().get("lastVitA") : "-"));
+        lastAnthelmintic.setText(getString(R.string.lastAnthelmintic)+" "+(childclient.getDetails().get("lastAnthelmintic")!=null ? childclient.getDetails().get("lastAnthelmintic") : "-"));
         //set value
         String berats = childclient.getDetails().get("history_berat")!= null ? childclient.getDetails().get("history_berat") :"0";
         String[] history_berat = berats.split(",");
@@ -145,11 +149,11 @@ public class ChildDetailActivity extends Activity {
         String[] history_umur = umurs.split(",");
 
 
-            dua_t.setText(getString(R.string.dua_t) +" "+ (childclient.getDetails().get("dua_t") != null ? childclient.getDetails().get("dua_t") : "-"));
-            bgm.setText(getString(R.string.bgm) + " "+ (childclient.getDetails().get("bgm") != null ? childclient.getDetails().get("bgm") : "-"));
-            under_yellow_line.setText(getString(R.string.under_yellow_line) + " "+ (childclient.getDetails().get("garis_kuning") != null ? childclient.getDetails().get("garis_kuning") : "-"));
-            breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("asi") != null ? childclient.getDetails().get("asi") : "-"));
-            nutrition_status.setText(getString(R.string.nutrition_status) + " "+ (childclient.getDetails().get("nutrition_status") != null ? childclient.getDetails().get("nutrition_status") : "-"));
+            dua_t.setText(getString(R.string.dua_t) +" "+ (childclient.getDetails().get("dua_t") != null ? yesNo(childclient.getDetails().get("dua_t")) : "-"));
+            bgm.setText(getString(R.string.bgm) + " "+ (childclient.getDetails().get("bgm") != null ? yesNo(childclient.getDetails().get("bgm")) : "-"));
+            under_yellow_line.setText(getString(R.string.under_yellow_line) + " "+ (childclient.getDetails().get("garis_kuning") != null ? yesNo(childclient.getDetails().get("garis_kuning")) : "-"));
+            breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("asi") != null ? yesNo(childclient.getDetails().get("asi")) : "-"));
+            nutrition_status.setText(getString(R.string.nutrition_status) + " "+ (childclient.getDetails().get("nutrition_status") != null ? weightStatus(childclient.getDetails().get("nutrition_status")) : "-"));
 
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
@@ -196,6 +200,31 @@ public class ChildDetailActivity extends Activity {
             }
         });
 
+    }
+
+    private  String gender(String value){
+        if (value.toLowerCase().contains("em"))
+            return getString(R.string.child_female);
+        else
+            return getString(R.string.child_male);
+    }
+
+    private String yesNo(String value){
+        if(value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("ya"))
+            return getString(R.string.yes);
+        else
+            return getString(R.string.no);
+    }
+
+    private String weightStatus(String value){
+        if(value.toLowerCase().contains("gain") || value.toLowerCase().contains("idak"))
+            return getString(R.string.weight_not_increase);
+        else if(value.toLowerCase().contains("ncrea"))
+            return getString(R.string.weight_increase);
+        else if(value.toLowerCase().contains("atten"))
+            return getString(R.string.weight_not_attend);
+        else
+            return getString(R.string.weight_new);
     }
 
 
