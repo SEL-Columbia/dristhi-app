@@ -57,9 +57,10 @@ public class VaksinatorDetailActivity extends Activity {
         //profile
         TextView nama = (TextView) findViewById(R.id.childName);
         TextView motherName = (TextView) findViewById(R.id.motherName);
-        //TextView fatherName = (TextView) findViewById(R.id.fatherName);
+        TextView fatherName = (TextView) findViewById(R.id.fatherName);
         TextView posyandu = (TextView) findViewById(R.id.posyandu);
         TextView village = (TextView) findViewById(R.id.village);
+        TextView subVillage = (TextView) findViewById(R.id.subvillage);
         TextView dateOfBirth = (TextView) findViewById(R.id.dateOfBirth);
         TextView birthWeight = (TextView) findViewById(R.id.birthWeight);
         TextView antipiretik = (TextView) findViewById(R.id.antypiretic);
@@ -76,8 +77,6 @@ public class VaksinatorDetailActivity extends Activity {
         TextView pol4 = (TextView) findViewById(R.id.pol4);
         TextView ipv = (TextView) findViewById(R.id.ipv);
         TextView measles = (TextView) findViewById(R.id.measles);
-        TextView mutationUnder30 = (TextView) findViewById(R.id.mutationUnder30);
-        TextView mutationMoving = (TextView) findViewById(R.id.mutationMoving);
         TextView complete = (TextView) findViewById(R.id.complete);
         TextView additionalDPT = (TextView) findViewById(R.id.additionalDPT);
         TextView additionalMeasles = (TextView) findViewById(R.id.additionalMeasles);
@@ -105,12 +104,25 @@ public class VaksinatorDetailActivity extends Activity {
         });
 
         nama.setText(": " + (controller.getDetails().get("nama_bayi") != null ? controller.getDetails().get("nama_bayi") : "-"));
-        motherName.setText(": " + (controller.getDetails().get("nama_orang_tua") != null ? controller.getDetails().get("nama_orang_tua") : "-"));
-        village.setText(": " + (controller.getDetails().get("dusun") != null
+        fatherName.setText(": " + (controller.getDetails().get("namaAyah") != null ? controller.getDetails().get("namaAyah") : "-"));
+        motherName.setText(": " + (controller.getDetails().get("namaIbu") != null
+                ? controller.getDetails().get("namaIbu")
+                : controller.getDetails().get("nama_orang_tua")!=null
+                        ? controller.getDetails().get("nama_orang_tua")
+                        : "-"
+            )
+        );
+        village.setText(": " + (controller.getDetails().get("desa") != null
+                ? controller.getDetails().get("desa")
+                : "-"));
+
+        subVillage.setText(": " + (controller.getDetails().get("dusun") != null
                 ? controller.getDetails().get("dusun")
                 : controller.getDetails().get("village") != null
                     ? controller.getDetails().get("village")
-                    : "-"));
+                    : "-")
+        );
+
         posyandu.setText(": " + (controller.getDetails().get("nama_lokasi") != null
                 ? controller.getDetails().get("nama_lokasi")
                 : controller.getDetails().get("posyandu")!=null
@@ -139,12 +151,6 @@ public class VaksinatorDetailActivity extends Activity {
         ipv.setText(": " + (controller.getDetails().get("ipv") != null ? controller.getDetails().get("ipv") : "-"));
         measles.setText(": " + (controller.getDetails().get("imunisasi_campak") != null ? controller.getDetails().get("imunisasi_campak") : "-"));
 
-        mutationUnder30.setText(": " + (
-                controller.getDetails().get("tanggal_meninggal") != null && controller.getDetails().get("tanggal_meninggal").length()>6
-                ? controller.getDetails().get("tanggal_meninggal")
-                  : "-"));
-
-        mutationMoving.setText(": " + (controller.getDetails().get("tanggal_pindah") != null ? controller.getDetails().get("tanggal_pindah") : "-"));
         complete.setText(": " + (controller.getDetails().get("imunisasi_lengkap") != null ? controller.getDetails().get("imunisasi_lengkap") : "-"));
         additionalDPT.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
         additionalMeasles.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
