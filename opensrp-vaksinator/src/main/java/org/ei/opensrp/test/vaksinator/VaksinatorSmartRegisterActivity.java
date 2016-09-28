@@ -166,6 +166,9 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             }
             e.printStackTrace();
         }
+        if(formName.equals("registrasi_jurim")){
+            saveuniqueid();
+        }
     }
 
     @Override
@@ -193,9 +196,20 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             startFormActivity("registrasi_jurim", null, fieldOverrides.getJSONString());
         }
     }
-    
+    public void saveuniqueid() {
+        try {
+            JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+            String uniq = uniqueId.getString("unique_id");
+            context.uniqueIdController().updateCurrentUniqueId(uniq);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
+        FlurryFacade.logEvent(formName);
        // Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
