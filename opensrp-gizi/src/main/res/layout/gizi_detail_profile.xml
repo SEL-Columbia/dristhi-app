@@ -141,6 +141,7 @@
                 android:textSize="16sp" />
 
 
+
         </LinearLayout>
 
         <ImageView
@@ -243,6 +244,28 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:text="Anthelmintic :"
                 android:id="@+id/txt_anthelmintic"
+                android:textSize="16sp" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Last Height"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:id="@+id/txt_profile_last_vitA"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Last Height"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:id="@+id/txt_profile_last_anthelmintic"
+                android:textStyle="bold"
+                android:textColor="#000000"
                 android:textSize="16sp" />
 
         </LinearLayout>

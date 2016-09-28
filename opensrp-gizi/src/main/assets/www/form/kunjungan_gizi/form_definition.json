@@ -137,6 +137,16 @@
         "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/obatcacing"
       },
       {
+        "name": "lastVitA",
+        "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/lastVitA",
+        "shouldLoadValue":true
+      },
+      {
+        "name": "lastAnthelmintic",
+        "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/lastAnthelmintic",
+        "shouldLoadValue":true
+      },
+      {
         "name": "end",
         "bind": "/model/instance/Kunjungan_Gizi_NewStructure-mapped/end"
       },

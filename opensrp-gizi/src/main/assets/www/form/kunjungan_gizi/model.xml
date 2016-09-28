@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <Kunjungan_Gizi_NewStructure-mapped encounter_type="Kunjungan Gizi" id="kunjungan_gizi_new" version="201609200350">
+    <Kunjungan_Gizi_NewStructure-mapped encounter_type="Kunjungan Gizi" id="kunjungan_gizi_new" version="201609271244">
       <formhub>
         <uuid/>
       </formhub>
@@ -25,6 +25,8 @@
       <underweight/>
       <stunting/>
       <wasting/>
+      <lastVitA/>
+      <lastAnthelmintic/>
       <weight_for_age_status openmrs_entity="concept" openmrs_entity_id="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <height_for_age_status openmrs_entity="concept"/>
       <weight_for_length_status openmrs_entity="concept"/>
@@ -34,19 +36,19 @@
       <ntob_status openmrs_entity="concept" openmrs_entity_id="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <bgm_status openmrs_entity="concept" openmrs_entity_id="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <dua_t_status/>
-      <generated_note_name_38/>
-      <generated_note_name_39/>
       <generated_note_name_40/>
       <generated_note_name_41/>
       <generated_note_name_42/>
       <generated_note_name_43/>
       <generated_note_name_44/>
+      <generated_note_name_45/>
+      <generated_note_name_46/>
       <tanggal_preload/>
       <tanggal_penimbangan openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <kunjungan_sebelumnya/>
       <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
       <umur openmrs_entity="concept" openmrs_entity_id="1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <generated_note_name_52/>
+      <generated_note_name_54/>
       <preload_umur>0</preload_umur>
       <history_umur/>
       <berat_preload>0</berat_preload>
