@@ -281,47 +281,5 @@
         android:focusable="true"
         android:background="@drawable/edit_button_background"/>
 
-    <!--
 
-    <include
-            android:id="@+id/client_id_details_layout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="@integer/anc_list_id_no_view_weight"
-            layout="@layout/anc_smart_register_id_details"/>
-
-    <ImageView
-            android:layout_width="@dimen/smart_register_client_divider_height"
-            android:layout_height="fill_parent"
-            android:src="@color/smart_register_client_divider_color"/>
-
-    <include
-            android:id="@+id/client_status_layout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="@integer/anc_list_status_view_weight"
-            layout="@layout/anc_smart_register_status"/>
-
-    <ImageView
-            android:layout_width="@dimen/smart_register_client_divider_height"
-            android:layout_height="fill_parent"
-            android:src="@color/smart_register_client_divider_color"/>
-
-    <LinearLayout
-            android:id="@+id/anc_register_service_mode_options_view"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="@integer/anc_list_service_mode_views_section_weight"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-        <include
-                android:id="@+id/overview_service_mode_views"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                layout="@layout/anc_register_overview_service_mode_views"/>
-
-    </LinearLayout>
-
-    -->
 </LinearLayout>

@@ -250,9 +250,4 @@
         android:gravity="center"
         android:scaleType="center" />
 
-    <include
-        layout="@layout/anak_register_client_last_service"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="@integer/child_list_last_service_view_weight" />
 </LinearLayout>
