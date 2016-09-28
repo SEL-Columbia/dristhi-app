@@ -165,6 +165,8 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             ziggyService.saveForm(getParams(submission), submission.instance());
 
+            context.formSubmissionService().updateFTSsearch(submission);
+
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 

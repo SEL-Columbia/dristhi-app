@@ -180,7 +180,9 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPaused()) {
+            initializeQueries();
+        }
         try{
             LoginActivity.setLanguage();
         }catch (Exception e){
@@ -374,7 +376,12 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         currentlimit = 20;
         currentoffset = 0;
 
-        super.initialFilterandSortExecute();
+        if(isPaused()){
+            super.showProgressView();
+            super.filterandSortExecute();
+        } else {
+            super.initialFilterandSortExecute();
+        }
 
         updateSearchView();
         refresh();

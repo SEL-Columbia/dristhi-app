@@ -30,6 +30,7 @@ public class CommonRepository extends DrishtiRepository {
     private String common_SQL = "CREATE TABLE common(id VARCHAR PRIMARY KEY,details VARCHAR)";
     private String common_ID_INDEX_SQL =  "CREATE INDEX common_id_index ON common(id COLLATE NOCASE) ;";
     private String common_Relational_ID_INDEX_SQL = null;
+    private String common_Custom_Relational_ID_INDEX_SQL = null;
     public static final String ID_COLUMN = "id";
     public static final String Relational_ID = "relationalid";
     public static final String DETAILS_COLUMN = "details";
@@ -62,6 +63,13 @@ public class CommonRepository extends DrishtiRepository {
     public CommonRepository(CommonFtsObject commonFtsObject, String tablename, String[] columns) {
         this(tablename, columns);
         this.commonFtsObject = commonFtsObject;
+        if(this.commonFtsObject.getCustomRelationalId(TABLE_NAME) != null){
+            String customRelationalId = this.commonFtsObject.getCustomRelationalId(TABLE_NAME);
+            List<String> additionalColumns = new ArrayList<String>(Arrays.asList(this.additionalcolumns));
+            if(additionalColumns.contains(customRelationalId)) {
+                common_Custom_Relational_ID_INDEX_SQL = "CREATE INDEX " + TABLE_NAME + "_" + customRelationalId + "_index ON " + TABLE_NAME + "(" + customRelationalId + " COLLATE NOCASE);";
+            }
+        }
     }
 
     @Override
@@ -72,6 +80,9 @@ public class CommonRepository extends DrishtiRepository {
         }
         if(StringUtils.isNotBlank(common_Relational_ID_INDEX_SQL)) {
             database.execSQL(common_Relational_ID_INDEX_SQL);
+        }
+        if(StringUtils.isNotBlank(common_Custom_Relational_ID_INDEX_SQL)) {
+            database.execSQL(common_Custom_Relational_ID_INDEX_SQL);
         }
     }
 
@@ -342,16 +353,9 @@ public class CommonRepository extends DrishtiRepository {
             List<String> ftsSearchColumns = new ArrayList<String>();
             String[] ftsSearchFields =  commonFtsObject.getSearchFields(TABLE_NAME);
             for(String ftsSearchField: ftsSearchFields){
-
-                if(!additionalColumns.contains(ftsSearchField) && commonPersonObject.getRelationalId() != null) {
-                    // Try getting the field by the relational Id
-                    String relationalFieldValue = getRelationalFieldValue(ftsSearchField, commonPersonObject.getRelationalId());
-                    String ftsSearchColumn = withSub(relationalFieldValue);
-                    ftsSearchColumns.add(ftsSearchColumn);
-                } else {
-                    String ftsSearchColumn = withSub(columnMaps.get(ftsSearchField));
-                    ftsSearchColumns.add(ftsSearchColumn);
-                }
+                String ftsSearchValue = getSearchFieldValue(commonPersonObject, ftsSearchField);
+                String ftsSearchColumn = withSub(ftsSearchValue);
+                ftsSearchColumns.add(ftsSearchColumn);
             }
 
             String phraseSeparator = " | ";
@@ -372,27 +376,17 @@ public class CommonRepository extends DrishtiRepository {
                             value = new Gson().toJson(details);
                         }
                     } else {
-                        if(!additionalColumns.contains(ftsMainConditionField) && commonPersonObject.getRelationalId() != null) {
-                            // Try getting the field by the relational Id
-                            value = getRelationalFieldValue(ftsMainConditionField, commonPersonObject.getRelationalId());
-                        } else
-                            value = columnMaps.get(ftsMainConditionField);
+                        value = getSearchFieldValue(commonPersonObject, ftsMainConditionField);
                     }
 
                     searchValues.put(ftsMainConditionField, value);
                 }
 
             String[] ftsSortFields =  commonFtsObject.getSortFields(TABLE_NAME);
-            if(ftsSearchFields != null)
+            if(ftsSortFields != null)
                 for(String ftsSortField: ftsSortFields){
-                    if(!additionalColumns.contains(ftsSortField) && commonPersonObject.getRelationalId() != null) {
-                        // Try getting the field by the relational Id
-                        String ftsSortValue = getRelationalFieldValue(ftsSortField, commonPersonObject.getRelationalId());
-                        searchValues.put(ftsSortField, ftsSortValue);
-                    } else {
-                        String ftsSortValue = columnMaps.get(ftsSortField);
-                        searchValues.put(ftsSortField, ftsSortValue);
-                    }
+                    String ftsSortValue = getSearchFieldValue(commonPersonObject, ftsSortField);
+                    searchValues.put(ftsSortField, ftsSortValue);
                 }
 
             return searchValues;
@@ -466,10 +460,32 @@ public class CommonRepository extends DrishtiRepository {
         return withSub.trim();
     }
 
-    private String getRelationalFieldValue(String fieldName, String relationalId){
+    private String getSearchFieldValue(CommonPersonObject commonPersonObject, String field){
+        if(field.equals(ID_COLUMN) || field.equals(Relational_ID)){
+            return null;
+        }
+
+        List<String> additionalColumns = new ArrayList<String>(Arrays.asList(this.additionalcolumns));
+        if(!additionalColumns.contains(field)) {
+            if(commonPersonObject.getRelationalId() != null) { // Try getting the field by the relationalId
+                return getFieldValueFromRelatedTable(field, commonPersonObject.getRelationalId());
+            } else if(commonFtsObject.getCustomRelationalId(TABLE_NAME) != null && additionalColumns.contains(commonFtsObject.getCustomRelationalId(TABLE_NAME))){  // Try getting the field by a pre-defined custom relational id
+                return getFieldValueFromRelatedTable(field, commonPersonObject.getColumnmaps().get(commonFtsObject.getCustomRelationalId(TABLE_NAME)));
+            }else { // Try getting the field by the case Id
+                return getFieldValueFromRelatedTable(field, commonPersonObject.getCaseId());
+            }
+        } else
+            return commonPersonObject.getColumnmaps().get(field);
+    }
+
+    private String getFieldValueFromRelatedTable(String fieldName, String relationId){
+        if(StringUtils.isBlank(relationId)){
+            return null;
+        }
+
         for(String table: commonFtsObject.getTables()){
-            if(isFieldExist(table, fieldName)){
-                ArrayList<HashMap<String, String>> list = rawQuery(" SELECT " + fieldName + " FROM "+ table + " WHERE " + ID_COLUMN + " = '"+ relationalId+"'");
+            if(!table.equals(TABLE_NAME) && isFieldExist(table, fieldName)){
+                ArrayList<HashMap<String, String>> list = rawQuery(" SELECT " + fieldName + " FROM "+ table + " WHERE " + ID_COLUMN + " = '"+ relationId+"'");
                 if(!list.isEmpty()){
                     return list.get(0).get(fieldName);
                 }

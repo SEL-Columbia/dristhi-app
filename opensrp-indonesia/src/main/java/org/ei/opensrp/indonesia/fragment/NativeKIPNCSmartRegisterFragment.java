@@ -211,6 +211,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
         countqueryBUilder.SelectInitiateMainTableCounts("ibu");
         countqueryBUilder.customJoin("LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
         countSelect = countqueryBUilder.mainCondition(" ibu.isClosed !='true'  and ibu.type = 'pnc' and ibu.kartuIbuId != ''");
+        mainCondition = " isClosed !='true'  and type = 'pnc' and kartuIbuId != '' ";
         CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
@@ -224,8 +225,12 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
         currentlimit = 20;
         currentoffset = 0;
 
-        super.initialFilterandSortExecute();
-
+        if(isPaused()){
+            super.showProgressView();
+            super.filterandSortExecute();
+        } else {
+            super.initialFilterandSortExecute();
+        }
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
         refresh();
@@ -272,13 +277,13 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 
 
     private String KiSortByName() {
-        return " kartu_ibu.namalengkap ASC";
+        return " namalengkap ASC";
     }
     private String KiSortByNameAZ() {
-        return " kartu_ibu.namalengkap ASC";
+        return " namalengkap ASC";
     }
     private String KiSortByNameZA() {
-        return " kartu_ibu.namalengkap DESC";
+        return " namalengkap DESC";
     }
     private String KiSortByAge() {
         return " umur DESC";
@@ -306,7 +311,9 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
     protected void onResumption() {
 //        super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPaused()) {
+            initializeQueries();
+        }
         //     updateSearchView();
 //
         try{
@@ -339,7 +346,9 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() + "%' or kartu_ibu.namaSuami Like '%" + cs.toString() + "%' ";
+                        filters = cs.toString();
+                        joinTable = "";
+                        mainCondition = " isClosed !='true'  and type = 'pnc' and kartuIbuId != '' ";
                         return null;
                     }
 
@@ -385,7 +394,9 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and kartu_ibu.namalengkap Like '%" + cs.toString() + "%' or kartu_ibu.namaSuami Like '%" + cs.toString() + "%' ";
+                        filters = cs.toString();
+                        joinTable = "";
+                        mainCondition = " isClosed !='true'  and type = 'pnc' and kartuIbuId != '' ";
                         return null;
                     }
 

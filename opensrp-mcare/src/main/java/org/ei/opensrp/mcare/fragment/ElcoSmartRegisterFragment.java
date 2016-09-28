@@ -173,7 +173,9 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPaused()) {
+            initializeQueries();
+        }
         try{
             LoginActivity.setLanguage();
         }catch (Exception e){
@@ -427,7 +429,12 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         currentlimit = 20;
         currentoffset = 0;
 
-        super.initialFilterandSortExecute();
+        if(isPaused()){
+            super.showProgressView();
+            super.filterandSortExecute();
+        } else {
+            super.initialFilterandSortExecute();
+        }
 
 //        setServiceModeViewDrawableRight(null);
 //        updateSearchView();

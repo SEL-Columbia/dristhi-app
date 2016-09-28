@@ -234,7 +234,8 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("anak");
         countqueryBUilder.customJoin("LEFT JOIN ibu ON ibu.id = anak.ibuCaseId LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
-        countSelect = countqueryBUilder.mainCondition(" anak.isClosed !='true' ");
+        countSelect = countqueryBUilder.mainCondition(" anak.isClosed !='true' and anak.ibuCaseId !='' ");
+        mainCondition = " isClosed !='true' and ibuCaseId !='' ";
         CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
@@ -246,7 +247,12 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         currentlimit = 20;
         currentoffset = 0;
 
-        super.initialFilterandSortExecute();
+        if(isPaused()){
+            super.showProgressView();
+            super.filterandSortExecute();
+        } else {
+            super.initialFilterandSortExecute();
+        }
 
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -316,7 +322,9 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
     protected void onResumption() {
 //        super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPaused()) {
+            initializeQueries();
+        }
         //     updateSearchView();
 
 
@@ -350,7 +358,9 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namaBayi Like '%" + cs.toString() +"%'" ;
+                        filters = cs.toString();
+                        joinTable = "";
+                        mainCondition = " isClosed !='true' and ibuCaseId !='' ";
                         return null;
                     }
 
@@ -396,7 +406,9 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
-                        filters = "and namaBayi Like '%" + cs.toString() +"%'" ;
+                        filters = cs.toString();
+                        joinTable = "";
+                        mainCondition = " isClosed !='true' and ibuCaseId !='' ";
                         return null;
                     }
 

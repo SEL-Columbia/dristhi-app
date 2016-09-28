@@ -181,7 +181,9 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPaused()) {
+            initializeQueries();
+        }
         updateSearchView();
         try{
             LoginActivity.setLanguage();
@@ -387,7 +389,12 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         currentlimit = 20;
         currentoffset = 0;
 
-        super.initialFilterandSortExecute();
+        if(isPaused()){
+            super.showProgressView();
+            super.filterandSortExecute();
+        } else {
+            super.initialFilterandSortExecute();
+        }
 
         updateSearchView();
         refresh();
