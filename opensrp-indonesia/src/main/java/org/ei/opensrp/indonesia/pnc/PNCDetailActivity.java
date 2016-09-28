@@ -173,10 +173,8 @@ public class PNCDetailActivity extends Activity {
         txt_caraPersalinanIbu.setText(": "+humanize (pncclient.getDetails().get("caraPersalinanIbu") != null ? pncclient.getDetails().get("caraPersalinanIbu") : "-"));
         txt_namaBayi.setText(": "+ humanize(pncclient.getDetails().get("namaBayi") != null ? pncclient.getDetails().get("namaBayi") : "-"));
         txt_jenisKelamin.setText(": "+humanize (pncclient.getDetails().get("jenisKelamin") != null ? pncclient.getDetails().get("jenisKelamin") : "-"));
-        txt_tanggalLahirAnak.setText(": "+ humanize(pncclient.getDetails().get("tanggalLahirAnak") != null ? pncclient.getDetails().get("tanggalLahirAnak") : "-"));
+        txt_tanggalLahirAnak.setText(": "+ humanize(pncclient.getDetails().get("anak.tanggalLahirAnak") != null ? pncclient.getDetails().get("anak.tanggalLahirAnak") : "-"));
 
-        txt_tandaVitalTDDiastolik.setText(": "+humanize (pncclient.getDetails().get("tandaVitalTDDiastolik") != null ? pncclient.getDetails().get("tandaVitalTDDiastolik") : "-"));
-        txt_tandaVitalTDSistolik.setText(": "+humanize (pncclient.getDetails().get("tandaVitalTDSistolik") != null ? pncclient.getDetails().get("tandaVitalTDSistolik") : "-"));
         txt_tandaVitalSuhu.setText(": "+ humanize(pncclient.getDetails().get("tandaVitalSuhu") != null ? pncclient.getDetails().get("tandaVitalSuhu") : "-"));
         txt_pelayananfe.setText(": "+ humanize(pncclient.getDetails().get("pelayananfe") != null ? pncclient.getDetails().get("pelayananfe") : "-"));
         txt_vitaminA2jamPP.setText(": "+ humanize(pncclient.getDetails().get("vitaminA2jamPP") != null ? pncclient.getDetails().get("vitaminA2jamPP") : "-"));
@@ -227,11 +225,13 @@ public class PNCDetailActivity extends Activity {
         else {
             kiview.setImageDrawable(getResources().getDrawable(R.mipmap.woman_placeholder));
         }
+        txt_tandaVitalTDDiastolik.setText(": "+humanize (ibuparent.getDetails().get("tandaVitalTDDiastolik") != null ? ibuparent.getDetails().get("tandaVitalTDDiastolik") : "-"));
+        txt_tandaVitalTDSistolik.setText(": "+humanize (ibuparent.getDetails().get("tandaVitalTDSistolik") != null ? ibuparent.getDetails().get("tandaVitalTDSistolik") : "-"));
 
 
         nama.setText(getResources().getString(R.string.name)+ humanize(ibuparent.getColumnmaps().get("namalengkap") != null ? ibuparent.getColumnmaps().get("namalengkap") : "-"));
         nik.setText(getResources().getString(R.string.nik)+humanize (ibuparent.getDetails().get("nik") != null ? ibuparent.getDetails().get("nik") : "-"));
-        husband_name.setText(getResources().getString(R.string.husband_name)+ humanize(ibuparent.getDetails().get("namaSuami") != null ? ibuparent.getDetails().get("namaSuami") : "-"));
+        husband_name.setText(getResources().getString(R.string.husband_name)+ humanize(ibuparent.getColumnmaps().get("namaSuami") != null ? ibuparent.getColumnmaps().get("namaSuami") : "-"));
         dob.setText(getResources().getString(R.string.dob)+ humanize(ibuparent.getDetails().get("tanggalLahir") != null ? ibuparent.getDetails().get("tanggalLahir") : "-"));
         phone.setText("No HP: "+ (ibuparent.getDetails().get("NomorTelponHp") != null ? ibuparent.getDetails().get("NomorTelponHp") : "-"));
 

@@ -314,7 +314,7 @@
     <string name="str_weeks">&#160;Minggu</string>
     <string name="anc_register_title_in_short">ANC</string>
     <string name="str_bp">BP</string>
-    <string name="str_weight">Wt.</string>
+    <string name="str_weight">Berat:</string>
     <string name="str_anc_search_hint">Search ANC Register</string>
     <string name="anc_service_mode_overview">Overview</string>
     <string name="anc_service_mode_anc_visits">ANC Visits</string>
@@ -345,7 +345,7 @@
     <string name="str_asha">Asha:</string>
     <string name="str_contact">Contact:</string>
     <string name="str_risks_reviewed">Risks reviewed:</string>
-    <string name="str_pnc_delivery_date">Date:</string>
+    <string name="str_pnc_delivery_date">Tgl:</string>
     <string name="str_pnc_delivery_place">Place:</string>
     <string name="str_pnc_delivery_type">Type:</string>
     <string name="str_pp_fp">PP FP</string>
@@ -473,7 +473,9 @@
     <string name="height">Tinggi:</string>
     <string name="month">Bln</string>
     <string name="service_fp">Status Pelayanan: KB </string>
-
     <string name="str_pnc_delivery">Tgl Persalinan:</string>
     <string name="edd_passed">HTP sudah lewat</string>
+    <string name="fe">FE:</string>
+
+    <string name="Nutrition_status">Status Gizi:</string>
 </resources>

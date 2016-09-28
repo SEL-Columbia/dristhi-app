@@ -124,21 +124,18 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         //set image
 
         viewHolder.tanggal_bersalin.setText(humanize(pc.getDetails().get("tanggalKalaIAktif")!=null?pc.getDetails().get("tanggalKalaIAktif"):""));
-        viewHolder.tempat_persalinan.setText(humanize(pc.getDetails().get("tempatBersalin")!=null?pc.getDetails().get("tempatBersalin"):""));
+        String tempat =pc.getDetails().get("tempatBersalin")!=null?pc.getDetails().get("tempatBersalin"):"";
+        viewHolder.tempat_persalinan.setText(tempat.equals("podok_bersalin_desa")?"POLINDES":tempat.equals("pusat_kesehatan_masyarakat_pembantu")?"Puskesmas pembantu":tempat.equals("pusat_kesehatan_masyarakat")?"Puskesmas":humanize(tempat));
         viewHolder.dok_tipe.setText(humanize(pc.getDetails().get("caraPersalinanIbu")!=null?pc.getDetails().get("caraPersalinanIbu"):""));
         viewHolder.komplikasi.setText(humanize(pc.getDetails().get("komplikasi")!=null?pc.getDetails().get("komplikasi"):""));
 
 
-        String date = pc.getDetails().get("submissionDate")!=null?pc.getDetails().get("submissionDate"):"";
-
+        String date = pc.getDetails().get("referenceDate")!=null?pc.getDetails().get("referenceDate"):"";
         String vit_a = pc.getDetails().get("pelayananfe")!=null?pc.getDetails().get("pelayananfe"):"";
+        viewHolder.tanggal_kunjungan.setText(context.getString(R.string.str_pnc_delivery_date) +" "+ date);
 
-        viewHolder.tanggal_kunjungan.setText("Tanggal : " + date);
+        viewHolder.vit_a.setText(context.getString(R.string.fe)+" "+vit_a);
 
-        viewHolder.vit_a.setText("Pelayanan FE : " +vit_a);
-
-        viewHolder.td_sistolik.setText(humanize(pc.getDetails().get("tandaVitalTDSistolik")!=null?pc.getDetails().get("tandaVitalTDSistolik"):""));
-        viewHolder.td_diastolik.setText(humanize(pc.getDetails().get("tandaVitalTDDiastolik")!=null?pc.getDetails().get("tandaVitalTDDiastolik"):""));
         viewHolder.td_suhu.setText(humanize(pc.getDetails().get("tandaVitalSuhu")!=null?pc.getDetails().get("tandaVitalSuhu"):""));
 
         AllCommonsRepository kiRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
@@ -147,6 +144,8 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(kiobject.getColumnmaps().get("kartuIbuId"));
+        viewHolder.td_sistolik.setText(humanize(ibuparent.getDetails().get("tandaVitalTDSistolik")!=null?ibuparent.getDetails().get("tandaVitalTDSistolik"):""));
+        viewHolder.td_diastolik.setText(humanize(ibuparent.getDetails().get("tandaVitalTDDiastolik")!=null?ibuparent.getDetails().get("tandaVitalTDDiastolik"):""));
 
         viewHolder.hr_badge.setVisibility(View.INVISIBLE);
         viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
@@ -180,7 +179,7 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         }
 
         String kf_ke = kiobject.getColumnmaps().get("hariKeKF")!=null?kiobject.getColumnmaps().get("hariKeKF"):"";
-        viewHolder.KF.setText("Hari Ke /KF : " + humanizeAndDoUPPERCASE(kf_ke));
+        viewHolder.KF.setText(context.getString(R.string.hari_ke_kf)+" "+ humanizeAndDoUPPERCASE(kf_ke));
         viewHolder.wife_name.setText(ibuparent.getColumnmaps().get("namalengkap")!=null?ibuparent.getColumnmaps().get("namalengkap"):"");
         viewHolder.husband_name.setText(ibuparent.getColumnmaps().get("namaSuami")!=null?ibuparent.getColumnmaps().get("namaSuami"):"");
         viewHolder.village_name.setText(ibuparent.getDetails().get("desa")!=null?ibuparent.getDetails().get("desa"):"");

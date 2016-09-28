@@ -110,7 +110,7 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="15">
+        android:layout_weight="16">
 
         <ImageView
             android:id="@+id/icon_hb0_no"
@@ -232,12 +232,7 @@
         android:layout_height="fill_parent"
         android:src="@color/smart_register_client_divider_color" />
 
-    <include
-        layout="@layout/anak_register_client_birth_status"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="@integer/child_list_sick_status_view_weight" />
-
+    <include layout="@layout/anak_register_client_birth_status"/>
     <ImageView
         android:layout_width="@dimen/smart_register_client_divider_height"
         android:layout_height="fill_parent"

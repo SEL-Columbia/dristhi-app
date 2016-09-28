@@ -543,4 +543,6 @@
     <string name="service_fp">Service Status: FP </string>
     <string name="str_pnc_delivery">Delivery Date:&#160;</string>
     <string name="edd_passed">EDD Passed</string>
+    <string name="fe">FE:</string>
+    <string name="Nutrition_status">Nutrition Status:</string>
 </resources>

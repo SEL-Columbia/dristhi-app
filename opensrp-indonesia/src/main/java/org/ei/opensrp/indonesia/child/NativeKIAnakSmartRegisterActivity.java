@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.BALITA_KUNJUNGAN;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.BAYI_NEONATAL_PERIOD;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANAK_CLOSE;
-import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_CLOSE;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.BAYI_IMUNISASI;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_CLOSE;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_EDIT;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_PNC_POSPARTUM_KB;
@@ -119,9 +119,10 @@ public class NativeKIAnakSmartRegisterActivity extends SecuredNativeSmartRegiste
                 new OpenFormOption(getString(R.string.str_anak_bayi_visit), KOHORT_BAYI_KUNJUNGAN, formController),
                 new OpenFormOption(getString(R.string.str_anak_balita_visit), BALITA_KUNJUNGAN, formController),
                 new OpenFormOption(getString(R.string.str_anak_edit), KOHORT_BAYI_EDIT, formController),
-
+                new OpenFormOption(getString(R.string.str_child_immunizations), BAYI_IMUNISASI, formController),
+                new OpenFormOption(getString(R.string.str_child_close), KARTU_IBU_ANAK_CLOSE, formController),
             //    new OpenFormOption(getString(R.string.str_tutup_anak),
-             //           KARTU_IBU_ANAK_CLOSE, formController),
+             //           BAYI_IMUNISASI, formController),
 
         };
 
@@ -230,8 +231,8 @@ public class NativeKIAnakSmartRegisterActivity extends SecuredNativeSmartRegiste
         formNames.add(KOHORT_BAYI_KUNJUNGAN);
         formNames.add(BALITA_KUNJUNGAN);
         formNames.add(KOHORT_BAYI_EDIT);
-    //    formNames.add(KARTU_IBU_PNC_REGISTRATION);
-      //  formNames.add(KARTU_IBU_ANC_EDIT);
+        formNames.add(KARTU_IBU_ANAK_CLOSE);
+        formNames.add(BAYI_IMUNISASI);
      //   formNames.add(KARTU_IBU_ANC_CLOSE);
 
     //    DialogOption[] options = getEditOptions();
