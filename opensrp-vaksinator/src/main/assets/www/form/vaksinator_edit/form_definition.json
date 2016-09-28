@@ -1,5 +1,5 @@
 {
-  "form_data_definition_version": "1",
+  "form_data_definition_version": "2",
   "form": {
     "bind_type": "anak",
     "default_bind_path": "/model/instance/registrasi_vaksinator/",
@@ -9,15 +9,63 @@
         "shouldLoadValue": true
       },
       {
-        "name": "existing_location",
-        "bind": "/model/instance/registrasi_vaksinator/existing_location"
-      },{
-        "name": "village",
+        "name": "unique_id",
+        "bind": "/model/instance/registrasi_vaksinator/unique_id",
+        "shouldLoadValue" : true
+      },
+      {
+        "name": "existing_desa",
         "bind": "/model/instance/registrasi_vaksinator/existing_Village",
         "shouldLoadValue": true
-      },{
-        "name": "subVillage",
+      },
+      {
+        "name": "existing_provinsi",
+        "bind": "/model/instance/registrasi_vaksinator/existing_Province",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_kecamatan",
+        "bind": "/model/instance/registrasi_vaksinator/existing_Sub-district",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_kabupaten",
+        "bind": "/model/instance/registrasi_vaksinator/existing_District",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_dusun",
         "bind": "/model/instance/registrasi_vaksinator/existing_Sub-village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "provinsi",
+        "bind": "/model/instance/registrasi_vaksinator/provinsi",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kabupaten",
+        "bind": "/model/instance/registrasi_vaksinator/kabupaten",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/registrasi_vaksinator/kecamatan",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "desa",
+        "bind": "/model/instance/registrasi_vaksinator/desa",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "dusun",
+        "bind": "/model/instance/registrasi_vaksinator/dusun",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_location",
+        "bind": "/model/instance/registrasi_vaksinator/existing_location",
         "shouldLoadValue": true
       },
       {
@@ -31,8 +79,13 @@
         "shouldLoadValue": true
       },
       {
-        "name": "nama_orang_tua",
-        "bind": "/model/instance/registrasi_vaksinator/nama_orang_tua",
+        "name": "namaAyah",
+        "bind": "/model/instance/registrasi_vaksinator/nama_ayah",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "namaIbu",
+        "bind": "/model/instance/registrasi_vaksinator/nama_ibu",
         "shouldLoadValue": true
       },
       {
@@ -54,6 +107,10 @@
         "name": "berat_badan_saat_lahir",
         "bind": "/model/instance/registrasi_vaksinator/berat_badan_saat_lahir",
         "shouldLoadValue": true
+      },
+      {
+        "name": "submissionDate",
+        "bind": "/model/instance/registrasi_vaksinator/today"
       }
     ]
   }
