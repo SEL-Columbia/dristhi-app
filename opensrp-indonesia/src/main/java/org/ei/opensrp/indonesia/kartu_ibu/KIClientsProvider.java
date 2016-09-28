@@ -190,20 +190,24 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
             DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
             LocalDate date = parse(_edd, formatter).toLocalDate();
             LocalDate dateNow = LocalDate.now();
-
             date = date.withDayOfMonth(1);
             dateNow = dateNow.withDayOfMonth(1);
-
             int months = Months.monthsBetween(dateNow, date).getMonths();
             if(months >= 1) {
                 _dueEdd = "" + months + " " + context.getString(R.string.months_away);
             } else if(months == 0){
-                if(DateUtil.dayDifference(dateNow, date) > 0) {
-                    _dueEdd =  context.getString(R.string.this_month);
+                _dueEdd =  context.getString(R.string.this_month);
+            }
+            else if(months < 0 ) {
+                if(pc.getColumnmaps().get("ibu.type").equals("anc")){
+                    _dueEdd = context.getString(R.string.edd_passed);
                 }
-                _dueEdd = context.getString(R.string.delivered);
-            } else {
-                _dueEdd = context.getString(R.string.delivered);
+                else if(pc.getColumnmaps().get("ibu.type").equals("pnc")){
+                    _dueEdd = context.getString(R.string.delivered);
+                }
+                else{
+                    _dueEdd = context.getString(R.string.edd_passed);
+                }
             }
             viewHolder.edd_due.setText(_dueEdd);
 
