@@ -7,7 +7,7 @@
               android:weightSum="@integer/ec_list_item_weight_count">
 
     <include
-            android:id="@+id/profile_info_layout_ki"
+            android:id="@+id/profile_info_layout"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="@integer/ec_list_profile_box_weight"
@@ -126,51 +126,36 @@
         android:weightSum="1"
         android:background="@color/status_bar_text_almost_white">
 
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/kondisi_ibu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/mother_title"
-            style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/txt_kondisi_ibu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/kondisi_ibu"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentTop="true"
-            android:text="Sehat"
-            style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"/>
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/txt_tanggal_kunjungan_pnc"
+                android:layout_marginTop="-2dp"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Something "/>
 
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/txt_kf"
+                android:layout_marginTop="-2dp"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_tanggal_kunjungan_pnc"
+                android:textSize="14sp"
+                android:text="Something "/>
 
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/kondisi_anak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/kondisi_ibu"
-            android:text="@string/child_title"
-            style="@style/CustomFontTextViewStyle.ListView.Small"/>
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/txt_vit_a"
+                android:layout_marginTop="-2dp"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.FourLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_kf"
+                android:textSize="14sp"
+                android:text="Something "/>
 
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/txt_kondisi_anak_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/kondisi_ibu"
-            android:layout_toRightOf="@+id/kondisi_anak"
-            android:text="Sehat"
-            style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"/>
-
-        <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/txt_kondisi_anak_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/kondisi_anak"
-            style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
     </RelativeLayout>
 
@@ -262,48 +247,4 @@
         android:focusable="true"
         android:background="@drawable/edit_button_background"/>
 
-
-    <!--
-
-    <include
-            android:id="@+id/client_id_details_layout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="@integer/anc_list_id_no_view_weight"
-            layout="@layout/anc_smart_register_id_details"/>
-
-    <ImageView
-            android:layout_width="@dimen/smart_register_client_divider_height"
-            android:layout_height="fill_parent"
-            android:src="@color/smart_register_client_divider_color"/>
-
-    <include
-            android:id="@+id/client_status_layout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="@integer/anc_list_status_view_weight"
-            layout="@layout/anc_smart_register_status"/>
-
-    <ImageView
-            android:layout_width="@dimen/smart_register_client_divider_height"
-            android:layout_height="fill_parent"
-            android:src="@color/smart_register_client_divider_color"/>
-
-    <LinearLayout
-            android:id="@+id/anc_register_service_mode_options_view"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="@integer/anc_list_service_mode_views_section_weight"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-        <include
-                android:id="@+id/overview_service_mode_views"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                layout="@layout/anc_register_overview_service_mode_views"/>
-
-    </LinearLayout>
-
-    -->
 </LinearLayout>

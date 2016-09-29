@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<org.ei.opensrp.indonesia.view.customControls.BidanObsetriView
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/obsetri_layout"
         android:layout_width="@dimen/list_gplsa_view_width"
@@ -78,5 +78,5 @@
         android:layout_below="@id/txt_number_of_abortus"
         style="@style/CustomFontTextViewStyle.ListView.Normal.Obsetri"/>
 
-</org.ei.opensrp.indonesia.view.customControls.BidanObsetriView>
+</RelativeLayout>
     

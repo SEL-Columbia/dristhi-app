@@ -181,8 +181,11 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
-        try {
+
+        if(isPausedOrRefreshList()) {
+            initializeQueries();
+        }
+        try{
             LoginActivity.setLanguage();
         } catch (Exception e) {
 
@@ -370,7 +373,10 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
     public void initializeQueries() {
         try {
-            CommonRepository commonRepository = context.commonrepository("ec_pnc");
+            mCarePNCSmartClientsProvider hhscp = new mCarePNCSmartClientsProvider(getActivity(), clientActionHandler, context.alertService());
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, hhscp, new CommonRepository("ec_pnc", new String[]{"FWWOMFNAME", "FWPSRLMP", "JiVitAHHID", "GOBHHID", "FWBNFSTS", "FWBNFDTOO"}));
+            clientsView.setAdapter(clientAdapter);
+
             setTablename("ec_pnc");
             SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(pncMainCountWithJoins());
             mainCondition = "  is_closed=0 ";
@@ -384,15 +390,9 @@ public class mCarePNCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
             currentlimit = 20;
             currentoffset = 0;
-            String query = filterandSortQuery(commonRepository, queryBUilder);
 
-//          queryBUilder.addCondition(filters);
-//          currentquery = queryBUilder.orderbyCondition(Sortqueries);
-//          databaseCursor = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
-            databaseCursor = commonRepository.RawCustomQueryForAdapter(query);
-            mCarePNCSmartClientsProvider hhscp = new mCarePNCSmartClientsProvider(getActivity(), clientActionHandler, context.alertService());
-            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), databaseCursor, hhscp, new CommonRepository("ec_pnc", new String[]{"FWWOMFNAME", "FWPSRLMP", "JiVitAHHID", "GOBHHID", "FWBNFSTS", "FWBNFDTOO"}));
-            clientsView.setAdapter(clientAdapter);
+            super.filterandSortInInitializeQueries();
+
             updateSearchView();
             refresh();
 

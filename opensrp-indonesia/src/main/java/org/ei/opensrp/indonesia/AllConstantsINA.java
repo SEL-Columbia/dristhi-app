@@ -24,11 +24,11 @@ public class AllConstantsINA {
     public static final String HIGH_RISK_LABOUR = "high_risk_labour";
     public static final String HIGH_RISK_POST_PARTUM = "high_risk_post_partum";
 
-    // Flurry Bidan Testing
-    // public static final String FLURRY_KEY = "SNRSKHM2HK6XMFSYBR7Z";
+    // Flurry Bidan Testing 2
+     public static final String FLURRY_KEY = "9RDM5TWW4HJ5QH8TNJ3P";
 
     // Flurry Key Bidan Prototype
-    public static final String FLURRY_KEY = "GVDTK3B4S92Y7D96NJ63";
+   // public static final String FLURRY_KEY = "GVDTK3B4S92Y7D96NJ63";
 
     public class KeluargaBerencanaFields {
         public static final String CONTRACEPTION_METHOD = "jenisKontrasepsi";
@@ -90,7 +90,7 @@ public class AllConstantsINA {
         public static final String KARTU_IBU_ANC_REGISTRATION = "kartu_anc_registration";
         public static final String KARTU_IBU_ANC_OA="kartu_anc_registration_oa";
         public static final String KARTU_IBU_ANC_RENCANA_PERSALINAN = "kartu_anc_rencana_persalinan";
-        public static final String KARTU_IBU_ANC_EDIT="kartu_anc_edit";
+        public static final String KARTU_IBU_ANC_EDIT="kartu_anc_visit_edit";
         public static final String KARTU_IBU_ANC_CLOSE="kartu_anc_close";
         public static final String KARTU_IBU_ANC_VISIT="kartu_anc_visit";
         public static final String KARTU_IBU_ANC_VISIT_INTEGRASI = "kartu_anc_visit_integrasi";

@@ -35,6 +35,7 @@ public class CommonRepository extends DrishtiRepository {
     private String common_Relational_ID_INDEX_SQL = null;
     private String common_Relational_Underscore_ID_INDEX_SQL = null;
     private String common_Base_Entity_ID_INDEX_SQL = null;
+    private String common_Custom_Relational_ID_INDEX_SQL = null;
     public static final String ID_COLUMN = "id";
     public static final String Relational_ID = "relationalid";
     public static final String Relational_Underscore_ID = "relational_id";
@@ -80,6 +81,13 @@ public class CommonRepository extends DrishtiRepository {
     public CommonRepository(CommonFtsObject commonFtsObject, String tablename, String[] columns) {
         this(tablename, columns);
         this.commonFtsObject = commonFtsObject;
+        if(this.commonFtsObject.getCustomRelationalId(TABLE_NAME) != null){
+            String customRelationalId = this.commonFtsObject.getCustomRelationalId(TABLE_NAME);
+            List<String> additionalColumns = new ArrayList<String>(Arrays.asList(this.additionalcolumns));
+            if(additionalColumns.contains(customRelationalId)) {
+                common_Custom_Relational_ID_INDEX_SQL = "CREATE INDEX " + TABLE_NAME + "_" + customRelationalId + "_index ON " + TABLE_NAME + "(" + customRelationalId + " COLLATE NOCASE);";
+            }
+        }
     }
 
     @Override
@@ -94,8 +102,11 @@ public class CommonRepository extends DrishtiRepository {
         if(StringUtils.isNotBlank(common_Relational_Underscore_ID_INDEX_SQL)){
             database.execSQL(common_Relational_Underscore_ID_INDEX_SQL);
         }
-        if(StringUtils.isNotBlank(common_Base_Entity_ID_INDEX_SQL)){
+        if(StringUtils.isNotBlank(common_Base_Entity_ID_INDEX_SQL)) {
             database.execSQL(common_Base_Entity_ID_INDEX_SQL);
+        }
+        if(StringUtils.isNotBlank(common_Custom_Relational_ID_INDEX_SQL)) {
+            database.execSQL(common_Custom_Relational_ID_INDEX_SQL);
         }
     }
 
@@ -502,7 +513,7 @@ public class CommonRepository extends DrishtiRepository {
 
             // Update Sort Fields
             String[] ftsSortFields =  commonFtsObject.getSortFields(TABLE_NAME);
-            if(ftsSearchFields != null)
+            if(ftsSortFields != null)
                 for(String ftsSortField: ftsSortFields){
                     String ftsSortValue = getSearchFieldValue(commonPersonObject, ftsSortField);
                     searchValues.put(ftsSortField, ftsSortValue);
@@ -600,8 +611,8 @@ public class CommonRepository extends DrishtiRepository {
         if(!additionalColumns.contains(field)) {
             if(additionalColumns.contains(Relational_Underscore_ID)) { // Try getting the field by the relational_id
                 return getFieldValueFromRelatedTable(field, commonPersonObject.getColumnmaps().get(Relational_Underscore_ID));
-            }else if(commonPersonObject.getRelationalId() != null) { // Try getting the field by the relationalId
-                return getFieldValueFromRelatedTable(field, commonPersonObject.getRelationalId());
+            } else if(commonFtsObject.getCustomRelationalId(TABLE_NAME) != null && additionalColumns.contains(commonFtsObject.getCustomRelationalId(TABLE_NAME))){  // Try getting the field by a pre-defined custom relational id
+                return getFieldValueFromRelatedTable(field, commonPersonObject.getColumnmaps().get(commonFtsObject.getCustomRelationalId(TABLE_NAME)));
             }else { // Try getting the field by the case Id
                 return getFieldValueFromRelatedTable(field, commonPersonObject.getCaseId());
             }
@@ -610,6 +621,10 @@ public class CommonRepository extends DrishtiRepository {
     }
 
     private String getFieldValueFromRelatedTable(String fieldName, String relationId){
+        if(StringUtils.isBlank(relationId)){
+            return null;
+        }
+
         for(String table: commonFtsObject.getTables()){
             if(!table.equals(TABLE_NAME) && isFieldExist(table, fieldName)){
                 ArrayList<HashMap<String, String>> list = rawQuery(" SELECT " + fieldName + " FROM "+ table + " WHERE " + ID_COLUMN + " = '"+ relationId+"'");

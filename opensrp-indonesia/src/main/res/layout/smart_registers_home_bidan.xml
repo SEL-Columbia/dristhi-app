@@ -65,7 +65,7 @@
                     <org.ei.opensrp.view.customControls.CustomFontTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/cohort_mother"
+                        android:text="KOHORT IBU"
                         style="@style/CustomFontTextViewStyle.Home.RegisterName"/>
 
                     <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -96,7 +96,7 @@
                     <org.ei.opensrp.view.customControls.CustomFontTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/cohort_fp"
+                        android:text="KOHORT KB"
                         style="@style/CustomFontTextViewStyle.Home.RegisterName"/>
 
                     <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -192,7 +192,7 @@
                     <org.ei.opensrp.view.customControls.CustomFontTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/cohort_child"
+                        android:text="ANAK"
                         style="@style/CustomFontTextViewStyle.Home.RegisterName"/>
 
                     <org.ei.opensrp.view.customControls.CustomFontTextView
