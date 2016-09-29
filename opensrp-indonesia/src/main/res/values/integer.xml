@@ -2,7 +2,7 @@
 <resources>
     <integer name="ec_list_item_weight_count">1000</integer>
     <integer name="ec_list_profile_box_weight">244</integer>
-    <integer name="ec_list_ec_no_view_weight">75</integer>
+    <integer name="ec_list_ec_no_view_weight">80</integer>
     <integer name="ec_list_gplsa_view_weight">125</integer>
     <integer name="ec_list_fp_view_weight">109</integer>
     <integer name="ec_list_children_view_weight">160</integer>
@@ -14,8 +14,8 @@
     <integer name="child_list_id_no_view_weight">14</integer>
     <integer name="child_list_service_mode_views_section_weight">60</integer>
     <integer name="child_list_dob_view_weight">12</integer>
-    <integer name="child_list_last_service_view_weight">17</integer>
-    <integer name="child_list_sick_status_view_weight">23</integer>
+    <integer name="child_list_last_service_view_weight">15</integer>
+    <integer name="child_list_visit_status_view_weight">20</integer>
     <integer name="child_list_edit_icon_view_weight">10</integer>
 
     <integer name="child_list_bcg_view_weight">15</integer>

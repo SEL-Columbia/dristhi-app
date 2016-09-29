@@ -210,6 +210,20 @@
         <input name="/anc_registration/hidup" data-constraint=".&gt;-1 and .&lt;100" data-type-xml="int"
             type="number" />
     </label>
+    <label class="question non-select ">
+        <span class="question-label active" data-itext-id="/anc_registration/tanggal_lahir_anak_sebelumnya:label"
+            lang="Bahasa">Tanggal Lahir Anak Sebelumnya
+        </span>
+        <span class="question-label " data-itext-id="/anc_registration/tanggal_lahir_anak_sebelumnya:label"
+            lang="en">Birth date o previous child
+        </span>
+        <span class="or-hint active" data-itext-id="/anc_registration/tanggal_lahir_anak_sebelumnya:hint"
+            lang="Bahasa">Tanggal Lahir Anak Sebelumnya
+        </span>
+        <span class="or-hint " data-itext-id="/anc_registration/tanggal_lahir_anak_sebelumnya:hint" lang="en">Birth date o previous child
+        </span>
+        <input name="/anc_registration/tanggal_lahir_anak_sebelumnya" data-type-xml="date" type="date" />
+    </label>
     <label class="note non-select ">
         <span class="question-label active" data-itext-id="/anc_registration/generated_note_name_14:label"
             lang="Bahasa">Pemeriksaan Bidan

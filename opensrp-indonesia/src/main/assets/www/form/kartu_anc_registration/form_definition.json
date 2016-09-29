@@ -18,6 +18,10 @@
         "bind": "/model/instance/anc_registration/Lokasi_periksa"
       },
       {
+        "name": "tanggalLahirAnakSebelumnya",
+        "bind": "/model/instance/anc_registration/tanggal_lahir_anak_sebelumnya"
+      },
+      {
         "name": "referenceDate",
         "bind": "/model/instance/anc_registration/tanggal_periksa",
         "source": "kartu_ibu.ibu.referenceDate"

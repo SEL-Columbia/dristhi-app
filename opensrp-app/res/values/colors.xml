@@ -17,7 +17,7 @@
     <color name="client_list_header_text_color">#494949</color>
 
     <color name="alert_upcoming_light_blue">#cae2ed</color>
-    <color name="alert_urgent_red">#d13f3f</color>
+    <color name="alert_urgent_red">#F04646</color>
     <color name="alert_in_progress_blue">#389cc8</color>
     <color name="alert_complete_green">#25aa4a</color>
 

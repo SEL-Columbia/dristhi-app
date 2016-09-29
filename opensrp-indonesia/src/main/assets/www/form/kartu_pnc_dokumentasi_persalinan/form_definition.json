@@ -217,10 +217,6 @@
         "bind": "/model/instance/dok_persalinan_reviewed/today"
       },
       {
-        "name": "registrationDate",
-        "bind": "/model/instance/dok_persalinan_reviewed/today"
-      },
-      {
         "name": "referenceDate",
         "bind": "/model/instance/dok_persalinan_reviewed/reference_date",
         "source": "ibu.referenceDate"

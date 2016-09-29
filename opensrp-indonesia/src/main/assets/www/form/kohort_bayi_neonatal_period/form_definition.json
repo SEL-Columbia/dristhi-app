@@ -49,7 +49,8 @@
             },
              {
                 "name": "kunjunganNeonatalpertama6sd48jamPemberianimunisasiHB0",
-                "bind": "/model/instance/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb0"
+                "bind": "/model/instance/kunjungan_neonatal_reviewed/kunjungan_neonatal_pertama_6_sd_48_jam__pemberian_imunisasi_hb0",
+               "shouldLoadValue": true
             },
               {
                 "name": "keadaanNeonatal6sd48Jam",

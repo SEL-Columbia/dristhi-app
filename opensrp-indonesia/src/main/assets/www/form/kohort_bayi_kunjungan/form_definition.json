@@ -54,27 +54,33 @@
             },
             {
                 "name": "tanggalpemberianimunisasiHb07",
-                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_hb_07"
+                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_hb_07",
+                "shouldLoadValue": true
             },
             {
                 "name": "tanggalpemberianimunisasiBCGdanPolio1",
-                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_bcg_dan_Polio1"
+                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_bcg_dan_Polio1",
+                "shouldLoadValue": true
             },
             {
                 "name": "tanggalpemberianimunisasiDPTHB1Polio2",
-                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_dpthb1Polio2"
+                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_dpthb1Polio2",
+                "shouldLoadValue": true
             },
             {
                 "name": "tanggalpemberianimunisasiDPTHB2Polio3",
-                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_dpthb2Polio3"
+                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_dpthb2Polio3",
+                "shouldLoadValue": true
             },
             {
                 "name": "tanggalpemberianimunisasiDPTHB3Polio4",
-                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_dpthb3Polio4"
+                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_dpthb3Polio4",
+                "shouldLoadValue": true
             },
             {
                 "name": "tanggalpemberianimunisasiCampak",
-                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_campak"
+                "bind": "/model/instance/kohort_kunjungan_bayi_reviewed/tanggal_pemberian_imunisasi_campak",
+                "shouldLoadValue": true
             },
             {
                 "name": "keterangan",
