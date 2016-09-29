@@ -181,7 +181,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        if(isPaused()) {
+        if(isPausedOrRefreshList()) {
             initializeQueries();
         }
         updateSearchView();
@@ -380,7 +380,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
         countSelect = countqueryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
         mainCondition = "(Is_PNC is null or Is_PNC = '0') and FWWOMFNAME not null and FWWOMFNAME != \"\"   AND details  LIKE '%\"FWWOMVALID\":\"1\"%'";
-        CountExecute();
+        super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
         mainSelect = queryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
@@ -389,12 +389,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         currentlimit = 20;
         currentoffset = 0;
 
-        if(isPaused()){
-            super.showProgressView();
-            super.filterandSortExecute();
-        } else {
-            super.initialFilterandSortExecute();
-        }
+        super.filterandSortInInitializeQueries();
 
         updateSearchView();
         refresh();

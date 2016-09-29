@@ -176,7 +176,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        if(isPaused()) {
+        if(isPausedOrRefreshList()) {
             initializeQueries();
         }
         updateSearchView();
@@ -352,7 +352,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(childMainCountWithJoins());
         countSelect = countqueryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
         mainCondition = " FWBNFGEN is not null ";
-        CountExecute();
+        super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(childMainSelectWithJoins());
         mainSelect = queryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
@@ -361,12 +361,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
         currentlimit = 20;
         currentoffset = 0;
 
-        if(isPaused()){
-            super.showProgressView();
-            super.filterandSortExecute();
-        } else {
-            super.initialFilterandSortExecute();
-        }
+        super.filterandSortInInitializeQueries();
 
 //        setServiceModeViewDrawableRight(null);
 //        updateSearchView();

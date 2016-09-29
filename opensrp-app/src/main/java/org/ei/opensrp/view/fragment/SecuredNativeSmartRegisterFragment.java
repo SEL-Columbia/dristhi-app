@@ -115,6 +115,8 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
     private final NavBarActionsHandler navBarActionsHandler = new NavBarActionsHandler();
     private final SearchCancelHandler searchCancelHandler = new SearchCancelHandler();
 
+    private boolean refreshList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -143,7 +145,9 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
     }
 
     public void refreshListView(){
+        this.setRefreshList(true);
         this.onResumption();
+        this.setRefreshList(false);
     }
 
     @Override
@@ -488,5 +492,15 @@ public abstract class SecuredNativeSmartRegisterFragment extends SecuredFragment
         private void clearSearchText() {
             searchView.setText("");
         }
+
+
+    }
+
+    public boolean isRefreshList() {
+        return refreshList;
+    }
+
+    public void setRefreshList(boolean refreshList) {
+        this.refreshList = refreshList;
     }
 }

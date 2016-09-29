@@ -173,7 +173,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        if(isPaused()) {
+        if(isPausedOrRefreshList()) {
             initializeQueries();
         }
         try{
@@ -418,7 +418,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         countqueryBUilder.joinwithALerts("elco","ELCO PSRF");
         countSelect = countqueryBUilder.mainCondition(" FWWOMFNAME != \"\"  and  FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' ");
         mainCondition = " FWWOMFNAME != \"\"  and  FWWOMFNAME is not null  and details LIKE '%\"FWELIGIBLE\":\"1\"%' ";
-        CountExecute();
+        super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("elco", new String[]{"relationalid", "details", "FWWOMFNAME", "JiVitAHHID", "GOBHHID"});
@@ -429,12 +429,7 @@ public class ElcoSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         currentlimit = 20;
         currentoffset = 0;
 
-        if(isPaused()){
-            super.showProgressView();
-            super.filterandSortExecute();
-        } else {
-            super.initialFilterandSortExecute();
-        }
+        super.filterandSortInInitializeQueries();
 
 //        setServiceModeViewDrawableRight(null);
 //        updateSearchView();

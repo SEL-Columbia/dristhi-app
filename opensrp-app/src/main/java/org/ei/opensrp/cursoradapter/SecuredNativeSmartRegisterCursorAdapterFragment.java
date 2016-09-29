@@ -162,7 +162,9 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     }
 
     public void refreshListView(){
+        super.setRefreshList(true);
         this.onResumption();
+        super.setRefreshList(false);
     }
 
     @Override
@@ -475,6 +477,15 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         }
     }
 
+    public void filterandSortInInitializeQueries(){
+        if(isPausedOrRefreshList()){
+            this.showProgressView();
+            this.filterandSortExecute();
+        } else {
+            this.initialFilterandSortExecute();
+        }
+    }
+
 
     public void initialFilterandSortExecute() {
         Loader<Cursor> loader = getLoaderManager().getLoader(LOADER_ID);
@@ -639,5 +650,9 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
 
     public CommonRepository commonRepository(){
         return context.commonrepository(tablename);
+    }
+
+    public boolean isPausedOrRefreshList(){
+        return isPaused() || isRefreshList();
     }
 }

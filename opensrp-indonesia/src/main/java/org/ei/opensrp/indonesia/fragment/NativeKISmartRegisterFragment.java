@@ -218,7 +218,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
       //  countqueryBUilder.joinwithKIs("kartu_ibu");
         countSelect = countqueryBUilder.mainCondition(" kartu_ibu.isClosed !='true' ");
         mainCondition = " isClosed !='true' ";
-        CountExecute();
+        super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("kartu_ibu", new String[]{"kartu_ibu.isClosed", "kartu_ibu.details", "kartu_ibu.isOutOfArea", "namalengkap", "umur", "ibu.type", "namaSuami", "ibu.ancDate", "ibu.ancKe", "ibu.hariKeKF", "anak.namaBayi", "anak.tanggalLahirAnak", "ibu.id", "noIbu", "htp"});
@@ -230,12 +230,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         currentlimit = 20;
         currentoffset = 0;
 
-        if(isPaused()){
-            super.showProgressView();
-            super.filterandSortExecute();
-        } else {
-            super.initialFilterandSortExecute();
-        }
+        super.filterandSortInInitializeQueries();
 
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -333,7 +328,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
     protected void onResumption() {
 //        super.onResumption();
         getDefaultOptionsProvider();
-        if(isPaused()) {
+        if(isPausedOrRefreshList()) {
             initializeQueries();
         }
    //     updateSearchView();

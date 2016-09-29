@@ -236,7 +236,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         countqueryBUilder.customJoin("LEFT JOIN ibu ON ibu.id = anak.ibuCaseId LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
         countSelect = countqueryBUilder.mainCondition(" anak.isClosed !='true' and anak.ibuCaseId !='' ");
         mainCondition = " isClosed !='true' and ibuCaseId !='' ";
-        CountExecute();
+        super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("anak", new String[]{"anak.isClosed", "anak.details", "namaBayi", "tanggalLahirAnak"});
@@ -247,12 +247,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         currentlimit = 20;
         currentoffset = 0;
 
-        if(isPaused()){
-            super.showProgressView();
-            super.filterandSortExecute();
-        } else {
-            super.initialFilterandSortExecute();
-        }
+        super.filterandSortInInitializeQueries();
 
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
@@ -322,7 +317,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
     protected void onResumption() {
 //        super.onResumption();
         getDefaultOptionsProvider();
-        if(isPaused()) {
+        if(isPausedOrRefreshList()) {
             initializeQueries();
         }
         //     updateSearchView();
