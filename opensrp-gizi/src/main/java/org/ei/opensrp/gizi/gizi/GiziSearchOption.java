@@ -31,15 +31,22 @@ public class GiziSearchOption implements FilterOption {
             }
         }
         if(!result) {
+            if(currentclient.getDetails().get("namaIbu") != null) {
+                if (currentclient.getDetails().get("namaIbu").toLowerCase().contains(criteria.toLowerCase())) {
+                    result = true;
+                }
+            }
+        }
+        if(!result) {
             if(currentclient.getDetails().get("namaOrtu") != null) {
-                if (currentclient.getDetails().get("namaOrtu").contains(criteria)) {
+                if (currentclient.getDetails().get("namaOrtu").toLowerCase().contains(criteria.toLowerCase())) {
                     result = true;
                 }
             }
         }
         if(!result) {
             if(currentclient.getDetails().get("dusun") != null) {
-                if (currentclient.getDetails().get("dusun").contains(criteria)) {
+                if (currentclient.getDetails().get("dusun").toLowerCase().contains(criteria.toLowerCase())) {
                     result = true;
                 }
             }
