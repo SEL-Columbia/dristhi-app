@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Vaksinator</string>
-    <string name="userNameEditText">Nama Pengguna</string>
-    <string name="passwordEditText">Kata Kunci</string>
-    <string name="login_text">Masuk</string>
+    <string name="userNameEditText">Enter user name</string>
+    <string name="passwordEditText">Enter password</string>
+    <string name="login_text">Log In</string>
     <string name="image_description">logo</string>
     <string name="spacer">spacer</string>
     <string name="loggin_in_dialog_title">Logging in…</string>
-    <string name="loggin_in_dialog_message">Mohon menunggu</string>
-    <string name="login_failed_dialog_title">Log in gagal</string>
-    <string name="login_failed_dialog_message">id/pass salah</string>
+    <string name="loggin_in_dialog_message">Please wait</string>
+    <string name="login_failed_dialog_title">Log in failed</string>
+    <string name="login_failed_dialog_message">Please check the credentials</string>
     <string name="mcareform_back_confirm_dialog_message">Are you sure you want to go back?</string>
     <string name="mcareform_back_confirm_dialog_title">Confirm form close</string>
     <string name="mcareyes_button_label">Yes</string>
@@ -19,29 +19,30 @@
     <string name="home_fp_label">FP</string>
     <string name="home_anc_label">ANC</string>
     <string name="home_pnc_label">PNC</string>
-    <string name="home_child_label">Anak</string>
-    <string name="home_report_label">Laporan</string>
+    <string name="home_child_label">Child</string>
+    <string name="home_report_label">Reporting</string>
     <string name="register_label">Register</string>
-    <string name="home_videos_label">Video</string>
+    <string name="home_videos_label">Videos</string>
 
-    <string name="videos_cannot_play_video_dialog_title">Tidak dapat memutar video.</string>
-    <string name="videos_IEC_not_installed_dialog_message">Mohon install aplikasi IEC untuk memutar video.
+    <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
+    <string name="videos_IEC_not_installed_dialog_message">Please install IEC application to play the videos.
     </string>
-    <string name="videos_unknown_error_dialog_message">Terjadi kesalahan saat memutar video.</string>
-    <string name="settings_logout_confirm_title">Konfirmasi Log out</string>
-    <string name="settings_logout_confirm_dialog_message">Anda yakin ingin keluar dari aplikasi? semua data akan dihapus.
+    <string name="videos_unknown_error_dialog_message">Unable to play video due to technical error.</string>
+    <string name="settings_logout_confirm_title">Confirm Log out</string>
+    <string name="settings_logout_confirm_dialog_message">Are you sure you want to log out? All the data will be
+        cleared.
     </string>
-    <string name="unsynced_forms_count_message">form belum disync</string>
+    <string name="unsynced_forms_count_message">forms unsynced</string>
 
-    <string name="str_next">"Selanjutnya &gt;&gt;"</string>
-    <string name="str_previous">"&lt;&lt; Sebelumnya"</string>
-    <string name="str_page_info">Halaman {0} dari {1}</string>
+    <string name="str_next">"Next &gt;&gt;"</string>
+    <string name="str_previous">"&lt;&lt; Previous"</string>
+    <string name="str_page_info">Page {0} of {1}</string>
 
-    <string name="header_name">NAMA</string>
+    <string name="header_name">NAME</string>
     <string name="header_ec_no">EC NO.</string>
     <string name="header_gplsa">GPLSA</string>
     <string name="header_fp">FP METHOD</string>
-    <string name="header_children">ANAK</string>
+    <string name="header_children">CHILDREN</string>
     <string name="header_status">STATUS</string>
     <string name="header_edit"></string>
 
@@ -366,8 +367,8 @@
     <string name="space"> </string>
     <string name="fence">|</string>
     <string name="jurim_detail">Detail Vaksinasi</string>
-    <string name="jurim_search">Vaksinasi search hint</string>
-    <string name="sort_by_nama_bayi">Nama Bayi</string>
+    <string name="jurim_search">cari Anak</string>
+    <string name="sort_by_nama_bayi">(A ke Z)</string>
     <string name="sort_by_nama_ibu">Nama Ibu</string>
     <string name="sort_by_dusun">Dusun</string>
     <string name="hb1">HB0</string>
@@ -375,27 +376,29 @@
     <string name="polio2">DPT-HB1/Pol2</string>
     <string name="polio3">DPT-HB2/Pol3</string>
     <string name="polio4">DPT3/Pol4/IPV</string>
-    <string name="ipv">Campak</string>
+    <string name="ipv">campak</string>
+
+
 
     <color name="vaccBlue">#FF9BC1FB</color>
 
-    <string name="month_list_prompt">Bulan</string>
+    <string name="month_list_prompt">Month</string>
     <string-array name="month_list_entry">
-        <item>Januari</item>
-        <item>Februari</item>
-        <item>Maret</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
         <item>April</item>
-        <item>Mei</item>
-        <item>Juni</item>
-        <item>Juli</item>
-        <item>Agustus</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
         <item>September</item>
-        <item>Oktober</item>
+        <item>October</item>
         <item>November</item>
-        <item>Desember</item>
+        <item>December</item>
     </string-array>
 
-    <string name="year_list_2015_prompt">Tahun</string>
+    <string name="year_list_2015_prompt">Year</string>
     <string-array name="year_list_2015_entry">
         <item>2015</item>
         <item>2016</item>

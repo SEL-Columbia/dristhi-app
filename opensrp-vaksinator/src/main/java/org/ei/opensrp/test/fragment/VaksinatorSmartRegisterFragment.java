@@ -146,8 +146,9 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
 //""
 //                        new CommonObjectSort(true,false,true,"age")
                         new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false,"nama_bayi",getResources().getString(R.string.sort_by_nama_bayi)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false,"nama_orang_tua",getResources().getString(R.string.sort_by_nama_ibu)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false,"village",getResources().getString(R.string.sort_by_dusun))
+                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false,"tanggal_lahir",getResources().getString(R.string.sort_by_tanggal_lahir)),
+                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false,"namaIbu",getResources().getString(R.string.sort_by_nama_ibu)),
+                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails, false,"dusun",getResources().getString(R.string.sort_by_dusun))
                 };
             }
 
@@ -323,7 +324,7 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterF
                 }else{
                     StringUtil.humanize(entry.getValue().getLabel());
                     String name = StringUtil.humanize(entry.getValue().getLabel());
-                    dialogOptionslist.add(new CommonObjectFilterOption(name,"village", CommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
+                    dialogOptionslist.add(new CommonObjectFilterOption(name,"dusun", CommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
             }
         }
     }
