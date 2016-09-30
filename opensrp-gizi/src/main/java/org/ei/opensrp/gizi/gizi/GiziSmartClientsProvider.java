@@ -139,8 +139,8 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
         viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!= null ? Integer.toString(monthRangeToToday(pc.getDetails().get("tanggalLahir")))+" bln" : "");
-        viewHolder.fatherName.setText(pc.getDetails().get("namaAyah")!=null
-                ? pc.getDetails().get("namaAyah")
+        viewHolder.fatherName.setText(pc.getDetails().get("namaIbu")!=null
+                ? pc.getDetails().get("namaIbu")
                 : pc.getDetails().get("namaOrtu") != null
                     ? pc.getDetails().get("namaOrtu")
                     : "");
