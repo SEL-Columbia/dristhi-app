@@ -126,7 +126,7 @@ public class ChildDetailActivity extends Activity {
         uniqueId.setText(getString(R.string.unique_id) + " " + (childclient.getDetails().get("unique_id") != null ? childclient.getDetails().get("unique_id"):"-"));
         nama.setText(getString(R.string.child_name) +" "+ (childclient.getDetails().get("namaBayi") != null ? childclient.getDetails().get("namaBayi") : "-"));
         father_name.setText(getString(R.string.father_name)+" "+(childclient.getDetails().get("namaAyah")!=null ? childclient.getDetails().get("namaAyah") : "-"));
-        mother_name.setText(getString(R.string.parent_name) +" : "+ (childclient.getDetails().get("namaIbu") != null ? childclient.getDetails().get("namaIbu")
+        mother_name.setText(getString(R.string.mother_name) +" : "+ (childclient.getDetails().get("namaIbu") != null ? childclient.getDetails().get("namaIbu")
                 : childclient.getDetails().get("namaOrtu")!=null
                     ? childclient.getDetails().get("namaOrtu")
                     : "-"));
@@ -137,9 +137,9 @@ public class ChildDetailActivity extends Activity {
         birthWeight.setText(getString(R.string.birth_weight) + " " + (childclient.getDetails().get("beratLahir") != null ? childclient.getDetails().get("beratLahir") + " gr" : "-"));
         weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan")+"Kg" : "- Kg"));
         height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan")+"Cm" : "- Cm"));
-        vitA.setText(getString(R.string.vitamin_a) +" : "+ (childclient.getDetails().get("vitA") != null ? yesNo(childclient.getDetails().get("vitA")) : "-"));
+        vitA.setText(getString(R.string.vitamin_a) +" : "+ (inTheSameRegion(childclient.getDetails().get("lastVitA")) ? getString(R.string.yes) : getString(R.string.no)));
         mpasi.setText(getString(R.string.mpasi) + " "+(childclient.getDetails().get("mp_asi")!=null ? yesNo(childclient.getDetails().get("mp_asi")) : "-"));
-        obatCacing.setText(getString(R.string.obatcacing)+ " "+(childclient.getDetails().get("obatcacing")!=null ? yesNo(childclient.getDetails().get("obatcacing")) : "-"));
+        obatCacing.setText(getString(R.string.obatcacing)+ " "+(inTheSameRegionAnth(childclient.getDetails().get("lastAnthelmintic")) ? getString(R.string.yes) : getString(R.string.no)));
         lastVitA.setText(getString(R.string.lastVitA)+" "+(childclient.getDetails().get("lastVitA")!=null ? childclient.getDetails().get("lastVitA") : "-"));
         lastAnthelmintic.setText(getString(R.string.lastAnthelmintic)+" "+(childclient.getDetails().get("lastAnthelmintic")!=null ? childclient.getDetails().get("lastAnthelmintic") : "-"));
         //set value
@@ -290,6 +290,35 @@ public class ChildDetailActivity extends Activity {
             mImageView.setImageBitmap(bitmap);
         }
     }
+
+    private boolean inTheSameRegion(String date){
+        if(date==null || date.length()<6)
+            return false;
+        int currentDate = Integer.parseInt(new SimpleDateFormat("MM").format(new java.util.Date()));
+        int visitDate = Integer.parseInt(date.substring(5, 7));
+
+        int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new java.util.Date()));
+        int visitYear = Integer.parseInt(date.substring(0, 4));
+
+        boolean date1 = currentDate < 2 || currentDate >=8;
+        boolean date2 = visitDate < 2 || visitDate >=8;
+
+        int indicator = currentDate == 1 ? 2:1;
+
+        return (!((!date1 && date2) || (date1 && !date2)) && ((currentYear-visitYear)<indicator));
+    }
+
+    private boolean inTheSameRegionAnth(String date){
+        if(date==null || date.length()<6)
+            return false;
+        int visitDate = Integer.parseInt(date.substring(5, 7));
+
+        int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new java.util.Date()));
+        int visitYear = Integer.parseInt(date.substring(0, 4));
+
+        return (((currentYear-visitYear)*12) + (8-visitDate)) <=12;
+    }
+
     public void saveimagereference(String bindobject,String entityid,Map<String,String> details){
         Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityid,details);
         String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
