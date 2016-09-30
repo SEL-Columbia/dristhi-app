@@ -31,6 +31,13 @@ public class VaksinatorSearchOption implements FilterOption {
             }
         }
         if(!result) {
+            if(currentclient.getDetails().get("namaIbu") != null) {
+                if (currentclient.getDetails().get("namaIbu").toLowerCase().contains(criteria.toLowerCase())) {
+                    result = true;
+                }
+            }
+        }
+        if(!result) {
             if(currentclient.getDetails().get("nama_orang_tua") != null) {
                 if (currentclient.getDetails().get("nama_orang_tua").toLowerCase().contains(criteria.toLowerCase())) {
                     result = true;
