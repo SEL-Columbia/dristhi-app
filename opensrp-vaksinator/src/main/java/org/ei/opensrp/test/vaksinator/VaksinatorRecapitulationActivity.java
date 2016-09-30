@@ -103,14 +103,37 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
     }
 
     private int recapitulation(org.ei.opensrp.commonregistry.CommonPersonObjectClients clients,String fieldName, String keyword, String filter){
+        if(!(filter.toLowerCase().contains("under") || filter.toLowerCase().contains("over")))
+            return 0;
+
         int counter = 0;
         org.ei.opensrp.commonregistry.CommonPersonObjectClient cl;
         for(int i=0;i<clients.size();i++){
             cl = ((org.ei.opensrp.commonregistry.CommonPersonObjectClient)clients.get(i));
-            if (cl.getDetails().get(fieldName)!=null)
-                counter = cl.getDetails().get(fieldName).contains(keyword) ? counter+1:counter;
+            if (cl.getDetails().get(fieldName)!=null ) {
+                String []cond = filter.split(" ");
+                counter = cl.getDetails().get(fieldName).contains(keyword)
+                          ? cond[0].equalsIgnoreCase("under")
+                            ?   duration(cl.getDetails().get("tanggal_lahir"),cl.getDetails().get(fieldName)) <= Integer.parseInt(cond[1])
+                                ? counter + 1
+                                : counter
+                            :   counter
+                          : cond[0].equalsIgnoreCase("over")
+                            ?   duration(cl.getDetails().get("tanggal_lahir"),cl.getDetails().get(fieldName)) > Integer.parseInt(cond[1])
+                                ? counter + 1
+                                :counter
+                            : counter
+                ;
+            }
         }
         return counter;
+    }
+
+    private int duration(String dateFrom,String dateTo){
+        return (((Integer.parseInt(dateTo.substring(0,4)) - Integer.parseInt(dateFrom.substring(0,4)))*360)
+                +((Integer.parseInt(dateTo.substring(5,7)) - Integer.parseInt(dateFrom.substring(5,7)))*30)
+                +(Integer.parseInt(dateTo.substring(8,10)) - Integer.parseInt(dateFrom.substring(8,10)))
+        );
     }
 
     private boolean islarger(String date, String dividerDate){
@@ -123,28 +146,28 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
         String keyword = Integer.toString(year)+"-"+(month>9 ? Integer.toString(month):"0"+Integer.toString(month));
 
         counter = recapitulation(clients,"hb0_kurang_7_hari",keyword);
-        var.hbUnder7.setText(Integer.toString(counter));
+        var.hbUnder7.setText(Integer.toString(counter+recapitulation(clients,"hb0",keyword,"under 7")));
         counter = recapitulation(clients,"hb0_lebih_7_hari",keyword);
-        var.hbOver7.setText(Integer.toString(counter));
+        var.hbOver7.setText(Integer.toString(counter + recapitulation(clients,"hb0_lebih_7_hari",keyword,"over 7")));
         counter = recapitulation(clients,"bcg_pol_1",keyword);
-        var.bcg.setText(Integer.toString(recapitulation(clients,"bcg",keyword)));
-        var.pol1.setText(Integer.toString(recapitulation(clients,"polio1",keyword)));
+        var.bcg.setText(Integer.toString(recapitulation(clients,"bcg",keyword)+counter));
+        var.pol1.setText(Integer.toString(recapitulation(clients,"polio1",keyword)+counter));
         counter = recapitulation(clients,"dpt_1_pol_2",keyword);
-        var.hb1.setText(Integer.toString(recapitulation(clients,"dpt_hb1",keyword)));
-        var.pol2.setText(Integer.toString(recapitulation(clients, "polio2", keyword)));
+        var.hb1.setText(Integer.toString(recapitulation(clients,"dpt_hb1",keyword)+counter));
+        var.pol2.setText(Integer.toString(recapitulation(clients, "polio2", keyword)+counter));
         counter = recapitulation(clients,"dpt_2_pol_3",keyword);
-        var.hb2.setText(Integer.toString(recapitulation(clients,"dpt_hb2",keyword)));
-        var.pol3.setText(Integer.toString(recapitulation(clients,"polio3",keyword)));
+        var.hb2.setText(Integer.toString(recapitulation(clients,"dpt_hb2",keyword)+counter));
+        var.pol3.setText(Integer.toString(recapitulation(clients,"polio3",keyword)+counter));
         counter = recapitulation(clients,"dpt_3_pol_4_ipv",keyword);
-        var.hb3.setText(Integer.toString(recapitulation(clients,"dpt_hb3",keyword)));
-        var.pol4.setText(Integer.toString(recapitulation(clients,"polio4",keyword)));
-        var.ipv.setText(Integer.toString(recapitulation(clients,"ipv",keyword)));
+        var.hb3.setText(Integer.toString(recapitulation(clients,"dpt_hb3",keyword)+counter));
+        var.pol4.setText(Integer.toString(recapitulation(clients,"polio4",keyword)+counter));
+        var.ipv.setText(Integer.toString(recapitulation(clients,"ipv",keyword)+counter));
         counter = recapitulation(clients,"imunisasi_campak",keyword);
         var.measles.setText(Integer.toString(recapitulation(clients,"imunisasi_campak",keyword)));
         counter = recapitulation(clients,"mutasi_meninggal_kurang_30hari",keyword);
-        var.diedu30.setText(Integer.toString(counter));
+        var.diedu30.setText(Integer.toString(counter + recapitulation(clients,"tanggal_meninggal",keyword,"under 30")));
         counter = recapitulation(clients,"mutasi_meninggal_lebih_30hari",keyword);
-        var.diedo30.setText(Integer.toString(counter));
+        var.diedo30.setText(Integer.toString(counter + recapitulation(clients,"tanggal_meninggal",keyword,"over 30")));
         counter = recapitulation(clients,"tanggal_pindah",keyword);
         var.moving.setText(Integer.toString(counter));
     }
@@ -173,10 +196,11 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
         void setDefaultSpinnerDate(){
             String[]date = (new java.text.SimpleDateFormat("yyyy-MM-dd").format(new Date())).split("-");
             monthSpinner.setSelection(Integer.parseInt(date[1])-1);
-            yearSpinner.setSelection(Integer.parseInt(date[0])-2015);
+            yearSpinner.setSelection(Integer.parseInt(date[0]) - 2015);
         }
         void setSubtitle(String villageName){
-            subtitle.setText("Rekapitulasi Imunisasi di Desa "+villageName+" Bulan "+monthSpinner.getSelectedItem().toString()+" Tahun "+yearSpinner.getSelectedItem().toString());
+            subtitle.setText("Rekapitulasi Imunisasi di Desa " + villageName + " Bulan " + monthSpinner.getSelectedItem().toString() + " Tahun " + yearSpinner.getSelectedItem().toString());
         }
+
     }
 }
