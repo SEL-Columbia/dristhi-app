@@ -87,8 +87,15 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nama Ibu"
+                    android:text="Nama Ayah"
                     android:id="@+id/textView2"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Ibu"
+                    android:id="@+id/textView2b"
                     android:textSize="14dp" />
 
                 <TextView
@@ -101,8 +108,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Desa/Dusun"
+                    android:text="Desa"
                     android:id="@+id/textView5"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dusun"
+                    android:id="@+id/textView5b"
                     android:textSize="14dp" />
 
                 <TextView
@@ -152,6 +166,13 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text=": "
+                    android:id="@+id/fatherName"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=": "
                     android:id="@+id/motherName"
                     android:textSize="14dp" />
 
@@ -167,6 +188,13 @@
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/village"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=": "
+                    android:id="@+id/subvillage"
                     android:textSize="14dp" />
 
                 <TextView
@@ -203,7 +231,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:layout_width="38dp"
+                android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_row="3"
                 android:layout_column="4"></FrameLayout>
@@ -301,20 +329,6 @@
                         android:layout_height="wrap_content"
                         android:text="Campak"
                         android:id="@+id/textView29"
-                        android:textSize="14dp" />
-
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mutasi/Kematian &lt; 30 hari"
-                        android:id="@+id/textView30"
-                        android:textSize="14dp" />
-
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mutasi/Pindah"
-                        android:id="@+id/textView32"
                         android:textSize="14dp" />
 
                     <TextView
@@ -433,20 +447,6 @@
                     android:layout_height="wrap_content"
                     android:text=": "
                     android:id="@+id/measles"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text=": "
-                    android:id="@+id/mutationUnder30"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text=": "
-                    android:id="@+id/mutationMoving"
                     android:textSize="14dp" />
 
                 <TextView
