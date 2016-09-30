@@ -131,20 +131,22 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
         int umur = pc.getDetails().get("tanggal_lahir") != null ? age(pc.getDetails().get("tanggal_lahir")) : 0;
         //set default image for mother
-        viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(pc.getDetails().get("jenis_kelamin").contains("em")
+        viewHolder.profilepic.setImageDrawable( pc.getDetails().get("jenis_kelamin") != null
+            ? context.getResources().getDrawable(pc.getDetails().get("jenis_kelamin").contains("em")
                 ? R.drawable.child_girl_infant
-                : R.drawable.child_boy_infant));
+                : R.drawable.child_boy_infant)
+            : context.getResources().getDrawable(R.drawable.child_boy_infant)
+        );
+
 
         viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : " ");
 
         viewHolder.motherName.setText(
-                pc.getDetails().get("namaAyah")!=null
-                ? pc.getDetails().get("namaAyah")
-                : pc.getDetails().get("namaIbu")!=null
-                    ? pc.getDetails().get("namaIbu")
-                    : pc.getDetails().get("nama_orang_tua")!=null
-                        ?pc.getDetails().get("nama_orang_tua")
-                        :" ");
+            pc.getDetails().get("namaIbu")!=null
+                ? pc.getDetails().get("namaIbu")
+                : pc.getDetails().get("nama_orang_tua")!=null
+                    ? pc.getDetails().get("nama_orang_tua")
+                    :" ");
 
         viewHolder.village.setText(pc.getDetails().get("village")!= null
                 ? pc.getDetails().get("village").length()>4
@@ -155,20 +157,19 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
                 : pc.getDetails().get("dusun")!= null
                     ? pc.getDetails().get("dusun")
                     : " ");
-        viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null?pc.getDetails().get("tanggal_lahir"):" ");
+        viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null
+                ? pc.getDetails().get("tanggal_lahir")
+                : " ");
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null
                 ? pc.getDetails().get("jenis_kelamin").contains("em")
                     ? "Perempuan"
                     : "Laki-laki"
                 : " ");
 
-        viewHolder.hb0.setText(hasDate(pc,"hb0")
-            ? pc.getDetails().get("hb0")
-            : (" ")
-        );
+        viewHolder.hb0.setText(latestDate(new String[]{pc.getDetails().get("hb_1_under_7"),pc.getDetails().get("hb_1_over_7"),pc.getDetails().get("hb0")}));
 
         viewHolder.pol1.setText(
-                latestDate(new String[]{pc.getDetails().get("bcg"),pc.getDetails().get("polio1")})
+                latestDate(new String[]{pc.getDetails().get("bcg_pol_1"),pc.getDetails().get("bcg"),pc.getDetails().get("polio1")})
 //            hasDate(pc,"bcg")//pc.getDetails().get("bcg")!=null && pc.getDetails().get("bcg").length()>6
 //                ? pc.getDetails().get("bcg")
 //                : hasDate(pc,"polio1")//pc.getDetails().get("polio1")!=null && pc.getDetails().get("polio1").length()>6
@@ -177,7 +178,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         );
 
         viewHolder.pol2.setText(
-                latestDate(new String[]{pc.getDetails().get("dpt_hb1"),pc.getDetails().get("polio2")})
+                latestDate(new String[]{pc.getDetails().get("dpt_1_pol_2"),pc.getDetails().get("dpt_hb1"),pc.getDetails().get("polio2")})
 //            hasDate(pc,"dpt_hb1")//pc.getDetails().get("dpt_hb1")!=null && pc.getDetails().get("dpt_hb1").length()>6
 //                ? pc.getDetails().get("dpt_hb1")
 //                : hasDate(pc,"polio2")//pc.getDetails().get("polio2")!=null && pc.getDetails().get("polio_2").length()>6
@@ -186,7 +187,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         );
 
         viewHolder.pol3.setText(
-                latestDate(new String[]{pc.getDetails().get("dpt_hb2"),pc.getDetails().get("polio3")})
+                latestDate(new String[]{pc.getDetails().get("dpt_2_pol_3"),pc.getDetails().get("dpt_hb2"),pc.getDetails().get("polio3")})
 //              hasDate(pc,"dpt_hb2")//pc.getDetails().get("dpt_hb2")!=null && pc.getDetails().get("dpt_hb_2").length()>6
 //                 ? pc.getDetails().get("dpt_hb2")
 //                 : hasDate(pc,"polio3")//pc.getDetails().get("polio3")!=null && pc.getDetails().get("polio3").length()>6
@@ -195,7 +196,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         );
 
         viewHolder.pol4.setText(
-                latestDate(new String[]{pc.getDetails().get("dpt_hb3"),pc.getDetails().get("polio4"),pc.getDetails().get("ipv")})
+                latestDate(new String[]{pc.getDetails().get("dpt_3_pol_4_ipv"),pc.getDetails().get("dpt_hb3"),pc.getDetails().get("polio4"),pc.getDetails().get("ipv")})
 //             hasDate(pc,"dpt_hb3")//pc.getDetails().get("dpt_hb3")!=null && pc.getDetails().get("dpt_hb3").length()>6
 //                ? pc.getDetails().get("dpt_hb3")
 //                : hasDate(pc,"polio4")//pc.getDetails().get("polio4")!=null && pc.getDetails().get("polio4").length()>6
