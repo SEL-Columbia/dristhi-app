@@ -65,6 +65,8 @@ public class ChildDetailActivity extends Activity {
         setContentView(R.layout.child_detail_activity);
         TextView name = (TextView) findViewById(R.id.childid);
         TextView fathersname = (TextView) findViewById(R.id.fathersname);
+        TextView mothersname = (TextView) findViewById(R.id.mothersname);
+
         TextView age = (TextView) findViewById(R.id.age);
         TextView jivitahhid = (TextView) findViewById(R.id.jivitahhid);
         TextView godhhid = (TextView) findViewById(R.id.gobhhid);
@@ -86,7 +88,9 @@ public class ChildDetailActivity extends Activity {
 
 
         name.setText(humanize((ChildClient.getDetails().get("FWBNFCHILDNAME") != null ? ChildClient.getDetails().get("FWBNFCHILDNAME") : "").replace("+", "_")));
-        fathersname.setText(Html.fromHtml(getString(R.string.child_details_fathers_name_label) +"<b> "+ (mcaremotherObject.getDetails().get("FWHUSNAME") != null ? mcaremotherObject.getDetails().get("FWHUSNAME") : "")+ "</b>"));
+        fathersname.setText(Html.fromHtml(getString(R.string.child_details_fathers_name_label) + "<b> " + humanize((mcaremotherObject.getDetails().get("FWHUSNAME") != null ? mcaremotherObject.getDetails().get("FWHUSNAME") : "")) + "</b>"));
+        mothersname.setText(Html.fromHtml(getString(R.string.child_details_mothers_name_label) +"<b> "+ humanize((mcaremotherObject.getColumnmaps().get("FWWOMFNAME") != null ? mcaremotherObject.getColumnmaps().get("FWWOMFNAME") : ""))+ "</b>"));
+
         age.setText(Html.fromHtml(getString(R.string.elco_age_label) +"<b> "+ age(ChildClient) + " days "+ "</b>"));
         godhhid.setText(Html.fromHtml(getString(R.string.hhid_gob_elco_label) +"<b> "+ (mcaremotherObject.getColumnmaps().get("GOBHHID")!=null?mcaremotherObject.getColumnmaps().get("GOBHHID"):"")+ "</b>"));
         jivitahhid.setText(Html.fromHtml(getString(R.string.hhiid_jivita_elco_label)+"<b> "+(mcaremotherObject.getColumnmaps().get("JiVitAHHID")!=null?mcaremotherObject.getColumnmaps().get("JiVitAHHID"):"")+ "</b>"));

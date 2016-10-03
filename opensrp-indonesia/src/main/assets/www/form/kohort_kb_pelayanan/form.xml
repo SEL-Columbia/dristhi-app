@@ -46,6 +46,7 @@
         <span class="question-label active" data-itext-id="/tambah_kb_1/tanggal_kunjungan:label"
             lang="Bahasa">Tanggal kunjungan
         </span>
+        <span class="required">*</span>
         <span class="question-label " data-itext-id="/tambah_kb_1/tanggal_kunjungan:label"
             lang="en">Visit date
         </span>
@@ -56,7 +57,7 @@
         <span class="or-hint " data-itext-id="/tambah_kb_1/tanggal_kunjungan:hint" lang="en">Fill in
             date of visit/care service
         </span>
-        <input name="/tambah_kb_1/tanggal_kunjungan" data-type-xml="date" type="date" />
+        <input name="/tambah_kb_1/tanggal_kunjungan" data-type-xml="date" required="required" type="date" />
     </label>
     <label class="note non-select ">
         <span class="question-label active" data-itext-id="/tambah_kb_1/generated_note_name_10:label"
@@ -150,11 +151,11 @@
                 <span class="question-label " data-itext-id="/tambah_kb_1/alki:label" lang="en">ALKI
                     (Anemia, MUAC, Chronical Diseases, Sexually Transmitted Infection)
                 </span>
-                <span class="required">*</span>
+
             </legend>
             <div class="option-wrapper">
                 <label class="">
-                    <input name="/tambah_kb_1/alki" data-type-xml="select" required="required" type="checkbox"
+                    <input name="/tambah_kb_1/alki" data-type-xml="select"  type="checkbox"
                         value="HB" />
                     <span class="option-label active" data-itext-id="/tambah_kb_1/alki/HB:label"
                         lang="Bahasa">HB
@@ -164,7 +165,7 @@
                     </span>
                 </label>
                 <label class="">
-                    <input name="/tambah_kb_1/alki" data-type-xml="select" required="required" type="checkbox"
+                    <input name="/tambah_kb_1/alki" data-type-xml="select"  type="checkbox"
                         value="LILA" />
                     <span class="option-label active" data-itext-id="/tambah_kb_1/alki/LILA:label"
                         lang="Bahasa">LILA
@@ -175,7 +176,7 @@
                     </span>
                 </label>
                 <label class="">
-                    <input name="/tambah_kb_1/alki" data-type-xml="select" required="required"
+                    <input name="/tambah_kb_1/alki" data-type-xml="select"
                         type="checkbox" value="Penyakit_Kronis" />
                     <span class="option-label active" data-itext-id="/tambah_kb_1/alki/Penyakit_Kronis:label"
                         lang="Bahasa">Penyakit Kronis
@@ -186,7 +187,7 @@
                     </span>
                 </label>
                 <label class="">
-                    <input name="/tambah_kb_1/alki" data-type-xml="select" required="required" type="checkbox"
+                    <input name="/tambah_kb_1/alki" data-type-xml="select"  type="checkbox"
                         value="IMS" />
                     <span class="option-label active" data-itext-id="/tambah_kb_1/alki/IMS:label"
                         lang="Bahasa">IMS

@@ -10,7 +10,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="2.75"
+        android:layout_weight="3"
         android:id="@+id/profile_info_layout">
 
         <FrameLayout
@@ -55,33 +55,40 @@
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:weightSum="4">
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+                style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
                 android:text="Medium Text"
-                android:id="@+id/name" />
+                android:id="@+id/name"
+                android:layout_weight="1" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:text="Medium Text"
-                android:id="@+id/spousename" />
+                android:id="@+id/spousename"
+                android:textSize="12sp"
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    style="@style/CustomFontTextViewStyle.ListView.Small"
+                    style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
                     android:text="Medium Text"
                     android:textSize="12sp"
                     android:textColor="@color/alert_urgent_red"
@@ -96,7 +103,7 @@
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
                     android:text="Medium Text"
@@ -113,10 +120,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle"
+                style="@style/CustomFontTextViewStyle.noPadding"
                 android:text="Medium Text"
                 android:textSize="14sp"
-                android:id="@+id/village" />
+                android:id="@+id/village"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -127,7 +135,8 @@
             android:text="00"
             android:id="@+id/age"
             android:gravity="right"
-            android:layout_marginRight="1dp" />
+            android:layout_marginRight="1dp"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -149,7 +158,6 @@
             android:text="New Text"
             style="@style/CustomFontTextViewStyle.noPadding"
             android:id="@+id/nid"
-            android:layout_marginTop="3dp"
             android:textSize="12sp"
             android:layout_marginLeft="2dp" />
 
@@ -177,7 +185,7 @@
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text=""
             style="@style/CustomFontTextViewStyle.noPadding"
             android:id="@+id/edd"
             android:textSize="12sp"
@@ -199,23 +207,19 @@
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1.25"
-        android:layout_gravity="center" >
+        android:layout_weight="1.5">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:id="@+id/anc1tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+                android:src="@mipmap/doneintime"/>
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -231,17 +235,14 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
-                android:id="@+id/anc2tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/doneintime"
+                android:id="@+id/anc2tick" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -258,17 +259,15 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:id="@+id/anc3tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+                android:src="@mipmap/doneintime"
+                />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -285,17 +284,15 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <org.ei.opensrp.view.customControls.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✔"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:id="@+id/anc4tick"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/CustomFontTextViewStyle.ListView.Small.NoPadding"
-                android:layout_margin="1dp"
-                android:textColor="@color/alert_complete_green" />
+                android:src="@mipmap/cross"
+                android:scaleType="fitXY" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -319,14 +316,14 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1.5"
+        android:layout_weight="1.25"
         >
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="New Button"
-            style="@style/CustomFontTextViewStyle.ListView.Small"
+            style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"
             android:id="@+id/anc_reminder_due_date"
             android:background="@color/status_bar_text_almost_white"
             android:layout_margin="2dp" />
@@ -340,13 +337,13 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1.5">
+        android:layout_weight="1.25">
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="New Button"
-            style="@style/CustomFontTextViewStyle.ListView.Small"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:id="@+id/nbnf_due_date"
             android:background="@color/status_bar_text_almost_white"
             android:layout_margin="2dp" />

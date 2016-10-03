@@ -1,5 +1,5 @@
 {
-  "form_data_definition_version": "15",
+  "form_data_definition_version": "16",
   "form": {
     "default_bind_path": "/model/instance/CensusNewWomanRegistrationForm",
     "bind_type": "household",
@@ -172,6 +172,10 @@
           {
             "name": "FWCWOMSTRMEN",
             "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWCWOMSTRMEN"
+          },
+          {
+            "name": "FWCWOMSTER",
+            "bind": "/model/instance/CensusNewWomanRegistrationForm/woman/FWCWOMSTER"
           },
           {
             "name": "FWCWOMHUSALV",

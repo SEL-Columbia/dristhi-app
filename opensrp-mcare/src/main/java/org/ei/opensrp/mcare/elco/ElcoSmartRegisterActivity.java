@@ -23,14 +23,17 @@ import org.ei.opensrp.mcare.fragment.ElcoSmartRegisterFragment;
 import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.AllSharedPreferences;
+import org.ei.opensrp.service.FormSubmissionService;
 import org.ei.opensrp.service.ZiggyService;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
 import org.ei.opensrp.view.dialog.DialogOption;
+import org.ei.opensrp.view.dialog.DialogOptionModel;
 import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
+import org.ei.opensrp.view.fragment.SecuredFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
 import org.json.JSONObject;
@@ -61,6 +64,8 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     private String[] formNames = new String[]{};
     private android.support.v4.app.Fragment mBaseFragment = null;
 
+    private android.support.v4.app.Fragment mProfileFragment = null;
+
     ZiggyService ziggyService;
 
     @Override
@@ -73,9 +78,10 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
         formNames = this.buildFormNameList();
         mBaseFragment = new ElcoSmartRegisterFragment();
+        mProfileFragment = new ElcoDetailActivity();
 
         // Instantiate a ViewPager and a PagerAdapter.
-        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
+        mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment,mProfileFragment);
         mPager.setOffscreenPageLimit(formNames.length);
         mPager.setAdapter(mPagerAdapter);
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -92,6 +98,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         List<String> formNames = new ArrayList<String>();
         formNames.add("psrf_form");
         formNames.add("mis_elco");
+        formNames.add("mis_census");
 //        DialogOption[] options = getEditOptions();
 //        for (int i = 0; i < options.length; i++){
 //            formNames.add(((OpenFormOption) options[i]).getFormName());
@@ -100,7 +107,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     }
 
     public void onPageChanged(int page){
-        setRequestedOrientation(page == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(page <2 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         LoginActivity.setLanguage();
     }
     @Override
@@ -128,6 +135,15 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
     @Override
     public void startRegistration() {
+    }
+    @Override
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+        try {
+            LoginActivity.setLanguage();
+        }catch (Exception e){
+
+        }
+        super.showFragmentDialog(dialogOptionModel, tag);
     }
 
     public DialogOption[] getEditOptions(CommonPersonObjectClient elco) {
@@ -174,7 +190,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     public void startFormActivity(String formName, String entityId, String metaData) {
 //        Log.v("fieldoverride", metaData);
         try {
-            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + ((BaseRegisterActivityPagerAdapter)mPagerAdapter).offset; // add the offset
             if (entityId != null || metaData != null){
                 String data = null;
                 //check if there is previously saved data for the form
@@ -257,6 +273,10 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
 
             ziggyService.saveForm(getParams(submission), submission.instance());
+
+            FormSubmissionService formSubmissionService = context.formSubmissionService();
+            formSubmissionService.updateFTSsearch(submission);
+
             Log.v("we are here", "hhregister");
             //switch to forms list fragmentstregi
             switchToBaseFragment(formSubmission);
@@ -279,27 +299,49 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mPager.setCurrentItem(0, false);
-                SecuredNativeSmartRegisterFragment registerFragment = (SecuredNativeSmartRegisterFragment) findFragmentByPosition(0);
-                if (registerFragment != null && data != null) {
-                    registerFragment.refreshListView();
-                }
+
 
                 //hack reset the form
-                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
-                if (displayFormFragment != null) {
-                    displayFormFragment.hideTranslucentProgressDialog();
-                    displayFormFragment.setFormData(null);
-                }
+                if (prevPageIndex != 1) {
+                    mPager.setCurrentItem(0, false);
+                    SecuredNativeSmartRegisterFragment registerFragment = (SecuredNativeSmartRegisterFragment) findFragmentByPosition(0);
+                    if (registerFragment != null && data != null) {
+                        registerFragment.refreshListView();
+                    }
+                    DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
+                    if (displayFormFragment != null) {
+                        displayFormFragment.hideTranslucentProgressDialog();
+                        displayFormFragment.setFormData(null);
+                    }
 
-                displayFormFragment.setRecordId(null);
+                    displayFormFragment.setRecordId(null);
+                }else if (prevPageIndex == 4) {
+                    mPager.setCurrentItem(1, false);
+                    SecuredFragment registerFragment = (SecuredFragment) findFragmentByPosition(1);
+                    DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(prevPageIndex);
+                    if (displayFormFragment != null) {
+                        displayFormFragment.hideTranslucentProgressDialog();
+                        displayFormFragment.setFormData(null);
+                    }
+
+
+                    displayFormFragment.setRecordId(null);
+                    ((ElcoDetailActivity)mProfileFragment).initiallize();
+                    showProfileView();
+                }else {
+                    mPager.setCurrentItem(0, false);
+                    SecuredNativeSmartRegisterFragment registerFragment = (SecuredNativeSmartRegisterFragment) findFragmentByPosition(0);
+                    if (registerFragment != null && data != null) {
+                        registerFragment.refreshListView();
+                    }
+                }
             }
         });
 
     }
     @Override
     public void onBackPressed() {
-        if (currentPage != 0){
+        if (currentPage > 1){
             retrieveAndSaveUnsubmittedFormData();
             String BENGALI_LOCALE = "bn";
             AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(Context.getInstance().applicationContext()));
@@ -347,6 +389,8 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 //            switchToBaseFragment(null);
         }else if (currentPage == 0) {
             super.onBackPressed(); // allow back key only if we are
+        }else if (currentPage == 1) {
+            switchToBaseFragment(null); // allow back key only if we are
         }
     }
 
@@ -387,5 +431,11 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     protected void onPause() {
         super.onPause();
         retrieveAndSaveUnsubmittedFormData();
+    }
+
+    public void showProfileView() {
+        ElcoDetailActivity profile = (ElcoDetailActivity)findFragmentByPosition(1);
+        profile.initiallize();
+        mPager.setCurrentItem(1);
     }
 }

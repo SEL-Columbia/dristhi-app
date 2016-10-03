@@ -2,10 +2,11 @@ package org.ei.opensrp.cursoradapter;
 
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
-import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,15 +16,14 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.R;
-import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.domain.ReportMonth;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -39,24 +39,23 @@ import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
-import org.ei.opensrp.view.fragment.SecuredFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.joda.time.LocalDate;
 
 import java.util.List;
 
-import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
-import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.ei.opensrp.AllConstants.SHORT_DATE_FORMAT;
 
 /**
  * Created by koros on 10/12/15.
  */
-public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends SecuredNativeSmartRegisterFragment {
+public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends SecuredNativeSmartRegisterFragment implements
+        LoaderManager.LoaderCallbacks<Cursor> {
+
 
     public static final String DIALOG_TAG = "dialog";
     public static final List<? extends DialogOption> DEFAULT_FILTER_OPTIONS = asList(new AllClientsFilter());
@@ -66,10 +65,17 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     public static int currentoffset = 0;
     public String mainSelect;
     public String filters = "";
+    public String mainCondition = "";
     public String Sortqueries;
-    public String currentquery;
-    private String tablename;
+    private String currentquery;
+    public String tablename;
     public String countSelect;
+    public String joinTable="";
+
+    private static final int LOADER_ID = 0;
+    private static final String INIT_LOADER = "init";
+
+
     public String getTablename() {
         return tablename;
     }
@@ -156,7 +162,9 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     }
 
     public void refreshListView(){
+        super.setRefreshList(true);
         this.onResumption();
+        super.setRefreshList(false);
     }
 
     @Override
@@ -421,16 +429,27 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
     }
     private int getCurrentPageCount() {
         if(currentoffset != 0) {
-            return (totalcount / currentlimit)-((totalcount-currentoffset)/currentlimit);
+            if((currentoffset/currentlimit) != 0) {
+                return  ((currentoffset / currentlimit)+1);
+            }else {
+                return 1;
+            }
         }else{
-            return 0;
+            return 1;
+        }
+    }
+    private int getTotalcount(){
+        if(totalcount%currentlimit == 0){
+           return (totalcount/currentlimit);
+        }else {
+            return ((totalcount / currentlimit)+1);
         }
     }
     public void refresh() {
         pageInfoView.setText(
                 format(getResources().getString(R.string.str_page_info),
                         (getCurrentPageCount()),
-                        (totalcount/currentlimit)));
+                        getTotalcount()));
         nextPageView.setVisibility(hasNextPage() ? VISIBLE : INVISIBLE);
         previousPageView.setVisibility(hasPreviousPage() ? VISIBLE : INVISIBLE);
     }
@@ -458,29 +477,96 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         }
     }
 
+    public void filterandSortInInitializeQueries(){
+        if(isPausedOrRefreshList()){
+            this.showProgressView();
+            this.filterandSortExecute();
+        } else {
+            this.initialFilterandSortExecute();
+        }
+    }
+
+
+    public void initialFilterandSortExecute() {
+        Loader<Cursor> loader = getLoaderManager().getLoader(LOADER_ID);
+        if(loader != null) {
+            return;
+        }
+
+        showProgressView();
+
+        getLoaderManager().initLoader(LOADER_ID, null, this);
+    }
+
     public void filterandSortExecute() {
         refresh();
-        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
-        sqb.addCondition(filters);
-        currentquery =  sqb.orderbyCondition(Sortqueries);
-        String query = sqb.Endquery(sqb.addlimitandOffset(currentquery,currentlimit,currentoffset));
-        CommonRepository commonRepository = context.commonrepository(tablename);
-        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
-        clientAdapter.swapCursor(c);
+
+        getLoaderManager().restartLoader(LOADER_ID, null, this);
     }
+
+    public void showProgressView(){
+        if(clientsProgressView.getVisibility() == INVISIBLE) {
+            clientsProgressView.setVisibility(View.VISIBLE);
+        }
+
+        if(clientsView.getVisibility() == VISIBLE) {
+            clientsView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private String filterandSortQuery(){
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
+
+        String query = "";
+        try{
+            if(commonRepository().isFts() && (filters != null && !StringUtils.containsIgnoreCase(filters, "like"))){
+                String sql = sqb.searchQueryFts(tablename, joinTable, mainCondition, filters, Sortqueries, currentlimit, currentoffset);
+                List<String> ids = commonRepository().findSearchIds(sql);
+                query = sqb.toStringFts(ids, tablename + "." + CommonRepository.ID_COLUMN, Sortqueries);
+                query = sqb.Endquery(query);
+            } else {
+                sqb.addCondition(filters);
+                query = sqb.orderbyCondition(Sortqueries);
+                query = sqb.Endquery(sqb.addlimitandOffset(query,currentlimit,currentoffset));
+
+            }
+        }catch (Exception e){
+            Log.e(getClass().getName(), e.toString(), e);
+        }
+
+        return query;
+    }
+
     public void CountExecute(){
-        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(countSelect);
-        sqb.addCondition(filters);
-        currentquery =  sqb.orderbyCondition(Sortqueries);
-        String query = sqb.Endquery(currentquery);
-        CommonRepository commonRepository = context.commonrepository(tablename);
-        Cursor c = commonRepository.RawCustomQueryForAdapter(query);
-        c.moveToFirst();
-        totalcount= c.getInt(0);
-        Log.v("total count here",""+totalcount);
-        currentlimit = 20;
-        currentoffset = 0;
-        c.close();
+        Cursor c = null;
+
+        try {
+            SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(countSelect);
+            String query = "";
+            if (commonRepository().isFts() && (filters != null && !StringUtils.containsIgnoreCase(filters, "like"))) {
+                String sql = sqb.countQueryFts(tablename, joinTable, mainCondition, filters);
+                List<String> ids = commonRepository().findSearchIds(sql);
+                query = sqb.toStringFts(ids, tablename + "." + CommonRepository.ID_COLUMN);
+                query = sqb.Endquery(query);
+            } else {
+                sqb.addCondition(filters);
+                query = sqb.orderbyCondition(Sortqueries);
+                query = sqb.Endquery(query);
+            }
+            c = commonRepository().RawCustomQueryForAdapter(query);
+            c.moveToFirst();
+            totalcount = c.getInt(0);
+            Log.v("total count here", "" + totalcount);
+            currentlimit = 20;
+            currentoffset = 0;
+
+        }catch (Exception e){
+            Log.e(getClass().getName(), e.toString(), e);
+        } finally {
+            if(c != null) {
+                c.close();
+            }
+        }
     }
 
     public class NavBarActionsHandler implements View.OnClickListener {
@@ -517,5 +603,56 @@ public abstract class SecuredNativeSmartRegisterCursorAdapterFragment extends Se
         private void clearSearchText() {
             searchView.setText("");
         }
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, final Bundle args) {
+        switch (id) {
+            case LOADER_ID:
+                // Returns a new CursorLoader
+                return new CursorLoader(getActivity()){
+                    @Override
+                    public Cursor loadInBackground() {
+                        String query = filterandSortQuery();
+                        Cursor cursor = commonRepository().RawCustomQueryForAdapter(query);
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(clientsProgressView.getVisibility() == VISIBLE) {
+                                    clientsProgressView.setVisibility(INVISIBLE);
+                                }
+                                if(clientsView.getVisibility() == INVISIBLE) {
+                                    clientsView.setVisibility(VISIBLE);
+                                }
+                            };
+                        });
+
+                         return cursor;
+                    }
+                };
+            default:
+                // An invalid id was passed in
+                return null;
+        }
+
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        clientAdapter.swapCursor(cursor);
+    }
+
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        clientAdapter.swapCursor(null);
+    }
+
+    public CommonRepository commonRepository(){
+        return context.commonrepository(tablename);
+    }
+
+    public boolean isPausedOrRefreshList(){
+        return isPaused() || isRefreshList();
     }
 }

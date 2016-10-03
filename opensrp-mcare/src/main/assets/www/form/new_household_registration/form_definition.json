@@ -1,5 +1,5 @@
 {
-  "form_data_definition_version": "15",
+  "form_data_definition_version": "16",
   "form": {
     "default_bind_path": "/model/instance/FWNewHH",
     "bind_type": "household",
@@ -202,6 +202,10 @@
           {
             "name": "FWCWOMSTRMEN",
             "bind": "/model/instance/FWNewHH/woman/FWCWOMSTRMEN"
+          },
+          {
+            "name": "FWCWOMSTER",
+            "bind": "/model/instance/FWNewHH/woman/FWCWOMSTER"
           },
           {
             "name": "FWCWOMHUSALV",

@@ -58,7 +58,7 @@
       },
       {
         "name": "pelayananfe",
-        "bind": "/model/instance/PNC_visit_reviewed/pelayanan_fe"
+        "bind": "/model/instance/PNC_visit_reviewed/pelayananfe"
       },
       {
         "name": "vitaminA2jamPP",

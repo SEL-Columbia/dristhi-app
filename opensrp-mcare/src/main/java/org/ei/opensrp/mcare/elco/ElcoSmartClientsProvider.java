@@ -20,6 +20,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
+import org.ei.opensrp.mcare.application.McareApplication;
 import org.ei.opensrp.mcare.household.HouseHoldDetailActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.AlertService;
@@ -102,18 +103,27 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
 //
 //        id.setText(pc.getDetails().get("case_id")!=null?pc.getCaseId():"");
         name.setText(humanize(pc.getColumnmaps().get("FWWOMFNAME")!=null?pc.getColumnmaps().get("FWWOMFNAME"):""));
-        spousename.setText(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):"");
-        gobhhid.setText(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):"");
+        spousename.setText(humanize(pc.getDetails().get("FWHUSNAME")!=null?pc.getDetails().get("FWHUSNAME"):""));
+        gobhhid.setText(" "+(pc.getColumnmaps().get("GOBHHID")!=null?pc.getColumnmaps().get("GOBHHID"):""));
         jivitahhid.setText(pc.getColumnmaps().get("JiVitAHHID")!=null?pc.getColumnmaps().get("JiVitAHHID"):"");
         village.setText((humanize((pc.getDetails().get("FWWOMMAUZA_PARA") != null ? pc.getDetails().get("FWWOMMAUZA_PARA") : "").replace("+", "_"))));
+        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+") ");
 
+        if((pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"").length()>0) {
+            String NIDSourcestring = "NID: " +  (pc.getDetails().get("FWWOMNID") != null ? pc.getDetails().get("FWWOMNID") : "") ;
+            nid.setText(Html.fromHtml(NIDSourcestring));
+            nid.setVisibility(View.VISIBLE);
+        }else{
+            nid.setVisibility(View.GONE);
+        }
+        if((pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):"").length()>0) {
+            String BRIDSourcestring = "BRID: " + (pc.getDetails().get("FWWOMBID") != null ? pc.getDetails().get("FWWOMBID") : "") ;
+            brid.setText(Html.fromHtml(BRIDSourcestring));
+            brid.setVisibility(View.VISIBLE);
+        }else{
+            brid.setVisibility(View.GONE);
+        }
 
-
-        age.setText("("+(pc.getDetails().get("FWWOMAGE")!=null?pc.getDetails().get("FWWOMAGE"):"")+")");
-        String NIDSourcestring = "NID : " + "<b>" + (pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):"") + "</b> ";
-        nid.setText(Html.fromHtml(NIDSourcestring));
-        String BRIDSourcestring = "BRID : " + "<b>" + (pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):"") + "</b> ";
-        brid.setText(Html.fromHtml(BRIDSourcestring));
 //        nid.setText("NID :" +(pc.getDetails().get("FWWOMNID")!=null?pc.getDetails().get("FWWOMNID"):""));
 //        brid.setText("BRID :" +(pc.getDetails().get("FWWOMBID")!=null?pc.getDetails().get("FWWOMBID"):""));
         lmp.setText(pc.getDetails().get("FWPSRLMP")!=null?pc.getDetails().get("FWPSRLMP"):"");
@@ -313,7 +323,9 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                 });
             }
         }
-        CheckMisElcoSchedule(pc, mis_elco_due,smartRegisterClient,householdparent);
+        lmp.setText(McareApplication.convertToEnglishDigits(lmp.getText().toString()));
+        psrfdue.setText(McareApplication.convertToEnglishDigits(psrfdue.getText().toString()));
+        CheckMisElcoSchedule(pc, mis_elco_due, smartRegisterClient, householdparent);
         itemView.setLayoutParams(clientViewLayoutParams);
         ;
     }
@@ -353,7 +365,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
 
         if(pc.getDetails().get("FWMISELCODATE")!=null){
                  try {
-                    Date regdate = format.parse(householdparent.getDetails().get("FWMISELCODATE"));
+                    Date regdate = format.parse(pc.getDetails().get("FWMISELCODATE"));
 
                     lastdate = regdate;
                 } catch (Exception e) {
@@ -401,6 +413,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
 
             mis_elco_due.setText(format.format(date));
         }
+
 
         List<Alert> alertlist_for_client = org.ei.opensrp.Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "mis_elco");
         for(int i = 0;i<alertlist_for_client.size();i++){
@@ -452,6 +465,7 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                 });
             }
         }
+        mis_elco_due.setText(McareApplication.convertToEnglishDigits(mis_elco_due.getText().toString()));
     }
 
     @Override

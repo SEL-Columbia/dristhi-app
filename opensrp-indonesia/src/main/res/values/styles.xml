@@ -246,7 +246,7 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:background">#BDBDBD</item>
     </style>
-    
+
     <style name="CardViewContainerPadding">
         <item name="android:clipToPadding">false</item>
         <item name="android:scrollbarStyle">outsideOverlay</item>
