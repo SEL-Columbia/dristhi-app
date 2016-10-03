@@ -132,6 +132,7 @@ dependencies {
 
 dependencies {
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.3'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.0'
 
     testCompile group: 'com.google.android', name: 'android-test', version:'4.1.1.4'
     testCompile 'junit:junit:4.11'

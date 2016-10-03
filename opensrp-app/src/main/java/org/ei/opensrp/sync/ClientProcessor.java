@@ -80,10 +80,17 @@ public class ClientProcessor {
                 if (type.equals("Event")) {
 
                     JSONObject clientClassificationJson = new JSONObject(clientClassificationStr);
+                    if(isNullOrEmptyJSONObject(clientClassificationJson)){
+                        continue;
+                    }
                     //iterate through the events
                     processEvent(eventOrAlert, clientClassificationJson);
                 } else if (type.equals("Action")) {
                     JSONObject clientAlertsJson = new JSONObject(clientAlertsStr);
+                    if(isNullOrEmptyJSONObject(clientAlertsJson)){
+                        continue;
+                    }
+
                     processAlert(eventOrAlert, clientAlertsJson);
                 }
             }
@@ -92,7 +99,7 @@ public class ClientProcessor {
         allSharedPreferences.saveLastSyncDate(lastSyncDate.getTime());
     }
 
-    private void processEvent(JSONObject event, JSONObject clientClassificationJson) throws Exception {
+    public Boolean processEvent(JSONObject event, JSONObject clientClassificationJson) throws Exception {
 
         try {
             String baseEntityId = event.getString(baseEntityIdJSONKey);
@@ -102,12 +109,15 @@ public class ClientProcessor {
             //for data integrity check if a client exists, if not pull one from cloudant and insert in drishti sqlite db
     
             JSONObject client = mCloudantDataHandler.getClientByBaseEntityId(baseEntityId);
-            if(client == null || client.length() == 0){
-                return;
+            if(isNullOrEmptyJSONObject(client)){
+                return false;
             }
     
             // Get the client type classification
             JSONArray clientClasses = clientClassificationJson.getJSONArray("case_classification_rules");
+            if(isNullOrEmptyJSONArray(clientClasses)){
+                return false;
+            }
             for (int i = 0; i < clientClasses.length(); i++) {
                 JSONObject clientClass = clientClasses.getJSONObject(i);
                 processClientClass(clientClass, event, client);
@@ -120,17 +130,39 @@ public class ClientProcessor {
             }
         } catch (Exception e) {
             Log.e(TAG, e.toString(), e);
+            return null;
         }
+
+        return true;
     }
 
-    private void processClientClass(JSONObject clientClass, JSONObject event, JSONObject client) throws Exception {
+    public Boolean processClientClass(JSONObject clientClass, JSONObject event, JSONObject client) throws Exception {
 
-        JSONObject ruleObject = clientClass.getJSONObject("rule");
-        JSONArray fields = ruleObject.getJSONArray("fields");
-        for (int i = 0; i < fields.length(); i++) {
-            JSONObject fieldJson = fields.getJSONObject(i);
-            processField(fieldJson, event, client);
+        try {
+
+            if(clientClass == null || clientClass.length() == 0){
+                return false;
+            }
+
+            if (event == null || event.length() == 0) {
+                return false;
+            }
+
+            if(client == null || client.length() == 0){
+                return  false;
+            }
+
+            JSONObject ruleObject = clientClass.getJSONObject("rule");
+            JSONArray fields = ruleObject.getJSONArray("fields");
+            for (int i = 0; i < fields.length(); i++) {
+                JSONObject fieldJson = fields.getJSONObject(i);
+                processField(fieldJson, event, client);
+            }
+        }catch (Exception e){
+            Log.e(TAG, e.toString(), e);
+            return null;
         }
+        return true;
     }
 
     private void processField(JSONObject fieldJson, JSONObject event, JSONObject client) throws Exception {
@@ -524,7 +556,7 @@ public class ClientProcessor {
         return map;
     }
 
-    private void saveClientDetails(String baseEntityId, Map<String, String> values, Long timestamp) {
+    public void saveClientDetails(String baseEntityId, Map<String, String> values, Long timestamp) {
         Iterator<String> it = values.keySet().iterator();
         if (it != null) {
             while (it.hasNext()) {
@@ -755,4 +787,15 @@ public class ClientProcessor {
         FORM_SUBMITTED.notifyListeners(entityId);
     }
 
+    public void setCloudantDataHandler(CloudantDataHandler mCloudantDataHandler) {
+        this.mCloudantDataHandler = mCloudantDataHandler;
+    }
+
+    private boolean isNullOrEmptyJSONObject(JSONObject jsonObject){
+        return (jsonObject == null || jsonObject.length() == 0);
+    }
+
+    private boolean isNullOrEmptyJSONArray(JSONArray jsonArray){
+        return (jsonArray == null || jsonArray.length() == 0);
+    }
 }
