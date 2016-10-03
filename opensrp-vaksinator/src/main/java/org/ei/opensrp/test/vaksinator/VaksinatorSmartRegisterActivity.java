@@ -107,19 +107,17 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
                 new OpenFormOption("Kunjungan Imunisasi HB0", "hb0_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi BCG", "bcg_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi polio 1", "polio1_visit", formController),
-                new OpenFormOption("Kunjungan Imunisasi HB1", "hb1_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi DPT Combo 1", "hb1_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi polio 2", "polio2_visit", formController),
-                new OpenFormOption("Kunjungan Imunisasi HB2", "dpt_hb2_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi DPT Combo 2", "dpt_hb2_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi polio 3", "polio3_visit", formController),
-                new OpenFormOption("Kunjungan Imunisasi HB3", "hb3_visit", formController),
+                new OpenFormOption("Kunjungan Imunisasi DPT Combo 3", "hb3_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi polio 4", "polio4_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi IPV", "ipv_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi CAMPAK", "campak_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi DPT/HB lanjutan", "dpthb_lanjutan_visit", formController),
                 new OpenFormOption("Kunjungan Imunisasi CAMPAK lanjutan", "campak_lanjutan_visit", formController),
                 new OpenFormOption("Close Form", "close_form", formController),
-
-
         };
     }
 
