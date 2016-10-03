@@ -67,14 +67,14 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal">
+                    android:layout_gravity="center_horizontal"
+                    android:paddingBottom="25dp">
 
                     <ImageView
-                        android:layout_width="114dp"
-                        android:layout_height="114dp"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
                         android:id="@+id/photo"
-                        android:layout_gravity="center|left"
-                        android:background="@drawable/child_boy_infant"/>
+                        android:layout_gravity="left" />
                 </FrameLayout>
 
                 <TextView
@@ -153,7 +153,8 @@
 
                 <FrameLayout
                     android:layout_width="84dp"
-                    android:layout_height="114dp"></FrameLayout>
+                    android:layout_height="115dp"
+                    android:paddingBottom="25dp"></FrameLayout>
 
                 <TextView
                     android:layout_width="fill_parent"

@@ -1,5 +1,6 @@
 package org.ei.opensrp.test.vaksinator;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -131,12 +132,21 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
         int umur = pc.getDetails().get("tanggal_lahir") != null ? age(pc.getDetails().get("tanggal_lahir")) : 0;
         //set default image for mother
-        viewHolder.profilepic.setImageDrawable( pc.getDetails().get("jenis_kelamin") != null
-            ? context.getResources().getDrawable(pc.getDetails().get("jenis_kelamin").contains("em")
-                ? R.drawable.child_girl_infant
-                : R.drawable.child_boy_infant)
-            : context.getResources().getDrawable(R.drawable.child_boy_infant)
-        );
+
+        //final ImageView childview = (ImageView)convertView.findViewById(R.id.profilepic);
+
+        if (pc.getDetails().get("profilepic") != null) {
+            VaksinatorDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), viewHolder.profilepic, R.drawable.child_boy_infant);
+            viewHolder.profilepic.setTag(smartRegisterClient);
+        }
+        else {
+            viewHolder.profilepic.setImageDrawable(pc.getDetails().get("jenis_kelamin") != null
+                            ? context.getResources().getDrawable(pc.getDetails().get("jenis_kelamin").contains("em")
+                            ? R.drawable.child_girl_infant
+                            : R.drawable.child_boy_infant)
+                            : context.getResources().getDrawable(R.drawable.child_boy_infant)
+            );
+        }
 
 
         viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : " ");

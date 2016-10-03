@@ -156,21 +156,13 @@ public class VaksinatorDetailActivity extends Activity {
         additionalMeasles.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
 
         if(controller.getDetails().get("profilepic")!= null){
-            if((controller.getDetails().get("jenisKelamin")!=null?controller.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("female")) {
-                setImagetoHolderFromUri(VaksinatorDetailActivity.this, controller.getDetails().get("profilepic"), photo, R.drawable.child_boy_infant);
-            } else if ((controller.getDetails().get("jenisKelamin")!=null?controller.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("male")){
-                setImagetoHolderFromUri(VaksinatorDetailActivity.this, controller.getDetails().get("profilepic"), photo, R.drawable.child_boy_infant);
-
-            }
+            setImagetoHolderFromUri(VaksinatorDetailActivity.this, controller.getDetails().get("profilepic"), photo, R.drawable.child_boy_infant);
         }
         else {
+            photo.setImageResource(controller.getDetails().get("jenis_kelamin").contains("em")
+                    ? R.drawable.child_girl_infant
+                    : R.drawable.child_boy_infant);
 
-
-            if (controller.getDetails().get("jenis_kelamin").contains("em")) {
-                photo.setImageResource(R.drawable.child_girl_infant);
-            } else {
-                photo.setImageResource(R.drawable.child_boy_infant);
-            }
         }
 
         photo.setOnClickListener(new View.OnClickListener() {
@@ -251,7 +243,7 @@ public class VaksinatorDetailActivity extends Activity {
         String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
         ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("profilepic"), ImageRepository.TYPE_Unsynced,"dp");
         ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
-//                childclient.entityId();
+//                controller.entityId();
 //        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
     }
     public static void setImagetoHolder(Activity activity,String file, ImageView view, int placeholder){
