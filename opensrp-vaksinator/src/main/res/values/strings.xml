@@ -84,10 +84,10 @@
     <string name="sort_by_high_risk_pregnancy_label">HRP</string>
     <string name="sort_by_high_risk_label">High Risk (HR)</string>
     <string name="sort_by_bpl_label">BPL</string>
-    <string name="sort_by_nama_bayi">Nama Bayi</string>
-    <string name="sort_by_tanggal_lahir">Umur</string>
-    <string name="sort_by_nama_ibu">Nama Ibu</string>
-    <string name="sort_by_dusun">Dusun</string>
+    <string name="sort_by_nama_bayi">Child Name</string>
+    <string name="sort_by_tanggal_lahir">Age</string>
+    <string name="sort_by_nama_ibu">Mother Name</string>
+    <string name="sort_by_dusun">Sub Village</string>
 
 
     <string name="filter_by_all_label">All</string>
@@ -368,34 +368,34 @@
     <string name="okforminputerror">ok</string>
 
     <string name="jurim_label">Vaksinator</string>
-    <string name="vaksinator_recapitulation_label">Laporan Rekapitulasi</string>
+    <string name="vaksinator_recapitulation_label">Recapitulation</string>
     <string name="space"> </string>
     <string name="fence">|</string>
-    <string name="jurim_detail">Detail Vaksinasi</string>
-    <string name="jurim_search">Vaksinasi search hint</string>
+    <string name="jurim_detail">Vaccination Detail</string>
+    <string name="jurim_search">Search hint</string>
     <string name="hb1">HB0</string>
     <string name="polio1">BCG/Pol1</string>
     <string name="polio2">DPT-HB1/Pol2</string>
     <string name="polio3">DPT-HB2/Pol3</string>
     <string name="polio4">DPT3/Pol4/IPV</string>
-    <string name="ipv">Campak</string>
+    <string name="ipv">Measles</string>
 
     <color name="vaccBlue">#FF9BC1FB</color>
 
     <string name="month_list_prompt">Month</string>
     <string-array name="month_list_entry">
-        <item>Januari</item>
-        <item>Februari</item>
-        <item>Maret</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
         <item>April</item>
-        <item>Mei</item>
-        <item>Juni</item>
-        <item>Juli</item>
-        <item>Agustus</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
         <item>September</item>
-        <item>Oktober</item>
+        <item>October</item>
         <item>November</item>
-        <item>Desember</item>
+        <item>December</item>
     </string-array>
 
     <string name="year_list_2015_prompt">Year</string>

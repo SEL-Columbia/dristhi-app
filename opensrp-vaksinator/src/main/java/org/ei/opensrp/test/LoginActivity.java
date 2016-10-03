@@ -29,7 +29,6 @@ import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.opensrp.event.Listener;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
-import org.ei.opensrp.test.R;
 import org.ei.opensrp.test.vaksinator.ErrorReportingFacade;
 import org.ei.opensrp.test.vaksinator.FlurryFacade;
 import org.ei.opensrp.util.Log;
@@ -59,12 +58,12 @@ public class LoginActivity extends Activity {
     private EditText passwordEditText;
     private ProgressDialog progressDialog;
     public static final String ENGLISH_LOCALE = "en";
-//    public static final String KANNADA_LOCALE = "kn";
-//    public static final String BENGALI_LOCALE = "bn";
-    public static final String BAHASA_LOCALE = "id";
+    public static final String KANNADA_LOCALE = "kn";
+    public static final String BENGALI_LOCALE = "bn";
+    public static final String BAHASA_LOCALE = "in";
     public static final String ENGLISH_LANGUAGE = "English";
-//    public static final String KANNADA_LANGUAGE = "Kannada";
-//    public static final String Bengali_LANGUAGE = "Bengali";
+    public static final String KANNADA_LANGUAGE = "Kannada";
+    public static final String Bengali_LANGUAGE = "Bengali";
     public static final String Bahasa_LANGUAGE = "Bahasa";
 
 

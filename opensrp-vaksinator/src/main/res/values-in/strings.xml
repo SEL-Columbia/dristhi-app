@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Vaksinator</string>
-    <string name="userNameEditText">Enter user name</string>
-    <string name="passwordEditText">Enter password</string>
-    <string name="login_text">Log In</string>
+    <string name="userNameEditText">Masukkan User Name</string>
+    <string name="passwordEditText">Masukkan kata kunci</string>
+    <string name="login_text">Masuk</string>
     <string name="image_description">logo</string>
     <string name="spacer">spacer</string>
     <string name="loggin_in_dialog_title">Logging in…</string>
-    <string name="loggin_in_dialog_message">Please wait</string>
-    <string name="login_failed_dialog_title">Log in failed</string>
+    <string name="loggin_in_dialog_message">Mohon Menunggu</string>
+    <string name="login_failed_dialog_title">Gagal Masuk</string>
     <string name="login_failed_dialog_message">Please check the credentials</string>
-    <string name="mcareform_back_confirm_dialog_message">Are you sure you want to go back?</string>
-    <string name="mcareform_back_confirm_dialog_title">Confirm form close</string>
-    <string name="mcareyes_button_label">Yes</string>
-    <string name="mcareno_button_label">No</string>
+    <string name="mcareform_back_confirm_dialog_message">Anda yakin ingin kembali?</string>
+    <string name="mcareform_back_confirm_dialog_title">Konfirmasi Penutupan Form</string>
+    <string name="mcareyes_button_label">Ya</string>
+    <string name="mcareno_button_label">Tidak</string>
     <string name="home_hh_label">Household</string>
     <string name="home_ec_label">ELCO</string>
     <string name="home_fp_label">FP</string>
     <string name="home_anc_label">ANC</string>
     <string name="home_pnc_label">PNC</string>
-    <string name="home_child_label">Child</string>
-    <string name="home_report_label">Reporting</string>
-    <string name="register_label">Register</string>
-    <string name="home_videos_label">Videos</string>
+    <string name="home_child_label">Anak</string>
+    <string name="home_report_label">Pelaporan</string>
+    <string name="register_label">Registrator</string>
+    <string name="home_videos_label">Video</string>
 
     <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
     <string name="videos_IEC_not_installed_dialog_message">Please install IEC application to play the videos.
@@ -34,15 +34,15 @@
     </string>
     <string name="unsynced_forms_count_message">forms unsynced</string>
 
-    <string name="str_next">"Next &gt;&gt;"</string>
-    <string name="str_previous">"&lt;&lt; Previous"</string>
-    <string name="str_page_info">Page {0} of {1}</string>
+    <string name="str_next">"Berikutnya &gt;&gt;"</string>
+    <string name="str_previous">"&lt;&lt; Sebelumnya"</string>
+    <string name="str_page_info">Halaman {0} dari {1}</string>
 
-    <string name="header_name">NAME</string>
+    <string name="header_name">NAMA</string>
     <string name="header_ec_no">EC NO.</string>
     <string name="header_gplsa">GPLSA</string>
     <string name="header_fp">FP METHOD</string>
-    <string name="header_children">CHILDREN</string>
+    <string name="header_children">ANAK</string>
     <string name="header_status">STATUS</string>
     <string name="header_edit"></string>
 
@@ -51,12 +51,12 @@
     <string name="str_fp_search_hint">Search FP Register</string>
     <string name="str_pnc_search_hint">Search PNC Register</string>
     <string name="str_child_search_hint">Search Child Register</string>
-    <string name="label_sorted_by">Sorted By:</string>
-    <string name="label_village">, Village:</string>
+    <string name="label_sorted_by">Urut Berdasarkan:</string>
+    <string name="label_village">, Dusun:</string>
     <string name="ec_register_wife_age">({0})</string>
 
-    <string name="ec_register_male_child">Male\n{0}</string>
-    <string name="ec_register_female_child">Female\n{0}</string>
+    <string name="ec_register_male_child">Laki-Laki\n{0}</string>
+    <string name="ec_register_female_child">Perempuan\n{0}</string>
     <string name="ec_register_no_fp">No FP</string>
 
     <string name="status_delivery">Delivery:</string>
@@ -75,17 +75,17 @@
 
     <string name="str_out_of_area">(O/A)</string>
 
-    <string name="sort_by_name_label">Name (A to Z)</string>
+    <string name="sort_by_name_label">Nama (A sampai Z)</string>
     <string name="sort_by_ec_number_label">EC Number</string>
     <string name="sort_by_date_of_delivery_label">Date of Delivery</string>
     <string name="sort_by_sc_label">SC</string>
     <string name="sort_by_st_label">ST</string>
     <string name="sort_by_high_priority_label">High Priority (HP)</string>
     <string name="sort_by_high_risk_pregnancy_label">HRP</string>
-    <string name="sort_by_high_risk_label">High Risk (HR)</string>
+    <string name="sort_by_high_risk_label">Resiko Tinggi(HR)</string>
     <string name="sort_by_bpl_label">BPL</string>
 
-    <string name="filter_by_all_label">All</string>
+    <string name="filter_by_all_label">Semua</string>
     <string name="filter_by_out_of_area_label">O/A</string>
     <string name="filter_by_leave_the_place_label">L/P</string>
     <string name="ec_register_title_in_short">EC:</string>
@@ -310,10 +310,10 @@
     <string name="hh_inhabitants_details">HH Inhabitants Details</string>
     <string name="household_entries">All Household Entries</string>
     <string name="test_register"></string>
-    <string name="test">Vaksinator Register</string>
+    <string name="test">Register Vaksinator</string>
     <string name="hh_register_title_in_short">HH</string>
 
-    <string name="elco_profile">Profile;</string>
+    <string name="elco_profile">Profil</string>
     <string name="elco_unique_id">Unique ID</string>
     <string name="elco_lmp">LMP</string>
     <string name="elco_psrf_due_date">PSRF Due Date</string>
@@ -322,7 +322,7 @@
     <string name="hh_fwGobhhid_sort">HHID - Government</string>
     <string name="hh_fwJivhhid_sort">HHID - JiVitA</string>
     <string name="due_status">Due Status</string>
-    <string name="hh_search_hint">Search Child</string>
+    <string name="hh_search_hint">Pencarian</string>
     <string name="hh_no_mwra">No ELCO</string>
     <string name="hh_has_mwra">Has one or more ELCO</string>
     <string name="elco_search_hint">Search Eligible Couples</string>
@@ -363,7 +363,7 @@
     <string name="okforminputerror">ok</string>
 
     <string name="jurim_label">Vaksinator</string>
-    <string name="vaksinator_recapitulation_label">Laporan Kunjungan</string>
+    <string name="vaksinator_recapitulation_label">Rekapitulasi Kunjungan</string>
     <string name="space"> </string>
     <string name="fence">|</string>
     <string name="jurim_detail">Detail Vaksinasi</string>
@@ -376,7 +376,7 @@
     <string name="polio2">DPT-HB1/Pol2</string>
     <string name="polio3">DPT-HB2/Pol3</string>
     <string name="polio4">DPT3/Pol4/IPV</string>
-    <string name="ipv">campak</string>
+    <string name="ipv">Campak</string>
 
 
 
@@ -384,18 +384,18 @@
 
     <string name="month_list_prompt">Month</string>
     <string-array name="month_list_entry">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Maret</item>
         <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
+        <item>Mei</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>Agustus</item>
         <item>September</item>
-        <item>October</item>
+        <item>Oktober</item>
         <item>November</item>
-        <item>December</item>
+        <item>Desember</item>
     </string-array>
 
     <string name="year_list_2015_prompt">Year</string>
