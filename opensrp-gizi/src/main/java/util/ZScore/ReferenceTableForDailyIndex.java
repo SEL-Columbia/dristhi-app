@@ -8115,7 +8115,7 @@ public class ReferenceTableForDailyIndex {
                 {109.9,-0.3521,18.234,0.08749},
                 {110,-0.3521,18.2689,0.08755}
         };
-        return boysWeightForLength[index < boysWeightForLength.length ? index : boysWeightForLength.length];
+        return boysWeightForLength[index < boysWeightForLength.length ? index : boysWeightForLength.length-1];
     }
 
     public double[]getGirlsWeightForLength(int index){

@@ -152,6 +152,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.weight.setText(context.getString(R.string.weight) + " " + (pc.getDetails().get("beratBadan") != null ? pc.getDetails().get("beratBadan") : "-") + " Kg");
         viewHolder.weightText.setText(context.getString(R.string.label_weight));
         viewHolder.heightText.setText(context.getString(R.string.label_height));
+        viewHolder.antihelminticText.setText(R.string.anthelmintic);
 
 //------VISIBLE AND INVISIBLE COMPONENT
         viewHolder.absentAlert.setVisibility(pc.getDetails().get("tanggalPenimbangan")!=null
