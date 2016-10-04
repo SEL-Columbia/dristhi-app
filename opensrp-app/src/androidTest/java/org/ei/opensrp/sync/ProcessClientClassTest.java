@@ -1,6 +1,7 @@
 package org.ei.opensrp.sync;
 
 import org.json.JSONObject;
+import org.mockito.Mockito;
 
 
 /**
@@ -13,14 +14,16 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
     public void testProcessClientClassWhenClassIsNullOrEmpty() {
         try {
 
-            JSONObject client = createClient();
-            JSONObject event = createEvent(true);
+            String baseEntityId = getBaseEntityId();
+
+            JSONObject client = createClient(baseEntityId);
+            JSONObject event = createEvent(baseEntityId, true);
 
             Boolean processed = ClientProcessor.getInstance(getContext()).processClientClass(null, event, client);
-            assertFalse("Client should not be processed", processed);
+            assertFalse("Client class should not be processed", processed);
 
             processed = ClientProcessor.getInstance(getContext()).processClientClass(createEmptyJsonObject(), event, client);
-            assertFalse("Client should not be processed", processed);
+            assertFalse("Client class should not be processed", processed);
 
         } catch (Exception e) {
             fail(e.getMessage());
@@ -30,14 +33,16 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
     public void testProcessClientClassWhenEventIsNullOrEmpty() {
         try {
 
-            JSONObject client = createClient();
-            JSONObject classsification = createClassification();
+            String baseEntityId = getBaseEntityId();
 
-            Boolean processed = ClientProcessor.getInstance(getContext()).processClientClass(classsification, null, client);
-            assertFalse("Client should not be processed", processed);
+            JSONObject client = createClient(baseEntityId);
+            JSONObject classification = createClassification();
 
-            processed = ClientProcessor.getInstance(getContext()).processClientClass(classsification, createEmptyJsonObject(), client);
-            assertFalse("Client should not be processed", processed);
+            Boolean processed = ClientProcessor.getInstance(getContext()).processClientClass(classification, null, client);
+            assertFalse("Client class should not be processed", processed);
+
+            processed = ClientProcessor.getInstance(getContext()).processClientClass(classification, createEmptyJsonObject(), client);
+            assertFalse("Client class should not be processed", processed);
 
         } catch (Exception e) {
             fail(e.getMessage());
@@ -47,14 +52,16 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
     public void testProcessClientClassWhenClientIsNullOrEmpty() {
         try {
 
-            JSONObject classsification = createClassification();
-            JSONObject event = createEvent(true);
+            String baseEntityId = getBaseEntityId();
 
-            Boolean processed = ClientProcessor.getInstance(getContext()).processClientClass(classsification, event, null);
-            assertFalse("Client should not be processed", processed);
+            JSONObject classification = createClassification();
+            JSONObject event = createEvent(baseEntityId, true);
 
-            processed = ClientProcessor.getInstance(getContext()).processClientClass(classsification, event, createEmptyJsonObject());
-            assertFalse("Client should not be processed", processed);
+            Boolean processed = ClientProcessor.getInstance(getContext()).processClientClass(classification, event, null);
+            assertFalse("Client class should not be processed", processed);
+
+            processed = ClientProcessor.getInstance(getContext()).processClientClass(classification, event, createEmptyJsonObject());
+            assertFalse("Client class should not be processed", processed);
 
         } catch (Exception e) {
             fail(e.getMessage());
@@ -64,12 +71,57 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
     public void testProcessClientClassWhenClassHasNoRules() {
         try {
 
-            JSONObject classsification = createClassification();
-            JSONObject client = createClient();
-            JSONObject event = createEvent(true);
+            String baseEntityId = getBaseEntityId();
 
-            Boolean processed = ClientProcessor.getInstance(getContext()).processClientClass(classsification, event, client);
-            assertNull("Client should not be processed, Exception thrown", processed);
+            JSONObject classification = createClassification();
+            classification.remove("rule");
+
+            JSONObject client = createClient(baseEntityId);
+            JSONObject event = createEvent(baseEntityId, true);
+
+            Boolean processed = ClientProcessor.getInstance(getContext()).processClientClass(classification, event, client);
+            assertNull("Client class should not be processed, Exception thrown", processed);
+
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    public void testProcessClientClassWhenRuleHasNoFields() {
+        try {
+
+            String baseEntityId = getBaseEntityId();
+
+            JSONObject classification = createClassification();
+            classification.remove("rule");
+            updateJsonObject(classification, "rule", createEmptyJsonObject());
+            JSONObject client = createClient(baseEntityId);
+            JSONObject event = createEvent(baseEntityId, true);
+
+            Boolean processed = ClientProcessor.getInstance(getContext()).processClientClass(classification, event, client);
+            assertNull("Client class should not be processed, Exception thrown", processed);
+
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    public void testProcessClient() {
+        try {
+
+            String baseEntityId = getBaseEntityId();
+
+            JSONObject classification = createClassification().getJSONArray("case_classification_rules").getJSONObject(0);
+            JSONObject client = createClient(baseEntityId);
+            JSONObject event = createEvent(baseEntityId, true);
+            
+            ClientProcessor clientProcessor = ClientProcessor.getInstance(getContext());
+            
+            ClientProcessor spy = Mockito.spy(clientProcessor);
+            Mockito.doNothing().when(spy).processField(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class));
+            
+            Boolean processed = spy.processClientClass(classification, event, client);
+            assertTrue("Client class should have been processed", processed);
 
         } catch (Exception e) {
             fail(e.getMessage());

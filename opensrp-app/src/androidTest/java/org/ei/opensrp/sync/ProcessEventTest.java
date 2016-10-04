@@ -20,7 +20,7 @@ public class ProcessEventTest extends BaseClientProcessorTest {
 
     public void testProcessNullEvents() {
         try {
-            Boolean processed =  ClientProcessor.getInstance(getContext()).processEvent(null, createEmptyJsonObject());
+            Boolean processed = ClientProcessor.getInstance(getContext()).processEvent(null, createEmptyJsonObject());
             assertNull("Event should not be processed, Exception thrown", processed);
         } catch (Exception e) {
             fail(e.getMessage());
@@ -32,7 +32,7 @@ public class ProcessEventTest extends BaseClientProcessorTest {
         try {
             String baseEntityId = getBaseEntityId();
 
-            JSONObject client = createClient();
+            JSONObject client = createClient(baseEntityId);
 
             CloudantDataHandler cloudantDataHandler = Mockito.mock(CloudantDataHandler.class);
             Mockito.when(cloudantDataHandler.getClientByBaseEntityId(baseEntityId)).thenReturn(client);
@@ -97,7 +97,7 @@ public class ProcessEventTest extends BaseClientProcessorTest {
 
             String baseEntityId = getBaseEntityId();
 
-            JSONObject client = createClient();
+            JSONObject client = createClient(baseEntityId);
 
             CloudantDataHandler cloudantDataHandler = Mockito.mock(CloudantDataHandler.class);
             Mockito.when(cloudantDataHandler.getClientByBaseEntityId(baseEntityId)).thenReturn(client);
@@ -120,8 +120,8 @@ public class ProcessEventTest extends BaseClientProcessorTest {
 
             String baseEntityId = getBaseEntityId();
 
-            JSONObject client = createClient();
-            JSONObject event = createEvent(true);
+            JSONObject client = createClient(baseEntityId);
+            JSONObject event = createEvent(baseEntityId, true);
             JSONObject classification = createClassification();
 
             CloudantDataHandler cloudantDataHandler = Mockito.mock(CloudantDataHandler.class);
@@ -131,7 +131,7 @@ public class ProcessEventTest extends BaseClientProcessorTest {
             clientProcessor.setCloudantDataHandler(cloudantDataHandler);
 
             ClientProcessor spy = Mockito.spy(clientProcessor);
-            Mockito.doNothing().when(spy).processClientClass(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class));
+            Mockito.when(spy.processClientClass(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class))).thenReturn(true);
 
             Boolean processed = spy.processEvent(event, classification);
             assertTrue("Event should be processed", processed);
@@ -139,6 +139,7 @@ public class ProcessEventTest extends BaseClientProcessorTest {
             Mockito.verify(cloudantDataHandler).getClientByBaseEntityId(baseEntityId);
             Mockito.verify(spy, Mockito.times(2)).processClientClass(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class));
         } catch (Exception e) {
+            e.printStackTrace();
             fail(e.getMessage());
         }
 
@@ -149,9 +150,9 @@ public class ProcessEventTest extends BaseClientProcessorTest {
 
             String baseEntityId = getBaseEntityId();
 
-            JSONObject client = createClient();
+            JSONObject client = createClient(baseEntityId);
 
-            JSONObject event = createEvent(false);
+            JSONObject event = createEvent(baseEntityId, false);
             updateJsonObject(event, "eventDate", baseEntityId);
 
             JSONObject classification = createClassification();
@@ -163,7 +164,7 @@ public class ProcessEventTest extends BaseClientProcessorTest {
             clientProcessor.setCloudantDataHandler(cloudantDataHandler);
 
             ClientProcessor spy = Mockito.spy(clientProcessor);
-            Mockito.doNothing().when(spy).processClientClass(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class));
+            Mockito.when(spy.processClientClass(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class))).thenReturn(true);
 
             Mockito.doNothing().when(spy).saveClientDetails(Mockito.anyString(), Mockito.anyMap(), Mockito.anyLong());
 
@@ -178,6 +179,7 @@ public class ProcessEventTest extends BaseClientProcessorTest {
             Mockito.verify(spy, Mockito.times(2)).processClientClass(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class));
             Mockito.verify(spy, Mockito.times(4)).saveClientDetails(Mockito.anyString(), Mockito.anyMap(), Mockito.anyLong());
         } catch (Exception e) {
+            e.printStackTrace();
             fail(e.getMessage());
         }
 

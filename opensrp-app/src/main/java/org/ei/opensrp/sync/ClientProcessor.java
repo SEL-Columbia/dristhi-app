@@ -165,7 +165,7 @@ public class ClientProcessor {
         return true;
     }
 
-    private void processField(JSONObject fieldJson, JSONObject event, JSONObject client) throws Exception {
+    public void processField(JSONObject fieldJson, JSONObject event, JSONObject client) throws Exception {
 
         // keep checking if the event data matches the values expected by each rule, break the moment the rule fails
         String dataSegment = null;

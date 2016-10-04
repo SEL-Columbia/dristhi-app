@@ -53,30 +53,81 @@ public class BaseClientProcessorTest extends AndroidTestCase {
         }
     }
 
+    protected JSONArray updateJsonArray(JSONArray jsonArray, Object value) {
+        if (jsonArray == null) {
+            jsonArray = new JSONArray();
+        }
+        jsonArray.put(value);
+        return jsonArray;
+    }
+
     protected String getBaseEntityId() {
         return String.valueOf(DateTime.now().getMillis());
     }
 
-    protected JSONObject createClient() {
-        return createJsonObject(baseEntityIdJSONKey, getBaseEntityId());
+    protected JSONObject createClient(String baseEntityId) {
+        return createJsonObject(baseEntityIdJSONKey, baseEntityId);
     }
 
-    protected JSONObject createEvent(boolean details) {
-        JSONObject event = createJsonObject(baseEntityIdJSONKey, getBaseEntityId());
-        if(details) {
+    protected JSONObject createEvent(String baseEntityId, boolean details) {
+        JSONObject event = createJsonObject(baseEntityIdJSONKey, baseEntityId);
+        if (details) {
             updateJsonObject(event, detailsUpdated, true);
         }
         return event;
     }
 
-    protected JSONObject createClassification(){
-        JSONObject comment = createJsonObject("comment", "Test Comment");
-        JSONObject rule = createJsonObject("rule", "{}");
-        JSONArray rules = new JSONArray();
-        rules.put(comment);
-        rules.put(rule);
+    protected JSONObject createClassification() {
 
-        JSONObject classification = createJsonObject("case_classification_rules", rules);
+        JSONArray cases1 = new JSONArray();
+        updateJsonArray(cases1, "case1");
+        updateJsonArray(cases1, "case2");
+        updateJsonArray(cases1, "case3");
+
+        JSONObject field1 = new JSONObject();
+        updateJsonObject(field1, "field", "eventType");
+        updateJsonObject(field1, "field_value", "Test Document Type");
+        updateJsonObject(field1, "creates_case", cases1);
+
+        JSONArray fields1 = new JSONArray();
+        fields1.put(field1);
+
+        JSONObject rule1 = new JSONObject();
+        updateJsonObject(rule1, "type", "event");
+        updateJsonObject(rule1, "fields", fields1);
+
+
+        JSONObject classificationRule1 = new JSONObject();
+        updateJsonObject(classificationRule1,"comment", "Test Comment");
+        updateJsonObject(classificationRule1, "rule", rule1);
+
+        JSONArray cases2 = new JSONArray();
+        updateJsonArray(cases2, "case4");
+        updateJsonArray(cases2, "case5");
+
+        JSONObject field2 = new JSONObject();
+        updateJsonObject(field2, "field", "eventType");
+        updateJsonObject(field2, "field_value", "Test Document Type 2");
+        updateJsonObject(field2, "creates_case", cases2);
+
+        JSONArray fields2 = new JSONArray();
+        fields2.put(field2);
+
+        JSONObject rule2 = new JSONObject();
+        updateJsonObject(rule2, "type", "event");
+        updateJsonObject(rule2, "fields", fields2);
+
+
+        JSONObject classificationRule2 = new JSONObject();
+        updateJsonObject(classificationRule2,"comment", "Test Comment 2");
+        updateJsonObject(classificationRule2, "rule", rule2);
+
+
+        JSONArray classificationRules = new JSONArray();
+        updateJsonArray(classificationRules, classificationRule1);
+        updateJsonArray(classificationRules, classificationRule2);
+
+        JSONObject classification = createJsonObject("case_classification_rules", classificationRules);
         return classification;
     }
 
