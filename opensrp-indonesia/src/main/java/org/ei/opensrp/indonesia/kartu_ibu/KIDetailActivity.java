@@ -20,6 +20,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.repository.ImageRepository;
 
 import java.io.File;
@@ -129,6 +130,8 @@ public class KIDetailActivity extends Activity {
             }
         });
 
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(kiclient);
 
         if(kiclient.getDetails().get("profilepic")!= null){
                 setImagetoHolderFromUri(KIDetailActivity.this, kiclient.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
@@ -136,7 +139,6 @@ public class KIDetailActivity extends Activity {
         else {
                 kiview.setImageDrawable(getResources().getDrawable(R.mipmap.woman_placeholder));
         }
-
        
         nama.setText(getResources().getString(R.string.name)+ (kiclient.getColumnmaps().get("namalengkap") != null ? kiclient.getColumnmaps().get("namalengkap") : "-"));
         nik.setText(getResources().getString(R.string.nik)+ (kiclient.getDetails().get("nik") != null ? kiclient.getDetails().get("nik") : "-"));
@@ -165,16 +167,16 @@ public class KIDetailActivity extends Activity {
         show_detail.setText(getResources().getString(R.string.show_less_button));
 
         //detail
-        village.setText(": "+humanize(kiclient.getDetails().get("desa") != null ? kiclient.getDetails().get("desa") : "-"));
-        subvillage.setText(": "+humanize (kiclient.getDetails().get("dusun") != null ? kiclient.getDetails().get("dusun") : "-"));
+        village.setText(": "+humanize(kiclient.getDetails().get("cityVillage") != null ? kiclient.getDetails().get("cityVillage") : "-"));
+        subvillage.setText(": "+humanize (kiclient.getDetails().get("address1") != null ? kiclient.getDetails().get("address1") : "-"));
         age.setText(": "+humanize(kiclient.getColumnmaps().get("umur") != null ? kiclient.getColumnmaps().get("umur") : "-"));
-        alamat.setText(": "+humanize(kiclient.getDetails().get("alamatDomisili") != null ? kiclient.getDetails().get("alamatDomisili") : "-"));
+        alamat.setText(": "+humanize(kiclient.getDetails().get("address3") != null ? kiclient.getDetails().get("address3") : "-"));
         education.setText(": "+humanize(kiclient.getDetails().get("pendidikan") != null ? kiclient.getDetails().get("pendidikan") : "-"));
         religion.setText(": "+humanize(kiclient.getDetails().get("agama") != null ? kiclient.getDetails().get("agama") : "-"));
         job.setText(": "+humanize(kiclient.getDetails().get("pekerjaan") != null ? kiclient.getDetails().get("pekerjaan") : "-"));
         gakin.setText(": "+humanize(kiclient.getDetails().get("gakinTidak") != null ? kiclient.getDetails().get("gakinTidak") : "-"));
         blood_type.setText(": "+humanize(kiclient.getDetails().get("golonganDarah") != null ? kiclient.getDetails().get("golonganDarah") : "-"));
-        asuransi.setText(": "+humanize(kiclient.getDetails().get("jamkesmas") != null ? kiclient.getDetails().get("jamkesmas") : "-"));
+        asuransi.setText(": "+humanize(kiclient.getDetails().get("asuransiJiwa") != null ? kiclient.getDetails().get("asuransiJiwa") : "-"));
 
 
 

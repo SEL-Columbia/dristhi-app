@@ -16,7 +16,15 @@ import org.ei.opensrp.view.receiver.SyncBroadcastReceiver;
 import static org.ei.opensrp.util.Log.logInfo;
 
 import java.util.Locale;
-
+@ReportsCrashes(
+        formKey = "",
+        formUri = "https://drishtiapp.cloudant.com/acra-drishtiapp/_design/acra-storage/_update/report",
+        reportType = org.acra.sender.HttpSender.Type.JSON,
+        httpMethod = org.acra.sender.HttpSender.Method.POST,
+        formUriBasicAuthLogin = "sompleakereepeavoldiftle",
+        formUriBasicAuthPassword = "ecUMrMeTKf1X1ODxHqo3b43W",
+        mode = ReportingInteractionMode.SILENT
+)
 
 public class BidanApplication extends DrishtiApplication {
 
@@ -74,7 +82,7 @@ public class BidanApplication extends DrishtiApplication {
     }
 
     private String[] getFtsSearchFields(String tableName){
-        if(tableName.equals("kartu_ibu")){
+        if(tableName.equals("ec_kartu_ibu")){
             String[] ftsSearchFields =  { "namalengkap", "namaSuami" };
             return ftsSearchFields;
         } else if(tableName.equals("anak")){
@@ -88,7 +96,7 @@ public class BidanApplication extends DrishtiApplication {
     }
 
     private String[] getFtsSortFields(String tableName){
-        if(tableName.equals("kartu_ibu")) {
+        if(tableName.equals("ec_kartu_ibu")) {
             String[] sortFields = { "namalengkap", "umur",  "noIbu", "htp" };
             return sortFields;
         } else if(tableName.equals("anak")){
@@ -102,7 +110,7 @@ public class BidanApplication extends DrishtiApplication {
     }
 
     private String[] getFtsMainConditions(String tableName){
-        if(tableName.equals("kartu_ibu")) {
+        if(tableName.equals("ec_kartu_ibu")) {
             String[] mainConditions = { "isClosed", "details" };
             return mainConditions;
         } else if(tableName.equals("anak")){
@@ -126,8 +134,9 @@ public class BidanApplication extends DrishtiApplication {
         return null;
     }
 
+
     private String[] getFtsTables(){
-        String[] ftsTables = { "kartu_ibu", "anak", "ibu" };
+        String[] ftsTables = { "ec_kartu_ibu", "anak", "ibu" };
         return ftsTables;
     }
 

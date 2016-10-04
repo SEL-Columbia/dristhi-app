@@ -470,7 +470,7 @@
     <string name="name">NAME:&#160; </string>
     <string name="nik">NIK:&#160; </string>
     <string name="husband_name">Husband Name: &#160;</string>
-    <string name="dob">Date of Birth:&#160; </string>
+    <string name="dob">DOB:&#160; </string>
     <string name="phone">Phone Number: &#160;</string>
 
     <!-- Mother detail -->

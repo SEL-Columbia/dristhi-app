@@ -27,6 +27,7 @@ import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.indonesia.R;
 
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.util.DateUtil;
 import org.ei.opensrp.view.contract.AlertDTO;
@@ -140,6 +141,8 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
 
         // set flag High Risk
         viewHolder.hr_badge.setVisibility(View.INVISIBLE);
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(pc);
 
         if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
                 || pc.getDetails().get("highRiskEctopicPregnancy")!=null && pc.getDetails().get("highRiskEctopicPregnancy").equals("yes")
@@ -168,23 +171,23 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         }
         viewHolder.wife_name.setText(pc.getColumnmaps().get("namalengkap")!=null?pc.getColumnmaps().get("namalengkap"):"");
         viewHolder.husband_name.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");
-        viewHolder.village_name.setText(pc.getDetails().get("desa")!=null?pc.getDetails().get("desa"):"");
+        viewHolder.village_name.setText(pc.getDetails().get("address1")!=null?pc.getDetails().get("address1"):"");
         viewHolder.wife_age.setText(pc.getColumnmaps().get("umur")!=null?pc.getColumnmaps().get("umur"):"");
         viewHolder.no_ibu.setText(pc.getColumnmaps().get("noIbu")!=null?pc.getDetails().get("noIbu"):"");
-        viewHolder.unique_id.setText(pc.getDetails().get("unique_id")!=null?pc.getDetails().get("unique_id"):"");
+        viewHolder.unique_id.setText(pc.getDetails().get("nik")!=null?pc.getDetails().get("nik"):"");
 
         viewHolder.gravida.setText(pc.getDetails().get("gravida")!=null?pc.getDetails().get("gravida"):"-");
         viewHolder.parity.setText(pc.getDetails().get("partus")!=null?pc.getDetails().get("partus"):"-");
         viewHolder.number_of_abortus.setText(pc.getDetails().get("abortus")!=null?pc.getDetails().get("abortus"):"-");
         viewHolder.number_of_alive.setText(pc.getDetails().get("hidup")!=null?pc.getDetails().get("hidup"):"-");
 
-        viewHolder.edd.setText(pc.getColumnmaps().get("htp")!=null?pc.getColumnmaps().get("htp"):"");
+        viewHolder.edd.setText(pc.getDetails().get("htp")!=null?pc.getDetails().get("htp"):"");
 
         viewHolder.edd_due.setText("");
 
-        String edd = pc.getColumnmaps().get("htp");
+        String edd = pc.getDetails().get("htp");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        if(StringUtils.isNotBlank(pc.getColumnmaps().get("htp"))) {
+        if(StringUtils.isNotBlank(pc.getDetails().get("htp"))) {
             String _edd = edd;
             String _dueEdd = "";
             DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");

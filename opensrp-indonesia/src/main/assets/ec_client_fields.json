@@ -1,0 +1,84 @@
+{
+  "bindobjects": [
+    {
+      "name": "ec_kartu_ibu",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "namalengkap",
+          "type": "Client",
+          "json_mapping": {
+            "field": "firstName"
+          }
+        },
+        {
+          "column_name": "noIbu",
+          "type": "Client",
+          "json_mapping": {
+            "field": "attributes.NoIbu"
+          }
+        },
+        {
+          "column_name": "unique_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "attributes.UniqueId"
+          }
+        },
+        {
+          "column_name": "namaSuami",
+          "type": "Client",
+          "json_mapping": {
+            "field": "lastName"
+          }
+        },
+        {
+          "column_name": "tanggalLahir",
+          "type": "Client",
+          "json_mapping": {
+            "field": "birthdate"
+          }
+        },
+        {
+          "column_name": "isOutOfArea",
+          "type": "Client",
+          "json_mapping": {
+            "field": "isOutOfArea",
+            "comment": "doesn't have concept mapping"
+          }
+        },
+        {
+          "column_name": "isClosed",
+          "type": "Client",
+          "json_mapping": {
+            "field": "isClosed",
+            "comment": "doesn't have concept mapping"
+          }
+        },
+        {
+          "column_name": "htp",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "umur",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        }
+
+      ]
+    }
+  ]
+}

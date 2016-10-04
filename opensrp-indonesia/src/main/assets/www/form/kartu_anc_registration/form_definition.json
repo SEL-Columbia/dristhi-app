@@ -1,7 +1,8 @@
 {
-  "form_data_definition_version": "1",
+  "form_data_definition_version": "3",
   "form": {
     "bind_type": "kartu_ibu",
+    "ec_bind_type": "ec_kartu_ibu",
     "default_bind_path": "/model/instance/anc_registration/",
     "fields": [
       {
@@ -10,12 +11,62 @@
       },
       {
         "name": "motherId",
-        "source": "kartu_ibu.ibu.id",
+        "source": "ec_kartu_ibu.ibu.id",
         "shouldLoadValue": true
       },
       {
         "name": "lokasiPeriksa",
         "bind": "/model/instance/anc_registration/Lokasi_periksa"
+      },
+      {
+        "name": "Village",
+        "bind": "/model/instance/anc_registration/Village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Province",
+        "bind": "/model/instance/anc_registration/Province",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Sub-district",
+        "bind": "/model/instance/anc_registration/Sub-district",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "District",
+        "bind": "/model/instance/anc_registration/District",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Sub-village",
+        "bind": "/model/instance/anc_registration/Sub-village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "dusun",
+        "bind": "/model/instance/anc_registration/dusun",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "provinsi",
+        "bind": "/model/instance/anc_registration/provinsi",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kabupaten",
+        "bind": "/model/instance/anc_registration/kabupaten",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/anc_registration/kecamatan",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "desa",
+        "bind": "/model/instance/anc_registration/desa",
+        "shouldLoadValue": true
       },
       {
         "name": "tanggalLahirAnakSebelumnya",
@@ -24,7 +75,7 @@
       {
         "name": "referenceDate",
         "bind": "/model/instance/anc_registration/tanggal_periksa",
-        "source": "kartu_ibu.ibu.referenceDate"
+        "source": "ec_kartu_ibu.ibu.referenceDate"
       },
       {
         "name": "gravida",
@@ -49,41 +100,45 @@
       {
         "name": "persalinanSebelumnya",
         "bind": "/model/instance/anc_registration/persalinan_sebelumnya",
-        "source": "kartu_ibu.ibu.persalinanSebelumnya"
+        "source": "ec_kartu_ibu.ibu.persalinanSebelumnya"
       },
       {
         "name": "riwayatKomplikasiKebidanan",
         "bind": "/model/instance/anc_registration/riwayat_komplikasi_kebidanan",
-        "source": "kartu_ibu.ibu.riwayatKomplikasiKebidanan"
+        "source": "ec_kartu_ibu.ibu.riwayatKomplikasiKebidanan"
       },
       {
         "name": "rkklainnya",
         "bind": "/model/instance/anc_registration/riwayat_komplikasi_kebidananL",
-        "source": "kartu_ibu.ibu.rkklainnya"
+        "source": "ec_kartu_ibu.ibu.rkklainnya"
       },
       {
         "name": "penyakitKronis",
         "bind": "/model/instance/anc_registration/penyakit_kronis",
-        "source": "kartu_ibu.ibu.penyakitKronis"
+        "source": "ec_kartu_ibu.ibu.penyakitKronis"
       },
       {
         "name": "rpkLainnya",
         "bind": "/model/instance/anc_registration/penyakit_kronisL",
-        "source": "kartu_ibu.ibu.rpkLainnya"
+        "source": "ec_kartu_ibu.ibu.rpkLainnya"
       },
       {
         "name": "Alergi",
         "bind": "/model/instance/anc_registration/alergi",
-        "source": "kartu_ibu.ibu.Alergi"
+        "source": "ec_kartu_ibu.ibu.Alergi"
       },
       {
         "name": "tanggalHPHT",
         "bind": "/model/instance/anc_registration/hpht",
-        "source": "kartu_ibu.ibu.tanggalHPHT"
+        "source": "ec_kartu_ibu.ibu.tanggalHPHT"
       },
       {
         "name": "htp",
         "bind": "/model/instance/anc_registration/htp"
+      },
+      {
+        "name": "usiaKlinis",
+        "bind": "/model/instance/anc_registration/usia_klinis"
       },
       {
         "name": "trimesterKe",
@@ -92,7 +147,7 @@
       {
         "name": "tanggalMemperolehBukuKia",
         "bind": "/model/instance/anc_registration/tanggal_memperoleh_buku_kia",
-        "source": "kartu_ibu.ibu.tanggalMemperolehBukuKia"
+        "source": "ec_kartu_ibu.ibu.tanggalMemperolehBukuKia"
       },
       {
         "name": "jamkesmas",
@@ -101,17 +156,17 @@
       {
         "name": "tbCM",
         "bind": "/model/instance/anc_registration/tb_cm",
-        "source": "kartu_ibu.ibu.tbCM"
+        "source": "ec_kartu_ibu.ibu.tbCM"
       },
       {
         "name": "bbKg",
         "bind": "/model/instance/anc_registration/bb_kg",
-        "source": "kartu_ibu.ibu.bbKg"
+        "source": "ec_kartu_ibu.ibu.bbKg"
       },
       {
         "name": "hasilPemeriksaanLILA",
         "bind": "/model/instance/anc_registration/lila_cm",
-        "source": "kartu_ibu.ibu.hasilPemeriksaanLILA"
+        "source": "ec_kartu_ibu.ibu.hasilPemeriksaanLILA"
       },
       {
         "name": "highRiskPregnancyProteinEnergyMalnutrition",
@@ -196,17 +251,17 @@
       {
         "name": "isClosed",
         "value": "false",
-        "source": "kartu_ibu.ibu.isClosed"
+        "source": "ec_kartu_ibu.ibu.isClosed"
       },
       {
         "name": "submissionDate",
         "bind": "/model/instance/anc_registration/today",
-        "source": "kartu_ibu.ibu.submissionDate"
+        "source": "ec_kartu_ibu.ibu.submissionDate"
       },
       {
         "name": "registrationDate",
         "bind": "/model/instance/anc_registration/reg_date",
-        "source": "kartu_ibu.ibu.registrationDate"
+        "source": "ec_kartu_ibu.ibu.registrationDate"
       },
       {
         "name": "jenisKontrasepsi",
@@ -215,7 +270,7 @@
       {
         "name": "type",
         "value": "anc",
-        "source": "kartu_ibu.ibu.type"
+        "source": "ec_kartu_ibu.ibu.type"
       }
     ]
   }
