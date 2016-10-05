@@ -2,10 +2,14 @@ package org.ei.opensrp.sync;
 
 import android.test.AndroidTestCase;
 
+import org.ei.opensrp.clientandeventmodel.DateUtil;
 import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by keyman on 03/10/16.
@@ -98,7 +102,7 @@ public class BaseClientProcessorTest extends AndroidTestCase {
 
 
         JSONObject classificationRule1 = new JSONObject();
-        updateJsonObject(classificationRule1,"comment", "Test Comment");
+        updateJsonObject(classificationRule1, "comment", "Test Comment");
         updateJsonObject(classificationRule1, "rule", rule1);
 
         JSONArray cases2 = new JSONArray();
@@ -119,7 +123,7 @@ public class BaseClientProcessorTest extends AndroidTestCase {
 
 
         JSONObject classificationRule2 = new JSONObject();
-        updateJsonObject(classificationRule2,"comment", "Test Comment 2");
+        updateJsonObject(classificationRule2, "comment", "Test Comment 2");
         updateJsonObject(classificationRule2, "rule", rule2);
 
 
@@ -131,4 +135,90 @@ public class BaseClientProcessorTest extends AndroidTestCase {
         return classification;
     }
 
+
+    protected JSONObject createField(String field, String fieldValue, JSONArray createCases, JSONArray closesCases) {
+
+        JSONObject fieldJson = createJsonObject("field", field);
+        updateJsonObject(fieldJson, "field_value", fieldValue);
+
+        if (createCases != null) {
+            updateJsonObject(fieldJson, "creates_case", createCases);
+        }
+
+        if (closesCases != null) {
+            updateJsonObject(fieldJson, "closes_case", closesCases);
+        }
+
+        return fieldJson;
+    }
+
+    protected JSONObject createField(String field, String concept, JSONArray values, JSONArray createCases, JSONArray closesCases) {
+
+        JSONObject fieldJson = createJsonObject("field", field);
+        updateJsonObject(fieldJson, "concept", concept);
+        updateJsonObject(fieldJson, "values", values);
+
+        if (createCases != null) {
+            updateJsonObject(fieldJson, "creates_case", createCases);
+        }
+
+        if (closesCases != null) {
+            updateJsonObject(fieldJson, "closes_case", closesCases);
+        }
+
+        return fieldJson;
+    }
+
+    protected JSONObject createField() {
+        JSONArray cases = createCases("case1", "case2", "case3");
+        return createField("eventType", "Test Event Type", cases, null);
+    }
+
+    protected JSONArray createCases(String... cases) {
+        JSONArray casesArray = new JSONArray();
+        for (String caseString : cases) {
+            updateJsonArray(casesArray, caseString);
+        }
+        return casesArray;
+    }
+
+    protected long getEventDate(Object eventDate) {
+        if (eventDate instanceof Long) {
+            return (Long) eventDate;
+        } else {
+            Date date = DateUtil.toDate(eventDate);
+            if (date != null)
+                return date.getTime();
+        }
+        return new Date().getTime();
+    }
+
+    protected JSONObject createAlertClassification(String columnName, String field) {
+        JSONObject jsonMapping = createJsonObject("field", field);
+
+        JSONObject column = createJsonObject("column_name", columnName);
+        updateJsonObject(column, "json_mapping", jsonMapping);
+
+        JSONArray columns = new JSONArray();
+        columns.put(column);
+
+        JSONObject clientAlert = createJsonObject("name", "alerts");
+        updateJsonObject(clientAlert, "columns", columns);
+
+        return clientAlert;
+    }
+
+    protected JSONObject createAlert(String caseID, Map<String, String> data) {
+        JSONObject dataObject = new JSONObject();
+        if(data != null && !data.isEmpty()) {
+            for (String key : data.keySet()) {
+                updateJsonObject(dataObject, key, data.get(key));
+            }
+        }
+
+        JSONObject alert = createJsonObject("baseEntityID", caseID);
+        updateJsonObject(alert, "data", dataObject);
+
+        return alert;
+    }
 }

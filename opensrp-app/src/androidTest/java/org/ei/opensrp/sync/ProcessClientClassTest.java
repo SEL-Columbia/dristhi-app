@@ -1,6 +1,8 @@
 package org.ei.opensrp.sync;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 
@@ -118,10 +120,23 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
             ClientProcessor clientProcessor = ClientProcessor.getInstance(getContext());
             
             ClientProcessor spy = Mockito.spy(clientProcessor);
-            Mockito.doNothing().when(spy).processField(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class));
+            Mockito.when(spy.processField(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class))).thenReturn(true);
             
             Boolean processed = spy.processClientClass(classification, event, client);
             assertTrue("Client class should have been processed", processed);
+
+            ArgumentCaptor<JSONObject> fieldCaptor = ArgumentCaptor.forClass(JSONObject.class);
+            ArgumentCaptor<JSONObject> eventCaptor = ArgumentCaptor.forClass(JSONObject.class);
+            ArgumentCaptor<JSONObject> clientCaptor = ArgumentCaptor.forClass(JSONObject.class);
+
+            Mockito.verify(spy, Mockito.times(1)).processField(fieldCaptor.capture(), eventCaptor.capture(), clientCaptor.capture());
+
+            JSONObject ruleObject = classification.getJSONObject("rule");
+            JSONArray fields = ruleObject.getJSONArray("fields");
+
+            assertEquals(fields.get(0), fieldCaptor.getValue());
+            assertEquals(event, eventCaptor.getValue());
+            assertEquals(client, clientCaptor.getValue());
 
         } catch (Exception e) {
             fail(e.getMessage());

@@ -2,13 +2,16 @@ package org.ei.opensrp.sync;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+
+import java.util.List;
 
 
 /**
  * Created by keyman on 30/09/16.
  */
-public class ProcessEventTest extends BaseClientProcessorTest {
+public class  ProcessEventTest extends BaseClientProcessorTest {
 
 
     @Override
@@ -131,13 +134,34 @@ public class ProcessEventTest extends BaseClientProcessorTest {
             clientProcessor.setCloudantDataHandler(cloudantDataHandler);
 
             ClientProcessor spy = Mockito.spy(clientProcessor);
+
             Mockito.when(spy.processClientClass(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class))).thenReturn(true);
 
             Boolean processed = spy.processEvent(event, classification);
             assertTrue("Event should be processed", processed);
 
             Mockito.verify(cloudantDataHandler).getClientByBaseEntityId(baseEntityId);
-            Mockito.verify(spy, Mockito.times(2)).processClientClass(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class));
+
+            ArgumentCaptor<JSONObject> classCaptor = ArgumentCaptor.forClass(JSONObject.class);
+            ArgumentCaptor<JSONObject> eventCaptor = ArgumentCaptor.forClass(JSONObject.class);
+            ArgumentCaptor<JSONObject> clientCaptor = ArgumentCaptor.forClass(JSONObject.class);
+
+            Mockito.verify(spy, Mockito.times(2)).processClientClass(classCaptor.capture(), eventCaptor.capture(), clientCaptor.capture());
+
+            JSONArray classificationRules = classification.getJSONArray("case_classification_rules");
+            List<JSONObject> classCapturedList = classCaptor.getAllValues();
+            for(int i = 0; i < classificationRules.length(); i++){
+                assertEquals(classificationRules.get(i), classCapturedList.get(i));
+            }
+
+            for(JSONObject eventCaptured: eventCaptor.getAllValues()){
+                assertEquals(event, eventCaptured);
+            }
+
+            for(JSONObject clientCaptured: clientCaptor.getAllValues()){
+                assertEquals(client, clientCaptured);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             fail(e.getMessage());
@@ -153,7 +177,8 @@ public class ProcessEventTest extends BaseClientProcessorTest {
             JSONObject client = createClient(baseEntityId);
 
             JSONObject event = createEvent(baseEntityId, false);
-            updateJsonObject(event, "eventDate", baseEntityId);
+            String eventDate = "2016-10-10T00:00:00.000+0300";
+            updateJsonObject(event, "eventDate", eventDate);
 
             JSONObject classification = createClassification();
 
@@ -176,8 +201,39 @@ public class ProcessEventTest extends BaseClientProcessorTest {
             assertTrue("Event detailsUpdated field shoud be true", event.getBoolean(detailsUpdated));
 
             Mockito.verify(cloudantDataHandler).getClientByBaseEntityId(baseEntityId);
-            Mockito.verify(spy, Mockito.times(2)).processClientClass(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class));
-            Mockito.verify(spy, Mockito.times(4)).saveClientDetails(Mockito.anyString(), Mockito.anyMap(), Mockito.anyLong());
+
+            ArgumentCaptor<JSONObject> classCaptor = ArgumentCaptor.forClass(JSONObject.class);
+            ArgumentCaptor<JSONObject> eventCaptor = ArgumentCaptor.forClass(JSONObject.class);
+            ArgumentCaptor<JSONObject> clientCaptor = ArgumentCaptor.forClass(JSONObject.class);
+
+            Mockito.verify(spy, Mockito.times(2)).processClientClass(classCaptor.capture(), eventCaptor.capture(), clientCaptor.capture());
+
+            JSONArray classificationRules = classification.getJSONArray("case_classification_rules");
+            List<JSONObject> classCapturedList = classCaptor.getAllValues();
+            for(int i = 0; i < classificationRules.length(); i++){
+                   assertEquals(classificationRules.get(i), classCapturedList.get(i));
+            }
+
+            for(JSONObject eventCaptured: eventCaptor.getAllValues()){
+                assertEquals(event, eventCaptured);
+            }
+
+            for(JSONObject clientCaptured: clientCaptor.getAllValues()){
+                assertEquals(client, clientCaptured);
+            }
+
+            ArgumentCaptor<String> baseEntityCaptor = ArgumentCaptor.forClass(String.class);
+            ArgumentCaptor<Long> timeStampCaptor = ArgumentCaptor.forClass(Long.class);
+
+            Mockito.verify(spy, Mockito.times(4)).saveClientDetails(baseEntityCaptor.capture(), Mockito.anyMap(), timeStampCaptor.capture());
+            for(String capturedBaseEntityId : baseEntityCaptor.getAllValues()){
+                assertEquals(baseEntityId, capturedBaseEntityId);
+            }
+
+            for(Long capturedTimeStamp: timeStampCaptor.getAllValues()){
+                assertEquals(getEventDate(eventDate), capturedTimeStamp.longValue());
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             fail(e.getMessage());
