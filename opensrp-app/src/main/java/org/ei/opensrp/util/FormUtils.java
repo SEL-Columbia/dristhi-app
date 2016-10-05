@@ -299,8 +299,8 @@ public class FormUtils {
     }
 
     /**
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
      * Checks if the provided node has Child elements
      * @param element
      * @return
@@ -316,7 +316,7 @@ public class FormUtils {
     }
 
     /**
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
+//>>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
      * Iterate through the provided array and retrieve a json object whose name attribute matches the name supplied
      *
      * @param fieldName
