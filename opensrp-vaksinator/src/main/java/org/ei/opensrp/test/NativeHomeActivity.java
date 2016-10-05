@@ -138,9 +138,9 @@ public class NativeHomeActivity extends SecuredActivity {
     private void updateRegisterCounts(HomeContext homeContext) {
         CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
                 context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"nama_bayi","anak","nama_orang_tua", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+                context.personObjectClientsCache(),"nama_bayi","anak","tanggal_lahir", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
-        ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients().size()));
+        ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients("form_ditutup","true").size()));
     }
 
     @Override

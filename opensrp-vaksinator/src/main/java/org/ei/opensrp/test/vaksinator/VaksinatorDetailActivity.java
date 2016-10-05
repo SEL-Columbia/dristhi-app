@@ -133,9 +133,7 @@ public class VaksinatorDetailActivity extends Activity {
         antipiretik.setText(": " + (controller.getDetails().get("getAntypiretic") != null ? controller.getDetails().get("getAntypiretic") : "-"));
 
         hb1Under7.setText(": " + (hasDate(controller,"hb0")
-                ? age(controller.getDetails().get("tanggal_lahir"),controller.getDetails().get("hb0")) <= 7
-                    ? controller.getDetails().get("hb0")
-                    : "-"
+                ? controller.getDetails().get("hb0")
                 : hasDate(controller,"hb1_kurang_7_hari")
                     ? controller.getDetails().get("hb1_kurang_7_hari")
                     :"-"));

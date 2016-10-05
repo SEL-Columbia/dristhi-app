@@ -42,19 +42,23 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
 
         org.ei.opensrp.commonregistry.CommonPersonObjectController data = new org.ei.opensrp.commonregistry.CommonPersonObjectController(otherContext.allCommonsRepositoryobjects("anak"),
                 otherContext.allBeneficiaries(), otherContext.listCache(),
-                otherContext.personObjectClientsCache(), "nama_bayi", "anak", "nama_orang_tua", org.ei.opensrp.commonregistry.CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+                otherContext.personObjectClientsCache(), "nama_bayi", "anak", "tanggal_lahir", 
+                org.ei.opensrp.commonregistry.CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
         final org.ei.opensrp.commonregistry.CommonPersonObjectClients clients = data.getClients();
+        System.out.println("total clients = "+clients.size());
         final LocalVariable var = new LocalVariable();
 
         var.setDefaultSpinnerDate();
+        updateView(var, clients, var.monthSpinner.getSelectedItemPosition() + 1, Integer.parseInt(var.yearSpinner.getSelectedItem().toString()));
+        var.setSubtitle(((org.ei.opensrp.commonregistry.CommonPersonObjectClient) clients.get(0)).getDetails().get("desa"));
 
         var.monthSpinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView <?> parentView, View selectedItemView, int position, long id) {
                         updateView(var,clients,var.monthSpinner.getSelectedItemPosition()+1,Integer.parseInt(var.yearSpinner.getSelectedItem().toString()));
-                        var.setSubtitle(((org.ei.opensrp.commonregistry.CommonPersonObjectClient) clients.get(4)).getDetails().get("desa"));
+                        var.setSubtitle(((org.ei.opensrp.commonregistry.CommonPersonObjectClient) clients.get(0)).getDetails().get("desa"));
                     }
 
                     @Override
@@ -106,23 +110,25 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
         if(!(filter.toLowerCase().contains("under") || filter.toLowerCase().contains("over")))
             return 0;
 
+        String []cond = filter.split(" ");
         int counter = 0;
         org.ei.opensrp.commonregistry.CommonPersonObjectClient cl;
         for(int i=0;i<clients.size();i++){
             cl = ((org.ei.opensrp.commonregistry.CommonPersonObjectClient)clients.get(i));
+            System.out.println(cl.getDetails().toString());
             if (cl.getDetails().get(fieldName)!=null ) {
-                String []cond = filter.split(" ");
+                System.out.println(cl.getDetails().get("nama_bayi")+" "+fieldName+" "+filter+" = "+duration(cl.getDetails().get("tanggal_lahir"),cl.getDetails().get(fieldName)));
                 counter = cl.getDetails().get(fieldName).contains(keyword)
                           ? cond[0].equalsIgnoreCase("under")
-                            ?   duration(cl.getDetails().get("tanggal_lahir"),cl.getDetails().get(fieldName)) <= Integer.parseInt(cond[1])
-                                ? counter + 1
-                                : counter
-                            :   counter
-                          : cond[0].equalsIgnoreCase("over")
-                            ?   duration(cl.getDetails().get("tanggal_lahir"),cl.getDetails().get(fieldName)) > Integer.parseInt(cond[1])
+                            ? duration(cl.getDetails().get("tanggal_lahir"),cl.getDetails().get(fieldName)) <= Integer.parseInt(cond[1])
+                              ? counter + 1
+                              : counter
+                            : cond[0].equalsIgnoreCase("over")
+                              ? duration(cl.getDetails().get("tanggal_lahir"),cl.getDetails().get(fieldName)) > Integer.parseInt(cond[1])
                                 ? counter + 1
                                 :counter
-                            : counter
+                              : counter
+                          : counter
                 ;
             }
         }
@@ -145,10 +151,10 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
 
         String keyword = Integer.toString(year)+"-"+(month>9 ? Integer.toString(month):"0"+Integer.toString(month));
 
-        counter = recapitulation(clients,"hb0_kurang_7_hari",keyword);
+        counter = recapitulation(clients,"hb1_kurang_7_hari",keyword);
         var.hbUnder7.setText(Integer.toString(counter+recapitulation(clients,"hb0",keyword,"under 7")));
-        counter = recapitulation(clients,"hb0_lebih_7_hari",keyword);
-        var.hbOver7.setText(Integer.toString(counter + recapitulation(clients,"hb0_lebih_7_hari",keyword,"over 7")));
+        counter = recapitulation(clients,"hb1_lebih_7_hari",keyword);
+        var.hbOver7.setText(Integer.toString(counter + recapitulation(clients,"hb0",keyword,"over 7")));
         counter = recapitulation(clients,"bcg_pol_1",keyword);
         var.bcg.setText(Integer.toString(recapitulation(clients,"bcg",keyword)+counter));
         var.pol1.setText(Integer.toString(recapitulation(clients,"polio1",keyword)+counter));
