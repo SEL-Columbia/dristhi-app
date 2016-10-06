@@ -248,16 +248,16 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                 viewHolder.date_status.setText( visit_date);
                 viewHolder.visit_status.setText( hariKeKF);
             }
-            if(!pc.getDetails().get("jenisKontrasepsi").equals("")){
-                viewHolder.anc_status_layout.setText(context.getString(R.string.service_fp));
-                String visit_date = pc.getDetails().get("tanggalkunjungan")!=null?context.getString(R.string.date_visit_title) +" " +pc.getDetails().get("tanggalkunjungan"):"";
-                String visit_stat = pc.getDetails().get("jenisKontrasepsi")!=null?context.getString(R.string.fp_methods) +" " + pc.getDetails().get("jenisKontrasepsi"):"";
-                viewHolder.date_status.setText( visit_date);
-                viewHolder.visit_status.setText(visit_stat);
-            }
+
         }
 
-
+        if(!pc.getDetails().get("jenisKontrasepsi").equals("0")){
+            viewHolder.anc_status_layout.setText(context.getString(R.string.service_fp));
+            String visit_date = pc.getDetails().get("tanggalkunjungan")!=null?context.getString(R.string.date_visit_title) +" " +pc.getDetails().get("tanggalkunjungan"):"";
+            String visit_stat = pc.getDetails().get("jenisKontrasepsi")!=null?context.getString(R.string.fp_methods) +" " + pc.getDetails().get("jenisKontrasepsi"):"";
+            viewHolder.date_status.setText( visit_date);
+            viewHolder.visit_status.setText(visit_stat);
+        }
         viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
         viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
 

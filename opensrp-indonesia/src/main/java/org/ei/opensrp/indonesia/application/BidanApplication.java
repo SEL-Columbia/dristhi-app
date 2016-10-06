@@ -83,7 +83,7 @@ public class BidanApplication extends DrishtiApplication {
 
     private String[] getFtsSearchFields(String tableName){
         if(tableName.equals("ec_kartu_ibu")){
-            String[] ftsSearchFields =  { "namalengkap", "namaSuami" };
+            String[] ftsSearchFields =  { "namalengkap", "namaSuami", "jenisKontrasepsi" };
             return ftsSearchFields;
         } else if(tableName.equals("anak")){
             String[] ftsSearchFields =  { "namaBayi" };
@@ -97,7 +97,7 @@ public class BidanApplication extends DrishtiApplication {
 
     private String[] getFtsSortFields(String tableName){
         if(tableName.equals("ec_kartu_ibu")) {
-            String[] sortFields = { "namalengkap", "umur",  "noIbu", "htp" };
+            String[] sortFields = { "namalengkap", "umur",  "noIbu", "htp"};
             return sortFields;
         } else if(tableName.equals("anak")){
             String[] sortFields = { "namaBayi", "tanggalLahirAnak" };
@@ -111,7 +111,7 @@ public class BidanApplication extends DrishtiApplication {
 
     private String[] getFtsMainConditions(String tableName){
         if(tableName.equals("ec_kartu_ibu")) {
-            String[] mainConditions = { "isClosed", "details" };
+            String[] mainConditions = { "isClosed", "details" , "jenisKontrasepsi" };
             return mainConditions;
         } else if(tableName.equals("anak")){
             String[] mainConditions = { "isClosed", "ibuCaseId" };

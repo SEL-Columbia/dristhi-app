@@ -224,7 +224,6 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         countSelect = countqueryBUilder.mainCondition(mainCondition);
         super.CountExecute();
 
-
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("ec_kartu_ibu", new String[]{"ec_kartu_ibu.relationalid","ec_kartu_ibu.isClosed", "ec_kartu_ibu.details", "ec_kartu_ibu.isOutOfArea", "namalengkap", "umur", "ibu.type", "namaSuami", "ibu.ancDate", "ibu.ancKe", "ibu.hariKeKF", "anak.namaBayi", "anak.tanggalLahirAnak", "ibu.id", "noIbu"});
         queryBUilder.customJoin("LEFT JOIN ibu on ec_kartu_ibu.id = ibu.kartuIbuId LEFT JOIN anak ON ibu.id = anak.ibuCaseId ");

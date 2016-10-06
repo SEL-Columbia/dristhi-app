@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <Kartu_ibu encounter_type="Identitas Ibu" id="Kartu_ibu" version="201609290145">
+    <Kartu_ibu encounter_type="Identitas Ibu" id="Kartu_ibu" version="201610060135">
       <formhub>
         <uuid/>
       </formhub>
@@ -48,6 +48,7 @@
       <golongan_darah openmrs_entity="concept" openmrs_entity_id="300AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <nomor_telpon_hp openmrs_entity="concept" openmrs_entity_id="159635AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <pptest openmrs_entity="concept" openmrs_entity_id="45AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <jenis_kontrasepsi openmrs_entity="concept" openmrs_entity_id="374AAAAAAAAAAAAAAAAAAAAAAAAAAAAA">0</jenis_kontrasepsi>
       <high_risk_pregnancy_young_maternal_age openmrs_entity="concept" openmrs_entity_id="163119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <high_risk_pregnancy_old_maternal_age openmrs_entity="concept" openmrs_entity_id="163120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <reg_date/>

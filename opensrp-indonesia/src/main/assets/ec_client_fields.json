@@ -70,6 +70,14 @@
           }
         },
         {
+          "column_name": "jenisKontrasepsi",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "374AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
           "column_name": "umur",
           "type": "Event",
           "json_mapping": {

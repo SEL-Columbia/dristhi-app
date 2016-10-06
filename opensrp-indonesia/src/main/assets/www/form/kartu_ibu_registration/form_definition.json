@@ -157,7 +157,7 @@
       },
       {
         "name": "jenisKontrasepsi",
-        "value": ""
+        "bind": "/model/instance/Kartu_ibu/jenis_kontrasepsi"
       },
       {
         "name": "isOutOfArea",
