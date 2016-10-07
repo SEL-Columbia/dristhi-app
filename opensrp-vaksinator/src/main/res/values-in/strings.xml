@@ -21,7 +21,7 @@
     <string name="home_pnc_label">PNC</string>
     <string name="home_child_label">Anak</string>
     <string name="home_report_label">Pelaporan</string>
-    <string name="register_label">Registrator</string>
+    <string name="register_label">Register</string>
     <string name="home_videos_label">Video</string>
 
     <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
@@ -34,8 +34,8 @@
     </string>
     <string name="unsynced_forms_count_message">forms unsynced</string>
 
-    <string name="str_next">"Berikutnya &gt;&gt;"</string>
-    <string name="str_previous">"&lt;&lt; Sebelumnya"</string>
+    <string name="str_next">"Berikutnya&gt;&gt;"</string>
+    <string name="str_previous">"&lt;&lt;Sebelumnya"</string>
     <string name="str_page_info">Halaman {0} dari {1}</string>
 
     <string name="header_name">NAMA</string>
@@ -168,7 +168,7 @@
     <string name="tt">TT</string>
     <string name="ifa">IFA</string>
     <string name="pentavalent">Pentavalent</string>
-    <string name="measles">Measles</string>
+    <string name="measles">Campak</string>
     <string name="opv_booster">OPV Booster</string>
     <string name="dpt_booster">DPT Booster</string>
     <string name="vitamin_a">Vitamin A</string>
@@ -276,6 +276,7 @@
     <string name="str_risks_reviewed">Risks reviewed:</string>
     <string name="sort_by_edd_label">EDD</string>
 
+
     <string name="str_pnc_delivery_date">Date:</string>
     <string name="str_pnc_delivery_place">Place:</string>
     <string name="str_pnc_delivery_type">Type:</string>
@@ -361,14 +362,19 @@
     <string name="no_internet_connectivity">No internet connection. Please ensure data connectivity</string>
     <string name="forminputerror">Please check the form for any error/missing input marked in Red box</string>
     <string name="okforminputerror">ok</string>
+    <string name="year_short">thn</string>
+    <string name="month_short">bln</string>
 
     <string name="jurim_label">Vaksinator</string>
+    <string name="title001">IDENTITAS ANAK</string>
+    <string name="title002">LOG VAKSINASI</string>
     <string name="vaksinator_recapitulation_label">Rekapitulasi Kunjungan</string>
     <string name="space"> </string>
     <string name="fence">|</string>
     <string name="jurim_detail">Detail Vaksinasi</string>
     <string name="jurim_search">cari Anak</string>
     <string name="sort_by_nama_bayi">(A ke Z)</string>
+    <string name="sort_by_tanggal_lahir">Umur</string>
     <string name="sort_by_nama_ibu">Nama Ibu</string>
     <string name="sort_by_dusun">Dusun</string>
     <string name="hb1">HB0</string>
@@ -376,9 +382,45 @@
     <string name="polio2">DPT-HB1/Pol2</string>
     <string name="polio3">DPT-HB2/Pol3</string>
     <string name="polio4">DPT3/Pol4/IPV</string>
-    <string name="ipv">Campak</string>
+    <string name="ipv">IPV</string>
 
+    <string name="namaAyah">Nama Ayah</string>
+    <string name="namaIbu">Nama Ibu</string>
+    <string name="namaAnak">Nama Anak</string>
+    <string name="posyandu">Posyandu</string>
+    <string name="desa">Desa</string>
+    <string name="dusun">Dusun</string>
+    <string name="tanggalLahir">Tanggal Lahir</string>
+    <string name="beratLahir">Berat Lahir</string>
+    <string name="dapatAntipiretik">Diberi Antipiretik</string>
 
+    <string name="male">Laki-laki</string>
+    <string name="female">Perempuan</string>
+    <string name="dptTambahan">DPT/HB Tambahan</string>
+    <string name="campakTambahan">Campak Tambahan</string>
+    <string name="moving">Pindah</string>
+
+    <string name="imunisasiLengkap">Imunisasi Lengkap</string>
+    <string name="meninggal">Meninggal</string>
+    <string name="hari">hari</string>
+    <string name="headerTextpart01">Rekapitulasi Imunisasi di Desa </string>
+    <string name="headerTextpart02"> Bulan </string>
+    <string name="headerTextpart03"> Tahun </string>
+
+    <string name="editForm">Edit Data Peserta</string>
+    <string name="hb0VisitLabel">Kunjungan Imunisasi HB0</string>
+    <string name="bcgVisitLabel">Kunjungan Imunisasi BCG</string>
+    <string name="polio1VisitLabel">Kunjungan Imunisasi Polio1</string>
+    <string name="dpt1VisitLabel">Kunjungan Imunisasi DPT/HB Combo 1</string>
+    <string name="polio2VisitLabel">Kunjungan Imunisasi Polio2</string>
+    <string name="dpt2VisitLabel">Kunjungan Imunisasi DPT/HB Combo 2</string>
+    <string name="polio3VisitLabel">Kunjungan Imunisasi Polio3</string>
+    <string name="dpt3VisitLabel">Kunjungan Imunisasi DPT/HB Combo 3</string>
+    <string name="polio4VisitLabel">Kunjungan Imunisasi Polio4</string>
+    <string name="ipvVisitLabel">Kunjungan Imunisasi IPV</string>
+    <string name="campakVisitLabel">Kunjungan Imunisasi Campak</string>
+    <string name="dptTambahanVisitLabel">Kunjungan Imunisasi DPT/HB Tambahan</string>
+    <string name="campakTambahanVisitLabel">Kunjungan Imunisasi Campak Tambahan</string>
 
     <color name="vaccBlue">#FF9BC1FB</color>
 

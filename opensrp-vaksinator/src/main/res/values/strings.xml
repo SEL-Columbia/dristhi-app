@@ -327,7 +327,7 @@
     <string name="hh_fwGobhhid_sort">HHID - Government</string>
     <string name="hh_fwJivhhid_sort">HHID - JiVitA</string>
     <string name="due_status">Due Status</string>
-    <string name="hh_search_hint">Cari Anak</string>
+    <string name="hh_search_hint">Search</string>
     <string name="hh_no_mwra">No ELCO</string>
     <string name="hh_has_mwra">Has one or more ELCO</string>
     <string name="elco_search_hint">Search Eligible Couples</string>
@@ -366,8 +366,12 @@
     <string name="no_internet_connectivity">No internet connection. Please ensure data connectivity</string>
     <string name="forminputerror">Please check the form for any error/missing input marked in Red box</string>
     <string name="okforminputerror">ok</string>
+    <string name="year_short">y</string>
+    <string name="month_short">m</string>
 
     <string name="jurim_label">Vaksinator</string>
+    <string name="title001">CHILD IDENTITY</string>
+    <string name="title002">VACCINATION LOG</string>
     <string name="vaksinator_recapitulation_label">Recapitulation</string>
     <string name="space"> </string>
     <string name="fence">|</string>
@@ -378,8 +382,46 @@
     <string name="polio2">DPT-HB1/Pol2</string>
     <string name="polio3">DPT-HB2/Pol3</string>
     <string name="polio4">DPT3/Pol4/IPV</string>
-    <string name="ipv">Measles</string>
+    <string name="ipv">IPV</string>
 
+    <string name="namaAyah">Father Name</string>
+    <string name="namaIbu">Mother Name</string>
+    <string name="namaAnak">Child Name</string>
+    <string name="posyandu">Health Post</string>
+    <string name="desa">Village</string>
+    <string name="dusun">Sub Village</string>
+    <string name="tanggalLahir">Date of Birth</string>
+    <string name="beratLahir">Birth Weight</string>
+    <string name="dapatAntipiretik">Given Antipyretic</string>
+
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="imunisasiLengkap">Immunization Complete</string>
+    <string name="dptTambahan">Additional DPT/HB</string>
+    <string name="campakTambahan">Additional Measles</string>
+
+    <string name="meninggal">Death</string>
+    <string name="hari">days</string>
+    <string name="headerTextpart01">Immunization Recap. in </string>
+    <string name="headerTextpart02"> on</string>
+    <string name="headerTextpart03"></string>
+
+    <string name="editForm">Edit Register</string>
+    <string name="hb0VisitLabel">HB0 Immunization Visit</string>
+    <string name="bcgVisitLabel">BCG Immunization Visit</string>
+    <string name="polio1VisitLabel">Polio1 Immunization Visit</string>
+    <string name="dpt1VisitLabel">DPT/HB Combo 1 Immunization Visit</string>
+    <string name="polio2VisitLabel">Polio2 Immunization Visit</string>
+    <string name="dpt2VisitLabel">DPT/HB Combo 2 Immunization Visit</string>
+    <string name="polio3VisitLabel">Polio3 Immunization Visit</string>
+    <string name="dpt3VisitLabel">DPT/HB Combo 3 Immunization Visit</string>
+    <string name="polio4VisitLabel">Polio4 Immunization Visit</string>
+    <string name="ipvVisitLabel">IPV Immunization Visit</string>
+    <string name="campakVisitLabel">Measles Immunization Visit</string>
+    <string name="dptTambahanVisitLabel">Additional DPT/HB Immunization Visit</string>
+    <string name="campakTambahanVisitLabel">Additional Measles Immunization Visit</string>
+    <string name="moving">Moving</string>
+    
     <color name="vaccBlue">#FF9BC1FB</color>
 
     <string name="month_list_prompt">Month</string>
