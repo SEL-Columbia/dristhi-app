@@ -120,7 +120,7 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
             ClientProcessor clientProcessor = ClientProcessor.getInstance(getContext());
             
             ClientProcessor spy = Mockito.spy(clientProcessor);
-            Mockito.when(spy.processField(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class))).thenReturn(true);
+            Mockito.doReturn(true).when(spy).processField(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class));
             
             Boolean processed = spy.processClientClass(classification, event, client);
             assertTrue("Client class should have been processed", processed);

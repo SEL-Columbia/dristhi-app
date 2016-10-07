@@ -80,8 +80,8 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
             ClientProcessor clientProcessor = ClientProcessor.getInstance(getContext());
             ClientProcessor spy = Mockito.spy(clientProcessor);
 
-            Mockito.when(spy.processCaseModel(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONArray.class))).thenReturn(true);
-            Mockito.when(spy.closeCase(Mockito.any(JSONObject.class), Mockito.any(JSONArray.class))).thenReturn(true);
+            Mockito.doReturn(true).when(spy).processCaseModel(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONArray.class));
+            Mockito.doReturn(true).when(spy).closeCase(Mockito.any(JSONObject.class), Mockito.any(JSONArray.class));
 
             Boolean processed = spy.processField(fieldJson, event, client);
             assertTrue("Field should be processed", processed);
@@ -124,8 +124,8 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
             ClientProcessor clientProcessor = ClientProcessor.getInstance(getContext());
             ClientProcessor spy = Mockito.spy(clientProcessor);
 
-            Mockito.when(spy.processCaseModel(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONArray.class))).thenReturn(true);
-            Mockito.when(spy.closeCase(Mockito.any(JSONObject.class), Mockito.any(JSONArray.class))).thenReturn(true);
+            Mockito.doReturn(true).when(spy).processCaseModel(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONArray.class));
+            Mockito.doReturn(true).when(spy).closeCase(Mockito.any(JSONObject.class), Mockito.any(JSONArray.class));
 
             Boolean processed = spy.processField(fieldJson, event, client);
             assertTrue("Field should be processed", processed);
@@ -228,8 +228,8 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
             ClientProcessor clientProcessor = ClientProcessor.getInstance(getContext());
             ClientProcessor spy = Mockito.spy(clientProcessor);
 
-            Mockito.when(spy.processCaseModel(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONArray.class))).thenReturn(true);
-            Mockito.when(spy.closeCase(Mockito.any(JSONObject.class), Mockito.any(JSONArray.class))).thenReturn(true);
+            Mockito.doReturn(true).when(spy).processCaseModel(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONArray.class));
+            Mockito.doReturn(true).when(spy).closeCase(Mockito.any(JSONObject.class), Mockito.any(JSONArray.class));
 
             Boolean processed = spy.processField(fieldJson, event, client);
             assertTrue("Field should be processed", processed);
@@ -284,8 +284,8 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
             ClientProcessor clientProcessor = ClientProcessor.getInstance(getContext());
             ClientProcessor spy = Mockito.spy(clientProcessor);
 
-            Mockito.when(spy.processCaseModel(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONArray.class))).thenReturn(true);
-            Mockito.when(spy.closeCase(Mockito.any(JSONObject.class), Mockito.any(JSONArray.class))).thenReturn(true);
+            Mockito.doReturn(true).when(spy).processCaseModel(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONArray.class));
+            Mockito.doReturn(true).when(spy).closeCase(Mockito.any(JSONObject.class), Mockito.any(JSONArray.class));
 
             Boolean processed = spy.processField(fieldJson, event, client);
             assertTrue("Field should be processed", processed);

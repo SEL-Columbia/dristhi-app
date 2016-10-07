@@ -99,7 +99,7 @@ public class ClientProcessor {
         allSharedPreferences.saveLastSyncDate(lastSyncDate.getTime());
     }
 
-    public Boolean processEvent(JSONObject event, JSONObject clientClassificationJson) throws Exception {
+    protected Boolean processEvent(JSONObject event, JSONObject clientClassificationJson) throws Exception {
 
         try {
             String baseEntityId = event.getString(baseEntityIdJSONKey);
@@ -135,7 +135,7 @@ public class ClientProcessor {
         }
     }
 
-    public Boolean processClientClass(JSONObject clientClass, JSONObject event, JSONObject client) {
+    protected Boolean processClientClass(JSONObject clientClass, JSONObject event, JSONObject client) {
 
         try {
 
@@ -164,7 +164,7 @@ public class ClientProcessor {
         }
     }
 
-    public Boolean processField(JSONObject fieldJson, JSONObject event, JSONObject client) {
+    protected Boolean processField(JSONObject fieldJson, JSONObject event, JSONObject client) {
 
         try {
             if(fieldJson == null || fieldJson.length() == 0){
@@ -233,7 +233,7 @@ public class ClientProcessor {
         }
     }
 
-    public Boolean processAlert(JSONObject alert, JSONObject clientAlertClassificationJson) throws Exception {
+    protected Boolean processAlert(JSONObject alert, JSONObject clientAlertClassificationJson) throws Exception {
 
         try {
 
@@ -296,7 +296,7 @@ public class ClientProcessor {
         }
     }
 
-    public Boolean closeCase(JSONObject client, JSONArray closesCase) {
+    protected Boolean closeCase(JSONObject client, JSONArray closesCase) {
         try {
             if (closesCase == null || closesCase.length() == 0) {
                 return false;
@@ -306,8 +306,7 @@ public class ClientProcessor {
 
             for (int i = 0; i < closesCase.length(); i++) {
                 String tableName = closesCase.getString(i);
-                CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
-                cr.closeCase(baseEntityId, tableName);
+                closeCase(tableName, baseEntityId);
                 updateFTSsearch(tableName, baseEntityId);
             }
             return true;
@@ -317,7 +316,7 @@ public class ClientProcessor {
         }
     }
 
-    public Boolean processCaseModel(JSONObject event, JSONObject client, JSONArray createsCase) {
+    protected Boolean processCaseModel(JSONObject event, JSONObject client, JSONArray createsCase) {
         try {
 
             if (createsCase == null || createsCase.length() == 0) {
@@ -357,9 +356,6 @@ public class ClientProcessor {
                         }
                     }
 
-                    String encounterType = jsonMapping.has("event_type") ? jsonMapping.getString("event_type") : null;
-
-
                     JSONObject jsonDocument = docType.equalsIgnoreCase("Event") ? event : client;
 
                     Object jsonDocSegment = null;
@@ -393,6 +389,8 @@ public class ClientProcessor {
                         }
                         continue;
                     }
+
+                    String encounterType = jsonMapping.has("event_type") ? jsonMapping.getString("event_type") : null;
 
                     if ( jsonDocSegment instanceof JSONArray) {
 
@@ -582,7 +580,7 @@ public class ClientProcessor {
         return map;
     }
 
-    public void saveClientDetails(String baseEntityId, Map<String, String> values, Long timestamp) {
+    protected void saveClientDetails(String baseEntityId, Map<String, String> values, Long timestamp) {
         Iterator<String> it = values.keySet().iterator();
         if (it != null) {
             while (it.hasNext()) {
@@ -601,7 +599,7 @@ public class ClientProcessor {
      * @param value
      * @param timestamp
      */
-    private void saveClientDetails(String baseEntityId, String key, String value, Long timestamp) {
+    protected void saveClientDetails(String baseEntityId, String key, String value, Long timestamp) {
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
         detailsRepository.add(baseEntityId, key, value, timestamp);
     }
@@ -684,7 +682,7 @@ public class ClientProcessor {
         return columnValue;
     }
 
-    public Map<String, String> getClientAddressAsMap(JSONObject client) {
+    protected Map<String, String> getClientAddressAsMap(JSONObject client) {
         Map<String, String> addressMap = new HashMap<String, String>();
         try {
             String addressFieldsKey = "addressFields";
@@ -726,13 +724,18 @@ public class ClientProcessor {
     /**
      * Insert the a new record to the database and returns its id
      **/
-    private Long executeInsertStatement(ContentValues values, String tableName) {
+    protected Long executeInsertStatement(ContentValues values, String tableName) {
         CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
         Long id = cr.executeInsertStatement(values, tableName);
         return id;
     }
 
-    public void executeInsertAlert(ContentValues contentValues) {
+    protected void closeCase(String tableName, String baseEntityId){
+        CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
+        cr.closeCase(baseEntityId, tableName);
+    }
+
+    protected void executeInsertAlert(ContentValues contentValues) {
         if (!contentValues.getAsString(AlertRepository.ALERTS_STATUS_COLUMN).isEmpty()) {
             Alert alert = new Alert(contentValues.getAsString(AlertRepository.ALERTS_CASEID_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_SCHEDULE_NAME_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_VISIT_CODE_COLUMN), AlertStatus.from(contentValues.getAsString(AlertRepository.ALERTS_STATUS_COLUMN)), contentValues.getAsString(AlertRepository.ALERTS_STARTDATE_COLUMN), contentValues.getAsString(AlertRepository.ALERTS_EXPIRYDATE_COLUMN));
             AlertService alertService = org.ei.opensrp.Context.getInstance().alertService();
@@ -749,7 +752,7 @@ public class ClientProcessor {
         return c;
     }
 
-    private JSONObject getColumnMappings(String registerName) {
+    protected JSONObject getColumnMappings(String registerName) {
 
         try {
             String clientClassificationStr = getFileContents("ec_client_fields.json");
@@ -799,7 +802,7 @@ public class ClientProcessor {
         return new Date().getTime();
     }
 
-    private void updateFTSsearch(String tableName, String entityId) {
+    protected void updateFTSsearch(String tableName, String entityId) {
         Log.i(TAG, "Starting updateFTSsearch table: " + tableName);
         AllCommonsRepository allCommonsRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(tableName);
         if (allCommonsRepository != null) {

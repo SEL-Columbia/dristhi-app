@@ -1,19 +1,24 @@
 package org.ei.opensrp.sync;
 
 import android.test.AndroidTestCase;
+import android.util.Pair;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.clientandeventmodel.DateUtil;
+import org.ei.opensrp.clientandeventmodel.Event;
 import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by keyman on 03/10/16.
  */
+
 public class BaseClientProcessorTest extends AndroidTestCase {
 
     protected static final String baseEntityIdJSONKey = "baseEntityId";
@@ -194,10 +199,8 @@ public class BaseClientProcessorTest extends AndroidTestCase {
     }
 
     protected JSONObject createAlertClassification(String columnName, String field) {
-        JSONObject jsonMapping = createJsonObject("field", field);
 
-        JSONObject column = createJsonObject("column_name", columnName);
-        updateJsonObject(column, "json_mapping", jsonMapping);
+        JSONObject column = createColumn(columnName, field);
 
         JSONArray columns = new JSONArray();
         columns.put(column);
@@ -208,9 +211,31 @@ public class BaseClientProcessorTest extends AndroidTestCase {
         return clientAlert;
     }
 
+    private JSONObject createColumn(String columnName, String field) {
+        return createColumn(columnName, field, null, null);
+    }
+
+    private JSONObject createColumn(String columnName, String field, String concept, String type) {
+        JSONObject jsonMapping = createJsonObject("field", field);
+        if (StringUtils.isNotBlank(concept)) {
+            updateJsonObject(jsonMapping, "concept", concept);
+        }
+
+        JSONObject column = createJsonObject("column_name", columnName);
+        updateJsonObject(column, "json_mapping", jsonMapping);
+
+
+
+        if (StringUtils.isNotBlank(type)) {
+            updateJsonObject(column, "type", type);
+        }
+
+        return column;
+    }
+
     protected JSONObject createAlert(String caseID, Map<String, String> data) {
         JSONObject dataObject = new JSONObject();
-        if(data != null && !data.isEmpty()) {
+        if (data != null && !data.isEmpty()) {
             for (String key : data.keySet()) {
                 updateJsonObject(dataObject, key, data.get(key));
             }
@@ -221,4 +246,18 @@ public class BaseClientProcessorTest extends AndroidTestCase {
 
         return alert;
     }
+
+    protected JSONObject createBindObject(String caseString, Map<String, Pair<String, String>> columns) {
+        JSONObject bind = createJsonObject("name", caseString);
+        JSONArray columnArray = new JSONArray();
+        if (columns != null && !columns.isEmpty()) {
+            for (String key : columns.keySet()) {
+                Pair<String, String> pair = columns.get(key);
+                columnArray.put(createColumn(key, pair.first, pair.second, StringUtils.isBlank(pair.second)? "Client": "Event"));
+            }
+        }
+        updateJsonObject(bind, "columns", columnArray);
+        return bind;
+    }
+
 }

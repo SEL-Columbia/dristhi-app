@@ -4,6 +4,7 @@ import android.content.ContentValues;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
@@ -15,6 +16,7 @@ import java.util.Map;
  */
 public class ProcessAlertTest extends BaseClientProcessorTest {
 
+    @Test
     public void testProcessAlertWhenClientClassificationIsNullOrEmpty() {
         try {
 
@@ -36,6 +38,7 @@ public class ProcessAlertTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessAlertWhenAlertIsNullOrEmpty() {
         try {
 
@@ -76,6 +79,7 @@ public class ProcessAlertTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessAlertWhenFieldIsMissingInClientClassification() {
         try {
 
@@ -101,6 +105,7 @@ public class ProcessAlertTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessAlertWithoutSegment() {
         try {
 
@@ -128,6 +133,7 @@ public class ProcessAlertTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessAlertWithSegment() {
         try {
 
