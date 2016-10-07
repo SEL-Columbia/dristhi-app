@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextClock;
 import android.widget.TextView;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
@@ -53,6 +54,24 @@ public class VaksinatorDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         Context context = Context.getInstance();
         setContentView(R.layout.smart_register_jurim_detail_client);
+
+        //label
+        TextView label001 = (TextView) findViewById(R.id.label001);
+        TextView label002 = (TextView) findViewById(R.id.label002);
+        TextView nameLabel = (TextView) findViewById(R.id.nameLabel);
+        TextView fatherLabel = (TextView) findViewById(R.id.fatherNameLabel);
+        TextView motherLabel = (TextView) findViewById(R.id.motherNameLabel);
+        TextView posyanduLabel = (TextView) findViewById(R.id.healthPostLabel);
+        TextView villageLabel = (TextView) findViewById(R.id.villageLabel);
+        TextView subVillageLabel = (TextView) findViewById(R.id.subVillageLabel);
+        TextView dateOfBirthLabel = (TextView) findViewById(R.id.dateOfBirthLabel);
+        TextView birthWeightLabel = (TextView) findViewById(R.id.birthWeightLabel);
+        TextView antipiretikLabel = (TextView) findViewById(R.id.antipyreticLabel);
+        TextView hbLabel = (TextView) findViewById(R.id.hbLabel);
+        TextView campakLabel = (TextView) findViewById(R.id.campakLabel);
+        TextView completeLabel = (TextView) findViewById(R.id.completeLabel);
+        TextView additionalDPTLabel = (TextView) findViewById(R.id.additionalDPTLabel);
+        TextView additionalMeaslesLabel = (TextView) findViewById(R.id.additionalMeaslesLabel);
 
         //profile
         TextView nama = (TextView) findViewById(R.id.childName);
@@ -103,6 +122,25 @@ public class VaksinatorDetailActivity extends Activity {
             }
         });
 
+        //Label rename
+        label001.setText(getString(R.string.title001));
+        label002.setText(getString(R.string.title002));
+        nameLabel.setText(getString(R.string.namaAnak));
+        fatherLabel.setText(getString(R.string.namaAyah));
+        motherLabel.setText(getString(R.string.namaIbu));
+        posyanduLabel.setText(getString(R.string.posyandu));
+        villageLabel.setText(getString(R.string.desa));
+        subVillageLabel.setText(getString(R.string.dusun));
+        dateOfBirthLabel.setText(getString(R.string.tanggalLahir));
+        birthWeightLabel.setText(getString(R.string.beratLahir));
+        antipiretikLabel.setText(getString(R.string.dapatAntipiretik));
+        hbLabel.setText("HB0 (0-7 "+getString(R.string.hari)+")");
+        campakLabel.setText(getString(R.string.measles));
+        completeLabel.setText(getString(R.string.imunisasiLengkap));
+        additionalDPTLabel.setText(getString(R.string.dptTambahan));
+        additionalMeaslesLabel.setText(getString(R.string.campakTambahan));
+
+
         nama.setText(": " + (controller.getDetails().get("nama_bayi") != null ? controller.getDetails().get("nama_bayi") : "-"));
         fatherName.setText(": " + (controller.getDetails().get("namaAyah") != null ? controller.getDetails().get("namaAyah") : "-"));
         motherName.setText(": " + (controller.getDetails().get("namaIbu") != null
@@ -129,7 +167,11 @@ public class VaksinatorDetailActivity extends Activity {
                     ? controller.getDetails().get("posyandu")
                     : "-"));
         dateOfBirth.setText(": " + (controller.getDetails().get("tanggal_lahir") != null ? controller.getDetails().get("tanggal_lahir") : "-"));
-        birthWeight.setText(": " + (controller.getDetails().get("berat_badan_saat_lahir") != null ? controller.getDetails().get("berat_badan_saat_lahir") : "-"));
+        birthWeight.setText(": " + (controller.getDetails().get("berat_badan_saat_lahir") != null
+                                    ? Double.toString(Integer.parseInt(controller.getDetails()
+                                                        .get("berat_badan_saat_lahir"))/1000)
+                                                        + " kg"
+                                    : "-"));
         antipiretik.setText(": " + (controller.getDetails().get("getAntypiretic") != null ? controller.getDetails().get("getAntypiretic") : "-"));
 
         hb1Under7.setText(": " + (hasDate(controller,"hb0")

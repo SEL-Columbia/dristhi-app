@@ -35,7 +35,7 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Context context = Context.getInstance();
+        context = Context.getInstance();
         setContentView(R.layout.smart_register_jurim_client_reporting);
 
         Context otherContext = Context.getInstance().updateApplicationContext(this.getApplicationContext());
@@ -46,7 +46,6 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
                 org.ei.opensrp.commonregistry.CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
         final org.ei.opensrp.commonregistry.CommonPersonObjectClients clients = data.getClients();
-        System.out.println("total clients = "+clients.size());
         final LocalVariable var = new LocalVariable();
 
         var.setDefaultSpinnerDate();
@@ -92,7 +91,6 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
                 overridePendingTransition(0, 0);
             }
         });
-
     }
 
     private int recapitulation(org.ei.opensrp.commonregistry.CommonPersonObjectClients clients,String fieldName, String keyword){
@@ -115,9 +113,7 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
         org.ei.opensrp.commonregistry.CommonPersonObjectClient cl;
         for(int i=0;i<clients.size();i++){
             cl = ((org.ei.opensrp.commonregistry.CommonPersonObjectClient)clients.get(i));
-            System.out.println(cl.getDetails().toString());
-            if (cl.getDetails().get(fieldName)!=null ) {
-                System.out.println(cl.getDetails().get("nama_bayi")+" "+fieldName+" "+filter+" = "+duration(cl.getDetails().get("tanggal_lahir"),cl.getDetails().get(fieldName)));
+            if (hasDate(cl.getDetails().get(fieldName))) {
                 counter = cl.getDetails().get(fieldName).contains(keyword)
                           ? cond[0].equalsIgnoreCase("under")
                             ? duration(cl.getDetails().get("tanggal_lahir"),cl.getDetails().get(fieldName)) <= Integer.parseInt(cond[1])
@@ -151,34 +147,43 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
 
         String keyword = Integer.toString(year)+"-"+(month>9 ? Integer.toString(month):"0"+Integer.toString(month));
 
-        counter = recapitulation(clients,"hb1_kurang_7_hari",keyword);
-        var.hbUnder7.setText(Integer.toString(counter+recapitulation(clients,"hb0",keyword,"under 7")));
-        counter = recapitulation(clients,"hb1_lebih_7_hari",keyword);
-        var.hbOver7.setText(Integer.toString(counter + recapitulation(clients,"hb0",keyword,"over 7")));
-        counter = recapitulation(clients,"bcg_pol_1",keyword);
-        var.bcg.setText(Integer.toString(recapitulation(clients,"bcg",keyword)+counter));
-        var.pol1.setText(Integer.toString(recapitulation(clients,"polio1",keyword)+counter));
-        counter = recapitulation(clients,"dpt_1_pol_2",keyword);
-        var.hb1.setText(Integer.toString(recapitulation(clients,"dpt_hb1",keyword)+counter));
+        var.titleLabel.setText(context.getStringResource(R.string.vaksinator_recapitulation_label));
+        var.hbUnderLabel.setText("HB 0 (0-7 "+context.getStringResource(R.string.hari)+")");
+        var.hbOverLabel.setText("HB 0 (>7 "+context.getStringResource(R.string.hari)+")");
+        var.campakLabel.setText(context.getStringResource(R.string.measles));
+        var.deadU.setText(context.getStringResource(R.string.meninggal)+ " <30 "+context.getStringResource(R.string.hari));
+        var.deadO.setText(context.getStringResource(R.string.meninggal)+ " >=30 "+context.getStringResource(R.string.hari));
+        var.movingLabel.setText(context.getStringResource(R.string.moving));
+
+        var.hbUnder7.setText(Integer.toString(recapitulation(clients,"hb0",keyword,"under 7")));
+        var.hbOver7.setText(Integer.toString(recapitulation(clients,"hb0",keyword,"over 7")));
+        var.bcg.setText(Integer.toString(recapitulation(clients,"bcg",keyword)));
+        var.pol1.setText(Integer.toString(recapitulation(clients,"polio1",keyword)));
+        var.hb1.setText(Integer.toString(recapitulation(clients,"dpt_hb1",keyword)));
         var.pol2.setText(Integer.toString(recapitulation(clients, "polio2", keyword)+counter));
-        counter = recapitulation(clients,"dpt_2_pol_3",keyword);
-        var.hb2.setText(Integer.toString(recapitulation(clients,"dpt_hb2",keyword)+counter));
-        var.pol3.setText(Integer.toString(recapitulation(clients,"polio3",keyword)+counter));
-        counter = recapitulation(clients,"dpt_3_pol_4_ipv",keyword);
-        var.hb3.setText(Integer.toString(recapitulation(clients,"dpt_hb3",keyword)+counter));
-        var.pol4.setText(Integer.toString(recapitulation(clients,"polio4",keyword)+counter));
-        var.ipv.setText(Integer.toString(recapitulation(clients,"ipv",keyword)+counter));
-        counter = recapitulation(clients,"imunisasi_campak",keyword);
+        var.hb2.setText(Integer.toString(recapitulation(clients,"dpt_hb2",keyword)));
+        var.pol3.setText(Integer.toString(recapitulation(clients,"polio3",keyword)));
+        var.hb3.setText(Integer.toString(recapitulation(clients,"dpt_hb3",keyword)));
+        var.pol4.setText(Integer.toString(recapitulation(clients,"polio4",keyword)));
+        var.ipv.setText(Integer.toString(recapitulation(clients,"ipv",keyword)));
         var.measles.setText(Integer.toString(recapitulation(clients,"imunisasi_campak",keyword)));
-        counter = recapitulation(clients,"mutasi_meninggal_kurang_30hari",keyword);
-        var.diedu30.setText(Integer.toString(counter + recapitulation(clients,"tanggal_meninggal",keyword,"under 30")));
-        counter = recapitulation(clients,"mutasi_meninggal_lebih_30hari",keyword);
-        var.diedo30.setText(Integer.toString(counter + recapitulation(clients,"tanggal_meninggal",keyword,"over 30")));
-        counter = recapitulation(clients,"tanggal_pindah",keyword);
+        var.diedu30.setText(Integer.toString(recapitulation(clients,"tanggal_meninggal",keyword,"under 30")));
+        var.diedo30.setText(Integer.toString(recapitulation(clients,"tanggal_meninggal",keyword,"over 30")));
         var.moving.setText(Integer.toString(counter));
+    }
+    private boolean hasDate(String data){
+        if(data!=null)
+            return data.length()>6;
+        return false;
     }
 
     private class LocalVariable{
+        TextView titleLabel = (TextView) findViewById(R.id.txt_title_label);
+        TextView hbUnderLabel = (TextView) findViewById(R.id.hb0under);
+        TextView hbOverLabel = (TextView) findViewById(R.id.hb0Over);
+        TextView campakLabel = (TextView) findViewById(R.id.campakReporting);
+        TextView deadU = (TextView) findViewById(R.id.deathUnder);
+        TextView deadO = (TextView) findViewById(R.id.deathOver);
         TextView hbUnder7 = (TextView) findViewById(R.id.hbUnder7Reporting);
         TextView hbOver7 = (TextView) findViewById(R.id.hbOver7Reporting);
         TextView bcg = (TextView) findViewById(R.id.bcgReporting);
@@ -194,6 +199,7 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
         TextView diedu30 = (TextView) findViewById(R.id.diedunder30Reporting);
         TextView diedo30 = (TextView) findViewById(R.id.diedover30Reporting);
         TextView moving = (TextView) findViewById(R.id.movingReporting);
+        TextView movingLabel = (TextView) findViewById(R.id.pindahReporting);
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
 
         Spinner monthSpinner = (Spinner) findViewById(R.id.monthSpinner);
@@ -205,7 +211,9 @@ public class VaksinatorRecapitulationActivity extends ReportsActivity {
             yearSpinner.setSelection(Integer.parseInt(date[0]) - 2015);
         }
         void setSubtitle(String villageName){
-            subtitle.setText("Rekapitulasi Imunisasi di Desa " + villageName + " Bulan " + monthSpinner.getSelectedItem().toString() + " Tahun " + yearSpinner.getSelectedItem().toString());
+            subtitle.setText( context.getStringResource(R.string.headerTextpart01) +" "+ villageName
+                            + " " + context.getStringResource(R.string.headerTextpart02) +" "+ monthSpinner.getSelectedItem().toString()
+                            + " " + context.getStringResource(R.string.headerTextpart03) +" "+ yearSpinner.getSelectedItem().toString());
         }
 
     }

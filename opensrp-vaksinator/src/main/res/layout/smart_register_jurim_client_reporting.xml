@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="HB 0 (0-7 days)"
-                android:id="@+id/textView17"
+                android:id="@+id/hb0under"
                 android:textSize="20dp" />
 
             <TextView
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="HB 0 (>7) days"
-                android:id="@+id/textView18"
+                android:id="@+id/hb0Over"
                 android:textSize="20dp" />
 
             <TextView
@@ -249,7 +249,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Campak"
-                android:id="@+id/textView45"
+                android:id="@+id/campakReporting"
                 android:textSize="20dp" />
 
             <TextView
@@ -257,7 +257,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Meninggal &lt; 30 hari"
-                android:id="@+id/textView46"
+                android:id="@+id/deathUnder"
                 android:textSize="20dp" />
 
             <TextView
@@ -265,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Meninggal >=30 hari"
-                android:id="@+id/textView47"
+                android:id="@+id/deathOver"
                 android:textSize="20dp" />
 
             <TextView
@@ -273,7 +273,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Pindah"
-                android:id="@+id/textView48"
+                android:id="@+id/pindahReporting"
                 android:textSize="20dp" />
 
         </LinearLayout>

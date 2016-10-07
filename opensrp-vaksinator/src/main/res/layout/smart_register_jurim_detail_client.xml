@@ -36,7 +36,7 @@
                 android:layout_height="40dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="IDENTITAS ANAK"
-                android:id="@+id/textView9"
+                android:id="@+id/label001"
                 android:layout_row="0"
                 android:layout_column="0"
                 android:layout_gravity="center_horizontal|left"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="LOG VAKSINASI"
-                android:id="@+id/textView10"
+                android:id="@+id/label002"
                 android:layout_row="0"
                 android:layout_column="5"
                 android:layout_gravity="center_horizontal|left"
@@ -81,63 +81,63 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Nama Anak"
-                    android:id="@+id/textView"
+                    android:id="@+id/nameLabel"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Nama Ayah"
-                    android:id="@+id/textView2"
+                    android:id="@+id/fatherNameLabel"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Nama Ibu"
-                    android:id="@+id/textView2b"
+                    android:id="@+id/motherNameLabel"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Posyandu"
-                    android:id="@+id/textView4"
+                    android:id="@+id/healthPostLabel"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Desa"
-                    android:id="@+id/textView5"
+                    android:id="@+id/villageLabel"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dusun"
-                    android:id="@+id/textView5b"
+                    android:id="@+id/subVillageLabel"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Tanggal Lahir"
-                    android:id="@+id/textView6"
+                    android:id="@+id/dateOfBirthLabel"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Berat Lahir"
-                    android:id="@+id/textView7"
+                    android:id="@+id/birthWeightLabel"
                     android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Diberi Antypiretic"
-                    android:id="@+id/textView31"
+                    android:id="@+id/antipyreticLabel"
                     android:textSize="14dp" />
 
             </LinearLayout>
@@ -259,7 +259,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="HB0 (0-7 day)"
-                        android:id="@+id/textView11"
+                        android:id="@+id/hbLabel"
                         android:textSize="14dp" />
 
                     <TextView
@@ -329,28 +329,28 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Campak"
-                        android:id="@+id/textView29"
+                        android:id="@+id/campakLabel"
                         android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Imunisasi Lengkap"
-                        android:id="@+id/textView33"
+                        android:id="@+id/completeLabel"
                         android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="DPT/HB Tambahan"
-                        android:id="@+id/textView34"
+                        android:id="@+id/additionalDPTLabel"
                         android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Campak Tambahan"
-                        android:id="@+id/textView35"
+                        android:id="@+id/additionalMeaslesLabel"
                         android:textSize="14dp" />
                 </LinearLayout>
             </LinearLayout>

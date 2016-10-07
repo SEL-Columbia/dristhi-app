@@ -71,6 +71,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
 
     @Override
     public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
+
         ViewHolder viewHolder;
         CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
         if (viewGroup.getTag() == null || !(viewGroup.getTag() instanceof  ViewHolder)){
@@ -148,7 +149,6 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
             );
         }
 
-
         viewHolder.name.setText(pc.getDetails().get("nama_bayi") != null ? pc.getDetails().get("nama_bayi") : " ");
 
         viewHolder.motherName.setText(
@@ -168,7 +168,8 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
                     ? pc.getDetails().get("dusun")
                     : " ");
         viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null
-                ? pc.getDetails().get("tanggal_lahir")
+                ?     Integer.toString(age(pc.getDetails().get("tanggal_lahir"))/12)+" "+ context.getResources().getString(R.string.year_short)
+                    + ", "+Integer.toString(age(pc.getDetails().get("tanggal_lahir"))%12)+" "+ context.getResources().getString(R.string.month_short)
                 : " ");
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null
                 ? pc.getDetails().get("jenis_kelamin").contains("em")
@@ -295,7 +296,6 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
             frame.setBackgroundColor(context.getResources().getColor(R.color.vaccBlue));
     }
 
-
     /*
     * Used to check if the variable contains a date (10 character which representing yyyy-MM-dd) or not
     * params:
@@ -353,7 +353,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterClientsProvi
         return inflater;
     }
 
-     class ViewHolder {
+    class ViewHolder {
          LinearLayout profilelayout;
          ImageView profilepic;
          ImageButton follow_up;
