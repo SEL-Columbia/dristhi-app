@@ -54,7 +54,7 @@ public class VaksinatorServiceModeOption extends ServiceModeOption {
                     R.string.polio2,
                     R.string.polio3,
                     R.string.polio4,
-                    R.string.ipv,
+                    R.string.measles,
                     R.string.space
                 };
             }
