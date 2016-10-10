@@ -144,10 +144,6 @@
         "bind": "/model/instance/Kartu_ibu/nomor_telpon_hp"
       },
       {
-        "name": "pptest",
-        "bind": "/model/instance/Kartu_ibu/pptest"
-      },
-      {
         "name": "highRiskPregnancyYoungMaternalAge",
         "bind": "/model/instance/Kartu_ibu/High_Risk_Pregnancy_Young_maternal_age"
       },

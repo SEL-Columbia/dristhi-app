@@ -17,6 +17,20 @@
           }
         ]
       }
+    },
+    {
+      "comment": "ANC: This rule checks whether a given case belongs to ANC register",
+      "rule": {
+        "type": "event",
+        "fields": [
+          {
+            "field":"obs.fieldCode",
+            "concept": "45AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "values": ["703AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "creates_case":["ec_ibu"]
+          }
+        ]
+      }
     }
   ]
 }

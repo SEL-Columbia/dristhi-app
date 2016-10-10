@@ -47,7 +47,7 @@
       <asuransi_jiwa openmrs_entity="concept" openmrs_entity_id="159356AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <golongan_darah openmrs_entity="concept" openmrs_entity_id="300AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <nomor_telpon_hp openmrs_entity="concept" openmrs_entity_id="159635AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <pptest openmrs_entity="concept" openmrs_entity_id="45AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <pptest openmrs_entity="concept" openmrs_entity_id="45AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">0</pptest>
       <jenis_kontrasepsi openmrs_entity="concept" openmrs_entity_id="374AAAAAAAAAAAAAAAAAAAAAAAAAAAAA">0</jenis_kontrasepsi>
       <high_risk_pregnancy_young_maternal_age openmrs_entity="concept" openmrs_entity_id="163119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <high_risk_pregnancy_old_maternal_age openmrs_entity="concept" openmrs_entity_id="163120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>

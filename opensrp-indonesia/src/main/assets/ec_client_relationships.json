@@ -1,7 +1,7 @@
 [
   {
     "client_relationship": "kartuIbuId",
-    "field": "kartu_ibu_entity_id",
+    "field": "kartuIbuId",
     "comment": "this field is the name as it appears in the field_definition.json file"
   },
   {

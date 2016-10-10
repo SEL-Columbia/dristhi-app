@@ -219,7 +219,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ec_kartu_ibu");
         countqueryBUilder.customJoin("LEFT JOIN ibu on ec_kartu_ibu.id = ibu.kartuIbuId LEFT JOIN anak ON ibu.id = anak.ibuCaseId ");
-        mainCondition = " isClosed !='true' ";
+        mainCondition = " isClosed !=0 ";
         joinTable = "";
         countSelect = countqueryBUilder.mainCondition(mainCondition);
         super.CountExecute();
@@ -326,6 +326,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
                     }
                 }
             }
+
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
         }
     }

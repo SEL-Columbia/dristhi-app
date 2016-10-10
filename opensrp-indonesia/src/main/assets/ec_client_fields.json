@@ -85,6 +85,89 @@
             "concept": "1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         }
+      ]
+    },
+    {
+      "name": "ec_ibu",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "namalengkap",
+          "type": "Client",
+          "json_mapping": {
+            "field": "firstName"
+          }
+        },
+        {
+          "column_name": "namaSuami",
+          "type": "Client",
+          "json_mapping": {
+            "field": "lastName"
+          }
+        },
+        {
+          "column_name": "kartuIbuId",
+          "type": "Client",
+          "json_mapping": {
+            "field": "kartuIbuId",
+            "comment": "doesn't have concept mapping"
+          }
+        },
+        {
+          "column_name": "referenceDate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "pptest",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "45AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "ancDate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "ancKe",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "1425AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+
+        {
+          "column_name": "type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "type",
+            "comment": "doesn't have concept mapping"
+          }
+        },
+        {
+          "column_name": "isClosed",
+          "type": "Client",
+          "json_mapping": {
+            "field": "isClosed",
+            "comment": "doesn't have concept mapping"
+          }
+        }
 
       ]
     }

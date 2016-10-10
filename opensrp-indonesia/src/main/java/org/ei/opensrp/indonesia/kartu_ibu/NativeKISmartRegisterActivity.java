@@ -155,6 +155,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
             startFormActivity(KARTU_IBU_REGISTRATION, null, fieldOverrides.getJSONString());
         }
     }
+
     @Override
     public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         Log.v("fieldoverride", fieldOverrides.toString());

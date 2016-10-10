@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <anc_registration encounter_type="Tambah ANC" id="tambah_anc" version="201610040822">
+        <anc_registration encounter_type="Tambah ANC" id="tambah_anc" version="201610060813">
             <formhub>
                 <uuid/>
             </formhub>
@@ -16,6 +16,7 @@
             <Sub-village/>
             <generated_note_name_13/>
             <generated_note_name_14/>
+            <kartuIbuId openmrs_entity="person_relationship" openmrs_entity_id="kartuIbuId"/>
             <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
             <provinsi openmrs_entity="person_address" openmrs_entity_id="stateProvince" openmrs_entity_parent="usual_residence"/>
             <kabupaten openmrs_entity="person_address" openmrs_entity_id="countyDistrict" openmrs_entity_parent="usual_residence"/>
@@ -24,23 +25,24 @@
             <kecamatan openmrs_entity="person_address" openmrs_entity_id="address2" openmrs_entity_parent="usual_residence"/>
             <tanggal_periksa openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <Lokasi_periksa openmrs_entity="concept" openmrs_entity_id="161010AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <pptest openmrs_entity="concept" openmrs_entity_id="45AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <Lokasi_periksa_other openmrs_entity="concept" openmrs_entity_id="160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="Location of event - 161010AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <jamkesmas openmrs_entity_id="1493AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-            <generated_note_name_29/>
+            <generated_note_name_30/>
             <gravida openmrs_entity="concept" openmrs_entity_id="5624AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <partus openmrs_entity="concept" openmrs_entity_id="1053AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <abortus openmrs_entity="concept" openmrs_entity_id="1823AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <hidup openmrs_entity="concept" openmrs_entity_id="1825AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <tanggal_lahir_anak_sebelumnya openmrs_entity_id="1596AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-            <generated_note_name_35/>
+            <generated_note_name_36/>
             <hpht openmrs_entity="concept" openmrs_entity_id="1427AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <edd/>
             <htp openmrs_entity="concept" openmrs_entity_id="5596AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <edd_note/>
             <usia_klinis openmrs_entity="concept" openmrs_entity_id="1438AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-            <generated_note_name_41/>
+            <generated_note_name_42/>
             <trimester_ke openmrs_entity="concept" openmrs_entity_id="160665AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-            <generated_note_name_44/>
+            <generated_note_name_45/>
             <tanggal_memperoleh_buku_kia/>
             <bb_kg openmrs_entity="concept" openmrs_entity_id="160696AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <tb_cm openmrs_entity="concept" openmrs_entity_id="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -68,6 +70,8 @@
             <Other_High_Risk_Pregnancy_congenital_abnormality openmrs_entity="concept" openmrs_entity_id="119975AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <Other_High_Risk_Pregnancy_early_waterbreak openmrs_entity="concept" openmrs_entity_id="163156AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+            <type>anc</type>
+            <motherId/>
             <meta>
                 <instanceID/>
             </meta>

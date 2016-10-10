@@ -165,7 +165,7 @@ public class BidanHomeActivity extends SecuredActivity {
         kbcount= kbcountcursor.getInt(0);
         kbcountcursor.close();
 
-        Cursor anccountcursor = context.commonrepository("ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ibu", "ibu.isClosed !='true' and ibu.type ='anc'"));
+        Cursor anccountcursor = context.commonrepository("ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_ibu_search", "ec_ibu_search.is_closed=0 and ec_ibu_search.pptest ='Positive'"));
         anccountcursor.moveToFirst();
         anccount= anccountcursor.getInt(0);
         anccountcursor.close();
