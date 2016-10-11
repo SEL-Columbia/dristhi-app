@@ -151,7 +151,7 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
         viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
 
-        /*if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
+        if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
                 || pc.getDetails().get("highRiskEctopicPregnancy")!=null && pc.getDetails().get("highRiskEctopicPregnancy").equals("yes")
                 || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && pc.getDetails().get("highRiskDidneyDisorder").equals("yes")
                 || pc.getDetails().get("highRiskDidneyDisorder")!=null && pc.getDetails().get("highRiskHeartDisorder").equals("yes")
@@ -164,22 +164,22 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         {
             viewHolder.hr_badge.setVisibility(View.VISIBLE);
         }
-        if(kiobject.getDetails().get("highRiskPregnancyPIH")!=null && kiobject.getDetails().get("highRiskPregnancyPIH").equals("yes")
-                || kiobject.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")!=null && kiobject.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")
-                || kiobject.getDetails().get("highRiskPregnancyPIH")!=null && kiobject.getDetails().get("highRiskPregnancyPIH").equals("yes")
-                || kiobject.getDetails().get("highRiskPregnancyDiabetes")!=null && kiobject.getDetails().get("highRiskPregnancyDiabetes").equals("yes")
-                || kiobject.getDetails().get("highRiskPregnancyAnemia")!=null && kiobject.getDetails().get("highRiskPregnancyAnemia").equals("yes") )
+        if(pc.getDetails().get("highRiskPregnancyPIH")!=null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")!=null && pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyPIH")!=null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyDiabetes")!=null && pc.getDetails().get("highRiskPregnancyDiabetes").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyAnemia")!=null && pc.getDetails().get("highRiskPregnancyAnemia").equals("yes") )
         {
             viewHolder.hrp_badge.setVisibility(View.VISIBLE);
         }
-        if(kiobject.getDetails().get("highRiskLabourFetusMalpresentation")!=null && kiobject.getDetails().get("highRiskLabourFetusMalpresentation").equals("yes")
-                || kiobject.getDetails().get("highRiskLabourFetusSize")!=null && kiobject.getDetails().get("highRiskLabourFetusSize").equals("yes")
-                || kiobject.getDetails().get("highRisklabourFetusNumber")!=null && kiobject.getDetails().get("highRisklabourFetusNumber").equals("yes")
-                || kiobject.getDetails().get("HighRiskLabourSectionCesareaRecord")!=null && kiobject.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")
-                || ibuparent.getDetails().get("highRiskLabourTBRisk") != null && ibuparent.getDetails().get("highRiskLabourTBRisk").equals("yes") )
+        if(pc.getDetails().get("highRiskLabourFetusMalpresentation")!=null && pc.getDetails().get("highRiskLabourFetusMalpresentation").equals("yes")
+                || pc.getDetails().get("highRiskLabourFetusSize")!=null && pc.getDetails().get("highRiskLabourFetusSize").equals("yes")
+                || pc.getDetails().get("highRisklabourFetusNumber")!=null && pc.getDetails().get("highRisklabourFetusNumber").equals("yes")
+                || pc.getDetails().get("HighRiskLabourSectionCesareaRecord")!=null && pc.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")
+                || pc.getDetails().get("highRiskLabourTBRisk") != null && pc.getDetails().get("highRiskLabourTBRisk").equals("yes") )
         {
             viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
-        }*/
+        }
 
         final ImageView kiview = (ImageView)convertView.findViewById(R.id.img_profile);
         if (pc.getDetails().get("profilepic") != null) {

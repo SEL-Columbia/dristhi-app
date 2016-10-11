@@ -2,6 +2,7 @@
   "form_data_definition_version": "1",
   "form": {
     "bind_type": "ibu",
+    "ec_bind_type": "ec_ibu",
     "default_bind_path": "/model/instance/kunjungan_anc_reviewed_Lab_test/",
     "fields": [
       {
