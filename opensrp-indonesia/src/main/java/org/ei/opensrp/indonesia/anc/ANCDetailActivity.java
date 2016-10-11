@@ -21,6 +21,7 @@ import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.kartu_ibu.NativeKISmartRegisterActivity;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.repository.ImageRepository;
 import org.ei.opensrp.view.activity.NativeANCSmartRegisterActivity;
 
@@ -165,6 +166,9 @@ public class ANCDetailActivity extends Activity {
             }
         });
 
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(ancclient);
+        
         Keterangan_k1k4.setText(": "+ humanize (ancclient.getDetails().get("Keterangan_k1k4") != null ? ancclient.getDetails().get("Keterangan_k1k4") : "-"));
         tanggalHPHT.setText(": "+ humanize(ancclient.getDetails().get("tanggalHPHT") != null ? ancclient.getDetails().get("tanggalHPHT") : "-"));
         usiaKlinis.setText(": "+ humanize(ancclient.getDetails().get("usiaKlinis") != null ? ancclient.getDetails().get("usiaKlinis") : "-"));
@@ -230,17 +234,9 @@ public class ANCDetailActivity extends Activity {
 
 
 
-        AllCommonsRepository kiRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
+        ancKe.setText(": "+(ancclient.getDetails().get("ancKe") != null ? ancclient.getDetails().get("ancKe") : "-"));
 
-        CommonPersonObject kiobject = kiRepository.findByCaseID(ancclient.entityId());
-
-        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
-
-        final CommonPersonObject kiclients = iburep.findByCaseID(kiobject.getColumnmaps().get("kartuIbuId"));
-
-        ancKe.setText(": "+(kiobject.getColumnmaps().get("ancKe") != null ? kiobject.getColumnmaps().get("ancKe") : "-"));
-
-        ancDate.setText(": "+ (kiobject.getColumnmaps().get("ancDate") != null ? kiobject.getColumnmaps().get("ancDate") : "-"));
+        ancDate.setText(": "+ (ancclient.getDetails().get("ancDate") != null ? ancclient.getDetails().get("ancDate") : "-"));
         if(ancclient.getDetails().get("profilepic")!= null){
             setImagetoHolderFromUri(ANCDetailActivity.this, ancclient.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
         }
@@ -248,41 +244,41 @@ public class ANCDetailActivity extends Activity {
             kiview.setImageDrawable(getResources().getDrawable(R.mipmap.woman_placeholder));
         }
 
-        nama.setText(getResources().getString(R.string.name)+ (kiclients.getColumnmaps().get("namalengkap") != null ? kiclients.getColumnmaps().get("namalengkap") : "-"));
-        nik.setText(getResources().getString(R.string.nik)+ (kiclients.getDetails().get("nik") != null ? kiclients.getDetails().get("nik") : "-"));
-        husband_name.setText(getResources().getString(R.string.husband_name)+ (kiclients.getColumnmaps().get("namaSuami") != null ? kiclients.getColumnmaps().get("namaSuami") : "-"));
-        dob.setText(getResources().getString(R.string.dob)+ (kiclients.getDetails().get("tanggalLahir") != null ? kiclients.getDetails().get("tanggalLahir") : "-"));
-        phone.setText("No HP: "+ (kiobject.getDetails().get("NomorTelponHp") != null ? kiobject.getDetails().get("NomorTelponHp") : "-"));
+        nama.setText(getResources().getString(R.string.name)+ (ancclient.getColumnmaps().get("namalengkap") != null ? ancclient.getColumnmaps().get("namalengkap") : "-"));
+        nik.setText(getResources().getString(R.string.nik)+ (ancclient.getDetails().get("nik") != null ? ancclient.getDetails().get("nik") : "-"));
+        husband_name.setText(getResources().getString(R.string.husband_name)+ (ancclient.getColumnmaps().get("namaSuami") != null ? ancclient.getColumnmaps().get("namaSuami") : "-"));
+        dob.setText(getResources().getString(R.string.dob)+ (ancclient.getDetails().get("tanggalLahir") != null ? ancclient.getDetails().get("tanggalLahir") : "-"));
+        phone.setText("No HP: "+ (ancclient.getDetails().get("NomorTelponHp") != null ? ancclient.getDetails().get("NomorTelponHp") : "-"));
 
         //risk
-        if(kiclients.getDetails().get("highRiskPregnancyYoungMaternalAge") != null ){
-            risk1.setText(getResources().getString(R.string.highRiskPregnancyYoungMaternalAge)+humanize(kiclients.getDetails().get("highRiskPregnancyYoungMaternalAge")));
+        if(ancclient.getDetails().get("highRiskPregnancyYoungMaternalAge") != null ){
+            risk1.setText(getResources().getString(R.string.highRiskPregnancyYoungMaternalAge)+humanize(ancclient.getDetails().get("highRiskPregnancyYoungMaternalAge")));
         }
-        if(kiclients.getDetails().get("highRiskPregnancyOldMaternalAge") != null ){
-            risk1.setText(getResources().getString(R.string.highRiskPregnancyOldMaternalAge)+humanize(kiclients.getDetails().get("highRiskPregnancyYoungMaternalAge")));
+        if(ancclient.getDetails().get("highRiskPregnancyOldMaternalAge") != null ){
+            risk1.setText(getResources().getString(R.string.highRiskPregnancyOldMaternalAge)+humanize(ancclient.getDetails().get("highRiskPregnancyYoungMaternalAge")));
         }
-        if(kiclients.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null
-                || kiclients.getDetails().get("HighRiskPregnancyAbortus") != null
-                || kiclients.getDetails().get("HighRiskLabourSectionCesareaRecord" ) != null
+        if(ancclient.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null
+                || ancclient.getDetails().get("HighRiskPregnancyAbortus") != null
+                || ancclient.getDetails().get("HighRiskLabourSectionCesareaRecord" ) != null
                 ){
-            risk2.setText(getResources().getString(R.string.highRiskPregnancyProteinEnergyMalnutrition)+humanize(kiclients.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")));
-            risk3.setText(getResources().getString(R.string.HighRiskPregnancyAbortus)+humanize(kiclients.getDetails().get("HighRiskPregnancyAbortus")));
-            risk4.setText(getResources().getString(R.string.HighRiskLabourSectionCesareaRecord)+humanize(kiclients.getDetails().get("HighRiskLabourSectionCesareaRecord")));
+            risk2.setText(getResources().getString(R.string.highRiskPregnancyProteinEnergyMalnutrition)+humanize(ancclient.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")));
+            risk3.setText(getResources().getString(R.string.HighRiskPregnancyAbortus)+humanize(ancclient.getDetails().get("HighRiskPregnancyAbortus")));
+            risk4.setText(getResources().getString(R.string.HighRiskLabourSectionCesareaRecord)+humanize(ancclient.getDetails().get("HighRiskLabourSectionCesareaRecord")));
 
         }
-        txt_highRiskLabourTBRisk.setText(humanize(kiclients.getDetails().get("highRiskLabourTBRisk") != null ? kiclients.getDetails().get("highRiskLabourTBRisk") : "-"));
+        txt_highRiskLabourTBRisk.setText(humanize(ancclient.getDetails().get("highRiskLabourTBRisk") != null ? ancclient.getDetails().get("highRiskLabourTBRisk") : "-"));
 
-        highRiskSTIBBVs.setText(humanize(kiclients.getDetails().get("highRiskSTIBBVs") != null ? kiclients.getDetails().get("highRiskSTIBBVs") : "-"));
-        highRiskEctopicPregnancy.setText(humanize (kiclients.getDetails().get("highRiskEctopicPregnancy") != null ? kiclients.getDetails().get("highRiskEctopicPregnancy") : "-"));
-        highRiskCardiovascularDiseaseRecord.setText(humanize(kiclients.getDetails().get("highRiskCardiovascularDiseaseRecord") != null ? kiclients.getDetails().get("highRiskCardiovascularDiseaseRecord") : "-"));
-        highRiskDidneyDisorder.setText(humanize(kiclients.getDetails().get("highRiskDidneyDisorder") != null ? kiclients.getDetails().get("highRiskDidneyDisorder") : "-"));
-        highRiskHeartDisorder.setText(humanize(kiclients.getDetails().get("highRiskHeartDisorder") != null ? kiclients.getDetails().get("highRiskHeartDisorder") : "-"));
-        highRiskAsthma.setText(humanize(kiclients.getDetails().get("highRiskAsthma") != null ? kiclients.getDetails().get("highRiskAsthma") : "-"));
-        highRiskTuberculosis.setText(humanize(kiclients.getDetails().get("highRiskTuberculosis") != null ? kiclients.getDetails().get("highRiskTuberculosis") : "-"));
-        highRiskMalaria.setText(humanize(kiclients.getDetails().get("highRiskMalaria") != null ? kiclients.getDetails().get("highRiskMalaria") : "-"));
+        highRiskSTIBBVs.setText(humanize(ancclient.getDetails().get("highRiskSTIBBVs") != null ? ancclient.getDetails().get("highRiskSTIBBVs") : "-"));
+        highRiskEctopicPregnancy.setText(humanize (ancclient.getDetails().get("highRiskEctopicPregnancy") != null ? ancclient.getDetails().get("highRiskEctopicPregnancy") : "-"));
+        highRiskCardiovascularDiseaseRecord.setText(humanize(ancclient.getDetails().get("highRiskCardiovascularDiseaseRecord") != null ? ancclient.getDetails().get("highRiskCardiovascularDiseaseRecord") : "-"));
+        highRiskDidneyDisorder.setText(humanize(ancclient.getDetails().get("highRiskDidneyDisorder") != null ? ancclient.getDetails().get("highRiskDidneyDisorder") : "-"));
+        highRiskHeartDisorder.setText(humanize(ancclient.getDetails().get("highRiskHeartDisorder") != null ? ancclient.getDetails().get("highRiskHeartDisorder") : "-"));
+        highRiskAsthma.setText(humanize(ancclient.getDetails().get("highRiskAsthma") != null ? ancclient.getDetails().get("highRiskAsthma") : "-"));
+        highRiskTuberculosis.setText(humanize(ancclient.getDetails().get("highRiskTuberculosis") != null ? ancclient.getDetails().get("highRiskTuberculosis") : "-"));
+        highRiskMalaria.setText(humanize(ancclient.getDetails().get("highRiskMalaria") != null ? ancclient.getDetails().get("highRiskMalaria") : "-"));
 
-        txt_HighRiskLabourSectionCesareaRecord.setText(humanize(kiclients.getDetails().get("HighRiskLabourSectionCesareaRecord") != null ? ancclient.getDetails().get("HighRiskLabourSectionCesareaRecord") : "-"));
-        HighRiskPregnancyTooManyChildren.setText(humanize(kiclients.getDetails().get("HighRiskPregnancyTooManyChildren") != null ? ancclient.getDetails().get("HighRiskPregnancyTooManyChildren") : "-"));
+        txt_HighRiskLabourSectionCesareaRecord.setText(humanize(ancclient.getDetails().get("HighRiskLabourSectionCesareaRecord") != null ? ancclient.getDetails().get("HighRiskLabourSectionCesareaRecord") : "-"));
+        HighRiskPregnancyTooManyChildren.setText(humanize(ancclient.getDetails().get("HighRiskPregnancyTooManyChildren") != null ? ancclient.getDetails().get("HighRiskPregnancyTooManyChildren") : "-"));
 
         txt_highRiskHIVAIDS.setText(humanize(ancclient.getDetails().get("highRiskHIVAIDS") != null ? ancclient.getDetails().get("highRiskHIVAIDS") : "-"));
 

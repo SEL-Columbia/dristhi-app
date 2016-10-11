@@ -241,7 +241,7 @@
        
       },
       {
-        "name": "today",
+        "name": "submissionDate",
         "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/today"
       },
       {
