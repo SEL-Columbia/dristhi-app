@@ -231,23 +231,23 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.date_status.setText("");
         viewHolder.visit_status.setText("");
 
-        if(pc.getColumnmaps().get("ibu.type")!=null){
-            if(pc.getColumnmaps().get("ibu.type").equals("anc")){
+        if(pc.getDetails().get("pptest")!=null){
+            if(pc.getDetails().get("pptest").equals("Positive")){
                 viewHolder.anc_status_layout.setText(context.getString(R.string.service_anc));
-                String visit_date = pc.getColumnmaps().get("ibu.ancDate")!=null?context.getString(R.string.date_visit_title) +" " +pc.getColumnmaps().get("ibu.ancDate"):"";
-                String visit_stat = pc.getColumnmaps().get("ibu.ancKe")!=null?context.getString(R.string.anc_ke) +" " + pc.getColumnmaps().get("ibu.ancKe"):"";
+                String visit_date = pc.getDetails().get("ancDate")!=null?context.getString(R.string.date_visit_title) +" " +pc.getDetails().get("ancDate"):"";
+                String visit_stat = pc.getDetails().get("ancKe")!=null?context.getString(R.string.anc_ke) +" " + pc.getDetails().get("ancKe"):"";
                 viewHolder.date_status.setText( visit_date);
                 viewHolder.visit_status.setText(visit_stat);
 
             }
-            if(pc.getColumnmaps().get("ibu.type").equals("pnc")){
+            /*if(pc.getColumnmaps().get("ibu.type").equals("pnc")){
                 viewHolder.anc_status_layout.setText(context.getString(R.string.service_pnc));
                 String visit_date = pc.getColumnmaps().get("anak.tanggalLahirAnak")!=null?context.getString(R.string.str_pnc_delivery) +" " +pc.getColumnmaps().get("anak.tanggalLahirAnak"):"";
                 String hariKeKF = pc.getColumnmaps().get("ibu.hariKeKF")!=null?context.getString(R.string.hari_ke_kf)+" " +pc.getColumnmaps().get("ibu.hariKeKF"):"";
 
                 viewHolder.date_status.setText( visit_date);
                 viewHolder.visit_status.setText( hariKeKF);
-            }
+            }*/
 
         }
         if(StringUtils.isNotBlank(pc.getDetails().get("jenisKontrasepsi"))) {

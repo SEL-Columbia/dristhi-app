@@ -89,10 +89,10 @@ public class NativeKIANCSmartRegisterFragment extends SecuredNativeSmartRegister
         //
     }
 
-    @Override
+   /* @Override
     protected SmartRegisterPaginatedAdapter adapter() {
         return new SmartRegisterPaginatedAdapter(clientsProvider());
-    }
+    }*/
 
     @Override
     protected SecuredNativeSmartRegisterActivity.DefaultOptionsProvider getDefaultOptionsProvider() {

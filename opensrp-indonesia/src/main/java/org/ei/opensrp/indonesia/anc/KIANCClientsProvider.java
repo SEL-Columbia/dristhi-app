@@ -143,7 +143,7 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
             pc.setDetails(details);
         }
 
-        String KunjunganKe = pc.getDetails().get("kunjunganKe")!=null?pc.getDetails().get("kunjunganKe"):"-";
+
 
 
 
@@ -236,8 +236,9 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         viewHolder.beratbadan_tb.setText(pc.getDetails().get("bbKg")!=null?pc.getDetails().get("bbKg"):"-");
 
-        String AncDate = pc.getColumnmaps().get("ancDate")!=null?pc.getColumnmaps().get("ancDate"):"-";
-        String AncKe = pc.getColumnmaps().get("ancKe")!=null?pc.getColumnmaps().get("ancKe"):"-";
+        String AncDate = pc.getDetails().get("ancDate")!=null?pc.getDetails().get("ancDate"):"-";
+        String AncKe = pc.getDetails().get("ancKe")!=null?pc.getDetails().get("ancKe"):"-";
+        String KunjunganKe = pc.getDetails().get("kunjunganKe")!=null?pc.getDetails().get("kunjunganKe"):"-";
 
         viewHolder.tanggal_kunjungan_anc.setText(context.getString(R.string.last_visit_date)+ AncDate);
         viewHolder.anc_number.setText(context.getString(R.string.anc_ke) + AncKe);

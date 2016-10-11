@@ -156,9 +156,37 @@ public class NativeKIANCSmartRegisterActivity extends SecuredNativeSmartRegister
         }
     }
 
-    @Override
+    /*@Override
     public void startFormActivity(String formName, String entityId, String metaData) {
         FlurryFacade.logEvent(formName);
+//        Log.v("fieldoverride", metaData);
+        try {
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
+            if (entityId != null || metaData != null){
+                String data = null;
+                //check if there is previously saved data for the form
+                data = getPreviouslySavedDataForForm(formName, metaData, entityId);
+                if (data == null){
+                    data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+                }
+
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.setFormData(data);
+                    displayFormFragment.setRecordId(entityId);
+                    displayFormFragment.setFieldOverides(metaData);
+                }
+            }
+
+            mPager.setCurrentItem(formIndex, false); //Don't animate the view on orientation change the view disapears
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }*/
+    @Override
+    public void startFormActivity(String formName, String entityId, String metaData) {
 //        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
@@ -202,7 +230,6 @@ public class NativeKIANCSmartRegisterActivity extends SecuredNativeSmartRegister
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
-
                 }
 
                 displayFormFragment.setRecordId(null);
@@ -239,10 +266,6 @@ public class NativeKIANCSmartRegisterActivity extends SecuredNativeSmartRegister
         formNames.add(KARTU_IBU_ANC_EDIT);
         formNames.add(KARTU_IBU_ANC_CLOSE);
 
-        DialogOption[] options = getEditOptions();
-        //  for (int i = 0; i < options.length; i++) {
-        //       formNames.add(((OpenFormOption) options[i]).getFormName());
-        //   }
         return formNames.toArray(new String[formNames.size()]);
     }
 

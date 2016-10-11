@@ -120,6 +120,15 @@
           }
         },
         {
+          "column_name": "tanggalHPHT",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "1427AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+
+        {
           "column_name": "referenceDate",
           "type": "Event",
           "json_mapping": {

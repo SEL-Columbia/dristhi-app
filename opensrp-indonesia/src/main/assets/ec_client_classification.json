@@ -28,6 +28,11 @@
             "concept": "45AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "values": ["703AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
             "creates_case":["ec_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Kunjungan ANC",
+            "creates_case":["ec_ibu"]
           }
         ]
       }
