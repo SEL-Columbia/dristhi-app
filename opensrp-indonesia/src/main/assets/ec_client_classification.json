@@ -36,6 +36,35 @@
           }
         ]
       }
+    },
+    {
+      "comment": "PNC: This rule checks whether a given case belongs to PNC register",
+      "rule": {
+        "type": "event",
+        "fields": [
+          {
+            "field":"obs.fieldCode",
+            "concept": "160085AAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "values": ["160429AAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "closes_case":["ec_ibu"],
+            "creates_case":["ec_pnc"]
+          }
+        ]
+      }
+    },
+    {
+      "comment": "Anak: This rule checks whether a given case belongs to Child register",
+      "rule": {
+        "type": "event",
+        "fields": [
+          {
+            "field":"obs.fieldCode",
+            "concept": "159917AAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "values": ["151849AAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "creates_case":["ec_anak"]
+          }
+        ]
+      }
     }
   ]
 }

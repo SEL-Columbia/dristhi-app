@@ -201,7 +201,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
                 "WHEN alerts.status is Null THEN '5'\n" +
                 "Else alerts.status END ASC";
     }
-    public void initializeQueries(){
+    /*public void initializeQueries(){
         KIPNCClientsProvider kiscp = new KIPNCClientsProvider(getActivity(),clientActionHandler,context.alertService());
         clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, kiscp, new CommonRepository("ibu",new String []{"ibu.isClosed",  "ibu.hariKeKF","kartu_ibu.namalengkap","kartu_ibu.umur","kartu_ibu.namaSuami"}));
         clientsView.setAdapter(clientAdapter);
@@ -230,8 +230,43 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 //        setServiceModeViewDrawableRight(null);
         updateSearchView();
         refresh();
-    }
+    }*/
 
+    public void initializeQueries(){
+        try {
+            KIPNCClientsProvider kiscp = new KIPNCClientsProvider(getActivity(),clientActionHandler,context.alertService());
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, kiscp, new CommonRepository("ec_pnc",new String []{"ec_kartu_ibu.namalengkap", "ec_kartu_ibu.namaSuami"}));
+            clientsView.setAdapter(clientAdapter);
+
+            setTablename("ec_pnc");
+            SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
+            countqueryBUilder.SelectInitiateMainTableCounts("ec_pnc");
+            countqueryBUilder.customJoin("LEFT JOIN ec_kartu_ibu on ec_kartu_ibu.id = ec_pnc.id");
+            mainCondition = " is_closed =0 ";
+            joinTable = "";
+            countSelect = countqueryBUilder.mainCondition(mainCondition);
+            super.CountExecute();
+
+            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+            queryBUilder.SelectInitiateMainTable("ec_pnc", new String[]{"ec_pnc.relationalid", "ec_pnc.details",  "ec_kartu_ibu.namalengkap","ec_kartu_ibu.namaSuami"});
+            queryBUilder.customJoin("LEFT JOIN ec_kartu_ibu on ec_kartu_ibu.id = ec_pnc.id");
+            mainSelect = queryBUilder.mainCondition(mainCondition);
+            Sortqueries = KiSortByNameAZ();
+
+            currentlimit = 20;
+            currentoffset = 0;
+
+            super.filterandSortInInitializeQueries();
+
+            updateSearchView();
+            refresh();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+        }
+
+    }
 
     @Override
     public void startRegistration() {
@@ -310,7 +345,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
         if(isPausedOrRefreshList()) {
             initializeQueries();
         }
-        //     updateSearchView();
+             updateSearchView();
 //
         try{
             LoginActivity.setLanguage();

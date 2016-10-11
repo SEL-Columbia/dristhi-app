@@ -98,20 +98,6 @@
           }
         },
         {
-          "column_name": "namalengkap",
-          "type": "Client",
-          "json_mapping": {
-            "field": "firstName"
-          }
-        },
-        {
-          "column_name": "namaSuami",
-          "type": "Client",
-          "json_mapping": {
-            "field": "lastName"
-          }
-        },
-        {
           "column_name": "kartuIbuId",
           "type": "Client",
           "json_mapping": {
@@ -178,6 +164,105 @@
           }
         }
 
+      ]
+    },
+    {
+      "name": "ec_pnc",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "keadaanIbu",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "160085AAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "tempatBersalin",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "1572AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "caraPersalinanIbu",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "5630AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "komplikasi",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "1576AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_anak",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "relational_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "relationships.ibuCaseId"
+          }
+        },
+        {
+          "column_name": "noBayi",
+          "type": "Client",
+          "json_mapping": {
+            "field": "Person"
+          }
+        },
+        {
+          "column_name": "beratLahir",
+          "type": "Client",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "namaBayi",
+          "type": "Client",
+          "json_mapping": {
+            "field": "Person"
+          }
+        },
+        {
+          "column_name": "tanggalLahirAnak",
+          "type": "Client",
+          "json_mapping": {
+            "field": "birthdate"
+          }
+        },
+        {
+          "column_name": "jenisKelamin",
+          "type": "Client",
+          "json_mapping": {
+            "field": "person.gender"
+          }
+        }
       ]
     }
   ]

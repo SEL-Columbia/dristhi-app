@@ -85,11 +85,15 @@ public class BidanApplication extends DrishtiApplication {
         if(tableName.equals("ec_kartu_ibu")){
             String[] ftsSearchFields =  { "namalengkap", "namaSuami" };
             return ftsSearchFields;
-        } else if(tableName.equals("anak")){
+        } else if(tableName.equals("ec_anak")){
             String[] ftsSearchFields =  { "namaBayi" };
             return ftsSearchFields;
         } else if (tableName.equals("ec_ibu")){
             String[] ftsSearchFields =  { "namalengkap", "namaSuami"};
+            return ftsSearchFields;
+        }
+        else if (tableName.equals("ec_pnc")) {
+            String[] ftsSearchFields = {"namalengkap", "namaSuami"};
             return ftsSearchFields;
         }
         return null;
@@ -99,11 +103,14 @@ public class BidanApplication extends DrishtiApplication {
         if(tableName.equals("ec_kartu_ibu")) {
             String[] sortFields = { "namalengkap", "umur",  "noIbu", "htp"};
             return sortFields;
-        } else if(tableName.equals("anak")){
+        } else if(tableName.equals("ec_anak")){
             String[] sortFields = { "namaBayi", "tanggalLahirAnak" };
             return sortFields;
         } else if(tableName.equals("ec_ibu")){
             String[] sortFields = { "namalengkap", "umur", "noIbu", "pptest" , "htp" };
+            return sortFields;
+        } else if(tableName.equals("ec_pnc")){
+            String[] sortFields = { "namalengkap", "keadaanIbu"};
             return sortFields;
         }
         return null;
@@ -113,18 +120,21 @@ public class BidanApplication extends DrishtiApplication {
         if(tableName.equals("ec_kartu_ibu")) {
             String[] mainConditions = { "isClosed", "details" , "jenisKontrasepsi" };
             return mainConditions;
-        } else if(tableName.equals("anak")){
+        } else if(tableName.equals("ec_anak")){
             String[] mainConditions = { "isClosed", "ibuCaseId" };
             return mainConditions;
         } else if(tableName.equals("ec_ibu")){
             String[] mainConditions = { "isClosed", "type", "pptest" , "kartuIbuId" };
+            return mainConditions;
+        } else if(tableName.equals("ec_pnc")){
+            String[] mainConditions = { "isClosed","keadaanIbu" , "type"};
             return mainConditions;
         }
         return null;
     }
 
     private String getFtsCustomRelationalId(String tableName){
-        if(tableName.equals("anak")){
+        if(tableName.equals("ec_anak")){
             String customRelationalId = "ibuCaseId";
             return customRelationalId;
         } else if(tableName.equals("ec_ibu")){
@@ -136,7 +146,7 @@ public class BidanApplication extends DrishtiApplication {
 
 
     private String[] getFtsTables(){
-        String[] ftsTables = { "ec_kartu_ibu", "anak", "ec_ibu" };
+        String[] ftsTables = { "ec_kartu_ibu", "ec_anak", "ec_ibu", "ec_pnc" };
         return ftsTables;
     }
 

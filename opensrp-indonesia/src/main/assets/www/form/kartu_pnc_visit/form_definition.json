@@ -27,7 +27,7 @@
         "bind": "/model/instance/PNC_visit_reviewed/nik"
       },
       {
-        "name": "referenceDate",
+        "name": "PNCDate",
         "bind": "/model/instance/PNC_visit_reviewed/tanggal_kunjungan"
       },
       {
