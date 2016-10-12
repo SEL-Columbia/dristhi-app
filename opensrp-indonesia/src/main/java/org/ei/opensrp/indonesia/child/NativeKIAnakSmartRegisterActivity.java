@@ -232,7 +232,7 @@ public class NativeKIAnakSmartRegisterActivity extends SecuredNativeSmartRegiste
         formNames.add(BAYI_NEONATAL_PERIOD);
         formNames.add(KOHORT_BAYI_KUNJUNGAN);
         formNames.add(BALITA_KUNJUNGAN);
-        formNames.add(KOHORT_BAYI_EDIT);
+      //  formNames.add(KOHORT_BAYI_EDIT);
         formNames.add(KARTU_IBU_ANAK_CLOSE);
         formNames.add(BAYI_IMUNISASI);
      //   formNames.add(KARTU_IBU_ANC_CLOSE);

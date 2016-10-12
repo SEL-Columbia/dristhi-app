@@ -1,7 +1,8 @@
 {
-    "form_data_definition_version": "1",
+    "form_data_definition_version": "3",
     "form": {
         "bind_type": "kartu_ibu",
+        "ec_bind_type": "ec_kartu_ibu",
         "default_bind_path": "/model/instance/penutupan_ibu_reviewed/",
         "fields": [
             {
@@ -39,6 +40,22 @@
             {
                 "name": "otherMaternalDeathCause",
                 "bind": "/model/instance/penutupan_ibu_reviewed/other_maternal_death_cause"
+            },
+            {
+                "name": "birthAttendant",
+                "bind": "/model/instance/penutupan_ibu_reviewed/birth_attendant"
+            },
+            {
+                "name": "prereferralManagement",
+                "bind": "/model/instance/penutupan_ibu_reviewed/prereferral_management"
+            },
+            {
+                "name": "referred",
+                "bind": "/model/instance/penutupan_ibu_reviewed/referred"
+            },
+            {
+                "name": "referralLocation",
+                "bind": "/model/instance/penutupan_ibu_reviewed/referral_location"
             },
             {
                 "name": "isKICloseConfirmed",

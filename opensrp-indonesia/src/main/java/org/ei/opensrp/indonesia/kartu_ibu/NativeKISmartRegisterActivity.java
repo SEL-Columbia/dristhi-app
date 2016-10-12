@@ -259,7 +259,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
         formNames.add(KARTU_IBU_REGISTRATION);
         formNames.add("kohort_kb_pelayanan");
         formNames.add("kartu_anc_registration");
-        formNames.add(KARTU_IBU_EDIT);
+      //  formNames.add(KARTU_IBU_EDIT);
         formNames.add(KARTU_IBU_CLOSE);
 
         DialogOption[] options = getEditOptions();

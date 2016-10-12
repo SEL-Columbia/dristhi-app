@@ -287,11 +287,11 @@ public class NativeKIPNCSmartRegisterActivity extends SecuredNativeSmartRegister
         List<String> formNames = new ArrayList<String>();
         formNames.add(KARTU_IBU_PNC_VISIT);
         formNames.add(KARTU_IBU_PNC_POSPARTUM_KB);
-        formNames.add(KARTU_IBU_PNC_EDIT);
+      //  formNames.add(KARTU_IBU_PNC_EDIT);
         formNames.add(KARTU_IBU_PNC_CLOSE);
         formNames.add(KARTU_IBU_PNC_OA);
       //  formNames.add(KARTU_IBU_ANC_EDIT);
-        formNames.add(KARTU_IBU_ANC_CLOSE);
+        formNames.add(KARTU_IBU_PNC_CLOSE);
 
     //    DialogOption[] options = getEditOptions();
       //  for (int i = 0; i < options.length; i++) {

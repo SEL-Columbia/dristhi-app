@@ -263,7 +263,7 @@ public class NativeKIANCSmartRegisterActivity extends SecuredNativeSmartRegister
         formNames.add(KARTU_IBU_ANC_VISIT_LABTEST);
         formNames.add(KARTU_IBU_ANC_RENCANA_PERSALINAN);
         formNames.add(KARTU_IBU_PNC_REGISTRATION);
-        formNames.add(KARTU_IBU_ANC_EDIT);
+      //  formNames.add(KARTU_IBU_ANC_EDIT);
         formNames.add(KARTU_IBU_ANC_CLOSE);
 
         return formNames.toArray(new String[formNames.size()]);

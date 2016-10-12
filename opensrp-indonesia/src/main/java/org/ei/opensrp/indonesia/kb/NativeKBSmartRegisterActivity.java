@@ -258,7 +258,7 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         List<String> formNames = new ArrayList<String>();
         formNames.add(KOHORT_KB_REGISTER);
         formNames.add(KOHORT_KB_UPDATE);
-        formNames.add(KOHORT_KB_EDIT);
+      //  formNames.add(KOHORT_KB_EDIT);
         formNames.add(KOHORT_KB_CLOSE);
         DialogOption[] options = getEditOptions();
       //  for (int i = 0; i < options.length; i++) {

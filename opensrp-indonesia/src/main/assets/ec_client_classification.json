@@ -14,6 +14,11 @@
             "field":"eventType",
             "field_value": "Tambah KB",
             "creates_case":["ec_kartu_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Penutupan Ibu",
+            "closes_case":["ec_kartu_ibu","ec_ibu","ec_pnc"]
           }
         ]
       }
@@ -33,6 +38,11 @@
             "field":"eventType",
             "field_value": "Kunjungan ANC",
             "creates_case":["ec_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Penutupan ANC",
+            "closes_case":["ec_ibu"]
           }
         ]
       }
