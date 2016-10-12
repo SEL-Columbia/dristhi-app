@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
+import com.flurry.android.FlurryAgent;
+
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -25,9 +27,13 @@ import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -36,6 +42,7 @@ import butterknife.ButterKnife;
 
 public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterActivity implements
         LocationSelectorDialogFragment.OnLocationSelectedListener{
+    SimpleDateFormat timer = new SimpleDateFormat("hh:mm:ss");
 
     public static final String TAG = "Vaksinator";
     @Bind(R.id.view_pager)
@@ -56,7 +63,13 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
         ButterKnife.bind(this);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        FlurryFacade.logEvent("anc_dashboard");
+
+        String VakStart = timer.format(new Date());
+        Map<String, String> Vaksinator = new HashMap<String, String>();
+        Vaksinator.put("start", VakStart);
+        FlurryAgent.logEvent("vaksinator_dashboard",Vaksinator, true );
+
+       // FlurryFacade.logEvent("anc_dashboard");
         formNames = this.buildFormNameList();
         mBaseFragment = new VaksinatorSmartRegisterFragment();
 
@@ -167,6 +180,11 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
         if(formName.equals("registrasi_jurim")){
             saveuniqueid();
         }
+        //end capture flurry log for FS
+                String end = timer.format(new Date());
+                Map<String, String> FS = new HashMap<String, String>();
+                FS.put("end", end);
+                FlurryAgent.logEvent(formName,FS, true);
     }
 
     @Override
@@ -207,7 +225,12 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
-        FlurryFacade.logEvent(formName);
+        //Start capture flurry log for FS
+               String start = timer.format(new Date());
+                Map<String, String> FS = new HashMap<String, String>();
+                FS.put("start", start);
+                FlurryAgent.logEvent(formName,FS, true );
+     //   FlurryFacade.logEvent(formName);
        // Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
@@ -307,6 +330,10 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
     protected void onPause() {
         super.onPause();
         retrieveAndSaveUnsubmittedFormData();
+        String VakEnd = timer.format(new Date());
+        Map<String, String> Vaksinator = new HashMap<String, String>();
+        Vaksinator.put("end", VakEnd);
+        FlurryAgent.logEvent("vaksinator_dashboard",Vaksinator, true );
     }
 
     public void retrieveAndSaveUnsubmittedFormData(){

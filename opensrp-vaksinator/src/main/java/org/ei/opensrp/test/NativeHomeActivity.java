@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.flurry.android.FlurryAgent;
+
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
@@ -24,6 +26,11 @@ import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import static android.widget.Toast.LENGTH_SHORT;
 import static java.lang.String.valueOf;
 import static org.ei.opensrp.event.Event.ACTION_HANDLED;
@@ -32,6 +39,7 @@ import static org.ei.opensrp.event.Event.SYNC_COMPLETED;
 import static org.ei.opensrp.event.Event.SYNC_STARTED;
 
 public class NativeHomeActivity extends SecuredActivity {
+    SimpleDateFormat timer = new SimpleDateFormat("hh:mm:ss");
     private MenuItem updateMenuItem;
     private MenuItem remainingFormsToSyncMenuItem;
     private PendingFormSubmissionService pendingFormSubmissionService;
@@ -78,13 +86,17 @@ public class NativeHomeActivity extends SecuredActivity {
     protected void onCreation() {
         //home dashboard
         setContentView(R.layout.smart_registers_jurim_home);
-        FlurryFacade.logEvent("vaksinator_home_dashboard");
+      //  FlurryFacade.logEvent("vaksinator_home_dashboard");
         navigationController = new org.ei.opensrp.test.TestNavigationController(this,anmController);
         setupViews();
         initialize();
         DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
         DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
 
+                String HomeStart = timer.format(new Date());
+               Map<String, String> Home = new HashMap<String, String>();
+                Home.put("start", HomeStart);
+                FlurryAgent.logEvent("vaksinator_home_dashboard",Home, true );
 
     }
 
@@ -246,7 +258,12 @@ public class NativeHomeActivity extends SecuredActivity {
                 case R.id.btn_fp_register:
                  //   navigationController.startFPSmartRegistry();
                     break; */
+
             }
+            String HomeEnd = timer.format(new Date());
+            Map<String, String> Home = new HashMap<String, String>();
+            Home.put("end", HomeEnd);
+            FlurryAgent.logEvent("vaksinator_home_dashboard",Home, true);
         }
     };
 
