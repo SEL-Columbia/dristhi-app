@@ -48,6 +48,11 @@
             "values": ["160429AAAAAAAAAAAAAAAAAAAAAAAAAA"],
             "closes_case":["ec_ibu"],
             "creates_case":["ec_pnc"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Kunjungan PNC",
+            "creates_case":["ec_pnc"]
           }
         ]
       }

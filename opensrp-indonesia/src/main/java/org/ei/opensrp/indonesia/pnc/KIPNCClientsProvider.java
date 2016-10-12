@@ -189,7 +189,7 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
             viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
         }
 
-        String kf_ke = pc.getColumnmaps().get("hariKeKF")!=null?pc.getColumnmaps().get("hariKeKF"):"";
+        String kf_ke = pc.getDetails().get("hariKeKF")!=null?pc.getDetails().get("hariKeKF"):"";
         viewHolder.KF.setText(context.getString(R.string.hari_ke_kf)+" "+ humanizeAndDoUPPERCASE(kf_ke));
         viewHolder.wife_name.setText(pc.getColumnmaps().get("namalengkap")!=null?pc.getColumnmaps().get("namalengkap"):"");
         viewHolder.husband_name.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");

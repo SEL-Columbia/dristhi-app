@@ -1,5 +1,5 @@
 {
-  "form_data_definition_version": "1",
+  "form_data_definition_version": "3",
   "form": {
     "bind_type": "ibu",
     "ec_bind_type": "ec_ibu",
