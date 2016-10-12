@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.flurry.android.FlurryAgent;
+
 import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
@@ -24,6 +26,8 @@ import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +39,7 @@ import static org.ei.opensrp.event.Event.SYNC_COMPLETED;
 import static org.ei.opensrp.event.Event.SYNC_STARTED;
 
 public class NativeHomeActivity extends SecuredActivity {
+    SimpleDateFormat timer = new SimpleDateFormat("hh:mm:ss");
     private MenuItem updateMenuItem;
     private MenuItem remainingFormsToSyncMenuItem;
     private PendingFormSubmissionService pendingFormSubmissionService;
@@ -80,7 +85,11 @@ public class NativeHomeActivity extends SecuredActivity {
     @Override
     protected void onCreation() {
         //home dashboard
-        FlurryFacade.logEvent("Creating_home_dashboard_on_home_activity");
+        String HomeStart = timer.format(new Date());
+                       Map<String, String> Home = new HashMap<String, String>();
+                        Home.put("start", HomeStart);
+                        FlurryAgent.logEvent("gizi_home_dashboard",Home, true );
+       // FlurryFacade.logEvent("Creating_home_dashboard_on_home_activity");
         setContentView(R.layout.smart_registers_gizi_home);
         navigationController = new GiziNavigationController(this,anmController);
         setupViews();
@@ -257,6 +266,10 @@ public class NativeHomeActivity extends SecuredActivity {
        //          //   navigationController.startFPSmartRegistry();
        //             break;
             }
+            String HomeEnd = timer.format(new Date());
+                       Map<String, String> Home = new HashMap<String, String>();
+                        Home.put("end", HomeEnd);
+                        FlurryAgent.logEvent("gizi_home_dashboard",Home, true);
         }
     };
 

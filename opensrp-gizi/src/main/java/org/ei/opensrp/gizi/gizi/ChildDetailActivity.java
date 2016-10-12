@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.flurry.android.FlurryAgent;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
@@ -47,7 +48,7 @@ import util.KMS.KmsPerson;
  * Created by Iq on 26/04/16.
  */
 public class ChildDetailActivity extends Activity {
-
+    SimpleDateFormat timer = new SimpleDateFormat("hh:mm:ss");
     //image retrieving
     private static final String TAG = "ImageGridFragment";
     private static final String IMAGE_CACHE_DIR = "thumbs";
@@ -65,6 +66,10 @@ public class ChildDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         Context context = Context.getInstance();
         setContentView(R.layout.gizi_detail_activity);
+        String DetailStart = timer.format(new Date());
+                Map<String, String> Detail = new HashMap<String, String>();
+                Detail.put("start", DetailStart);
+                FlurryAgent.logEvent("gizi_detail_view",Detail, true );
 
         final ImageView childview = (ImageView)findViewById(R.id.detail_profilepic);
         //header
@@ -102,6 +107,11 @@ public class ChildDetailActivity extends Activity {
                 finish();
                 startActivity(new Intent(ChildDetailActivity.this, GiziSmartRegisterActivity.class));
                 overridePendingTransition(0, 0);
+
+                String DetailEnd = timer.format(new Date());
+                Map<String, String> Detail = new HashMap<String, String>();
+                Detail.put("end", DetailEnd);
+                FlurryAgent.logEvent("gizi_detail_view",Detail, true );
             }
         });
 

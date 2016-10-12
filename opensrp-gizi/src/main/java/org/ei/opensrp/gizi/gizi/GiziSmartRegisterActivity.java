@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
+import com.flurry.android.FlurryAgent;
+
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.Alert;
@@ -31,9 +33,13 @@ import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,6 +48,8 @@ import butterknife.ButterKnife;
 
 public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivity implements
         LocationSelectorDialogFragment.OnLocationSelectedListener{
+
+    SimpleDateFormat timer = new SimpleDateFormat("hh:mm:ss");
 
     public static final String TAG = "GiziActivity";
     @Bind(R.id.view_pager)
@@ -62,7 +70,11 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         ButterKnife.bind(this);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        FlurryFacade.logEvent("Gizi_dashboard");
+        String GiziStart = timer.format(new Date());
+                Map<String, String> Gizi = new HashMap<String, String>();
+                Gizi.put("start", GiziStart);
+                FlurryAgent.logEvent("Gizi_dashboard",Gizi, true );
+       // FlurryFacade.logEvent("Gizi_dashboard");
 
         formNames = this.buildFormNameList();
         mBaseFragment = new GiziSmartRegisterFragment();
@@ -170,6 +182,11 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         if(formName.equals("registrasi_gizi")) {
             saveuniqueid();
         }
+        //end capture flurry log for FS
+                        String end = timer.format(new Date());
+                        Map<String, String> FS = new HashMap<String, String>();
+                        FS.put("end", end);
+                        FlurryAgent.logEvent(formName,FS, true);
 
     }
 
@@ -213,7 +230,11 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
        // Log.v("fieldoverride", metaData);
-        FlurryFacade.logEvent(formName);
+        String start = timer.format(new Date());
+                        Map<String, String> FS = new HashMap<String, String>();
+                        FS.put("start", start);
+                        FlurryAgent.logEvent(formName,FS, true );
+        //FlurryFacade.logEvent(formName);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
@@ -304,6 +325,10 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     protected void onPause() {
         super.onPause();
         retrieveAndSaveUnsubmittedFormData();
+        String GiziEnd = timer.format(new Date());
+        Map<String, String> Gizi = new HashMap<String, String>();
+        Gizi.put("end", GiziEnd);
+        FlurryAgent.logEvent("Gizi_dashboard",Gizi, true );
     }
 
     public void retrieveAndSaveUnsubmittedFormData(){
