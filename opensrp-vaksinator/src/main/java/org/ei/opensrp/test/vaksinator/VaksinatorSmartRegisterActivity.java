@@ -293,6 +293,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
         formNames.add("polio4_visit");
         formNames.add("ipv_visit");
         formNames.add("campak_visit");
+        formNames.add("dpthb_lanjutan_visit");
         formNames.add("campak_lanjutan_visit");
         formNames.add("close_form");
 //        DialogOption[] options = getEditOptions();
