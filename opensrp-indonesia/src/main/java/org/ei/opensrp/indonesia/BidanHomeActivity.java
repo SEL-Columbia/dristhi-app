@@ -175,7 +175,7 @@ public class BidanHomeActivity extends SecuredActivity {
         pnccount= pnccountcursor.getInt(0);
         pnccountcursor.close();
 
-        Cursor childcountcursor = context.commonrepository("anak").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("anak", "anak.isClosed = 'false'"));
+        Cursor childcountcursor = context.commonrepository("anak").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_anak", "ec_anak.is_closed=0"));
         childcountcursor.moveToFirst();
         childcount= childcountcursor.getInt(0);
         childcountcursor.close();

@@ -229,7 +229,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
             countqueryBUilder.SelectInitiateMainTableCounts("ec_kartu_ibu");
             countqueryBUilder.customJoin("LEFT JOIN ibu on ec_kartu_ibu.id = ec_details.base_entity_id");
-            mainCondition = " is_closed =0' and jenisKontrasepsi !='0' ";
+            mainCondition = " is_closed =0 and jenisKontrasepsi !='0' ";
             joinTable = "";
             countSelect = countqueryBUilder.mainCondition(mainCondition);
             super.CountExecute();

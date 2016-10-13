@@ -21,6 +21,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.kartu_ibu.KIDetailActivity;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
@@ -127,13 +128,17 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         viewHolder.follow_up.setOnClickListener(onClickListener);
         //set image
         //set image
+
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(pc);
+
         final ImageView childview = (ImageView)convertView.findViewById(R.id.img_profile);
         if (pc.getDetails().get("profilepic") != null) {
             AnakDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), childview, R.mipmap.child_boy);
             childview.setTag(smartRegisterClient);
         }
         else {
-            if(pc.getDetails().get("jenisKelamin").equals("laki")) {
+            if(pc.getDetails().get("jenisKelamin") != null && pc.getDetails().get("jenisKelamin").equals("laki")) {
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
             }
             else
@@ -195,31 +200,36 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         viewHolder.tinggi.setText(context.getString(R.string.height)+" "+tinggi);
         viewHolder.status_gizi.setText(context.getString(R.string.Nutrition_status)+" "+ status_gizi);
 
-        AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("anak");
+        AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_anak");
         CommonPersonObject childobject = childRepository.findByCaseID(pc.entityId());
 
-        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
-        final CommonPersonObject ibuparent = iburep.findByCaseID(childobject.getColumnmaps().get("ibuCaseId"));
+        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
+        final CommonPersonObject ibuparent = iburep.findByCaseID(childobject.getColumnmaps().get("relational_id"));
+
+        detailsRepository.updateDetails(ibuparent);
+
         String tempat = ibuparent.getDetails().get("tempatBersalin")!=null?ibuparent.getDetails().get("tempatBersalin"):"";
 
         viewHolder.tempat_lahir.setText(tempat.equals("podok_bersalin_desa")?"POLINDES":tempat.equals("pusat_kesehatan_masyarakat_pembantu")?"Puskesmas pembantu":tempat.equals("pusat_kesehatan_masyarakat")?"Puskesmas":humanize(tempat));
 
-        AllCommonsRepository kirep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
+        AllCommonsRepository kirep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_kartu_ibu");
         final CommonPersonObject kiparent = kirep.findByCaseID(ibuparent.getColumnmaps().get("kartuIbuId"));
 
-        String namaayah = kiparent.getDetails().get("namaSuami")!=null?kiparent.getDetails().get("namaSuami"):"";
-        String namaibu = kiparent.getColumnmaps().get("namalengkap")!=null?kiparent.getColumnmaps().get("namalengkap"):"";
+        if(kiparent != null) {
+            detailsRepository.updateDetails(kiparent);
+            String namaayah = kiparent.getDetails().get("namaSuami") != null ? kiparent.getDetails().get("namaSuami") : "";
+            String namaibu = kiparent.getColumnmaps().get("namalengkap") != null ? kiparent.getColumnmaps().get("namalengkap") : "";
 
-          viewHolder.mother_name.setText(namaibu +","+ namaayah);
-           viewHolder.village_name.setText(kiparent.getDetails().get("desa")!=null?kiparent.getDetails().get("desa"):"");
-            viewHolder.no_ibu.setText(kiparent.getDetails().get("noIbu")!=null?kiparent.getDetails().get("noIbu"):"");
-
+            viewHolder.mother_name.setText(namaibu + "," + namaayah);
+            viewHolder.village_name.setText(kiparent.getDetails().get("desa") != null ? kiparent.getDetails().get("desa") : "");
+            viewHolder.no_ibu.setText(kiparent.getDetails().get("noIbu") != null ? kiparent.getDetails().get("noIbu") : "");
+        }
 
         String childAge = childobject.getColumnmaps().get("tanggalLahirAnak")!=null?childobject.getColumnmaps().get("tanggalLahirAnak"):"-";
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         if(childobject.getColumnmaps().get("tanggalLahirAnak")!=null) {
-            String age = childAge;
+            String age = childAge.substring(0, childAge.indexOf("T"));
             DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
             LocalDate dates = parse(age, formatter).toLocalDate();
             LocalDate dateNow = LocalDate.now();

@@ -227,21 +227,21 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         ///------------------------------------------------------------------
 
         AnakRegisterClientsProvider anakscp = new AnakRegisterClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, anakscp, new CommonRepository("anak",new String []{"namaBayi", "tanggalLahirAnak", "anak.isClosed"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, anakscp, new CommonRepository("ec_anak",new String []{"namaBayi", "tanggalLahirAnak", "ec_anak.is_closed"}));
         clientsView.setAdapter(clientAdapter);
 
-        setTablename("anak");
+        setTablename("ec_anak");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
-        countqueryBUilder.SelectInitiateMainTableCounts("anak");
-        countqueryBUilder.customJoin("LEFT JOIN ibu ON ibu.id = anak.ibuCaseId LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
-        countSelect = countqueryBUilder.mainCondition(" anak.isClosed !='true' and anak.ibuCaseId !='' ");
-        mainCondition = " isClosed !='true' and ibuCaseId !='' ";
+        countqueryBUilder.SelectInitiateMainTableCounts("ec_anak");
+        countqueryBUilder.customJoin("LEFT JOIN ec_ibu ON ec_ibu.id = ec_anak.relational_id");
+        mainCondition = " is_closed=0  ";
+        countSelect = countqueryBUilder.mainCondition(mainCondition);
         super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("anak", new String[]{"anak.isClosed", "anak.details", "namaBayi", "tanggalLahirAnak"});
-        queryBUilder.customJoin("LEFT JOIN ibu ON ibu.id = anak.ibuCaseId LEFT JOIN kartu_ibu ON ibu.kartuIbuId = kartu_ibu.id");
-        mainSelect = queryBUilder.mainCondition(" anak.isClosed !='true' and anak.ibuCaseId !='' ");
+        queryBUilder.SelectInitiateMainTable("ec_anak", new String[]{"ec_anak.is_closed", "ec_anak.details", "namaBayi", "tanggalLahirAnak"});
+        queryBUilder.customJoin("LEFT JOIN ec_ibu ON ec_ibu.id =  ec_anak.relational_id");
+        mainSelect = queryBUilder.mainCondition(mainCondition);
         Sortqueries = AnakNameShort();
 
         currentlimit = 20;
@@ -355,7 +355,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 //
                         filters = cs.toString();
                         joinTable = "";
-                        mainCondition = " isClosed !='true' and ibuCaseId !='' ";
+                        mainCondition = " is_closed !='true' and ibuCaseId !='' ";
                         return null;
                     }
 
@@ -403,7 +403,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 //
                         filters = cs.toString();
                         joinTable = "";
-                        mainCondition = " isClosed !='true' and ibuCaseId !='' ";
+                        mainCondition = " is_closed = 0 and ibuCaseId !='' ";
                         return null;
                     }
 

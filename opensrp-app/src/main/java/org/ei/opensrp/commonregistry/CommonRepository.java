@@ -364,7 +364,12 @@ public class CommonRepository extends DrishtiRepository {
     public CommonPersonObject getCommonPersonObjectFromCursor(Cursor cursor) {
         CommonPersonObject commonPersonObject = null;
         String caseId = cursor.getString(cursor.getColumnIndex("_id"));
-        String relationalid = cursor.getString(cursor.getColumnIndex("relationalid"));
+        String relationalid = null;
+        if(cursor.getColumnIndex(Relational_ID) != -1) {
+            relationalid = cursor.getString(cursor.getColumnIndex(Relational_ID));
+        } else if(cursor.getColumnIndex(Relational_Underscore_ID) != -1){
+            relationalid = cursor.getString(cursor.getColumnIndex(Relational_Underscore_ID));
+        }
         Map<String, String> details = sqliteRowToMap(cursor);
         commonPersonObject = new CommonPersonObject(caseId, relationalid, details, TABLE_NAME);
         return commonPersonObject;
