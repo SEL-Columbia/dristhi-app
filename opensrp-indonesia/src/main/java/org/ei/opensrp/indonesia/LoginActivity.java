@@ -45,7 +45,7 @@ import static org.ei.opensrp.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
     private org.ei.opensrp.Context context;
-    private EditText userNameEditText;
+    private EditText userNameEditText;zz
     private EditText passwordEditText;
     private ProgressDialog progressDialog;
 
