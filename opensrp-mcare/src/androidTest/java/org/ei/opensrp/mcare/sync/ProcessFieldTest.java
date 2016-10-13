@@ -1,15 +1,24 @@
-package org.ei.opensrp.sync;
+package org.ei.opensrp.mcare.sync;
 
+import org.ei.opensrp.sync.ClientProcessor;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Created by keyman on 04/10/16.
  */
 public class ProcessFieldTest extends BaseClientProcessorTest {
 
+    @Test
     public void testProcessFieldWhenFieldJsonIsNullOrEmpty() {
         try {
 
@@ -29,6 +38,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessFieldWhenFieldJsonHasIrrelevantValues() {
         try {
 
@@ -47,6 +57,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessFieldWhenFieldValueIsMissingInEvent() {
         try {
 
@@ -65,6 +76,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessFieldWithCreateCaseForFieldValue() {
         try {
 
@@ -107,6 +119,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessFieldWithCreateAndCloseCaseForFieldValue() {
         try {
 
@@ -151,6 +164,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessFieldWhenConceptIsMissingDataSegmentInEvent() {
         try {
 
@@ -173,6 +187,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessFieldWhenConceptIsMissingFieldValueInEvent() {
         try {
 
@@ -189,7 +204,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
 
             JSONObject obs1 = createJsonObject("fieldCode", "154AAAA");
 
-            JSONArray obsArray =  new JSONArray();
+            JSONArray obsArray = new JSONArray();
             updateJsonArray(obsArray, obs1);
 
             updateJsonObject(event, "obs", obsArray);
@@ -202,6 +217,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessFieldWithCreateCaseForConcept() {
         try {
 
@@ -220,7 +236,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
             JSONObject obs1 = createJsonObject("fieldCode", "12AAAAA");
             updateJsonObject(obs1, "values", obsValues);
 
-            JSONArray obsArray =  new JSONArray();
+            JSONArray obsArray = new JSONArray();
             updateJsonArray(obsArray, obs1);
 
             updateJsonObject(event, "obs", obsArray);
@@ -256,6 +272,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessFieldWithCreateAndCloseCaseForConcept() {
         try {
 
@@ -276,7 +293,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
             JSONObject obs1 = createJsonObject("fieldCode", "13AAAAA");
             updateJsonObject(obs1, "values", obsValues);
 
-            JSONArray obsArray =  new JSONArray();
+            JSONArray obsArray = new JSONArray();
             updateJsonArray(obsArray, obs1);
 
             updateJsonObject(event, "obs", obsArray);

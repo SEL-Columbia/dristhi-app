@@ -1,18 +1,24 @@
-package org.ei.opensrp.sync;
+package org.ei.opensrp.mcare.sync;
 
+import android.content.Context;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
 import android.test.AndroidTestCase;
 import android.util.Pair;
 
+import junit.framework.Assert;
+
 import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.clientandeventmodel.DateUtil;
-import org.ei.opensrp.clientandeventmodel.Event;
 import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,9 +31,9 @@ public class BaseClientProcessorTest extends AndroidTestCase {
 
     protected static final String detailsUpdated = "detailsUpdated";
 
-    @Override
+    @Before
     protected void setUp() throws Exception {
-        super.setUp();
+        //super.setUp();
         System.setProperty("dexmaker.dexcache", getContext().getCacheDir().getPath());
     }
 
@@ -260,4 +266,8 @@ public class BaseClientProcessorTest extends AndroidTestCase {
         return bind;
     }
 
+    @Test
+    public void testSample(){
+        Assert.assertTrue(true);
+    }
 }

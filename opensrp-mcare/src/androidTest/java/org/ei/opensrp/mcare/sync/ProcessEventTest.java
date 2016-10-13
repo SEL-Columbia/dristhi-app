@@ -1,26 +1,27 @@
-package org.ei.opensrp.sync;
+package org.ei.opensrp.mcare.sync;
 
+import org.ei.opensrp.sync.ClientProcessor;
+import org.ei.opensrp.sync.CloudantDataHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Created by keyman on 30/09/16.
  */
-public class  ProcessEventTest extends BaseClientProcessorTest {
+public class ProcessEventTest extends BaseClientProcessorTest {
 
-
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        System.setProperty("dexmaker.dexcache", getContext().getCacheDir().getPath());
-    }
-
-
+    @Test
     public void testProcessNullEvents() {
         try {
             Boolean processed = ClientProcessor.getInstance(getContext()).processEvent(null, createEmptyJsonObject());
@@ -31,6 +32,7 @@ public class  ProcessEventTest extends BaseClientProcessorTest {
 
     }
 
+    @Test
     public void testProcessEventWhenClientClassificationIsNull() {
         try {
             String baseEntityId = getBaseEntityId();
@@ -53,6 +55,7 @@ public class  ProcessEventTest extends BaseClientProcessorTest {
 
     }
 
+    @Test
     public void testProcessEventWhenClientIsNull() {
         try {
 
@@ -74,6 +77,7 @@ public class  ProcessEventTest extends BaseClientProcessorTest {
 
     }
 
+    @Test
     public void testProcessEventWhenClientIsEmpty() {
         try {
 
@@ -95,6 +99,7 @@ public class  ProcessEventTest extends BaseClientProcessorTest {
 
     }
 
+    @Test
     public void testProcessEventWhenClassificationHasNoRules() {
         try {
 
@@ -118,6 +123,7 @@ public class  ProcessEventTest extends BaseClientProcessorTest {
 
     }
 
+    @Test
     public void testProcessEvent() {
         try {
 
@@ -150,15 +156,15 @@ public class  ProcessEventTest extends BaseClientProcessorTest {
 
             JSONArray classificationRules = classification.getJSONArray("case_classification_rules");
             List<JSONObject> classCapturedList = classCaptor.getAllValues();
-            for(int i = 0; i < classificationRules.length(); i++){
+            for (int i = 0; i < classificationRules.length(); i++) {
                 assertEquals(classificationRules.get(i), classCapturedList.get(i));
             }
 
-            for(JSONObject eventCaptured: eventCaptor.getAllValues()){
+            for (JSONObject eventCaptured : eventCaptor.getAllValues()) {
                 assertEquals(event, eventCaptured);
             }
 
-            for(JSONObject clientCaptured: clientCaptor.getAllValues()){
+            for (JSONObject clientCaptured : clientCaptor.getAllValues()) {
                 assertEquals(client, clientCaptured);
             }
 
@@ -169,6 +175,7 @@ public class  ProcessEventTest extends BaseClientProcessorTest {
 
     }
 
+    @Test
     public void testProcessEventAndDetailsUpdated() {
         try {
 
@@ -210,15 +217,15 @@ public class  ProcessEventTest extends BaseClientProcessorTest {
 
             JSONArray classificationRules = classification.getJSONArray("case_classification_rules");
             List<JSONObject> classCapturedList = classCaptor.getAllValues();
-            for(int i = 0; i < classificationRules.length(); i++){
-                   assertEquals(classificationRules.get(i), classCapturedList.get(i));
+            for (int i = 0; i < classificationRules.length(); i++) {
+                assertEquals(classificationRules.get(i), classCapturedList.get(i));
             }
 
-            for(JSONObject eventCaptured: eventCaptor.getAllValues()){
+            for (JSONObject eventCaptured : eventCaptor.getAllValues()) {
                 assertEquals(event, eventCaptured);
             }
 
-            for(JSONObject clientCaptured: clientCaptor.getAllValues()){
+            for (JSONObject clientCaptured : clientCaptor.getAllValues()) {
                 assertEquals(client, clientCaptured);
             }
 
@@ -226,11 +233,11 @@ public class  ProcessEventTest extends BaseClientProcessorTest {
             ArgumentCaptor<Long> timeStampCaptor = ArgumentCaptor.forClass(Long.class);
 
             Mockito.verify(spy, Mockito.times(4)).saveClientDetails(baseEntityCaptor.capture(), Mockito.anyMap(), timeStampCaptor.capture());
-            for(String capturedBaseEntityId : baseEntityCaptor.getAllValues()){
+            for (String capturedBaseEntityId : baseEntityCaptor.getAllValues()) {
                 assertEquals(baseEntityId, capturedBaseEntityId);
             }
 
-            for(Long capturedTimeStamp: timeStampCaptor.getAllValues()){
+            for (Long capturedTimeStamp : timeStampCaptor.getAllValues()) {
                 assertEquals(getEventDate(eventDate), capturedTimeStamp.longValue());
             }
 

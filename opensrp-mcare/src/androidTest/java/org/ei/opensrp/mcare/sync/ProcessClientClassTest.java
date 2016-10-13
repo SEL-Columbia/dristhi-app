@@ -1,10 +1,17 @@
-package org.ei.opensrp.sync;
+package org.ei.opensrp.mcare.sync;
 
+import org.ei.opensrp.sync.ClientProcessor;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Created by keyman on 30/09/16.
@@ -12,7 +19,7 @@ import org.mockito.Mockito;
 public class ProcessClientClassTest extends BaseClientProcessorTest {
 
 
-
+    @Test
     public void testProcessClientClassWhenClassIsNullOrEmpty() {
         try {
 
@@ -32,6 +39,7 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessClientClassWhenEventIsNullOrEmpty() {
         try {
 
@@ -51,6 +59,7 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessClientClassWhenClientIsNullOrEmpty() {
         try {
 
@@ -70,6 +79,7 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessClientClassWhenClassHasNoRules() {
         try {
 
@@ -89,6 +99,7 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessClientClassWhenRuleHasNoFields() {
         try {
 
@@ -108,6 +119,7 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessClient() {
         try {
 
@@ -116,12 +128,12 @@ public class ProcessClientClassTest extends BaseClientProcessorTest {
             JSONObject classification = createClassification().getJSONArray("case_classification_rules").getJSONObject(0);
             JSONObject client = createClient(baseEntityId);
             JSONObject event = createEvent(baseEntityId, true);
-            
+
             ClientProcessor clientProcessor = ClientProcessor.getInstance(getContext());
-            
+
             ClientProcessor spy = Mockito.spy(clientProcessor);
             Mockito.doReturn(true).when(spy).processField(Mockito.any(JSONObject.class), Mockito.any(JSONObject.class), Mockito.any(JSONObject.class));
-            
+
             Boolean processed = spy.processClientClass(classification, event, client);
             assertTrue("Client class should have been processed", processed);
 

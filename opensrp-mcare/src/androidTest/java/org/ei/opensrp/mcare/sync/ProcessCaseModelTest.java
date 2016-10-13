@@ -1,23 +1,31 @@
-package org.ei.opensrp.sync;
+package org.ei.opensrp.mcare.sync;
 
 import android.content.ContentValues;
 import android.util.Pair;
 
+import org.ei.opensrp.sync.ClientProcessor;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 /**
  * Created by keyman on 05/10/16.
  */
 public class ProcessCaseModelTest extends BaseClientProcessorTest {
 
+    @Test
     public void testProcessCloseCaseModelWhenNullOrEmpty() {
         try {
 
@@ -35,6 +43,7 @@ public class ProcessCaseModelTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessCloseCaseModelWhenClientBaseEntityIdIsNull() {
         try {
 
@@ -50,6 +59,7 @@ public class ProcessCaseModelTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessCloseCaseModel() {
         try {
 
@@ -75,6 +85,7 @@ public class ProcessCaseModelTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessCloseMultipleCasesModel() {
         try {
 
@@ -120,6 +131,7 @@ public class ProcessCaseModelTest extends BaseClientProcessorTest {
     }
 
 
+    @Test
     public void testProcessCaseModelWhenNullOrEmpty() {
         try {
 
@@ -139,6 +151,7 @@ public class ProcessCaseModelTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessCaseModelForSimpleField() {
         try {
 
@@ -233,6 +246,7 @@ public class ProcessCaseModelTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessCaseModelForConceptField() {
         try {
 
@@ -336,6 +350,7 @@ public class ProcessCaseModelTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessCaseModelForAddressField() {
         try {
 
@@ -445,6 +460,7 @@ public class ProcessCaseModelTest extends BaseClientProcessorTest {
         }
     }
 
+    @Test
     public void testProcessCaseModelForRelationShipField() {
         try {
 
