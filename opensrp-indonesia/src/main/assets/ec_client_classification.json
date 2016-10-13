@@ -63,6 +63,11 @@
             "field":"eventType",
             "field_value": "Kunjungan PNC",
             "creates_case":["ec_pnc"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Penutupan PNC",
+            "closes_case":["ec_pnc"]
           }
         ]
       }

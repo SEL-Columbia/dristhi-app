@@ -231,7 +231,7 @@
           "column_name": "noBayi",
           "type": "Client",
           "json_mapping": {
-            "field": "Person"
+            "field": "attributes.noBayi"
           }
         },
         {
@@ -246,7 +246,7 @@
           "column_name": "namaBayi",
           "type": "Client",
           "json_mapping": {
-            "field": "Person"
+            "field": "firstName"
           }
         },
         {
@@ -254,13 +254,6 @@
           "type": "Client",
           "json_mapping": {
             "field": "birthdate"
-          }
-        },
-        {
-          "column_name": "jenisKelamin",
-          "type": "Client",
-          "json_mapping": {
-            "field": "person.gender"
           }
         }
       ]

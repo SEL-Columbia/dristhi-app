@@ -10,17 +10,12 @@
         "shouldLoadValue": true
       },
       {
-        "name": "childId",
-        "shouldLoadValue": true,
-        "source": "ibu.anak.id"
-      },
-      {
         "name": "lokasiPeriksa",
         "bind": "/model/instance/dok_persalinan_reviewed/Lokasi_periksa"
       },
       {
         "name": "tanggalHPHT",
-        "bind": "/model/instance/dok_persalinan_reviewed/tanggalHPHT",
+        "bind": "/model/instance/dok_persalinan_reviewed/hpht",
         "source": "ibu.tanggalHPHT",
         "shouldLoadValue": true
       },
@@ -207,37 +202,41 @@
             "shouldLoadValue": true
           },
           {
+            "name": "injectedBaseEntityId",
+            "shouldLoadValue": true
+          },
+          {
             "name": "ibu_entity_id",
             "source": "ibu.id",
             "shouldLoadValue": true
           },
           {
             "name": "noBayi",
-            "bind": "/model/instance/dok_persalinan_reviewed/dok_persalinan_reviewed/child_registration/no_bayi"
+            "bind": "/model/instance/dok_persalinan_reviewed/child_registration/no_bayi"
           },
           {
             "name": "beratLahir",
-            "bind": "/model/instance/dok_persalinan_reviewed/dok_persalinan_reviewed/child_registration/berat_bayi"
+            "bind": "/model/instance/dok_persalinan_reviewed/child_registration/berat_bayi"
           },
           {
             "name": "namaBayi",
-            "bind": "/model/instance/dok_persalinan_reviewed/dok_persalinan_reviewed/child_registration/nama_bayi"
+            "bind": "/model/instance/dok_persalinan_reviewed/child_registration/nama_bayi"
           },
           {
             "name": "tanggalLahirAnak",
-            "bind": "/model/instance/dok_persalinan_reviewed/dok_persalinan_reviewed/child_registration/tanggal_lahir_anak"
+            "bind": "/model/instance/dok_persalinan_reviewed/child_registration/tanggal_lahir_anak"
           },
           {
             "name": "jenisKelamin",
-            "bind": "/model/instance/dok_persalinan_reviewed/dok_persalinan_reviewed/child_registration/jenis_kelamin"
+            "bind": "/model/instance/dok_persalinan_reviewed/child_registration/jenis_kelamin"
           },
           {
             "name": "highRiskChildPreterm",
-            "bind": "/model/instance/dok_persalinan_reviewed/dok_persalinan_reviewed/child_registration/High_Risk_Child_preterm"
+            "bind": "/model/instance/dok_persalinan_reviewed/child_registration/High_Risk_Child_preterm"
           },
           {
             "name": "HighRiskChildLowBirthweght",
-            "bind": "/model/instance/dok_persalinan_reviewed/dok_persalinan_reviewed/child_registration/High_Risk_Child_Low_Birthweght"
+            "bind": "/model/instance/dok_persalinan_reviewed/child_registration/High_Risk_Child_Low_Birthweght"
           }
         ]
       }
