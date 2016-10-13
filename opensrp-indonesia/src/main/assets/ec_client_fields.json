@@ -236,7 +236,7 @@
         },
         {
           "column_name": "beratLahir",
-          "type": "Client",
+          "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -244,9 +244,10 @@
         },
         {
           "column_name": "namaBayi",
-          "type": "Client",
+          "type": "Event",
           "json_mapping": {
-            "field": "firstName"
+            "field": "obs.fieldCode",
+            "concept": "1586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         },
         {
