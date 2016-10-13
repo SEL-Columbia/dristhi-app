@@ -1,10 +1,6 @@
 <model>
   <instance>
-<<<<<<< HEAD
-    <PregnancySurveillanceAndRegistrationForm encounter_type="Pregnancy Surveillance and Registration" id="PregnancySurveillanceAndRegistrationForm" version="201601250923">
-=======
     <PregnancySurveillanceAndRegistrationForm encounter_type="Pregnancy Surveillance and Registration" id="PregnancySurveillanceAndRegistrationForm" version="201605291339">
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       <formhub>
         <uuid/>
       </formhub>

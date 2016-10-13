@@ -13,6 +13,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
+
+import com.flurry.android.FlurryAgent;
+
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.ProfileImage;
@@ -35,7 +38,7 @@ import util.ImageFetcher;
  * Created by Iq on 09/06/16.
  */
 public class VaksinatorDetailActivity extends Activity {
-
+    SimpleDateFormat timer = new SimpleDateFormat("hh:mm:ss");
     //image retrieving
     private static final String TAG = "ImageGridFragment";
     private static final String IMAGE_CACHE_DIR = "thumbs";
@@ -55,6 +58,10 @@ public class VaksinatorDetailActivity extends Activity {
         Context context = Context.getInstance();
         setContentView(R.layout.smart_register_jurim_detail_client);
 
+        String DetailStart = timer.format(new Date());
+        Map<String, String> Detail = new HashMap<String, String>();
+        Detail.put("start", DetailStart);
+        FlurryAgent.logEvent("vaksinator_detail_view",Detail, true );
         //label
         TextView label001 = (TextView) findViewById(R.id.label001);
         TextView label002 = (TextView) findViewById(R.id.label002);
@@ -106,9 +113,14 @@ public class VaksinatorDetailActivity extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
-                FlurryFacade.logEvent("click_recapitulation_button");
+
                 startActivity(new Intent(VaksinatorDetailActivity.this, VaksinatorSmartRegisterActivity.class));
                 overridePendingTransition(0, 0);
+                //Start capture flurry log for FS
+                String DetailEnd = timer.format(new Date());
+                Map<String, String> Detail = new HashMap<String, String>();
+                Detail.put("end", DetailEnd);
+                FlurryAgent.logEvent("vaksinator_detail_view",Detail, true );
             }
         });
 
@@ -119,6 +131,7 @@ public class VaksinatorDetailActivity extends Activity {
                 finish();
                 startActivity(new Intent(VaksinatorDetailActivity.this, VaksinatorRecapitulationActivity.class));
                 overridePendingTransition(0, 0);
+                FlurryFacade.logEvent("click_recapitulation_button");
             }
         });
 

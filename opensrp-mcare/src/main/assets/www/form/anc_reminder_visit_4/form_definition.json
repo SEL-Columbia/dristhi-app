@@ -57,17 +57,6 @@
       },
       {
         "name": "existing_riskfactor",
-<<<<<<< HEAD
-        "bind": "/model/instance/ANC_Reminder_Visit_4/existing_riskfactor"
-      },
-      {
-        "name": "existing_dangervalue",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/existing_dangervalue"
-      },
-      {
-        "name": "existing_location",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/existing_location"
-=======
         "bind": "/model/instance/ANC_Reminder_Visit_4/existing_riskfactor",
         "shouldLoadValue": true
       },
@@ -114,7 +103,6 @@
       {
         "name": "existing_ELCO",
         "bind": "/model/instance/ANC_Reminder_Visit_4/existing_ELCO"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       },
       {
         "name": "today",
@@ -165,10 +153,6 @@
         "bind": "/model/instance/ANC_Reminder_Visit_4/DISPLAYTEXT3"
       },
       {
-<<<<<<< HEAD
-        "name": "FWANC4PREGCOND",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWANC4PREGCOND"
-=======
         "name": "yn_dk_label",
         "bind": "/model/instance/ANC_Reminder_Visit_4/risk_group/yn_dk_label"
       },
@@ -187,7 +171,6 @@
       {
         "name": "FWANC4THY",
         "bind": "/model/instance/ANC_Reminder_Visit_4/risk_group/FWANC4THY"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       },
       {
         "name": "DISPLAYTEXT4",
@@ -202,110 +185,6 @@
         "bind": "/model/instance/ANC_Reminder_Visit_4/FWDISPLAYTEXT5"
       },
       {
-<<<<<<< HEAD
-        "name": "FWANC4DNGRSIGN",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWANC4DNGRSIGN"
-      },
-      {
-        "name": "FWDISPLAYTEXT6",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWDISPLAYTEXT6"
-      },
-      {
-        "name": "FWDISPLAYTEXT7",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWDISPLAYTEXT7"
-      },
-      {
-        "name": "FWDISPLAYTEXT8",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWDISPLAYTEXT8"
-      },
-      {
-        "name": "FWDISPLAYTEXT9",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWDISPLAYTEXT9"
-      },
-      {
-        "name": "FWDISPLAYTEXT10",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWDISPLAYTEXT10"
-      },
-      {
-        "name": "FWDISPLAYTEXT11",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWDISPLAYTEXT11"
-      },
-      {
-        "name": "FWBPC4LOCOFDEL",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4LOCOFDEL"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT1",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT1"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT2",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT2"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT3",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT3"
-      },
-      {
-        "name": "FWBPC4ASSTLAB",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4ASSTLAB"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT4",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT4"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT5",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT5"
-      },
-      {
-        "name": "FWBPC4TRNSPRT",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4TRNSPRT"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT6",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT6"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT7",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT7"
-      },
-      {
-        "name": "FWBPC4BLDGRP",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4BLDGRP"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT8",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT8"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT9",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT9"
-      },
-      {
-        "name": "FWBPC4BLDDNR",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4BLDDNR"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT10",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT10"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT11",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT11"
-      },
-      {
-        "name": "FWBPC4FINARGMT",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4FINARGMT"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT12",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT12"
-      },
-      {
-        "name": "FWBPC4DISPLAYTEXT13",
-        "bind": "/model/instance/ANC_Reminder_Visit_4/FWBPC4DISPLAYTEXT13"
-=======
         "name": "FWANC4HEAD",
         "bind": "/model/instance/ANC_Reminder_Visit_4/danger_signs/FWANC4HEAD"
       },
@@ -484,7 +363,6 @@
       {
         "name": "relationalid",
         "bind": "/model/instance/ANC_Reminder_Visit_4/relationalid"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       }
     ]
   }

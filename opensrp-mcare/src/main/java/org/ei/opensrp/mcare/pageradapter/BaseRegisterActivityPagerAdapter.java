@@ -14,19 +14,13 @@ public class BaseRegisterActivityPagerAdapter extends FragmentPagerAdapter {
     public static final String ARG_PAGE = "page";
     String[] dialogOptions;
     Fragment mBaseFragment;
-<<<<<<< HEAD
-=======
     Fragment mProfileFragment;
     public int offset = 0;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     public BaseRegisterActivityPagerAdapter(FragmentManager fragmentManager, String[] dialogOptions, Fragment baseFragment) {
         super(fragmentManager);
         this.dialogOptions = dialogOptions;
         this.mBaseFragment = baseFragment;
-<<<<<<< HEAD
-    }
-=======
         offset += 1;
     }
     public BaseRegisterActivityPagerAdapter(FragmentManager fragmentManager, String[] dialogOptions, Fragment baseFragment, Fragment mProfileFragment) {
@@ -37,7 +31,6 @@ public class BaseRegisterActivityPagerAdapter extends FragmentPagerAdapter {
         offset += 2;
     }
 
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     @Override
     public Fragment getItem(int position) {
@@ -46,11 +39,6 @@ public class BaseRegisterActivityPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 fragment = mBaseFragment;
                 break;
-<<<<<<< HEAD
-
-            default:
-                String formName = dialogOptions[position - 1]; // account for the base fragment
-=======
             case 1:
                 if(mProfileFragment != null) {
                     fragment = mProfileFragment;
@@ -58,7 +46,6 @@ public class BaseRegisterActivityPagerAdapter extends FragmentPagerAdapter {
                 }
             default:
                 String formName = dialogOptions[position - offset]; // account for the base fragment
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 DisplayFormFragment f = new DisplayFormFragment();
                 f.setFormName(formName);
                 fragment = f;
@@ -73,10 +60,6 @@ public class BaseRegisterActivityPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-<<<<<<< HEAD
-        return dialogOptions.length + 1; // index 0 is always occupied by the base fragment
-    }
-=======
         return dialogOptions.length + offset; // index 0 is always occupied by the base fragment
     }
 
@@ -84,5 +67,4 @@ public class BaseRegisterActivityPagerAdapter extends FragmentPagerAdapter {
         return offset;
     }
 
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 }

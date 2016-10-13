@@ -47,11 +47,6 @@
             android:theme="@style/AppThemeNoActionBarAndTitle"
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="landscape"/>
-<<<<<<< HEAD
-        <activity android:name=".anc.mCareAncDetailActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape"/>
-=======
         <activity android:name=".pnc.mCarePNCSmartRegisterActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppThemeNoActionBarAndTitle"
@@ -71,7 +66,6 @@
         <activity android:name=".child.ChildDetailActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape"/>
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     </application>
 

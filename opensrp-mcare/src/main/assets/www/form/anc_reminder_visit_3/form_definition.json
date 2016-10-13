@@ -57,17 +57,6 @@
       },
       {
         "name": "existing_riskfactor",
-<<<<<<< HEAD
-        "bind": "/model/instance/ANC_Reminder_Visit_3/existing_riskfactor"
-      },
-      {
-        "name": "existing_dangervalue",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/existing_dangervalue"
-      },
-      {
-        "name": "existing_location",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/existing_location"
-=======
         "bind": "/model/instance/ANC_Reminder_Visit_3/existing_riskfactor",
         "shouldLoadValue": true
       },
@@ -109,7 +98,6 @@
       {
         "name": "existing_ELCO",
         "bind": "/model/instance/ANC_Reminder_Visit_3/existing_ELCO"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       },
       {
         "name": "today",
@@ -152,13 +140,6 @@
         "bind": "/model/instance/ANC_Reminder_Visit_3/DISPLAYTEXT2"
       },
       {
-<<<<<<< HEAD
-        "name": "generated_note_name_25",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/generated_note_name_25"
-      },
-      {
-=======
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         "name": "FWANC3KNWPRVDR",
         "bind": "/model/instance/ANC_Reminder_Visit_3/FWANC3KNWPRVDR"
       },
@@ -167,10 +148,6 @@
         "bind": "/model/instance/ANC_Reminder_Visit_3/DISPLAYTEXT3"
       },
       {
-<<<<<<< HEAD
-        "name": "FWANC3PREGCOND",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWANC3PREGCOND"
-=======
         "name": "yn_dk_label",
         "bind": "/model/instance/ANC_Reminder_Visit_3/risk_group/yn_dk_label"
       },
@@ -189,7 +166,6 @@
       {
         "name": "FWANC3THY",
         "bind": "/model/instance/ANC_Reminder_Visit_3/risk_group/FWANC3THY"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       },
       {
         "name": "DISPLAYTEXT4",
@@ -204,110 +180,6 @@
         "bind": "/model/instance/ANC_Reminder_Visit_3/FWDISPLAYTEXT5"
       },
       {
-<<<<<<< HEAD
-        "name": "FWANC3DNGRSIGN",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWANC3DNGRSIGN"
-      },
-      {
-        "name": "FWDISPLAYTEXT6",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWDISPLAYTEXT6"
-      },
-      {
-        "name": "FWDISPLAYTEXT7",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWDISPLAYTEXT7"
-      },
-      {
-        "name": "FWDISPLAYTEXT8",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWDISPLAYTEXT8"
-      },
-      {
-        "name": "FWDISPLAYTEXT9",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWDISPLAYTEXT9"
-      },
-      {
-        "name": "FWDISPLAYTEXT10",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWDISPLAYTEXT10"
-      },
-      {
-        "name": "FWDISPLAYTEXT11",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWDISPLAYTEXT11"
-      },
-      {
-        "name": "FWBPC3LOCOFDEL",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3LOCOFDEL"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT1",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT1"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT2",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT2"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT3",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT3"
-      },
-      {
-        "name": "FWBPC3ASSTLAB",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3ASSTLAB"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT4",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT4"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT5",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT5"
-      },
-      {
-        "name": "FWBPC3TRNSPRT",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3TRNSPRT"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT6",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT6"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT7",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT7"
-      },
-      {
-        "name": "FWBPC3BLDGRP",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3BLDGRP"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT8",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT8"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT9",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT9"
-      },
-      {
-        "name": "FWBPC3BLDDNR",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3BLDDNR"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT10",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT10"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT11",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT11"
-      },
-      {
-        "name": "FWBPC3FINARGMT",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3FINARGMT"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT12",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT12"
-      },
-      {
-        "name": "FWBPC3DISPLAYTEXT13",
-        "bind": "/model/instance/ANC_Reminder_Visit_3/FWBPC3DISPLAYTEXT13"
-=======
         "name": "FWANC3HEAD",
         "bind": "/model/instance/ANC_Reminder_Visit_3/danger_signs/FWANC3HEAD"
       },
@@ -486,7 +358,6 @@
       {
         "name": "relationalid",
         "bind": "/model/instance/ANC_Reminder_Visit_3/relationalid"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       }
     ]
   }

@@ -8,11 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-<<<<<<< HEAD
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-=======
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import android.widget.TextView;
 
 import org.ei.opensrp.Context;
@@ -28,10 +22,7 @@ import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.mcare.R;
-<<<<<<< HEAD
-=======
 import org.ei.opensrp.view.fragment.SecuredFragment;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
 import java.io.File;
 import java.io.IOException;
@@ -48,11 +39,7 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 /**
  * Created by raihan on 5/11/15.
  */
-<<<<<<< HEAD
-public class ElcoDetailActivity extends Activity {
-=======
 public class ElcoDetailActivity extends SecuredFragment implements View.OnClickListener {
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     //image retrieving
     private static final String TAG = "ImageGridFragment";
@@ -69,22 +56,6 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
     //image retrieving
 
     public static CommonPersonObjectClient Elcoclient;
-<<<<<<< HEAD
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Context context = Context.getInstance();
-        setContentView(R.layout.elco_detail_activity);
-        TextView name = (TextView) findViewById(R.id.name);
-        TextView brid = (TextView) findViewById(R.id.brid);
-        TextView husbandname = (TextView) findViewById(R.id.husbandname);
-        TextView age = (TextView) findViewById(R.id.age);
-        TextView jivitahhid = (TextView) findViewById(R.id.jivitahhid);
-        TextView godhhid = (TextView) findViewById(R.id.gobhhid);
-        TextView village = (TextView) findViewById(R.id.village);
-        TextView mw_reg_date = (TextView) findViewById(R.id.mw_reg_date);
-        TextView psf_due_date = (TextView) findViewById(R.id.last_psf_date);
-=======
     private View mView;
 
     @Override
@@ -111,7 +82,6 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
         TextView mw_reg_date = (TextView)mView.findViewById(R.id.mw_reg_date);
         TextView psf_due_date = (TextView)mView.findViewById(R.id.last_psf_date);
         TextView mis_census = (TextView)mView.findViewById(R.id.mis_census);
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
 
 
@@ -119,27 +89,6 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
 
 
 
-<<<<<<< HEAD
-        ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        name.setText(humanize((Elcoclient.getDetails().get("FWWOMFNAME") != null ? Elcoclient.getDetails().get("FWWOMFNAME") : "").replace("+", "_")));
-
-        brid.setText(getString(R.string.BRID) +humanize((Elcoclient.getDetails().get("FWWOMBID") != null ? Elcoclient.getDetails().get("FWWOMBID") : "").replace("+", "_")));
-        husbandname.setText(getString(R.string.elco_details_husband_name_label)+(Elcoclient.getDetails().get("FWHUSNAME") != null ? Elcoclient.getDetails().get("FWHUSNAME") : ""));
-        age.setText(getString(R.string.elco_age_label) + (Elcoclient.getDetails().get("FWWOMAGE") != null ? Elcoclient.getDetails().get("FWWOMAGE") : ""));
-        jivitahhid.setText(getString(R.string.hhiid_jivita_elco_label)+(Elcoclient.getDetails().get("JiVitAHHID") != null ? Elcoclient.getDetails().get("JiVitAHHID") : ""));
-        godhhid.setText(getString(R.string.hhid_gob_elco_label)+(Elcoclient.getDetails().get("GOBHHID") != null ? Elcoclient.getDetails().get("GOBHHID") : ""));
-        psf_due_date.setText(Elcoclient.getDetails().get("FWPSRDATE") != null ? Elcoclient.getDetails().get("FWPSRDATE") : "");
-
-
-        village.setText(humanize(Elcoclient.getDetails().get("location_name") != null ? Elcoclient.getDetails().get("location_name") : ""));
-=======
         ImageButton back = (ImageButton)mView.findViewById(org.ei.opensrp.R.id.btn_back_to_home);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,7 +148,6 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
         }
 
 //        village.setText(humanize(Elcoclient.getDetails().get("location_name") != null ? Elcoclient.getDetails().get("location_name") : ""));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             /////from househld
         AllCommonsRepository allelcoRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("elco");
         CommonPersonObject elcoobject = allelcoRepository.findByCaseID(Elcoclient.entityId());
@@ -209,28 +157,17 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
         if(householdparent.getDetails().get("existing_Mauzapara") != null) {
             location = householdparent.getDetails().get("existing_Mauzapara");
         }
-<<<<<<< HEAD
-        village.setText(getString(R.string.elco_details_mauza)+humanize(location.replace("+","_")));
-=======
         village.setText(Html.fromHtml(getString(R.string.elco_details_mauza)+ " "+humanize(location.replace("+","_"))));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
 
         mw_reg_date.setText((Elcoclient.getDetails().get("WomanREGDATE") != null ? Elcoclient.getDetails().get("WomanREGDATE") : ""));
         ///////////////////////////////////////////////////
 
 
-<<<<<<< HEAD
-        final ImageView householdview = (ImageView) findViewById(R.id.householdprofileview);
-
-        if (Elcoclient.getDetails().get("profilepic") != null) {
-            setImagetoHolder(ElcoDetailActivity.this, Elcoclient.getDetails().get("profilepic"), householdview, R.mipmap.womanimageload);
-=======
         final ImageView householdview = (ImageView)mView.findViewById(R.id.householdprofileview);
 
         if (Elcoclient.getDetails().get("profilepic") != null) {
             setImagetoHolder(getActivity(), Elcoclient.getDetails().get("profilepic"), householdview, R.mipmap.womanimageload);
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         }
 //        householdview.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -268,51 +205,6 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
     static File currentfile;
     static String bindobject;
     static String entityid;
-<<<<<<< HEAD
-    private void dispatchTakePictureIntent(ImageView imageView) {
-        mImageView = imageView;
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                currentfile = photoFile;
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(photoFile));
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            String imageBitmap = (String) extras.get(MediaStore.EXTRA_OUTPUT);
-//            Toast.makeText(this,imageBitmap,Toast.LENGTH_LONG).show();
-            HashMap <String,String> details = new HashMap<String,String>();
-            details.put("profilepic",currentfile.getAbsolutePath());
-            saveimagereference(bindobject,entityid,details);
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap bitmap = BitmapFactory.decodeFile(currentfile.getPath(), options);
-            mImageView.setImageBitmap(bitmap);
-        }
-    }
-    public void saveimagereference(String bindobject,String entityid,Map<String,String> details){
-        Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityid,details);
-//                Elcoclient.entityId();
-//        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
-    }
-=======
 //    private void dispatchTakePictureIntent(ImageView imageView) {
 //        mImageView = imageView;
 //        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -356,7 +248,6 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
 ////                Elcoclient.entityId();
 ////        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
 //    }
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     public static void setImagetoHolder(Activity activity,String file, ImageView view, int placeholder){
         mImageThumbSize = 300;
         mImageThumbSpacing = Context.getInstance().applicationContext().getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
@@ -383,8 +274,6 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
 //        Bitmap bitmap = BitmapFactory.decodeFile(file, options);
 //        view.setImageBitmap(bitmap);
     }
-<<<<<<< HEAD
-=======
 
     @Override
     public void onClick(View v) {
@@ -404,5 +293,4 @@ public class ElcoDetailActivity extends SecuredFragment implements View.OnClickL
     protected void onResumption() {
 
     }
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 }

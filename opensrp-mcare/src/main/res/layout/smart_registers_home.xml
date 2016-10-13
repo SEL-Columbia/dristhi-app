@@ -189,12 +189,8 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-<<<<<<< HEAD
-            android:orientation="horizontal">
-=======
             android:orientation="horizontal"
         android:visibility="gone">
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:id="@+id/btn_reporting"

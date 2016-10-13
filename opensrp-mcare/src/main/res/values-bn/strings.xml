@@ -26,11 +26,8 @@
     <string name="elco_profile">বৃত্তান্ত</string>
     <string name="elco_unique_id">স্বতন্ত্র আইডি  </string>
     <string name="elco_lmp">এল এম পি </string>
-<<<<<<< HEAD
-    <string name="elco_psrf_due_date">পিএসআরএফ ভিজিটের নির্ধারিত তারিখ</string>
-=======
+
     <string name="elco_psrf_due_date">পি এস আর এফ ভিজিট</string>
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     <string name="sortoption">বাছাইকৃতঃ </string>
     <string name="label_sorted_by">সাজানোঃ</string>
@@ -46,11 +43,7 @@
     <string name="hh_has_mwra"> প্রজনন বয়সী বিবাহিত মহিলা এক বা একাধিক আছে </string>
 
     <string name="ec_register_title_in_short">সক্ষম দম্পত্তি:</string>
-<<<<<<< HEAD
-    <string name="str_ec_search_hint">সক্ষম দম্পত্তি অনুসন্ধান</string>
-=======
     <string name="str_ec_search_hint"> অনুসন্ধান</string>
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     <string name="elco_search_hint">ইসি অনুসন্ধান</string>
     <string name="elco_woman_details">সক্ষম দম্পত্তির বিস্তারিত তথ্য</string>
@@ -60,21 +53,12 @@
     <string name="all_eligible_couples">সকল সক্ষম দম্পত্তি</string>
     <string name="hhid_gob">সরকারী খানা  আইডি  :</string>
     <string name="hhid_jivita">জীবিতা খানা আইডি  :</string>
-<<<<<<< HEAD
-    <string name="BRID">জন্ম নিবন্ধন সনদ নং :</string>
-    <string name="elco_details_husband_name_label">স্বামীর নাম :</string>
-    <string name="elco_age_label">বয়স :</string>
-    <string name="hhiid_jivita_elco_label"> জীবিতা খানা আইডি  :</string>
-    <string name="hhid_gob_elco_label">সরকারী খানা আই ডি :</string>
-    <string name="elco_details_mauza">মৌজা :</string>
-=======
     <string name="BRID">জন্ম নিবন্ধন সনদ নং:</string>
     <string name="elco_details_husband_name_label">স্বামীর নাম:</string>
     <string name="elco_age_label">বয়স:</string>
     <string name="hhiid_jivita_elco_label"> জীবিতা খানা আইডি :</string>
     <string name="hhid_gob_elco_label">সরকারী খানা আই ডি:</string>
     <string name="elco_details_mauza">মৌজা:</string>
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     <string name="label_village">,মৌজা :</string>
     <string name="home_report_label">Reporting</string>
     <string name="register_label">নিবন্ধন</string>
@@ -85,33 +69,22 @@
     <string name="psrfform">গর্ভাবস্থা সনাক্তকরন ও নিবন্ধন ফর্ম</string>
     <string name="all_mcare_anc">All Pregnant Women</string>
     <string name="history">History</string>
-<<<<<<< HEAD
-    <string name="mcare_anc_woman_details">Pregnant Woman Details</string>
-=======
     <string name="mcare_anc_woman_details">গর্ভবতী মায়ের বিস্তারিত তথ্য</string>
     <string name="anc_reminder_status">ANC অবস্থা</string>
     <string name="anc_edd_ga">ইডিডি &amp; জি এ</string>
     <string name="anc_reminder_due">ANC ভিজিট</string>
     <string name="anc_nbnf_due_date"> বার্থ নোটিফিকেশন</string>
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     <string name="nbnf">NBNF form</string>
     <string name="anc4form">ANC visit 4 form</string>
     <string name="anc3form">ANC visit 3 Form</string>
     <string name="anc2form">ANC Visit 2 Form</string>
     <string name="anc1form">ANC Visit 1 Form</string>
-<<<<<<< HEAD
-    <string name="mcare_ANC_register_title_in_short">ANC Register</string>
-=======
     <string name="mcare_ANC_register_title_in_short">ANC</string>
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     <string name="unauthorized">অনুগ্রহ করে নাম ও পাসওয়ার্ড চেক করুন</string>
     <string name="unknown_response">লগ ইন হয়নি, অনুগ্রহ করে কিছুক্ষন পর পূণরায় চেষ্টা করুন</string>
     <string name="no_internet_connectivity">ইন্টারনেট কানেকশন নেই, অনুগ্রহ করে ডাটা কানেক্টিভিটি চেক করুন</string>
     <string name="forminputerror">অনুগ্রহ করে ফর্মটি চেক করে দেখুন, লাল চিহ্নিত ঘরগুলোতে কোন তথ্য বাদ গিয়েছে কিনা অথবা কোন তথ্য ভুল হয়েছে কিনা</string>
     <string name="okforminputerror">ঠিক আছে</string>
-<<<<<<< HEAD
-   </resources>
-=======
     <string name="pnc_outcome">গর্ভের ফলাফল</string>
     <string name="pnc_date_of_outcome">ফলাফলের তারিখ</string>
     <string name="pnc_details_date_of_outcome">ফলাফলের তারিখ</string>
@@ -160,4 +133,3 @@
     <string name="child_details_mothers_name_label">Mমাতার নাম:</string>
     <string name="pnc_Details_date_of_outcome">ফলাফলের তারিখ</string>
 </resources>
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a

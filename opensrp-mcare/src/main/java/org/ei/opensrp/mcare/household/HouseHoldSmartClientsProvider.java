@@ -2,10 +2,7 @@ package org.ei.opensrp.mcare.household;
 
 import android.app.Activity;
 import android.content.Context;
-<<<<<<< HEAD
-=======
 import android.os.Build;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +18,10 @@ import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
-<<<<<<< HEAD
-import org.ei.opensrp.domain.Alert;
-import org.ei.opensrp.mcare.R;
-=======
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.application.McareApplication;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -53,12 +45,7 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 /**
  * Created by user on 2/12/15.
  */
-<<<<<<< HEAD
-public class HouseHoldSmartClientsProvider implements SmartRegisterClientsProvider {
-
-=======
 public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
@@ -69,20 +56,11 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
     protected CommonPersonObjectController controller;
 
     AlertService alertService;
-<<<<<<< HEAD
-
-    public HouseHoldSmartClientsProvider(Context context,
-                                         View.OnClickListener onClickListener,
-                                         CommonPersonObjectController controller, AlertService alertService) {
-        this.onClickListener = onClickListener;
-        this.controller = controller;
-=======
     public HouseHoldSmartClientsProvider(Context context,
                                          View.OnClickListener onClickListener,
                                           AlertService alertService) {
         this.onClickListener = onClickListener;
 //        this.controller = controller;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         this.context = context;
         this.alertService = alertService;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -94,19 +72,11 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
     }
 
     @Override
-<<<<<<< HEAD
-    public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
-
-        ViewHolder viewHolder;
-        if (convertView == null){
-           convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_household_client, null);
-=======
     public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
 
         ViewHolder viewHolder;
 //        if (convertView == null){
 //           convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_household_client, null);
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             viewHolder = new ViewHolder();
             viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
             viewHolder.gobhhid = (TextView)convertView.findViewById(R.id.gobhhid);
@@ -123,17 +93,10 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
             viewHolder.warnbutton = (Button)convertView.findViewById(R.id.warnbutton);
             convertView.setTag(viewHolder);
-<<<<<<< HEAD
-        }else{
-            viewHolder = (ViewHolder) convertView.getTag();
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
-        }
-=======
 //        }else{
 //            viewHolder = (ViewHolder) convertView.getTag();
 //            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
 //        }
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
@@ -159,28 +122,18 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         }
 
         boolean noNIDPic = getIfHouseholdHasElcoWithoutNationalID(pc);
-<<<<<<< HEAD
-=======
 //        boolean noNIDPic = false;
 
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         if(!noNIDPic){
             viewHolder.warnbutton.setVisibility(View.VISIBLE);
         }else{
             viewHolder.warnbutton.setVisibility(View.INVISIBLE);
         }
 //
-<<<<<<< HEAD
-        viewHolder.gobhhid.setText(pc.getDetails().get("FWGOBHHID")!=null?pc.getDetails().get("FWGOBHHID"):"");
-        viewHolder.jvitahhid.setText(pc.getDetails().get("FWJIVHHID")!=null?pc.getDetails().get("FWJIVHHID"):"");
-        viewHolder.village.setText((humanize((pc.getDetails().get("existing_Mauzapara")!=null?pc.getDetails().get("existing_Mauzapara"):"").replace("+","_"))));
-        viewHolder.headofhouseholdname.setText(pc.getDetails().get("FWHOHFNAME")!=null?pc.getDetails().get("FWHOHFNAME"):"");
-=======
         viewHolder.gobhhid.setText(pc.getColumnmaps().get("FWGOBHHID")!=null?pc.getColumnmaps().get("FWGOBHHID"):"");
         viewHolder.jvitahhid.setText(pc.getColumnmaps().get("FWJIVHHID")!=null?pc.getColumnmaps().get("FWJIVHHID"):"");
         viewHolder.village.setText((humanize((pc.getDetails().get("existing_Mauzapara")!=null?pc.getDetails().get("existing_Mauzapara"):"").replace("+","_"))));
         viewHolder.headofhouseholdname.setText(humanize(pc.getColumnmaps().get("FWHOHFNAME")!=null?pc.getColumnmaps().get("FWHOHFNAME"):""));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         viewHolder.no_of_mwra.setText(pc.getDetails().get("ELCO")!=null?pc.getDetails().get("ELCO"):"");
         Date lastdate = null;
         if(pc.getDetails().get("FWNHREGDATE")!= null && pc.getDetails().get("FWCENDATE")!= null) {
@@ -217,10 +170,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         if(alertlist_for_client.size() == 0 ){
             viewHolder.due_visit_date.setText("Not Synced to Server");
             viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
-<<<<<<< HEAD
-=======
             viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.text_black));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             viewHolder.due_visit_date.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -231,10 +181,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         for(int i = 0;i<alertlist_for_client.size();i++){
             viewHolder.due_visit_date.setText(alertlist_for_client.get(i).expiryDate());
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("normal")){
-<<<<<<< HEAD
-=======
                 viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.text_black));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 viewHolder.due_visit_date.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -246,22 +193,13 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("upcoming")){
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.alert_upcoming_yellow));
                 viewHolder.due_visit_date.setOnClickListener(onClickListener);
-<<<<<<< HEAD
-=======
                 viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 viewHolder.due_visit_date.setTag(smartRegisterClient);
 
             }
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("urgent")){
                 viewHolder.due_visit_date.setOnClickListener(onClickListener);
                 viewHolder.due_visit_date.setTag(smartRegisterClient);
-<<<<<<< HEAD
-                viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
-            }
-            if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
-                viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
-=======
                 viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.alert_urgent_red));
 
@@ -269,7 +207,6 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             if(alertlist_for_client.get(i).status().value().equalsIgnoreCase("expired")){
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(org.ei.opensrp.R.color.client_list_header_dark_grey));
                 viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.text_black));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 viewHolder.due_visit_date.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -279,10 +216,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
             }
             if(alertlist_for_client.get(i).isComplete()){
                 viewHolder.due_visit_date.setText("visited");
-<<<<<<< HEAD
-=======
                 viewHolder.due_visit_date.setTextColor(context.getResources().getColor(R.color.status_bar_text_almost_white));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 viewHolder.due_date_holder.setBackgroundColor(context.getResources().getColor(R.color.alert_complete_green_mcare));
             }
         }
@@ -297,21 +231,12 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
 //            viewHolder.due_visit_date.append(format.format(lastdate));
 
         }
-<<<<<<< HEAD
-
-
-        convertView.setLayoutParams(clientViewLayoutParams);
-        return convertView;
-    }
-    CommonPersonObjectController householdelcocontroller;
-=======
         viewHolder.last_visit_date.setText(McareApplication.convertToEnglishDigits(viewHolder.last_visit_date.getText().toString()));
         viewHolder.due_visit_date.setText(McareApplication.convertToEnglishDigits(viewHolder.due_visit_date.getText().toString()));
         convertView.setLayoutParams(clientViewLayoutParams);
 //        return convertView;
     }
 //    CommonPersonObjectController householdelcocontroller;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     private boolean getIfHouseholdHasElcoWithoutNationalID(CommonPersonObjectClient pc) {
         boolean toreturn = true;
 
@@ -330,11 +255,7 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         return toreturn;
     }
 
-<<<<<<< HEAD
-    @Override
-=======
 //    @Override
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     public SmartRegisterClients getClients() {
         return controller.getClients();
     }
@@ -359,9 +280,6 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
         return inflater;
     }
 
-<<<<<<< HEAD
-     class ViewHolder {
-=======
     @Override
     public View inflatelayoutForCursorAdapter() {
         View View = (ViewGroup) inflater().inflate(R.layout.smart_register_household_client, null);
@@ -370,7 +288,6 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
 
 
     class ViewHolder {
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
          TextView gobhhid ;
          TextView jvitahhid ;
@@ -387,9 +304,5 @@ public class HouseHoldSmartClientsProvider implements SmartRegisterCLientsProvid
     }
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 }
 

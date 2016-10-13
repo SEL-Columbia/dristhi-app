@@ -11,10 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-<<<<<<< HEAD
-=======
 import android.text.Html;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,12 +93,6 @@ public class HouseHoldDetailActivity extends Activity {
         });
 
 
-<<<<<<< HEAD
-        householdhead_name.setText(householdclient.getDetails().get("FWHOHFNAME"));
-        mauza.setText(humanize((householdclient.getDetails().get("existing_Mauzapara") != null ? householdclient.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
-        household_hhid.setText(getResources().getString(R.string.hhid_gob)+ householdclient.getDetails().get("FWGOBHHID"));
-        household_hhid_jivita.setText(getResources().getString(R.string.hhid_jivita) + householdclient.getDetails().get("FWJIVHHID"));
-=======
         householdhead_name.setText(humanize(householdclient.getColumnmaps().get("FWHOHFNAME")));
         mauza.setText(humanize((householdclient.getDetails().get("existing_Mauzapara") != null ? householdclient.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
 //        household_hhid.setText(getResources().getString(R.string.hhid_gob) + householdclient.getColumnmaps().get("FWGOBHHID"));
@@ -113,7 +104,6 @@ public class HouseHoldDetailActivity extends Activity {
         household_hhid.setText(Html.fromHtml(hhidSourcestring));
 
 
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         final ImageView householdview = (ImageView)findViewById(R.id.householdprofileview);
 
         if(householdclient.getDetails().get("profilepic")!= null){
@@ -147,11 +137,7 @@ public class HouseHoldDetailActivity extends Activity {
         paginationViewHandler.addPagination(Clientsview);
 
         householdcontroller = new CommonPersonObjectController(Context.getInstance().allCommonsRepositoryobjects("elco"), Context.getInstance().allBeneficiaries(),context.listCache(),
-<<<<<<< HEAD
-                context.personObjectClientsCache(),"FWWOMFNAME","elco","relationalid",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelationalid,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-=======
                 context.personObjectClientsCache(),"FWWOMFNAME","elco","relationalid",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelationalid,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byColumn);
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 clientsAdapter = adapter();
         clientsAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
@@ -433,11 +419,7 @@ public class HouseHoldDetailActivity extends Activity {
         paginationViewHandler.addPagination(Clientsview);
 
         householdcontroller = new CommonPersonObjectController(Context.getInstance().allCommonsRepositoryobjects("elco"), Context.getInstance().allBeneficiaries(),context.listCache(),
-<<<<<<< HEAD
-                context.personObjectClientsCache(),"FWWOMFNAME","elco","relationalid",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelationalid,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-=======
                 context.personObjectClientsCache(),"FWELIGIBLE","elco","relationalid",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelationalid,"FWELIGIBLE", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         clientsAdapter = adapter();
             clientsAdapter = adapter();
         clientsAdapter.registerDataSetObserver(new DataSetObserver() {

@@ -28,10 +28,6 @@
             android:id="@+id/name"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-            android:layout_marginLeft="5dp"
-=======
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:textStyle="bold"
@@ -59,23 +55,13 @@
     <LinearLayout
             android:id="@+id/clients_header_layout"
             android:layout_width="match_parent"
-<<<<<<< HEAD
-            android:layout_height="@dimen/list_header_height"
-            android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
-            android:layout_marginRight="@dimen/list_view_margin_left_and_right"
-=======
             android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/list_view_margin_left_and_right"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
+            android:layout_marginRight="@dimen/list_view_margin_left_and_right"
             android:orientation="horizontal">
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
-<<<<<<< HEAD
-            android:layout_height="wrap_content"
-=======
             android:layout_height="fill_parent"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             android:text="@string/elco_details_summary"
             android:id="@+id/inhabitants"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
@@ -133,20 +119,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="EDD"
-                        android:id="@+id/textView6"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
-=======
                         style="@style/CustomFontTextViewStyle"
                         android:text="EDD"
                         android:id="@+id/textView6"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -155,12 +132,8 @@
                         android:text="Medium Text"
                         android:id="@+id/edd_date"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black" />
-=======
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 </LinearLayout>
 
                 <LinearLayout
@@ -182,20 +155,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="ANCRV1"
-                        android:id="@+id/textView10"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
-=======
                         style="@style/CustomFontTextViewStyle"
                         android:text="ANCRV1"
                         android:id="@+id/textView10"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -204,12 +168,8 @@
                         android:text="Medium Text"
                         android:id="@+id/anc1date"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black" />
-=======
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 </LinearLayout>
 
                 <LinearLayout
@@ -231,21 +191,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="ANCRV2"
-                        android:id="@+id/textView12"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:textStyle="bold" />
-=======
                         style="@style/CustomFontTextViewStyle"
                         android:text="ANCRV2"
                         android:id="@+id/textView12"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -254,12 +204,8 @@
                         android:text="Medium Text"
                         android:id="@+id/anc2date"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black" />
-=======
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 </LinearLayout>
 
                 <LinearLayout
@@ -281,11 +227,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                         style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                         android:text="ANCRV3"
                         android:id="@+id/textView14"
                         android:layout_weight="1"
@@ -299,12 +241,8 @@
                         android:text="Medium Text"
                         android:id="@+id/anc3date"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black" />
-=======
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 </LinearLayout>
 
                 <LinearLayout
@@ -326,20 +264,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="ANCRV4"
-                        android:id="@+id/textView16"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black" />
-=======
                         style="@style/CustomFontTextViewStyle"
                         android:text="ANCRV4"
                         android:id="@+id/textView16"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -348,11 +277,6 @@
                         android:text="Medium Text"
                         android:id="@+id/anc4date"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black" />
-                </LinearLayout>
-
-=======
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
                 </LinearLayout>
@@ -395,7 +319,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:background="#ffffff">
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
@@ -414,22 +337,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="number of alive children"
-                        android:id="@+id/textView18"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_margin="5dp" />
-=======
                         style="@style/CustomFontTextViewStyle"
                         android:text="Number of Alive Children"
                         android:id="@+id/textView18"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/text_black" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -437,22 +350,14 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/livechildren"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black" />
-=======
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
-                    android:layout_marginTop="2dp"
-=======
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     android:layout_margin="2dp" >
 
                     <ImageView
@@ -466,22 +371,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-                        android:text="number of still births"
-                        android:id="@+id/textView8"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/text_black"
-                        android:layout_margin="5dp" />
-=======
                         style="@style/CustomFontTextViewStyle"
                         android:text="Number of Stillbirths"
                         android:id="@+id/textView8"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/text_black" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -489,52 +384,10 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/stillbirths"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/smart_register_client_divider_height"
-                    android:src="@color/smart_register_client_divider_color"
-                    android:id="@+id/imageView14" />
-
-                <org.ei.opensrp.view.customControls.CustomFontTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/history"
-                    android:id="@+id/history"
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
-                    android:layout_gravity="center_vertical"
-                    android:textColor="@color/text_black"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/smart_register_client_divider_height"
-                    android:src="@color/smart_register_client_divider_color"
-                    android:id="@+id/imageView13" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:background="#ffffff">
-=======
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
 
                 </LinearLayout>
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -546,33 +399,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                         style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                         android:text="History of MR"
                         android:id="@+id/history_of_mr_label"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black"
-                        android:layout_margin="5dp" />
-=======
                         android:textColor="@color/text_black" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/history_of_mr"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black" />
-=======
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                 </LinearLayout>
 
@@ -586,21 +426,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                         style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                         android:text="History of SB"
                         android:id="@+id/history_of_sb_label"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black"
-                        android:layout_margin="5dp" />
-=======
                         android:textColor="@color/text_black" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -608,12 +439,8 @@
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
                         android:id="@+id/history_of_sb"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black" />
-=======
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 </LinearLayout>
 
                 <LinearLayout
@@ -626,21 +453,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                        style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                         style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                         android:text="Pregnancy in last 2 years"
                         android:id="@+id/history_of_pregnancy_label"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black"
-                        android:layout_margin="5dp" />
-=======
                         android:textColor="@color/text_black" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     <org.ei.opensrp.view.customControls.CustomFontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -648,12 +466,8 @@
                         style="@style/CustomFontTextViewStyle.ListView.Medium"
                         android:id="@+id/number_of_pregnancy"
                         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-                        android:textColor="@color/text_black" />
-=======
                         android:textColor="@color/text_black"
                         android:layout_marginRight="5dp" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 </LinearLayout>
             </LinearLayout>
 

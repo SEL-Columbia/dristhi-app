@@ -3,41 +3,28 @@
     {
       "name": "household",
       "columns": [
-<<<<<<< HEAD
 
-=======
         {"name":"FWHOHFNAME"}, {"name":"FWGOBHHID"},{"name":"FWJIVHHID"}
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
-      ]
+     ]
     },
     {
       "name": "elco",
       "columns": [
-<<<<<<< HEAD
 
-=======
         {"name":"FWWOMFNAME"}, {"name":"JiVitAHHID"},{"name":"GOBHHID"}
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
+
       ]
     },
     {
       "name": "mcaremother",
       "columns": [
-<<<<<<< HEAD
-
-=======
         {"name":"FWWOMFNAME"},{"name":"FWPSRLMP"},{"name":"FWSORTVALUE"},{"name":"JiVitAHHID"},{"name":"GOBHHID"},{"name":"Is_PNC"},{"name":"FWBNFSTS"},{"name":"FWBNFDTOO"}
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       ]
     },
     {
       "name": "mcarechild",
       "columns": [
-<<<<<<< HEAD
-
-=======
         {"name":"FWBNFGEN"}
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       ]
     }
   ]

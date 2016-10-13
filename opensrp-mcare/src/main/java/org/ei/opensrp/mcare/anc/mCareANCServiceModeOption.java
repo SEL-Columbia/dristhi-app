@@ -38,20 +38,12 @@ public class mCareANCServiceModeOption extends ServiceModeOption {
 
             @Override
             public int weightSum() {
-<<<<<<< HEAD
-                return 20;
-=======
                 return 40;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             }
 
             @Override
             public int[] weights() {
-<<<<<<< HEAD
-                return new int[]{5,3,3,3,3,3};
-=======
                 return new int[]{9,7,5,6,6,7};
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             }
 
             @Override

@@ -27,10 +27,6 @@
             android:id="@+id/name"
             style="@style/CustomFontTextViewStyle.ListView.Medium"
             android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-            android:layout_marginLeft="5dp"
-=======
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:textStyle="bold"
@@ -58,28 +54,12 @@
     <LinearLayout
             android:id="@+id/clients_header_layout"
             android:layout_width="match_parent"
-<<<<<<< HEAD
-            android:layout_height="@dimen/list_header_height"
-            android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
-            android:layout_marginRight="@dimen/list_view_margin_left_and_right"
-=======
             android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/list_view_margin_left_and_right"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             android:orientation="horizontal">
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
-<<<<<<< HEAD
-            android:layout_height="wrap_content"
-            android:text="@string/elco_details_summary"
-            android:id="@+id/inhabitants"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/text_black"
-            android:textStyle="bold"
-            android:textSize="20sp" />
-=======
             android:layout_height="fill_parent"
             android:text="@string/elco_details_summary"
             android:id="@+id/inhabitants"
@@ -89,7 +69,6 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:gravity="center_vertical" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     </LinearLayout>
 
@@ -107,58 +86,35 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-<<<<<<< HEAD
-            android:layout_height="fill_parent">
-=======
             android:layout_height="fill_parent"
             android:gravity="fill_vertical">
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
-<<<<<<< HEAD
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp">
-=======
                 android:layout_height="wrap_content">
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                     style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     android:text="@string/elco_mwra_registration_date_label"
                     android:textColor="@color/text_black"
 
                     android:id="@+id/textView2"
                     android:layout_weight="1" />
 
-<<<<<<< HEAD
-=======
                 <ImageView
                     android:layout_width="@dimen/smart_register_client_divider_height"
                     android:layout_height="fill_parent"
                     android:src="@color/smart_register_client_divider_color"
                     android:id="@+id/imageView17" />
 
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
-                    android:textColor="@color/text_black"
-
-                    android:id="@+id/mw_reg_date"
-                    android:layout_weight="1" />
-=======
                     style="@style/CustomFontTextViewStyle"
                     android:textColor="@color/text_black"
 
@@ -166,7 +122,6 @@
                     android:layout_weight="1"
                     android:layout_marginRight="10dp"
                     android:gravity="left" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             </LinearLayout>
 
             <ImageView
@@ -178,21 +133,12 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
-<<<<<<< HEAD
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp">
-=======
                 android:layout_height="wrap_content">
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                     style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="@string/elco_last_psf_date_label"
                     android:id="@+id/textView4"
@@ -200,32 +146,21 @@
 
                     android:layout_weight="1" />
 
-<<<<<<< HEAD
-=======
                 <ImageView
                     android:layout_width="@dimen/smart_register_client_divider_height"
                     android:layout_height="fill_parent"
                     android:src="@color/smart_register_client_divider_color"
                     android:id="@+id/imageView18" />
 
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 <org.ei.opensrp.view.customControls.CustomFontTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-<<<<<<< HEAD
-                    style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                     style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                     android:textColor="@color/text_black"
 
                     android:text="Medium Text"
                     android:id="@+id/last_psf_date"
-<<<<<<< HEAD
-                    android:layout_weight="1" />
-            </LinearLayout>
-=======
                     android:layout_weight="1"
                     android:layout_marginRight="10dp"
                     android:gravity="left" />
@@ -325,7 +260,6 @@
                 android:layout_height="@dimen/smart_register_client_divider_height"
                 android:src="@color/smart_register_client_divider_color"
                 android:id="@+id/imageView16" />
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

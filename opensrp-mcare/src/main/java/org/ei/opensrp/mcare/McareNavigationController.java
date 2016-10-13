@@ -5,12 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
-<<<<<<< HEAD
-import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
-import org.ei.opensrp.mcare.household.HouseHoldSmartRegisterActivity;
-import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
-import org.ei.opensrp.view.activity.NativeANCSmartRegisterActivity;
-=======
 import org.ei.opensrp.mcare.child.mCareChildSmartRegisterActivity;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.household.HouseHoldSmartRegisterActivity;
@@ -18,7 +12,6 @@ import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
 import org.ei.opensrp.mcare.pnc.mCarePNCSmartRegisterActivity;
 import org.ei.opensrp.view.activity.NativeANCSmartRegisterActivity;
 import org.ei.opensrp.view.activity.NativePNCSmartRegisterActivity;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import org.ei.opensrp.view.controller.ANMController;
 
 
@@ -53,8 +46,6 @@ public class McareNavigationController extends org.ei.opensrp.view.controller.Na
     public void startANCSmartRegistry() {
         activity.startActivity(new Intent(activity, mCareANCSmartRegisterActivity.class));
     }
-<<<<<<< HEAD
-=======
     public void startPNCSmartRegistry() {
         activity.startActivity(new Intent(activity, mCarePNCSmartRegisterActivity.class));
     }
@@ -62,6 +53,5 @@ public class McareNavigationController extends org.ei.opensrp.view.controller.Na
         activity.startActivity(new Intent(activity, mCareChildSmartRegisterActivity.class));
     }
 
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
 }

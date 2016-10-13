@@ -1,10 +1,6 @@
 <model>
   <instance>
-<<<<<<< HEAD
-    <ANC_Reminder_Visit_3 encounter_type="ANC Reminder Visit 3" id="ANCReminderVisit3" version="201601281136">
-=======
     <ANC_Reminder_Visit_3 encounter_type="ANC Reminder Visit 3" id="ANCReminderVisit3" version="201602250625">
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       <formhub>
         <uuid/>
       </formhub>
@@ -34,15 +30,9 @@
       <FWGESTATIONALAGE openmrs_entity="concept" openmrs_entity_id="1438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWEDD openmrs_entity="concept" openmrs_entity_id="5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWANC3REMSTS openmrs_entity="concept" openmrs_entity_id="163088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-<<<<<<< HEAD
-      <FWANC3INT openmrs_entity="concept" openmrs_entity_id="163000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <DISPLAYTEXT2/>
-      <FWANC3KNWPRVDR openmrs_entity="concept" openmrs_entity_id="162998AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-=======
       <FWANC3INT/>
       <DISPLAYTEXT2/>
       <FWANC3KNWPRVDR/>
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       <DISPLAYTEXT3/>
       <risk_group>
         <yn_dk_label/>
@@ -99,16 +89,10 @@
       <FWHR_ANC3 openmrs_entity="concept" openmrs_entity_id="163091AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWFLAGVALUE openmrs_entity="concept" openmrs_entity_id="163093AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <FWSORTVALUE/>
-<<<<<<< HEAD
-      <user_type openmrs_entity="concept" openmrs_entity_id="163095AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">FWA</user_type>
-      <external_user_ID openmrs_entity="concept" openmrs_entity_id="163161AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <ANC3_current_formStatus/>
-=======
       <user_type openmrs_entity="concept" openmrs_entity_id="163229AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">FWA</user_type>
       <external_user_ID openmrs_entity="concept" openmrs_entity_id="163161AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <ANC3_current_formStatus/>
       <relationalid/>
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       <meta>
         <instanceID/>
       </meta>

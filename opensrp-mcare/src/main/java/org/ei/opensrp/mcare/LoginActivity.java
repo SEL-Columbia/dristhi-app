@@ -88,11 +88,7 @@ public class LoginActivity extends Activity {
         setDoneActionHandlerOnPasswordField();
         initializeProgressDialog();
         getActionBar().setTitle("");
-<<<<<<< HEAD
-        getActionBar().setIcon(getResources().getDrawable(org.ei.opensrp.mcare.R.mipmap.logo));
-=======
         getActionBar().setIcon(getResources().getDrawable(R.mipmap.login_header_logo));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         getActionBar().setBackgroundDrawable(getResources().getDrawable(org.ei.opensrp.mcare.R.color.action_bar_background));
         setLanguage();
 
@@ -149,15 +145,10 @@ public class LoginActivity extends Activity {
 
     private void initializeLoginFields() {
         userNameEditText = ((EditText) findViewById(org.ei.opensrp.R.id.login_userNameText));
-<<<<<<< HEAD
-        userNameEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
-        passwordEditText = ((EditText) findViewById(org.ei.opensrp.R.id.login_passwordText));
-=======
         userNameEditText.setHint("username");
         userNameEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
         passwordEditText = ((EditText) findViewById(org.ei.opensrp.R.id.login_passwordText));
         passwordEditText.setHint("password");
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         passwordEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
     }
 

@@ -3,15 +3,6 @@ package org.ei.opensrp.mcare.fragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-<<<<<<< HEAD
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-=======
 import android.database.Cursor;
 import android.graphics.Color;
 import android.text.Editable;
@@ -26,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
@@ -37,9 +27,6 @@ import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClients;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
-<<<<<<< HEAD
-import org.ei.opensrp.mcare.LoginActivity;
-=======
 import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.cursoradapter.CursorCommonObjectFilterOption;
 import org.ei.opensrp.cursoradapter.CursorCommonObjectSort;
@@ -50,7 +37,6 @@ import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.NativeHomeActivity;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
 import org.ei.opensrp.mcare.household.HHMWRAEXISTFilterOption;
@@ -74,10 +60,7 @@ import org.ei.opensrp.view.dialog.AllClientsFilter;
 import org.ei.opensrp.view.dialog.DialogOption;
 import org.ei.opensrp.view.dialog.DialogOptionMapper;
 import org.ei.opensrp.view.dialog.DialogOptionModel;
-<<<<<<< HEAD
-=======
 import org.ei.opensrp.view.dialog.ECSearchOption;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
@@ -102,11 +85,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 /**
  * Created by koros on 10/12/15.
  */
-<<<<<<< HEAD
-public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterFragment {
-=======
 public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAdapterFragment {
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     private SmartRegisterClientsProvider clientProvider = null;
     private CommonPersonObjectController controller;
@@ -115,26 +94,15 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
     private String locationDialogTAG = "locationDialogTAG";
-<<<<<<< HEAD
-
-=======
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     @Override
     protected void onCreation() {
         //
     }
 
-<<<<<<< HEAD
-    @Override
-    protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(clientsProvider());
-    }
-=======
 //    @Override
 //    protected SmartRegisterPaginatedAdapter adapter() {
 //        return new SmartRegisterPaginatedAdapter(clientsProvider());
 //    }
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     @Override
     protected SecuredNativeSmartRegisterActivity.DefaultOptionsProvider getDefaultOptionsProvider() {
@@ -172,15 +140,9 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
                 ArrayList<DialogOption> dialogOptionslist = new ArrayList<DialogOption>();
 
-<<<<<<< HEAD
-                dialogOptionslist.add(new AllClientsFilter());
-                dialogOptionslist.add( new NOHHMWRAEXISTFilterOption("0","ELCO", NOHHMWRAEXISTFilterOption.ByColumnAndByDetails.byDetails));
-                dialogOptionslist.add(new HHMWRAEXISTFilterOption("0","ELCO", HHMWRAEXISTFilterOption.ByColumnAndByDetails.byDetails));
-=======
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.filter_by_all_label),filterStringForAll()));
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_no_mwra),filterStringForNoElco()));
                 dialogOptionslist.add(new CursorCommonObjectFilterOption(getString(R.string.hh_has_mwra),filterStringForOneOrMoreElco()));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
                 String locationjson = context.anmLocationController().get();
                 LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
@@ -206,17 +168,10 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
                 return new DialogOption[]{
 //                        new HouseholdCensusDueDateSort(),
 
-<<<<<<< HEAD
-                        new HouseholdCensusDueDateSort(),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"FWHOHFNAME",getResources().getString(R.string.hh_alphabetical_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"FWGOBHHID",getResources().getString(R.string.hh_fwGobhhid_sort)),
-                        new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"FWJIVHHID",getResources().getString(R.string.hh_fwJivhhid_sort))
-=======
                         new CursorCommonObjectSort(getResources().getString(R.string.due_status),sortByAlertmethod()),
                         new CursorCommonObjectSort(getResources().getString(R.string.hh_alphabetical_sort),householdSortByName()),
                         new CursorCommonObjectSort(getResources().getString(R.string.hh_fwGobhhid_sort),householdSortByFWGOBHHID()),
                         new CursorCommonObjectSort(getResources().getString(R.string.hh_fwJivhhid_sort),householdSortByFWJIVHHID())
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 //""
 //                        new CommonObjectSort(true,false,true,"age")
                 };
@@ -231,19 +186,11 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
-<<<<<<< HEAD
-        if (clientProvider == null) {
-            clientProvider = new HouseHoldSmartClientsProvider(
-                    getActivity(),clientActionHandler , controller,context.alertService());
-        }
-        return clientProvider;
-=======
 //        if (clientProvider == null) {
 //            clientProvider = new HouseHoldSmartClientsProvider(
 //                    getActivity(),clientActionHandler , context.alertService());
 //        }
         return null;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     }
 
     private DialogOption[] getEditOptions() {
@@ -252,17 +199,7 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
     @Override
     protected void onInitialization() {
-<<<<<<< HEAD
-        controller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("household"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"FWHOHFNAME","household","FWGOBHHID", CommonPersonObjectController.ByColumnAndByDetails.byDetails,new HouseholdCensusDueDateSort());
-        villageController = new VillageController(context.allEligibleCouples(),
-                context.listCache(), context.villagesCache());
-        dialogOptionMapper = new DialogOptionMapper();
-        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form",new CensusEnrollmentHandler());
-=======
         context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     }
 
     @Override
@@ -271,14 +208,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
-<<<<<<< HEAD
-
-        setServiceModeViewDrawableRight(null);
-        updateSearchView();
-//        checkforNidMissing(view);
-    }
-
-=======
         view.findViewById(R.id.service_mode_selection).setVisibility(View.GONE);
         clientsView.setVisibility(View.VISIBLE);
         clientsProgressView.setVisibility(View.INVISIBLE);
@@ -328,7 +257,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
     }
 
 
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     @Override
     public void startRegistration() {
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
@@ -365,8 +293,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         }
     }
 
-<<<<<<< HEAD
-=======
 
     private String filterStringForOneOrMoreElco(){
         return "and details not LIKE '%\"ELCO\":\"0\"%'";
@@ -387,7 +313,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
       return " FWJIVHHID ASC";
     }
 
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
     private class EditDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
@@ -402,20 +327,12 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 
     @Override
     protected void onResumption() {
-<<<<<<< HEAD
-        super.onResumption();
-        getDefaultOptionsProvider();
-        updateSearchView();
-        checkforNidMissing(mView);
-
-=======
 //        super.onResumption();
         getDefaultOptionsProvider();
         initializeQueries();
 //        updateSearchView();
         checkforNidMissing(mView);
 //
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         try{
             LoginActivity.setLanguage();
         }catch (Exception e){
@@ -423,8 +340,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         }
 
     }
-<<<<<<< HEAD
-=======
     @Override
     public void setupSearchView(View view) {
         searchView = (EditText) view.findViewById(org.ei.opensrp.R.id.edt_search);
@@ -474,7 +389,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         searchCancelView = view.findViewById(org.ei.opensrp.R.id.btn_search_cancel);
         searchCancelView.setOnClickListener(searchCancelHandler);
     }
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
     public void updateSearchView(){
         getSearchView().addTextChangedListener(new TextWatcher() {
@@ -490,21 +404,12 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
                     @Override
                     protected Object doInBackground(Object[] params) {
 //                        currentSearchFilter =
-<<<<<<< HEAD
-                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
-                        filteredClients = getClientsAdapter().getListItemProvider()
-                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
-                                        getCurrentSearchFilter(), getCurrentSortOption());
-
-
-=======
 //                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
 //                        filteredClients = getClientsAdapter().getListItemProvider()
 //                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
 //                                        getCurrentSearchFilter(), getCurrentSortOption());
 //
                         filters = "and FWHOHFNAME Like '%"+cs.toString()+"%' or FWGOBHHID Like '%"+cs.toString()+"%'  or FWJIVHHID Like '%"+cs.toString()+"%' or household.id in (Select elco.relationalid from elco where FWWOMFNAME Like '%"+cs.toString()+"%' )";
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                         return null;
                     }
 
@@ -513,16 +418,10 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
 //                        clientsAdapter
 //                                .refreshList(currentVillageFilter, currentServiceModeOption,
 //                                        currentSearchFilter, currentSortOption);
-<<<<<<< HEAD
-                        getClientsAdapter().refreshClients(filteredClients);
-                        getClientsAdapter().notifyDataSetChanged();
-                        getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
-=======
 //                        getClientsAdapter().refreshClients(filteredClients);
 //                        getClientsAdapter().notifyDataSetChanged();
                         getSearchCancelView().setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
                         filterandSortExecute();
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                         super.onPostExecute(o);
                     }
                 }).execute();
@@ -551,62 +450,29 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-<<<<<<< HEAD
-                dialogOptionslist.add(new HHMauzaCommonObjectFilterOption(name,"existing_Mauzapara", HHMauzaCommonObjectFilterOption.ByColumnAndByDetails.byDetails,name));
-=======
                 dialogOptionslist.add(new HHMauzaCommonObjectFilterOption(name,"existing_Mauzapara", name));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
             }
         }
     }
 
     private void checkforNidMissing(View view) {
-<<<<<<< HEAD
-        LinearLayout titlelayout = (LinearLayout)view.findViewById(org.ei.opensrp.R.id.title_layout);
-        if(anyNIdmissing(controller)) {
-            try {
-                titlelayout.removeView(getActivity().findViewById(900)) ;
-=======
         RelativeLayout titlelayout = (RelativeLayout)view.findViewById(org.ei.opensrp.R.id.register_nav_bar_container);
         if(anyNIdmissing(controller)) {
             try {
                 titlelayout.removeView(getActivity().findViewById(R.id.warnid)) ;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
             }catch(Exception e){
 
             }
-<<<<<<< HEAD
-=======
             ImageView border = new ImageView(getActivity());
             border.setImageDrawable(getResources().getDrawable(R.drawable.separator));
             RelativeLayout.LayoutParams layoutParams_separator = new RelativeLayout.LayoutParams((int)getResources().getDimension(R.dimen.smart_register_nav_bar_separator), RelativeLayout.LayoutParams.FILL_PARENT);
             border.setScaleType(ImageView.ScaleType.FIT_XY);
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             ImageButton warn = new ImageButton(getActivity());
             warn.setImageDrawable(getResources().getDrawable(R.mipmap.warning));
             warn.setScaleType(ImageView.ScaleType.FIT_CENTER);
             warn.setBackground(null);
-<<<<<<< HEAD
-            warn.setId(900);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.gravity = Gravity.CENTER;
-
-//        warn.setGravity(Gravity.CENTER);
-//        warn.setB
-            titlelayout.addView(warn, layoutParams);
-            warn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getClientsAdapter()
-                            .refreshList(new noNIDFilter(), getCurrentServiceModeOption(),
-                                    getCurrentSearchFilter(), getCurrentSortOption());
-                }
-            });
-        }else{
-            titlelayout.removeView(getActivity().findViewById(900));
-=======
             warn.setId(R.id.warnid);
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.addRule(RelativeLayout.LEFT_OF,R.id.sort_selection);
@@ -628,34 +494,11 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
             });
         }else{
             titlelayout.removeView(getActivity().findViewById(R.id.warnid));
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         }
     }
 
     private boolean anyNIdmissing(CommonPersonObjectController controller) {
         boolean toreturn = false;
-<<<<<<< HEAD
-        List<CommonPersonObject> allchildelco = null;
-        CommonPersonObjectClients clients = controller.getClients();
-        ArrayList<String> list = new ArrayList<String>();
-        AllCommonsRepository allElcoRepository = Context.getInstance().allCommonsRepositoryobjects("elco");
-
-        for(int i = 0;i <clients.size();i++) {
-
-            list.add((clients.get(i).entityId()));
-
-        }
-        allchildelco = allElcoRepository.findByRelationalIDs(list);
-
-        if(allchildelco != null) {
-            for (int i = 0; i < allchildelco.size(); i++) {
-                if (allchildelco.get(i).getDetails().get("FWELIGIBLE").equalsIgnoreCase("1")) {
-                    if (allchildelco.get(i).getDetails().get("nidImage") == null) {
-                        toreturn = true;
-                    }
-                }
-            }
-=======
 //        List<CommonPersonObject> allchildelco = null;
 //        CommonPersonObjectClients clients = controller.getClients();
 //        ArrayList<String> list = new ArrayList<String>();
@@ -692,7 +535,6 @@ public class HouseHoldSmartRegisterFragment extends SecuredNativeSmartRegisterCu
         c.close();
         if(missingnidCount>0){
             toreturn = true;
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
         }
         return toreturn;
 //        return false;

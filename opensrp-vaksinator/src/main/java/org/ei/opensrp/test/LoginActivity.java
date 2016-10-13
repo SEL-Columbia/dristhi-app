@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.flurry.android.FlurryAgent;
+
 import org.ei.opensrp.Context;
 import org.ei.opensrp.domain.LoginResponse;
 import org.ei.opensrp.domain.Response;
@@ -177,7 +179,7 @@ public class LoginActivity extends Activity {
         if (context.userService().isValidLocalLogin(userName, password)) {
             localLoginWith(userName, password);
             ErrorReportingFacade.setUsername("", userName);
-            FlurryFacade.setUserId(userName);
+            FlurryAgent.setUserId(userName);
         } else {
             showErrorDialog(getString(org.ei.opensrp.R.string.login_failed_dialog_message));
             view.setClickable(true);
@@ -188,7 +190,7 @@ public class LoginActivity extends Activity {
         tryRemoteLogin(userName, password, new Listener<LoginResponse>() {
             public void onEvent(LoginResponse loginResponse) {
                 ErrorReportingFacade.setUsername("", userName);
-                FlurryFacade.setUserId(userName);
+                FlurryAgent.setUserId(userName);
                 if (loginResponse == SUCCESS) {
                     remoteLoginWith(userName, password, loginResponse.payload());
                 } else {

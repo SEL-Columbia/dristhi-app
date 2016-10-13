@@ -57,17 +57,6 @@
       },
       {
         "name": "existing_riskfactor",
-<<<<<<< HEAD
-        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_riskfactor"
-      },
-      {
-        "name": "existing_dangervalue",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_dangervalue"
-      },
-      {
-        "name": "existing_location",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/existing_location"
-=======
         "bind": "/model/instance/ANC_Reminder_Visit_1/existing_riskfactor",
         "shouldLoadValue": true
       },
@@ -99,7 +88,6 @@
       {
         "name": "existing_ELCO",
         "bind": "/model/instance/ANC_Reminder_Visit_1/existing_ELCO"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       },
       {
         "name": "today",
@@ -154,22 +142,6 @@
         "bind": "/model/instance/ANC_Reminder_Visit_1/risk_group/yn_dk_label"
       },
       {
-<<<<<<< HEAD
-        "name": "FDPSRANM",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/risk_group/FDPSRANM"
-      },
-      {
-        "name": "FDPSRHBP",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/risk_group/FDPSRHBP"
-      },
-      {
-        "name": "FDPSRDBT",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/risk_group/FDPSRDBT"
-      },
-      {
-        "name": "FDPSRTHY",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/risk_group/FDPSRTHY"
-=======
         "name": "FWANC1ANM",
         "bind": "/model/instance/ANC_Reminder_Visit_1/risk_group/FWANC1ANM"
       },
@@ -184,7 +156,6 @@
       {
         "name": "FWANC1THY",
         "bind": "/model/instance/ANC_Reminder_Visit_1/risk_group/FWANC1THY"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       },
       {
         "name": "DISPLAYTEXT4",
@@ -199,34 +170,6 @@
         "bind": "/model/instance/ANC_Reminder_Visit_1/FWDISPLAYTEXT5"
       },
       {
-<<<<<<< HEAD
-        "name": "FWANC1DNGRSIGN",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/FWANC1DNGRSIGN"
-      },
-      {
-        "name": "FWDISPLAYTEXT6",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/FWDISPLAYTEXT6"
-      },
-      {
-        "name": "FWDISPLAYTEXT7",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/FWDISPLAYTEXT7"
-      },
-      {
-        "name": "FWDISPLAYTEXT8",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/FWDISPLAYTEXT8"
-      },
-      {
-        "name": "FWDISPLAYTEXT9",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/FWDISPLAYTEXT9"
-      },
-      {
-        "name": "FWDISPLAYTEXT10",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/FWDISPLAYTEXT10"
-      },
-      {
-        "name": "FWDISPLAYTEXT11",
-        "bind": "/model/instance/ANC_Reminder_Visit_1/FWDISPLAYTEXT11"
-=======
         "name": "FWANC1HEAD",
         "bind": "/model/instance/ANC_Reminder_Visit_1/danger_signs/FWANC1HEAD"
       },
@@ -269,7 +212,6 @@
       {
         "name": "FWDISPLAYTEXT11",
         "bind": "/model/instance/ANC_Reminder_Visit_1/danger_signs/FWDISPLAYTEXT11"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       },
       {
         "name": "FWBPC1LOCOFDEL",
@@ -346,8 +288,6 @@
       {
         "name": "FWBPC1DISPLAYTEXT13",
         "bind": "/model/instance/ANC_Reminder_Visit_1/FWBPC1DISPLAYTEXT13"
-<<<<<<< HEAD
-=======
       },
       {
         "name": "FWANC1DS1",
@@ -408,7 +348,6 @@
       {
         "name": "relationalid",
         "bind": "/model/instance/ANC_Reminder_Visit_1/relationalid"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
       }
     ]
   }

@@ -23,17 +23,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp">
-<<<<<<< HEAD
-
-=======
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-<<<<<<< HEAD
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                 style="@style/CustomFontTextViewStyle"
                 android:text="Large Text"
                 android:layout_margin="1dp"
@@ -45,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 android:text="Large Text"
                 android:layout_margin="1dp"
                 android:id="@+id/brid"
@@ -55,11 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-<<<<<<< HEAD
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                 style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 android:text="Large Text"
                 android:layout_margin="1dp"
                 android:id="@+id/husbandname"
@@ -69,11 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-<<<<<<< HEAD
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                 style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 android:text="Large Text"
                 android:layout_margin="1dp"
                 android:id="@+id/age"
@@ -83,11 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-<<<<<<< HEAD
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                 style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 android:text="Large Text"
                 android:layout_margin="1dp"
                 android:id="@+id/jivitahhid"
@@ -97,11 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-<<<<<<< HEAD
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                 style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 android:text="Large Text"
                 android:layout_margin="1dp"
                 android:id="@+id/gobhhid"
@@ -112,11 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-<<<<<<< HEAD
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-=======
                 style="@style/CustomFontTextViewStyle"
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
                 android:text="Large Text"
                 android:id="@+id/village"
                 android:textSize="18sp"

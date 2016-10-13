@@ -33,11 +33,7 @@ public class McareApplication extends DrishtiApplication {
     public void onCreate() {
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
         super.onCreate();
-<<<<<<< HEAD
-        ACRA.init(this);
-=======
 //        ACRA.init(this);
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
 
@@ -83,8 +79,6 @@ public class McareApplication extends DrishtiApplication {
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
     }
-<<<<<<< HEAD
-=======
     public static String convertToEnglishDigits(String value)
     {
 //        ০১২৩৪৫৬৭৮৯
@@ -101,6 +95,5 @@ public class McareApplication extends DrishtiApplication {
 
         return newValue;
     }
->>>>>>> fc57a485ae9e44237dc69626e10ad144281a146a
 
 }
