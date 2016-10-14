@@ -121,7 +121,7 @@ public class BidanApplication extends DrishtiApplication {
             String[] mainConditions = { "isClosed", "details" , "jenisKontrasepsi" };
             return mainConditions;
         } else if(tableName.equals("ec_anak")){
-            String[] mainConditions = { "isClosed", "ibuCaseId" };
+            String[] mainConditions = { "isClosed", "relational_id" };
             return mainConditions;
         } else if(tableName.equals("ec_ibu")){
             String[] mainConditions = { "isClosed", "type", "pptest" , "kartuIbuId" };
@@ -135,7 +135,7 @@ public class BidanApplication extends DrishtiApplication {
 
     private String getFtsCustomRelationalId(String tableName){
         if(tableName.equals("ec_anak")){
-            String customRelationalId = "ibuCaseId";
+            String customRelationalId = "relational_id";
             return customRelationalId;
         } else if(tableName.equals("ec_ibu")){
             String customRelationalId =  "kartuIbuId" ;
