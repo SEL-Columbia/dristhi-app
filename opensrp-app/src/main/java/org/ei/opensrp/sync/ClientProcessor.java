@@ -196,22 +196,24 @@ public class ClientProcessor {
                 JSONArray responseValue = fieldJson.has(responseKey) ? fieldJson.getJSONArray(responseKey) : null;
                 List<String> responseValues = getValues(responseValue);
 
-                JSONArray jsonDataSegment = event.getJSONArray(dataSegment);
-                //iterate in the segment e.g obs segment
-                for (int j = 0; j < jsonDataSegment.length(); j++) {
-                    JSONObject segmentJsonObject = jsonDataSegment.getJSONObject(j);
-                    //let's discuss this further, to get the real value in the doc we've to use the keys 'fieldcode' and 'value'
+                if(event.has(dataSegment)){
+                    JSONArray jsonDataSegment = event.getJSONArray(dataSegment);
+                    //iterate in the segment e.g obs segment
+                    for (int j = 0; j < jsonDataSegment.length(); j++) {
+                        JSONObject segmentJsonObject = jsonDataSegment.getJSONObject(j);
+                        //let's discuss this further, to get the real value in the doc we've to use the keys 'fieldcode' and 'value'
 
-                    String docSegmentFieldValue = segmentJsonObject.has(fieldName) ? segmentJsonObject.get(fieldName).toString() : "";
-                    List<String> docSegmentResponseValues = segmentJsonObject.has(responseKey) ? getValues(segmentJsonObject.get(responseKey)) : null;
+                        String docSegmentFieldValue = segmentJsonObject.has(fieldName) ? segmentJsonObject.get(fieldName).toString() : "";
+                        List<String> docSegmentResponseValues = segmentJsonObject.has(responseKey) ? getValues(segmentJsonObject.get(responseKey)) : null;
 
 
-                    if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) && (!Collections.disjoint(responseValues, docSegmentResponseValues))) {
-                        //this is the event obs we're interested in put it in the respective bucket specified by type variable
-                        processCaseModel(event, client, createsCase);
-                        closeCase(client, closesCase);
+                        if (docSegmentFieldValue.equalsIgnoreCase(fieldValue) && (!Collections.disjoint(responseValues, docSegmentResponseValues))) {
+                            //this is the event obs we're interested in put it in the respective bucket specified by type variable
+                            processCaseModel(event, client, createsCase);
+                            closeCase(client, closesCase);
+                        }
+
                     }
-
                 }
 
 

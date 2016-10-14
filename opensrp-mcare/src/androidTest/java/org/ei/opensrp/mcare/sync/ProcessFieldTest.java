@@ -180,7 +180,7 @@ public class ProcessFieldTest extends BaseClientProcessorTest {
             JSONObject event = createEvent(baseEntityId, true);
 
             Boolean processed = ClientProcessor.getInstance(getContext()).processField(fieldJson, event, client);
-            assertNull("Field should not be processed", processed);
+            assertTrue("Field should be processed,  processCaseModel() and closeCase() should not be called", processed);
 
         } catch (Exception e) {
             fail(e.getMessage());
