@@ -129,6 +129,7 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         CommonPersonObject pncobject = allancRepository.findByCaseID(pc.entityId());
 
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(pc);
         Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.entityId());
         details.putAll(pncobject.getColumnmaps());
 
@@ -137,7 +138,7 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         }else{
             pc.setDetails(details);
         }
-        
+
         
         viewHolder.tanggal_bersalin.setText(humanize(pc.getDetails().get("tanggalKalaIAktif")!=null?pc.getDetails().get("tanggalKalaIAktif"):""));
         String tempat =pc.getDetails().get("tempatBersalin")!=null?pc.getDetails().get("tempatBersalin"):"";

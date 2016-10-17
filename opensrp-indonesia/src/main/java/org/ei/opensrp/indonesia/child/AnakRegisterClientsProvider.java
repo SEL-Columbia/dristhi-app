@@ -138,7 +138,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             childview.setTag(smartRegisterClient);
         }
         else {
-            if(pc.getDetails().get("jenisKelamin") != null && pc.getDetails().get("jenisKelamin").equals("laki")) {
+            if(pc.getDetails().get("gender") != null && pc.getDetails().get("gender").equals("laki")) {
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
             }
             else
@@ -213,7 +213,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         viewHolder.tempat_lahir.setText(tempat.equals("podok_bersalin_desa")?"POLINDES":tempat.equals("pusat_kesehatan_masyarakat_pembantu")?"Puskesmas pembantu":tempat.equals("pusat_kesehatan_masyarakat")?"Puskesmas":humanize(tempat));
 
         AllCommonsRepository kirep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_kartu_ibu");
-        final CommonPersonObject kiparent = kirep.findByCaseID(ibuparent.getColumnmaps().get("kartuIbuId"));
+        final CommonPersonObject kiparent = kirep.findByCaseID(ibuparent.getColumnmaps().get("base_entity_id"));
 
         if(kiparent != null) {
             detailsRepository.updateDetails(kiparent);
