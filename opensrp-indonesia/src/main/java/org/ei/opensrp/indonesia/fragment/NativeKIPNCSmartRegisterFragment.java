@@ -242,7 +242,7 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
             SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
             countqueryBUilder.SelectInitiateMainTableCounts("ec_pnc");
             countqueryBUilder.customJoin("LEFT JOIN ec_kartu_ibu on ec_kartu_ibu.id = ec_pnc.id");
-            mainCondition = " is_closed =0 ";
+            mainCondition = " is_closed = 0 and keadaanIbu ='hidup' ";
             joinTable = "";
             countSelect = countqueryBUilder.mainCondition(mainCondition);
             super.CountExecute();
@@ -379,7 +379,8 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 //
                         filters = cs.toString();
                         joinTable = "";
-                        mainCondition = " isClosed !='true'  and type = 'pnc' and kartuIbuId != '' ";
+                        //mainCondition = " is_closed = 0 and kartuIbuId != '' ";
+                        mainCondition = " is_closed = 0 and keadaanIbu ='hidup' ";
                         return null;
                     }
 
@@ -427,7 +428,8 @@ public class NativeKIPNCSmartRegisterFragment extends SecuredNativeSmartRegister
 //
                         filters = cs.toString();
                         joinTable = "";
-                        mainCondition = " isClosed !='true'  and type = 'pnc' and kartuIbuId != '' ";
+                        //mainCondition = " is_closed = 0 and kartuIbuId != '' ";
+                        mainCondition = " is_closed = 0 and keadaanIbu ='hidup' ";
                         return null;
                     }
 

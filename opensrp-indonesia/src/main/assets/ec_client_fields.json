@@ -54,14 +54,6 @@
           }
         },
         {
-          "column_name": "isClosed",
-          "type": "Client",
-          "json_mapping": {
-            "field": "isClosed",
-            "comment": "doesn't have concept mapping"
-          }
-        },
-        {
           "column_name": "htp",
           "type": "Event",
           "json_mapping": {
@@ -154,16 +146,7 @@
             "field": "type",
             "comment": "doesn't have concept mapping"
           }
-        },
-        {
-          "column_name": "isClosed",
-          "type": "Client",
-          "json_mapping": {
-            "field": "isClosed",
-            "comment": "doesn't have concept mapping"
-          }
         }
-
       ]
     },
     {

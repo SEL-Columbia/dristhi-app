@@ -234,7 +234,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ec_anak");
         countqueryBUilder.customJoin("LEFT JOIN ec_ibu ON ec_ibu.id = ec_anak.relational_id");
-        mainCondition = " is_closed=0  and relational_id != ''";
+        mainCondition = " is_closed = 0  and relational_id != ''";
         countSelect = countqueryBUilder.mainCondition(mainCondition);
         super.CountExecute();
 
@@ -355,7 +355,7 @@ public class NativeKIAnakSmartRegisterFragment extends SecuredNativeSmartRegiste
 //
                         filters = cs.toString();
                         joinTable = "";
-                        mainCondition = " is_closed !='true' and relational_id != '' ";
+                        mainCondition = " is_closed = 0 and relational_id != '' ";
                         return null;
                     }
 

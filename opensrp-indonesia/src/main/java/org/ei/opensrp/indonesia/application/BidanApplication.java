@@ -118,16 +118,16 @@ public class BidanApplication extends DrishtiApplication {
 
     private String[] getFtsMainConditions(String tableName){
         if(tableName.equals("ec_kartu_ibu")) {
-            String[] mainConditions = { "isClosed", "details" , "jenisKontrasepsi" };
+            String[] mainConditions = { "is_closed", "details" , "jenisKontrasepsi" };
             return mainConditions;
         } else if(tableName.equals("ec_anak")){
-            String[] mainConditions = { "isClosed", "relational_id" };
+            String[] mainConditions = { "is_closed", "relational_id" };
             return mainConditions;
         } else if(tableName.equals("ec_ibu")){
-            String[] mainConditions = { "isClosed", "type", "pptest" , "kartuIbuId" };
+            String[] mainConditions = { "is_closed", "type", "pptest" , "kartuIbuId" };
             return mainConditions;
         } else if(tableName.equals("ec_pnc")){
-            String[] mainConditions = { "isClosed","keadaanIbu" , "type"};
+            String[] mainConditions = { "is_closed","keadaanIbu" , "type"};
             return mainConditions;
         }
         return null;
