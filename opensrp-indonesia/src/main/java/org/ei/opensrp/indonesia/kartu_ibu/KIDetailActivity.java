@@ -160,7 +160,6 @@ public class KIDetailActivity extends Activity {
             risk2.setText(getResources().getString(R.string.highRiskPregnancyProteinEnergyMalnutrition)+humanize(kiclient.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")));
             risk3.setText(getResources().getString(R.string.HighRiskPregnancyAbortus)+humanize(kiclient.getDetails().get("HighRiskPregnancyAbortus")));
             risk4.setText(getResources().getString(R.string.HighRiskLabourSectionCesareaRecord)+humanize(kiclient.getDetails().get("HighRiskLabourSectionCesareaRecord")));
-
         }
 
         show_risk.setText(getResources().getString(R.string.show_more_button));
@@ -178,8 +177,6 @@ public class KIDetailActivity extends Activity {
         blood_type.setText(": "+humanize(kiclient.getDetails().get("golonganDarah") != null ? kiclient.getDetails().get("golonganDarah") : "-"));
         asuransi.setText(": "+humanize(kiclient.getDetails().get("asuransiJiwa") != null ? kiclient.getDetails().get("asuransiJiwa") : "-"));
 
-
-
         //risk detail
         highRiskSTIBBVs.setText(humanize(kiclient.getDetails().get("highRiskSTIBBVs") != null ? kiclient.getDetails().get("highRiskSTIBBVs") : "-"));
         highRiskEctopicPregnancy.setText(humanize (kiclient.getDetails().get("highRiskEctopicPregnancy") != null ? kiclient.getDetails().get("highRiskEctopicPregnancy") : "-"));
@@ -193,30 +190,27 @@ public class KIDetailActivity extends Activity {
         HighRiskPregnancyTooManyChildren.setText(humanize(kiclient.getDetails().get("HighRiskPregnancyTooManyChildren") != null ? kiclient.getDetails().get("HighRiskPregnancyTooManyChildren") : "-"));
         txt_highRiskHIVAIDS.setText(humanize(kiclient.getDetails().get("highRiskHIVAIDS") != null ? kiclient.getDetails().get("highRiskHIVAIDS") : "-"));
 
-        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
-        if(kiclient.getColumnmaps().get("ibu.id") != null) {
-            final CommonPersonObject ibuparent = iburep.findByCaseID(kiclient.getColumnmaps().get("ibu.id"));
 
-            txt_lbl_highRiskLabourFetusMalpresentation.setText(humanize(ibuparent.getDetails().get("highRiskLabourFetusMalpresentation") != null ? ibuparent.getDetails().get("highRiskLabourFetusMalpresentation") : "-"));
-            txt_highRisklabourFetusNumber.setText(humanize(ibuparent.getDetails().get("highRisklabourFetusNumber") != null ? ibuparent.getDetails().get("highRisklabourFetusNumber") : "-"));
-            txt_highRiskLabourFetusSize.setText(humanize(ibuparent.getDetails().get("highRiskLabourFetusSize") != null ? ibuparent.getDetails().get("highRiskLabourFetusSize") : "-"));
-            txt_highRiskLabourTBRisk.setText(humanize(ibuparent.getDetails().get("highRiskLabourTBRisk") != null ? ibuparent.getDetails().get("highRiskLabourTBRisk") : "-"));
-            highRiskPregnancyProteinEnergyMalnutrition.setText(humanize(ibuparent.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null ? ibuparent.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") : "-"));
-            highRiskPregnancyPIH.setText(humanize(ibuparent.getDetails().get("highRiskPregnancyPIH") != null ? ibuparent.getDetails().get("highRiskPregnancyPIH") : "-"));
-            txt_highRiskPregnancyDiabetes.setText(humanize(ibuparent.getDetails().get("highRiskPregnancyDiabetes") != null ? ibuparent.getDetails().get("highRiskPregnancyDiabetes") : "-"));
-            txt_highRiskPregnancyAnemia.setText(humanize(ibuparent.getDetails().get("highRiskPregnancyAnemia") != null ? ibuparent.getDetails().get("highRiskPregnancyAnemia") : "-"));
-            highRiskPostPartumSectioCaesaria.setText(humanize(ibuparent.getDetails().get("highRiskPostPartumSectioCaesaria") != null ? ibuparent.getDetails().get("highRiskPostPartumSectioCaesaria") : "-"));
-            highRiskPostPartumForceps.setText(humanize(ibuparent.getDetails().get("highRiskPostPartumForceps") != null ? ibuparent.getDetails().get("highRiskPostPartumForceps") : "-"));
-            highRiskPostPartumVacum.setText(humanize(ibuparent.getDetails().get("highRiskPostPartumVacum") != null ? ibuparent.getDetails().get("highRiskPostPartumVacum") : "-"));
-            highRiskPostPartumPreEclampsiaEclampsia.setText(humanize(ibuparent.getDetails().get("highRiskPostPartumPreEclampsiaEclampsia") != null ? ibuparent.getDetails().get("highRiskPostPartumPreEclampsiaEclampsia") : "-"));
-            highRiskPostPartumMaternalSepsis.setText(humanize(ibuparent.getDetails().get("highRiskPostPartumMaternalSepsis") != null ? ibuparent.getDetails().get("highRiskPostPartumMaternalSepsis") : "-"));
-            highRiskPostPartumInfection.setText(humanize(ibuparent.getDetails().get("highRiskPostPartumInfection") != null ? ibuparent.getDetails().get("highRiskPostPartumInfection") : "-"));
-            highRiskPostPartumHemorrhage.setText(humanize(ibuparent.getDetails().get("highRiskPostPartumHemorrhage") != null ? ibuparent.getDetails().get("highRiskPostPartumHemorrhage") : "-"));
-            highRiskPostPartumPIH.setText(humanize(ibuparent.getDetails().get("highRiskPostPartumPIH") != null ? ibuparent.getDetails().get("highRiskPostPartumPIH") : "-"));
-            highRiskPostPartumDistosia.setText(humanize(ibuparent.getDetails().get("highRiskPostPartumDistosia") != null ? ibuparent.getDetails().get("highRiskPostPartumDistosia") : "-"));
+            txt_lbl_highRiskLabourFetusMalpresentation.setText(humanize(kiclient.getDetails().get("highRiskLabourFetusMalpresentation") != null ? kiclient.getDetails().get("highRiskLabourFetusMalpresentation") : "-"));
+            txt_highRisklabourFetusNumber.setText(humanize(kiclient.getDetails().get("highRisklabourFetusNumber") != null ? kiclient.getDetails().get("highRisklabourFetusNumber") : "-"));
+            txt_highRiskLabourFetusSize.setText(humanize(kiclient.getDetails().get("highRiskLabourFetusSize") != null ? kiclient.getDetails().get("highRiskLabourFetusSize") : "-"));
+            txt_highRiskLabourTBRisk.setText(humanize(kiclient.getDetails().get("highRiskLabourTBRisk") != null ? kiclient.getDetails().get("highRiskLabourTBRisk") : "-"));
+            highRiskPregnancyProteinEnergyMalnutrition.setText(humanize(kiclient.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null ? kiclient.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") : "-"));
+            highRiskPregnancyPIH.setText(humanize(kiclient.getDetails().get("highRiskPregnancyPIH") != null ? kiclient.getDetails().get("highRiskPregnancyPIH") : "-"));
+            txt_highRiskPregnancyDiabetes.setText(humanize(kiclient.getDetails().get("highRiskPregnancyDiabetes") != null ? kiclient.getDetails().get("highRiskPregnancyDiabetes") : "-"));
+            txt_highRiskPregnancyAnemia.setText(humanize(kiclient.getDetails().get("highRiskPregnancyAnemia") != null ? kiclient.getDetails().get("highRiskPregnancyAnemia") : "-"));
+            highRiskPostPartumSectioCaesaria.setText(humanize(kiclient.getDetails().get("highRiskPostPartumSectioCaesaria") != null ? kiclient.getDetails().get("highRiskPostPartumSectioCaesaria") : "-"));
+            highRiskPostPartumForceps.setText(humanize(kiclient.getDetails().get("highRiskPostPartumForceps") != null ? kiclient.getDetails().get("highRiskPostPartumForceps") : "-"));
+            highRiskPostPartumVacum.setText(humanize(kiclient.getDetails().get("highRiskPostPartumVacum") != null ? kiclient.getDetails().get("highRiskPostPartumVacum") : "-"));
+            highRiskPostPartumPreEclampsiaEclampsia.setText(humanize(kiclient.getDetails().get("highRiskPostPartumPreEclampsiaEclampsia") != null ? kiclient.getDetails().get("highRiskPostPartumPreEclampsiaEclampsia") : "-"));
+            highRiskPostPartumMaternalSepsis.setText(humanize(kiclient.getDetails().get("highRiskPostPartumMaternalSepsis") != null ? kiclient.getDetails().get("highRiskPostPartumMaternalSepsis") : "-"));
+            highRiskPostPartumInfection.setText(humanize(kiclient.getDetails().get("highRiskPostPartumInfection") != null ? kiclient.getDetails().get("highRiskPostPartumInfection") : "-"));
+            highRiskPostPartumHemorrhage.setText(humanize(kiclient.getDetails().get("highRiskPostPartumHemorrhage") != null ? kiclient.getDetails().get("highRiskPostPartumHemorrhage") : "-"));
+            highRiskPostPartumPIH.setText(humanize(kiclient.getDetails().get("highRiskPostPartumPIH") != null ? kiclient.getDetails().get("highRiskPostPartumPIH") : "-"));
+            highRiskPostPartumDistosia.setText(humanize(kiclient.getDetails().get("highRiskPostPartumDistosia") != null ? kiclient.getDetails().get("highRiskPostPartumDistosia") : "-"));
 
 
-        }
+      //  }
 
         show_risk.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -94,7 +94,7 @@
     <string name="str_rencana_persalinan_anc_form">Rencana Persalinan</string>
 
     <string name="str_register_pnc_form">Daftar PNC</string>
-    <string name="str_register_fp_form">Register FP</string>
+    <string name="str_register_fp_form">Register KB</string>
     <string name="str_register_child_form">Register Child</string>
     <string name="str_fp_change_form">FP Change</string>
     <string name="str_fp_change_fp_form">Change FP</string>
@@ -376,7 +376,7 @@
     <string name="show_more_button">Lihat lebih...</string>
     <string name="show_less_button">Sembunyikan  . . .</string>
     <string name="mother_already_registered">Ibu sudah terdaftar di ANC</string>
-
+    <string name="mother_already_registered_pnc">Ibu sudah terdaftar di PNC</string>
     <string name="anc_visit_integrasi">Kunjungan ANC Integrasi</string>
     <string name="anc_visit_labtest">Kunjungan ANC Tes Lab</string>
     <string name="months_away"> bulan lagi</string>
@@ -478,4 +478,5 @@
     <string name="fe">FE:</string>
 
     <string name="Nutrition_status">Status Gizi:</string>
+    <string name="mother_already_registered_in_fp">Mother already registered</string>
 </resources>

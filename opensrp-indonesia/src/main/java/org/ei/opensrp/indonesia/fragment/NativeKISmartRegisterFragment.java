@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
@@ -212,7 +215,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
     public void initializeQueries(){
         try {
         KIClientsProvider kiscp = new KIClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, kiscp, new CommonRepository("ec_kartu_ibu",new String []{"ec_kartu_ibu.is_closed", "ec_kartu_ibu.namalengkap", "ec_kartu_ibu.umur", "ec_ibu.type","ec_kartu_ibu.namaSuami","ec_ibu.ancDate","ec_ibu.ancKe","ec_anak.namaBayi","ec_anak.tanggalLahirAnak","ec_ibu.id","noIbu","ec_kartu_ibu.isOutOfArea"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, kiscp, new CommonRepository("ec_kartu_ibu",new String []{"ec_kartu_ibu.is_closed", "ec_kartu_ibu.namalengkap", "ec_kartu_ibu.umur","ec_kartu_ibu.namaSuami","ec_anak.namaBayi","ec_anak.tanggalLahirAnak","noIbu","ec_kartu_ibu.isOutOfArea"}));
         clientsView.setAdapter(clientAdapter);
 
         setTablename("ec_kartu_ibu");
@@ -225,7 +228,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("ec_kartu_ibu", new String[]{"ec_kartu_ibu.relationalid","ec_kartu_ibu.is_closed", "ec_kartu_ibu.details", "ec_kartu_ibu.isOutOfArea", "ec_kartu_ibu.namalengkap", "ec_kartu_ibu.umur", "ec_ibu.type", "ec_kartu_ibu.namaSuami", "ec_ibu.ancDate", "ec_ibu.ancKe", "ec_anak.namaBayi", "ec_anak.tanggalLahirAnak", "ec_ibu.id", "noIbu"});
+        queryBUilder.SelectInitiateMainTable("ec_kartu_ibu", new String[]{"ec_kartu_ibu.relationalid","ec_kartu_ibu.is_closed", "ec_kartu_ibu.details", "ec_kartu_ibu.isOutOfArea", "ec_kartu_ibu.namalengkap", "ec_kartu_ibu.umur", "ec_kartu_ibu.namaSuami",  "ec_anak.namaBayi", "ec_anak.tanggalLahirAnak", "noIbu"});
         queryBUilder.customJoin("LEFT JOIN ec_ibu on ec_kartu_ibu.id = ec_ibu.id LEFT JOIN ec_anak ON ec_ibu.id = ec_anak.relational_id ");
         mainSelect = queryBUilder.mainCondition(mainCondition);
         Sortqueries = KiSortByNameAZ();
@@ -319,12 +322,32 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
             if(option.name().equalsIgnoreCase(getString(R.string.str_register_anc_form)) ) {
                 CommonPersonObjectClient pc = KIDetailActivity.kiclient;
-                if(pc.getColumnmaps().get("ibu.type")!= null) {
-                    if (pc.getColumnmaps().get("ibu.type").equals("anc") || pc.getColumnmaps().get("ibu.type").equals("pnc")) {
+                AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
+                final CommonPersonObject ibuparent = iburep.findByCaseID(pc.entityId());
+                if (ibuparent != null) {
+                    short anc_isclosed = ibuparent.getClosed();
+                    if (anc_isclosed == 0) {
                         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered), Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
+                AllCommonsRepository pncrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_pnc");
+                final CommonPersonObject pncparent = pncrep.findByCaseID(pc.entityId());
+                if (pncparent != null) {
+                    short pnc_isclosed = pncparent.getClosed();
+                    if (pnc_isclosed == 0) {
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered_pnc), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            }
+            if(option.name().equalsIgnoreCase(getString(R.string.str_register_fp_form)) ) {
+                CommonPersonObjectClient pc = KIDetailActivity.kiclient;
+                    if (StringUtils.isNotBlank(pc.getDetails().get("jenisKontrasepsi"))) {
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered_in_fp), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
             }
 
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
