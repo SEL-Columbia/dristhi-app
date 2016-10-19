@@ -7,15 +7,17 @@ import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Base64;
 import android.util.Log;
 
+import com.cloudant.http.interceptors.BasicAuthInterceptor;
 import com.cloudant.sync.datastore.Datastore;
+import com.cloudant.sync.event.Subscribe;
 import com.cloudant.sync.notifications.ReplicationCompleted;
 import com.cloudant.sync.notifications.ReplicationErrored;
 import com.cloudant.sync.replication.PullFilter;
 import com.cloudant.sync.replication.Replicator;
 import com.cloudant.sync.replication.ReplicatorBuilder;
-import com.cloudant.sync.event.Subscribe;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,12 +25,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.repository.AllSharedPreferences;
@@ -36,8 +37,12 @@ import org.ei.opensrp.util.AssetHandler;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 
@@ -171,13 +176,23 @@ public class CloudantSyncHandler {
         CloudantDataHandler mCloudantDataHandler = CloudantDataHandler.getInstance(mContext);
         Datastore mDatastore = mCloudantDataHandler.getDatastore();
 
-        if (pullFilter != null) {
-            mPullReplicator = ReplicatorBuilder.pull().to(mDatastore).from(uri).filter(pullFilter).build();
+        ReplicatorBuilder.Pull mPullBuilder = ReplicatorBuilder.pull().to(mDatastore).from(uri);
+        ReplicatorBuilder.Push mPushBuilder = ReplicatorBuilder.push().from(mDatastore).to(uri);
 
-        } else {
-            mPullReplicator = ReplicatorBuilder.pull().to(mDatastore).from(uri).build();
+        if (pullFilter != null) {
+            mPullBuilder.filter(pullFilter);
         }
-        mPushReplicator = ReplicatorBuilder.push().from(mDatastore).to(uri).build();
+
+        String username = AllConstants.CloudantSync.COUCH_DATABASE_USER;
+        String password = AllConstants.CloudantSync.COUCH_DATABASE_PASS;
+
+        if (StringUtils.isNotBlank(username) && StringUtils.isNotBlank(password)) {
+            mPullBuilder.addRequestInterceptors(new BasicAuthInterceptor(username + ":" + password));
+            mPushBuilder.addRequestInterceptors(new BasicAuthInterceptor(username + ":" + password));
+        }
+
+        mPullReplicator = mPullBuilder.build();
+        mPushReplicator = mPushBuilder.build();
 
         mPushReplicator.getEventBus().register(this);
         mPullReplicator.getEventBus().register(this);
@@ -210,7 +225,7 @@ public class CloudantSyncHandler {
     public void complete(final ReplicationCompleted rc) {
         // Call the logic to break down CE into case models
         try {
-            if(rc.documentsReplicated > 0) {
+            if (rc.documentsReplicated > 0) {
                 ClientProcessor.getInstance(mContext.getApplicationContext()).processClient();
             }
         } catch (Exception e) {
@@ -279,7 +294,7 @@ public class CloudantSyncHandler {
             JsonObject localJson = new JsonParser().parse(localJsonString).getAsJsonObject();
 
             String designDocumentId = localJson.get("_id").getAsString();
-            if(designDocumentId == null || designDocumentId.isEmpty() || !designDocumentId.contains("_design/")){
+            if (designDocumentId == null || designDocumentId.isEmpty() || !designDocumentId.contains("_design/")) {
                 return null;
             }
 
@@ -297,14 +312,17 @@ public class CloudantSyncHandler {
                     String rev = serverJson.get("_rev").getAsString();
                     localJson.addProperty("_rev", rev);
                     setReplicationFilter(localJson, designDocumentId);
-
                 }
                 return designDocumentId;
             }
 
             // Define replication filter
-            setReplicationFilter(localJson, designDocumentId);
-            return designDocumentId;
+            boolean result = setReplicationFilter(localJson, designDocumentId);
+            if (result) {
+                return designDocumentId;
+            } else {
+                return null;
+            }
 
         } catch (Exception e) {
             Log.e(LOG_TAG, "Exception While getting sync filters json", e);
@@ -314,30 +332,42 @@ public class CloudantSyncHandler {
 
     }
 
-    public JsonObject setReplicationFilter(JsonObject jsonObject, String designDocumentId) {
+    public Boolean setReplicationFilter(JsonObject jsonObject, String designDocumentId) {
         try {
+
             Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
 
             String json = gson.toJson(jsonObject);
 
-            HttpClient client = new DefaultHttpClient();
-            HttpPut put = new HttpPut(dbURL.concat("/".concat(designDocumentId)));
+            URL obj = new URL(dbURL.concat("/".concat(designDocumentId)));
+            HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setDoOutput(true);
 
-            StringEntity stringEntity = new StringEntity(json, "utf-8");
-            put.setEntity(stringEntity);
-            put.setHeader("Content-type", "application/json; charset=utf-8");
-            put.setHeader("Accept", "application/json");
+            conn.setRequestMethod("PUT");
 
-            HttpResponse response = client.execute(put);
-            HttpEntity entity = response.getEntity();
-            InputStream in = entity.getContent();
+            String authEncoded = getAuthorization();
+            if (authEncoded != null) {
+                String basicAuth = "Basic " + authEncoded;
+                conn.setRequestProperty("Authorization", basicAuth);
+            }
+
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+            out.write(json);
+            out.close();
 
             JsonParser jp = new JsonParser();
-            JsonElement root = jp.parse(new InputStreamReader(in));
+            JsonElement root = jp.parse(new InputStreamReader(conn.getInputStream()));
 
-            return root.getAsJsonObject();
+            JsonObject rootJson = root.getAsJsonObject();
 
+            if (rootJson.has("ok") && rootJson.has("id") && rootJson.get("id").getAsString().equals(designDocumentId)) {
+                return rootJson.get("ok").getAsBoolean();
+            }
+
+            return false;
 
         } catch (Exception e) {
             Log.e(LOG_TAG, "Exception While setting replication filter", e);
@@ -351,6 +381,13 @@ public class CloudantSyncHandler {
 
             HttpGet get = new HttpGet(dbURL.concat("/".concat(designDocumentId)));
 
+            String authEncoded = getAuthorization();
+            if (authEncoded != null) {
+                String basicAuth = "Basic " + authEncoded;
+                get.setHeader("Authorization", basicAuth);
+            }
+
+
             HttpResponse response = httpclient.execute(get);
             HttpEntity entity = response.getEntity();
             InputStream in = entity.getContent();
@@ -363,6 +400,19 @@ public class CloudantSyncHandler {
             Log.e(LOG_TAG, "Exception While getting replication filter", e);
             return null;
         }
+    }
+
+    private String getAuthorization() {
+
+        String username = AllConstants.CloudantSync.COUCH_DATABASE_USER;
+        String password = AllConstants.CloudantSync.COUCH_DATABASE_PASS;
+
+        if (StringUtils.isNotBlank(username) && StringUtils.isNotBlank(password)) {
+            String authenticationData = username + ":" + password;
+            return Base64.encodeToString(authenticationData.getBytes(Charset.forName("utf-8")), Base64.DEFAULT);
+        }
+
+        return null;
     }
 
     private String getFileContents(String fileName) {
