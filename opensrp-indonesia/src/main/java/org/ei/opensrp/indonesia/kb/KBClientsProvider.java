@@ -190,9 +190,9 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
         viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
 
-        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
+/*        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
         if(pc.getColumnmaps().get("ibu.id") != null) {
-            final CommonPersonObject ibuparent = iburep.findByCaseID(pc.getColumnmaps().get("ibu.id"));
+            final CommonPersonObject ibuparent = iburep.findByCaseID(pc.getColumnmaps().get("ibu.id"));*//*
 
             //Risk flag
             if (ibuparent.getDetails().get("highRiskPregnancyPIH") != null && ibuparent.getDetails().get("highRiskPregnancyPIH").equals("yes")
@@ -210,7 +210,7 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
                     || ibuparent.getDetails().get("highRiskLabourTBRisk") != null && ibuparent.getDetails().get("highRiskLabourTBRisk").equals("yes")) {
                 viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
             }
-        }
+        }*/
 
         viewHolder.follow_due.setText("");
         viewHolder.follow_up_due.setText("");

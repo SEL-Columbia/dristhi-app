@@ -222,7 +222,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     public void initializeQueries(){
         try {
             KBClientsProvider kiscp = new KBClientsProvider(getActivity(),clientActionHandler,context.alertService());
-            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, kiscp, new CommonRepository("ec_kartu_ibu",new String []{"ec_kartu_ibu.is_closed", "namalengkap", "umur","namaSuami","ec_ibu.id", "ec_kartu_ibu.isOutOfArea"}));
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, kiscp, new CommonRepository("ec_kartu_ibu",new String []{"ec_kartu_ibu.is_closed", "namalengkap", "umur","namaSuami", "ec_kartu_ibu.isOutOfArea"}));
             clientsView.setAdapter(clientAdapter);
 
             setTablename("ec_kartu_ibu");
@@ -235,7 +235,7 @@ public class NativeKBSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             super.CountExecute();
 
             SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-            queryBUilder.SelectInitiateMainTable("ec_kartu_ibu", new String[]{"ec_kartu_ibu.relationalid","ec_kartu_ibu.is_closed", "ec_kartu_ibu.details", "ec_kartu_ibu.isOutOfArea", "namalengkap", "umur", "namaSuami", "ec_ibu.id"});
+            queryBUilder.SelectInitiateMainTable("ec_kartu_ibu", new String[]{"ec_kartu_ibu.relationalid","ec_kartu_ibu.is_closed", "ec_kartu_ibu.details", "ec_kartu_ibu.isOutOfArea", "namalengkap", "umur", "namaSuami"});
             queryBUilder.customJoin("LEFT JOIN ec_ibu on ec_kartu_ibu.id = ec_ibu.base_entity_id");
             mainSelect = queryBUilder.mainCondition(mainCondition);
             Sortqueries = KiSortByNameAZ();

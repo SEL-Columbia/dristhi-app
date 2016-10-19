@@ -50,8 +50,6 @@ public class AnakDetailActivity extends Activity {
     private static String showbgm;
     private static ImageFetcher mImageFetcher;
 
-    //image retrieving
-
     public static CommonPersonObjectClient childclient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +73,6 @@ public class AnakDetailActivity extends Activity {
         TextView risk3 = (TextView) findViewById(R.id.txt_risk3);
         TextView risk4 = (TextView) findViewById(R.id.txt_risk4);
         
-        
         //detail data
         TextView txt_noBayi = (TextView) findViewById(R.id.txt_noBayi);
         TextView txt_jenisKelamin = (TextView) findViewById(R.id.txt_jenisKelamin);
@@ -92,7 +89,6 @@ public class AnakDetailActivity extends Activity {
         TextView pol3 = (TextView) findViewById(R.id.txt_tanggalpemberianimunisasiDPTHB2Polio3);
         TextView pol4 = (TextView) findViewById(R.id.txt_tanggalpemberianimunisasiDPTHB3Polio4);
         TextView campak = (TextView) findViewById(R.id.txt_tanggalpemberianimunisasiCampak);
-
 
 
         ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
@@ -119,11 +115,6 @@ public class AnakDetailActivity extends Activity {
                 childview.setImageDrawable(getResources().getDrawable(R.drawable.child_girl_infant));
             }
         }
-
-
-       // Date currentDateandTime = new Date();
-     //   today.setText(" "+currentDateandTime);
-
 
         AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_anak");
 

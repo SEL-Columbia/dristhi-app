@@ -158,7 +158,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
 
 
         //immunization
-        if(pc.getDetails().get("tanggalpemberianimunisasiHb07")!=null){
+        if(pc.getDetails().get("pemberianImunisasiHb")!=null){
             viewHolder.hb0_no.setVisibility(View.INVISIBLE);
             viewHolder.hb0_yes.setVisibility(View.VISIBLE);
         } else {
@@ -190,9 +190,9 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.pol3_yes.setVisibility(View.INVISIBLE);
         }
 
-        String berat = pc.getDetails().get("beratBadanBayiSetiapKunjunganBayiPerbulan")!=null?" "+pc.getDetails().get("beratBadanBayiSetiapKunjunganBayiPerbulan"):"";
-        String tanggal = pc.getDetails().get("tanggalKunjunganBayiPerbulan")!=null?" "+pc.getDetails().get("tanggalKunjunganBayiPerbulan"):"";
-        String tinggi = pc.getDetails().get("hasilPengukuranTinggiBayi")!=null?" "+pc.getDetails().get("hasilPengukuranTinggiBayi"):"";
+        String berat = pc.getDetails().get("beratBayi")!=null?" "+pc.getDetails().get("beratBayi"):"";
+        String tanggal = pc.getDetails().get("tanggalKunjunganNeonatal")!=null?" "+pc.getDetails().get("tanggalKunjunganNeonatal"):"";
+        String tinggi = pc.getDetails().get("panjangBayi")!=null?" "+pc.getDetails().get("panjangBayi"):"";
         String status_gizi = pc.getDetails().get("statusGizi")!=null?pc.getDetails().get("statusGizi"):"";
       //  String gizi = status_gizi.equals("GB")?"Gizi Buruk":status_gizi.equals("GK")?"Gizi Kurang":status_gizi.equals("GR")?"Gizi Rendah":"";
         viewHolder.berat_badan.setText(context.getString(R.string.str_weight)+": "+berat);
@@ -221,8 +221,8 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             String namaibu = kiparent.getColumnmaps().get("namalengkap") != null ? kiparent.getColumnmaps().get("namalengkap") : "";
 
             viewHolder.mother_name.setText(namaibu + "," + namaayah);
-            viewHolder.village_name.setText(kiparent.getDetails().get("desa") != null ? kiparent.getDetails().get("desa") : "");
-            viewHolder.no_ibu.setText(kiparent.getDetails().get("noIbu") != null ? kiparent.getDetails().get("noIbu") : "");
+            viewHolder.village_name.setText(kiparent.getDetails().get("address1") != null ? kiparent.getDetails().get("address1") : "");
+            viewHolder.no_ibu.setText(kiparent.getDetails().get("noBayi") != null ? kiparent.getDetails().get("noBayi") : "");
         }
 
         String childAge = childobject.getColumnmaps().get("tanggalLahirAnak")!=null?childobject.getColumnmaps().get("tanggalLahirAnak"):"-";
@@ -284,49 +284,13 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
 
     class ViewHolder {
 
-        TextView wife_name ;
-        TextView husband_name ;
         TextView village_name;
-        TextView wife_age;
         LinearLayout profilelayout;
         ImageView profilepic;
-        TextView gravida;
-        Button warnbutton;
         ImageButton follow_up;
-        TextView parity;
-        TextView number_of_abortus;
-        TextView number_of_alive;
         TextView no_ibu;
-        TextView unique_id;
-        TextView tanggal_bersalin;
-        TextView tempat_persalinan;
-        TextView dok_tipe;
-        TextView ki_lila_bb;
-        TextView beratbadan_tb;
-        TextView anc_penyakit_kronis;
-        TextView status_type;
-        TextView status_date;
-        TextView alert_status;
-        RelativeLayout status_layout;
          TextView tanggal_kunjungan_anc;
-         TextView anc_number;
-         TextView kunjugan_ke;
-         ImageView hr_badge  ;
          ImageView hp_badge;
-         ImageView hrpp_badge;
-         ImageView bpl_badge;
-         ImageView hrp_badge;
-        ImageView img_hrl_badge;
-
-
-         TextView komplikasi;
-         TextView kondisi_ibu;
-         TextView kondisi_anak_1;
-         TextView kondisi_anak_2;
-        TextView pnc_id;
-         TextView td_sistolik;
-         TextView td_diastolik;
-         TextView td_suhu;
          TextView childs_age;
          TextView mother_name;
         TextView childs_name;
@@ -342,7 +306,6 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
          ImageView pol2_yes;
          ImageView pol3_no;
          ImageView pol3_yes;
-
          TextView berat_badan;
          TextView tinggi;
         TextView status_gizi;
