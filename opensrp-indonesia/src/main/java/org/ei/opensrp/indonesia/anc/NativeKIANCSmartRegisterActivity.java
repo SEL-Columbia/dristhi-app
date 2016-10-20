@@ -122,7 +122,7 @@ public class NativeKIANCSmartRegisterActivity extends SecuredNativeSmartRegister
                 new OpenFormOption("Kunjungan ANC Tes Lab ", KARTU_IBU_ANC_VISIT_LABTEST, formController),
                 new OpenFormOption("Rencana Persalinan", KARTU_IBU_ANC_RENCANA_PERSALINAN, formController),
                 new OpenFormOption("Daftar PNC ", KARTU_IBU_PNC_REGISTRATION, formController),
-                new OpenFormOption("Edit ANC ", KARTU_IBU_ANC_EDIT, formController),
+               // new OpenFormOption("Edit ANC ", KARTU_IBU_ANC_EDIT, formController),
                 new OpenFormOption("ANC Close ", KARTU_IBU_ANC_CLOSE, formController),
 
 

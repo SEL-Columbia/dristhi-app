@@ -18,7 +18,7 @@
         "bind":"/model/instance/kunjungan_neonatal_reviewed/neonatal"
       },
       {
-        "name":"tanggalKunjunganNeonatal",
+        "name":"tanggalKunjunganBayiPerbulan",
         "bind":"/model/instance/kunjungan_neonatal_reviewed/tanggal_kunjungan_neonatal"
       },
       {

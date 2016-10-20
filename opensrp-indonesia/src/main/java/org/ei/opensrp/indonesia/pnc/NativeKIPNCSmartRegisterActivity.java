@@ -123,7 +123,7 @@ public class NativeKIPNCSmartRegisterActivity extends SecuredNativeSmartRegister
         return new DialogOption[]{
                 new OpenFormOption("PNC Visit ", KARTU_IBU_PNC_VISIT, formController),
                 new OpenFormOption("Postpartum KB ", KARTU_IBU_PNC_POSPARTUM_KB, formController),
-                new OpenFormOption("Edit PNC ", KARTU_IBU_PNC_EDIT, formController),
+              //  new OpenFormOption("Edit PNC ", KARTU_IBU_PNC_EDIT, formController),
                 new OpenFormOption("PNC Close ", KARTU_IBU_PNC_CLOSE, formController),
 
 

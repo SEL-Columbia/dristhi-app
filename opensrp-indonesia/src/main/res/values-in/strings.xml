@@ -193,7 +193,7 @@
     <string name="str_reporting">Reporting</string>
     <string name="str_videos">Videos</string>
 
-    <string name="child_register_title_in_short">Anak:</string>
+    <string name="child_register_title_in_short">Anak</string>
     <string name="child_service_mode_overview">Overview</string>
     <string name="child_service_mode_immunization">Imunisasi</string>
     <string name="child_service_mode_immunization_0_to_9">Imunisasi 0-9</string>
@@ -283,7 +283,7 @@
     <string name="fp_prioritization_high_priority_service_mode">High Priority (HP)</string>
     <string name="fp_prioritization_two_plus_children_service_mode">2+ Children</string>
     <string name="fp_prioritization_one_child_service_mode">1 Child</string>
-    <string name="fp_register_child_details">Anak:</string>
+    <string name="fp_register_child_details">Anak</string>
     <string name="str_due">"Due "</string>
     <string name="fp_methods">Jenis:&#160;</string>
     <string name="fp_prioritization">FP Prioritization</string>
