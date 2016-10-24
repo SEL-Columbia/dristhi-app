@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.content.res.Configuration;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.CommonFtsObject;
+import org.ei.opensrp.test.application.SyncVaksinatorBroadcastReceiver;
 import org.ei.opensrp.test.LoginActivity;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
 import org.ei.opensrp.test.vaksinator.ErrorReportingFacade;
 import org.ei.opensrp.test.vaksinator.FlurryFacade;
 import org.ei.opensrp.view.activity.DrishtiApplication;
-import org.ei.opensrp.test.application.SyncVaksinatorBroadcastReceiver;
 import org.ei.opensrp.view.receiver.SyncBroadcastReceiver;
 import static org.ei.opensrp.util.Log.logInfo;
 
@@ -24,17 +25,15 @@ public class TestApplication extends DrishtiApplication {
     @Override
     public void onCreate() {
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
-        DrishtiSyncScheduler.setReceiverClass(SyncVaksinatorBroadcastReceiver.class);
         super.onCreate();
-      //  ACRA.init(this);
+        //  ACRA.init(this);
 
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
-        DrishtiSyncScheduler.setReceiverClass(SyncVaksinatorBroadcastReceiver.class);
         ErrorReportingFacade.initErrorHandler(getApplicationContext());
         FlurryFacade.init(this);
-
         context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());
+        context.updateCommonFtsObject(createCommonFtsObject());
         applyUserLanguagePreference();
         cleanUpSyncState();
     }
@@ -76,4 +75,50 @@ public class TestApplication extends DrishtiApplication {
                 getBaseContext().getResources().getDisplayMetrics());
     }
 
+    private String[] getFtsSearchFields(String tableName){
+        if(tableName.equals("anak")){
+            String[] ftsSearchFields =  { "namaBayi" };
+            return ftsSearchFields;
+        } else if (tableName.equals("ibu")){
+            String[] ftsSearchFields =  { "namaIbu", "namaAyah" };
+            return ftsSearchFields;
+        }
+        return null;
+    }
+
+    private String[] getFtsSortFields(String tableName){
+        if(tableName.equals("anak")){
+            String[] sortFields = { "namaBayi"};
+            return sortFields;
+        } else if(tableName.equals("ibu")){
+            String[] sortFields = { "namaIbu", "namaAyah"};
+            return sortFields;
+        }
+        return null;
+    }
+
+    private String[] getFtsMainConditions(String tableName){
+        if(tableName.equals("anak")){
+            String[] mainConditions = { "isClosed", "namaBayi"};
+            return mainConditions;
+        } else if(tableName.equals("ibu")){
+            String[] mainConditions = { "isClosed", "namaIbu"};
+            return mainConditions;
+        }
+        return null;
+    }
+    private String[] getFtsTables(){
+        String[] ftsTables = { "anak", "ibu" };
+        return ftsTables;
+    }
+
+    private CommonFtsObject createCommonFtsObject(){
+        CommonFtsObject commonFtsObject = new CommonFtsObject(getFtsTables());
+        for(String ftsTable: commonFtsObject.getTables()){
+            commonFtsObject.updateSearchFields(ftsTable, getFtsSearchFields(ftsTable));
+            commonFtsObject.updateSortFields(ftsTable, getFtsSortFields(ftsTable));
+            commonFtsObject.updateMainConditions(ftsTable, getFtsMainConditions(ftsTable));
+        }
+        return commonFtsObject;
+    }
 }

@@ -18,7 +18,6 @@ import org.ei.opensrp.repository.AllEligibleCouples;
 import org.ei.opensrp.repository.AllReports;
 import org.ei.opensrp.repository.AllServicesProvided;
 import org.ei.opensrp.repository.AllSettings;
-import org.ei.opensrp.repository.AllSettingsINA;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.repository.AllTimelineEvents;
 import org.ei.opensrp.repository.ChildRepository;
@@ -33,7 +32,6 @@ import org.ei.opensrp.repository.Repository;
 import org.ei.opensrp.repository.ServiceProvidedRepository;
 import org.ei.opensrp.repository.SettingsRepository;
 import org.ei.opensrp.repository.TimelineEventRepository;
-import org.ei.opensrp.repository.UniqueIdRepository;
 import org.ei.opensrp.service.ANMService;
 import org.ei.opensrp.service.ActionService;
 import org.ei.opensrp.service.AlertService;
@@ -48,7 +46,6 @@ import org.ei.opensrp.service.HTTPAgent;
 import org.ei.opensrp.service.MotherService;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.service.ServiceProvidedService;
-import org.ei.opensrp.service.UniqueIdService;
 import org.ei.opensrp.service.UserService;
 import org.ei.opensrp.service.ZiggyFileLoader;
 import org.ei.opensrp.service.ZiggyService;
@@ -91,7 +88,6 @@ import org.ei.opensrp.view.contract.Villages;
 import org.ei.opensrp.view.contract.pnc.PNCClients;
 import org.ei.opensrp.view.controller.ANMController;
 import org.ei.opensrp.view.controller.ANMLocationController;
-import org.ei.opensrp.view.controller.UniqueIdController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -102,7 +98,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.preference.PreferenceManager.setDefaultValues;
@@ -166,11 +161,6 @@ public class Context {
     private HTTPAgent httpAgent;
     private ZiggyFileLoader ziggyFileLoader;
 
-    private UniqueIdRepository uniqueIdRepository;
-    private Cache<List<Long>> uIdsCache;
-    private AllSettingsINA allSettingsINA;
-    private UniqueIdController uniqueIdController;
-    private UniqueIdService uniqueIdService;
     private FormSubmissionRouter formSubmissionRouter;
     private ECRegistrationHandler ecRegistrationHandler;
     private FPComplicationsHandler fpComplicationsHandler;
@@ -280,38 +270,6 @@ public class Context {
                     configuration(), formsVersionRepository());
         }
         return allFormVersionSyncService;
-    }
-
-    public AllSettingsINA allSettingsINA() {
-        initRepository();
-        if(allSettingsINA == null) {
-            allSettingsINA = new AllSettingsINA(allSharedPreferences(), settingsRepository());
-        }
-        return allSettingsINA;
-    }
-    public Cache<List<Long>> uIdsCache() {
-        if (uIdsCache == null) {
-            uIdsCache = new Cache<>();
-        }
-        return uIdsCache;
-    }
-    public UniqueIdRepository uniqueIdRepository() {
-        if(uniqueIdRepository==null) {
-            uniqueIdRepository = new UniqueIdRepository();
-        }
-        return uniqueIdRepository;
-    }
-    public UniqueIdController uniqueIdController() {
-        if(uniqueIdController == null) {
-            uniqueIdController = new UniqueIdController(uniqueIdRepository(), allSettingsINA(), uIdsCache());
-        }
-        return uniqueIdController;
-    }
-    public UniqueIdService uniqueIdService() {
-        if(uniqueIdService == null) {
-            uniqueIdService = new UniqueIdService(httpAgent(), configuration(), uniqueIdController(), allSettingsINA(), allSharedPreferences());
-        }
-        return uniqueIdService;
     }
 
     public FormSubmissionRouter formSubmissionRouter() {
@@ -550,7 +508,6 @@ public class Context {
             drishtireposotorylist.add(serviceProvidedRepository());
             drishtireposotorylist.add(formsVersionRepository());
             drishtireposotorylist.add(imageRepository());
-            drishtireposotorylist.add(uniqueIdRepository());
             for(int i = 0;i < bindtypes.size();i++){
                 drishtireposotorylist.add(commonrepository(bindtypes.get(i).getBindtypename()));
             }
@@ -944,7 +901,7 @@ public class Context {
                 String bindname = bindtypeObjects.getJSONObject(i).getString("name");
                 String [] columNames = new String[ bindtypeObjects.getJSONObject(i).getJSONArray("columns").length()];
                 for(int j = 0 ; j < columNames.length;j++){
-                  columNames[j] =  bindtypeObjects.getJSONObject(i).getJSONArray("columns").getJSONObject(j).getString("name");
+                    columNames[j] =  bindtypeObjects.getJSONObject(i).getJSONArray("columns").getJSONObject(j).getString("name");
                 }
                 bindtypes.add(new CommonRepositoryInformationHolder(bindname,columNames));
                 Log.v("bind type logs",bindtypeObjects.getJSONObject(i).getString("name"));

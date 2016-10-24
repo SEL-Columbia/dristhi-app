@@ -5,18 +5,21 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
-import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.test.R;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.test.R;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -25,37 +28,38 @@ import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
+import org.joda.time.LocalDate;
+import org.joda.time.Months;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.text.SimpleDateFormat;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static org.joda.time.LocalDateTime.parse;
 
 /**
- * Created by user on 2/12/15.
+ * Created by Dimas Ciputra on 2/16/15.
  */
-
-public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
-
+public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
-
+    private Drawable iconPencilDrawable;
     private final int txtColorBlack;
     private final AbsListView.LayoutParams clientViewLayoutParams;
-    private Drawable iconPencilDrawable;
+
     protected CommonPersonObjectController controller;
 
     AlertService alertService;
-
-    public VaksinatorSmartClientsProvider(Context context,
-                                          View.OnClickListener onClickListener,
-                                          AlertService alertService) {
+    public KIClientsProvider(Context context,
+                             View.OnClickListener onClickListener,
+                             AlertService alertService) {
         this.onClickListener = onClickListener;
 //        this.controller = controller;
         this.context = context;
         this.alertService = alertService;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
 
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
                 (int) context.getResources().getDimension(org.ei.opensrp.R.dimen.list_item_height));
@@ -63,30 +67,21 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
 
     }
 
-/*    private boolean checkViewHolderInstance(View convertView){
-        if (convertView == null)
-            return true;
-        return (convertView.getTag() == null || !(convertView.getTag() instanceof  ViewHolder));
-    }*/
-
     @Override
     public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
-
         ViewHolder viewHolder;
-        CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
+
         if(convertView.getTag() == null || !(convertView.getTag() instanceof  ViewHolder)){
-            //   convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_jurim_client, null);
             viewHolder = new ViewHolder();
             viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
-
-//----------Child Basic Information
+            //----------Child Basic Information
             viewHolder.name = (TextView)convertView.findViewById(R.id.name);
             viewHolder.motherName = (TextView)convertView.findViewById(R.id.motherName);
             viewHolder.village = (TextView)convertView.findViewById(R.id.village);
             viewHolder.age = (TextView)convertView.findViewById(R.id.age);
             viewHolder.gender = (TextView)convertView.findViewById(R.id.gender);
 
-//----------FrameLayout
+            //----------FrameLayout
             viewHolder.hb0Layout = (FrameLayout)convertView.findViewById(R.id.hb0Layout);
             viewHolder.bcgLayout = (FrameLayout)convertView.findViewById(R.id.bcgLayout);
             viewHolder.hb1Layout = (FrameLayout)convertView.findViewById(R.id.hb1Layout);
@@ -94,7 +89,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
             viewHolder.hb3Layout = (FrameLayout)convertView.findViewById(R.id.hb3Layout);
             viewHolder.campakLayout = (FrameLayout)convertView.findViewById(R.id.campakLayout);
 
-//----------TextView to show immunization date
+            //----------TextView to show immunization date
             viewHolder.hb0 = (TextView)convertView.findViewById(R.id.hb1);
             viewHolder.pol1 = (TextView)convertView.findViewById(R.id.pol1);
             viewHolder.pol2 = (TextView)convertView.findViewById(R.id.pol2);
@@ -102,7 +97,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
             viewHolder.pol4 = (TextView)convertView.findViewById(R.id.pol4);
             viewHolder.campak = (TextView)convertView.findViewById(R.id.ipv);
 
-//----------Checklist logo
+            //----------Checklist logo
             viewHolder.hbLogo = (ImageView)convertView.findViewById(R.id.hbLogo);
             viewHolder.pol1Logo = (ImageView)convertView.findViewById(R.id.pol1Logo);
             viewHolder.pol2Logo = (ImageView)convertView.findViewById(R.id.pol2Logo);
@@ -113,30 +108,32 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
             viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
-
+            viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
             convertView.setTag(viewHolder);
-        }else{
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            // viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
         }
 
         viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
         viewHolder.profilelayout.setOnClickListener(onClickListener);
         viewHolder.profilelayout.setTag(smartRegisterClient);
-
+        CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
         if (iconPencilDrawable == null) {
             iconPencilDrawable = context.getResources().getDrawable(R.drawable.ic_pencil);
         }
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
 
-        int umur = pc.getDetails().get("tanggalLahirAnak") != null ? age(pc.getDetails().get("tanggalLahirAnak")) : 0;
-        //set default image for mother
+        int umur = pc.getColumnmaps().get("tanggalLahirAnak") != null ? age(pc.getColumnmaps().get("tanggalLahirAnak")) : 0;
+
+        viewHolder.name.setText(pc.getColumnmaps().get("namaBayi") != null ? pc.getColumnmaps().get("namaBayi") : " ");
+      //  viewHolder.name.setText(pc.getc().get("namaIbu") != null ? pc.getDetails().get("namaIbu") : " ");
+        //set default image for mother berat_badan_saat_lahir
 
         //final ImageView childview = (ImageView)convertView.findViewById(R.id.profilepic);
 
-        if (pc.getDetails().get("profilepic") != null) {
+        /*if (pc.getDetails().get("profilepic") != null) {
             VaksinatorDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), viewHolder.profilepic, R.drawable.child_boy_infant);
             viewHolder.profilepic.setTag(smartRegisterClient);
         }
@@ -147,11 +144,9 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
                     : R.drawable.child_boy_infant)
                     : context.getResources().getDrawable(R.drawable.child_boy_infant)
             );
-        }
+        }*/
 
-        viewHolder.name.setText(pc.getDetails().get("namaBayi") != null ? pc.getDetails().get("namaBayi") : " ");
-
-        /*viewHolder.motherName.setText(
+        viewHolder.motherName.setText(
                 pc.getDetails().get("namaIbu")!=null
                         ? pc.getDetails().get("namaIbu")
                         : pc.getDetails().get("nama_orang_tua")!=null
@@ -167,9 +162,9 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
                 : pc.getDetails().get("dusun")!= null
                 ? pc.getDetails().get("dusun")
                 : " ");
-        viewHolder.age.setText(pc.getDetails().get("tanggal_lahir")!=null
-                ?     Integer.toString(age(pc.getDetails().get("tanggal_lahir"))/12)+" "+ context.getResources().getString(R.string.year_short)
-                + ", "+Integer.toString(age(pc.getDetails().get("tanggal_lahir"))%12)+" "+ context.getResources().getString(R.string.month_short)
+        viewHolder.age.setText(pc.getColumnmaps().get("tanggalLahirAnak")!=null
+                ?     Integer.toString(age(pc.getColumnmaps().get("tanggalLahirAnak"))/12)+" "+ context.getResources().getString(R.string.year_short)
+                + ", "+Integer.toString(age(pc.getColumnmaps().get("tanggalLahirAnak"))%12)+" "+ context.getResources().getString(R.string.month_short)
                 : " ");
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null
                 ? pc.getDetails().get("jenis_kelamin").contains("em")
@@ -181,40 +176,19 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
 
         viewHolder.pol1.setText(
                 latestDate(new String[]{pc.getDetails().get("bcg_pol_1"),pc.getDetails().get("bcg"),pc.getDetails().get("polio1")})
-//            hasDate(pc,"bcg")//pc.getDetails().get("bcg")!=null && pc.getDetails().get("bcg").length()>6
-//                ? pc.getDetails().get("bcg")
-//                : hasDate(pc,"polio1")//pc.getDetails().get("polio1")!=null && pc.getDetails().get("polio1").length()>6
-//                    ? pc.getDetails().get("polio1")
-//                    : " "
         );
 
         viewHolder.pol2.setText(
                 latestDate(new String[]{pc.getDetails().get("dpt_1_pol_2"),pc.getDetails().get("dpt_hb1"),pc.getDetails().get("polio2")})
-//            hasDate(pc,"dpt_hb1")//pc.getDetails().get("dpt_hb1")!=null && pc.getDetails().get("dpt_hb1").length()>6
-//                ? pc.getDetails().get("dpt_hb1")
-//                : hasDate(pc,"polio2")//pc.getDetails().get("polio2")!=null && pc.getDetails().get("polio_2").length()>6
-//                    ? pc.getDetails().get("polio2")
-//                    : " "
         );
 
         viewHolder.pol3.setText(
                 latestDate(new String[]{pc.getDetails().get("dpt_2_pol_3"),pc.getDetails().get("dpt_hb2"),pc.getDetails().get("polio3")})
-//              hasDate(pc,"dpt_hb2")//pc.getDetails().get("dpt_hb2")!=null && pc.getDetails().get("dpt_hb_2").length()>6
-//                 ? pc.getDetails().get("dpt_hb2")
-//                 : hasDate(pc,"polio3")//pc.getDetails().get("polio3")!=null && pc.getDetails().get("polio3").length()>6
-//                    ? pc.getDetails().get("polio3")
-//                    : " "
+
         );
 
         viewHolder.pol4.setText(
                 latestDate(new String[]{pc.getDetails().get("dpt_3_pol_4_ipv"),pc.getDetails().get("dpt_hb3"),pc.getDetails().get("polio4"),pc.getDetails().get("ipv")})
-//             hasDate(pc,"dpt_hb3")//pc.getDetails().get("dpt_hb3")!=null && pc.getDetails().get("dpt_hb3").length()>6
-//                ? pc.getDetails().get("dpt_hb3")
-//                : hasDate(pc,"polio4")//pc.getDetails().get("polio4")!=null && pc.getDetails().get("polio4").length()>6
-//                   ? pc.getDetails().get("polio4")
-//                   : hasDate(pc,"ipv")//pc.getDetails().get("ipv")!=null && pc.getDetails().get("ipv").length()>6
-//                       ? pc.getDetails().get("ipv")
-//                       : " "
         );
 
         viewHolder.campak.setText(pc.getDetails().get("imunisasi_campak") != null ? pc.getDetails().get("imunisasi_campak") : " ");
@@ -229,11 +203,12 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
         setIcon(viewHolder.hb1Layout,viewHolder.pol2Logo,"dpt_1_pol_2","dpt_hb1,polio2",umur,2,pc);
         setIcon(viewHolder.hb2Layout,viewHolder.pol3Logo,"dpt_2_pol_3","dpt_hb2,polio3",umur,3,pc);
         setIcon(viewHolder.hb3Layout,viewHolder.pol4Logo,"dpt_3_pol_4_ipv","dpt_hb3,polio4,ipv",umur,4,pc);
-        setIcon(viewHolder.campakLayout,viewHolder.ipvLogo,"imunisasi_campak","imnisasi_campak",umur,9,pc);*/
+        setIcon(viewHolder.campakLayout,viewHolder.ipvLogo,"imunisasi_campak","imnisasi_campak",umur,9,pc);
 
         convertView.setLayoutParams(clientViewLayoutParams);
-        //  return convertView;
+      //  return convertView;
     }
+    CommonPersonObjectController householdelcocontroller;
 
     private String latestDate(String[]dates){
         String max = dates[0]!=null
@@ -295,8 +270,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
         if((umur == indicator) && !(complete || someComplete))
             frame.setBackgroundColor(context.getResources().getColor(R.color.vaccBlue));
     }
-
-    /*
+/*
     * Used to check if the variable contains a date (10 character which representing yyyy-MM-dd) or not
     * params:
     * CommonPersonObjectClient pc
@@ -325,14 +299,10 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
 
         return result;
     }
-
-    CommonPersonObjectController householdelcocontroller;
-
     //    @Override
     public SmartRegisterClients getClients() {
         return controller.getClients();
     }
-
 
     @Override
     public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
@@ -349,6 +319,7 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
     public OnClickFormLauncher newFormLauncher(String formName, String entityId, String metaData) {
         return null;
     }
+
 
     public LayoutInflater inflater() {
         return inflater;
@@ -395,5 +366,6 @@ public class VaksinatorSmartClientsProvider implements SmartRegisterCLientsProvi
         public FrameLayout hb3Layout;
         public FrameLayout campakLayout;
     }
-}
 
+
+}

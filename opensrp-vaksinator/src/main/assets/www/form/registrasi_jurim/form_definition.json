@@ -72,7 +72,7 @@
         "bind": "/model/instance/registrasi_vaksinator/posyandu"
       },
       {
-        "name": "nama_bayi",
+        "name": "namaBayi",
         "bind": "/model/instance/registrasi_vaksinator/nama_bayi"
       },
       {
@@ -92,7 +92,7 @@
         "bind": "/model/instance/registrasi_vaksinator/jenis_kelamin"
       },
       {
-        "name": "tanggal_lahir",
+        "name": "tanggalLahirAnak",
         "bind": "/model/instance/registrasi_vaksinator/tanggal_lahir"
       },
       {

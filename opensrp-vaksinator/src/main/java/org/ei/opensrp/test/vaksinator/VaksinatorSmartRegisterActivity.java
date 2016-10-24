@@ -166,6 +166,8 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
 
             ziggyService.saveForm(getParams(submission), submission.instance());
 
+            context.formSubmissionService().updateFTSsearch(submission);
+
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
@@ -177,15 +179,8 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             }
             e.printStackTrace();
         }
-        if(formName.equals("registrasi_jurim")){
-            saveuniqueid();
-        }
-        //end capture flurry log for FS
-                String end = timer.format(new Date());
-                Map<String, String> FS = new HashMap<String, String>();
-                FS.put("end", end);
-                FlurryAgent.logEvent(formName,FS, true);
     }
+
 
     @Override
     public void OnLocationSelected(String locationJSONString) {
@@ -193,16 +188,16 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
 
         try {
             JSONObject locationJSON = new JSONObject(locationJSONString);
-            JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+         //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
 
             combined = locationJSON;
-            Iterator<String> iter = uniqueId.keys();
+       //     Iterator<String> iter = uniqueId.keys();
 
-            while (iter.hasNext()) {
+       /*     while (iter.hasNext()) {
                 String key = iter.next();
                 combined.put(key, uniqueId.get(key));
             }
-
+*/
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -212,7 +207,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             startFormActivity("registrasi_jurim", null, fieldOverrides.getJSONString());
         }
     }
-    public void saveuniqueid() {
+  /*  public void saveuniqueid() {
         try {
             JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
             String uniq = uniqueId.getString("unique_id");
@@ -221,17 +216,12 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
-        //Start capture flurry log for FS
-               String start = timer.format(new Date());
-                Map<String, String> FS = new HashMap<String, String>();
-                FS.put("start", start);
-                FlurryAgent.logEvent(formName,FS, true );
-     //   FlurryFacade.logEvent(formName);
-       // Log.v("fieldoverride", metaData);
+        FlurryFacade.logEvent(formName);
+//        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
@@ -319,6 +309,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
         formNames.add("dpthb_lanjutan_visit");
         formNames.add("campak_lanjutan_visit");
         formNames.add("close_form");
+        formNames.add("kartu_ibu_registration");
 //        DialogOption[] options = getEditOptions();
 //        for (int i = 0; i < options.length; i++){
 //            formNames.add(((OpenFormOption) options[i]).getFormName());

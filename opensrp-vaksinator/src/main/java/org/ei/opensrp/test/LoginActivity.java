@@ -211,7 +211,7 @@ public class LoginActivity extends Activity {
             }
         });
 
-        tryGetUniqueId(userName, password, new Listener<ResponseStatus>() {
+/*        tryGetUniqueId(userName, password, new Listener<ResponseStatus>() {
             @Override
             public void onEvent(ResponseStatus data) {
                 if (data == ResponseStatus.failure) {
@@ -219,7 +219,7 @@ public class LoginActivity extends Activity {
                 }
                 goToHome();
             }
-        });
+        });*/
     }
 
     private void showErrorDialog(String message) {
@@ -369,7 +369,7 @@ public class LoginActivity extends Activity {
         }
     }
 
-    private void tryGetUniqueId(final String username, final String password, final Listener<ResponseStatus> afterGetUniqueId) {
+    /*private void tryGetUniqueId(final String username, final String password, final Listener<ResponseStatus> afterGetUniqueId) {
         LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
             @Override
             public void setVisible() {
@@ -393,6 +393,6 @@ public class LoginActivity extends Activity {
                 afterGetUniqueId.onEvent(result);
             }
         });
-    }
+    }*/
 
 }

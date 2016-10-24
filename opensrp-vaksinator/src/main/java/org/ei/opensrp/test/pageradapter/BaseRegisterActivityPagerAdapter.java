@@ -1,5 +1,4 @@
 package org.ei.opensrp.test.pageradapter;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,9 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 
-/**
- * Created by koros on 11/2/15.
- */
+
 public class BaseRegisterActivityPagerAdapter extends FragmentPagerAdapter {
     public static final String ARG_PAGE = "page";
     String[] dialogOptions;

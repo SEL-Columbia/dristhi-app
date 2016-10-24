@@ -153,8 +153,8 @@ public class VaksinatorDetailActivity extends Activity {
         additionalDPTLabel.setText(getString(R.string.dptTambahan));
         additionalMeaslesLabel.setText(getString(R.string.campakTambahan));
 
+        nama.setText(": " + (controller.getColumnmaps().get("namaBayi") != null ? controller.getColumnmaps().get("namaBayi") : "-"));
 
-        nama.setText(": " + (controller.getDetails().get("nama_bayi") != null ? controller.getDetails().get("nama_bayi") : "-"));
         fatherName.setText(": " + (controller.getDetails().get("namaAyah") != null ? controller.getDetails().get("namaAyah") : "-"));
         motherName.setText(": " + (controller.getDetails().get("namaIbu") != null
                 ? controller.getDetails().get("namaIbu")
@@ -179,7 +179,7 @@ public class VaksinatorDetailActivity extends Activity {
                 : controller.getDetails().get("posyandu")!=null
                     ? controller.getDetails().get("posyandu")
                     : "-"));
-        dateOfBirth.setText(": " + (controller.getDetails().get("tanggal_lahir") != null ? controller.getDetails().get("tanggal_lahir") : "-"));
+        dateOfBirth.setText(": " + (controller.getColumnmaps().get("tanggalLahirAnak") != null ? controller.getColumnmaps().get("tanggalLahirAnak") : "-"));
         birthWeight.setText(": " + (controller.getDetails().get("berat_badan_saat_lahir") != null
                                     ? Double.toString(Integer.parseInt(controller.getDetails()
                                                         .get("berat_badan_saat_lahir"))/1000)

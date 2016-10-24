@@ -1,5 +1,6 @@
 package org.ei.opensrp.test;
 
+import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import com.flurry.android.FlurryAgent;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.event.Listener;
 
 import org.ei.opensrp.service.PendingFormSubmissionService;
@@ -79,7 +81,12 @@ public class NativeHomeActivity extends SecuredActivity {
         }
     };
 
-    private TextView ecRegisterClientCountView;
+    private TextView anakRegisterClientCountView;
+    public static CommonPersonObjectController kicontroller;
+    public static CommonPersonObjectController childcontroller;
+    public static int kicount;
+
+    private int childcount;
 
 
     @Override
@@ -109,7 +116,7 @@ public class NativeHomeActivity extends SecuredActivity {
         findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
         findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
 
-        ecRegisterClientCountView = (TextView) findViewById(R.id.txt_vaksinator_register_client_count);
+        anakRegisterClientCountView = (TextView) findViewById(R.id.txt_vaksinator_register_client_count);
 
     }
 
@@ -148,11 +155,19 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void updateRegisterCounts(HomeContext homeContext) {
-        CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        Cursor childcountcursor = context.commonrepository("anak").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("anak", "anak.namaBayi NOT Null and anak.namaBayi != ''"));
+        childcountcursor.moveToFirst();
+        childcount= childcountcursor.getInt(0);
+        childcountcursor.close();
+
+        anakRegisterClientCountView.setText(valueOf(childcount));
+
+       /* CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
                 context.allBeneficiaries(), context.listCache(),
                 context.personObjectClientsCache(),"nama_bayi","anak","tanggal_lahir", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
-        ecRegisterClientCountView.setText(valueOf(hhcontroller.getClients("form_ditutup","true").size()));
+        anakRegisterClientCountView.setText(valueOf(hhcontroller.getClients("form_ditutup","true").size()));*/
     }
 
     @Override
