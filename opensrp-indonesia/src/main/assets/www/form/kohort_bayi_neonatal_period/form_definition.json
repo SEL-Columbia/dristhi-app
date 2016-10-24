@@ -50,7 +50,7 @@
         "bind":"/model/instance/kunjungan_neonatal_reviewed/kondisi_bayi"
       },
       {
-        "name":"pemberianImunisasiHb",
+        "name":"hb0",
         "bind":"/model/instance/kunjungan_neonatal_reviewed/pemberian_imunisasi_hb"
       },
       {

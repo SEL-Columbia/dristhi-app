@@ -158,7 +158,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
 
 
         //immunization
-        if(pc.getDetails().get("pemberianImunisasiHb")!=null){
+        if(pc.getDetails().get("hb0")!=null){
             viewHolder.hb0_no.setVisibility(View.INVISIBLE);
             viewHolder.hb0_yes.setVisibility(View.VISIBLE);
         } else {
@@ -166,7 +166,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.hb0_yes.setVisibility(View.INVISIBLE);
         }
 
-        if(pc.getDetails().get("tanggalpemberianimunisasiBCGdanPolio1")!=null){
+        if(pc.getDetails().get("polio1")!=null || pc.getDetails().get("bcg")!=null){
             viewHolder.pol1_no.setVisibility(View.INVISIBLE);
             viewHolder.pol1_yes.setVisibility(View.VISIBLE);
         } else {
@@ -174,7 +174,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.pol1_yes.setVisibility(View.INVISIBLE);
         }
 
-        if(pc.getDetails().get("tanggalpemberianimunisasiDPTHB1Polio2")!=null){
+        if(pc.getDetails().get("dptHb1")!=null || pc.getDetails().get("polio2")!=null){
             viewHolder.pol2_no.setVisibility(View.INVISIBLE);
             viewHolder.pol2_yes.setVisibility(View.VISIBLE);
         } else {
@@ -182,7 +182,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.pol2_yes.setVisibility(View.INVISIBLE);
         }
 
-        if(pc.getDetails().get("tanggalpemberianimunisasiDPTHB2Polio3")!=null){
+        if(pc.getDetails().get("dptHb2")!=null || pc.getDetails().get("polio3")!=null){
             viewHolder.pol3_no.setVisibility(View.INVISIBLE);
             viewHolder.pol3_yes.setVisibility(View.VISIBLE);
         } else {
