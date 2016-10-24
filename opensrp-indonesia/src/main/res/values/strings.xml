@@ -60,6 +60,7 @@
 
 
     <string name="mother_already_registered">Mother already registered in ANC</string>
+    <string name="mother_already_registered_pnc">Mother already registered in PNC</string>
     <string name="header_history_anc">VISIT HISTORY</string>
     <string name="header_name">NAME</string>
     <string name="header_ec_no">EC NO.</string>
@@ -470,7 +471,7 @@
     <string name="name">NAME:&#160; </string>
     <string name="nik">NIK:&#160; </string>
     <string name="husband_name">Husband Name: &#160;</string>
-    <string name="dob">Date of Birth:&#160; </string>
+    <string name="dob">DOB:&#160; </string>
     <string name="phone">Phone Number: &#160;</string>
 
     <!-- Mother detail -->
@@ -546,4 +547,5 @@
     <string name="fe">FE:</string>
     <string name="Nutrition_status">Nutrition Status:</string>
     <string name="lila">MUAC:</string>
+    <string name="mother_already_registered_in_fp">Mother already registered</string>
 </resources>

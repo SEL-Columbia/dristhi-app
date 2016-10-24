@@ -1,7 +1,8 @@
 {
-  "form_data_definition_version": "1",
+  "form_data_definition_version": "3",
   "form": {
     "bind_type": "ibu",
+    "ec_bind_type": "ec_ibu",
     "default_bind_path": "/model/instance/postpartum_kb_reviewed/",
     "fields": [
       {

@@ -21,6 +21,7 @@ import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.kartu_ibu.NativeKISmartRegisterActivity;
 import org.ei.opensrp.indonesia.lib.FlurryFacade;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.repository.ImageRepository;
 
 import java.io.File;
@@ -143,6 +144,8 @@ public class KBDetailActivity extends Activity {
             }
         });
 
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(kiclient);
 
         if(kiclient.getDetails().get("profilepic")!= null){
             setImagetoHolderFromUri(KBDetailActivity.this, kiclient.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
@@ -180,10 +183,10 @@ public class KBDetailActivity extends Activity {
         show_risk.setText(getResources().getString(R.string.show_more_button));
         show_detail.setText(getResources().getString(R.string.show_less_button));
 
-        village.setText( ": "+humanize(kiclient.getDetails().get("desa") != null ? kiclient.getDetails().get("desa") : "-"));
-        subvillage.setText( ": "+humanize(kiclient.getDetails().get("dusun") != null ? kiclient.getDetails().get("dusun") : "-"));
+        village.setText( ": "+humanize(kiclient.getDetails().get("cityVillage") != null ? kiclient.getDetails().get("cityVillage") : "-"));
+        subvillage.setText( ": "+humanize(kiclient.getDetails().get("address1") != null ? kiclient.getDetails().get("address1") : "-"));
         age.setText(": "+humanize(kiclient.getColumnmaps().get("umur") != null ? kiclient.getColumnmaps().get("umur") : "-"));
-        alamat.setText(": "+humanize(kiclient.getDetails().get("alamatDomisili") != null ? kiclient.getDetails().get("alamatDomisili") : "-"));
+        alamat.setText(": "+humanize(kiclient.getDetails().get("address3") != null ? kiclient.getDetails().get("address3") : "-"));
         education.setText(": "+humanize(kiclient.getDetails().get("pendidikan") != null ? kiclient.getDetails().get("pendidikan") : "-"));
         religion.setText(": "+humanize(kiclient.getDetails().get("agama") != null ? kiclient.getDetails().get("agama") : "-"));
         job.setText(": "+humanize(kiclient.getDetails().get("pekerjaan") != null ? kiclient.getDetails().get("pekerjaan") : "-"));

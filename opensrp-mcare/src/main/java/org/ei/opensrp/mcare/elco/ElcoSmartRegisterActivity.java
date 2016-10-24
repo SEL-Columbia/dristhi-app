@@ -3,6 +3,7 @@ package org.ei.opensrp.mcare.elco;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,9 +13,8 @@ import android.util.Log;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.opensrp.commonregistry.AllCommonsRepository;
-import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
+import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.mcare.LoginActivity;
@@ -24,7 +24,7 @@ import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.service.FormSubmissionService;
-import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -64,9 +64,9 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     private String[] formNames = new String[]{};
     private android.support.v4.app.Fragment mBaseFragment = null;
 
+
     private android.support.v4.app.Fragment mProfileFragment = null;
 
-    ZiggyService ziggyService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +92,6 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             }
         });
 
-        ziggyService = context.ziggyService();
     }
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
@@ -147,15 +146,31 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     }
 
     public DialogOption[] getEditOptions(CommonPersonObjectClient elco) {
-        AllCommonsRepository allelcoRepository = context.getInstance().allCommonsRepositoryobjects("elco");
-        CommonPersonObject elcoobject = allelcoRepository.findByCaseID(elco.entityId());
-        AllCommonsRepository householdrep = context.getInstance().allCommonsRepositoryobjects("household");
-        CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
+        //AllCommonsRepository allelcoRepository = context.getInstance().allCommonsRepositoryobjects("elco");
+        //CommonPersonObject elcoobject = allelcoRepository.findByCaseID(elco.entityId());
+        //AllCommonsRepository householdrep = context.getInstance().allCommonsRepositoryobjects("household");
+        //CommonPersonObject householdparent = householdrep.findByCaseID(elcoobject.getRelationalId());
         String alertstate = "";
         alertstate = getalertstateofelco(elco);
         HashMap<String,String> overridemap = new HashMap<String,String>();
 
-        overridemap.put("existing_ELCO", householdparent.getDetails().get("ELCO"));
+        Cursor cursor = null;
+        Integer numberOfElcos = 0;
+        try {
+            String tableName = "ec_elco";
+            String sql = "select * from " + tableName + " where relational_id = '" + elco.getDetails().get("relational_id") + "'";
+            CommonRepository cr = org.ei.opensrp.Context.getInstance().commonrepository(tableName);
+            cursor = cr.queryTable(sql);
+            numberOfElcos = cursor.getCount();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            if (cursor != null){
+                cursor.close();
+            }
+        }
+        overridemap.put("existing_ELCO", numberOfElcos.toString());
         overridemap.put("current_formStatus", alertstate);
         return new DialogOption[]{
 
@@ -271,17 +286,13 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
-
             ziggyService.saveForm(getParams(submission), submission.instance());
+            ClientProcessor.getInstance(getApplicationContext()).processClient();
 
-            FormSubmissionService formSubmissionService = context.formSubmissionService();
-            formSubmissionService.updateFTSsearch(submission);
+            context.formSubmissionService().updateFTSsearch(submission);
+            context.formSubmissionRouter().handleSubmission(submission, formName);
 
-            Log.v("we are here", "hhregister");
-            //switch to forms list fragmentstregi
             switchToBaseFragment(formSubmission);
- 
-            // Unnecessary!! passing on data
 
         }catch (Exception e){
             // TODO: show error dialog on the formfragment if the submission fails
@@ -289,7 +300,7 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             if (displayFormFragment != null) {
                 displayFormFragment.hideTranslucentProgressDialog();
             }
-            e.printStackTrace();
+            Log.e("", "Form Submission Error", e);;
         }
     }
 
@@ -401,20 +412,6 @@ public class ElcoSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
     public DisplayFormFragment getDisplayFormFragmentAtIndex(int index) {
         return  (DisplayFormFragment)findFragmentByPosition(index);
-    }
-    public void addChildToList(ArrayList<DialogOption> dialogOptionslist,Map<String,TreeNode<String, Location>> locationMap){
-        for(Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
-
-            if(entry.getValue().getChildren() != null) {
-                addChildToList(dialogOptionslist,entry.getValue().getChildren());
-
-            }else{
-                StringUtil.humanize(entry.getValue().getLabel());
-                String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"existing_Mauzapara",name));
-
-            }
-        }
     }
 
     public void retrieveAndSaveUnsubmittedFormData(){

@@ -27,6 +27,7 @@ import org.ei.opensrp.indonesia.R;
 
 import org.ei.opensrp.indonesia.kartu_ibu.KIDetailActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.AlertDTO;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -139,6 +140,10 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.follow_up.setOnClickListener(onClickListener);
 
         viewHolder.hr_badge.setVisibility(View.INVISIBLE);
+
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(pc);
+
         if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
                 || pc.getDetails().get("highRiskEctopicPregnancy")!=null && pc.getDetails().get("highRiskEctopicPregnancy").equals("yes")
                 || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && pc.getDetails().get("highRiskDidneyDisorder").equals("yes")
@@ -165,9 +170,9 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
 
         viewHolder.wife_name.setText(pc.getColumnmaps().get("namalengkap")!=null?pc.getColumnmaps().get("namalengkap"):"");
         viewHolder.husband_name.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");
-        viewHolder.village_name.setText(pc.getDetails().get("desa")!=null?pc.getDetails().get("desa"):"");
+        viewHolder.village_name.setText(pc.getDetails().get("address1")!=null?pc.getDetails().get("address1"):"");
         viewHolder.wife_age.setText(pc.getColumnmaps().get("umur")!=null?pc.getColumnmaps().get("umur"):"");
-        viewHolder.no_ibu.setText(pc.getColumnmaps().get("noIbu")!=null?pc.getColumnmaps().get("noIbu"):"");
+        viewHolder.no_ibu.setText(pc.getDetails().get("noIbu")!=null?pc.getDetails().get("noIbu"):"");
 
         viewHolder.gravida.setText(pc.getDetails().get("gravida")!=null?pc.getDetails().get("gravida"):"-");
         viewHolder.parity.setText(pc.getDetails().get("partus")!=null?pc.getDetails().get("partus"):"-");
@@ -185,9 +190,9 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
         viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
 
-        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
+/*        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
         if(pc.getColumnmaps().get("ibu.id") != null) {
-            final CommonPersonObject ibuparent = iburep.findByCaseID(pc.getColumnmaps().get("ibu.id"));
+            final CommonPersonObject ibuparent = iburep.findByCaseID(pc.getColumnmaps().get("ibu.id"));*//*
 
             //Risk flag
             if (ibuparent.getDetails().get("highRiskPregnancyPIH") != null && ibuparent.getDetails().get("highRiskPregnancyPIH").equals("yes")
@@ -205,7 +210,7 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
                     || ibuparent.getDetails().get("highRiskLabourTBRisk") != null && ibuparent.getDetails().get("highRiskLabourTBRisk").equals("yes")) {
                 viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
             }
-        }
+        }*/
 
         viewHolder.follow_due.setText("");
         viewHolder.follow_up_due.setText("");

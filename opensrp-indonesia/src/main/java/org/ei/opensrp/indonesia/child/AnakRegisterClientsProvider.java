@@ -21,6 +21,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.kartu_ibu.KIDetailActivity;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.contract.SmartRegisterClients;
@@ -127,13 +128,17 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         viewHolder.follow_up.setOnClickListener(onClickListener);
         //set image
         //set image
+
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(pc);
+
         final ImageView childview = (ImageView)convertView.findViewById(R.id.img_profile);
         if (pc.getDetails().get("profilepic") != null) {
             AnakDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), childview, R.mipmap.child_boy);
             childview.setTag(smartRegisterClient);
         }
         else {
-            if(pc.getDetails().get("jenisKelamin").equals("laki")) {
+            if(pc.getDetails().get("gender") != null && pc.getDetails().get("gender").equals("laki")) {
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
             }
             else
@@ -153,7 +158,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
 
 
         //immunization
-        if(pc.getDetails().get("tanggalpemberianimunisasiHb07")!=null){
+        if(pc.getDetails().get("hb0")!=null){
             viewHolder.hb0_no.setVisibility(View.INVISIBLE);
             viewHolder.hb0_yes.setVisibility(View.VISIBLE);
         } else {
@@ -161,7 +166,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.hb0_yes.setVisibility(View.INVISIBLE);
         }
 
-        if(pc.getDetails().get("tanggalpemberianimunisasiBCGdanPolio1")!=null){
+        if(pc.getDetails().get("polio1")!=null || pc.getDetails().get("bcg")!=null){
             viewHolder.pol1_no.setVisibility(View.INVISIBLE);
             viewHolder.pol1_yes.setVisibility(View.VISIBLE);
         } else {
@@ -169,7 +174,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.pol1_yes.setVisibility(View.INVISIBLE);
         }
 
-        if(pc.getDetails().get("tanggalpemberianimunisasiDPTHB1Polio2")!=null){
+        if(pc.getDetails().get("dptHb1")!=null || pc.getDetails().get("polio2")!=null){
             viewHolder.pol2_no.setVisibility(View.INVISIBLE);
             viewHolder.pol2_yes.setVisibility(View.VISIBLE);
         } else {
@@ -177,7 +182,7 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.pol2_yes.setVisibility(View.INVISIBLE);
         }
 
-        if(pc.getDetails().get("tanggalpemberianimunisasiDPTHB2Polio3")!=null){
+        if(pc.getDetails().get("dptHb2")!=null || pc.getDetails().get("polio3")!=null){
             viewHolder.pol3_no.setVisibility(View.INVISIBLE);
             viewHolder.pol3_yes.setVisibility(View.VISIBLE);
         } else {
@@ -185,41 +190,45 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.pol3_yes.setVisibility(View.INVISIBLE);
         }
 
-        String berat = pc.getDetails().get("beratBadanBayiSetiapKunjunganBayiPerbulan")!=null?" "+pc.getDetails().get("beratBadanBayiSetiapKunjunganBayiPerbulan"):"";
-        String tanggal = pc.getDetails().get("tanggalKunjunganBayiPerbulan")!=null?" "+pc.getDetails().get("tanggalKunjunganBayiPerbulan"):"";
-        String tinggi = pc.getDetails().get("hasilPengukuranTinggiBayi")!=null?" "+pc.getDetails().get("hasilPengukuranTinggiBayi"):"";
+        String berat = pc.getDetails().get("beratBayi")!=null?" "+pc.getDetails().get("beratBayi"):"";
+        String tanggal = pc.getDetails().get("tanggalKunjunganNeonatal")!=null?" "+pc.getDetails().get("tanggalKunjunganNeonatal"):"";
+        String tinggi = pc.getDetails().get("panjangBayi")!=null?" "+pc.getDetails().get("panjangBayi"):"";
         String status_gizi = pc.getDetails().get("statusGizi")!=null?pc.getDetails().get("statusGizi"):"";
-      //  String gizi = status_gizi.equals("GB")?"Gizi Buruk":status_gizi.equals("GK")?"Gizi Kurang":status_gizi.equals("GR")?"Gizi Rendah":"";
+        String gizi = status_gizi.equals("GB")?"Gizi Buruk":status_gizi.equals("GK")?"Gizi Kurang":status_gizi.equals("GR")?"Gizi Rendah":"";
         viewHolder.berat_badan.setText(context.getString(R.string.str_weight)+": "+berat);
         viewHolder.tanggal_kunjungan_anc.setText(context.getString(R.string.date_visit_title)+" "+tanggal);
         viewHolder.tinggi.setText(context.getString(R.string.height)+" "+tinggi);
-        viewHolder.status_gizi.setText(context.getString(R.string.Nutrition_status)+" "+ status_gizi);
+        viewHolder.status_gizi.setText(context.getString(R.string.Nutrition_status)+" "+ gizi);
 
-        AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("anak");
+        AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_anak");
         CommonPersonObject childobject = childRepository.findByCaseID(pc.entityId());
+        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
+        final CommonPersonObject ibuparent = iburep.findByCaseID(childobject.getColumnmaps().get("relational_id"));
 
-        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
-        final CommonPersonObject ibuparent = iburep.findByCaseID(childobject.getColumnmaps().get("ibuCaseId"));
+        detailsRepository.updateDetails(ibuparent);
+
         String tempat = ibuparent.getDetails().get("tempatBersalin")!=null?ibuparent.getDetails().get("tempatBersalin"):"";
 
         viewHolder.tempat_lahir.setText(tempat.equals("podok_bersalin_desa")?"POLINDES":tempat.equals("pusat_kesehatan_masyarakat_pembantu")?"Puskesmas pembantu":tempat.equals("pusat_kesehatan_masyarakat")?"Puskesmas":humanize(tempat));
 
-        AllCommonsRepository kirep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
-        final CommonPersonObject kiparent = kirep.findByCaseID(ibuparent.getColumnmaps().get("kartuIbuId"));
+        AllCommonsRepository kirep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_kartu_ibu");
+        final CommonPersonObject kiparent = kirep.findByCaseID(ibuparent.getColumnmaps().get("base_entity_id"));
 
-        String namaayah = kiparent.getDetails().get("namaSuami")!=null?kiparent.getDetails().get("namaSuami"):"";
-        String namaibu = kiparent.getColumnmaps().get("namalengkap")!=null?kiparent.getColumnmaps().get("namalengkap"):"";
+        if(kiparent != null) {
+            detailsRepository.updateDetails(kiparent);
+            String namaayah = kiparent.getDetails().get("namaSuami") != null ? kiparent.getDetails().get("namaSuami") : "";
+            String namaibu = kiparent.getColumnmaps().get("namalengkap") != null ? kiparent.getColumnmaps().get("namalengkap") : "";
 
-          viewHolder.mother_name.setText(namaibu +","+ namaayah);
-           viewHolder.village_name.setText(kiparent.getDetails().get("desa")!=null?kiparent.getDetails().get("desa"):"");
-            viewHolder.no_ibu.setText(kiparent.getDetails().get("noIbu")!=null?kiparent.getDetails().get("noIbu"):"");
-
+            viewHolder.mother_name.setText(namaibu + "," + namaayah);
+            viewHolder.village_name.setText(kiparent.getDetails().get("address1") != null ? kiparent.getDetails().get("address1") : "");
+            viewHolder.no_ibu.setText(kiparent.getDetails().get("noBayi") != null ? kiparent.getDetails().get("noBayi") : "");
+        }
 
         String childAge = childobject.getColumnmaps().get("tanggalLahirAnak")!=null?childobject.getColumnmaps().get("tanggalLahirAnak"):"-";
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         if(childobject.getColumnmaps().get("tanggalLahirAnak")!=null) {
-            String age = childAge;
+            String age = childAge.substring(0, childAge.indexOf("T"));
             DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
             LocalDate dates = parse(age, formatter).toLocalDate();
             LocalDate dateNow = LocalDate.now();
@@ -274,49 +283,13 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
 
     class ViewHolder {
 
-        TextView wife_name ;
-        TextView husband_name ;
         TextView village_name;
-        TextView wife_age;
         LinearLayout profilelayout;
         ImageView profilepic;
-        TextView gravida;
-        Button warnbutton;
         ImageButton follow_up;
-        TextView parity;
-        TextView number_of_abortus;
-        TextView number_of_alive;
         TextView no_ibu;
-        TextView unique_id;
-        TextView tanggal_bersalin;
-        TextView tempat_persalinan;
-        TextView dok_tipe;
-        TextView ki_lila_bb;
-        TextView beratbadan_tb;
-        TextView anc_penyakit_kronis;
-        TextView status_type;
-        TextView status_date;
-        TextView alert_status;
-        RelativeLayout status_layout;
          TextView tanggal_kunjungan_anc;
-         TextView anc_number;
-         TextView kunjugan_ke;
-         ImageView hr_badge  ;
          ImageView hp_badge;
-         ImageView hrpp_badge;
-         ImageView bpl_badge;
-         ImageView hrp_badge;
-        ImageView img_hrl_badge;
-
-
-         TextView komplikasi;
-         TextView kondisi_ibu;
-         TextView kondisi_anak_1;
-         TextView kondisi_anak_2;
-        TextView pnc_id;
-         TextView td_sistolik;
-         TextView td_diastolik;
-         TextView td_suhu;
          TextView childs_age;
          TextView mother_name;
         TextView childs_name;
@@ -332,7 +305,6 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
          ImageView pol2_yes;
          ImageView pol3_no;
          ImageView pol3_yes;
-
          TextView berat_badan;
          TextView tinggi;
         TextView status_gizi;

@@ -9,6 +9,8 @@ public class AllConstants {
     public static final String INDICATOR = "indicator";
     public static final String CASE_ID = "caseId";
     public static final String APP_NAME_INDONESIA = "OpenSRPIndonesia";
+    public static final String DATABASE_NAME="drishti.db";
+    public static final int DATABASE_VERSION=1;
 
     public static final String LANGUAGE_PREFERENCE_KEY = "locale";
     public static final String ENGLISH_LOCALE = "en";
@@ -316,5 +318,32 @@ public class AllConstants {
         public static final String DELIVERY_FACILITY_HOME_VALUE = "home";
         public static final String DELIVERY_FACILITY_SDH_VALUE = "sdh";
         public static final String DELIVERY_FACILITY_DH_VALUE = "dh";
+    }
+    public static final String DATASTORE_MANAGER_DIR = "data";
+
+    public static class CloudantSync {
+
+        public static final String ACTION_DATABASE_CREATED = "org.ei.opensrp.DATABASE_CREATED_ACTION";
+        public static final String ACTION_REPLICATION_ERROR = "org.ei.opensrp.REPLICATION_ERROR_ACTION";
+        public static final String ACTION_REPLICATION_COMPLETED = "org.ei.opensrp.REPLICATION_COMPLETED_ACTION";
+        public static final String REPLICATION_ERROR = "REPLICATION_ERROR";
+        public static final String DOCUMENTS_REPLICATED = "DOCUMENTS_REPLICATED";
+        public static final String BATCHES_REPLICATED = "BATCHES_REPLICATED";
+        public static final String COUCHDB_PORT = "5984";
+        public static final String COUCH_DATABASE_NAME = "test_db_bidan1";
+
+
+
+    }
+    public static class SyncFilters {
+        // These pull filters must be defined in your couchDB server for them to work
+        // Filters
+        public static final String FILTER_LOCATION_ID = "locationId";
+        public static final String FILTER_PROVIDER = "providerId";
+
+        //filter by team e.g. team = user1,user2,user3
+        public static final String FILTER_TEAM = "team";
+
+
     }
 }

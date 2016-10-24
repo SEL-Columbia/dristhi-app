@@ -23,6 +23,7 @@ import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.indonesia.R;
 import org.ei.opensrp.indonesia.kartu_ibu.KIDetailActivity;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.util.DateUtil;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -38,6 +39,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.joda.time.LocalDateTime.parse;
@@ -128,52 +130,60 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.follow_up.setOnClickListener(onClickListener);
         //set image
 
+        AllCommonsRepository allancRepository =  org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
+        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
+
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.entityId());
+        details.putAll(ancobject.getColumnmaps());
+
+        if(pc.getDetails() != null) {
+            pc.getDetails().putAll(details);
+        }else{
+            pc.setDetails(details);
+        }
 
 
-        String KunjunganKe = pc.getDetails().get("kunjunganKe")!=null?pc.getDetails().get("kunjunganKe"):"-";
 
-        AllCommonsRepository kiRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ibu");
 
-        CommonPersonObject kiobject = kiRepository.findByCaseID(pc.entityId());
-
-        AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("kartu_ibu");
-        final CommonPersonObject ibuparent = iburep.findByCaseID(kiobject.getColumnmaps().get("kartuIbuId"));
 
         viewHolder.hr_badge.setVisibility(View.INVISIBLE);
         viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
         viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
 
-        if(ibuparent.getDetails().get("highRiskSTIBBVs")!=null && ibuparent.getDetails().get("highRiskSTIBBVs").equals("yes")
-                || ibuparent.getDetails().get("highRiskEctopicPregnancy")!=null && ibuparent.getDetails().get("highRiskEctopicPregnancy").equals("yes")
-                || ibuparent.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && ibuparent.getDetails().get("highRiskDidneyDisorder").equals("yes")
-                || ibuparent.getDetails().get("highRiskDidneyDisorder")!=null && ibuparent.getDetails().get("highRiskHeartDisorder").equals("yes")
-                || ibuparent.getDetails().get("highRiskHeartDisorder")!=null && ibuparent.getDetails().get("highRiskAsthma").equals("yes")
-                || ibuparent.getDetails().get("highRiskAsthma")!=null && ibuparent.getDetails().get("highRiskTuberculosis").equals("yes")
-                || ibuparent.getDetails().get("highRiskTuberculosis")!=null && ibuparent.getDetails().get("highRiskMalaria").equals("yes")
-                || ibuparent.getDetails().get("highRiskMalaria")!=null && ibuparent.getDetails().get("highRiskMalaria").equals("yes") )
+        if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
+                || pc.getDetails().get("highRiskEctopicPregnancy")!=null && pc.getDetails().get("highRiskEctopicPregnancy").equals("yes")
+                || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && pc.getDetails().get("highRiskDidneyDisorder").equals("yes")
+                || pc.getDetails().get("highRiskDidneyDisorder")!=null && pc.getDetails().get("highRiskHeartDisorder").equals("yes")
+                || pc.getDetails().get("highRiskHeartDisorder")!=null && pc.getDetails().get("highRiskAsthma").equals("yes")
+                || pc.getDetails().get("highRiskAsthma")!=null && pc.getDetails().get("highRiskTuberculosis").equals("yes")
+                || pc.getDetails().get("highRiskTuberculosis")!=null && pc.getDetails().get("highRiskMalaria").equals("yes")
+                || pc.getDetails().get("highRiskMalaria")!=null && pc.getDetails().get("highRiskMalaria").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyYoungMaternalAge")!=null && pc.getDetails().get("highRiskPregnancyYoungMaternalAge").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyOldMaternalAge")!=null && pc.getDetails().get("highRiskPregnancyOldMaternalAge").equals("yes") )
         {
             viewHolder.hr_badge.setVisibility(View.VISIBLE);
         }
-        if(kiobject.getDetails().get("highRiskPregnancyPIH")!=null && kiobject.getDetails().get("highRiskPregnancyPIH").equals("yes")
-                || kiobject.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")!=null && kiobject.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")
-                || kiobject.getDetails().get("highRiskPregnancyPIH")!=null && kiobject.getDetails().get("highRiskPregnancyPIH").equals("yes")
-                || kiobject.getDetails().get("highRiskPregnancyDiabetes")!=null && kiobject.getDetails().get("highRiskPregnancyDiabetes").equals("yes")
-                || kiobject.getDetails().get("highRiskPregnancyAnemia")!=null && kiobject.getDetails().get("highRiskPregnancyAnemia").equals("yes") )
+        if(pc.getDetails().get("highRiskPregnancyPIH")!=null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition")!=null && pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyPIH")!=null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyDiabetes")!=null && pc.getDetails().get("highRiskPregnancyDiabetes").equals("yes")
+                || pc.getDetails().get("highRiskPregnancyAnemia")!=null && pc.getDetails().get("highRiskPregnancyAnemia").equals("yes") )
         {
             viewHolder.hrp_badge.setVisibility(View.VISIBLE);
         }
-        if(kiobject.getDetails().get("highRiskLabourFetusMalpresentation")!=null && kiobject.getDetails().get("highRiskLabourFetusMalpresentation").equals("yes")
-                || kiobject.getDetails().get("highRiskLabourFetusSize")!=null && kiobject.getDetails().get("highRiskLabourFetusSize").equals("yes")
-                || kiobject.getDetails().get("highRisklabourFetusNumber")!=null && kiobject.getDetails().get("highRisklabourFetusNumber").equals("yes")
-                || kiobject.getDetails().get("HighRiskLabourSectionCesareaRecord")!=null && kiobject.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")
-                || ibuparent.getDetails().get("highRiskLabourTBRisk") != null && ibuparent.getDetails().get("highRiskLabourTBRisk").equals("yes") )
+        if(pc.getDetails().get("highRiskLabourFetusMalpresentation")!=null && pc.getDetails().get("highRiskLabourFetusMalpresentation").equals("yes")
+                || pc.getDetails().get("highRiskLabourFetusSize")!=null && pc.getDetails().get("highRiskLabourFetusSize").equals("yes")
+                || pc.getDetails().get("highRisklabourFetusNumber")!=null && pc.getDetails().get("highRisklabourFetusNumber").equals("yes")
+                || pc.getDetails().get("HighRiskLabourSectionCesareaRecord")!=null && pc.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")
+                || pc.getDetails().get("highRiskLabourTBRisk") != null && pc.getDetails().get("highRiskLabourTBRisk").equals("yes") )
         {
             viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
         }
 
         final ImageView kiview = (ImageView)convertView.findViewById(R.id.img_profile);
-        if (ibuparent.getDetails().get("profilepic") != null) {
-            ANCDetailActivity.setImagetoHolderFromUri((Activity) context, ibuparent.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
+        if (pc.getDetails().get("profilepic") != null) {
+            ANCDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), kiview, R.mipmap.woman_placeholder);
             kiview.setTag(smartRegisterClient);
         }
         else {
@@ -182,18 +192,18 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         }
 
-        viewHolder.wife_name.setText(ibuparent.getColumnmaps().get("namalengkap")!=null?ibuparent.getColumnmaps().get("namalengkap"):"");
-        viewHolder.husband_name.setText(ibuparent.getColumnmaps().get("namaSuami")!=null?ibuparent.getColumnmaps().get("namaSuami"):"");
-        viewHolder.village_name.setText(ibuparent.getDetails().get("desa")!=null?ibuparent.getDetails().get("desa"):"");
-        viewHolder.wife_age.setText(ibuparent.getColumnmaps().get("umur")!=null?ibuparent.getColumnmaps().get("umur"):"");
-        viewHolder.no_ibu.setText(ibuparent.getColumnmaps().get("noIbu")!=null?ibuparent.getColumnmaps().get("noIbu"):"");
-        viewHolder.unique_id.setText(ibuparent.getDetails().get("unique_id")!=null?ibuparent.getDetails().get("unique_id"):"");
+        viewHolder.wife_name.setText(pc.getColumnmaps().get("namalengkap")!=null?pc.getColumnmaps().get("namalengkap"):"");
+        viewHolder.husband_name.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");
+        viewHolder.village_name.setText(pc.getDetails().get("address1")!=null?pc.getDetails().get("address1"):"");
+        viewHolder.wife_age.setText(pc.getColumnmaps().get("umur")!=null?pc.getColumnmaps().get("umur"):"");
+        viewHolder.no_ibu.setText(pc.getDetails().get("noIbu")!=null?pc.getDetails().get("noIbu"):"");
+        viewHolder.unique_id.setText(pc.getDetails().get("nik")!=null?pc.getDetails().get("nik"):"");
 
         viewHolder.usia_klinis.setText(pc.getDetails().get("usiaKlinis")!=null?context.getString(R.string.usia)+pc.getDetails().get("usiaKlinis")+context.getString(R.string.str_weeks):"-");
-        viewHolder.htpt.setText(ibuparent.getColumnmaps().get("htp")!=null?ibuparent.getColumnmaps().get("htp"):"-");
+        viewHolder.htpt.setText(pc.getDetails().get("htp")!=null?pc.getDetails().get("htp"):"-");
 
-        String edd = ibuparent.getColumnmaps().get("htp");
-        if(StringUtils.isNotBlank(ibuparent.getColumnmaps().get("htp"))) {
+        String edd = pc.getDetails().get("htp");
+        if(StringUtils.isNotBlank(pc.getDetails().get("htp"))) {
             String _edd = edd;
             String _dueEdd = "";
             DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
@@ -226,8 +236,9 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
 
         viewHolder.beratbadan_tb.setText(pc.getDetails().get("bbKg")!=null?pc.getDetails().get("bbKg"):"-");
 
-        String AncDate = kiobject.getColumnmaps().get("ancDate")!=null?kiobject.getColumnmaps().get("ancDate"):"-";
-        String AncKe = kiobject.getColumnmaps().get("ancKe")!=null?kiobject.getColumnmaps().get("ancKe"):"-";
+        String AncDate = pc.getDetails().get("ancDate")!=null?pc.getDetails().get("ancDate"):"-";
+        String AncKe = pc.getDetails().get("ancKe")!=null?pc.getDetails().get("ancKe"):"-";
+        String KunjunganKe = pc.getDetails().get("kunjunganKe")!=null?pc.getDetails().get("kunjunganKe"):"-";
 
         viewHolder.tanggal_kunjungan_anc.setText(context.getString(R.string.last_visit_date)+ AncDate);
         viewHolder.anc_number.setText(context.getString(R.string.anc_ke) + AncKe);

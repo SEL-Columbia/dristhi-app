@@ -27,6 +27,7 @@ import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
 import org.ei.opensrp.mcare.anc.mCareAncDetailActivity;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
+import org.ei.opensrp.mcare.elco.ElcoSearchOption;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -304,7 +305,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                             filters = cs.toString();
                         }
                         joinTable = "";
-                        mainCondition = "(Is_PNC is null or Is_PNC = '0') and FWWOMFNAME not null and FWWOMFNAME != \"\"   AND details  LIKE '%\"FWWOMVALID\":\"1\"%'";
+                        mainCondition = " is_closed=0 AND FWWOMFNAME not null and FWWOMFNAME != \"\" ";
                         return null;
                     }
 
@@ -340,7 +341,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name", name));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name", name, "ec_elco"));
 
             }
         }
@@ -366,39 +367,47 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         }
     }
     public String ancMainSelectWithJoins(){
-        return "Select id as _id,relationalid,details,FWWOMFNAME,FWPSRLMP,FWSORTVALUE,JiVitAHHID,GOBHHID,Is_PNC,FWBNFSTS,FWBNFDTOO \n" +
-                "from mcaremother\n" +
-                "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
-                "Left Join alerts as alerts2 on alerts2.caseID = mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
+        return "Select ec_elco.id as _id, ec_mcaremother.relationalid,ec_elco.FWWOMNID,ec_elco.FWWOMBID, ec_elco.FWWOMFNAME, ec_elco.FWWOMMAUZA_PARA as mauza, ec_mcaremother.FWPSRLMP, ec_elco.JiVitAHHID, ec_elco.GOBHHID \n" +
+                "from ec_mcaremother Left Join ec_elco on  ec_mcaremother.id = ec_elco.id \n" +
+                "Left Join alerts on alerts.caseID = ec_mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
+                "Left Join alerts as alerts2 on alerts2.caseID = ec_mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
     public String ancMainCountWithJoins(){
         return "Select Count(*) \n" +
-                "from mcaremother\n" +
-                "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
-                "Left Join alerts as alerts2 on alerts2.caseID = mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
+                "from ec_mcaremother Left Join ec_elco on  ec_mcaremother.id = ec_elco.id\n" +
+                "Left Join alerts on alerts.caseID = ec_mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
+                "Left Join alerts as alerts2 on alerts2.caseID = ec_mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
     public void initializeQueries(){
-        mCareANCSmartClientsProvider hhscp = new mCareANCSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, hhscp, new CommonRepository("mcaremother",new String []{"FWWOMFNAME","FWPSRLMP","FWSORTVALUE","JiVitAHHID","GOBHHID","Is_PNC","FWBNFSTS","FWBNFDTOO"}));
-        clientsView.setAdapter(clientAdapter);
+        try {
+            mCareANCSmartClientsProvider hhscp = new mCareANCSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, hhscp, new CommonRepository("ec_mcaremother",new String []{"FWWOMFNAME","FWWOMNID","mauza","FWPSRLMP","JiVitAHHID","GOBHHID"}));
+            clientsView.setAdapter(clientAdapter);
 
-        setTablename("mcaremother");
-        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
-        countSelect = countqueryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
-        mainCondition = "(Is_PNC is null or Is_PNC = '0') and FWWOMFNAME not null and FWWOMFNAME != \"\"   AND details  LIKE '%\"FWWOMVALID\":\"1\"%'";
-        super.CountExecute();
+            setTablename("ec_mcaremother");
+            SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
+            mainCondition = " is_closed=0 AND FWWOMFNAME not null and FWWOMFNAME != \"\" ";
+            joinTable = "";
+            countSelect = countqueryBUilder.mainCondition(" ec_mcaremother.is_closed=0 AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
+            super.CountExecute();
 
-        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
-        mainSelect = queryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
-        Sortqueries = sortBySortValue();
+            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
+            mainSelect = queryBUilder.mainCondition(" ec_mcaremother.is_closed=0 AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
+            Sortqueries = sortByFWWOMFNAME();
 
-        currentlimit = 20;
-        currentoffset = 0;
+            currentlimit = 20;
+            currentoffset = 0;
 
-        super.filterandSortInInitializeQueries();
+            super.filterandSortInInitializeQueries();
 
-        updateSearchView();
-        refresh();
+            updateSearchView();
+            refresh();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+
+        }
 
     }
     private String sortBySortValue(){

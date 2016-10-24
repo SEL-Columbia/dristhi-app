@@ -15,6 +15,7 @@ import org.ei.opensrp.indonesia.lib.FlurryFacade;
 import org.ei.opensrp.indonesia.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.dialog.DialogOption;
@@ -94,7 +95,6 @@ public class NativeKIAnakSmartRegisterActivity extends SecuredNativeSmartRegiste
     @Override
     protected void setupViews() {
 
-
     }
 
     @Override
@@ -118,15 +118,13 @@ public class NativeKIAnakSmartRegisterActivity extends SecuredNativeSmartRegiste
                 new OpenFormOption(getString(R.string.str_anak_neonatal), BAYI_NEONATAL_PERIOD, formController),
                 new OpenFormOption(getString(R.string.str_anak_bayi_visit), KOHORT_BAYI_KUNJUNGAN, formController),
                 new OpenFormOption(getString(R.string.str_anak_balita_visit), BALITA_KUNJUNGAN, formController),
-                new OpenFormOption(getString(R.string.str_anak_edit), KOHORT_BAYI_EDIT, formController),
+          //      new OpenFormOption(getString(R.string.str_anak_edit), KOHORT_BAYI_EDIT, formController),
                 new OpenFormOption(getString(R.string.str_child_immunizations), BAYI_IMUNISASI, formController),
                 new OpenFormOption(getString(R.string.str_child_close), KARTU_IBU_ANAK_CLOSE, formController),
             //    new OpenFormOption(getString(R.string.str_tutup_anak),
              //           BAYI_IMUNISASI, formController),
 
         };
-
-
     }
 
     @Override
@@ -136,11 +134,11 @@ public class NativeKIAnakSmartRegisterActivity extends SecuredNativeSmartRegiste
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
-
             ziggyService.saveForm(getParams(submission), submission.instance());
+            ClientProcessor.getInstance(getApplicationContext()).processClient();
 
             context.formSubmissionService().updateFTSsearch(submission);
-
+            context.formSubmissionRouter().handleSubmission(submission, formName);
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
@@ -232,10 +230,8 @@ public class NativeKIAnakSmartRegisterActivity extends SecuredNativeSmartRegiste
         formNames.add(BAYI_NEONATAL_PERIOD);
         formNames.add(KOHORT_BAYI_KUNJUNGAN);
         formNames.add(BALITA_KUNJUNGAN);
-        formNames.add(KOHORT_BAYI_EDIT);
         formNames.add(KARTU_IBU_ANAK_CLOSE);
         formNames.add(BAYI_IMUNISASI);
-     //   formNames.add(KARTU_IBU_ANC_CLOSE);
 
     //    DialogOption[] options = getEditOptions();
       //  for (int i = 0; i < options.length; i++) {

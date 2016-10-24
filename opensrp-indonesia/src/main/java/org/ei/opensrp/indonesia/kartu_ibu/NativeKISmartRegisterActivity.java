@@ -21,6 +21,7 @@ import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.service.FormSubmissionService;
 import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.dialog.DialogOption;
@@ -119,9 +120,9 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     public DialogOption[] getEditOptions() {
         return new DialogOption[]{
-                new OpenFormOption("Registrasi KB ", "kohort_kb_pelayanan", formController),
+                new OpenFormOption(getString(R.string.str_register_fp_form), "kohort_kb_pelayanan", formController),
                 new OpenFormOption(getString(R.string.str_register_anc_form), "kartu_anc_registration", formController),
-                new OpenFormOption("Edit Kartu Ibu ", KARTU_IBU_EDIT, formController),
+               // new OpenFormOption("Edit Kartu Ibu ", KARTU_IBU_EDIT, formController),
                 new OpenFormOption("Kartu Ibu Close ", KARTU_IBU_CLOSE, formController),
 
         };
@@ -154,6 +155,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
             startFormActivity(KARTU_IBU_REGISTRATION, null, fieldOverrides.getJSONString());
         }
     }
+
     @Override
     public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         Log.v("fieldoverride", fieldOverrides.toString());
@@ -161,11 +163,11 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
-
             ziggyService.saveForm(getParams(submission), submission.instance());
+            ClientProcessor.getInstance(getApplicationContext()).processClient();
 
             context.formSubmissionService().updateFTSsearch(submission);
-
+            context.formSubmissionRouter().handleSubmission(submission, formName);
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
@@ -257,7 +259,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
         formNames.add(KARTU_IBU_REGISTRATION);
         formNames.add("kohort_kb_pelayanan");
         formNames.add("kartu_anc_registration");
-        formNames.add(KARTU_IBU_EDIT);
+      //  formNames.add(KARTU_IBU_EDIT);
         formNames.add(KARTU_IBU_CLOSE);
 
         DialogOption[] options = getEditOptions();

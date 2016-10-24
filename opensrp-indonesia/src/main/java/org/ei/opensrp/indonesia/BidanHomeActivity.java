@@ -155,30 +155,27 @@ public class BidanHomeActivity extends SecuredActivity {
 
     private void updateRegisterCounts(HomeContext homeContext) {
         SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
-        Cursor kicountcursor = context.commonrepository("kartu_ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("kartu_ibu", "kartu_ibu.isClosed NOT Null and kartu_ibu.isClosed != ''"));
+        Cursor kicountcursor = context.commonrepository("ec_kartu_ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_kartu_ibu_search", "ec_kartu_ibu_search.is_closed=0"));
         kicountcursor.moveToFirst();
         kicount= kicountcursor.getInt(0);
         kicountcursor.close();
 
-        Cursor kbcountcursor = context.commonrepository("kartu_ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("kartu_ibu", "kartu_ibu.isClosed NOT Null and kartu_ibu.isClosed != '' and details not LIKE '%\"jenisKontrasepsi\":\"\"%'"));
+        Cursor kbcountcursor = context.commonrepository("ec_kartu_ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_kartu_ibu_search", "ec_kartu_ibu_search.is_closed=0 and jenisKontrasepsi !='0'" ));
         kbcountcursor.moveToFirst();
         kbcount= kbcountcursor.getInt(0);
         kbcountcursor.close();
 
-
-        Cursor anccountcursor = context.commonrepository("ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ibu", "ibu.isClosed !='true' and ibu.type ='anc'"));
+        Cursor anccountcursor = context.commonrepository("ec_ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_ibu_search", "ec_ibu_search.is_closed=0 and ec_ibu_search.pptest ='Positive'"));
         anccountcursor.moveToFirst();
         anccount= anccountcursor.getInt(0);
         anccountcursor.close();
 
-
-        Cursor pnccountcursor = context.commonrepository("ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ibu", "ibu.type NOT Null and ibu.type = 'pnc'"));
+        Cursor pnccountcursor = context.commonrepository("ec_pnc").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_pnc_search", "ec_pnc_search.is_closed=0 and ec_pnc_search.keadaanIbu ='hidup'"));
         pnccountcursor.moveToFirst();
         pnccount= pnccountcursor.getInt(0);
         pnccountcursor.close();
 
-
-        Cursor childcountcursor = context.commonrepository("anak").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("anak", "anak.isClosed = 'false'"));
+        Cursor childcountcursor = context.commonrepository("anak").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_anak_search", "ec_anak_search.is_closed=0"));
         childcountcursor.moveToFirst();
         childcount= childcountcursor.getInt(0);
         childcountcursor.close();

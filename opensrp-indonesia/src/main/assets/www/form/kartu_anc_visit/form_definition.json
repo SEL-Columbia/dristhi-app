@@ -1,7 +1,8 @@
 {
-  "form_data_definition_version": "1",
+  "form_data_definition_version": "3",
   "form": {
     "bind_type": "ibu",
+    "ec_bind_type": "ec_ibu",
     "default_bind_path": "/model/instance/kunjungan_anc_reviewed_anc_visit/",
     "fields": [
       {
@@ -14,6 +15,56 @@
         "source": "ibu.kartu_ibu.id"
       },
       {
+        "name": "Village",
+        "bind": "/model/instance/anc_registration/Village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Province",
+        "bind": "/model/instance/anc_registration/Province",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Sub-district",
+        "bind": "/model/instance/anc_registration/Sub-district",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "District",
+        "bind": "/model/instance/anc_registration/District",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "Sub-village",
+        "bind": "/model/instance/anc_registration/Sub-village",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "dusun",
+        "bind": "/model/instance/anc_registration/dusun",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "provinsi",
+        "bind": "/model/instance/anc_registration/provinsi",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kabupaten",
+        "bind": "/model/instance/anc_registration/kabupaten",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "kecamatan",
+        "bind": "/model/instance/anc_registration/kecamatan",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "desa",
+        "bind": "/model/instance/anc_registration/desa",
+        "shouldLoadValue": true
+      },
+      {
         "name": "lokasiPeriksa",
         "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/Lokasi_periksa"
       },
@@ -24,6 +75,10 @@
       {
         "name": "Keterangan_k1k4",
         "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4"
+      },
+      {
+        "name": "KeteranganK1k4Who",
+        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/Keterangan_k1k4_who"
       },
       {
         "name": "referenceDate",
@@ -48,7 +103,7 @@
       },
       {
         "name": "kunjunganKe",
-        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/Kunjungan_ke"
+        "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/kunjungan_ke"
       },
       {
         "name": "ancKe",

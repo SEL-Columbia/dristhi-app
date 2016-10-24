@@ -25,6 +25,7 @@ import org.ei.opensrp.mcare.child.ChildDetailActivity;
 import org.ei.opensrp.mcare.child.mCareChildServiceModeOption;
 import org.ei.opensrp.mcare.child.mCareChildSmartClientsProvider;
 import org.ei.opensrp.mcare.child.mCareChildSmartRegisterActivity;
+import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -316,7 +317,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new CursorCommonObjectFilterOption(name,"and mcaremother.details like '%"+name +"%'"));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name",name,"ec_elco"));
 
             }
         }
@@ -344,19 +345,19 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
         }
     }
     public void initializeQueries(){
-        mCareChildSmartClientsProvider hhscp = new mCareChildSmartClientsProvider(getActivity(), clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, hhscp, new CommonRepository("mcarechild",new String []{ "FWBNFGEN"}));
+        mCareChildSmartClientsProvider hhscp = new mCareChildSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, hhscp, new CommonRepository("ec_mcarechild",new String []{ "FWBNFGEN"}));
         clientsView.setAdapter(clientAdapter);
 
-        setTablename("mcarechild");
+        setTablename("ec_mcarechild");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(childMainCountWithJoins());
-        countSelect = countqueryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
+        countSelect = countqueryBUilder.mainCondition(" FWBNFGEN is not null ");
         mainCondition = " FWBNFGEN is not null ";
         super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(childMainSelectWithJoins());
-        mainSelect = queryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
-        Sortqueries = sortBySortValue();
+        mainSelect = queryBUilder.mainCondition(" FWBNFGEN is not null ");
+        Sortqueries = sortByFWWOMFNAME();
 
         currentlimit = 20;
         currentoffset = 0;
@@ -379,20 +380,23 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
                 "Else alerts.status END ASC";
     }
     public String childMainSelectWithJoins(){
-        return "Select mcarechild.id as _id,mcarechild.relationalid,mcarechild.details,mcarechild.FWBNFGEN \n" +
-                "from mcarechild\n" +
-                "Left Join mcaremother on mcarechild.relationalid = mcaremother.id \n" +
-                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist'";
+        return "Select ec_mcarechild.id as _id,ec_mcarechild.relational_id as relationalid,ec_mcarechild.details,ec_mcarechild.FWBNFGEN \n" +
+                " ,ec_elco.FWWOMFNAME,ec_elco.GOBHHID,ec_elco.FWHUSNAME,ec_elco.FWWOMBID,ec_elco.JiVitAHHID,hh.existing_mauzapara,ec_elco.FWWOMAGE,pnc.FWBNFDTOO,ec_elco.FWWOMNID from ec_mcarechild \n" +
+                "Left Join ec_elco on ec_mcarechild.relational_id = ec_elco.id \n" +
+                "Left Join ec_household hh on hh.id=ec_elco.relational_id "+
+                "Left Join ec_pnc pnc on pnc.id=ec_mcarechild.relational_id "+
+                "Left Join alerts on alerts.caseID = ec_mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and ec_mcarechild.is_closed=0";
     }
     public String childMainCountWithJoins() {
         return "Select Count(*) \n" +
-                "from mcarechild\n" +
-                "Left Join mcaremother on mcarechild.relationalid = mcaremother.id \n" +
-                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist'";
+                "from ec_mcarechild \n" +
+                "Left Join ec_elco on ec_mcarechild.relational_id = ec_elco.id \n" +
+                "Left Join alerts on alerts.caseID = ec_mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and ec_mcarechild.is_closed=0";
     }
 
     private String sortBySortValue(){
-        return " FWSORTVALUE ASC";
+       // return " FWSORTVALUE ASC";
+        return " ec_mcarechild.id ASC";
     }
     private String sortByFWWOMFNAME(){
         return " FWWOMFNAME ASC";
