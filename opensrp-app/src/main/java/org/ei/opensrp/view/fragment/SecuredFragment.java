@@ -41,6 +41,7 @@ public abstract class SecuredFragment extends Fragment {
     protected ANMController anmController;
     protected NavigationController navigationController;
     private String metaData;
+    private boolean isPaused;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,13 @@ public abstract class SecuredFragment extends Fragment {
         }
 
         onResumption();
+        isPaused = false;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        isPaused = true;
     }
 
     @Override
@@ -135,5 +143,9 @@ public abstract class SecuredFragment extends Fragment {
 
     private boolean hasMetadata() {
         return this.metaData != null && !this.metaData.equalsIgnoreCase("undefined");
+    }
+
+    public boolean isPaused() {
+        return isPaused;
     }
 }

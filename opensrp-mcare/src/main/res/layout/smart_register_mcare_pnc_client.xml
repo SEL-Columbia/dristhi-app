@@ -10,7 +10,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="2.5"
+        android:layout_weight="3"
         android:id="@+id/profile_info_layout">
 
         <FrameLayout
@@ -196,7 +196,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1.75">
+        android:layout_weight="1.5">
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:layout_width="match_parent"
@@ -306,7 +306,7 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1.5"
+        android:layout_weight="1.25"
         >
 
         <org.ei.opensrp.view.customControls.CustomFontTextView

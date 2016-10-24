@@ -18,8 +18,6 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':opensrp-app')
-    compile files('libs/FlurryAnalytics-6.0.0.jar')
-    compile files('libs/FlurryAnalytics-6.0.0.jar')
     compile('com.crashlytics.sdk.android:crashlytics:2.5.3@aar') {
         transitive = true;
     }
@@ -33,8 +31,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 21
 
-        versionCode 2
-        versionName "2.1"
+        versionCode 3
+        versionName "3.02"
 
         multiDexEnabled true
     }

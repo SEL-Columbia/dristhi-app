@@ -16,7 +16,7 @@
     <string name="form_back_confirm_dialog_title">Konfirmasi penutupan form</string>
     <string name="yes_button_label">Iya</string>
     <string name="no_button_label">Tidak</string>
-
+    <string name="anc_ke">ANC Ke:&#160;</string>
     <string name="sort_by_name_label_reverse">Nama (Z ke A)</string>
     <string name="sort_by_wife_age_label">Umur</string>
     <string name="sort_by_ec_number_label">EC Number</string>
@@ -85,8 +85,8 @@
     <string name="filter_by_out_of_area_label">O/A</string>
     <string name="filter_by_leave_the_place_label">L/P</string>
     <string name="ec_register_title_in_short">EC:</string>
-    <string name="ki_register_title_in_short">KI:</string>
-    <string name="kb_register_title_in_short">KB:</string>
+    <string name="ki_register_title_in_short">KI</string>
+    <string name="kb_register_title_in_short">KB</string>
 
     <string name="str_register_anc_form">Daftar ANC</string>
     <string name="str_register_kb_form">Daftar KB</string>
@@ -135,13 +135,14 @@
     <string name="header_tanda_vital">Tanda Vital</string>
     <string name="header_pemeriksaan">Pemeriksaan</string>
 
+    <string name="header_history_anc">Riwayat Kunjungan</string>
     <string name="str_delivery_at">Persalinan Di</string>
     <string name="videos_cannot_play_video_dialog_title">Tidak bisa memutar video.</string>
     <string name="videos_unknown_error_dialog_message">Tidak bisa memutar video dikarenakan kesalahan teknis.</string>
     <string name="videos_IEC_not_installed_dialog_message">Mohon pasang aplikasi IEC untuk memutar video.</string>
     <string name="str_side_effects">Efek Samping</string>
     <string name="str_pnc_close_form">Tutup PNC</string>
-    <string name="edd_label">"HTP : "</string>
+    <string name="edd_label">"HTP: "</string>
     <string name="fp_register_service_mode_all_methods"></string>
     <string name="header_kb_method">Kontrasepsi</string>
     <string name="header_last_service">Pelayanan</string>
@@ -258,8 +259,8 @@
     <string name="pentavalent_short">Pentav</string>
     <string name="header_birth_status">Status</string>
 
-    <string name="fp_register_title_in_short">FP:</string>
-    <string name="pnc_register_title_in_short">PNC:</string>
+    <string name="fp_register_title_in_short">FP</string>
+    <string name="pnc_register_title_in_short">PNC</string>
     <string name="header_side_effects">SIDE EFFECTS</string>
     <string name="header_followup_refill">FOLLOW UP/REFILL</string>
     <string name="header_fp_prioritization_risks">RISKS</string>
@@ -284,7 +285,7 @@
     <string name="fp_prioritization_one_child_service_mode">1 Child</string>
     <string name="fp_register_child_details">Anak:</string>
     <string name="str_due">"Due "</string>
-    <string name="fp_methods">FP Methods</string>
+    <string name="fp_methods">Jenis:&#160;</string>
     <string name="fp_prioritization">FP Prioritization</string>
     <string name="fp_prioritization_add_fp">Add FP</string>
     <string name="fp_prioritization_fp_videos">FP Videos</string>
@@ -294,30 +295,26 @@
     <string name="header_delivery_complications">COMPLICATIONS</string>
     <string name="header_pp_fp">PP FP</string>
     <string name="header_child">Anak</string>
-    <string name="header_days_pp">DAYS PP</string>
+    <string name="header_days"> &#160; Hari Lagi</string>
     <string name="header_first_seven_days">FIRST 7 DAYS</string>
     <string name="header_pnc_visits">PNC VISITS</string>
-
     <string name="pnc_register_service_mode_overview">Overview</string>
     <string name="pnc_register_service_mode_pnc_visits">PNC Visits</string>
-
     <string name="str_pnc_visit_form">PNC Visit</string>
     <string name="str_pnc_postpartum_family_planning_form">Postpartum family planning</string>
-
     <string name="str_referred">Referred</string>
     <string name="str_referral">referral</string>
     <string name="str_follow_up">follow-up</string>
     <string name="str_refill">refill</string>
     <string name="str_update">Update</string>
-
     <string name="anc_label">ANC:</string>
     <string name="hb_test_label">Hb Test</string>
     <string name="str_days_past_due">day (s) past due</string>
     <string name="lmp_label">LMP:</string>
-    <string name="str_weeks">weeks</string>
-    <string name="anc_register_title_in_short">ANC:</string>
+    <string name="str_weeks">&#160;Minggu</string>
+    <string name="anc_register_title_in_short">ANC</string>
     <string name="str_bp">BP</string>
-    <string name="str_weight">Wt.</string>
+    <string name="str_weight">Berat:</string>
     <string name="str_anc_search_hint">Search ANC Register</string>
     <string name="anc_service_mode_overview">Overview</string>
     <string name="anc_service_mode_anc_visits">ANC Visits</string>
@@ -348,13 +345,11 @@
     <string name="str_asha">Asha:</string>
     <string name="str_contact">Contact:</string>
     <string name="str_risks_reviewed">Risks reviewed:</string>
-
-    <string name="str_pnc_delivery_date">Date:</string>
+    <string name="str_pnc_delivery_date">Tgl:</string>
     <string name="str_pnc_delivery_place">Place:</string>
     <string name="str_pnc_delivery_type">Type:</string>
     <string name="str_pp_fp">PP FP</string>
     <string name="str_pnc_child_weight">Wt: %1$s kg</string>
-
     <string name="str_pnc_clause">PNC</string>
     <string name="str_pnc_circle_type_expected">expected</string>
     <string name="str_pnc_circle_type_actual">actual</string>
@@ -366,24 +361,20 @@
     <string name="str_child_illness_ari">ari</string>
     <string name="str_child_illness_sam">sam</string>
     <string name="str_pnc_visit_button_label">PNC Visit</string>
-
     <string name="header_imunisasi_hb07">Hb</string>
     <string name="header_imunisasi_bcg_polio1">BCG/Pol1</string>
     <string name="header_imunisasi_dpt_hb1_polio2">DPT/HB1/Pol2</string>
     <string name="header_imunisasi_dpt_hb2_polio3">DPT/HB2/Pol3</string>
     <string name="header_imunisasi_dpt_hb3_polio4">DPT/HB3/Pol4</string>
     <string name="header_imunisasi_campak">Campak</string>
-
-
     <string name="title_double_selection">"Pilih nama lagi"</string>
     <string name="title_app">"Bidan"</string>
-
     <string name="detail_subtitle">Daftar resiko yang dimiliki</string>
     <string name="risk_flags_subtitle">Daftar resiko yang dimiliki</string>
     <string name="risk_flags_title">Resiko</string>
 
     <string name="show_more_button">Lihat lebih...</string>
-
+    <string name="show_less_button">Sembunyikan  . . .</string>
     <string name="mother_already_registered">Ibu sudah terdaftar di ANC</string>
 
     <string name="anc_visit_integrasi">Kunjungan ANC Integrasi</string>
@@ -391,19 +382,100 @@
     <string name="months_away"> bulan lagi</string>
     <string name="this_month">bulan ini</string>
     <string name="delivered">sudah melahirkan</string>
-    <string name="mother_weight">Berat Badan :</string>
-    <string name="lila">LILA :</string>
+    <string name="mother_weight">Berat Badan:</string>
+    <string name="lila">LILA:</string>
     <string name="empty_string"></string>
-    <string name="edd_title">HTP :</string>
-    <string name="place_place">Tempat :</string>
-    <string name="plan_type">Tipe :</string>
-    <string name="mother_title">Ibu :</string>
-    <string name="child_title">Anak :</string>
-    <string name="dob_title">Tgl Lahir :</string>
-    <string name="birth_place_title">Tmpt :</string>
-    <string name="birth_weight_title">B.Lahir :</string>
-    <string name="date_visit_title">Tgl Kunjungan :</string>
+    <string name="edd_title">HTP:</string>
+    <string name="place_place">Tempat:</string>
+    <string name="plan_type">Tipe:</string>
+    <string name="mother_title">Ibu</string>
+    <string name="child_title">Anak</string>
+    <string name="dob_title">Tgl Lahir:</string>
+    <string name="birth_place_title">Tmpt:</string>
+    <string name="birth_weight_title">B.Lahir:</string>
+    <string name="date_visit_title">Tgl Kunjungan:</string>
     <string name="cohort_child">ANAK</string>
     <string name="cohort_mother">KOHORT IBU</string>
     <string name="cohort_fp">KOHORT KB</string>
+
+    <string name="child_details_mothers_name_label">Nama Ibu:&#160;</string>
+    <string name="child_details_fathers_name_label">Nama Ayah:&#160;</string>
+    <string name="service_anc">Status Pelayanan: ANC</string>
+    <string name="service_pnc">Status Pelayanan: PNC</string>
+    <string name="visit_number">Kunjungan Ke:&#160;</string>
+    <string name="last_visit_date">Tgl Kunj:&#160;</string>
+    <string name="name">NAMA: &#160;</string>
+    <string name="nik">NIK:&#160; </string>
+    <string name="husband_name">Nama Suami:&#160; </string>
+    <string name="dob">Tanggal Lahir: &#160;</string>
+    <string name="phone">No HP:&#160;</string>
+
+    <!-- Mother detail -->
+    <string name="basic_information">Informasi Dasar</string>
+    <string name="risk">Resiko</string>
+    <string name="village">Desa</string>Dusun
+    <string name="subvillage">Dusun</string>
+    <string name="elco_age_label">Umur</string>
+    <string name="address">Alamat Domisili</string>
+    <string name="education">Pendidikan</string>
+    <string name="religion">Agama</string>
+    <string name="job">Pekerjaan</string>
+    <string name="poor_household">Gakin</string>
+    <string name="insurance">Asuransi</string>
+    <string name="blodd_type">Golongan Darah</string>
+
+    <!-- Risk detail-->
+    <string name="highRiskPregnancyYoungMaternalAge">Ibu Terlalu Muda: &#160;</string>
+    <string name="highRiskPregnancyOldMaternalAge">Ibu Terlalu Tua: &#160;</string>
+    <string name="highRiskPregnancyProteinEnergyMalnutrition">Kekurangan Energi Kronis: &#160;</string>
+    <string name="HighRiskPregnancyAbortus">Riwayat Abortus: &#160;</string>
+    <string name="HighRiskLabourSectionCesareaRecord">Riwayat Cesar: &#160;</string>
+    <string name="risk_summary">Ringkasan Resiko:</string>
+    <string name="highRiskHIVAIDS">Resiko TInggi HIV/AIDS</string>
+    <string name="highRiskSTIBBVs">Resiko Tinggi STIBBVs</string>
+    <string name="highRiskEctopicPregnancy">Resiko TInggi Ectopic Kehamilan</string>
+    <string name="highRiskCardiovascularDiseaseRecord">Penyakit jantung Rekam</string>
+    <string name="highRiskDidneyDisorder">Gangguan ginjal</string>
+    <string name="highRiskHeartDisorder">Gangguan jantung</string>
+    <string name="highRiskAsthma">Asthma</string>
+    <string name="highRiskTuberculosis">Tuberculosis</string>
+    <string name="highRiskMalaria">Resiko Tinggi Malaria</string>
+    <string name="highRiskPregnancyPIH">Resiko Tinggi Kehamilan PIH</string>
+    <string name="highRiskPregnancyDiabetes">Resiko Tinggi Kehamilan Diabetes</string>
+    <string name="highRiskPregnancyAnemia">Resiko Tinggi Kehamilan Anemia</string>
+    <string name="highRiskLabourFetusMalpresentation">Resiko Tinggi persalinan Malpresentasi Janin</string>
+    <string name="highRiskLabourFetusSize">Resiko Tinggi persalinan Besar Janin</string>
+    <string name="highRisklabourFetusNumber">Resiko Tinggi persalinan Jumlah Janin</string>
+    <string name="highRiskLabourTBRisk">Resiko Tinggi persalinan TB</string>
+    <string name="HighRiskPregnancyTooManyChildren">Resiko Tinggi persalinan Banyak Anak</string>
+    <string name="highRiskPostPartumForceps">Resiko Tinggi Post Partum Forceps</string>
+    <string name="highRiskPostPartumVacum">Resiko Tinggi PostPartum Vacum</string>
+    <string name="highRiskPostPartumPreEclampsiaEclampsia">Resiko Tinggi PostPartum PreEclampsia/ Eclampsia</string>
+    <string name="highRiskPostPartumMaternalSepsis">Resiko Tinggi PostPartum Maternal Sepsis</string>
+    <string name="highRiskPostPartumInfection">Resiko Tinggi Infeksi PostPartum</string>
+    <string name="highRiskPostPartumHemorrhage">Resiko Tinggi PostPartum Hemorrhage</string>
+    <string name="highRiskPostPartumPIH">Resiko Tinggi PostPartum PIH</string>
+    <string name="highRiskPostPartumDistosia">Resiko Tinggi PostPartum Distosia</string>
+    <string name="highRiskPostPartumSHectioCaesaria">Resiko Tinggi PostPartum Sectio Caesaria</string>
+    <string name="highRiskPostPartumSectioCaesaria">Resiko Tinggi PostPartum Sectio Caesaria</string>
+    <string name="contraseption">Jenis Kontrasepsi</string>
+    <string name="sistolic">Systolic</string>
+    <string name="diastolic">Diastolic</string>
+    <string name="alki_hb">ALKI /HB</string>
+    <string name="alkilila">ALKI / LILA</string>
+    <string name="ALKI_Penyakin_kronis">ALKI / Penyakit Kronis</string>
+    <string name="alkiims">ALKI /Ims</string>
+    <string name="kb_ket">Keterangan tentang peserta KB</string>
+    <string name="ganti_cara">Keterangan Ganti Cara</string>
+    <string name="elco_details_summary">Ringkasan</string>
+    <string name="usia">Usia Klinis:</string>
+    <string name="header_klinis">Status Klinis</string>
+    <string name="height">Tinggi:</string>
+    <string name="month">Bln</string>
+    <string name="service_fp">Status Pelayanan: KB </string>
+    <string name="str_pnc_delivery">Tgl Persalinan:</string>
+    <string name="edd_passed">HTP sudah lewat</string>
+    <string name="fe">FE:</string>
+
+    <string name="Nutrition_status">Status Gizi:</string>
 </resources>

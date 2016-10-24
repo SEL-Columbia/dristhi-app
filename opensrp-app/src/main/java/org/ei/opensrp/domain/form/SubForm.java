@@ -40,4 +40,8 @@ public class SubForm {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
+    public String bindType() {
+        return bind_type;
+    }
 }

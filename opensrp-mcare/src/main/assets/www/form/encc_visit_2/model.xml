@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <EssentialNewbornCareChecklist2 encounter_type="Essential Newborn Care 2" id="EssentialNewbornCare2" version="201602080720">
+        <EssentialNewbornCareChecklist2 encounter_type="Essential Newborn Care 2" id="EssentialNewbornCare2" version="201609071201">
             <formhub>
                 <uuid/>
             </formhub>

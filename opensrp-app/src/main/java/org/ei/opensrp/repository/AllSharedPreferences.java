@@ -49,8 +49,16 @@ public class AllSharedPreferences {
         return   preferences.getString(HOST,host);
     }
 
+    public void saveHost(String host){
+        preferences.edit().putString(HOST,host).commit();
+    }
+
     public Integer fetchPort(Integer port){
 
         return  Integer.parseInt( preferences.getString(PORT,""+port));
+    }
+
+    public void savePort(Integer port){
+        preferences.edit().putString(PORT,String.valueOf(port)).commit();
     }
 }

@@ -39,6 +39,10 @@
       {
         "name": "FWMISBCSOURCE",
         "bind": "/model/instance/MIS_ELCO/FWMISBCSOURCE"
+      },
+      {
+        "name": "mis_elco_current_formStatus",
+        "bind": "/model/instance/MIS_ELCO/current_formStatus"
       }
     ]
   }

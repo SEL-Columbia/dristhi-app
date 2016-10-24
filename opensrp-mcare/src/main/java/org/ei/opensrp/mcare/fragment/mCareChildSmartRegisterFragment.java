@@ -1,7 +1,6 @@
 package org.ei.opensrp.mcare.fragment;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.widget.ImageButton;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
@@ -22,22 +20,13 @@ import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragm
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
-import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
-import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
-import org.ei.opensrp.mcare.anc.mCareAncDetailActivity;
 import org.ei.opensrp.mcare.child.ChildDetailActivity;
 import org.ei.opensrp.mcare.child.mCareChildServiceModeOption;
 import org.ei.opensrp.mcare.child.mCareChildSmartClientsProvider;
 import org.ei.opensrp.mcare.child.mCareChildSmartRegisterActivity;
-import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
-import org.ei.opensrp.mcare.elco.ElcoSearchOption;
-import org.ei.opensrp.mcare.elco.ElcoSmartClientsProvider;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
-import org.ei.opensrp.mcare.pnc.mCarePNCServiceModeOption;
-import org.ei.opensrp.mcare.pnc.mCarePNCSmartClientsProvider;
-import org.ei.opensrp.mcare.pnc.mCarePNCSmartRegisterActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -54,7 +43,6 @@ import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
-import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.EntityUtils;
 import org.opensrp.api.util.LocationTree;
@@ -188,7 +176,9 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPausedOrRefreshList()) {
+            initializeQueries();
+        }
         updateSearchView();
         try{
             LoginActivity.setLanguage();
@@ -284,8 +274,11 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
                         if(cs.toString().equalsIgnoreCase("")){
                             filters = "";
                         }else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters =  cs.toString();
                         }
+                        joinTable = "";
+                        mainCondition = " FWBNFGEN is not null ";
                         return null;
                     }
 
@@ -351,26 +344,25 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
         }
     }
     public void initializeQueries(){
-        CommonRepository commonRepository = context.commonrepository("mcarechild");
+        mCareChildSmartClientsProvider hhscp = new mCareChildSmartClientsProvider(getActivity(), clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, hhscp, new CommonRepository("mcarechild",new String []{ "FWBNFGEN"}));
+        clientsView.setAdapter(clientAdapter);
+
         setTablename("mcarechild");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(childMainCountWithJoins());
         countSelect = countqueryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
-        CountExecute();
-
+        mainCondition = " FWBNFGEN is not null ";
+        super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(childMainSelectWithJoins());
         mainSelect = queryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
-        queryBUilder.addCondition(filters);
         Sortqueries = sortBySortValue();
-        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
 
+        currentlimit = 20;
+        currentoffset = 0;
 
-//        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
-//        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
-        mCareChildSmartClientsProvider hhscp = new mCareChildSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("mcarechild",new String []{ "FWBNFGEN"}));
-        clientsView.setAdapter(clientAdapter);
+        super.filterandSortInInitializeQueries();
+
 //        setServiceModeViewDrawableRight(null);
 //        updateSearchView();
         refresh();
