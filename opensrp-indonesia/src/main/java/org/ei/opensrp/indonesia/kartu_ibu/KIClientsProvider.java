@@ -139,23 +139,11 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.follow_up.setOnClickListener(onClickListener);
 
         // set flag High Risk
-        viewHolder.hr_badge.setVisibility(View.INVISIBLE);
+
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
         detailsRepository.updateDetails(pc);
 
-        if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
-                || pc.getDetails().get("highRiskEctopicPregnancy")!=null && pc.getDetails().get("highRiskEctopicPregnancy").equals("yes")
-                || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && pc.getDetails().get("highRiskDidneyDisorder").equals("yes")
-                || pc.getDetails().get("highRiskDidneyDisorder")!=null && pc.getDetails().get("highRiskHeartDisorder").equals("yes")
-                || pc.getDetails().get("highRiskHeartDisorder")!=null && pc.getDetails().get("highRiskAsthma").equals("yes")
-                || pc.getDetails().get("highRiskAsthma")!=null && pc.getDetails().get("highRiskTuberculosis").equals("yes")
-                || pc.getDetails().get("highRiskTuberculosis")!=null && pc.getDetails().get("highRiskMalaria").equals("yes")
-                || pc.getDetails().get("highRiskMalaria")!=null && pc.getDetails().get("highRiskMalaria").equals("yes")
-                || pc.getDetails().get("highRiskPregnancyYoungMaternalAge")!=null && pc.getDetails().get("highRiskPregnancyYoungMaternalAge").equals("yes")
-                || pc.getDetails().get("highRiskPregnancyOldMaternalAge")!=null && pc.getDetails().get("highRiskPregnancyOldMaternalAge").equals("yes") )
-        {
-            viewHolder.hr_badge.setVisibility(View.VISIBLE);
-        }
+
 
         //set image
         final ImageView kiview = (ImageView)convertView.findViewById(R.id.img_profile);
@@ -183,10 +171,6 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         viewHolder.anc_status_layout.setText("");
         viewHolder.date_status.setText("");
         viewHolder.visit_status.setText("");
-        String edd = pc.getDetails().get("htp");
-        String _edd = edd;
-        String _dueEdd = "";
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
 
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(pc.entityId());
@@ -195,90 +179,56 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
             //check anc  status
             if (anc_isclosed == 0) {
                 detailsRepository.updateDetails(ibuparent);
-                if (StringUtils.isNotBlank(pc.getDetails().get("htp"))) {
-                    LocalDate date = parse(_edd, formatter).toLocalDate();
-                    LocalDate dateNow = LocalDate.now();
-                    date = date.withDayOfMonth(1);
-                    dateNow = dateNow.withDayOfMonth(1);
-                    int months = Months.monthsBetween(dateNow, date).getMonths();
-                    if (months >= 1) {
-                        viewHolder.edd_due.setTextColor(context.getResources().getColor(R.color.alert_in_progress_blue));
-                        _dueEdd = "" + months + " " + context.getString(R.string.months_away);
-                    } else if (months == 0) {
-                        viewHolder.edd_due.setTextColor(context.getResources().getColor(R.color.light_blue));
-                        _dueEdd = context.getString(R.string.this_month);
-                    } else if (months < 0) {
-                        viewHolder.edd_due.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
-                        _dueEdd = context.getString(R.string.edd_passed);
-                    }
-                    viewHolder.edd_due.setText(_dueEdd);
-                } else {
-                    viewHolder.edd_due.setText("-");
-                }
-                viewHolder.anc_status_layout.setText(context.getString(R.string.service_anc));
-                String visit_date = pc.getDetails().get("ancDate") != null ? context.getString(R.string.date_visit_title) + " " + pc.getDetails().get("ancDate") : "";
-                String visit_stat = pc.getDetails().get("ancKe") != null ? context.getString(R.string.anc_ke) + " " + pc.getDetails().get("ancKe") : "";
-                viewHolder.date_status.setText(visit_date);
-                viewHolder.visit_status.setText(visit_stat);
+                checkMonth(pc.getDetails().get("htp"),viewHolder.edd_due);
+                checkLastVisit(pc.getDetails().get("ancDate"),pc.getDetails().get("ancKe"),context.getString(R.string.service_anc),
+                               viewHolder.anc_status_layout,viewHolder.date_status,viewHolder.visit_status);
             }
-            //if anc is 1 (closed) check pnc status
+            //if anc is 1(closed) set status to pnc
             else if (anc_isclosed == 1) {
                 AllCommonsRepository pncrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_pnc");
                 final CommonPersonObject pncparent = pncrep.findByCaseID(pc.entityId());
                 short pnc_isclosed = pncparent.getClosed();
                 if (pnc_isclosed == 0) {
                     detailsRepository.updateDetails(pncparent);
-                    viewHolder.edd_due.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
-                    _dueEdd = context.getString(R.string.delivered);
-                    viewHolder.edd_due.setText(_dueEdd);
-
-                    viewHolder.anc_status_layout.setText(context.getString(R.string.service_pnc));
-                    String visit_date = pncparent.getDetails().get("PNCDate") != null ? context.getString(R.string.str_pnc_delivery) + " " + pncparent.getDetails().get("PNCDate") : "";
-                    String hariKeKF = pncparent.getDetails().get("hariKeKF") != null ? context.getString(R.string.hari_ke_kf) + " " + pncparent.getDetails().get("hariKeKF") : "";
-
-                    viewHolder.date_status.setText(visit_date);
-                    viewHolder.visit_status.setText(hariKeKF);
+                    checkMonth("delivered",viewHolder.edd_due);
+                    checkLastVisit(pc.getDetails().get("PNCDate"),pc.getDetails().get("hariKeKF"),context.getString(R.string.service_pnc),
+                            viewHolder.anc_status_layout,viewHolder.date_status,viewHolder.visit_status);
                 }
             }
         }
         //last check if mother in PF (KB) service
         else {
             if(StringUtils.isNotBlank(pc.getDetails().get("jenisKontrasepsi"))) {
-                viewHolder.anc_status_layout.setText(context.getString(R.string.service_fp));
-                String visit_date = pc.getDetails().get("tanggalkunjungan") != null ? context.getString(R.string.date_visit_title) + " " + pc.getDetails().get("tanggalkunjungan") : "";
-                String visit_stat = pc.getDetails().get("jenisKontrasepsi") != null ? context.getString(R.string.fp_methods) + " " + pc.getDetails().get("jenisKontrasepsi") : "";
-                viewHolder.date_status.setText(visit_date);
-                viewHolder.visit_status.setText(visit_stat);
+                checkLastVisit(pc.getDetails().get("tanggalkunjungan"),pc.getDetails().get("jenisKontrasepsi"),context.getString(R.string.service_fp),
+                        viewHolder.anc_status_layout,viewHolder.date_status,viewHolder.visit_status);
             }
         }
-
         viewHolder.children_age_left.setText(pc.getColumnmaps().get("namaBayi")!=null?"Name : "+pc.getColumnmaps().get("namaBayi"):"");
-        viewHolder.children_age_right.setText(pc.getColumnmaps().get("tanggalLahirAnak")!=null?"DOB : "+pc.getColumnmaps().get("tanggalLahirAnak"):"");
+        viewHolder.children_age_right.setText(pc.getColumnmaps().get("tanggalLahirAnak")!=null?"DOB : "+pc.getColumnmaps().get("tanggalLahirAnak").substring(0, pc.getColumnmaps().get("tanggalLahirAnak").indexOf("T")):"");
 
+
+        viewHolder.hr_badge.setVisibility(View.INVISIBLE);
         viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
         viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
+        //Risk flag
+        risk(pc.getDetails().get("highRiskSTIBBVs"),pc.getDetails().get("highRiskEctopicPregnancy"),pc.getDetails().get("highRiskCardiovascularDiseaseRecord"),
+                pc.getDetails().get("highRiskDidneyDisorder"),pc.getDetails().get("highRiskHeartDisorder"),pc.getDetails().get("highRiskAsthma"),
+                pc.getDetails().get("highRiskTuberculosis"),pc.getDetails().get("highRiskMalaria"),pc.getDetails().get("highRiskPregnancyYoungMaternalAge"),
+                pc.getDetails().get("highRiskPregnancyOldMaternalAge"),viewHolder.hr_badge);
 
-            //Risk flag
-            if (pc.getDetails().get("highRiskPregnancyPIH") != null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
-                    || pc.getDetails().get("highRiskPregnancyPIH") != null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
-                    || pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null && pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")
-                    || pc.getDetails().get("HighRiskPregnancyTooManyChildren") != null && pc.getDetails().get("HighRiskPregnancyTooManyChildren").equals("yes")
-                    || pc.getDetails().get("highRiskPregnancyDiabetes") != null && pc.getDetails().get("highRiskPregnancyDiabetes").equals("yes")
-                    || pc.getDetails().get("highRiskPregnancyAnemia") != null && pc.getDetails().get("highRiskPregnancyAnemia").equals("yes")) {
-                viewHolder.hrp_badge.setVisibility(View.VISIBLE);
-            }
-            if (pc.getDetails().get("highRiskLabourFetusMalpresentation") != null && pc.getDetails().get("highRiskLabourFetusMalpresentation").equals("yes")
-                    || pc.getDetails().get("highRiskLabourFetusSize") != null && pc.getDetails().get("highRiskLabourFetusSize").equals("yes")
-                    || pc.getDetails().get("highRisklabourFetusNumber") != null && pc.getDetails().get("highRisklabourFetusNumber").equals("yes")
-                    || pc.getDetails().get("HighRiskLabourSectionCesareaRecord") != null && pc.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")
-                    || pc.getDetails().get("highRiskLabourTBRisk") != null && pc.getDetails().get("highRiskLabourTBRisk").equals("yes")) {
-                viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
-            }
-      //  }
+        risk(pc.getDetails().get("highRiskPregnancyPIH"),pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition"),
+                pc.getDetails().get("HighRiskPregnancyTooManyChildren"),
+                pc.getDetails().get("highRiskPregnancyDiabetes"),pc.getDetails().get("highRiskPregnancyAnemia"),null,null,null,null,null,viewHolder.hrp_badge);
+
+        risk(pc.getDetails().get("highRiskLabourFetusMalpresentation"),pc.getDetails().get("highRiskLabourFetusSize"),
+                pc.getDetails().get("highRisklabourFetusNumber"),pc.getDetails().get("HighRiskLabourSectionCesareaRecord"),
+                pc.getDetails().get("highRiskLabourTBRisk"),null,null,null,null,null,viewHolder.img_hrl_badge);
+
+
         convertView.setLayoutParams(clientViewLayoutParams);
       //  return convertView;
     }
-    CommonPersonObjectController householdelcocontroller;
+
     
 
     //    @Override
@@ -311,6 +261,68 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         View View = inflater().inflate(R.layout.smart_register_ki_client, null);
         return View;
     }
+
+    public void risk (String risk1,String risk2,String risk3,String risk4,String risk5,String risk6,String risk7,String risk8,String risk9,String risk10,ImageView riskview){
+        if(risk1 != null && risk1.equals("yes")
+        || risk2 != null && risk2.equals("yes")
+        || risk3 != null && risk3.equals("yes")
+        || risk4 != null && risk4.equals("yes")
+        || risk5 != null && risk5.equals("yes")
+        || risk6 != null && risk6.equals("yes")
+        || risk7 != null && risk7.equals("yes")
+        || risk8 != null && risk8.equals("yes")
+        || risk9 != null && risk9.equals("yes")
+        || risk10 != null && risk10.equals("yes")){
+
+            riskview.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    public void checkLastVisit(String date,String visitNumber,String Status, TextView visitStatus,TextView visitDate, TextView VisitNumber ) {
+
+        String visit_date = date != null ? context.getString(R.string.date_visit_title) + " " + date : "";
+        String visit_stat = visitNumber != null ? context.getString(R.string.anc_ke) + " " + visitNumber : "";
+        visitDate.setText(visit_date);
+        VisitNumber.setText(visit_stat);
+        visitStatus.setText(Status);
+    }
+
+    public void checkMonth(String htp, TextView TextMonth){
+        String edd = htp;
+        String _edd = edd;
+        String _dueEdd = "";
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+
+        if(StringUtils.isNotBlank(htp) && !htp.equals("delivered")){
+
+            LocalDate date = parse(_edd, formatter).toLocalDate();
+            LocalDate dateNow = LocalDate.now();
+            date = date.withDayOfMonth(1);
+            dateNow = dateNow.withDayOfMonth(1);
+            int months = Months.monthsBetween(dateNow, date).getMonths();
+            if (months >= 1) {
+                TextMonth.setTextColor(context.getResources().getColor(R.color.alert_in_progress_blue));
+                _dueEdd = "" + months + " " + context.getString(R.string.months_away);
+            } else if (months == 0) {
+                TextMonth.setTextColor(context.getResources().getColor(R.color.light_blue));
+                _dueEdd = context.getString(R.string.this_month);
+            } else if (months < 0) {
+                TextMonth.setTextColor(context.getResources().getColor(R.color.alert_urgent_red));
+                _dueEdd = context.getString(R.string.edd_passed);
+            }
+            TextMonth.setText(_dueEdd);
+        }else if(htp.equals("delivered")){
+            TextMonth.setTextColor(context.getResources().getColor(R.color.alert_complete_green));
+            _dueEdd = context.getString(R.string.delivered);
+            TextMonth.setText(_dueEdd);
+        }
+        else {
+            TextMonth.setText("-");
+        }
+
+    }
+
 
     class ViewHolder {
 
