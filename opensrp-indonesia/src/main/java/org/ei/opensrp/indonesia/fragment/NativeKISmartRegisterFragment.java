@@ -320,13 +320,13 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         public void onDialogOptionSelection(DialogOption option, Object tag) {
 
 
-            if(option.name().equalsIgnoreCase(getString(R.string.str_register_anc_form)) ) {
+            if(option.name().equalsIgnoreCase(getString(R.string.str_register_anc_form) ) ) {
                 CommonPersonObjectClient pc = KIDetailActivity.kiclient;
                 AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
                 final CommonPersonObject ibuparent = iburep.findByCaseID(pc.entityId());
                 if (ibuparent != null) {
                     short anc_isclosed = ibuparent.getClosed();
-                    if (anc_isclosed == 0) {
+                    if (anc_isclosed == 0 ) {
                         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered), Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -343,11 +343,11 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
             }
             if(option.name().equalsIgnoreCase(getString(R.string.str_register_fp_form)) ) {
                 CommonPersonObjectClient pc = KIDetailActivity.kiclient;
-                    if (StringUtils.isNotBlank(pc.getDetails().get("jenisKontrasepsi"))) {
-                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered_in_fp), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
 
+                if(!StringUtils.isNumeric(pc.getDetails().get("jenisKontrasepsi"))) {
+                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered_in_fp), Toast.LENGTH_SHORT).show();
+                            return;
+                }
             }
 
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);

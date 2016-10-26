@@ -2,6 +2,7 @@
   "form_data_definition_version": "1",
   "form": {
     "bind_type": "kartu_ibu",
+    "ec_bind_type": "ec_kartu_ibu",
     "default_bind_path": "/model/instance/kohort_pelayanan_kb_reviewed/",
     "fields": [
       {

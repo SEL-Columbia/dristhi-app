@@ -197,11 +197,9 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
             }
         }
         //last check if mother in PF (KB) service
-        else {
-            if(StringUtils.isNotBlank(pc.getDetails().get("jenisKontrasepsi"))) {
+        else if(!StringUtils.isNumeric(pc.getDetails().get("jenisKontrasepsi"))) {
                 checkLastVisit(pc.getDetails().get("tanggalkunjungan"),pc.getDetails().get("jenisKontrasepsi"),context.getString(R.string.service_fp),
                         viewHolder.anc_status_layout,viewHolder.date_status,viewHolder.visit_status);
-            }
         }
         viewHolder.children_age_left.setText(pc.getColumnmaps().get("namaBayi")!=null?"Name : "+pc.getColumnmaps().get("namaBayi"):"");
         viewHolder.children_age_right.setText(pc.getColumnmaps().get("tanggalLahirAnak")!=null?"DOB : "+pc.getColumnmaps().get("tanggalLahirAnak").substring(0, pc.getColumnmaps().get("tanggalLahirAnak").indexOf("T")):"");

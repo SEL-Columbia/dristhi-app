@@ -1,7 +1,7 @@
 {
   "case_classification_rules": [
     {
-      "comment": "KARTU IBU: This rule checks whether a given case belongs to Household register",
+      "comment": "KARTU IBU: This rule checks whether a given case belongs to Kartu Ibu and KB register",
       "rule": {
         "type": "event",
         "fields": [
@@ -17,7 +17,24 @@
           },
           {
             "field":"eventType",
+            "field_value": "Kohort Pelayanan KB",
+            "creates_case":["ec_kartu_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Penutupan KB",
+            "creates_case":["ec_kartu_ibu"]
+          },
+          {
+            "field":"eventType",
             "field_value": "Penutupan Ibu",
+            "closes_case":["ec_kartu_ibu","ec_ibu","ec_pnc"]
+          },
+
+          {
+            "field":"obs.fieldCode",
+            "concept": "160417AAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "values": ["134612AAAAAAAAAAAAAAAAAAAAAAAAAA"],
             "closes_case":["ec_kartu_ibu","ec_ibu","ec_pnc"]
           }
         ]
