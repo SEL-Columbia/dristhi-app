@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <registrasi_vaksinator encounter_type="Registrasi Vaksinator" id="registrasi_vaksinator" version="201609280715">
+    <registrasi_vaksinator encounter_type="Registrasi Vaksinator" id="registrasi_vaksinator" version="201610270659">
       <formhub>
         <uuid/>
       </formhub>
@@ -28,9 +28,9 @@
       <noteDesa openmrs_entity="concept" openmrs_entity_id="162724AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <noteDusun openmrs_entity="concept" openmrs_entity_id="1354AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <posyandu/>
-      <nama_bayi openmrs_entity="person" openmrs_entity_id="first_name"/>
+      <nama_bayi openmrs_entity="Concept" openmrs_entity_id="1586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <nama_ayah openmrs_entity="person" openmrs_entity_id="last_name"/>
-      <nama_ibu openmrs_entity="person"/>
+      <nama_ibu openmrs_entity="person" openmrs_entity_id="first_name"/>
       <nik openmrs_entity="person_identifier" openmrs_entity_id="nik"/>
       <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
       <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>

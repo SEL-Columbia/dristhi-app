@@ -209,20 +209,20 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterC
     }
     public void initializeQueries(){
         KIClientsProvider kiscp = new KIClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, kiscp, new CommonRepository("anak",new String []{"tanggalLahirAnak","namaBayi","isClosed"}));
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, kiscp, new CommonRepository("ec_anak",new String []{"tanggalLahirAnak","namaBayi"}));
         clientsView.setAdapter(clientAdapter);
 
-        setTablename("anak");
+        setTablename("ec_anak");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
-        countqueryBUilder.SelectInitiateMainTableCounts("anak");
-        mainCondition = " namaBayi !='' ";
-        countSelect = countqueryBUilder.mainCondition(" namaBayi !='' ");
+        countqueryBUilder.SelectInitiateMainTableCounts("ec_anak");
+        mainCondition = " is_closed = 0 ";
+        countSelect = countqueryBUilder.mainCondition(" is_closed = 0 ");
       //  mainCondition = " isClosed !='true' ";
         super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
-        queryBUilder.SelectInitiateMainTable("anak", new String[]{"isClosed","anak.details","tanggalLahirAnak","namaBayi"});
-        mainSelect = queryBUilder.mainCondition(" namaBayi !='' ");
+        queryBUilder.SelectInitiateMainTable("ec_anak", new String[]{"ec_anak.relationalid","ec_anak.is_closed","ec_anak.details","tanggalLahirAnak","namaBayi"});
+        mainSelect = queryBUilder.mainCondition(" is_closed = 0 ");
      //   Sortqueries = KiSortByNameAZ();
 
         currentlimit = 20;

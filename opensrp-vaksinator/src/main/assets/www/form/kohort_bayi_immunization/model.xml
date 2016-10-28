@@ -1,0 +1,31 @@
+<model>
+    <instance>
+        <Baby_Immunization id="Baby_Immunization" version="201610240056">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <start openmrs_entity="encounter" openmrs_entity_id="encounter_start"/>
+            <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+            <deviceid/>
+            <simserial/>
+            <phonenumber/>
+            <hb0 openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="782AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <bcg openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="886AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <polio1 openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="783AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <dpt_hb1 openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="162339AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <polio2 openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="783AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <dpt_hb2 openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="162339AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <polio3 openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="783AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <dpt_hb3 openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="162339AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <polio4 openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="783AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <ipv openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="1422AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <campak openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="36AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <dpt_hb_lanjutan openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="162339AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <campak_lanjutan openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="36AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+            <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </Baby_Immunization>
+    </instance>
+</model>

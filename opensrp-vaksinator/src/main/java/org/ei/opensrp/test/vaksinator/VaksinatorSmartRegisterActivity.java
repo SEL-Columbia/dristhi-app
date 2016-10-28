@@ -12,6 +12,7 @@ import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.test.LoginActivity;
 import org.ei.opensrp.test.R;
 import org.ei.opensrp.test.fragment.VaksinatorSmartRegisterFragment;
@@ -116,47 +117,13 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
 
     public DialogOption[] getEditOptions() {
             return new DialogOption[]{
-                new OpenFormOption(context.getStringResource(R.string.editForm), "vaksinator_edit", formController),
-                new OpenFormOption(context.getStringResource(R.string.hb0VisitLabel), "hb0_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.bcgVisitLabel), "bcg_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.polio1VisitLabel), "polio1_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.dpt1VisitLabel), "hb1_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.polio2VisitLabel), "polio2_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.dpt2VisitLabel), "dpt_hb2_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.polio3VisitLabel), "polio3_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.dpt3VisitLabel), "hb3_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.polio4VisitLabel), "polio4_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.ipvVisitLabel), "ipv_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.campakVisitLabel), "campak_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.dptTambahanVisitLabel), "dpthb_lanjutan_visit", formController),
-                new OpenFormOption(context.getStringResource(R.string.campakTambahanVisitLabel), "campak_lanjutan_visit", formController),
-                new OpenFormOption("Close Form", "close_form", formController),
+                new OpenFormOption("Bayi Immunisasi", "kohort_bayi_immunization", formController),
+
         };
     }
 
 
-    //alert not needed for now
-  /*  private String getalertstateforcensus(CommonPersonObjectClient pc) {
-        try {
-            List<Alert> alertlist_for_client = Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "FW CENSUS");
-            String alertstate = "";
-            if (alertlist_for_client.size() == 0) {
-
-            } else {
-                for (int i = 0; i < alertlist_for_client.size(); i++) {
-//           psrfdue.setText(alertlist_for_client.get(i).expiryDate());
-                    Log.v("printing alertlist", alertlist_for_client.get(i).status().value());
-                    alertstate = alertlist_for_client.get(i).status().value();
-
-                }
-            }
-            return alertstate;
-        }catch (Exception e){
-            return "";
-        }
-    }
-    */
-    @Override
+    /*@Override
     public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         Log.v("fieldoverride", fieldOverrides.toString());
         // save the form
@@ -179,8 +146,31 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             }
             e.printStackTrace();
         }
-    }
+    }*/
+    @Override
+    public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
+        Log.v("fieldoverride", fieldOverrides.toString());
+        // save the form
+        try{
+            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
+            ziggyService.saveForm(getParams(submission), submission.instance());
+            ClientProcessor.getInstance(getApplicationContext()).processClient();
 
+            context.formSubmissionService().updateFTSsearch(submission);
+            context.formSubmissionRouter().handleSubmission(submission, formName);
+            //switch to forms list fragment
+            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
+
+        }catch (Exception e){
+            // TODO: show error dialog on the formfragment if the submission fails
+            DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
+            if (displayFormFragment != null) {
+                displayFormFragment.hideTranslucentProgressDialog();
+            }
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void OnLocationSelected(String locationJSONString) {
@@ -264,6 +254,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
+
                 }
 
                 displayFormFragment.setRecordId(null);
@@ -271,6 +262,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
         });
 
     }
+
 
     public android.support.v4.app.Fragment findFragmentByPosition(int position) {
         FragmentPagerAdapter fragmentPagerAdapter = mPagerAdapter;
@@ -294,22 +286,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
         List<String> formNames = new ArrayList<String>();
         formNames.add("registrasi_jurim");
     //   formNames.add("jurim_visit");
-        formNames.add("vaksinator_edit");
-        formNames.add("hb0_visit");
-        formNames.add("bcg_visit");
-        formNames.add("polio1_visit");
-        formNames.add("hb1_visit");
-        formNames.add("polio2_visit");
-        formNames.add("dpt_hb2_visit");
-        formNames.add("polio3_visit");
-        formNames.add("hb3_visit");
-        formNames.add("polio4_visit");
-        formNames.add("ipv_visit");
-        formNames.add("campak_visit");
-        formNames.add("dpthb_lanjutan_visit");
-        formNames.add("campak_lanjutan_visit");
-        formNames.add("close_form");
-        formNames.add("kartu_ibu_registration");
+        formNames.add("kohort_bayi_immunization");
 //        DialogOption[] options = getEditOptions();
 //        for (int i = 0; i < options.length; i++){
 //            formNames.add(((OpenFormOption) options[i]).getFormName());

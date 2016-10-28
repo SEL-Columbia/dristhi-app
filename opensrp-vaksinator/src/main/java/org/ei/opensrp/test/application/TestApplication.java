@@ -76,7 +76,7 @@ public class TestApplication extends DrishtiApplication {
     }
 
     private String[] getFtsSearchFields(String tableName){
-        if(tableName.equals("anak")){
+        if(tableName.equals("ec_anak")){
             String[] ftsSearchFields =  { "namaBayi" };
             return ftsSearchFields;
         } else if (tableName.equals("ibu")){
@@ -87,7 +87,7 @@ public class TestApplication extends DrishtiApplication {
     }
 
     private String[] getFtsSortFields(String tableName){
-        if(tableName.equals("anak")){
+        if(tableName.equals("ec_anak")){
             String[] sortFields = { "namaBayi"};
             return sortFields;
         } else if(tableName.equals("ibu")){
@@ -98,8 +98,8 @@ public class TestApplication extends DrishtiApplication {
     }
 
     private String[] getFtsMainConditions(String tableName){
-        if(tableName.equals("anak")){
-            String[] mainConditions = { "isClosed", "namaBayi"};
+        if(tableName.equals("ec_anak")){
+            String[] mainConditions = {"is_closed", "details" , "namaBayi"};
             return mainConditions;
         } else if(tableName.equals("ibu")){
             String[] mainConditions = { "isClosed", "namaIbu"};
@@ -108,7 +108,7 @@ public class TestApplication extends DrishtiApplication {
         return null;
     }
     private String[] getFtsTables(){
-        String[] ftsTables = { "anak", "ibu" };
+        String[] ftsTables = { "ec_anak", "ibu" };
         return ftsTables;
     }
 

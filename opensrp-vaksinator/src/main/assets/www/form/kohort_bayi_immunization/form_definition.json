@@ -1,0 +1,87 @@
+{
+    "form_data_definition_version": "3",
+    "form": {
+        "bind_type":"anak",
+        "ec_bind_type":"ec_anak",
+        "default_bind_path": "/model/instance/Baby_Immunization/",
+        "fields": [
+            {
+                "name": "id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "lokasiPeriksa",
+                "bind": "/model/instance/Baby_Immunization/Lokasi_periksa"
+            },
+            {
+                "name": "hb0",
+                "bind": "/model/instance/Baby_Immunization/hb0",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "bcg",
+                "bind": "/model/instance/Baby_Immunization/bcg",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "polio1",
+                "bind": "/model/instance/Baby_Immunization/polio1",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "dptHb1",
+                "bind": "/model/instance/Baby_Immunization/dpt_hb1",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "polio2",
+                "bind": "/model/instance/Baby_Immunization/polio2",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "dptHb2",
+                "bind": "/model/instance/Baby_Immunization/dpt_hb2",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "polio3",
+                "bind": "/model/instance/Baby_Immunization/polio3",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "dptHb3",
+                "bind": "/model/instance/Baby_Immunization/dpt_hb3",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "polio4",
+                "bind": "/model/instance/Baby_Immunization/polio4",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "ipv",
+                "bind": "/model/instance/Baby_Immunization/ipv",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "campak",
+                "bind": "/model/instance/Baby_Immunization/campak",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "dpt_hb_lanjutan",
+                "bind": "/model/instance/Baby_Immunization/dpt_hb_lanjutan",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "campak_lanjutan",
+                "bind": "/model/instance/Baby_Immunization/campak_lanjutan",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "today",
+                "bind": "/model/instance/Baby_Immunization/today"
+            }
+        ]
+    }
+}

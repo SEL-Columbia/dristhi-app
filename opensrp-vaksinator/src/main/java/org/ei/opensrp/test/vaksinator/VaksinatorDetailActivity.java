@@ -208,16 +208,16 @@ public class VaksinatorDetailActivity extends Activity {
         additionalDPT.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
         additionalMeasles.setText(": " + (controller.getDetails().get("dpt_hb_campak_lanjutan") != null ? controller.getDetails().get("dpt_hb_campak_lanjutan") : "-"));
 
-        if(controller.getDetails().get("profilepic")!= null){
+        /*if(controller.getDetails().get("profilepic")!= null){
             setImagetoHolderFromUri(VaksinatorDetailActivity.this, controller.getDetails().get("profilepic"), photo, R.drawable.child_boy_infant);
         }
         else {
-            photo.setImageResource(controller.getDetails().get("jenis_kelamin").contains("em")
+            photo.setImageResource(controller.getDetails().get("jenisKelamin").contains("em")
                     ? R.drawable.child_girl_infant
                     : R.drawable.child_boy_infant);
 
         }
-
+*/
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

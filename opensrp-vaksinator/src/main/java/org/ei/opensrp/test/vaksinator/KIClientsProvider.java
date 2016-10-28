@@ -19,6 +19,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.test.R;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.test.R;
@@ -107,7 +108,7 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
 
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.household_profile_thumb));
+            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
             convertView.setTag(viewHolder);
         } else {
@@ -124,10 +125,15 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
         }
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(pc);
 
-        int umur = pc.getColumnmaps().get("tanggalLahirAnak") != null ? age(pc.getColumnmaps().get("tanggalLahirAnak")) : 0;
+        String ages = pc.getColumnmaps().get("tanggalLahirAnak").substring(0, pc.getColumnmaps().get("tanggalLahirAnak").indexOf("T"));
+
+        int umur = pc.getColumnmaps().get("tanggalLahirAnak") != null ? age(ages) : 0;
 
         viewHolder.name.setText(pc.getColumnmaps().get("namaBayi") != null ? pc.getColumnmaps().get("namaBayi") : " ");
+
       //  viewHolder.name.setText(pc.getc().get("namaIbu") != null ? pc.getDetails().get("namaIbu") : " ");
         //set default image for mother berat_badan_saat_lahir
 
@@ -153,18 +159,12 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                         ? pc.getDetails().get("nama_orang_tua")
                         :" ");
 
-        viewHolder.village.setText(pc.getDetails().get("village")!= null
-                ? pc.getDetails().get("village").length()>4
-                ? pc.getDetails().get("village")
-                : pc.getDetails().get("dusun")!= null
-                ? pc.getDetails().get("dusun")
-                : " "
-                : pc.getDetails().get("dusun")!= null
-                ? pc.getDetails().get("dusun")
+        viewHolder.village.setText(pc.getDetails().get("address1")!= null
+                ? pc.getDetails().get("address1")
                 : " ");
         viewHolder.age.setText(pc.getColumnmaps().get("tanggalLahirAnak")!=null
-                ?     Integer.toString(age(pc.getColumnmaps().get("tanggalLahirAnak"))/12)+" "+ context.getResources().getString(R.string.year_short)
-                + ", "+Integer.toString(age(pc.getColumnmaps().get("tanggalLahirAnak"))%12)+" "+ context.getResources().getString(R.string.month_short)
+                ?     Integer.toString(age(ages)/12)+" "+ context.getResources().getString(R.string.year_short)
+                + ", "+Integer.toString(age(ages)%12)+" "+ context.getResources().getString(R.string.month_short)
                 : " ");
         viewHolder.gender.setText(pc.getDetails().get("jenis_kelamin") != null
                 ? pc.getDetails().get("jenis_kelamin").contains("em")
@@ -172,38 +172,38 @@ public class KIClientsProvider implements SmartRegisterCLientsProviderForCursorA
                 : "Laki-laki"
                 : " ");
 
-        viewHolder.hb0.setText(latestDate(new String[]{pc.getDetails().get("hb_1_under_7"),pc.getDetails().get("hb_1_over_7"),pc.getDetails().get("hb0")}));
+        viewHolder.hb0.setText(latestDate(new String[]{pc.getDetails().get("hb0")}));
 
         viewHolder.pol1.setText(
-                latestDate(new String[]{pc.getDetails().get("bcg_pol_1"),pc.getDetails().get("bcg"),pc.getDetails().get("polio1")})
+                latestDate(new String[]{pc.getDetails().get("bcg"),pc.getDetails().get("polio1")})
         );
 
         viewHolder.pol2.setText(
-                latestDate(new String[]{pc.getDetails().get("dpt_1_pol_2"),pc.getDetails().get("dpt_hb1"),pc.getDetails().get("polio2")})
+                latestDate(new String[]{pc.getDetails().get("dptHb1"),pc.getDetails().get("polio2")})
         );
 
         viewHolder.pol3.setText(
-                latestDate(new String[]{pc.getDetails().get("dpt_2_pol_3"),pc.getDetails().get("dpt_hb2"),pc.getDetails().get("polio3")})
+                latestDate(new String[]{pc.getDetails().get("dptHb2"),pc.getDetails().get("polio3")})
 
         );
 
         viewHolder.pol4.setText(
-                latestDate(new String[]{pc.getDetails().get("dpt_3_pol_4_ipv"),pc.getDetails().get("dpt_hb3"),pc.getDetails().get("polio4"),pc.getDetails().get("ipv")})
+                latestDate(new String[]{pc.getDetails().get("dptHb3"),pc.getDetails().get("polio4"),pc.getDetails().get("ipv")})
         );
 
-        viewHolder.campak.setText(pc.getDetails().get("imunisasi_campak") != null ? pc.getDetails().get("imunisasi_campak") : " ");
+        viewHolder.campak.setText(pc.getDetails().get("campak") != null ? pc.getDetails().get("campak") : " ");
 
 //----- logo visibility, sometimes the variable contains blank string that count as not null, so we must check both the availability and content
-        boolean a = hasDate(pc,"hb0") || hasDate(pc,"hb1_kurang_7_hari") || hasDate(pc,"hb1_lebih_7_hari");
+        boolean a = hasDate(pc,"hb0");
         viewHolder.hbLogo.setImageResource(a ? R.drawable.ic_yes_large : umur > 0 ? R.drawable.vacc_late : umur == 0 ? R.mipmap.vacc_due : R.drawable.abc_list_divider_mtrl_alpha);
         //if(!a)
         // viewHolder.hb0Layout.setBackgroundColor(context.getResources().getColor(R.color.vaccBlue));
 
-        setIcon(viewHolder.bcgLayout,viewHolder.pol1Logo,"bcg_pol_1","bcg,polio1",umur,1,pc);
-        setIcon(viewHolder.hb1Layout,viewHolder.pol2Logo,"dpt_1_pol_2","dpt_hb1,polio2",umur,2,pc);
-        setIcon(viewHolder.hb2Layout,viewHolder.pol3Logo,"dpt_2_pol_3","dpt_hb2,polio3",umur,3,pc);
-        setIcon(viewHolder.hb3Layout,viewHolder.pol4Logo,"dpt_3_pol_4_ipv","dpt_hb3,polio4,ipv",umur,4,pc);
-        setIcon(viewHolder.campakLayout,viewHolder.ipvLogo,"imunisasi_campak","imnisasi_campak",umur,9,pc);
+        setIcon(viewHolder.bcgLayout,viewHolder.pol1Logo,null,"bcg,polio1",umur,1,pc);
+        setIcon(viewHolder.hb1Layout,viewHolder.pol2Logo,null,"dptHb1,polio2",umur,2,pc);
+        setIcon(viewHolder.hb2Layout,viewHolder.pol3Logo,null,"dptHb2,polio3",umur,3,pc);
+        setIcon(viewHolder.hb3Layout,viewHolder.pol4Logo,null,"dptHb3,polio4,ipv",umur,4,pc);
+        setIcon(viewHolder.campakLayout,viewHolder.ipvLogo,null,"campak",umur,9,pc);
 
         convertView.setLayoutParams(clientViewLayoutParams);
       //  return convertView;

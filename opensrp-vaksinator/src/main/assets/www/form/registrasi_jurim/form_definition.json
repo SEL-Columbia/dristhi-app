@@ -1,7 +1,8 @@
 {
-  "form_data_definition_version": "2",
+  "form_data_definition_version": "3",
   "form": {
     "bind_type": "anak",
+    "ec_bind_type": "ec_anak",
     "default_bind_path": "/model/instance/registrasi_vaksinator/",
     "fields": [
       {
@@ -88,7 +89,7 @@
         "bind": "/model/instance/registrasi_vaksinator/nik"
       },
       {
-        "name": "jenis_kelamin",
+        "name": "jenisKelamin",
         "bind": "/model/instance/registrasi_vaksinator/jenis_kelamin"
       },
       {
@@ -96,7 +97,7 @@
         "bind": "/model/instance/registrasi_vaksinator/tanggal_lahir"
       },
       {
-        "name": "berat_badan_saat_lahir",
+        "name": "beratLahir",
         "bind": "/model/instance/registrasi_vaksinator/berat_badan_saat_lahir"
       },
       {
