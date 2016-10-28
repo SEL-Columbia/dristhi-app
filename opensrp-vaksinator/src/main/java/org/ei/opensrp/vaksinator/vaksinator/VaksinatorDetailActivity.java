@@ -193,11 +193,11 @@ public class VaksinatorDetailActivity extends Activity {
 
         bcg.setText(": " + (controller.getDetails().get("bcg") != null ? controller.getDetails().get("bcg") : "-"));
         pol1.setText(": " + (controller.getDetails().get("polio1") != null ? controller.getDetails().get("polio1") : "-"));
-        dpt1.setText(": " + (controller.getDetails().get("dpt_hb1") != null ? controller.getDetails().get("dpt_hb1") : "-"));
+        dpt1.setText(": " + (controller.getDetails().get("dptHb1") != null ? controller.getDetails().get("dpt_hb1") : "-"));
         pol2.setText(": " + (controller.getDetails().get("polio2") != null ? controller.getDetails().get("polio2") : "-"));
-        dpt2.setText(": " + (controller.getDetails().get("dpt_hb2") != null ? controller.getDetails().get("dpt_hb2") : "-"));
+        dpt2.setText(": " + (controller.getDetails().get("dptHb2") != null ? controller.getDetails().get("dpt_hb2") : "-"));
         pol3.setText(": " + (controller.getDetails().get("polio3") != null ? controller.getDetails().get("polio3") : "-"));
-        dpt3.setText(": " + (controller.getDetails().get("dpt_hb3") != null ? controller.getDetails().get("dpt_hb3") : "-"));
+        dpt3.setText(": " + (controller.getDetails().get("dptHb3") != null ? controller.getDetails().get("dpt_hb3") : "-"));
         pol4.setText(": " + (controller.getDetails().get("polio4") != null ? controller.getDetails().get("polio4") : "-"));
         ipv.setText(": " + (controller.getDetails().get("ipv") != null ? controller.getDetails().get("ipv") : "-"));
         measles.setText(": " + (controller.getDetails().get("imunisasi_campak") != null ? controller.getDetails().get("imunisasi_campak") : "-"));

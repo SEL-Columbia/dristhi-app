@@ -118,6 +118,8 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             return new DialogOption[]{
                 new OpenFormOption("Bayi Immunisasi", "kohort_bayi_immunization", formController),
 
+                    new OpenFormOption("Tutup Bayi", "kohort_anak_tutup", formController),
+
         };
     }
 
@@ -284,7 +286,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
         formNames.add("registrasi_jurim");
-    //   formNames.add("jurim_visit");
+       formNames.add("kohort_anak_tutup");
         formNames.add("kohort_bayi_immunization");
 //        DialogOption[] options = getEditOptions();
 //        for (int i = 0; i < options.length; i++){
