@@ -32,7 +32,7 @@ import android.widget.AdapterView;
 import android.widget.Scroller;
 
 
-import org.ei.opensrp.test.R;
+import org.ei.opensrp.vaksinator.R;
 
 import java.util.EnumSet;
 import java.util.LinkedList;
