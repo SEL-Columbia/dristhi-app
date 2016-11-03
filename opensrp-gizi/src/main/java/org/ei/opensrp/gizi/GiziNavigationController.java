@@ -3,10 +3,12 @@ package org.ei.opensrp.gizi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 
 
 //import org.ei.opensrp.gizi.test.TestSmartRegisterActivity;
 import org.ei.opensrp.gizi.gizi.GiziSmartRegisterActivity;
+import org.ei.opensrp.view.activity.ReportsActivity;
 import org.ei.opensrp.view.controller.ANMController;
 
 
@@ -45,6 +47,12 @@ public class GiziNavigationController extends org.ei.opensrp.view.controller.Nav
     @Override
     public void startChildSmartRegistry() {
          activity.startActivity(new Intent(activity, GiziSmartRegisterActivity.class));
+    }
+
+    @Override
+    public void startReports() {
+//        activity.startActivity(new Intent(activity, ReportsActivity.class));
+        activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://dho-report.sid-indonesia.org")));
     }
 
 }
