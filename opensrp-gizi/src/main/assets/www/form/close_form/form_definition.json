@@ -29,28 +29,28 @@
         "shouldLoadValue": true
       },
       {
-        "name": "Province",
-        "bind": "/model/instance/penutupan_anak_mapped/Province",
+        "name": "provinsi",
+        "bind": "/model/instance/penutupan_anak_mapped/provinsi",
         "shouldLoadValue": true
       },
       {
-        "name": "District",
-        "bind": "/model/instance/penutupan_anak_mapped/District",
+        "name": "kabupaten",
+        "bind": "/model/instance/penutupan_anak_mapped/kabupaten",
         "shouldLoadValue": true
       },
       {
-        "name": "Sub-district",
-        "bind": "/model/instance/penutupan_anak_mapped/Sub-district",
+        "name": "kecamatan",
+        "bind": "/model/instance/penutupan_anak_mapped/kecamatan",
         "shouldLoadValue": true
       },
       {
-        "name": "Village",
-        "bind": "/model/instance/penutupan_anak_mapped/Village",
+        "name": "desa",
+        "bind": "/model/instance/penutupan_anak_mapped/desa",
         "shouldLoadValue": true
       },
       {
-        "name": "Sub-village",
-        "bind": "/model/instance/penutupan_anak_mapped/Sub-village",
+        "name": "dusun",
+        "bind": "/model/instance/penutupan_anak_mapped/dusun",
         "shouldLoadValue": true
       },
       {
