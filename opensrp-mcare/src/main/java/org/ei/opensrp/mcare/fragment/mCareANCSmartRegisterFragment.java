@@ -1,7 +1,6 @@
 package org.ei.opensrp.mcare.fragment;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.widget.ImageButton;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
@@ -22,21 +20,15 @@ import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragm
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
-import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.anc.mCareANCServiceModeOption;
 import org.ei.opensrp.mcare.anc.mCareANCSmartClientsProvider;
 import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
 import org.ei.opensrp.mcare.anc.mCareAncDetailActivity;
-import org.ei.opensrp.mcare.elco.ElcoDetailActivity;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
-import org.ei.opensrp.mcare.elco.ElcoSearchOption;
-import org.ei.opensrp.mcare.elco.ElcoServiceModeOption;
-import org.ei.opensrp.mcare.elco.ElcoSmartClientsProvider;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
-import org.ei.opensrp.mcare.household.HouseHoldSmartClientsProvider;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -53,7 +45,6 @@ import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
-import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.EntityUtils;
 import org.opensrp.api.util.LocationTree;
@@ -160,7 +151,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
             @Override
             public String searchHint() {
-                return getString(org.ei.opensrp.R.string.str_anc_search_hint);
+                return getString(R.string.str_ec_search_hint);
             }
         };
     }
@@ -190,7 +181,9 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPausedOrRefreshList()) {
+            initializeQueries();
+        }
         updateSearchView();
         try{
             LoginActivity.setLanguage();
@@ -204,6 +197,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
     public void setupViews(View view) {
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
 
         ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
         startregister.setVisibility(View.GONE);
@@ -300,8 +294,11 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
                         if(cs.toString().equalsIgnoreCase("")){
                             filters = "";
                         }else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters = cs.toString();
                         }
+                        joinTable = "";
+                        mainCondition = " is_closed=0 AND FWWOMFNAME not null and FWWOMFNAME != \"\" ";
                         return null;
                     }
 
@@ -337,7 +334,7 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name", name));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name", name, "ec_elco"));
 
             }
         }
@@ -363,37 +360,47 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
         }
     }
     public String ancMainSelectWithJoins(){
-        return "Select id as _id,relationalid,details,FWWOMFNAME,FWPSRLMP,FWSORTVALUE,JiVitAHHID,GOBHHID,Is_PNC,FWBNFSTS,FWBNFDTOO \n" +
-                "from mcaremother\n" +
-                "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
-                "Left Join alerts as alerts2 on alerts2.caseID = mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
+        return "Select ec_elco.id as _id, ec_mcaremother.relationalid,ec_elco.FWWOMNID,ec_elco.FWWOMBID, ec_elco.FWWOMFNAME, ec_elco.FWWOMMAUZA_PARA as mauza, ec_mcaremother.FWPSRLMP, ec_elco.JiVitAHHID, ec_elco.GOBHHID \n" +
+                "from ec_mcaremother Left Join ec_elco on  ec_mcaremother.id = ec_elco.id \n" +
+                "Left Join alerts on alerts.caseID = ec_mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
+                "Left Join alerts as alerts2 on alerts2.caseID = ec_mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
     public String ancMainCountWithJoins(){
         return "Select Count(*) \n" +
-                "from mcaremother\n" +
-                "Left Join alerts on alerts.caseID = mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
-                "Left Join alerts as alerts2 on alerts2.caseID = mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
+                "from ec_mcaremother Left Join ec_elco on  ec_mcaremother.id = ec_elco.id\n" +
+                "Left Join alerts on alerts.caseID = ec_mcaremother.id and alerts.scheduleName = 'Ante Natal Care Reminder Visit'\n" +
+                "Left Join alerts as alerts2 on alerts2.caseID = ec_mcaremother.id and alerts2.scheduleName = 'BirthNotificationPregnancyStatusFollowUp'";
     }
     public void initializeQueries(){
-        CommonRepository commonRepository = context.commonrepository("mcaremother");
-        setTablename("mcaremother");
-        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
-        countSelect = countqueryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
-        CountExecute();
+        try {
+            mCareANCSmartClientsProvider hhscp = new mCareANCSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+            clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, hhscp, new CommonRepository("ec_mcaremother",new String []{"FWWOMFNAME","FWWOMNID","mauza","FWPSRLMP","JiVitAHHID","GOBHHID"}));
+            clientsView.setAdapter(clientAdapter);
 
+            setTablename("ec_mcaremother");
+            SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(ancMainCountWithJoins());
+            mainCondition = " is_closed=0 AND FWWOMFNAME not null and FWWOMFNAME != \"\" ";
+            joinTable = "";
+            countSelect = countqueryBUilder.mainCondition(" ec_mcaremother.is_closed=0 AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
+            super.CountExecute();
 
-        SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
-        mainSelect = queryBUilder.mainCondition("(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME not null and mcaremother.FWWOMFNAME != \"\"   AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'");
+            SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(ancMainSelectWithJoins());
+            mainSelect = queryBUilder.mainCondition(" ec_mcaremother.is_closed=0 AND ec_elco.FWWOMFNAME not null and ec_elco.FWWOMFNAME != \"\" ");
+            Sortqueries = sortByFWWOMFNAME();
 
-        queryBUilder.addCondition(filters);
-        Sortqueries = sortBySortValue();
-        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
-        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
-        mCareANCSmartClientsProvider hhscp = new mCareANCSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("mcaremother",new String []{"FWWOMFNAME","FWPSRLMP","FWSORTVALUE","JiVitAHHID","GOBHHID","Is_PNC","FWBNFSTS","FWBNFDTOO"}));
-        clientsView.setAdapter(clientAdapter);
-        updateSearchView();
-        refresh();
+            currentlimit = 20;
+            currentoffset = 0;
+
+            super.filterandSortInInitializeQueries();
+
+            updateSearchView();
+            refresh();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+
+        }
 
     }
     private String sortBySortValue(){

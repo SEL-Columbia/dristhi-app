@@ -1,7 +1,6 @@
 package org.ei.opensrp.mcare.fragment;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.widget.ImageButton;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
@@ -22,21 +20,14 @@ import org.ei.opensrp.cursoradapter.SecuredNativeSmartRegisterCursorAdapterFragm
 import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.mcare.LoginActivity;
-import org.ei.opensrp.mcare.NativeHomeActivity;
 import org.ei.opensrp.mcare.R;
-import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
-import org.ei.opensrp.mcare.anc.mCareAncDetailActivity;
+import org.ei.opensrp.mcare.child.ChildDetailActivity;
 import org.ei.opensrp.mcare.child.mCareChildServiceModeOption;
 import org.ei.opensrp.mcare.child.mCareChildSmartClientsProvider;
 import org.ei.opensrp.mcare.child.mCareChildSmartRegisterActivity;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
-import org.ei.opensrp.mcare.elco.ElcoSearchOption;
-import org.ei.opensrp.mcare.elco.ElcoSmartClientsProvider;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
-import org.ei.opensrp.mcare.pnc.mCarePNCServiceModeOption;
-import org.ei.opensrp.mcare.pnc.mCarePNCSmartClientsProvider;
-import org.ei.opensrp.mcare.pnc.mCarePNCSmartRegisterActivity;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -53,7 +44,6 @@ import org.ei.opensrp.view.dialog.EditOption;
 import org.ei.opensrp.view.dialog.FilterOption;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
-import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.EntityUtils;
 import org.opensrp.api.util.LocationTree;
@@ -158,7 +148,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
 
             @Override
             public String searchHint() {
-                return getString(org.ei.opensrp.R.string.str_child_search_hint);
+                return getString(R.string.str_ec_search_hint);
             }
         };
     }
@@ -187,7 +177,9 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
     protected void onResumption() {
         super.onResumption();
         getDefaultOptionsProvider();
-        initializeQueries();
+        if(isPausedOrRefreshList()) {
+            initializeQueries();
+        }
         updateSearchView();
         try{
             LoginActivity.setLanguage();
@@ -201,6 +193,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
     public void setupViews(View view) {
         super.setupViews(view);
         view.findViewById(R.id.btn_report_month).setVisibility(INVISIBLE);
+        view.findViewById(R.id.service_mode_selection).setVisibility(INVISIBLE);
 
         ImageButton startregister = (ImageButton)view.findViewById(org.ei.opensrp.R.id.register_client);
         startregister.setVisibility(View.GONE);
@@ -222,8 +215,8 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    mCareAncDetailActivity.ancclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(getActivity(),mCareAncDetailActivity.class);
+                    ChildDetailActivity.ChildClient = (CommonPersonObjectClient)view.getTag();
+                    Intent intent = new Intent(getActivity(),ChildDetailActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.encc_reminder_due_date:
@@ -282,8 +275,11 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
                         if(cs.toString().equalsIgnoreCase("")){
                             filters = "";
                         }else {
-                            filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            //filters = "and FWWOMFNAME Like '%" + cs.toString() + "%' or GOBHHID Like '%" + cs.toString() + "%'  or JiVitAHHID Like '%" + cs.toString() + "%' ";
+                            filters =  cs.toString();
                         }
+                        joinTable = "";
+                        mainCondition = " FWBNFGEN is not null ";
                         return null;
                     }
 
@@ -321,7 +317,7 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
             }else{
                 StringUtil.humanize(entry.getValue().getLabel());
                 String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new CursorCommonObjectFilterOption(name,"and mcaremother.details like '%"+name +"%'"));
+                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name,"location_name",name,"ec_elco"));
 
             }
         }
@@ -349,26 +345,25 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
         }
     }
     public void initializeQueries(){
-        CommonRepository commonRepository = context.commonrepository("mcarechild");
-        setTablename("mcarechild");
-        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(childMainCountWithJoins());
-        countSelect = countqueryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
-        CountExecute();
+        mCareChildSmartClientsProvider hhscp = new mCareChildSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, hhscp, new CommonRepository("ec_mcarechild",new String []{ "FWBNFGEN"}));
+        clientsView.setAdapter(clientAdapter);
 
+        setTablename("ec_mcarechild");
+        SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder(childMainCountWithJoins());
+        countSelect = countqueryBUilder.mainCondition(" FWBNFGEN is not null ");
+        mainCondition = " FWBNFGEN is not null ";
+        super.CountExecute();
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder(childMainSelectWithJoins());
-        mainSelect = queryBUilder.mainCondition(" mcarechild.FWBNFGEN is not null ");
-        queryBUilder.addCondition(filters);
-        Sortqueries = sortBySortValue();
-        currentquery  = queryBUilder.orderbyCondition(Sortqueries);
+        mainSelect = queryBUilder.mainCondition(" FWBNFGEN is not null ");
+        Sortqueries = sortByFWWOMFNAME();
 
+        currentlimit = 20;
+        currentoffset = 0;
 
-//        queryBUilder.queryForRegisterSortBasedOnRegisterAndAlert("household", new String[]{"relationalid" ,"details","FWHOHFNAME", "FWGOBHHID","FWJIVHHID"}, null, "FW CENSUS");
-//        Cursor c = commonRepository.CustomQueryForAdapter(new String[]{"id as _id","relationalid","details"},"household",""+currentlimit,""+currentoffset);
-        Cursor c = commonRepository.RawCustomQueryForAdapter(queryBUilder.Endquery(queryBUilder.addlimitandOffset(currentquery, 20, 0)));
-        mCareChildSmartClientsProvider hhscp = new mCareChildSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
-        clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), c, hhscp, new CommonRepository("mcarechild",new String []{ "FWBNFGEN"}));
-        clientsView.setAdapter(clientAdapter);
+        super.filterandSortInInitializeQueries();
+
 //        setServiceModeViewDrawableRight(null);
 //        updateSearchView();
         refresh();
@@ -385,20 +380,23 @@ public class mCareChildSmartRegisterFragment extends SecuredNativeSmartRegisterC
                 "Else alerts.status END ASC";
     }
     public String childMainSelectWithJoins(){
-        return "Select mcarechild.id as _id,mcarechild.relationalid,mcarechild.details,mcarechild.FWBNFGEN \n" +
-                "from mcarechild\n" +
-                "Left Join mcaremother on mcarechild.relationalid = mcaremother.id \n" +
-                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist'";
+        return "Select ec_mcarechild.id as _id,ec_mcarechild.relational_id as relationalid,ec_mcarechild.details,ec_mcarechild.FWBNFGEN \n" +
+                " ,ec_elco.FWWOMFNAME,ec_elco.GOBHHID,ec_elco.FWHUSNAME,ec_elco.FWWOMBID,ec_elco.JiVitAHHID,hh.existing_mauzapara,ec_elco.FWWOMAGE,pnc.FWBNFDTOO,ec_elco.FWWOMNID from ec_mcarechild \n" +
+                "Left Join ec_elco on ec_mcarechild.relational_id = ec_elco.id \n" +
+                "Left Join ec_household hh on hh.id=ec_elco.relational_id "+
+                "Left Join ec_pnc pnc on pnc.id=ec_mcarechild.relational_id "+
+                "Left Join alerts on alerts.caseID = ec_mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and ec_mcarechild.is_closed=0";
     }
     public String childMainCountWithJoins() {
         return "Select Count(*) \n" +
-                "from mcarechild\n" +
-                "Left Join mcaremother on mcarechild.relationalid = mcaremother.id \n" +
-                "Left Join alerts on alerts.caseID = mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist'";
+                "from ec_mcarechild \n" +
+                "Left Join ec_elco on ec_mcarechild.relational_id = ec_elco.id \n" +
+                "Left Join alerts on alerts.caseID = ec_mcarechild.id and alerts.scheduleName = 'Essential Newborn Care Checklist' and ec_mcarechild.is_closed=0";
     }
 
     private String sortBySortValue(){
-        return " FWSORTVALUE ASC";
+       // return " FWSORTVALUE ASC";
+        return " ec_mcarechild.id ASC";
     }
     private String sortByFWWOMFNAME(){
         return " FWWOMFNAME ASC";

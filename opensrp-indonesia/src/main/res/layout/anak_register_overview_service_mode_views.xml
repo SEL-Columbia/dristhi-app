@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/lbl_berat_lahir"
-            android:text="Type : " />
+            android:text="@string/plan_type" />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:id="@+id/tipe_lahir"
@@ -110,10 +110,10 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="15">
+        android:layout_weight="16">
 
         <ImageView
-            android:id="@+id/icon_imd_no"
+            android:id="@+id/icon_hb0_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -122,7 +122,7 @@
             />
 
         <ImageView
-            android:id="@+id/icon_imd_yes"
+            android:id="@+id/icon_hb0_yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -131,99 +131,99 @@
             android:visibility="gone" />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/is_imd"
+            android:id="@+id/is_hb0"
             style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginLeft="25dp"
-            android:text="IMD" />
+            android:text=" Hb 0-7 hari" />
 
         <ImageView
-            android:id="@+id/icon_immuni_hb_yes"
+            android:id="@+id/icon_pol1_yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/is_imd"
+            android:layout_below="@+id/is_hb0"
             android:src="@drawable/ic_yes_small"
             android:visibility="gone"/>
 
         <ImageView
-            android:id="@+id/icon_immuni_hb_no"
+            android:id="@+id/icon_pol1_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/is_imd"
+            android:layout_below="@+id/is_hb0"
             android:src="@drawable/ic_no_small"
             />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/is_immuni_hb"
+            android:id="@+id/is_pol1"
             style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/is_imd"
+            android:layout_below="@+id/is_hb0"
             android:layout_marginStart="25dp"
             android:layout_marginLeft="25dp"
-            android:text="Immuni HB" />
+            android:text=" BCG dan Polio 1" />
 
         <ImageView
-            android:id="@+id/icon_vit_k_yes"
+            android:id="@+id/icon_pol2_yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/is_immuni_hb"
+            android:layout_below="@+id/is_pol1"
             android:src="@drawable/ic_yes_small"
             android:visibility="gone"/>
 
         <ImageView
-            android:id="@+id/icon_vit_k_no"
+            android:id="@+id/icon_pol2_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/is_immuni_hb"
+            android:layout_below="@+id/is_pol1"
             android:src="@drawable/ic_no_small"
             />
 
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/is_vit_k"
+            android:id="@+id/is_pol2"
             style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/is_immuni_hb"
+            android:layout_below="@+id/is_pol1"
             android:layout_marginStart="25dp"
             android:layout_marginLeft="25dp"
-            android:text="Vit K" />
+            android:text=" DPT/HB1/Polio 2" />
 
         <ImageView
-            android:id="@+id/icon_salep_mata_yes"
+            android:id="@+id/icon_pol3_yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/is_vit_k"
+            android:layout_below="@+id/is_pol2"
             android:src="@drawable/ic_yes_small"
             android:visibility="gone"/>
 
         <ImageView
-            android:id="@+id/icon_salep_mata_no"
+            android:id="@+id/icon_pol3_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/is_vit_k"
+            android:layout_below="@+id/is_pol2"
             android:src="@drawable/ic_no_small"
             />
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
-            android:id="@+id/is_salep_mata"
+            android:id="@+id/is_pol3"
             style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding.NoBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/is_vit_k"
+            android:layout_below="@+id/is_pol2"
             android:layout_marginStart="25dp"
             android:layout_marginLeft="25dp"
-            android:text="Salep Mata" />
+            android:text=" DPT/HB2/Polio 3" />
 
     </RelativeLayout>
 
@@ -232,12 +232,7 @@
         android:layout_height="fill_parent"
         android:src="@color/smart_register_client_divider_color" />
 
-    <include
-        layout="@layout/anak_register_client_birth_status"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="@integer/child_list_sick_status_view_weight" />
-
+    <include layout="@layout/anak_register_client_birth_status"/>
     <ImageView
         android:layout_width="@dimen/smart_register_client_divider_height"
         android:layout_height="fill_parent"
@@ -255,9 +250,4 @@
         android:gravity="center"
         android:scaleType="center" />
 
-    <include
-        layout="@layout/anak_register_client_last_service"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="@integer/child_list_last_service_view_weight" />
 </LinearLayout>

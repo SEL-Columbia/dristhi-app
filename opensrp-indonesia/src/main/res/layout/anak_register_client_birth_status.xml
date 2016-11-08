@@ -1,44 +1,40 @@
-<org.ei.opensrp.indonesia.view.customControls.ClientAnakBirthStatusView
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/client_anak_birth_status_layout"
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="@integer/child_list_id_no_view_weight">
-
-    <org.ei.opensrp.view.customControls.CustomFontTextView
-        android:id="@+id/lbl_visit_date"
-        style="@style/CustomFontTextViewStyle.ListView.Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:text="@string/date_visit_title" />
-
-    <org.ei.opensrp.view.customControls.CustomFontTextView
-        android:id="@+id/lbl_current_weight"
-        style="@style/CustomFontTextViewStyle.ListView.Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/lbl_visit_date"
-        android:text="@string/mother_weight" />
+    android:layout_width="@dimen/list_status_view_width"
+    android:layout_height="fill_parent"
+    android:layout_weight="@integer/child_list_visit_status_view_weight"
+    android:layout_margin="5dp"
+    android:background="@color/status_bar_text_almost_white">
 
     <org.ei.opensrp.view.customControls.CustomFontTextView
         android:id="@+id/txt_visit_date"
-        style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/lbl_visit_date" />
-
+        android:text=""
+        style="@style/CustomFontTextViewStyle.ListView.Small"/>
     <org.ei.opensrp.view.customControls.CustomFontTextView
         android:id="@+id/txt_current_weight"
-        style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_visit_date"
-        android:layout_toRightOf="@id/lbl_current_weight" />
+        android:layout_below="@+id/txt_visit_date"
+        android:text=""
+        style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
-</org.ei.opensrp.indonesia.view.customControls.ClientAnakBirthStatusView>
+    <org.ei.opensrp.view.customControls.CustomFontTextView
+        android:id="@+id/txt_current_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_current_weight"
+        style="@style/CustomFontTextViewStyle.ListView.Small"/>
+    <org.ei.opensrp.view.customControls.CustomFontTextView
+        android:id="@+id/txt_status_gizi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_current_height"
+        style="@style/CustomFontTextViewStyle.ListView.Small"/>
+</RelativeLayout>

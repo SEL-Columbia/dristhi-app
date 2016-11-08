@@ -9,9 +9,21 @@ buildscript {
     }
 }
 apply plugin: 'com.android.application'
+
+configurations.all {
+    resolutionStrategy.force 'com.android.support:support-annotations:21.0.3'
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':opensrp-app')
+
+    compile 'com.android.support:support-annotations:21.0.3'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.1'
+
 }
 android {
     compileSdkVersion androidCompileSdkVersion
@@ -22,10 +34,11 @@ android {
         minSdkVersion 16
         targetSdkVersion 21
 
-        versionCode 26
-        versionName "26.04"
+        versionCode 32
+        versionName "30.00"
 
         multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -44,6 +57,7 @@ android {
         exclude 'META-INF/license.txt'
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
+        exclude 'LICENSE.txt'
     }
     lintOptions {
         checkReleaseBuilds false

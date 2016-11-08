@@ -1,14 +1,22 @@
 package org.ei.opensrp.repository;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static org.ei.opensrp.AllConstants.*;
+import static org.ei.opensrp.util.Log.logError;
+import static org.ei.opensrp.util.Log.logInfo;
 
 public class AllSharedPreferences {
     public static final String ANM_IDENTIFIER_PREFERENCE_KEY = "anmIdentifier";
     private static final String DRISHTI_BASE_URL = "DRISHTI_BASE_URL";
     private static final String HOST = "HOST";
     private static final String PORT = "PORT";
+    private static final String LAST_SYNC_DATE = "LAST_SYNC_DATE";
     private SharedPreferences preferences;
 
     public AllSharedPreferences(SharedPreferences preferences) {
@@ -41,21 +49,55 @@ public class AllSharedPreferences {
 
     public String fetchBaseURL(String baseurl){
 
-      return   preferences.getString(DRISHTI_BASE_URL,baseurl);
+        return   preferences.getString(DRISHTI_BASE_URL,baseurl);
+    }
+
+    public String fetchHost(String host){
+        if((host == null || host.isEmpty()) && preferences.getString(HOST,host).equals(host)){
+            updateUrl(fetchBaseURL(""));
+        }
+        return  preferences.getString(HOST,host);
+    }
+
+    public void saveHost(String host){
+        preferences.edit().putString(HOST,host).commit();
     }
 
     public Integer fetchPort(Integer port){
 
-
-                return  Integer.parseInt( preferences.getString(PORT,""+port));
-          //      return  Integer.parseInt(preferences.getString(PORT, "" + port));
-           }
-
-    public String getPreference(String key) {
-        return preferences.getString(key, "").trim();
-           }
-    public void setPreference(String key, String value) {
-               preferences.edit().putString(key, value).commit();
+        return  Integer.parseInt( preferences.getString(PORT,""+port));
     }
-}
 
+    public Long fetchLastSyncDate(long lastSyncDate){
+
+        return  preferences.getLong(LAST_SYNC_DATE, lastSyncDate);
+    }
+
+    public void saveLastSyncDate(long lastSyncDate){
+        preferences.edit().putLong(LAST_SYNC_DATE, lastSyncDate).commit();
+    }
+
+    public void savePort(Integer port){
+        preferences.edit().putString(PORT, String.valueOf(port)).commit();
+    }
+    public void updateUrl(String baseUrl){
+        try {
+
+            URL url = new URL(baseUrl);
+
+            String base = url.getProtocol() + "://" + url.getHost();
+            int port = url.getPort();
+
+            logInfo("Base URL: " + base);
+            logInfo("Port: " + port);
+
+            saveHost(base);
+            savePort(port);
+
+        }catch (MalformedURLException e){
+            logError("Malformed Url: " + baseUrl);
+        }
+    }
+
+
+}

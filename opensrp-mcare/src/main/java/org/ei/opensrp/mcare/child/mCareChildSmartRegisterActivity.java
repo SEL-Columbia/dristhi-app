@@ -14,6 +14,7 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoSearchOption;
@@ -22,7 +23,9 @@ import org.ei.opensrp.mcare.fragment.mCarePNCSmartRegisterFragment;
 import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.AllSharedPreferences;
+import org.ei.opensrp.service.FormSubmissionService;
 import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -137,6 +140,16 @@ public class mCareChildSmartRegisterActivity extends SecuredNativeSmartRegisterA
     @Override
     public void startRegistration() {
     }
+    @Override
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+        try {
+            LoginActivity.setLanguage();
+        }catch (Exception e){
+
+        }
+        super.showFragmentDialog(dialogOptionModel, tag);
+    }
+
 
     public DialogOption[] getEditOptionsforChild(String visittext,String alertstatus) {
         String ancvisittext = "Not Synced";
@@ -193,7 +206,6 @@ public class mCareChildSmartRegisterActivity extends SecuredNativeSmartRegisterA
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
                 if (displayFormFragment != null) {
                     displayFormFragment.setFormData(data);
-                    displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
                     displayFormFragment.setFieldOverides(metaData);
                 }
@@ -263,12 +275,12 @@ public class mCareChildSmartRegisterActivity extends SecuredNativeSmartRegisterA
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
-
-            Context context = Context.getInstance();
-            ZiggyService ziggyService = context.ziggyService();
             ziggyService.saveForm(getParams(submission), submission.instance());
-            Log.v("we are here", "hhregister");
-            //switch to forms list fragmentstregi
+            ClientProcessor.getInstance(getApplicationContext()).processClient();
+
+            context.formSubmissionService().updateFTSsearch(submission);
+            context.formSubmissionRouter().handleSubmission(submission, formName);
+
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
         }catch (Exception e){
@@ -297,7 +309,6 @@ public class mCareChildSmartRegisterActivity extends SecuredNativeSmartRegisterA
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
-                    displayFormFragment.loadFormData();
                 }
 
                 displayFormFragment.setRecordId(null);
@@ -365,20 +376,6 @@ public class mCareChildSmartRegisterActivity extends SecuredNativeSmartRegisterA
 
     public DisplayFormFragment getDisplayFormFragmentAtIndex(int index) {
         return  (DisplayFormFragment)findFragmentByPosition(index);
-    }
-    public void addChildToList(ArrayList<DialogOption> dialogOptionslist,Map<String,TreeNode<String, Location>> locationMap){
-        for(Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
-
-            if(entry.getValue().getChildren() != null) {
-                addChildToList(dialogOptionslist,entry.getValue().getChildren());
-
-            }else{
-                StringUtil.humanize(entry.getValue().getLabel());
-                String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"existing_Mauzapara",name));
-
-            }
-        }
     }
 
     public void retrieveAndSaveUnsubmittedFormData(){

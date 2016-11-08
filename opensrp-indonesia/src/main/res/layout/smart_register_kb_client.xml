@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
-                android:text="Method"/>
+                android:text=""/>
 
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
@@ -61,7 +61,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2015-04-01"/>
+                android:text=""/>
 
         </LinearLayout>
     </LinearLayout>
@@ -101,7 +101,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small.NoHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="25"/>
+                android:text=""/>
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 style="@style/CustomFontTextViewStyle.ListView.Small.NoHeight"
@@ -117,7 +117,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small.NoHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="25"/>
+                android:text=""/>
 
         </LinearLayout>
 
@@ -143,7 +143,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small.NoHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TIDAK ADA"/>
+                android:text=""/>
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 style="@style/CustomFontTextViewStyle.ListView.Small.NoHeight"
@@ -159,7 +159,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Small.NoHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="25"/>
+                android:text=""/>
 
         </LinearLayout>
     </LinearLayout>
@@ -175,6 +175,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="120"
         android:padding="5dp"
+        android:id="@+id/follow_layout"
         android:orientation="horizontal"
         >
         <LinearLayout
@@ -190,6 +191,20 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:text="Follow Up Due"/>
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/follow_due"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="Expire:"/>
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:id="@+id/follow_status"
+                style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text=""/>
 
         </LinearLayout>
 

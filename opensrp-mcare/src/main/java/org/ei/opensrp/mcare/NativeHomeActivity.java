@@ -1,10 +1,8 @@
 package org.ei.opensrp.mcare;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +13,7 @@ import android.widget.Toast;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.commonregistry.CommonRepository;
 import org.ei.opensrp.commonregistry.ControllerFilterMap;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.event.Listener;
@@ -23,11 +22,14 @@ import org.ei.opensrp.mcare.anc.anc2handler;
 import org.ei.opensrp.mcare.anc.anc3handler;
 import org.ei.opensrp.mcare.anc.anc4handler;
 import org.ei.opensrp.mcare.anc.nbnfhandler;
-import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
+import org.ei.opensrp.mcare.child.encc1handler;
+import org.ei.opensrp.mcare.child.encc2handler;
+import org.ei.opensrp.mcare.child.encc3handler;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
 import org.ei.opensrp.mcare.household.CensusEnrollmentHandler;
-import org.ei.opensrp.mcare.household.HouseholdCensusDueDateSort;
-import org.ei.opensrp.mcare.household.tutorial.tutorialCircleViewFlow;
+import org.ei.opensrp.mcare.pnc.pnc1handler;
+import org.ei.opensrp.mcare.pnc.pnc2handler;
+import org.ei.opensrp.mcare.pnc.pnc3handler;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
@@ -37,8 +39,6 @@ import org.ei.opensrp.view.contract.HomeContext;
 import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
-
-import java.util.ArrayList;
 
 import static android.widget.Toast.LENGTH_SHORT;
 import static java.lang.String.valueOf;
@@ -97,7 +97,7 @@ public class NativeHomeActivity extends SecuredActivity {
     public static CommonPersonObjectController elcocontroller;
     public static CommonPersonObjectController childcontroller;
     public static CommonPersonObjectController pnccontroller;
-    public static int hhcount;
+    private int hhcount;
     private int elcocount;
     private int anccount;
     private int pnccount;
@@ -111,12 +111,20 @@ public class NativeHomeActivity extends SecuredActivity {
         initialize();
         DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
         DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
-        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form",new CensusEnrollmentHandler());
+        context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
         context.formSubmissionRouter().getHandlerMap().put("psrf_form", new PSRFHandler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_1", new anc1handler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_2", new anc2handler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_3", new anc3handler());
         context.formSubmissionRouter().getHandlerMap().put("anc_reminder_visit_4", new anc4handler());
+        context.formSubmissionRouter().getHandlerMap().put("pnc_reminder_visit_1", new pnc1handler());
+        context.formSubmissionRouter().getHandlerMap().put("pnc_reminder_visit_2", new pnc2handler());
+        context.formSubmissionRouter().getHandlerMap().put("pnc_reminder_visit_3", new pnc3handler());
+        context.formSubmissionRouter().getHandlerMap().put("encc_visit_1", new encc1handler());
+        context.formSubmissionRouter().getHandlerMap().put("encc_visit_2", new encc2handler());
+        context.formSubmissionRouter().getHandlerMap().put("encc_visit_3", new encc3handler());
+
+
         context.formSubmissionRouter().getHandlerMap().put("birthnotificationpregnancystatusfollowup", new nbnfhandler());
 
     }
@@ -170,28 +178,40 @@ public class NativeHomeActivity extends SecuredActivity {
         });
     }
 
+    @Override
+    public void replicationComplete() {
+        super.replicationComplete();
+        updateRegisterCounts();
+    }
+
     private void updateRegisterCounts(HomeContext homeContext) {
-               SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
-        Cursor hhcountcursor = context.commonrepository("household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("household", "household.FWHOHFNAME NOT Null and household.FWHOHFNAME != ''"));
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+
+        Cursor hhcountcursor = context.commonrepository("ec_household").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_household_search", " ec_household_search.is_closed=0"));
         hhcountcursor.moveToFirst();
-        hhcount= hhcountcursor.getInt(0);
+        hhcount = hhcountcursor.getInt(0);
         hhcountcursor.close();
-        Cursor elcocountcursor = context.commonrepository("elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("elco","elco.FWWOMFNAME NOT NULL and elco.FWWOMFNAME !=''  AND elco.details  LIKE '%\"FWELIGIBLE\":\"1\"%'"));
+
+        Cursor elcocountcursor = context.commonrepository("ec_elco").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_elco_search", " ec_elco_search.is_closed=0"));
         elcocountcursor.moveToFirst();
-        elcocount= elcocountcursor.getInt(0);
+        elcocount = elcocountcursor.getInt(0);
         elcocountcursor.close();
-        Cursor anccountcursor = context.commonrepository("mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcaremother","(mcaremother.Is_PNC is null or mcaremother.Is_PNC = '0') and mcaremother.FWWOMFNAME is not NUll  AND mcaremother.FWWOMFNAME != \"\"      AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'"));
+
+        Cursor anccountcursor = context.commonrepository("ec_mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_mcaremother_search", " ec_mcaremother_search.is_closed=0"));
         anccountcursor.moveToFirst();
-        anccount= anccountcursor.getInt(0);
+        anccount = anccountcursor.getInt(0);
         anccountcursor.close();
-        Cursor pnccountcursor = context.commonrepository("mcaremother").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcaremother","mcaremother.Is_PNC = '1' and mcaremother.FWWOMFNAME is not NUll  AND mcaremother.FWWOMFNAME != \"\"      AND mcaremother.details  LIKE '%\"FWWOMVALID\":\"1\"%'"));
+
+        Cursor pnccountcursor = context.commonrepository("ec_pnc").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_pnc_search", " ec_pnc_search.is_closed=0"));
         pnccountcursor.moveToFirst();
-        pnccount= pnccountcursor.getInt(0);
+        pnccount = pnccountcursor.getInt(0);
         pnccountcursor.close();
-        Cursor childcountcursor = context.commonrepository("mcarechild").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("mcarechild"," mcarechild.FWBNFGEN is not NUll "));
+
+        Cursor childcountcursor = context.commonrepository("ec_mcarechild").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_mcarechild_search", " ec_mcarechild_search.is_closed=0 and ec_mcarechild_search.FWBNFGEN is not NUll "));
         childcountcursor.moveToFirst();
-        childcount= childcountcursor.getInt(0);
+        childcount = childcountcursor.getInt(0);
         childcountcursor.close();
+
         pncRegisterClientCountView.setText(valueOf(pnccount));
         ecRegisterClientCountView.setText(valueOf(hhcount));
         ancRegisterClientCountView.setText(valueOf(anccount));
@@ -228,9 +248,6 @@ public class NativeHomeActivity extends SecuredActivity {
                 LoginActivity.setLanguage();
                 Toast.makeText(this, "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
                 this.recreate();
-                return true;
-            case R.id.help:
-                startActivity(new Intent(this, tutorialCircleViewFlow.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

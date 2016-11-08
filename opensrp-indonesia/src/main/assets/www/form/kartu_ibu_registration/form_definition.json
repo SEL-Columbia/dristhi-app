@@ -1,12 +1,21 @@
 {
-  "form_data_definition_version": "1",
+  "form_data_definition_version": "3",
   "form": {
     "bind_type": "kartu_ibu",
+    "ec_bind_type": "ec_kartu_ibu",
     "default_bind_path": "/model/instance/Kartu_ibu/",
     "fields": [
       {
         "name": "id",
         "shouldLoadValue": true
+      },
+      {
+        "name": "start",
+        "bind": "/model/instance/Kartu_ibu/start"
+      },
+      {
+        "name": "end",
+        "bind": "/model/instance/Kartu_ibu/end"
       },
       {
         "name": "lokasiPeriksa",
@@ -20,12 +29,12 @@
       {
         "name": "Village",
         "bind": "/model/instance/Kartu_ibu/Village",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "Province",
         "bind": "/model/instance/Kartu_ibu/Province",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "nik",
@@ -34,17 +43,17 @@
       {
         "name": "Sub-district",
         "bind": "/model/instance/Kartu_ibu/Sub-district",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "District",
         "bind": "/model/instance/Kartu_ibu/District",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "Sub-village",
         "bind": "/model/instance/Kartu_ibu/Sub-village",
-        "shouldLoadValue": true
+        "shouldLoadValue" : true
       },
       {
         "name": "dusun",
@@ -135,16 +144,16 @@
         "bind": "/model/instance/Kartu_ibu/nomor_telpon_hp"
       },
       {
-        "name": "pptest",
-        "bind": "/model/instance/Kartu_ibu/pptest"
-      },
-      {
         "name": "highRiskPregnancyYoungMaternalAge",
         "bind": "/model/instance/Kartu_ibu/High_Risk_Pregnancy_Young_maternal_age"
       },
       {
         "name": "highRiskPregnancyOldMaternalAge",
         "bind": "/model/instance/Kartu_ibu/High_Risk_Pregnancy_Old_maternal_age"
+      },
+      {
+        "name": "jenisKontrasepsi",
+        "bind": "/model/instance/Kartu_ibu/jenis_kontrasepsi"
       },
       {
         "name": "isOutOfArea",

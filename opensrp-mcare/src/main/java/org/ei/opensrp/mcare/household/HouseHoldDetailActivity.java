@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.repository.ImageRepository;
 
 import java.io.File;
@@ -92,25 +94,32 @@ public class HouseHoldDetailActivity extends Activity {
         });
 
 
-        householdhead_name.setText(householdclient.getColumnmaps().get("FWHOHFNAME"));
+        householdhead_name.setText(humanize(householdclient.getColumnmaps().get("FWHOHFNAME")));
         mauza.setText(humanize((householdclient.getDetails().get("existing_Mauzapara") != null ? householdclient.getDetails().get("existing_Mauzapara") : "").replace("+", "_")));
-        household_hhid.setText(getResources().getString(R.string.hhid_gob) + householdclient.getColumnmaps().get("FWGOBHHID"));
-        household_hhid_jivita.setText(getResources().getString(R.string.hhid_jivita) + householdclient.getColumnmaps().get("FWJIVHHID"));
+//        household_hhid.setText(getResources().getString(R.string.hhid_gob) + householdclient.getColumnmaps().get("FWGOBHHID"));
+//        household_hhid_jivita.setText(getResources().getString(R.string.hhid_jivita) + householdclient.getColumnmaps().get("FWJIVHHID"));
+
+        String hhid_jivitaSourcestring = getResources().getString(R.string.hhid_jivita) + " <b>" + (householdclient.getColumnmaps().get("FWJIVHHID")!=null?householdclient.getColumnmaps().get("FWJIVHHID"):"") + "</b> ";
+        household_hhid_jivita.setText(Html.fromHtml(hhid_jivitaSourcestring));
+        String hhidSourcestring = getResources().getString(R.string.hhid_gob) + " <b>" + (householdclient.getColumnmaps().get("FWGOBHHID")!=null?householdclient.getColumnmaps().get("FWGOBHHID"):"") + "</b> ";
+        household_hhid.setText(Html.fromHtml(hhidSourcestring));
+
+
         final ImageView householdview = (ImageView)findViewById(R.id.householdprofileview);
 
         if(householdclient.getDetails().get("profilepic")!= null){
-            if((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("2")) {
+            if((householdclient.getDetails().get("gender")!=null?householdclient.getDetails().get("gender"):"").equalsIgnoreCase("2")) {
 
                 setImagetoHolderFromUri(HouseHoldDetailActivity.this, householdclient.getDetails().get("profilepic"), householdview, R.mipmap.womanimageload);
-            } else if ((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("1")){
+            } else if ((householdclient.getDetails().get("gender")!=null?householdclient.getDetails().get("gender"):"").equalsIgnoreCase("1")){
                 setImagetoHolderFromUri(HouseHoldDetailActivity.this, householdclient.getDetails().get("profilepic"), householdview, R.mipmap.householdload);
 
             }
         }else{
 
-            if((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("2")){
+            if((householdclient.getDetails().get("gender")!=null?householdclient.getDetails().get("gender"):"").equalsIgnoreCase("2")){
                 householdview.setImageDrawable(getResources().getDrawable(R.drawable.woman_placeholder));
-            }else if ((householdclient.getDetails().get("FWHOHGENDER")!=null?householdclient.getDetails().get("FWHOHGENDER"):"").equalsIgnoreCase("1")){
+            }else if ((householdclient.getDetails().get("gender")!=null?householdclient.getDetails().get("gender"):"").equalsIgnoreCase("1")){
                 householdview.setImageDrawable(getResources().getDrawable(R.mipmap.household_profile_thumb));
             }
         }
@@ -128,8 +137,8 @@ public class HouseHoldDetailActivity extends Activity {
         Clientsview = (ListView)findViewById(R.id.list);
         paginationViewHandler.addPagination(Clientsview);
 
-        householdcontroller = new CommonPersonObjectController(Context.getInstance().allCommonsRepositoryobjects("elco"), Context.getInstance().allBeneficiaries(),context.listCache(),
-                context.personObjectClientsCache(),"FWWOMFNAME","elco","relationalid",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelationalid,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byColumn);
+        householdcontroller = new CommonPersonObjectController(Context.getInstance().allCommonsRepositoryobjects("ec_elco"), Context.getInstance().allBeneficiaries(),context.listCache(),
+                context.personObjectClientsCache(),"FWWOMFNAME","ec_elco","relational_id",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelational_id,"FWWOMFNAME", CommonPersonObjectController.ByColumnAndByDetails.byColumn);
                 clientsAdapter = adapter();
         clientsAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
@@ -345,6 +354,8 @@ public class HouseHoldDetailActivity extends Activity {
         String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
         ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("profilepic"), ImageRepository.TYPE_Unsynced,"dp");
         ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
+        DetailsRepository detailsRepository = Context.getInstance().detailsRepository();
+        detailsRepository.add(entityid, "profilepic",details.get("profilepic"), (new Date()).getTime());
 //                householdclient.entityId();
 //        Toast.makeText(this,entityid,Toast.LENGTH_LONG).show();
     }
@@ -353,6 +364,8 @@ public class HouseHoldDetailActivity extends Activity {
         String anmId = Context.getInstance().allSharedPreferences().fetchRegisteredANM();
         ProfileImage profileImage = new ProfileImage(UUID.randomUUID().toString(),anmId,entityid,"Image",details.get("nidImage"), ImageRepository.TYPE_Unsynced,"nidImage");
         ((ImageRepository) Context.getInstance().imageRepository()).add(profileImage);
+        DetailsRepository detailsRepository = Context.getInstance().detailsRepository();
+        detailsRepository.add(entityid, "nidImage", details.get("nidImage"), (new Date()).getTime());
         try {
             nidbutton.setText("");
             nidbutton.setBackground(getDrawableFromPath(details.get("nidImage")));
@@ -410,8 +423,8 @@ public class HouseHoldDetailActivity extends Activity {
         Clientsview = (ListView)findViewById(R.id.list);
         paginationViewHandler.addPagination(Clientsview);
 
-        householdcontroller = new CommonPersonObjectController(Context.getInstance().allCommonsRepositoryobjects("elco"), Context.getInstance().allBeneficiaries(),context.listCache(),
-                context.personObjectClientsCache(),"FWELIGIBLE","elco","relationalid",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelationalid,"FWELIGIBLE", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+        householdcontroller = new CommonPersonObjectController(Context.getInstance().allCommonsRepositoryobjects("ec_elco"), Context.getInstance().allBeneficiaries(),context.listCache(),
+                context.personObjectClientsCache(),"FWELIGIBLE2","ec_elco","relational_id",householdclient.entityId(), CommonPersonObjectController.ByColumnAndByDetails.byrelational_id,"FWELIGIBLE2", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
         clientsAdapter = adapter();
             clientsAdapter = adapter();
         clientsAdapter.registerDataSetObserver(new DataSetObserver() {

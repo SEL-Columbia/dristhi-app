@@ -3,6 +3,7 @@
   "form": {
     "default_bind_path": "/model/instance/BirthNotificationPregnancyStatusFollowUp",
     "bind_type": "mcaremother",
+    "ec_bind_type": "ec_mcaremother",
     "fields": [
       {
         "name": "id",
@@ -128,6 +129,7 @@
       {
         "name": "child_registration",
         "bind_type": "mcarechild",
+        "ec_bind_type": "ec_mcarechild",
         "default_bind_path": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS",
         "fields": [
           {
@@ -145,6 +147,26 @@
           {
             "name": "FWBNFCHLDVITSTS",
             "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFCHLDVITSTS"
+          },
+          {
+            "name": "FWBNFNAMECHECK",
+            "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFNAMECHECK"
+          },
+          {
+            "name": "FWBNFNAME",
+            "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFNAME"
+          },
+          {
+            "name": "FWBNFCHILDNAME",
+            "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFCHILDNAME"
+          },
+          {
+            "name": "FWBNFDOB",
+            "bind": "/model/instance/BirthNotificationPregnancyStatusFollowUp/outcome_occured/FWBNCHLDVITSTS/FWBNFDOB"
+          },{
+            "name": "mother_entity_id",
+            "source": "mcaremother.id",
+            "shouldLoadValue": true
           }
         ]
       }

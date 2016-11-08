@@ -16,6 +16,9 @@ import static org.ei.drishti.dto.AlertStatus.*;
 
 public class AlertRepository extends DrishtiRepository {
     private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, scheduleName VARCHAR, visitCode VARCHAR, status VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR)";
+    private static final String ALERTS_CASEID_INDEX_SQL =  "CREATE INDEX alerts_caseID_index ON alerts(caseID COLLATE NOCASE) ;";
+    private static final String ALERTS_VISIT_CODE_INDEX_SQL =  "CREATE INDEX alerts_visitCode_index ON alerts(visitCode) ;";
+    private static final String ALERTS_STARTDATE_INDEX_SQL =  "CREATE INDEX alerts_startDate_index ON alerts(startDate asc) ;";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
     public static final String ALERTS_SCHEDULE_NAME_COLUMN = "scheduleName";
@@ -38,6 +41,9 @@ public class AlertRepository extends DrishtiRepository {
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(ALERTS_SQL);
+        database.execSQL(ALERTS_CASEID_INDEX_SQL);
+        database.execSQL(ALERTS_VISIT_CODE_INDEX_SQL);
+        database.execSQL(ALERTS_STARTDATE_INDEX_SQL);
     }
 
     public List<Alert> allAlerts() {

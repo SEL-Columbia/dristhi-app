@@ -1,34 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" manifest="/manifest/html/webform" class="no-js">
-   <head>
-      <title></title>
-      <meta charset="utf-8" />
-      <meta name="author" content="Martijn van de Rijdt (Enketo LLC)" />
-      <meta name="robots" content="noindex"/>
-      <meta name="viewport" content="width=device-height, initial-scale=1.0" />
-      <link href="../build/css/webform_formhub.css" media="all" rel="stylesheet" type="text/css" />
+<html lang="en" class="no-js"><head>
+	<title>Enketo-Core Developer template</title>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,600&amp;subset=latin,cyrillic-ext,cyrillic,greek-ext,greek,vietnamese,latin-ext" rel="stylesheet" type="text/css">
 
-   </head>
-   <body class="clearfix">
-      <div id="dialog-alert" class="modal fade" role="dialog" aria-labelledby="alert dialog" aria-hidden="true"  data-keyboard="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h3></h3>
-                  </div>
-                  <div class="modal-body">
-                      <p class=""></p>
-                  </div>
-                  <div class="modal-footer">
-                      <span class="self-destruct-timer"></span>
-                      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
+	<!--<link type="text/css" href="../build/css/plain.css" media="all" rel="stylesheet" />-->
+	<link type="text/css" href="../build/css/formhub.css" media="all" rel="stylesheet">
+	<!--<link type="text/css" href="../build/css/grid.css" media="all" rel="stylesheet" />-->
 
-      <div class="main">
-         <article class="paper" >
-            <div class="form-header clearfix"><span class="form-language-selector"></span></div>
+	<!--<link type="text/css" href="../build/css/plain-print.css" media="print" rel="stylesheet" />-->
+	<link type="text/css" href="../build/css/formhub-print.css" media="print" rel="stylesheet">
+	<!--<link type="text/css" href="../build/css/grid-pring.css" media="print" rel="stylesheet" />-->
 
+	<style typet="text/css">
+		.form-footer .disabled{
+		display: none;
+		}
+	</style>
+	
+</head>
+<body>
+<div class="main">
+	<article class="paper">
+		<!--
+            This section is to be removed in application
+        -->
+
+		<!--
+            This form header (markup/css) can be changed in the application.
+            Just make sure to keep a .form-language-selector element into which the form language selector (<select>)
+            will be appended by Enketo Core.
+        -->
+		<header class="form-header clearfix">
+			<span class="form-language-selector"><span>Choose Language</span></span>
+		</header>

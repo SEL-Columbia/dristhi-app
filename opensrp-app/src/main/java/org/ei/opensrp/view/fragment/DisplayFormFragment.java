@@ -81,7 +81,7 @@ public class DisplayFormFragment extends Fragment {
                 this.fieldOverides = new JSONObject(overridesStr);
             }
         }catch (Exception e){
-            e.printStackTrace();
+             Log.e(TAG, e.toString(), e);
         }
 
     }
@@ -127,12 +127,25 @@ public class DisplayFormFragment extends Fragment {
         webView.addJavascriptInterface(myJavaScriptInterface, "Android");
     }
 
+    /**
+     * reset the form
+     */
+    public void resetForm(){
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("javascript:resetForm()");
+                Log.d(TAG, "reseting form");
+            }
+        });
+    }
+
     public void loadHtml(){
         showProgressDialog();
         String header = readFileAssets(headerTemplate);
 
         String script = readFileAssets(scriptFile);
-        String modelString = readFileAssets("www/form/" + formName + "/model.xml").replaceAll("\"", "\\\\\"").replaceAll("\n", "").replaceAll("\r", "").replaceAll("/","\\\\/");;
+        String modelString = readFileAssets("www/form/" + formName + "/model.xml").replaceAll("\"", "\\\\\"").replaceAll("\n", "").replaceAll("\r", "").replaceAll("/","\\\\/");
         String form = readFileAssets("www/form/" + formName + "/form.xml");
         String footer = readFileAssets(footerTemplate);
 
@@ -143,6 +156,7 @@ public class DisplayFormFragment extends Fragment {
         StringBuilder sb = new StringBuilder();
         sb.append(header).append(form).append(footer);
         webView.loadDataWithBaseURL("file:///android_asset/web/forms/", sb.toString(), "text/html", "utf-8", null);
+        //webView.loadUrl("file:///android_asset/web/template.html");
 
         resizeForm();
     }
@@ -157,7 +171,7 @@ public class DisplayFormFragment extends Fragment {
             is.close();
             fileContents = new String(buffer, "UTF-8");
         } catch (IOException ex) {
-            ex.printStackTrace();
+             Log.e(TAG, ex.toString(), ex);
             return null;
         }
         //Log.d("File", fileContents);
@@ -196,38 +210,41 @@ public class DisplayFormFragment extends Fragment {
         });
     }
 
-    String formData;
-    public void setFormData(String data){
-        if (data != null){
-            this.formData = data;
-        }
-    }
-
-    public void loadFormData(){
+    public void setFormData(final String data){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try{
+                    // Wait for the page to initialize
                     while (!javascriptLoaded){
                         Thread.sleep(100);
                     }
 
-                    formData = formData != null && !formData.isEmpty() ? formData.replaceAll("\"","\\\"") : "";
-                    webView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            webView.loadUrl("javascript:loadDraft('" + formData + "')");
-                            Log.e("posting data", formData);
-                        }
-                    });
+                    if (data != null && !data.isEmpty()){
+                        postXmlDataToForm(data);
+                    }else{
+                        resetForm();
+                    }
 
-                }catch(Exception doNothing){}
+                }catch(Exception e){
+                    Log.e(TAG, e.toString(), e);
+                }
             }
         }).start();
-
+    }
+   String formData="";
+    private void postXmlDataToForm(final String data){
+        webView.post(new Runnable() {
+            @Override
+            public void run() {
+                formData = data.replaceAll("template=\"\"","");
+                webView.loadUrl("javascript:loadDraft('" + formData + "')");
+                Log.d("posting data", data);
+            }
+        });
     }
 
-    //override this on tha child classes to override specific fields
+    // override this on tha child classes to override specific fields
     public JSONObject getFormFieldsOverrides(){
         return fieldOverides;
     }
@@ -270,6 +287,7 @@ public class DisplayFormFragment extends Fragment {
     }
 
     public class MyJavaScriptInterface {
+        private static final String JAVASCRIPT_LOG_TAG = "Javascript";
         Context mContext;
 
         MyJavaScriptInterface(Context c) {
@@ -289,9 +307,6 @@ public class DisplayFormFragment extends Fragment {
                         }
                     });
 
-//            AlertDialog alert = builder.create();
-//
-//            alert.show();
             AlertDialog dialog = builder.show();
             TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
             messageText.setGravity(Gravity.CENTER);
@@ -319,6 +334,12 @@ public class DisplayFormFragment extends Fragment {
             ((SecuredNativeSmartRegisterActivity)getActivity()).savePartialFormData(partialData, recordId, formName, getFormFieldsOverrides());
         }
 
+        @JavascriptInterface
+        public void log(String message){
+            Log.d(JAVASCRIPT_LOG_TAG, message);
+            //Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+            //((SecuredNativeSmartRegisterActivity)getActivity()).savePartialFormData(partialData, recordId, formName, getFormFieldsOverrides());
+        }
     }
 
     private void resizeForm() {
@@ -337,7 +358,7 @@ public class DisplayFormFragment extends Fragment {
                         landWidthPixels = (Integer) Display.class.getMethod("getRawWidth").invoke(d);
                         landHeightPixels = (Integer) Display.class.getMethod("getRawHeight").invoke(d);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                         Log.e(TAG, e.toString(), e);
                     }
                 } else if(Build.VERSION.SDK_INT > 17) {
                     try {
@@ -346,7 +367,7 @@ public class DisplayFormFragment extends Fragment {
                         landWidthPixels = realSize.x;
                         landHeightPixels = realSize.y;
                     } catch (Exception e) {
-                        e.printStackTrace();
+                         Log.e(TAG, e.toString(), e);
                     }
                 }
 

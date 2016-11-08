@@ -14,6 +14,7 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.mcare.LoginActivity;
 import org.ei.opensrp.mcare.R;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoSearchOption;
@@ -21,7 +22,9 @@ import org.ei.opensrp.mcare.fragment.mCareANCSmartRegisterFragment;
 import org.ei.opensrp.mcare.pageradapter.BaseRegisterActivityPagerAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.repository.AllSharedPreferences;
+import org.ei.opensrp.service.FormSubmissionService;
 import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
@@ -53,6 +56,7 @@ import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.ei.opensrp.event.Event.FORM_SUBMITTED;
 
 public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -99,14 +103,6 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         formNames.add("anc_reminder_visit_3");
         formNames.add("anc_reminder_visit_4");
         formNames.add("birthnotificationpregnancystatusfollowup");
-
-
-
-
-//        DialogOption[] options = getEditOptions();
-//        for (int i = 0; i < options.length; i++){
-//            formNames.add(((OpenFormOption) options[i]).getFormName());
-//        }
         return formNames.toArray(new String[formNames.size()]);
     }
     public void onPageChanged(int page){
@@ -138,6 +134,16 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     public void startRegistration() {
     }
+    @Override
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+        try {
+            LoginActivity.setLanguage();
+        }catch (Exception e){
+
+        }
+        super.showFragmentDialog(dialogOptionModel, tag);
+    }
+
 
     public DialogOption[] getEditOptions() {
         return new DialogOption[]{
@@ -216,7 +222,6 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
                 if (displayFormFragment != null) {
                     displayFormFragment.setFormData(data);
-                    displayFormFragment.loadFormData();
                     displayFormFragment.setRecordId(entityId);
                     displayFormFragment.setFieldOverides(metaData);
                 }
@@ -286,15 +291,14 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         try{
             FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
             FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
-
-            org.ei.opensrp.Context context = org.ei.opensrp.Context.getInstance();
-            ZiggyService ziggyService = context.ziggyService();
             ziggyService.saveForm(getParams(submission), submission.instance());
-            Log.v("we are here", "hhregister");
-            //switch to forms list fragmentstregi
-            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
+            ClientProcessor.getInstance(getApplicationContext()).processClient();
 
-        }catch (Exception e){
+            context.formSubmissionService().updateFTSsearch(submission);
+            context.formSubmissionRouter().handleSubmission(submission, formName);
+
+            switchToBaseFragment(formSubmission);
+        }catch (Exception e) {
             DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
             if (displayFormFragment != null) {
                 displayFormFragment.hideTranslucentProgressDialog();
@@ -320,7 +324,6 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
-                    displayFormFragment.loadFormData();
                 }
 
                 displayFormFragment.setRecordId(null);
@@ -388,20 +391,6 @@ public class mCareANCSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     public DisplayFormFragment getDisplayFormFragmentAtIndex(int index) {
         return  (DisplayFormFragment)findFragmentByPosition(index);
-    }
-    public void addChildToList(ArrayList<DialogOption> dialogOptionslist,Map<String,TreeNode<String, Location>> locationMap){
-        for(Map.Entry<String, TreeNode<String, Location>> entry : locationMap.entrySet()) {
-
-            if(entry.getValue().getChildren() != null) {
-                addChildToList(dialogOptionslist,entry.getValue().getChildren());
-
-            }else{
-                StringUtil.humanize(entry.getValue().getLabel());
-                String name = StringUtil.humanize(entry.getValue().getLabel());
-                dialogOptionslist.add(new ElcoMauzaCommonObjectFilterOption(name.replace(" ","_"),"existing_Mauzapara",name));
-
-            }
-        }
     }
 
     public void retrieveAndSaveUnsubmittedFormData(){

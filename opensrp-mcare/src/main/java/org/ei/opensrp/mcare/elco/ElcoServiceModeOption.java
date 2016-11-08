@@ -33,24 +33,24 @@ public class ElcoServiceModeOption extends ServiceModeOption {
         return new ClientsHeaderProvider() {
             @Override
             public int count() {
-                return 4;
+                return 5;
             }
 
             @Override
             public int weightSum() {
-                return 20;
+                return 40;
             }
 
             @Override
             public int[] weights() {
-                return new int[]{6,5,3,6};
+                return new int[]{12,9,5,7,7};
             }
 
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
                         R.string.elco_profile, R.string.elco_unique_id, R.string.elco_lmp,
-                        R.string.elco_psrf_due_date};
+                        R.string.elco_psrf_due_date,R.string.mis_elco_due};
             }
         };
     }

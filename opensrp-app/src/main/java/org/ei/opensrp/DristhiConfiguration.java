@@ -13,6 +13,7 @@ import java.util.Properties;
 
 public class DristhiConfiguration {
 
+    public static final String TAG = "DristhiConfiguration";
     protected static final String DRISHTI_BASE_URL = "DRISHTI_BASE_URL";
     protected static final String HOST = "HOST";
     protected static final String PORT = "PORT";
@@ -29,7 +30,7 @@ public class DristhiConfiguration {
         try {
             properties.load(assetManager.open("app.properties"));
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString(), e);
         }
     }
 

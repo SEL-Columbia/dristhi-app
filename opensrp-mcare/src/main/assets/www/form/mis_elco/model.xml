@@ -1,0 +1,21 @@
+<model>
+  <instance>
+    <MIS_ELCO encounter_type="MIS ELCO" id="MIS_ELCO" version="201606210648">
+      <formhub>
+        <uuid/>
+      </formhub>
+      <version/>
+      <changes/>
+      <today openmrs_entity="encounter" openmrs_entity_id="encounter_date"/>
+      <start openmrs_entity="concept" openmrs_entity_id="163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <end openmrs_entity="concept" openmrs_entity_id="163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <FWMISELCODATE openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <FWPMISBIRTHCTRL openmrs_entity="concept" openmrs_entity_id="374AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <FWMISBCSOURCE openmrs_entity="concept" openmrs_entity_id="163361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <current_formStatus/>
+      <meta>
+        <instanceID/>
+      </meta>
+    </MIS_ELCO>
+  </instance>
+</model>
