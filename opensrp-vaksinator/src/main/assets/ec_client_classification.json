@@ -12,6 +12,22 @@
           },
           {
             "field":"eventType",
+            "field_value": "Registrasi Gizi",
+            "creates_case":["ec_anak"]
+          },
+          {
+            "field":"obs.fieldCode",
+            "concept": "159917AAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "values": ["151849AAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "creates_case":["ec_anak"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Child Registration",
+            "creates_case":["ec_anak"]
+          },
+          {
+            "field":"eventType",
             "field_value": "Penutupan Anak",
             "closes_case":["ec_anak"]
           }
