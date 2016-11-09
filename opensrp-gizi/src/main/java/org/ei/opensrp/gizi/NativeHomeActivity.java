@@ -1,5 +1,6 @@
 package org.ei.opensrp.gizi;
 
+import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -9,17 +10,16 @@ import android.widget.Toast;
 
 import com.flurry.android.FlurryAgent;
 
-import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.event.Listener;
 
-import org.ei.opensrp.gizi.gizi.FlurryFacade;
-import org.ei.opensrp.gizi.gizi.KmsHandler;
 import org.ei.opensrp.service.PendingFormSubmissionService;
 import org.ei.opensrp.sync.SyncAfterFetchListener;
 import org.ei.opensrp.sync.SyncProgressIndicator;
 import org.ei.opensrp.sync.UpdateActionsTask;
+import org.ei.opensrp.gizi.gizi.FlurryFacade;
 import org.ei.opensrp.view.activity.SecuredActivity;
 import org.ei.opensrp.view.contract.HomeContext;
 import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
@@ -79,36 +79,42 @@ public class NativeHomeActivity extends SecuredActivity {
         }
     };
 
-    private TextView ecRegisterClientCountView;
+    private TextView anakRegisterClientCountView;
+    public static CommonPersonObjectController kicontroller;
+    public static CommonPersonObjectController childcontroller;
+    public static int kicount;
+
+    private int childcount;
 
 
     @Override
     protected void onCreation() {
         //home dashboard
-        String HomeStart = timer.format(new Date());
-                       Map<String, String> Home = new HashMap<String, String>();
-                        Home.put("start", HomeStart);
-                        FlurryAgent.logEvent("gizi_home_dashboard",Home, true );
-       // FlurryFacade.logEvent("Creating_home_dashboard_on_home_activity");
         setContentView(R.layout.smart_registers_gizi_home);
-        navigationController = new GiziNavigationController(this,anmController);
+        //  FlurryFacade.logEvent("gizi_home_dashboard");
+        navigationController = new org.ei.opensrp.gizi.GiziNavigationController(this,anmController);
         setupViews();
         initialize();
         DisplayFormFragment.formInputErrorMessage = getResources().getString(R.string.forminputerror);
         DisplayFormFragment.okMessage = getResources().getString(R.string.okforminputerror);
-        context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new KmsHandler());
 
+        String HomeStart = timer.format(new Date());
+        Map<String, String> Home = new HashMap<String, String>();
+        Home.put("start", HomeStart);
+        FlurryAgent.logEvent("gizi_home_dashboard",Home, true );
 
     }
 
     private void setupViews() {
         findViewById(R.id.btn_gizi_register).setOnClickListener(onRegisterStartListener);
-       // findViewById(R.id.btn_test2_register).setOnClickListener(onRegisterStartListener);
+//        findViewById(R.id.btn_tt_register).setOnClickListener(onRegisterStartListener);
+        // findViewById(R.id.btn_test2_register).setOnClickListener(onRegisterStartListener);
+        // findViewById(R.id.btn_tt_register).setVisibility(View.INVISIBLE);
 
         findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
 //        findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
 
-        ecRegisterClientCountView = (TextView) findViewById(R.id.txt_child_register_client_count);
+        anakRegisterClientCountView = (TextView) findViewById(R.id.txt_child_register_client_count);
 
     }
 
@@ -147,11 +153,19 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     private void updateRegisterCounts(HomeContext homeContext) {
-        CommonPersonObjectController childcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
-                context.allBeneficiaries(), context.listCache(),
-                context.personObjectClientsCache(),"namaBayi","anak","jenisKelamin", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
-        ecRegisterClientCountView.setText(valueOf(childcontroller.getClients("form_ditutup","yes").size()));
+        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder();
+        Cursor childcountcursor = context.commonrepository("anak").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_anak_search", "ec_anak_search.is_closed=0"));
+        childcountcursor.moveToFirst();
+        childcount= childcountcursor.getInt(0);
+        childcountcursor.close();
 
+        anakRegisterClientCountView.setText(valueOf(childcount));
+
+       /* CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
+                context.allBeneficiaries(), context.listCache(),
+                context.personObjectClientsCache(),"nama_bayi","anak","tanggal_lahir", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
+
+        anakRegisterClientCountView.setText(valueOf(hhcontroller.getClients("form_ditutup","true").size()));*/
     }
 
     @Override
@@ -185,7 +199,7 @@ public class NativeHomeActivity extends SecuredActivity {
                 this.recreate();
                 return true;
             case R.id.help:
-              //  startActivity(new Intent(this, tutorialCircleViewFlow.class));
+                //  startActivity(new Intent(this, tutorialCircleViewFlow.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -193,19 +207,11 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     public void updateFromServer() {
-        FlurryFacade.logEvent("click_update_from_server");
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 this, context.actionService(), context.formSubmissionSyncService(),
                 new SyncProgressIndicator(), context.allFormVersionSyncService());
-    //    updateActionsTask.updateFromServer(new SyncAfterFetchListener());
-        String locationAnmids=context.allSharedPreferences().getPreference(AllConstants.LoginResponse.LOCATION_ANMIDS);
-        
-                        locationAnmids = locationAnmids.replaceAll("\\[", "").replaceAll("\\]", "");
-                locationAnmids=locationAnmids.replaceAll("\",\"", "-").replaceAll("\"", "");
-        
-                        final Map<String, String> syncParams= new HashMap<String, String>();
-                syncParams.put(AllConstants.LoginResponse.LOCATION_ANMIDS,locationAnmids);
-                updateActionsTask.updateFromServer(new SyncAfterFetchListener(),syncParams);
+        FlurryFacade.logEvent("click_update_from_server");
+        updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }
 
     @Override
@@ -246,30 +252,31 @@ public class NativeHomeActivity extends SecuredActivity {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-            //    case R.id.btn_gizi_register:
-            //        navigationController.startECSmartRegistry();
-            //        break;
+                case R.id.btn_gizi_register:
+                    navigationController.startChildSmartRegistry();
+                    break;
 
-              //  case R.id.btn_test2_register:
-            //        navigationController.startANCSmartRegistry();
-            //        break;
+                //  case R.id.btn_test2_register:
+                //        navigationController.startANCSmartRegistry();
+                //        break;
 /*
                 case R.id.btn_pnc_register:
 //                    navigationController.startPNCSmartRegistry();
                     break;
-*/
-                case R.id.btn_gizi_register:
-                   navigationController.startChildSmartRegistry();
+
+                case R.id.btn_child_register:
+//                    navigationController.startChildSmartRegistry();
                     break;
 
-        //        case R.id.btn_fp_register:
-       //          //   navigationController.startFPSmartRegistry();
-       //             break;
+                case R.id.btn_fp_register:
+                 //   navigationController.startFPSmartRegistry();
+                    break; */
+
             }
             String HomeEnd = timer.format(new Date());
-                       Map<String, String> Home = new HashMap<String, String>();
-                        Home.put("end", HomeEnd);
-                        FlurryAgent.logEvent("gizi_home_dashboard",Home, true);
+            Map<String, String> Home = new HashMap<String, String>();
+            Home.put("end", HomeEnd);
+            FlurryAgent.logEvent("gizi_home_dashboard",Home, true);
         }
     };
 
@@ -279,7 +286,7 @@ public class NativeHomeActivity extends SecuredActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btn_reporting:
-                    navigationController.startReports();
+//                    navigationController.startReports();
                     break;
 
                 case R.id.btn_videos:

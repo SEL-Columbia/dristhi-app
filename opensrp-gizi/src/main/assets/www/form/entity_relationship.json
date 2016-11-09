@@ -1,21 +1,5 @@
 [
   {
-    "parent":"bidan",
-    "child":"ibu",
-    "field":"ibu_ibu",
-    "kind":"one_to_many",
-    "from":"bidan.id",
-    "to":"ibu.bidanId"
-  },
-  {
-    "parent":"kartu_ibu",
-    "child": "ibu",
-    "field":"istri",
-    "kind":"one_to_one",
-    "from":"kartu_ibu.id",
-    "to":"ibu.kartuIbuId"
-  },
-  {
     "parent":"ibu",
     "child":"anak",
     "field":"anak_anak",

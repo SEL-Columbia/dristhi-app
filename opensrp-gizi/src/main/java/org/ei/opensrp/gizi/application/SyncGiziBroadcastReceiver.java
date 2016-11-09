@@ -24,7 +24,7 @@ public class SyncGiziBroadcastReceiver extends BroadcastReceiver {
                 new SyncProgressIndicator(),
                 org.ei.opensrp.Context.getInstance().allFormVersionSyncService());
 
-        updateActionsTask.setAdditionalSyncService(org.ei.opensrp.Context.getInstance().uniqueIdService());
+      //  updateActionsTask.setAdditionalSyncService(org.ei.opensrp.Context.getInstance().uniqueIdService());
 
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }

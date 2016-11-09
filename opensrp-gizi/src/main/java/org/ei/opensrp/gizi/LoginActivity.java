@@ -29,15 +29,14 @@ import org.ei.opensrp.domain.LoginResponse;
 import org.ei.opensrp.domain.Response;
 import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.opensrp.event.Listener;
-import org.ei.opensrp.gizi.gizi.FlurryFacade;
 import org.ei.opensrp.repository.AllSharedPreferences;
 import org.ei.opensrp.sync.DrishtiSyncScheduler;
+import org.ei.opensrp.gizi.gizi.ErrorReportingFacade;
 import org.ei.opensrp.util.Log;
 import org.ei.opensrp.view.BackgroundAction;
 import org.ei.opensrp.view.LockingBackgroundTask;
 import org.ei.opensrp.view.ProgressIndicator;
 import org.ei.opensrp.view.activity.SettingsActivity;
-import org.ei.opensrp.gizi.gizi.ErrorReportingFacade;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -61,10 +60,12 @@ public class LoginActivity extends Activity {
     private ProgressDialog progressDialog;
     public static final String ENGLISH_LOCALE = "en";
     public static final String KANNADA_LOCALE = "kn";
+    public static final String BENGALI_LOCALE = "bn";
     public static final String BAHASA_LOCALE = "in";
     public static final String ENGLISH_LANGUAGE = "English";
     public static final String KANNADA_LANGUAGE = "Kannada";
-    public static final String Bahasa_LANGUAGE = "bahasa";
+    public static final String Bengali_LANGUAGE = "Bengali";
+    public static final String Bahasa_LANGUAGE = "Bahasa";
 
 
     @Override
@@ -175,9 +176,9 @@ public class LoginActivity extends Activity {
 
     private void localLogin(View view, String userName, String password) {
         if (context.userService().isValidLocalLogin(userName, password)) {
+            localLoginWith(userName, password);
             ErrorReportingFacade.setUsername("", userName);
             FlurryAgent.setUserId(userName);
-            localLoginWith(userName, password);
         } else {
             showErrorDialog(getString(org.ei.opensrp.R.string.login_failed_dialog_message));
             view.setClickable(true);
@@ -187,19 +188,19 @@ public class LoginActivity extends Activity {
     private void remoteLogin(final View view, final String userName, final String password) {
         tryRemoteLogin(userName, password, new Listener<LoginResponse>() {
             public void onEvent(LoginResponse loginResponse) {
+                ErrorReportingFacade.setUsername("", userName);
+                FlurryAgent.setUserId(userName);
                 if (loginResponse == SUCCESS) {
-                    ErrorReportingFacade.setUsername("", userName);
-                    FlurryAgent.setUserId(userName);
                     remoteLoginWith(userName, password, loginResponse.payload());
                 } else {
                     if (loginResponse == null) {
                         showErrorDialog("Login failed. Unknown reason. Try Again");
                     } else {
-                        if (loginResponse == NO_INTERNET_CONNECTIVITY) {
+                        if(loginResponse == NO_INTERNET_CONNECTIVITY){
                             showErrorDialog(getResources().getString(R.string.no_internet_connectivity));
-                        } else if (loginResponse == UNKNOWN_RESPONSE) {
+                        }else if (loginResponse == UNKNOWN_RESPONSE){
                             showErrorDialog(getResources().getString(R.string.unknown_response));
-                        } else if (loginResponse == UNAUTHORIZED) {
+                        }else if (loginResponse == UNAUTHORIZED){
                             showErrorDialog(getResources().getString(R.string.unauthorized));
                         }
 //                        showErrorDialog(loginResponse.message());
@@ -208,8 +209,8 @@ public class LoginActivity extends Activity {
                 }
             }
         });
-// Get unique id
-        tryGetUniqueId(userName, password, new Listener<ResponseStatus>() {
+
+/*        tryGetUniqueId(userName, password, new Listener<ResponseStatus>() {
             @Override
             public void onEvent(ResponseStatus data) {
                 if (data == ResponseStatus.failure) {
@@ -217,8 +218,7 @@ public class LoginActivity extends Activity {
                 }
                 goToHome();
             }
-        });
-
+        });*/
     }
 
     private void showErrorDialog(String message) {
@@ -332,58 +332,22 @@ public class LoginActivity extends Activity {
         return new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new java.util.Date(ze.getTime()));
     }
 
-    private void tryGetUniqueId(final String username, final String password, final Listener<ResponseStatus> afterGetUniqueId) {
-        LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
-                @Override
-                public void setVisible() {
-                        progressDialog.show();
-                    }
-                @Override
-                public void setInvisible() {
-                        progressDialog.dismiss();
-                    }
-            });
-
-        task.doActionInBackground(new BackgroundAction<ResponseStatus>() {
-                @Override
-                public ResponseStatus actionToDoInBackgroundThread() {
-                        ((Context)context).uniqueIdService().syncUniqueIdFromServer(username, password);
-                        return ((Context)context).uniqueIdService().getLastUsedId(username, password);
-                    }
-    
-                        @Override
-                public void postExecuteInUIThread(ResponseStatus result) {
-                        afterGetUniqueId.onEvent(result);
-                    }
-            });
-    }
-
     public static void setLanguage(){
         AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(Context.getInstance().applicationContext()));
         String preferredLocale = allSharedPreferences.fetchLanguagePreference();
-            Resources res = Context.getInstance().applicationContext().getResources();
-            // Change locale settings in the app.
-            DisplayMetrics dm = res.getDisplayMetrics();
-            android.content.res.Configuration conf = res.getConfiguration();
-            conf.locale = new Locale(preferredLocale);
-            res.updateConfiguration(conf, dm);
+        Resources res = Context.getInstance().applicationContext().getResources();
+        // Change locale settings in the app.
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.locale = new Locale(preferredLocale);
+        res.updateConfiguration(conf, dm);
 
     }
+    public static String switchLanguagePreference() {
+        AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(Context.getInstance().applicationContext()));
 
-     public static String switchLanguagePreference() {
-         AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(Context.getInstance().applicationContext()));
-
-         String preferredLocale = allSharedPreferences.fetchLanguagePreference();
-        if (BAHASA_LOCALE.equals(preferredLocale)) {
-            allSharedPreferences.saveLanguagePreference(ENGLISH_LOCALE);
-            Resources res = Context.getInstance().applicationContext().getResources();
-            // Change locale settings in the app.
-            DisplayMetrics dm = res.getDisplayMetrics();
-            android.content.res.Configuration conf = res.getConfiguration();
-            conf.locale = new Locale(ENGLISH_LOCALE);
-            res.updateConfiguration(conf, dm);
-            return ENGLISH_LANGUAGE;
-        } else {
+        String preferredLocale = allSharedPreferences.fetchLanguagePreference();
+        if (ENGLISH_LOCALE.equals(preferredLocale)) {
             allSharedPreferences.saveLanguagePreference(BAHASA_LOCALE);
             Resources res = Context.getInstance().applicationContext().getResources();
             // Change locale settings in the app.
@@ -392,7 +356,42 @@ public class LoginActivity extends Activity {
             conf.locale = new Locale(BAHASA_LOCALE);
             res.updateConfiguration(conf, dm);
             return Bahasa_LANGUAGE;
+        } else {
+            allSharedPreferences.saveLanguagePreference(ENGLISH_LOCALE);
+            Resources res = Context.getInstance().applicationContext().getResources();
+            // Change locale settings in the app.
+            DisplayMetrics dm = res.getDisplayMetrics();
+            android.content.res.Configuration conf = res.getConfiguration();
+            conf.locale = new Locale(ENGLISH_LOCALE);
+            res.updateConfiguration(conf, dm);
+            return ENGLISH_LANGUAGE;
         }
     }
+
+    /*private void tryGetUniqueId(final String username, final String password, final Listener<ResponseStatus> afterGetUniqueId) {
+        LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
+            @Override
+            public void setVisible() {
+                progressDialog.show();
+            }
+            @Override
+            public void setInvisible() {
+                progressDialog.dismiss();
+            }
+        });
+
+        task.doActionInBackground(new BackgroundAction<ResponseStatus>() {
+            @Override
+            public ResponseStatus actionToDoInBackgroundThread() {
+                ((Context)context).uniqueIdService().syncUniqueIdFromServer(username, password);
+                return ((Context)context).uniqueIdService().getLastUsedId(username, password);
+            }
+
+                @Override
+            public void postExecuteInUIThread(ResponseStatus result) {
+                afterGetUniqueId.onEvent(result);
+            }
+        });
+    }*/
 
 }

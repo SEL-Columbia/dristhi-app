@@ -22,6 +22,7 @@ import org.ei.opensrp.gizi.LoginActivity;
 import org.ei.opensrp.gizi.R;
 import org.ei.opensrp.gizi.fragment.GiziSmartRegisterFragment;
 import org.ei.opensrp.gizi.pageradapter.BaseRegisterActivityPagerAdapter;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.util.FormUtils;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.dialog.DialogOption;
@@ -137,28 +138,33 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
     }
 
-    /*
-    private String getalertstateforcensus(CommonPersonObjectClient pc) {
-        try {
-            List<Alert> alertlist_for_client = Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "FW CENSUS");
-            String alertstate = "";
-            if (alertlist_for_client.size() == 0) {
 
-            } else {
-                for (int i = 0; i < alertlist_for_client.size(); i++) {
-//           psrfdue.setText(alertlist_for_client.get(i).expiryDate());
-                    Log.v("printing alertlist", alertlist_for_client.get(i).status().value());
-                    alertstate = alertlist_for_client.get(i).status().value();
+    @Override
+    public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
+        Log.v("fieldoverride", fieldOverrides.toString());
+        // save the form
+        try{
+            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
+            ziggyService.saveForm(getParams(submission), submission.instance());
+            ClientProcessor.getInstance(getApplicationContext()).processClient();
 
-                }
-            }
-            return alertstate;
+            context.formSubmissionService().updateFTSsearch(submission);
+            context.formSubmissionRouter().handleSubmission(submission, formName);
+            //switch to forms list fragment
+            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
+
         }catch (Exception e){
-            return "";
+            // TODO: show error dialog on the formfragment if the submission fails
+            DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
+            if (displayFormFragment != null) {
+                displayFormFragment.hideTranslucentProgressDialog();
+            }
+            e.printStackTrace();
         }
     }
-    */
-    @Override
+
+    /*@Override
     public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         Log.v("fieldoverride", fieldOverrides.toString());
         // save the form
@@ -179,9 +185,9 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             }
             e.printStackTrace();
         }
-        if(formName.equals("registrasi_gizi")) {
+      *//*  if(formName.equals("registrasi_gizi")) {
             saveuniqueid();
-        }
+        }*//*
         //end capture flurry log for FS
                         String end = timer.format(new Date());
                         Map<String, String> FS = new HashMap<String, String>();
@@ -189,23 +195,23 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
                         FlurryAgent.logEvent(formName,FS, true);
 
     }
-
+*/
     @Override
     public void OnLocationSelected(String locationJSONString) {
         JSONObject combined = null;
 
         try {
             JSONObject locationJSON = new JSONObject(locationJSONString);
-            JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+            //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
 
             combined = locationJSON;
-            Iterator<String> iter = uniqueId.keys();
+            //     Iterator<String> iter = uniqueId.keys();
 
-            while (iter.hasNext()) {
+       /*     while (iter.hasNext()) {
                 String key = iter.next();
                 combined.put(key, uniqueId.get(key));
             }
-
+*/
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -216,7 +222,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         }
     }
 
-    public void saveuniqueid() {
+   /* public void saveuniqueid() {
         try {
             JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
             String uniq = uniqueId.getString("unique_id");
@@ -225,9 +231,39 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-    
+    }*/
+
     @Override
+    public void startFormActivity(String formName, String entityId, String metaData) {
+        FlurryFacade.logEvent(formName);
+//        Log.v("fieldoverride", metaData);
+        try {
+            int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
+            if (entityId != null || metaData != null){
+                String data = null;
+                //check if there is previously saved data for the form
+                data = getPreviouslySavedDataForForm(formName, metaData, entityId);
+                if (data == null){
+                    data = FormUtils.getInstance(getApplicationContext()).generateXMLInputForFormWithEntityId(entityId, formName, metaData);
+                }
+
+                DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(formIndex);
+                if (displayFormFragment != null) {
+                    displayFormFragment.setFormData(data);
+                    displayFormFragment.setRecordId(entityId);
+                    displayFormFragment.setFieldOverides(metaData);
+                }
+            }
+
+            mPager.setCurrentItem(formIndex, false); //Don't animate the view on orientation change the view disapears
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    /*@Override
     public void startFormActivity(String formName, String entityId, String metaData) {
        // Log.v("fieldoverride", metaData);
         String start = timer.format(new Date());
@@ -260,7 +296,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     public void switchToBaseFragment(final String data){
         final int prevPageIndex = currentPage;
@@ -278,7 +314,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
-                    displayFormFragment.loadFormData();
+
                 }
 
                 displayFormFragment.setRecordId(null);

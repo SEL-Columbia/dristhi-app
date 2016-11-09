@@ -18,7 +18,9 @@ import com.jjoe64.graphview.GraphView;
 
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
+import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.AlertService;
 import org.ei.opensrp.gizi.R;
 import org.ei.opensrp.view.contract.SmartRegisterClient;
@@ -44,24 +46,22 @@ import static org.ei.opensrp.util.StringUtil.humanize;
 /**
  * Created by user on 2/12/15.
  */
-public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
-
+public class GiziSmartClientsProvider implements SmartRegisterCLientsProviderForCursorAdapter {
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
-    static String bindobject = "anak";
+    private Drawable iconPencilDrawable;
     private final int txtColorBlack;
     private final AbsListView.LayoutParams clientViewLayoutParams;
-    private Drawable iconPencilDrawable;
+
     protected CommonPersonObjectController controller;
 
     AlertService alertService;
-
     public GiziSmartClientsProvider(Context context,
-                                    View.OnClickListener onClickListener,
-                                    CommonPersonObjectController controller, AlertService alertService) {
+                                     View.OnClickListener onClickListener,
+                                     AlertService alertService) {
         this.onClickListener = onClickListener;
-        this.controller = controller;
+//        this.controller = controller;
         this.context = context;
         this.alertService = alertService;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -69,14 +69,14 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
                 (int) context.getResources().getDimension(org.ei.opensrp.R.dimen.list_item_height));
         txtColorBlack = context.getResources().getColor(org.ei.opensrp.R.color.text_black);
+
     }
 
     @Override
-    public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
-
+    public void getView(SmartRegisterClient smartRegisterClient, View convertView) {
         ViewHolder viewHolder;
-        if (viewGroup.getTag() == null || !(viewGroup.getTag() instanceof  ViewHolder)){
-            convertView = (ViewGroup) inflater().inflate(R.layout.smart_register_gizi_client, null);
+
+        if(convertView.getTag() == null || !(convertView.getTag() instanceof  ViewHolder)){
             viewHolder = new ViewHolder();
             viewHolder.profilelayout =  (LinearLayout)convertView.findViewById(R.id.profile_info_layout);
             viewHolder.name = (TextView)convertView.findViewById(R.id.txt_child_name);
@@ -105,9 +105,8 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
             convertView.setTag(viewHolder);
-        }else{
-            viewHolder = (ViewHolder) viewGroup.getTag();
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.mipmap.child_boy_infant));
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
         viewHolder.follow_up.setOnClickListener(onClickListener);
@@ -124,29 +123,35 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         viewHolder.follow_up.setOnClickListener(onClickListener);
         //set image
         final ImageView childview = (ImageView)convertView.findViewById(R.id.profilepic);
-
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(pc);
         if (pc.getDetails().get("profilepic") != null) {
                        ChildDetailActivity.setImagetoHolderFromUri((Activity) context, pc.getDetails().get("profilepic"), childview, R.mipmap.child_boy_infant);
                        childview.setTag(smartRegisterClient);
         }
-        else {
-            if (pc.getDetails().get("jenisKelamin").equalsIgnoreCase("male") || pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki" )|| pc.getDetails().get("jenisKelamin").equalsIgnoreCase("laki")){
-                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
-            } else {
+        else if (pc.getDetails().get("gender") != null) {
+
+            if (pc.getDetails().get("gender").equalsIgnoreCase("female")){
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_girl_infant));
+            } else {
+                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
             }
         }
 
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
-        viewHolder.age.setText(pc.getDetails().get("tanggalLahir")!= null ? Integer.toString(monthRangeToToday(pc.getDetails().get("tanggalLahir")))+" bln" : "");
+        viewHolder.age.setText(pc.getDetails().get("tanggalLahirAnak")!= null ? Integer.toString(monthRangeToToday(pc.getDetails().get("tanggalLahirAnak")))+" bln" : "");
+
         viewHolder.fatherName.setText(pc.getDetails().get("namaIbu")!=null
                 ? pc.getDetails().get("namaIbu")
                 : pc.getDetails().get("namaOrtu") != null
                     ? pc.getDetails().get("namaOrtu")
                     : "");
-        viewHolder.subVillage.setText(pc.getDetails().get("dusun")!=null ? pc.getDetails().get("dusun"):"");
-        viewHolder.dateOfBirth.setText(pc.getDetails().get("tanggalLahir")!=null?pc.getDetails().get("tanggalLahir"):pc.getDetails().get("tanggalLahirAnak")!=null?pc.getDetails().get("tanggalLahirAnak"):"");
-        viewHolder.gender.setText(pc.getDetails().get("jenisKelamin").contains("em")? "Perempuan" : "Laki-laki");
+        viewHolder.subVillage.setText(pc.getDetails().get("address1")!=null ? pc.getDetails().get("address1"):"");
+        String Tgl = pc.getDetails().get("tanggalLahirAnak");
+        String tgl_lahir_anak = Tgl.substring(0, Tgl.indexOf("T"));
+
+        viewHolder.dateOfBirth.setText(pc.getDetails().get("tanggalLahirAnak")!=null?tgl_lahir_anak:"");
+        viewHolder.gender.setText( pc.getDetails().get("gender") != null ? pc.getDetails().get("gender"):"");
         viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
         viewHolder.height.setText(context.getString(R.string.height) + " " + (pc.getDetails().get("tinggiBadan") != null ? pc.getDetails().get("tinggiBadan") : "-") + " Cm");
         viewHolder.weight.setText(context.getString(R.string.weight) + " " + (pc.getDetails().get("beratBadan") != null ? pc.getDetails().get("beratBadan") : "-") + " Kg");
@@ -163,7 +168,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         );
         viewHolder.setVitAVisibility();
         viewHolder.setAntihelminticVisibility(
-                dayRangeBetween(pc.getDetails().get("tanggalLahir").split("-")
+                dayRangeBetween(tgl_lahir_anak.split("-")
                         ,new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()).split("-")
                  ) >= 365 ? View.VISIBLE : View.INVISIBLE
         );
@@ -188,7 +193,7 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
         //================ END OF Z-SCORE==============================//
 
         convertView.setLayoutParams(clientViewLayoutParams);
-        return convertView;
+       // return convertView;
     }
     CommonPersonObjectController householdelcocontroller;
 
@@ -275,9 +280,8 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
                (Integer.parseInt(endDate[2]) - Integer.parseInt(startDate[2]));
     }
 
-    @Override
     public SmartRegisterClients getClients() {
-        return controller.getClients("form_ditutup","yes");
+        return controller.getClients();
     }
 
     @Override
@@ -298,6 +302,11 @@ public class GiziSmartClientsProvider implements SmartRegisterClientsProvider {
 
     public LayoutInflater inflater() {
         return inflater;
+    }
+    @Override
+    public View inflatelayoutForCursorAdapter() {
+        View View = inflater().inflate(R.layout.smart_register_gizi_client, null);
+        return View;
     }
 
      class ViewHolder {

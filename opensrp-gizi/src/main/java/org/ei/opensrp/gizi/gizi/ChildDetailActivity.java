@@ -28,6 +28,7 @@ import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.gizi.R;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.repository.ImageRepository;
 import org.w3c.dom.Text;
 
@@ -114,17 +115,19 @@ public class ChildDetailActivity extends Activity {
                 FlurryAgent.logEvent("gizi_detail_view",Detail, true );
             }
         });
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(childclient);
 
         if(childclient.getDetails().get("profilepic")!= null){
-            if((childclient.getDetails().get("jenisKelamin")!=null?childclient.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("female")) {
+            if((childclient.getDetails().get("gender")!=null?childclient.getDetails().get("gender"):"").equalsIgnoreCase("female")) {
                 setImagetoHolderFromUri(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.child_boy_infant);
-            } else if ((childclient.getDetails().get("jenisKelamin")!=null?childclient.getDetails().get("jenisKelamin"):"").equalsIgnoreCase("male")){
+            } else if ((childclient.getDetails().get("gender")!=null?childclient.getDetails().get("gender"):"").equalsIgnoreCase("male")){
                 setImagetoHolderFromUri(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.child_boy_infant);
 
             }
         }
         else {
-            if (childclient.getDetails().get("jenisKelamin").equalsIgnoreCase("male") || childclient.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki")) {
+            if (childclient.getDetails().get("gender").equalsIgnoreCase("male") || childclient.getDetails().get("gender").equalsIgnoreCase("laki-laki")) {
                 childview.setImageDrawable(getResources().getDrawable(R.mipmap.child_boy_infant));
             } else {
                 childview.setImageDrawable(getResources().getDrawable(R.mipmap.child_girl_infant));
@@ -143,7 +146,7 @@ public class ChildDetailActivity extends Activity {
         posyandu.setText(getString(R.string.posyandu) +" "+ (childclient.getDetails().get("posyandu") != null ? childclient.getDetails().get("posyandu") : "-"));
         village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));
         birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "-"));
-        gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("jenisKelamin") != null ? gender(childclient.getDetails().get("jenisKelamin")) : "-"));
+        gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("gender") != null ? gender(childclient.getDetails().get("gender")) : "-"));
         birthWeight.setText(getString(R.string.birth_weight) + " " + (childclient.getDetails().get("beratLahir") != null ? childclient.getDetails().get("beratLahir") + " gr" : "-"));
         weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan")+"Kg" : "- Kg"));
         height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan")+"Cm" : "- Cm"));
