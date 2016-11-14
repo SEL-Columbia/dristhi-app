@@ -183,13 +183,18 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         CommonPersonObject childobject = childRepository.findByCaseID(pc.entityId());
         AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
         final CommonPersonObject ibuparent = iburep.findByCaseID(childobject.getColumnmaps().get("relational_id"));
-        detailsRepository.updateDetails(ibuparent);
+//        detailsRepository.updateDetails(ibuparent);
 
-        String tempat = ibuparent.getDetails().get("tempatBersalin")!=null?ibuparent.getDetails().get("tempatBersalin"):"";
-        place(tempat, viewHolder.tempat_lahir);
+
+
+        if(ibuparent !=null) {
+            detailsRepository.updateDetails(ibuparent);
+            String tempat = ibuparent.getDetails().get("tempatBersalin")!=null?ibuparent.getDetails().get("tempatBersalin"):"";
+            place(tempat, viewHolder.tempat_lahir);
+        }
 
         AllCommonsRepository kirep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_kartu_ibu");
-        final CommonPersonObject kiparent = kirep.findByCaseID(ibuparent.getColumnmaps().get("base_entity_id"));
+        final CommonPersonObject kiparent = kirep.findByCaseID(childobject.getColumnmaps().get("relational_id"));
 
         if(kiparent != null) {
             detailsRepository.updateDetails(kiparent);

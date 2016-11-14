@@ -7,6 +7,16 @@
         "fields": [
           {
             "field":"eventType",
+            "field_value": "Registrasi Vaksinator",
+            "creates_case":["ec_kartu_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Registrasi Gizi",
+            "creates_case":["ec_kartu_ibu"]
+          },
+          {
+            "field":"eventType",
             "field_value": "Identitas Ibu",
             "creates_case":["ec_kartu_ibu"]
           },
@@ -24,6 +34,16 @@
             "field":"eventType",
             "field_value": "Penutupan KB",
             "creates_case":["ec_kartu_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Registrasi Vaksinator",
+            "closes_case":["ec_kartu_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Registrasi Gizi",
+            "closes_case":["ec_kartu_ibu"]
           },
           {
             "field":"eventType",
@@ -98,6 +118,11 @@
             "field":"obs.fieldCode",
             "concept": "159917AAAAAAAAAAAAAAAAAAAAAAAAAA",
             "values": ["151849AAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "creates_case":["ec_anak"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Tambah Bayi",
             "creates_case":["ec_anak"]
           },
           {

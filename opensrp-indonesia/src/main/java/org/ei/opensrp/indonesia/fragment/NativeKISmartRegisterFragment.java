@@ -221,7 +221,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         setTablename("ec_kartu_ibu");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ec_kartu_ibu");
-        countqueryBUilder.customJoin("LEFT JOIN ec_ibu on ec_kartu_ibu.id = ec_ibu.id LEFT JOIN ec_anak ON ec_ibu.id = ec_anak.relational_id ");
+        countqueryBUilder.customJoin("LEFT JOIN ec_anak ON ec_kartu_ibu.id = ec_anak.relational_id ");
         mainCondition = " is_closed = 0 ";
         joinTable = "";
         countSelect = countqueryBUilder.mainCondition(mainCondition);
@@ -229,7 +229,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("ec_kartu_ibu", new String[]{"ec_kartu_ibu.relationalid","ec_kartu_ibu.is_closed", "ec_kartu_ibu.details", "ec_kartu_ibu.isOutOfArea", "ec_kartu_ibu.namalengkap", "ec_kartu_ibu.umur", "ec_kartu_ibu.namaSuami",  "ec_anak.namaBayi", "ec_anak.tanggalLahirAnak", "noIbu"});
-        queryBUilder.customJoin("LEFT JOIN ec_ibu on ec_kartu_ibu.id = ec_ibu.id LEFT JOIN ec_anak ON ec_ibu.id = ec_anak.relational_id ");
+        queryBUilder.customJoin("LEFT JOIN ec_anak ON ec_kartu_ibu.id = ec_anak.relational_id ");
         mainSelect = queryBUilder.mainCondition(mainCondition);
         Sortqueries = KiSortByNameAZ();
 
