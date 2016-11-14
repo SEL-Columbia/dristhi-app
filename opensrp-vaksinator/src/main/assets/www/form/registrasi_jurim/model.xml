@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <model>
   <instance>
-    <registrasi_vaksinator encounter_type="Registrasi Vaksinator" id="registrasi_vaksinator" version="201610270659">
+    <registrasi_vaksinator encounter_type="Registrasi Vaksinator" id="registrasi_vaksinator" version="201611140324">
       <formhub>
         <uuid/>
       </formhub>
