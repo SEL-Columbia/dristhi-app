@@ -1,14 +1,17 @@
 package org.ei.opensrp.repository;
 
 /**
+<<<<<<< HEAD
   * Created by Dimas on 9/17/2015.
   */
+
 public class AllSettingsINA extends AllSettings {
 
     private static final String LAST_USED_UNIQUE_ID = "lastUsedId";
     private static final String CURRENT_UNIQUE_ID = "currentUniqueId";
 
     public AllSettingsINA(AllSharedPreferences preferences, SettingsRepository settingsRepository) {
+
             super(preferences, settingsRepository);
         }
 
@@ -27,5 +30,6 @@ public class AllSettingsINA extends AllSettings {
     public String fetchCurrentId() {
             return settingsRepository.querySetting(CURRENT_UNIQUE_ID, "0");
         }
+
 
 }

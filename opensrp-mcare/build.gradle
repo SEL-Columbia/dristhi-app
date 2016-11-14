@@ -60,6 +60,7 @@ android {
         exclude 'LICENSE.txt'
     }
     lintOptions {
+
         checkReleaseBuilds false
         disable 'MissingTranslation'
         checkReleaseBuilds false

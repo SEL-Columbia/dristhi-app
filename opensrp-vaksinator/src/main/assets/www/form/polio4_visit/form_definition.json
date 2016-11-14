@@ -1,0 +1,28 @@
+{
+  "form_data_definition_version": "2",
+  "form": {
+    "bind_type": "anak",
+    "default_bind_path": "/model/instance/kunjungan_vaksinator_ver_pol4/",
+    "fields": [
+      {
+        "name": "id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "polio4",
+        "bind": "/model/instance/kunjungan_vaksinator_ver_pol4/polio4",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "keterangan",
+        "bind": "/model/instance/kunjungan_vaksinator_ver_pol4/keterangan",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "submissiondate",
+        "bind": "/model/instance/kunjungan_vaksinator_ver_pol4/today",
+        "shouldLoadValue": true
+      }
+    ]
+  }
+}

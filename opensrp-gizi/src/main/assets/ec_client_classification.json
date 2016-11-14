@@ -7,6 +7,11 @@
         "fields": [
           {
             "field":"eventType",
+            "field_value": "Registrasi Vaksinator",
+            "creates_case":["ec_anak"]
+          },
+          {
+            "field":"eventType",
             "field_value": "Registrasi Gizi",
             "creates_case":["ec_anak"]
           },

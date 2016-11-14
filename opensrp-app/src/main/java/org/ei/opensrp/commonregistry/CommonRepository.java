@@ -284,7 +284,7 @@ public class CommonRepository extends DrishtiRepository {
                 cursor.moveToNext();
             }
         } catch (Exception e) {
-             Log.e(TAG, e.toString(), e);
+            Log.e(TAG, e.toString(), e);
         } finally {
             cursor.close();
         }
@@ -320,7 +320,7 @@ public class CommonRepository extends DrishtiRepository {
                 cursor.moveToNext();
             }
         } catch (Exception e) {
-             Log.e(TAG, e.toString(), e);
+            Log.e(TAG, e.toString(), e);
         } finally {
             cursor.close();
         }
@@ -339,7 +339,7 @@ public class CommonRepository extends DrishtiRepository {
         Log.i(getClass().getName(), query);
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(query, null);
-          return cursor;
+        return cursor;
     }
 
     public CommonPersonObject readAllcommonforCursorAdapter(Cursor cursor) {
@@ -445,7 +445,7 @@ public class CommonRepository extends DrishtiRepository {
             SQLiteDatabase db = masterRepository.getWritableDatabase();
             db.execSQL(sql.toString());
         } catch (Exception e) {
-             Log.e(TAG, e.toString(), e);
+            Log.e(TAG, e.toString(), e);
         }
     }
     public  ArrayList<HashMap<String, String>> rawQuery(String sql){

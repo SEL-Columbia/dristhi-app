@@ -24,8 +24,10 @@ import static org.ei.opensrp.util.Log.logError;
 import static org.ei.opensrp.util.Log.logInfo;
 
 /**
+<<<<<<< HEAD
   * Created by Dimas on 9/7/2015.
   */
+
 public class UniqueIdService implements AdditionalSyncService {
 
     public static final String UNIQUE_ID_PATH = "unique-id";
@@ -40,6 +42,8 @@ public class UniqueIdService implements AdditionalSyncService {
     public UniqueIdService(HTTPAgent httpAgent, DristhiConfiguration configuration,
                            UniqueIdController uniqueIdController, AllSettingsINA allSettings,
                            AllSharedPreferences allSharedPreferences) {
+
+
         this.httpAgent = httpAgent;
         this.configuration = configuration;
         this.uniqueIdController = uniqueIdController;
@@ -52,6 +56,7 @@ public class UniqueIdService implements AdditionalSyncService {
         int lastUsedId = Integer.parseInt(allSettings.fetchLastUsedId());
         int currentId = Integer.parseInt(allSettings.fetchCurrentId());
 
+//<<<<<<< HEAD
             if (currentId > lastUsedId) {
             lastUsedId = currentId;
             pushLastUsedIdToServer(lastUsedId+ "");
@@ -73,12 +78,14 @@ public class UniqueIdService implements AdditionalSyncService {
         }
 
             return dataStatus;
+
     }
 
     public Response<String> pullUniqueIdFromServer(String username, String password) {
         String baseURL = configuration.dristhiBaseURL();
         while (true) {
             String uri = format("{0}/{1}",
+//<<<<<<< HEAD
                             baseURL,
                             UNIQUE_ID_PATH);
             Response<String> response = httpAgent.fetchWithCredentials(uri, username, password);
@@ -86,6 +93,7 @@ public class UniqueIdService implements AdditionalSyncService {
                     logError(format("Unique id pull failed"));
                     return new Response<>(failure, "");
                 }
+
             logDebug(format("Unique id fetched"));
             return new Response<>(response.status(), response.payload() == null ? "" : response.payload());
         }
@@ -95,6 +103,7 @@ public class UniqueIdService implements AdditionalSyncService {
         String baseURL = configuration.dristhiBaseURL();
         while (true) {
             String uri = format("{0}/{1}",
+//<<<<<<< HEAD
                             baseURL,
                             LAST_USED_ID_PATH);
             Response<String> response = httpAgent.fetchWithCredentials(uri, username, password);
@@ -117,6 +126,7 @@ public class UniqueIdService implements AdditionalSyncService {
                 }
 
                     return ResponseStatus.success;
+
         }
     }
 
@@ -130,10 +140,12 @@ public class UniqueIdService implements AdditionalSyncService {
         }
         String jsonPayload = json.toString();
         Response<String> response = httpAgent.post(
+//<<<<<<< HEAD
                     format("{0}/{1}",
                                     configuration.dristhiBaseURL(),
                                     LAST_USED_ID_PATH),
                     jsonPayload);
+
         if (response.isFailure()) {
             logError(format("Last used id sync failed. Unique Id:  {0}", lastUsedId));
             return;
@@ -143,15 +155,19 @@ public class UniqueIdService implements AdditionalSyncService {
 
     public FetchStatus refillUniqueId() {
         Response<String> response = httpAgent.post(
+//<<<<<<< HEAD
                     format("{0}/{1}",
                                     configuration.dristhiBaseURL(),
                                     REFILL_UNIQUE_ID), "");
+
+
         if (response.isFailure()) {
             logError(format("Refill unique id sync failed"));
             return fetchedFailed;
         } else {
             String baseURL = configuration.dristhiBaseURL();
             while (true) {
+//<<<<<<< HEAD
                     String uri = format("{0}/{1}",
                                     baseURL,
                                     UNIQUE_ID_PATH);
@@ -168,9 +184,11 @@ public class UniqueIdService implements AdditionalSyncService {
 
         }
 
+
     public void saveJsonResponseToUniqueId(String payload) {
         if (payload != null) {
             try {
+//<<<<<<< HEAD
                     JSONObject ids = new JSONObject(payload);
                     JSONArray uniqueId = ids.getJSONArray("ids");
                     for (int i = 0; i < uniqueId.length(); i++) {
@@ -179,6 +197,7 @@ public class UniqueIdService implements AdditionalSyncService {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
         }
     }
 

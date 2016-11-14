@@ -238,7 +238,6 @@ public class ElcoSmartClientsProvider implements SmartRegisterCLientsProviderFor
                         }
                     });
                 }
-
                 }catch(ParseException e){
                     e.printStackTrace();
                 }

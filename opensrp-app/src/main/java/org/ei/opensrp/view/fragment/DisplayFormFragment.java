@@ -127,6 +127,7 @@ public class DisplayFormFragment extends Fragment {
         webView.addJavascriptInterface(myJavaScriptInterface, "Android");
     }
 
+
     /**
      * reset the form
      */
@@ -145,6 +146,7 @@ public class DisplayFormFragment extends Fragment {
         String header = readFileAssets(headerTemplate);
 
         String script = readFileAssets(scriptFile);
+
         String modelString = readFileAssets("www/form/" + formName + "/model.xml").replaceAll("\"", "\\\\\"").replaceAll("\n", "").replaceAll("\r", "").replaceAll("/","\\\\/");
         String form = readFileAssets("www/form/" + formName + "/form.xml");
         String footer = readFileAssets(footerTemplate);
@@ -210,16 +212,17 @@ public class DisplayFormFragment extends Fragment {
         });
     }
 
+
     public void setFormData(final String data){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try{
+
                     // Wait for the page to initialize
                     while (!javascriptLoaded){
                         Thread.sleep(100);
                     }
-
                     if (data != null && !data.isEmpty()){
                         postXmlDataToForm(data);
                     }else{
@@ -287,6 +290,7 @@ public class DisplayFormFragment extends Fragment {
     }
 
     public class MyJavaScriptInterface {
+
         private static final String JAVASCRIPT_LOG_TAG = "Javascript";
         Context mContext;
 
@@ -333,6 +337,7 @@ public class DisplayFormFragment extends Fragment {
             //Toast.makeText(mContext, "saving un-submitted form data", Toast.LENGTH_LONG).show();
             ((SecuredNativeSmartRegisterActivity)getActivity()).savePartialFormData(partialData, recordId, formName, getFormFieldsOverrides());
         }
+
 
         @JavascriptInterface
         public void log(String message){

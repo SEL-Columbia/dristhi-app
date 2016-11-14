@@ -52,7 +52,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
  * Created by koros on 9/28/15.
  */
 public class FormUtils {
-    
+
     public static final String TAG = "FormUtils";
     private static FormUtils instance;
     private Context mContext;
@@ -340,7 +340,7 @@ public class FormUtils {
             return xml;
 
         } catch (Exception e) {
-             android.util.Log.e(TAG, e.toString(), e);
+            android.util.Log.e(TAG, e.toString(), e);
         }
         return "";
     }
@@ -453,7 +453,7 @@ public class FormUtils {
                 }
             }
         } catch (Exception e) {
-             android.util.Log.e(TAG, e.toString(), e);
+            android.util.Log.e(TAG, e.toString(), e);
         }
         return entityJson;
     }
@@ -490,7 +490,7 @@ public class FormUtils {
                 }
             }
         } catch (Exception e) {
-             android.util.Log.e(TAG, e.toString(), e);
+            android.util.Log.e(TAG, e.toString(), e);
         }
         return null;
     }
@@ -717,7 +717,7 @@ public class FormUtils {
                     }
                     item.put("value", val);
                 } catch (Exception e) {
-                     android.util.Log.e(TAG, e.toString(), e);
+                    android.util.Log.e(TAG, e.toString(), e);
                 }
             }
         }
@@ -762,7 +762,7 @@ public class FormUtils {
             }
 
         } catch (Exception e) {
-             android.util.Log.e(TAG, e.toString(), e);
+            android.util.Log.e(TAG, e.toString(), e);
         }
         return null;
     }
@@ -795,7 +795,7 @@ public class FormUtils {
             }
 
         } catch (Exception e) {
-             android.util.Log.e(TAG, e.toString(), e);
+            android.util.Log.e(TAG, e.toString(), e);
         }
         return false;
     }
@@ -895,7 +895,7 @@ public class FormUtils {
             }
 
         } catch (JSONException e) {
-             android.util.Log.e(TAG, e.toString(), e);
+            android.util.Log.e(TAG, e.toString(), e);
         }
     }
 

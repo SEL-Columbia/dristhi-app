@@ -53,6 +53,7 @@ import static org.ei.opensrp.util.Log.logError;
 import static org.ei.opensrp.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
+
     private Context context;
     private EditText userNameEditText;
     private EditText passwordEditText;

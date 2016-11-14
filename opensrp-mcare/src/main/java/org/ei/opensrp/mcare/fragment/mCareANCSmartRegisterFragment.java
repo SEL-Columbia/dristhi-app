@@ -27,6 +27,7 @@ import org.ei.opensrp.mcare.anc.mCareANCSmartRegisterActivity;
 import org.ei.opensrp.mcare.anc.mCareAncDetailActivity;
 import org.ei.opensrp.mcare.elco.ElcoMauzaCommonObjectFilterOption;
 import org.ei.opensrp.mcare.elco.ElcoPSRFDueDateSort;
+import org.ei.opensrp.mcare.elco.ElcoSearchOption;
 import org.ei.opensrp.mcare.elco.ElcoSmartRegisterActivity;
 import org.ei.opensrp.mcare.elco.PSRFHandler;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
@@ -285,6 +286,12 @@ public class mCareANCSmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
                     @Override
                     protected Object doInBackground(Object[] params) {
+                        setCurrentSearchFilter(new ElcoSearchOption(cs.toString()));
+                        filteredClients = getClientsAdapter().getListItemProvider()
+                                .updateClients(getCurrentVillageFilter(), getCurrentServiceModeOption(),
+                                        getCurrentSearchFilter(), getCurrentSortOption());
+
+
 //                        currentSearchFilter =
 //                        setCurrentSearchFilter(new HHSearchOption(cs.toString()));
 //                        filteredClients = getClientsAdapter().getListItemProvider()

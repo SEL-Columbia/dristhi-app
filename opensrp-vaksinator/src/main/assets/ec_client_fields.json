@@ -1,0 +1,60 @@
+{
+  "bindobjects": [
+    {
+      "name": "ec_anak",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "noBayi",
+          "type": "Client",
+          "json_mapping": {
+            "field": "attributes.noBayi"
+          }
+        },
+        {
+          "column_name": "beratLahir",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "namaAyah",
+          "type": "Client",
+          "json_mapping": {
+            "field": "lastName"
+          }
+        },
+        {
+          "column_name": "namaIbu",
+          "type": "Client",
+          "json_mapping": {
+            "field": "firstName"
+          }
+        },
+        {
+          "column_name": "namaBayi",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "1586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "tanggalLahirAnak",
+          "type": "Client",
+          "json_mapping": {
+            "field": "birthdate"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><form autocomplete="off" class="or clearfix" id="registrasi_vaksinator" novalidate="novalidate">
+  <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+  <section class="form-logo"> </section>
+  <h3 id="form-title">Registrasi Vaksinator</h3>
+  <select data-default-lang="Bahasa" id="form-languages">
+    <option value="Bahasa">Bahasa</option> <option value="en">English</option> </select>        <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/noteDesa:label" lang="Bahasa">Desa : <span class="or-output" data-value=" /registrasi_vaksinator/desa ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/noteDesa:label" lang="en">Village : <span class="or-output" data-value=" /registrasi_vaksinator/desa ">            </span>
+    </span>
+    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/noteDesa:hint" lang="Bahasa">Desa tempat pelayanan posyandu</span>
+    <span class="or-hint " data-itext-id="/registrasi_vaksinator/noteDesa:hint" lang="en">Name of the village where Health Post service is given</span>
+    <input data-type-xml="string" name="/registrasi_vaksinator/noteDesa" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/noteDusun:label" lang="Bahasa">Dusun Posyandu : <span class="or-output" data-value=" /registrasi_vaksinator/dusun ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/noteDusun:label" lang="en">Health Post sub-village : <span class="or-output" data-value=" /registrasi_vaksinator/dusun ">            </span>
+    </span>
+    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/noteDusun:hint" lang="Bahasa">Nama dusun Posyandu</span>
+    <span class="or-hint " data-itext-id="/registrasi_vaksinator/noteDusun:hint" lang="en">Name of the health post sub-village</span>
+    <input data-type-xml="string" name="/registrasi_vaksinator/noteDusun" readonly="readonly" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/posyandu:label" lang="Bahasa">Nama Posyandu</span>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/posyandu:label" lang="en">Health Center Name</span>
+    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/posyandu:hint" lang="Bahasa">Nama posyandu tempat dilakukannya imunisasi</span>
+    <span class="or-hint " data-itext-id="/registrasi_vaksinator/posyandu:hint" lang="en">Health post name where immunization held</span>
+    <input data-type-xml="string" name="/registrasi_vaksinator/posyandu" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/nama_bayi:label" lang="Bahasa">Nama Bayi</span>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/nama_bayi:label" lang="en">Baby's Name</span>
+    <span class="required">*</span>
+    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/nama_bayi:hint" lang="Bahasa">Nama Bayi yang diberikan Imunisasi</span>
+    <span class="or-hint " data-itext-id="/registrasi_vaksinator/nama_bayi:hint" lang="en">Name of Baby Receiving Immunization</span>
+    <input data-type-xml="string" name="/registrasi_vaksinator/nama_bayi" required="required" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/nama_ayah:label" lang="Bahasa">Nama Ayah</span>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/nama_ayah:label" lang="en">Fathr's Name</span>
+    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/nama_ayah:hint" lang="Bahasa">Nama Ayah Bayi yang diberikan Imunisasi</span>
+    <span class="or-hint " data-itext-id="/registrasi_vaksinator/nama_ayah:hint" lang="en">Name of Baby's Father Receiving Immunization</span>
+    <input data-type-xml="string" name="/registrasi_vaksinator/nama_ayah" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/nama_ibu:label" lang="Bahasa">Nama Ibu</span>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/nama_ibu:label" lang="en">Mother's Name</span>
+    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/nama_ibu:hint" lang="Bahasa">Nama Ibu Bayi yang diberikan Imunisasi</span>
+    <span class="or-hint " data-itext-id="/registrasi_vaksinator/nama_ibu:hint" lang="en">Name of Baby's Mother Receiving Immunization</span>
+    <input data-type-xml="string" name="/registrasi_vaksinator/nama_ibu" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/nik:label" lang="Bahasa">NIK</span>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/nik:label" lang="en">National identification number</span>
+    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/nik:hint" lang="Bahasa">Nomor KTP (Kartu Tanda Penduduk)</span>
+    <span class="or-hint " data-itext-id="/registrasi_vaksinator/nik:hint" lang="en">Personal identity number</span>
+    <input data-type-xml="int" name="/registrasi_vaksinator/nik" type="number"/>
+  </label>    <fieldset class="question ">
+    <fieldset>
+      <legend>
+        <span class="question-label active" data-itext-id="/registrasi_vaksinator/jenis_kelamin:label" lang="Bahasa">Jenis Kelamin</span>
+        <span class="question-label " data-itext-id="/registrasi_vaksinator/jenis_kelamin:label" lang="en">Gender</span>
+        <span class="required">*</span>
+        <span class="or-hint active" data-itext-id="/registrasi_vaksinator/jenis_kelamin:hint" lang="Bahasa">Jenis Kelamin Bayi/Balita Yang diberikan Imunisasi</span>
+        <span class="or-hint " data-itext-id="/registrasi_vaksinator/jenis_kelamin:hint" lang="en">Gender of Baby Receiving Immunization</span>                    </legend>
+      <div class="option-wrapper">
+        <label class="">
+          <input data-name="/registrasi_vaksinator/jenis_kelamin" data-type-xml="select1" name="/registrasi_vaksinator/jenis_kelamin" required="required" type="radio" value="male"/>
+          <span class="option-label active" data-itext-id="/registrasi_vaksinator/jenis_kelamin/male:label" lang="Bahasa">Laki-laki</span>
+          <span class="option-label " data-itext-id="/registrasi_vaksinator/jenis_kelamin/male:label" lang="en">Male</span>
+        </label>
+        <label class="">
+          <input data-name="/registrasi_vaksinator/jenis_kelamin" data-type-xml="select1" name="/registrasi_vaksinator/jenis_kelamin" required="required" type="radio" value="female"/>
+          <span class="option-label active" data-itext-id="/registrasi_vaksinator/jenis_kelamin/female:label" lang="Bahasa">Perempuan</span>
+          <span class="option-label " data-itext-id="/registrasi_vaksinator/jenis_kelamin/female:label" lang="en">Female</span>
+        </label>
+      </div>
+    </fieldset>
+  </fieldset>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/tanggal_lahir:label" lang="Bahasa">Tanggal lahir</span>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/tanggal_lahir:label" lang="en">DOB</span>
+    <span class="required">*</span>
+    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/tanggal_lahir:hint" lang="Bahasa">Tanggal lahir Bayi</span>
+    <span class="or-hint " data-itext-id="/registrasi_vaksinator/tanggal_lahir:hint" lang="en">Baby's date of birth</span>
+    <input data-type-xml="date" name="/registrasi_vaksinator/tanggal_lahir" required="required" type="date"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/berat_badan_saat_lahir:label" lang="Bahasa">Berat badan saat Lahir</span>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/berat_badan_saat_lahir:label" lang="en">Baby's birth weight</span>
+    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/berat_badan_saat_lahir:hint" lang="Bahasa">Berat badan lahir bayi</span>
+    <span class="or-hint " data-itext-id="/registrasi_vaksinator/berat_badan_saat_lahir:hint" lang="en">Baby's birth weight</span>
+    <input data-type-xml="int" name="/registrasi_vaksinator/berat_badan_saat_lahir" type="number"/>
+  </label>  <fieldset id="or-preload-items" style="display:none;">
+    <label class="calculation non-select ">
+      <input data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" name="/registrasi_vaksinator/start" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="date" data-preload-params="today" data-type-xml="date" name="/registrasi_vaksinator/today" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="property" data-preload-params="deviceid" data-type-xml="string" name="/registrasi_vaksinator/deviceid" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="property" data-preload-params="simserial" data-type-xml="string" name="/registrasi_vaksinator/simserial" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="property" data-preload-params="phonenumber" data-type-xml="string" name="/registrasi_vaksinator/phonenumber" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" name="/registrasi_vaksinator/end" type="hidden"/>
+    </label>
+  </fieldset>
+  <fieldset id="or-calculated-items" style="display:none;">
+    <label class="calculation non-select ">
+      <input data-calculate=" /registrasi_vaksinator/Village " data-type-xml="string" name="/registrasi_vaksinator/existing_location" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /registrasi_vaksinator/Province " data-type-xml="string" name="/registrasi_vaksinator/provinsi" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /registrasi_vaksinator/District " data-type-xml="string" name="/registrasi_vaksinator/kabupaten" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /registrasi_vaksinator/Village " data-type-xml="string" name="/registrasi_vaksinator/desa" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /registrasi_vaksinator/Sub-village " data-type-xml="string" name="/registrasi_vaksinator/dusun" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /registrasi_vaksinator/Sub-district " data-type-xml="string" name="/registrasi_vaksinator/kecamatan" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate="concat('uuid:', uuid())" data-type-xml="string" name="/registrasi_vaksinator/meta/instanceID" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate="'436597ba83b0402ab9e96d286a6f4847'" data-type-xml="string" name="/registrasi_vaksinator/formhub/uuid" type="hidden"/>
+    </label>
+  </fieldset>
+</form>

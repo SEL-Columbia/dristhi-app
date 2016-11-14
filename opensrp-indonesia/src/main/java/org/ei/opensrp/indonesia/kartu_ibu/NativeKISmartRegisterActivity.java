@@ -135,15 +135,15 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
         try {
             JSONObject locationJSON = new JSONObject(locationJSONString);
-         //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+            //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
 
             combined = locationJSON;
-         //   Iterator<String> iter = uniqueId.keys();
+            //   Iterator<String> iter = uniqueId.keys();
 
-          //  while (iter.hasNext()) {
-          //      String key = iter.next();
-         //       combined.put(key, uniqueId.get(key));
-        //    }
+            //  while (iter.hasNext()) {
+            //      String key = iter.next();
+            //       combined.put(key, uniqueId.get(key));
+            //    }
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -264,8 +264,8 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
         DialogOption[] options = getEditOptions();
         //for (int i = 0; i < options.length; i++) {
-       //     formNames.add(((OpenFormOption) options[i]).getFormName());
-    //    }
+        //     formNames.add(((OpenFormOption) options[i]).getFormName());
+        //    }
         return formNames.toArray(new String[formNames.size()]);
     }
 

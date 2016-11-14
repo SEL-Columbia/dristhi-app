@@ -1,0 +1,16 @@
+{
+  "bindobjects": [
+    {
+      "name": "ibu",
+      "columns": [
+        {"name":"namaIbu"},{"name":"namaAyah"}
+      ]
+    },
+    {
+      "name": "anak",
+      "columns": [
+        {"name":"isClosed"},{"name":"namaBayi"},{"name":"tanggalLahirAnak"}
+      ]
+    }
+  ]
+}
