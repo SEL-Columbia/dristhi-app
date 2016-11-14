@@ -10,6 +10,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "existing_location",
+        "bind": "/model/instance/kohort_pelayanan_kb_reviewed/existing_location",
+        "shouldLoadValue": true
+      },
+      {
         "name": "lokasiPeriksa",
         "bind": "/model/instance/kohort_pelayanan_kb_reviewed/Lokasi_periksa"
       },

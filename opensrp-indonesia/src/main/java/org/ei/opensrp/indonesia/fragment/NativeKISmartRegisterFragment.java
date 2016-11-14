@@ -331,7 +331,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
                         return;
                     }
                 }
-                AllCommonsRepository pncrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_pnc");
+               /* AllCommonsRepository pncrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_pnc");
                 final CommonPersonObject pncparent = pncrep.findByCaseID(pc.entityId());
                 if (pncparent != null) {
                     short pnc_isclosed = pncparent.getClosed();
@@ -339,16 +339,16 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
                         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered_pnc), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                }
+                }*/
             }
-            if(option.name().equalsIgnoreCase(getString(R.string.str_register_fp_form)) ) {
+          /*  if(option.name().equalsIgnoreCase(getString(R.string.str_register_fp_form)) ) {
                 CommonPersonObjectClient pc = KIDetailActivity.kiclient;
 
                 if(!StringUtils.isNumeric(pc.getDetails().get("jenisKontrasepsi"))) {
                             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered_in_fp), Toast.LENGTH_SHORT).show();
                             return;
                 }
-            }
+            }*/
 
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
         }

@@ -18,6 +18,11 @@
         "bind": "/model/instance/Kartu_ibu/end"
       },
       {
+        "name": "existing_location",
+        "bind": "/model/instance/Kartu_ibu/existing_location",
+        "shouldLoadValue": true
+      },
+      {
         "name": "lokasiPeriksa",
         "bind": "/model/instance/Kartu_ibu/Lokasi_periksa"
       },
