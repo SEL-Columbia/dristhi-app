@@ -10,8 +10,18 @@
         "shouldLoadValue": true
       },
       {
+        "name": "existing_location",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_location",
+        "shouldLoadValue": true
+      },
+      {
         "name": "unique_id",
         "bind": "model/instance/Registrasi_Gizi-NewStructure-mapped_O/unique_id",
+        "shouldLoadValue": true
+      },
+      {
+        "name": "existing_desa",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Village",
         "shouldLoadValue": true
       },
       {

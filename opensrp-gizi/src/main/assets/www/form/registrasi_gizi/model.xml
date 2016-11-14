@@ -1,6 +1,6 @@
 <model>
   <instance>
-    <Registrasi_Gizi-NewStructure-mapped_O encounter_type="Registrasi Gizi" id="registrasi_gizi_new" version="201611080913">
+    <Registrasi_Gizi-NewStructure-mapped_O encounter_type="Registrasi Gizi" id="registrasi_gizi_new" version="201611090756">
       <formhub>
         <uuid/>
       </formhub>
@@ -19,6 +19,7 @@
       <existing_Sub-district/>
       <existing_Village/>
       <existing_Sub-village/>
+      <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
       <provinsi openmrs_entity="person_address" openmrs_entity_id="stateProvince" openmrs_entity_parent="usual_residence"/>
       <kabupaten openmrs_entity="person_address" openmrs_entity_id="countyDistrict" openmrs_entity_parent="usual_residence"/>
       <desa openmrs_entity="person_address" openmrs_entity_id="cityVillage" openmrs_entity_parent="usual_residence"/>
