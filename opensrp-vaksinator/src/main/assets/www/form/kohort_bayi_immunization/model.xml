@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <Baby_Immunization id="Baby_Immunization" version="201610240056">
+        <Baby_Immunization.xls encounter_type="Imunisasi Bayi" id="Baby_Immunization" version="201611090616">
             <formhub>
                 <uuid/>
             </formhub>
@@ -9,6 +9,12 @@
             <deviceid/>
             <simserial/>
             <phonenumber/>
+            <Province/>
+            <District/>
+            <Sub-district/>
+            <Village/>
+            <Sub-village/>
+            <existing_location openmrs_entity="encounter" openmrs_entity_id="location_id"/>
             <hb0 openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="782AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <bcg openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="886AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
             <polio1 openmrs_entity="concept" openmrs_entity_id="1410AAAAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="783AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -26,6 +32,6 @@
             <meta>
                 <instanceID/>
             </meta>
-        </Baby_Immunization>
+        </Baby_Immunization.xls>
     </instance>
 </model>

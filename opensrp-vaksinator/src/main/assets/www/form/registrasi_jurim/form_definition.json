@@ -10,6 +10,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "existing_location",
+        "bind": "/model/instance/registrasi_vaksinator/existing_location",
+        "shouldLoadValue": true
+      },
+      {
         "name": "unique_id",
         "bind": "/model/instance/registrasi_vaksinator/unique_id",
         "shouldLoadValue" : true
