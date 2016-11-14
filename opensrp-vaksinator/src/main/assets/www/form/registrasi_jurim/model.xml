@@ -31,6 +31,7 @@
       <nama_ayah openmrs_entity="person" openmrs_entity_id="last_name"/>
       <nama_ibu openmrs_entity="person" openmrs_entity_id="first_name"/>
       <nik openmrs_entity="person_identifier" openmrs_entity_id="nik"/>
+      <jenis_kontrasepsi openmrs_entity="concept" openmrs_entity_id="374AAAAAAAAAAAAAAAAAAAAAAAAAAAAA">0</jenis_kontrasepsi>
       <child_registration openmrs_entity="person" openmrs_entity_id="Child Registration" template="">
         <nama_bayi openmrs_entity="Concept" openmrs_entity_id="1586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
         <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>

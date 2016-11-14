@@ -1,8 +1,8 @@
 {
   "form_data_definition_version": "3",
   "form": {
-    "bind_type": "ibu",
-    "ec_bind_type": "ec_ibu",
+    "bind_type": "kartu_ibu",
+    "ec_bind_type": "ec_kartu_ibu",
     "default_bind_path": "/model/instance/registrasi_vaksinator/",
     "fields": [
       {
@@ -78,16 +78,24 @@
         "bind": "/model/instance/registrasi_vaksinator/posyandu"
       },
       {
-        "name": "namaAyah",
+        "name": "namaSuami",
         "bind": "/model/instance/registrasi_vaksinator/nama_ayah"
       },
       {
-        "name": "namaIbu",
+        "name": "namalengkap",
         "bind": "/model/instance/registrasi_vaksinator/nama_ibu"
       },
       {
         "name": "nik",
         "bind": "/model/instance/registrasi_vaksinator/nik"
+      },
+      {
+        "name": "jenisKontrasepsi",
+        "bind": "/model/instance/registrasi_vaksinator/jenis_kontrasepsi"
+      },
+      {
+        "name": "isOutOfArea",
+        "value": "false"
       },
       {
         "name": "submissionDate",
@@ -115,7 +123,7 @@
           },
           {
             "name": "ibu_entity_id",
-            "source": "ibu.id",
+            "source": "kartu_ibu.id",
             "shouldLoadValue": true
           },
           {

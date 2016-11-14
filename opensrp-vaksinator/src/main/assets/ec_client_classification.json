@@ -1,20 +1,43 @@
 {
   "case_classification_rules": [
-        {
-      "comment": "Anak: This rule checks whether a given case belongs to Child register",
+    {
+      "comment": "KARTU IBU: This rule checks whether a given case belongs to Household register",
       "rule": {
         "type": "event",
         "fields": [
           {
             "field":"eventType",
             "field_value": "Registrasi Vaksinator",
-            "creates_case":["ec_anak"]
+            "creates_case":["ec_kartu_ibu"]
           },
           {
             "field":"eventType",
             "field_value": "Registrasi Gizi",
-            "creates_case":["ec_anak"]
+            "creates_case":["ec_kartu_ibu"]
           },
+          {
+            "field":"eventType",
+            "field_value": "Identitas Ibu",
+            "creates_case":["ec_kartu_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Tambah KB",
+            "creates_case":["ec_kartu_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Penutupan Ibu",
+            "closes_case":["ec_kartu_ibu","ec_ibu","ec_pnc"]
+          }
+        ]
+      }
+    },
+    {
+      "comment": "Anak: This rule checks whether a given case belongs to Child register",
+      "rule": {
+        "type": "event",
+        "fields": [
           {
             "field":"obs.fieldCode",
             "concept": "159917AAAAAAAAAAAAAAAAAAAAAAAAAA",

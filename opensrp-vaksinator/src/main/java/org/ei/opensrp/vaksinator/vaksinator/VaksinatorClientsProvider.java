@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
@@ -142,7 +144,7 @@ public class VaksinatorClientsProvider implements SmartRegisterCLientsProviderFo
             );
         }*/
 
-        viewHolder.motherName.setText(
+       /* viewHolder.motherName.setText(
                 pc.getDetails().get("namaIbu")!=null
                         ? pc.getDetails().get("namaIbu")
                         : pc.getDetails().get("nama_orang_tua")!=null
@@ -151,7 +153,24 @@ public class VaksinatorClientsProvider implements SmartRegisterCLientsProviderFo
 
         viewHolder.village.setText(pc.getDetails().get("address1")!= null
                 ? pc.getDetails().get("address1")
-                : " ");
+                : " ");*/
+
+        AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_anak");
+        CommonPersonObject childobject = childRepository.findByCaseID(pc.entityId());
+
+        AllCommonsRepository kirep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_kartu_ibu");
+        final CommonPersonObject kiparent = kirep.findByCaseID(childobject.getColumnmaps().get("relational_id"));
+
+        if(kiparent != null) {
+            detailsRepository.updateDetails(kiparent);
+            String namaayah = kiparent.getDetails().get("namaSuami") != null ? kiparent.getDetails().get("namaSuami") : "";
+            String namaibu = kiparent.getColumnmaps().get("namalengkap") != null ? kiparent.getColumnmaps().get("namalengkap") : "";
+
+            viewHolder.motherName.setText(namaibu + "," + namaayah);
+            viewHolder.village.setText(kiparent.getDetails().get("address1") != null ? kiparent.getDetails().get("address1") : "");
+           // viewHolder.no_ibu.setText(kiparent.getDetails().get("noBayi") != null ? kiparent.getDetails().get("noBayi") : "");
+        }
+
         viewHolder.age.setText(pc.getColumnmaps().get("tanggalLahirAnak")!=null
                 ?     Integer.toString(age(ages)/12)+" "+ context.getResources().getString(R.string.year_short)
                 + ", "+Integer.toString(age(ages)%12)+" "+ context.getResources().getString(R.string.month_short)

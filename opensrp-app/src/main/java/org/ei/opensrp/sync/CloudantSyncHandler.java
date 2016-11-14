@@ -90,8 +90,8 @@ public class CloudantSyncHandler {
             if (designDocumentId != null) {
                 String filterDoc = designDocumentId.split("/")[1];
                 HashMap<String, String> filterParams = new HashMap<String, String>();
-                filterParams.put(AllConstants.SyncFilters.FILTER_LOCATION_ID, allSharedPreferences.fetchRegisteredANM());
-                pullFilter = new PullFilter(filterDoc.concat("/").concat(AllConstants.SyncFilters.FILTER_LOCATION_ID), filterParams);
+                filterParams.put(AllConstants.SyncFilters.FILTER_PROVIDER, allSharedPreferences.fetchRegisteredANM());
+                pullFilter = new PullFilter(filterDoc.concat("/").concat(AllConstants.SyncFilters.FILTER_PROVIDER), filterParams);
             }
 
             this.reloadReplicationSettings(pullFilter);
