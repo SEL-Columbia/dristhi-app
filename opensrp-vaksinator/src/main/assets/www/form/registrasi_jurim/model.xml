@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model>
   <instance>
-    <registrasi_vaksinator encounter_type="Registrasi Vaksinator" id="registrasi_vaksinator" version="201611140324">
+    <registrasi_vaksinator encounter_type="Registrasi Vaksinator" id="registrasi_vaksinator" version="201611140609">
       <formhub>
         <uuid/>
       </formhub>
@@ -28,14 +28,16 @@
       <kecamatan openmrs_entity="person_address" openmrs_entity_id="address2" openmrs_entity_parent="usual_residence"/>
       <noteDesa openmrs_entity="concept" openmrs_entity_id="162724AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <noteDusun openmrs_entity="concept" openmrs_entity_id="1354AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <posyandu/>
-      <nama_bayi openmrs_entity="Concept" openmrs_entity_id="1586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <nama_ayah openmrs_entity="person" openmrs_entity_id="last_name"/>
       <nama_ibu openmrs_entity="person" openmrs_entity_id="first_name"/>
       <nik openmrs_entity="person_identifier" openmrs_entity_id="nik"/>
-      <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
-      <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
-      <berat_badan_saat_lahir openmrs_entity="concept" openmrs_entity_id="5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <child_registration openmrs_entity="person" openmrs_entity_id="Child Registration" template="">
+        <nama_bayi openmrs_entity="Concept" openmrs_entity_id="1586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+        <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
+        <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
+        <berat_badan_saat_lahir openmrs_entity="concept" openmrs_entity_id="5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+        <ibu_entity_id openmrs_entity="person_relationship" openmrs_entity_id="ibuCaseId"/>
+      </child_registration>
       <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
       <meta>
         <instanceID/>
