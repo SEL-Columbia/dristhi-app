@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <model>
   <instance>
-    <Registrasi_Gizi-NewStructure-mapped_O encounter_type="Registrasi Gizi" id="registrasi_gizi_new" version="201611090756">
+    <Registrasi_Gizi-NewStructure-mapped_O encounter_type="Registrasi Gizi" id="registrasi_gizi_new" version="201611150319">
       <formhub>
         <uuid/>
       </formhub>
@@ -28,15 +29,19 @@
       <noteDesa openmrs_entity="concept" openmrs_entity_id="162724AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <noteDusun openmrs_entity="concept" openmrs_entity_id="1354AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <posyandu/>
-      <nama_anak openmrs_entity="Concept" openmrs_entity_id="1586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <nama_ayah openmrs_entity="person" openmrs_entity_id="last_name"/>
       <nama_ibu openmrs_entity="person" openmrs_entity_id="first_name"/>
+      <no_ibu openmrs_entity="person_attribute" openmrs_entity_id="NoIbu"/>
       <nik openmrs_entity="person_identifier" openmrs_entity_id="nik"/>
-      <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
-      <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
-      <birthweight openmrs_entity="concept" openmrs_entity_id="5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <kms openmrs_entity="concept"/>
-      <end openmrs_entity="encounter" openmrs_entity_id="encounter_end"/>
+      <umur openmrs_entity="concept" openmrs_entity_id="1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">0</umur>
+      <jenis_kontrasepsi openmrs_entity="concept" openmrs_entity_id="374AAAAAAAAAAAAAAAAAAAAAAAAAAAAA">0</jenis_kontrasepsi>
+      <child_registration openmrs_entity="person" openmrs_entity_id="Child Registration" template="">
+        <nama_bayi openmrs_entity="Concept" openmrs_entity_id="1586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+        <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
+        <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
+        <berat_badan_saat_lahir openmrs_entity="concept" openmrs_entity_id="5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+        <ibu_entity_id openmrs_entity="person_relationship" openmrs_entity_id="ibuCaseId"/>
+      </child_registration>
       <meta>
         <instanceID/>
       </meta>

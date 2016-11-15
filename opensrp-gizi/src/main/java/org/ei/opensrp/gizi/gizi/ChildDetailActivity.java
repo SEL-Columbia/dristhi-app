@@ -127,7 +127,7 @@ public class ChildDetailActivity extends Activity {
             }
         }
         else {
-            if (childclient.getDetails().get("gender").equalsIgnoreCase("male") || childclient.getDetails().get("gender").equalsIgnoreCase("laki-laki")) {
+            if (childclient.getDetails().get("gender").equalsIgnoreCase("male") ) {
                 childview.setImageDrawable(getResources().getDrawable(R.mipmap.child_boy_infant));
             } else {
                 childview.setImageDrawable(getResources().getDrawable(R.mipmap.child_girl_infant));

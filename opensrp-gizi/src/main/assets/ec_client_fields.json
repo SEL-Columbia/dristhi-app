@@ -1,6 +1,85 @@
 {
   "bindobjects": [
     {
+      "name": "ec_kartu_ibu",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "namalengkap",
+          "type": "Client",
+          "json_mapping": {
+            "field": "firstName"
+          }
+        },
+        {
+          "column_name": "noIbu",
+          "type": "Client",
+          "json_mapping": {
+            "field": "attributes.NoIbu"
+          }
+        },
+        {
+          "column_name": "unique_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "attributes.UniqueId"
+          }
+        },
+        {
+          "column_name": "namaSuami",
+          "type": "Client",
+          "json_mapping": {
+            "field": "lastName"
+          }
+        },
+        {
+          "column_name": "tanggalLahir",
+          "type": "Client",
+          "json_mapping": {
+            "field": "birthdate"
+          }
+        },
+        {
+          "column_name": "isOutOfArea",
+          "type": "Client",
+          "json_mapping": {
+            "field": "isOutOfArea",
+            "comment": "doesn't have concept mapping"
+          }
+        },
+        {
+          "column_name": "htp",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "jenisKontrasepsi",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "374AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "column_name": "umur",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        }
+      ]
+    },
+    {
       "name": "ec_anak",
       "columns": [
         {
@@ -8,6 +87,13 @@
           "type": "Client",
           "json_mapping": {
             "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "relational_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "relationships.ibuCaseId"
           }
         },
         {
@@ -23,20 +109,6 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "5916AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          }
-        },
-        {
-          "column_name": "namaAyah",
-          "type": "Client",
-          "json_mapping": {
-            "field": "lastName"
-          }
-        },
-        {
-          "column_name": "namaIbu",
-          "type": "Client",
-          "json_mapping": {
-            "field": "firstName"
           }
         },
         {

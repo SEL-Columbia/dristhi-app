@@ -1,23 +1,137 @@
-<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="registrasi_gizi_new">
-    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.--><section class="form-logo"> </section><h3 id="form-title">Registrasi Gizi</h3><select id="form-languages" data-default-lang="Bahasa"><option value="Bahasa">Bahasa</option> <option value="en">English</option> </select>
-
-
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDesa:label">Desa : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Village ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDesa:label">Village : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Village ">
-    </span></span><input type="text" name="/Registrasi_Gizi-NewStructure-mapped_O/noteDesa" data-type-xml="string" readonly="readonly"/></label>
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDusun:label">Dusun : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Sub-village ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDusun:label">Sub-Village : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Sub-village ">
-    </span></span><input type="text" name="/Registrasi_Gizi-NewStructure-mapped_O/noteDusun" data-type-xml="string" readonly="readonly"/></label>
-    <label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/posyandu:label">Nama Posyandu</span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/posyandu:label">Health Post</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/posyandu:hint">Nama Pos Pelayanan Terpadu</span><span lang="en" class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/posyandu:hint">Name of Health Post</span><input type="text" name="/Registrasi_Gizi-NewStructure-mapped_O/posyandu" data-type-xml="string"/></label>
-    <label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_anak:label">Nama Anak</span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_anak:label">Baby/Child Name</span><span class="required">*</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_anak:hint">Nama bayi/balita yang datang ke Posyandu</span><span lang="en" class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_anak:hint">name of the baby/child checking-up at Health Post</span><input type="text" name="/Registrasi_Gizi-NewStructure-mapped_O/nama_anak" required="required" data-type-xml="string"/></label>
-    <label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah:label">Nama Ayah</span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah:label">Fathr's Name</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah:hint">Nama Ibu dari anak yang memeriksakan anak ke posyandu</span><span lang="en" class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah:hint">name of the baby/child's mother checking-up at Health Post</span><input type="text" name="/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah" data-type-xml="string"/></label>
-    <label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu:label">Nama Ibu</span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu:label">Mother Name</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu:hint">Nama Ibu dari anak yang memeriksakan anak ke posyandu</span><span lang="en" class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu:hint">name of the baby/child's mother checking-up at Health Post</span><input type="text" name="/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu" data-type-xml="string"/></label>
-    <label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nik:label">NIK</span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nik:label">National identification number</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nik:hint">Nomor induk kependudukan bayi/balita</span><span lang="en" class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nik:hint">Personal identity number</span><input type="number" name="/Registrasi_Gizi-NewStructure-mapped_O/nik" data-type-xml="int"/></label>
-    <label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/tanggal_lahir:label">Tanggal Lahir</span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/tanggal_lahir:label">DOB</span><span class="required">*</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/tanggal_lahir:hint">Tanggal/Bulan/Tahun dimana bayi/balita lahir</span><span lang="en" class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/tanggal_lahir:hint">DOB of Baby/ child</span><input type="date" name="/Registrasi_Gizi-NewStructure-mapped_O/tanggal_lahir" required="required" data-type-xml="date"/></label>
-    <fieldset class="question "><fieldset><legend><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin:label">Jenis Kelamin</span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin:label">gender</span><span class="required">*</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin:hint">Jenis kelamin bayi/balita</span><span lang="en" class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin:hint">gender of baby/child</span>
-    </legend><div class="option-wrapper"><label class=""><input type="radio" name="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin" data-name="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin" value="male" required="required" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin/male:label">Laki - laki</span><span lang="en" class="option-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin/male:label">Male</span></label><label class=""><input type="radio" name="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin" data-name="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin" value="female" required="required" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin/female:label">Perempuan</span><span lang="en" class="option-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin/female:label">Female</span></label></div></fieldset></fieldset>
-    <label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/birthweight:label">Berat Badan Lahir (gram)</span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/birthweight:label">Birthweight (gram)</span><input type="number" name="/Registrasi_Gizi-NewStructure-mapped_O/birthweight" data-type-xml="int"/></label>
-    <fieldset class="question "><fieldset><legend><span lang="Bahasa" class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/kms:label">Apakah anak memiliki Kartu Menuju Sehat (KMS)?</span><span lang="en" class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/kms:label">Does baby hold the Health Card (KMS)?</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/kms:hint">Apakah anak memiliki Kartu Menuju Sehat (KMS)?</span><span lang="en" class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/kms:hint">Does baby hold the Health Card (KMS)?</span>
-    </legend><div class="option-wrapper"><label class=""><input type="radio" name="/Registrasi_Gizi-NewStructure-mapped_O/kms" data-name="/Registrasi_Gizi-NewStructure-mapped_O/kms" value="Yes" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/kms/Yes:label">Ya</span><span lang="en" class="option-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/kms/Yes:label">Yes</span></label><label class=""><input type="radio" name="/Registrasi_Gizi-NewStructure-mapped_O/kms" data-name="/Registrasi_Gizi-NewStructure-mapped_O/kms" value="No" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/kms/No:label">Tidak</span><span lang="en" class="option-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/kms/No:label">No</span></label></div></fieldset></fieldset>
-
-    <fieldset id="or-preload-items" style="display:none;"><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/today" data-preload="date" data-preload-params="today" data-type-xml="date"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime"/></label></fieldset><fieldset id="or-calculated-items" style="display:none;"><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/existing_location" data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Village " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/provinsi" data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Province " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/kabupaten" data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/District " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/desa" data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Village " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/dusun" data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Sub-village " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/kecamatan" data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Sub-district " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Registrasi_Gizi-NewStructure-mapped_O/formhub/uuid" data-calculate="'05f4ee6ccf4d4f24b4c48e1884ea42dc'" data-type-xml="string"/></label></fieldset></form>
+<?xml version="1.0" encoding="UTF-8"?><form autocomplete="off" class="or clearfix" id="registrasi_gizi_new" novalidate="novalidate">
+  <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+  <section class="form-logo"> </section>
+  <h3 id="form-title">Registrasi Gizi</h3>
+  <select data-default-lang="Bahasa" id="form-languages">
+    <option value="Bahasa">Bahasa</option> <option value="en">English</option> </select>        <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDesa:label" lang="Bahasa">Desa : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Village ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDesa:label" lang="en">Village : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Village ">            </span>
+    </span>
+    <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/noteDesa" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDusun:label" lang="Bahasa">Dusun : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Sub-village ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDusun:label" lang="en">Sub-Village : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Sub-village ">            </span>
+    </span>
+    <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/noteDusun" readonly="readonly" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/posyandu:label" lang="Bahasa">Nama Posyandu</span>
+    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/posyandu:label" lang="en">Health Post</span>
+    <span class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/posyandu:hint" lang="Bahasa">Nama Pos Pelayanan Terpadu</span>
+    <span class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/posyandu:hint" lang="en">Name of Health Post</span>
+    <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/posyandu" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah:label" lang="Bahasa">Nama Ayah</span>
+    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah:label" lang="en">Fathr's Name</span>
+    <span class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah:hint" lang="Bahasa">Nama Ayah Bayi yang diberikan Imunisasi</span>
+    <span class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah:hint" lang="en">Name of Baby's Father Receiving Immunization</span>
+    <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu:label" lang="Bahasa">Nama Ibu</span>
+    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu:label" lang="en">Mother's Name</span>
+    <span class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu:hint" lang="Bahasa">Nama Ibu Bayi yang diberikan Imunisasi</span>
+    <span class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu:hint" lang="en">Name of Baby's Mother Receiving Immunization</span>
+    <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/no_ibu:label" lang="Bahasa">No. Ibu</span>
+    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/no_ibu:label" lang="en">Mother's Number</span>
+    <input data-type-xml="int" name="/Registrasi_Gizi-NewStructure-mapped_O/no_ibu" type="number"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nik:label" lang="Bahasa">NIK</span>
+    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nik:label" lang="en">National identification number</span>
+    <span class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nik:hint" lang="Bahasa">Nomor KTP (Kartu Tanda Penduduk)</span>
+    <span class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/nik:hint" lang="en">Personal identity number</span>
+    <input data-type-xml="int" name="/Registrasi_Gizi-NewStructure-mapped_O/nik" type="number"/>
+  </label>    <section class="or-group-data " name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration">
+    <section class="or-repeat " name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration">
+      <label class="question non-select ">
+        <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/nama_bayi:label" lang="Bahasa">Nama Bayi</span>
+        <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/nama_bayi:label" lang="en">Baby's Name</span>
+        <span class="required">*</span>
+        <span class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/nama_bayi:hint" lang="Bahasa">Nama Bayi yang diberikan Imunisasi</span>
+        <span class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/nama_bayi:hint" lang="en">Name of Baby Receiving Immunization</span>
+        <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/nama_bayi" required="required" type="text"/>
+      </label>
+      <fieldset class="question ">
+        <fieldset>
+          <legend>
+            <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin:label" lang="Bahasa">Jenis Kelamin</span>
+            <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin:label" lang="en">Gender</span>
+            <span class="required">*</span>
+            <span class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin:hint" lang="Bahasa">Jenis Kelamin Bayi/Balita Yang diberikan Imunisasi</span>
+            <span class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin:hint" lang="en">Gender of Baby Receiving Immunization</span>                    </legend>
+          <div class="option-wrapper">
+            <label class="">
+              <input data-name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin" data-type-xml="select1" name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin" required="required" type="radio" value="male"/>
+              <span class="option-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin/male:label" lang="Bahasa">Laki - laki</span>
+              <span class="option-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin/male:label" lang="en">Male</span>
+            </label>
+            <label class="">
+              <input data-name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin" data-type-xml="select1" name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin" required="required" type="radio" value="female"/>
+              <span class="option-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin/female:label" lang="Bahasa">Perempuan</span>
+              <span class="option-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin/female:label" lang="en">Female</span>
+            </label>
+          </div>
+        </fieldset>
+      </fieldset>
+      <label class="question non-select ">
+        <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/tanggal_lahir:label" lang="Bahasa">Tanggal lahir</span>
+        <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/tanggal_lahir:label" lang="en">DOB</span>
+        <span class="required">*</span>
+        <span class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/tanggal_lahir:hint" lang="Bahasa">Tanggal lahir Bayi</span>
+        <span class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/tanggal_lahir:hint" lang="en">Baby's date of birth</span>
+        <input data-type-xml="date" name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/tanggal_lahir" required="required" type="date"/>
+      </label>
+      <label class="question non-select ">
+        <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/berat_badan_saat_lahir:label" lang="Bahasa">Berat badan saat Lahir</span>
+        <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/berat_badan_saat_lahir:label" lang="en">Baby's birth weight</span>
+        <span class="or-hint active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/berat_badan_saat_lahir:hint" lang="Bahasa">Berat badan lahir bayi</span>
+        <span class="or-hint " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/berat_badan_saat_lahir:hint" lang="en">Baby's birth weight</span>
+        <input data-type-xml="int" name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/berat_badan_saat_lahir" type="number"/>
+      </label>            </section>
+    <!--end of repeat fieldset with name /Registrasi_Gizi-NewStructure-mapped_O/child_registration-->            </section>
+  <!--end of group -->  <fieldset id="or-preload-items" style="display:none;">
+    <label class="calculation non-select ">
+      <input data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" name="/Registrasi_Gizi-NewStructure-mapped_O/start" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="date" data-preload-params="today" data-type-xml="date" name="/Registrasi_Gizi-NewStructure-mapped_O/today" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="property" data-preload-params="deviceid" data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/deviceid" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="property" data-preload-params="simserial" data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/simserial" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="property" data-preload-params="phonenumber" data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/phonenumber" type="hidden"/>
+    </label>
+  </fieldset>
+  <fieldset id="or-calculated-items" style="display:none;">
+    <label class="calculation non-select ">
+      <input data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Village " data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/existing_location" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Province " data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/provinsi" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/District " data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/kabupaten" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Village " data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/desa" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Sub-village " data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/dusun" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Sub-district " data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/kecamatan" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate="concat('uuid:', uuid())" data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/meta/instanceID" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate="'05f4ee6ccf4d4f24b4c48e1884ea42dc'" data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/formhub/uuid" type="hidden"/>
+    </label>
+  </fieldset>
+</form>

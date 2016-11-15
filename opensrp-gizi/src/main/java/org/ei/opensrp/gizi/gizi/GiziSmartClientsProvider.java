@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
 
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.cursoradapter.SmartRegisterCLientsProviderForCursorAdapter;
@@ -139,18 +141,47 @@ public class GiziSmartClientsProvider implements SmartRegisterCLientsProviderFor
         }
 
         viewHolder.name.setText(pc.getDetails().get("namaBayi")!=null?pc.getDetails().get("namaBayi"):"");
-        viewHolder.age.setText(pc.getDetails().get("tanggalLahirAnak")!= null ? Integer.toString(monthRangeToToday(pc.getDetails().get("tanggalLahirAnak")))+" bln" : "");
+        String ages = pc.getColumnmaps().get("tanggalLahirAnak").substring(0, pc.getColumnmaps().get("tanggalLahirAnak").indexOf("T"));
+        viewHolder.age.setText(pc.getDetails().get("tanggalLahirAnak")!= null ? Integer.toString(monthRangeToToday(ages))+" bln" : "");
 
-        viewHolder.fatherName.setText(pc.getDetails().get("namaIbu")!=null
+        /*viewHolder.fatherName.setText(pc.getDetails().get("namaIbu")!=null
                 ? pc.getDetails().get("namaIbu")
                 : pc.getDetails().get("namaOrtu") != null
                     ? pc.getDetails().get("namaOrtu")
                     : "");
-        viewHolder.subVillage.setText(pc.getDetails().get("address1")!=null ? pc.getDetails().get("address1"):"");
-        String Tgl = pc.getDetails().get("tanggalLahirAnak");
-        String tgl_lahir_anak = Tgl.substring(0, Tgl.indexOf("T"));
+           viewHolder.subVillage.setText(pc.getDetails().get("address1")!=null ? pc.getDetails().get("address1"):"");
+                     */
 
-        viewHolder.dateOfBirth.setText(pc.getDetails().get("tanggalLahirAnak")!=null?tgl_lahir_anak:"");
+        AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_anak");
+        CommonPersonObject childobject = childRepository.findByCaseID(pc.entityId());
+
+        AllCommonsRepository kirep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_kartu_ibu");
+        final CommonPersonObject kiparent = kirep.findByCaseID(childobject.getColumnmaps().get("relational_id"));
+
+        if(kiparent != null) {
+            detailsRepository.updateDetails(kiparent);
+            String namaayah = kiparent.getDetails().get("namaSuami") != null ? kiparent.getDetails().get("namaSuami") : "";
+            String namaibu = kiparent.getColumnmaps().get("namalengkap") != null ? kiparent.getColumnmaps().get("namalengkap") : "";
+
+            viewHolder.fatherName.setText(namaibu + "," + namaayah);
+            viewHolder.subVillage.setText(kiparent.getDetails().get("address1") != null ? kiparent.getDetails().get("address1") : "");
+            // viewHolder.no_ibu.setText(kiparent.getDetails().get("noBayi") != null ? kiparent.getDetails().get("noBayi") : "");
+        }
+
+
+        String Tgl = pc.getDetails().get("tanggalLahirAnak");
+
+       if (Tgl.contains("T")) {
+           String tgl_lahir_anak = Tgl.substring(0, Tgl.indexOf("T"));
+           viewHolder.setAntihelminticVisibility(
+                   dayRangeBetween(tgl_lahir_anak.split("-")
+                           ,new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()).split("-")
+                   ) >= 365 ? View.VISIBLE : View.INVISIBLE
+           );
+           viewHolder.dateOfBirth.setText(pc.getDetails().get("tanggalLahirAnak")!=null?tgl_lahir_anak:"");
+       }
+
+
         viewHolder.gender.setText( pc.getDetails().get("gender") != null ? pc.getDetails().get("gender"):"");
         viewHolder.visitDate.setText(context.getString(R.string.tanggal) +  " "+(pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"-"));
         viewHolder.height.setText(context.getString(R.string.height) + " " + (pc.getDetails().get("tinggiBadan") != null ? pc.getDetails().get("tinggiBadan") : "-") + " Cm");
@@ -167,11 +198,7 @@ public class GiziSmartClientsProvider implements SmartRegisterCLientsProviderFor
                 : View.INVISIBLE
         );
         viewHolder.setVitAVisibility();
-        viewHolder.setAntihelminticVisibility(
-                dayRangeBetween(tgl_lahir_anak.split("-")
-                        ,new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()).split("-")
-                 ) >= 365 ? View.VISIBLE : View.INVISIBLE
-        );
+
 
 //------CHILD DATA HAS BEEN SUBMITTED OR NOT
         viewHolder.weightLogo.setImageDrawable(context.getResources().getDrawable(isLate(pc.getDetails().get("tanggalPenimbangan"),0)?R.drawable.ic_remove:R.drawable.ic_yes_large));

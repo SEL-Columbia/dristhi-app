@@ -1,8 +1,8 @@
 {
-  "form_data_definition_version": "2",
+  "form_data_definition_version": "3",
   "form": {
-    "bind_type":"anak",
-    "ec_bind_type":"ec_anak",
+    "bind_type": "kartu_ibu",
+    "ec_bind_type": "ec_kartu_ibu",
     "default_bind_path": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/",
     "fields": [
       {
@@ -16,12 +16,7 @@
       },
       {
         "name": "unique_id",
-        "bind": "model/instance/Registrasi_Gizi-NewStructure-mapped_O/unique_id",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "existing_desa",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/unique_id",
         "shouldLoadValue": true
       },
       {
@@ -75,50 +70,79 @@
         "shouldLoadValue": true
       },
       {
+        "name": "existing_location",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_location"
+      },
+      {
         "name": "posyandu",
         "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/posyandu"
       },
       {
-        "name": "desa_manual",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Village",
-        "shouldLoadValue": true
-      },
-      {
-        "name": "namaBayi",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/nama_anak"
-
-      },
-      {
-        "name": "namaAyah",
+        "name": "namaSuami",
         "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/nama_ayah"
       },
       {
-        "name": "namaIbu",
+        "name": "namalengkap",
         "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/nama_ibu"
-      },
-      {
-        "name": "tanggalLahirAnak",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/tanggal_lahir"
       },
       {
         "name": "nik",
         "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/nik"
       },
       {
-        "name": "jenisKelamin",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/jenis_kelamin"
+        "name": "jenisKontrasepsi",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/jenis_kontrasepsi"
       },
       {
-        "name": "beratLahir",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/birthweight"
+        "name": "isOutOfArea",
+        "value": "false"
       },
       {
-        "name": "kms",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/kms"
-      },
-      {
-        "name": "registrationDate",
+        "name": "submissionDate",
         "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/today"
+      }
+    ],
+    "sub_forms": [
+      {
+        "name": "child_registration",
+        "bind_type": "anak",
+        "ec_bind_type": "ec_anak",
+        "default_bind_path": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/child_registration/",
+        "fields": [
+          {
+            "name": "id",
+            "shouldLoadValue": true
+          },
+          {
+            "name": "relationalid",
+            "shouldLoadValue": true
+          },
+          {
+            "name": "injectedBaseEntityId",
+            "shouldLoadValue": true
+          },
+          {
+            "name": "ibu_entity_id",
+            "source": "kartu_ibu.id",
+            "shouldLoadValue": true
+          },
+          {
+            "name": "namaBayi",
+            "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/child_registration/nama_bayi"
+          },
+          {
+            "name": "jenisKelamin",
+            "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin"
+          },
+          {
+            "name": "tanggalLahirAnak",
+            "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/child_registration/tanggal_lahir"
+          },
+          {
+            "name": "beratLahir",
+            "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/child_registration/berat_badan_saat_lahir"
+          }
+        ]
       }
     ]
   }
