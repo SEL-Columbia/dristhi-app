@@ -101,8 +101,8 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             viewHolder.vitk_yes = (ImageView) convertView.findViewById(R.id.icon_vit_k_yes);
             viewHolder.campak_no = (ImageView) convertView.findViewById(R.id.icon_campak_no);
             viewHolder.campak_yes = (ImageView) convertView.findViewById(R.id.icon_campak_yes);
-            viewHolder.ivp_no = (ImageView) convertView.findViewById(R.id.icon_ivp_yes);
-            viewHolder.ivp_yes = (ImageView) convertView.findViewById(R.id.icon_ivp_no);
+            viewHolder.ivp_no = (ImageView) convertView.findViewById(R.id.icon_ivp_no);
+            viewHolder.ivp_yes = (ImageView) convertView.findViewById(R.id.icon_ivp_yes);
 
             viewHolder.pol1_no = (ImageView) convertView.findViewById(R.id.icon_pol1_no);
             viewHolder.pol1_yes = (ImageView) convertView.findViewById(R.id.icon_pol1_yes);
@@ -145,7 +145,10 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
             childview.setTag(smartRegisterClient);
         }
         else {
-            if(pc.getDetails().get("gender") != null && pc.getDetails().get("gender").equals("laki")) {
+            if(pc.getDetails().get("gender") != null && pc.getDetails().get("gender").equals("male")) {
+                viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
+            }
+            else if(pc.getDetails().get("gender") != null && pc.getDetails().get("gender").equals("laki")) {
                 viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
             }
             else

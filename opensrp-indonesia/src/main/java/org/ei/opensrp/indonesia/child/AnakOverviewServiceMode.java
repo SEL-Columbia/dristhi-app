@@ -51,7 +51,7 @@ public class AnakOverviewServiceMode extends ServiceModeOption {
             public int[] headerTextResourceIds() {
                 return new int[]{
                         R.string.header_name, R.string.header_dok_persalinan, R.string.str_header_neonatal,
-                        R.string.header_last_service, R.string.header_birth_status, R.string.header_edit};
+                        R.string.str_child_immunizations, R.string.header_birth_status, R.string.header_edit};
             }
         };
     }

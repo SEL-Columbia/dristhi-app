@@ -108,14 +108,14 @@
             <span class="or-hint " data-itext-id="/tambah_bayi_reviewed/child_registration/jenis_kelamin:hint" lang="en">Fill in baby's gender</span>                    </legend>
           <div class="option-wrapper">
             <label class="">
-              <input data-name="/tambah_bayi_reviewed/child_registration/jenis_kelamin" data-type-xml="select1" name="/tambah_bayi_reviewed/child_registration/jenis_kelamin" required="required" type="radio" value="laki"/>
-              <span class="option-label active" data-itext-id="/tambah_bayi_reviewed/child_registration/jenis_kelamin/laki:label" lang="Bahasa">Laki-Laki (L)</span>
-              <span class="option-label " data-itext-id="/tambah_bayi_reviewed/child_registration/jenis_kelamin/laki:label" lang="en">Male (L);</span>
+              <input data-name="/tambah_bayi_reviewed/child_registration/jenis_kelamin" data-type-xml="select1" name="/tambah_bayi_reviewed/child_registration/jenis_kelamin" required="required" type="radio" value="male"/>
+              <span class="option-label active" data-itext-id="/tambah_bayi_reviewed/child_registration/jenis_kelamin/male:label" lang="Bahasa">Laki-Laki (L)</span>
+              <span class="option-label " data-itext-id="/tambah_bayi_reviewed/child_registration/jenis_kelamin/male:label" lang="en">Male (L);</span>
             </label>
             <label class="">
-              <input data-name="/tambah_bayi_reviewed/child_registration/jenis_kelamin" data-type-xml="select1" name="/tambah_bayi_reviewed/child_registration/jenis_kelamin" required="required" type="radio" value="perempuan"/>
-              <span class="option-label active" data-itext-id="/tambah_bayi_reviewed/child_registration/jenis_kelamin/perempuan:label" lang="Bahasa">Perempuan ( P)</span>
-              <span class="option-label " data-itext-id="/tambah_bayi_reviewed/child_registration/jenis_kelamin/perempuan:label" lang="en">Female (P)</span>
+              <input data-name="/tambah_bayi_reviewed/child_registration/jenis_kelamin" data-type-xml="select1" name="/tambah_bayi_reviewed/child_registration/jenis_kelamin" required="required" type="radio" value="female"/>
+              <span class="option-label active" data-itext-id="/tambah_bayi_reviewed/child_registration/jenis_kelamin/female:label" lang="Bahasa">Perempuan ( P)</span>
+              <span class="option-label " data-itext-id="/tambah_bayi_reviewed/child_registration/jenis_kelamin/female:label" lang="en">Female (P)</span>
             </label>
           </div>
         </fieldset>
