@@ -100,7 +100,7 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterC
 
             @Override
             public String nameInShortFormForTitle() {
-                return Context.getInstance().getStringResource(R.string.title002);
+                return Context.getInstance().getStringResource(R.string.vaksinator);
             }
         };
     }

@@ -24,6 +24,7 @@
     <string name="register_label">Register</string>
     <string name="home_videos_label">Videos</string>
 
+    <string name="vaksinator">CHILD VACCINATION</string>
     <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
     <string name="videos_IEC_not_installed_dialog_message">Please install IEC application to play the videos.
     </string>

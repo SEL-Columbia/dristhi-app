@@ -16,8 +16,11 @@ import android.widget.TextView;
 import com.flurry.android.FlurryAgent;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.ProfileImage;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.repository.ImageRepository;
 import org.ei.opensrp.vaksinator.R;
 
@@ -150,28 +153,49 @@ public class VaksinatorDetailActivity extends Activity {
         completeLabel.setText(getString(R.string.imunisasiLengkap));
         additionalDPTLabel.setText(getString(R.string.dptTambahan));
         additionalMeaslesLabel.setText(getString(R.string.campakTambahan));
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        detailsRepository.updateDetails(controller);
 
         nama.setText(": " + (controller.getColumnmaps().get("namaBayi") != null ? controller.getColumnmaps().get("namaBayi") : "-"));
 
-        fatherName.setText(": " + (controller.getDetails().get("namaAyah") != null ? controller.getDetails().get("namaAyah") : "-"));
+
+        AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_anak");
+        CommonPersonObject childobject = childRepository.findByCaseID(controller.entityId());
+
+        AllCommonsRepository kirep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_kartu_ibu");
+        final CommonPersonObject kiparent = kirep.findByCaseID(childobject.getColumnmaps().get("relational_id"));
+
+        if(kiparent != null) {
+            detailsRepository.updateDetails(kiparent);
+            String namaayah = kiparent.getDetails().get("namaSuami") != null ? kiparent.getDetails().get("namaSuami") : "";
+            String namaibu = kiparent.getColumnmaps().get("namalengkap") != null ? kiparent.getColumnmaps().get("namalengkap") : "";
+
+            fatherName.setText(": " + namaayah);
+            motherName.setText(": " +namaibu);
+            village.setText(kiparent.getDetails().get("cityVillage") != null ? ": " + kiparent.getDetails().get("cityVillage") : "");
+            subVillage.setText(kiparent.getDetails().get("address1") != null ? ": " + kiparent.getDetails().get("address1") : "");
+            // viewHolder.no_ibu.setText(kiparent.getDetails().get("noBayi") != null ? kiparent.getDetails().get("noBayi") : "");
+        }
+
+        /*fatherName.setText(": " + (controller.getDetails().get("namaAyah") != null ? controller.getDetails().get("namaAyah") : "-"));
         motherName.setText(": " + (controller.getDetails().get("namaIbu") != null
                 ? controller.getDetails().get("namaIbu")
                 : controller.getDetails().get("nama_orang_tua")!=null
                         ? controller.getDetails().get("nama_orang_tua")
                         : "-"
             )
-        );
-        village.setText(": " + (controller.getDetails().get("desa") != null
+        );*/
+       /* village.setText(": " + (controller.getDetails().get("desa") != null
                 ? controller.getDetails().get("desa")
-                : "-"));
+                : "-"));*/
 
-        subVillage.setText(": " + (controller.getDetails().get("dusun") != null
+   /*     subVillage.setText(": " + (controller.getDetails().get("dusun") != null
                 ? controller.getDetails().get("dusun")
                 : controller.getDetails().get("village") != null
                     ? controller.getDetails().get("village")
                     : "-")
         );
-
+*/
         posyandu.setText(": " + (controller.getDetails().get("nama_lokasi") != null
                 ? controller.getDetails().get("nama_lokasi")
                 : controller.getDetails().get("posyandu")!=null
