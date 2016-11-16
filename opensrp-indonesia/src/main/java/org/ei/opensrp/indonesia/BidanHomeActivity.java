@@ -23,6 +23,12 @@ import org.ei.opensrp.view.contract.HomeContext;
 import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
+import org.opensrp.api.domain.Location;
+import org.opensrp.api.util.EntityUtils;
+import org.opensrp.api.util.LocationTree;
+import org.opensrp.api.util.TreeNode;
+
+import java.util.Map;
 
 import static android.widget.Toast.LENGTH_SHORT;
 import static java.lang.String.valueOf;
@@ -231,6 +237,11 @@ public class BidanHomeActivity extends SecuredActivity {
                 this, context.actionService(), context.formSubmissionSyncService(),
                 new SyncProgressIndicator(), context.allFormVersionSyncService());
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
+        String locationjson = context.anmLocationController().get();
+        LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
+
+        Map<String,TreeNode<String, Location>> locationMap =
+                locationTree.getLocationsHierarchy();
     }
 
     @Override

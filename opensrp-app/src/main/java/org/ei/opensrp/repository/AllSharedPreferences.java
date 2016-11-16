@@ -98,6 +98,11 @@ public class AllSharedPreferences {
             logError("Malformed Url: " + baseUrl);
         }
     }
-
+    public String getPreference(String key) {
+        return preferences.getString(key, "").trim();
+    }
+    public void setPreference(String key, String value) {
+        preferences.edit().putString(key, value).commit();
+    }
 
 }
