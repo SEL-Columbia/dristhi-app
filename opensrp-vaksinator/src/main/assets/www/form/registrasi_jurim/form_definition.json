@@ -20,28 +20,28 @@
         "shouldLoadValue": true
       },
       {
-        "name": "existing_desa",
-        "bind": "/model/instance/registrasi_vaksinator/existing_Village",
+        "name": "existing_Village",
+        "bind": "/model/instance/registrasi_vaksinator/Village",
         "shouldLoadValue": true
       },
       {
-        "name": "existing_provinsi",
-        "bind": "/model/instance/registrasi_vaksinator/existing_Province",
+        "name": "existing_Province",
+        "bind": "/model/instance/registrasi_vaksinator/Province",
         "shouldLoadValue": true
       },
       {
-        "name": "existing_kecamatan",
-        "bind": "/model/instance/registrasi_vaksinator/existing_Sub-district",
+        "name": "existing_Sub-district",
+        "bind": "/model/instance/registrasi_vaksinator/Sub-district",
         "shouldLoadValue": true
       },
       {
-        "name": "existing_kabupaten",
-        "bind": "/model/instance/registrasi_vaksinator/existing_District",
+        "name": "existing_District",
+        "bind": "/model/instance/registrasi_vaksinator/District",
         "shouldLoadValue": true
       },
       {
-        "name": "existing_dusun",
-        "bind": "/model/instance/registrasi_vaksinator/existing_Sub-village",
+        "name": "existing_Sub-village",
+        "bind": "/model/instance/registrasi_vaksinator/Sub-village",
         "shouldLoadValue": true
       },
       {
@@ -137,6 +137,14 @@
           {
             "name": "tanggalLahirAnak",
             "bind": "/model/instance/registrasi_vaksinator/child_registration/tanggal_lahir"
+          },
+          {
+            "name": "desa_anak",
+            "bind": "/model/instance/registrasi_vaksinator/child_registration/desa_anak"
+          },
+          {
+            "name": "child_existing_location",
+            "bind": "/model/instance/registrasi_vaksinator/child_registration/child_existing_location"
           },
           {
             "name": "beratLahir",

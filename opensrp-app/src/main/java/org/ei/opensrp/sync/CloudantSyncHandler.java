@@ -78,6 +78,7 @@ public class CloudantSyncHandler {
             // Retrieve database host from preferences
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this.mContext);
             AllSharedPreferences allSharedPreferences = new AllSharedPreferences(preferences);
+            String locationAnmids=allSharedPreferences.getPreference(AllConstants.SyncFilters.FILTER_LOCATION_ID);
 
             String port = AllConstants.CloudantSync.COUCHDB_PORT;
             String databaseName = AllConstants.CloudantSync.COUCH_DATABASE_NAME;
@@ -90,8 +91,8 @@ public class CloudantSyncHandler {
             if (designDocumentId != null) {
                 String filterDoc = designDocumentId.split("/")[1];
                 HashMap<String, String> filterParams = new HashMap<String, String>();
-                filterParams.put(AllConstants.SyncFilters.FILTER_PROVIDER, allSharedPreferences.fetchRegisteredANM());
-                pullFilter = new PullFilter(filterDoc.concat("/").concat(AllConstants.SyncFilters.FILTER_PROVIDER), filterParams);
+                filterParams.put(AllConstants.SyncFilters.FILTER_LOCATION_ID,locationAnmids);
+                pullFilter = new PullFilter(filterDoc.concat("/").concat(AllConstants.SyncFilters.FILTER_LOCATION_ID), filterParams);
             }
 
             this.reloadReplicationSettings(pullFilter);

@@ -331,7 +331,7 @@ public class AllConstants {
         public static final String BATCHES_REPLICATED = "BATCHES_REPLICATED";
         public static final String COUCHDB_PORT = "5984";
 
-        public static final String COUCH_DATABASE_NAME = "test_sync1";
+        public static final String COUCH_DATABASE_NAME = "Testing_ec";
 
 
 

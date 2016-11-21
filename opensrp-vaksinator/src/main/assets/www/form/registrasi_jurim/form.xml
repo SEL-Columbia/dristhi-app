@@ -4,21 +4,15 @@
   <h3 id="form-title">Registrasi Vaksinator</h3>
   <select data-default-lang="Bahasa" id="form-languages">
     <option value="Bahasa">Bahasa</option> <option value="en">English</option> </select>        <label class="note non-select ">
-    <span class="question-label active" data-itext-id="/registrasi_vaksinator/noteDesa:label" lang="Bahasa">Desa : <span class="or-output" data-value=" /registrasi_vaksinator/desa ">            </span>
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/generated_note_name_13:label" lang="Bahasa">Desa : <span class="or-output" data-value=" /registrasi_vaksinator/Village ">            </span>
     </span>
-    <span class="question-label " data-itext-id="/registrasi_vaksinator/noteDesa:label" lang="en">Village : <span class="or-output" data-value=" /registrasi_vaksinator/desa ">            </span>
-    </span>
-    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/noteDesa:hint" lang="Bahasa">Desa tempat pelayanan posyandu</span>
-    <span class="or-hint " data-itext-id="/registrasi_vaksinator/noteDesa:hint" lang="en">Name of the village where Health Post service is given</span>
-    <input data-type-xml="string" name="/registrasi_vaksinator/noteDesa" readonly="readonly" type="text"/>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/generated_note_name_13:label" lang="en">-</span>
+    <input data-type-xml="string" name="/registrasi_vaksinator/generated_note_name_13" readonly="readonly" type="text"/>
   </label>    <label class="note non-select ">
-    <span class="question-label active" data-itext-id="/registrasi_vaksinator/noteDusun:label" lang="Bahasa">Dusun Posyandu : <span class="or-output" data-value=" /registrasi_vaksinator/dusun ">            </span>
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/generated_note_name_14:label" lang="Bahasa">Dusun : <span class="or-output" data-value=" /registrasi_vaksinator/Sub-village ">            </span>
     </span>
-    <span class="question-label " data-itext-id="/registrasi_vaksinator/noteDusun:label" lang="en">Health Post sub-village : <span class="or-output" data-value=" /registrasi_vaksinator/dusun ">            </span>
-    </span>
-    <span class="or-hint active" data-itext-id="/registrasi_vaksinator/noteDusun:hint" lang="Bahasa">Nama dusun Posyandu</span>
-    <span class="or-hint " data-itext-id="/registrasi_vaksinator/noteDusun:hint" lang="en">Name of the health post sub-village</span>
-    <input data-type-xml="string" name="/registrasi_vaksinator/noteDusun" readonly="readonly" type="text"/>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/generated_note_name_14:label" lang="en">-</span>
+    <input data-type-xml="string" name="/registrasi_vaksinator/generated_note_name_14" readonly="readonly" type="text"/>
   </label>    <label class="question non-select ">
     <span class="question-label active" data-itext-id="/registrasi_vaksinator/nama_ayah:label" lang="Bahasa">Nama Ayah</span>
     <span class="question-label " data-itext-id="/registrasi_vaksinator/nama_ayah:label" lang="en">Fathr's Name</span>
@@ -32,6 +26,10 @@
     <span class="or-hint " data-itext-id="/registrasi_vaksinator/nama_ibu:hint" lang="en">Name of Baby's Mother Receiving Immunization</span>
     <input data-type-xml="string" name="/registrasi_vaksinator/nama_ibu" type="text"/>
   </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/registrasi_vaksinator/no_ibu:label" lang="Bahasa">No. Ibu</span>
+    <span class="question-label " data-itext-id="/registrasi_vaksinator/no_ibu:label" lang="en">Mother's Number</span>
+    <input data-type-xml="int" name="/registrasi_vaksinator/no_ibu" type="number"/>
+  </label>    <label class="question non-select ">
     <span class="question-label active" data-itext-id="/registrasi_vaksinator/nik:label" lang="Bahasa">NIK</span>
     <span class="question-label " data-itext-id="/registrasi_vaksinator/nik:label" lang="en">National identification number</span>
     <span class="or-hint active" data-itext-id="/registrasi_vaksinator/nik:hint" lang="Bahasa">Nomor KTP (Kartu Tanda Penduduk)</span>
@@ -39,6 +37,12 @@
     <input data-type-xml="int" name="/registrasi_vaksinator/nik" type="number"/>
   </label>    <section class="or-group-data " name="/registrasi_vaksinator/child_registration">
     <section class="or-repeat " name="/registrasi_vaksinator/child_registration">
+      <label class="note non-select ">
+        <span class="question-label active" data-itext-id="/registrasi_vaksinator/child_registration/generated_note_name_37:label" lang="Bahasa">Desa : <span class="or-output" data-value=" /registrasi_vaksinator/child_registration/desa_anak ">            </span>
+        </span>
+        <span class="question-label " data-itext-id="/registrasi_vaksinator/child_registration/generated_note_name_37:label" lang="en">-</span>
+        <input data-type-xml="string" name="/registrasi_vaksinator/child_registration/generated_note_name_37" readonly="readonly" type="text"/>
+      </label>
       <label class="question non-select ">
         <span class="question-label active" data-itext-id="/registrasi_vaksinator/child_registration/nama_bayi:label" lang="Bahasa">Nama Bayi</span>
         <span class="question-label " data-itext-id="/registrasi_vaksinator/child_registration/nama_bayi:label" lang="en">Baby's Name</span>
@@ -123,6 +127,12 @@
     </label>
     <label class="calculation non-select ">
       <input data-calculate=" /registrasi_vaksinator/Sub-district " data-type-xml="string" name="/registrasi_vaksinator/kecamatan" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /registrasi_vaksinator/Village " data-type-xml="string" name="/registrasi_vaksinator/child_registration/desa_anak" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /registrasi_vaksinator/Village " data-type-xml="string" name="/registrasi_vaksinator/child_registration/child_existing_location" type="hidden"/>
     </label>
     <label class="calculation non-select ">
       <input data-calculate="concat('uuid:', uuid())" data-type-xml="string" name="/registrasi_vaksinator/meta/instanceID" type="hidden"/>
