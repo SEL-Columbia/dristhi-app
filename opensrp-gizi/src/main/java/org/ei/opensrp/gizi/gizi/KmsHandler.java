@@ -1,11 +1,15 @@
 package org.ei.opensrp.gizi.gizi;
 
+import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.service.formSubmissionHandler.FormSubmissionHandler;
+import org.ei.opensrp.sync.ClientProcessor;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import util.KMS.KmsCalc;
 import util.KMS.KmsPerson;
@@ -14,8 +18,10 @@ import util.ZScore.ZScoreSystemCalculation;
 /**
  * Created by Iq on 15/09/16.
  */
-public class KmsHandler implements FormSubmissionHandler {
+public class KmsHandler  implements FormSubmissionHandler {
     static String bindobject = "anak";
+    private ClientProcessor clientProcessor;
+    private  org.ei.opensrp.Context context;
     public KmsHandler() {
 
     }
@@ -23,67 +29,33 @@ public class KmsHandler implements FormSubmissionHandler {
     @Override
     public void handle(FormSubmission submission){
         String entityID = submission.entityId();
-        AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("anak");
+        AllCommonsRepository childRepository = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_anak");
         CommonPersonObject childobject = childRepository.findByCaseID(entityID);
+        Long tsLong = System.currentTimeMillis()/1000;
 
-        /**
-         * kms calculation
-         * NOTE - Need a better way to handle z-score data to sqllite
-         */
-        String berats = childobject.getDetails().get("history_berat")!= null ? childobject.getDetails().get("history_berat") :"0";
+        String berats = submission.getFieldValue("history_berat")!= null ? submission.getFieldValue("history_berat") :"0";
         String[] history_berat = berats.split(",");
         double berat_sebelum = Double.parseDouble((history_berat.length) >=3 ? (history_berat[(history_berat.length)-3]) : "0");
-        String umurs = childobject.getDetails().get("history_umur")!= null ? childobject.getDetails().get("history_umur") :"0";
+        String umurs = submission.getFieldValue("history_umur")!= null ? submission.getFieldValue("history_umur") :"0";
         String[] history_umur = umurs.split(",");
+        String lastVisitDate = submission.getFieldValue("tanggalPenimbangan") != null ? submission.getFieldValue("tanggalPenimbangan") : "-";
+        String gender = submission.getFieldValue("gender") != null ? submission.getFieldValue("gender") : "-";
+        String tgllahir = submission.getFieldValue("tanggalLahirAnak") != null ? submission.getFieldValue("tanggalLahirAnak") : "-";
+        String dateOfBirth = tgllahir.substring(0, tgllahir.indexOf("T"));
 
-        boolean jenisKelamin = childobject.getDetails().get("jenisKelamin").equalsIgnoreCase("laki-laki") || childobject.getDetails().get("jenisKelamin").equalsIgnoreCase("male")? true:false;
-        String tanggal_lahir = childobject.getDetails().get("tanggalLahir") != null ? childobject.getDetails().get("tanggalLahir") : "0";
-        double berat= Double.parseDouble(childobject.getDetails().get("beratBadan") != null ? childobject.getDetails().get("beratBadan") : "0");
-        double beraSebelum = Double.parseDouble((history_berat.length) >=2 ? (history_berat[(history_berat.length)-2]) : "0");
-        String tanggal = (childobject.getDetails().get("tanggalPenimbangan") != null ? childobject.getDetails().get("tanggalPenimbangan") : "0");
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
 
-        String tanggal_sebelumnya = (childobject.getDetails().get("kunjunganSebelumnya") != null ? childobject.getDetails().get("kunjunganSebelumnya") : "0");
+        detailsRepository.add(entityID, "preload_umur", umurs, tsLong);
+        detailsRepository.add(entityID, "berat_preload", berats, tsLong);
+        detailsRepository.add(entityID, "kunjunganSebelumnya", lastVisitDate, tsLong);
+        detailsRepository.add(entityID, "history_umur", umurs, tsLong);
 
-        if(childobject.getDetails().get("tanggalPenimbangan") != null) {
-
-
-            //KMS calculation
-            KmsPerson data = new KmsPerson(jenisKelamin, tanggal_lahir, berat, beraSebelum, tanggal, berat_sebelum, tanggal_sebelumnya);
-            KmsCalc calculator = new KmsCalc();
-            int satu = Integer.parseInt(history_umur[history_umur.length-2]);
-            int dua = Integer.parseInt(history_umur[history_umur.length-1]);
-            String duat = history_berat.length <= 2  ? "-" : dua - satu >=2 ? "-" :calculator.cek2T(data);
-            String status = history_berat.length <= 2 ? "Tidak" : calculator.cekWeightStatus(data);
-            HashMap <String,String> kms = new HashMap<String,String>();
-            kms.put("bgm",calculator.cekBGM(data));
-            kms.put("dua_t",duat);
-            kms.put("garis_kuning",calculator.cekBawahKuning(data));
-            kms.put("nutrition_status",status);
-
-            if(childobject.getDetails().get("vitA") != null){
-                if(childobject.getDetails().get("vitA").equalsIgnoreCase("yes") || childobject.getDetails().get("vitA").equalsIgnoreCase("ya")){
-                    kms.put("lastVitA",childobject.getDetails().get("tanggalPenimbangan"));
-                }
-            }else{
-                kms.put("lastVitA",childobject.getDetails().get("lastVitA"));
-            }
-            if(childobject.getDetails().get("obatcacing") != null){
-                if(childobject.getDetails().get("obatcacing").equalsIgnoreCase("yes") || childobject.getDetails().get("obatcacing").equalsIgnoreCase("ya")){
-                    kms.put("lastAnthelmintic",childobject.getDetails().get("tanggalPenimbangan"));
-                }
-            }else{
-                kms.put("lastAnthelmintic",childobject.getDetails().get("lastAnthelmintic"));
-            }
-            org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityID,kms);
-        }
-
-        if(childobject.getDetails().get("tanggalPenimbangan") != null)
+        if(submission.getFieldValue("tanggalPenimbangan") != null)
         {
-            String gender = childobject.getDetails().get("jenisKelamin") != null ? childobject.getDetails().get("jenisKelamin") : "-";
-            String dateOfBirth = childobject.getDetails().get("tanggalLahir") != null ? childobject.getDetails().get("tanggalLahir") : "-";
-            String lastVisitDate = childobject.getDetails().get("tanggalPenimbangan") != null ? childobject.getDetails().get("tanggalPenimbangan") : "-";
-            double weight=Double.parseDouble(childobject.getDetails().get("beratBadan")!=null?childobject.getDetails().get("beratBadan"):"0");
-            double length=Double.parseDouble(childobject.getDetails().get("tinggiBadan")!=null?childobject.getDetails().get("tinggiBadan"):"0");
+
+            double weight=Double.parseDouble(submission.getFieldValue("beratBadan")!=null?submission.getFieldValue("beratBadan"):"0");
+            double length=Double.parseDouble(submission.getFieldValue("tinggiBadan")!=null?submission.getFieldValue("tinggiBadan"):"0");
+
             ZScoreSystemCalculation zScore = new ZScoreSystemCalculation();
 
             double weight_for_age = zScore.countWFA(gender, dateOfBirth, lastVisitDate, weight);
@@ -100,20 +72,64 @@ public class KmsHandler implements FormSubmissionHandler {
                     wight_for_lenght = zScore.countWFH(gender, weight, length);
                 }
                 wflStatus = zScore.getWFLZScoreClassification(wight_for_lenght);
-                HashMap<String,String> z_score = new HashMap<String,String>();
-                z_score.put("underweight",wfaStatus);
-                z_score.put("stunting",hfaStatus);
-                z_score.put("wasting",wflStatus);
-                org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityID,z_score);
+
+
+
+                detailsRepository.add(entityID, "underweight", wfaStatus, tsLong);
+                detailsRepository.add(entityID, "stunting", hfaStatus, tsLong);
+                detailsRepository.add(entityID, "wasting", wflStatus, tsLong);
+
+
+
             }
             else {
-                //   String hfaStatus = "-";
-                //   String wflStatus ="-";
-                HashMap<String, String> z_score = new HashMap<String, String>();
-                z_score.put("underweight", wfaStatus);
-                z_score.put("stunting", "-");
-                z_score.put("wasting", "-");
-                org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects(bindobject).mergeDetails(entityID, z_score);
+                detailsRepository.add(entityID, "underweight", wfaStatus, tsLong);
+                detailsRepository.add(entityID, "stunting", "-", tsLong);
+                detailsRepository.add(entityID, "wasting", "-", tsLong);
+
+
+            }
+        }
+        /**
+         * kms calculation
+         * NOTE - Need a better way to handle z-score data to sqllite
+         */
+
+
+        boolean jenisKelamin = gender.equalsIgnoreCase("male")? true:false;
+        double berat= Double.parseDouble(submission.getFieldValue("beratBadan") != null ? submission.getFieldValue("beratBadan") : "0");
+        double beraSebelum = Double.parseDouble((history_berat.length) >=2 ? (history_berat[(history_berat.length)-2]) : "0");
+        String tanggal_sebelumnya = (submission.getFieldValue("kunjunganSebelumnya") != null ? submission.getFieldValue("kunjunganSebelumnya") : "0");
+
+        if(submission.getFieldValue("tanggalPenimbangan") != null) {
+
+
+            //KMS calculation lastVisitDate
+            KmsPerson data = new KmsPerson(jenisKelamin, dateOfBirth, berat, beraSebelum, lastVisitDate, berat_sebelum, tanggal_sebelumnya);
+            KmsCalc calculator = new KmsCalc();
+            int satu = Integer.parseInt(history_umur[history_umur.length-2]);
+            int dua = Integer.parseInt(history_umur[history_umur.length-1]);
+            String duat = history_berat.length <= 2  ? "-" : dua - satu >=2 ? "-" :calculator.cek2T(data);
+            String status = history_berat.length <= 2 ? "No" : calculator.cekWeightStatus(data);
+
+            detailsRepository.add(entityID, "bgm", calculator.cekBGM(data), tsLong);
+            detailsRepository.add(entityID, "dua_t", duat, tsLong);
+            detailsRepository.add(entityID, "garis_kuning", calculator.cekBawahKuning(data), tsLong);
+            detailsRepository.add(entityID, "nutrition_status", status, tsLong);
+
+            if(submission.getFieldValue("vitA") != null){
+                if(submission.getFieldValue("vitA").equalsIgnoreCase("yes") || submission.getFieldValue("vitA").equalsIgnoreCase("ya")){
+                    detailsRepository.add(entityID, "lastVitA", submission.getFieldValue("tanggalPenimbangan"), tsLong);
+                }
+            }else{
+                detailsRepository.add(entityID, "lastVitA", submission.getFieldValue("lastVitA"), tsLong);
+            }
+            if(submission.getFieldValue("obatcacing") != null){
+                if(submission.getFieldValue("obatcacing").equalsIgnoreCase("yes") || submission.getFieldValue("obatcacing").equalsIgnoreCase("ya")){
+                    detailsRepository.add(entityID, "lastAnthelmintic", submission.getFieldValue("tanggalPenimbangan"), tsLong);
+                }
+            }else{
+                detailsRepository.add(entityID, "lastAnthelmintic", submission.getFieldValue("lastAnthelmintic"), tsLong);
             }
         }
     }

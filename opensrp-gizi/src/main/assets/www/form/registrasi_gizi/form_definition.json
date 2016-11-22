@@ -20,28 +20,28 @@
         "shouldLoadValue": true
       },
       {
-        "name": "existing_desa",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Village",
+        "name": "existing_Village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/Village",
         "shouldLoadValue": true
       },
       {
-        "name": "existing_provinsi",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Province",
+        "name": "existing_Province",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/Province",
         "shouldLoadValue": true
       },
       {
-        "name": "existing_kecamatan",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Sub-district",
+        "name": "existing_Sub-district",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/Sub-district",
         "shouldLoadValue": true
       },
       {
-        "name": "existing_kabupaten",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_District",
+        "name": "existing_District",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/District",
         "shouldLoadValue": true
       },
       {
-        "name": "existing_dusun",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_Sub-village",
+        "name": "existing_Sub-village",
+        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/Sub-village",
         "shouldLoadValue": true
       },
       {
@@ -68,10 +68,6 @@
         "name": "dusun",
         "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/dusun",
         "shouldLoadValue": true
-      },
-      {
-        "name": "existing_location",
-        "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/existing_location"
       },
       {
         "name": "posyandu",
@@ -133,6 +129,14 @@
           {
             "name": "jenisKelamin",
             "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/child_registration/jenis_kelamin"
+          },
+          {
+            "name": "desa_anak",
+            "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/child_registration/desa_anak"
+          },
+          {
+            "name": "child_existing_location",
+            "bind": "/model/instance/Registrasi_Gizi-NewStructure-mapped_O/child_registration/child_existing_location"
           },
           {
             "name": "tanggalLahirAnak",

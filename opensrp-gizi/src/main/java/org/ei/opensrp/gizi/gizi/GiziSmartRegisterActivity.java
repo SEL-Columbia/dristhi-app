@@ -9,6 +9,8 @@ import android.util.Log;
 import com.flurry.android.FlurryAgent;
 
 import org.ei.opensrp.Context;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
+import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.domain.Alert;
 import org.ei.opensrp.domain.form.FieldOverrides;
@@ -44,6 +46,7 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import util.ZScore.ZScoreSystemCalculation;
 
 //import org.ei.opensrp.gizi.fragment.HouseHoldSmartRegisterFragment;
 
@@ -57,7 +60,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     OpenSRPViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
     private int currentPage;
-
+    private ClientProcessor clientProcessor;
     private String[] formNames = new String[]{};
     private android.support.v4.app.Fragment mBaseFragment = null;
 
@@ -118,7 +121,9 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     protected SmartRegisterClientsProvider clientsProvider() {return null;}
 
     @Override
-    protected void onInitialization() {}
+    protected void onInitialization() {
+        context.formSubmissionRouter().getHandlerMap().put("kunjungan_gizi", new KmsHandler());
+    }
 
     @Override
     public void startRegistration() {
@@ -162,6 +167,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             }
             e.printStackTrace();
         }
+      //  KMSCalculation();
     }
 
     /*@Override
@@ -361,10 +367,10 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     protected void onPause() {
         super.onPause();
         retrieveAndSaveUnsubmittedFormData();
-        String GiziEnd = timer.format(new Date());
+  /*      String GiziEnd = timer.format(new Date());
         Map<String, String> Gizi = new HashMap<String, String>();
         Gizi.put("end", GiziEnd);
-        FlurryAgent.logEvent("Gizi_dashboard",Gizi, true );
+        FlurryAgent.logEvent("Gizi_dashboard",Gizi, true );*/
     }
 
     public void retrieveAndSaveUnsubmittedFormData(){
@@ -377,4 +383,6 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     private boolean currentActivityIsShowingForm(){
         return currentPage != 0;
     }
+
+
 }

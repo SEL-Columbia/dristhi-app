@@ -1,46 +1,288 @@
-<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="kunjungan_gizi">
-    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.--><section class="form-logo"> </section><h3 id="form-title">Kunjungan Gizi</h3><select id="form-languages" data-default-lang="Bahasa"><option value="Bahasa">Bahasa</option> <option value="en">English</option> </select>
-
-
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/generated_note_name_13:label">Desa : <span class="or-output" data-value=" /Kunjungan_Gizi/Village ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/generated_note_name_13:label">-</span><input type="text" name="/Kunjungan_Gizi/generated_note_name_13" data-type-xml="string" readonly="readonly"/></label>
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/generated_note_name_14:label">Dusun : <span class="or-output" data-value=" /Kunjungan_Gizi/Sub-village ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/generated_note_name_14:label">-</span><input type="text" name="/Kunjungan_Gizi/generated_note_name_14" data-type-xml="string" readonly="readonly"/></label>
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/generated_note_name_38:label">Status Gizi Sebelumnya</span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/generated_note_name_38:label">Previous Nutrition Status</span><input type="text" name="/Kunjungan_Gizi/generated_note_name_38" data-type-xml="string" readonly="readonly"/></label>
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/generated_note_name_39:label">Berat/Umur : <span class="or-output" data-value=" /Kunjungan_Gizi/weight_for_age_status ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/generated_note_name_39:label">Weight for Age Status : <span class="or-output" data-value=" /Kunjungan_Gizi/underweight ">
-    </span></span><input type="text" name="/Kunjungan_Gizi/generated_note_name_39" data-type-xml="string" readonly="readonly"/></label>
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/generated_note_name_40:label">Tinggi/Umur : <span class="or-output" data-value=" /Kunjungan_Gizi/height_for_age_status ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/generated_note_name_40:label">Height for Age Status : <span class="or-output" data-value=" /Kunjungan_Gizi/stunting ">
-    </span></span><input type="text" name="/Kunjungan_Gizi/generated_note_name_40" data-type-xml="string" readonly="readonly"/></label>
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/generated_note_name_41:label">Berat/Tinggi : <span class="or-output" data-value=" /Kunjungan_Gizi/weight_for_length_status ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/generated_note_name_41:label">Weight for Length Status : <span class="or-output" data-value=" /Kunjungan_Gizi/wasting ">
-    </span></span><input type="text" name="/Kunjungan_Gizi/generated_note_name_41" data-type-xml="string" readonly="readonly"/></label>
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/generated_note_name_42:label">Status Gizi (NTOB) : <span class="or-output" data-value=" /Kunjungan_Gizi/ntob_status ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/generated_note_name_42:label">Weight Increasement Status : <span class="or-output" data-value=" /Kunjungan_Gizi/ntob_status ">
-    </span></span><input type="text" name="/Kunjungan_Gizi/generated_note_name_42" data-type-xml="string" readonly="readonly"/></label>
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/generated_note_name_43:label">Bawah Garis Merah (BGM) : <span class="or-output" data-value=" /Kunjungan_Gizi/bgm_status ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/generated_note_name_43:label">Under red line (weight for age status based on Growth Chart) : <span class="or-output" data-value=" /Kunjungan_Gizi/bgm_status ">
-    </span></span><input type="text" name="/Kunjungan_Gizi/generated_note_name_43" data-type-xml="string" readonly="readonly"/></label>
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/generated_note_name_44:label">2 kali berturut-turut tidak naik (2T) : <span class="or-output" data-value=" /Kunjungan_Gizi/dua_t_status ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/generated_note_name_44:label">Failed to weight gain in two consecutive months : <span class="or-output" data-value=" /Kunjungan_Gizi/dua_t_status ">
-    </span></span><input type="text" name="/Kunjungan_Gizi/generated_note_name_44" data-type-xml="string" readonly="readonly"/></label>
-    <label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/tanggal_penimbangan:label">Tanggal penimbangan</span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/tanggal_penimbangan:label">Date of Weighing</span><span class="required">*</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Kunjungan_Gizi/tanggal_penimbangan:hint">Tanggal dilakukan penimbangan</span><span lang="en" class="or-hint " data-itext-id="/Kunjungan_Gizi/tanggal_penimbangan:hint">date of weighing</span><input type="date" name="/Kunjungan_Gizi/tanggal_penimbangan" required="required" data-type-xml="date"/></label>
-    <label class="note non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/generated_note_name_52:label">Umur : <span class="or-output" data-value=" /Kunjungan_Gizi/umur ">
-    </span></span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/generated_note_name_52:label">Age (Months)</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Kunjungan_Gizi/generated_note_name_52:hint">Umur bayi/balita dalam bulan</span><span lang="en" class="or-hint " data-itext-id="/Kunjungan_Gizi/generated_note_name_52:hint">age of baby/child in month</span><input type="text" name="/Kunjungan_Gizi/generated_note_name_52" data-type-xml="string" readonly="readonly"/></label>
-    <label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/berat_badan:label">Berat Badan</span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/berat_badan:label">Weight (kg)</span><span class="required">*</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Kunjungan_Gizi/berat_badan:hint">Berat badan bayi/balita (kg)</span><span lang="en" class="or-hint " data-itext-id="/Kunjungan_Gizi/berat_badan:hint">weight of baby/ child in Kg</span><input type="number" name="/Kunjungan_Gizi/berat_badan" required="required" data-constraint=".&gt;0 and .&lt;50" data-type-xml="decimal" step="any"/></label>
-    <label class="question non-select "><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/tinggi_badan:label">Tinggi Badan</span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/tinggi_badan:label">Height (cm)</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Kunjungan_Gizi/tinggi_badan:hint">Tinggi badan bayi/balita (Cm)</span><span lang="en" class="or-hint " data-itext-id="/Kunjungan_Gizi/tinggi_badan:hint">Height of baby/child in cm</span><input type="number" name="/Kunjungan_Gizi/tinggi_badan" data-type-xml="decimal" step="any"/></label>
-    <fieldset class="question "><fieldset><legend><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/mp_asi:label">Makanan Pendamping Asi</span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/mp_asi:label">Supplementary food for children under 2/complementary feeding</span>
-    </legend><div class="option-wrapper"><label class=""><input type="radio" name="/Kunjungan_Gizi/mp_asi" data-name="/Kunjungan_Gizi/mp_asi" value="Yes" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/mp_asi/Yes:label">Ya</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/mp_asi/Yes:label">Yes</span></label><label class=""><input type="radio" name="/Kunjungan_Gizi/mp_asi" data-name="/Kunjungan_Gizi/mp_asi" value="No" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/mp_asi/No:label">Tidak</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/mp_asi/No:label">No</span></label></div></fieldset></fieldset>
-    <fieldset class="question "><fieldset><legend><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/ae:label">Asi Eksklusif</span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/ae:label">Exclusive Breastfeeding</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Kunjungan_Gizi/ae:hint">Pemberian asi ekslusif pada bayi</span><span lang="en" class="or-hint " data-itext-id="/Kunjungan_Gizi/ae:hint">-</span>
-    </legend><div class="option-wrapper"><label class=""><input type="radio" name="/Kunjungan_Gizi/ae" data-name="/Kunjungan_Gizi/ae" value="Yes" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/ae/Yes:label">Ya</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/ae/Yes:label">Yes</span></label><label class=""><input type="radio" name="/Kunjungan_Gizi/ae" data-name="/Kunjungan_Gizi/ae" value="No" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/ae/No:label">Tidak</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/ae/No:label">No</span></label></div></fieldset></fieldset>
-    <fieldset class="question "><fieldset><legend><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/vitA:label">Pemberian Vitamin A</span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/vitA:label">Administration of Vitamin A</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Kunjungan_Gizi/vitA:hint">Pemberian vitamin A pada bayi</span><span lang="en" class="or-hint " data-itext-id="/Kunjungan_Gizi/vitA:hint">-</span>
-    </legend><div class="option-wrapper"><label class=""><input type="radio" name="/Kunjungan_Gizi/vitA" data-name="/Kunjungan_Gizi/vitA" value="Yes" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/vitA/Yes:label">Ya</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/vitA/Yes:label">Yes</span></label><label class=""><input type="radio" name="/Kunjungan_Gizi/vitA" data-name="/Kunjungan_Gizi/vitA" value="No" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/vitA/No:label">Tidak</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/vitA/No:label">No</span></label></div></fieldset></fieldset>
-    <fieldset class="question or-branch pre-init "><fieldset><legend><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/waktuVitA:label">Kapan vitamin A diberikan?</span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/waktuVitA:label">When the vitamin A given?</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Kunjungan_Gizi/waktuVitA:hint">Tulis 'Ya' Jika diberikan pada Hari pelaksanaan dan 'Tidak' jika diberikan pada Sweeping Day</span><span lang="en" class="or-hint " data-itext-id="/Kunjungan_Gizi/waktuVitA:hint">-</span>
-    </legend><div class="option-wrapper"><label class=""><input type="radio" name="/Kunjungan_Gizi/waktuVitA" data-name="/Kunjungan_Gizi/waktuVitA" value="jadwal_posyandu" data-relevant=" /Kunjungan_Gizi/vitA =&quot;Yes&quot;" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/waktuVitA/jadwal_posyandu:label">Pada jadwal posyandu</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/waktuVitA/jadwal_posyandu:label">On the day of posyandu</span></label><label class=""><input type="radio" name="/Kunjungan_Gizi/waktuVitA" data-name="/Kunjungan_Gizi/waktuVitA" value="sweeping" data-relevant=" /Kunjungan_Gizi/vitA =&quot;Yes&quot;" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/waktuVitA/sweeping:label">Saat sweeping</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/waktuVitA/sweeping:label">During sweeping day</span></label></div></fieldset></fieldset>
-    <fieldset class="question or-branch pre-init "><fieldset><legend><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/jenisVitA:label">Jenis Vitamin A yang diberikan</span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/jenisVitA:label">Type of Vitamin A given</span>
-    </legend><div class="option-wrapper"><label class=""><input type="radio" name="/Kunjungan_Gizi/jenisVitA" data-name="/Kunjungan_Gizi/jenisVitA" value="merah" data-relevant=" /Kunjungan_Gizi/vitA =&quot;Yes&quot;" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/jenisVitA/merah:label">Merah</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/jenisVitA/merah:label">Red</span></label></div></fieldset></fieldset>
-    <fieldset class="question "><fieldset><legend><span lang="Bahasa" class="question-label active" data-itext-id="/Kunjungan_Gizi/obatcacing:label">Apakah anak diberikan obat cacing atau tidak?</span><span lang="en" class="question-label " data-itext-id="/Kunjungan_Gizi/obatcacing:label">Is child given antihelmintic?</span><span lang="Bahasa" class="or-hint active" data-itext-id="/Kunjungan_Gizi/obatcacing:hint">Apakah anak diberikan obat cacing atau tidak?</span><span lang="en" class="or-hint " data-itext-id="/Kunjungan_Gizi/obatcacing:hint">Is child given Anthelmintic?</span>
-    </legend><div class="option-wrapper"><label class=""><input type="radio" name="/Kunjungan_Gizi/obatcacing" data-name="/Kunjungan_Gizi/obatcacing" value="Yes" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/obatcacing/Yes:label">Ya</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/obatcacing/Yes:label">Yes</span></label><label class=""><input type="radio" name="/Kunjungan_Gizi/obatcacing" data-name="/Kunjungan_Gizi/obatcacing" value="No" data-type-xml="select1"/><span lang="Bahasa" class="option-label active" data-itext-id="/Kunjungan_Gizi/obatcacing/No:label">Tidak</span><span lang="en" class="option-label " data-itext-id="/Kunjungan_Gizi/obatcacing/No:label">No</span></label></div></fieldset></fieldset>
-
-    <fieldset id="or-preload-items" style="display:none;"><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/start" data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/today" data-preload="date" data-preload-params="today" data-type-xml="date"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/deviceid" data-preload="property" data-preload-params="deviceid" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/simserial" data-preload="property" data-preload-params="simserial" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/phonenumber" data-preload="property" data-preload-params="phonenumber" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/end" data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime"/></label></fieldset><fieldset id="or-calculated-items" style="display:none;"><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/existing_location" data-calculate=" /Kunjungan_Gizi/Village " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/provinsi" data-calculate=" /Kunjungan_Gizi/Province " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/kabupaten" data-calculate=" /Kunjungan_Gizi/District " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/desa" data-calculate=" /Kunjungan_Gizi/Village " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/dusun" data-calculate=" /Kunjungan_Gizi/Sub-village " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/kecamatan" data-calculate=" /Kunjungan_Gizi/Sub-district " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/weight_for_age_status" data-calculate=" /Kunjungan_Gizi/underweight " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/height_for_age_status" data-calculate=" /Kunjungan_Gizi/stunting " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/weight_for_length_status" data-calculate=" /Kunjungan_Gizi/wasting " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/ntob_status" data-calculate=" /Kunjungan_Gizi/nutrition_status " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/bgm_status" data-calculate=" /Kunjungan_Gizi/bgm " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/dua_t_status" data-calculate=" /Kunjungan_Gizi/dua_t " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/kunjungan_sebelumnya" data-calculate=" /Kunjungan_Gizi/tanggal_preload " data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/umur" data-calculate="int((( /Kunjungan_Gizi/tanggal_penimbangan  -  /Kunjungan_Gizi/tanggal_lahir ) div 30))" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/history_umur" data-calculate="concat( /Kunjungan_Gizi/preload_umur ,',', /Kunjungan_Gizi/umur )" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/history_berat" data-calculate="concat( /Kunjungan_Gizi/berat_preload ,',', /Kunjungan_Gizi/berat_badan )" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/history_tinggi" data-calculate="concat( /Kunjungan_Gizi/preload_history_tinggi ,',', /Kunjungan_Gizi/umur ,':', /Kunjungan_Gizi/tinggi_badan )" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/Kunjungan_Gizi/formhub/uuid" data-calculate="'625bbb78c7e04471b7ef07704b2604df'" data-type-xml="string"/></label></fieldset></form>
+<?xml version="1.0" encoding="UTF-8"?><form autocomplete="off" class="or clearfix" id="kunjungan_gizi_new" novalidate="novalidate">
+  <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
+  <section class="form-logo"> </section>
+  <h3 id="form-title">Kunjungan Gizi</h3>
+  <select data-default-lang="Bahasa" id="form-languages">
+    <option value="Bahasa">Bahasa</option> <option value="en">English</option> </select>        <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_13:label" lang="Bahasa">Desa : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/Village ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_13:label" lang="en">-</span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_13" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_14:label" lang="Bahasa">Dusun : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/Sub-village ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_14:label" lang="en">-</span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_14" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_38:label" lang="Bahasa">Status Gizi Sebelumnya</span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_38:label" lang="en">Previous Nutrition Status</span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_38" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_39:label" lang="Bahasa">Berat/Umur : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/weight_for_age_status ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_39:label" lang="en">Weight for Age Status : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/underweight ">            </span>
+    </span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_39" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_40:label" lang="Bahasa">Tinggi/Umur : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/height_for_age_status ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_40:label" lang="en">Height for Age Status : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/stunting ">            </span>
+    </span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_40" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_41:label" lang="Bahasa">Berat/Tinggi : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/weight_for_length_status ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_41:label" lang="en">Weight for Length Status : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/wasting ">            </span>
+    </span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_41" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_42:label" lang="Bahasa">Status Gizi (NTOB) : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/ntob_status ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_42:label" lang="en">Weight Increasement Status : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/ntob_status ">            </span>
+    </span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_42" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_43:label" lang="Bahasa">Bawah Garis Merah (BGM) : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/bgm_status ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_43:label" lang="en">Under red line (weight for age status based on Growth Chart) : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/bgm_status ">            </span>
+    </span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_43" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_44:label" lang="Bahasa">2 kali berturut-turut tidak naik (2T) : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/dua_t_status ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_44:label" lang="en">Failed to weight gain in two consecutive months : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/dua_t_status ">            </span>
+    </span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_44" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_48:label" lang="Bahasa">JK : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/jenis_kelamin ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_48:label" lang="en">Gender : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/jenis_kelamin ">            </span>
+    </span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_48" readonly="readonly" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/tanggal_penimbangan:label" lang="Bahasa">Tanggal penimbangan</span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/tanggal_penimbangan:label" lang="en">Date of Weighing</span>
+    <span class="required">*</span>
+    <span class="or-hint active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/tanggal_penimbangan:hint" lang="Bahasa">Tanggal dilakukan penimbangan</span>
+    <span class="or-hint " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/tanggal_penimbangan:hint" lang="en">date of weighing</span>
+    <input data-type-xml="date" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/tanggal_penimbangan" required="required" type="date"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_57:label" lang="Bahasa">Umur : <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/umur ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_57:label" lang="en">Age (Months)</span>
+    <span class="or-hint active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_57:hint" lang="Bahasa">Umur bayi/balita dalam bulan</span>
+    <span class="or-hint " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_57:hint" lang="en">age of baby/child in month</span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_57" readonly="readonly" type="text"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/berat_badan:label" lang="Bahasa">Berat Badan</span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/berat_badan:label" lang="en">Weight (kg)</span>
+    <span class="required">*</span>
+    <span class="or-hint active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/berat_badan:hint" lang="Bahasa">Berat badan bayi/balita (kg)</span>
+    <span class="or-hint " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/berat_badan:hint" lang="en">weight of baby/ child in Kg</span>
+    <input data-constraint=".&gt;0 and .&lt;50" data-type-xml="decimal" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/berat_badan" required="required" step="any" type="number"/>
+  </label>    <label class="question non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/tinggi_badan:label" lang="Bahasa">Tinggi Badan</span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/tinggi_badan:label" lang="en">Height (cm)</span>
+    <span class="or-hint active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/tinggi_badan:hint" lang="Bahasa">Tinggi badan bayi/balita (Cm)</span>
+    <span class="or-hint " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/tinggi_badan:hint" lang="en">Height of baby/child in cm</span>
+    <input data-type-xml="decimal" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/tinggi_badan" step="any" type="number"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_65:label" lang="Bahasa">            <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/history_berat ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_65:label" lang="en">-</span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_65" readonly="readonly" type="text"/>
+  </label>    <label class="note non-select ">
+    <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_66:label" lang="Bahasa">            <span class="or-output" data-value=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/history_umur ">            </span>
+    </span>
+    <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_66:label" lang="en">-</span>
+    <input data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/generated_note_name_66" readonly="readonly" type="text"/>
+  </label>    <fieldset class="question ">
+    <fieldset>
+      <legend>
+        <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/mp_asi:label" lang="Bahasa">Makanan Pendamping Asi</span>
+        <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/mp_asi:label" lang="en">Supplementary food for children under 2/complementary feeding</span>                    </legend>
+      <div class="option-wrapper">
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/mp_asi" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/mp_asi" type="radio" value="Yes"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/mp_asi/Yes:label" lang="Bahasa">Ya</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/mp_asi/Yes:label" lang="en">Yes</span>
+        </label>
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/mp_asi" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/mp_asi" type="radio" value="No"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/mp_asi/No:label" lang="Bahasa">Tidak</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/mp_asi/No:label" lang="en">No</span>
+        </label>
+      </div>
+    </fieldset>
+  </fieldset>    <fieldset class="question ">
+    <fieldset>
+      <legend>
+        <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae:label" lang="Bahasa">Asi Eksklusif</span>
+        <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae:label" lang="en">Exclusive Breastfeeding</span>
+        <span class="or-hint active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae:hint" lang="Bahasa">Pemberian asi ekslusif pada bayi</span>
+        <span class="or-hint " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae:hint" lang="en">-</span>                    </legend>
+      <div class="option-wrapper">
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae" type="radio" value="Yes"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae/Yes:label" lang="Bahasa">Ya</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae/Yes:label" lang="en">Yes</span>
+        </label>
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae" type="radio" value="No"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae/No:label" lang="Bahasa">Tidak</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ae/No:label" lang="en">No</span>
+        </label>
+      </div>
+    </fieldset>
+  </fieldset>    <fieldset class="question ">
+    <fieldset>
+      <legend>
+        <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA:label" lang="Bahasa">Pemberian Vitamin A</span>
+        <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA:label" lang="en">Administration of Vitamin A</span>
+        <span class="or-hint active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA:hint" lang="Bahasa">Pemberian vitamin A pada bayi</span>
+        <span class="or-hint " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA:hint" lang="en">-</span>                    </legend>
+      <div class="option-wrapper">
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA" type="radio" value="Yes"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA/Yes:label" lang="Bahasa">Ya</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA/Yes:label" lang="en">Yes</span>
+        </label>
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA" type="radio" value="No"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA/No:label" lang="Bahasa">Tidak</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA/No:label" lang="en">No</span>
+        </label>
+      </div>
+    </fieldset>
+  </fieldset>    <fieldset class="question or-branch pre-init ">
+    <fieldset>
+      <legend>
+        <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA:label" lang="Bahasa">Kapan vitamin A diberikan?</span>
+        <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA:label" lang="en">When the vitamin A given?</span>
+        <span class="or-hint active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA:hint" lang="Bahasa">Tulis 'Ya' Jika diberikan pada Hari pelaksanaan dan 'Tidak' jika diberikan pada Sweeping Day</span>
+        <span class="or-hint " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA:hint" lang="en">-</span>                    </legend>
+      <div class="option-wrapper">
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA" data-relevant=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA =&quot;Yes&quot;" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA" type="radio" value="jadwal_posyandu"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA/jadwal_posyandu:label" lang="Bahasa">Pada jadwal posyandu</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA/jadwal_posyandu:label" lang="en">On the day of posyandu</span>
+        </label>
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA" data-relevant=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA =&quot;Yes&quot;" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA" type="radio" value="sweeping"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA/sweeping:label" lang="Bahasa">Saat sweeping</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/waktuVitA/sweeping:label" lang="en">During sweeping day</span>
+        </label>
+      </div>
+    </fieldset>
+  </fieldset>    <fieldset class="question or-branch pre-init ">
+    <fieldset>
+      <legend>
+        <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/jenisVitA:label" lang="Bahasa">Jenis Vitamin A yang diberikan</span>
+        <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/jenisVitA:label" lang="en">Type of Vitamin A given</span>                    </legend>
+      <div class="option-wrapper">
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/jenisVitA" data-relevant=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA =&quot;Yes&quot;" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/jenisVitA" type="radio" value="merah"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/jenisVitA/merah:label" lang="Bahasa">Merah</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/jenisVitA/merah:label" lang="en">Red</span>
+        </label>
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/jenisVitA" data-relevant=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/vitA =&quot;Yes&quot;" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/jenisVitA" type="radio" value="biru"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/jenisVitA/biru:label" lang="Bahasa">Biru</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/jenisVitA/biru:label" lang="en">Blue</span>
+        </label>
+      </div>
+    </fieldset>
+  </fieldset>    <fieldset class="question ">
+    <fieldset>
+      <legend>
+        <span class="question-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing:label" lang="Bahasa">Apakah anak diberikan obat cacing atau tidak?</span>
+        <span class="question-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing:label" lang="en">Is child given antihelmintic?</span>
+        <span class="or-hint active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing:hint" lang="Bahasa">Apakah anak diberikan obat cacing atau tidak?</span>
+        <span class="or-hint " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing:hint" lang="en">Is child given Anthelmintic?</span>                    </legend>
+      <div class="option-wrapper">
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing" type="radio" value="Yes"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing/Yes:label" lang="Bahasa">Ya</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing/Yes:label" lang="en">Yes</span>
+        </label>
+        <label class="">
+          <input data-name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing" data-type-xml="select1" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing" type="radio" value="No"/>
+          <span class="option-label active" data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing/No:label" lang="Bahasa">Tidak</span>
+          <span class="option-label " data-itext-id="/EC_Kunjungan_Gizi_NewStructure-mapped_O/obatcacing/No:label" lang="en">No</span>
+        </label>
+      </div>
+    </fieldset>
+  </fieldset>  <fieldset id="or-preload-items" style="display:none;">
+    <label class="calculation non-select ">
+      <input data-preload="timestamp" data-preload-params="start" data-type-xml="dateTime" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/start" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="date" data-preload-params="today" data-type-xml="date" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/today" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="property" data-preload-params="deviceid" data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/deviceid" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="property" data-preload-params="simserial" data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/simserial" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="property" data-preload-params="phonenumber" data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/phonenumber" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/end" type="hidden"/>
+    </label>
+  </fieldset>
+  <fieldset id="or-calculated-items" style="display:none;">
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/Village " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/existing_location" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/Province " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/provinsi" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/District " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/kabupaten" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/Village " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/desa" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/Sub-village " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/dusun" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/Sub-district " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/kecamatan" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/underweight " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/weight_for_age_status" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/stunting " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/height_for_age_status" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/wasting " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/weight_for_length_status" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/nutrition_status " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/ntob_status" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/bgm " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/bgm_status" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /EC_Kunjungan_Gizi_NewStructure-mapped_O/dua_t " data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/dua_t_status" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate="int((( /EC_Kunjungan_Gizi_NewStructure-mapped_O/tanggal_penimbangan  -  /EC_Kunjungan_Gizi_NewStructure-mapped_O/tanggal_lahir ) div 30))" data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/umur" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate="concat( /EC_Kunjungan_Gizi_NewStructure-mapped_O/preload_umur ,',', /EC_Kunjungan_Gizi_NewStructure-mapped_O/umur )" data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/history_umur" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate="concat( /EC_Kunjungan_Gizi_NewStructure-mapped_O/berat_preload ,',', /EC_Kunjungan_Gizi_NewStructure-mapped_O/berat_badan )" data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/history_berat" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate="concat('uuid:', uuid())" data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/meta/instanceID" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate="'c8087944f1224fd1be32f5bd808f692c'" data-type-xml="string" name="/EC_Kunjungan_Gizi_NewStructure-mapped_O/formhub/uuid" type="hidden"/>
+    </label>
+  </fieldset>
+</form>

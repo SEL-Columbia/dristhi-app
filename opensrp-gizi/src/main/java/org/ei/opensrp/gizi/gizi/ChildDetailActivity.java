@@ -70,9 +70,9 @@ public class ChildDetailActivity extends Activity {
         Context context = Context.getInstance();
         setContentView(R.layout.gizi_detail_activity);
         String DetailStart = timer.format(new Date());
-                Map<String, String> Detail = new HashMap<String, String>();
+          /*      Map<String, String> Detail = new HashMap<String, String>();
                 Detail.put("start", DetailStart);
-                FlurryAgent.logEvent("gizi_detail_view",Detail, true );
+                FlurryAgent.logEvent("gizi_detail_view",Detail, true );*/
 
         final ImageView childview = (ImageView)findViewById(R.id.detail_profilepic);
         //header
@@ -170,7 +170,7 @@ public class ChildDetailActivity extends Activity {
 
       /*  village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));*/
 
-        birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahir") != null ? childclient.getDetails().get("tanggalLahir") : "-"));
+        birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahirAnak") != null ? childclient.getDetails().get("tanggalLahirAnak") : "-"));
         gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("gender") != null ? gender(childclient.getDetails().get("gender")) : "-"));
         birthWeight.setText(getString(R.string.birth_weight) + " " + (childclient.getDetails().get("beratLahir") != null ? childclient.getDetails().get("beratLahir") + " gr" : "-"));
         weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan")+"Kg" : "- Kg"));
@@ -183,14 +183,14 @@ public class ChildDetailActivity extends Activity {
         //set value
         String berats = childclient.getDetails().get("history_berat")!= null ? childclient.getDetails().get("history_berat") :"0";
         String[] history_berat = berats.split(",");
-        String umurs = childclient.getDetails().get("history_umur")!= null ? childclient.getDetails().get("history_umur") :"0";
+        String umurs = childclient.getDetails().get("preload_umur")!= null ? childclient.getDetails().get("preload_umur") :"0";
         String[] history_umur = umurs.split(",");
 
 
             dua_t.setText(getString(R.string.dua_t) +" "+ (childclient.getDetails().get("dua_t") != null ? yesNo(childclient.getDetails().get("dua_t")) : "-"));
             bgm.setText(getString(R.string.bgm) + " "+ (childclient.getDetails().get("bgm") != null ? yesNo(childclient.getDetails().get("bgm")) : "-"));
             under_yellow_line.setText(getString(R.string.under_yellow_line) + " "+ (childclient.getDetails().get("garis_kuning") != null ? yesNo(childclient.getDetails().get("garis_kuning")) : "-"));
-            breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("asi") != null ? yesNo(childclient.getDetails().get("asi")) : "-"));
+            breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("mp_asi") != null ? yesNo(childclient.getDetails().get("mp_asi")) : "-"));
             nutrition_status.setText(getString(R.string.nutrition_status) + " "+ (childclient.getDetails().get("nutrition_status") != null ? weightStatus(childclient.getDetails().get("nutrition_status")) : "-"));
 
 

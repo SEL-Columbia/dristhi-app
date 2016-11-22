@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <model>
   <instance>
-    <Kunjungan_Gizi encounter_type="Kunjungan Gizi" id="kunjungan_gizi" version="201611090751">
+    <EC_Kunjungan_Gizi_NewStructure-mapped_O encounter_type="Kunjungan Gizi" id="kunjungan_gizi_new" version="201611220332">
       <formhub>
         <uuid/>
       </formhub>
@@ -22,18 +23,18 @@
       <desa openmrs_entity="person_address" openmrs_entity_id="cityVillage" openmrs_entity_parent="usual_residence"/>
       <dusun openmrs_entity="person_address" openmrs_entity_id="address1" openmrs_entity_parent="usual_residence"/>
       <kecamatan openmrs_entity="person_address" openmrs_entity_id="address2" openmrs_entity_parent="usual_residence"/>
-      <underweight/>
-      <stunting/>
-      <wasting/>
-      <weight_for_age_status openmrs_entity="concept" openmrs_entity_id="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <height_for_age_status openmrs_entity="concept" openmrs_entity_id="164088AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <weight_for_length_status openmrs_entity="concept" openmrs_entity_id="163515AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <nutrition_status/>
-      <bgm/>
-      <dua_t/>
-      <ntob_status openmrs_entity="concept" openmrs_entity_id="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <bgm_status openmrs_entity="concept" openmrs_entity_id="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <dua_t_status openmrs_entity="concept" openmrs_entity_id="164136AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <underweight openmrs_entity="concept" openmrs_entity_id="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <stunting openmrs_entity="concept" openmrs_entity_id="164088AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <wasting openmrs_entity="concept" openmrs_entity_id="163515AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <weight_for_age_status/>
+      <height_for_age_status/>
+      <weight_for_length_status/>
+      <nutrition_status openmrs_entity="concept" openmrs_entity_id="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <bgm openmrs_entity="concept" openmrs_entity_id="1854AAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <dua_t openmrs_entity="concept" openmrs_entity_id="164136AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <ntob_status/>
+      <bgm_status/>
+      <dua_t_status/>
       <generated_note_name_38/>
       <generated_note_name_39/>
       <generated_note_name_40/>
@@ -41,20 +42,21 @@
       <generated_note_name_42/>
       <generated_note_name_43/>
       <generated_note_name_44/>
-      <tanggal_preload openmrs_entity="concept" openmrs_entity_id="160632AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <jenis_kelamin openmrs_entity="person" openmrs_entity_id="gender"/>
+      <generated_note_name_48/>
       <tanggal_penimbangan openmrs_entity="concept" openmrs_entity_id="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <kunjungan_sebelumnya/>
+      <kunjungan_sebelumnya openmrs_entity="concept" openmrs_entity_id="160632AAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <tanggal_lahir openmrs_entity="person" openmrs_entity_id="birthdate"/>
+      <preload_umur openmrs_entity="concept" openmrs_entity_id="160632AAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">0</preload_umur>
       <umur openmrs_entity="concept" openmrs_entity_id="1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <generated_note_name_52/>
-      <preload_umur>0</preload_umur>
-      <history_umur/>
-      <berat_preload>0</berat_preload>
+      <generated_note_name_57/>
+      <berat_preload openmrs_entity="concept" openmrs_entity_id="160632AAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">0</berat_preload>
       <berat_badan openmrs_entity="concept" openmrs_entity_id="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <history_berat/>
+      <history_umur openmrs_entity="concept" openmrs_entity_id="160632AAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="1532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+      <history_berat openmrs_entity="concept" openmrs_entity_id="160632AAAAAAAAAAAAAAAAAAAAAAAAAA" openmrs_entity_parent="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <tinggi_badan openmrs_entity="concept" openmrs_entity_id="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-      <preload_history_tinggi>0:0</preload_history_tinggi>
-      <history_tinggi/>
+      <generated_note_name_65/>
+      <generated_note_name_66/>
       <mp_asi openmrs_entity="concept" openmrs_entity_id="159854AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <ae openmrs_entity="concept" openmrs_entity_id="5632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
       <vitA openmrs_entity="concept" openmrs_entity_id="161534AAAAAAAAAAAAAAAAAAAAAAAAAA"/>
@@ -65,6 +67,6 @@
       <meta>
         <instanceID/>
       </meta>
-    </Kunjungan_Gizi>
+    </EC_Kunjungan_Gizi_NewStructure-mapped_O>
   </instance>
 </model>

@@ -4,17 +4,15 @@
   <h3 id="form-title">Registrasi Gizi</h3>
   <select data-default-lang="Bahasa" id="form-languages">
     <option value="Bahasa">Bahasa</option> <option value="en">English</option> </select>        <label class="note non-select ">
-    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDesa:label" lang="Bahasa">Desa : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Village ">            </span>
+    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/generated_note_name_13:label" lang="Bahasa">Desa : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/Village ">            </span>
     </span>
-    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDesa:label" lang="en">Village : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Village ">            </span>
-    </span>
-    <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/noteDesa" readonly="readonly" type="text"/>
+    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/generated_note_name_13:label" lang="en">-</span>
+    <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/generated_note_name_13" readonly="readonly" type="text"/>
   </label>    <label class="note non-select ">
-    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDusun:label" lang="Bahasa">Dusun : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Sub-village ">            </span>
+    <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/generated_note_name_14:label" lang="Bahasa">Dusun : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/Sub-village ">            </span>
     </span>
-    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/noteDusun:label" lang="en">Sub-Village : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/existing_Sub-village ">            </span>
-    </span>
-    <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/noteDusun" readonly="readonly" type="text"/>
+    <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/generated_note_name_14:label" lang="en">-</span>
+    <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/generated_note_name_14" readonly="readonly" type="text"/>
   </label>    <label class="question non-select ">
     <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/posyandu:label" lang="Bahasa">Nama Posyandu</span>
     <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/posyandu:label" lang="en">Health Post</span>
@@ -45,6 +43,12 @@
     <input data-type-xml="int" name="/Registrasi_Gizi-NewStructure-mapped_O/nik" type="number"/>
   </label>    <section class="or-group-data " name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration">
     <section class="or-repeat " name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration">
+      <label class="note non-select ">
+        <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/generated_note_name_36:label" lang="Bahasa">Desa : <span class="or-output" data-value=" /Registrasi_Gizi-NewStructure-mapped_O/child_registration/desa_anak ">            </span>
+        </span>
+        <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/generated_note_name_36:label" lang="en">-</span>
+        <input data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/generated_note_name_36" readonly="readonly" type="text"/>
+      </label>
       <label class="question non-select ">
         <span class="question-label active" data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/nama_bayi:label" lang="Bahasa">Nama Bayi</span>
         <span class="question-label " data-itext-id="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/nama_bayi:label" lang="en">Baby's Name</span>
@@ -126,6 +130,12 @@
     </label>
     <label class="calculation non-select ">
       <input data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Sub-district " data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/kecamatan" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Village " data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/desa_anak" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /Registrasi_Gizi-NewStructure-mapped_O/Village " data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/child_registration/child_existing_location" type="hidden"/>
     </label>
     <label class="calculation non-select ">
       <input data-calculate="concat('uuid:', uuid())" data-type-xml="string" name="/Registrasi_Gizi-NewStructure-mapped_O/meta/instanceID" type="hidden"/>

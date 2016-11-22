@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.commonregistry.AllCommonsRepository;
 import org.ei.opensrp.commonregistry.CommonObjectSort;
 import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
@@ -23,6 +24,8 @@ import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.gizi.LoginActivity;
 import org.ei.opensrp.gizi.gizi.ChildDetailActivity;
+import org.ei.opensrp.gizi.gizi.ChildHandler;
+import org.ei.opensrp.gizi.gizi.ChildService;
 import org.ei.opensrp.gizi.gizi.CommonObjectFilterOption;
 import org.ei.opensrp.gizi.gizi.FlurryFacade;
 import org.ei.opensrp.gizi.gizi.GiziSearchOption;
@@ -34,6 +37,7 @@ import org.ei.opensrp.gizi.gizi.KmsHandler;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.gizi.R;
 
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.contract.ECClient;
@@ -57,9 +61,11 @@ import org.opensrp.api.util.LocationTree;
 import org.opensrp.api.util.TreeNode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import util.AsyncTask;
+import util.ZScore.ZScoreSystemCalculation;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -74,7 +80,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
     private CommonPersonObjectController controller;
     private VillageController villageController;
     private DialogOptionMapper dialogOptionMapper;
-
+    private ClientProcessor clientProcessor;
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
     private String locationDialogTAG = "locationDialogTAG";
     @Override
@@ -182,6 +188,9 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
 
     @Override
     protected void onInitialization() {
+       // context.formSubmissionRouter().getHandlerMap().put("child_followup_form", new ChildHandler(new ChildService(context.allBeneficiaries(), context.allTimelineEvents(), context.allCommonsRepositoryobjects("ec_details"), context.alertService())));
+
+
         //  context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
     }
 
@@ -258,7 +267,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
             switch (view.getId()) {
                 case R.id.profile_info_layout:
                   //  FlurryFacade.logEvent("click_detail_picture_vaksinator");
-                    ChildDetailActivity.childclient = (CommonPersonObjectClient)view.getTag();
+                     ChildDetailActivity.childclient = (CommonPersonObjectClient)view.getTag();
                     Intent intent = new Intent(getActivity(),ChildDetailActivity.class);
                     startActivity(intent);
                     getActivity().finish();
@@ -309,8 +318,8 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
 
             /*if(option.name().equalsIgnoreCase(getString(R.string.str_register_anc_form)) ) {
                 CommonPersonObjectClient pc = KIDetailActivity.kiclient;
-                if(pc.getColumnmaps().get("ibu.type")!= null) {
-                    if (pc.getColumnmaps().get("ibu.type").equals("anc") || pc.getColumnmaps().get("ibu.type").equals("pnc")) {
+                if(pc.getDetails().get("ibu.type")!= null) {
+                    if (pc.getDetails().get("ibu.type").equals("anc") || pc.getDetails().get("ibu.type").equals("pnc")) {
                         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered), Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -456,5 +465,8 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
             }
         }
     }
+
+
+
 
 }

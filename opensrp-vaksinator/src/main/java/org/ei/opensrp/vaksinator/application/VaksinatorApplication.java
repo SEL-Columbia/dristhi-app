@@ -29,7 +29,9 @@ public class VaksinatorApplication extends DrishtiApplication {
 
         DrishtiSyncScheduler.setReceiverClass(SyncBroadcastReceiver.class);
         ErrorReportingFacade.initErrorHandler(getApplicationContext());
-        FlurryFacade.init(this);
+      /**
+       * ENABLE THIS AGAIN AFTER FINISH TESTING*/
+        //  FlurryFacade.init(this);
         context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());
         context.updateCommonFtsObject(createCommonFtsObject());
