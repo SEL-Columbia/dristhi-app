@@ -48,7 +48,7 @@ public class KmsHandler  implements FormSubmissionHandler {
         detailsRepository.add(entityID, "preload_umur", umurs, tsLong);
         detailsRepository.add(entityID, "berat_preload", berats, tsLong);
         detailsRepository.add(entityID, "kunjunganSebelumnya", lastVisitDate, tsLong);
-        detailsRepository.add(entityID, "history_umur", umurs, tsLong);
+        //detailsRepository.add(entityID, "history_umur", umurs, tsLong);
 
         if(submission.getFieldValue("tanggalPenimbangan") != null)
         {
@@ -96,7 +96,7 @@ public class KmsHandler  implements FormSubmissionHandler {
          */
 
 
-        boolean jenisKelamin = gender.equalsIgnoreCase("male")? true:false;
+       /* boolean jenisKelamin = gender.equalsIgnoreCase("male")? true:false;
         double berat= Double.parseDouble(submission.getFieldValue("beratBadan") != null ? submission.getFieldValue("beratBadan") : "0");
         double beraSebelum = Double.parseDouble((history_berat.length) >=2 ? (history_berat[(history_berat.length)-2]) : "0");
         String tanggal_sebelumnya = (submission.getFieldValue("kunjunganSebelumnya") != null ? submission.getFieldValue("kunjunganSebelumnya") : "0");
@@ -131,6 +131,6 @@ public class KmsHandler  implements FormSubmissionHandler {
             }else{
                 detailsRepository.add(entityID, "lastAnthelmintic", submission.getFieldValue("lastAnthelmintic"), tsLong);
             }
-        }
+        }*/
     }
 }

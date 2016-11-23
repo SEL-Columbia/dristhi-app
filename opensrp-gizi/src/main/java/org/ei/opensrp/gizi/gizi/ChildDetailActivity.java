@@ -32,6 +32,7 @@ import org.ei.opensrp.domain.ProfileImage;
 import org.ei.opensrp.gizi.R;
 import org.ei.opensrp.repository.DetailsRepository;
 import org.ei.opensrp.repository.ImageRepository;
+import org.ei.opensrp.util.Log;
 import org.w3c.dom.Text;
 
 import java.io.File;
@@ -46,6 +47,7 @@ import util.ImageCache;
 import util.ImageFetcher;
 import util.KMS.KmsCalc;
 import util.KMS.KmsPerson;
+import util.growthChart.GrowthChartGenerator;
 
 /**
  * Created by Iq on 26/04/16.
@@ -166,8 +168,7 @@ public class ChildDetailActivity extends Activity {
                     ? childclient.getDetails().get("namaOrtu")
                     : "-"));*/
         posyandu.setText(getString(R.string.posyandu) +" "+ (childclient.getDetails().get("posyandu") != null ? childclient.getDetails().get("posyandu") : "-"));
-
-
+        
       /*  village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));*/
 
         birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahirAnak") != null ? childclient.getDetails().get("tanggalLahirAnak") : "-"));
@@ -193,10 +194,12 @@ public class ChildDetailActivity extends Activity {
             breast_feeding.setText(getString(R.string.asi) + " " + (childclient.getDetails().get("mp_asi") != null ? yesNo(childclient.getDetails().get("mp_asi")) : "-"));
             nutrition_status.setText(getString(R.string.nutrition_status) + " "+ (childclient.getDetails().get("nutrition_status") != null ? weightStatus(childclient.getDetails().get("nutrition_status")) : "-"));
 
-
+        Log.logInfo("Berat :" +berats);
+        Log.logInfo("umurs :" +umurs);
         GraphView graph = (GraphView) findViewById(R.id.graph);
+        new GrowthChartGenerator(graph,childclient.getDetails().get("tanggalLahirAnak"),childclient.getDetails().get("gender"),umurs,berats);
         //set data for graph
-        DataPoint dataPoint[] = new DataPoint[history_berat.length];
+       /* DataPoint dataPoint[] = new DataPoint[history_berat.length];
         for(int i=0;i<history_berat.length;i++){
             dataPoint[i]= new DataPoint(Double.parseDouble(history_umur[i]),Double.parseDouble(history_berat[i]));
         }
@@ -212,7 +215,7 @@ public class ChildDetailActivity extends Activity {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
-        series.setCustomPaint(paint);
+        series.setCustomPaint(paint);*/
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
