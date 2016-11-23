@@ -42,8 +42,9 @@
         "bind": "/model/instance/tambah_bayi_reviewed/Sub-district"
       },
       {
-        "name": "Village",
-        "bind": "/model/instance/tambah_bayi_reviewed/Village"
+        "name": "cityVillage",
+        "bind": "/model/instance/tambah_bayi_reviewed/Village",
+        "shouldLoadValue": true
       },
       {
         "name": "Sub-village",
@@ -149,6 +150,14 @@
           {
             "name": "kepemilikanBukuKia",
             "bind": "/model/instance/tambah_bayi_reviewed/child_registration/kepemilikan_buku_kia"
+          },
+          {
+            "name": "desa_anak",
+            "bind": "/model/instance/tambah_bayi_reviewed/child_registration/desa_anak"
+          },
+          {
+            "name": "child_existing_location",
+            "bind": "/model/instance/tambah_bayi_reviewed/child_registration/child_existing_location"
           },
           {
             "name": "beratLahir",

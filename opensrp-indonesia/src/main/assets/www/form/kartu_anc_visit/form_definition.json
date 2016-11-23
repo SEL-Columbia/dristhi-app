@@ -20,7 +20,7 @@
         "shouldLoadValue": true
       },
       {
-        "name": "Village",
+        "name": "cityVillage",
         "bind": "/model/instance/kunjungan_anc_reviewed_anc_visit/Village",
         "shouldLoadValue": true
       },

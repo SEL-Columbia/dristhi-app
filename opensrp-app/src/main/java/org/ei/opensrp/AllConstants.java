@@ -333,7 +333,6 @@ public class AllConstants {
         public static final String COUCH_DATABASE_NAME = "test_sync1";
 
 
-
     }
     public static class SyncFilters {
         // These pull filters must be defined in your couchDB server for them to work

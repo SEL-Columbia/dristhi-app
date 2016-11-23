@@ -23,7 +23,7 @@
         "bind": "/model/instance/anc_registration/Lokasi_periksa"
       },
       {
-        "name": "Village",
+        "name": "cityVillage",
         "bind": "/model/instance/anc_registration/Village",
         "shouldLoadValue": true
       },

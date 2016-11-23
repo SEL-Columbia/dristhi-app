@@ -15,7 +15,7 @@
         "shouldLoadValue": true
       },
       {
-        "name": "Village",
+        "name": "cityVillage",
         "bind": "/model/instance/tambah_kb_reviewed/Village",
         "shouldLoadValue": true
       },

@@ -10,8 +10,13 @@
                 "shouldLoadValue": true
             },
             {
-                "name": "existing_location",
-                "bind": "/model/instance/Baby_Immunization.xls/existing_location",
+                "name": "desa_anak",
+                "bind": "/model/instance/Baby_Immunization.xls/Village",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "child_existing_location",
+                "bind": "/model/instance/Baby_Immunization.xls/child_existing_location",
                 "shouldLoadValue": true
             },
             {

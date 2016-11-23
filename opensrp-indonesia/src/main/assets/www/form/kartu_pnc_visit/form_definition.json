@@ -20,6 +20,11 @@
         "source": "ibu.anak.id"
       },
       {
+        "name": "cityVillage",
+        "bind": "/model/instance/PNC_visit_reviewed/Village",
+        "shouldLoadValue": true
+      },
+      {
         "name": "existing_location",
         "bind": "/model/instance/PNC_visit_reviewed/existing_location",
         "shouldLoadValue": true

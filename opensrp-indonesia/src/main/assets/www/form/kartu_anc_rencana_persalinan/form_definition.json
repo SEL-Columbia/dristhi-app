@@ -10,6 +10,11 @@
                 "shouldLoadValue": true
             },
             {
+                "name": "cityVillage",
+                "bind": "/model/instance/rencana_persalinan_reviewed/Village",
+                "shouldLoadValue": true
+            },
+            {
                 "name": "tanggalRencanaPersalinan",
                 "bind": "/model/instance/rencana_persalinan_reviewed/tanggal"
 			},
