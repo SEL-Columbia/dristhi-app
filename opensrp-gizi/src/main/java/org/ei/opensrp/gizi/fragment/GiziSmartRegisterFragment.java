@@ -7,13 +7,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import org.ei.opensrp.Context;
-import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.opensrp.commonregistry.AllCommonsRepository;
-import org.ei.opensrp.commonregistry.CommonObjectSort;
-import org.ei.opensrp.commonregistry.CommonPersonObject;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
 import org.ei.opensrp.commonregistry.CommonRepository;
@@ -24,16 +19,11 @@ import org.ei.opensrp.cursoradapter.SmartRegisterPaginatedCursorAdapter;
 import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.gizi.LoginActivity;
 import org.ei.opensrp.gizi.gizi.ChildDetailActivity;
-import org.ei.opensrp.gizi.gizi.ChildHandler;
-import org.ei.opensrp.gizi.gizi.ChildService;
-import org.ei.opensrp.gizi.gizi.CommonObjectFilterOption;
 import org.ei.opensrp.gizi.gizi.FlurryFacade;
-import org.ei.opensrp.gizi.gizi.GiziSearchOption;
 import org.ei.opensrp.gizi.gizi.GiziServiceModeOption;
 import org.ei.opensrp.gizi.gizi.GiziSmartClientsProvider;
 import org.ei.opensrp.gizi.gizi.GiziSmartRegisterActivity;
 import org.ei.opensrp.gizi.gizi.KICommonObjectFilterOption;
-import org.ei.opensrp.gizi.gizi.KmsHandler;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.gizi.R;
 
@@ -54,18 +44,15 @@ import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
 import org.ei.opensrp.view.dialog.NameSort;
 import org.ei.opensrp.view.dialog.ServiceModeOption;
 import org.ei.opensrp.view.dialog.SortOption;
-import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.opensrp.api.domain.Location;
 import org.opensrp.api.util.EntityUtils;
 import org.opensrp.api.util.LocationTree;
 import org.opensrp.api.util.TreeNode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import util.AsyncTask;
-import util.ZScore.ZScoreSystemCalculation;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -188,10 +175,7 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
 
     @Override
     protected void onInitialization() {
-       // context.formSubmissionRouter().getHandlerMap().put("child_followup_form", new ChildHandler(new ChildService(context.allBeneficiaries(), context.allTimelineEvents(), context.allCommonsRepositoryobjects("ec_details"), context.alertService())));
-
-
-        //  context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
+         //  context.formSubmissionRouter().getHandlerMap().put("census_enrollment_form", new CensusEnrollmentHandler());
     }
 
     @Override
