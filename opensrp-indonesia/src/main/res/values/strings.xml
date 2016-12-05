@@ -23,14 +23,14 @@
     <string name="home_report_label">Reporting</string>
     <string name="register_label">Register</string>
     <string name="home_videos_label">Videos</string>
-    <string name="header_anak">Child</string>
+    <string name="header_anak">CHILD</string>
     <string name="header_nama">Name</string>
     <string name="header_tgl_periksa">Check Date</string>
     <string name="header_edd">EDD</string>
     <string name="header_kunjungan">VISIT</string>
     <string name="header_no_ibu">No Ibu</string>
-    <string name="header_status_b">Status</string>
-    <string name="header_obsetri">Obsetri</string>
+    <string name="header_status_b">STATUS</string>
+    <string name="header_obsetri">OBSETRI</string>
     <string name="mother_weight">Weight:</string>
     <string name="header_pemeriksaan">EXAMINATION</string>
     <string name="header_resiko">Risk</string>
@@ -454,12 +454,13 @@
     <string name="child_title">Child</string>
     <string name="dob_title">DOB:</string>
     <string name="header_dok_persalinan">DELIVERY DOCUMENTATION</string>
-    <string name="header_birth_status">Status</string>
+    <string name="header_birth_status">STATUS</string>
     <string name="birth_place_title">B.Place:</string>
     <string name="date_visit_title">Visit Date:</string>
     <string name="birth_weight_title">B.Weight:</string>
     <string name="hari_ke_kf">KF:</string>
     <string name="str_anak_neonatal">Neonatal Visit</string>
+    <string name="str_header_neonatal">NEONATAL VISIT</string>
     <string name="str_anak_edit">Edit Child</string>
     <string name="str_anak_bayi_visit">Baby Visit</string>
     <string name="str_anak_balita_visit">Toddler Visit</string>
@@ -535,7 +536,7 @@
     <string name="ganti_cara">Change FP</string>
     <string name="header_tt_usia_klinis">Clinical Status</string>
     <string name="usia">Clinical Age:&#160;</string>
-    <string name="header_klinis">Clinical Status</string>
+    <string name="header_klinis">CLINCAL STATUS</string>
     <string name="sort_by_dob_label">Date Of Birth</string>
     <string name="months_away" translatable="false">months away</string>
     <string name="this_month" translatable="false">this month</string>

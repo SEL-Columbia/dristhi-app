@@ -14,6 +14,11 @@
         "bind": "/model/instance/anc_registration/pptest"
       },
       {
+        "name": "existing_location",
+        "bind": "/model/instance/anc_registration/existing_location",
+        "shouldLoadValue": true
+      },
+      {
         "name": "lokasiPeriksa",
         "bind": "/model/instance/anc_registration/Lokasi_periksa"
       },

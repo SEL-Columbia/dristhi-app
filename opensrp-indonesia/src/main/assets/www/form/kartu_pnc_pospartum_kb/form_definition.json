@@ -10,6 +10,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "existing_location",
+        "bind": "/model/instance/postpartum_kb_reviewed/existing_location",
+        "shouldLoadValue": true
+      },
+      {
         "name": "metodeKontrasepsi",
         "bind": "/model/instance/postpartum_kb_reviewed/metode_kontrasepsi"
       },

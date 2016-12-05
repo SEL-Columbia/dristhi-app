@@ -85,6 +85,8 @@ public class CloudantSyncHandler {
             AllSharedPreferences allSharedPreferences = new AllSharedPreferences(preferences);
             String locationAnmids=allSharedPreferences.getPreference(AllConstants.SyncFilters.FILTER_LOCATION_ID);
 
+           // String locationAnmids=allSharedPreferences.getPreference(AllConstants.SyncFilters.FILTER_LOCATION_ID);
+
             String port = AllConstants.CloudantSync.COUCHDB_PORT;
             String databaseName = AllConstants.CloudantSync.COUCH_DATABASE_NAME;
             dbURL = allSharedPreferences.fetchHost("").concat(":").concat(port).concat("/").concat(databaseName);

@@ -105,5 +105,4 @@ public class AllSharedPreferences {
         preferences.edit().putString(key, value).commit();
     }
 
-
 }

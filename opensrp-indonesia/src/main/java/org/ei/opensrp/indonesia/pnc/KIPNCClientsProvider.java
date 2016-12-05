@@ -163,32 +163,19 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
         viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
 
-        if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
-                || pc.getDetails().get("highRiskEctopicPregnancy")!=null && pc.getDetails().get("highRiskEctopicPregnancy").equals("yes")
-                || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && pc.getDetails().get("highRiskDidneyDisorder").equals("yes")
-                || pc.getDetails().get("highRiskDidneyDisorder")!=null && pc.getDetails().get("highRiskHeartDisorder").equals("yes")
-                || pc.getDetails().get("highRiskHeartDisorder")!=null && pc.getDetails().get("highRiskAsthma").equals("yes")
-                || pc.getDetails().get("highRiskAsthma")!=null && pc.getDetails().get("highRiskTuberculosis").equals("yes")
-                || pc.getDetails().get("highRiskTuberculosis")!=null && pc.getDetails().get("highRiskMalaria").equals("yes")
-                || pc.getDetails().get("highRiskMalaria")!=null && pc.getDetails().get("highRiskMalaria").equals("yes") )
-        {
-            viewHolder.hr_badge.setVisibility(View.VISIBLE);
-        }
-        if (pc.getDetails().get("highRiskPregnancyPIH") != null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
-                || pc.getDetails().get("highRiskPregnancyPIH") != null && pc.getDetails().get("highRiskPregnancyPIH").equals("yes")
-                || pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition") != null && pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition").equals("yes")
-                || pc.getDetails().get("HighRiskPregnancyTooManyChildren") != null && pc.getDetails().get("HighRiskPregnancyTooManyChildren").equals("yes")
-                || pc.getDetails().get("highRiskPregnancyDiabetes") != null && pc.getDetails().get("highRiskPregnancyDiabetes").equals("yes")
-                || pc.getDetails().get("highRiskPregnancyAnemia") != null && pc.getDetails().get("highRiskPregnancyAnemia").equals("yes")) {
-            viewHolder.hrp_badge.setVisibility(View.VISIBLE);
-        }
-        if (pc.getDetails().get("highRiskLabourFetusMalpresentation") != null && pc.getDetails().get("highRiskLabourFetusMalpresentation").equals("yes")
-                || pc.getDetails().get("highRiskLabourFetusSize") != null && pc.getDetails().get("highRiskLabourFetusSize").equals("yes")
-                || pc.getDetails().get("highRisklabourFetusNumber") != null && pc.getDetails().get("highRisklabourFetusNumber").equals("yes")
-                || pc.getDetails().get("HighRiskLabourSectionCesareaRecord") != null && pc.getDetails().get("HighRiskLabourSectionCesareaRecord").equals("yes")
-                || pc.getDetails().get("highRiskLabourTBRisk") != null && pc.getDetails().get("highRiskLabourTBRisk").equals("yes")) {
-            viewHolder.img_hrl_badge.setVisibility(View.VISIBLE);
-        }
+        //Risk flag
+        risk(pc.getDetails().get("highRiskSTIBBVs"),pc.getDetails().get("highRiskEctopicPregnancy"),pc.getDetails().get("highRiskCardiovascularDiseaseRecord"),
+                pc.getDetails().get("highRiskDidneyDisorder"),pc.getDetails().get("highRiskHeartDisorder"),pc.getDetails().get("highRiskAsthma"),
+                pc.getDetails().get("highRiskTuberculosis"),pc.getDetails().get("highRiskMalaria"),pc.getDetails().get("highRiskPregnancyYoungMaternalAge"),
+                pc.getDetails().get("highRiskPregnancyOldMaternalAge"),viewHolder.hr_badge);
+
+        risk(pc.getDetails().get("highRiskPregnancyPIH"),pc.getDetails().get("highRiskPregnancyProteinEnergyMalnutrition"),
+                pc.getDetails().get("HighRiskPregnancyTooManyChildren"),
+                pc.getDetails().get("highRiskPregnancyDiabetes"),pc.getDetails().get("highRiskPregnancyAnemia"),null,null,null,null,null,viewHolder.hrp_badge);
+
+        risk(pc.getDetails().get("highRiskLabourFetusMalpresentation"),pc.getDetails().get("highRiskLabourFetusSize"),
+                pc.getDetails().get("highRisklabourFetusNumber"),pc.getDetails().get("HighRiskLabourSectionCesareaRecord"),
+                pc.getDetails().get("highRiskLabourTBRisk"),null,null,null,null,null,viewHolder.img_hrl_badge);
 
         String kf_ke = pc.getDetails().get("hariKeKF")!=null?pc.getDetails().get("hariKeKF"):"";
         viewHolder.KF.setText(context.getString(R.string.hari_ke_kf)+" "+ humanizeAndDoUPPERCASE(kf_ke));
@@ -197,6 +184,7 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         viewHolder.village_name.setText(pc.getDetails().get("address1")!=null?pc.getDetails().get("address1"):"");
         viewHolder.wife_age.setText(pc.getColumnmaps().get("umur")!=null?pc.getColumnmaps().get("umur"):"");
         viewHolder.pnc_id.setText(pc.getDetails().get("noIbu")!=null?pc.getDetails().get("noIbu"):"");
+
      //   viewHolder.unique_id.setText(pc.getDetails().get("unique_id")!=null?pc.getDetails().get("unique_id"):"");
 
 
@@ -247,7 +235,22 @@ public class KIPNCClientsProvider implements SmartRegisterCLientsProviderForCurs
         View View = (ViewGroup) inflater().inflate(R.layout.smart_register_ki_pnc_client, null);
         return View;
     }
+    public void risk (String risk1,String risk2,String risk3,String risk4,String risk5,String risk6,String risk7,String risk8,String risk9,String risk10,ImageView riskview){
+        if(risk1 != null && risk1.equals("yes")
+                || risk2 != null && risk2.equals("yes")
+                || risk3 != null && risk3.equals("yes")
+                || risk4 != null && risk4.equals("yes")
+                || risk5 != null && risk5.equals("yes")
+                || risk6 != null && risk6.equals("yes")
+                || risk7 != null && risk7.equals("yes")
+                || risk8 != null && risk8.equals("yes")
+                || risk9 != null && risk9.equals("yes")
+                || risk10 != null && risk10.equals("yes")){
 
+            riskview.setVisibility(View.VISIBLE);
+        }
+
+    }
     class ViewHolder {
 
         TextView wife_name ;

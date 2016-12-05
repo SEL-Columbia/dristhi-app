@@ -144,17 +144,12 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
         detailsRepository.updateDetails(pc);
 
-        if(pc.getDetails().get("highRiskSTIBBVs")!=null && pc.getDetails().get("highRiskSTIBBVs").equals("yes")
-                || pc.getDetails().get("highRiskEctopicPregnancy")!=null && pc.getDetails().get("highRiskEctopicPregnancy").equals("yes")
-                || pc.getDetails().get("highRiskCardiovascularDiseaseRecord")!=null && pc.getDetails().get("highRiskDidneyDisorder").equals("yes")
-                || pc.getDetails().get("highRiskDidneyDisorder")!=null && pc.getDetails().get("highRiskHeartDisorder").equals("yes")
-                || pc.getDetails().get("highRiskHeartDisorder")!=null && pc.getDetails().get("highRiskAsthma").equals("yes")
-                || pc.getDetails().get("highRiskAsthma")!=null && pc.getDetails().get("highRiskTuberculosis").equals("yes")
-                || pc.getDetails().get("highRiskTuberculosis")!=null && pc.getDetails().get("highRiskMalaria").equals("yes")
-                || pc.getDetails().get("highRiskMalaria")!=null && pc.getDetails().get("highRiskMalaria").equals("yes") )
-        {
-            viewHolder.hr_badge.setVisibility(View.VISIBLE);
-        }
+        //Risk flag
+        risk(pc.getDetails().get("highRiskSTIBBVs"),pc.getDetails().get("highRiskEctopicPregnancy"),pc.getDetails().get("highRiskCardiovascularDiseaseRecord"),
+                pc.getDetails().get("highRiskDidneyDisorder"),pc.getDetails().get("highRiskHeartDisorder"),pc.getDetails().get("highRiskAsthma"),
+                pc.getDetails().get("highRiskTuberculosis"),pc.getDetails().get("highRiskMalaria"),pc.getDetails().get("highRiskPregnancyYoungMaternalAge"),
+                pc.getDetails().get("highRiskPregnancyOldMaternalAge"),viewHolder.hr_badge);
+
 
         //set image
         final ImageView kiview = (ImageView)convertView.findViewById(R.id.img_profile);
@@ -273,6 +268,22 @@ public class KBClientsProvider implements SmartRegisterCLientsProviderForCursorA
         return getClients().applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
     }
 
+    public void risk (String risk1,String risk2,String risk3,String risk4,String risk5,String risk6,String risk7,String risk8,String risk9,String risk10,ImageView riskview){
+        if(risk1 != null && risk1.equals("yes")
+                || risk2 != null && risk2.equals("yes")
+                || risk3 != null && risk3.equals("yes")
+                || risk4 != null && risk4.equals("yes")
+                || risk5 != null && risk5.equals("yes")
+                || risk6 != null && risk6.equals("yes")
+                || risk7 != null && risk7.equals("yes")
+                || risk8 != null && risk8.equals("yes")
+                || risk9 != null && risk9.equals("yes")
+                || risk10 != null && risk10.equals("yes")){
+
+            riskview.setVisibility(View.VISIBLE);
+        }
+
+    }
     @Override
     public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
         // do nothing.

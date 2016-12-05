@@ -10,6 +10,11 @@
                 "shouldLoadValue": true
             },
             {
+                "name": "existing_location",
+                "bind": "/model/instance/kunjungan_balita_reviewed/existing_location",
+                "shouldLoadValue": true
+            },
+            {
                 "name": "tanggalKunjunganBayiPerbulan",
                 "bind": "/model/instance/kunjungan_balita_reviewed/tanggal_pemeriksaan_anak_balita"
             },

@@ -31,11 +31,11 @@ public class UserService {
     private final AllSharedPreferences allSharedPreferences;
     private HTTPAgent httpAgent;
     private Session session;
-    private String village ="";
+  //  private String village ="";
     private DristhiConfiguration configuration;
     private SaveANMLocationTask saveANMLocationTask;
     private SaveUserInfoTask saveUserInfoTask;
-
+    private String village ="";
     public UserService(Repository repository, AllSettings allSettings, AllSharedPreferences allSharedPreferences, HTTPAgent httpAgent, Session session,
                        DristhiConfiguration configuration, SaveANMLocationTask saveANMLocationTask,
                        SaveUserInfoTask saveUserInfoTask) {
@@ -79,6 +79,7 @@ public class UserService {
         loginWith(userName, password);
         saveAnmLocation(getUserLocation(userInfo));
         saveUserInfo(getUserData(userInfo));
+
         String locationjson = allSettings.fetchANMLocation();
         LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
 

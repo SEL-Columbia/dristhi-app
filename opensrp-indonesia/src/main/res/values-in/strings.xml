@@ -41,14 +41,14 @@
     <string name="header_status">Status</string>
     <string name="header_edit"></string>
 
-    <string name="header_anak">Anak</string>
+    <string name="header_anak">ANAK</string>
     <string name="header_nama">Nama</string>
     <string name="header_tgl_periksa">Tgl Periksa</string>
     <string name="header_edd">HTP</string>
     <string name="header_kunjungan">Kunjungan</string>
     <string name="header_no_ibu">No Ibu</string>
-    <string name="header_status_b">Status</string>
-    <string name="header_obsetri">Obsetri</string>
+    <string name="header_status_b">STATUS</string>
+    <string name="header_obsetri">OBSETRI</string>
 
     <string name="kartu_ibu_selection">Kartu Ibu</string>
     <string name="kb_selection">KB</string>
@@ -117,7 +117,7 @@
     <string name="str_anak_bayi_visit">Kunjungan Bayi</string>
     <string name="str_anak_balita_visit">Kunjungan Balita</string>
     <string name="str_anak_neonatal">Kunjungan Neonatal</string>
-
+    <string name="str_header_neonatal">KUNJ NEONATAL</string>
     <string name="str_kunjungan_anak">Kunjungan</string>
     <string name="anc_edit">Edit ANC</string>
     <string name="pnc_edit">Edit PNC</string>
@@ -257,7 +257,7 @@
     <string name="service_type_dpt_booster_1_short">DPT B1</string>
     <string name="service_type_dpt_booster_2_short">DPT B2</string>
     <string name="pentavalent_short">Pentav</string>
-    <string name="header_birth_status">Status</string>
+    <string name="header_birth_status">STATUS</string>
 
     <string name="fp_register_title_in_short">FP</string>
     <string name="pnc_register_title_in_short">PNC</string>
@@ -314,7 +314,7 @@
     <string name="str_weeks">&#160;Minggu</string>
     <string name="anc_register_title_in_short">ANC</string>
     <string name="str_bp">BP</string>
-    <string name="str_weight">Berat:</string>
+    <string name="str_weight">Berat</string>
     <string name="str_anc_search_hint">Search ANC Register</string>
     <string name="anc_service_mode_overview">Overview</string>
     <string name="anc_service_mode_anc_visits">ANC Visits</string>
@@ -393,7 +393,7 @@
     <string name="dob_title">Tgl Lahir:</string>
     <string name="birth_place_title">Tmpt:</string>
     <string name="birth_weight_title">B.Lahir:</string>
-    <string name="date_visit_title">Tgl Kunjungan:</string>
+    <string name="date_visit_title">Tgl Kunj.:</string>
     <string name="cohort_child">ANAK</string>
     <string name="cohort_mother">KOHORT IBU</string>
     <string name="cohort_fp">KOHORT KB</string>
@@ -469,7 +469,7 @@
     <string name="ganti_cara">Keterangan Ganti Cara</string>
     <string name="elco_details_summary">Ringkasan</string>
     <string name="usia">Usia Klinis:</string>
-    <string name="header_klinis">Status Klinis</string>
+    <string name="header_klinis">STATUS KLINIS</string>
     <string name="height">Tinggi:</string>
     <string name="month">Bln</string>
     <string name="service_fp">Status Pelayanan: KB </string>

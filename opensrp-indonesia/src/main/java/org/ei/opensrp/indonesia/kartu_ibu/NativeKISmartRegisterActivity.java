@@ -41,6 +41,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.ANAK_BAYI_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_ANC_REGISTRATION;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_CLOSE;
 import static org.ei.opensrp.indonesia.AllConstantsINA.FormNames.KARTU_IBU_EDIT;
@@ -122,7 +123,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_register_fp_form), "kohort_kb_pelayanan", formController),
                 new OpenFormOption(getString(R.string.str_register_anc_form), "kartu_anc_registration", formController),
-               // new OpenFormOption("Edit Kartu Ibu ", KARTU_IBU_EDIT, formController),
+                new OpenFormOption("Registrasi Anak ", ANAK_BAYI_REGISTRATION, formController),
                 new OpenFormOption("Kartu Ibu Close ", KARTU_IBU_CLOSE, formController),
 
         };
@@ -259,7 +260,7 @@ public class NativeKISmartRegisterActivity extends SecuredNativeSmartRegisterAct
         formNames.add(KARTU_IBU_REGISTRATION);
         formNames.add("kohort_kb_pelayanan");
         formNames.add("kartu_anc_registration");
-      //  formNames.add(KARTU_IBU_EDIT);
+        formNames.add(ANAK_BAYI_REGISTRATION);
         formNames.add(KARTU_IBU_CLOSE);
 
         DialogOption[] options = getEditOptions();

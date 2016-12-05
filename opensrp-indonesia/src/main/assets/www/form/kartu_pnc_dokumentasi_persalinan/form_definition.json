@@ -10,6 +10,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "existing_location",
+        "bind": "/model/instance/dok_persalinan_reviewed/existing_location",
+        "shouldLoadValue": true
+      },
+      {
         "name": "lokasiPeriksa",
         "bind": "/model/instance/dok_persalinan_reviewed/Lokasi_periksa"
       },
@@ -208,6 +213,11 @@
           {
             "name": "ibu_entity_id",
             "source": "ibu.id",
+            "shouldLoadValue": true
+          },
+          {
+            "name": "existing_location",
+            "bind": "/model/instance/dok_persalinan_reviewed/child_registration/existing_location",
             "shouldLoadValue": true
           },
           {

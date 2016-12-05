@@ -10,6 +10,11 @@
         "shouldLoadValue": true
       },
       {
+        "name": "existing_location",
+        "bind": "/model/instance/tambah_kb_reviewed/existing_location",
+        "shouldLoadValue": true
+      },
+      {
         "name": "Village",
         "bind": "/model/instance/tambah_kb_reviewed/Village",
         "shouldLoadValue": true

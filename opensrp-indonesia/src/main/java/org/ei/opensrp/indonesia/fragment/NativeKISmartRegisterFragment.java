@@ -221,7 +221,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         setTablename("ec_kartu_ibu");
         SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
         countqueryBUilder.SelectInitiateMainTableCounts("ec_kartu_ibu");
-        countqueryBUilder.customJoin("LEFT JOIN ec_ibu on ec_kartu_ibu.id = ec_ibu.id LEFT JOIN ec_anak ON ec_ibu.id = ec_anak.relational_id ");
+        countqueryBUilder.customJoin("LEFT JOIN ec_anak ON ec_kartu_ibu.id = ec_anak.relational_id ");
         mainCondition = " is_closed = 0 ";
         joinTable = "";
         countSelect = countqueryBUilder.mainCondition(mainCondition);
@@ -229,7 +229,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
         SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
         queryBUilder.SelectInitiateMainTable("ec_kartu_ibu", new String[]{"ec_kartu_ibu.relationalid","ec_kartu_ibu.is_closed", "ec_kartu_ibu.details", "ec_kartu_ibu.isOutOfArea", "ec_kartu_ibu.namalengkap", "ec_kartu_ibu.umur", "ec_kartu_ibu.namaSuami",  "ec_anak.namaBayi", "ec_anak.tanggalLahirAnak", "noIbu"});
-        queryBUilder.customJoin("LEFT JOIN ec_ibu on ec_kartu_ibu.id = ec_ibu.id LEFT JOIN ec_anak ON ec_ibu.id = ec_anak.relational_id ");
+        queryBUilder.customJoin("LEFT JOIN ec_anak ON ec_kartu_ibu.id = ec_anak.relational_id ");
         mainSelect = queryBUilder.mainCondition(mainCondition);
         Sortqueries = KiSortByNameAZ();
 
@@ -320,18 +320,18 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         public void onDialogOptionSelection(DialogOption option, Object tag) {
 
 
-            if(option.name().equalsIgnoreCase(getString(R.string.str_register_anc_form)) ) {
+            if(option.name().equalsIgnoreCase(getString(R.string.str_register_anc_form) ) ) {
                 CommonPersonObjectClient pc = KIDetailActivity.kiclient;
                 AllCommonsRepository iburep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
                 final CommonPersonObject ibuparent = iburep.findByCaseID(pc.entityId());
                 if (ibuparent != null) {
                     short anc_isclosed = ibuparent.getClosed();
-                    if (anc_isclosed == 0) {
+                    if (anc_isclosed == 0 ) {
                         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered), Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
-                AllCommonsRepository pncrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_pnc");
+               /* AllCommonsRepository pncrep = org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_pnc");
                 final CommonPersonObject pncparent = pncrep.findByCaseID(pc.entityId());
                 if (pncparent != null) {
                     short pnc_isclosed = pncparent.getClosed();
@@ -339,16 +339,16 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
                         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered_pnc), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                }
+                }*/
             }
-            if(option.name().equalsIgnoreCase(getString(R.string.str_register_fp_form)) ) {
+          /*  if(option.name().equalsIgnoreCase(getString(R.string.str_register_fp_form)) ) {
                 CommonPersonObjectClient pc = KIDetailActivity.kiclient;
-                    if (StringUtils.isNotBlank(pc.getDetails().get("jenisKontrasepsi"))) {
-                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered_in_fp), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
 
-            }
+                if(!StringUtils.isNumeric(pc.getDetails().get("jenisKontrasepsi"))) {
+                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.mother_already_registered_in_fp), Toast.LENGTH_SHORT).show();
+                            return;
+                }
+            }*/
 
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
         }
