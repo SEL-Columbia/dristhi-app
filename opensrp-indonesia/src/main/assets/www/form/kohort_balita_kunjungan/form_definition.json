@@ -10,6 +10,11 @@
                 "shouldLoadValue": true
             },
             {
+                "name": "desa_anak",
+                "bind": "/model/instance/kunjungan_balita_reviewed/Village",
+                "shouldLoadValue": true
+            },
+            {
                 "name": "existing_location",
                 "bind": "/model/instance/kunjungan_balita_reviewed/existing_location",
                 "shouldLoadValue": true

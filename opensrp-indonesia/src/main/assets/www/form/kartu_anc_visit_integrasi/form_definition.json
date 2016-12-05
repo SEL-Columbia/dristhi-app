@@ -15,6 +15,11 @@
         "source": "ibu.kartu_ibu.id"
       },
       {
+        "name": "cityVillage",
+        "bind": "/model/instance/kunjungan_anc_reviewed_integrasi/Village",
+        "shouldLoadValue": true
+      },
+      {
         "name": "existing_location",
         "bind": "/model/instance/kunjungan_anc_reviewed_integrasi/existing_location",
         "shouldLoadValue": true

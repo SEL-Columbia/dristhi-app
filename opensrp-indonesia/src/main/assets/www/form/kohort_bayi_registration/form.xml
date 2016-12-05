@@ -73,6 +73,12 @@
     <input data-type-xml="date" name="/tambah_bayi_reviewed/tanggal_pendaftaran" required="required" type="date"/>
   </label>    <section class="or-group-data " name="/tambah_bayi_reviewed/child_registration">
     <section class="or-repeat " name="/tambah_bayi_reviewed/child_registration">
+      <label class="note non-select ">
+        <span class="question-label active" data-itext-id="/tambah_bayi_reviewed/child_registration/generated_note_name_31:label" lang="Bahasa">Desa : <span class="or-output" data-value=" /tambah_bayi_reviewed/child_registration/desa_anak ">            </span>
+        </span>
+        <span class="question-label " data-itext-id="/tambah_bayi_reviewed/child_registration/generated_note_name_31:label" lang="en">-</span>
+        <input data-type-xml="string" name="/tambah_bayi_reviewed/child_registration/generated_note_name_31" readonly="readonly" type="text"/>
+      </label>
       <label class="question non-select ">
         <span class="question-label active" data-itext-id="/tambah_bayi_reviewed/child_registration/no_bayi:label" lang="Bahasa">No. bayi</span>
         <span class="question-label " data-itext-id="/tambah_bayi_reviewed/child_registration/no_bayi:label" lang="en">Baby's ID Number</span>
@@ -189,6 +195,12 @@
     </label>
     <label class="calculation non-select ">
       <input data-calculate=" /tambah_bayi_reviewed/Sub-district " data-type-xml="string" name="/tambah_bayi_reviewed/kecamatan" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /tambah_bayi_reviewed/Village " data-type-xml="string" name="/tambah_bayi_reviewed/child_registration/desa_anak" type="hidden"/>
+    </label>
+    <label class="calculation non-select ">
+      <input data-calculate=" /tambah_bayi_reviewed/Village " data-type-xml="string" name="/tambah_bayi_reviewed/child_registration/child_existing_location" type="hidden"/>
     </label>
     <label class="calculation non-select ">
       <input data-calculate="if( /tambah_bayi_reviewed/child_registration/berat_lahir  &lt; 2500, 'yes', 'no')" data-type-xml="string" name="/tambah_bayi_reviewed/child_registration/high_risk_child_Low_Birthweght" type="hidden"/>

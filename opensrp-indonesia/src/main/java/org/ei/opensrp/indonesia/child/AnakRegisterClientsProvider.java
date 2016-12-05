@@ -172,9 +172,9 @@ public class AnakRegisterClientsProvider implements SmartRegisterCLientsProvider
         checkVisibility(pc.getDetails().get("ipv"),null, viewHolder.ivp_no, viewHolder.ivp_yes);
 
         //child visit status
-        String berat = pc.getDetails().get("beratBayi")!=null?" "+pc.getDetails().get("beratBayi"):"";
-        String tanggal = pc.getDetails().get("tanggalKunjunganNeonatal")!=null?" "+pc.getDetails().get("tanggalKunjunganNeonatal"):"";
-        String tinggi = pc.getDetails().get("panjangBayi")!=null?" "+pc.getDetails().get("panjangBayi"):"";
+        String berat = pc.getDetails().get("beratBayi")!=null?" "+pc.getDetails().get("beratBayi"):pc.getDetails().get("beratBadan")!=null?pc.getDetails().get("beratBadan"):"";
+        String tanggal = pc.getDetails().get("tanggalKunjunganNeonatal")!=null?" "+pc.getDetails().get("tanggalKunjunganNeonatal"):pc.getDetails().get("tanggalPenimbangan")!=null?pc.getDetails().get("tanggalPenimbangan"):"";
+        String tinggi = pc.getDetails().get("panjangBayi")!=null?" "+pc.getDetails().get("panjangBayi"):pc.getDetails().get("tinggiBadan")!=null?pc.getDetails().get("tinggiBadan"):"";
         String status_gizi = pc.getDetails().get("statusGizi")!=null?pc.getDetails().get("statusGizi"):"";
         String gizi = status_gizi.equals("GB")?"Gizi Buruk":status_gizi.equals("GK")?"Gizi Kurang":status_gizi.equals("GR")?"Gizi Rendah":"";
         viewHolder.berat_badan.setText(context.getString(R.string.str_weight)+": "+berat);
