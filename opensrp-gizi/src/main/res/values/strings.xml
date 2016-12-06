@@ -416,5 +416,11 @@
     <string name="lastVitA">Last Vitamin A given:</string>
     <string name="lastAnthelmintic">Last Anthelmintic given:</string>
 
-
+    <string name="form_name_visit">Monthly Visit</string>
+    <string name="weight_unit">Kg</string>
+    <string name="length_unit">Cm</string>
+    <string name="x_axis_label">Month</string>
+    <string name="chart_title">CHILD GROWTH CHART</string>
+    <string name="lfa_string">Length for Age</string>
+    <string name="hfa_string">Height for Age</string>
 </resources>

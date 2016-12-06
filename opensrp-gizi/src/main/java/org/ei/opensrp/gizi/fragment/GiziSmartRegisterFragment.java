@@ -1,7 +1,9 @@
 package org.ei.opensrp.gizi.fragment;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,6 +22,7 @@ import org.ei.opensrp.cursoradapter.SmartRegisterQueryBuilder;
 import org.ei.opensrp.gizi.LoginActivity;
 import org.ei.opensrp.gizi.gizi.ChildDetailActivity;
 import org.ei.opensrp.gizi.gizi.FlurryFacade;
+import org.ei.opensrp.gizi.gizi.GiziGrowthChartActivity;
 import org.ei.opensrp.gizi.gizi.GiziServiceModeOption;
 import org.ei.opensrp.gizi.gizi.GiziSmartClientsProvider;
 import org.ei.opensrp.gizi.gizi.GiziSmartRegisterActivity;
@@ -250,13 +253,32 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
+                    CharSequence colors[] = new CharSequence[] {"Detail View", "Z-Score Charts"};
+                    ChildDetailActivity.childclient = (CommonPersonObjectClient) view.getTag();
+                    GiziGrowthChartActivity.client = (CommonPersonObjectClient)view.getTag();
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("");
+                    builder.setItems(colors, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // the user clicked on colors[which]
+                            if(which == 0)
+                            {
+                                Intent intent = new Intent(getActivity(),ChildDetailActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                            }
+                            else if(which == 1){
+                                Intent intent = new Intent(getActivity(),GiziGrowthChartActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                            }
+                        }
+                    });
+                    builder.show();
                   //  FlurryFacade.logEvent("click_detail_picture_vaksinator");
-                     ChildDetailActivity.childclient = (CommonPersonObjectClient)view.getTag();
-                    Intent intent = new Intent(getActivity(),ChildDetailActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                    break;
 
+                    break;
                 //untuk follow up button
                 case R.id.btn_edit:
                   //  FlurryFacade.logEvent("click_button_edit_vaksinator");

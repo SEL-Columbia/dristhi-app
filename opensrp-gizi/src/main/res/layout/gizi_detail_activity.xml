@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/status_bar_text_almost_white"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
@@ -34,13 +35,13 @@
             android:textSize="22sp" />
 
     </LinearLayout>
-    <LinearLayout
+<!--    <LinearLayout
         android:id="@+id/linierDivider"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:orientation="vertical">
 
-    </LinearLayout>
+    </LinearLayout>-->
 
     <ImageView
         android:layout_width="match_parent"
@@ -49,6 +50,10 @@
         android:id="@+id/imageView4" />
 
     <include
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         layout="@layout/gizi_detail_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,6 +82,10 @@
             android:src="@color/smart_register_client_divider_color"/>
 
     <com.jjoe64.graphview.GraphView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="117dp"
         android:id="@+id/graph"
