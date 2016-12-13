@@ -253,12 +253,12 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    CharSequence colors[] = new CharSequence[] {"Detail View", "Z-Score Charts"};
+                    CharSequence selections[] = new CharSequence[] {"Detail View", "Charts"};
                     ChildDetailActivity.childclient = (CommonPersonObjectClient) view.getTag();
                     GiziGrowthChartActivity.client = (CommonPersonObjectClient)view.getTag();
                     final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("");
-                    builder.setItems(colors, new DialogInterface.OnClickListener() {
+                    builder.setItems(selections, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // the user clicked on colors[which]

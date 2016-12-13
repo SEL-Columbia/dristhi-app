@@ -38,6 +38,7 @@ public class KmsHandler  implements FormSubmissionHandler {
         double berat_sebelum = Double.parseDouble((history_berat.length) >=3 ? (history_berat[(history_berat.length)-3]) : "0");
         String umurs = submission.getFieldValue("history_umur")!= null ? submission.getFieldValue("history_umur") :"0";
         String[] history_umur = umurs.split(",");
+        String tinggi = submission.getFieldValue("history_tinggi")!= null ? submission.getFieldValue("history_tinggi") :"0#0";
         String lastVisitDate = submission.getFieldValue("tanggalPenimbangan") != null ? submission.getFieldValue("tanggalPenimbangan") : "-";
         String gender = submission.getFieldValue("gender") != null ? submission.getFieldValue("gender") : "-";
         String tgllahir = submission.getFieldValue("tanggalLahirAnak") != null ? submission.getFieldValue("tanggalLahirAnak") : "-";
@@ -47,6 +48,9 @@ public class KmsHandler  implements FormSubmissionHandler {
 
         detailsRepository.add(entityID, "preload_umur", umurs, tsLong);
         detailsRepository.add(entityID, "berat_preload", berats, tsLong);
+
+       // detailsRepository.add(entityID, "preload_history_tinggi", submission.getFieldValue("history_tinggi")!= null ? submission.getFieldValue("history_tinggi") :"0#0", tsLong);
+        detailsRepository.add(entityID, "history_tinggi", tinggi, tsLong);
         detailsRepository.add(entityID, "kunjunganSebelumnya", lastVisitDate, tsLong);
         //detailsRepository.add(entityID, "history_umur", umurs, tsLong);
 
