@@ -4,21 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.flurry.android.FlurryAgent;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
 import org.ei.opensrp.gizi.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import org.w3c.dom.Text;
 
 import util.growthChart.GraphConstant;
 import util.growthChart.GrowthChartGenerator;
@@ -28,7 +22,6 @@ import util.growthChart.GrowthChartGenerator;
  */
 public class GiziGrowthChartActivity extends Activity{
 
-    SimpleDateFormat timer = new SimpleDateFormat("hh:mm:ss");
     public static CommonPersonObjectClient client;
 
     @Override
@@ -45,20 +38,8 @@ public class GiziGrowthChartActivity extends Activity{
         TextView hfaChartLabel = (TextView)findViewById(R.id.hfa_chart_name);
 
         TextView navBarDetails = (TextView)findViewById(R.id.chart_navbar_details);
-        ImageButton back = (ImageButton) findViewById(org.ei.opensrp.R.id.btn_back_to_home);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                startActivity(new Intent(GiziGrowthChartActivity.this, GiziSmartRegisterActivity.class));
-                overridePendingTransition(0, 0);
+        TextView navBarZScore = (TextView)findViewById(R.id.chart_navbar_z_score);
 
-                String DetailEnd = timer.format(new Date());
-                Map<String, String> Detail = new HashMap<String, String>();
-                Detail.put("end", DetailEnd);
-                FlurryAgent.logEvent("gizi_chart_view",Detail, true );
-            }
-        });
         navBarDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,13 +50,23 @@ public class GiziGrowthChartActivity extends Activity{
             }
         });
 
+        navBarZScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                GiziZScoreChartActivity.client = client;
+                startActivity(new Intent(GiziGrowthChartActivity.this, GiziZScoreChartActivity.class));
+                overridePendingTransition(0, 0);
+            }
+        });
+
         layoutName.setText(context.getStringResource(R.string.chart_title));
         lfaChartLabel.setText(context.getStringResource(R.string.lfa_string));
         hfaChartLabel.setText(context.getStringResource(R.string.hfa_string));
 
         String []series=initiateSeries();
 
-        new GrowthChartGenerator(lfaGraph, GraphConstant.LFA_CHART,client.getDetails().get("tanggalLahirAnak"),client.getDetails().get("gender"),series[0],series[1]);
+        new GrowthChartGenerator(lfaGraph, GraphConstant.LFA_CHART,client.getDetails().get("gender"),client.getDetails().get("tanggalLahir"),series[0],series[1]);
         lfaGraph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
@@ -86,7 +77,7 @@ public class GiziGrowthChartActivity extends Activity{
             }
         });
 
-        new GrowthChartGenerator(hfaGraph, GraphConstant.HFA_CHART,client.getDetails().get("tanggalLahirAnak"),client.getDetails().get("gender"),series[2],series[3]);
+        new GrowthChartGenerator(hfaGraph,GraphConstant.HFA_CHART,client.getDetails().get("gender"),client.getDetails().get("tanggalLahir"),series[2],series[3]);
         hfaGraph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
@@ -94,7 +85,6 @@ public class GiziGrowthChartActivity extends Activity{
                     return super.formatLabel(value, isValueX) + " " + context.getStringResource(R.string.x_axis_label);
                 else
                     return super.formatLabel(value, isValueX) + " " + context.getStringResource(R.string.length_unit);
-
             }
         });
     }
@@ -132,14 +122,16 @@ public class GiziGrowthChartActivity extends Activity{
         }
         String ageSeries="";
         String lengthSeries="";
-        String dateOfBirth = client.getDetails().get("tanggalLahirAnak");
+        String dateOfBirth = client.getDetails().get("tanggalLahirAnak").substring(0,10);
         String data = client.getDetails().get("history_tinggi");
         String []array = data.substring(4,data.length()).split(",");
         String [][]array2 = new String[array.length][];
         int []age = new int[array.length];
         for(int i=0;i<array.length;i++){
+            if(array[i].charAt(array[i].length()-1) == ':')
+                continue;
             array2[i]=array[i].split(":");
-            age[i]=monthAge(dateOfBirth, array2[i][0]);
+            age[i]=monthAge(dateOfBirth, Integer.toString(Integer.parseInt(array2[i][0])/30));
             ageSeries = ageSeries + "," + Integer.toString(age[i]);
             lengthSeries = lengthSeries + "," + array2[i][1];
             if(i>0){

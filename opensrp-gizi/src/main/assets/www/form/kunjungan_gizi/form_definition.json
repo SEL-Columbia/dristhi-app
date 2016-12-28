@@ -139,7 +139,7 @@
         "bind": "/model/instance/EC_Kunjungan_Gizi_NewStructure-mapped_O/tinggi_badan"
       },
       {
-        "name": "preload_history_tinggi",
+        "name": "history_tinggi",
         "bind": "/model/instance/EC_Kunjungan_Gizi_NewStructure-mapped_O/preload_history_tinggi",
         "shouldLoadValue": true
       },

@@ -64,7 +64,6 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
     private String[] formNames = new String[]{};
     private android.support.v4.app.Fragment mBaseFragment = null;
 
-
     ZiggyService ziggyService;
 
     @Override
@@ -134,13 +133,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
                 new OpenFormOption("Kunjungan Per Bulan ", "kunjungan_gizi", formController),
                 new OpenFormOption("Edit Registrasi Gizi ", "edit_registrasi_gizi", formController),
                 new OpenFormOption("Close Form","close_form",formController)
-
-
-
-
             };
-
-
     }
 
 

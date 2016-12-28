@@ -17,7 +17,10 @@ import util.ZScore.ZScoreSystemCalculation;
 
 /**
  * Created by Iq on 15/09/16.
+ * This class is used to create preload (prepopulate) data which used for next visit registration,
+ * and other calculation that cannot conduct by Form, such as Nutrition status etc.
  */
+
 public class KmsHandler  implements FormSubmissionHandler {
     static String bindobject = "anak";
     private ClientProcessor clientProcessor;
@@ -41,7 +44,9 @@ public class KmsHandler  implements FormSubmissionHandler {
         String tinggi = submission.getFieldValue("history_tinggi")!= null ? submission.getFieldValue("history_tinggi") :"0#0";
         String lastVisitDate = submission.getFieldValue("tanggalPenimbangan") != null ? submission.getFieldValue("tanggalPenimbangan") : "-";
         String gender = submission.getFieldValue("gender") != null ? submission.getFieldValue("gender") : "-";
-        String tgllahir = submission.getFieldValue("tanggalLahirAnak") != null ? submission.getFieldValue("tanggalLahirAnak") : "-";
+        String tgllahir = submission.getFieldValue("tanggalLahirAnak") != null
+                ? submission.getFieldValue("tanggalLahirAnak")
+                : "-";
         String dateOfBirth = tgllahir.substring(0, tgllahir.indexOf("T"));
 
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
@@ -50,7 +55,7 @@ public class KmsHandler  implements FormSubmissionHandler {
         detailsRepository.add(entityID, "berat_preload", berats, tsLong);
 
        // detailsRepository.add(entityID, "preload_history_tinggi", submission.getFieldValue("history_tinggi")!= null ? submission.getFieldValue("history_tinggi") :"0#0", tsLong);
-        detailsRepository.add(entityID, "history_tinggi", tinggi, tsLong);
+        detailsRepository.add(entityID, "preload_history_tinggi", tinggi, tsLong);
         detailsRepository.add(entityID, "kunjunganSebelumnya", lastVisitDate, tsLong);
         //detailsRepository.add(entityID, "history_umur", umurs, tsLong);
 
@@ -100,7 +105,6 @@ public class KmsHandler  implements FormSubmissionHandler {
          */
 
 
-        boolean jenisKelamin = gender.equalsIgnoreCase("male")? true:false;
         double berat= Double.parseDouble(submission.getFieldValue("beratBadan") != null ? submission.getFieldValue("beratBadan") : "0");
         double beraSebelum = Double.parseDouble((history_berat.length) >=2 ? (history_berat[(history_berat.length)-2]) : "0");
         String tanggal_sebelumnya = (submission.getFieldValue("kunjunganSebelumnya") != null ? submission.getFieldValue("kunjunganSebelumnya") : "0");
@@ -109,10 +113,11 @@ public class KmsHandler  implements FormSubmissionHandler {
 
 
             //KMS calculation lastVisitDate
-            KmsPerson data = new KmsPerson(jenisKelamin, dateOfBirth, berat, beraSebelum, lastVisitDate, berat_sebelum, tanggal_sebelumnya);
+            KmsPerson data = new KmsPerson(!gender.toLowerCase().contains("em"), dateOfBirth, berat, beraSebelum, lastVisitDate, berat_sebelum, tanggal_sebelumnya);
             KmsCalc calculator = new KmsCalc();
-            int satu = Integer.parseInt(history_umur[history_umur.length-2]);
-            int dua = Integer.parseInt(history_umur[history_umur.length-1]);
+            System.out.println("tanggal penimbangan = "+submission.getFieldValue("tanggalPenimbangan")+", "+lastVisitDate);
+            int satu = Integer.parseInt(history_umur[history_umur.length-2])/30;
+            int dua = Integer.parseInt(history_umur[history_umur.length-1])/30;
             String duat = history_berat.length <= 2  ? "-" : dua - satu >=2 ? "-" :calculator.cek2T(data);
             String status = history_berat.length <= 2 ? "No" : calculator.cekWeightStatus(data);
 

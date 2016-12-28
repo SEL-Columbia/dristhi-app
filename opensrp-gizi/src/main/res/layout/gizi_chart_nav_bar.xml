@@ -33,7 +33,8 @@
         android:paddingLeft="5dp"
         android:paddingRight="13dp"
         android:orientation="horizontal"
-        android:background="@drawable/transparent_gray_background">
+        android:background="@drawable/transparent_gray_background"
+        android:weightSum="1">
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:id="@+id/chart_navbar_details"
@@ -52,18 +53,36 @@
 
         <org.ei.opensrp.view.customControls.CustomFontTextView
             android:id="@+id/chart_navbar_growth_chart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            style="@style/CustomFontTextViewStyle.NavBar.Black"
+            android:text="LFA Growth Chart" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="50dp">
+
+        </FrameLayout>
+
+        <org.ei.opensrp.view.customControls.CustomFontTextView
+            android:id="@+id/chart_navbar_z_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             style="@style/CustomFontTextViewStyle.NavBar.Black"
             android:text="LFA Growth Chart" />
 
     </LinearLayout>
 
+
     <ImageView
         android:layout_width="@dimen/smart_register_nav_bar_separator"
         android:layout_height="fill_parent"
         android:src="@drawable/separator"
         android:scaleType="fitXY" />
+
+
 
 </RelativeLayout>

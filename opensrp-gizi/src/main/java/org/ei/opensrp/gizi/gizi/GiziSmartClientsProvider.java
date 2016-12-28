@@ -255,12 +255,12 @@ public class GiziSmartClientsProvider implements SmartRegisterCLientsProviderFor
         return  monthRangeToToday(lastVisitDate) > threshold;
     }
 
-    private boolean isDue(String lastVisitDate){
-        if(lastVisitDate==null || lastVisitDate.length()<6)
-            return true;
-
-        return dayRangeBetween(lastVisitDate.split("-"),new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()).split("-")) <= 30;
-    }
+//    private boolean isDue(String lastVisitDate){
+//        if(lastVisitDate==null || lastVisitDate.length()<6)
+//            return true;
+//
+//        return dayRangeBetween(lastVisitDate.split("-"),new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()).split("-")) <= 30;
+//    }
 
     private boolean isGiven(CommonPersonObjectClient pc, String details){
         if(pc.getDetails().get(details) != null)

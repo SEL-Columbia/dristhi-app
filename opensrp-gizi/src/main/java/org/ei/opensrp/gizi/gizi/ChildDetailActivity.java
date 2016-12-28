@@ -122,6 +122,8 @@ public class ChildDetailActivity extends Activity {
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
         detailsRepository.updateDetails(childclient);
 
+        System.out.println(childclient.getDetails().toString());
+
         if(childclient.getDetails().get("profilepic")!= null){
             if((childclient.getDetails().get("gender")!=null?childclient.getDetails().get("gender"):"").equalsIgnoreCase("female")) {
                 setImagetoHolderFromUri(ChildDetailActivity.this, childclient.getDetails().get("profilepic"), childview, R.mipmap.child_boy_infant);
@@ -154,8 +156,8 @@ public class ChildDetailActivity extends Activity {
             String namaayah = kiparent.getDetails().get("namaSuami") != null ? kiparent.getDetails().get("namaSuami") : "";
             String namaibu = kiparent.getColumnmaps().get("namalengkap") != null ? kiparent.getColumnmaps().get("namalengkap") : "";
 
-            father_name.setText(getString(R.string.father_name)+": " + namaayah);
-            mother_name.setText(getString(R.string.mother_name) +": " +namaibu);
+            father_name.setText(getString(R.string.father_name)+" " + namaayah);
+            mother_name.setText(getString(R.string.mother_name) +" " +namaibu);
             village_name.setText(getString(R.string.village) +" "+ (kiparent.getDetails().get("cityVillage") != null ? kiparent.getDetails().get("cityVillage") : "-"));
           //  village_name.setText(getString(R.string.village) + kiparent.getDetails().get("cityVillage") != null ? ": " + kiparent.getDetails().get("cityVillage") : "");
            // subVillage.setText(kiparent.getDetails().get("address1") != null ? ": " + kiparent.getDetails().get("address1") : "");
@@ -171,10 +173,11 @@ public class ChildDetailActivity extends Activity {
         
       /*  village_name.setText(getString(R.string.village) +" "+ (childclient.getDetails().get("desa") != null ? childclient.getDetails().get("desa") : "-"));*/
 
-        birth_date.setText(getString(R.string.birth_date) +" "+ (childclient.getDetails().get("tanggalLahirAnak") != null ? childclient.getDetails().get("tanggalLahirAnak") : "-"));
+        String dateOfBirth = childclient.getDetails().get("tanggalLahirAnak");
+        birth_date.setText(getString(R.string.birth_date) +" "+ (dateOfBirth.contains("T") ? dateOfBirth.substring(0,10) : dateOfBirth));
         gender.setText(getString(R.string.gender) +" "+ (childclient.getDetails().get("gender") != null ? gender(childclient.getDetails().get("gender")) : "-"));
         birthWeight.setText(getString(R.string.birth_weight) + " " + (childclient.getDetails().get("beratLahir") != null ? childclient.getDetails().get("beratLahir") + " gr" : "-"));
-        weight.setText(getString(R.string.weight) +" "+ (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan")+"Kg" : "- Kg"));
+        weight.setText(getString(R.string.weight) + " " + (childclient.getDetails().get("beratBadan") != null ? childclient.getDetails().get("beratBadan") + "Kg" : "- Kg"));
         height.setText(getString(R.string.height) +" "+ (childclient.getDetails().get("tinggiBadan") != null ? childclient.getDetails().get("tinggiBadan")+"Cm" : "- Cm"));
         vitA.setText(getString(R.string.vitamin_a) +" : "+ (inTheSameRegion(childclient.getDetails().get("lastVitA")) ? getString(R.string.yes) : getString(R.string.no)));
         mpasi.setText(getString(R.string.mpasi) + " "+(childclient.getDetails().get("mp_asi")!=null ? yesNo(childclient.getDetails().get("mp_asi")) : "-"));
@@ -184,9 +187,12 @@ public class ChildDetailActivity extends Activity {
         //set value
         String berats = childclient.getDetails().get("history_berat")!= null ? childclient.getDetails().get("history_berat") :"0";
         String[] history_berat = berats.split(",");
-        String umurs = childclient.getDetails().get("preload_umur")!= null ? childclient.getDetails().get("preload_umur") :"0";
-        String[] history_umur = umurs.split(",");
-
+        String tempUmurs = childclient.getDetails().get("preload_umur")!= null ? childclient.getDetails().get("preload_umur") :"0";
+        String[] history_umur = tempUmurs.split(",");
+        String umurs="";
+        for(int i=0;i<history_umur.length;i++){
+            umurs = umurs + "," + Integer.toString(Integer.parseInt(history_umur[i])/30);
+        }
 
             dua_t.setText(getString(R.string.dua_t) +" "+ (childclient.getDetails().get("dua_t") != null ? yesNo(childclient.getDetails().get("dua_t")) : "-"));
             bgm.setText(getString(R.string.bgm) + " "+ (childclient.getDetails().get("bgm") != null ? yesNo(childclient.getDetails().get("bgm")) : "-"));
@@ -195,9 +201,12 @@ public class ChildDetailActivity extends Activity {
             nutrition_status.setText(getString(R.string.nutrition_status) + " "+ (childclient.getDetails().get("nutrition_status") != null ? weightStatus(childclient.getDetails().get("nutrition_status")) : "-"));
 
         Log.logInfo("Berat :" +berats);
-        Log.logInfo("umurs :" +umurs);
+        Log.logInfo("umurs :" +umurs.substring(1,umurs.length()));
         GraphView graph = (GraphView) findViewById(R.id.graph);
-        new GrowthChartGenerator(graph,childclient.getDetails().get("tanggalLahirAnak"),childclient.getDetails().get("gender"),umurs,berats);
+        new GrowthChartGenerator(graph,childclient.getDetails().get("tanggalLahirAnak").contains("T")
+                ? childclient.getDetails().get("tanggalLahirAnak").substring(0,10)
+                : childclient.getDetails().get("tanggalLahirAnak")
+            ,childclient.getDetails().get("gender"),umurs.substring(1,umurs.length()),berats);
         //set data for graph
        /* DataPoint dataPoint[] = new DataPoint[history_berat.length];
         for(int i=0;i<history_berat.length;i++){
