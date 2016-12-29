@@ -35,6 +35,8 @@
     </string>
     <string name="unsynced_forms_count_message">forms unsynced</string>
 
+    <string name="tt_register_name">TT Register</string>
+
     <string name="str_next">"Next &gt;&gt;"</string>
     <string name="str_previous">"&lt;&lt; Previous"</string>
     <string name="str_page_info">Page {0} of {1}</string>
@@ -422,7 +424,7 @@
     <string name="dptTambahanVisitLabel">Additional DPT/HB Immunization Visit</string>
     <string name="campakTambahanVisitLabel">Additional Measles Immunization Visit</string>
     <string name="moving">Moving</string>
-    
+
     <color name="vaccBlue">#FF9BC1FB</color>
 
     <string name="month_list_prompt">Month</string>

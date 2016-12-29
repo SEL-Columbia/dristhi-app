@@ -44,6 +44,8 @@ import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import util.uniqueIdGenerator.Generator;
+
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.opensrp.domain.LoginResponse.NO_INTERNET_CONNECTIVITY;
@@ -67,6 +69,7 @@ public class LoginActivity extends Activity {
     public static final String Bengali_LANGUAGE = "Bengali";
     public static final String Bahasa_LANGUAGE = "Bahasa";
 
+    public static Generator generator;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

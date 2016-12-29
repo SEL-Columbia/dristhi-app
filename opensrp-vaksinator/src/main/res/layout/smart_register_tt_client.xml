@@ -1,6 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/list_item_height"
+    android:weightSum="10">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/profile_info_layout">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/ttProfilePic"
+                android:src="@drawable/woman_placeholder"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="5dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="3">
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Medium Text"
+                android:id="@+id/ttNamaIbu" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Medium Text"
+                android:textSize="12sp"
+                android:id="@+id/ttNamaSuami" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Medium Text"
+                android:textSize="12sp"
+                android:id="@+id/ttTanggalLahir" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Medium Text"
+                android:textSize="12sp"
+                android:id="@+id/ttDusun"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="3"
+            android:gravity="bottom">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tt1Logo"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_yes_large" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Medium Text"
+                android:textSize="12sp"
+                android:id="@+id/tanggalTT1"
+                android:gravity="center" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="3"
+            android:gravity="bottom">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tt2Logo"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_yes_large" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Medium Text"
+                android:textSize="12sp"
+                android:id="@+id/tanggalTT2"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="3"
+            android:gravity="bottom">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tt3Logo"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_yes_large" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Medium Text"
+                android:textSize="12sp"
+                android:id="@+id/tanggalTT3"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="3"
+            android:gravity="bottom">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tt4Logo"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_yes_large" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Medium Text"
+                android:textSize="12sp"
+                android:id="@+id/tanggalTT4"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="3"
+            android:gravity="bottom">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tt5Logo"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_yes_large" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Medium Text"
+                android:textSize="12sp"
+                android:id="@+id/tanggalTT5"
+                android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="@dimen/smart_register_client_divider_height"
+        android:layout_height="fill_parent"
+        android:src="@color/smart_register_client_divider_color"/>
+
+    <ImageView
+        android:layout_width="@dimen/smart_register_client_divider_height"
+        android:layout_height="fill_parent"
+        android:src="@color/smart_register_client_divider_color"/>
+
 
 </LinearLayout>

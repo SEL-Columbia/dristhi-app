@@ -84,10 +84,11 @@ public class NativeHomeActivity extends SecuredActivity {
     };
 
     private TextView anakRegisterClientCountView;
+    private TextView ibuRegisterClientCountView;
     public static CommonPersonObjectController kicontroller;
     public static CommonPersonObjectController childcontroller;
-    public static int kicount;
 
+    private static int kicount;
     private int childcount;
 
 
@@ -111,7 +112,7 @@ public class NativeHomeActivity extends SecuredActivity {
 
     private void setupViews() {
         findViewById(R.id.btn_vaksinator_register).setOnClickListener(onRegisterStartListener);
-//        findViewById(R.id.btn_tt_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_TT_vaksinator_register).setOnClickListener(onRegisterStartListener);
        // findViewById(R.id.btn_test2_register).setOnClickListener(onRegisterStartListener);
        // findViewById(R.id.btn_tt_register).setVisibility(View.INVISIBLE);
 
@@ -119,6 +120,7 @@ public class NativeHomeActivity extends SecuredActivity {
         findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
 
         anakRegisterClientCountView = (TextView) findViewById(R.id.txt_vaksinator_register_client_count);
+        ibuRegisterClientCountView = (TextView) findViewById(R.id.txt_TT_vaksinator_register_client_count);
 
     }
 
@@ -163,7 +165,14 @@ public class NativeHomeActivity extends SecuredActivity {
         childcount= childcountcursor.getInt(0);
         childcountcursor.close();
 
+        Cursor kicountcursor = context.commonrepository("ec_kartu_ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_kartu_ibu_search", "ec_kartu_ibu_search.is_closed=0"));
+        kicountcursor.moveToFirst();
+        kicount= kicountcursor.getInt(0);
+        kicountcursor.close();
+
         anakRegisterClientCountView.setText(valueOf(childcount));
+        ibuRegisterClientCountView.setText(valueOf(kicount));
+
 
        /* CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
                 context.allBeneficiaries(), context.listCache(),
@@ -223,7 +232,6 @@ public class NativeHomeActivity extends SecuredActivity {
                 locationTree.getLocationsHierarchy();
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -266,9 +274,9 @@ public class NativeHomeActivity extends SecuredActivity {
                     navigationController.startECSmartRegistry();
                     break;
 
-              //  case R.id.btn_test2_register:
-            //        navigationController.startANCSmartRegistry();
-            //        break;
+                case R.id.btn_TT_vaksinator_register:
+                    navigationController.startFPSmartRegistry();
+                    break;
 /*
                 case R.id.btn_pnc_register:
 //                    navigationController.startPNCSmartRegistry();

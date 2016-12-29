@@ -34,6 +34,8 @@
     </string>
     <string name="unsynced_forms_count_message">forms unsynced</string>
 
+    <string name="tt_register_name">TT Register</string>
+
     <string name="str_next">"Berikutnya&gt;&gt;"</string>
     <string name="str_previous">"&lt;&lt;Sebelumnya"</string>
     <string name="str_page_info">Halaman {0} dari {1}</string>
@@ -264,6 +266,9 @@
     <string name="header_tt">TT</string>
     <string name="header_tt_1">TT 1</string>
     <string name="header_tt_2">TT 2</string>
+    <string name="header_tt_3">TT 3</string>
+    <string name="header_tt_4">TT 4</string>
+    <string name="header_tt_5">TT 5</string>
     <string name="header_tt_booster">TT Booster</string>
     <string name="header_ifa">IFA</string>
     <string name="header_hb">HB</string>

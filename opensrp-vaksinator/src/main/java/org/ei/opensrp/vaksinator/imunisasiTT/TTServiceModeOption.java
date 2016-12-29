@@ -33,23 +33,23 @@ public class TTServiceModeOption extends ServiceModeOption {
         return new ClientsHeaderProvider() {
             @Override
             public int count() {
-                return 2;
+                return 6;
             }
 
             @Override
             public int weightSum() {
-                return 10;
+                return 24;
             }
 
             @Override
             public int[] weights() {
-                return new int[]{8,2};
+                return new int[]{9,3,3,3,3,3};
             }
 
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
-                        R.string.hh_profile,R.string.header_edit
+                        R.string.hh_profile,R.string.header_tt_1,R.string.header_tt_2,R.string.header_tt_3,R.string.header_tt_4,R.string.header_tt_5
                         };
             }
         };

@@ -6,36 +6,46 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
-import org.ei.opensrp.Context;
-import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
-import org.ei.opensrp.domain.Alert;
+import com.flurry.android.FlurryAgent;
+
 import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 import org.ei.opensrp.service.ZiggyService;
+import org.ei.opensrp.sync.ClientProcessor;
 import org.ei.opensrp.vaksinator.LoginActivity;
 import org.ei.opensrp.vaksinator.R;
-//import org.ei.opensrp.test.fragment.VaksinatorSmartRegisterFragment;
+import org.ei.opensrp.vaksinator.fragment.TTSmartRegisterFragment;
 import org.ei.opensrp.vaksinator.pageradapter.BaseRegisterActivityPagerAdapter;
-import org.ei.opensrp.vaksinator.vaksinator.FlurryFacade;
 import org.ei.opensrp.util.FormUtils;
+import org.ei.opensrp.vaksinator.vaksinator.FlurryFacade;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.opensrp.view.dialog.DialogOption;
+import org.ei.opensrp.view.dialog.LocationSelectorDialogFragment;
+import org.ei.opensrp.view.dialog.OpenFormOption;
 import org.ei.opensrp.view.fragment.DisplayFormFragment;
 import org.ei.opensrp.view.fragment.SecuredNativeSmartRegisterFragment;
 import org.ei.opensrp.view.viewpager.OpenSRPViewPager;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 //import org.ei.opensrp.test.fragment.HouseHoldSmartRegisterFragment;
 
-public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
+public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity implements
+        LocationSelectorDialogFragment.OnLocationSelectedListener{
+    SimpleDateFormat timer = new SimpleDateFormat("hh:mm:ss");
 
-    public static final String TAG = "TestActivity";
+    public static final String TAG = "TT REGISTER";
     @Bind(R.id.view_pager)
     OpenSRPViewPager mPager;
     private FragmentPagerAdapter mPagerAdapter;
@@ -55,8 +65,14 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+        String ttStart = timer.format(new Date());
+        Map<String, String> ttRegister = new HashMap<String, String>();
+        ttRegister.put("start", ttStart);
+        FlurryAgent.logEvent("TT_Register_dashboard", ttRegister, true);
+
+        // FlurryFacade.logEvent("anc_dashboard");
         formNames = this.buildFormNameList();
-      //  mBaseFragment = new VaksinatorSmartRegisterFragment();
+        mBaseFragment = new TTSmartRegisterFragment();
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPagerAdapter = new BaseRegisterActivityPagerAdapter(getSupportFragmentManager(), formNames, mBaseFragment);
@@ -100,36 +116,16 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
     }
 
     public DialogOption[] getEditOptions() {
-        return null;
-        //return new DialogOption[]{
-        //        new OpenFormOption("registrasi TT", "jurim_registration", formController)
+        return new DialogOption[]{
+//                new OpenFormOption("Bayi Immunisasi", "kohort_bayi_immunization", formController),
+//
+//                new OpenFormOption("Tutup Bayi", "kohort_anak_tutup", formController),
 
-        //    };
-
-
+        };
     }
 
-    private String getalertstateforcensus(CommonPersonObjectClient pc) {
-        try {
-            List<Alert> alertlist_for_client = Context.getInstance().alertService().findByEntityIdAndAlertNames(pc.entityId(), "FW CENSUS");
-            String alertstate = "";
-            if (alertlist_for_client.size() == 0) {
 
-            } else {
-                for (int i = 0; i < alertlist_for_client.size(); i++) {
-//           psrfdue.setText(alertlist_for_client.get(i).expiryDate());
-                    Log.v("printing alertlist", alertlist_for_client.get(i).status().value());
-                    alertstate = alertlist_for_client.get(i).status().value();
-
-                }
-            }
-            return alertstate;
-        }catch (Exception e){
-            return "";
-        }
-    }
-
-    @Override
+    /*@Override
     public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
         Log.v("fieldoverride", fieldOverrides.toString());
         // save the form
@@ -139,6 +135,32 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
 
             ziggyService.saveForm(getParams(submission), submission.instance());
 
+            context.formSubmissionService().updateFTSsearch(submission);
+
+            //switch to forms list fragment
+            switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
+
+        }catch (Exception e){
+            // TODO: show error dialog on the formfragment if the submission fails
+            DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
+            if (displayFormFragment != null) {
+                displayFormFragment.hideTranslucentProgressDialog();
+            }
+            e.printStackTrace();
+        }
+    }*/
+    @Override
+    public void saveFormSubmission(String formSubmission, String id, String formName, JSONObject fieldOverrides){
+        Log.v("fieldoverride", fieldOverrides.toString());
+        // save the form
+        try{
+            FormUtils formUtils = FormUtils.getInstance(getApplicationContext());
+            FormSubmission submission = formUtils.generateFormSubmisionFromXMLString(id, formSubmission, formName, fieldOverrides);
+            ziggyService.saveForm(getParams(submission), submission.instance());
+            ClientProcessor.getInstance(getApplicationContext()).processClient();
+
+            context.formSubmissionService().updateFTSsearch(submission);
+            context.formSubmissionRouter().handleSubmission(submission, formName);
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
@@ -153,9 +175,45 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
     }
 
     @Override
+    public void OnLocationSelected(String locationJSONString) {
+        JSONObject combined = null;
+
+        try {
+            JSONObject locationJSON = new JSONObject(locationJSONString);
+            //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+
+            combined = locationJSON;
+            //     Iterator<String> iter = uniqueId.keys();
+
+       /*     while (iter.hasNext()) {
+                String key = iter.next();
+                combined.put(key, uniqueId.get(key));
+            }
+*/
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (combined != null) {
+            FieldOverrides fieldOverrides = new FieldOverrides(combined.toString());
+            startFormActivity("registrasi_jurim", null, fieldOverrides.getJSONString());
+        }
+    }
+  /*  public void saveuniqueid() {
+        try {
+            JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+            String uniq = uniqueId.getString("unique_id");
+            context.uniqueIdController().updateCurrentUniqueId(uniq);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
         FlurryFacade.logEvent(formName);
-       // Log.v("fieldoverride", metaData);
+//        Log.v("fieldoverride", metaData);
         try {
             int formIndex = FormUtils.getIndexForFormName(formName, formNames) + 1; // add the offset
             if (entityId != null || metaData != null){
@@ -198,6 +256,7 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
                 if (displayFormFragment != null) {
                     displayFormFragment.hideTranslucentProgressDialog();
                     displayFormFragment.setFormData(null);
+
                 }
 
                 displayFormFragment.setRecordId(null);
@@ -205,6 +264,7 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
         });
 
     }
+
 
     public android.support.v4.app.Fragment findFragmentByPosition(int position) {
         FragmentPagerAdapter fragmentPagerAdapter = mPagerAdapter;
@@ -226,8 +286,9 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
 
     private String[] buildFormNameList(){
         List<String> formNames = new ArrayList<String>();
-       formNames.add("jurim_registration");
-     //   formNames.add("census_enrollment_form");
+        formNames.add("registrasi_jurim");
+        formNames.add("kohort_anak_tutup");
+        formNames.add("kohort_bayi_immunization");
 //        DialogOption[] options = getEditOptions();
 //        for (int i = 0; i < options.length; i++){
 //            formNames.add(((OpenFormOption) options[i]).getFormName());
@@ -239,6 +300,10 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
     protected void onPause() {
         super.onPause();
         retrieveAndSaveUnsubmittedFormData();
+        String ttEnd = timer.format(new Date());
+        Map<String, String> ttRegister = new HashMap<String, String>();
+        ttRegister.put("end", ttEnd);
+        FlurryAgent.logEvent("TT_Register_dashboard", ttRegister, true);
     }
 
     public void retrieveAndSaveUnsubmittedFormData(){

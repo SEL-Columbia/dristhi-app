@@ -46,7 +46,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
-                android:id="@+id/name" />
+                android:id="@+id/ttNamaIbu" />
 
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
                 android:textSize="12sp"
-                android:id="@+id/husbandName" />
+                android:id="@+id/ttNamaSuami" />
             <org.ei.opensrp.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,57 +63,15 @@
                 style="@style/CustomFontTextViewStyle.ListView.Medium"
                 android:text="Medium Text"
                 android:textSize="12sp"
-                android:id="@+id/subVillage" />
-
-        </LinearLayout>
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:weightSum="73"
-            android:orientation="horizontal">
-
-            <include
-                android:id="@+id/layout_hb07"
-                layout="@layout/anak_frame_immunization_layout"/>
-
-            <ImageView
-                android:layout_width="@dimen/smart_register_client_divider_height"
-                android:layout_height="fill_parent"
-                android:src="@color/smart_register_client_divider_color"/>
-
-            <include
-                android:id="@+id/layout_bcg"
-                layout="@layout/anak_frame_immunization_layout"/>
-
-            <ImageView
-                android:layout_width="@dimen/smart_register_client_divider_height"
-                android:layout_height="fill_parent"
-                android:src="@color/smart_register_client_divider_color"/>
-
-            <include
-                android:id="@+id/layout_dpt_hb1_polio2"
-                layout="@layout/anak_frame_immunization_layout"/>
-
-            <ImageView
-                android:layout_width="@dimen/smart_register_client_divider_height"
-                android:layout_height="fill_parent"
-                android:src="@color/smart_register_client_divider_color"/>
-
-            <include
-                android:id="@+id/layout_dpt_hb2_polio3"
-                layout="@layout/anak_frame_immunization_layout"/>
-
-            <ImageView
-                android:layout_width="@dimen/smart_register_client_divider_height"
-                android:layout_height="fill_parent"
-                android:src="@color/smart_register_client_divider_color"/>
-
-            <include
-                android:id="@+id/layout_campak"
-                layout="@layout/anak_frame_immunization_layout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="14"/>
+                android:id="@+id/ttTanggalLahir" />
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Medium Text"
+                android:textSize="12sp"
+                android:id="@+id/ttSubVillage" />
 
         </LinearLayout>
     </LinearLayout>

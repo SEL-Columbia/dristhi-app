@@ -31,11 +31,14 @@ public class TestNavigationController extends org.ei.opensrp.view.controller.Nav
             sharedPreferences.edit().putBoolean("firstlauch",false).commit();
        //     activity.startActivity(new Intent(activity, tutorialCircleViewFlow.class));
         }
-
     }
     @Override
     public void startFPSmartRegistry() {
         activity.startActivity(new Intent(activity, TTSmartRegisterActivity.class));
+        SharedPreferences sharedPreferences = getDefaultSharedPreferences(this.activity);
+
+        if(sharedPreferences.getBoolean("firstlauch",true))
+            sharedPreferences.edit().putBoolean("firstlauch",false).commit();
     }
     @Override
     public void startANCSmartRegistry() {
