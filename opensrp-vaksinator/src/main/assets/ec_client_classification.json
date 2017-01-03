@@ -34,6 +34,30 @@
       }
     },
     {
+      "comment": "ANC: This rule checks whether a given case belongs to ANC register",
+      "rule": {
+        "type": "event",
+        "fields": [
+          {
+            "field":"obs.fieldCode",
+            "concept": "45AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "values": ["703AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"],
+            "creates_case":["ec_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Kunjungan ANC",
+            "creates_case":["ec_ibu"]
+          },
+          {
+            "field":"eventType",
+            "field_value": "Penutupan ANC",
+            "closes_case":["ec_ibu"]
+          }
+        ]
+      }
+    },
+    {
       "comment": "Anak: This rule checks whether a given case belongs to Child register",
       "rule": {
         "type": "event",
