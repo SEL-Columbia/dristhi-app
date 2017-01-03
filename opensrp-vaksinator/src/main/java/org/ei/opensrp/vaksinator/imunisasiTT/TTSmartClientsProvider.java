@@ -27,6 +27,7 @@ import org.ei.opensrp.view.dialog.SortOption;
 import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 
 import java.text.SimpleDateFormat;
+import java.util.Map;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static org.joda.time.LocalDateTime.parse;
@@ -88,24 +89,51 @@ public class TTSmartClientsProvider implements SmartRegisterCLientsProviderForCu
 
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.profilepic);
             viewHolder.follow_up = (ImageButton)convertView.findViewById(R.id.btn_edit);
-            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
+//            viewHolder.profilepic.setImageDrawable(context.getResources().getDrawable(R.drawable.child_boy_infant));
             viewHolder.profilepic =(ImageView)convertView.findViewById(R.id.img_profile);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        viewHolder.follow_up.setOnClickListener(onClickListener);
+        CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
+        /*viewHolder.follow_up.setOnClickListener(onClickListener);
         viewHolder.follow_up.setTag(smartRegisterClient);
         viewHolder.profilelayout.setOnClickListener(onClickListener);
         viewHolder.profilelayout.setTag(smartRegisterClient);
-        CommonPersonObjectClient pc = (CommonPersonObjectClient) smartRegisterClient;
+
         if (iconPencilDrawable == null) {
             iconPencilDrawable = context.getResources().getDrawable(R.drawable.ic_pencil);
         }
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
-        viewHolder.follow_up.setOnClickListener(onClickListener);
+        viewHolder.follow_up.setOnClickListener(onClickListener);*/
+
+        AllCommonsRepository allancRepository =  org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
+        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
+
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
+        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.entityId());
+        details.putAll(ancobject.getColumnmaps());
+
+        if(pc.getDetails() != null) {
+            pc.getDetails().putAll(details);
+        }else{
+            pc.setDetails(details);
+        }
+        viewHolder.namaIbu.setText(pc.getColumnmaps().get("namalengkap")!=null?pc.getColumnmaps().get("namalengkap"):"");
+        viewHolder.namaSuami.setText(pc.getColumnmaps().get("namaSuami")!=null?pc.getColumnmaps().get("namaSuami"):"");
+        viewHolder.dusun.setText(pc.getDetails().get("address1")!=null?pc.getDetails().get("address1"):"");
+        viewHolder.tanggalLahir.setText(pc.getDetails().get("umur")!=null?pc.getDetails().get("umur"):"");
+
+        String AncDate = "";
+        boolean tt = false;
+        if( pc.getDetails().get("statusImunisasitt") != null) {
+            if (pc.getDetails().get("statusImunisasitt").equals("tt_ke_0")) {
+                AncDate = pc.getDetails().get("ancDate") != null ? pc.getDetails().get("ancDate") : "-";
+                tt = true;
+            }
+        }
+
+        /*DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
         detailsRepository.updateDetails(pc);
 
         String ages = pc.getColumnmaps().get("tanggalLahirAnak").substring(0, pc.getColumnmaps().get("tanggalLahirAnak").indexOf("T"));
@@ -133,15 +161,15 @@ public class TTSmartClientsProvider implements SmartRegisterCLientsProviderForCu
         viewHolder.tanggalLahir.setText(kiparent.getColumnmaps().get("tanggalLahir")!=null
                 ?     Integer.toString(age(ages)/12)+" "+ context.getResources().getString(R.string.year_short)
                 + ", "+Integer.toString(age(ages)%12)+" "+ context.getResources().getString(R.string.month_short)
-                : " ");
+                : " ");*/
 
-        viewHolder.tt1Tanggal.setText("0000-00-00");
+        viewHolder.tt1Tanggal.setText(AncDate);
         viewHolder.tt2Tanggal.setText("0000-00-00");
         viewHolder.tt3Tanggal.setText("0000-00-00");
         viewHolder.tt4Tanggal.setText("0000-00-00");
         viewHolder.tt5Tanggal.setText("0000-00-00");
 
-        setIcon(viewHolder.tt1Logo, true);
+        setIcon(viewHolder.tt1Logo, tt);
         setIcon(viewHolder.tt2Logo,true);
         setIcon(viewHolder.tt3Logo,true);
         setIcon(viewHolder.tt4Logo,true);

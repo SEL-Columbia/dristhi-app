@@ -197,7 +197,7 @@ public class TTSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAda
                 "WHEN alerts.status is Null THEN '5'\n" +
                 "Else alerts.status END ASC";
     }
-    public void initializeQueries(){
+   /* public void initializeQueries(){
         TTSmartClientsProvider kiscp = new TTSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
         clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, kiscp, new CommonRepository("ec_anak",new String []{"tanggalLahirAnak","namaBayi"}));
         clientsView.setAdapter(clientAdapter);
@@ -225,8 +225,43 @@ public class TTSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAda
         refresh();
 
 
-    }
+    }*/
 
+   public void initializeQueries(){
+       try {
+           TTSmartClientsProvider kiscp = new TTSmartClientsProvider(getActivity(),clientActionHandler,context.alertService());
+           clientAdapter = new SmartRegisterPaginatedCursorAdapter(getActivity(), null, kiscp, new CommonRepository("ec_ibu",new String []{"ec_ibu.is_closed", "ec_kartu_ibu.namalengkap", "ec_kartu_ibu.namaSuami"}));
+           clientsView.setAdapter(clientAdapter);
+
+           setTablename("ec_ibu");
+           SmartRegisterQueryBuilder countqueryBUilder = new SmartRegisterQueryBuilder();
+           countqueryBUilder.SelectInitiateMainTableCounts("ec_ibu");
+           countqueryBUilder.customJoin("LEFT JOIN ec_kartu_ibu on ec_kartu_ibu.id = ec_ibu.id");
+           mainCondition = " ec_ibu.is_closed = 0 and pptest ='Positive' ";
+           joinTable = "";
+           countSelect = countqueryBUilder.mainCondition(mainCondition);
+           super.CountExecute();
+
+           SmartRegisterQueryBuilder queryBUilder = new SmartRegisterQueryBuilder();
+           queryBUilder.SelectInitiateMainTable("ec_ibu", new String[]{"ec_ibu.relationalid","ec_ibu.is_closed", "ec_ibu.details",  "ec_kartu_ibu.namalengkap","ec_kartu_ibu.namaSuami"});
+           queryBUilder.customJoin("LEFT JOIN ec_kartu_ibu on ec_kartu_ibu.id = ec_ibu.id");
+           mainSelect = queryBUilder.mainCondition(mainCondition);
+           Sortqueries = KiSortByNameAZ();
+
+           currentlimit = 20;
+           currentoffset = 0;
+
+           super.filterandSortInInitializeQueries();
+
+           updateSearchView();
+           refresh();
+       } catch (Exception e){
+           e.printStackTrace();
+       }
+       finally {
+       }
+
+   }
 
     @Override
     public void startRegistration() {
@@ -268,10 +303,10 @@ public class TTSmartRegisterFragment extends SecuredNativeSmartRegisterCursorAda
 
 
     private String KiSortByNameAZ() {
-        return " namaBayi ASC";
+        return " namalengkap ASC";
     }
     private String KiSortByNameZA() {
-        return " namaBayi DESC";
+        return " namalengkap DESC";
     }
 
     private String KiSortByAge() {

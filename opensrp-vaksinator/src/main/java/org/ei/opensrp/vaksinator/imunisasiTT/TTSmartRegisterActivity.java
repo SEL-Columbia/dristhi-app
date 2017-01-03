@@ -64,11 +64,11 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
         ButterKnife.bind(this);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+/*
         String ttStart = timer.format(new Date());
         Map<String, String> ttRegister = new HashMap<String, String>();
         ttRegister.put("start", ttStart);
-        FlurryAgent.logEvent("TT_Register_dashboard", ttRegister, true);
+        FlurryAgent.logEvent("TT_Register_dashboard", ttRegister, true);*/
 
         // FlurryFacade.logEvent("anc_dashboard");
         formNames = this.buildFormNameList();
@@ -300,10 +300,10 @@ public class TTSmartRegisterActivity extends SecuredNativeSmartRegisterActivity 
     protected void onPause() {
         super.onPause();
         retrieveAndSaveUnsubmittedFormData();
-        String ttEnd = timer.format(new Date());
+   /*     String ttEnd = timer.format(new Date());
         Map<String, String> ttRegister = new HashMap<String, String>();
         ttRegister.put("end", ttEnd);
-        FlurryAgent.logEvent("TT_Register_dashboard", ttRegister, true);
+        FlurryAgent.logEvent("TT_Register_dashboard", ttRegister, true);*/
     }
 
     public void retrieveAndSaveUnsubmittedFormData(){

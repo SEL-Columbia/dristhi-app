@@ -291,10 +291,10 @@ public class NativeHomeActivity extends SecuredActivity {
                     break; */
 
             }
-            String HomeEnd = timer.format(new Date());
+          /*  String HomeEnd = timer.format(new Date());
             Map<String, String> Home = new HashMap<String, String>();
             Home.put("end", HomeEnd);
-            FlurryAgent.logEvent("vaksinator_home_dashboard",Home, true);
+            FlurryAgent.logEvent("vaksinator_home_dashboard",Home, true);*/
         }
     };
 

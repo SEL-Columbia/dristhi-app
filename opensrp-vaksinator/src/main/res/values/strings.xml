@@ -403,6 +403,10 @@
     <string name="dptTambahan">Additional DPT/HB</string>
     <string name="campakTambahan">Additional Measles</string>
 
+    <string name="header_tt_3">TT 3</string>
+    <string name="header_tt_4">TT 4</string>
+    <string name="header_tt_5">TT 5</string>
+
     <string name="meninggal">Death</string>
     <string name="hari">days</string>
     <string name="headerTextpart01">Immunization Recap. in </string>

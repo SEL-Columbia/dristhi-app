@@ -144,9 +144,6 @@ public class KIANCClientsProvider implements SmartRegisterCLientsProviderForCurs
         }
 
 
-
-
-
         viewHolder.hr_badge.setVisibility(View.INVISIBLE);
         viewHolder.hrp_badge.setVisibility(View.INVISIBLE);
         viewHolder.img_hrl_badge.setVisibility(View.INVISIBLE);
