@@ -193,7 +193,7 @@ public class ChildDetailActivity extends Activity {
         for(int i=0;i<history_umur.length;i++){
             umurs = umurs + "," + Integer.toString(Integer.parseInt(history_umur[i])/30);
         }
-
+//        System.out.println("status : bgm = "+", garis kuning = "+", 2T = ");
             dua_t.setText(getString(R.string.dua_t) +" "+ (childclient.getDetails().get("dua_t") != null ? yesNo(childclient.getDetails().get("dua_t")) : "-"));
             bgm.setText(getString(R.string.bgm) + " "+ (childclient.getDetails().get("bgm") != null ? yesNo(childclient.getDetails().get("bgm")) : "-"));
             under_yellow_line.setText(getString(R.string.under_yellow_line) + " "+ (childclient.getDetails().get("garis_kuning") != null ? yesNo(childclient.getDetails().get("garis_kuning")) : "-"));
@@ -260,7 +260,7 @@ public class ChildDetailActivity extends Activity {
     }
 
     private String yesNo(String value){
-        if(value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("ya"))
+        if(value.toLowerCase().contains("yes") || value.toLowerCase().contains("ya"))
             return getString(R.string.yes);
         else
             return getString(R.string.no);
