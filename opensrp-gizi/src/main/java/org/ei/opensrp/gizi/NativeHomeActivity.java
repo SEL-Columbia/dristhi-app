@@ -84,11 +84,13 @@ public class NativeHomeActivity extends SecuredActivity {
     };
 
     private TextView anakRegisterClientCountView;
+    private TextView ibuRegisterClientCountView;
     public static CommonPersonObjectController kicontroller;
     public static CommonPersonObjectController childcontroller;
     public static int kicount;
 
     private int childcount;
+    private int ibucount;
 
 
     @Override
@@ -111,7 +113,7 @@ public class NativeHomeActivity extends SecuredActivity {
 
     private void setupViews() {
         findViewById(R.id.btn_gizi_register).setOnClickListener(onRegisterStartListener);
-//        findViewById(R.id.btn_tt_register).setOnClickListener(onRegisterStartListener);
+        findViewById(R.id.btn_gizi_ibu_register).setOnClickListener(onRegisterStartListener);
         // findViewById(R.id.btn_test2_register).setOnClickListener(onRegisterStartListener);
         // findViewById(R.id.btn_tt_register).setVisibility(View.INVISIBLE);
 
@@ -119,6 +121,7 @@ public class NativeHomeActivity extends SecuredActivity {
 //        findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
 
         anakRegisterClientCountView = (TextView) findViewById(R.id.txt_child_register_client_count);
+        ibuRegisterClientCountView = (TextView) findViewById(R.id.txt_mother_register_client_count);
 
     }
 
@@ -164,6 +167,14 @@ public class NativeHomeActivity extends SecuredActivity {
         childcountcursor.close();
 
         anakRegisterClientCountView.setText(valueOf(childcount));
+
+        Cursor ibucountcursor = context.commonrepository("ibu").RawCustomQueryForAdapter(sqb.queryForCountOnRegisters("ec_kartu_ibu_search", "ec_kartu_ibu_search.is_closed=0"));
+        ibucountcursor.moveToFirst();
+        ibucount= ibucountcursor.getInt(0);
+        ibucountcursor.close();
+
+        ibuRegisterClientCountView.setText(valueOf(ibucount));
+
 
        /* CommonPersonObjectController hhcontroller = new CommonPersonObjectController(context.allCommonsRepositoryobjects("anak"),
                 context.allBeneficiaries(), context.listCache(),
@@ -265,9 +276,9 @@ public class NativeHomeActivity extends SecuredActivity {
                     navigationController.startChildSmartRegistry();
                     break;
 
-                //  case R.id.btn_test2_register:
-                //        navigationController.startANCSmartRegistry();
-                //        break;
+                  case R.id.btn_gizi_ibu_register:
+                        navigationController.startANCSmartRegistry();
+                        break;
 /*
                 case R.id.btn_pnc_register:
 //                    navigationController.startPNCSmartRegistry();

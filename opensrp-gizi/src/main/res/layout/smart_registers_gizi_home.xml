@@ -23,12 +23,13 @@
             <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                android:layout_marginLeft="100dp">
 
                 <ImageButton
                         android:id="@+id/btn_gizi_register"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/register_child"
                         style="@style/ImageButton.Home.Register"/>
 
@@ -52,7 +53,38 @@
 
             </FrameLayout>
 
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="100dp">
 
+                <ImageButton
+                    android:id="@+id/btn_gizi_ibu_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/register_anc"
+                    style="@style/ImageButton.Home.Register"/>
+
+                <org.ei.opensrp.view.customControls.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GIZI IBU"
+                    style="@style/CustomFontTextViewStyle.Home.RegisterName"/>
+
+                <org.ei.opensrp.view.customControls.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_label"
+                    style="@style/CustomFontTextViewStyle.Home.RegisterLabel"/>
+
+                <org.ei.opensrp.view.customControls.CustomFontTextView
+                    android:id="@+id/txt_mother_register_client_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/CustomFontTextViewStyle.Badge2"/>
+
+            </FrameLayout>
 
         </LinearLayout>
 

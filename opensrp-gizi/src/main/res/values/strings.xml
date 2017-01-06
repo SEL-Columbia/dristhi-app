@@ -416,7 +416,14 @@
     <string name="lastVitA">Last Vitamin A given:</string>
     <string name="lastAnthelmintic">Last Anthelmintic given:</string>
 
+    <string name="kunjunganTerakhir">Last Visit</string>
+    <string name="usiaKandungan">Geostational Age</string>
+    <string name="lila">Arm Circumference</string>
+    <string name="sistolik">Systolic</string>
+    <string name="diastolik">Diastolic</string>
+
     <string name="form_name_visit">Monthly Visit</string>
+    <string name="year_unit">yr</string>
     <string name="weight_unit">Kg</string>
     <string name="length_unit">Cm</string>
     <string name="x_axis_label">Month</string>

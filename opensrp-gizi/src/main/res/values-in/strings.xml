@@ -240,7 +240,7 @@
     <string name="edd_label">"EDD: "</string>
     <string name="str_days_past_due">day (s) past due</string>
     <string name="lmp_label">LMP:</string>
-    <string name="str_weeks">weeks</string>
+    <string name="str_weeks">Minggu</string>
     <string name="anc_register_title_in_short">ANC:</string>
     <string name="str_bp">BP</string>
     <string name="str_weight">Weight: </string>
@@ -414,5 +414,12 @@
     <string name="obatcacing">Obat Cacing:</string>
     <string name="lastVitA">Vitamin A terakhir diberikan:</string>
     <string name="lastAnthelmintic">Obat cacing terakhir diberikan:</string>
+
+    <string name="year_unit">th</string>
+    <string name="kunjunganTerakhir">Kunjungan Terakhir</string>
+    <string name="usiaKandungan">Usia Kandungan</string>
+    <string name="lila">Lingkar Lengan</string>
+    <string name="sistolik">Sistolik</string>
+    <string name="diastolik">Diastolik</string>
 
 </resources>

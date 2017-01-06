@@ -8,6 +8,7 @@ import android.net.Uri;
 
 //import org.ei.opensrp.gizi.test.TestSmartRegisterActivity;
 import org.ei.opensrp.gizi.gizi.GiziSmartRegisterActivity;
+import org.ei.opensrp.gizi.giziIbu.IbuSmartRegisterActivity;
 import org.ei.opensrp.view.activity.ReportsActivity;
 import org.ei.opensrp.view.controller.ANMController;
 
@@ -41,7 +42,7 @@ public class GiziNavigationController extends org.ei.opensrp.view.controller.Nav
     }
     @Override
     public void startANCSmartRegistry() {
-       // activity.startActivity(new Intent(activity, TestSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, IbuSmartRegisterActivity.class));
     }
 
     @Override
