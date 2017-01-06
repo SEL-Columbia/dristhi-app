@@ -107,14 +107,16 @@ public class TTSmartClientsProvider implements SmartRegisterCLientsProviderForCu
         viewHolder.follow_up.setImageDrawable(iconPencilDrawable);
         viewHolder.follow_up.setOnClickListener(onClickListener);*/
 
-        AllCommonsRepository allancRepository =  org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");
-        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());
+                                                                                                                            // IMPORTANT : data has 2 type: columnMaps and details
 
-        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
-        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.entityId());
-        details.putAll(ancobject.getColumnmaps());
+        AllCommonsRepository allancRepository =  org.ei.opensrp.Context.getInstance().allCommonsRepositoryobjects("ec_ibu");// get all data from ec_ibu table
+        CommonPersonObject ancobject = allancRepository.findByCaseID(pc.entityId());                                        // get all data related to entity id and transform it into CommonPersonObject
 
-        if(pc.getDetails() != null) {
+        DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();                     // gather all details from repository
+        Map<String, String> details =  detailsRepository.getAllDetailsForClient(pc.entityId());                             // get specific detail from all details based on entity id
+        details.putAll(ancobject.getColumnmaps());                                                                          // combine all columnMaps and details into 1 object.
+
+        if(pc.getDetails() != null) {                                                                                       // used to update client details with details built on previous step
             pc.getDetails().putAll(details);
         }else{
             pc.setDetails(details);

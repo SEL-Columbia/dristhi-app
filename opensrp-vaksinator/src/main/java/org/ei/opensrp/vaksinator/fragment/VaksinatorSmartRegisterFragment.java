@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonRepository;
@@ -233,6 +234,12 @@ public class VaksinatorSmartRegisterFragment extends SecuredNativeSmartRegisterC
 
     @Override
     public void startRegistration() {
+
+        String uniqueIdJson = LoginActivity.generator.uniqueIdController().getUniqueIdJson();
+        if(uniqueIdJson == null || uniqueIdJson.isEmpty()){
+            Toast.makeText(getActivity(), "no unique id", Toast.LENGTH_LONG).show();
+            return;
+        }
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
         Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
         if (prev != null) {
