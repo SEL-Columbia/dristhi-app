@@ -225,6 +225,10 @@ public class NativeHomeActivity extends SecuredActivity {
                 new SyncProgressIndicator(), context.allFormVersionSyncService());
         FlurryFacade.logEvent("click_update_from_server");
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
+
+        if(LoginActivity.generator.uniqueIdController().needToRefillUniqueId(LoginActivity.generator.UNIQUE_ID_LIMIT))  // unique id part
+            LoginActivity.generator.requestUniqueId();                                                                  // unique id part
+
         String locationjson = context.anmLocationController().get();
         LocationTree locationTree = EntityUtils.fromJson(locationjson, LocationTree.class);
 

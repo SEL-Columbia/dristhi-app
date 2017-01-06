@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.flurry.android.FlurryAgent;
 
@@ -85,6 +86,13 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             }
         });
 
+        if(LoginActivity.generator.uniqueIdController().needToRefillUniqueId(LoginActivity.generator.UNIQUE_ID_LIMIT)) {
+            String toastMessage = "need to refill unique id, its only "+
+                                  LoginActivity.generator.uniqueIdController().countRemainingUniqueId()+
+                                  " remaining";
+            Toast.makeText(context.applicationContext(), toastMessage,Toast.LENGTH_LONG).show();
+        }
+
         ziggyService = context.ziggyService();
     }
     public void onPageChanged(int page){
@@ -161,6 +169,11 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             context.formSubmissionService().updateFTSsearch(submission);
             context.formSubmissionRouter().handleSubmission(submission, formName);
             //switch to forms list fragment
+
+            if(formName.equals("registrasi_jurim")){
+                saveuniqueid();
+            }
+
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
         }catch (Exception e){
@@ -179,7 +192,7 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
 
         try {
             JSONObject locationJSON = new JSONObject(locationJSONString);
-         //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+            JSONObject uniqueId = new JSONObject(LoginActivity.generator.uniqueIdController().getUniqueIdJson());
 
             combined = locationJSON;
        //     Iterator<String> iter = uniqueId.keys();
@@ -198,16 +211,16 @@ public class VaksinatorSmartRegisterActivity extends SecuredNativeSmartRegisterA
             startFormActivity("registrasi_jurim", null, fieldOverrides.getJSONString());
         }
     }
-  /*  public void saveuniqueid() {
+    public void saveuniqueid() {
         try {
-            JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+            JSONObject uniqueId = new JSONObject(LoginActivity.generator.uniqueIdController().getUniqueIdJson());
             String uniq = uniqueId.getString("unique_id");
-            context.uniqueIdController().updateCurrentUniqueId(uniq);
+            LoginActivity.generator.uniqueIdController().updateCurrentUniqueId(uniq);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {

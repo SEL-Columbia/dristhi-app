@@ -11,6 +11,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 //import org.ei.opensrp.Context;
+import org.ei.opensrp.Context;
 import org.ei.opensrp.vaksinator.LoginActivity;
 import org.ei.opensrp.util.Cache;
 
@@ -69,7 +70,7 @@ public class Generator {
         }
     public UniqueIdService uniqueIdService() {
         if (uniqueIdService == null)
-            uniqueIdService = new UniqueIdService(context.getHttpAgent(), context.configuration(), uniqueIdController(), allSettingsINA(), context.allSharedPreferences());
+            uniqueIdService = new UniqueIdService(context.httpAgent(), context.configuration(), uniqueIdController(), allSettingsINA(), context.allSharedPreferences());
         return uniqueIdService;
     }
 
