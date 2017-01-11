@@ -43,6 +43,8 @@ import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import util.uniqueIdGenerator.Generator;
+
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.opensrp.domain.LoginResponse.NO_INTERNET_CONNECTIVITY;
@@ -65,6 +67,7 @@ public class LoginActivity extends Activity {
     public static final String KANNADA_LANGUAGE = "Kannada";
     public static final String Bahasa_LANGUAGE = "Bahasa";
 
+    public static Generator generator;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -203,6 +206,16 @@ public class LoginActivity extends Activity {
                 }
             }
         });
+
+        tryGetUniqueId(userName, password, new Listener<ResponseStatus>() {
+            @Override
+            public void onEvent(ResponseStatus data) {
+                if (data == ResponseStatus.failure) {
+                    logError("failed to fetch unique id");
+                }
+                goToHome();
+            }
+        });
     }
 
     private void showErrorDialog(String message) {
@@ -291,6 +304,7 @@ public class LoginActivity extends Activity {
         context.userService().localLogin(userName, password);
         ErrorReportingFacade.setUsername("", userName);
         FlurryFacade.setUserId(userName);
+        LoginActivity.generator = new Generator(context,userName,password);
         goToHome();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
@@ -299,6 +313,7 @@ public class LoginActivity extends Activity {
         context.userService().remoteLogin(userName, password, userInfo);
         ErrorReportingFacade.setUsername("", userName);
         FlurryFacade.setUserId(userName);
+        LoginActivity.generator = new Generator(context,userName,password);
         goToHome();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
@@ -354,6 +369,33 @@ public class LoginActivity extends Activity {
             res.updateConfiguration(conf, dm);
             return ENGLISH_LANGUAGE;
         }
+    }
+
+    private void tryGetUniqueId(final String username, final String password, final Listener<ResponseStatus> afterGetUniqueId) {
+        LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
+            @Override
+            public void setVisible() {
+                progressDialog.show();
+            }
+            @Override
+            public void setInvisible() {
+                progressDialog.dismiss();
+            }
+        });
+
+        task.doActionInBackground(new BackgroundAction<ResponseStatus>() {
+            @Override
+            public ResponseStatus actionToDoInBackgroundThread() {
+                LoginActivity.generator = new Generator(context,username,password);                     // unique id part
+                LoginActivity.generator.uniqueIdService().syncUniqueIdFromServer(username, password);   // unique id part
+                return LoginActivity.generator.uniqueIdService().getLastUsedId(username, password);     // unique id part
+            }
+
+            @Override
+            public void postExecuteInUIThread(ResponseStatus result) {
+                afterGetUniqueId.onEvent(result);
+            }
+        });
     }
 
 }
