@@ -251,6 +251,13 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
 
     @Override
     public void startRegistration() {
+
+        String uniqueIdJson = LoginActivity.generator.uniqueIdController().getUniqueIdJson();
+        if(uniqueIdJson == null || uniqueIdJson.isEmpty()){
+            Toast.makeText(getActivity(), "no unique id", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
         Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
         if (prev != null) {
@@ -268,7 +275,7 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
             switch (view.getId()) {
                 case R.id.profile_info_layout:
                     FlurryFacade.logEvent("click_detail_view_on_kohort_ibu_dashboard");
-                   KIDetailActivity.kiclient = (CommonPersonObjectClient)view.getTag();
+                    KIDetailActivity.kiclient = (CommonPersonObjectClient)view.getTag();
                     Intent intent = new Intent(getActivity(),KIDetailActivity.class);
                     startActivity(intent);
                     getActivity().finish();
@@ -318,7 +325,6 @@ public class NativeKISmartRegisterFragment extends SecuredNativeSmartRegisterCur
         }
         @Override
         public void onDialogOptionSelection(DialogOption option, Object tag) {
-
 
             if(option.name().equalsIgnoreCase(getString(R.string.str_register_anc_form) ) ) {
                 CommonPersonObjectClient pc = KIDetailActivity.kiclient;
