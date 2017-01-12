@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.ei.opensrp.domain.form.FieldOverrides;
 import org.ei.opensrp.domain.form.FormSubmission;
@@ -87,6 +88,13 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             }
         });
 
+        if(LoginActivity.generator.uniqueIdController().needToRefillUniqueId(LoginActivity.generator.UNIQUE_ID_LIMIT)) {
+            String toastMessage =   "need to refill unique id, its only "+
+                                    LoginActivity.generator.uniqueIdController().countRemainingUniqueId()+
+                                    " remaining";
+            Toast.makeText(context.applicationContext(), toastMessage, Toast.LENGTH_LONG).show();
+        }
+
         ziggyService = context.ziggyService();
 
     }
@@ -137,15 +145,15 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
         try {
             JSONObject locationJSON = new JSONObject(locationJSONString);
-            //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+            JSONObject uniqueId = new JSONObject(LoginActivity.generator.uniqueIdController().getUniqueIdJson());
 
             combined = locationJSON;
-            //   Iterator<String> iter = uniqueId.keys();
+            Iterator<String> iter = uniqueId.keys();
 
-            //  while (iter.hasNext()) {
-            //      String key = iter.next();
-            //       combined.put(key, uniqueId.get(key));
-            //    }
+            while (iter.hasNext()) {
+                String key = iter.next();
+                combined.put(key, uniqueId.get(key));
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -168,6 +176,10 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             context.formSubmissionService().updateFTSsearch(submission);
             context.formSubmissionRouter().handleSubmission(submission, formName);
+
+            if(formName.equals("kartu_ibu_registration")){
+                saveuniqueid();
+            }
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
@@ -271,6 +283,16 @@ public class NativeKBSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     protected void onPause() {
         super.onPause();
         retrieveAndSaveUnsubmittedFormData();
+    }
+
+    public void saveuniqueid() {
+        try {
+            JSONObject uniqueId = new JSONObject(LoginActivity.generator.uniqueIdController().getUniqueIdJson());
+            String uniq = uniqueId.getString("unique_id");
+            LoginActivity.generator.uniqueIdController().updateCurrentUniqueId(uniq);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void retrieveAndSaveUnsubmittedFormData(){
