@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectClient;
@@ -243,6 +244,13 @@ public class GiziSmartRegisterFragment extends SecuredNativeSmartRegisterCursorA
         if (prev != null) {
             ft.remove(prev);
         }
+
+        String uniqueIdJson = LoginActivity.generator.uniqueIdController().getUniqueIdJson();
+        if(uniqueIdJson == null || uniqueIdJson.isEmpty()){
+            Toast.makeText(getActivity(),"No unique id",Toast.LENGTH_LONG).show();
+            return;
+        }
+
         ft.addToBackStack(null);
         LocationSelectorDialogFragment
                 .newInstance((GiziSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "registrasi_jurim")

@@ -116,13 +116,14 @@ public class ChildDetailActivity extends Activity {
                 String DetailEnd = timer.format(new Date());
                 Map<String, String> Detail = new HashMap<String, String>();
                 Detail.put("end", DetailEnd);
-                FlurryAgent.logEvent("gizi_detail_view",Detail, true );
+                FlurryAgent.logEvent("gizi_detail_view", Detail, true);
             }
         });
         DetailsRepository detailsRepository = org.ei.opensrp.Context.getInstance().detailsRepository();
         detailsRepository.updateDetails(childclient);
 
-        System.out.println(childclient.getDetails().toString());
+        System.out.println("columnmaps: " + childclient.getColumnmaps().toString());
+        System.out.println("details: "+childclient.getDetails().toString());
 
         if(childclient.getDetails().get("profilepic")!= null){
             if((childclient.getDetails().get("gender")!=null?childclient.getDetails().get("gender"):"").equalsIgnoreCase("female")) {

@@ -245,15 +245,15 @@ public class GiziIbuSmartRegisterFragment extends SecuredNativeSmartRegisterCurs
 
     @Override
     public void startRegistration() {
-        FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
-        Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        LocationSelectorDialogFragment
-                .newInstance((GiziSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "registrasi_jurim")
-                .show(ft, locationDialogTAG);
+//        FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
+//        Fragment prev = getActivity().getFragmentManager().findFragmentByTag(locationDialogTAG);
+//        if (prev != null) {
+//            ft.remove(prev);
+//        }
+//        ft.addToBackStack(null);
+//        LocationSelectorDialogFragment
+//                .newInstance((GiziSmartRegisterActivity) getActivity(), new EditDialogOptionModel(), context.anmLocationController().get(), "registrasi_jurim")
+//                .show(ft, locationDialogTAG);
     }
 
     private class ClientActionHandler implements View.OnClickListener {

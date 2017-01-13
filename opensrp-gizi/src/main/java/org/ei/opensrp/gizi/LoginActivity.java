@@ -44,6 +44,8 @@ import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import util.uniqueIdGenerator.Generator;
+
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.opensrp.domain.LoginResponse.NO_INTERNET_CONNECTIVITY;
@@ -67,6 +69,7 @@ public class LoginActivity extends Activity {
     public static final String Bengali_LANGUAGE = "Bengali";
     public static final String Bahasa_LANGUAGE = "Bahasa";
 
+    public static Generator generator;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -305,12 +308,14 @@ public class LoginActivity extends Activity {
 
     private void localLoginWith(String userName, String password) {
         context.userService().localLogin(userName, password);
+        LoginActivity.generator = new Generator(context,userName,password);
         goToHome();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void remoteLoginWith(String userName, String password, String userInfo) {
         context.userService().remoteLogin(userName, password, userInfo);
+        LoginActivity.generator = new Generator(context,userName,password);
         goToHome();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
@@ -368,7 +373,7 @@ public class LoginActivity extends Activity {
         }
     }
 
-    /*private void tryGetUniqueId(final String username, final String password, final Listener<ResponseStatus> afterGetUniqueId) {
+    private void tryGetUniqueId(final String username, final String password, final Listener<ResponseStatus> afterGetUniqueId) {
         LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
             @Override
             public void setVisible() {
@@ -383,8 +388,9 @@ public class LoginActivity extends Activity {
         task.doActionInBackground(new BackgroundAction<ResponseStatus>() {
             @Override
             public ResponseStatus actionToDoInBackgroundThread() {
-                ((Context)context).uniqueIdService().syncUniqueIdFromServer(username, password);
-                return ((Context)context).uniqueIdService().getLastUsedId(username, password);
+                LoginActivity.generator = new Generator(context,username,password);
+                LoginActivity.generator.uniqueIdService().syncUniqueIdFromServer(username, password);
+                return (LoginActivity.generator.uniqueIdService().getLastUsedId(username, password));
             }
 
                 @Override
@@ -392,6 +398,6 @@ public class LoginActivity extends Activity {
                 afterGetUniqueId.onEvent(result);
             }
         });
-    }*/
+    }
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.flurry.android.FlurryAgent;
 
@@ -76,7 +77,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         String GiziStart = timer.format(new Date());
                 Map<String, String> Gizi = new HashMap<String, String>();
                 Gizi.put("start", GiziStart);
-                FlurryAgent.logEvent("Gizi_dashboard",Gizi, true );
+                FlurryAgent.logEvent("Gizi_dashboard", Gizi, true);
        // FlurryFacade.logEvent("Gizi_dashboard");
 
         formNames = this.buildFormNameList();
@@ -94,6 +95,13 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             }
         });
 
+        if(LoginActivity.generator.uniqueIdController().needToRefillUniqueId(LoginActivity.generator.UNIQUE_ID_LIMIT)) {
+            String toastMessage =  "need to refill unique id, its only "+
+                                   LoginActivity.generator.uniqueIdController().countRemainingUniqueId()+
+                                   " remaining";
+            Toast.makeText(context.applicationContext(), toastMessage, Toast.LENGTH_LONG).show();
+        }
+        
         ziggyService = context.ziggyService();
     }
     public void onPageChanged(int page){
@@ -152,6 +160,10 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             //switch to forms list fragment
             switchToBaseFragment(formSubmission); // Unnecessary!! passing on data
 
+            if(formName.equals("registrasi_gizi")) {
+                saveuniqueid();
+            }
+
         }catch (Exception e){
             // TODO: show error dialog on the formfragment if the submission fails
             DisplayFormFragment displayFormFragment = getDisplayFormFragmentAtIndex(currentPage);
@@ -201,7 +213,7 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
 
         try {
             JSONObject locationJSON = new JSONObject(locationJSONString);
-            //   JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+            JSONObject uniqueId = new JSONObject(LoginActivity.generator.uniqueIdController().getUniqueIdJson());
 
             combined = locationJSON;
             //     Iterator<String> iter = uniqueId.keys();
@@ -221,16 +233,16 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
         }
     }
 
-   /* public void saveuniqueid() {
+    public void saveuniqueid() {
         try {
-            JSONObject uniqueId = new JSONObject(context.uniqueIdController().getUniqueIdJson());
+            JSONObject uniqueId = new JSONObject(LoginActivity.generator.uniqueIdController().getUniqueIdJson());
             String uniq = uniqueId.getString("unique_id");
-            context.uniqueIdController().updateCurrentUniqueId(uniq);
+            LoginActivity.generator.uniqueIdController().updateCurrentUniqueId(uniq);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
