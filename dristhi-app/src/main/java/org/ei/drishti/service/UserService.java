@@ -2,10 +2,12 @@ package org.ei.drishti.service;
 
 import org.ei.drishti.DristhiConfiguration;
 import org.ei.drishti.domain.LoginResponse;
+import org.ei.drishti.domain.Response;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.AllSharedPreferences;
 import org.ei.drishti.repository.Repository;
 import org.ei.drishti.sync.SaveANMLocationTask;
+import org.ei.drishti.sync.SaveUserInfoTask;
 import org.ei.drishti.util.Session;
 
 import static org.ei.drishti.AllConstants.*;
@@ -19,9 +21,11 @@ public class UserService {
     private Session session;
     private DristhiConfiguration configuration;
     private SaveANMLocationTask saveANMLocationTask;
+    private SaveUserInfoTask saveUserInfoTask;
 
     public UserService(Repository repository, AllSettings allSettings, AllSharedPreferences allSharedPreferences, HTTPAgent httpAgent, Session session,
-                       DristhiConfiguration configuration, SaveANMLocationTask saveANMLocationTask) {
+                       DristhiConfiguration configuration, SaveANMLocationTask saveANMLocationTask,
+                       SaveUserInfoTask saveUserInfoTask) {
         this.repository = repository;
         this.allSettings = allSettings;
         this.allSharedPreferences = allSharedPreferences;
@@ -29,6 +33,7 @@ public class UserService {
         this.session = session;
         this.configuration = configuration;
         this.saveANMLocationTask = saveANMLocationTask;
+        this.saveUserInfoTask = saveUserInfoTask;
     }
 
     public boolean isValidLocalLogin(String userName, String password) {
@@ -36,8 +41,13 @@ public class UserService {
     }
 
     public LoginResponse isValidRemoteLogin(String userName, String password) {
-        String requestURL = configuration.dristhiBaseURL() + AUTHENTICATE_USER_URL_PATH + userName;
+        String requestURL = configuration.dristhiBaseURL() + OPENSRP_AUTH_USER_URL_PATH;
         return httpAgent.urlCanBeAccessWithGivenCredentials(requestURL, userName, password);
+    }
+
+    public Response<String> getLocationInformation() {
+        String requestURL = configuration.dristhiBaseURL() + OPENSRP_LOCATION_URL_PATH;
+        return httpAgent.fetch(requestURL);
     }
 
     private void loginWith(String userName, String password) {
@@ -49,8 +59,12 @@ public class UserService {
         loginWith(userName, password);
     }
 
-    public void remoteLogin(String userName, String password, String anmLocation) {
+    public void remoteLogin(String userName, String password, String userInfo) {
         loginWith(userName, password);
+        saveUserInfoTask.save(userInfo);
+    }
+
+    public void saveAnmLocation(String anmLocation) {
         saveANMLocationTask.save(anmLocation);
     }
 
