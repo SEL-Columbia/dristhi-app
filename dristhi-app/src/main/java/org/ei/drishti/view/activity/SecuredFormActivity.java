@@ -51,6 +51,7 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
     }
 
     private void webViewInitialization() {
+        closeDialog();
         WebSettings webViewSettings = webView.getSettings();
         webViewSettings.setJavaScriptEnabled(true);
         webViewSettings.setDatabaseEnabled(true);

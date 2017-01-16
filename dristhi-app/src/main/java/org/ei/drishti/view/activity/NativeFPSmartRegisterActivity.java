@@ -171,7 +171,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
         if (dialogOptionModel.getDialogOptions().length <= 0) {
             return;
         }

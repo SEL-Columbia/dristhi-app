@@ -3,6 +3,7 @@ package org.ei.drishti.view.controller;
 import android.app.Activity;
 import android.content.Intent;
 import org.ei.drishti.view.activity.*;
+import org.ei.drishti.commonregistryexample.NativePersonSmartRegisterActivity;
 
 import static org.ei.drishti.view.controller.ProfileNavigationController.*;
 
@@ -24,7 +25,8 @@ public class NavigationController {
     }
 
     public void startECSmartRegistry() {
-        activity.startActivity(new Intent(activity, NativeECSmartRegisterActivity.class));
+//        activity.startActivity(new Intent(activity, NativeECSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, NativePersonSmartRegisterActivity.class));
     }
 
     public void startFPSmartRegistry() {

@@ -1,28 +1,50 @@
 package org.ei.drishti.view.activity;
 
+import android.util.Log;
 import android.view.View;
+
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.form.FieldOverrides;
+import org.ei.drishti.person.PersonClientsProvider;
+import org.ei.drishti.person.PersonController;
+import org.ei.drishti.person.PersonServiceModeOption;
 import org.ei.drishti.provider.ECSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.controller.ECSmartRegisterController;
 import org.ei.drishti.view.controller.VillageController;
-import org.ei.drishti.view.dialog.*;
-
-import java.util.List;
+import org.ei.drishti.view.dialog.AllClientsFilter;
+import org.ei.drishti.view.dialog.AllEligibleCoupleServiceMode;
+import org.ei.drishti.view.dialog.BPLSort;
+import org.ei.drishti.view.dialog.DialogOption;
+import org.ei.drishti.view.dialog.DialogOptionMapper;
+import org.ei.drishti.view.dialog.DialogOptionModel;
+import org.ei.drishti.view.dialog.ECNumberSort;
+import org.ei.drishti.view.dialog.EditOption;
+import org.ei.drishti.view.dialog.FilterOption;
+import org.ei.drishti.view.dialog.HighPrioritySort;
+import org.ei.drishti.view.dialog.NameSort;
+import org.ei.drishti.view.dialog.OpenFormOption;
+import org.ei.drishti.view.dialog.SCSort;
+import org.ei.drishti.view.dialog.STSort;
+import org.ei.drishti.view.dialog.ServiceModeOption;
+import org.ei.drishti.view.dialog.SortOption;
 
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
-import static java.util.Arrays.asList;
-import static org.ei.drishti.AllConstants.FormNames.*;
+import static org.ei.drishti.AllConstants.FormNames.ANC_REGISTRATION;
+import static org.ei.drishti.AllConstants.FormNames.CHILD_REGISTRATION_EC;
+import static org.ei.drishti.AllConstants.FormNames.EC_EDIT;
+import static org.ei.drishti.AllConstants.FormNames.EC_REGISTRATION;
+import static org.ei.drishti.AllConstants.FormNames.FP_CHANGE;
 
-public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
+public class NativePersonSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
     private SmartRegisterClientsProvider clientProvider = null;
-    private ECSmartRegisterController controller;
+    private PersonController controller;
     private VillageController villageController;
     private DialogOptionMapper dialogOptionMapper;
 
@@ -39,7 +61,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             @Override
             public ServiceModeOption serviceMode() {
-                return new AllEligibleCoupleServiceMode(clientsProvider());
+                return new PersonServiceModeOption(clientsProvider());
             }
 
             @Override
@@ -92,7 +114,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     protected SmartRegisterClientsProvider clientsProvider() {
         if (clientProvider == null) {
-            clientProvider = new ECSmartRegisterClientsProvider(
+            clientProvider = new PersonClientsProvider(
                     this, clientActionHandler, controller);
         }
         return clientProvider;
@@ -100,19 +122,16 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
-                new OpenFormOption(getString(R.string.str_register_anc_form), ANC_REGISTRATION, formController),
-                new OpenFormOption(getString(R.string.str_register_fp_form), FP_CHANGE, formController),
-                new OpenFormOption(getString(R.string.str_register_child_form), CHILD_REGISTRATION_EC, formController),
-                new OpenFormOption(getString(R.string.str_edit_ec_form), EC_EDIT, formController),
-                new OpenFormOption(getString(R.string.str_close_ec_form), "tb_registration", formController),
+
+                new OpenFormOption("tb followup", "tb_followup", formController)
         };
     }
 
     @Override
     protected void onInitialization() {
-        controller = new ECSmartRegisterController(context.allEligibleCouples(),
+        controller = new PersonController(context.allPersons(),
                 context.allBeneficiaries(), context.listCache(),
-                context.ecClientsCache());
+                context.personClientsCache());
         villageController = new VillageController(context.allEligibleCouples(),
                 context.listCache(), context.villagesCache());
         dialogOptionMapper = new DialogOptionMapper();
@@ -127,8 +146,8 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected void startRegistration() {
-        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
-        startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
+//        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
+        startFormActivity("tb_registration", null,null);
     }
 
     private class ClientActionHandler implements View.OnClickListener {
@@ -138,7 +157,8 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 case R.id.profile_info_layout:
                     showProfileView((ECClient) view.getTag());
                     break;
-                case R.id.btn_edit:
+                case R.id.follow_up:
+                    Log.v("follow up check","a lot is done");
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
             }
