@@ -216,13 +216,14 @@ public class GiziSmartRegisterActivity extends SecuredNativeSmartRegisterActivit
             JSONObject uniqueId = new JSONObject(LoginActivity.generator.uniqueIdController().getUniqueIdJson());
 
             combined = locationJSON;
-            //     Iterator<String> iter = uniqueId.keys();
+            Iterator<String> iter = uniqueId.keys();
 
-       /*     while (iter.hasNext()) {
+            while (iter.hasNext()) {
                 String key = iter.next();
                 combined.put(key, uniqueId.get(key));
             }
-*/
+
+            System.out.println("injection string: "+combined.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
