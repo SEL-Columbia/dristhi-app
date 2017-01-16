@@ -6,6 +6,7 @@ public class AllSettings {
     public static final String PREVIOUS_FORM_SYNC_INDEX_SETTING_KEY = "previousFormSyncIndex";
     private static final String ANM_PASSWORD_PREFERENCE_KEY = "anmPassword";
     private static final String ANM_LOCATION = "anmLocation";
+    private static final String USER_INFORMATION = "userInformation";
 
     private AllSharedPreferences preferences;
     private SettingsRepository settingsRepository;
@@ -55,4 +56,10 @@ public class AllSettings {
     public String fetchANMLocation() {
         return settingsRepository.querySetting(ANM_LOCATION, "");
     }
+
+    public void saveUserInformation(String userInformation) {
+        settingsRepository.updateSetting(USER_INFORMATION, userInformation);
+    }
+
+    public String fetchUserInformation() { return settingsRepository.querySetting(USER_INFORMATION, "");}
 }

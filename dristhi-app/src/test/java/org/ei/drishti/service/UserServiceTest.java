@@ -1,6 +1,7 @@
 package org.ei.drishti.service;
 
 import org.ei.drishti.repository.*;
+import org.ei.drishti.sync.SaveUserInfoTask;
 import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.DristhiConfiguration;
 import org.ei.drishti.sync.SaveANMLocationTask;
@@ -37,13 +38,15 @@ public class UserServiceTest {
     private DristhiConfiguration configuration;
     @Mock
     private SaveANMLocationTask saveANMLocationTask;
+    @Mock
+    private SaveUserInfoTask saveUserInfoTask;
 
     private UserService userService;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        userService = new UserService(repository, allSettings, allSharedPreferences, httpAgent, session, configuration, saveANMLocationTask);
+        userService = new UserService(repository, allSettings, allSharedPreferences, httpAgent, session, configuration, saveANMLocationTask, saveUserInfoTask);
     }
 
     @Test
@@ -52,13 +55,25 @@ public class UserServiceTest {
 
         userService.isValidRemoteLogin("userX", "password Y");
 
-        verify(httpAgent).urlCanBeAccessWithGivenCredentials("http://dristhi_base_url/anm-villages?anm-id=userX", "userX", "password Y");
+        verify(httpAgent).urlCanBeAccessWithGivenCredentials("http://dristhi_base_url/security/authenticate", "userX", "password Y");
     }
 
     @Test
-    public void shouldSaveANMLocationWhenRemoteLoginIsSuccessful() {
-        userService.remoteLogin("userX", "password Y", "anm location");
+    public void shouldGetANMLocation() {
+        when(configuration.dristhiBaseURL()).thenReturn("http://opensrp_base_url");
+        userService.getLocationInformation();
+        verify(httpAgent).fetch("http://opensrp_base_url/location/location-tree");
+    }
 
+    @Test
+    public void shouldSaveUserInformationRemoteLoginIsSuccessful() {
+        userService.remoteLogin("userX", "password Y", "user info");
+        verify(saveUserInfoTask).save("user info");
+    }
+
+    @Test
+    public void shouldSaveANMLocation() {
+        userService.saveAnmLocation("anm location");
         verify(saveANMLocationTask).save("anm location");
     }
 
